@@ -1,0 +1,9 @@
+Autor
+Coautor
+Participante
+Asesor
+Director
+Tutor
+Conferencista
+Instructor
+Ponente
