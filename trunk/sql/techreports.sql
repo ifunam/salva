@@ -23,8 +23,8 @@ CREATE TABLE researcherthecnicalreports ( -- No. 2
             REFERENCES technicalreports(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   researcherroll int4 NOT NULL CONSTRAINT rtr__ref_researcherroll
-            REFERENCES researcherroll(id)
+   researcherrole int4 NOT NULL CONSTRAINT rtr__ref_researcherrole
+            REFERENCES researcherrole(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    uid int4 NOT NULL CONSTRAINT rs__ref_uid  
@@ -58,7 +58,7 @@ CREATE TABLE technicalreports_logs ( -- No. 3
 CREATE TABLE researcherthecnicalreports_logs ( -- No. 4
    id int4,
    trid int4 NOT NULL,
-   researcherroll int4 NOT NULL,
+   researcherrole int4 NOT NULL,
    uid int4 NOT NULL,
    year int4 NOT NULL,
    dbuser text DEFAULT CURRENT_USER,
@@ -88,15 +88,15 @@ INSERT INTO technicalreports_logs( id, authors, title, reference, year, uid,
 CREATE RULE researcherthecnicalreports_update AS     -- UPDATE rule
 ON UPDATE TO researcherthecnicalreports
 DO 
-INSERT INTO researcherthecnicalreports_logs( id, trid, researcherroll, uid, 
+INSERT INTO researcherthecnicalreports_logs( id, trid, researcherrole, uid, 
 				             year, dmodtype )
-				VALUES ( old.id, old.trid, old.researcherroll,
+				VALUES ( old.id, old.trid, old.researcherrole,
 					 old.uid, old.year, 'U' );
 
 CREATE RULE researcherthecnicalreports_delete AS     -- DELETE rule
 ON DELETE TO researcherthecnicalreports
 DO 
-INSERT INTO researcherthecnicalreports_logs( id, trid, researcherroll, uid, 
+INSERT INTO researcherthecnicalreports_logs( id, trid, researcherrole, uid, 
 				             year, dmodtype )
-				VALUES ( old.id, old.trid, old.researcherroll,
+				VALUES ( old.id, old.trid, old.researcherrole,
 					 old.uid, old.year, 'D' );

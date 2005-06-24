@@ -22,8 +22,8 @@ CREATE TABLE researcherseminaries ( -- No. 2
             REFERENCES seminaries(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    researcherroll int4 NOT NULL CONSTRAINT rs__ref_researcherroll
-            REFERENCES researcherroll(id)
+    researcherrole int4 NOT NULL CONSTRAINT rs__ref_researcherrole
+            REFERENCES researcherrole(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     uid int4 NOT NULL CONSTRAINT rs_ref_uid 
@@ -34,7 +34,7 @@ CREATE TABLE researcherseminaries ( -- No. 2
     dbuser text DEFAULT CURRENT_USER,
     dbtimestamp timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (researcherroll, uid, sid)
+    UNIQUE (researcherrole, uid, sid)
 );
 
 
@@ -56,7 +56,7 @@ CREATE TABLE seminaries_logs ( -- No. 3
 CREATE TABLE researcherseminaries_logs ( -- No. 4
     id int4,
     sid int4 NOT NULL,
-    researcherroll int4 NOT NULL,
+    researcherrole int4 NOT NULL,
     uid int4 NOT NULL,
     dbuser text DEFAULT CURRENT_USER,
     dbtimestamp timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -84,15 +84,15 @@ INSERT INTO seminaries_logs( id, title, place, year, uid, dbmodtype )
 CREATE RULE researcherseminaries_update AS     -- UPDATE rule
 ON UPDATE TO  researcherseminaries
 DO 
-INSERT INTO researcherseminaries_logs( id, sid, researcherroll, uid, 
+INSERT INTO researcherseminaries_logs( id, sid, researcherrole, uid, 
 				       dbmodtype )
-	                 VALUES( old.id, old.sid, old.researcherroll, 
+	                 VALUES( old.id, old.sid, old.researcherrole, 
 			         old.uid, 'U' );
 
 CREATE RULE researcherseminaries_delete AS     -- DELETE rule
 ON DELETE TO  researcherseminaries
 DO 
-INSERT INTO researcherseminaries_logs( id, sid, researcherroll, uid, 
+INSERT INTO researcherseminaries_logs( id, sid, researcherrole, uid, 
 				       dbmodtype )
-	                 VALUES( old.id, old.sid, old.researcherroll, 
+	                 VALUES( old.id, old.sid, old.researcherrole, 
 			         old.uid, 'D' );
