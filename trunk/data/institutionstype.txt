@@ -1,0 +1,4 @@
+Gobierno(Pública)
+Privada(Sector Empresarial) 
+Organización No Gubernamental (ONG)
+Otra
