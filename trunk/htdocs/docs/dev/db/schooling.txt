@@ -1,0 +1,10 @@
+De acuerdo a lo establecido por la secretaria de educacion publica
+existen los siguientes niveles académicos:
+Educación Básica: http://www.sep.gob.mx/wb2/sep/sep_Educacion_Basica
+Educación Media Superior: http://www.sep.gob.mx/work/templates/20/149/images/inicio__r1_c7.gif
+Educación Superior: http://www.sep.gob.mx/wb2/sep/sep_Educacion_Superior
+Educación Indígena: http://www.sep.gob.mx/wb2/sep/sep_Educacion_Indigenista
+Educación Tecnológica: http://www.sep.gob.mx/wb2/sep/sep_Educacion_Tecnologica
+
+Directorio de escuelas:
+http://www.sep.gob.mx/wb2/sep/sep_Directorio_Escolar_Nacional
