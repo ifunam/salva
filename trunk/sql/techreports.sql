@@ -7,9 +7,9 @@ CREATE TABLE technicalreports ( -- No. 1
     title   text NOT NULL,
     reference text NOT NULL,
     year int4 NOT NULL,
-    uid int4 NOT NULL CONSTRAINT s__ref_uid  -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
+    uid int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)      -- inserted, updated or deleted  
+            ON UPDATE CASCADE         -- data into or from this table.
             DEFERRABLE,
     dbuser text DEFAULT CURRENT_USER,
     dbtimestamp timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -17,17 +17,17 @@ CREATE TABLE technicalreports ( -- No. 1
     UNIQUE (authors, title, reference)
 );
 
-CREATE TABLE researcherthecnicalreports ( -- No. 2
+CREATE TABLE userthecnicalreports ( -- No. 2
    id SERIAL,
-   trid int4 NOT NULL CONSTRAINT rtp__ref_trid
+   trid int4 NOT NULL
             REFERENCES technicalreports(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   researcherrole int4 NOT NULL CONSTRAINT rtr__ref_researcherrole
-            REFERENCES researcherrole(id)
+   userrole int4 NOT NULL 
+            REFERENCES userrole(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   uid int4 NOT NULL CONSTRAINT rs__ref_uid  
+   uid int4 NOT NULL 
             REFERENCES users(id)            
 	    ON UPDATE CASCADE               
             ON DELETE CASCADE
