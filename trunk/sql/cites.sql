@@ -1,3 +1,8 @@
+-----------
+-- cites --
+-----------
+
+-- Each of the cites this user's works have
 CREATE TABLE cites ( 
    id int4 NOT NULL, -- id de la cita utilizado en la tabla de la que proviene
    citetype_id int4 NOT NULL  		 -- ID para identificar la tabla en donde se registro la información de esta cita.

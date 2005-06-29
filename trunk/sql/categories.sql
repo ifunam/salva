@@ -3,12 +3,12 @@
 -----------------------------------------
 CREATE TABLE researchercategories ( -- No. 1
     id SERIAL,
-    uid int4 NOT NULL CONSTRAINT rc__ref_uid 
+    uid int4 NOT NULL
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    cid int4 NOT NULL CONSTRAINT rc__ref_cid 
+    cid int4 NOT NULL
             REFERENCES categories(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -22,12 +22,12 @@ CREATE TABLE researchercategories ( -- No. 1
 
 CREATE TABLE researcherdepths ( -- No. 2
     id SERIAL,
-    uid int4 NOT NULL CONSTRAINT rc__ref_uid 
+    uid int4 NOT NULL
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    did int4 NOT NULL CONSTRAINT rc__ref_did 
+    did int4 NOT NULL
             REFERENCES depths(id)
             ON UPDATE CASCADE
             DEFERRABLE,
