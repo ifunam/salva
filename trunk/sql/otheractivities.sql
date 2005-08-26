@@ -60,3 +60,4 @@ CREATE TABLE usersotheractivities (
    PRIMARY KEY (id)
 );
 
+
