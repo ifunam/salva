@@ -17,6 +17,7 @@ CREATE TABLE foreignacadvisits (
             REFERENCES countries(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+	is_it_sabbatical_year bool NOT NULL,
         name text NOT NULL,
 	startyear int4 NOT NULL,
 	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
