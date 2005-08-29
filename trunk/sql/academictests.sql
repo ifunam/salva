@@ -23,6 +23,10 @@ CREATE TABLE academictests (
             REFERENCES academicdegrees(id) 
             ON UPDATE CASCADE              
             DEFERRABLE,
+	academictesttype_id integer NOT NULL 
+            REFERENCES academictesttypes(id) 
+            ON UPDATE CASCADE              
+            DEFERRABLE,
 	year int4 NOT NULL,
     	month int4 NULL CHECK (month >= 1 AND month <= 12),
 	moduser_id integer NOT NULL      -- It will be used only to know who has
