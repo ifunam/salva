@@ -71,7 +71,7 @@ CREATE TABLE usersacademictests (
 
 -- studentacademictest: Expresses the relation where the user has the 
 -- 			 learning role for this test (i.e., student)
-CREATE TABLE studentsacademictest ( 
+CREATE TABLE studentsacademictests ( 
    id SERIAL,
    academictest_id integer NOT NULL 
             REFERENCES academictests(id)
