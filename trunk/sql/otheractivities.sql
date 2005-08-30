@@ -57,7 +57,10 @@ CREATE TABLE usersotheractivities (
    endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
    dbuser text DEFAULT CURRENT_USER,
    dbtimestamp timestamp DEFAULT now(),
-   PRIMARY KEY (id)
+   PRIMARY KEY (id),
+   CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+
 );
 
 

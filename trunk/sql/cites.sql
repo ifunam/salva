@@ -24,37 +24,37 @@ CREATE TABLE cites (
 );
 
 
-CREATE OR REPLACE FUNCTION check_cites() RETURNS TRIGGER AS '
-DECLARE 
-	collections RECORD;
-	reftocollections RECORD;
-BEGIN
+-- CREATE OR REPLACE FUNCTION check_cites() RETURNS TRIGGER AS '
+-- DECLARE 
+-- 	collections RECORD;
+-- 	reftocollections RECORD;
+-- BEGIN
 
-	FOR collections IN SELECT tablename FROM collections WHERE id = NEW.citetype_id;
-	IF NOT FOUND THEN
-    		RAISE EXCEPTION ''citetype_id % not found in collections table'', NEW.citetype_id;
-	ELSE
-		SELECT id FROM collections.tablename WHERE id = NEW.id;
-		IF NOT FOUND THEN
-    			RAISE EXCEPTION ''id % not found in the table %'', NEW.id, collections.tablename;
-		END IF;
-	END IF;
+-- 	FOR collections IN SELECT tablename FROM collections WHERE id = NEW.citetype_id;
+-- 	IF NOT FOUND THEN
+--     		RAISE EXCEPTION ''citetype_id % not found in collections table'', NEW.citetype_id;
+-- 	ELSE
+-- 		SELECT id FROM collections.tablename WHERE id = NEW.id;
+-- 		IF NOT FOUND THEN
+--     			RAISE EXCEPTION ''id % not found in the table %'', NEW.id, collections.tablename;
+-- 		END IF;
+-- 	END IF;
 
-	FOR reftocollections IN SELECT tablename FROM collections WHERE id = NEW.reftocollection_id;
-	IF NOT FOUND THEN
-    		RAISE EXCEPTION ''reftocollection_id % not found in collections table'', NEW.reftocollection_id;
-	ELSE
-		SELECT id FROM reftocollections.tablename WHERE id = NEW.citedwork_id;
-		IF NOT FOUND THEN
-    			RAISE EXCEPTION ''citedwork_id % not found in the table %'', NEW.citedwork_id, reftocollections.tablename;
-		END IF;
-	END IF;
+-- 	FOR reftocollections IN SELECT tablename FROM collections WHERE id = NEW.reftocollection_id;
+-- 	IF NOT FOUND THEN
+--     		RAISE EXCEPTION ''reftocollection_id % not found in collections table'', NEW.reftocollection_id;
+-- 	ELSE
+-- 		SELECT id FROM reftocollections.tablename WHERE id = NEW.citedwork_id;
+-- 		IF NOT FOUND THEN
+--     			RAISE EXCEPTION ''citedwork_id % not found in the table %'', NEW.citedwork_id, reftocollections.tablename;
+-- 		END IF;
+-- 	END IF;
 
-        RETURN NEW;		
-END;
-' LANGUAGE 'plpgsql';
+--         RETURN NEW;		
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
 
 
-CREATE TRIGGER cites_insert BEFORE INSERT ON cites FOR EACH ROW EXECUTE PROCEDURE check_cites();
-CREATE TRIGGER cites_update BEFORE UPDATE ON cites FOR EACH ROW EXECUTE PROCEDURE check_cites();
+-- CREATE TRIGGER cites_insert BEFORE INSERT ON cites FOR EACH ROW EXECUTE PROCEDURE check_cites();
+-- CREATE TRIGGER cites_update BEFORE UPDATE ON cites FOR EACH ROW EXECUTE PROCEDURE check_cites();

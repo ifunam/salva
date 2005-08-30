@@ -1,5 +1,5 @@
 ----------------------------------------
--- Estancias                          --
+-- Estancias y sabaticos              --
 ----------------------------------------
 
 CREATE TABLE foreignacadvisits (
@@ -17,7 +17,7 @@ CREATE TABLE foreignacadvisits (
             REFERENCES countries(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-	is_it_sabbatical_year bool NOT NULL,
+	is_sabbatical  bool NOT NULL,
         name text NOT NULL,
 	startyear int4 NOT NULL,
 	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
@@ -28,7 +28,10 @@ CREATE TABLE foreignacadvisits (
     	other text  NULL,
 	dbuser text DEFAULT CURRENT_USER,
 	dbtimestamp timestamp DEFAULT now(),
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+
 );
 
 CREATE TABLE sponsorsforeignacadvisits (
