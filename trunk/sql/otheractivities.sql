@@ -27,7 +27,7 @@ CREATE TABLE otheractivities(
             ON UPDATE CASCADE 
             DEFERRABLE,
     title   text NOT NULL,
-    comments text  NULL,
+    other text  NULL,
     institution_id integer NULL 
 	    REFERENCES institutions(id)
 	    ON UPDATE CASCADE
