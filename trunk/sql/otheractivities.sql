@@ -51,7 +51,7 @@ CREATE TABLE otheractivities(
     PRIMARY KEY (id)
 );
  
-CREATE TABLE usersotheractivities (
+CREATE TABLE userotheractivities (
    id SERIAL,
    otheractivities_id int4 NOT NULL 
             REFERENCES otheractivities(id)
