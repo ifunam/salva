@@ -4,14 +4,14 @@
 
 -- Each of the cites this user's works have
 CREATE TABLE cites ( 
-   id int4 NOT NULL, -- id de la cita utilizado en la tabla de la que proviene
-   citetype_id int4 NOT NULL  		 -- ID para identificar la tabla en donde se registro la información de esta cita.
+   citingwork_id int4 NOT NULL,
+   citingtype_id int4 NOT NULL
             REFERENCES collections(id)  
             ON UPDATE CASCADE
             DEFERRABLE,
-   citedwork_id int4 NOT NULL, -- ID del trabajo citado en esta cita
-   reftocollection_id int4 NOT NULL  -- Indicaremos el <<id de la tabla>> en donde esta registrado el trabajo
-	    REFERENCES collections(id)    -- citado
+   citedwork_id int4 NOT NULL,
+   citedtype_id int4 NOT NULL
+	    REFERENCES collections(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    moduser_id int4 NOT NULL      -- It will be used only to know who has
@@ -22,7 +22,18 @@ CREATE TABLE cites (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id, citetype_id, citedwork_id, reftocollection_id)
 );
-
+COMMENT ON TABLE cites IS
+	'Citas a los trabajos de los usuarios';
+COMMENT ON COLUMN cites.citingwork_id IS
+	'ID del trabajo citante en su tabla (indicada por citingtype_id)';
+COMMENT ON COLUMN cites.citingtype_id IS
+	'ID de la tabla (ver collections) a la que pertenece el trabajo \
+	citante';
+COMMENT ON COLUMN cites.citedwork_id IS
+	'ID del trabajo citado en su tabla (indicada por citedtype_id)';
+COMMENT ON COLUMN cites.citedtype_id IS
+	'ID de la tabla (ver collections) a la que pertenece el trabajo \
+	citado';
 
 -- CREATE OR REPLACE FUNCTION check_cites() RETURNS TRIGGER AS '
 -- DECLARE 
