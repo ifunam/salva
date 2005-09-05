@@ -27,12 +27,12 @@ COMMENT ON TABLE cites IS
 COMMENT ON COLUMN cites.citingwork_id IS
 	'ID del trabajo citante en su tabla (indicada por citingtype_id)';
 COMMENT ON COLUMN cites.citingtype_id IS
-	'ID de la tabla (ver collections) a la que pertenece el trabajo \
+	'ID de la tabla (ver collections) a la que pertenece el trabajo 
 	citante';
 COMMENT ON COLUMN cites.citedwork_id IS
 	'ID del trabajo citado en su tabla (indicada por citedtype_id)';
 COMMENT ON COLUMN cites.citedtype_id IS
-	'ID de la tabla (ver collections) a la que pertenece el trabajo \
+	'ID de la tabla (ver collections) a la que pertenece el trabajo 
 	citado';
 
 -- CREATE OR REPLACE FUNCTION check_cites() RETURNS TRIGGER AS '
