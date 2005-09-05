@@ -388,3 +388,46 @@ body
   text-decoration: none;
 }
 
+
+#linksforindex 
+{
+  text-decoration: none;
+  margin-bottom: 2em;
+}
+
+#linksforindex a
+{
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 0.5em;
+  color: white;
+  background: #233f86;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #5268a0 #6377a9 #112153 #09143a; 
+  padding-top: 0.15em;
+  padding-bottom: 0.15em;
+  width: 8em; 
+  float: left;
+}
+
+#linksforindex a:hover, #linksforindex a#current:hover
+{
+  background: #233f86; 
+  border-color: #112153 #6377a9 #5268a0 #09143a; 
+  color: yellow; 
+  padding-top: 0.15em;
+  padding-bottom: 0.15em;
+}
+
+#linksforindex a:active, #linksforindex a#current:active
+{
+  background: #17a;
+  border-color: #069 #6cf #5bd #17a;
+  padding-top: 0.15em;
+  padding-bottom: 0.15em;
+}
+
+
+
