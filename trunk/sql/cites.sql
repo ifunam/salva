@@ -20,7 +20,7 @@ CREATE TABLE cites (
             DEFERRABLE,
     dbuser text DEFAULT CURRENT_USER,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id, citetype_id, citedwork_id, reftocollection_id)
+    PRIMARY KEY (citingwork_id, citingtype_id, citedwork_id, citedtype_id)
 );
 COMMENT ON TABLE cites IS
 	'Citas a los trabajos de los usuarios';
