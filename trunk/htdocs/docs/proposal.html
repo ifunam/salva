@@ -37,13 +37,6 @@
      </a>
     </div>
   </div>
-  <div class="center_toolbar">
-    <div id="presidencia">
-     <a href="http://www.presidencia.gob.mx"  target="_new">
-     <img src="../themes/default/images/invisible.png" border="0" alt="[Presidencia de M&eacute;xico]"> 
-     </a>
-    </div>
-  </div> 
   <div class="right_toolbar"></div>
   <!-- End of this section-->
 
@@ -55,15 +48,15 @@
 </div> <!-- End for toolbar -->
 </div><!-- End of topbar -->
 
-<div class="bgcolor"> <!-- form: used for the form or content of this page -->
+<div class="bgcolor"> <!-- form: used for the form or content of this --><!-- page -->
       <ul id="treemenu">
        <li id="active"> <a href="#" id="current">S A L V A</a></li>
        <li class="simple"><a href="/">Inicio de sesi&oacute;n</a></li>
        <li class="simple"><a href="/AddUser">Obtener una cuenta</a></li>
        <li> <a href="http://www.conacyt.mx" target="_new">ConaCyT</a></li>
-       <li class="simple"> <a href="http://www.conacyt.mx/dac/proyectos/index.html" target="_new">Proyectos de investigaci&oacute;n</a></li>
+       <li class="simple"> <a href="http://www.conacyt.mx/sinecyt/index.html" target="_new">Sinecyt</a></li>
+       <li><a href="http://www.siicyt.gob.mx/jsp/index.jsp" target="_new">SIICYT</a></li>
        <li><a href="http://www.scienti.net/html/es/home.html" target="_new">ScienTI</a></li>
-       <li><a href="http://www.conacyt.mx/dadrys/sinecyt/index_sinecyt.html" target="_new">SINECYT</a></li>
        <li class="simple"><a href="http://www.scienti.net/xml2html/xmlRoot.php?xml=xml/es/bvs.xml&xsl=xsl/level2.xsl&lang=es&tab=collection&item=91&graphic=yes" target="_new">Grupos de investigaci&oacute;n</a></li>
        <li><a href="http://www.presidencia.gob.mx" target="_new">M&eacute;xico</a></li>
       </ul>
@@ -86,7 +79,7 @@
 
 
 <a name="proposal"></a>
-<h2> Propuesta: Curriculum - SALVA</h2>
+<h2> Propuesta </h2>
 <p>
 El <a href="http://www.fisica.unam.mx"  target="_new">Instituto de F&iacute;sica</a>
 en colaboraci&oacute;n  del <a href="http://www.iiec.unam.mx" target="_new">Instituto de Investigaciones Econ&oacute;micas</a>  
@@ -122,33 +115,130 @@ como el <a href="http://www.cic-ctic.unam.mx/" target="_new">CTIC</a>,
 la <a href="http://dgpa.unam.mx"target="_new">DGPA</a>, 
 el <a href="http://www.conacyt.mx" target="_new">ConaCyT</a> y otras organizaciones.
 </p>
+
+<h2>Curriculum - SALVA</h2>
 <p>
 Por lo tanto proponemos el siguiente estándar para el manejo de la
 informaci&oacute;n curricular:
+</p>
+<div id="proposal">
+<h3>Información general</h3>
 <ul>
-<li>
-Las tablas desplegables que están a disposición del usuario en
-numerosos campos del Sistema de Currícum SALVA, contienen categorías
-prefijadas que han sido diseñadas para la clasificación 
-automatizada de la información a nivel interno y se pretende que en
-el futuro se formalizen a nivel regional y nacional.
-</li>
-<li>
-El usuario pueede elegir, en  medida de lo posible, entre las opciones
-existentes, pero puede incluir nuevas categorías cuando las
-existentes no le correspondan bajo ningún concepto a la información 
-que debe completar.
-</li>
-<li>
-En los campos de texto libre se pueden pegar frases o fragmentos de
-texto (previamente) copiados de documentos provenientes de otras
-aplicaciones (como procesadores de textos) o incluir archivos en
-diferentes formatos.
-</li>
+<li><a href="dev/db/salva.html#public.table.personal" >Datos personales</a></li>
+<li><a href="dev/db/salva.html#public.table.personalid">Identificación(es)</a></li>
+<li><a href="dev/db/salva.html#public.table.address" >Domicilio(s)</a></li>
+<li><a href="dev/db/salva.html#public.table.schooling" >Formaci&oacute;n acad&eacute;mica</a></li>
+<li><a href="dev/db/salva.html#public.table.jobpositions" >Experiencia laboral</a></li>
+<li><a href="dev/db/salva.html#public.table.userstimulus" >Est&iacute;mulos</a></li>
+<li><a href="dev/db/salva.html#public.table.userprojects" >Proyectos (investigaci&oacute;n, infraestructura, apoyo,otro)</a></li>
+<li><a href="dev/db/salva.html#public.table.userprizes" >Premios y distinciones</a></li>
+<li><a href="dev/db/salva.html#public.table.usergrants" >Becas</a></li>
+<li><a href="dev/db/salva.html#public.table.acadvisits" >Estancias</a></li>
+<li><a href="dev/db/salva.html#public.table.cites" >Citas a su obra</a></li>
+<li><a href="dev/db/salva.html#public.table.usermembership" >Membresias en asociaciones acad&eacute;micas</a></li>
+<li><a href="dev/db/salva.html#public.table.userlanguages" >Idiomas</a></li>
+<li><a href="dev/db/salva.html#public.table.userskills" >Habilidades generales</a></li>
+<li>Actividades de superaci&oacute;n acad&eacute;mica/profesional</li>
+ <ul>
+ <li><a href="dev/db/salva.html#public.table.usercourses"  >Cursos de actualización recibidos</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences"  >Asistencia a congresos, seminarios, coloquios, encuentros, etc</a></li>
+ </ul>
 </ul>
 
+<h3>Publicaciones</h3>
+<ul>
+<li><a href="dev/db/salva.html#public.table.authorarticles" >Art&iacute;culos publicados en revistas con arbitraje</a></li>
+<li><a href="dev/db/salva.html#public.table.usergenericworks" >Art&iacute;culos publicados en memorias</a></li>
+<li><a href="dev/db/salva.html#public.table.userbooks" >Libros</a></li>
+<li><a href="dev/db/salva.html#public.table.userchaptersbooks" >Cap&iacute;tulos en libros</a></li>
+<li><a href="dev/db/salva.html#public.table.usergenericworks" >Informes y reportes t&eacute;cnicos</a></li>
+<li><a href="dev/db/salva.html#public.table.usergenericworks" >Otro tipo de publicaci&oacute;n</a></li>
+</ul>
+
+<h3>Productos t&eacute;cnicos</h3>
+<ul>
+<li><a href="dev/db/salva.html#public.table.techproducts" >Desarrollo de nueva t&eacute;cnicas o procesos</a></li>
+<li><a href="dev/db/salva.html#public.table.techproducts" >Desarrollo de productos tecnol&oacute;gicos</a></li>
+<li><a href="dev/db/salva.html#public.table.techproducts" >Desarrollo de infraestructura</a></li>
+<li><a href="dev/db/salva.html#public.table.techproducts" >Patentes</a></li>
+<li><a href="dev/db/salva.html#public.table.techproducts" >Otros productos t&eacute;cnicos</a></li>
+</ul>
+
+
+<h3>Docencia</h3>
+<ul>
+ <li><a href="dev/db/salva.html#public.table.usercourses" >Cursos impartidos</a></li>
+ <li><a href="dev/db/salva.html#public.table.usergenericworks" >Productos de docencia</a></li>
+ <li><a href="dev/db/salva.html#public.table.userthesis" > Asesor&iacute;s  y tutor&iacute;as de tesis</a></li>
+ <li><a href="dev/db/salva.html#public.table.otheractivities" >Otras actividades docentes</a></li>
+</ul>
+
+<h3>Divulgaci&oacute;n</h3>
+<ul>
+ <li><a href="dev/db/salva.html#public.table.usernewspaperarticles"  >Art&iacute;culos en prensa</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences" >Congresos</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences" >Conferencias</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences" >Coloquios</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences" >Seminarios</a></li>
+ <li><a href="dev/db/salva.html#public.table.userconferences" >Encuentros</a></li>
+ <li><a href="dev/db/salva.html#public.table.usergenericworks" >Otros trabajos de divulgaci&oacute;n</a></li>
+</ul>
+
+
+<h3>Datos complementarios</h3>
+<ul>
+ <li><a href="dev/db/salva.html#public.table.userthesis" >Participaci&oacute;n como jurado en evaluaciones de trabajo de grado (Examenes sinodales)</a></li>
+ <li><a href="dev/db/salva.html#public.table.userthesis" >Participaci&oacute;n en comit&eacute;s tutoriales</a></li>
+ <li><a href="dev/db/salva.html#public.table.userreferedpubs" >Participaci&oacute;n en arbitraje</a></li>
+ <li><a href="dev/db/salva.html#public.table.userorgan" >Participaci&oacute;n en &oacute;rganos colegiados</a></li>
+ <li><a href="dev/db/salva.html#public.table.usercredits" >Cartas de agradecimiento y otros cr&eacute;ditos obtenidos</a></li>
+ <li><a href="dev/db/salva.html#public.table.userotheractivities">Otros trabajos complementarios</a></li>
+</ul>
+
+<h3>Otros productos y actividades</h3>
+<ul>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">Asesorías y consultorías</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">Producci&oacute;n artistica/cultural</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">Participaci&oacute;n de programas de radio/tv</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">Entrevistas</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">.</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">.</a></li>
+ <li> <a href="dev/db/salva.html#public.table.userotheractivities">.</a></li>
+</ul>
+
+</div>
+
+
+<h2> Comentarios adicionales </h2>
+<p>
+Mucha de la informaci&oacute;n que está a disposición del usuario en varios
+campos del SALVA usan categorías predefinidas que han sido diseñadas 
+para la clasificación automatizada de la información a nivel interno,
+aunque se pretende que en el futuro se formalizen a nivel local, regional 
+y nacional.
+</p>
+<p>
+Adem&aacute;s el usuario puede elegir las opciones que le correspondan
+que existen de manera predefinida, pero tambi&eacute;n puede incluir
+nuevas categorías cuando las existentes no le correspondan bajo ningún 
+concepto a la información que desea llenar.
+</p>
+<p>
+Se ha previsto usar algunos campos de texto libre para 
+pegar frases o fragmentos de texto (previamente) copiados de
+documentos provenientes de otras aplicaciones (como procesadores de
+textos) o incluir archivos en
+diferentes formatos.
+</p>
+
+<p>
+Y para el caso de algunos productos como proyectos, art&iacute;culos y
+algunos otros se incluye el soporte de estados y una bit&aacute;cora
+correspondiente a sus cambios.
+</p>
+
 <div id="linksforindex">
-<a href="history.html" >Anterior</a> <a href="index.html" >Indice general</a> <a href="proposal.html">Siguiente</a>
+<a href="history.html" >Anterior</a> <a href="index.html" >&Iacute;ndice general</a> <a href="goals.html">Siguiente</a>
 </div>
 
 </div>
