@@ -1,20 +1,7 @@
 ----------------------
 -- Other Activities --
 ----------------------
--- Apoyo de actividades académicas     --
--- Servicios de apoyo 		       --
--- Actividades especificas	       --
--- Actividades de servicio en su  área --
--- Asesorías profesionales             --
--- Asesorías a estudiantes	       --
--- Asesoría a proyectos de investigación --
--- Planes y programas de estudios      --
--- Evaluación de aprendizaje --
--- Visitas guiadas --
--- Actividades artisticas --
--- Organización de actividades de divulgación --
--- Actividades académicas no incluídas
--- Otras --
+
 CREATE TABLE otheractivitytypes (
 	id serial,
 	name text NOT NULL,
@@ -29,6 +16,14 @@ CREATE TABLE otheractivitytypes (
 	UNIQUE (name),
 	UNIQUE (abbrev)
 );
+COMMENT ON TABLE otheractivitytypes IS
+	'Listado de otros tipos de actividades académicas';
+-- Apoyo de actividades académicas, Servicios de apoyo, Actividades
+-- especificasm Actividades de servicio en su área, Asesorías profesionales,
+-- Asesorías a estudiantes, Asesoría a proyectos de investigación, Planes y
+-- programas de estudios, Evaluación de aprendizaje, Visitas guiadas,
+-- Actividades artisticas, Organización de actividades de divulgación,
+-- Actividades académicas no incluídas, Otras
 
 CREATE TABLE otheractivities( 
     id SERIAL,
@@ -50,7 +45,9 @@ CREATE TABLE otheractivities(
     dbtimestamp timestamp DEFAULT now(),
     PRIMARY KEY (id)
 );
- 
+COMMENT ON TABLE otheractivities IS
+	'Otras actividades académicas en las que participan los usuarios';
+
 CREATE TABLE userotheractivities (
    id SERIAL,
    otheractivities_id int4 NOT NULL 
@@ -74,7 +71,6 @@ CREATE TABLE userotheractivities (
    PRIMARY KEY (id),
    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
-
 );
-
-
+COMMENT ON TABLE userotheractivities IS
+	'Relación entre usuarios y otras actividades académicas';
