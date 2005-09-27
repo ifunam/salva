@@ -2,10 +2,32 @@
 -- Other Activities --
 ----------------------
 
+-- Actividades de divulgación
+-- Actividades de extensión
+-- Actividades de difusión
+-- Servicios de apoyo
+-- Asesorías y consultorías
+-- Actividades de docencia
+-- Actividades de vinculación
+-- Actividades artisticas
+-- Otras actividades
+CREATE TABLE otheractivitygroups (
+	id serial,
+	name text NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE otheractivitygroups IS
+	'Listado del grupo al que pertenecen las otras actividades';
+
 CREATE TABLE otheractivitytypes (
 	id serial,
 	name text NOT NULL,
 	abbrev text NULL,
+	otheractivitygroup_id int4 NOT NULL   
+	    REFERENCES otheractivitygroups(id) 
+            ON UPDATE CASCADE 
+            DEFERRABLE,
 	moduser_id int4 NOT NULL    	     -- Use it only to know who has
 	    REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
@@ -17,13 +39,52 @@ CREATE TABLE otheractivitytypes (
 	UNIQUE (abbrev)
 );
 COMMENT ON TABLE otheractivitytypes IS
-	'Listado de otros tipos de actividades académicas';
--- Apoyo de actividades académicas, Servicios de apoyo, Actividades
--- especificasm Actividades de servicio en su área, Asesorías profesionales,
--- Asesorías a estudiantes, Asesoría a proyectos de investigación, Planes y
--- programas de estudios, Evaluación de aprendizaje, Visitas guiadas,
--- Actividades artisticas, Organización de actividades de divulgación,
--- Actividades académicas no incluídas, Otras
+	'Listado de otros tipos de actividades';
+-- Actividades de divulgación:
+-- Charlas 
+-- Debates
+-- Jornadas
+-- Sesiones
+-- Organización de actividades de divulgación
+-- ...
+--
+-- Actividades de difusión:
+--  Programas de radio
+--  Entrevistas
+--  Participación en programas de radio y TV
+--  ...
+--
+-- Actividades de extensión:
+--  Exhibiciones
+--  Presentaciones
+--  Excursiones (museos, centros o institutos de investigación, facultades)
+--  Visitas guiadas
+--  ...
+--
+-- Servicios de apoyo:
+--  Actividades de servicio en su área
+--  Asesorías profesionales
+--  ...
+--
+-- Asesorías y consultorías
+--  A estudiantes
+--  A profesores
+--  A proyectos de investigación
+--  ...
+--
+-- Actividades de docencia:
+--  Servicios de apoyo 
+--  Programas de estudios
+--  Evaluación de aprendizaje
+--  Otras actividades docentes no incluídas
+--
+-- Actividades de vinculación
+-- Convenios
+-- ...
+-- 
+-- Actividades artisticas
+-- ?
+--  ....
 
 CREATE TABLE otheractivities( 
     id SERIAL,
