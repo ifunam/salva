@@ -1,4 +1,5 @@
 package Salva::User;
+use strict;
 use Carp;
 use base qw (Class::Accessor);
 Salva::User->mk_accessors(qw(firstname lastname1 lastname2 sex
