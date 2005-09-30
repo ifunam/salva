@@ -14,7 +14,7 @@ CREATE TABLE cites (
 	    REFERENCES collections(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   moduser_id int4 NOT NULL      -- It will be used only to know who has
+   moduser_id int4 NULL      -- It will be used only to know who has
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
