@@ -30,7 +30,12 @@ CREATE TABLE roleinthesis (
 );
 COMMENT ON TABLE roleinthesis IS 
 	'Roles en una tesis';
--- Director, tutor, comÌte tutorial, jurado(sinodal), ...
+-- Rol del usuario en la tesis: Director, tutor o asesor, ...
+-- Se considera participaci√n≥en comit√s tutoriales cuando
+-- el usuario NO es director de tesis. Por ejemplo:
+-- Un comit√© tutorial puede estar integrado po el director 
+-- de tesis y dos Asesores.
+
 
 CREATE TABLE thesis (
 	id SERIAL NOT NULL,
@@ -158,3 +163,36 @@ COMMENT ON TABLE studentsthesis IS
 COMMENT ON COLUMN studentsthesis.user_is_internal IS
 	'El usuario es interno del sistema? Si sÌ, exigimos internaluser_id; 
 	si no, exigimos externaluser_id';
+
+CREATE TABLE roleindissertation (
+	id SERIAL,
+	name text NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+-- Role in thesis presentations or dissertations.
+-- Jurado de examenes: Presidente, Secretario, Vocal, ...
+
+CREATE TABLE userdissthesis (
+   id SERIAL,
+   user_id integer NULL
+            REFERENCES users(id)            
+            ON UPDATE CASCADE               
+            DEFERRABLE,
+   thesis_id integer NOT NULL 
+            REFERENCES thesis(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   roleindissertation_id integer NOT NULL
+            REFERENCES roleindissertation(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   year integer NOT NULL,
+   month integer NULL,
+   PRIMARY KEY (id),
+   UNIQUE (thesis_id, user_id, roleindissertation_id)
+);
+COMMENT ON TABLE userdissthesis IS 
+	'La relaciÛn entre un usuario, el rol en la disertaci√n
+	(sinodal, presidente, secretario y vocal) y la tesis';
+
