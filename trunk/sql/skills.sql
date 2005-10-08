@@ -17,14 +17,14 @@ COMMENT ON TABLE skilltypes IS
 
 CREATE TABLE userskills (
 	id serial,
-	user_id integer NOT NULL  -- It will be used only to know who has
-        	REFERENCES users(id) -- inserted, updated or deleted  
-            	ON UPDATE CASCADE    -- data into or from this table.
+	uid integer NOT NULL  
+        	REFERENCES users(id) 
+            	ON UPDATE CASCADE    
           	ON DELETE CASCADE     
             	DEFERRABLE,
-	skilltype_id integer NOT NULL  -- It will be used only to know who has
-        	REFERENCES skilltypes(id) -- inserted, updated or deleted  
-            	ON UPDATE CASCADE    -- data into or from this table.
+	skilltype_id integer NOT NULL  
+        	REFERENCES skilltypes(id) 
+            	ON UPDATE CASCADE  
             	DEFERRABLE,
 	descr text NULL,
 	PRIMARY KEY (id)

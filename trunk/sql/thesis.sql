@@ -175,7 +175,7 @@ CREATE TABLE roleindissertation (
 
 CREATE TABLE userdissthesis (
    id SERIAL,
-   user_id integer NULL
+   uid integer NULL
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
@@ -190,7 +190,7 @@ CREATE TABLE userdissthesis (
    year integer NOT NULL,
    month integer NULL,
    PRIMARY KEY (id),
-   UNIQUE (thesis_id, user_id, roleindissertation_id)
+   UNIQUE (uid, thesis_id, roleindissertation_id)
 );
 COMMENT ON TABLE userdissthesis IS 
 	'La relación entre un usuario, el rol en la disertaciÃn
