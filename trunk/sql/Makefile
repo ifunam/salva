@@ -19,7 +19,7 @@ EGREP=grep -E
 
 # Database options
 DB=salva
-USER=gwolf
+USER=salva
 USEPASSWD=no
 ENCODING=SQL_ASCII
 
@@ -28,7 +28,7 @@ TMPL1=template1
 LANGNAME=plpgsql
 
 SQLFILE=salva.sql
-SQLLOG=salva_sql.log
+SQLLOG=salva.log
 
 backup:
 	echo "Making simple backup for the ${DB} database with ${PG_DUMP}";\
