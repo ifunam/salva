@@ -21,6 +21,7 @@ CREATE TABLE newspaperarticles (
             ON UPDATE CASCADE        
             DEFERRABLE,	
  	newsdate date NOT NULL,
+	pages text NULL,
 	url text NULL,
 	PRIMARY KEY (id),
 	UNIQUE (title, newspaper_id, newsdate)
