@@ -1,6 +1,6 @@
 
 -- Instutional project, research project, magazine, book, article, 
--- contest, prize, ....
+-- contest, prize,
 CREATE TABLE pubtorefereed (
 	id SERIAL,
 	name text NOT NULL,
