@@ -94,7 +94,7 @@ CREATE TABLE roleinmagazine (
 );
 COMMENT ON TABLE roleinmagazine IS
 	'Roles que un usuario puede tener en una publicación';
--- Editor, compilador, etc..
+-- Editor, compilador, revisor, etc..
 
 
 CREATE TABLE usermagazines ( 
