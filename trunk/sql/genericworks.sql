@@ -1,5 +1,5 @@
 -- Productos de divulgación
--- Productos de extensión
+-- Productos de extensión y difusión
 -- Productos de difusión
 -- Productos de docencia
 -- Publicaciones internas
@@ -36,12 +36,13 @@ COMMENT ON TABLE genericworktypes IS
 --  Reportes técnicos públicos
 --  Artículos In extenso
 --  Artículos en memorias
+--  Artículos o ensayos en revistas
 --  Divulgación de la ciencia
 --  Nota de investigación
 --  Reseña
 --  ...
 --
--- Productos de extensión:
+-- Productos de extensión y difusión:
 --  Colecciones (infantiles, impresos)
 --  ....
 --
@@ -59,6 +60,9 @@ COMMENT ON TABLE genericworktypes IS
 --  Antología critica
 --  Guía de estudio
 --  Notas de clase
+--  Cuadernos
+--  Manual de apoyo docente
+--  Catalogos
 --  ...
 
 
