@@ -39,17 +39,21 @@ CREATE TABLE activitytypes (
 COMMENT ON TABLE activitytypes IS
 	'Listado de otros tipos de actividades';
 -- Actividades de divulgación:
--- Charlas 
--- Debates
--- Jornadas
--- Sesiones
 -- Organización de actividades de divulgación
 -- ...
 --
 -- Actividades de difusión:
 --  Programas de radio
 --  Entrevistas
+--  Reportajes
+--  Crónicas
+--  Opiniones
+--  Elaboración de guiones
+--  Conducción de programas de radio
+--  Conducción de programas de TV
+--  Crestomatias
 --  Participación en programas de radio y TV
+--  Otras actividades de difusión
 --  ...
 --
 -- Actividades de extensión:
@@ -98,14 +102,7 @@ CREATE TABLE activities(
             ON UPDATE CASCADE 
             DEFERRABLE,
     title   text NOT NULL,
-    other text  NULL,
-    startyear int4 NOT NULL,
-    startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
-    endyear int4  NULL,
-    endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
-    PRIMARY KEY (id),
-    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+    PRIMARY KEY (id)
 );
 COMMENT ON TABLE activities IS
 	'Otras actividades académicas en las que participan los usuarios';
@@ -126,19 +123,28 @@ COMMENT ON TABLE activitiesinstitutions IS
 
 CREATE TABLE useractivities (
    id SERIAL,
-   activities_id int4 NOT NULL 
-            REFERENCES activities(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
    uid int4 NOT NULL 
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
-   userrole_id int4 NOT NULL 
+   userrole_id int4 NULL 
             REFERENCES userrole(id)
             ON UPDATE CASCADE
-            DEFERRABLE,   
-   PRIMARY KEY (id)
+            DEFERRABLE,  
+   activities_id int4 NOT NULL 
+            REFERENCES activities(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    startyear int4 NOT NULL,
+    startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
+    endyear int4  NULL,
+    endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
+    other text  NULL,  
+    PRIMARY KEY (id),
+    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE useractivities IS
-	'Relación entre usuarios y las actividades académicas';
+	'Relación entre usuarios y las actividades académicas, las dechas de inicio y de termino 
+	 corresponden al período de la participación del usuario en la actividad, las fechas definen
+	 la duración de la participación del usuario en la actividad';
