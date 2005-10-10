@@ -145,6 +145,5 @@ CREATE TABLE useractivities (
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE useractivities IS
-	'Relación entre usuarios y las actividades académicas, las dechas de inicio y de termino 
-	 corresponden al período de la participación del usuario en la actividad, las fechas definen
-	 la duración de la participación del usuario en la actividad';
+	'Relación entre usuarios y las actividades académicas, las fechas de inicio y de termino 
+	 corresponden al período de la participación del usuario en la actividad';
