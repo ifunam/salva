@@ -237,6 +237,8 @@ CREATE TABLE useradscription (
                          REFERENCES adscription(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
+        name text NULL,
+        descr text NULL,
 	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
 	startyear int4 NOT NULL,
 	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
@@ -245,6 +247,10 @@ CREATE TABLE useradscription (
 );
 COMMENT ON TABLE useradscription IS 
 	'Adscripción a la que pertenece un usuario en determinado periodo';
+COMMENT ON COLUMN useradscription.name IS
+	'Describir el nombre de la participación institucional: Jefe de departamento, Coordinador, etc';
+COMMENT ON COLUMN useradscription.descr IS
+	'Se usa para describir las funciones o actividades del puesto institucional';
 COMMENT ON COLUMN useradscription.startyear IS
 	'El periodo aparece tanto aquí como en userjobposition ya que un 
 	usuario puede cambiar de adscripción sin cambiar su categoría';
