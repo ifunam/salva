@@ -98,3 +98,4 @@ CREATE TABLE institutionsgoals (
 );
 COMMENT ON TABLE institutionsgoals IS
 	'Relación entre cada una de las instituciones y las metas';
+
