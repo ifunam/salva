@@ -28,7 +28,7 @@ TMPL1=template1
 LANGNAME=plpgsql
 
 SQLFILE=salva.sql
-SQLLOG=salva.log
+SQLLOG=/tmp/salva_sql.log
 
 backup:
 	echo "Making simple backup for the ${DB} database with ${PG_DUMP}";\
@@ -82,9 +82,9 @@ createlang:
 
 createtables:
 	if test "Password ${USEPASSWD}" = "Password yes"; then \
-		${PSQL} -U ${USER} -W ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLPATH}/${SQLLOG}; \
+		${PSQL} -U ${USER} -W ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLLOG}; \
 	else \
-		${PSQL} -U ${USER} ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLPATH}/${SQLLOG}; \
+		${PSQL} -U ${USER} ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLLOG}; \
 	fi;
 
 
