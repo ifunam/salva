@@ -4,9 +4,6 @@
 
 -- Estas tablas dependen de la existencia de las de conferences.sql.
 
--- NOTA: Vamos a hacer un projectslog que lleve la bitácora de avance en 
--- los proyectos
-
 CREATE TABLE projectstype (
 	id SERIAL,
 	name text NOT NULL,
@@ -314,3 +311,44 @@ CREATE TABLE projectsgenericworks (
 );
 COMMENT ON TABLE projectsgenericworks IS
 	'Trabajos genéricos relacionados con cada proyecto';
+
+CREATE TABLE projectslog (
+    id SERIAL,
+    project_id integer NOT NULL
+            REFERENCES projects(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    old_projectstatus_id integer  NOT NULL 
+	    REFERENCES projectstatus(id)
+	    ON UPDATE CASCADE
+	    DEFERRABLE,
+    year int4 NOT NULL,
+    month int4 NULL CHECK (month >= 1 AND month <= 12),
+    moduser_id integer NULL      -- It will be used only to know who has
+            REFERENCES users(id) -- inserted, updated or deleted  
+            ON UPDATE CASCADE    -- data into or from this table.
+            DEFERRABLE,
+    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+COMMENT ON TABLE projectslog IS 
+	'Bitácora de cambios de estado en proyectos';
+
+------
+-- Update projectslog if there was a status change
+------
+CREATE OR REPLACE FUNCTION projects_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.projectstatus_id = NEW.projectstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO projectslog (project_id, old_projectstatus_id, moduser_id) 
+		VALUES (OLD.id, OLD.projectstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER thesis_update BEFORE DELETE ON thesis
+	FOR EACH ROW EXECUTE PROCEDURE thesis_update();

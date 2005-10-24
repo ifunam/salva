@@ -57,7 +57,7 @@ CREATE TABLE newspaperarticleslog (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    artstatus_id integer NOT NULL 
+    old_artstatus_id integer NOT NULL 
             REFERENCES articlestatus(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -71,3 +71,23 @@ CREATE TABLE newspaperarticleslog (
 );
 COMMENT ON TABLE newspaperarticleslog IS
 	'Cambios en el estado de los artículos periodísticos';
+
+------
+-- Update newspaperarticleslog if there was a status change
+------
+CREATE OR REPLACE FUNCTION newspaperarticles_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.artstatus_id = NEW.artstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO newspaperarticleslog (newspaperarticle_id, 
+		old_artstatus_id, moduser_id) 
+		VALUES (OLD.id, OLD.artstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER newspaperarticles_update BEFORE DELETE ON newspaperarticles
+	FOR EACH ROW EXECUTE PROCEDURE newspaperarticles_update();

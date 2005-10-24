@@ -191,7 +191,7 @@ CREATE TABLE articleslog (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    artstatus_id integer NOT NULL 
+    old_artstatus_id integer NOT NULL 
             REFERENCES articlestatus(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -236,14 +236,20 @@ COMMENT ON COLUMN filesarticles.content IS
 
 
 ------
--- Encontrar qué lógica aplicar acá para el llenado de articleslog
+-- Update articleslog if there was a status change
 ------
--- CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER AS '
--- DECLARE 
--- BEGIN
--- 	INSERT INTO articleslog (articles_id, artstatus_id, moduser_id) VALUES (OLD.id, OLD.artstatus_id, OLD.moduser_id);
---         RETURN NEW;
--- END;
--- ' LANGUAGE 'plpgsql';
+CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.artstatus_id = NEW.artstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO articleslog (articles_id, old_artstatus_id, moduser_id)
+		VALUES (OLD.id, OLD.artstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
 
---CREATE TRIGGER articles_cites_delete BEFORE DELETE ON articles FOR EACH ROW EXECUTE PROCEDURE articles_cites_delete();
+CREATE TRIGGER articles_update BEFORE DELETE ON articles
+	FOR EACH ROW EXECUTE PROCEDURE articles_update();

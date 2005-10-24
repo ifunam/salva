@@ -170,7 +170,7 @@ CREATE TABLE usergenericworkslog (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    genericworkstatus_id integer NOT NULL 
+    old_genericworkstatus_id integer NOT NULL 
             REFERENCES genericworkstatus(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -185,3 +185,23 @@ CREATE TABLE usergenericworkslog (
 COMMENT ON TABLE usergenericworkslog IS
 	'Estado actual (y bitácora) de un trabajo genérico - Cuándo fue
 	 enviado, cuándo fue aceptado, etc.';
+
+------
+-- Update usergenericworkslog if there was a status change
+------
+CREATE OR REPLACE FUNCTION usergenericworks_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.genericworkstatus_id = NEW.genericworkstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO usergenericworkslog (usergenericworks_id, 
+		old_usergenericworkstatus_id, moduser_id) VALUES
+		(OLD.id, OLD.genericworkstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER usergenericworks_update BEFORE DELETE ON usergenericworks
+	FOR EACH ROW EXECUTE PROCEDURE usergenericworks_update();

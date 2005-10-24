@@ -185,7 +185,7 @@ CREATE TABLE stimuluslog (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    stimulusstatus_id integer NOT NULL 
+    old_stimulusstatus_id integer NOT NULL 
             REFERENCES stimulusstatus(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -254,3 +254,23 @@ COMMENT ON COLUMN useradscription.descr IS
 COMMENT ON COLUMN useradscription.startyear IS
 	'El periodo aparece tanto aquí como en userjobposition ya que un 
 	usuario puede cambiar de adscripción sin cambiar su categoría';
+
+------
+-- Update stimuluslog if there was a status change
+------
+CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO stimuluslog (stimulus_id, old_stimulusstatus_id, 
+		moduser_id) 
+		VALUES (OLD.id, OLD.stimulusstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER stimulus_update BEFORE DELETE ON stimulus
+	FOR EACH ROW EXECUTE PROCEDURE stimulus_update();

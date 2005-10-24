@@ -196,3 +196,22 @@ COMMENT ON TABLE userdissthesis IS
 	'La relación entre un usuario, el rol en la disertaciÃn
 	(sinodal, presidente, secretario y vocal) y la tesis';
 
+
+------
+-- Update thesislog if there was a status change
+------
+CREATE OR REPLACE FUNCTION thesis_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+BEGIN
+	IF OLD.thesisstatus_id = NEW.thesisstatus_id THEN
+		RETURN NEW;
+	END IF;
+	INSERT INTO thesislog (thesis_id, old_thesisstatus_id, moduser_id) 
+		VALUES (OLD.id, OLD.thesisstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER thesis_update BEFORE DELETE ON thesis
+	FOR EACH ROW EXECUTE PROCEDURE thesis_update();
