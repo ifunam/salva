@@ -166,7 +166,7 @@ COMMENT ON TABLE bookseditionscopublisher IS
 
 CREATE TABLE userbooks ( 
     id SERIAL,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -181,7 +181,7 @@ CREATE TABLE userbooks (
             DEFERRABLE,
     year int4 NOT NULL,
     other text NULL,
-    PRIMARY KEY (uid, books_id)
+    PRIMARY KEY (user_id, books_id)
 );
 COMMENT ON TABLE userbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
@@ -212,7 +212,7 @@ COMMENT ON COLUMN chaptersbooks.chapter IS
 
 CREATE TABLE userchaptersbooks ( 
     id SERIAL,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -227,7 +227,7 @@ CREATE TABLE userchaptersbooks (
             DEFERRABLE,
     year int4 NOT NULL,
     other text NULL,
-    PRIMARY KEY (uid, chaptersbooks_id)
+    PRIMARY KEY (user_id, chaptersbooks_id)
 );
 COMMENT ON TABLE userchaptersbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo

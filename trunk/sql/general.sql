@@ -43,7 +43,7 @@ COMMENT ON TABLE migratorystatus IS
 -- Turista, residente temporal, residente permanente
 
 CREATE TABLE personal ( 
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -69,7 +69,7 @@ CREATE TABLE personal (
     photo bytea NULL,
     other text NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (uid)
+    PRIMARY KEY (user_id)
 );
 CREATE INDEX "personal_firstname_idx" ON personal(firstname);
 CREATE INDEX "personal_lastname1_idx" ON personal(lastname1);
@@ -79,7 +79,7 @@ COMMENT ON TABLE personal IS
 	'Datos personales del usuario';
 
 CREATE TABLE personalid ( 
-   uid int4 NOT NULL 
+   user_id int4 NOT NULL 
    	   REFERENCES users(id)
            ON UPDATE CASCADE
            ON DELETE CASCADE   
@@ -90,13 +90,13 @@ CREATE TABLE personalid (
            DEFERRABLE,
    content text NULL,
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (uid)
+   PRIMARY KEY (user_id)
 );
 COMMENT ON TABLE personalid IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE address ( 
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -122,13 +122,13 @@ CREATE TABLE address (
     other text NULL,
     mail bool DEFAULT 'f' NOT NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (uid, addrtype_id)
+    PRIMARY KEY (user_id, addrtype_id)
 );
 COMMENT ON TABLE address IS
 	'Las direcciones postales de un usuario';
 
 CREATE TABLE usercitizen ( 
-  uid int4 NOT NULL 
+  user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
@@ -142,13 +142,13 @@ CREATE TABLE usercitizen (
 	   DEFERRABLE,
   passport text NULL,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (uid, citizen_id)
+  PRIMARY KEY (user_id, citizen_id)
 );
 COMMENT ON TABLE usercitizen IS
 	'Nacionalidades que tiene un usuario';
 
 CREATE TABLE usermembership ( 
-  uid int4 NOT NULL 
+  user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
@@ -160,7 +160,7 @@ CREATE TABLE usermembership (
   startyear int4 NULL,
   endyear int4 NULL,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (uid, institution_id)
+  PRIMARY KEY (user_id, institution_id)
 );
 COMMENT ON TABLE usermembership IS
 	'Instituciones académicas a las que pertenece un usuario';

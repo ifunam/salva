@@ -31,7 +31,7 @@ COMMENT ON TABLE newspaperarticles IS
 
 CREATE TABLE usernewspaperarticles ( 
     id SERIAL,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -43,7 +43,7 @@ CREATE TABLE usernewspaperarticles (
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (uid, newspaperarticle_id)
+    PRIMARY KEY (user_id, newspaperarticle_id)
 );
 COMMENT ON TABLE usernewspaperarticles IS
 	'Autores de un artículo periodístico';

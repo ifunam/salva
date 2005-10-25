@@ -79,7 +79,7 @@ COMMENT ON TABLE institutionsacadcareers IS
 
 CREATE TABLE schooling (
     id SERIAL,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -104,7 +104,7 @@ CREATE TABLE schooling (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (uid,  institutionacadcareer_id),
+    UNIQUE (user_id,  institutionacadcareer_id),
     CONSTRAINT choose_credits_or_year CHECK 
 	(endyear IS NULL OR credits IS NULL OR credits = 100),
     CONSTRAINT valid_period CHECK (startyear < endyear)

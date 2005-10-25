@@ -99,7 +99,7 @@ COMMENT ON TABLE roleinmagazine IS
 
 CREATE TABLE usermagazines ( 
 	id SERIAL,
-    	uid int4 NOT NULL 
+    	user_id int4 NOT NULL 
         	REFERENCES users(id)      
             	ON UPDATE CASCADE
             	ON DELETE CASCADE   
@@ -165,7 +165,7 @@ COMMENT ON COLUMN articles.authors IS
 
 CREATE TABLE authorarticles ( 
     id SERIAL,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -177,7 +177,7 @@ CREATE TABLE authorarticles (
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (uid, article_id)
+    PRIMARY KEY (user_id, article_id)
 );
 COMMENT ON TABLE authorarticles IS
 	'Relación entre usuarios del sistema y artículos';

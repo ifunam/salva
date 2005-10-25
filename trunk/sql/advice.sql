@@ -61,7 +61,7 @@ CREATE TABLE instadvice (
 	id SERIAL,
 	title text NOT NULL,
 	acadprogram text NULL, -- Carreer or academic program
-	uid int4 NOT NULL 
+	user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -108,7 +108,7 @@ COMMENT ON TABLE instadviceactivity IS
 CREATE TABLE indivadvice (
 	id SERIAL,
 	user_is_internal bool, -- Is the user a full system user?
-	uid int4 NOT NULL 
+	user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   

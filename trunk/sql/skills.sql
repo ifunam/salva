@@ -17,7 +17,7 @@ COMMENT ON TABLE skilltypes IS
 
 CREATE TABLE userskills (
 	id serial,
-	uid integer NOT NULL  
+	user_id integer NOT NULL  
         	REFERENCES users(id) 
             	ON UPDATE CASCADE    
           	ON DELETE CASCADE     

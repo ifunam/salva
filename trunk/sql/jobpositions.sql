@@ -67,7 +67,7 @@ COMMENT ON TABLE contracttype IS
 
 CREATE TABLE userjobposition (
 	id SERIAL, 
-	uid int4 NOT NULL 
+	user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -143,7 +143,7 @@ COMMENT ON TABLE stimuluslevel IS
 
 CREATE TABLE userstimulus (
 	id SERIAL, 
-	uid int4 NOT NULL 
+	user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE   

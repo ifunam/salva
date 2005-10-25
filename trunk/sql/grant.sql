@@ -25,7 +25,7 @@ CREATE TABLE usergrants (
             REFERENCES grants(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -36,7 +36,7 @@ CREATE TABLE usergrants (
     endyear int4  NULL,
     endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
     PRIMARY KEY (id),
-    UNIQUE (grants_id, uid, startyear, startmonth),
+    UNIQUE (grants_id, user_id, startyear, startmonth),
     CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );

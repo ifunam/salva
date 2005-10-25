@@ -18,7 +18,7 @@ COMMENT ON TABLE languages IS
 
 CREATE TABLE userlanguages (
 	id serial,
-	uid int4 NOT NULL  
+	user_id int4 NOT NULL  
         	REFERENCES users(id)
             	ON UPDATE CASCADE
 	        ON DELETE CASCADE       

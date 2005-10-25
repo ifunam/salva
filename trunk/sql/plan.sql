@@ -1,6 +1,6 @@
 CREATE TABLE plan (
     id SERIAL,
-    uid int4 NOT NULL
+    user_id int4 NOT NULL
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
@@ -15,7 +15,7 @@ COMMENT ON TABLE plan IS
 
 CREATE TABLE selfevaluation (
     id SERIAL,
-    uid int4 NOT NULL
+    user_id int4 NOT NULL
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   

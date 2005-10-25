@@ -62,7 +62,7 @@ COMMENT ON TABLE organ IS
 
 CREATE TABLE userorgan (
 	id SERIAL,
-	uid int4 NOT NULL
+	user_id int4 NOT NULL
 	    REFERENCES users(id)
             ON UPDATE CASCADE  
             ON DELETE CASCADE  

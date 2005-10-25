@@ -93,7 +93,7 @@ COMMENT ON TABLE activitytypes IS
 
 CREATE TABLE activities( 
     id SERIAL,
-    uid int4 NOT NULL            -- Use it only to know who has
+    user_id int4 NOT NULL            -- Use it only to know who has
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
@@ -123,7 +123,7 @@ COMMENT ON TABLE activitiesinstitutions IS
 
 CREATE TABLE useractivities (
    id SERIAL,
-   uid int4 NOT NULL 
+   user_id int4 NOT NULL 
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,

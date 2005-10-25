@@ -14,7 +14,7 @@ COMMENT ON TABLE acadvisittype IS
 
 CREATE TABLE acadvisits (
 	id  SERIAL NOT NULL,
-	uid int4 NOT NULL
+	user_id int4 NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE

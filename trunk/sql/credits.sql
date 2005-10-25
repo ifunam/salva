@@ -1,6 +1,6 @@
 CREATE TABLE usercredits (
    id SERIAL,
-   uid integer 
+   user_id integer 
        REFERENCES users(id)            
        ON UPDATE CASCADE               
            DEFERRABLE,

@@ -98,12 +98,12 @@ CREATE TABLE userconferences (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    UNIQUE (uid, conference_id),
+    UNIQUE (user_id, conference_id),
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE userconferences IS

@@ -42,13 +42,13 @@ CREATE TABLE userprizes (
             REFERENCES prizes(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-    uid int4 NOT NULL 
+    user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (prize_id, uid, year)
+    UNIQUE (prize_id, user_id, year)
 );
 COMMENT ON TABLE userprizes IS
 	'Qué usuarios han recibido qué premios';

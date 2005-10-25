@@ -38,7 +38,7 @@ COMMENT ON TABLE researchlines IS
 
 CREATE TABLE userresearchlines(
     id SERIAL,
-    uid int4 NOT NULL
+    user_id int4 NOT NULL
             REFERENCES users(id)     
             ON UPDATE CASCADE   
             ON DELETE CASCADE  
@@ -47,7 +47,7 @@ CREATE TABLE userresearchlines(
             REFERENCES researchlines(id)     
             ON UPDATE CASCADE   
             DEFERRABLE,
-    PRIMARY KEY (uid, researchlines_id)
+    PRIMARY KEY (user_id, researchlines_id)
 );
 COMMENT ON TABLE userresearchlines IS
 	'Líneas de investigación en que participa un usuario';
