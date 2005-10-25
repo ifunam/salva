@@ -337,18 +337,18 @@ COMMENT ON TABLE projectslog IS
 ------
 -- Update projectslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION projects_update() RETURNS TRIGGER 
-SECURITY DEFINER AS '
-DECLARE 
-BEGIN
-	IF OLD.projectstatus_id = NEW.projectstatus_id THEN
-		RETURN NEW;
-	END IF;
-	INSERT INTO projectslog (project_id, old_projectstatus_id, moduser_id) 
-		VALUES (OLD.id, OLD.projectstatus_id, OLD.moduser_id);
-        RETURN NEW;
-END;
-' LANGUAGE 'plpgsql';
+-- CREATE OR REPLACE FUNCTION projects_update() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	IF OLD.projectstatus_id = NEW.projectstatus_id THEN
+-- 		RETURN NEW;
+-- 	END IF;
+-- 	INSERT INTO projectslog (project_id, old_projectstatus_id, moduser_id) 
+-- 		VALUES (OLD.id, OLD.projectstatus_id, OLD.moduser_id);
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER thesis_update BEFORE DELETE ON thesis
-	FOR EACH ROW EXECUTE PROCEDURE thesis_update();
+-- CREATE TRIGGER thesis_update BEFORE DELETE ON thesis
+-- 	FOR EACH ROW EXECUTE PROCEDURE thesis_update();

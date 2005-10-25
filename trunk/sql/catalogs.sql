@@ -104,8 +104,8 @@ CREATE TABLE menuelem (
 		REFERENCES menuelem(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	userlevel_id int4 NOT NULL
-		REFERENCES userlevels(id)
+	group_id int4 NOT NULL
+		REFERENCES groups(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	ordering int4 NOT NULL,
@@ -123,7 +123,7 @@ COMMENT ON TABLE menuelem IS
 	'Cada uno de los elementos del menú que se muestra al usuario';
 COMMENT ON COLUMN menuelem.parentmenuelem_id IS
 	'ID del elemento padre - NULL siginfica que está sobre la raiz';
-COMMENT ON COLUMN menuelem.userlevel_id IS
+COMMENT ON COLUMN menuelem.group_id IS
 	'Nivel mínimo de usuario que tiene derecho de ver este elemento';
 COMMENT ON COLUMN menuelem.expanded IS
 	'Si tiene sub-elementos, expanded indica si por default los mostramos o no';

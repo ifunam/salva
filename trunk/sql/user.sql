@@ -4,6 +4,8 @@
 CREATE TABLE userstatus ( 
     id serial NOT NULL,
     name text NOT NULL,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(name)
 );
@@ -11,19 +13,23 @@ COMMENT ON TABLE userstatus IS
 	'Estado de cada uno de los usuarios';
 -- Nuevo, aprobado, bloqueado, etc.
 
-CREATE TABLE userlevels (
-    id int2 NOT NULL,
+CREATE TABLE groups (
+    id serial NOT NULL,
     name text NOT NULL,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(name)
 );
-COMMENT ON TABLE userlevels IS
+COMMENT ON TABLE groups IS
 	'Grupos (tipos) de usuario del sistema';
 -- Usuario, operador, administrador, etc.
 
 CREATE TABLE secretquestion ( 
-    id int2 NOT NULL,
+    id serial NOT NULL,
     name text,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(name)
 );
@@ -40,11 +46,6 @@ CREATE TABLE users (
             ON UPDATE CASCADE
             DEFERRABLE
 	    DEFAULT 1,
-    userlevel_id int4 NOT NULL
-	    REFERENCES userlevels(id)
-	    ON UPDATE CASCADE
-	    DEFERRABLE
-	    DEFAULT 1,
     secretquestion_id int4 NULL 
            REFERENCES secretquestion(id)
            ON UPDATE CASCADE
@@ -54,7 +55,8 @@ CREATE TABLE users (
     pkcs7 text NULL,
     session char(32) NULL,
     session_exp timestamp DEFAULT now()+'3 hr'::interval NULL,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(login),
     UNIQUE(session)
@@ -69,18 +71,20 @@ COMMENT ON COLUMN users.email IS
 COMMENT ON COLUMN users.pkcs7 IS 
 	'A ser utilizado con infraestructura PKI';
 
--- CREATE TABLE usergroups (
---     uid int4 NOT NULL
--- 	REFERENCES users(id)
---         ON UPDATE CASCADE
---         ON DELETE CASCADE
---         DEFERRABLE,
---     gid int4 NOT NULL 
--- 	REFERENCES groups(id)
---         ON UPDATE CASCADE
---         DEFERRABLE,
---     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
---     PRIMARY KEY (uid, gid)
--- );
--- COMMENT ON TABLE usergroups IS
--- 	'Grupos a los que pertenece cada usuario';
+CREATE TABLE usergroups (
+    user_id int4 NOT NULL
+	REFERENCES users(id)
+        ON UPDATE CASCADE
+       	ON DELETE CASCADE
+	DEFERRABLE,
+    group_id int4 NOT NULL
+	REFERENCES groups(id)
+	ON UPDATE CASCADE
+	DEFERRABLE
+	DEFAULT 1,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, group_id)
+ );
+COMMENT ON TABLE usergroups IS
+ 	'Grupos a los que pertenece cada usuario';

@@ -258,19 +258,19 @@ COMMENT ON COLUMN useradscription.startyear IS
 ------
 -- Update stimuluslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER 
-SECURITY DEFINER AS '
-DECLARE 
-BEGIN
-	IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
-		RETURN NEW;
-	END IF;
-	INSERT INTO stimuluslog (stimulus_id, old_stimulusstatus_id, 
-		moduser_id) 
-		VALUES (OLD.id, OLD.stimulusstatus_id, OLD.moduser_id);
-        RETURN NEW;
-END;
-' LANGUAGE 'plpgsql';
+-- CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
+-- 		RETURN NEW;
+-- 	END IF;
+-- 	INSERT INTO stimuluslog (stimulus_id, old_stimulusstatus_id, 
+-- 		moduser_id) 
+-- 		VALUES (OLD.id, OLD.stimulusstatus_id, OLD.moduser_id);
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER stimulus_update BEFORE DELETE ON stimulus
-	FOR EACH ROW EXECUTE PROCEDURE stimulus_update();
+-- CREATE TRIGGER stimulus_update BEFORE DELETE ON stimulus
+-- 	FOR EACH ROW EXECUTE PROCEDURE stimulus_update();
