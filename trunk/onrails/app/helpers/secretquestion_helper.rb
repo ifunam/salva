@@ -1,0 +1,2 @@
+module SecretquestionHelper
+end

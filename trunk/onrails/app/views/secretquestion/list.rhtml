@@ -1,0 +1,34 @@
+<% @head_title = 'Listado de preguntas para la recuperaci&oacute;n de contrase&ntilde;as' %>
+<% @keywords = "Listado;preguntas;recuperaci&oacute;n;contrase&ntilde;as" %>
+<% @description = @head_title %>
+<% @title = @head_title %>
+<% @title_icon = 'salvita_search_32x32.png' %>
+
+<%= start_form_tag :action => 'purge_selected', :id => @secretquestion %>
+<div class="top_options">
+<%= link_to 'Agregar pregunta', :action => 'new' %>  |
+<%= submit_tag 'Borrar preguntas seleccionadas', :onclick => "return confirm('¿Esta seguro que desea borrar todas las preguntas seleccionadas?');" %>
+</div>
+<table class="list">
+  <tr>
+    <th><%= link_to_image 'ok.gif', {:action => "purge_completed"},  :border => 0 %></th>
+    <th>Pregunta</th>
+    <th>Creaci&oacute;n</th>
+    <th>Actualizaci&oacute;n</th>
+    <th>Consultar</th>
+    <th>Modificar</th>
+    <th>Borrar</th>
+  </tr>
+<%= render_collection_of_partials "list_stripes", @secretquestions %>
+</table>
+<%= end_form_tag %>
+
+<%= link_to 'P&aacute;gina anterior', { :page => @secretquestion_pages.current.previous } if @secretquestion_pages.current.previous %>
+<%= link_to 'P&aacute;gina siguiente', { :page => @secretquestion_pages.current.next } if @secretquestion_pages.current.next %> 
+
+
+
+
+
+
+

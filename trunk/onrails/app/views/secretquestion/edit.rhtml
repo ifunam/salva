@@ -1,0 +1,16 @@
+<% @head_title = 'Modificaci&oacute;n de la pregunta' %>
+<% @keywords = "modificar;pregunta;recuperaci&oacute;n;contrase&ntilde;as" %>
+<% @description = @head_title %>
+<% @title = @head_title %>
+<% @title_icon = 'salvita_write_32x32.png' %>
+
+<fieldset>
+<legend>Informaci&oacute;n de la pregunta</legend>
+
+<%= start_form_tag :action => 'update', :id => @secretquestion %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Guardar cambios' %>
+<%= end_form_tag %>
+</fieldset>
+<%= link_to 'Regresar', :action => 'list' %>
+
