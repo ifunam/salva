@@ -1,18 +1,19 @@
-<%= error_messages_for 'secretquestion' %>
+<%= error_messages_for 'edit' %>
 
-<!--[form:secretquestion]-->
-
+<!--[form:edit]-->
 <label for="secretquestion">Pregunta secreta</label>
-<%= text_field 'secretquestion', 'name', 'size' => 40, 'maxsize'=>80,'tabindex' => 1, 'id' => 'secretquestion' %>
+<%= text_field 'edit', 'name', 'size' => 40, 'maxsize'=>80,'tabindex' => 1, 'id' => 'secretquestion' %>
 </br>
 
 <label for="created_on">Fecha de creaci&oacute;n</label>
-<%= datetime_select 'secretquestion', 'created_on', 'tabindex' => 2, 'id' => 'created_on'  %>
+<%= datetime_select 'edit', 'created_on', 'tabindex' => 2, 'id' => 'created_on'  %>
 </br>
 
 <label for="updated_on">Fecha de actualizaci&oacute;n</label>
-<%= datetime_select 'secretquestion', 'updated_on', 'tabindex' => 3, 'id' => 'updated_on' %>
+<%= datetime_select 'edit', 'updated_on', 'tabindex' => 3, 'id' => 'updated_on' %>
 </br>
 
-<!--[eoform:secretquestion]-->
+<!--[eoform:edit]-->
+
+
 

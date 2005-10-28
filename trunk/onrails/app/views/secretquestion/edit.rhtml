@@ -7,10 +7,9 @@
 <fieldset>
 <legend>Informaci&oacute;n de la pregunta</legend>
 
-<%= start_form_tag :action => 'update', :id => @secretquestion %>
-  <%= render :partial => 'form' %>
+<%= start_form_tag :action => 'update', :id => @edit %>
+  <%= render :partial => 'form'  %>
   <%= submit_tag 'Guardar cambios' %>
 <%= end_form_tag %>
 </fieldset>
 <%= link_to 'Regresar', :action => 'list' %>
-
