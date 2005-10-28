@@ -1,0 +1,33 @@
+
+<table class="list">
+  <tr>
+    <% if @show_purge_selected %>
+    <th><%= link_to_image 'ok.gif', {:action => "purge_completed"}, :border => 0 %></th>
+    <% end %>
+    <% for title in rowtitles %>
+    <th><%= title %></th>
+    <% end %>
+  </tr>
+  <% @rowcolor = 1 %>
+  <% list_stripes.each do |row| %>
+       <tr class="<%= @rowcolor == 1 ? 'lt_skyblue' : 'lt_gray' %>"   onmouseover="javascript:style.backgroundColor='#ffffdb'" onmouseout="javascript:style.backgroundColor='<%= @rowcolor == 1 ? '#ecefff' : ' #f8f8f8' %>'" >
+  <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
+	    <% for key in @rowcells %>
+	        <% if key == 'id' %>
+		        <% if @show_purge_selected %>
+			 <td>
+	 		 <%= check_box_tag("item["+row['id'].to_s+"][checked]", "0", options = {:id => "item_checked"} ) %>
+	                 </td>	 
+			 <% end %>
+		<% else %>
+		    <td> <%= row[key] %></td>
+		<% end %>
+	    <% end %>
+    <td class="link"><%= link_to_image 'invisible_16x16.png', {:action  => 'show', :id => row['id'] }, :alt => 'Consultar', :class =>  'show', :border => 0 %></td>
+    <td class="link"><%= link_to_image 'invisible_16x16.png', {:action => 'edit', :id => row['id'] }, :alt => 'Modificar', :class => 'edit', :border => 0                                               %></td>
+    <td class="link"><%= link_to_image 'invisible_16x16.png', {:action  => 'destroy',  :id => row['id'] }, :confirm => @confirmquestion, :alt => 'Borrar', :class=> 'delete', :border => 0 %></td>
+  </tr>
+
+      </tr>
+ <% end %>
+</table>
