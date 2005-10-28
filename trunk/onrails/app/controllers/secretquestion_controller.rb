@@ -1,4 +1,4 @@
-class SecretquestionController < SharedController
+class SecretquestionController < SalvaController
   def mymodel
     Secretquestion
   end
