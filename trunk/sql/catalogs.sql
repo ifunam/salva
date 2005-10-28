@@ -2,13 +2,12 @@
 -- System catalogs                  --
 --------------------------------------
 CREATE TABLE countries ( 
-    	id serial NOT NULL,
+    	id INTEGER NOT NULL,
     	name text NOT NULL,
 	citizen text NOT NULL,
 	code char(3) NOT NULL, 
 	PRIMARY KEY(id),
 	UNIQUE(name),
-	UNIQUE(citizen),
 	UNIQUE(code)
 );
 COMMENT ON TABLE countries IS
