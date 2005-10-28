@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title> <%= @head_title %> : <%= controller.action_name %> </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+  <meta name="keywords"  content="<%= @keywords %>" /> 
+  <meta name="description"  content="<%= @description %> - Plataforma de informaci&oacute;n curricular SALVA" /> 
+  <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" /> 
+  <link rel="icon" href="/images/favicon.ico">
+  <%= stylesheet_link_tag 'form' %>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+<div id="topbar">
+Usuario: <span class="user"><%= @user %></span>| <a href="/Help/<%= @help %>">Ayuda</a> | <a href="/logout">Salir</a> | <a href="/sendbug">Informar de un error</a> 
+
+
+</div>
+
+<div id="title">
+<img src="/images/<%= @title_icon %>" border="0" align="middle">
+<%= @title %>
+</div>
+
+<div class="box">
+  <p style="color: green"><%= flash[:notice] %></p> 
+<%= @content_for_layout %>
+</div>
+</body>
+</html>
