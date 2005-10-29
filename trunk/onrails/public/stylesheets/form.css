@@ -219,16 +219,6 @@ br{
 	text-align: justify;
 }
 
-//a {
-	//color: #3366ff;
-	//text-decoration: none;
-//}
-
-//a:hover {
-	//color: #339999;
-	//border-bottom: 1px dotted #3da8cc;
-//}
-
 input {
   background-color: #fff;
   color: #555;
@@ -305,11 +295,15 @@ table.list tr {
 	background: transparent;
 }
 
-table.list tr.lt_skyblue {
+table.list tr:hover {
+	background: #ffffdb !important;
+}
+
+table.list tr.odd {
 	background: #ecefff;
 }
 
-table.list tr.lt_gray {
+table.list tr.even {
 	background: #f8f8f8;
 }
 
