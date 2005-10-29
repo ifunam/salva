@@ -10,8 +10,8 @@
   </tr>
   <% @rowcolor = 1 %>
   <% list_stripes.each do |row| %>
-       <tr class="<%= @rowcolor == 1 ? 'lt_skyblue' : 'lt_gray' %>"   onmouseover="javascript:style.backgroundColor='#ffffdb'" onmouseout="javascript:style.backgroundColor='<%= @rowcolor == 1 ? '#ecefff' : ' #f8f8f8' %>'" >
-  <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
+       <tr class="<%= @rowcolor == 1 ? 'odd' : 'even' %>" >
+       <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
 	    <% for key in @rowcells %>
 	        <% if key == 'id' %>
 		        <% if @show_purge_selected %>
