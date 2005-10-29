@@ -1,0 +1,1931 @@
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:44:06 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.388293)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.030468)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.65387 (1 reqs/sec) | Rendering: 0.08863 (13%) | DB: 0.41876 (64%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:46:49 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00114 (875 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:46:50 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:47:33 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00521 (191 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:47:33 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:47:40 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00072 (1387 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:47:40 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:47:58 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:48:03 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.018507)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.005132)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.04939 (20 reqs/sec) | Rendering: 0.01437 (29%) | DB: 0.02364 (47%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:48:10 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00064 (1558 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:48:10 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:48:22 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+
+
+NoMethodError (undefined method `authenticate' for #<SecretquestionController:0xb754ce3c>):
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `send'
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:313:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:302:in `before_action'
+    /vendor/actionpack/lib/action_controller/filters.rb:294:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:48:39 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00110 (910 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:48:39 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#authenticate (for 127.0.0.1 at Fri Oct 28 21:48:46 CDT 2005)
+  Parameters: {"action"=>"authenticate", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00065 (1546 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/authenticate]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:48:47 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:48:59 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:49:05 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Completed in 0.00038 (2659 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:49:10 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.005638)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.005145)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.03291 (30 reqs/sec) | Rendering: 0.00942 (28%) | DB: 0.01078 (32%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:49:18 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.000642)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.000919)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.01692 (59 reqs/sec) | Rendering: 0.00983 (58%) | DB: 0.00156 (9%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:50:34 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.002327)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.001369)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.03414 (29 reqs/sec) | Rendering: 0.02235 (65%) | DB: 0.00370 (10%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:57:26 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00066 (1519 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:57:26 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:58:17 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00094 (1061 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:58:17 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:58:37 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00137 (728 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:58:38 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:59:05 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00123 (814 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:59:05 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:59:06 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00081 (1234 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 21:59:06 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/login"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 21:59:38 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00065 (1550 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 21:59:38 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+
+
+ActionController::UnknownAction (No action responded to index):
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:00:12 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00104 (960 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:00:12 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+
+
+ActionController::MissingTemplate (Missing template ./script/../config/../app/views//login/login.rhtml):
+    /vendor/actionpack/lib/action_controller/base.rb:827:in `assert_existance_of_template_file'
+    /vendor/actionpack/lib/action_controller/base.rb:586:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /app/controllers/login_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:00:38 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00069 (1449 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:00:39 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00405 (246 reqs/sec) | Rendering: 0.00254 (62%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:00:49 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00067 (1486 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:00:49 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00694 (144 reqs/sec) | Rendering: 0.00493 (71%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:04:26 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00375 (266 reqs/sec) | Rendering: 0.00226 (60%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:04:27 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00949 (105 reqs/sec) | Rendering: 0.00269 (28%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:04:34 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+
+
+NameError (undefined local variable or method `controller' for #<SecretquestionController:0xb75eb94c>):
+    /app/controllers/application.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:313:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:302:in `before_action'
+    /vendor/actionpack/lib/action_controller/filters.rb:294:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:10 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+
+
+NoMethodError (undefined method `action_name' for nil:NilClass):
+    /vendor/actionpack/lib/../../activesupport/lib/active_support/whiny_nil.rb:30:in `method_missing'
+    /app/controllers/application.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:313:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:302:in `before_action'
+    /vendor/actionpack/lib/action_controller/filters.rb:294:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:10 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+
+
+NoMethodError (undefined method `action_name' for nil:NilClass):
+    /vendor/actionpack/lib/../../activesupport/lib/active_support/whiny_nil.rb:30:in `method_missing'
+    /app/controllers/application.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:313:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:302:in `before_action'
+    /vendor/actionpack/lib/action_controller/filters.rb:294:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:17 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/
+Completed in 0.00105 (954 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:17 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/
+Completed in 0.00105 (954 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:22 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/
+Completed in 0.00058 (1729 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 22:05:35 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/asdf"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:38 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/dclone/&/object_id/singleton_methods/to_yaml_style/subclasses_of/equal?/taint/blank?/frozen?/instance_variable_get/kind_of?/suppress/respond_to?/to_a/b64encode/type/to_yaml_properties/protected_methods/decode64/|/eql?/instance_variable_set/returning/hash/is_a?/decode_b/to_s/send/class/taguri/tainted?/private_methods/^/__send__/remove_instance_variables_of/to_yaml/untaint/taguri=/id/to_i/inspect/method/instance_eval/==/remove_subclasses_of/===/clone/public_methods/load/extend/freeze/display/to_f/__id__/=~/encode64/methods/nil?/dup/instance_variables/require/instance_of?
+Completed in 0.00097 (1031 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:39 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/dclone/&/object_id/singleton_methods/to_yaml_style/subclasses_of/equal?/taint/blank?/frozen?/instance_variable_get/kind_of?/suppress/respond_to?/to_a/b64encode/type/to_yaml_properties/protected_methods/decode64/|/eql?/instance_variable_set/returning/hash/is_a?/decode_b/to_s/send/class/taguri/tainted?/private_methods/^/__send__/remove_instance_variables_of/to_yaml/untaint/taguri=/id/to_i/inspect/method/instance_eval/==/remove_subclasses_of/===/clone/public_methods/load/extend/freeze/display/to_f/__id__/=~/encode64/methods/nil?/dup/instance_variables/require/instance_of?
+Completed in 0.00111 (900 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:46 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/dclone/&/object_id/singleton_methods/to_yaml_style/subclasses_of/equal?/taint/blank?/frozen?/instance_variable_get/kind_of?/suppress/respond_to?/to_a/b64encode/type/to_yaml_properties/protected_methods/decode64/|/eql?/instance_variable_set/returning/hash/is_a?/decode_b/to_s/send/class/taguri/tainted?/private_methods/^/__send__/remove_instance_variables_of/to_yaml/untaint/taguri=/id/to_i/inspect/method/instance_eval/==/remove_subclasses_of/===/clone/public_methods/load/extend/freeze/display/to_f/__id__/=~/encode64/methods/nil?/dup/instance_variables/require/instance_of?
+Completed in 0.00660 (151 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 22:05:53 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/asdf"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing Base#index (for 127.0.0.1 at Fri Oct 28 22:05:53 CDT 2005)
+  Parameters: {}
+
+
+ActionController::RoutingError (Recognition failed for "/asdf"):
+    /vendor/actionpack/lib/action_controller/routing.rb:444:in `recognition_failed'
+    /vendor/actionpack/lib/action_controller/routing.rb:434:in `recognize!'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:05:57 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/
+Completed in 0.00060 (1677 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#authenticate (for 127.0.0.1 at Fri Oct 28 22:06:32 CDT 2005)
+  Parameters: {"action"=>"authenticate", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/dclone/&/object_id/singleton_methods/to_yaml_style/subclasses_of/equal?/taint/blank?/frozen?/instance_variable_get/kind_of?/suppress/respond_to?/to_a/b64encode/type/to_yaml_properties/protected_methods/decode64/|/eql?/instance_variable_set/returning/hash/is_a?/decode_b/to_s/send/class/taguri/tainted?/private_methods/^/__send__/remove_instance_variables_of/to_yaml/untaint/taguri=/id/to_i/inspect/method/instance_eval/==/remove_subclasses_of/===/clone/public_methods/load/extend/freeze/display/to_f/__id__/=~/encode64/methods/nil?/dup/instance_variables/require/instance_of?
+Completed in 0.00144 (695 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/authenticate]
+
+
+Processing SecretquestionController#authenticate (for 127.0.0.1 at Fri Oct 28 22:06:36 CDT 2005)
+  Parameters: {"action"=>"authenticate", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/dclone/&/object_id/singleton_methods/to_yaml_style/subclasses_of/equal?/taint/blank?/frozen?/instance_variable_get/kind_of?/suppress/respond_to?/to_a/b64encode/type/to_yaml_properties/protected_methods/decode64/|/eql?/instance_variable_set/returning/hash/is_a?/decode_b/to_s/send/class/taguri/tainted?/private_methods/^/__send__/remove_instance_variables_of/to_yaml/untaint/taguri=/id/to_i/inspect/method/instance_eval/==/remove_subclasses_of/===/clone/public_methods/load/extend/freeze/display/to_f/__id__/=~/encode64/methods/nil?/dup/instance_variables/require/instance_of?
+Completed in 0.00129 (775 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/authenticate]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:07:02 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Rendering  within layouts/application
+
+
+ActionController::MissingTemplate (Missing template ./script/../config/../app/views//secretquestion/dclone&object_idsingleton_methodsto_yaml_stylesubclasses_ofequal?taintblank?frozen?instance_variable_getkind_of?suppressrespond_to?to_ab64encodetypeto_yaml_propertiesprotected_methodsdecode64|eql?instance_variable_setreturninghashis_a?decode_bto_ssendclasstaguritainted?private_methods^__send__remove_instance_variables_ofto_yamluntainttaguri=idto_iinspectmethodinstance_eval==remove_subclasses_of===clonepublic_methodsloadextendfreezedisplayto_f__id__=~encode64methodsnil?dupinstance_variablesrequireinstance_of?.rhtml):
+    /vendor/actionpack/lib/action_controller/base.rb:827:in `assert_existance_of_template_file'
+    /vendor/actionpack/lib/action_controller/base.rb:586:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    /vendor/actionpack/lib/action_controller/layout.rb:210:in `render_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /app/controllers/application.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/filters.rb:317:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:313:in `call_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:302:in `before_action'
+    /vendor/actionpack/lib/action_controller/filters.rb:294:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:08:03 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00106 (940 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:08:03 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00380 (262 reqs/sec) | Rendering: 0.00180 (47%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:09:07 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00102 (982 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:09:07 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00101 (985 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:09:07 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+
+
+ActionView::TemplateError (WARNING:  You have a nil object when you probably didn't expect it!  Odds are you
+want an instance of Array instead.
+
+Look in the callstack to see where you're working with an object that could be nil.
+Investigate your methods and make sure the object is what you expect!
+) on line #1 of /login/login.rhtml:
+1: <% for value in @mydata.each %>
+2: <p><%= value %></p>
+3: <% end %>
+
+    (erb):1:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:588:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/login_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:09:19 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00124 (807 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:09:19 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+
+
+ActionView::TemplateError (WARNING:  You have a nil object when you probably didn't expect it!  Odds are you
+want an instance of Array instead.
+
+Look in the callstack to see where you're working with an object that could be nil.
+Investigate your methods and make sure the object is what you expect!
+) on line #1 of /login/login.rhtml:
+1: <% for value in @mydata %>
+2: <p><%= value %></p>
+3: <% end %>
+
+    (erb):1:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:588:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/login_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:09:21 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00103 (974 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:09:21 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+
+
+ActionView::TemplateError (WARNING:  You have a nil object when you probably didn't expect it!  Odds are you
+want an instance of Array instead.
+
+Look in the callstack to see where you're working with an object that could be nil.
+Investigate your methods and make sure the object is what you expect!
+) on line #1 of /login/login.rhtml:
+1: <% for value in @mydata %>
+2: <p><%= value %></p>
+3: <% end %>
+
+    (erb):1:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:588:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/login_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:11:18 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.000961)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.000508)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.05010 (19 reqs/sec) | Rendering: 0.01088 (21%) | DB: 0.00147 (2%) [http://localhost/secretquestion]
+
+
+Processing SecretquestionController#list (for 127.0.0.1 at Fri Oct 28 22:11:42 CDT 2005)
+  Parameters: {"action"=>"list", "controller"=>"secretquestion"}
+Secretquestion Count (0.006002)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.000513)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.02718 (36 reqs/sec) | Rendering: 0.01004 (36%) | DB: 0.00652 (23%) [http://localhost/secretquestion/list]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:11:46 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.019998)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.005339)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.05346 (18 reqs/sec) | Rendering: 0.01572 (29%) | DB: 0.02534 (47%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:12:45 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.000614)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.000452)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+
+
+ActionView::TemplateError (undefined method `each' for #<SecretquestionController:0xb77449b0>) on line #28 of /layouts/application.rhtml:
+25:   <p style="color: green"><%= flash[:notice] %></p> 
+26: <%= @content_for_layout %>
+27: </div>
+28: <% for row in controller.each %><p><%= row %></p><% end %>
+29: </body>
+30: </html>
+
+    (erb):28:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:214:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/salva_controller.rb:9:in `list'
+    ./script/../config/../app/controllers/salva_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:12:58 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.010335)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.011281)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.07649 (13 reqs/sec) | Rendering: 0.03375 (44%) | DB: 0.02162 (28%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:13:33 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.001101)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.000434)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.02062 (48 reqs/sec) | Rendering: 0.01341 (65%) | DB: 0.00153 (7%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:13:55 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.011187)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.008151)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.14987 (6 reqs/sec) | Rendering: 0.11221 (74%) | DB: 0.01934 (12%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:14:09 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.001092)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.001909)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.01783 (56 reqs/sec) | Rendering: 0.00973 (54%) | DB: 0.00300 (16%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:14:47 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Secretquestion Count (0.009006)  SELECT COUNT(*) FROM secretquestion 
+Secretquestion Load (0.006364)  SELECT * FROM secretquestion ORDER BY name LIMIT 10 OFFSET 0
+Rendering  within layouts/application
+Rendering secretquestion/list (200 OK)
+Completed in 0.05074 (19 reqs/sec) | Rendering: 0.02307 (45%) | DB: 0.01537 (30%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:17:31 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00804 (124 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:17:31 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+
+
+ActionView::TemplateError (WARNING:  You have a nil object when you probably didn't expect it!  Odds are you
+want an instance of Array instead.
+
+Look in the callstack to see where you're working with an object that could be nil.
+Investigate your methods and make sure the object is what you expect!
+) on line #1 of /login/login.rhtml:
+1: <% for value in @mydata %>
+2: <p><%= value %></p>
+3: <% end %>
+
+    (erb):1:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:588:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/login_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:17:47 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00101 (991 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:17:48 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00917 (109 reqs/sec) | Rendering: 0.00726 (79%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:19:17 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00103 (973 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:19:17 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+SQL (0.279108)   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'secretquestion'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+
+
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #9 of /login/login.rhtml:
+6: 
+7: <% for column in Secretquestion.content_columns %>
+8: <p>
+9:   <b><%= column.human_name %>:</b> <%=h @secretquestion.send(column.name) %>
+10: </p>
+11: <% end %>
+12: 
+
+    ./script/../config/../vendor/actionpack/lib/../../activesupport/lib/active_support/whiny_nil.rb:30:in `method_missing'
+    (erb):9:in `evaluate_locals'
+    (erb):7:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:272:in `evaluate_locals'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:283:in `rhtml_render'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:208:in `render_template'
+    ./script/../config/../vendor/actionpack/lib/action_view/base.rb:173:in `render_file'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:588:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:591:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:604:in `render_with_no_layout'
+    ./script/../config/../vendor/actionpack/lib/action_controller/layout.rb:216:in `render_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:25:in `render'
+    ./script/../config/../app/controllers/login_controller.rb:4:in `index'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    ./script/../config/../vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    ./script/../config/../vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    ./script/../config/../vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    ./script/../config/../vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    ./script/../config/../vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    ./script/../config/../vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:20:30 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00103 (967 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:20:30 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00508 (196 reqs/sec) | Rendering: 0.00316 (62%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:20:31 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00102 (977 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:20:31 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00864 (115 reqs/sec) | Rendering: 0.00259 (29%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:20:34 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00083 (1209 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:21:46 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00101 (993 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Fri Oct 28 22:21:47 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.00589 (169 reqs/sec) | Rendering: 0.00378 (64%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Fri Oct 28 22:21:48 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00102 (980 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:44:59 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00145 (689 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:45:00 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.04534 (22 reqs/sec) | Rendering: 0.03928 (86%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:45:02 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00132 (759 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:45:13 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00143 (699 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:45:13 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.04188 (23 reqs/sec) | Rendering: 0.00792 (18%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:45:16 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00133 (753 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:46:15 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00132 (759 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:46:16 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.01241 (80 reqs/sec) | Rendering: 0.01016 (81%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:46:18 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00136 (737 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:46:35 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00193 (517 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:46:35 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.02123 (47 reqs/sec) | Rendering: 0.01893 (89%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:46:57 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00132 (759 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:46:57 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.02154 (46 reqs/sec) | Rendering: 0.01158 (53%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:46:59 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00133 (749 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:48:04 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00134 (746 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:48:05 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.01132 (88 reqs/sec) | Rendering: 0.00900 (79%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:48:08 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00161 (621 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:48:45 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00133 (751 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing SecretquestionController#index (for 127.0.0.1 at Sat Oct 29 10:48:45 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"secretquestion"}
+Redirected to http://localhost:3000/login
+Completed in 0.00133 (751 reqs/sec) | DB: 0.00000 (0%) [http://localhost/secretquestion/]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:48:45 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.01260 (79 reqs/sec) | Rendering: 0.01004 (79%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing LoginController#authenticate (for 127.0.0.1 at Sat Oct 29 10:48:47 CDT 2005)
+  Parameters: {"commit"=>"Entrar", "validate"=>{"login"=>"", "password"=>""}, "action"=>"authenticate", "controller"=>"login"}
+Person Load (0.000000)  ERROR: relation "person" does not exist
+: SELECT * FROM person WHERE name = '' AND password = '' LIMIT 1
+
+
+ActiveRecord::StatementInvalid (ERROR:  relation "person" does not exist
+: SELECT * FROM person WHERE name = '' AND password = ''  LIMIT 1):
+    /vendor/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb:462:in `log'
+    /vendor/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb:109:in `execute'
+    /vendor/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb:179:in `select'
+    /vendor/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb:84:in `select_all'
+    /vendor/activerecord/lib/active_record/base.rb:376:in `find_by_sql'
+    /vendor/activerecord/lib/active_record/base.rb:343:in `find'
+    /vendor/activerecord/lib/active_record/base.rb:341:in `find'
+    /app/models/person.rb:3:in `authenticate'
+    /app/controllers/login_controller.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+SQL (0.311560)   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+
+SQL (0.004951)   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+
+
+
+Processing LoginController#authenticate (for 127.0.0.1 at Sat Oct 29 10:54:36 CDT 2005)
+  Parameters: {"commit"=>"Entrar", "validate"=>{"login"=>"", "password"=>""}, "action"=>"authenticate", "controller"=>"login"}
+
+
+NameError (uninitialized constant User):
+    /vendor/activesupport/lib/active_support/dependencies.rb:186:in `const_missing'
+    /app/controllers/login_controller.rb:8:in `authenticate'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 10:54:52 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Redirected to http://localhost:3000/login
+Completed in 0.00133 (753 reqs/sec) | DB: 0.00000 (0%) [http://localhost/users]
+
+
+Processing LoginController#index (for 127.0.0.1 at Sat Oct 29 10:54:52 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"login"}
+Rendering login/login (200 OK)
+Completed in 0.01809 (55 reqs/sec) | Rendering: 0.01069 (59%) | DB: 0.00000 (0%) [http://localhost/login]
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 10:55:08 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NameError (uninitialized constant User):
+    /vendor/activesupport/lib/active_support/dependencies.rb:186:in `const_missing'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:92:in `constantize'
+    /vendor/activesupport/lib/active_support/dependencies.rb:200:in `inject'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:91:in `constantize'
+    /vendor/activesupport/lib/active_support/core_ext/string/inflections.rb:44:in `constantize'
+    /vendor/actionpack/lib/action_controller/pagination.rb:169:in `paginator_and_collection_for'
+    /vendor/actionpack/lib/action_controller/pagination.rb:111:in `paginate'
+    /app/controllers/users_controller.rb:8:in `list'
+    /app/controllers/users_controller.rb:3:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 10:57:06 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NoMethodError (undefined method `per_pages' for Users:Class):
+    /vendor/activerecord/lib/active_record/base.rb:807:in `method_missing'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 10:59:43 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NoMethodError (undefined method `per_pages' for Users:Class):
+    /vendor/activerecord/lib/active_record/base.rb:807:in `method_missing'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 10:59:46 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NoMethodError (undefined method `per_pages' for Users:Class):
+    /vendor/activerecord/lib/active_record/base.rb:807:in `method_missing'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 11:02:21 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NoMethodError (undefined method `order_by' for Users:Class):
+    /vendor/activerecord/lib/active_record/base.rb:807:in `method_missing'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 11:02:46 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NameError (uninitialized constant User):
+    /vendor/activesupport/lib/active_support/dependencies.rb:186:in `const_missing'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:92:in `constantize'
+    /vendor/activesupport/lib/active_support/dependencies.rb:193:in `inject'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:91:in `constantize'
+    /vendor/activesupport/lib/active_support/core_ext/string/inflections.rb:44:in `constantize'
+    /vendor/actionpack/lib/action_controller/pagination.rb:169:in `paginator_and_collection_for'
+    /vendor/actionpack/lib/action_controller/pagination.rb:111:in `paginate'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 11:04:59 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NameError (uninitialized constant User):
+    /vendor/activesupport/lib/active_support/dependencies.rb:186:in `const_missing'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:92:in `constantize'
+    /vendor/activesupport/lib/active_support/dependencies.rb:193:in `inject'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:91:in `constantize'
+    /vendor/activesupport/lib/active_support/core_ext/string/inflections.rb:44:in `constantize'
+    /vendor/actionpack/lib/action_controller/pagination.rb:169:in `paginator_and_collection_for'
+    /vendor/actionpack/lib/action_controller/pagination.rb:111:in `paginate'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing UsersController#index (for 127.0.0.1 at Sat Oct 29 11:05:01 CDT 2005)
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+
+NameError (uninitialized constant User):
+    /vendor/activesupport/lib/active_support/dependencies.rb:186:in `const_missing'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:92:in `constantize'
+    /vendor/activesupport/lib/active_support/dependencies.rb:193:in `inject'
+    /vendor/activesupport/lib/active_support/core_ext/string/../../inflector.rb:91:in `constantize'
+    /vendor/activesupport/lib/active_support/core_ext/string/inflections.rb:44:in `constantize'
+    /vendor/actionpack/lib/action_controller/pagination.rb:169:in `paginator_and_collection_for'
+    /vendor/actionpack/lib/action_controller/pagination.rb:111:in `paginate'
+    /app/controllers/salva_controller.rb:8:in `list'
+    /app/controllers/salva_controller.rb:4:in `index'
+    /vendor/actionpack/lib/action_controller/base.rb:756:in `perform_action_without_filters'
+    /vendor/actionpack/lib/action_controller/filters.rb:295:in `perform_action_without_benchmark'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/actionpack/lib/action_controller/benchmarking.rb:41:in `perform_action_without_rescue'
+    /vendor/actionpack/lib/action_controller/rescue.rb:80:in `perform_action'
+    /vendor/actionpack/lib/action_controller/base.rb:356:in `process'
+    /vendor/railties/lib/dispatcher.rb:32:in `dispatch'
+    /vendor/railties/lib/webrick_server.rb:105:in `handle_dispatch'
+    /vendor/railties/lib/webrick_server.rb:71:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/railties/lib/webrick_server.rb:57:in `dispatch'
+    script/server:51
+
+
+Rendering ./script/../config/../vendor/actionpack/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
