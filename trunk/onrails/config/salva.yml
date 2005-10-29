@@ -1,0 +1,18 @@
+institution:
+  name: Instituto de Física - UNM
+  url: http://www.fisica.unam.mx
+  administrative_key: -clave presupuestal-
+
+site:
+  theme: default
+  default_lang: es
+  # Este valor debería ser modificado cuando use el SALVA con el
+  # servlet WEBrick (El puerto usado de manera predefinida es el 3000) 
+  #port: 
+
+views:  
+  per_page: 10
+
+webservices:
+  aries: /aries
+  sai: /sai
