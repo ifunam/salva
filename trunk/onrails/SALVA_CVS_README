@@ -22,6 +22,9 @@ Mueve los directorios necesarios de lo que generó Rails a este directorio
 $ cd temporal
 $ mv script config vendor /ruta/a/salva/onrails/
 
+No te preocupes, estos directorios no interferirán con los de los
+demás desarrolladores/usuarios - Son ignorados por Subversion.
+
 Configura tu acceso a base de datos
 -----------------------------------
 - En config/database.yml, configura los parámetros de acceso a la BD
