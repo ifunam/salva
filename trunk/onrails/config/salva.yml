@@ -8,6 +8,7 @@ site:
   default_lang: es
   # Este valor debería ser modificado cuando use el SALVA con el
   # servlet WEBrick (El puerto usado de manera predefinida es el 3000) 
+  # http://localhost:3000/
   #port: 
 
 views:  
