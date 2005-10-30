@@ -11,9 +11,7 @@
 </head>
 <body>
 <div id="topbar">
-Usuario: <span class="user"><%= @user %></span>| <a href="/Help/<%= @help %>">Ayuda</a> | <a href="/logout">Salir</a> | <a href="/sendbug">Informar de un error</a> 
-
-
+<%=_ 'Usuario' %>: <span class="user"><%= @user %></span>| <a href="/Help/<%= @help %>"> <%=_ 'Ayuda' %></a> | <a href="/logout"><%=_ 'Salir' %></a> | <a href="/sendbug"> <%=_ 'Informar de un error' %></a> 
 </div>
 
 <div id="title">
