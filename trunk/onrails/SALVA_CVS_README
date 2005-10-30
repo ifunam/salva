@@ -28,8 +28,17 @@ dem·s desarrolladores/usuarios - Son ignorados por Subversion.
 Configura tu acceso a base de datos
 -----------------------------------
 - En config/database.yml, configura los par·metros de acceso a la BD
+
 - En config/environment.rb, agrega la lÌnea:
   ActiveRecord::Base.pluralize_table_names = false
+
+- Instala el plugin para internacionalizaci√n:
+$ wget http://dev.rubyonrails.org/svn/rails/plugins/localization/lib/localization.rb
+$ cp localization.rb /ruta/al/directorio/lib/de/RoR #Ejemplo:
+                     /usr/local/lib/ruby/gems/1.8/gems/rails-0.14.1/lib
+
+- Carga el plugin desde el archivo config/environment.rb, agregando la l√≠nea:
+Localization.load
 
 Y... °Disfruta de tu Salva sobre Ruby on Rails! :-D
 
