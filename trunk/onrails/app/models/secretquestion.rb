@@ -3,7 +3,7 @@ class Secretquestion < ActiveRecord::Base
   validates_uniqueness_of :name, :message => "La pregunta ya existe"
 
   def self.per_pages
-    2 
+    10 
   end
 
   def self.order_by
