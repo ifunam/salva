@@ -38,3 +38,4 @@
 \i plan.sql
 \i researchgroups.sql 
 \i advice.sql
+\i views.sql

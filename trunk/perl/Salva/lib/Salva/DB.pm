@@ -1,293 +1,173 @@
-# $Id$
 package Salva::DB;
 use strict;
 use Carp;
-use DBIx::SQL::Abstract;
-our @ISA = qw(DBIx::SQL::Abstract);
-our $VERSION = '0.01';
+use DBI;
+
+###
+### MISSING HERE: Check that the specified table is valid in get_fields.
+###               Probably, a get_tables should be here as well... 
+###
+
+=head1 NAME
+
+Salva::DB - Handles the database connectivity for Salva
+
+=head1 SYNOPSIS
+
+    $db = Salva::DB->new(dbname => 'salva',
+                         dbuser => 'salva',
+                         dbpasswd => 'p4ssw0rd',
+                         host => undef,
+                         port => 5432);
+
+All the attributes for the object creation are optional; C<-dbname>, 
+C<-dbuser>, C<-host> and C<-port> are shown with their default values. Password
+will default to undef unless supplied. 
+
+You might get scared on why C<-host> is set to undef - It is so because 
+localhost means making a TCP/IP connection to 127.0.0.1, while undef means
+using a local connection - and this is handled differently in PostgreSQL's
+configuration.
+
+Salva::DB provides the following DBI methods:
+
+    $sth = $db->prepare($sql);
+    $ok = $db->begin_work;
+    $ok = $db->commit;
+    $ok = $db->rollback;
+
+For all other DBI methods, they can be accessed through
+C<$db-E<gt>{dbh}-E<gt>methodname>, althought their use is discouraged.
+
+    %fields = $db->get_fields($tablename);
+
+Returns the list of fields in the specified table, their data type, if they
+accept null values and -if they have it- their description, in the following 
+format:
+
+    ( name => { type => 'text', required => 1, description => "User's name" },
+      age => { type => 'integer', required => 0 },
+      (...) );
+
+This is: C<type> is the data type, C<required> is a boolean showing whether it
+is required or not, and C<description> is the field's description.
+
+=head1 SEE ALSO
+
+L<Salva::DB::Catalog>
+
+=cut
+#################################################################
+# Object constructor and destructor
 
 sub new {
-    my $class = shift;
-    my %params = @_;
+    # The constructor for Salva::DB
+    my ($self, $class, %par, %allowed);
+    $class = shift;
+    if (@_ % 2) {
+	carp 'Invocation error - Wrong number of parameters';
+	return undef;
+    }
+    %par = @_;
 
-    my @knownargs = qw (debug dbname user passwd attr);
-    _ck_args(\@knownargs, \%params, [qw(dbname user)]);
-    
-    $params{attr} = {AutoCommit => 1} unless $params{attr};
-    
-    my $dbh = DBIx::SQL::Abstract->new(dbname => $params{dbname}, 
-				       user => $params{user}, 
-				       passwd => $params{passwd}, 
-				       attr => $params{attr});
-    
-    $dbh->{private_debug} = $params{debug} || 0;
-    
-    return bless $dbh, $class;
+    # Initialize $self with default values
+    $self = {-dbname => 'salva',
+	     -dbuser => 'salva',
+	     -host => undef,
+	     -port => undef,
+	     -lastMsg => ''};
+
+    # Handle user-supplied parameters, checking no illegal parameters
+    # were received
+    %allowed = (-dbname => 1, -dbuser => 1, -host => 1, -port => 1,
+		-dbpasswd => 1);
+
+    for my $key (keys %par) {
+	if (!defined $allowed{$key}) {
+	    carp "Invalid parameter received ($key)";
+	    return undef;
+	}
+	$self->{$key} = $par{$key};
+    }
+
+    # Open database connection
+    my %dbparam = (AutoCommit => 1, PrintError => 1, RaiseError => 0,
+		   ShowErrorStatement => 1);
+
+    # Functional magic: Of those defined from dbname, host, port
+    # place them in a string separated by ;
+    my $dsn = join ';' ,
+      map { "$_=$self->{-$_}" }
+        grep { defined $self->{-$_} }
+          qw(dbname host port);
+
+    $self->{-dbh} = DBI->connect("dbi:Pg:$dsn",
+				 $self->{-dbuser},
+				 $self->{-dbpasswd},
+				 \%dbparam) or
+	carp("Failed to open database connection:\n",$DBI::errstr) &&
+	return undef;
+
+    # Ok, the object is created - Bless it and return
+    bless $self, $class;
+    return $self;
+}
+
+sub DESTROY {
+    # In this destructor we explicitly disconnect from the database in order
+    # to prevent warnings/inconsistencies from the system.
+    my $self = shift;
+    if (ref $self->{-dbh}) {
+	# Rollback any pending transactions, if any, before disconnecting.
+        $self->{-dbh}->{AutoCommit} or $self->{-dbh}->rollback;
+
+	$self->{-dbh}->disconnect;
+    }
+}
+
+#################################################################
+# Envelopes for functions passed to DBI
+
+sub prepare {
+    my ($self, $ret);
+    $self = shift;
+    return $self->{-dbh}->prepare(@_);
+}
+
+sub begin_work {
+    my ($self, $ret);
+    $self = shift;
+    return $self->{-dbh}->begin_work(@_);
+}
+
+sub commit {
+    my ($self, $ret);
+    $self = shift;
+    return  $self->{-dbh}->commit(@_);
+}
+
+sub rollback {
+    my ($self, $ret);
+    $self = shift;
+    return $self->{-dbh}->rollback(@_);
 }
 
 ######################################################################
-# Database functions                                                 #
-######################################################################
-sub get_field {
-    my ($self, $table, $field, $key, $keyval) = @_;
+# Other regular methods
 
-    my $dbh = $self; 
-    my $debug = $dbh->{private_debug};     
-    
-    unless ( $#_ == 4 ) {
-	croak 'You need specify: dbh, table, field, key, keyval';
-    }    
-    
-    my $sql = "SELECT $field FROM $table WHERE $key = ?";
-    print "SQL: $sql \n", "VALUES: $keyval \n" if ( $debug == 1);
-    
-    my $sth = $dbh->prepare($sql) or 
-	carp "Can\'t prepare [$sql]: ", $dbh->errstr;
-    
-    $sth->execute($keyval) or 
-	carp "Can\'t execute SQL: $sql, using the value: $keyval \n",
-	$dbh->errstr;
-    
-    return $sth->fetchrow_array;
-    
-    $sth->finish;
-}
+sub get_fields {
+    my ($self, $table, $sth);
+    $self = shift;
+    $table = shift;
 
-sub set_field { 
-    my ($self, $table, $field, $fieldval, $key, $keyval) = @_;
-
-    my $dbh = $self; 
-    my $debug = $dbh->{private_debug};         
-    unless ( $#_ == 5 ) {
-	croak 'You need specify: dbh, table, field, fieldval, key, keyval';
-    }    
-
-    my @values = ($fieldval, $keyval);
-    my $sql = "UPDATE $table SET $field = ? WHERE $key = ?";
-    
-    print "SQL: $sql\n", "VALUES: ", join (', ', @values), "\n"	
-	if ( $debug == 1);
-    
-    my $sth;
-    unless ( $sth = $dbh->prepare($sql) and  $sth->execute(@values) ) {
-	carp "Can\'t execute SQL: $sql, using the value(s): ", 
-	join (', ', @values), "\n", $dbh->errstr;
-	return undef;
-    } else {
-	$sth->finish;
-	return 1;
-    }
-}
-
-sub sql_insert {
-    my ($self, $table, $params, $noseq) = @_;
-
-    my $dbh = $self; 
-    my $debug = $dbh->{private_debug}; 
-
-    unless ( $#_ == 2 ||  $#_  == 3 ) {
-	carp 'Usage: $dbh->sql_insert($table, \%params, 0|1)';
+    unless ($sth = $self->prepare('SELECT attrname, type, required, description
+            FROM table_attributes WHERE relname = ?') and
+	    $sth->execute($table)) {
+	carp "Could not query for $table's fields";
 	return undef;
     }
 
-    unless ( ref($params) eq 'HASH' ) {
-	carp "The 2nd argument should be a hash reference: \%params";
-	return undef;
-    }
-
-    $noseq = 1 if not defined $noseq;    
-
-
-    my ($sql, @values) = $dbh->insert($table, \%$params);    
-    
-    my $sql_ok = $self->_sql_execute($sql, \@values, $debug);
-    
-    # We'll return the value of the new serial, if the 
-    # previus query was executed successfully and the argument
-    # 'noseq' is not equal to one.
-
-    if ( $sql_ok && $noseq != 0 ) {
-	$sql = "SELECT currval(\'$table\_id_seq\')";
-	my $sth =  $dbh->prepare($sql);
-	unless ( $sth->execute ) {
-	    carp "Could not query for the new ID: ", $dbh->errstr;
-	    $dbh->rollback unless $dbh->{AutoCommit} == 1;
-	}
-	my ($id) = $sth->fetchrow_array;
-	$sth->finish;
-	return $id;
-    }
-    
-}
-
-sub sql_update {
-    my ($self, $table, $params, $key) = @_;
-
-    unless ( $#_ == 2 ) {
-	carp 'Usage: $dbh->sql_update($table, \%params, $key)';
-	return undef;
-    }
-    
-    unless ( ref($params) eq 'HASH' ) {
-	carp "The 2nd argument should be a hash reference: \%params";
-	return undef;
-    }
-
-    my $dbh = $self;
-    my $debug = $dbh->{private_debug}; 
-    
-    die "The key should be defined in the params too" 
-	unless ( $params->{$key} );
-    my $keyval = $params->{$key};
-    
-    # We set the %where hash, it will be used in some SQL::Abstract way
-    # to create a SQL WHERE CLAUSULE using the following *mode*:
-    # WHERE ( key = ? ) 
-    my %where = ( $params->{$key} => { '=', $keyval } );
-    delete $params->{$key};
-    
-    # We build the UPDATE query and assigning their values    
-    my($sql, @values) = $dbh->update($table, \%$params, \%where);
-    
-    # Executing the Query    
-    _sql_execute($dbh, $sql, \@values, $debug);
-    
-    return 1;
-}
-
-sub sql_delete {
-    my  %args = @_;
-    
-    my @knownargs = qw(dbh tbl params);
-    _ck_args(\@knownargs, \%args, \@knownargs);
-    
-    
-    # We get the name of the table and the private_debug mode for this object
-    my $dbh = $args{dbh}; 
-    my $table = $args{tbl};
-
-    my $debug = $dbh->{private_debug}; 
-    
-    # We set the %where hash, it will be used in some SQL::Abstract way
-    # to create a SQL WHERE CLAUSULE using the following *mode*:
-    # WHERE ( key1 = ? ) AND ( keyN = ? ) ... AND (...)
-    my %where;
-    my $params = $args{params}; 
-    for my $key ( keys %$params ) {
-	$where{$key} = { '=', $params->{$key} };
-    }
-    
-    # We build the DELETE query and assigning their values
-    my($sql, @values) = $dbh->delete($table, \%where);
-    
-    # Executing the Query
-    _sql_execute($dbh, $sql, \@values, $debug) ;
-
-    return 1;
-}
-
-sub is_known_field {
-    # Returns the table name where the field exists if it is valid, 
-    # undef otherwise
-    my ($dbh, $field, $known);
-    $dbh = shift;
-    $field = shift;
-    $known = shift;
-    my $knownfields = join('|', @$known);
-
-    unless ( $field =~ /^($knownfields)$/ ) {
-	carp "Unknown field requested: $field - Valid fields are:\n", 
-	$knownfields;
-	return undef;
-    }
-
-    return 1;
-}
-
-#########################################################################
-# Private methods                                                       #
-#########################################################################
-sub _sql_execute {
-    my ($dbh, $sql, $values, $debug) = @_;
-    
-    my $sth = $dbh->prepare($sql) or 
-	carp "Can\'t prepare [$sql]: ", $dbh->errstr;
-    
-    print "SQL: $sql \n", "VALUES: ", join(', ', @$values), "\n" 
-	if ( $debug == 1);
-    
-    if ( $sth->execute(@$values) ) {
-	$dbh->commit unless $dbh->{AutoCommit} == 1;
-	return 1;
-	
-    } else {
-	$dbh->rollback unless $dbh->{AutoCommit} == 1;
- 	carp "Can\'t execute SQL: $sql, using the value(s): ",
-	join (', ', @$values), "\n", $dbh->errstr;
-	return undef;
-    }
-    
-    $sth->finish;
-}
-
-
-sub _ck_args {
-    my $args = shift;
-    my $argsto_ck = shift;
-    my $reqargsto_ck = shift; # Required arguments 
-    
-    my $knownargs; # Known argunments
-    # Checking the type of the data of each argument
-    unless ( $#_ != 1 ||  $#_ != 2) {
-	croak 'Use 3 args: \@known_args, \%argstocheck, \@requiredargs';
-    }
-    
-    if ( ref($args) eq 'HASH') {
-	croak 'Can\'t use a hash in the 1st argument';
-	
-    } elsif ( ref($args) eq 'ARRAY') {
- 	$knownargs = join ('|', @$args); 
-	
-    } else {
-	$knownargs = $args;
-    }
-    
-    croak 'Use a hash in the 2nd argument' if (ref($argsto_ck) ne 'HASH');
-    
-    # Checking if here we had unknown arguments
-    my @badargs = grep { $_ !~ /^($knownargs)$/ } keys %$argsto_ck;
-    
-    if ( @badargs ) {
-	carp 'Unknown argument(s) received: ', join(', ', @badargs), "\n",
-	"The known arguments are: [$knownargs]";
-    } 
-    
-    my @reqargs; # Checking for the required arguments
-    if ( defined $reqargsto_ck ) {
-	
-	if ( ref($reqargsto_ck) eq 'HASH') {
-	    croak 'Can\'t use a hash in the 3rd argument';
-	    
-	} elsif ( ref($reqargsto_ck) eq 'ARRAY') {
-	    @reqargs = @$reqargsto_ck;
-	    
-	} else {
-	    @reqargs = $reqargsto_ck;
-	}
-
-	# Checking for the existence of explicit arguments
-	my @missing = grep { ! $argsto_ck->{$_} } @reqargs;
-	if ( @missing ) {
-	    croak "You need specify the following specific options: ",
-	    join(', ',@reqargs), "\n", 
-	    "Missing values in the following options: ", join (', ', @missing);
-	}
-	
-    }
-
-    return 1;
+    return %{$sth->fetchall_hashref('attrname')}
 }
 
 1;
-
-__END__
