@@ -1,0 +1,55 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:edit]-->
+<% @userstatus = Userstatus.find_all %>
+<% @secretquestions = Secretquestion.find_all %>
+
+<% # No muestro los campos secretanswer, pkcs7. %>
+
+<label for="login">Nombre de usuario</label>
+<%= text_field 'edit', 'login', 'size' => 15, 'maxsize' => 30,
+'tabindex' => 1, 'id' => 'user' %> 
+</br>
+
+<label for="passwd">Contraseña</label>
+<%= password_field 'edit', 'passwd', 'size' => 15, 'maxsize' => 30,
+'tabindex' => 1, 'id' => 'user' %>
+</br>
+
+<label for="userstatus_id">Estado del usuario</label>
+<select id="user_userstatus_id" name="user[userstatus_id]">
+<%= options_from_collection_for_select @userstatus, "id", "name",
+@edit.userstatus_id %>
+<%= @edit.secretquestion_id %>
+</select>
+</br>
+
+<label for="secretquestion_id">Pregunta secreta</label>
+<select id="user_secretquestion_id" name="user[secretquestion_id]">
+<%= options_from_collection_for_select @secretquestions, "id", "name",
+@edit.secretquestion_id %>
+<%= @edit.secretquestion_id %>
+</select>
+</br>
+
+<label for="email">Correo electrónico</label>
+<%= text_field 'edit', 'email', 'size' => '30', 'maxsize' => 80,
+'tabindex' => 1, 'id' => 'user' %>
+</br> 
+
+<label for="session_exp">Expiración de sesión</label>
+<%= @edit.session_exp %>
+</br>
+
+<label for="created_on">Fecha de creación</label>
+<%= @edit.created_on %>
+</br>
+
+<label for="updated_on">Fecha de última modificación</label>
+<%= @edit.updated_on %>
+</br>
+
+<!--[eoform:edit]-->
+
+
+

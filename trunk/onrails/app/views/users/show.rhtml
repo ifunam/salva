@@ -1,0 +1,41 @@
+<% @head_title = 'Resultado de la consulta' %>
+<% @keywords = "resultado;consulta;pregunta;recuperaci&oacute;n;contrase&ntilde;as" %>
+<% @description = @head_title %>
+<% @title = @head_title %>
+<% @title_icon = 'salvita_read_32x32.png' %>
+<% @userstatus = Userstatus.find_all %>
+<% @secretquestions = Secretquestion.find_all %>
+<% @user = User.find(params[:id]) %>
+
+<label for="login">Nombre de usuario</label>
+<%= @user.login %>
+</br>
+
+<label for="userstatus_id">Estado del usuario</label>
+<%= @userstatus[@user.userstatus_id].name %>
+</br>
+
+<label for="secretquestion_id">Pregunta secreta</label>
+<% if @user.secretquestion_id %><%=
+@secretquestions[@user.secretquestion_id].name %><% end %>
+</br>
+
+<label for="email">Correo electrónico</label>
+<%= @user.email %>
+</br> 
+
+<label for="session_exp">Expiración de sesión</label>
+<%= @user.session_exp %>
+</br>
+
+<label for="created_on">Fecha de creación</label>
+<%= @user.created_on %>
+</br>
+
+<label for="updated_on">Fecha de última modificación</label>
+<%= @user.updated_on %>
+</br>
+
+<%= link_to 'Modificar', :action => 'edit', :id => @user %> |
+<%= link_to 'Regresar', :action => 'list' %>
+
