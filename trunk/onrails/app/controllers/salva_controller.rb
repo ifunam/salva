@@ -1,5 +1,7 @@
 #  app/controllers/shared_controller
 class SalvaController < ApplicationController
+  helper :liststripes
+
   def index
     list
   end
