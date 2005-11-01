@@ -1,22 +1,23 @@
 <html>
 <head>
-  <title> <%= @head_title %> : <%= controller.action_name %> </title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
-  <meta name="keywords"  content="<%= @keywords %>" /> 
-  <meta name="description"  content="<%= @description %> - Plataforma de informaci&oacute;n curricular SALVA" /> 
-  <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" /> 
-  <link rel="icon" href="/images/favicon.ico">
-  <%= stylesheet_link_tag 'form' %>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <title> <%= page_head %> : <%= controller.action_name %> </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=<%= charset %>" /> 
+  <meta name="description"  content="<%= description %> - Plataforma de informaci&oacute;n curricular SALVA" /> 
+  <meta name="copyright" content="<%= copyright %>" />
+  <link rel="icon" href="<%= icon %>" />
+  <%= stylesheet_link_tag style %>
 </head>
 <body>
 <div id="topbar">
-<%=_ 'Usuario' %>: <span class="user"><%= @user %></span>| <a href="/Help/<%= @help %>"> <%=_ 'Ayuda' %></a> | <a href="/logout"><%=_ 'Salir' %></a> | <a href="/sendbug"> <%=_ 'Informar de un error' %></a> 
+<%= user_label %>: <span class="user"><%= @user %></span>| 
+<a href="<%= help_link %>" target="_new"> <%= help %></a> | 
+<a href="<%= logout_link %>"><%= logout %></a> | 
+<a href="<%= sendbug_link%>"> <%= sendbug %></a> 
 </div>
 
 <div id="title">
-<img src="/images/<%= @title_icon %>" border="0" align="middle">
-<%= @title %>
+<img src="/images/<%= title_icon %>" border="0" align="middle">
+<%= title %>
 </div>
 
 <div class="box">
