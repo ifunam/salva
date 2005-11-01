@@ -1,23 +1,8 @@
-<% @head_title = 'Listado de preguntas para la recuperaci&oacute;n de contrase&ntilde;as' %>
-<% @keywords = "Listado;preguntas;recuperaci&oacute;n;contrase&ntilde;as" %>
-<% @description = @head_title %>
-<% @title = @head_title %>
-<% @title_icon = 'salvita_search_32x32.png' %>
-
-<% @show_purge_selected = 1 %>
-
-<%= start_form_tag :action => 'purge_selected', :id => @secretquestion %>
+<%= start_form_tag :action => 'purge_selected', :id => @list %>
 
 <div class="top_options">
-<%= link_to 'Agregar pregunta', :action => 'new' %>  |
-<%= submit_tag 'Borrar preguntas seleccionadas', :onclick => "return confirm('¿Esta seguro que desea borrar todas las preguntas seleccionadas?');" %>
+<%= link_to new_label, :action => 'new' %> | <%= submit_tag purge_selected_label, :onclick => purge_selected_question %>
 </div>
 
-<% @rowtitles=['Pregunta', 'Creación','Actualizaci&oacute;n','Consultar', 'Modificar', 'Borrar' ] %>
-<% @rowcells=['id', 'name', 'created_on', 'updated_on'] %>
-<% @confirmquestion='¿Esta seguro que desea borrar  esta pregunta?' %>
-
-<%= render :partial=>"shared/list_stripes", 
-:locals=> { :rowtitles => @rowtitles, :fieldorder => @rowcells}, :object => @list %>
 <%= end_form_tag %>
 <%= pagination_links(@list_pages) %>
