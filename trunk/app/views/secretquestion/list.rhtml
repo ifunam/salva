@@ -1,0 +1,8 @@
+<%= start_form_tag :action => 'purge_selected', :id => @list %>
+
+<div class="top_options">
+<%= link_to new_label, :action => 'new' %> | <%= submit_tag purge_selected_label, :onclick => purge_selected_question %>
+</div>
+
+<%= end_form_tag %>
+<%= pagination_links(@list_pages) %>
