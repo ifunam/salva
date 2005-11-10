@@ -1,11 +1,14 @@
 institution:
-  name: Instituto de FÃ­sica - UNAM
+  name: Instituto de Física - UNAM
   url: http://www.fisica.unam.mx
   administrative_key: -clave presupuestal-
 
 site:
   theme: default
   default_lang: es
+  # Dirección de correo que será utilizada para enviar mensajes
+  # a los usuarios desde el sistema:
+  email_sender: salva@salva.unam.mx	
   # Este valor deberÃ­a ser modificado cuando use el SALVA con el
   # servlet WEBrick (El puerto usado de manera predefinida es el 3000) 
   # http://localhost:3000/

@@ -1,33 +1,30 @@
-.bgcolor
-{	
-  background: url(/themes/default/images/bg_blue_solid.png) repeat-y top left;
+.bgcolor {	
+  background: url(/images/bg_blue_solid.png) repeat-y top left;
   padding-top: 10px;
   padding-left: 10px;
-  height: 300px;
+  padding-bottom: 10px;
+  min-height: 300px;
 }
 
-.footer
-{	
-  background: url(/themes/default/images/bottom_fnd_azul.png) no-repeat;
+.footer {	
+  background: url(/images/bottom_fnd_azul.png) no-repeat;
   padding-top: 0px;
   padding-left: 0px;
   height: 300px; 
   margin-left: 5px;
 }
 
-#login 
-{
+#login {
   float: left;
   margin-left: 10px;
   margin-right: 10px;
   border-width: 1px;
   border-style: solid;
   border-color: #5268a0 #6377a9 #112153 #09143a; 
-  width: 250px;
+  min-width: 250px;
 }
 
-#login .title 
-{
+#login .title {
   font: bold 11px, Arial, sans-serif;
   color: #FFFFFF;
   background: #0b398f;
@@ -37,30 +34,7 @@
   padding-bottom: 0.3em;
 }
 
-#login .loginform 
-{
-  padding-left: 14px;
-  background: #0b398f;
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-#login .loginform .row 
-{ 
-  font: 11px Arial, sans-serif;
-  color: #ffffff; /*#233f86; */
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-}
-
-#login .loginform .row .label 
-{ 
-  width: 100px;
-}
-
-
-#login .error 
-{
+#login .error {
   width: 240px;
   text-align: justify;
   padding-top: 5px;
@@ -73,23 +47,58 @@
   margin-top: 10px;
 }
 
-#login a
-{
+#login a {
   text-decoration: none;
   font: 11px Arial, sans-serif;
   color: #CCFF00;
 }
 
 
-#login a:hover
-{
+#login a:hover {
   text-decoration: underline;
   font: 11px Arial, sans-serif;
   color: yellow;
 }
 
-.msg
-{	
+#login .loginform {
+  padding-left: 14px;
+  padding-right: 14px;
+  background: #0b398f;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#login .loginform .row { 
+  display: table-row-group;
+  font: 11px Arial, sans-serif;
+  color: #ffffff; 
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+#login .loginform .row .label { 
+  width: 60px;
+}
+
+#login .loginform .row p { 
+  width: 500px;
+  text-align: justify;
+}
+
+#login .notes { 
+  font: 11px Arial, sans-serif;
+  background-color: #D6E7EF;
+  color: #000000;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #000000;
+  max-width: 480px;
+  text-align: justify;
+}
+
+.msg {	
   margin-left: 400px;
   background: #233f86;
   padding-left: 5px;
@@ -100,38 +109,31 @@
   font: 11px, arial, sans-serif;
   text-align: justify;
   width: 240px;
-
 }
 
-.msg .email 
-{ 
-  color: #FFCC66;
-  /* #FF9933; */
+.msg .email { 
+ color: #FFCC66;
 }
 
-.msg .example 
-{ 
+.msg .example { 
   font: 11px, arial, sans-serif;
   color: #ffffff;
   text-align: left;
 }
 
-.msg .example .label
-{ 
+.msg .example { 
   font-weight: bold;
   color: #FFCC66;
   /*#FF9933; */
 }
 
-.msg a
-{
+.msg a {
   text-decoration: none;
   font: 11px Arial, sans-serif;
   color: #CCFF00;
 }
 
-.msg a:hover
-{
+.msg a:hover {
   text-decoration: underline;
   font: 11px Arial, sans-serif;
   color: yellow;

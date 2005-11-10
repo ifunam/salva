@@ -1,6 +1,5 @@
 /* body */
-body 
-{
+body {
   background-color: #b5b9ca;
   margin-top: 20px;
   margin-left:auto;
@@ -10,9 +9,8 @@ body
 }
 
 /* head: Section for include de logo and the name of this website */
-#head 
-{
-  background: url(/themes/default/images/header.png) top left no-repeat;
+#head {
+  background: url(/images/header.png) top left no-repeat;
   text-align: center;
   padding-top: 12px;
   margin-bottom: 12px;
@@ -25,138 +23,121 @@ body
   white-space: nowrap;
 }
 
-#head a 
-{
+#head a {
   text-decoration: none;
   color: #B5CFFF;
 }
 
-#head a:visited 
-{
+#head a:visited {
   text-decoration: none;
 }
 
-#head a:hover 
-{
+#head a:hover {
   color: #33CFFF;
 }
 
 
 /* container: for the toolbar and the content of the document */
-#container 
-{
+#container {
   margin-left: 5px;
   width: 688px;
 }
 
-/* topbar: Section to draw the background of the toolbars after the header */
-#topbar 
-{
+/* maintopbar: Section to draw the background of the toolbars after the header */
+#maintopbar {
   width: 688px;
   display: table;
-  background: url(/themes/default/images/bg_center_toolbar.png) top left repeat-x;
+  background: url(/images/bg_center_toolbar.png) top left repeat-x;
   float: none;
 }
 
 /* toolbar: Toolbar inside topbar used for the scienti, conacyt and presidencia logos */ 
-#topbar .toolbar 
-{
+#maintopbar .toolbar {
   min-width: 688px;
   height: 53px;
-  background: url(/themes/default/images/bg_bottom_options.png) bottom repeat-x;
+  background: url(/images/bg_bottom_options.png) bottom repeat-x;
 }
 
-#topbar .toolbar .left_toolbar 
-{
-  background: url(/themes/default/images/left_toolbar.gif ) top left no-repeat;
+#maintopbar .toolbar .left_toolbar {
+  background: url(/images/left_toolbar.gif ) top left no-repeat;
   font: 10px Arial, Helvetica, sans-serif;
   height: 46px;
   width: 14px;
   float:left;
 }
 
-#topbar .toolbar .center_toolbar 
-{
-  background: url(/themes/default/images/center_toolbar.gif ) top left no-repeat;
+#maintopbar .toolbar .center_toolbar {
+  background: url(/images/center_toolbar.gif ) top left no-repeat;
   padding-top: 4px;
   height: 42px;
   width: 51px;
   float:left;
 }
 
-#topbar .toolbar .right_toolbar 
-{
-  background: url(/themes/default/images/right_toolbar.gif) top left no-repeat;
+#maintopbar .toolbar .right_toolbar {
+  background: url(/images/right_toolbar.gif) top left no-repeat;
   width: 14px;
   float:left;
   height: 46px;
   padding-right: 50px;
 }
 
-#scienti a 
-{
+#scienti a {
   display: block;
-  background: url(/themes/default/images/scienti_off.gif) no-repeat;
+  background: url(/images/scienti_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
 }
 
-#scienti a:hover 
-{
+#scienti a:hover {
   display: block;
-  background: url(/themes/default/images/scienti_on.gif) no-repeat;
+  background: url(/images/scienti_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
 
-#conacyt a 
-{
+#conacyt a {
   display: block;
-  background: url(/themes/default/images/conacyt_off.gif) no-repeat;
+  background: url(/images/conacyt_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
 }
 
-#conacyt a:hover 
-{
+#conacyt a:hover {
   display: block;
-  background: url(/themes/default/images/conacyt_on.gif) no-repeat;
+  background: url(/images/conacyt_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
 
-#presidencia a 
-{
+#presidencia a {
   display: block;
-  background: url(/themes/default/images/presidencia_off.gif) no-repeat;
+  background: url(/images/presidencia_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
 }
 
-#presidencia a:hover 
-{
+#presidencia a:hover {
   display: block;
-  background: url(/themes/default/images/presidencia_on.gif) no-repeat;
+  background: url(/images/presidencia_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
 
 
 /* options: It is a list of options used for the links as sheetlash  */
-.options 
-{
+.options {
   min-width: 471px;
   white-space: nowrap;
   height: 54px;
   padding-top: 27px;
 }
 
-.options a:link 
-{
-  background: url(/themes/default/images/option_off.gif) no-repeat;
+.options a:link {
+  background: url(/images/option_off.gif) no-repeat;
   text-decoration: none;
   font: 11px Arial,  sans-serif;
   color: #B6C770;
@@ -166,9 +147,8 @@ body
   padding-bottom: 10px;
 }
 
-.options  a:active 
-{
-  background: url(/themes/default/images/option_off.gif)  no-repeat;
+.options  a:active {
+  background: url(/images/option_off.gif)  no-repeat;
   font:  11px Arial,  sans-serif;
   color: yellow;
   padding-left: 15px;
@@ -177,9 +157,8 @@ body
   padding-bottom: 10px;
 }
 
-.options a:visited 
-{
-  background: url(/themes/default/images/option_off.gif) no-repeat;
+.options a:visited {
+  background: url(/images/option_off.gif) no-repeat;
   font: 11px Arial,  sans-serif;
   color: #B6C770;
   text-decoration: none;
@@ -189,9 +168,8 @@ body
   padding-bottom: 10px;
 }
 
-.options a:hover 
-{
-  background: url(/themes/default/images/option_on.gif) no-repeat;
+.options a:hover {
+  background: url(/images/option_on.gif) no-repeat;
   font: 11px Arial, sans-serif;
   color: #CCFF00;
   text-decoration: none;
@@ -201,9 +179,8 @@ body
   padding-bottom: 10px;
 }
 
-.options .on a:link 
-{
-  background: url(/themes/default/images/option_on.gif) no-repeat;
+.options .on a:link {
+  background: url(/images/option_on.gif) no-repeat;
   color: #CCFF00;
   font: 11px Arial, sans-serif;
   text-decoration: none;
@@ -212,9 +189,8 @@ body
   padding-top: 5px;
 }
 
-.options .on a:visited 
-{
-  background: url(/themes/default/images/option_on.gif) no-repeat;
+.options .on a:visited {
+  background: url(/images/option_on.gif) no-repeat;
   color: #CCFF00;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -222,9 +198,8 @@ body
   padding-top: 5px;
 }
 
-.options .on a:hover 
-{
-  background: url(/themes/default/images/option_on.gif) no-repeat;
+.options .on a:hover {
+  background: url(/images/option_on.gif) no-repeat;
   color: yellow;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -232,9 +207,8 @@ body
   padding-top: 5px;
 }
 
-.options .on a:active 
-{
-  background: url(/themes/default/images/option_on.gif) no-repeat;
+.options .on a:active {
+  background: url(/images/option_on.gif) no-repeat;
   color: yellow;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -243,8 +217,7 @@ body
 }
 
 /* treemenu: section used for the list of options in the vertical list */
-#treemenu
-{
+#treemenu {
   color: white;
   background: transparent; 
   padding: 0 0px;
@@ -256,14 +229,12 @@ body
   float: left;
  }
 
-#treemenu li
-{
+#treemenu li {
   list-style: none;
   margin: 0;
 }
 
-#treemenu a
-{
+#treemenu a {
   display: block;
   text-decoration: none;
   margin-bottom: 0.5em;
@@ -278,49 +249,42 @@ body
   width: 11em; 
 } 
 
-#treemenu a#current 
-{ 
+#treemenu a#current { 
   border-color: #5268a0 #6377a9 #112153 #CCFF00; 
   color: #CCFF00; 
 }
 
-#treemenu a
-{
+#treemenu a {
   width: 99%; 
   /* only necessary for Internet Explorer */
 }
 
-#treemenu a
-{
+#treemenu a {
   voice-family: "\"}\"";
   voice-family: inherit;
   width: 6.6em; 
   /* Tantek-hack should only used if Internet-Explorer 6 is in standards-compliant mode */
 }
 
-#navcontainer>#treemenu a
-{
+#navcontainer>#treemenu a {
   width: auto;
   /* only necessary if you use the hacks above for the Internet Explorer */
  }
 
-#treemenu a:hover, #treemenu a#current:hover
-{
+#treemenu a:hover, #treemenu a#current:hover {
   background: #233f86; 
   border-color: #112153 #6377a9 #5268a0 yellow; 
   color: yellow; 
   padding: 0.15em 0.25em 0.15em 0.75em;
 }
 
-#treemenu a:active, #treemenu a#current:active
-{
+#treemenu a:active, #treemenu a#current:active {
   background: #17a;
   border-color: #069 #6cf #5bd white;
   padding: 0.4em 0.35em 0.25em 0.9em;
 }
 
-#treemenu .simple a
-{
+#treemenu .simple a {
   display: block; 
   text-decoration: none;
   font:  11px Arial, Helvetica, sans-serif;
@@ -332,8 +296,7 @@ body
   width: 10em; 
 }
 
-#treemenu .simple a:hover 
-{
+#treemenu .simple a:hover {
   display: block; 
   text-decoration: none;
   font:  11px Arial, Helvetica, sans-serif;

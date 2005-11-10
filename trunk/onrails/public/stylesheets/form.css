@@ -1,12 +1,3 @@
-body {
-        background-color: #ffffff;
-	color: #000000;
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
-	font: 12px Arial, Helvetica, sans-serif;
-}
-
 #topbar {
 	background: #fff url(/images/forms_head_bg.gif) top left repeat-x;
 	width: 600px;
@@ -29,8 +20,6 @@ body {
 	font-weight: bold;
 	text-decoration: none;
 }
-
-
 
 #topbar a:hover {
 	color: #FFFFCC;
@@ -99,7 +88,7 @@ body {
 	font-color: black;
 	text-aling: center;
 	text-decoration: none;
-	border-width: 2px;
+	border-width: 1px;
 	border-style: solid;
 	border-color: #abcdec #6377a9 #518ac8 #336699;
 }
@@ -118,32 +107,55 @@ body {
 }
 
 .box .top_options {
-	background: #fff url(/images/bg_box_top_options.gif) top left repeat-x;
+	background: url(/images/bg_box_top_options.gif) center left repeat-x;
 	width: 540px;
-	height: 24;
 	text-align: left;
         padding-left: 10px;
+        padding-top: 10px;
 	color: #000000;
 	text-decoration: none;
 	margin-bottom: 5px;
+	display: table;
 }
 
 .box .top_options a {
 	color: #034168;
+	background: #D6E7EF; 
 	text-decoration: none;
+	border: 1px solid #999;
+        border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	padding-top: 1px;
+	padding-bottom: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	vertical-align: middle;
 }
 
 .box .top_options a:hover {
-	color: #034168;
-	background: #cae5f8;
-	text-decoration: none;
-	border: 1px dotted #336699;
-	padding-top: 1px;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-bottom: 2px;
+  background-color: #ffff99;
+  color: #000;
+  font: 12px Arial, Helvetica, sans-serif;	
 }
 
+.box .top_options input[type="button"], input[type="submit"]  {
+  color: #034168;
+  background-color: #D6E7EF;
+  border: 1px solid #999;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  margin-left: 2px;
+  margin-top: 0px;
+  margin-right: 2px;
+  font: 12px Arial, Helvetica, sans-serif;	
+  vertical-align: top;
+}
+
+.box .top_options input[type="button"]:hover, input[type="submit"]:hover {
+  background-color: #ffff99;
+  color: #000;
+  font: 12px Arial, Helvetica, sans-serif;	
+}
 
 fieldset {
 	margin-bottom: 10px;
@@ -173,6 +185,16 @@ fieldset .error {
 label {
 	float: left;
 	width: 160px;
+	min-height: 25px;
+	text-align: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#login .label {
+	float: left;
+	width: 100px;
 	min-height: 25px;
 	text-align: left;
 	margin-right: 10px;
@@ -255,32 +277,6 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   font: 12px Arial, Helvetica, sans-serif;	
 }
 
-/* Submit buttons style */
-input[type="button"], input[type="submit"]  {
-  background-color: #D6E7EF;
-  color: #000;
-  border: 1px solid #999;
-  border-top: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  font-weight: bold;
-  margin-left: 2px;
-  margin-right: 2px;
-  font: 12px Arial, Helvetica, sans-serif;	
-}
-
-input[type="button"]:hover, input[type="submit"]:hover {
-  background-color: #ffff99;
-  color: #000;
-  font: 12px Arial, Helvetica, sans-serif;	
-}
-
-input[type="button"]:active, input[type="submit"]:active {
-  background-color: #eee;
-  color: #000;
-  border: 1px solid #999;
-  font: 12px Arial, Helvetica, sans-serif;	
-}
-
 /* table used for lists with blue color */
 table.list {
 	width: 550px;
@@ -333,7 +329,6 @@ table.list td.link {
 
 }
 
-
 table.list td.link .show {
   display: block;
   background: url(/images/browse_off_16x16.gif) no-repeat;
@@ -366,17 +361,17 @@ table.list td.link .edit:hover {
   heigth: 16px;
 }
 
-table.list td.link .delete {
+table.list td.link .purge {
   display: block;
-  background: url(/images/delete_off_16x16.gif) no-repeat;
+  background: url(/images/destroy_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
   heigth: 17px;
 }
 
-table.list td.link .delete:hover {
+table.list td.link .purge:hover {
   display: block;
-  background: url(/images/delete_on_16x16.gif) no-repeat;
+  background: url(/images/destroy_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
   heigth: 16px;
