@@ -48,18 +48,6 @@ CREATE TABLE groups_permissions (
 );
 CREATE INDEX gp_map_idx ON groups_permissions USING btree (group_id, permission_id);
 
-CREATE TABLE secretquestions ( 
-    id serial NOT NULL,
-    name text,
-    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE(name)
-);
-COMMENT ON TABLE secretquestions IS
-	'Preguntas secretas que pueden ser usadas (junto la respuesta secreta
-	provista por cada usuario) para recuperar una contraseña';
-
 
 CREATE TABLE users ( 
     id SERIAL NOT NULL,
