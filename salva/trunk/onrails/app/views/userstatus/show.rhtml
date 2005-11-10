@@ -1,0 +1,15 @@
+<% @head_title = 'Resultado de la consulta' %>
+<% @keywords = "resultado;consulta;pregunta;recuperaci&oacute;n;contrase&ntilde;as" %>
+<% @description = @head_title %>
+<% @title = @head_title %>
+<% @title_icon = 'salvita_read_32x32.png' %>
+
+<% for column in Userstatus.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @userstatus.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Modificar', :action => 'edit', :id => @userstatus %> |
+<%= link_to 'Regresar', :action => 'list' %>
+

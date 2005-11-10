@@ -1,0 +1,2 @@
+module UserstatusHelper
+end

@@ -1,0 +1,49 @@
+[% 
+# Configuracion global
+help = 'Help'
+
+# Cadenas para la forma de acceso al sistema
+username = 'Username'
+passwd = 'Password'
+errors_login_str = {
+	bad_passwd_str => 'Contrase&ntilde;a incorrecta',
+	missing_str => 'Datos incompletos',
+	bad_login_str => 'El usuario no existe!',
+}
+
+# Cadenas para la forma de la información personal
+firstname = 'Firstname';
+lastname1 = 'Lastname 1';
+lastname2 = 'Lastname 2';
+sex = 'Sex';
+maritalstatusid = 'Marital status';
+dateofbirth = 'Date of birth';
+birthcountryid = 'Country of birth';
+birthstate = 'State';
+birthcity = 'City';
+citizenid = 'Citizen';
+
+errors_personal = {
+	bad_passwd => 'Contrase&ntilde;a incorrecta',
+	missing => 'Datos incompletos',
+	bad_login => 'El usuario no existe!',
+}
+
+# Cadenas para describir los mensajes de error de  las conexiones o
+# transacciones en la base de datos
+errors_db = {
+	host => 'Servidor',
+	port => 'Puerto',
+	user => 'Usuario',
+	query => 'Sentencia SQL'
+}
+
+# Descripción del idioma
+options = {
+       language => 'Idioma',
+       locale => 'Configuraci&oacute;n<br>internacional',
+       charset => 'Codificaci&oacute;n<br>de caracteres',
+}
+%]
+
+

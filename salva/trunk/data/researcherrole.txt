@@ -1,0 +1,7 @@
+Autor
+Coautor
+Responsable
+Asesor
+Tutor
+Director
+Colaborador

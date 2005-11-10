@@ -1,0 +1,141 @@
+.bgcolor {	
+  background: url(/images/bg_blue_solid.png) repeat-y top left;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  min-height: 300px;
+}
+
+.footer {	
+  background: url(/images/bottom_fnd_azul.png) no-repeat;
+  padding-top: 0px;
+  padding-left: 0px;
+  height: 300px; 
+  margin-left: 5px;
+}
+
+#login {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #5268a0 #6377a9 #112153 #09143a; 
+  min-width: 250px;
+}
+
+#login .title {
+  font: bold 11px, Arial, sans-serif;
+  color: #FFFFFF;
+  background: #0b398f;
+  border-bottom: 1px solid #09143a; 
+  text-align: center;	
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
+#login .error {
+  width: 240px;
+  text-align: justify;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font: 10px Arial, Helvetica, sans-serif;
+  background: rgb(255, 255, 153);
+  border: 1px solid #336666;
+  margin-top: 10px;
+}
+
+#login a {
+  text-decoration: none;
+  font: 11px Arial, sans-serif;
+  color: #CCFF00;
+}
+
+
+#login a:hover {
+  text-decoration: underline;
+  font: 11px Arial, sans-serif;
+  color: yellow;
+}
+
+#login .loginform {
+  padding-left: 14px;
+  padding-right: 14px;
+  background: #0b398f;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#login .loginform .row { 
+  display: table-row-group;
+  font: 11px Arial, sans-serif;
+  color: #ffffff; 
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+#login .loginform .row .label { 
+  width: 60px;
+}
+
+#login .loginform .row p { 
+  width: 500px;
+  text-align: justify;
+}
+
+#login .notes { 
+  font: 11px Arial, sans-serif;
+  background-color: #D6E7EF;
+  color: #000000;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #000000;
+  max-width: 480px;
+  text-align: justify;
+}
+
+.msg {	
+  margin-left: 400px;
+  background: #233f86;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  color: #FFFFFF;
+  border: 1px solid #CCFF00;
+  font: 11px, arial, sans-serif;
+  text-align: justify;
+  width: 240px;
+}
+
+.msg .email { 
+ color: #FFCC66;
+}
+
+.msg .example { 
+  font: 11px, arial, sans-serif;
+  color: #ffffff;
+  text-align: left;
+}
+
+.msg .example { 
+  font-weight: bold;
+  color: #FFCC66;
+  /*#FF9933; */
+}
+
+.msg a {
+  text-decoration: none;
+  font: 11px Arial, sans-serif;
+  color: #CCFF00;
+}
+
+.msg a:hover {
+  text-decoration: underline;
+  font: 11px Arial, sans-serif;
+  color: yellow;
+}
+
