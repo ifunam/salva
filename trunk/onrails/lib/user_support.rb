@@ -113,33 +113,27 @@ module UserSupport
       user = User.sign_on_by_token(@params[:id], @params['token'])   
     end
     
-    # Sign on the user via a web form.
-    session_is_ok = nil
+    # Sign on the user via a web form or verify the current session
     if @request.method == :post and (p = @params['user']) != nil
       if  ( p['login'] and p['password'] )
         user = User.sign_on(p['login'], p['password'])
         if user
           session[:current_user] = user.id
-          session_is_ok = 1
+          flash[:login_succeeded] = true
         end
       end
-    else
-      if session[:current_user]
-        user_is_ok = User.find(session[:current_user]) 
-	if user_is_ok
-          session_is_ok = 1
-	else
-	  reset_session
-        end
+    elsif session[:current_user] 
+      user = User.find(:first, :conditions => [ "id = ?", session[:current_user]])
+      if user
+        flash[:login_succeeded] = true
+      else
+        reset_session
+        flash[:login_succeeded] = false
       end
-    end
-      
-    if session_is_ok 
-      flash[:login_succeeded] = true
     else
       flash[:login_succeeded] = false
     end
-
+    
     # User.current must always be set with each request. It's backed by a
     # class-global variable.
     User.current = user
