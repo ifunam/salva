@@ -32,13 +32,15 @@ Configura tu acceso a base de datos
 - En config/environment.rb, agrega la línea:
   ActiveRecord::Base.pluralize_table_names = false
 
-- Instala el plugin para internacionalizaciÃn:
-$ wget http://dev.rubyonrails.org/svn/rails/plugins/localization/lib/localization.rb
-$ cp localization.rb /ruta/al/directorio/lib/de/RoR #Ejemplo:
-                     /usr/local/lib/ruby/gems/1.8/gems/rails-0.14.1/lib
+- Para configurar la información de tu institución edita el archivo
+  RAILS_ROOT/config/salva.yml:
+$vi salva.yml
 
-- Carga el plugin desde el archivo config/environment.rb, agregando la lÃ­nea:
-Localization.load
+- Para cargar la configuración de tu sitio y las cadenas del salva
+  agrega las siguientes líneas al archivo RAILS_ROOT/config/environment.rb:
+require 'salva'
+Salva::load_config_settings
+Salva::load_strings
 
 Y... ¡Disfruta de tu Salva sobre Ruby on Rails! :-D
 
