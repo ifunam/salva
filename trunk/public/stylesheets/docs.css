@@ -12,7 +12,7 @@ body
 /* head: Section for include de logo and the name of this website */
 #head 
 {
-  background: url(../images/header.png) top left no-repeat;
+  background: url(/images/header.png) top left no-repeat;
   text-align: center;
   padding-top: 12px;
   margin-bottom: 12px;
@@ -54,7 +54,7 @@ body
 {
   width: 688px;
   display: table;
-  background: url(../images/bg_center_toolbar.png) top left repeat-x;
+  background: url(/images/bg_center_toolbar.png) top left repeat-x;
   float: none;
 }
 
@@ -63,12 +63,12 @@ body
 {
   min-width: 688px;
   height: 53px;
-  background: url(../images/bg_bottom_options.png) bottom repeat-x;
+  background: url(/images/bg_bottom_options.png) bottom repeat-x;
 }
 
 #topbar .toolbar .left_toolbar 
 {
-  background: url(../images/left_toolbar.gif ) top left no-repeat;
+  background: url(/images/left_toolbar.gif ) top left no-repeat;
   font: 10px Arial, Helvetica, sans-serif;
   height: 46px;
   width: 14px;
@@ -77,7 +77,7 @@ body
 
 #topbar .toolbar .center_toolbar 
 {
-  background: url(../images/center_toolbar.gif ) top left no-repeat;
+  background: url(/images/center_toolbar.gif ) top left no-repeat;
   padding-top: 4px;
   height: 42px;
   width: 51px;
@@ -86,7 +86,7 @@ body
 
 #topbar .toolbar .right_toolbar 
 {
-  background: url(../images/right_toolbar.gif) top left no-repeat;
+  background: url(/images/right_toolbar.gif) top left no-repeat;
   width: 14px;
   float:left;
   height: 46px;
@@ -96,7 +96,7 @@ body
 #scienti a 
 {
   display: block;
-  background: url(../images/scienti_off.gif) no-repeat;
+  background: url(/images/scienti_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
@@ -105,7 +105,7 @@ body
 #scienti a:hover 
 {
   display: block;
-  background: url(../images/scienti_on.gif) no-repeat;
+  background: url(/images/scienti_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
@@ -113,7 +113,7 @@ body
 #conacyt a 
 {
   display: block;
-  background: url(../images/conacyt_off.gif) no-repeat;
+  background: url(/images/conacyt_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
@@ -122,7 +122,7 @@ body
 #conacyt a:hover 
 {
   display: block;
-  background: url(../images/conacyt_on.gif) no-repeat;
+  background: url(/images/conacyt_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
@@ -130,7 +130,7 @@ body
 #presidencia a 
 {
   display: block;
-  background: url(../images/presidencia_off.gif) no-repeat;
+  background: url(/images/presidencia_off.gif) no-repeat;
   text-decoration: none;
   width: 51px;
   height: 42px;
@@ -139,7 +139,7 @@ body
 #presidencia a:hover 
 {
   display: block;
-  background: url(../images/presidencia_on.gif) no-repeat;
+  background: url(/images/presidencia_on.gif) no-repeat;
   color: yellow;
   height: 42px;
 }
@@ -156,7 +156,7 @@ body
 
 .options a:link 
 {
-  background: url(../images/option_off.gif) no-repeat;
+  background: url(/images/option_off.gif) no-repeat;
   text-decoration: none;
   font: 11px Arial,  sans-serif;
   color: #B6C770;
@@ -168,7 +168,7 @@ body
 
 .options  a:active 
 {
-  background: url(../images/option_off.gif)  no-repeat;
+  background: url(/images/option_off.gif)  no-repeat;
   font:  11px Arial,  sans-serif;
   color: yellow;
   padding-left: 15px;
@@ -179,7 +179,7 @@ body
 
 .options a:visited 
 {
-  background: url(../images/option_off.gif) no-repeat;
+  background: url(/images/option_off.gif) no-repeat;
   font: 11px Arial,  sans-serif;
   color: #B6C770;
   text-decoration: none;
@@ -191,7 +191,7 @@ body
 
 .options a:hover 
 {
-  background: url(../images/option_on.gif) no-repeat;
+  background: url(/images/option_on.gif) no-repeat;
   font: 11px Arial, sans-serif;
   color: #CCFF00;
   text-decoration: none;
@@ -203,7 +203,7 @@ body
 
 .options .on a:link 
 {
-  background: url(../images/option_on.gif) no-repeat;
+  background: url(/images/option_on.gif) no-repeat;
   color: #CCFF00;
   font: 11px Arial, sans-serif;
   text-decoration: none;
@@ -214,7 +214,7 @@ body
 
 .options .on a:visited 
 {
-  background: url(../images/option_on.gif) no-repeat;
+  background: url(/images/option_on.gif) no-repeat;
   color: #CCFF00;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -224,7 +224,7 @@ body
 
 .options .on a:hover 
 {
-  background: url(../images/option_on.gif) no-repeat;
+  background: url(/images/option_on.gif) no-repeat;
   color: yellow;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -234,7 +234,7 @@ body
 
 .options .on a:active 
 {
-  background: url(../images/option_on.gif) no-repeat;
+  background: url(/images/option_on.gif) no-repeat;
   color: yellow;
   font: 11px Arial, sans-serif;
   padding-left: 15px;
@@ -348,14 +348,15 @@ body
 
 .bgcolor
 {	
-  background: url(../images/bg_blue_gradient.png) no-repeat;
+  background: url(/images/bg_blue_gradient.png) no-repeat;
   padding-top: 10px;
   padding-left: 10px;
+  height: 800px;
 }
 
 .footer
 {	
-  background: url(../images/bottom_fnd_azul.png) no-repeat;
+  background: url(/images/bottom_fnd_azul.png) no-repeat;
   padding-top: 0px;
   padding-left: 0px;
   height: 300px; 
@@ -366,7 +367,7 @@ body
 {
   position: relative;
   margin-left: 130px;
-  background: url(../images/bg_text.jpg);
+  background: url(/images/bg_text.jpg);
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 5px;
