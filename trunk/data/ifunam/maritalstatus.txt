@@ -1,6 +1,0 @@
--Sin especificar-
-Soltero(a)
-Casado(a)
-Divorciado(a)
-Unión libre
-Viudo(a)

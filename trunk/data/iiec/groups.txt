@@ -1,3 +1,0 @@
-1:Admin
-2:Operator
-3:User
