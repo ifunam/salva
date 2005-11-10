@@ -1,0 +1,55 @@
+# Application.rhtml 
+copyright: Universidad Nacional Autónoma de México
+# TopBar
+user: Usuario
+help: Ayuda
+logout: Salir
+sendbug: Informe de errores
+
+# Labels for back and next links
+back_link: Regresar
+next_link: Siguiente
+
+
+
+##################################
+# User Controller                
+#
+user_email_not_found: El usuario con esa cuenta de correo no ha sido encontrado
+user_created: El usuario ha sido creado
+user_creation_failed: El nuevo usuario no has sido creado
+user_login: Login
+user_password: Contraseña
+user_password_confirmation: Confirmar contraseña
+user_email: Dirección de correo electrónico
+user_login_succeeded: Se ha autenticado con éxito		       		       
+#
+# login action 
+#
+user_login_title: Inicio de sesión en el SALVA
+user_login_submit: Iniciar sesión
+user_login_account_question: ¿No tiene una cuenta en el SALVA?
+user_login_new_account: Obtenga una ahora
+user_login_forgot_password_question: ¿Ha olvidado  su contraseña?
+user_login_forgot_password: Obtenga una nueva
+#
+# new action
+#
+user_new_title: Registro de usuarios en el SALVA
+user_new_submit: Registrarse
+#
+# forgot_password action
+#
+user_forgot_password_title: Renovación de su contraseña
+user_forgot_password_submit: Enviar correo
+user_forgot_password_msg: "
+Proporcione la dirección de correo electrónico que uso para
+registrar su cuenta en el SALVA, posteriormente presione
+el botón de *enviar correo* y recibirá un mensaje con las 
+instrucciones para cambiar su contraseña."
+#
+# activate action
+user_activate_session: Iniciar sesión
+user_activate_msg: Su cuenta ha sido activada!
+
+
