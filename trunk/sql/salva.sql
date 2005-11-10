@@ -38,4 +38,7 @@
 \i plan.sql
 \i researchgroups.sql 
 \i advice.sql
-\i views.sql
+
+\i catalogs/groups.sql
+\i catalogs/userstatuses.sql
+\i catalogs/countries.sql
