@@ -41,13 +41,15 @@ private
     UserMailer.deliver_new_user(params, url, @user.token_expiry)
   end
 
-public
+  public
   # Require_admin will require an administrative login before the action
   # can be called. It uses Modal, so it will continue to the action if the 
   # login is successful.
 
   before_filter :require_admin, :only => [ :destroy, :edit]
-  
+
+  before_filter (:only => [:list] ) { |UserSupport|  UserSupport.require_group(['Admin', 'Capturistas'])}
+
   # Require_login will require a login before the action
   # can be called. It uses Modal, so it will continue to the action if the 
   # login is successful.
