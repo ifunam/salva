@@ -228,15 +228,25 @@ private
     u = User.current
     u and u.id == id
   end
+  # Get the group attributes defined in the groups table
+  def User.get_group(name)
+    group = Group.find_by_name(name)
+    return group if group != nil
+  end
+
+  # Return true if the User relationship with the Group exists
+  def User.ck_usergroup(user_id, group_id)
+    usergroup = UsersGroups.find_by_user_id_and_group_id(user_id, group_id)
+    return true if usergroup != nil
+  end
 
   # Return true if the currently-logged-in user is the administrator.
   # Class method. This is used as a pseudo-security test by let_display.
   def User.admin?
     user = User.current
-    if user 
-      g = UsersGroups.find(:first, :conditions => 
-                             [ "user_id = ? AND group_id = ?", user.id, 1])
-      return ((g != nil ) and (g.group_id.to_i == 1))
+    group = get_group('Admin')
+    if user and group
+      return ck_usergroup(user.id, group.id)
     end
   end
 
@@ -246,6 +256,27 @@ private
     return User.admin?
   end
 
+  # Return true if the currently-logged-in user belongs at least to 
+  # one of the group list
+  def User.require_group(g)
+    user = User.current
+    group_ok = nil
+    if g.class.name == 'Array'
+      groups = g
+    else
+      groups = [ g ]
+    end
+
+    groups.each { | name |
+      group = get_group(name)
+      if group 
+        group_ok = 1 and break if ck_usergroup(user.id, group.id) 
+      end
+    }
+
+    return true if group_ok != nil
+  end
+  
   # Return true if the user's ID is 1 and the user is attempting to promote
   # himself to administrator. This is used to bootstrap the first administrator
   # and for no other purpose.
