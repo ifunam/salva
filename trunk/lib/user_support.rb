@@ -23,7 +23,6 @@ module UserSupport
   def admin?
     User.admin?
   end
-
   
   # This is meant to be used as a before_filter. 
   # A condition that is dependent on the user's login is in the block.
@@ -43,6 +42,7 @@ module UserSupport
       # Currently, writing the flash causes the entire session, not just the
       # variables in question, to be written twice.
       if header or message
+        reset_session
         flash[:login_header] = header
         flash[:login_message] = message
       end
@@ -69,6 +69,17 @@ module UserSupport
   # protecting.
   def require_login
     require_condition(nil, "You must be logged in to perform this action.") { User.current }
+  end
+
+  # This is meant to be used as a before_filter. It requires an
+  # administrative login, putting up a login panel if the administrator
+  # isn't currently logged in. Once the administrator logs in, it resumes
+  # the action it was protecting.
+  def require_group(g)
+    header = "The currently-logged-in user should be belongs at least to " \
+    + "one of the group list:"
+    message = "GROUPS"
+    require_condition(header, message) { User.require_group(g) }
   end
 
   # This is a before filter for the entire application, used to set up the
@@ -142,7 +153,7 @@ module UserSupport
           flash[:login_succeeded] = true
     end
 
-    true
+    return true
   end
 end
 
