@@ -1,0 +1,9 @@
+<%= render :partial => 'list' %>	
+
+<br />
+
+<%= link_to 'Previous page', { :page => @book_pages.current.previous } if @book_pages.current.previous %>
+<%= link_to 'Next page', { :page => @book_pages.current.next } if @book_pages.current.next %> 
+
+
+<%= link_to 'New book', :action => 'new' %>

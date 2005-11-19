@@ -1,0 +1,44 @@
+
+<p>
+<!--[form:edit]-->
+<%= hidden_field 'edit', 'books_id', 'value' => params['books_id']  %></p>
+
+<p><label for="booksedition_editions">Edición</label><br/>
+<%= edition_select 'edit' %>
+
+<p><label for="booksedition_pages">Páginas</label><br/>
+<%= text_field 'edit', 'pages'  %></p>
+
+<p><label for="booksedition_isbn">Isbn</label><br/>
+<%= text_field 'edit', 'isbn'  %></p>
+
+
+<p><label for="booksedition_publisher_id">Publisher</label><br/>
+<div id="publisher_select_id">
+
+</div>
+<br/>
+<%= link_to 'New publisher', :controller => 'publisher', :action => 'new' %>
+
+<input id="search" name="search" type="text" value="">
+<%= observe_field 'search',  :frequency => 0.5, 
+         :update => 'publisher_select_id', 
+	 :url => { :action=> 'publisher_select',
+	 :with => "'search=' + escape(value)" }
+%>
+			   
+
+<p><label for="booksedition_mediatype_id">Medio</label><br/>
+<%= select("edit", "mediatype_id", Mediatype.find_all.collect {|p| [ p.name, p.id ] }) %>
+
+<p><label for="booksedition_month">Month</label><br/>
+<%= month_select('edit') %>
+
+<p><label for="booksedition_year">Year</label><br/>
+<%= year_select('edit') %>
+
+<p><label for="booksedition_other">Comenatios</label><br/>
+<%= text_area 'edit', 'other', 'rows' => 5  %></p>
+
+<!--[eoform:edit]-->
+

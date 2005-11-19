@@ -1,0 +1,17 @@
+<%= error_messages_for 'user' %>
+
+<%= start_form_tag :action => 'create'%>
+<p><label for="login">Login</label><br/>
+<%= text_field 'user', 'login' %></p>
+
+<p><label for="email">Dirección de correo electrónico</label><br/>
+<%= text_field 'user', 'email' %></p>
+
+<p><label for="passwd">Contraseña</label><br/>
+<%= password_field 'user', 'passwd' %></p>
+
+<p><label for="passwd_confirmation">Confirmar contraseña</label><br/>
+<%= password_field 'user', 'passwd_confirmation' %></p>
+
+<p><%= submit_tag 'Registrarse' %></p>
+<%= end_form_tag %>

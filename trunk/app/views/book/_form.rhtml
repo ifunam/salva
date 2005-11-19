@@ -1,0 +1,25 @@
+<p>User_id <%= @edit.moduser_id %>
+<!--[form:edit]-->
+<p><label for="book_title">Título</label><br/>
+<%= text_field 'edit', 'title'  %></p>
+
+<p><label for="book_author">Author</label><br/>
+<%= text_field 'edit', 'author'  %></p>
+
+<p><label for="book_coauthors">Coauthors</label><br/>
+<%= text_field 'edit', 'coauthors'  %></p>
+
+<p><label for="book_booklink">Booklink</label><br/>
+<%= text_field 'edit', 'booklink'  %></p>
+
+<p><label for="book_numcites">Numcites</label><br/>
+<%= text_field 'edit', 'numcites'  %></p>
+<!--[eoform:edit]-->
+
+<label for="bookstype_id">Tipo de libro</label>
+<%= select('edit', "bookstype_id", Bookstype.find_all.collect {|p| [ p.name, p.id ] }) %>
+<br/>
+
+<label for="country_id">Tipo de libro</label>
+<%= country_select('edit') %>
+<br/>

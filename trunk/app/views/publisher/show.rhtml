@@ -1,0 +1,8 @@
+<% for column in Publisher.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @publisher.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @publisher %> |
+<%= link_to 'Back', :action => 'list' %>

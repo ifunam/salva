@@ -1,0 +1,25 @@
+
+<% 
+  current = 0
+  for row in @list 
+%>
+<% @edit = row %>
+  <%= @edit.class.name %> <%= link_to 'Modificar', :action => 'edit', :current => current %>
+  <br/>
+  <%= render :partial => @edit.class.name.downcase+'/show' %>
+  <br/>
+<% 
+  current += 1
+  end 
+%>
+<table width="100%">
+<tr>
+<td align="left">
+<%= link_to 'Guardar', :action => 'finalize' %>
+</td>
+<td align="right">
+<%= link_to 'Cancelar', :action => 'cancel' %>
+</td>
+</tr>
+</table>
+

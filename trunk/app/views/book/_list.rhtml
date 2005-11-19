@@ -1,0 +1,27 @@
+<h1>Listing books</h1>
+
+<%= start_form_tag :action => 'list_selected' %>
+<table>
+  <tr>
+    <th>Seleccione su libro</th>
+  <% for column in Book.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for book in @books %>
+  <tr>
+  <td><%= check_box(book['id']) %> </td>
+  <% for column in Book.content_columns %>
+
+    <td><%=h book.send(column.name) %></td>
+  <% end %>
+    <td><%= show_link(book['id']) %></td>
+    <td><%= edit_link(book['id']) %></td>
+    <td><%= purge_link(book['id'], 'Desea borrar este elemento?') %></td>
+    <td><%= link_to 'Rol', :action => 'edit', :id => book %></td>
+  </tr>
+<% end %>
+</table>
+ <%= submit_tag "Seleccionar" %>
+<%= end_form_tag %>
