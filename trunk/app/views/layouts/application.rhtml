@@ -1,23 +1,25 @@
 <html>
 <head>
   <title> <% head_title %> </title>
-  <meta http-equiv="Content-Type" content="text/html; charset=<%= charset %>" /> 
-  <meta name="description"  content="<%= getstr('description') %> - Plataforma de informaci&oacute;n curricular SALVA" /> 
-  <meta name="copyright" content="<%= getstr('copyright') %>" />
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> 
+  <meta name="description"  content="Plataforma de informaci&oacute;n curricular SALVA" /> 
+  <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" />
   <link rel="icon" href="<%= icon %>" />
   <%= stylesheet_link_tag style %>
 </head>
-<body>
+<body style="border:0px; padding:0px; margin:0px;">
 <div id="topbar">
-<%= getstr('user') %>: <span class="user"><%= @user %></span>| 
-<a href="<%= help_link %>" target="_new"> <%= getstr('help') %></a> | 
-<a href="<%= logout_link %>"><%= getstr('logout') %></a> | 
-<a href="<%= sendbug_link %>"> <%= getstr('sendbug') %></a> 
+Usuario: <span class="user"><%= login %></span>| 
+<a href="<%= help_link %>" target="_new"> Ayuda</a> | 
+<a href="<%= logout_link %>">Salir</a> | 
+<a href="<%= sendbug_link %>"> Informe de errores</a> 
 </div>
-
+<div id="site">
+<a href="<%= getcfg('institution_url') %>" target="_new"> <%= getcfg('institution_name') %></a>
+</div>
 <div id="title">
 <img src="/images/<%= title_icon %>" border="0" align="middle">
-<%= getcn('title') %>
+Titulo
 </div>
 
 <div class="box">
