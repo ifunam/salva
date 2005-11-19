@@ -1,0 +1,6 @@
+development:
+   adapter:  postgresql
+   database: salva
+   username: salva
+   password: 
+
