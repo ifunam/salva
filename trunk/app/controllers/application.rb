@@ -6,7 +6,5 @@
 require 'authenticated_system'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
-  include ExceptionNotifiable
-  local_addresses.clear
   before_filter :login_required   
 end
