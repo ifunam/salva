@@ -42,3 +42,8 @@
 \i catalogs/groups.sql
 \i catalogs/userstatuses.sql
 \i catalogs/countries.sql
+\i catalogs/booktype.sql
+\i catalogs/editions.sql
+\i catalogs/mediatype.sql
+\i catalogs/publishers.sql
+\i catalogs/roleinbooks.sql

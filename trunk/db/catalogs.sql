@@ -76,6 +76,8 @@ COMMENT ON TABLE mediatype IS
 CREATE TABLE publishers ( 
 	id SERIAL,
 	name text NOT NULL,
+	descr text NULL,
+	url text NULL,
         moduser_id int4 NULL    	     -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
