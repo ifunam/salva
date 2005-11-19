@@ -1,8 +1,12 @@
-# Filters added to this controller will be run for all controllers in the application.
+# Filters added to this controller will be run for all controllers in 
+# the application.
+
 # Likewise, all the methods added will be available for all controllers.
-require 'user_support'
+
+require 'authenticated_system'
 class ApplicationController < ActionController::Base
-  helper :ModelSecurity
-  include UserSupport
-  before_filter :user_setup 
+  include AuthenticatedSystem
+  include ExceptionNotifiable
+  local_addresses.clear
+  before_filter :login_required   
 end
