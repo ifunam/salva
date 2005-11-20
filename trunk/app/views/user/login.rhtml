@@ -1,9 +1,44 @@
+<div id="login">
+<div class="title"> 
+Inicio de sesi&oacute;n en el SALVA <a href="<%= help_link %>" target="_new">Ayuda</a> 
+</div>
+
+<% if flash[:notice] %>
+<div class="notes">
+    <%= flash[:notice] %>
+</div>
+<% end %>
+<div class="loginform"> 
+
+<div class="row">
 <%= start_form_tag %>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag 'login' %></p>
+<label for="user_login" class="label">Login:</label> 
+<%= text_field 'user', 'login', 'size' => 15, 'maxsize'=> 15, 'tabindex'=> 1, 'id' => 'user_login' %>
+</div>
 
-<p><label for="passwd">Password</label><br/>
-<%= password_field_tag 'passwd' %></p>
+<div class="row">
+<label for="user_passwd" class="label">Contrase&ntilde;a:</label>   
+<%= password_field 'user', 'passwd', 'size' => 15, 'maxsize'=> 30, 'tabindex' => 2, 'id' => 'user_passwd' %>
+</div>
 
-<p><%= submit_tag 'Log in' %></p>
-<%= end_form_tag %>
+<div class="row">
+ <%= submit_tag 'Iniciar sesión', :class => "button", :tabindex => 3 %>
+ <%= end_form_tag %>
+</div>
+<hr>
+<div class="row"> 
+¿No tiene una cuenta en el SALVA?
+</div>
+<div class="row"> 
+<%= link_to 'Obtenga una ahora', :controller => 'user', :action =>'new' %> 
+</div>
+<hr> 
+<div class="row"> 
+¿Ha olvidado  su contraseña?
+</div>
+<div class="row"> 
+<%= link_to 'Obtenga una nueva', :controller => 'user', :action => 'forgot_password' %> 
+</div>
+</div>
+</div>
+
