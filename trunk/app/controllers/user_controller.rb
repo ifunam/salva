@@ -18,8 +18,8 @@ class UserController < ApplicationController
   
   def login
     return unless request.post?
-    self.current_user = auth(@params[:login],
-                             @params[:passwd])
+    self.current_user = auth(@params[:user][:login],
+                             @params[:user][:passwd])
     if current_user
       flash[:notice] = "Wey, haz iniciado una sesión en el pinche SALVA!"
       redirect_back_or_default :action => 'success'
