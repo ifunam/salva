@@ -1,10 +1,10 @@
-CREATE TABLE institutiontype (
+CREATE TABLE institutiontypes (
 	id SERIAL,
 	name text NOT NULL,  
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE institutiontype IS
+COMMENT ON TABLE institutiontypes IS
 	'Tipos de institución';
 -- Pública, privada, ONG, otra
 
@@ -38,7 +38,7 @@ CREATE TABLE institutions (
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	institutiontype_id int4 NOT NULL
-            	REFERENCES institutiontype(id) 
+            	REFERENCES institutiontypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	institutiontitle_id int4 NOT NULL
@@ -63,7 +63,7 @@ COMMENT ON COLUMN institutions.administrative_id IS
 	indicamos aquí. Lo guardamos sólo como texto, no buscamos la integridad
 	referencial';
 
-CREATE TABLE goals (
+CREATE TABLE sectors (
         id SERIAL,
         name text NOT NULL, 
 	moduser_id int4 NULL    -- Use it only to know who has
@@ -73,20 +73,20 @@ CREATE TABLE goals (
         PRIMARY KEY(id),
 	UNIQUE(name) 
 );
-COMMENT ON TABLE goals IS
-	'Una institución existe para cumplir ciertas metas - ¿cuáles? (tan
+COMMENT ON TABLE sectors IS
+	'Una institución pertences a cierto sectores - ¿cuáles? (tan
 	genérico como sea posible)';
--- Educación, investigación, producción de blah, ...
+-- Educación, investigación, salud, energÃ©ticos, etc.
 
-CREATE TABLE institutionsgoals (
+CREATE TABLE institutions_sectors (
 	id SERIAL,
 	institution_id int4 NOT NULL 
             	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
             	ON DELETE CASCADE           
             	DEFERRABLE,
-	goal_id int4 NOT NULL 
-            	REFERENCES goals(id) 
+	sector_id int4 NOT NULL 
+            	REFERENCES sectors(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
         moduser_id int4 NULL    -- Use it only to know who has
@@ -94,8 +94,8 @@ CREATE TABLE institutionsgoals (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
         PRIMARY KEY(id),
-	UNIQUE (institution_id, goal_id)
+	UNIQUE (institution_id, sector_id)
 );
-COMMENT ON TABLE institutionsgoals IS
-	'Relación entre cada una de las instituciones y las metas';
+COMMENT ON TABLE institutions_sectors IS
+	'Relación entre cada una de las instituciones y los sectores a los que pertenece';
 

@@ -71,16 +71,16 @@ COMMENT ON TABLE volumes IS
 -- I, II, III, ...
 
 CREATE TABLE booksvolumes (
-        volumes_id int4 NOT NULL
+        volume_id int4 NOT NULL
 	        REFERENCES volumes(id)
         	ON UPDATE CASCADE 
 	        DEFERRABLE,
-        books_id int4 NOT NULL 
+        book_id int4 NOT NULL 
 	        REFERENCES books(id) 
         	ON UPDATE CASCADE
 	        DEFERRABLE,
 	title text NOT NULL,
-	PRIMARY KEY (volumes_id,books_id)
+	PRIMARY KEY (volume_id,book_id)
 );
 COMMENT ON TABLE booksvolumes IS
 	'Representa a los libros que se agrupan como volúmenes de una obra';
@@ -110,11 +110,11 @@ COMMENT ON TABLE bookseditionsstatus IS
 
 CREATE TABLE bookseditions ( --
     id serial,
-    books_id int4 NOT NULL 
+    book_id int4 NOT NULL 
             REFERENCES books(id)
             ON UPDATE CASCADE   
             DEFERRABLE,
-    editions_id int4 NOT NULL 
+    edition_id int4 NOT NULL 
             REFERENCES editions(id)
             ON UPDATE CASCADE 
             DEFERRABLE,
@@ -140,7 +140,7 @@ CREATE TABLE bookseditions ( --
             ON UPDATE CASCADE      -- data into or  from this table.
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (books_id, editions_id, bookseditionsstatus_id)
+    UNIQUE (book_id, edition_id, bookseditionsstatus_id)
 );
 COMMENT ON TABLE bookseditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
@@ -149,7 +149,7 @@ COMMENT ON TABLE bookseditions IS
 -- Does this book edition have more than one publisher?
 CREATE TABLE bookseditionscopublisher (
     id serial,
-    bookseditions_id int4 NOT NULL
+    booksedition_id int4 NOT NULL
 	    REFERENCES bookseditions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
@@ -158,37 +158,37 @@ CREATE TABLE bookseditionscopublisher (
             ON UPDATE CASCADE
             DEFERRABLE,
     PRIMARY KEY(id),
-    UNIQUE (bookseditions_id, publisher_id)
+    UNIQUE (booksedition_id, publisher_id)
 );
 COMMENT ON TABLE bookseditionscopublisher IS
 	'Para las ediciones que tengan más de una editorial (la principal 
 	está ya en bookseditions.publisher_id';
 
-CREATE TABLE userbooks ( 
+CREATE TABLE users_books ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    books_id int4 NOT NULL 
+    book_id int4 NOT NULL 
             REFERENCES books(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    roleinbooks_id int4 NOT NULL 
+    roleinbook_id int4 NOT NULL 
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     year int4 NOT NULL,
     other text NULL,
-    PRIMARY KEY (user_id, books_id)
+    PRIMARY KEY (user_id, book_id)
 );
-COMMENT ON TABLE userbooks IS 
+COMMENT ON TABLE users_books IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
 
 CREATE table chaptersbooks (
    id SERIAL,
-   books_id int4 NOT NULL 
+   book_id int4 NOT NULL 
             REFERENCES books(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -201,7 +201,7 @@ CREATE table chaptersbooks (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
    PRIMARY KEY (id),
-  UNIQUE (books_id, chapter)
+  UNIQUE (book_id, chapter)
 );
 CREATE INDEX chaptersbooks_chapter_idx ON chaptersbooks(chapter);
 CREATE INDEX chaptersbooks_chapter_year_idx ON chaptersbooks(chapter,year);
@@ -210,25 +210,25 @@ COMMENT ON TABLE chaptersbooks IS
 COMMENT ON COLUMN chaptersbooks.chapter IS
 	'Nombre del capítulo';
 
-CREATE TABLE userchaptersbooks ( 
+CREATE TABLE users_chaptersbooks ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    chaptersbooks_id int4 NOT NULL
+    chapterbook_id int4 NOT NULL
             REFERENCES chaptersbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    roleinbooks_id int4 NOT NULL 
+    roleinbook_id int4 NOT NULL 
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     year int4 NOT NULL,
     other text NULL,
-    PRIMARY KEY (user_id, chaptersbooks_id)
+    PRIMARY KEY (user_id, chapterbook_id)
 );
-COMMENT ON TABLE userchaptersbooks IS 
+COMMENT ON TABLE users_chaptersbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
 	de libro';
