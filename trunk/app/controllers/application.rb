@@ -7,4 +7,11 @@ require 'authenticated_system'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   before_filter :login_required   
+  
+  def upgrade_select
+#    @model = params[:model].to_sym
+    @model = Publisher
+    render (:partial => 'salva/upgrade_select')
+  end
+
 end

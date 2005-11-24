@@ -91,7 +91,6 @@ class UserController < ApplicationController
   def logout
     self.current_user = nil
     reset_session
-    render :template => 'logout'
   end
   
   protected

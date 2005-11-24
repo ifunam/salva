@@ -1,30 +1,51 @@
 #  app/controllers/shared_controller
 class SalvaController < ApplicationController
-  helper :liststripes
+  $debug = 0
 
+  def initialize
+    @sequence = nil
+  end
+  
   def index
     list
   end
   
   def list
-    @list_pages, @list = paginate mymodel, :per_page => mymodel.per_pages, :order_by => mymodel.order_by
+    @pages, @list = paginate @model, :per_page => self.per_pages, :order_by =>  self.order_by
     render :action => 'list'
   end
- 
+  
   def edit
-    @edit = mymodel.find(params[:id])
+    @edit = @model.find(params[:id])
     render :action => 'edit'
   end
- 
+  
   def new
-    @edit = mymodel.new
-    render :action => 'new'
+   if @sequence
+     new_sequence
+    else 
+      @edit = @model.new
+      render :action => 'new'
+    end
   end
- 
+
+  def new_sequence
+    lider = @model.new
+    lider.moduser_id = @session[:user]
+    models = [ lider ]
+    @sequence.map{ |model| models << model.new }
+    sequence = ModelSequence.new(models)
+    sequence.lider_id = @model.table_name()+'_id';
+    logger.info "Table "+sequence.lider_id if $debug
+    session[:sequence] = sequence
+    redirect_to :controller => 'wizard', :action => 'new'
+  end
+
   def create
-    @edit = mymodel.new(params[:edit])
+    @edit = @model.new(params[:edit])
+    @edit.moduser_id = @session[:user]
     if @edit.save
-      flash[:notice] = mymodel.create_msg
+      flash[:notice] = self.create_msg
       redirect_to :action => 'list'
     else
       render :action => 'list'
@@ -32,9 +53,9 @@ class SalvaController < ApplicationController
   end
  
   def update
-    @edit = mymodel.find(params[:id])
+    @edit = @model.find(params[:id])
     if @edit.update_attributes(params[:edit])
-      flash[:notice] = mymodel.update_msg
+      flash[:notice] = self.update_msg
       redirect_to :action => 'list'
     else
       render :action => 'edit'
@@ -42,8 +63,8 @@ class SalvaController < ApplicationController
   end
   
   def destroy
-    mymodel.find(params[:id]).destroy
-     flash[:notice] = mymodel.destroy_msg
+    @model.find(params[:id]).destroy
+     flash[:notice] = self.destroy_msg
     redirect_to :action => 'list'
   end
 
@@ -51,7 +72,7 @@ class SalvaController < ApplicationController
     unless @params[:item].nil?
       @params[:item].each { |id, contents|
         if contents[:checked]
-          mymodel.find(id).destroy
+          @model.find(id).destroy
         end
       }
     end
