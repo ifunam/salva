@@ -1,7 +1,7 @@
 class ModelSequence
 
-  attr_accessor :current
   attr_accessor :sequence
+  attr_accessor :current
   attr_accessor :is_filled
   attr_accessor :lider
   attr_accessor :lider_id
@@ -9,9 +9,9 @@ class ModelSequence
   attr_accessor :return_action
   
   def initialize(array)
-    @is_filled = false 
-    @current = 0;
     @sequence = array 
+    @current = 0;
+    @is_filled = false 
     @lider = @sequence[0].class.name.downcase
     @lider_id = @lider+'_id'
     @return_controller = @lider
@@ -54,10 +54,10 @@ class ModelSequence
     first.save
     last = @sequence.length - 1
     for i in (1..last)
-      row = sequence[i]   
-      row[lider_id] = first.id
-      row['moduser_id'] = first.moduser_id
-      row.save
+      model = sequence[i]   
+      model[lider_id] = first.id
+      model['moduser_id'] = first.moduser_id
+      model.save
     end    
   end
 

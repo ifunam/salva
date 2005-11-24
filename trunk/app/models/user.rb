@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   include AuthenticatedSystem
+
   belongs_to :userstatus
-  
+  has_and_belongs_to_many :books
+  has_many :roleinbook
+
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..20
