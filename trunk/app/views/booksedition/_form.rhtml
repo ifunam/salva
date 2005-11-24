@@ -1,10 +1,10 @@
 
 <p>
 <!--[form:edit]-->
-<%= hidden_field 'edit', 'books_id', 'value' => params['books_id']  %></p>
+<%= hidden_field 'edit', 'book_id', 'value' => params['books_id']  %></p>
 
 <p><label for="booksedition_editions">Edición</label><br/>
-<%= edition_select 'edit' %>
+<%= table_select('edit', Edition) %>
 
 <p><label for="booksedition_pages">Páginas</label><br/>
 <%= text_field 'edit', 'pages'  %></p>
@@ -15,21 +15,17 @@
 
 <p><label for="booksedition_publisher_id">Publisher</label><br/>
 <div id="publisher_select_id">
-
+<%= table_select('edit', Publisher) %>
 </div>
 <br/>
-<%= link_to 'New publisher', :controller => 'publisher', :action => 'new' %>
-
-<input id="search" name="search" type="text" value="">
-<%= observe_field 'search',  :frequency => 0.5, 
-         :update => 'publisher_select_id', 
-	 :url => { :action=> 'publisher_select',
-	 :with => "'search=' + escape(value)" }
-%>
-			   
+<input  name="edit[isbn]" size="30" type="text" onchange="new Ajax.Updater('mydiv', '/wizard/upgrade_select', {asynchronous:true, evalScripts:true}); return false;"> <p>
+<%= link_to_remote("Nueva editorial",
+                   :update => 'mydiv' ,
+                   :url => { :action => :upgrade_select}, :model => Publisher ) %>
+<div id="mydiv">This text will be changed</div>
 
 <p><label for="booksedition_mediatype_id">Medio</label><br/>
-<%= select("edit", "mediatype_id", Mediatype.find_all.collect {|p| [ p.name, p.id ] }) %>
+<%= table_select('edit', Mediatype) %>
 
 <p><label for="booksedition_month">Month</label><br/>
 <%= month_select('edit') %>

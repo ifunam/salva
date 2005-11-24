@@ -9,7 +9,7 @@
   <% end %>
   </tr>
   
-<% for book in @books %>
+<% for book in @list %>
   <tr>
   <td><%= check_box(book['id']) %> </td>
   <% for column in Book.content_columns %>
