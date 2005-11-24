@@ -91,6 +91,7 @@ module ApplicationHelper
   end
 
   def table_select(object, model, options={})
-    select(object, model.name.downcase+'_id', model.find_all.collect {|p| [ p.name, p.id ] })    
+#    select(object, model.name.downcase+'_id', model.find_all.collect {|p| [ p.name, p.id ] })    
+    select(object, model.name.downcase+'_id', model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] })    
   end
 end

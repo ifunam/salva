@@ -9,8 +9,10 @@ class ApplicationController < ActionController::Base
   before_filter :login_required   
   
   def upgrade_select
-#    @model = params[:model].to_sym
-    @model = Publisher
+    @model =  eval(Inflector.classify(@params[:class]))
+    model = @model.new
+    model.name = @params[:name]
+    model.save
     render (:partial => 'salva/upgrade_select')
   end
 
