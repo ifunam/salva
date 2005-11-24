@@ -89,12 +89,8 @@ module ApplicationHelper
   def country_select(object, options={})
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
-  
-  def edition_select(object, options={})
-    select(object, "editions_id", Edition.find_all.collect {|p| [ p.name, p.id ] })    
-  end
-  
+
   def table_select(object, model, options={})
-    select(object, model.class.name.downcase+'_id', model.find_all.collect {|p| [ p.name, p.id ] })    
+    select(object, model.name.downcase+'_id', model.find_all.collect {|p| [ p.name, p.id ] })    
   end
 end
