@@ -6,6 +6,13 @@ function handleKeyPress(keyEvent)
 
  if (keyPressed == 9 || keyPressed == 13) // 9 = TAB key and 13 = ENTER key
  {
-  return 1;
+  return true;
  } 
+}
+
+function checkString(string)
+{	 
+ if (string.length >= 1 ) {
+     return true;
+ }
 }
