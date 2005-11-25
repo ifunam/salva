@@ -1,7 +1,7 @@
 
 <p>
 <!--[form:edit]-->
-<%= hidden_field 'edit', 'book_id', 'value' => params['books_id']  %></p>
+<%= hidden_field 'edit', 'book_id', 'value' => params['book_id']  %></p>
 
 <p><label for="booksedition_editions">Edición</label><br/>
 <%= table_select('edit', Edition) %>
@@ -17,7 +17,8 @@
 <div id="mydiv">
 <%= table_select('edit', Publisher) %> 
 
-<input id="edit_isbn" name="name" size="30" type="text" onkeydown="if (handleKeyPress(event) == 1 ) { new Ajax.Updater('mydiv', '/wizard/upgrade_select?class=Publishers&name='+document.forms[0].name.value, {asynchronous:true, evalScripts:true}); return false;}" /> </p>
+<input name="Publisher_name" size="30" type="text" onkeydown="<%= remote_upgrade_select('Publisher', 'name', '¿Deseas agregar esta editorial?') %>">
+
 </div>
 
 <p><label for="booksedition_mediatype_id">Medio</label><br/>
