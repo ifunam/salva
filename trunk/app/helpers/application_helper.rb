@@ -90,8 +90,12 @@ module ApplicationHelper
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
 
-  def table_select(object, model, options={})
-#    select(object, model.name.downcase+'_id', model.find_all.collect {|p| [ p.name, p.id ] })    
-    select(object, model.name.downcase+'_id', model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ] })    
+  def table_select(object, model, id=nil)
+    select(object, model.name.downcase+'_id', 
+           model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar -- ' } )
+  end
+
+  def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?')
+    "if ( handleKeyPress(event) == true &&  checkString(document.forms[0].#{model}_#{name}.value) == true ) { var agree=confirm('#{question}'); if ( agree == true ) {new Ajax.Updater('mydiv', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{model}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
   end
 end
