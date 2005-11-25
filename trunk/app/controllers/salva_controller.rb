@@ -1,6 +1,6 @@
 #  app/controllers/shared_controller
 class SalvaController < ApplicationController
-  $debug = 0
+  $debug = 1
 
   def initialize
     @sequence = nil
@@ -33,9 +33,9 @@ class SalvaController < ApplicationController
     lider = @model.new
     lider.moduser_id = @session[:user]
     models = [ lider ]
-    @sequence.map{ |model| models << model.new }
+    @sequence.map{ |model| models.push(model.new) }
     sequence = ModelSequence.new(models)
-    sequence.lider_id = @model.table_name()+'_id';
+    sequence.lider_id = @model.name.downcase+'_id';
     logger.info "Table "+sequence.lider_id if $debug
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'

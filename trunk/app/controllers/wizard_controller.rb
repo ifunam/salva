@@ -17,17 +17,17 @@ class WizardController < ApplicationController
   end
  
   def edit
-     sequence = get_sequence
-     sequence.current = params[:current].to_i if params[:current] != nil
-     logger.info "Corriente "+sequence.current.to_s+" {"+sequence.is_filled.to_s+"}["+false.to_s+"]"
-     @edit = sequence.get_model
+    sequence = get_sequence
+    sequence.current = params[:current].to_i if params[:current] != nil
+    logger.info "Corriente "+sequence.current.to_s+" {"+sequence.is_filled.to_s+"}["+false.to_s+"]"
+    @edit = sequence.get_model
   end
  
   def list
     sequence = get_sequence
     @list = sequence.sequence
   end
- 
+  
   def create
     mymodel = get_sequence.get_model
     @params[:edit].each { |key, value|
@@ -37,17 +37,17 @@ class WizardController < ApplicationController
   end
  
   def update
-     sequence = get_sequence
-     mymodel = sequence.get_model
-     @params[:edit].each { |key, value|
-	mymodel[key.to_sym] = value
-     }	  
-     if sequence.is_filled
-	list
-	redirect_to :action  => 'list'
-     else	      
-	next_model
-     end
+    sequence = get_sequence
+    mymodel = sequence.get_model
+    @params[:edit].each { |key, value|
+      mymodel[key.to_sym] = value
+    }	  
+    if sequence.is_filled
+      list
+      redirect_to :action  => 'list'
+    else	      
+      next_model
+    end
   end
   
   def previous_model
