@@ -11,7 +11,7 @@ class ModelSequence
   def initialize(array)
     @sequence = array 
     @current = 0;
-    @is_filled = false 
+    @is_filled = false
     @lider = @sequence[0].class.name.downcase
     @lider_id = @lider+'_id'
     @return_controller = @lider

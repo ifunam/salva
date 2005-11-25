@@ -4,7 +4,7 @@ class BookController < SalvaController
   def initialize
     super
     @model = Book
-    @sequence = [ Booksedition ]
+    @sequence = [ Bookedition ]
   end
   
   def per_pages

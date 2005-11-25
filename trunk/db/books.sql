@@ -22,6 +22,16 @@ COMMENT ON TABLE bookstype IS
 	'Tipo de libro - Único, serie, colección, etc.';
 -- Único, serie, colección, libro arbitrado, etc.
 
+CREATE TABLE volumes (
+	id serial,
+	name text NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
+COMMENT ON TABLE volumes IS
+	'Volúmenes (normalmente numerados) de libros';
+-- I, II, III, ...
+
 CREATE TABLE books ( 
     id SERIAL,
     title   text NOT NULL,
@@ -36,6 +46,10 @@ CREATE TABLE books (
             REFERENCES bookstype(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    volume_id int4 NULL 
+	        REFERENCES volumes(id) 
+        	ON UPDATE CASCADE
+	        DEFERRABLE,
     origlanguages_id  int4 NULL  
         	REFERENCES languages(id)
             	ON UPDATE CASCADE
@@ -59,35 +73,7 @@ COMMENT ON COLUMN books.author IS 'Nombre del autor principal del libro
 COMMENT ON COLUMN books.coauthors IS 'Nombre de los coautores del libro 
 	(no es referencia, muchas veces no será usuario del sistema. Ver 
 	tabla userbooks)';
-
-CREATE TABLE volumes (
-	id serial,
-	name text NOT NULL,
-	PRIMARY KEY(id),
-	UNIQUE(name)
-);
-COMMENT ON TABLE volumes IS
-	'Volúmenes (normalmente numerados) de libros';
--- I, II, III, ...
-
-CREATE TABLE booksvolumes (
-        volume_id int4 NOT NULL
-	        REFERENCES volumes(id)
-        	ON UPDATE CASCADE 
-	        DEFERRABLE,
-        book_id int4 NOT NULL 
-	        REFERENCES books(id) 
-        	ON UPDATE CASCADE
-	        DEFERRABLE,
-	title text NOT NULL,
-	PRIMARY KEY (volume_id,book_id)
-);
-COMMENT ON TABLE booksvolumes IS
-	'Representa a los libros que se agrupan como volúmenes de una obra';
-
--- NOTA: Agregar constraint para que si varios libro pertenecen a una 
--- colección obligue a que todos sean del mismo publisher
-
+	
 CREATE TABLE editions (
 	id SERIAL,
 	name text NOT NULL,
@@ -98,17 +84,17 @@ COMMENT ON TABLE editions IS
 	'Ediciones (normalmente numeradas) de libros';
 -- Primera, segunda, tercera, ..., especial, ...
 
-CREATE TABLE bookseditionsstatus (
+CREATE TABLE bookeditionsstatus (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE bookseditionsstatus IS
+COMMENT ON TABLE bookeditionsstatus IS
 	'Estado de una edición de un libro';
 -- Publicado, en prensa, aceptado para publicación, en dictámen/en evaluación
 
-CREATE TABLE bookseditions ( --
+CREATE TABLE bookeditions ( --
     id serial,
     book_id int4 NOT NULL 
             REFERENCES books(id)
@@ -128,8 +114,8 @@ CREATE TABLE bookseditions ( --
 	    REFERENCES mediatype(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    bookseditionsstatus_id int4 NULL 
-	    REFERENCES bookseditionsstatus(id)
+    bookeditionsstatus_id int4 NULL 
+	    REFERENCES bookeditionsstatus(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
@@ -140,17 +126,17 @@ CREATE TABLE bookseditions ( --
             ON UPDATE CASCADE      -- data into or  from this table.
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id, bookseditionsstatus_id)
+    UNIQUE (book_id, edition_id, bookeditionsstatus_id)
 );
-COMMENT ON TABLE bookseditions IS
+COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
 	fue impresa? Cuál es el estado de cada una de ellas?';
 
 -- Does this book edition have more than one publisher?
-CREATE TABLE bookseditionscopublisher (
+CREATE TABLE bookeditionscopublisher (
     id serial,
-    booksedition_id int4 NOT NULL
-	    REFERENCES bookseditions(id)
+    bookedition_id int4 NOT NULL
+	    REFERENCES bookeditions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     publisher_id int4 NULL 
@@ -158,21 +144,21 @@ CREATE TABLE bookseditionscopublisher (
             ON UPDATE CASCADE
             DEFERRABLE,
     PRIMARY KEY(id),
-    UNIQUE (booksedition_id, publisher_id)
+    UNIQUE (bookedition_id, publisher_id)
 );
-COMMENT ON TABLE bookseditionscopublisher IS
+COMMENT ON TABLE bookeditionscopublisher IS
 	'Para las ediciones que tengan más de una editorial (la principal 
-	está ya en bookseditions.publisher_id';
+	está ya en bookeditions.publisher_id';
 
-CREATE TABLE users_books ( 
+CREATE TABLE users_bookeditions ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    book_id int4 NOT NULL 
-            REFERENCES books(id)
+    bookedition_id int4 NOT NULL 
+            REFERENCES bookeditions(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     roleinbook_id int4 NOT NULL 
@@ -181,9 +167,9 @@ CREATE TABLE users_books (
             DEFERRABLE,
     year int4 NOT NULL,
     other text NULL,
-    PRIMARY KEY (user_id, book_id)
+    PRIMARY KEY (user_id, bookedition_id)
 );
-COMMENT ON TABLE users_books IS 
+COMMENT ON TABLE users_bookeditions IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
 
 CREATE table chaptersbooks (

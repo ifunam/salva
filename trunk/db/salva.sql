@@ -47,10 +47,10 @@
 \i catalogs/mediatype.sql
 \i catalogs/publishers.sql
 \i catalogs/editions.sql
-\i catalogs/bookseditionsstatus.sql
+\i catalogs/bookeditionsstatus.sql
 \i catalogs/roleinbooks.sql
 \i catalogs/institutiontypes.sql
 \i catalogs/institutiontitles.sql
 \i catalogs/sectors.sql
 \i catalogs/languages.sql
-\i catalogs/
+--\i catalogs/

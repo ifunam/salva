@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
     model = @model.new
     model.name = @params[:name]
     model.save
+    @id = model.id
     render (:partial => 'salva/upgrade_select')
   end
-
+  
 end

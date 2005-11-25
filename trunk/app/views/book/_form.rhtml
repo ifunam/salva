@@ -20,6 +20,10 @@
 <%= select('edit', "bookstype_id", Bookstype.find_all.collect {|p| [ p.name, p.id ] }) %>
 <br/>
 
+<label for="volume_id">Tipo de libro</label>
+<%= table_select('edit', Volume) %>
+<br/>
+
 <label for="country_id">Tipo de libro</label>
 <%= country_select('edit') %>
 <br/>

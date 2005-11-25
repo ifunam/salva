@@ -91,7 +91,9 @@ module ApplicationHelper
   end
 
   def table_select(object, model, id=nil)
-    select(object, model.name.downcase+'_id', 
+    string_id = model.name.downcase+'_id'
+    @edit[string_id.to_sym] = id
+    select(object, string_id, 
            model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar -- ' } )
   end
 
