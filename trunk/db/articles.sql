@@ -43,7 +43,7 @@ CREATE TABLE magazines (
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	mediatype_id int4 NOT NULL 
-            	REFERENCES mediatype(id) 
+            	REFERENCES mediatypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	publisher_id int4 NOT NULL 

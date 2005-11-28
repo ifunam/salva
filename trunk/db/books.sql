@@ -12,13 +12,13 @@ COMMENT ON TABLE roleinbooks IS
 	'El rol que un usuario tiene en un libro';
 -- Autor, coautor, revisor, traductor, editor, compilador, coordinador
 
-CREATE TABLE bookstype (
+CREATE TABLE booktypes (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE bookstype IS
+COMMENT ON TABLE booktypes IS
 	'Tipo de libro - Único, serie, colección, etc.';
 -- Único, serie, colección, libro arbitrado, etc.
 
@@ -42,8 +42,8 @@ CREATE TABLE books (
                  REFERENCES countries(id)
                  ON UPDATE CASCADE
                  DEFERRABLE,
-    bookstype_id int4 NOT NULL
-            REFERENCES bookstype(id)
+    booktype_id int4 NOT NULL
+            REFERENCES booktypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     volume_id int4 NULL 
@@ -84,13 +84,13 @@ COMMENT ON TABLE editions IS
 	'Ediciones (normalmente numeradas) de libros';
 -- Primera, segunda, tercera, ..., especial, ...
 
-CREATE TABLE bookeditionsstatus (
+CREATE TABLE editionstatuses (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE bookeditionsstatus IS
+COMMENT ON TABLE editionstatuses IS
 	'Estado de una edición de un libro';
 -- Publicado, en prensa, aceptado para publicación, en dictámen/en evaluación
 
@@ -111,11 +111,11 @@ CREATE TABLE bookeditions ( --
             ON UPDATE CASCADE
             DEFERRABLE,
     mediatype_id int4 NOT NULL 
-	    REFERENCES mediatype(id)
+	    REFERENCES mediatypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    bookeditionsstatus_id int4 NULL 
-	    REFERENCES bookeditionsstatus(id)
+    editionstatus_id int4 NULL 
+	    REFERENCES editionstatuses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
@@ -126,14 +126,14 @@ CREATE TABLE bookeditions ( --
             ON UPDATE CASCADE      -- data into or  from this table.
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id, bookeditionsstatus_id)
+    UNIQUE (book_id, edition_id, editionstatus_id)
 );
 COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
 	fue impresa? Cuál es el estado de cada una de ellas?';
 
 -- Does this book edition have more than one publisher?
-CREATE TABLE bookeditionscopublisher (
+CREATE TABLE publishers_bookeditions (
     id serial,
     bookedition_id int4 NOT NULL
 	    REFERENCES bookeditions(id)
@@ -146,7 +146,7 @@ CREATE TABLE bookeditionscopublisher (
     PRIMARY KEY(id),
     UNIQUE (bookedition_id, publisher_id)
 );
-COMMENT ON TABLE bookeditionscopublisher IS
+COMMENT ON TABLE publishers_bookeditions IS
 	'Para las ediciones que tengan más de una editorial (la principal 
 	está ya en bookeditions.publisher_id';
 
@@ -165,7 +165,6 @@ CREATE TABLE users_bookeditions (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    year int4 NOT NULL,
     other text NULL,
     PRIMARY KEY (user_id, bookedition_id)
 );
@@ -174,23 +173,21 @@ COMMENT ON TABLE users_bookeditions IS
 
 CREATE table chaptersbooks (
    id SERIAL,
-   book_id int4 NOT NULL 
-            REFERENCES books(id)
+   bookedition_id int4 NOT NULL 
+           REFERENCES bookeditions(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    chapter text NOT NULL,
    pages   text NULL,
-   year    int4 NOT NULL,
    numcites int4 NULL CHECK (numcites >= 0),
    moduser_id int4 NULL      -- Use it to known who
             REFERENCES users(id) -- has inserted, updated or deleted
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
    PRIMARY KEY (id),
-  UNIQUE (book_id, chapter)
+  UNIQUE (bookedition_id, chapter)
 );
 CREATE INDEX chaptersbooks_chapter_idx ON chaptersbooks(chapter);
-CREATE INDEX chaptersbooks_chapter_year_idx ON chaptersbooks(chapter,year);
 COMMENT ON TABLE chaptersbooks IS
 	'Capítulos en un libro (cuando son reportados por separado)';
 COMMENT ON COLUMN chaptersbooks.chapter IS
@@ -211,7 +208,6 @@ CREATE TABLE users_chaptersbooks (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    year int4 NOT NULL,
     other text NULL,
     PRIMARY KEY (user_id, chapterbook_id)
 );

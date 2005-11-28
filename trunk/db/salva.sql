@@ -42,12 +42,12 @@
 \i catalogs/groups.sql
 \i catalogs/userstatuses.sql
 \i catalogs/countries.sql
-\i catalogs/booktype.sql
+\i catalogs/booktypes.sql
 \i catalogs/volumes.sql
-\i catalogs/mediatype.sql
+\i catalogs/mediatypes.sql
 \i catalogs/publishers.sql
 \i catalogs/editions.sql
-\i catalogs/bookeditionsstatus.sql
+\i catalogs/editionstatuses.sql
 \i catalogs/roleinbooks.sql
 \i catalogs/institutiontypes.sql
 \i catalogs/institutiontitles.sql

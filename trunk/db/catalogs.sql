@@ -63,13 +63,13 @@ COMMENT ON TABLE articlestatus IS
 	'Estado de un artículo (utilizado en articles y newspaperarticles)';
 -- Publicado, en prensa, enviado, aceptado, en proceso, ...
 
-CREATE TABLE mediatype ( 
+CREATE TABLE mediatypes ( 
     id SERIAL, 
     name text NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (name)
 );
-COMMENT ON TABLE mediatype IS
+COMMENT ON TABLE mediatypes IS
 	'Medio físico en el que un trabajo está publicado';
 -- Impreso, electrónico, página Web, ...
 
