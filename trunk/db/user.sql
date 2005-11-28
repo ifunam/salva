@@ -78,7 +78,7 @@ COMMENT ON COLUMN users.email IS
 COMMENT ON COLUMN users.pkcs7 IS 
 	'A ser utilizado con infraestructura PKI';
 
-CREATE TABLE users_groups (
+CREATE TABLE user_groups (
     id SERIAL,
     user_id int4 NOT NULL
 	REFERENCES users(id)
@@ -94,5 +94,5 @@ CREATE TABLE users_groups (
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, group_id)
  );
-COMMENT ON TABLE users_groups IS
+COMMENT ON TABLE user_groups IS
  	'Grupos a los que pertenece cada usuario';

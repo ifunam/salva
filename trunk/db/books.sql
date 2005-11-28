@@ -133,7 +133,7 @@ COMMENT ON TABLE bookeditions IS
 	fue impresa? Cuál es el estado de cada una de ellas?';
 
 -- Does this book edition have more than one publisher?
-CREATE TABLE publishers_bookeditions (
+CREATE TABLE publisher_bookeditions (
     id serial,
     bookedition_id int4 NOT NULL
 	    REFERENCES bookeditions(id)
@@ -146,11 +146,11 @@ CREATE TABLE publishers_bookeditions (
     PRIMARY KEY(id),
     UNIQUE (bookedition_id, publisher_id)
 );
-COMMENT ON TABLE publishers_bookeditions IS
+COMMENT ON TABLE publisher_bookeditions IS
 	'Para las ediciones que tengan más de una editorial (la principal 
 	está ya en bookeditions.publisher_id';
 
-CREATE TABLE users_bookeditions ( 
+CREATE TABLE user_bookeditions ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -168,7 +168,7 @@ CREATE TABLE users_bookeditions (
     other text NULL,
     PRIMARY KEY (user_id, bookedition_id)
 );
-COMMENT ON TABLE users_bookeditions IS 
+COMMENT ON TABLE user_bookeditions IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
 
 CREATE table chaptersbooks (
@@ -193,7 +193,7 @@ COMMENT ON TABLE chaptersbooks IS
 COMMENT ON COLUMN chaptersbooks.chapter IS
 	'Nombre del capítulo';
 
-CREATE TABLE users_chaptersbooks ( 
+CREATE TABLE user_chaptersbooks ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -211,6 +211,6 @@ CREATE TABLE users_chaptersbooks (
     other text NULL,
     PRIMARY KEY (user_id, chapterbook_id)
 );
-COMMENT ON TABLE users_chaptersbooks IS 
+COMMENT ON TABLE user_chaptersbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
 	de libro';
