@@ -50,11 +50,11 @@ CREATE TABLE books (
 	        REFERENCES volumes(id) 
         	ON UPDATE CASCADE
 	        DEFERRABLE,
-    origlanguages_id  int4 NULL  
+    orig_language_id  int4 NULL  
         	REFERENCES languages(id)
             	ON UPDATE CASCADE
 		DEFERRABLE,
-    translanguages_id int4 NULL  
+    trans_language_id int4 NULL  
         	REFERENCES languages(id)
             	ON UPDATE CASCADE
 		DEFERRABLE,

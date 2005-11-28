@@ -1,4 +1,4 @@
-INSERT INTO institutiontypes (name) VALUES ('PÃºblica');
+INSERT INTO institutiontypes (name) VALUES ('Pública');
 INSERT INTO institutiontypes (name) VALUES ('Privada');
-INSERT INTO institutiontypes (name) VALUES ('OrganizaciÃ³n No Gubernamental');
+INSERT INTO institutiontypes (name) VALUES ('ONG - Organización No Gubernamental');
 INSERT INTO institutiontypes (name) VALUES ('Otra');

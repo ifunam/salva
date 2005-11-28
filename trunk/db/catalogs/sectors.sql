@@ -1,5 +1,5 @@
-INSERT INTO sectors (name) VALUES ('EducaciÃ³n');
-INSERT INTO sectors (name) VALUES ('InvestigaciÃ³n');
+INSERT INTO sectors (name) VALUES ('Educación');
+INSERT INTO sectors (name) VALUES ('Investigación');
 INSERT INTO sectors (name) VALUES ('Salud');
-INSERT INTO sectors (name) VALUES ('EnergÃ©ticos');
+INSERT INTO sectors (name) VALUES ('Energéticos');
 INSERT INTO sectors (name) VALUES ('Otro');
