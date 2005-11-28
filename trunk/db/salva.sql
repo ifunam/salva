@@ -42,6 +42,7 @@
 \i catalogs/groups.sql
 \i catalogs/userstatuses.sql
 \i catalogs/countries.sql
+\i catalogs/states.sql
 \i catalogs/booktypes.sql
 \i catalogs/volumes.sql
 \i catalogs/mediatypes.sql
@@ -53,4 +54,4 @@
 \i catalogs/institutiontitles.sql
 \i catalogs/sectors.sql
 \i catalogs/languages.sql
---\i catalogs/
+

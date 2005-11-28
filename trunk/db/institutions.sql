@@ -23,19 +23,10 @@ CREATE TABLE institutions (
         name text NOT NULL,
         url  text NULL,
         abbrev text NULL,
-        state int4 NULL
-		REFERENCES states(id)
-		ON UPDATE CASCADE
-		DEFERRABLE,
-        other text NULL,
 	parent_id integer NULL
             	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
             	ON DELETE CASCADE           
-            	DEFERRABLE,
-	country_id int4 NOT NULL 
-            	REFERENCES countries(id) 
-            	ON UPDATE CASCADE           
             	DEFERRABLE,
 	institutiontype_id int4 NOT NULL
             	REFERENCES institutiontypes(id) 
@@ -45,13 +36,23 @@ CREATE TABLE institutions (
             	REFERENCES institutiontitles(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
+	country_id int4 NOT NULL 
+            	REFERENCES countries(id) 
+            	ON UPDATE CASCADE           
+            	DEFERRABLE,
+        state_id int4 NULL
+		REFERENCES states(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+	city text NULL,
+        other text NULL,
 	administrative_id text NULL,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
         PRIMARY KEY(id),
-	UNIQUE(name, country_id, state) 
+	UNIQUE(name, country_id, state_id) 
 ); 
 COMMENT ON TABLE institutions IS
 	'Instituciones';
@@ -76,9 +77,9 @@ CREATE TABLE sectors (
 COMMENT ON TABLE sectors IS
 	'Una institución pertences a cierto sectores - ¿cuáles? (tan
 	genérico como sea posible)';
--- Educación, investigación, salud, energÃ©ticos, etc.
+-- Educación, investigación, salud, energéticos, etc.
 
-CREATE TABLE institutions_sectors (
+CREATE TABLE institution_sectors (
 	id SERIAL,
 	institution_id int4 NOT NULL 
             	REFERENCES institutions(id) 
@@ -96,6 +97,6 @@ CREATE TABLE institutions_sectors (
         PRIMARY KEY(id),
 	UNIQUE (institution_id, sector_id)
 );
-COMMENT ON TABLE institutions_sectors IS
+COMMENT ON TABLE institution_sectors IS
 	'Relación entre cada una de las instituciones y los sectores a los que pertenece';
 
