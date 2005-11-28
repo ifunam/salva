@@ -1,3 +1,4 @@
+INSERT INTO institutiontitles (name) VALUES ('Universidad');
 INSERT INTO institutiontitles (name) VALUES ('Escuela');
 INSERT INTO institutiontitles (name) VALUES ('Facultad');
 INSERT INTO institutiontitles (name) VALUES ('Instituto');
