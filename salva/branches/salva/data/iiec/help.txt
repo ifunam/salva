@@ -1,9 +1,0 @@
-1__Nombre(s)__Nombre o nombres completos, sin abreviaturas.__Andrés Eduardo
-2__Apellido paterno/materno__Apellido completo. Si su apellido lleva los prefijos como "de, del, de la, etc.", Por favor inclúyalos__De la Fuente
-3__Sexo__ Para seleccionar el género, sólo dé un "click" en el botón que se encuentra a la izquierda de las opciones__Masculino o Femenino
-4__Estado Civil__Estatus que adquiere el individuo ante la sociedad. Para desplegar el menú, solo dé un "click" delante del campo.__Soltero(a)
-5__Fecha de nacimiento__Fecha en que se registra su natalicio__25/10/63
-6__País donde nació__Para desplegar el listado, coloque el puntero del "mouse" sobre la ventana.__México
-7__Estado __Nombre de la entidad política en que nació.__Sonora
-8__Ciudad o municipio__Nombre de la ciudad o municipio donde nació.__Guimas
-9__Nacionalidad__ Despliegue el menú de nacionalidades, colocando el puntero del "mouse" sobre la ventana.__Mexicana
