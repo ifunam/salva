@@ -1,0 +1,47 @@
+
+<p>
+<!--[form:edit]-->
+<%= hidden_field 'edit', 'book_id', 'value' => params['book_id']  %></p>
+
+<p><label for="bookedition_editions">Edición</label><br/>
+<div id="Edition">
+<%= table_select('edit', Edition) %> 
+<input name="Edition_name" size="30" type="text" onkeydown="<%= remote_upgrade_select('Edition', 'name', '¿Desea agregar esta edición?') %>">
+</div>
+
+
+<p><label for="bookedition_pages">Páginas</label><br/>
+<%= text_field 'edit', 'pages', :tabindex => 2  %></p>
+
+<p><label for="bookedition_isbn">Isbn</label><br/>
+<%= text_field 'edit', 'isbn'  %></p>
+
+
+<p><label for="bookedition_publisher_id">Editorial</label><br/>
+<div id="Publisher">
+<%= table_select('edit', Publisher) %> 
+<input name="Publisher_name" size="30" type="text" onkeydown="<%= remote_upgrade_select('Publisher', 'name', '¿Desea agregar esta editorial?') %>">
+</div>
+
+<p><label for="bookedition_mediatype_id">Medio</label><br/>
+<div id="Mediatype">
+<%= table_select('edit', Mediatype) %> 
+<input name="Mediatype_name" size="30" type="text" onkeydown="<%= remote_upgrade_select('Mediatype', 'name', '¿Desea agregar este nuevo medio?') %>">
+</div>
+
+<p><label for="bookedition_month">Mes</label><br/>
+<%= month_select('edit') %>
+
+<p><label for="bookedition_year">Año</label><br/>
+<%= year_select('edit') %>
+
+<p><label for="bookedition_other">Comentarios acerca de esta edici&oacute;n</label><br/>
+<%= text_area 'edit', 'other', 'rows' => 5  %></p>
+
+
+
+
+<!--[eoform:edit]-->
+
+
+

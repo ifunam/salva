@@ -1,0 +1,8 @@
+
+<% coltitles = ['Libro(s)', 'AÃo'] %>
+<%= table(@books, "display" => :default, "coltitles" => coltitles) %>
+<br />
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
+
+<%= link_to 'Agregar libro', :action => 'new' %>
