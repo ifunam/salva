@@ -1,17 +1,26 @@
+<%= link_to 'Modificar todos', :action => 'edit_multi' %>
 
+<p>
 <% 
-  current = 0
-  for row in @list 
+   current = 0
+   for row in @list 
 %>
 <% @edit = row %>
   <%= @edit.class.name %> <%= link_to 'Modificar', :action => 'edit', :current => current %>
   <br/>
-  <%= render :partial => @edit.class.name.downcase+'/show' %>
+  <%= render :partial => Inflector.underscore(@edit.class.name)+'/show' %>
   <br/>
+  <% if current > 0 %>
+  <%= @edit.class.name %> <%= link_to 'Agregar: '+@edit.class.name,
+   :action => 'add', :current => current %> 
+   <br/>
+   <br/>
+  <% end %>
 <% 
   current += 1
   end 
 %>
+
 <table width="100%">
 <tr>
 <td align="left">
