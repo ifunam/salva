@@ -16,7 +16,7 @@ CREATE TABLE institutiontitles (
 );
 COMMENT ON TABLE institutiontitles IS
 	'Título (tipo, primer elemento del nombre) de una institución';
--- Escuela, Facultad, Instituto, Departamento, Unidad, Secretaría, Centro...
+-- Universidad, Escuela, Facultad, Instituto, Departamento, Unidad, Secretaría, Centro...
 
 CREATE TABLE institutions (  
         id SERIAL,
@@ -36,6 +36,7 @@ CREATE TABLE institutions (
             	REFERENCES institutiontitles(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
+	address text NULL,
 	country_id int4 NOT NULL 
             	REFERENCES countries(id) 
             	ON UPDATE CASCADE           
@@ -45,8 +46,11 @@ CREATE TABLE institutions (
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	city text NULL,
+	zipcode text NULL,
+	phone text NULL,
+	fax text NULL,
+	administrative_key text NULL,
         other text NULL,
-	administrative_id text NULL,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
@@ -59,7 +63,7 @@ COMMENT ON TABLE institutions IS
 COMMENT ON COLUMN institutions.parent_id IS
 	'Institución padre, para expresar jerarquías (p.ej. UNAM es la 
 	institución padre de IIEc)';
-COMMENT ON COLUMN institutions.administrative_id IS
+COMMENT ON COLUMN institutions.administrative_key IS
 	'Si la institución tiene alguna clave en su institución padre, la 
 	indicamos aquí. Lo guardamos sólo como texto, no buscamos la integridad
 	referencial';
