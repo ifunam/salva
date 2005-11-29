@@ -12,7 +12,7 @@ CREATE TABLE newspapers (
 COMMENT ON TABLE newspapers IS
 	'Periódicos';
 
-CREATE TABLE newspaperarticles (
+CREATE TABLE newspaper_articles (
 	id serial,
 	title text NOT NULL,
 	authors text NOT NULL,
@@ -26,10 +26,10 @@ CREATE TABLE newspaperarticles (
 	PRIMARY KEY (id),
 	UNIQUE (title, newspaper_id, newsdate)
 );
-COMMENT ON TABLE newspaperarticles IS
+COMMENT ON TABLE newspaper_articles IS
 	'Artículos publicados en periódico';
 
-CREATE TABLE usernewspaperarticles ( 
+CREATE TABLE usernewspaper_articles ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -37,7 +37,7 @@ CREATE TABLE usernewspaperarticles (
             ON DELETE CASCADE   
             DEFERRABLE,
     newspaperarticle_id int4 NOT NULL 
-            REFERENCES newspaperarticles(id)
+            REFERENCES newspaper_articles(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     ismainauthor BOOLEAN NOT NULL default 't',
@@ -45,20 +45,20 @@ CREATE TABLE usernewspaperarticles (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, newspaperarticle_id)
 );
-COMMENT ON TABLE usernewspaperarticles IS
+COMMENT ON TABLE usernewspaper_articles IS
 	'Autores de un artículo periodístico';
-COMMENT ON COLUMN usernewspaperarticles.ismainauthor IS
+COMMENT ON COLUMN usernewspaper_articles.ismainauthor IS
 	'Registramos únicamente si es el autor primario o no';
 
-CREATE TABLE newspaperarticleslog (
+CREATE TABLE newspaper_articleslog (
     id SERIAL, 
     newspaperarticle_id integer NOT NULL 
-            REFERENCES  newspaperarticles(id)
+            REFERENCES  newspaper_articles(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    old_artstatus_id integer NOT NULL 
-            REFERENCES articlestatus(id)
+    old_articlestatus_id integer NOT NULL 
+            REFERENCES articlestatuses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     changedate date NOT NULL default now()::date,
@@ -69,25 +69,25 @@ CREATE TABLE newspaperarticleslog (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-COMMENT ON TABLE newspaperarticleslog IS
+COMMENT ON TABLE newspaper_articleslog IS
 	'Cambios en el estado de los artículos periodísticos';
 
 ------
--- Update newspaperarticleslog if there was a status change
+-- Update newspaper_articleslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION newspaperarticles_update() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION newspaper_articles_update() RETURNS TRIGGER 
 SECURITY DEFINER AS '
 DECLARE 
 BEGIN
-	IF OLD.artstatus_id = NEW.artstatus_id THEN
+	IF OLD.articlestatus_id = NEW.articlestatus_id THEN
 		RETURN NEW;
 	END IF;
-	INSERT INTO newspaperarticleslog (newspaperarticle_id, 
-		old_artstatus_id, moduser_id) 
-		VALUES (OLD.id, OLD.artstatus_id, OLD.moduser_id);
+	INSERT INTO newspaper_articleslog (newspaperarticle_id, 
+		old_articlestatus_id, moduser_id) 
+		VALUES (OLD.id, OLD.articlestatus_id, OLD.moduser_id);
         RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER newspaperarticles_update BEFORE DELETE ON newspaperarticles
-	FOR EACH ROW EXECUTE PROCEDURE newspaperarticles_update();
+CREATE TRIGGER newspaper_articles_update BEFORE DELETE ON newspaper_articles
+	FOR EACH ROW EXECUTE PROCEDURE newspaper_articles_update();

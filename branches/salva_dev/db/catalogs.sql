@@ -53,13 +53,13 @@ COMMENT ON TABLE userrole IS
 
 -- Used both in articles and in newspaperarticles
 -- Published, in press, sent, accepted for publication, in process
-CREATE TABLE articlestatus (  
+CREATE TABLE articlestatuses (  
 	id SERIAL, 
 	name varchar(50) NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE articlestatus IS
+COMMENT ON TABLE articlestatuses IS
 	'Estado de un artículo (utilizado en articles y newspaperarticles)';
 -- Publicado, en prensa, enviado, aceptado, en proceso, ...
 
@@ -88,13 +88,13 @@ CREATE TABLE publishers (
 COMMENT ON TABLE publishers IS
 	'Editoriales';
 
-CREATE TABLE modality (
+CREATE TABLE modalities (
     id SERIAL,  
     name text NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (name)
 );
-COMMENT ON TABLE modality IS 
+COMMENT ON TABLE modalities IS 
 	'Modalidad en que es impartido un curso o de una ponencia';
 -- Presencial, Distancia, ambas o ninguna de las anteriores :)
 

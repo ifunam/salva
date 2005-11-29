@@ -55,4 +55,5 @@
 \i catalogs/sectors.sql
 \i catalogs/institutions.sql
 \i catalogs/languages.sql
-
+\i catalogs/publicationcategories.sql
+\i catalogs/articlestatuses.sql

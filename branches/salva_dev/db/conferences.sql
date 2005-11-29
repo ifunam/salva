@@ -136,7 +136,7 @@ CREATE TABLE conferencetalks (
             ON UPDATE CASCADE
             DEFERRABLE,
     modality_id int4 NOT NULL 
-            REFERENCES modality(id)
+            REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     title text NOT NULL,
