@@ -5,6 +5,7 @@
 CREATE TABLE publicationcategories ( 
 	id SERIAL,
 	name varchar(50) NOT NULL,
+	descr text NULL,
         moduser_id int4  NULL    	     -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
