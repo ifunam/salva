@@ -7,10 +7,10 @@ class UserObserver < ActiveRecord::Observer
   
   def after_save(user)
     if @new
-      @usersgroups= UsersGroups.new
-      @usersgroups.user_id = user.id
-      @usersgroups.group_id = 2 # Salva group
-      @usersgroups.save
+      @usergroup= UserGroup.new
+      @usergroup.user_id = user.id
+      @usergroup.group_id = 2 # Salva group
+      @usergroup.save
     end
   end
 end

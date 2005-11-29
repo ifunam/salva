@@ -82,22 +82,52 @@ module ApplicationHelper
   end
 
   def year_select(object, options={})
-    select_year(Date.today, :start_year => Date.today.year-70, 
-                :end_year => Date.today.year, :prefix => object, :field_name => options[:field_name])
+     year_options = []
+     y = Date.today.year
+     start_year, end_year = (options[:start_year] || y), (options[:end_year] || y-70)
+     step_val = start_year < end_year ? 1 : -1
+     
+     start_year.step(end_year, step_val) do |year|
+	year_options << year
+     end     
+     select(object, options[:field_name] || 'year', year_options);
   end
+  
   
   def country_select(object, options={})
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
 
-  def table_select(object, model, id=nil)
-    string_id = model.name.downcase+'_id'
-    @edit[string_id.to_sym] = id
-    select(object, string_id, 
-           model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar -- ' } )
+  
+  def table_select(object, model, options={})
+    options = options.stringify_keys
+    if options['prefix'] then
+      model_id = options['prefix']+'_'+model.name.downcase+'_id'
+    else
+      model_id = model.name.downcase+'_id'      
+    end
+    
+    if (options['id'] != nil) then
+      "<select name=\"#{object}[#{model_id}]\">\n<option>-- Seleccionar --</option>"+
+        options_for_select(
+                           model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]},
+                           options['id'])+
+        "\n</select>"
+    else
+      select(object, model_id, 
+             model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, :prompt => '-- Seleccionar --'  )
+    end       
   end
-
-  def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?')
-    "if ( handleKeyPress(event) == true &&  checkString(document.forms[0].#{model}_#{name}.value) == true ) { var agree=confirm('#{question}'); if ( agree == true ) {new Ajax.Updater('mydiv', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{model}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
+  
+  def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
+    options = options.stringify_keys
+    if ( options['prefix'] == nil ) then
+      div2upgrade = model
+      "if (handleKeyPress(event) && checkString(document.forms[0].#{model}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{model}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
+    else 
+      prefix = options['prefix']
+      div2upgrade = options['prefix']+'_'+model
+      "if (handleKeyPress(event) && checkString(document.forms[0].#{div2upgrade}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{div2upgrade}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
+    end
   end
-end
+end 

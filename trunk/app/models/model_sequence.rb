@@ -2,20 +2,20 @@ class ModelSequence
 
   attr_accessor :sequence
   attr_accessor :current
-  attr_accessor :is_filled
-  attr_accessor :lider
-  attr_accessor :lider_id
+  attr_accessor :is_filled  
   attr_accessor :return_controller
   attr_accessor :return_action
+  attr_accessor :moduser_id
+  attr_accessor :user_id
   
   def initialize(array)
-    @sequence = array 
+    @sequence = array.collect{ |model| model.new }
+
     @current = 0;
     @is_filled = false
-    @lider = @sequence[0].class.name.downcase
-    @lider_id = @lider+'_id'
-    @return_controller = @lider
     @return_action = 'list'
+    @return_controller = Inflector.underscore(array[0].name)
+    @parent = nil
   end
   
   def next_model
@@ -49,17 +49,31 @@ class ModelSequence
     end
   end
  
+ 
   def save
-    first = @sequence[0]
-    first.save
-    last = @sequence.length - 1
-    for i in (1..last)
-      model = sequence[i]   
-      model[lider_id] = first.id
-      model['moduser_id'] = first.moduser_id
+    lead_id = @lider_id
+    prev_model = nil
+    @sequence.each { |model|      
+      model['moduser_id'] = @moduser_id 
+      model['user_id'] = @user_id
+      if @lider_id != nil then
+        model[@lider_id] = @lider.id
+      elsif prev_model != nil then
+        model[Inflector.underscore(prev_model.class.name)+'_id'] = prev_model.id
+      end
       model.save
-    end    
+      prev_model = model
+    } 
+  end    
+    
+   
+  def set_lider(model_instance)     
+    @lider = model_instance
+    name = Inflector.underscore(@lider.class.name)
+    @lider_id = name+'_id'
+    @return_controller = name
+    @return_action = 'list'
   end
-
+  
 end
 

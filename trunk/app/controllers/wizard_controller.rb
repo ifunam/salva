@@ -19,7 +19,6 @@ class WizardController < ApplicationController
   def edit
     sequence = get_sequence
     sequence.current = params[:current].to_i if params[:current] != nil
-    logger.info "Corriente "+sequence.current.to_s+" {"+sequence.is_filled.to_s+"}["+false.to_s+"]"
     @edit = sequence.get_model
   end
  
@@ -33,9 +32,14 @@ class WizardController < ApplicationController
     @params[:edit].each { |key, value|
       mymodel[key.to_sym] = value
     }
-    next_model
+    if mymodel.valid? then
+      next_model 
+    else
+      @edit = get_sequence.get_model
+      render :action => 'edit'
+    end
   end
- 
+  
   def update
     sequence = get_sequence
     mymodel = sequence.get_model
@@ -77,12 +81,27 @@ class WizardController < ApplicationController
   def finalize
      sequence = get_sequence
      sequence.save
-     logger.info "Return {"+sequence.return_controller+"}{"+sequence.return_action+"}"
      redirect_to :controller => sequence.return_controller, :action => sequence.return_action
   end
   
   def cancel
-    redirect_to :controller => sequence.return_controller, :action => sequence.return_action
+     sequence = get_sequence
+     redirect_to :controller => sequence.return_controller, :action => sequence.return_action
   end
 
+  def edit_multi
+     sequence = get_sequence
+     @list = sequence.sequence
+  end
+	  
+  def update_multi
+     sequence = get_sequence
+     sequence.sequence.each { |model|
+	@params[:edit].each { |key, value|
+	   model[key.to_sym] = value if model[key.to_sym] != nil
+	}
+     }
+     redirect_to :action  => 'list'     
+  end
+						  
 end

@@ -30,13 +30,9 @@ class SalvaController < ApplicationController
   end
 
   def new_sequence
-    lider = @model.new
-    lider.moduser_id = @session[:user]
-    models = [ lider ]
-    @sequence.map{ |model| models.push(model.new) }
-    sequence = ModelSequence.new(models)
-    sequence.lider_id = @model.name.downcase+'_id';
-    logger.info "Table "+sequence.lider_id if $debug
+    sequence = ModelSequence.new(@sequence)
+    sequence.moduser_id = @session[:user]
+    sequence.user_id = @session[:user]
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end

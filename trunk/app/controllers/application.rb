@@ -10,11 +10,12 @@ class ApplicationController < ActionController::Base
   
   def upgrade_select
     @model =  eval(Inflector.classify(@params[:class]))
+    @prefix =  @params[:prefix]
     model = @model.new
     model.name = @params[:name]
     model.save
     @id = model.id
-    render (:partial => 'salva/upgrade_select')
+    render(:partial => 'salva/upgrade_select')
   end
   
 end
