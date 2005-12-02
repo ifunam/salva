@@ -1,9 +1,9 @@
-<h1>Editing <%= singular_name %></h1>
+<h1>Editando <%= singular_name.capitalize %></h1>
 
-<%%= start_form_tag :action => 'update<%= @suffix %>', :id => @<%= singular_name %> %>
+<%%= start_form_tag :action => 'update<%= @suffix %>', :id => @edit %>
   <%%= render :partial => 'form' %>
   <%%= submit_tag 'Edit' %>
 <%%= end_form_tag %>
 
-<%%= link_to 'Show', :action => 'show<%= suffix %>', :id => @<%= singular_name %> %> |
+<%%= link_to 'Show', :action => 'show<%= suffix %>', :id => @edit %> |
 <%%= link_to 'Back', :action => 'list<%= suffix %>' %>
