@@ -1,17 +1,23 @@
 
 module TableHelper
-  def self.append_features(controller) #:nodoc:
-	super 
-    if controller.ancestors.include?(ActionController::Base) 
-		controller.add_template_helper(self) 
-    end
-  end
 
-  def table(collection,  options )
-    case options["display"]
-    when :default  then 
-      render(:partial => "/salva/list")
-    end
+  def table(collection, options = {} )
+    options = options.stringify_keys
+   
+    @header = options["header"]
+    @columns = options["columns"]
+    @list = []
+    collection.each { |item|
+      body = ''
+      if @columns.is_a?Array then
+        @columns.each { |attr| body += item.send(attr).to_s+', ' if item.send(attr) != nil } 
+      else
+        item.attributes().each { |key, value| body << value.to_s+', ' if key != 'id' and value != nil } 
+      end
+      body.sub!(/, $/, '.')
+      @list.push({'id' => item.id, 'body' => body })
+    }
+    render(:partial => "/salva/list")
   end
  
 end

@@ -1,5 +1,5 @@
 ----------------------------
--- Articles and magazines --
+-- Articles and journals --
 ----------------------------
 
 CREATE TABLE publicationcategories ( 
@@ -18,17 +18,17 @@ COMMENT ON TABLE publicationcategories IS
 -- Genéricos: Ciencias sociales, ciencias naturales, humanidades
 -- Específicos: (desglose :) )
 
-CREATE TABLE magazinetypes ( 
+CREATE TABLE journaltypes ( 
 	id SERIAL,
 	name varchar(50) NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE magazinetypes IS
+COMMENT ON TABLE journaltypes IS
 	'Tipo de revista que publica (arbitrada/no arbitrada)';
 -- Arbitrada, no arbitrada
 
-CREATE TABLE magazines (
+CREATE TABLE journals (
         id SERIAL,
         name text NOT NULL,
 	issn text NULL,
@@ -39,8 +39,8 @@ CREATE TABLE magazines (
 	impactfactor float NULL, 	
 	immediacy   text NULL,
 	dateupdate date NULL, 
-	magazinetype_id int4 NOT NULL 
-            	REFERENCES magazinetypes(id) 
+	journaltype_id int4 NOT NULL 
+            	REFERENCES journaltypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	mediatype_id int4 NOT NULL 
@@ -62,15 +62,15 @@ CREATE TABLE magazines (
         PRIMARY KEY(id),
 	UNIQUE(issn) 
 );
-COMMENT ON TABLE magazines IS
+COMMENT ON TABLE journals IS
 	'Revistas en las cuales pueden publicarse artículos';
-COMMENT ON COLUMN magazines.dateupdate IS
+COMMENT ON COLUMN journals.dateupdate IS
 	'Fecha en que fué actualizado el factor de impacto/inmediatez';
 
-CREATE TABLE magazine_publicationcategories ( 
+CREATE TABLE journal_publicationcategories ( 
 	id SERIAL,
-	magazine_id int4 NOT NULL 
-            REFERENCES magazines(id)      
+	journal_id int4 NOT NULL 
+            REFERENCES journals(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     	publicationcategory_id int4 NOT NULL 
@@ -82,35 +82,35 @@ CREATE TABLE magazine_publicationcategories (
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE(magazine_id, publicationcategory_id)
+	UNIQUE(journal_id, publicationcategory_id)
 );
-COMMENT ON TABLE magazine_publicationcategories IS
+COMMENT ON TABLE journal_publicationcategories IS
 	'Categorías (áreas del conocimiento) a las que pertenece una revista';
 
-CREATE TABLE roleinmagazines (
+CREATE TABLE roleinjournals (
 	id serial,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE roleinmagazines IS
+COMMENT ON TABLE roleinjournals IS
 	'Roles que un usuario puede tener en una publicación';
 -- Editor, compilador, revisor, etc..
 
 
-CREATE TABLE user_magazines ( 
+CREATE TABLE user_journals ( 
 	id SERIAL,
     	user_id int4 NOT NULL 
         	REFERENCES users(id)      
             	ON UPDATE CASCADE
             	ON DELETE CASCADE   
             	DEFERRABLE,
-	magazine_id int4 NOT NULL 
-        	REFERENCES magazines(id)
+	journal_id int4 NOT NULL 
+        	REFERENCES journals(id)
             	ON UPDATE CASCADE
             	DEFERRABLE,
-	roleinmagazine_id int4 NOT NULL 
-        	REFERENCES roleinmagazines(id)
+	roleinjournal_id int4 NOT NULL 
+        	REFERENCES roleinjournals(id)
             	ON UPDATE CASCADE
             	DEFERRABLE,
 	startyear int4 NOT NULL,
@@ -124,9 +124,9 @@ CREATE TABLE user_magazines (
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-COMMENT ON TABLE user_magazines IS
+COMMENT ON TABLE user_journals IS
 	'Relación entre usuarios del sistema y las publicaciones';
-COMMENT ON COLUMN user_magazines.roleinmagazine_id IS
+COMMENT ON COLUMN user_journals.roleinjournal_id IS
 	'Es el rol que tiene el usuario en la publicación';
 
 
@@ -145,8 +145,8 @@ CREATE TABLE articles (
             REFERENCES articlestatuses(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-    magazine_id int4 NOT NULL 
-            REFERENCES magazines(id)      
+    journal_id int4 NOT NULL 
+            REFERENCES journals(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     moduser_id int4 NULL         -- It will be used only to know who has
@@ -155,7 +155,7 @@ CREATE TABLE articles (
             DEFERRABLE,
     other text NULL,
     PRIMARY KEY (id),
-    UNIQUE(title, magazine_id, year)
+    UNIQUE(title, journal_id, year)
 );
 COMMENT ON TABLE articles IS
 	'Datos de un artículo publicado';

@@ -11,8 +11,8 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @pages, @list = paginate @model, :per_page => self.per_pages, :order_by =>  self.order_by
-    render :action => 'list'
+    @pages, @collection = paginate @model, :per_page => self.per_pages, :order_by =>  self.order_by
+     render :action => 'list'
   end
   
   def edit
@@ -21,6 +21,7 @@ class SalvaController < ApplicationController
   end
   
   def new
+    logger.info "New Lider "+@lider.to_s if @lider != nil
    if @sequence
      new_sequence
     else 
@@ -29,10 +30,22 @@ class SalvaController < ApplicationController
     end
   end
 
+
+  def new_else
+    model_other = params[:model]
+    lider =  @model.find(params[:lider])
+    logger.info "New else Lider "+lider.to_s if lider != nil
+    redirect_to :controller => model_other, :action => 'new', :lider_id => lider, :lider_name => Inflector.underscore(@model.name)
+  end
+
   def new_sequence
+    lider_id = params[:lider_id]
+    lider_name =  params[:lider_name]
     sequence = ModelSequence.new(@sequence)
     sequence.moduser_id = @session[:user]
     sequence.user_id = @session[:user]
+    logger.info "New sequence Lider "+lider_id.to_s if lider_id != nil
+    sequence.set_lider(lider_id, lider_name) if lider_id != nil and lider_name != nil
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end
@@ -58,7 +71,7 @@ class SalvaController < ApplicationController
     end
   end
   
-  def destroy
+  def purge
     @model.find(params[:id]).destroy
      flash[:notice] = self.destroy_msg
     redirect_to :action => 'list'

@@ -1,29 +1,7 @@
-<h1>Listing bookeditions</h1>
-
-<table>
-  <tr>
-  <% for column in Bookedition.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for bookedition in @bookeditions %>
-  <tr>
-  <% for column in Bookedition.content_columns %>
-    <td><%=h bookedition.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => bookedition %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => bookedition %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => bookedition }, :confirm => 'Are you sure?' %></td>
-  </tr>
-<% end %>
-</table>
-
-<%= link_to 'Previous page', { :page => @bookedition_pages.current.previous } if @bookedition_pages.current.previous %>
-<%= link_to 'Next page', { :page => @bookedition_pages.current.next } if @bookedition_pages.current.next %> 
+<%= table(@collection, { :header => "Chingaderas" }) %>
 
 <br />
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
-<%= link_to 'New bookedition', :action => 'new' %>
-
-<%= link_to 'New bookedition', :action => 'new', :bookedition_publisher_id => 2 %>
+<%= link_to 'Agregar edicion', :action => 'new' %>
