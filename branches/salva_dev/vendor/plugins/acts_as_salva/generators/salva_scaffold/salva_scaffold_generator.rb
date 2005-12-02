@@ -1,35 +1,46 @@
 class ScaffoldingSandbox
-  include ActionView::Helpers::ActiveRecordHelper
-
   attr_accessor :form_action, :singular_name, :suffix, :model_instance
-
   def sandbox_binding
     binding
   end
 
-  def default_input_block
-    Proc.new { |record, column| "<p><label for=\"#{record}_#{column.name}\">#{column.human_name}</label><br/>\n#\{input(record, column.name)}</p>\n" }
+  def salva_tags (model_instance, singular_name)
+    #model_instance #and singular_name.class
+    @attrs = model_instance.attributes()
+    html = "\n"
+    @attrs.each { | column, attr | 
+      html << "<div class=\"row\"> \n"
+      html << "<label for=\"#{column}\">#{column}</label> \n"
+      next if column == 'moduser_id' or column == 'id'
+      if column =~ /_id$/ then
+        model_select = column.sub(/_id/,'') 
+        model_select = "prueba_#{model_select}"
+        if model_select =~ /^\w+_/ then
+          (prefix, model_select) = model_select.split('_')
+          model_select = model_select.capitalize
+          html << "<div id=\"#{prefix}_#{model_select}\">\n" 
+          html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}'}) %>\n" 
+          html << "<input name='#{prefix}_#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?', { :prefix => '#{prefix}'} ) %>\">\n" 
+          html << "<div>\n"
+        else
+          model_select = model_select.capitalize
+          html << "<div id=\"#{model_select}\">\n"
+          html << "<%= table_select('edit', #{model_select}) %> \n" 
+          html << "<input name='#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?' ) %>\">\n" 
+          html << "<div>\n"
+        end
+      elsif column =~ /month/ then
+        html << "<%= month_select('edit', {:field_name => '#{column}' ) %> \n"
+      elsif column =~ /year/ then
+        html << "<%= year_select('edit', {:field_name => '#{column}' ) %> \n"
+      else
+        html << "<%= text_field 'edit', '#{column}' %>\n"  
+      end
+      html << "</div>\n\n"
+    }
+    html
   end
-end
-
-class ActionView::Helpers::InstanceTag
-  def to_input_field_tag(field_type, options={})
-    field_meth = "#{field_type}_field"
-    "<%= #{field_meth} '#{@object_name}', '#{@method_name}' #{options.empty? ? '' : ', '+options.inspect} %>"
-  end
-
-  def to_text_area_tag(options = {})
-    "<%= text_area '#{@object_name}', '#{@method_name}' #{options.empty? ? '' : ', '+ options.inspect} %>"
-  end
-
-  def to_date_select_tag(options = {})
-    "<%= date_select '#{@object_name}', '#{@method_name}' #{options.empty? ? '' : ', '+ options.inspect} %>"
-  end
-
-  def to_datetime_select_tag(options = {})
-    "<%= datetime_select '#{@object_name}', '#{@method_name}' #{options.empty? ? '' : ', '+ options.inspect} %>"
-  end
-end
+end  
 
 class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   attr_reader   :controller_name,
@@ -42,14 +53,14 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                 :controller_plural_name
   alias_method  :controller_file_name,  :controller_singular_name
   alias_method  :controller_table_name, :controller_plural_name
-
+  
   def initialize(runtime_args, runtime_options = {})
     super
 
     # Take controller name from the next argument.  Default to the pluralized model name.
     @controller_name = args.shift
-    @controller_name ||= ActiveRecord::Base.pluralize_table_names ? @name.pluralize : @name
-
+    @controller_name ||= @name #ActiveRecord::Base.pluralize_table_names ? @name.pluralize : 
+    
     base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(@controller_name)
     @controller_class_name_without_nesting, @controller_singular_name, @controller_plural_name = inflect_names(base_name)
 
@@ -59,6 +70,7 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
       @controller_class_name = "#{@controller_class_nesting}::#{@controller_class_name_without_nesting}"
     end
   end
+
 
   def manifest
     record do |m|
@@ -103,16 +115,8 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                             class_path,
                             "#{file_name}_test.rb")
 
-
-
-      # Controller templates
-      #%w(  login signup ).each do |action|
-      #  m.template "#{action}.rhtml",
-      #             File.join('app/views', controller_class_path, controller_file_name, "#{action}.rhtml")
-      #end
-
       # Scaffolded forms.
-      m.complex_template "form.rhtml",
+        m.complex_template "form.rhtml",
         File.join('app/views',
                   controller_class_path,
                   controller_file_name,
@@ -123,28 +127,23 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
         :end_mark => 'eoform',
         :mark_id => singular_name
 
-
-      # Scaffolded views.
-      scaffold_views.each do |action|
+      # Scaffolded views and partials.
+      %w(list show new edit _show).each do |action|
                               m.template "view_#{action}.rhtml",
                    File.join('app/views',
                              controller_class_path,
                              controller_file_name,
                              "#{action}.rhtml"),
                               :assigns => { :action => action }
-      end
-
-    end
-  end
+                            end
+                            
+                          end
+                        end
 
   protected
     # Override with your own usage banner.
     def banner
       "Usage: #{$0} salva_scaffold ModelName [ControllerName]"
-    end
-
-    def scaffold_views
-      %w(list show new edit)
     end
     
     def model_name
@@ -158,17 +157,13 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
     def suffix
       "_#{singular_name}" if options[:suffix]
     end
+    
 
     def create_sandbox
       sandbox = ScaffoldingSandbox.new
       sandbox.singular_name = singular_name
-      begin
-        sandbox.model_instance = model_instance
-        sandbox.instance_variable_set("@#{singular_name}", sandbox.model_instance)
-      rescue ActiveRecord::StatementInvalid => e
-        logger.error "Before updating scaffolding from new DB schema, try creating a table for your model (#{cla\ss_name})"
-        raise SystemExit
-      end
+      sandbox.model_instance = model_instance
+      sandbox.instance_variable_set("@#{singular_name}", sandbox.model_instance)
       sandbox.suffix = suffix
       sandbox
     end
