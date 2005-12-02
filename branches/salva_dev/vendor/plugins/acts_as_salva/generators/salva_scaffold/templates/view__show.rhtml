@@ -1,0 +1,3 @@
+<%% for column in <%= singular_name.capitalize %>.content_columns %>
+  <b><%%= column.human_name %>:</b> <%%= @edit.send(column.name)  %>
+<br/>
