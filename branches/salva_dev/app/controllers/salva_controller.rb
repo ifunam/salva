@@ -86,5 +86,10 @@ class SalvaController < ApplicationController
       }
     end
     redirect_to :action => 'list'
-  end
+ end
+ 
+ def show
+    @edit = @model.find(params[:id])
+ end
+ 
 end

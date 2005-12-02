@@ -1,8 +1,4 @@
-<% for column in Book.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @book.send(column.name) %>
-</p>
-<% end %>
+<%= render :partial => 'show' %>
 
 <%= link_to 'Edit', :action => 'edit', :id => @book %> |
 <%= link_to 'Back', :action => 'list' %>
