@@ -2,43 +2,43 @@
 -- General Information                --
 ----------------------------------------
 
-CREATE TABLE maritalstatus ( 
+CREATE TABLE maritalstatuses ( 
     	id serial NOT NULL,
     	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE maritalstatus IS
+COMMENT ON TABLE maritalstatuses IS
 	'Estado civil';
 -- Casado, soltero, divorciado, viudo, unión libre, ...
 
-CREATE TABLE addresstype ( 
+CREATE TABLE addresstypes ( 
 	id serial NOT NULL,
    	name text NOT NULL,
    	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE addresstype IS
+COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
 -- Personal, de trabajo, temporal
 
-CREATE TABLE personalidtype ( 
+CREATE TABLE personalidtypes ( 
         id SERIAL,
         name text NOT NULL,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE personalidtype IS
+COMMENT ON TABLE personalidtypes IS
 	'Tipo de (documento de) identificación';
 -- Pasaporte, credencial de elector, ...
 
-CREATE TABLE migratorystatus (
+CREATE TABLE migratorystatuses (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id), 
 	UNIQUE (name)
 );
-COMMENT ON TABLE migratorystatus IS
+COMMENT ON TABLE migratorystatuses IS
 	'Status migratorio de un extranjero';
 -- Turista, residente temporal, residente permanente
 
@@ -53,17 +53,17 @@ CREATE TABLE personal (
     lastname2 text NULL,
     sex boolean NOT NULL,
     dateofbirth date NOT NULL,
-    birthcountry_id int4 NOT NULL 
+    birth_country_id int4 NOT NULL 
                          REFERENCES countries(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
     birthcity text NOT NULL,
-    birthstate int4 NULL
+    birth_state_id int4 NULL
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    maritstat_id int4 NOT NULL 
-                           REFERENCES maritalstatus(id)
+    maritalstatus_id int4 NOT NULL 
+                           REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
     photo bytea NULL,
@@ -85,7 +85,7 @@ CREATE TABLE personalid (
            ON DELETE CASCADE   
            DEFERRABLE,
    personalidtype_id int4 
-   	   REFERENCES personalidtype(id)
+   	   REFERENCES personalidtypes(id)
            ON UPDATE CASCADE
            DEFERRABLE,
    content text NULL,
@@ -101,8 +101,8 @@ CREATE TABLE address (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    addrtype_id int4 NOT NULL 
-            REFERENCES addresstype(id)
+    addresstype_id int4 NOT NULL 
+            REFERENCES addresstypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     country_id int4 NOT NULL 
@@ -110,7 +110,7 @@ CREATE TABLE address (
               ON UPDATE CASCADE
               DEFERRABLE,
     postaddress text NOT NULL, 
-    state int4 NULL
+    state_id int4 NULL
 		REFERENCES states(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
@@ -122,29 +122,29 @@ CREATE TABLE address (
     other text NULL,
     mail bool DEFAULT 'f' NOT NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, addrtype_id)
+    PRIMARY KEY (user_id, addresstype_id)
 );
 COMMENT ON TABLE address IS
 	'Las direcciones postales de un usuario';
 
-CREATE TABLE usercitizen ( 
+CREATE TABLE user_citizens ( 
   user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
 	   DEFERRABLE,
-  citizen_id int4 NOT NULL
+  citizen_country_id int4 NOT NULL
 	   REFERENCES countries(id)
 	   ON UPDATE CASCADE
            DEFERRABLE,
-  migratorystatus_id int4 NULL REFERENCES migratorystatus(id)
+  migratorystatus_id int4 NULL REFERENCES migratorystatuses(id)
 	   ON UPDATE CASCADE
 	   DEFERRABLE,
   passport text NULL,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (user_id, citizen_id)
+  PRIMARY KEY (user_id, citizen_country_id)
 );
-COMMENT ON TABLE usercitizen IS
+COMMENT ON TABLE user_citizens IS
 	'Nacionalidades que tiene un usuario';
 
 CREATE TABLE usermembership ( 

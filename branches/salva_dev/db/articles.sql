@@ -164,7 +164,7 @@ COMMENT ON COLUMN articles.authors IS
 	entre usuarios y artículos es independiente de esta, ver 
 	authorarticles.';
 
-CREATE TABLE author_articles ( 
+CREATE TABLE user_articles ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -180,9 +180,9 @@ CREATE TABLE author_articles (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, article_id)
 );
-COMMENT ON TABLE author_articles IS
+COMMENT ON TABLE user_articles IS
 	'Relación entre usuarios del sistema y artículos';
-COMMENT ON COLUMN author_articles.ismainauthor IS
+COMMENT ON COLUMN user_articles.ismainauthor IS
 	'Basta con señalar si el usuario es autor principal o es coautor';
 
 CREATE TABLE articleslog (
@@ -239,18 +239,18 @@ COMMENT ON COLUMN file_articles.content IS
 ------
 -- Update articleslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER 
-SECURITY DEFINER AS '
-DECLARE 
-BEGIN
-	IF OLD.articlestatus_id = NEW.articlestatus_id THEN
-		RETURN NEW;
-	END IF;
-	INSERT INTO articleslog (articles_id, old_articlestatus_id, moduser_id)
-		VALUES (OLD.id, OLD.articlestatus_id, OLD.moduser_id);
-        RETURN NEW;
-END;
-' LANGUAGE 'plpgsql';
+-- CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	IF OLD.articlestatus_id = NEW.articlestatus_id THEN
+-- 		RETURN NEW;
+-- 	END IF;
+-- 	INSERT INTO articleslog (articles_id, old_articlestatus_id, moduser_id)
+-- 		VALUES (OLD.id, OLD.articlestatus_id, OLD.moduser_id);
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER articles_update BEFORE DELETE ON articles
-	FOR EACH ROW EXECUTE PROCEDURE articles_update();
+-- CREATE TRIGGER articles_update BEFORE DELETE ON articles
+-- 	FOR EACH ROW EXECUTE PROCEDURE articles_update();
