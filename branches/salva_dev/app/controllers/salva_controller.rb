@@ -11,7 +11,7 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @pages, @collection = paginate @model, :per_page => self.per_pages, :order_by =>  self.order_by
+    @pages, @collection = paginate @model, :per_page => @per_pages, :order_by =>  @order_by
      render :action => 'list'
   end
   
@@ -54,7 +54,7 @@ class SalvaController < ApplicationController
     @edit = @model.new(params[:edit])
     @edit.moduser_id = @session[:user]
     if @edit.save
-      flash[:notice] = self.create_msg
+      flash[:notice] = @create_msg
       redirect_to :action => 'list'
     else
       render :action => 'list'
@@ -64,7 +64,7 @@ class SalvaController < ApplicationController
   def update
     @edit = @model.find(params[:id])
     if @edit.update_attributes(params[:edit])
-      flash[:notice] = self.update_msg
+      flash[:notice] = @update_msg
       redirect_to :action => 'list'
     else
       render :action => 'edit'
@@ -73,7 +73,7 @@ class SalvaController < ApplicationController
   
   def purge
     @model.find(params[:id]).destroy
-     flash[:notice] = self.destroy_msg
+    flash[:notice] = @purge_msg
     redirect_to :action => 'list'
   end
 

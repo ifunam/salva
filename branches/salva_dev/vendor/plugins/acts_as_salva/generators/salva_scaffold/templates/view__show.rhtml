@@ -1,3 +1,4 @@
-<%% for column in <%= singular_name.capitalize %>.content_columns %>
+<%% for column in <%= Inflector.camelize(singular_name) %>.content_columns %>
   <b><%%= column.human_name %>:</b> <%%= @edit.send(column.name)  %>
 <br/>
+<%% end %>

@@ -1,5 +1,4 @@
 class BookController < SalvaController
-  helper :table
 
   def initialize
     super

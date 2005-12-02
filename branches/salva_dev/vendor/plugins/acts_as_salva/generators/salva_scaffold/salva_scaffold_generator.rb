@@ -9,30 +9,29 @@ class ScaffoldingSandbox
     @attrs = model_instance.attributes()
     html = "\n"
     @attrs.each { | column, attr | 
+      next if column == 'moduser_id' or column == 'id' or column == 'user_id' or column == 'dbtime'
       html << "<div class=\"row\"> \n"
       html << "<label for=\"#{column}\">#{column}</label> \n"
-      next if column == 'moduser_id' or column == 'id'
       if column =~ /_id$/ then
         model_select = column.sub(/_id/,'') 
-        model_select = "prueba_#{model_select}"
         if model_select =~ /^\w+_/ then
           (prefix, model_select) = model_select.split('_')
           model_select = model_select.capitalize
           html << "<div id=\"#{prefix}_#{model_select}\">\n" 
           html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}'}) %>\n" 
           html << "<input name='#{prefix}_#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?', { :prefix => '#{prefix}'} ) %>\">\n" 
-          html << "<div>\n"
+          html << "</div>\n"
         else
           model_select = model_select.capitalize
           html << "<div id=\"#{model_select}\">\n"
           html << "<%= table_select('edit', #{model_select}) %> \n" 
           html << "<input name='#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?' ) %>\">\n" 
-          html << "<div>\n"
+          html << "</div>\n"
         end
       elsif column =~ /month/ then
-        html << "<%= month_select('edit', {:field_name => '#{column}' ) %> \n"
+        html << "<%= month_select('edit', {:field_name => '#{column}' } ) %> \n"
       elsif column =~ /year/ then
-        html << "<%= year_select('edit', {:field_name => '#{column}' ) %> \n"
+        html << "<%= year_select('edit', {:field_name => '#{column}' } ) %> \n"
       else
         html << "<%= text_field 'edit', '#{column}' %>\n"  
       end

@@ -3,4 +3,4 @@
 <%%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
 <%%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
-<%%= link_to 'Agregar <%= singular_name.capitalize %>', :action => 'new' %>
+<%%= link_to 'Agregar <%= Inflector.camelize(singular_name) %>', :action => 'new' %>
