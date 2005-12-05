@@ -98,11 +98,11 @@ COMMENT ON TABLE modalities IS
 	'Modalidad en que es impartido un curso o de una ponencia';
 -- Presencial, Distancia, ambas o ninguna de las anteriores :)
 
-CREATE TABLE menuelem (
+CREATE TABLE menues (
 	id SERIAL,
 	label text NOT NULL,
-	parentmenuelem_id int4 NULL
-		REFERENCES menuelem(id)
+	parent_menu_id int4 NULL
+		REFERENCES menues(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	group_id int4 NOT NULL
@@ -118,22 +118,22 @@ CREATE TABLE menuelem (
 	target text NULL,
 	expanded bool DEFAULT 'f' NOT NULL,
 	PRIMARY KEY (id),
-	UNIQUE (label, parentmenuelem_id)
+	UNIQUE (label, parent_menu_id)
 );
-COMMENT ON TABLE menuelem IS
-	'Cada uno de los elementos del menú que se muestra al usuario';
-COMMENT ON COLUMN menuelem.parentmenuelem_id IS
+COMMENT ON TABLE menues IS
+	'Cada uno de los elementsentos del menú que se muestra al usuario';
+COMMENT ON COLUMN menues.parent_menu_id IS
 	'ID del elemento padre - NULL siginfica que está sobre la raiz';
-COMMENT ON COLUMN menuelem.group_id IS
+COMMENT ON COLUMN menues.group_id IS
 	'Nivel mínimo de usuario que tiene derecho de ver este elemento';
-COMMENT ON COLUMN menuelem.expanded IS
+COMMENT ON COLUMN menues.expanded IS
 	'Si tiene sub-elementos, expanded indica si por default los mostramos o no';
-COMMENT ON COLUMN menuelem.ordering IS
+COMMENT ON COLUMN menues.ordering IS
 	'Dentro de su árbol, el órden relativo en que aparece este elemento. Si hay más
 	de un elemento con el mismo nivel de ordenamiento, se muestran por órden de ID';
-COMMENT ON COLUMN menuelem.style IS
+COMMENT ON COLUMN menues.style IS
 	'';
-COMMENT ON COLUMN menuelem.action IS
+COMMENT ON COLUMN menues.action IS
 	'';
-COMMENT ON COLUMN menuelem.target IS
+COMMENT ON COLUMN menues.target IS
 	'';
