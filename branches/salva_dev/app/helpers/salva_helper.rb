@@ -11,7 +11,7 @@ module SalvaHelper
   end
   
   def salva_column(key)
-    labels = { 
+    column_name = { 
       'firstname' => 'Nombre',
       'lastname1' => 'Apellido paterno',
       'lastname2' => 'Apellido materno',
@@ -25,7 +25,7 @@ module SalvaHelper
       'other' => 'Otra información o comentarios adicionales'
     }
     
-    labels[key] if labels[key]
+    column_name[key] if column_name[key]
   end
   
 end
