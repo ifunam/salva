@@ -4,14 +4,9 @@ class BookController < SalvaController
     super
     @model = Book
     @sequence = [ Book, Bookedition, UserBookedition ]
+    @per_pages = 10
+    @order_by = 'title DESC'
   end
-  
-  def per_pages
-    10
-  end
-  
-  def order_by
-    'title DESC'
-  end
+
 
 end
