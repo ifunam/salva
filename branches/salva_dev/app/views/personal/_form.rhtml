@@ -1,0 +1,71 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:personal]-->
+
+<div class="row"> 
+<label for="photo">photo</label> 
+<%= text_field 'edit', 'photo' %>
+</div>
+
+<div class="row"> 
+<label for="birthcity">birthcity</label> 
+<%= text_field 'edit', 'birthcity' %>
+</div>
+
+<div class="row"> 
+<label for="dateofbirth">dateofbirth</label> 
+<%= text_field 'edit', 'dateofbirth' %>
+</div>
+
+<div class="row"> 
+<label for="lastname1">lastname1</label> 
+<%= text_field 'edit', 'lastname1' %>
+</div>
+
+<div class="row"> 
+<label for="firstname">firstname</label> 
+<%= text_field 'edit', 'firstname' %>
+</div>
+
+<div class="row"> 
+<label for="sex">sex</label> 
+<%= text_field 'edit', 'sex' %>
+</div>
+
+<div class="row"> 
+<label for="lastname2">lastname2</label> 
+<%= text_field 'edit', 'lastname2' %>
+</div>
+
+<div class="row"> 
+<label for="birth_country_id">birth_country_id</label> 
+<div id="birth_Country">
+<%= table_select('edit', Country, {:prefix => 'birth'}) %>
+<input name='birth_Country_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Country', 'name', '¿Desea agregar este elemento?', { :prefix => 'birth'} ) %>">
+</div>
+</div>
+
+<div class="row"> 
+<label for="other">other</label> 
+<%= text_field 'edit', 'other' %>
+</div>
+
+<div class="row"> 
+<label for="maritalstatus_id">maritalstatus_id</label> 
+<div id="Maritalstatus">
+<%= table_select('edit', Maritalstatus) %> 
+<input name='Maritalstatus_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Maritalstatus', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+<div class="row"> 
+<label for="birth_state_id">birth_state_id</label> 
+<div id="birth_State">
+<%= table_select('edit', State, {:prefix => 'birth'}) %>
+<input name='birth_State_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('State', 'name', '¿Desea agregar este elemento?', { :prefix => 'birth'} ) %>">
+</div>
+</div>
+
+
+<!--[eoform:personal]-->
+
