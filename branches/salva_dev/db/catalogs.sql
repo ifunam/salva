@@ -98,11 +98,11 @@ COMMENT ON TABLE modalities IS
 	'Modalidad en que es impartido un curso o de una ponencia';
 -- Presencial, Distancia, ambas o ninguna de las anteriores :)
 
-CREATE TABLE menues (
+CREATE TABLE menus (
 	id SERIAL,
 	label text NOT NULL,
 	parent_menu_id int4 NULL
-		REFERENCES menues(id)
+		REFERENCES menus(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	group_id int4 NOT NULL
@@ -120,20 +120,20 @@ CREATE TABLE menues (
 	PRIMARY KEY (id),
 	UNIQUE (label, parent_menu_id)
 );
-COMMENT ON TABLE menues IS
+COMMENT ON TABLE menus IS
 	'Cada uno de los elementsentos del menú que se muestra al usuario';
-COMMENT ON COLUMN menues.parent_menu_id IS
+COMMENT ON COLUMN menus.parent_menu_id IS
 	'ID del elemento padre - NULL siginfica que está sobre la raiz';
-COMMENT ON COLUMN menues.group_id IS
+COMMENT ON COLUMN menus.group_id IS
 	'Nivel mínimo de usuario que tiene derecho de ver este elemento';
-COMMENT ON COLUMN menues.expanded IS
+COMMENT ON COLUMN menus.expanded IS
 	'Si tiene sub-elementos, expanded indica si por default los mostramos o no';
-COMMENT ON COLUMN menues.ordering IS
+COMMENT ON COLUMN menus.ordering IS
 	'Dentro de su árbol, el órden relativo en que aparece este elemento. Si hay más
 	de un elemento con el mismo nivel de ordenamiento, se muestran por órden de ID';
-COMMENT ON COLUMN menues.style IS
+COMMENT ON COLUMN menus.style IS
 	'';
-COMMENT ON COLUMN menues.action IS
+COMMENT ON COLUMN menus.action IS
 	'';
-COMMENT ON COLUMN menues.target IS
+COMMENT ON COLUMN menus.target IS
 	'';

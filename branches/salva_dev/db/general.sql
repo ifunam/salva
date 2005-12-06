@@ -20,7 +20,7 @@ CREATE TABLE addresstypes (
 );
 COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
--- Personal, de trabajo, temporal
+-- Personals, de trabajo, temporal
 
 CREATE TABLE personalidtypes ( 
         id SERIAL,
@@ -42,7 +42,7 @@ COMMENT ON TABLE migratorystatuses IS
 	'Status migratorio de un extranjero';
 -- Turista, residente temporal, residente permanente
 
-CREATE TABLE personal ( 
+CREATE TABLE personals ( 
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
@@ -71,14 +71,14 @@ CREATE TABLE personal (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
-CREATE INDEX "personal_firstname_idx" ON personal(firstname);
-CREATE INDEX "personal_lastname1_idx" ON personal(lastname1);
-CREATE INDEX "personal_lastname2_idx" ON personal(lastname2);
-CREATE UNIQUE INDEX "personal_firstname_lastname1_lastname2_idx" ON personal(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
-COMMENT ON TABLE personal IS
+CREATE INDEX "personals_firstname_idx" ON personals(firstname);
+CREATE INDEX "personals_lastname1_idx" ON personals(lastname1);
+CREATE INDEX "personals_lastname2_idx" ON personals(lastname2);
+CREATE UNIQUE INDEX "personals_firstname_lastname1_lastname2_idx" ON personals(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
+COMMENT ON TABLE personals IS
 	'Datos personales del usuario';
 
-CREATE TABLE personalid ( 
+CREATE TABLE personalids ( 
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
            ON UPDATE CASCADE
@@ -92,7 +92,7 @@ CREATE TABLE personalid (
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id)
 );
-COMMENT ON TABLE personalid IS
+COMMENT ON TABLE personalids IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE address ( 
