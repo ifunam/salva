@@ -45,6 +45,7 @@
 \i catalogs/countries.sql
 \i catalogs/states.sql
 \i catalogs/maritalstatus.sql
+\i catalogs/addresstypes.sql
 \i catalogs/booktypes.sql
 \i catalogs/volumes.sql
 \i catalogs/mediatypes.sql

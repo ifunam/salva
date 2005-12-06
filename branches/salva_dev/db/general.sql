@@ -20,7 +20,7 @@ CREATE TABLE addresstypes (
 );
 COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
--- Personals, de trabajo, temporal
+-- Domicilio profesional, Domicilio particular, Domicilio temporal
 
 CREATE TABLE personalidtypes ( 
         id SERIAL,
@@ -95,7 +95,7 @@ CREATE TABLE personalids (
 COMMENT ON TABLE personalids IS
 	'Cada una de las identificaciones de un usuario';
 
-CREATE TABLE address ( 
+CREATE TABLE addresses ( 
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
@@ -124,7 +124,7 @@ CREATE TABLE address (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, addresstype_id)
 );
-COMMENT ON TABLE address IS
+COMMENT ON TABLE addresses IS
 	'Las direcciones postales de un usuario';
 
 CREATE TABLE user_citizens ( 
@@ -147,7 +147,7 @@ CREATE TABLE user_citizens (
 COMMENT ON TABLE user_citizens IS
 	'Nacionalidades que tiene un usuario';
 
-CREATE TABLE usermembership ( 
+CREATE TABLE user_memberships ( 
   user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
@@ -162,6 +162,6 @@ CREATE TABLE usermembership (
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (user_id, institution_id)
 );
-COMMENT ON TABLE usermembership IS
+COMMENT ON TABLE user_memberships IS
 	'Instituciones académicas a las que pertenece un usuario';
 
