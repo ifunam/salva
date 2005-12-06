@@ -1,11 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper 
-  include Salva
-
-  def getcfg(myvar)
-    get(:"#{myvar}", 'config') 
-  end
-  
   # <head> .... </head>
   def head_title
     "#{@controller.controller_class_name} : #{@controller.action_name}"

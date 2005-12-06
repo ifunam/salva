@@ -11,7 +11,7 @@ class ScaffoldingSandbox
     @attrs.each { | column, attr | 
       next if column == 'moduser_id' or column == 'id' or column == 'user_id' or column == 'dbtime'
       html << "<div class=\"row\"> \n"
-      html << "<label for=\"#{column}\">#{column}</label> \n"
+      html << "<label for=\"#{column}\"><%= salva_column('#{column}') %></label> \n"
       if column =~ /_id$/ then
         model_select = column.sub(/_id/,'') 
         if model_select =~ /^\w+_/ then

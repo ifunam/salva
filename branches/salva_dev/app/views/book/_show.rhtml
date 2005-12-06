@@ -1,5 +1,5 @@
 <% for column in Book.content_columns %>
-  <b><%= column.human_name %>:</b> <%= @edit.send(column.name)  %>
+  <b><%= column.name %>:</b> <%= @edit.send(column.name)  %>
 <br/>
 <% end %>
 
