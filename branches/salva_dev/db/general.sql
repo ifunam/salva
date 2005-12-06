@@ -2,13 +2,13 @@
 -- General Information                --
 ----------------------------------------
 
-CREATE TABLE maritalstatuses ( 
+CREATE TABLE maritalstatus ( 
     	id serial NOT NULL,
     	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE maritalstatuses IS
+COMMENT ON TABLE maritalstatus IS
 	'Estado civil';
 -- Casado, soltero, divorciado, viudo, unión libre, ...
 
@@ -62,8 +62,8 @@ CREATE TABLE personals (
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    maritalstatus_id int4 NOT NULL 
-                           REFERENCES maritalstatuses(id)
+    maritalstatu_id int4 NOT NULL 
+                           REFERENCES maritalstatus(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
     photo bytea NULL,
