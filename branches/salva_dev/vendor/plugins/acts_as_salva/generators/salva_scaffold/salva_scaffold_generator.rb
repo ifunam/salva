@@ -16,13 +16,13 @@ class ScaffoldingSandbox
         model_select = column.sub(/_id/,'') 
         if model_select =~ /^\w+_/ then
           (prefix, model_select) = model_select.split('_')
-          model_select = model_select.capitalize
+	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{prefix}_#{model_select}\">\n" 
           html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}'}) %>\n" 
           html << "<input name='#{prefix}_#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?', { :prefix => '#{prefix}'} ) %>\">\n" 
           html << "</div>\n"
         else
-          model_select = model_select.capitalize
+	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{model_select}\">\n"
           html << "<%= table_select('edit', #{model_select}) %> \n" 
           html << "<input name='#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?' ) %>\">\n" 
