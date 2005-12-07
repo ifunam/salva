@@ -12,3 +12,5 @@ INSERT INTO institutiontitles (name) VALUES ('Dirección');
 INSERT INTO institutiontitles (name) VALUES ('Recintos');
 INSERT INTO institutiontitles (name) VALUES ('Plantel');
 INSERT INTO institutiontitles (name) VALUES ('Otro');
+INSERT INTO institutiontitles (name) VALUES ('Consejo');
+INSERT INTO institutiontitles (name) VALUES ('Coordinación');
