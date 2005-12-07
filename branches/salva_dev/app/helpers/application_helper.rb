@@ -41,11 +41,6 @@ module ApplicationHelper
     end
   end
   
-  # Title
-  def title_icon
-    "#{@controller.controller_class_name}_32x32.png"
-  end
-  
   def action_link (id, action, alt, question=nil, image='/images/invisible_16x16.png')
     html_options = { :class => action }
     html_options[:confirm] = question if question != nil
@@ -91,7 +86,6 @@ module ApplicationHelper
   def country_select(object, options={})
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
-
   
   def table_select(object, model, options={})
     options = options.stringify_keys

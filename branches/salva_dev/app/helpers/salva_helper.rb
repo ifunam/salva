@@ -22,13 +22,13 @@ module SalvaHelper
       'lastname1' => 'Apellido paterno',
       'lastname2' => 'Apellido materno',
       'sex' => 'Sexo',
-      'dateofbirth' => 'Fecha de nacimiento',
-      'birth_country_id' => 'País donde nació',
+      'dateofbirth' => 'Fecha',
+      'birth_country_id' => 'País',
       'birthcity' => 'Ciudad',
       'birth_state_id' => 'Estado',
       'maritalstatu_id' => 'Estado civil',
       'photo' => 'Fotografía',
-      'other' => 'Otra información o comentarios adicionales',
+      'other' => 'Información adicional',
       # addresses
       'addresstype_id' => 'Tipo de dirección',
       'country_id' => 'País',
@@ -43,5 +43,20 @@ module SalvaHelper
     
     column[name] ? column[name] : name
   end
+
+  # Title icon
+  def title_icon
+    "#{@controller.controller_class_name}_32x32.png"
+  end
   
+  # Title
+  def title
+    titles = { 
+      'PersonalController' => 'Datos personales',
+      'AddressesController' => 'Domicilio(s)',
+      'BookController' => 'Libros',
+      'ArticlesController' => 'Articles',
+    }
+   titles[@controller.controller_class_name] ? titles[@controller.controller_class_name] : @controller.controller_class_name
+  end
 end
