@@ -59,6 +59,3 @@ end
 # end
 
 # Include your application configuration below
-require 'salva'
-Salva::load_config_settings
-
