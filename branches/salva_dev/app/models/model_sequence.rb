@@ -1,4 +1,4 @@
-class ModelSequence
+class ModelSequence 
 
   attr_accessor :sequence
   attr_accessor :current
@@ -55,7 +55,7 @@ class ModelSequence
     prev_model = nil
     @sequence.each { |model|      
       model['moduser_id'] = @moduser_id 
-      model['user_id'] = @user_id
+      model['user_id'] = @user_id 
       model[@lider_name] = @lider_id if @lider_id != nil
       if prev_model != nil then
         model[Inflector.underscore(prev_model.class.name)+'_id'] = prev_model.id
