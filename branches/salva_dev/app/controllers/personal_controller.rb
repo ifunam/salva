@@ -3,9 +3,9 @@ class PersonalController < ApplicationController
   def index
     @edit = Personal.find(@session[:user])
     if @edit then
-      show
+     redirect_to :action => 'show'
     else
-      new
+     redirect_to :action => 'new'
     end
   end
 
