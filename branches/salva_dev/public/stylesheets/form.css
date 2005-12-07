@@ -207,7 +207,7 @@ fieldset .error {
 	text-align: justify;
 }
 
-label {
+.label {
 	float: left;
 	width: 160px;
 	min-height: 25px;
@@ -215,6 +215,7 @@ label {
 	margin-right: 10px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	font:  13px Arial,  sans-serif;	
 }
 
 #login .label {
@@ -401,3 +402,25 @@ table.list td.link .purge:hover {
   width: 16px;
   heigth: 16px;
 }
+
+.uploadStatus {
+  margin: 5px;
+}
+
+.progressBar {
+  margin: 5px;
+}
+
+.progressBar .border {
+  background: url(/images/progress-remainder.gif) repeat-x;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  width: 100%;
+}
+
+.progressBar .background {
+  background: url(/images/progress-bar.gif) repeat-x;
+  height: 18px;
+  width: 0%;
+}
+

@@ -47,6 +47,7 @@ Rails::Initializer.run do |config|
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.default_charset = "iso-8859-1"
+  ActionController::Base.enable_upload_progress
 end
 
 # Add new inflection rules using the following format 
