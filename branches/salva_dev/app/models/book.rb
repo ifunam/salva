@@ -1,4 +1,4 @@
 class Book < ActiveRecord::Base
-  validates_presence_of :title, :message => "Idiota, olvidaste el mensaje"
-  validates_presence_of :author, :message => "Pendejo, olvidaste el autor"
+  validates_presence_of :title, :message => "Proporcione el título"
+  validates_presence_of :author, :message => "Proporcione el autor"
 end
