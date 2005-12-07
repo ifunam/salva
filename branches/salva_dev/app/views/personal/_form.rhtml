@@ -1,71 +1,66 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:personal]-->
-
 <div class="row"> 
-<label for="photo"><%= salva_column('photo') %></label> 
-<%= text_field 'edit', 'photo' %>
-</div>
-
-<div class="row"> 
-<label for="birthcity"><%= salva_column('birthcity') %></label> 
-<%= text_field 'edit', 'birthcity' %>
-</div>
-
-<div class="row"> 
-<label for="dateofbirth"><%= salva_column('dateofbirth') %></label> 
-<%= text_field 'edit', 'dateofbirth' %>
-</div>
-
-<div class="row"> 
-<label for="lastname1"><%= salva_column('lastname1') %></label> 
-<%= text_field 'edit', 'lastname1' %>
-</div>
-
-<div class="row"> 
-<label for="firstname"><%= salva_column('firstname') %></label> 
+<label for="firstname" class="label"><%= salva_column('firstname') %></label> 
 <%= text_field 'edit', 'firstname' %>
 </div>
 
 <div class="row"> 
-<label for="sex"><%= salva_column('sex') %></label> 
-<%= text_field 'edit', 'sex' %>
+<label for="lastname1" class="label"><%= salva_column('lastname1') %></label> 
+<%= text_field 'edit', 'lastname1' %>
 </div>
 
 <div class="row"> 
-<label for="maritalstatu_id"><%= salva_column('maritalstatu_id') %></label> 
-<div id="Maritalstatu">
-<%= table_select('edit', Maritalstatu) %> 
-<input name='Maritalstatu_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Maritalstatu', 'name', '¿Desea agregar este elemento?' ) %>">
-</div>
-</div>
-
-<div class="row"> 
-<label for="lastname2"><%= salva_column('lastname2') %></label> 
+<label for="lastname2" class="label"><%= salva_column('lastname2') %></label> 
 <%= text_field 'edit', 'lastname2' %>
 </div>
 
 <div class="row"> 
-<label for="birth_country_id"><%= salva_column('birth_country_id') %></label> 
-<div id="birth_Country">
+<label for="sex" class="label"><%= salva_column('sex') %></label> 
+<%= text_field 'edit', 'sex' %>
+</div>
+
+<div class="row"> 
+<label for="dateofbirth" class="label"><%= salva_column('dateofbirth') %></label> 
+<%= text_field 'edit', 'dateofbirth' %>
+</div>
+
+<div class="row"> 
+<label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
 <%= table_select('edit', Country, {:prefix => 'birth'}) %>
-<input name='birth_Country_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Country', 'name', '¿Desea agregar este elemento?', { :prefix => 'birth'} ) %>">
-</div>
 </div>
 
 <div class="row"> 
-<label for="other"><%= salva_column('other') %></label> 
-<%= text_field 'edit', 'other' %>
-</div>
-
-<div class="row"> 
-<label for="birth_state_id"><%= salva_column('birth_state_id') %></label> 
+<label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
 <div id="birth_State">
 <%= table_select('edit', State, {:prefix => 'birth'}) %>
 <input name='birth_State_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('State', 'name', '¿Desea agregar este elemento?', { :prefix => 'birth'} ) %>">
 </div>
 </div>
 
+<div class="row"> 
+<label for="birthcity" class="label"><%= salva_column('birthcity') %></label> 
+<%= text_field 'edit', 'birthcity' %>
+</div>
+
+<div class="row"> 
+<label for="maritalstatu_id" class="label"><%= salva_column('maritalstatu_id') %></label> 
+<%= table_select('edit', Maritalstatu) %> 
+</div>
+<br/>
+<div class="row"> 
+<label for="photo" class="label"><%= salva_column('photo') %></label> 
+<%= file_field 'edit', 'photo' %>
+</div>
+<div class="row"> 
+    <%= upload_status_tag %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= salva_column('other') %></label> 
+<%= text_field 'edit', 'other' %>
+</div>
 
 <!--[eoform:personal]-->
 
