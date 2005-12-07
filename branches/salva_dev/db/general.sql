@@ -96,6 +96,7 @@ COMMENT ON TABLE personalids IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE addresses ( 
+    id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
@@ -122,7 +123,8 @@ CREATE TABLE addresses (
     other text NULL,
     mail bool DEFAULT 'f' NOT NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, addresstype_id)
+    PRIMARY KEY (id),
+    UNIQUE (user_id, addresstype_id)
 );
 COMMENT ON TABLE addresses IS
 	'Las direcciones postales de un usuario';
