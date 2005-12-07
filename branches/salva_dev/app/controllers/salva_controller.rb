@@ -60,7 +60,7 @@ class SalvaController < ApplicationController
     else
       logger.info "*** Algo esta mal <<wey>>, checalo! ***"
       logger.info @edit.errors.full_messages
-      render :action => 'list'
+      redirect_to :action => 'list'
     end
   end
  
