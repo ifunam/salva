@@ -1,6 +1,5 @@
 <h1>Editando Personal</h1>
-
-<%= start_form_tag :action => 'update', :id => @edit %>
+<%= form_tag({:action => 'update' }, :multipart => true) %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <%= end_form_tag %>

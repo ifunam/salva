@@ -66,6 +66,8 @@ CREATE TABLE personals (
                            REFERENCES maritalstatus(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
+    filename text NULL,
+    content_type text NULL,
     photo bytea NULL,
     other text NULL,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,

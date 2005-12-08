@@ -13,6 +13,8 @@ class PersonalController < ApplicationController
 
   def show
     @edit = Personal.find(:first, @session[:user])
+#    send_data (@edit.photo, :filename => @edit.filename, :type => "image/"+@edit.content_type.to_s, :disposition => "inline")
+    
   end
 
   def edit 
@@ -26,9 +28,28 @@ class PersonalController < ApplicationController
   def create 
     @edit = Personal.new(params[:edit])
     @edit.id = @session[:user] 
+    @edit.filename = base_part_of(@params[:edit]['photo'].original_filename)
+    @edit.content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
+    @edit.photo = @params[:edit]['photo'].read
     upload_progress.message = "Enviando su fotografía..."
     if @edit.save
       flash[:notice] = 'Sus datos personales han sido guardados'
+      redirect_to :action => 'show'
+    else
+      flash[:notice] = 'Wey, hay errores al guardar esta información'
+      logger.info @edit.errors.full_messages
+      redirect_to :action => 'index'
+    end
+  end
+
+  def update
+    @edit = Personal.find(@session[:user])
+    @edit.filename = base_part_of(@params[:edit]['photo'].original_filename)
+    @edit.content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
+    @edit.photo = @params[:edit]['photo'].read
+    upload_progress.message = "Enviando su fotografía..."
+    if @edit.update_attributes(params[:edit])
+      flash[:notice] = 'Sus datos personales han sido actualizados'
       redirect_to :action => 'show'
     else
       flash[:notice] = 'Wey, hay errores al guardar esta información'
@@ -41,5 +62,9 @@ class PersonalController < ApplicationController
     render :inline => '<%= upload_progress_status %> <div>Updated at <%= Time.now %></div>', :layout => false
   end
 
-
+  def base_part_of(file_name)
+    name = File.basename(file_name)
+    name.gsub(/[^\w._-]/, ' ' )
+  end
+  
 end
