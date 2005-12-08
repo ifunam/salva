@@ -1,4 +1,11 @@
-<% for column in Personal.content_columns %>
+<img src="<%= url_for(:action => "photo") %>"/>
+
+<p>
+<% for column in Personal.content_columns 
+     if !column.name.match(/^photo/) then
+%>
   <b><%= salva_column(column.name) %>:</b> <%= @edit.send(column.name)  %>
 <br/>
-<% end %>
+<%   end
+   end
+%>

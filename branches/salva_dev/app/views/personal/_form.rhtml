@@ -18,7 +18,9 @@
 
 <div class="row"> 
 <label for="sex" class="label"><%= salva_column('sex') %></label> 
-<%= text_field 'edit', 'sex' %>
+<select id="edit_sex" name="edit[sex]">
+<option value="true">Masculino</option>
+<option value="false">Femenino</option></select>
 </div>
 
 <div class="row"> 
@@ -31,7 +33,7 @@
 </div>
 <div class="row"> 
 <label for="dateofbirth" class="label"><%= salva_column('dateofbirth') %></label> 
-<%= text_field 'edit', 'dateofbirth' %>
+<%= date_select 'edit', 'dateofbirth'  %></p>
 </div>
 <br/>
 <div class="row"> 

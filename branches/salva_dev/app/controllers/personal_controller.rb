@@ -12,9 +12,12 @@ class PersonalController < ApplicationController
   end
 
   def show
-    @edit = Personal.find(:first, @session[:user])
-#    send_data (@edit.photo, :filename => @edit.filename, :type => "image/"+@edit.content_type.to_s, :disposition => "inline")
-    
+     @edit = Personal.find(:first, @session[:user])
+  end
+  
+  def photo
+     @edit = Personal.find(:first, @session[:user])
+     send_data (@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
   end
 
   def edit 
@@ -28,8 +31,8 @@ class PersonalController < ApplicationController
   def create 
     @edit = Personal.new(params[:edit])
     @edit.id = @session[:user] 
-    @edit.filename = base_part_of(@params[:edit]['photo'].original_filename)
-    @edit.content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
+    @edit.photo_filename = base_part_of(@params[:edit]['photo'].original_filename)
+    @edit.photo_content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
     @edit.photo = @params[:edit]['photo'].read
     upload_progress.message = "Enviando su fotografía..."
     if @edit.save
@@ -44,8 +47,8 @@ class PersonalController < ApplicationController
 
   def update
     @edit = Personal.find(@session[:user])
-    @edit.filename = base_part_of(@params[:edit]['photo'].original_filename)
-    @edit.content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
+    @edit.photo_filename = base_part_of(@params[:edit]['photo'].original_filename)
+    @edit.photo_content_type = base_part_of(@params[:edit]['photo'].content_type.chomp)
     @edit.photo = @params[:edit]['photo'].read
     upload_progress.message = "Enviando su fotografía..."
     if @edit.update_attributes(params[:edit])
