@@ -1,5 +1,3 @@
-<h1>New Personal</h1>
-
 <%= form_tag_with_upload_progress({:action => 'create'}, {:finish =>'alert("Archivo recibido")'}) %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Guardar" %>

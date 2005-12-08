@@ -22,33 +22,35 @@
 </div>
 
 <div class="row"> 
+<label for="maritalstatu_id" class="label"><%= salva_column('maritalstatu_id') %></label> 
+<%= table_select('edit', Maritalstatu) %> 
+</div>
+<hr/>
+<div class="row"> 
+<p><b>Fecha y lugar de nacimiento</b></p>
+</div>
+<div class="row"> 
 <label for="dateofbirth" class="label"><%= salva_column('dateofbirth') %></label> 
 <%= text_field 'edit', 'dateofbirth' %>
 </div>
-
+<br/>
 <div class="row"> 
 <label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
 <%= table_select('edit', Country, {:prefix => 'birth'}) %>
 </div>
-
+<br/>
 <div class="row"> 
 <label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
-<div id="birth_State">
 <%= table_select('edit', State, {:prefix => 'birth'}) %>
-<input name='birth_State_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('State', 'name', '¿Desea agregar este elemento?', { :prefix => 'birth'} ) %>">
 </div>
-</div>
-
+<br/>
 <div class="row"> 
 <label for="birthcity" class="label"><%= salva_column('birthcity') %></label> 
 <%= text_field 'edit', 'birthcity' %>
 </div>
 
-<div class="row"> 
-<label for="maritalstatu_id" class="label"><%= salva_column('maritalstatu_id') %></label> 
-<%= table_select('edit', Maritalstatu) %> 
-</div>
-<br/>
+<hr/>
+
 <div class="row"> 
 <label for="photo" class="label"><%= salva_column('photo') %></label> 
 <%= file_field 'edit', 'photo' %>
