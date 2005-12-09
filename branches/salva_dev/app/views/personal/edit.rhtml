@@ -1,7 +1,8 @@
 <%= form_tag_with_upload_progress({:action => 'update'}) %>  
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Guardar cambios' %>
 <%= end_form_tag %>
-<%= show_link({:id => @edit.id}) %>
+<%= link_to 'Cancelar', :action => 'show', :id => @edit %> 
+
 
 
