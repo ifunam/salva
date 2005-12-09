@@ -1,6 +1,5 @@
 class PersonalController < ApplicationController
   upload_status_for :create
-  upload_status_for :status => :custom_status
 
   def index
     @edit = Personal.find(:first, @session[:user])
@@ -16,10 +15,10 @@ class PersonalController < ApplicationController
   end
   
   def photo
-     @edit = Personal.find(:first, @session[:user])
-     send_data (@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
+    @edit = Personal.find(:first, @session[:user])
+    send_data (@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
   end
-
+  
   def edit 
     @edit = Personal.find(:first, @session[:user])
   end
@@ -59,10 +58,6 @@ class PersonalController < ApplicationController
       logger.info @edit.errors.full_messages
       redirect_to :action => 'index'
     end
-  end
-
-  def custom_status
-    render :inline => '<%= upload_progress_status %> <div>Updated at <%= Time.now %></div>', :layout => false
   end
 
   def base_part_of(file_name)

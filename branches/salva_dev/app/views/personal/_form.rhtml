@@ -19,8 +19,9 @@
 <div class="row"> 
 <label for="sex" class="label"><%= salva_column('sex') %></label> 
 <select id="edit_sex" name="edit[sex]">
+<option value="false">Femenino</option>
 <option value="true">Masculino</option>
-<option value="false">Femenino</option></select>
+</select>
 </div>
 
 <div class="row"> 
@@ -32,8 +33,8 @@
 <p><b>Fecha y lugar de nacimiento</b></p>
 </div>
 <div class="row"> 
-<label for="dateofbirth" class="label"><%= salva_column('dateofbirth') %></label> 
-<%= date_select 'edit', 'dateofbirth'  %></p>
+<label for="dateofbirth" class="label"><%= salva_column('dateofbirth')%></label> 
+<%= date_select 'edit', 'dateofbirth'  %>
 </div>
 <br/>
 <div class="row"> 

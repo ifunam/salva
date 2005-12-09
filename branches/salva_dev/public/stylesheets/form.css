@@ -131,6 +131,54 @@
 	border-color: #709bd1 #518ac8  #6377a9 #abcdec;
 }
 
+a.show {
+  display: block;
+  background: url(/images/browse_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.show {
+  display: block;
+  background: url(/images/browse_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
+a.edit {
+  display: block;
+  background: url(/images/edit_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.edit {
+  display: block;
+  background: url(/images/edit_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
+a.purge {
+  display: block;
+  background: url(/images/destroy_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.purge {
+  display: block;
+  background: url(/images/destroy_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
 .box .top_options {
 	background: url(/images/bg_box_top_options.gif) center left repeat-x;
 	width: 540px;
@@ -426,4 +474,6 @@ table.list td.link .purge:hover {
   height: 18px;
   width: 0%;
 }
+
+
 

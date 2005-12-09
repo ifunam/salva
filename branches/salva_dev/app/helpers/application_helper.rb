@@ -41,23 +41,26 @@ module ApplicationHelper
     end
   end
   
-  def action_link (id, action, alt, question=nil, image='/images/invisible_16x16.png')
-    html_options = { :class => action, :onmouseover => "return overlib('#{alt}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, SNAPX, 2, SNAPY, 2)", :onmouseout => "return nd()" }
-    html_options[:confirm] = question if question != nil
-    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt),
-            {:action  => action, :id => id }, html_options)
-  end
-
-  def show_link(id, alt='Mostrar')
-    action_link(id, 'show', alt)
-  end
-  
-  def edit_link(id, alt='Modificar')
-    action_link(id, 'edit', alt)
+  def action_link(opts={}, html_opts ={})
+    image ='/images/invisible_16x16.png'
+    onmouseover = "return overlib('#{opts[:alt]}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, SNAPX, 2, SNAPY, 2)"
+    onmouseout = "return nd()" 
+    link_options = { :action => opts[:action], :id => opts[:id] }
+    html_options = { :class => opts[:action], :onmouseover => onmouseover, :onmouseout => onmouseout }
+    html_options[:confirm] = html_opts[:question] if html_opts[:question] != nil
+    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => opts[:alt]), link_options, html_options)
   end
   
-  def purge_link(id, question, alt='Borrar')
-    action_link(id, 'purge', alt, question)
+  def show_link(options={})
+    action_link({:action => 'show', :id => options[:id], :alt => 'Mostrar'})
+  end
+  
+  def edit_link(options={})
+    action_link({:action => 'edit', :id => options[:id], :alt => 'Modificar'})
+  end
+  
+  def purge_link(options={})
+    action_link({:action => 'purge', :id => options[:id], :alt => 'Borrar'}, {:question => options[:question]})
   end
   
   def check_box(id,checked=0,prefix='item')

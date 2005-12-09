@@ -13,9 +13,9 @@
   <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
     <td><%= check_box(item['id']) %> </td>
     <td><%=item['body']%></td>
-    <td class="link"><%= show_link(item['id']) %></td>
-    <td class="link"><%= edit_link(item['id']) %></td>
-    <td class="link"> <%= purge_link(item['id'], 'Desea borrar este elemento?') %></td>
+    <td class="link"><%= show_link({:id => item['id']}) %></td>
+    <td class="link"><%= edit_link({:id => item['id']}) %></td>
+    <td class="link"> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
   </tr>
 <% end %>
 </table>
