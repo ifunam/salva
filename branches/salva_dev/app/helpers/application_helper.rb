@@ -84,8 +84,18 @@ module ApplicationHelper
      end     
      select(object, options[:field_name] || 'year', year_options);
   end
-  
-  
+
+  def date_for_select(object, attribute, options={})
+    year = Date.today.year
+    # Tal vez alguien a los 90 aÃos siga produciendo
+    options[:start_year] = year - 90 if  options[:start_year] == nil
+    # Por si se aparece el pinche 'Doggie Hauser'
+    # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
+    options[:end_year] = year - 15 if  options[:end_year] == nil
+    date_select (object, attribute, :start_year =>  options[:start_year], :end_year =>  options[:end_year], 
+                 :use_month_numbers => true, :order => [:day, :month, :year])
+  end
+
   def country_select(object, options={})
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
