@@ -70,6 +70,10 @@ CREATE TABLE personals (
     photo_content_type text NULL,
     photo bytea NULL,
     other text NULL,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+              DEFERRABLE,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
@@ -91,6 +95,10 @@ CREATE TABLE personalids (
            ON UPDATE CASCADE
            DEFERRABLE,
    content text NULL,
+   moduser_id int4  NULL    	     -- Use it only to know who has
+   REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id)
 );
@@ -124,6 +132,10 @@ CREATE TABLE addresses (
     movil text NULL,
     other text NULL,
     mail bool DEFAULT 'f' NOT NULL,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id, addresstype_id)
@@ -145,6 +157,10 @@ CREATE TABLE user_citizens (
 	   ON UPDATE CASCADE
 	   DEFERRABLE,
   passport text NULL,
+  moduser_id int4  NULL    	     -- Use it only to know who has
+  REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (user_id, citizen_country_id)
 );
@@ -163,6 +179,10 @@ CREATE TABLE user_memberships (
            DEFERRABLE,
   startyear int4 NULL,
   endyear int4 NULL,
+  moduser_id int4  NULL    	     -- Use it only to know who has
+  REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (user_id, institution_id)
 );

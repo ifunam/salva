@@ -454,26 +454,22 @@ table.list td.link .purge:hover {
   heigth: 16px;
 }
 
-.uploadStatus {
-  margin: 5px;
+.status {
+ margin: 5px;/
 }
 
-.progressBar {
-  margin: 5px;
+div.progressBar {
+    margin: 5px;
+  }
+
+div.progressBar div.border {
+    background-color: #fff;
+    border: 1px solid grey;
+    width: 100%;
 }
 
-.progressBar .border {
-  background: url(/images/progress-remainder.gif) repeat-x;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  width: 100%;
+div.progressBar div.background {
+    background: url(/images/progress-bar.gif) repeat-x;
+    height: 18px;
+    width: 0%;
 }
-
-.progressBar .background {
-  background: url(/images/progress-bar.gif) repeat-x;
-  height: 18px;
-  width: 0%;
-}
-
-
-

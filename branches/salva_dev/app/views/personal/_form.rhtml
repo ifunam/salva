@@ -57,11 +57,11 @@
 <div class="row"> 
 <label for="photo" class="label"><%= salva_column('photo') %></label> 
 <%= file_field 'edit', 'photo' %>
+<br/>
 </div>
-<div class="row"> 
-    <%= upload_status_tag %>
+<div id="status" >
+ <%= upload_status_tag %>
 </div>
-
 <div class="row"> 
 <label for="other" class="label"><%= salva_column('other') %></label> 
 <%= text_field 'edit', 'other' %>

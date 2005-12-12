@@ -1,6 +1,8 @@
 require 'RMagick'
 class PersonalController < ApplicationController
-  upload_status_for :create
+  include Magick
+  upload_status_for :create, {:status => :upload_status}
+
 
   def index
     @edit = Personal.find(:first, @session[:user])
@@ -27,17 +29,17 @@ class PersonalController < ApplicationController
     @edit = Personal.find(:first, @session[:user])
     send_data (@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
   end
-
+  
   def create 
     @edit = Personal.new(params[:edit])
     @edit.id = @session[:user] 
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
-      @edit.photo = params[:edit]['photo'].read
-      upload_progress.message = "Enviando su fotografía..."
+      @edit.photo = transform_photo(params[:edit]['photo'])
+      upload_progress.message = 'FotografÃa guardada...'
     end
-
+    
     if @edit.save
       flash[:notice] = 'Sus datos personales han sido guardados'
       redirect_to :action => 'show'
@@ -53,7 +55,7 @@ class PersonalController < ApplicationController
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
-      @edit.photo = params[:edit]['photo'].read
+      @edit.photo = transform_photo(params[:edit]['photo'].read)
       upload_progress.message = "Actualizando su fotografía..."
     end
     if @edit.update_attributes(params[:edit])
@@ -70,5 +72,21 @@ class PersonalController < ApplicationController
     name = File.basename(file_name)
     name.gsub(/[^\w._-]/, ' ' )
   end
-  
+
+  def transform_photo(photo)
+    photo = Magick::Image.from_blob(photo.read).first
+    #       maxwidth = 80
+    #       maxheight = 160
+    #       aspectratio = maxwidth.to_f / maxheight.to_f
+    #       imgwidth = photo.columns
+    #       imgheight = photo.rows
+    #       imgratio = imgwidth.to_f / imgheight.to_f
+    #       imgratio > aspectratio ? scaleratio = maxwidth.to_f / imgwidth : scaleratio = maxheight.to_f / imgheight
+    #       photo.resize!(scaleratio)
+    photo.to_blob
+  end
+
+  def upload_status
+    render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false
+  end
 end

@@ -60,3 +60,4 @@ end
 # end
 
 # Include your application configuration below
+#require 'action_controller/cgi_ext/upload_progress.rb'

@@ -1,5 +1,6 @@
-<%= form_tag_with_upload_progress({:action => 'create'}) %>  
+<%= form_tag_with_upload_progress({:action => 'create'}, {}, {:action => :custom_status}) %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Guardar" %>
 <%= end_form_tag %>
+
 
