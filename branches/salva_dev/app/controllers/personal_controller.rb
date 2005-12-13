@@ -33,6 +33,7 @@ class PersonalController < ApplicationController
   def create 
     @edit = Personal.new(params[:edit])
     @edit.id = @session[:user] 
+    @edit.moduser_id = @session[:user] if @session[:user]
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
