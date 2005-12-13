@@ -2,8 +2,6 @@ require 'RMagick'
 class PersonalController < ApplicationController
   include Magick
   upload_status_for :create
-  #, {:status => :upload_status}
-
 
   def index
     @edit = Personal.find(:first, @session[:user])
@@ -54,14 +52,14 @@ class PersonalController < ApplicationController
 
   def update
     @edit = Personal.find(@session[:user])
+    @edit.id = @session[:user] 
+    @edit.moduser_id = @session[:user] if @session[:user]
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
       @edit.photo = transform_photo(params[:edit]['photo'])
-      upload_progress.message = "Actualizando su fotografía..."
     end
     if @edit.save
- #update_attributes(params[:edit])
       flash[:notice] = 'Sus datos personales han sido actualizados'
       redirect_to :action => 'show'
     else
