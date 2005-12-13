@@ -60,9 +60,10 @@
 <%= file_field 'edit', 'photo' %>
 <br/>
 </div>
-<div id="status" >
+<div id="status"  style="display: none">
  <%= upload_status_tag %>
 </div>
+ <div id="message"><%= @message %></div>
 <div class="row"> 
 <label for="other" class="label"><%= salva_column('other') %></label> 
 <%= text_field 'edit', 'other' %>

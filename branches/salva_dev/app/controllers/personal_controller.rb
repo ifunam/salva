@@ -1,7 +1,8 @@
 require 'RMagick'
 class PersonalController < ApplicationController
   include Magick
-  upload_status_for :create, {:status => :upload_status}
+  upload_status_for :create
+  #, {:status => :upload_status}
 
 
   def index
@@ -34,11 +35,11 @@ class PersonalController < ApplicationController
     @edit = Personal.new(params[:edit])
     @edit.id = @session[:user] 
     @edit.moduser_id = @session[:user] if @session[:user]
+
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
       @edit.photo = transform_photo(params[:edit]['photo'])
-      upload_progress.message = 'FotografÃa guardada...'
     end
     
     if @edit.save
@@ -56,10 +57,11 @@ class PersonalController < ApplicationController
     if @edit.photo
       @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
       @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
-      @edit.photo = transform_photo(params[:edit]['photo'].read)
+      @edit.photo = transform_photo(params[:edit]['photo'])
       upload_progress.message = "Actualizando su fotografía..."
     end
-    if @edit.update_attributes(params[:edit])
+    if @edit.save
+ #update_attributes(params[:edit])
       flash[:notice] = 'Sus datos personales han sido actualizados'
       redirect_to :action => 'show'
     else
@@ -87,7 +89,7 @@ class PersonalController < ApplicationController
     photo.to_blob
   end
 
-  def upload_status
-    render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false
-  end
+#  def upload_status
+#    render :inline => "<%= upload_progress.completed_percent rescue 0 %> % complete", :layout => false
+#  end
 end
