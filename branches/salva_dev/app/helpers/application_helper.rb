@@ -144,4 +144,9 @@ module ApplicationHelper
       "if (handleKeyPress(event) && checkString(document.forms[0].#{div2upgrade}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{div2upgrade}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
     end
   end
+
+  def sex(condition)
+    condition ? 'Masculino' : 'Femenino'
+  end
+  
 end 

@@ -3,7 +3,8 @@
 <% for column in Personal.content_columns 
      if !column.name.match(/^photo|dbtime|moduser_id/) then
 %>
-  <b><%= salva_column(column.name) %>:</b> <%= @edit.send(column.name)  %>
+  <b><%= salva_column(column.name) %>:</b> 
+<%= column.name == 'sex' ? sex(@edit.send(column.name)): @edit.send(column.name)  %>
 <br/>
 <%   end
    end
