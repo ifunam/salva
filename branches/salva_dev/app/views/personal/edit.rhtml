@@ -1,7 +1,8 @@
 <%= form_tag_with_upload_progress({:action => 'update'}, {:begin =>"new Effect.Appear('status')"}) %>
 <%= render :partial => 'form' %>
   <%= submit_tag 'Guardar cambios' %>
-<%= end_form_tag %> <%= link_to 'Cancelar', :action => 'show', :id => @edit %> 
+<%= end_form_tag %> 
+<%= link_to 'Cancelar', :action => 'show', :id => @edit %> 
 
 
 

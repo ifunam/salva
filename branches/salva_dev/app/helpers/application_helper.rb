@@ -100,7 +100,7 @@ module ApplicationHelper
 
   def date_for_select(object, attribute, options={})
     year = Date.today.year
-    # Tal vez alguien a los 90 aÃos siga produciendo
+    # Tal vez alguien a los 90 años siga produciendo
     options[:start_year] = year - 90 if  options[:start_year] == nil
     # Por si se aparece el pinche 'Doggie Hauser'
     # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml

@@ -21,8 +21,12 @@
 <!-- <%= radio_button("edit", "sex", "Femenino") %> Femenino<br/>
 <%= radio_button("edit", "sex", "Masculino") %> Masculino
 -->
-<%= select("edit", "sex", [["Masculino", "t"], ["Femenino",
-"f"]])%>
+<!-- <%= select("edit", "sex", [["Masculino", "true"], ["Femenino",
+"false"]])%> -->
+<select id="edit_sex" name="edit[sex]">  
+ 	<option value="false">Femenino</option>  
+ 	<option value="true">Masculino</option>  
+</select>  
 
 
 </div>
