@@ -11,8 +11,8 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @pages, @collection = paginate @model, :per_page => @per_pages, :order_by =>  @order_by
-     render :action => 'list'
+    @pages, @collection = paginate Inflector.pluralize(@model), :per_page => @per_pages, :order_by =>  @order_by
+    render :action => 'list'
   end
   
   def edit
@@ -94,5 +94,4 @@ class SalvaController < ApplicationController
  def show
     @edit = @model.find(params[:id])
  end
- 
 end

@@ -6,6 +6,6 @@ class AddressController < SalvaController
     @update_msg = 'la dirección se ha actualizado'
     @purge_msg = 'La dirección ha sido borrada'
     @per_pages = 10
-    @order_by = 'postaddres DESC'
+    @order_by = 'postaddress DESC'
   end
 end

@@ -34,26 +34,6 @@ module ApplicationHelper
     '/sendbug/'
   end
 
-  def get_user(id,attr=nil)
-    attr = 'login' if attr == nil
-    user = User.find(id)
-    user[attr]
-  end
-    
-  def logged_user
-    if session[:user]
-      get_user(session[:user])
-    end
-  end
-
-  def db_moduser(id=nil)
-    if id 
-      get_user(id)
-    else
-      'S A L V A'
-    end
-  end
-
   def action_link(opts={}, html_opts ={})
     image ='/images/invisible_16x16.png'
     onmouseover = "return overlib('#{opts[:alt]}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, SNAPX, 2, SNAPY, 2)"
