@@ -1,4 +1,4 @@
-<img src="<%= url_for(:action => "photo") %>"/>
+<img src="<%= url_for(:action => "photo") %>"/> 
 <p>
 <% for column in Personal.content_columns 
      if !column.name.match(/^photo|dbtime|moduser_id/) then

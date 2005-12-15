@@ -1,4 +1,5 @@
-<%= form_tag_with_upload_progress({:action => 'update'}, {:begin =>"new Effect.Appear('status')"}) %>
+<%= form_tag({:action=>'update'}, {:multipart => true}) %>
+<!-- <%= form_tag_with_upload_progress({:action => 'update'}, {:begin =>"new Effect.Appear('status')"}) %> -->
 <%= render :partial => 'form' %>
   <%= submit_tag 'Guardar cambios' %>
 <%= end_form_tag %> 
