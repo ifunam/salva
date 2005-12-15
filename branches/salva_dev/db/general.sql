@@ -2,13 +2,13 @@
 -- General Information                --
 ----------------------------------------
 
-CREATE TABLE maritalstatus ( 
+CREATE TABLE maritalstatuses ( 
     	id serial NOT NULL,
     	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE maritalstatus IS
+COMMENT ON TABLE maritalstatuses IS
 	'Estado civil';
 -- Casado, soltero, divorciado, viudo, unión libre, ...
 
@@ -62,8 +62,8 @@ CREATE TABLE personals (
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    maritalstatu_id int4 NOT NULL 
-                           REFERENCES maritalstatus(id)
+    maritalstatus_id int4 NOT NULL 
+                           REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
     photo_filename text NULL,
@@ -131,7 +131,7 @@ CREATE TABLE addresses (
     fax text NULL,
     movil text NULL,
     other text NULL,
-    mail bool DEFAULT 'f' NOT NULL,
+    is_postaddress bool DEFAULT 'f' NOT NULL,
     moduser_id int4  NULL    	     -- Use it only to know who has
     REFERENCES users(id)             -- inserted, updated or deleted  
 	      ON UPDATE CASCADE                -- data into or from this table.
