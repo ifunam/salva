@@ -26,19 +26,20 @@ module SalvaHelper
       'birth_country_id' => 'País',
       'birthcity' => 'Ciudad',
       'birth_state_id' => 'Estado',
-      'maritalstatu_id' => 'Estado civil',
+      'maritalstatus_id' => 'Estado civil',
       'photo' => 'Fotografía',
       'other' => 'Información adicional',
       # addresses
       'addresstype_id' => 'Tipo de dirección',
-      'country_id' => 'País',
       'postaddress' => 'Dirección',
+      'country_id' => 'País',
       'state_id' => 'Estado',
       'city' => 'Ciudad',
       'zipcode' => 'Código postal',
       'phone' => 'Teléfono(s)',
       'fax' => 'Fax',
       'movil' => 'Celular o radio',
+      'is_postaddress' => 'Dirección postal',
     }
     
     column[name] ? column[name] : name
