@@ -3,30 +3,31 @@ module TableHelper
   
   def table(collection, options = {} )
     options = options.stringify_keys
+    @header = options['header']
+    @columns = options['columns']
     
-    @header = options["header"]
-    @columns = options["columns"]
     @list = []
     collection.each { |item|
-      body = ''
+      
+      cell = []
       if @columns.is_a?Array then
         @columns.each { |attr| 
           if item.send(attr) != nil then
             if is_id?(attr) then
-              belongs_to =  attr.sub!(/_id$/,'')
-              body += item.send(belongs_to).name.to_s+', '
- #             belongs_to = get_belongs_to(attr)
- #             body += item.send(belongs_to['model']).send(belongs_to['attr'])
+              belongs_to = set_belongs_to(attr)
+              cell << item.send(belongs_to['model']).send(belongs_to['attr'])
             else
-               body += item.send(attr).to_s+', ' 
-             end
+              cell << item.send(attr)
+            end
           end
         } 
       else
-        item.attributes().each { |key, value| body << value.to_s+', ' if key != 'id' and value != nil } 
+        item.attributes().each { |key, value| cell << value if key != 'id' and value != nil } 
       end
-      body.sub!(/, $/, '.')
-      @list.push({'id' => item.id, 'body' => body })
+      
+      cell_content = cell.join(', ').to_s+'.'
+      @list.push({'id' => item.id, 'cell_content' => cell_content })
+      
     }
     render(:partial => "/salva/list")
   end
@@ -37,12 +38,12 @@ module TableHelper
    end
   end
 
-  def get_belongs_to(attr)
-    belongs_to = { 'model' => attr.sub!(/_id$/,'') }
-    if belongs_to['model'] =~ /citizen/ then
-        belongs_to['attr'] = 'citizen'
-    else 
-      belongs_to['attr'] = 'name'
+  def set_belongs_to(attr)
+    belongs_to = { 'model' => attr.sub!(/_id$/,''), 'attr' => 'name' }
+    case attr
+    when /citizen/
+      belongs_to['attr'] = 'citizen'
     end
+    belongs_to
   end
 end
