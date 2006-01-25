@@ -35,8 +35,7 @@ COMMENT ON TABLE volumes IS
 CREATE TABLE books ( 
     id SERIAL,
     title   text NOT NULL,
-    authors text NOT NULL,
---    coauthors text NULL,
+    author text NOT NULL,
     booklink text  NULL,
     country_id int4 NOT NULL 
                  REFERENCES countries(id)
@@ -67,10 +66,7 @@ CREATE TABLE books (
 );
 COMMENT ON TABLE books IS
 	'Los libros que maneje el sistema';
-COMMENT ON COLUMN books.author IS 'Nombre del autor principal del libro 
-	(no es referencia, muchas veces no será usuario del sistema. Ver 
-	tabla userbooks)';
-COMMENT ON COLUMN books.coauthors IS 'Nombre de los coautores del libro 
+COMMENT ON COLUMN books.author IS 'Nombre de los autores del libro 
 	(no es referencia, muchas veces no será usuario del sistema. Ver 
 	tabla userbooks)';
 	
