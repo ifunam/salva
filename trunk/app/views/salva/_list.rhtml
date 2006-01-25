@@ -2,22 +2,20 @@
 <table class="list">
   <tr>
     <th>*</th>
-  <% for column in Book.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
+    <th><%= @header %></th>
+    <th>Mostrar</th>
+    <th>Editar</th>
+    <th>Borrar</th>    
   </tr>
 <% @rowcolor = 1 %>  
-<% for book in @list %>
+<% for item in @list %>
   <tr class="<%= @rowcolor == 1 ? 'odd' : 'even' %>" >
   <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
-  <td><%= check_box(book['id']) %> </td>
-  <% for column in Book.content_columns %>
-
-    <td><%=h book.send(column.name) %></td>
-  <% end %>
-    <td class="link"><%= show_link(book['id']) %></td>
-    <td class="link"><%= edit_link(book['id']) %></td>
-    <td class="link"> <%= purge_link(book['id'], 'Desea borrar este elemento?') %></td>
+    <td><%= check_box(item['id']) %> </td>
+    <td><%=item['body']%></td>
+    <td class="link"><%= show_link({:id => item['id']}) %></td>
+    <td class="link"><%= edit_link({:id => item['id']}) %></td>
+    <td class="link"> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
   </tr>
 <% end %>
 </table>

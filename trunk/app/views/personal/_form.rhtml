@@ -1,0 +1,79 @@
+<%= error_messages_for 'edit' %>
+<!--[form:edit]-->
+<div class="row"> 
+<label for="firstname" class="label"><%= salva_column('firstname') %></label> 
+<%= text_field 'edit', 'firstname' %>
+</div>
+
+<div class="row"> 
+<label for="lastname1" class="label"><%= salva_column('lastname1') %></label> 
+<%= text_field 'edit', 'lastname1' %>
+</div>
+
+<div class="row"> 
+<label for="lastname2" class="label"><%= salva_column('lastname2') %></label> 
+<%= text_field 'edit', 'lastname2' %>
+</div>
+
+<div class="row"> 
+<label for="sex" class="label"><%= salva_column('sex') %></label> 
+<!-- <%= radio_button("edit", "sex", "Femenino") %> Femenino<br/>
+<%= radio_button("edit", "sex", "Masculino") %> Masculino
+-->
+<!-- <%= select("edit", "sex", [["Masculino", "true"], ["Femenino",
+"false"]])%> -->
+<select id="edit_sex" name="edit[sex]">  
+ 	<option value="true">Femenino</option>  
+ 	<option value="false">Masculino</option>  
+</select>  
+
+
+</div>
+
+<div class="row"> 
+<label for="maritalstatus_id" class="label"><%= salva_column('maritalstatus_id') %></label> 
+<%= table_select('edit', Maritalstatus) %> 
+</div>
+<hr/>
+<div class="row"> 
+<p><b>Fecha y lugar de nacimiento</b></p>
+</div>
+<div class="row"> 
+<label for="dateofbirth" class="label"><%= salva_column('dateofbirth')%></label> 
+<%= date_for_select('edit', 'dateofbirth') %>
+
+</div>
+<br/>
+<div class="row"> 
+<label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
+<%= table_select('edit', Country, {:prefix => 'birth'}) %>
+</div>
+<br/>
+<div class="row"> 
+<label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
+<%= table_select('edit', State, {:prefix => 'birth'}) %>
+</div>
+<br/>
+<div class="row"> 
+<label for="birthcity" class="label"><%= salva_column('birthcity') %></label> 
+<%= text_field 'edit', 'birthcity' %>
+</div>
+
+<hr/>
+
+<div class="row"> 
+<label for="photo" class="label"><%= salva_column('photo') %></label> 
+<%= file_field 'edit', 'photo' %>
+<br/>
+</div>
+<div id="status"  style="display: none">
+ <%= upload_status_tag %>
+</div>
+ <div id="message"><%= @message %></div>
+<div class="row"> 
+<label for="other" class="label"><%= salva_column('other') %></label> 
+<%= text_field 'edit', 'other' %>
+</div>
+
+<!--[eoform:edit]-->
+

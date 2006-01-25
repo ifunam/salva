@@ -1,4 +1,4 @@
-class ModelSequence
+class ModelSequence 
 
   attr_accessor :sequence
   attr_accessor :current
@@ -55,10 +55,9 @@ class ModelSequence
     prev_model = nil
     @sequence.each { |model|      
       model['moduser_id'] = @moduser_id 
-      model['user_id'] = @user_id
-      if @lider_id != nil then
-        model[@lider_id] = @lider.id
-      elsif prev_model != nil then
+      model['user_id'] = @user_id 
+      model[@lider_name] = @lider_id if @lider_id != nil
+      if prev_model != nil then
         model[Inflector.underscore(prev_model.class.name)+'_id'] = prev_model.id
       end
       model.save
@@ -67,10 +66,9 @@ class ModelSequence
   end    
     
    
-  def set_lider(model_instance)     
-    @lider = model_instance
-    name = Inflector.underscore(@lider.class.name)
-    @lider_id = name+'_id'
+  def set_lider(id, name)
+    @lider_name = name+'_id'
+    @lider_id = id
     @return_controller = name
     @return_action = 'list'
   end

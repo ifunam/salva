@@ -1,17 +1,45 @@
 
 module TableHelper
-  def self.append_features(controller) #:nodoc:
-	super 
-    if controller.ancestors.include?(ActionController::Base) 
-		controller.add_template_helper(self) 
-    end
+
+  def table(collection, options = {} )
+    options = options.stringify_keys
+   
+    @header = options["header"]
+    @columns = options["columns"]
+    @list = []
+    collection.each { |item|
+      body = ''
+      if @columns.is_a?Array then
+        @columns.each { |attr| 
+          if item.send(attr) != nil then
+             if is_id?(attr) then
+               body += unidname(attr, item.send(attr)).to_s+', '
+             else
+               body += item.send(attr).to_s+', ' 
+             end
+          end
+        } 
+      else
+        item.attributes().each { |key, value| body << value.to_s+', ' if key != 'id' and value != nil } 
+      end
+      body.sub!(/, $/, '.')
+      @list.push({'id' => item.id, 'body' => body })
+    }
+    render(:partial => "/salva/list")
   end
 
-  def table(collection,  options )
-    case options["display"]
-    when :default  then 
-      render(:partial => "/salva/list")
-    end
+  def is_id?(name)
+   if name =~/_id$/ then
+     true
+   end
+  end
+  
+  def unidname(name, id)
+    name.sub!(/_id$/,'')
+    name.sub!(/^\w+_/,'')     
+    model = Inflector.camelize(name)
+    obj = model.constantize.find(id)
+    obj['name']
   end
  
 end

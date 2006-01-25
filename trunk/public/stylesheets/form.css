@@ -1,7 +1,7 @@
 #topbar {
-	background: #fff url(/images/forms_head_bg.gif) top left repeat-x;
+	background: #fff url(/images/forms_head_bg.png) top left repeat-x;
 	width: 600px;
-	height: 25;
+	height: 30;
 	text-align: right;
         padding-right: 10px;
         padding-top: 2px;
@@ -131,6 +131,54 @@
 	border-color: #709bd1 #518ac8  #6377a9 #abcdec;
 }
 
+a.show {
+  display: block;
+  background: url(/images/browse_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.show {
+  display: block;
+  background: url(/images/browse_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
+a.edit {
+  display: block;
+  background: url(/images/edit_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.edit {
+  display: block;
+  background: url(/images/edit_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
+a.purge {
+  display: block;
+  background: url(/images/destroy_off_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 17px;
+  heigth: 17px;
+}
+
+a:hover.purge {
+  display: block;
+  background: url(/images/destroy_on_16x16.gif) no-repeat;
+  text-decoration: none;
+  width: 16px;
+  heigth: 16px;
+}
+
 .box .top_options {
 	background: url(/images/bg_box_top_options.gif) center left repeat-x;
 	width: 540px;
@@ -207,7 +255,10 @@ fieldset .error {
 	text-align: justify;
 }
 
-label {
+p {
+   font:  12px Arial,  sans-serif;	
+}
+.label {
 	float: left;
 	width: 160px;
 	min-height: 25px;
@@ -215,6 +266,7 @@ label {
 	margin-right: 10px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	font:  12px Arial,  sans-serif;	
 }
 
 #login .label {
@@ -400,4 +452,24 @@ table.list td.link .purge:hover {
   text-decoration: none;
   width: 16px;
   heigth: 16px;
+}
+
+.status {
+ margin: 5px;/
+}
+
+div.progressBar {
+    margin: 5px;
+  }
+
+div.progressBar div.border {
+    background-color: #fff;
+    border: 1px solid grey;
+    width: 100%;
+}
+
+div.progressBar div.background {
+    background: url(/images/progress-bar.gif) repeat-x;
+    height: 18px;
+    width: 0%;
 }

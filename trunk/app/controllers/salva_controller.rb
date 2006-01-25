@@ -11,7 +11,7 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @pages, @list = paginate @model, :per_page => self.per_pages, :order_by =>  self.order_by
+    @pages, @collection = paginate Inflector.pluralize(@model), :per_page => @per_pages, :order_by =>  @order_by
     render :action => 'list'
   end
   
@@ -21,6 +21,7 @@ class SalvaController < ApplicationController
   end
   
   def new
+    logger.info "New Lider "+@lider.to_s if @lider != nil
    if @sequence
      new_sequence
     else 
@@ -29,38 +30,53 @@ class SalvaController < ApplicationController
     end
   end
 
+
+  def new_else
+    model_other = params[:model]
+    lider =  @model.find(params[:lider])
+    logger.info "New else Lider "+lider.to_s if lider != nil
+    redirect_to :controller => model_other, :action => 'new', :lider_id => lider, :lider_name => Inflector.underscore(@model.name)
+  end
+
   def new_sequence
+    lider_id = params[:lider_id]
+    lider_name =  params[:lider_name]
     sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = @session[:user]
-    sequence.user_id = @session[:user]
+    sequence.moduser_id = @session[:user] 
+    sequence.user_id = @session[:user] 
+    logger.info "New sequence Lider "+lider_id.to_s if lider_id != nil
+    sequence.set_lider(lider_id, lider_name) if lider_id != nil and lider_name != nil
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end
 
   def create
     @edit = @model.new(params[:edit])
-    @edit.moduser_id = @session[:user]
+    @edit.moduser_id = @session[:user] if @edit.attribute_present?('moduser_id')
+    @edit.user_id = @session[:user] if @edit.attribute_present?('user_id')
     if @edit.save
-      flash[:notice] = self.create_msg
+      flash[:notice] = @create_msg
       redirect_to :action => 'list'
     else
-      render :action => 'list'
+      logger.info "*** Algo esta mal <<wey>>, checalo! ***"
+      logger.info @edit.errors.full_messages
+      redirect_to :action => 'list'
     end
   end
  
   def update
     @edit = @model.find(params[:id])
     if @edit.update_attributes(params[:edit])
-      flash[:notice] = self.update_msg
+      flash[:notice] = @update_msg
       redirect_to :action => 'list'
     else
       render :action => 'edit'
     end
   end
   
-  def destroy
+  def purge
     @model.find(params[:id]).destroy
-     flash[:notice] = self.destroy_msg
+    flash[:notice] = @purge_msg
     redirect_to :action => 'list'
   end
 
@@ -73,5 +89,9 @@ class SalvaController < ApplicationController
       }
     end
     redirect_to :action => 'list'
-  end
+ end
+ 
+ def show
+    @edit = @model.find(params[:id])
+ end
 end

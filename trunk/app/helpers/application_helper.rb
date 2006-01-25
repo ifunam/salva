@@ -1,11 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper 
-  include Salva
-
-  def getcfg(myvar)
-    get(:"#{myvar}", 'config') 
-  end
-  
   # <head> .... </head>
   def head_title
     "#{@controller.controller_class_name} : #{@controller.action_name}"
@@ -40,35 +34,26 @@ module ApplicationHelper
     '/sendbug/'
   end
 
-  def login
-    if session[:user]
-      user = User.find(session[:user])
-      return user.login
-    end
+  def action_link(opts={}, html_opts ={})
+    image ='/images/invisible_16x16.png'
+    onmouseover = "return overlib('#{opts[:alt]}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, SNAPX, 2, SNAPY, 2)"
+    onmouseout = "return nd()" 
+    link_options = { :action => opts[:action], :id => opts[:id] }
+    html_options = { :class => opts[:action], :onmouseover => onmouseover, :onmouseout => onmouseout }
+    html_options[:confirm] = html_opts[:question] if html_opts[:question] != nil
+    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => opts[:alt]), link_options, html_options)
   end
   
-  # Title
-  def title_icon
-    "#{@controller.controller_class_name}_32x32.png"
+  def show_link(options={})
+    action_link({:action => 'show', :id => options[:id], :alt => 'Mostrar'})
   end
   
-  def action_link (id, action, alt, question=nil, image='/images/invisible_16x16.png')
-    html_options = { :class => action }
-    html_options[:confirm] = question if question != nil
-    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt),
-            {:action  => action, :id => id }, html_options)
+  def edit_link(options={})
+    action_link({:action => 'edit', :id => options[:id], :alt => 'Modificar'})
   end
   
-  def show_link(id, alt='Mostrar')
-    action_link(id, 'show', alt)
-  end
-  
-  def edit_link(id, alt='Modificar')
-    action_link(id, 'edit', alt)
-  end
-  
-  def purge_link(id, question, alt='Borrar')
-    action_link(id, 'purge', alt, question)
+  def purge_link(options={})
+    action_link({:action => 'purge', :id => options[:id], :alt => 'Borrar'}, {:question => options[:question]})
   end
   
   def check_box(id,checked=0,prefix='item')
@@ -92,12 +77,21 @@ module ApplicationHelper
      end     
      select(object, options[:field_name] || 'year', year_options);
   end
-  
-  
+
+  def date_for_select(object, attribute, options={})
+    year = Date.today.year
+    # Tal vez alguien a los 90 años siga produciendo
+    options[:start_year] = year - 90 if  options[:start_year] == nil
+    # Por si se aparece el pinche 'Doggie Hauser'
+    # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
+    options[:end_year] = year - 15 if  options[:end_year] == nil
+    date_select (object, attribute, :start_year =>  options[:start_year], :end_year =>  options[:end_year], 
+                 :use_month_numbers => true, :order => [:day, :month, :year])
+  end
+
   def country_select(object, options={})
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
-
   
   def table_select(object, model, options={})
     options = options.stringify_keys
@@ -130,4 +124,9 @@ module ApplicationHelper
       "if (handleKeyPress(event) && checkString(document.forms[0].#{div2upgrade}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{div2upgrade}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
     end
   end
+
+  def sex(condition)
+    condition ? 'Masculino' : 'Femenino'
+  end
+  
 end 
