@@ -13,8 +13,8 @@ class Book < ActiveRecord::Base
   belongs_to :volume
   belongs_to :orig_language,
   :class_name => 'Language',
-  :foreign_key => 'language_id'
+  :foreign_key => 'orig_language_id'
   belongs_to :trans_language,
   :class_name => 'Language',
-  :foreign_key => 'language_id'
+  :foreign_key => 'trans_language_id'
 end

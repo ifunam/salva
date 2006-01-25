@@ -1,9 +1,9 @@
 
 module TableHelper
-
+  
   def table(collection, options = {} )
     options = options.stringify_keys
-   
+    
     @header = options["header"]
     @columns = options["columns"]
     @list = []
@@ -12,9 +12,12 @@ module TableHelper
       if @columns.is_a?Array then
         @columns.each { |attr| 
           if item.send(attr) != nil then
-             if is_id?(attr) then
-               body += unidname(attr, item.send(attr)).to_s+', '
-             else
+            if is_id?(attr) then
+              belongs_to =  attr.sub!(/_id$/,'')
+              body += item.send(belongs_to).name.to_s+', '
+ #             belongs_to = get_belongs_to(attr)
+ #             body += item.send(belongs_to['model']).send(belongs_to['attr'])
+            else
                body += item.send(attr).to_s+', ' 
              end
           end
@@ -33,13 +36,13 @@ module TableHelper
      true
    end
   end
-  
-  def unidname(name, id)
-    name.sub!(/_id$/,'')
-    name.sub!(/^\w+_/,'')     
-    model = Inflector.camelize(name)
-    obj = model.constantize.find(id)
-    obj['name']
+
+  def get_belongs_to(attr)
+    belongs_to = { 'model' => attr.sub!(/_id$/,'') }
+    if belongs_to['model'] =~ /citizen/ then
+        belongs_to['attr'] = 'citizen'
+    else 
+      belongs_to['attr'] = 'name'
+    end
   end
- 
 end

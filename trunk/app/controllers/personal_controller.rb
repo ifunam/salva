@@ -29,13 +29,14 @@ class PersonalController < ApplicationController
     if  @edit.photo then
       @headers['Pragma'] = 'no-cache'
       @headers['Cache-Control'] = 'no-cache, must-revalidate'
-      send_data (@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
+      send_data (@edit.photo, :filename => @edit.photo_filename, 
+                 :type => "image/"+@edit.photo_content_type.to_s, 
+                 :disposition => "inline")
     else
-#      redirect_to "/images/comodin.png"
-#      send_data (image.data, :type => image.content_type, :disposition => 'inline')      
-      @headers['Pragma'] = 'no-cache'
-      @headers['Cache-Control'] = 'no-cache, must-revalidate'
-      send_file ('/home/alex/salva/public/images/comodin.png', :type => 'image/png', :disposition => 'inline', :stream => 'true')
+      image = '/home/alex/salva/public/images/comodin.png'
+      send_data (image.read.first, :filename => @edit.photo_filename, 
+                 :type => "image/"+@edit.photo_content_type.to_s, 
+                 :disposition => "inline")
     end
   end
   
