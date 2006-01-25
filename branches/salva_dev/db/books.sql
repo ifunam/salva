@@ -35,8 +35,8 @@ COMMENT ON TABLE volumes IS
 CREATE TABLE books ( 
     id SERIAL,
     title   text NOT NULL,
-    author text NOT NULL,
-    coauthors text NULL,
+    authors text NOT NULL,
+--    coauthors text NULL,
     booklink text  NULL,
     country_id int4 NOT NULL 
                  REFERENCES countries(id)
@@ -57,9 +57,9 @@ CREATE TABLE books (
     trans_language_id int4 NULL  
         	REFERENCES languages(id)
             	ON UPDATE CASCADE
-		DEFERRABLE,
+		DEFERRABLE,	
     numcites int4 NULL CHECK (numcites >= 0),
-    moduser_id int4 NULL                    -- Use it to known who
+    moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,

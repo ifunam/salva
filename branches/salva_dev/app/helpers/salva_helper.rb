@@ -40,6 +40,18 @@ module SalvaHelper
       'fax' => 'Fax',
       'movil' => 'Celular o radio',
       'is_postaddress' => 'Dirección postal',
+      #books
+      'title' => 'Título',
+      'authors' => 'Autor(es)',
+      'coauthors' => 'Coautor(es)',
+      'booklink' => 'Página web',
+      'country_id' => 'País',
+      'booktype' => 'Tipo de libro',
+      'volume_id' => 'Volumén',
+      'orig_language_id' => 'Idioma original',
+      'trans_language_id' => 'Traducción',
+      'numcites' => 'Número de citas',
+      
     }
     
     column[name] ? column[name] : name

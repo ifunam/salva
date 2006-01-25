@@ -1,4 +1,6 @@
-<%% for column in <%= Inflector.camelize(singular_name) %>.content_columns %>
+<%% for column in <%= Inflector.camelize(singular_name) %>.columns %>
   <b><%%= salva_column(column.name) %>:</b> <%%= @edit.send(column.name)  %>
 <br/>
 <%% end %>
+
+<%= render :partial =>"salva/moduser" %>

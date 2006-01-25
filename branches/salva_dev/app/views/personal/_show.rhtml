@@ -1,15 +1,20 @@
 <img src="<%= url_for(:action => "photo") %>"/> 
 <p>
-<% for column in Personal.content_columns 
-     if !column.name.match(/^photo|dbtime|moduser_id/) then
+<% for column in Personal.columns 
+     if !column.name.match(/^photo|dbtime|moduser_id|user_id/) then
 %>
+
   <b><%= salva_column(column.name) %>:</b> 
-<%= column.name == 'sex' ? sex(@edit.send(column.name)): @edit.send(column.name)  %>
-<br/>
-<%   end
-   end
-%>
-<b>Información registrada por el usuario: </b> <%= db_moduser(@edit.send('moduser_id')) %>
-<br/>
-<b> Fecha y hora de registro: </b> <%= @edit.send('dbtime') %>
-<br/>
+
+  <% if column.name.match(/^birth_country_id|birth_state_id|maritalstatus_id/) then 
+        belongs_to =  column.name.sub!(/_id$/,'') %>	
+
+       <%= @edit.send(belongs_to).name %>
+  <% else %>
+       <%= column.name == 'sex' ? sex(@edit.send(column.name)):@edit.send(column.name) %>
+  <% end %>
+  <br/>
+
+<% end %>  
+<% end %>  
+<%= render :partial =>"salva/moduser" %>
