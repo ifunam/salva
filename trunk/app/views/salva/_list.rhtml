@@ -1,0 +1,23 @@
+<%= start_form_tag :action => 'list_selected' %>
+<table class="list">
+  <tr>
+    <th>*</th>
+    <th><%= @header %></th>
+    <th>Mostrar</th>
+    <th>Editar</th>
+    <th>Borrar</th>    
+  </tr>
+<% @rowcolor = 1 %>  
+<% for item in @list %>
+  <tr class="<%= @rowcolor == 1 ? 'odd' : 'even' %>" >
+  <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
+    <td><%= check_box(item['id']) %> </td>
+    <td><%=item['body']%></td>
+    <td class="link"><%= show_link({:id => item['id']}) %></td>
+    <td class="link"><%= edit_link({:id => item['id']}) %></td>
+    <td class="link"> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
+  </tr>
+<% end %>
+</table>
+ <%= submit_tag "Seleccionar" %>
+<%= end_form_tag %>

@@ -1,0 +1,73 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:article]-->
+
+<div class="row"> 
+<label for="month">month</label> 
+<%= month_select('edit', {:field_name => 'month' } ) %> 
+</div>
+
+<div class="row"> 
+<label for="articlestatus_id">articlestatus_id</label> 
+<div id="Articlestatus">
+<%= table_select('edit', Articlestatus) %> 
+<input name='Articlestatus_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Articlestatus', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+<div class="row"> 
+<label for="title">title</label> 
+<%= text_field 'edit', 'title' %>
+</div>
+
+<div class="row"> 
+<label for="url">url</label> 
+<%= text_field 'edit', 'url' %>
+</div>
+
+<div class="row"> 
+<label for="pacsnum">pacsnum</label> 
+<%= text_field 'edit', 'pacsnum' %>
+</div>
+
+<div class="row"> 
+<label for="num">num</label> 
+<%= text_field 'edit', 'num' %>
+</div>
+
+<div class="row"> 
+<label for="year">year</label> 
+<%= year_select('edit', {:field_name => 'year' } ) %> 
+</div>
+
+<div class="row"> 
+<label for="journal_id">journal_id</label> 
+<div id="Journal">
+<%= table_select('edit', Journal) %> 
+<input name='Journal_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Journal', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+<div class="row"> 
+<label for="vol">vol</label> 
+<%= text_field 'edit', 'vol' %>
+</div>
+
+<div class="row"> 
+<label for="pages">pages</label> 
+<%= text_field 'edit', 'pages' %>
+</div>
+
+<div class="row"> 
+<label for="authors">authors</label> 
+<%= text_field 'edit', 'authors' %>
+</div>
+
+<div class="row"> 
+<label for="other">other</label> 
+<%= text_field 'edit', 'other' %>
+</div>
+
+
+<!--[eoform:article]-->
+

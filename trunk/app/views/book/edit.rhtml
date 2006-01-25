@@ -1,0 +1,17 @@
+<h1>Editing book</h1>
+
+<%= start_form_tag :action => 'update', :id => @edit %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<hr/>
+
+<h2>Ediciones</h2>
+
+<%= table(Bookedition.find(:all), { :header => "Chingaderas", :columns => %w(pages year) }) %>
+<%= link_to 'Agregar edicion', :action => 'new_else', :model =>
+'bookedition', :lider => @edit.id.to_s %>
+
+<%= link_to 'Show', :action => 'show', :id => @edit %> |
+<%= link_to 'Back', :action => 'list' %>

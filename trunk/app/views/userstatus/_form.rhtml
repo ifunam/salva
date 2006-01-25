@@ -1,0 +1,19 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:edit]-->
+<label for="userstatus">Estado de usuario</label>
+<%= text_field 'edit', 'name', 'size' => 20, 'maxsize'=>20, 'tabindex' => 1, 'id' => 'userstatus' %>
+</br>
+
+<label for="created_on">Fecha de creaci&oacute;n</label>
+<%= @edit.created_on %>
+</br>
+
+<label for="updated_on">Fecha de actualizaci&oacute;n</label>
+<%= @edit.updated_on %>
+</br>
+
+<!--[eoform:edit]-->
+
+
+

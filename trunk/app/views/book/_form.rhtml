@@ -1,0 +1,46 @@
+<%= error_messages_for 'edit' %>
+<p>User_id <%= @edit.moduser_id %>
+<!--[form:edit]-->
+<p><label for="book_title">Titulo</label>
+
+<%= text_field 'edit', 'title'  %></p>
+
+<p><label for="book_author">Author</label>
+<%= text_field 'edit', 'author'  %></p>
+
+<p><label for="book_coauthors">Coauthors</label>
+<%= text_field 'edit', 'coauthors'  %></p>
+
+<p><label for="book_booklink">Booklink</label>
+<%= text_field 'edit', 'booklink'  %></p>
+
+<p><label for="book_numcites">Numcites</label>
+<%= text_field 'edit', 'numcites'  %></p>
+
+<label for="booktype_id">Tipo de libro</label>
+<%= table_select('edit', Booktype) %>
+<br/>
+
+<label for="volume_id">Volumen</label>
+<%= table_select('edit', Volume) %>
+<br/>
+
+<label for="country_id">Pa&iacute;s</label>
+<%= country_select('edit') %>
+<br/>
+
+<label for="origlanguage_id">Idioma original</label>
+
+<div id="orig_Language">
+<%= table_select('edit', Language, { :prefix => 'orig'}) %>
+<input name="orig_Language_name" size="20", maxsize="255" type="text" onkeydown="<%= remote_upgrade_select('Language', 'name', '¿Desea agregar este idioma?', { :prefix => 'orig'} ) %>">
+</div>
+<br/>
+
+<label for="translanguage_id">Traducci&oacute;n</label>
+<div id="trans_Language">
+<%= table_select('edit', Language, { :prefix =>  'trans'}) %>
+<input name="trans_Language_name" size="20", maxsize="255" type="text" onkeydown="<%= remote_upgrade_select('Language', 'name', '¿Desea agregar este idioma?', { :prefix => 'trans'} ) %>">
+<div>
+<br/>
+<!--[eoform:edit]-->
