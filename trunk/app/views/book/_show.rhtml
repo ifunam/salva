@@ -1,5 +1,0 @@
-<% for column in Book.content_columns %>
-  <b><%= salva_column(column.name) %>:</b> <%= @edit.send(column.name)  %>
-<br/>
-<% end %>
-
