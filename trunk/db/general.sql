@@ -2,47 +2,47 @@
 -- General Information                --
 ----------------------------------------
 
-CREATE TABLE maritalstatus ( 
+CREATE TABLE maritalstatuses ( 
     	id serial NOT NULL,
     	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE maritalstatus IS
+COMMENT ON TABLE maritalstatuses IS
 	'Estado civil';
 -- Casado, soltero, divorciado, viudo, unión libre, ...
 
-CREATE TABLE addresstype ( 
+CREATE TABLE addresstypes ( 
 	id serial NOT NULL,
    	name text NOT NULL,
    	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE addresstype IS
+COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
--- Personal, de trabajo, temporal
+-- Domicilio profesional, Domicilio particular, Domicilio temporal
 
-CREATE TABLE personalidtype ( 
+CREATE TABLE personalidtypes ( 
         id SERIAL,
         name text NOT NULL,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE personalidtype IS
+COMMENT ON TABLE personalidtypes IS
 	'Tipo de (documento de) identificación';
 -- Pasaporte, credencial de elector, ...
 
-CREATE TABLE migratorystatus (
+CREATE TABLE migratorystatuses (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id), 
 	UNIQUE (name)
 );
-COMMENT ON TABLE migratorystatus IS
+COMMENT ON TABLE migratorystatuses IS
 	'Status migratorio de un extranjero';
 -- Turista, residente temporal, residente permanente
 
-CREATE TABLE personal ( 
+CREATE TABLE personals ( 
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
@@ -53,56 +53,67 @@ CREATE TABLE personal (
     lastname2 text NULL,
     sex boolean NOT NULL,
     dateofbirth date NOT NULL,
-    birthcountry_id int4 NOT NULL 
+    birth_country_id int4 NOT NULL 
                          REFERENCES countries(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
     birthcity text NOT NULL,
-    birthstate int4 NULL
+    birth_state_id int4 NULL
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    maritstat_id int4 NOT NULL 
-                           REFERENCES maritalstatus(id)
+    maritalstatus_id int4 NOT NULL 
+                           REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
+    photo_filename text NULL,
+    photo_content_type text NULL,
     photo bytea NULL,
     other text NULL,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+              DEFERRABLE,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
-CREATE INDEX "personal_firstname_idx" ON personal(firstname);
-CREATE INDEX "personal_lastname1_idx" ON personal(lastname1);
-CREATE INDEX "personal_lastname2_idx" ON personal(lastname2);
-CREATE UNIQUE INDEX "personal_firstname_lastname1_lastname2_idx" ON personal(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
-COMMENT ON TABLE personal IS
+CREATE INDEX "personals_firstname_idx" ON personals(firstname);
+CREATE INDEX "personals_lastname1_idx" ON personals(lastname1);
+CREATE INDEX "personals_lastname2_idx" ON personals(lastname2);
+CREATE UNIQUE INDEX "personals_firstname_lastname1_lastname2_idx" ON personals(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
+COMMENT ON TABLE personals IS
 	'Datos personales del usuario';
 
-CREATE TABLE personalid ( 
+CREATE TABLE personalids ( 
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
            ON UPDATE CASCADE
            ON DELETE CASCADE   
            DEFERRABLE,
    personalidtype_id int4 
-   	   REFERENCES personalidtype(id)
+   	   REFERENCES personalidtypes(id)
            ON UPDATE CASCADE
            DEFERRABLE,
    content text NULL,
+   moduser_id int4  NULL    	     -- Use it only to know who has
+   REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id)
 );
-COMMENT ON TABLE personalid IS
+COMMENT ON TABLE personalids IS
 	'Cada una de las identificaciones de un usuario';
 
-CREATE TABLE address ( 
+CREATE TABLE addresses ( 
+    id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    addrtype_id int4 NOT NULL 
-            REFERENCES addresstype(id)
+    addresstype_id int4 NOT NULL 
+            REFERENCES addresstypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     country_id int4 NOT NULL 
@@ -110,7 +121,7 @@ CREATE TABLE address (
               ON UPDATE CASCADE
               DEFERRABLE,
     postaddress text NOT NULL, 
-    state int4 NULL
+    state_id int4 NULL
 		REFERENCES states(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
@@ -120,34 +131,43 @@ CREATE TABLE address (
     fax text NULL,
     movil text NULL,
     other text NULL,
-    mail bool DEFAULT 'f' NOT NULL,
+    is_postaddress bool DEFAULT 'f' NOT NULL,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, addrtype_id)
+    PRIMARY KEY (id),
+    UNIQUE (user_id, addresstype_id)
 );
-COMMENT ON TABLE address IS
+COMMENT ON TABLE addresses IS
 	'Las direcciones postales de un usuario';
 
-CREATE TABLE usercitizen ( 
+CREATE TABLE user_citizens ( 
   user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
 	   DEFERRABLE,
-  citizen_id int4 NOT NULL
+  citizen_country_id int4 NOT NULL
 	   REFERENCES countries(id)
 	   ON UPDATE CASCADE
            DEFERRABLE,
-  migratorystatus_id int4 NULL REFERENCES migratorystatus(id)
+  migratorystatus_id int4 NULL REFERENCES migratorystatuses(id)
 	   ON UPDATE CASCADE
 	   DEFERRABLE,
   passport text NULL,
+  moduser_id int4  NULL    	     -- Use it only to know who has
+  REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (user_id, citizen_id)
+  PRIMARY KEY (user_id, citizen_country_id)
 );
-COMMENT ON TABLE usercitizen IS
+COMMENT ON TABLE user_citizens IS
 	'Nacionalidades que tiene un usuario';
 
-CREATE TABLE usermembership ( 
+CREATE TABLE user_memberships ( 
   user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
@@ -159,9 +179,13 @@ CREATE TABLE usermembership (
            DEFERRABLE,
   startyear int4 NULL,
   endyear int4 NULL,
+  moduser_id int4  NULL    	     -- Use it only to know who has
+  REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (user_id, institution_id)
 );
-COMMENT ON TABLE usermembership IS
+COMMENT ON TABLE user_memberships IS
 	'Instituciones académicas a las que pertenece un usuario';
 

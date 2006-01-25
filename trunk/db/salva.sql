@@ -41,8 +41,11 @@
 
 \i catalogs/groups.sql
 \i catalogs/userstatuses.sql
+\i catalogs/default_user.sql
 \i catalogs/countries.sql
 \i catalogs/states.sql
+\i catalogs/maritalstatuses.sql
+\i catalogs/addresstypes.sql
 \i catalogs/booktypes.sql
 \i catalogs/volumes.sql
 \i catalogs/mediatypes.sql

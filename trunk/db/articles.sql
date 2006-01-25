@@ -1,10 +1,11 @@
 ----------------------------
--- Articles and magazines --
+-- Articles and journals --
 ----------------------------
 
 CREATE TABLE publicationcategories ( 
 	id SERIAL,
 	name varchar(50) NOT NULL,
+	descr text NULL,
         moduser_id int4  NULL    	     -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
@@ -17,17 +18,17 @@ COMMENT ON TABLE publicationcategories IS
 -- Genéricos: Ciencias sociales, ciencias naturales, humanidades
 -- Específicos: (desglose :) )
 
-CREATE TABLE magazinetype ( 
+CREATE TABLE journaltypes ( 
 	id SERIAL,
 	name varchar(50) NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE magazinetype IS
+COMMENT ON TABLE journaltypes IS
 	'Tipo de revista que publica (arbitrada/no arbitrada)';
 -- Arbitrada, no arbitrada
 
-CREATE TABLE magazines (
+CREATE TABLE journals (
         id SERIAL,
         name text NOT NULL,
 	issn text NULL,
@@ -38,8 +39,8 @@ CREATE TABLE magazines (
 	impactfactor float NULL, 	
 	immediacy   text NULL,
 	dateupdate date NULL, 
-	magazinetype_id int4 NOT NULL 
-            	REFERENCES magazinetype(id) 
+	journaltype_id int4 NOT NULL 
+            	REFERENCES journaltypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	mediatype_id int4 NOT NULL 
@@ -61,15 +62,15 @@ CREATE TABLE magazines (
         PRIMARY KEY(id),
 	UNIQUE(issn) 
 );
-COMMENT ON TABLE magazines IS
+COMMENT ON TABLE journals IS
 	'Revistas en las cuales pueden publicarse artículos';
-COMMENT ON COLUMN magazines.dateupdate IS
+COMMENT ON COLUMN journals.dateupdate IS
 	'Fecha en que fué actualizado el factor de impacto/inmediatez';
 
-CREATE TABLE magazinepublicationcategory ( 
+CREATE TABLE journal_publicationcategories ( 
 	id SERIAL,
-	magazine_id int4 NOT NULL 
-            REFERENCES magazines(id)      
+	journal_id int4 NOT NULL 
+            REFERENCES journals(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     	publicationcategory_id int4 NOT NULL 
@@ -81,35 +82,35 @@ CREATE TABLE magazinepublicationcategory (
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE(magazine_id, publicationcategory_id)
+	UNIQUE(journal_id, publicationcategory_id)
 );
-COMMENT ON TABLE magazinepublicationcategory IS
+COMMENT ON TABLE journal_publicationcategories IS
 	'Categorías (áreas del conocimiento) a las que pertenece una revista';
 
-CREATE TABLE roleinmagazine (
+CREATE TABLE roleinjournals (
 	id serial,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE roleinmagazine IS
+COMMENT ON TABLE roleinjournals IS
 	'Roles que un usuario puede tener en una publicación';
 -- Editor, compilador, revisor, etc..
 
 
-CREATE TABLE usermagazines ( 
+CREATE TABLE user_journals ( 
 	id SERIAL,
     	user_id int4 NOT NULL 
         	REFERENCES users(id)      
             	ON UPDATE CASCADE
             	ON DELETE CASCADE   
             	DEFERRABLE,
-	magazine_id int4 NOT NULL 
-        	REFERENCES magazines(id)
+	journal_id int4 NOT NULL 
+        	REFERENCES journals(id)
             	ON UPDATE CASCADE
             	DEFERRABLE,
-	roleinmagazine_id int4 NOT NULL 
-        	REFERENCES roleinmagazine(id)
+	roleinjournal_id int4 NOT NULL 
+        	REFERENCES roleinjournals(id)
             	ON UPDATE CASCADE
             	DEFERRABLE,
 	startyear int4 NOT NULL,
@@ -123,9 +124,9 @@ CREATE TABLE usermagazines (
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-COMMENT ON TABLE usermagazines IS
+COMMENT ON TABLE user_journals IS
 	'Relación entre usuarios del sistema y las publicaciones';
-COMMENT ON COLUMN usermagazines.roleinmagazine_id IS
+COMMENT ON COLUMN user_journals.roleinjournal_id IS
 	'Es el rol que tiene el usuario en la publicación';
 
 
@@ -140,12 +141,12 @@ CREATE TABLE articles (
     authors text NULL ,
     url text NULL,
     pacsnum text NULL,
-    artstatus_id int4 NOT NULL  
-            REFERENCES articlestatus(id)      
+    articlestatus_id int4 NOT NULL  
+            REFERENCES articlestatuses(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-    magazine_id int4 NOT NULL 
-            REFERENCES magazines(id)      
+    journal_id int4 NOT NULL 
+            REFERENCES journals(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     moduser_id int4 NULL         -- It will be used only to know who has
@@ -154,7 +155,7 @@ CREATE TABLE articles (
             DEFERRABLE,
     other text NULL,
     PRIMARY KEY (id),
-    UNIQUE(title, magazine_id, year)
+    UNIQUE(title, journal_id, year)
 );
 COMMENT ON TABLE articles IS
 	'Datos de un artículo publicado';
@@ -163,7 +164,7 @@ COMMENT ON COLUMN articles.authors IS
 	entre usuarios y artículos es independiente de esta, ver 
 	authorarticles.';
 
-CREATE TABLE authorarticles ( 
+CREATE TABLE user_articles ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -179,9 +180,9 @@ CREATE TABLE authorarticles (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, article_id)
 );
-COMMENT ON TABLE authorarticles IS
+COMMENT ON TABLE user_articles IS
 	'Relación entre usuarios del sistema y artículos';
-COMMENT ON COLUMN authorarticles.ismainauthor IS
+COMMENT ON COLUMN user_articles.ismainauthor IS
 	'Basta con señalar si el usuario es autor principal o es coautor';
 
 CREATE TABLE articleslog (
@@ -191,8 +192,8 @@ CREATE TABLE articleslog (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    old_artstatus_id integer NOT NULL 
-            REFERENCES articlestatus(id)
+    old_articlestatus_id integer NOT NULL 
+            REFERENCES articlestatuses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     changedate date NOT NULL default now()::date,
@@ -207,7 +208,7 @@ COMMENT ON TABLE articleslog IS
 	'Estado actual (y bitácora) de un artículo - Cuándo fue enviado, 
 	cuándo fue aceptado, etc.';
 
-CREATE TABLE filesarticles (
+CREATE TABLE file_articles (
    id serial NOT NULL,
    article_id int4 NOT NULL
             REFERENCES articles(id)
@@ -226,11 +227,11 @@ CREATE TABLE filesarticles (
     PRIMARY KEY (id),
     UNIQUE (article_id, filename)
 );
-COMMENT ON TABLE filesarticles IS
+COMMENT ON TABLE file_articles IS
 	'Archivos relacionados a los artículos';
-COMMENT ON COLUMN filesarticles.article_id IS
+COMMENT ON COLUMN file_articles.article_id IS
 	'ID del artículo referenciado';
-COMMENT ON COLUMN filesarticles.content IS
+COMMENT ON COLUMN file_articles.content IS
 	'Contenido (binario) del archivo';
 
 
@@ -238,18 +239,18 @@ COMMENT ON COLUMN filesarticles.content IS
 ------
 -- Update articleslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER 
-SECURITY DEFINER AS '
-DECLARE 
-BEGIN
-	IF OLD.artstatus_id = NEW.artstatus_id THEN
-		RETURN NEW;
-	END IF;
-	INSERT INTO articleslog (articles_id, old_artstatus_id, moduser_id)
-		VALUES (OLD.id, OLD.artstatus_id, OLD.moduser_id);
-        RETURN NEW;
-END;
-' LANGUAGE 'plpgsql';
+-- CREATE OR REPLACE FUNCTION articles_update() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	IF OLD.articlestatus_id = NEW.articlestatus_id THEN
+-- 		RETURN NEW;
+-- 	END IF;
+-- 	INSERT INTO articleslog (articles_id, old_articlestatus_id, moduser_id)
+-- 		VALUES (OLD.id, OLD.articlestatus_id, OLD.moduser_id);
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER articles_update BEFORE DELETE ON articles
-	FOR EACH ROW EXECUTE PROCEDURE articles_update();
+-- CREATE TRIGGER articles_update BEFORE DELETE ON articles
+-- 	FOR EACH ROW EXECUTE PROCEDURE articles_update();
