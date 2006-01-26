@@ -99,6 +99,7 @@
         padding-right: 10px;
 	border: 1px solid #336699;
 	text-align: justify;
+	font:  12px Arial,  sans-serif;	
 }
 
 .box .options {
@@ -258,15 +259,23 @@ fieldset .error {
 p {
    font:  12px Arial,  sans-serif;	
 }
+
+.box .moduser {
+	background: #ffffcc;
+    	text-align: left;	
+	border: 1px solid silver;
+	padding: 5px;
+}
+
 .label {
 	float: left;
 	width: 160px;
 	min-height: 25px;
 	text-align: left;
 	margin-right: 10px;
-	margin-top: 5px;
 	margin-bottom: 5px;
 	font:  12px Arial,  sans-serif;	
+	font-weight: bold;
 }
 
 #login .label {
