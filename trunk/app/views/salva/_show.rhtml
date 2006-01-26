@@ -1,0 +1,6 @@
+<% @body.each { |attr, value | %>
+<div class="row"> 
+<label for="<%= attr %>" class="label"><%= salva_column(attr)%></label> 
+<%= value %> 
+</div> <br/>
+<% } %>

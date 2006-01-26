@@ -125,8 +125,4 @@ module ApplicationHelper
     end
   end
 
-  def sex(condition)
-    condition ? 'Masculino' : 'Femenino'
-  end
-  
 end 

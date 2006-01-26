@@ -1,2 +1,4 @@
-<%= render :partial => 'show' %>
+<img src="<%= url_for(:action => "photo") %>"/> 
+<%= table_show(Personal.columns, { :hidden => 'photo'}) %>
+<%= render :partial =>"salva/moduser" %>
 <%= link_to 'Editar', :action => 'edit', :id => @personal %> 

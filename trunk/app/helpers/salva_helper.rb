@@ -72,4 +72,5 @@ module SalvaHelper
     }
    titles[@controller.controller_class_name] ? titles[@controller.controller_class_name] : @controller.controller_class_name
   end
+
 end
