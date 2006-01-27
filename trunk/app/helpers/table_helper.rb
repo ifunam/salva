@@ -39,7 +39,7 @@ module TableHelper
     
     belongs_to = options['belongs_to']
     
-    default_hidden = %w(dbtime moduser_id user_id) 
+    default_hidden = %w(id dbtime moduser_id user_id) 
     hidden = options['hidden']    
     if hidden != nil then
       if hidden.is_a?Array then
@@ -53,7 +53,7 @@ module TableHelper
     body = []
     collection.each { |column| 
       attr = column.name
-      if !attr.match(/#{hidden_attr}/) then 
+      if !attr.match(/^#{hidden_attr}$/) then 
         if is_id?(attr) then
           belongs_to = set_belongs_to(attr)
           body << [ attr.to_s+"_id", @edit.send(belongs_to['model']).send(belongs_to['attr']) ]

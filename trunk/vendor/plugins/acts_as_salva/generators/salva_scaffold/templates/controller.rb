@@ -6,6 +6,6 @@ class <%= controller_class_name %>Controller < SalvaController
     @update_msg = 'El <%= class_name %> ha sido actualizado'
     @purge_msg = 'El <%= class_name %> se ha ido borrado'
     @per_pages = 10
-    @order_by = ''
+    @order_by = 'id'
   end
 end

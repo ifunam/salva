@@ -15,5 +15,8 @@
   </tr>
 <% end %>
 </table>
- <%= submit_tag "Seleccionar" %>
+<%= submit_tag "Borrar elementos seleccionados" %>
+<% if @pages %>
+Página de resultados: <%= pagination_links(@pages) %> <br/>
+<% end %>
 <%= end_form_tag %>
