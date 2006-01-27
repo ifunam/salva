@@ -127,7 +127,7 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
         :mark_id => singular_name
 
       # Scaffolded views and partials.
-      %w(list show new edit _show).each do |action|
+      %w(list show new edit).each do |action|
                               m.template "view_#{action}.rhtml",
                    File.join('app/views',
                              controller_class_path,
