@@ -1,6 +1,5 @@
 <%= table_list(@collection, { :header => "Libros", :columns => %w(author title booktype_id volume_id orig_language_id) }) %>
-<br />
+<br/>
 <%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
 <%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
-
 <%= link_to 'Agregar libro', :action => 'new' %>

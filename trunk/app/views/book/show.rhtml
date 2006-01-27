@@ -1,4 +1,3 @@
-<%= render :partial => 'show' %>
-
+<%= table_show(Book.columns) %>
 <%= link_to 'Edit', :action => 'edit', :id => @book %> |
 <%= link_to 'Back', :action => 'list' %>

@@ -10,7 +10,6 @@ module TableHelper
     
     @list = []
     collection.each { |item|
-      
       cell = []
       if @columns.is_a?Array then
         @columns.each { |attr| 

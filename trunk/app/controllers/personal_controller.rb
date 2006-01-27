@@ -1,7 +1,7 @@
 require 'RMagick'
 class PersonalController < ApplicationController
   include Magick
-  upload_status_for :create, :update
+#  upload_status_for :create, :update
 
   def index
     get_personal

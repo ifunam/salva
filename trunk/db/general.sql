@@ -57,11 +57,11 @@ CREATE TABLE personals (
                          REFERENCES countries(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-    birthcity text NOT NULL,
     birth_state_id int4 NULL
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
+    birthcity text NOT NULL,
     maritalstatus_id int4 NOT NULL 
                            REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE

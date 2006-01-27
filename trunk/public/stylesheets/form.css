@@ -411,8 +411,10 @@ table.list td {
 }
 
 table.list td.link {
-	text-align: center;
-
+	text-align: left;
+	width: 51px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 table.list td.link .show {
@@ -421,6 +423,7 @@ table.list td.link .show {
   text-decoration: none;
   width: 17px;
   heigth: 17px;
+  float: left;
 }
 
 table.list td.link .show:hover {
@@ -429,6 +432,7 @@ table.list td.link .show:hover {
   text-decoration: none;
   width: 16px;
   heigth: 16px;
+  float: left;
 }
 
 table.list td.link .edit {
@@ -437,6 +441,7 @@ table.list td.link .edit {
   text-decoration: none;
   width: 17px;
   heigth: 17px;
+  float: left;
 }
 
 table.list td.link .edit:hover {
@@ -445,6 +450,7 @@ table.list td.link .edit:hover {
   text-decoration: none;
   width: 16px;
   heigth: 16px;
+  float: left;
 }
 
 table.list td.link .purge {
@@ -453,6 +459,7 @@ table.list td.link .purge {
   text-decoration: none;
   width: 17px;
   heigth: 17px;
+  float: left;
 }
 
 table.list td.link .purge:hover {
@@ -461,6 +468,7 @@ table.list td.link .purge:hover {
   text-decoration: none;
   width: 16px;
   heigth: 16px;
+  float: left;
 }
 
 .status {

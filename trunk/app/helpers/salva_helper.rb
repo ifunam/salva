@@ -46,7 +46,7 @@ module SalvaHelper
       'coauthors' => 'Coautor(es)',
       'booklink' => 'Página web',
       'country_id' => 'País',
-      'booktype' => 'Tipo de libro',
+      'booktype_id' => 'Tipo de libro',
       'volume_id' => 'Volumén',
       'orig_language_id' => 'Idioma original',
       'trans_language_id' => 'Traducción',

@@ -3,9 +3,7 @@
   <tr>
     <th>*</th>
     <th><%= @header %></th>
-    <th>Mostrar</th>
-    <th>Editar</th>
-    <th>Borrar</th>    
+    <th>Opciones</th>
   </tr>
 <% @rowcolor = 1 %>  
 <% for item in @list %>
@@ -13,9 +11,7 @@
   <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
     <td><%= check_box(item['id']) %> </td>
     <td><%=item['cell_content']%></td>
-    <td class="link"><%= show_link({:id => item['id']}) %></td>
-    <td class="link"><%= edit_link({:id => item['id']}) %></td>
-    <td class="link"> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
+    <td class="link"><%= show_link({:id => item['id']}) %> <%= edit_link({:id => item['id']}) %> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
   </tr>
 <% end %>
 </table>
