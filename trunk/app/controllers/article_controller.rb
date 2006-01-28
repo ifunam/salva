@@ -2,6 +2,7 @@ class ArticleController < SalvaController
   def initialize
     super
     @model = Article
+    @sequence = [ Article, UserArticle ]
     @create_msg = 'El Article ha sido agregado'
     @update_msg = 'El Article ha sido actualizado'
     @purge_msg = 'El Article se ha ido a chingar a su madre'

@@ -1,18 +1,17 @@
-
 module TableHelper
   
   def table_list(collection, options = {} )
     options = options.stringify_keys
-
+    
     options['partial'] = '/salva/list' if options['partial'] == nil
     @header = options['header']
-    @columns = options['columns']
-    
+    columns = options['columns']
+
     @list = []
     collection.each { |item|
       cell = []
-      if @columns.is_a?Array then
-        @columns.each { |attr| 
+      if columns.is_a?Array then
+        columns.each { |attr| 
           if item.send(attr) != nil then
             if is_id?(attr) then
               belongs_to = set_belongs_to(attr)
