@@ -38,23 +38,22 @@ module TableHelper
     
     belongs_to = options['belongs_to']
     
-    default_hidden = %w(id dbtime moduser_id user_id) 
+    default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
     hidden = options['hidden']    
-    if hidden != nil then
-      if hidden.is_a?Array then
-        hidden.map { |attr| default_hidden << attr }
-      else 
-        default_hidden << hidden
-      end
-    end
-    hidden_attr = default_hidden.join('|')
-    
+    hidden = [ hidden ] unless hidden.is_a?Array
+
+    hidden.each { |attr| default_hidden << attr } if hidden != nil
+
     body = []
     collection.each { |column| 
       attr = column.name
-      if !attr.match(/^#{hidden_attr}$/) then 
+      
+      if !default_hidden.include?(attr) then
         if is_id?(attr) then
           belongs_to = set_belongs_to(attr)
+          ##### GUEY ESTÁ ACÁ - books se muere
+          logger.info(['cuac: ', attr, belongs_to['model'], belongs_to['attr']].join ' - ')
+
           body << [ attr.to_s+"_id", @edit.send(belongs_to['model']).send(belongs_to['attr']) ]
         else
           case attr 

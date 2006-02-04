@@ -8,8 +8,11 @@ class ScaffoldingSandbox
     #model_instance #and singular_name.class
     @attrs = model_instance.attributes()
     html = "\n"
+    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+   
     @attrs.each { | column, attr | 
-      next if column == 'moduser_id' or column == 'id' or column == 'user_id' or column == 'dbtime'
+      next if hidden.include? column
+#      next if column.match(/^$/column == 'moduser_id' or column == 'id' or column == 'user_id' or column == 'dbtime'
       html << "<div class=\"row\"> \n"
       html << "<label for=\"#{column}\" class=\"label\"><%= salva_column('#{column}') %></label> \n"
       if column =~ /_id$/ then

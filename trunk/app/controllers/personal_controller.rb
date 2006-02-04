@@ -33,10 +33,15 @@ class PersonalController < ApplicationController
                  :type => "image/"+@edit.photo_content_type.to_s, 
                  :disposition => "inline")
     else
+#      redirect_to "/images/comodin.png"
       image = '/home/alex/salva/public/images/comodin.png'
-      send_data (image.read.first, :filename => @edit.photo_filename, 
+      @edit.photo = Magick::Image.from_blob(image.read).first
+      @edit.photo_filename = 'comoding.png'
+      @edit.photo_content_type = 'png'
+      send_data (@edit.photo.to_blob, :filename => @edit.photo_filename, 
                  :type => "image/"+@edit.photo_content_type.to_s, 
                  :disposition => "inline")
+
     end
   end
   

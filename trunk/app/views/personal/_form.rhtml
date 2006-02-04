@@ -17,17 +17,11 @@
 
 <div class="row"> 
 <label for="sex" class="label"><%= salva_column('sex') %></label> 
-<!-- <%= radio_button("edit", "sex", "Femenino") %> Femenino<br/>
-<%= radio_button("edit", "sex", "Masculino") %> Masculino
--->
-<!-- <%= select("edit", "sex", [["Masculino", "true"], ["Femenino",
-"false"]])%> -->
+
 <select id="edit_sex" name="edit[sex]">  
  	<option value="true">Femenino</option>  
  	<option value="false">Masculino</option>  
 </select>  
-
-
 </div>
 
 <div class="row"> 
@@ -66,10 +60,10 @@
 <%= file_field 'edit', 'photo' %>
 <br/>
 </div>
-<div id="status"  style="display: none">
- <%= upload_status_tag %>
-</div>
- <div id="message"><%= @message %></div>
+<!-- <div id="status"  style="display: none"> -->
+<!--  <%= upload_status_tag %> -->
+<!-- </div> -->
+<!--  <div id="message"><%= @message %></div>  -->
 <div class="row"> 
 <label for="other" class="label"><%= salva_column('other') %></label> 
 <%= text_field 'edit', 'other' %>
