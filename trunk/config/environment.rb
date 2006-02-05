@@ -59,5 +59,10 @@ end
 #   inflect.uncountable %w( fish sheep )
 # end
 
-# Include your application configuration below
+# Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
+# UploadProgress se declaren oficialmente como código estable, referencias:
+# http://vantulder.net/rails/magick/
+# http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
+#
 #require 'action_controller/cgi_ext/upload_progress.rb'
+#require_gem 'actionpack-imagemagick'

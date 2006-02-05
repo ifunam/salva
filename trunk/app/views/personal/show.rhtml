@@ -1,6 +1,5 @@
 <img src="<%= url_for(:action => "photo") %>"/> 
 <br/>
-
 <%= table_show(Personal.columns, { :hidden => %w(photo photo_filename photo_content_type)}) %>
 <%= render :partial =>"salva/moduser" %>
 <%= link_to 'Editar', :action => 'edit', :id => @personal %> 

@@ -1,8 +1,14 @@
 require 'RMagick'
 class PersonalController < ApplicationController
   include Magick
-#  upload_status_for :create, :update
-
+  # Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
+  # UploadProgress se declaren oficialmente como código estable, referencias:
+  # http://vantulder.net/rails/magick/
+  # http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
+  # 
+  # imagemagick_for RAILS_ROOT + "/public/images"
+  # upload_status_for :create, :update
+  
   def index
     get_personal
     if @edit then
@@ -26,22 +32,14 @@ class PersonalController < ApplicationController
 
   def photo
     get_personal
-    if  @edit.photo then
-      @headers['Pragma'] = 'no-cache'
-      @headers['Cache-Control'] = 'no-cache, must-revalidate'
+    @headers['Pragma'] = 'no-cache'
+    @headers['Cache-Control'] = 'no-cache, must-revalidate'
+    if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'PNG' then
       send_data (@edit.photo, :filename => @edit.photo_filename, 
                  :type => "image/"+@edit.photo_content_type.to_s, 
                  :disposition => "inline")
     else
-#      redirect_to "/images/comodin.png"
-      image = '/home/alex/salva/public/images/comodin.png'
-      @edit.photo = Magick::Image.from_blob(image.read).first
-      @edit.photo_filename = 'comoding.png'
-      @edit.photo_content_type = 'png'
-      send_data (@edit.photo.to_blob, :filename => @edit.photo_filename, 
-                 :type => "image/"+@edit.photo_content_type.to_s, 
-                 :disposition => "inline")
-
+      redirect_to "/images/comodin.png"
     end
   end
   
@@ -102,7 +100,7 @@ class PersonalController < ApplicationController
     photo.format = 'PNG'
     photo.to_blob
   end
-
+  
   def get_personal
     @edit = Personal.find(:first, :conditions => [ "user_id=?", @session[:user]])
   end
