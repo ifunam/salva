@@ -8,7 +8,7 @@ module TableHelper
     columns = options['columns']
     
     @list = []
-    collection.each { | item |
+    collection.each { |item|
       cell = []
       if columns.is_a?Array then
         columns.each { |attr| 
@@ -22,7 +22,7 @@ module TableHelper
           end
         } 
       else
-        item.attributes().each { |key, value| cell << value.to_s+"prueba" if key != 'id' and value != nil } 
+        item.attributes().each { |key, value| cell << value if key != 'id' and value != nil } 
       end
       cell_content = cell.join(', ').to_s+'.'
       @list.push({'id' => item.id, 'cell_content' => cell_content })
