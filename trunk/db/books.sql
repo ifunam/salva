@@ -129,7 +129,7 @@ COMMENT ON TABLE bookeditions IS
 	fue impresa? Cuál es el estado de cada una de ellas?';
 
 -- Does this book edition have more than one publisher?
-CREATE TABLE publisher_bookeditions (
+CREATE TABLE bookedition_publishers (
     id serial,
     bookedition_id int4 NOT NULL
 	    REFERENCES bookeditions(id)
@@ -142,11 +142,11 @@ CREATE TABLE publisher_bookeditions (
     PRIMARY KEY(id),
     UNIQUE (bookedition_id, publisher_id)
 );
-COMMENT ON TABLE publisher_bookeditions IS
+COMMENT ON TABLE bookedition_publishers IS
 	'Para las ediciones que tengan más de una editorial (la principal 
 	está ya en bookeditions.publisher_id';
 
-CREATE TABLE user_bookeditions ( 
+CREATE TABLE bookedition_roleinbooks ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -161,11 +161,29 @@ CREATE TABLE user_bookeditions (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    other text NULL,
     PRIMARY KEY (user_id, bookedition_id)
 );
-COMMENT ON TABLE user_bookeditions IS 
+COMMENT ON TABLE bookedition_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
+
+
+CREATE TABLE bookedition_comments ( 
+    id SERIAL,
+    user_id int4 NOT NULL 
+            REFERENCES users(id)      
+            ON UPDATE CASCADE
+            ON DELETE CASCADE   
+            DEFERRABLE,
+    bookedition_id int4 NOT NULL 
+            REFERENCES bookeditions(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    other text NULL,        -- User comments for each edition
+    PRIMARY KEY (user_id, bookedition_id)
+);
+COMMENT ON TABLE bookedition_comments IS 
+	'Comentarios adicionales del usuario para cada edicición';
+
 
 CREATE table chaptersbooks (
    id SERIAL,
@@ -189,7 +207,7 @@ COMMENT ON TABLE chaptersbooks IS
 COMMENT ON COLUMN chaptersbooks.chapter IS
 	'Nombre del capítulo';
 
-CREATE TABLE user_chaptersbooks ( 
+CREATE TABLE chaptersbook_roleinbooks ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -207,6 +225,6 @@ CREATE TABLE user_chaptersbooks (
     other text NULL,
     PRIMARY KEY (user_id, chapterbook_id)
 );
-COMMENT ON TABLE user_chaptersbooks IS 
+COMMENT ON TABLE chaptersbook_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
 	de libro';

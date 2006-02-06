@@ -112,6 +112,7 @@ module ApplicationHelper
              model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, :prompt => '-- Seleccionar --'  )
     end       
   end
+
   
   def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
     options = options.stringify_keys

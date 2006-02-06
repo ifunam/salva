@@ -35,7 +35,7 @@ class SalvaController < ApplicationController
     model_other = params[:model]
     lider =  @model.find(params[:lider])
     logger.info "New else Lider "+lider.to_s if lider != nil
-    redirect_to :controller => model_other, :action => 'new', :lider_id => lider, :lider_name => Inflector.underscore(@model.name)
+    redirect_to :controller => model_other, :action => 'new', :lider_id => lider, :lider_name => Inflector.undescore(@model.name)
   end
 
   def new_sequence
