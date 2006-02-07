@@ -63,20 +63,20 @@ CREATE TABLE usercreditsbooks (
 COMMENT ON TABLE usercreditsbooks IS
 	'Libros producto del trabajo que se está agradeciendo';
 
-CREATE TABLE usercreditschaptersbooks (
+CREATE TABLE usercreditschapterinbooks (
 	id SERIAL,
 	usercredits_id int4 NOT NULL
             REFERENCES usercredits(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	chaptersbooks_id int4 NOT NULL
-            REFERENCES chaptersbooks(id)
+	chapterinbooks_id int4 NOT NULL
+            REFERENCES chapterinbooks(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, chaptersbooks_id)
+	UNIQUE (usercredits_id, chapterinbooks_id)
 );
-COMMENT ON TABLE usercreditschaptersbooks IS
+COMMENT ON TABLE usercreditschapterinbooks IS
 	'Capítulos en libro producto del trabajo que se está agradeciendo';
 
 CREATE TABLE usercreditsconferencetalks (

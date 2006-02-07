@@ -185,7 +185,7 @@ COMMENT ON TABLE bookedition_comments IS
 	'Comentarios adicionales del usuario para cada edicición';
 
 
-CREATE table chaptersbooks (
+CREATE table chapterinbooks (
    id SERIAL,
    bookedition_id int4 NOT NULL 
            REFERENCES bookeditions(id)
@@ -201,30 +201,46 @@ CREATE table chaptersbooks (
    PRIMARY KEY (id),
   UNIQUE (bookedition_id, chapter)
 );
-CREATE INDEX chaptersbooks_chapter_idx ON chaptersbooks(chapter);
-COMMENT ON TABLE chaptersbooks IS
+CREATE INDEX chapterinbooks_chapter_idx ON chapterinbooks(chapter);
+COMMENT ON TABLE chapterinbooks IS
 	'Capítulos en un libro (cuando son reportados por separado)';
-COMMENT ON COLUMN chaptersbooks.chapter IS
+COMMENT ON COLUMN chapterinbooks.chapter IS
 	'Nombre del capítulo';
 
-CREATE TABLE chaptersbook_roleinbooks ( 
+CREATE TABLE chapterinbook_roleinbooks ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    chapterbook_id int4 NOT NULL
-            REFERENCES chaptersbooks(id)
+    chapterinbook_id int4 NOT NULL
+            REFERENCES chapterinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     roleinbook_id int4 NOT NULL 
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    other text NULL,
-    PRIMARY KEY (user_id, chapterbook_id)
+    PRIMARY KEY (user_id, chapterinbook_id)
 );
-COMMENT ON TABLE chaptersbook_roleinbooks IS 
+COMMENT ON TABLE chapterinbook_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
-	de libro';
+	 de libro';
+
+CREATE TABLE chapterinbook_comments ( 
+    id SERIAL,
+    user_id int4 NOT NULL 
+            REFERENCES users(id)      
+            ON UPDATE CASCADE
+            ON DELETE CASCADE   
+            DEFERRABLE,
+    chapterinbook_id int4 NOT NULL 
+            REFERENCES chapterinbooks(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    comment text NULL,        -- User comments for each edition
+    PRIMARY KEY (user_id, chapterinbook_id)
+);
+COMMENT ON TABLE chapterinbook_comments IS 
+	'Comentarios adicionales del usuario para cada capítulo';

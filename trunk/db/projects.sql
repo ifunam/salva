@@ -256,18 +256,18 @@ CREATE TABLE projectsbooks (
 COMMENT ON TABLE projectsbooks IS
 	'Libros relacionados con cada proyecto';
 
-CREATE TABLE projectschaptersbooks (
+CREATE TABLE projectschapterinbooks (
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	chaptersbooks_id integer NOT NULL 
-	    REFERENCES chaptersbooks(id)
+	chapterinbook_id integer NOT NULL 
+	    REFERENCES chapterinbooks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, chaptersbooks_id)
+	PRIMARY KEY (project_id, chapterinbook_id)
 );
-COMMENT ON TABLE projectschaptersbooks IS
+COMMENT ON TABLE projectschapterinbooks IS
 	'Capítulos en libro relacionados con cada proyecto';
 
 CREATE TABLE projectsconferencetalks (

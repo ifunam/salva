@@ -54,11 +54,11 @@ COMMENT ON TABLE articlesfiles IS
 COMMENT ON COLUMN articlesfiles.content IS
 	'Contenido (binario) del archivo';
 
-CREATE TABLE chaptersbooksfiles (
+CREATE TABLE chapterinbooksfiles (
 	id serial NOT NULL,
 	filename text NOT NULL,
-	chaptersbooks_id int4 NOT NULL
-		REFERENCES chaptersbooks(id)
+	chapterinbook_id int4 NOT NULL
+		REFERENCES chapterinbooks(id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 		DEFERRABLE,
@@ -72,14 +72,14 @@ CREATE TABLE chaptersbooksfiles (
 		DEFERRABLE,
 	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
-	UNIQUE (chaptersbooks_id, filename)
+	UNIQUE (chapterinbook_id, filename)
 );
-CREATE INDEX chaptersbooksfiles_filename_idx ON chaptersbooksfiles(filename);
-CREATE INDEX chaptersbooksfiles_chaptersbooks_idx ON
-	chaptersbooksfiles(chaptersbooks_id);
-COMMENT ON TABLE chaptersbooksfiles IS
+CREATE INDEX chapterinbooksfiles_filename_idx ON chapterinbooksfiles(filename);
+CREATE INDEX chapterinbooksfiles_chapterinbooks_idx ON
+	chapterinbooksfiles(chapterinbook_id);
+COMMENT ON TABLE chapterinbooksfiles IS
 	'Archivos relacionados a un capítulo de libro';
-COMMENT ON COLUMN chaptersbooksfiles.content IS
+COMMENT ON COLUMN chapterinbooksfiles.content IS
 	'Contenido (binario) del archivo';
 
 CREATE TABLE conferencetalksfiles (
