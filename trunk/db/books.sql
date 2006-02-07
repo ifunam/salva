@@ -178,7 +178,7 @@ CREATE TABLE bookedition_comments (
             REFERENCES bookeditions(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    other text NULL,        -- User comments for each edition
+    comment text NULL,        -- User comments for each edition
     PRIMARY KEY (user_id, bookedition_id)
 );
 COMMENT ON TABLE bookedition_comments IS 

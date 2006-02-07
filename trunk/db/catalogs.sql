@@ -26,8 +26,8 @@ CREATE TABLE states (
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	name text NOT NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
+      moduser_id int4 NULL    	     -- Use it only to know who has
+     	      REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY(id),
@@ -35,6 +35,23 @@ CREATE TABLE states (
 );
 COMMENT ON TABLE states IS
 	'Lista de estados';
+
+CREATE TABLE cities (
+	id SERIAL,
+	state_id int4 NOT NULL
+		REFERENCES states(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+	name text NOT NULL,
+	moduser_id int4 NULL    	     -- Use it only to know who has
+            REFERENCES users(id)    -- inserted, updated or deleted  
+            ON UPDATE CASCADE       -- data into or from this table.
+            DEFERRABLE,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
+COMMENT ON TABLE cities IS
+	'Lista de ciudades';
 
 CREATE TABLE userrole ( 
     	id SERIAL NOT NULL,

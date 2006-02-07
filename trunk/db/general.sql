@@ -52,6 +52,10 @@ CREATE TABLE personals (
     lastname1 text NOT NULL,
     lastname2 text NULL,
     sex boolean NOT NULL,
+    maritalstatus_id int4 NOT NULL 
+                           REFERENCES maritalstatuses(id)
+                           ON UPDATE CASCADE
+                           DEFERRABLE,
     dateofbirth date NOT NULL,
     birth_country_id int4 NOT NULL 
                          REFERENCES countries(id)
@@ -61,11 +65,10 @@ CREATE TABLE personals (
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    birthcity text NOT NULL,
-    maritalstatus_id int4 NOT NULL 
-                           REFERENCES maritalstatuses(id)
-                           ON UPDATE CASCADE
-                           DEFERRABLE,
+    birth_city_id int4 NULL
+			REFERENCES cities(id)
+			ON UPDATE CASCADE
+			DEFERRABLE,
     photo_filename text NULL,
     photo_content_type text NULL,
     photo bytea NULL,
