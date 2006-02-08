@@ -1,5 +1,5 @@
-class ModelSequence 
-
+class ModelSequence
+  
   attr_accessor :sequence
   attr_accessor :current
   attr_accessor :is_filled  
@@ -7,11 +7,23 @@ class ModelSequence
   attr_accessor :return_action
   attr_accessor :moduser_id
   attr_accessor :user_id
-  
-  def initialize(array)
-    @sequence = array.collect{ |model| model.new }
+  attr_accessor :parent
 
-    @current = 0;
+  def initialize(array)
+    component = []
+    array.each { |model| 
+      if model.is_a? Array then
+        composite = ModelSequence.new(model)
+        composite.parent = parent ? parent : model[0]
+        component << composite
+      else
+        component << model.new
+      end
+      parent = model
+    }
+    
+    @sequence = component
+    @current = 0
     @is_filled = false
     @return_action = 'list'
     @return_controller = Inflector.underscore(array[0].name)
@@ -29,7 +41,7 @@ class ModelSequence
   def previous_model
     if @current > 0
       @current -= 1
-    end	     
+    end	    
   end
   
   def get_model
@@ -48,23 +60,22 @@ class ModelSequence
        false
     end
   end
- 
- 
+  
   def save
     lead_id = @lider_id
     prev_model = nil
     @sequence.each { |model|      
       model['moduser_id'] = @moduser_id 
-      model['user_id'] = @user_id 
-      model[@lider_name] = @lider_id if @lider_id != nil
-      if prev_model != nil then
+      model['user_id'] = @user_id
+      if @lider_id != nil then
+        model[@lider_id] = @lider.id
+      elsif prev_model != nil then
         model[Inflector.underscore(prev_model.class.name)+'_id'] = prev_model.id
       end
       model.save
       prev_model = model
     } 
   end    
-    
    
   def set_lider(id, name)
     @lider_name = name+'_id'
@@ -72,6 +83,7 @@ class ModelSequence
     @return_controller = name
     @return_action = 'list'
   end
+  
   
 end
 

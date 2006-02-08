@@ -1,5 +1,5 @@
 class ModelSequence
-
+  
   attr_accessor :sequence
   attr_accessor :current
   attr_accessor :is_filled  
@@ -10,13 +10,15 @@ class ModelSequence
   attr_accessor :parent
 
   def initialize(array)
-    @sequence = array.collect{ |model| 
+    @sequence = array.collect { |model| 
       if model.is_a? Array then
         sequence = ModelSequence.new(model)
-        sequence.parent = self
+        sequence.parent = parent ? parent : model[0]
       else
         model.new 
-      }
+      end
+      parent = model
+    }
     @current = 0;
     @is_filled = false
     @return_action = 'list'
@@ -35,7 +37,7 @@ class ModelSequence
   def previous_model
     if @current > 0
       @current -= 1
-    end	     
+    end	    
   end
   
   def get_model
@@ -54,8 +56,7 @@ class ModelSequence
        false
     end
   end
- 
- 
+  
   def save
     lead_id = @lider_id
     prev_model = nil
@@ -71,15 +72,23 @@ class ModelSequence
       prev_model = model
     } 
   end    
-    
    
-  def set_lider(model_instance)     
-    @lider = model_instance
-    name = Inflector.underscore(@lider.class.name)
-    @lider_id = name+'_id'
+  # def set_lider(model_instance)     
+#     @lider = model_instance
+#     name = Inflector.underscore(@lider.class.name)
+#     @lider_id = name+'_id'
+#     @return_controller = name
+#     @return_action = 'list'
+#   end
+
+  
+  def set_lider(id, name)
+    @lider_name = name+'_id'
+    @lider_id = id
     @return_controller = name
     @return_action = 'list'
   end
+  
   
 end
 
