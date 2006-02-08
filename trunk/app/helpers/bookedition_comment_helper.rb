@@ -1,0 +1,2 @@
+module BookeditionCommentHelper
+end

@@ -1,0 +1,2 @@
+module BookeditionRoleinbookHelper
+end

@@ -1,0 +1,23 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:chapterinbook_roleinbook]-->
+
+<div class="row"> 
+<label for="roleinbook_id" class="label"><%= salva_column('roleinbook_id') %></label> 
+<div id="Roleinbook">
+<%= table_select('edit', Roleinbook) %> 
+<input name='Roleinbook_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Roleinbook', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+<div class="row"> 
+<label for="chapterinbook_id" class="label"><%= salva_column('chapterinbook_id') %></label> 
+<div id="Chapterinbook">
+<%= table_select('edit', Chapterinbook) %> 
+<input name='Chapterinbook_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Chapterinbook', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+
+<!--[eoform:chapterinbook_roleinbook]-->
+
