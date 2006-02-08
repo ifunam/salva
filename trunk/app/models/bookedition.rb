@@ -6,4 +6,5 @@ class Bookedition < ActiveRecord::Base
   belongs_to :editionstatus
 
   has_and_belongs_to_many :roleinbook
+  has_and_belongs_to_many :comment
 end

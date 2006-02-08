@@ -49,8 +49,8 @@
 </div>
 <br/>
 <div class="row"> 
-<label for="birthcity" class="label"><%= salva_column('birthcity') %></label> 
-<%= text_field 'edit', 'birthcity' %>
+<label for="birth_city_id" class="label"><%= salva_column('birth_city_id') %></label> 
+<%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>
 
 <hr/>
@@ -66,7 +66,7 @@
 <!--  <div id="message"><%= @message %></div>  -->
 <div class="row"> 
 <label for="other" class="label"><%= salva_column('other') %></label> 
-<%= text_field 'edit', 'other' %>
+<%= text_area 'edit', 'other', 'rows' => 4  %>
 </div>
 
 <!--[eoform:edit]-->

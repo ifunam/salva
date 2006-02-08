@@ -80,6 +80,6 @@ module TableHelper
   end
 
   def sex(condition)
-    condition ? 'Masculino' : 'Femenino'
+    condition ? 'Femenino' : 'Masculino'
   end
 end

@@ -38,8 +38,8 @@
 <p><label for="bookedition_other">Comentarios acerca de esta edici&oacute;n</label><br/>
 <%= text_area 'edit', 'other', 'rows' => 5  %>
 
-<p><label for="bookedition_other">Indique la actividad que realizo en est&a edici&oacute;n</label><br/>
-<%= check_box('edit',  @edit.roleinbook.id, {}) %> </p>
+<p><label for="bookedition_roleinbook">Indique la actividad que realizo en est&a edici&oacute;n</label><br/>
+<%= check_box_group('edit', Roleinbook) %> </p>
 
 
 

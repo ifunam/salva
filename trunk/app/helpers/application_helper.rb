@@ -112,7 +112,22 @@ module ApplicationHelper
              model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, :prompt => '-- Seleccionar --'  )
     end       
   end
+  
 
+  def check_box_group(object, model, options={})
+    options = options.stringify_keys
+    prefix = model.name.downcase+'_id'      
+    if options['prefix'] then
+      prefix = options['prefix']+'_'+model.name.downcase+'_id'
+    end
+    ckbox_group = "<ul>\n"
+    model.find(:all, :order => 'name ASC').collect { |m| 
+      ckbox_group += '<li>' + check_box_tag("#{object}[#{prefix}][]", m.id, checked = false, options = {:id => prefix})  + m.name + "</li>\n"
+    }
+    ckbox_group += "</ul>\n"
+    ckbox_group
+  end
+  
   
   def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
     options = options.stringify_keys

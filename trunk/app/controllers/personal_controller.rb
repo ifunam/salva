@@ -17,7 +17,7 @@ class PersonalController < ApplicationController
      redirect_to :action => 'new'
     end
   end
-
+  
   def show
      get_personal
   end
@@ -34,7 +34,7 @@ class PersonalController < ApplicationController
     get_personal
     @headers['Pragma'] = 'no-cache'
     @headers['Cache-Control'] = 'no-cache, must-revalidate'
-    if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'PNG' then
+    if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'png' then
       send_data (@edit.photo, :filename => @edit.photo_filename, 
                  :type => "image/"+@edit.photo_content_type.to_s, 
                  :disposition => "inline")

@@ -24,7 +24,7 @@ module SalvaHelper
       'sex' => 'Sexo',
       'dateofbirth' => 'Fecha',
       'birth_country_id' => 'País',
-      'birthcity' => 'Ciudad',
+      'birth_city_id' => 'Ciudad',
       'birth_state_id' => 'Estado',
       'maritalstatus_id' => 'Estado civil',
       'photo' => 'Fotografía',
