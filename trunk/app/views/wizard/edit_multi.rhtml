@@ -1,0 +1,9 @@
+<% for edit in @list %>
+
+<%= render :partial => edit %>
+
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>
+
+<%= render :partial => 'navbar' %>
