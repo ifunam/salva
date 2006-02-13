@@ -8,13 +8,13 @@ class ModelSequence
   attr_accessor :moduser_id
   attr_accessor :user_id
   attr_accessor :parent
-
+  
   def initialize(array)
     component = []
     array.each { |model| 
       if model.is_a? Array then
         composite = ModelSequence.new(model)
-        composite.parent = parent ? parent : model[0]
+        composite.parent = parent
         component << composite
       else
         component << model.new
@@ -31,13 +31,13 @@ class ModelSequence
   end
   
   def next_model
-     if @current < @sequence.length
-	@current += 1
-     else
-	@is_filled = true
-     end
+    if @current < @sequence.length
+      @current += 1
+    else
+      @is_filled = true
+    end
   end
-     
+  
   def previous_model
     if @current > 0
       @current -= 1
@@ -47,17 +47,17 @@ class ModelSequence
   def get_model
     @sequence[@current] 
   end
-  
+
   def get_model_name
     get_model.class.name
   end
-  
+
   def is_last
     if @current == @sequence.length - 1
-       @is_filled = true
+      @is_filled = true
        true 
     else
-       false
+      false
     end
   end
   
@@ -84,6 +84,12 @@ class ModelSequence
     @return_action = 'list'
   end
   
-  
+  def is_composite
+    get_model.class.name == self.class.name ? true : false
+  end
+
+  def get_composite
+    @sequence[@current]
+  end
 end
 

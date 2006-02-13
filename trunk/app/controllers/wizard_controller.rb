@@ -13,7 +13,16 @@ class WizardController < ApplicationController
   
   def new
     sequence = get_sequence
-    @edit = sequence.get_model
+    if sequence.is_composite 
+      composite = sequence.get_model
+      @edit = composite.sequence[0]
+      composite.sequence.each { |model|
+        class_model = Inflector.underscore(model.class.name) 
+        logger_info("WizardController_new", class_model) unless sequence.is_composite
+      }
+    else
+      @edit = sequence.get_model
+    end
   end
  
   def edit
@@ -35,7 +44,13 @@ class WizardController < ApplicationController
     if mymodel.valid? then
       next_model 
     else
-      @edit = get_sequence.get_model
+      sequence = get_sequence
+      if sequence.is_composite
+        composite = sequence.get_model
+        @edit = composite.sequence[0]
+      else
+        @edit = sequence.get_model
+      end
       render :action => 'edit'
     end
   end
@@ -66,7 +81,7 @@ class WizardController < ApplicationController
     
     if sequence.is_last
       redirect_to :action  => 'list'
-   else
+    else
       sequence.next_model
       if sequence.is_filled
 	 edit

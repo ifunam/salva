@@ -1,20 +1,6 @@
 <%= error_messages_for 'edit' %>
-
 <!--[form:bookedition_comment]-->
-
-<div class="row"> 
-<label for="bookedition_id" class="label"><%= salva_column('bookedition_id') %></label> 
-<div id="Bookedition">
-<%= table_select('edit', Bookedition) %> 
-<input name='Bookedition_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Bookedition', 'name', '¿Desea agregar este elemento?' ) %>">
-</div>
-</div>
-
-<div class="row"> 
-<label for="comment" class="label"><%= salva_column('comment') %></label> 
-<%= text_field 'edit', 'comment' %>
-</div>
-
-
+<p><label for="bookedition_comment">Comentarios</label><br/>
+<%= text_area 'edit', 'comment', 'rows' => 5  %>
 <!--[eoform:bookedition_comment]-->
 
