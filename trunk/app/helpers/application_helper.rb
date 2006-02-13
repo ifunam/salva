@@ -102,14 +102,16 @@ module ApplicationHelper
     end
     
     if (options['id'] != nil) then
-      "<select name=\"#{object}[#{model_id}]\">\n<option>-- Seleccionar --</option>"+
+      "<select name=\"#{object}[#{model_id}]\" onchange=\""+ 
+        remote_function(:update => "options", :url => { :action => :update_options }) +
+        "\"> \n<option>-- Seleccionar --</option> \n"+
         options_for_select(
                            model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]},
                            options['id'])+
         "\n</select>"
     else
-      select(object, model_id, 
-             model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, :prompt => '-- Seleccionar --'  )
+      select(object, model_id,  model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'}, 
+             {:onchange => remote_function(:update => "options", :url => { :action => :update_options }) } ) 
     end       
   end
   

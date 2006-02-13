@@ -65,7 +65,10 @@ CREATE TABLE personals (
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    birth_city text NULL,
+    birth_city_id int4 NULL
+			REFERENCES cities(id)
+			ON UPDATE CASCADE
+			DEFERRABLE,
     photo_filename text NULL,
     photo_content_type text NULL,
     photo bytea NULL,

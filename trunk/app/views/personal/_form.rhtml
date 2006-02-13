@@ -50,9 +50,8 @@
 <br/>
 <div class="row"> 
 <label for="birth_city_id" class="label"><%= salva_column('birth_city_id') %></label> 
-<%= text_field 'edit', 'birth_city' %>
+<%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>
-
 <hr/>
 
 <div class="row"> 
