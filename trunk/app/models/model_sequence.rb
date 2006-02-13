@@ -88,8 +88,10 @@ class ModelSequence
     get_model.class.name == self.class.name ? true : false
   end
 
-  def get_composite
-    @sequence[@current]
+  def get_childs
+    @sequence[@current].secuence { |model|
+      model unless model.is_composite
+    }
   end
 end
 

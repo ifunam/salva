@@ -15,11 +15,8 @@ class WizardController < ApplicationController
     sequence = get_sequence
     if sequence.is_composite 
       composite = sequence.get_model
-      @edit = composite.sequence[0]
-      composite.sequence.each { |model|
-        class_model = Inflector.underscore(model.class.name) 
-        logger_info("WizardController_new", class_model) unless sequence.is_composite
-      }
+      @list = composite.sequence
+      render :action => 'edit_multi'
     else
       @edit = sequence.get_model
     end
@@ -106,7 +103,7 @@ class WizardController < ApplicationController
 
   def edit_multi
      sequence = get_sequence
-     @list = sequence.sequence
+     @list = sequence.sequence if !@list
   end
 	  
   def update_multi
