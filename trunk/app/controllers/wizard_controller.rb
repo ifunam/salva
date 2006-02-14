@@ -15,7 +15,7 @@ class WizardController < ApplicationController
     sequence = get_sequence
     if sequence.is_composite 
       composite = sequence.get_model
-      @list = composite.sequence
+      @list = composite.get_children
       render :action => 'edit_multi'
     else
       @edit = sequence.get_model
@@ -44,7 +44,11 @@ class WizardController < ApplicationController
       sequence = get_sequence
       if sequence.is_composite
         composite = sequence.get_model
-        @edit = composite.sequence[0]
+        @list = composite.get_children
+        @list.each { | model | 
+          logger_info("WIZARD_CREATE",  model)
+        }
+        render :action => 'edit_multi'
       else
         @edit = sequence.get_model
       end

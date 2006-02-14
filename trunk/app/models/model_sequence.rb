@@ -11,17 +11,16 @@ class ModelSequence
   
   def initialize(array)
     component = []
+    parent = array[0]
     array.each { |model| 
       if model.is_a? Array then
         composite = ModelSequence.new(model)
-        composite.parent = parent
+        composite.parent = parent 
         component << composite
       else
         component << model.new
       end
-      parent = model
     }
-    
     @sequence = component
     @current = 0
     @is_filled = false
@@ -88,10 +87,12 @@ class ModelSequence
     get_model.class.name == self.class.name ? true : false
   end
 
-  def get_childs
-    @sequence[@current].secuence { |model|
-      model unless model.is_composite
+  def get_children
+    children = []
+    @sequence.each { |model| 
+      children << model if model.class.name != self.class.name
     }
+    children
   end
 end
 

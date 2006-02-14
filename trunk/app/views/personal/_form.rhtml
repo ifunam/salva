@@ -40,12 +40,14 @@
 <br/>
 <div class="row"> 
 <label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
-<%= table_select('edit', Country, {:prefix => 'birth'}) %>
+<%= table_select('edit', Country, {:prefix => 'birth'}, {:div =>'div_birth_state_id', :model => 'State'}) %>
 </div>
 <br/>
 <div class="row"> 
 <label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
+<div id="div_birth_state_id">
 <%= table_select('edit', State, {:prefix => 'birth'}) %>
+</div>
 </div>
 <br/>
 <div class="row"> 

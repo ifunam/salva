@@ -93,28 +93,38 @@ module ApplicationHelper
     select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
   end
   
-  def table_select(object, model, options={})
+  def table_select(object, model, options={}, remote_options={}, where_options = {})
     options = options.stringify_keys
+    remote_options = remote_options.stringify_keys
+    where_options = where_options.stringify_keys
+
     if options['prefix'] then
       model_id = options['prefix']+'_'+model.name.downcase+'_id'
     else
       model_id = model.name.downcase+'_id'      
     end
     
+    remote_params = {}
+    if remote_options['div'] and remote_options['model']
+      remote_params = { 
+        :update => remote_options['div'],
+        :url => {:action => :upgrade_select_dest},  
+        :with => "'model=#{remote_options['model']}&div=#{remote_options['div']}&#{model_id}='+value" 
+      }
+    end
+
     if (options['id'] != nil) then
-      "<select name=\"#{object}[#{model_id}]\" onchange=\""+ 
-        remote_function(:update => "options", :url => { :action => :update_options }) +
-        "\"> \n<option>-- Seleccionar --</option> \n"+
-        options_for_select(
-                           model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]},
-                           options['id'])+
-        "\n</select>"
+      params = [ model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, options['id'] ]
+      select = "<select name=\"#{object}[#{model_id}]\" " 
+      select += remote_params.length > 0 ? 'onchange="' + remote_function(remote_params) + '">' : '>' 
+      select += "<option>-- Seleccionar --</option> \n" + options_for_select(*params.to_a) + "\n</select>"
     else
-      select(object, model_id,  model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'}, 
-             {:onchange => remote_function(:update => "options", :url => { :action => :update_options }) } ) 
+      params = [ object, model_id,  model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
+        {:prompt => '-- Seleccionar --'} ]
+      params.push({:onchange => remote_function(remote_params)}) if remote_params.length > 0
+      select(*params.to_a)
     end       
   end
-  
 
   def check_box_group(object, model, options={})
     options = options.stringify_keys

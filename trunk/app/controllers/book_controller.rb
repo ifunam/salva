@@ -4,7 +4,7 @@ class BookController < SalvaController
     super
     @model = Book
     @sequence = [ Book, [Bookedition, BookeditionRoleinbook, BookeditionComment, 
-        [Chapterinbook, ChapterinbookRoleinbook, ChapterinbookComment ] ] ]
+        [Chapterinbook, ChapterinbookRoleinbook, ChapterinbookComment ]] ]
     @per_pages = 10
     @order_by = 'title DESC'
   end
