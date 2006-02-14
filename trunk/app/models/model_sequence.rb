@@ -89,10 +89,10 @@ class ModelSequence
 
   def get_children
     children = []
-    @sequence.each { |model| 
-      children << model if model.class.name != self.class.name
+    @sequence.collect { |model| 
+      children << model unless model.class.name.to_s == self.class.name
     }
-    children
+    children.compact
   end
 end
 

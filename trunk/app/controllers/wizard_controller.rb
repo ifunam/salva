@@ -45,9 +45,6 @@ class WizardController < ApplicationController
       if sequence.is_composite
         composite = sequence.get_model
         @list = composite.get_children
-        @list.each { | model | 
-          logger_info("WIZARD_CREATE",  model)
-        }
         render :action => 'edit_multi'
       else
         @edit = sequence.get_model
