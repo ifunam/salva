@@ -1,0 +1,4 @@
+<% for edit in @list %>
+<%= render :partial => Inflector.underscore(edit.class.name)+'/form' %>
+<% end %>
+
