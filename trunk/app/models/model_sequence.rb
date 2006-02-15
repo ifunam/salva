@@ -30,7 +30,7 @@ class ModelSequence
   end
   
   def next_model
-    if @current < @sequence.length
+    if @current < @sequence.length 
       @current += 1
     else
       @is_filled = true
@@ -89,7 +89,7 @@ class ModelSequence
 
   def get_children
     children = []
-    @sequence.collect { |model| 
+    @sequence.each { |model| 
       model.class.name.to_s != self.class.name ? children << model : break
     }
     children.compact
