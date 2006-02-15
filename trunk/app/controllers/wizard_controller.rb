@@ -76,19 +76,16 @@ class WizardController < ApplicationController
 
   def next_model
     sequence = get_sequence
-    
     if sequence.is_last
       redirect_to :action  => 'list'
     else
-      sequence.next_model
       if sequence.is_filled
-	 edit
-	 render :action  => 'edit'
+           render :action  => 'edit'
       else
-	 new
-	 render :action  => 'new'
+           new
+      render :action  => 'new'
       end
-   end
+    end
   end
   
   def finalize
