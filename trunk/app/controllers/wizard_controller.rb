@@ -3,7 +3,6 @@ class WizardController < ApplicationController
   model :model_sequence
 
   def index
-    new
     render :action => 'new'
   end
 
@@ -14,9 +13,7 @@ class WizardController < ApplicationController
   def new
     sequence = get_sequence
     if sequence.is_composite 
-      composite = sequence.get_model
-      @list = composite.get_children
-      render :action => 'edit_multi'
+      redirect_to :action => 'edit_multi'
     else
       @edit = sequence.get_model
     end
@@ -43,8 +40,6 @@ class WizardController < ApplicationController
     else
       sequence = get_sequence
       if sequence.is_composite
-        composite = sequence.get_model
-        @list = composite.get_children
         render :action => 'edit_multi'
       else
         @edit = sequence.get_model
@@ -73,17 +68,17 @@ class WizardController < ApplicationController
     edit
     render :action => 'edit'
   end
-
+  
   def next_model
     sequence = get_sequence
     if sequence.is_last
       redirect_to :action  => 'list'
     else
+      sequence.next_model 
       if sequence.is_filled
-           render :action  => 'edit'
+        edit
       else
-           new
-      render :action  => 'new'
+        new
       end
     end
   end
@@ -100,8 +95,10 @@ class WizardController < ApplicationController
   end
 
   def edit_multi
-     sequence = get_sequence
-     @list = sequence.sequence if !@list
+    sequence = get_sequence
+    composite = sequence.get_model
+    @list = composite.get_children
+    # @list = sequence.sequence if !@list
   end
 	  
   def update_multi
