@@ -13,10 +13,16 @@ class WizardController < ApplicationController
   def new
     sequence = get_sequence
     if sequence.is_composite 
-      redirect_to :action => 'edit_multi'
+      redirect_to :action => 'new_multi'
     else
       @edit = sequence.get_model
     end
+  end
+  
+  def new_multi
+    sequence = get_sequence
+    composite = sequence.get_model
+    @list = composite.get_children
   end
  
   def edit
@@ -25,29 +31,57 @@ class WizardController < ApplicationController
     @edit = sequence.get_model
   end
  
+  def edit_multi
+    sequence = get_sequence
+    composite = sequence.get_model
+    @list = composite.get_children
+  end
+
   def list
     sequence = get_sequence
     @list = sequence.sequence
   end
   
   def create
-    mymodel = get_sequence.get_model
-    @params[:edit].each { |key, value|
-      mymodel[key.to_sym] = value
-    }
-    if mymodel.valid? then
-      next_model 
-    else
-      sequence = get_sequence
-      if sequence.is_composite
-        render :action => 'edit_multi'
+    sequence = get_sequence
+    if !sequence.is_composite 
+      model = get_sequence.get_model
+      @params[:edit].each { |key, value|
+        model[key.to_sym] = value
+      }
+      if model.valid? then
+        next_model 
       else
         @edit = sequence.get_model
+        render :action => 'edit'
       end
-      render :action => 'edit'
+    else
+      create_composite
     end
   end
   
+  def create_composite
+    sequence = get_sequence
+    composite =  sequence.get_model
+    models = composite.get_children
+    @params[:edit].each { |attr, value|
+      models.each { | model |
+        if model.has_attribute? attr
+          model[attr.to_sym] = value
+        end
+      }
+    }
+    invalid = false
+    models.each { | model |
+      invalid = true unless model.valid?
+    }
+    if invalid
+      redirect_to :action => 'edit_multi'
+    else
+      next_model
+    end
+  end
+
   def update
     sequence = get_sequence
     mymodel = sequence.get_model
