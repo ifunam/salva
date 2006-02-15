@@ -1,4 +1,6 @@
-<% for edit in @list %>
-<%= render :partial => Inflector.underscore(edit.class.name)+'/form' %>
+<% for model in @list %>
+ <% errors = model.errors.full_messages %>
+ <%= errors.map { | error| error+'<br/>' } if errors.length > 0 %>
+ <%= render :partial => Inflector.underscore(model.class.name)+'/form' %>
 <% end %>
 
