@@ -11,11 +11,10 @@ class ModelSequence
   
   def initialize(array)
     component = []
-    parent = array[0]
+    @parent = array.first
     array.each { |model| 
       if model.is_a? Array then
         composite = ModelSequence.new(model)
-        composite.parent = parent 
         component << composite
       else
         component << model.new
