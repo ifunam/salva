@@ -1,5 +1,5 @@
 class Bookedition < ActiveRecord::Base
-  validates_presence_of :book_id, :message => "Proporcione el book_id"
+#  validates_presence_of :book_id, :message => "Proporcione el book_id"
   validates_presence_of :edition_id, :message => "Proporcione el edition_id"
   validates_presence_of :publisher_id, :message => "Proporcione el publisher_id"
   validates_presence_of :mediatype_id, :message => "Proporcione el mediatype_id"

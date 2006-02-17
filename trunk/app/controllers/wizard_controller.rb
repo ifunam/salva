@@ -39,12 +39,12 @@ class WizardController < ApplicationController
 
   def list
     sequence = get_sequence
-    @list = sequence.sequence
+    @list = sequence.flat_sequence
   end
   
   def create
     sequence = get_sequence
-    if !sequence.is_composite 
+    if !sequence.is_composite then
       model = get_sequence.get_model
       @params[:edit].each { |key, value|
         model[key.to_sym] = value
@@ -72,9 +72,9 @@ class WizardController < ApplicationController
       }
     }
     invalid = false
-    models.each { | model |
-      invalid = true unless model.valid?
-    }
+#    models.each { | model |
+#      invalid = true unless model.valid?
+#    }
     if invalid
       redirect_to :action => 'edit_multi'
     else

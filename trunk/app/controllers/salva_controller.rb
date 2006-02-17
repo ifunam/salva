@@ -39,13 +39,13 @@ class SalvaController < ApplicationController
   end
 
   def new_sequence
-    lider_id = params[:lider_id]
-    lider_name =  params[:lider_name]
+#    lider_id = params[:lider_id]
+#    lider_name =  params[:lider_name]
     sequence = ModelSequence.new(@sequence)
     sequence.moduser_id = @session[:user] 
     sequence.user_id = @session[:user] 
-    logger.info "New sequence Lider "+lider_id.to_s if lider_id != nil
-    sequence.set_lider(lider_id, lider_name) if lider_id != nil and lider_name != nil
+    #   logger.info "New sequence Lider "+lider_id.to_s if lider_id != nilmo
+#    sequence.set_lider(lider_id, lider_name) if lider_id != nil and lider_name != nil
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end

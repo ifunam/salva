@@ -85,7 +85,7 @@ module ApplicationHelper
     # Por si se aparece el pinche 'Doggie Hauser'
     # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
     options[:end_year] = year - 15 if  options[:end_year] == nil
-    date_select (object, attribute, :start_year =>  options[:start_year], :end_year =>  options[:end_year], 
+    date_select (object, attribute, :start_year =>  options[:start_year], :end_year =>  options[:end_year],
                  :use_month_numbers => true, :order => [:day, :month, :year])
   end
 

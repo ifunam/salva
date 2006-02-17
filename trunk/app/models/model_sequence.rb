@@ -11,13 +11,16 @@ class ModelSequence
   
   def initialize(array)
     component = []
-    @parent = array.first
+    prev_child = nil
     array.each { |model| 
       if model.is_a? Array then
         composite = ModelSequence.new(model)
+        composite.parent = prev_child if prev_child
         component << composite
       else
-        component << model.new
+        child = model.new
+        component << child
+        prev_child = child
       end
     }
     @sequence = component
@@ -31,6 +34,7 @@ class ModelSequence
   def next_model
     if @current < @sequence.length 
       @current += 1
+      @current += 1 if @sequence[@current+1].class.name == self.class.name
     else
       @is_filled = true
     end
@@ -60,38 +64,43 @@ class ModelSequence
   end
   
   def save
-    lead_id = @lider_id
-    prev_model = nil
+    lider = @parent ? @parent: sequence[0]
+    lider_id = Inflector.underscore(lider.class.name)+'_id'    
     @sequence.each { |model|      
-      model['moduser_id'] = @moduser_id 
-      model['user_id'] = @user_id
-      if @lider_id != nil then
-        model[@lider_id] = @lider.id
-      elsif prev_model != nil then
-        model[Inflector.underscore(prev_model.class.name)+'_id'] = prev_model.id
+      if model.class.name.to_s != self.class.name then
+        model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
+        model['user_id'] = @user_id
+        if lider_id != nil then
+          model[lider_id] = lider.id
+        end
       end
       model.save
-      prev_model = model
     } 
   end    
-   
-  def set_lider(id, name)
-    @lider_name = name+'_id'
-    @lider_id = id
-    @return_controller = name
-    @return_action = 'list'
-  end
   
   def is_composite
     get_model.class.name == self.class.name ? true : false
   end
-
+  
   def get_children
-    children = []
+    children = [ @parent ]
     @sequence.each { |model| 
       model.class.name.to_s != self.class.name ? children << model : break
     }
     children.compact
   end
+
+  def flat_sequence
+    flat = []
+    @sequence.each { |model| 
+      if model.class.name.to_s != self.class.name then
+        flat << model 
+      else
+        flat << model.flat_sequence
+      end
+    }
+    flat.flatten
+  end
+
 end
 
