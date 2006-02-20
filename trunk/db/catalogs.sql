@@ -26,7 +26,8 @@ CREATE TABLE states (
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	name text NOT NULL,
-      moduser_id int4 NULL    	     -- Use it only to know who has
+	code text NULL, 
+        moduser_id int4 NULL    	     -- Use it only to know who has
      	      REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
