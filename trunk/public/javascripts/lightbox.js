@@ -36,9 +36,6 @@
 var loadingImage = '/images/loading.gif';		
 
 
-
-
-
 //
 // getPageScroll()
 // Returns array with x,y page scroll values.

@@ -47,8 +47,8 @@
 <label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
 <div id="birth_state_id">
 <%= table_select('edit', State, {:prefix => 'birth'}, {:div=>'birth_city_id', :model => 'City'}) %>
-<%= task_quickpost('Agregar estado', 'state') %>
 </div>
+<%= quickpost('Agregar', 'state') %>
 </div>
 <br/>
 <div class="row"> 
@@ -56,6 +56,7 @@
 <div id="birth_city_id">
 <%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>
+<%= quickpost('Agregar', 'city') %>
 </div>
 <hr/>
 <div class="row"> 

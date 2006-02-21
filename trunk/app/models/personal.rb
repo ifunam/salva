@@ -29,4 +29,10 @@ class Personal < ActiveRecord::Base
    
   def country_id
   end
+
+  def city_id
+  end
+
+  def state_id
+  end
 end
