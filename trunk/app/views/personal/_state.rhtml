@@ -1,0 +1,22 @@
+<div class="box">
+<%= form_remote_tag(:success => "new Effect.BlindUp('state', {duration: 0.4}); return false;", 404 => "alert('Not found...? Wrong URL...?')",  :failure => "alert('HTTP Error ' + request.status + '!');", :url  => { :controller => 'state', :action => 'create' } ) %>
+<div class="row"> 
+<label for="name" class="label"><%= salva_column('name') %></label> 
+<%= text_field 'edit', 'name' %>
+</div>
+
+<div class="row"> 
+<label for="code" class="label"><%= salva_column('code') %></label> 
+<%= text_field 'edit', 'code' %>
+</div>
+
+<div class="row"> 
+<label for="country_id" class="label"><%= salva_column('country_id') %></label> 
+<div id="Country">
+<%= table_select('edit', Country) %> 
+</div>
+<div id="operations">
+<%= submit_tag "Guardar" %> | <a href="#" onclick="new Effect.BlindUp('state', {duration: 0.4}); return false;" >Cancelar</a>
+</div>
+<%= end_form_tag %>
+</div>

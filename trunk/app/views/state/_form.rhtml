@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:state]-->
+
+<div class="row"> 
+<label for="firstname" class="label"><%= salva_column('name') %></label> 
+<%= text_field 'edit', 'firstname' %>
+</div>
+
+<div class="row"> 
+<label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
+<div id="Country">
+<%= table_select('edit', Country) %> 
+<input name='Country_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Country', 'name', '¿Desea agregar este elemento?' ) %>">
+</div>
+</div>
+
+
+<!--[eoform:state]-->
+
