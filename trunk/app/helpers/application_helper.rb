@@ -107,7 +107,9 @@ module ApplicationHelper
       remote_params = { 
         :update => remote_options['div'],
         :url => {:action => :upgrade_select_dest},  
-        :with => with_params
+        :with => with_params,
+        :loading => "Toggle.display('upgrade_note')", ## Aca falta parametrizar estas mugres y queda listo..
+        :success => "new Effect.BlindUp('upgrade_note', {duration: 0.4}); return false;"
       }
     end
     
