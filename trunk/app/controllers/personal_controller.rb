@@ -23,9 +23,9 @@ class PersonalController < ApplicationController
   end
 
   def new
-    @edit = Personal.new
+    @edit = Personal.new 
   end
-  
+
   def edit 
     get_personal
   end  

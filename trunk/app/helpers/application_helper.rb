@@ -154,13 +154,23 @@ module ApplicationHelper
   def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
     options = options.stringify_keys
     if ( options['prefix'] == nil ) then
-      div2upgrade = model
-      "if (handleKeyPress(event) && checkString(document.forms[0].#{model}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{model}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
+      div2upgrade = model.downcase.to_s+'_id'
+      field = model.downcase
+      "if (handleKeyPress(event) && checkString(document.forms[0].#{field}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{field}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
     else 
       prefix = options['prefix']
-      div2upgrade = options['prefix']+'_'+model
-      "if (handleKeyPress(event) && checkString(document.forms[0].#{div2upgrade}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{div2upgrade}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
+      div2upgrade = options['prefix']+'_'+model.downcase.to_s+'_id'
+      field = options['prefix']+'_'+model.downcase
+      "if (handleKeyPress(event) && checkString(document.forms[0].#{field}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{field}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
     end
+  end
+
+  def task_quickpost(title, partial)
+    content_tag :li, link_to_function(title, toggle_effect(partial, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))  
+  end
+
+  def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
+    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
 
 end 
