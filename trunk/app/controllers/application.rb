@@ -7,7 +7,7 @@ require 'authenticated_system'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   before_filter :login_required   
-  helper :salva, :table, :user
+  helper :salva, :table, :user, :navigator
   
   def upgrade_select
     @model =  eval(Inflector.classify(@params[:class]))
