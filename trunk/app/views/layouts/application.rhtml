@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> 
   <meta name="description"  content="Plataforma de informaci&oacute;n curricular SALVA" /> 
   <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" />
-  <link rel="icon" href="<%= icon %>" />
+  <link rel="icon" href="/images/favicon.ico" />
   <%= stylesheet_link_tag "form", "administration", "ligthbox" %>
   <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "salva", "overlib" %>
 </head>
@@ -22,7 +22,6 @@ Usuario: <span class="user"><%= logged_user %></span>|
 <img src="/images/<%= title_icon %>" border="0" align="middle">
 <%= title %>
 </div>
-<%= render :partial => '/salva/navbar' %>
 <div class="box">
   <p style="color: green"><%= flash[:notice] %></p> 
 <%= @content_for_layout %>

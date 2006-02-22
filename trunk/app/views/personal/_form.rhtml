@@ -45,7 +45,7 @@
 <br/>
 <div class="row"> 
 <label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
-<div id="upgrade_note" style="display: none">Actualizando la lista de estados...</div>
+<div id="birth_state_id_note" style="display: none">Actualizando la lista de estados...</div>
 <div id="birth_state_id">
 <%= table_select('edit', State, {:prefix => 'birth'}, {:div=>'birth_city_id', :model => 'City'}) %>
 </div>
@@ -54,6 +54,7 @@
 <br/>
 <div class="row"> 
 <label for="birth_city_id" class="label"><%= salva_column('birth_city_id') %></label> 
+<div id="birth_city_id_note" style="display: none">Actualizando la lista de ciudades...</div>
 <div id="birth_city_id">
 <%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>

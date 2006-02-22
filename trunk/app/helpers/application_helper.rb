@@ -4,15 +4,7 @@ module ApplicationHelper
   def head_title
     "#{@controller.controller_class_name} : #{@controller.action_name}"
   end  
-  
-  def charset
-    @charset || "iso-8859-1"
-  end
-  
-  def icon
-    @icon || '/images/favicon.ico'
-  end
-  
+
   #############################
   # inside Body Page          #
   #############################
@@ -61,19 +53,19 @@ module ApplicationHelper
              ["Abril", 4], ["Mayo", 5], ["Junio", 6], ["Julio", 7], ["Agosto", 8],
              ["Septiembre", 9], ["Octubre", 10], ["Noviembre", 11], ["Diciembre", 12]])
   end
-
+  
   def year_select(object, options={})
-     year_options = []
-     y = Date.today.year
-     start_year, end_year = (options[:start_year] || y), (options[:end_year] || y-70)
-     step_val = start_year < end_year ? 1 : -1
-     
-     start_year.step(end_year, step_val) do |year|
-	year_options << year
-     end     
-     select(object, options[:field_name] || 'year', year_options);
+    year_options = []
+    y = Date.today.year
+    start_year, end_year = (options[:start_year] || y), (options[:end_year] || y-70)
+    step_val = start_year < end_year ? 1 : -1
+    
+    start_year.step(end_year, step_val) do |year|
+      year_options << year
+    end     
+    select(object, options[:field_name] || 'year', year_options);
   end
-
+  
   def date_for_select(object, attribute, options={})
     year = Date.today.year
     # Tal vez alguien a los 90 años siga produciendo
@@ -81,56 +73,57 @@ module ApplicationHelper
     # Por si se aparece el pinche 'Doggie Hauser'
     # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
     options[:end_year] = year - 15 if  options[:end_year] == nil
-    date_select (object, attribute, :start_year =>  options[:start_year], :end_year =>  options[:end_year],
-                 :use_month_numbers => true, :order => [:day, :month, :year])
-  end
-
-  def country_select(object, options={})
-    select(object, "country_id", Country.find_all.collect {|p| [ p.name, p.id ] })
+    date_select(object, attribute, :start_year =>  options[:start_year], 
+                :end_year => options[:end_year], :use_month_numbers => true, 
+                :order => [:day, :month, :year])
   end
   
-  def table_select(object, model, options={}, remote_options={}, conditions={})
+  def remote_function_tag(div, with, prefix=nil)
+    prefix ?  with = "'prefix=#{prefix}&#{with}" :  with = "'#{with}" 
+    remote_function(:update => div, :with => with, :url => {:action => :upgrade_select_dest},  
+                    :loading => "Toggle.display('#{div}_note')",
+                    :success => "new Effect.BlindUp('#{div}_note', {duration: 0.4}); return false;")
+  end
+  
+  def select_simple(object, model, model_id, ref_model=nil, condition_id=nil, rparams=nil)
+    params = [ object, model_id,  model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'} ]
+    if ref_model and condition_id then
+      params = [ object, model_id, model.find(:all, :order => 'name ASC', :conditions => [ ref_model + ' = ?', condition_id ]).collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'} ]
+    end
+    params.push({:onchange => remote_function_tag(*rparams.to_a)}) if rparams.length > 0
+    select(*params.to_a)
+  end
+  
+  def select_selected(object, model, model_id, id, ref_model=nil, condition_id=nil, rparams=nil) 
+    params = [ model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, id ]
+    if ref_model and condition_id then
+      params = [ model.find(:all, :order => 'name ASC', :conditions => [ ref_model + ' = ?', conditions_id ]).collect {|p| [ p.name, p.id ]}, id ]
+    end
+    select = "<select name=\"#{object}[#{model_id}]\" " 
+    select += rparams.length > 0 ? 'onchange="' + remote_function_tag(*rparams.to_a) + '">' : '>' 
+    select += "<option>-- Seleccionar --</option> \n" + options_for_select(*params.to_a) + "\n</select>"
+  end
+
+  def table_select(object, model, options={}, remote={}, conditions={})
     options = options.stringify_keys
+    prefix = nil
+    model_id = model.name.downcase+'_id'      
     if options['prefix'] then
       model_id = options['prefix']+'_'+model.name.downcase+'_id'
-    else
-      model_id = model.name.downcase+'_id'      
+      prefix = options['prefix']
     end
     
-    remote_options = remote_options.stringify_keys    
-    remote_params = {}
-    if remote_options['div'] and remote_options['model']
-      with_params = "'model=#{remote_options['model']}&div=#{remote_options['div']}&ref_model=#{model_id}&id='+value" 
-      if options['prefix'] then
-        with_params = "'model=#{remote_options['model']}&prefix=#{options['prefix']}&div=#{remote_options['div']}&ref_model=#{model_id}&id='+value" 
-      end
-      remote_params = { 
-        :update => remote_options['div'],
-        :url => {:action => :upgrade_select_dest},  
-        :with => with_params,
-        :loading => "Toggle.display('upgrade_note')", ## Aca falta parametrizar estas mugres y queda listo..
-        :success => "new Effect.BlindUp('upgrade_note', {duration: 0.4}); return false;"
-      }
+    remote = remote.stringify_keys    
+    rparams = []
+    if remote['div'] and remote['model']
+      rparams = [ remote['div'], "model=#{remote['model']}&div=#{remote['div']}&ref_model=#{model_id}&id='+value",  prefix]
     end
     
     conditions = conditions.stringify_keys
     if (options['id'] != nil) then
-      params = [ model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, options['id'] ]
-      if conditions['ref_model'] and conditions['id'] then
-        params = [ model.find(:all, :order => 'name ASC', :conditions => [ conditions['ref_model'] + ' = ?', conditions['id'] ]).collect {|p| [ p.name, p.id ]}, options['id'] ]
-      end
-      
-      select = "<select name=\"#{object}[#{model_id}]\" " 
-      select += remote_params.length > 0 ? 'onchange="' + remote_function(remote_params) + '">' : '>' 
-      select += "<option>-- Seleccionar --</option> \n" + options_for_select(*params.to_a) + "\n</select>"
+      select_selected(object, model, model_id, options['id'], conditions['ref_model'], conditions['id'], rparams)
     else
-      params = [ object, model_id,  model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'} ]
-      if conditions['ref_model'] and conditions['id'] then
-        params = [ object, model_id, model.find(:all, :order => 'name ASC', :conditions => [ conditions['ref_model'] + ' = ?', conditions['id'] ]).collect {|p| [ p.name, p.id ]}, {:prompt => '-- Seleccionar --'} ]
-      end
-      
-      params.push({:onchange => remote_function(remote_params)}) if remote_params.length > 0
-      select(*params.to_a)
+      select_simple(object, model, model_id, conditions['ref_model'], conditions['id'], rparams)
     end       
   end
   
