@@ -1,4 +1,6 @@
+require 'salva_helper'
 module NavigatorHelper
+  include SalvaHelper
 
   def navbar_list
     tree = @session[:navtree]
@@ -6,7 +8,7 @@ module NavigatorHelper
     path = tree.path
     counter = 0 
     path.each { |item|
-      list << link_to(item, {:controller => 'navigator', :depth => counter})
+      list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
       counter += 1
     }
     list.join('|')    
@@ -19,9 +21,9 @@ module NavigatorHelper
     @list = []
     children.each { |child|
       if child.is_leaf?
-        @list << link_to(child.data, {:controller => child.data })
+        @list << link_to(get_label(child.data), {:controller => child.data })
       else
-        @list << link_to(child.data, {:controller => 'navigator', :item => counter })
+        @list << link_to(get_label(child.data), {:controller => 'navigator', :item => counter })
       end
       counter += 1
     }    

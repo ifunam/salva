@@ -34,19 +34,19 @@ volume_id: Volumén
 orig_language_id: Idioma original
 trans_language_id: Traducción
 numcites: Número de citas
-code: Codigo
+code: Código
 name: Nombre
 profile: Perfil
-general: Datos Generales
+general: Datos generales
 personal: Datos personales
-address: Domicilios
-personalid: Identidad
-user_citizen: Nacionalidad
+address: Domicilio(s)
+user_personalids: Identidad
+user_citizens: Nacionalidad
 schooling: Escolaridad
-user_jobposition: Experiencia laboral
-user_stimulus: Estimulos
+user_jobpositions: Experiencia laboral
+user_stimulus: Estímulos
 user_grants: Becas
-cientific_and_tech_production: Produccion cientifica y tecnologica
+science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 books: Libros
 

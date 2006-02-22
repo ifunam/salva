@@ -16,11 +16,10 @@ Usuario: <span class="user"><%= logged_user %></span>|
 <a href="<%= sendbug_link %>"> Informe de errores</a> 
 </div>
 <div id="site">
-<a href="<%= get_cfg('institution_url') %>" target="_new"> <%= get_cfg('institution_name') %></a>
+<a href="<%= get_cfg('institution_url') %>" target="_new"> <%= get_cfg('institution') %></a>
 </div>
 <div id="title">
-<img src="/images/<%= title_icon %>" border="0" align="middle">
-<%= title %>
+Imagen y título usando el tree...
 </div>
 <div class="box">
   <p style="color: green"><%= flash[:notice] %></p> 
