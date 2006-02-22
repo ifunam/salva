@@ -22,7 +22,7 @@ class UserController < ApplicationController
                              @params[:user][:passwd])
     if current_user
       flash[:notice] = "Wey, haz iniciado una sesión en el pinche SALVA!"
-      redirect_back_or_default :action => 'success'
+      redirect_back_or_default :controller => 'navigator'
     else
       flash[:notice] = "Wey, el login o el password es incorrecto!"
     end
