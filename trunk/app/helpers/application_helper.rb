@@ -5,11 +5,6 @@ module ApplicationHelper
     "#{@controller.controller_class_name} : #{@controller.action_name}"
   end  
 
-  #############################
-  # inside Body Page          #
-  #############################
-  # TopBar
-  # User
   def help_link
     "/doc/help/#{@controller.controller_class_name}/#{@controller.action_name}.html"
   end  
@@ -21,7 +16,7 @@ module ApplicationHelper
   def sendbug_link
     '/sendbug/'
   end
-
+  
   def action_link(opts={}, html_opts ={})
     image ='/images/invisible_16x16.png'
     onmouseover = "return overlib('#{opts[:alt]}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, SNAPX, 2, SNAPY, 2)"
@@ -44,8 +39,8 @@ module ApplicationHelper
     action_link({:action => 'purge', :id => options[:id], :alt => 'Borrar'}, {:question => options[:question]})
   end
   
-  def check_box(id,checked=0,prefix='item')
-    check_box_tag("#{prefix}[#{id}][checked]", checked, options = {:id => "#{prefix}_checked"} ) 
+  def check_box(object, id, checked=false, prefix='item_id')
+    check_box_tag("#{object}[#{prefix}][]", id, checked = false, options = {:id => prefix}) 
   end
   
   def month_select(object, options={})  
@@ -141,7 +136,6 @@ module ApplicationHelper
     ckbox_group
   end
   
-  
   def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
     options = options.stringify_keys
     if ( options['prefix'] == nil ) then
@@ -162,5 +156,5 @@ module ApplicationHelper
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
-
+  
 end 

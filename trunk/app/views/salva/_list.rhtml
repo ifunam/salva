@@ -2,14 +2,14 @@
 <table class="list">
   <tr>
     <th>*</th>
-    <th><%= @header %></th>
-    <th>Opciones</th>
+    <th><%= header %></th>
+    <th>Acciones</th>
   </tr>
-<% @rowcolor = 1 %>  
-<% for item in @list %>
-  <tr class="<%= @rowcolor == 1 ? 'odd' : 'even' %>" >
+<% rowcolor = 1 %>  
+<% for item in list %>
+  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
   <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
-    <td><%= check_box(item['id']) %> </td>
+    <td><%= check_box('edit', item['id']) %> </td>
     <td><%=item['cell_content']%></td>
     <td class="link"><%= show_link({:id => item['id']}) %> <%= edit_link({:id => item['id']}) %> <%= purge_link({:id => item['id'], :question => 'Desea borrar este elemento?'}) %></td>
   </tr>
@@ -17,6 +17,7 @@
 </table>
 <%= submit_tag "Borrar elementos seleccionados" %>
 <% if @pages %>
-Página de resultados: <%= pagination_links(@pages) %> <br/>
+<br/>
+Resultados: <%= pagination_links(@pages) %> <br/>
 <% end %>
 <%= end_form_tag %>

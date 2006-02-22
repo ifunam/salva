@@ -2,12 +2,10 @@ module TableHelper
   
   def table_list(collection, options = {} )
     options = options.stringify_keys
-    
-    options['partial'] = '/salva/list' if options['partial'] == nil
-    @header = options['header']
+    header = options['header']
     columns = options['columns']
     
-    @list = []
+    list = []
     collection.each { |item|
       cell = []
       if columns.is_a?Array then
@@ -25,14 +23,13 @@ module TableHelper
         item.attributes().each { |key, value| cell << value if key != 'id' and value != nil } 
       end
       cell_content = cell.join(', ').to_s+'.'
-      @list.push({'id' => item.id, 'cell_content' => cell_content })
+      list.push({'id' => item.id, 'cell_content' => cell_content })
     }
-    render(:partial => options['partial'])
+    render(:partial => '/salva/list', :locals => { :header => header, :list => list })
   end
   
   def table_show(collection, options = {})
     options = options.stringify_keys
-    options['partial'] = '/salva/show' if options['partial'] == nil
     belongs_to = options['belongs_to']
     
     default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
@@ -59,9 +56,8 @@ module TableHelper
         end
       end
     }
-    @body = body 
     
-    render(:partial => options['partial'])
+    render(:partial => '/salva/show', :locals => { :body => body})
   end
   
   def is_id?(name)
