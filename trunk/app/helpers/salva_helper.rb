@@ -73,4 +73,17 @@ module SalvaHelper
    titles[@controller.controller_class_name] ? titles[@controller.controller_class_name] : @controller.controller_class_name
   end
 
+  
+  def navbar_list
+    tree = @session[:navtree]
+    list = []
+    path = tree.path
+    counter = 0 
+    path.each { |item|
+      list << link_to(item, {:controller => 'navigator', :depth => counter})
+      counter += 1
+    }
+    list.join('|')    
+  end
+
 end
