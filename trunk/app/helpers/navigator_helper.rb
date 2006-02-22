@@ -27,5 +27,5 @@ module NavigatorHelper
     }    
     render(:partial => '/salva/navtab')
   end
-    
+
 end  

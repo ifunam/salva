@@ -1,28 +1,35 @@
+require 'yaml'
 class NavigatorController < ApplicationController
-   
-   def get_tree
-      if @session[:navtree] then
-	 @session[:navtree]
-      else
-	 tree = [ 'Datos personale', [ 'address' ], 'Publicaciones', [ 'book', 'article', 'chapterinbook' ]]
-        navtree = Tree.new(tree)
-        navtree.data = 'Home'
-        @session[:navtree] = navtree
-        navtree
-      end
-   end
-   
-   def index
-     navtab
-   end
-   
-   def navbar
- #     @tree = get_tree
-   end
 
+  def tree_loader
+    ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
+    tree = YAML::parse( File.open(ymlfile) )
+    tree.transform    
+  end
+  
+  def get_tree
+    if @session[:navtree] then
+      @session[:navtree]
+    else
+      tree = tree_loader
+      navtree = Tree.new(tree)
+      navtree.data = 'home'
+      @session[:navtree] = navtree
+      navtree
+      end
+  end
+  
+  def index
+    navtab
+  end
+  
+  def navbar
+    #     @tree = get_tree
+  end
+  
    def navtab
-      item = @params[:item] if @params[:item]
-      tree = get_tree
+     item = @params[:item] if @params[:item]
+     tree = get_tree
       if item !=nil and tree.children[item.to_i] then
 	 tree = tree.children[item.to_i]
 	 @session[:navtree] = tree

@@ -10,50 +10,9 @@ module SalvaHelper
   end
   
   def salva_column(name)
-    column = { 
-      # users
-      'login' => 'Usuario',
-      'passwd' => 'Contraseña',
-      'userstatus_id' => 'Estado del usuario',
-      'email' => 'Correo electrónico',
-      'pkcs7' => 'Certificado para firma digital',
-      # personals
-      'firstname' => 'Nombre',
-      'lastname1' => 'Apellido paterno',
-      'lastname2' => 'Apellido materno',
-      'sex' => 'Sexo',
-      'dateofbirth' => 'Fecha',
-      'birth_country_id' => 'País',
-      'birth_city_id' => 'Ciudad',
-      'birth_state_id' => 'Estado',
-      'maritalstatus_id' => 'Estado civil',
-      'photo' => 'Fotografía',
-      'other' => 'Información adicional',
-      # addresses
-      'addresstype_id' => 'Tipo de dirección',
-      'postaddress' => 'Dirección',
-      'country_id' => 'País',
-      'state_id' => 'Estado',
-      'city' => 'Ciudad',
-      'zipcode' => 'Código postal',
-      'phone' => 'Teléfono(s)',
-      'fax' => 'Fax',
-      'movil' => 'Celular o radio',
-      'is_postaddress' => 'Dirección postal',
-      #books
-      'title' => 'Título',
-      'authors' => 'Autor(es)',
-      'coauthors' => 'Coautor(es)',
-      'booklink' => 'Página web',
-      'country_id' => 'País',
-      'booktype_id' => 'Tipo de libro',
-      'volume_id' => 'Volumén',
-      'orig_language_id' => 'Idioma original',
-      'trans_language_id' => 'Traducción',
-      'numcites' => 'Número de citas',
-      
-    }
-    
+    ymlfile =  File.join(RAILS_ROOT, 'po', 'salva.yml')
+    salva = YAML::parse( File.open(ymlfile) )
+    column = salva.transform    
     column[name] ? column[name] : name
   end
 

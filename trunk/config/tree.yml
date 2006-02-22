@@ -1,0 +1,14 @@
+---
+- profile
+- - general
+  - - personal
+    - address
+    - user_personalids
+    - user_citizens
+  - schooling
+  - user_jobposition
+  - user_stimulus
+  - user_grants
+- cientific_and_tech_production
+- - publications
+  - - book
