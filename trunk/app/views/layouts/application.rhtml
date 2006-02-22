@@ -22,6 +22,7 @@ Usuario: <span class="user"><%= logged_user %></span>|
 <img src="/images/<%= title_icon %>" border="0" align="middle">
 <%= title %>
 </div>
+<%= render :partial => '/salva/navbar' %>
 <div class="box">
   <p style="color: green"><%= flash[:notice] %></p> 
 <%= @content_for_layout %>
