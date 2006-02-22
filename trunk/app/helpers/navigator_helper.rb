@@ -3,11 +3,13 @@ module NavigatorHelper
   def navbar_list
     tree = @session[:navtree]
     list = []
-    tree.path.each { |item|
-      list << link_to(item, {:controller => 'navigator'})
+    path = tree.path
+    counter = 0 
+    path.each { |item|
+      list << link_to(item, {:controller => 'navigator', :depth => counter})
+      counter += 1
     }
-    @navbar = list.join('|')
-    render(:partial => '/salva/navbar')
+    list.join('|')    
   end
 
   def navtab_list
