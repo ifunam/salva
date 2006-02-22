@@ -9,11 +9,11 @@ module SalvaHelper
     cfg[name] ? cfg[name] : name
   end
   
-  def salva_column(name)
+  def get_label(name)
     ymlfile =  File.join(RAILS_ROOT, 'po', 'salva.yml')
     salva = YAML::parse( File.open(ymlfile) )
     column = salva.transform    
-    column[name] ? column[name] : name
+    column[name] ? column[name] : "#{name} no esta definido en #{ymlfile}"
   end
 
   # Title icon

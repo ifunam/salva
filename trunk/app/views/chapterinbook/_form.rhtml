@@ -3,17 +3,17 @@
 <!--[form:chapterinbook]-->
 
 <div class="row"> 
-<label for="chapter" class="label"><%= salva_column('chapter') %></label> 
+<label for="chapter" class="label"><%= get_label('chapter') %></label> 
 <%= text_field 'edit', 'chapter' %>
 </div>
 
 <div class="row"> 
-<label for="numcites" class="label"><%= salva_column('numcites') %></label> 
+<label for="numcites" class="label"><%= get_label('numcites') %></label> 
 <%= text_field 'edit', 'numcites' %>
 </div>
 
 <div class="row"> 
-<label for="bookedition_id" class="label"><%= salva_column('bookedition_id') %></label> 
+<label for="bookedition_id" class="label"><%= get_label('bookedition_id') %></label> 
 <div id="Bookedition">
 <%= table_select('edit', Bookedition) %> 
 <input name='Bookedition_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Bookedition', 'name', '¿Desea agregar este elemento?' ) %>">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="row"> 
-<label for="pages" class="label"><%= salva_column('pages') %></label> 
+<label for="pages" class="label"><%= get_label('pages') %></label> 
 <%= text_field 'edit', 'pages' %>
 </div>
 

@@ -13,7 +13,7 @@ class ScaffoldingSandbox
     @attrs.each { | column, attr | 
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
-      html << "<label for=\"#{column}\" class=\"label\"><%= salva_column('#{column}') %></label> \n"
+      html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
       if column =~ /_id$/ then
         model_select = column.sub(/_id/,'') 
         if model_select =~ /^\w+_/ then

@@ -1,22 +1,22 @@
 <%= error_messages_for 'edit' %>
 <!--[form:edit]-->
 <div class="row"> 
-<label for="firstname" class="label"><%= salva_column('firstname') %></label> 
+<label for="firstname" class="label"><%= get_label('firstname') %></label> 
 <%= text_field 'edit', 'firstname' %>
 </div>
 
 <div class="row"> 
-<label for="lastname1" class="label"><%= salva_column('lastname1') %></label> 
+<label for="lastname1" class="label"><%= get_label('lastname1') %></label> 
 <%= text_field 'edit', 'lastname1' %>
 </div>
 
 <div class="row"> 
-<label for="lastname2" class="label"><%= salva_column('lastname2') %></label> 
+<label for="lastname2" class="label"><%= get_label('lastname2') %></label> 
 <%= text_field 'edit', 'lastname2' %>
 </div>
 
 <div class="row"> 
-<label for="sex" class="label"><%= salva_column('sex') %></label> 
+<label for="sex" class="label"><%= get_label('sex') %></label> 
 
 <select id="edit_sex" name="edit[sex]">  
  	<option value="true">Femenino</option>  
@@ -25,7 +25,7 @@
 </div>
 
 <div class="row"> 
-<label for="maritalstatus_id" class="label"><%= salva_column('maritalstatus_id') %></label> 
+<label for="maritalstatus_id" class="label"><%= get_label('maritalstatus_id') %></label> 
 <%= table_select('edit', Maritalstatus) %> 
 </div>
 <hr/>
@@ -33,18 +33,18 @@
 <p><b>Fecha y lugar de nacimiento</b></p>
 </div>
 <div class="row"> 
-<label for="dateofbirth" class="label"><%= salva_column('dateofbirth')%></label> 
+<label for="dateofbirth" class="label"><%= get_label('dateofbirth')%></label> 
 <%= date_for_select('edit', 'dateofbirth') %>
 
 </div>
 <br/>
 <div class="row"> 
-<label for="birth_country_id" class="label"><%= salva_column('birth_country_id') %></label> 
+<label for="birth_country_id" class="label"><%= get_label('birth_country_id') %></label> 
 <%= table_select('edit', Country, {:prefix => 'birth'}, {:div=>'birth_state_id', :model => 'State'}) %> 
 </div>
 <br/>
 <div class="row"> 
-<label for="birth_state_id" class="label"><%= salva_column('birth_state_id') %></label> 
+<label for="birth_state_id" class="label"><%= get_label('birth_state_id') %></label> 
 <div id="birth_state_id_note" style="display: none">Actualizando la lista de estados...</div>
 <div id="birth_state_id">
 <%= table_select('edit', State, {:prefix => 'birth'}, {:div=>'birth_city_id', :model => 'City'}) %>
@@ -53,7 +53,7 @@
 </div>
 <br/>
 <div class="row"> 
-<label for="birth_city_id" class="label"><%= salva_column('birth_city_id') %></label> 
+<label for="birth_city_id" class="label"><%= get_label('birth_city_id') %></label> 
 <div id="birth_city_id_note" style="display: none">Actualizando la lista de ciudades...</div>
 <div id="birth_city_id">
 <%= table_select('edit', City, {:prefix => 'birth'}) %>
@@ -62,7 +62,7 @@
 </div>
 <hr/>
 <div class="row"> 
-<label for="photo" class="label"><%= salva_column('photo') %></label> 
+<label for="photo" class="label"><%= get_label('photo') %></label> 
 <%= file_field 'edit', 'photo' %>
 <br/>
 </div>
@@ -71,7 +71,7 @@
 <!-- </div> -->
 <!--  <div id="message"><%= @message %></div>  -->
 <div class="row"> 
-<label for="other" class="label"><%= salva_column('other') %></label> 
+<label for="other" class="label"><%= get_label('other') %></label> 
 <%= text_area 'edit', 'other', 'rows' => 4  %>
 </div>
 
