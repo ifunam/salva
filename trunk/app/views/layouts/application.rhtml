@@ -21,6 +21,8 @@ Usuario: <span class="user"><%= logged_user %></span>|
 <div id="title">
 Imagen y título usando el tree...
 </div>
+<%= render :partial => '/salva/navbar' %>
+
 <div class="box">
   <p style="color: green"><%= flash[:notice] %></p> 
 <%= @content_for_layout %>
