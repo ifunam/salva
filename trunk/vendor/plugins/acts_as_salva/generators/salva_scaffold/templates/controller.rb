@@ -4,7 +4,7 @@ class <%= controller_class_name %>Controller < SalvaController
     @model = <%= class_name %>
     @create_msg = 'El <%= class_name %> ha sido agregado'
     @update_msg = 'El <%= class_name %> ha sido actualizado'
-    @purge_msg = 'El <%= class_name %> se ha ido borrado'
+    @purge_msg = 'El <%= class_name %> se ha borrado'
     @per_pages = 10
     @order_by = 'id'
   end
