@@ -1,9 +1,9 @@
-.bgcolor {	
-  background: url(/images/bg_blue_solid.png) repeat-y top left;
+.bgcolor
+{
+  background: url(/images/bg_blue_gradient.png) no-repeat;
   padding-top: 10px;
   padding-left: 10px;
-  padding-bottom: 10px;
-  height: 380px;
+  height: 800px;
 }
 
 .footer {	

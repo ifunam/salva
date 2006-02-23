@@ -1,9 +1,9 @@
 /* body */
 body {
-  background-color: #b5b9ca;
+  background-color: #0866B7;
   margin-top: 20px;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: 20%;
+  margin-right: 20%;
   border: 0px;
   padding: 0px;
 }
@@ -13,19 +13,18 @@ body {
   background: url(/images/header.png) top left no-repeat;
   text-align: center;
   padding-top: 12px;
-  margin-bottom: 12px;
-  font: 15pt "roman", serif;
+  margin-bottom: 6px;
+  font: 13pt "arial";
   border: 0px;
   width: 697px;
   height: 69px;
   font-weight: bold;
-  color: #B5CFFF;
   white-space: nowrap;
 }
 
 #head a {
   text-decoration: none;
-  color: #B5CFFF;
+  color: #CDCD9E;
 }
 
 #head a:visited {
@@ -33,7 +32,7 @@ body {
 }
 
 #head a:hover {
-  color: #33CFFF;
+  color: #F1F1CA;
 }
 
 
