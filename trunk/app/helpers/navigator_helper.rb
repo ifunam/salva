@@ -7,7 +7,7 @@ module NavigatorHelper
     list = []
     path = tree.path
     counter = 0 
-    path.each { |item|
+    path.reverse.each { |item|
       list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
       counter += 1
     }
@@ -43,6 +43,30 @@ module NavigatorHelper
 
   def link_tag_navtab(label,counter)
     link_to(get_label(label), { :controller => 'navigator', :item => counter})
+  end
+
+  def title
+    controller = @controller.class.name.sub(/Controller/,'').downcase
+    if controller == 'navigator' then
+      tree = @session[:navtree]
+      img_tag(tree.data) + get_label(tree.data)
+    else
+      img_tag(controller) + get_label(controller)
+    end
+  end
+
+  def navbar_icons
+    tree = @session[:navtree]
+    path = tree.path
+    list = []
+    counter = 0
+    size = 12
+    path.reverse.each { |item|
+      list << imagemagick_tag(item+'.png', "resize(#{size}x#{size})+border(1,1,000)+rotate(-10)")
+      counter += 1
+      size += 4
+    }
+    list
   end
 
 end  
