@@ -11,7 +11,7 @@ module NavigatorHelper
       list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
       counter += 1
     }
-    list.join('|')    
+    list.join(' | ')    
   end
 
   def navtab_list

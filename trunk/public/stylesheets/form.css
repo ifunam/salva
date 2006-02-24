@@ -1,14 +1,90 @@
-#topbar {
-	background: #fff url(/images/forms_head_bg.png) top left repeat-x;
-	width: 600px;
-	height: 30;
-	text-align: right;
-        padding-right: 10px;
-        padding-top: 2px;
-	color: #ffffff;
-	font:  13px Arial,  sans-serif;	
+/* body */
+body {
+  background-color: #0866B7;
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  border: 0px;
+  padding: 0px;
 }
 
+.rbroundbox {
+  background-color: #ffffff; 
+}
+.rbtop div { 
+  background: url("/images/top_left.png") no-repeat top left; 
+}
+
+.rbtop { 
+  background: url("/images/top_right.png") no-repeat top right; 
+}
+
+.rbbot div { 
+  background: url("/images/bottom_left.png") no-repeat bottom left; 
+}
+
+.rbbot { 
+  background: url("/images/bottom_right.png") no-repeat bottom right; 
+}
+
+.rbtop div, .rbtop, .rbbot div, .rbbot {
+  width: 100%;
+  height: 7px;
+}
+
+.rbcontent {
+  margin: 0 7px; 
+}
+
+.rbroundbox { 
+  width: 100%; margin: 1em auto; 
+}
+
+.topbar {
+	background: #4381CE;
+	width: 100%;
+	height: 50;
+	text-align: left;
+	color: #CCCCff;
+	font: 20px Arial,  sans-serif;	
+	font-weight: bold; 
+	padding-top: 5px;
+}
+
+#navbar {
+	background: #4381CE;
+	width: 99%;
+	height: 16;
+	text-align: left;
+	padding: 1px;
+	color: #FFFFFF;
+	font: 14px Arial,  sans-serif;	
+	font-weight: bold; 
+	padding: 2px;
+}
+
+#navbar a {
+	color: #FFFFFF;
+	font: 14px Arial,  sans-serif;	
+}
+#navbar a:visited {
+	color: #FFFFFF;
+}
+
+#navbar a:hover {
+	color: yellow;
+}
+
+#topbar {
+	background: #4381CE;
+	width: 100%;
+	height: 50;
+	text-align: left;
+	color: #CCCCff;
+	font: 20px Arial,  sans-serif;	
+	font-weight: bold; 
+	padding-top: 5px;
+}
 #topbar .user {
 	color: #CCFF99;
 	padding-right: 20px;
@@ -54,21 +130,15 @@
 }
 
 #title {
-	background: #fff url(/images/formshead.png) no-repeat;
-	width: 500px;
-	height: 30px;
-	margin-top: 2px;
-	margin-left: 30px;
-        padding-left: 20px;
-        padding-right: 20px;
-	padding-top: 26px;
-	padding-bottom: 4px;
+	width: 100%;
+	height: 50px;
+	background: #FFFFF;
 	color: #336699;
+	margin-top: 10px;
 	vertical-align: bottom;
 	font: 15px Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	text-align: left;
-	border-bottom: 2px solid silver;
 }
 
 #headerror {
@@ -91,10 +161,10 @@
 
 .box {
 	background: #fff url(/images/login_body_bg.jpg) top;
-	width: 550px;
-	min-height: 200px;
-	margin-top: 15px;
-	margin-left: 30px;
+	width: 90%;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 5px;
         padding-left: 10px;
         padding-right: 10px;
 	border: 1px solid #336699;

@@ -2,19 +2,10 @@
  * =GENERAL/MASTER CONTAINERS
  */
 
- body {
-  margin: 0;
-  background: #fff url(../images/admin/hdr-tile.gif) repeat-x;
-  font: 1em/1.6em Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #000;
-  }
-
-
  #container {
   text-align: left;
   font-size: 80%;
-  margin: 0 auto;
+  //margin: 0 auto;
  }
 
  #header {
