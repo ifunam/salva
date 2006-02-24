@@ -6,7 +6,7 @@ class PersonalController < ApplicationController
   # http://vantulder.net/rails/magick/
   # http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
   # 
-  # imagemagick_for RAILS_ROOT + "/public/images"
+  imagemagick_for RAILS_ROOT + "/public/images"
   # upload_status_for :create, :update
   
   def index

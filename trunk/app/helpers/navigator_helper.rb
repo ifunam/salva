@@ -58,15 +58,17 @@ module NavigatorHelper
   def navbar_icons
     tree = @session[:navtree]
     path = tree.path
-    list = []
-    counter = 0
-    size = 12
-    path.reverse.each { |item|
-      list << imagemagick_tag(item+'.png', "resize(#{size}x#{size})+border(1,1,000)+rotate(-10)")
-      counter += 1
+    controller = @controller.class.name.sub(/Controller/,'').downcase
+    if controller == 'navigator' then
+      path.delete_at(0)
+    end
+    images = ''
+    size = 20
+    path.reverse.each {  |item|
+      images += imagemagick_tag(item+'.png', "resize(#{size}x#{size})") 
       size += 4
     }
-    list
+    images
   end
 
 end  
