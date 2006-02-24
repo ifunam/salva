@@ -63,7 +63,8 @@ module NavigatorHelper
       path.delete_at(0)
     end
     images = ''
-    size = 20
+    size = 28
+    size = size - ((path.length - 1) * 4) if path.length > 0
     path.reverse.each {  |image|
       images += image_tag(image+".png", :size => "#{size}x#{size}", :border => 0, :alt => '*')
       size += 4
