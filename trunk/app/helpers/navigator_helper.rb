@@ -6,10 +6,10 @@ module NavigatorHelper
     tree = @session[:navtree]
     list = []
     path = tree.path
-    counter = 0 
+    counter = path.length - 1
     path.reverse.each { |item|
       list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
-      counter += 1
+      counter -= 1
     }
     list.join(' | ')    
   end
@@ -25,7 +25,7 @@ module NavigatorHelper
           link_tag(child.data)
 
       else
-        @list << link_to(img_tag(child.data), {:controller => 'navigator' }) + 
+        @list << link_to(img_tag(child.data), {:controller => 'navigator', :item => counter }) + 
           link_tag_navtab(child.data, counter)
       end
       counter += 1
