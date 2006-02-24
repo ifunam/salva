@@ -1,7 +1,5 @@
 require 'yaml'
 class NavigatorController < ApplicationController
-  imagemagick_for RAILS_ROOT + "/public/images"
-
   def tree_loader
     ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
     tree = YAML::parse( File.open(ymlfile) )

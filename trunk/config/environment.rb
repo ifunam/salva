@@ -65,4 +65,4 @@ end
 # http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
 #
 #require 'action_controller/cgi_ext/upload_progress.rb'
-require_gem 'actionpack-imagemagick'
+#require_gem 'actionpack-imagemagick'

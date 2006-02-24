@@ -64,8 +64,8 @@ module NavigatorHelper
     end
     images = ''
     size = 20
-    path.reverse.each {  |item|
-      images += imagemagick_tag(item+'.png', "resize(#{size}x#{size})") 
+    path.reverse.each {  |image|
+      images += image_tag(image+".png", :size => "#{size}x#{size}", :border => 0, :alt => '*')
       size += 4
     }
     images
