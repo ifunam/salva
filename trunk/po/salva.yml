@@ -25,17 +25,18 @@ fax: Fax
 movil: Celular o radio
 is_postaddress: Dirección postal
 title: Título
-authors: Autor(es)
-coauthors: Coautor(es)
+author: Autor(es)
+coauthor: Coautor(es)
 booklink: Página web
 country_id: País
 booktype_id: Tipo de libro
-volume_id: Volumén
+volume_id: Volúmen
 orig_language_id: Idioma original
 trans_language_id: Traducción
 numcites: Número de citas
 code: Código
 name: Nombre
+moduser_id: Identificador de usuario
 home: Inicio
 navigator: Inicio
 profile: Perfil

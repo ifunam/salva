@@ -1,5 +1,5 @@
 INSERT INTO editionstatuses (name) VALUES ('Publicado');
 INSERT INTO editionstatuses (name) VALUES ('En prensa');
-INSERT INTO editionstatuses (name) VALUES ('Aceptado para publicaciÃ³n');
-INSERT INTO editionstatuses (name) VALUES ('En ediciÃ³n');
-INSERT INTO editionstatuses (name) VALUES ('En dictÃ¡men o evaluaciÃ³n');
+INSERT INTO editionstatuses (name) VALUES ('Aceptado para publicación');
+INSERT INTO editionstatuses (name) VALUES ('En edición');
+INSERT INTO editionstatuses (name) VALUES ('En dictamén o evaluación');
