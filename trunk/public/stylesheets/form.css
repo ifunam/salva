@@ -8,6 +8,21 @@ body {
   padding: 0px;
 }
 
+#site a {
+        color: #CDCD9E;
+	text-decoration: none;
+	font-weight: bold;
+	font: 18px Arial;
+}
+
+#site a:visited {
+        color: #CDCD9E;
+}
+
+#site a:hover {
+	color: #EAF01C;
+}
+
 .rbroundbox {
   background-color: #ffffff; 
 }
@@ -37,7 +52,8 @@ body {
 }
 
 .rbroundbox { 
-  width: 100%; margin: 1em auto; 
+  width: 100%; 
+  //margin: 1em auto; 
 }
 
 .topbar {
@@ -49,6 +65,63 @@ body {
 	font: 17px Arial,  sans-serif;	
 	font-weight: bold; 
 	padding-top: 5px;
+}
+
+.topbar img {
+	vertical-align: middle;
+	padding-right: 45px;
+	border: 0px;
+}
+
+.toplinks {
+	width: 100%;
+	height: 16px;
+	background: #FFFFF;
+	color: #0F4180;
+	margin-top: 3px;
+	vertical-align: bottom;
+	font: 14px Arial;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.toplinks a {
+	color: #0F4180;
+	text-decoration: underline;
+	font: 14px Arial;
+}
+
+.toplinks a:visited {
+	color: #0F4180;
+}
+
+.toplinks a:hover {
+	color: blue;
+}
+	
+.toplinks .logged_user {
+	color: green;
+	font-weight: bold;
+}
+
+
+
+.title {
+	width: 100%;
+	height: 50px;
+	background: #FFFFF;
+	color: #336699;
+	margin-top: 0px;
+	vertical-align: bottom;
+	font: 18px Arial;
+	font-weight: bold;
+	text-align: left;
+}
+
+.title img {
+	vertical-align: bottom;
+	padding-right: 5px;
+	border: 0px;
 }
 
 #navbar {
@@ -99,38 +172,16 @@ body {
 
 #site {
 	width: 600px;
-	text-align: center;
-        padding-right: 10px;
-        padding-top: 2px;
-        padding-bottom: 0px;
-	color: transparent;
-	font: 16px Arial,  sans-serif;	
-}
-
-#site a {
-	color: #336699;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#site a:hover {
-	color: blue;
-	font-weight: bold;
-	background: transparent;
-	text-decoration: none;
-}
-
-#title {
-	width: 100%;
-	height: 50px;
-	background: #FFFFF;
-	color: #336699;
-	margin-top: 10px;
-	vertical-align: bottom;
-	font: 15px Arial, Helvetica, sans-serif;
-	font-weight: bold;
 	text-align: left;
+        padding-bottom: 5px;
+	color: #EAF01C;
+	font-weight: bold;
+	font: 16px Arial, sans-serif;	
 }
+
+
+
+
 
 #headerror {
 	background:  #3366ff;

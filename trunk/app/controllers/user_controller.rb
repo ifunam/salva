@@ -21,20 +21,20 @@ class UserController < ApplicationController
     self.current_user = auth(@params[:user][:login],
                              @params[:user][:passwd])
     if current_user
-      flash[:notice] = "Wey, haz iniciado una sesión en el pinche SALVA!"
+      flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
-      flash[:notice] = "Wey, el login o el password es incorrecto!"
+      flash[:notice] = "El login o el password es incorrecto!"
     end
   end
   
   def login_by_token
     self.current_user = User.find_by_id_and_token(@params[:id], @params[:token])
     if current_user
-      flash[:notice] = "Wey, haz iniciado una sesión en el pinche SALVA!"
-      render :action => 'success'
+      flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
+      redirect_back_or_default :controller => 'navigator'
     else
-      flash[:notice] = "Wey, el pase proporcionado no sirve!"
+      flash[:notice] = "El pase proporcionado es inválido!"
       render :action => 'login'
     end
   end

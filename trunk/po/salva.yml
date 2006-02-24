@@ -39,7 +39,7 @@ name: Nombre
 home: Inicio
 navigator: Inicio
 profile: Perfil
-general: Datos generales
+general: Información general
 personal: Datos personales
 address: Domicilio(s)
 user_personalids: Identidad
@@ -50,6 +50,6 @@ user_stimulus: Estímulos
 user_grants: Becas
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
-books: Libros
+book: Libro
 
 

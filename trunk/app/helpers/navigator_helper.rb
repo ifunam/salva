@@ -34,7 +34,7 @@ module NavigatorHelper
   end
 
   def img_tag(image)
-    image_tag(image+".png", :size => '32x32', :border => 0, :alt => '*')
+    image_tag(image+"_on.png", :size => '32x32', :border => 0, :alt => '*', :valign => 'middle')
   end
 
   def link_tag(label)
@@ -66,7 +66,7 @@ module NavigatorHelper
     size = 28
     size = size - ((path.length - 1) * 4) if path.length > 0
     path.reverse.each {  |image|
-      images += image_tag(image+".png", :size => "#{size}x#{size}", :border => 0, :alt => '*')
+      images += image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, :alt => '*')
       size += 4
     }
     images

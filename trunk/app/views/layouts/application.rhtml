@@ -12,17 +12,22 @@
 <div id="site">
 <a href="<%= get_cfg('institution_url') %>" target="_new"> <%= get_cfg('institution') %></a>
 </div>
-
 <div class="rbroundbox">
  <div class="rbtop"><div></div></div>
   <div class="rbcontent">
    <div class="topbar">
-	<img src="/images/logo_salva.png" border="0" align="middle"> 
+	<img src="/images/logo_salva.png" border="0" > 
 	 PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR
    </div>
-   <div id="title">
+   <div class="toplinks"> 
+   <%= get_label('login') %>: <span class="logged_user"><%= logged_user%> </span> |
+   <%= link_to('Ayuda', { :controller => 'help' })%> | 
+   <%= link_to('Salir', { :controller => 'user', :action => 'logout'}) %> |
+   <%= link_to('Soporte técnico', { :controller => 'techsupport', :action => 'request'}) %> 
+   </div>
+   <div class="title">
    <%= navbar_icons %> <%= title %>
-    </div>
+   </div>
    <div id="navbar">
      <%= render :partial => '/salva/navbar' %>
    </div>
