@@ -69,7 +69,7 @@ body {
 
 .topbar img {
 	vertical-align: middle;
-	padding-right: 45px;
+	padding-right: 25px;
 	border: 0px;
 }
 
@@ -601,4 +601,44 @@ div.progressBar div.background {
     background: url(/images/progress-bar.gif) repeat-x;
     height: 18px;
     width: 0%;
+}
+
+div#nifty{ 
+    margin: 0 10%;
+    background: #9BD1FA
+}
+
+b.rtop, b.rbottom {
+   display:block;
+   background: transparent;
+}
+
+b.rtop b, b.rbottom b{
+   display:block;
+   height: 1px;
+   overflow: hidden; 
+   background: #9BD1FA
+}
+
+b.r1{
+   margin: 0 5px
+}
+
+b.r2{
+   margin: 0 3px
+}
+
+b.r3{
+   margin: 0 2px
+}
+
+b.rtop b.r4, b.rbottom b.r4{
+  margin: 0 1px;height: 2px
+}
+
+.upgrade_note {
+  background: #fad163;
+  border: 2px groove red;
+  padding: 3px;
+  color: black; 
 }
