@@ -3,4 +3,4 @@ development:
    database: salva
    username: salva
    password: 
-
+   encoding: LATIN1
