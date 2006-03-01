@@ -6,6 +6,8 @@
 require 'authenticated_system'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  before_filter :configure_charsets
+  before_filter :configure_datestyle
   before_filter :login_required   
   helper :salva, :table, :user, :navigator
   
@@ -30,6 +32,16 @@ class ApplicationController < ActionController::Base
     end
     @id = @params[:id]
     render(:partial => 'salva/upgrade_options')
+  end
+  
+  def configure_charsets
+    @response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
+  end
+
+  def configure_datestyle
+    suppress(ActiveRecord::StatementInvalid) do
+      ActiveRecord::Base.connection.execute  "SET datestyle TO 'SQL, DMY';"
+    end
   end
   
 end
