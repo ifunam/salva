@@ -96,3 +96,12 @@ CREATE TABLE user_groups (
  );
 COMMENT ON TABLE user_groups IS
  	'Grupos a los que pertenece cada usuario';
+
+CREATE TABLE sessions (
+    id serial NOT NULL,
+    session_id character varying(255),
+    data text,
+    updated_at timestamp without time zone,
+    PRIMARY KEY (id)
+);
+CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
