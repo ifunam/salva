@@ -8,52 +8,30 @@ body {
   padding: 0px;
 }
 
-#site a {
+.site a {
         color: #CDCD9E;
 	text-decoration: none;
 	font-weight: bold;
-	font: 18px Arial;
+	font: 16px Arial, Helvetica, sans-serif;
 }
 
-#site a:visited {
+.site a:visited {
         color: #CDCD9E;
 }
 
-#site a:hover {
+.site a:hover {
 	color: #EAF01C;
 }
 
-.rbroundbox {
-  background-color: #ffffff; 
-}
-.rbtop div { 
-  background: url("/images/top_left.png") no-repeat top left; 
-}
-
-.rbtop { 
-  background: url("/images/top_right.png") no-repeat top right; 
-}
-
-.rbbot div { 
-  background: url("/images/bottom_left.png") no-repeat bottom left; 
-}
-
-.rbbot { 
-  background: url("/images/bottom_right.png") no-repeat bottom right; 
-}
-
-.rbtop div, .rbtop, .rbbot div, .rbbot {
-  width: 100%;
-  height: 7px;
-}
-
-.rbcontent {
-  margin: 0 7px; 
-}
-
-.rbroundbox { 
+.container {
   width: 100%; 
-  //margin: 1em auto; 
+  border: 3px double #93b6e2;
+  background-color: #ffffff;
+}
+
+.container_border {
+  border: 1px solid #578fd3;
+  padding-bottom: 3px;
 }
 
 .topbar {
@@ -61,8 +39,8 @@ body {
 	width: 100%;
 	height: 50;
 	text-align: left;
-	color: #CCCCff;
-	font: 17px Arial,  sans-serif;	
+	color: #C2f9ff;
+	font: 18px Arial, Helvetica, sans-serif;
 	font-weight: bold; 
 	padding-top: 5px;
 }
@@ -80,15 +58,15 @@ body {
 	color: #0F4180;
 	margin-top: 3px;
 	vertical-align: bottom;
-	font: 14px Arial;
+	font: 12px Arial, Helvetica, san-serif;
 	text-align: right;
-	padding-right: 10px;
 }
 
 .toplinks a {
 	color: #0F4180;
 	text-decoration: underline;
-	font: 14px Arial;
+	font: 12px Arial, Helvetica, san-serif;
+	padding-right: 4px;
 }
 
 .toplinks a:visited {
@@ -104,8 +82,6 @@ body {
 	font-weight: bold;
 }
 
-
-
 .title {
 	width: 100%;
 	height: 50px;
@@ -113,7 +89,7 @@ body {
 	color: #336699;
 	margin-top: 0px;
 	vertical-align: bottom;
-	font: 18px Arial;
+	font: 16px Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	text-align: left;
 }
@@ -124,81 +100,27 @@ body {
 	border: 0px;
 }
 
-#navbar {
+.navbar {
 	background: #4381CE;
 	width: 99%;
 	height: 16;
 	text-align: left;
 	padding: 1px;
 	color: #FFFFFF;
-	font: 14px Arial,  sans-serif;	
-	font-weight: bold; 
+	font: 12px Arial, Helvetica, sans-serif;
 	padding: 2px;
 }
 
-#navbar a {
+.navbar a {
 	color: #FFFFFF;
-	font: 14px Arial,  sans-serif;	
+        text-decoration: underline;
 }
-#navbar a:visited {
+.navbar a:visited {
 	color: #FFFFFF;
 }
 
-#navbar a:hover {
+.navbar a:hover {
 	color: yellow;
-}
-
-
-#topbar .user {
-	color: #CCFF99;
-	padding-right: 20px;
-	font-weight: bold;
-	text-decoration: none;
-
-}
-
-#topbar a {
-	color: #ffffff;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#topbar a:hover {
-	color: #FFFFCC;
-	font-weight: bold;
-	background: transparent;
-	text-decoration: none;
-}
-
-#site {
-	width: 600px;
-	text-align: left;
-        padding-bottom: 5px;
-	color: #EAF01C;
-	font-weight: bold;
-	font: 16px Arial, sans-serif;	
-}
-
-
-
-
-
-#headerror {
-	background:  #3366ff;
-	width: 500px;
-	height: 30px;
-	margin-left: 0px;
-	margin-top: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	color: #c60b0b;
-	vertical-align: bottom;
-	font: 20px Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: left;
-	border: 2px solid silver;
 }
 
 .box {
@@ -211,7 +133,7 @@ body {
         padding-right: 10px;
 	border: 1px solid #336699;
 	text-align: justify;
-	font:  12px Arial,  sans-serif;	
+	font:  12px Arial, Helvetica, sans-serif;	
 }
 
 .box .options {
@@ -390,54 +312,6 @@ p {
 	font-weight: bold;
 }
 
-#login .label {
-	float: left;
-	width: 100px;
-	min-height: 25px;
-	text-align: left;
-	margin-right: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-br{
-	clear: left;
-}
-
-#msg {
-	width: 380px;
-	min-height: 20px;
-	margin-left: 30px;
-	border: 1px solid silver;
-	text-align: justify;
-}
-
-#msg #title {
-	background:  #3366ff;
-	width: 360px;
-	height: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	color: #ffffff;
-	vertical-align: bottom;
-	font: 14px Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: left;
-	text-align: center;
-}
-
-#msg #body {
-	background: #ffffcc;
-	width: 360px;
-	min-height: 30px;
-        padding-left: 10px;
-        padding-right: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: justify;
-}
 
 input {
   background-color: #fff;
@@ -601,39 +475,6 @@ div.progressBar div.background {
     background: url(/images/progress-bar.gif) repeat-x;
     height: 18px;
     width: 0%;
-}
-
-div#nifty{ 
-    margin: 0 10%;
-    background: #9BD1FA
-}
-
-b.rtop, b.rbottom {
-   display:block;
-   background: transparent;
-}
-
-b.rtop b, b.rbottom b{
-   display:block;
-   height: 1px;
-   overflow: hidden; 
-   background: #9BD1FA
-}
-
-b.r1{
-   margin: 0 5px
-}
-
-b.r2{
-   margin: 0 3px
-}
-
-b.r3{
-   margin: 0 2px
-}
-
-b.rtop b.r4, b.rbottom b.r4{
-  margin: 0 1px;height: 2px
 }
 
 .upgrade_note {

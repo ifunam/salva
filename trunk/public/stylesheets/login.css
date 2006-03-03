@@ -47,6 +47,20 @@
   margin-top: 10px;
 }
 
+#login .label {
+	float: left;
+	width: 100px;
+	min-height: 25px;
+	text-align: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+br{
+	clear: left;
+}
+
 #login a {
   text-decoration: none;
   font: 11px Arial, sans-serif;
