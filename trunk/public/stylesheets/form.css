@@ -117,6 +117,7 @@ body {
 	color: #FFFFFF;
         text-decoration: underline;
 }
+
 .navbar a:visited {
 	color: #FFFFFF;
 }
@@ -125,17 +126,33 @@ body {
 	color: yellow;
 }
 
-.box {
-	background: #fff url(/images/login_body_bg.jpg) top;
-	width: 90%;
-        margin-left: 15px;
-        margin-right: 15px;
-        margin-top: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-	border: 1px solid #336699;
-	text-align: justify;
-	font:  12px Arial, Helvetica, sans-serif;	
+.formbox {
+	background: #ffffff url(/images/login_body_bg.jpg) top left repeat-y;
+/*         margin-left: 15px; */
+/*         margin-right: 15px; */
+/*         margin-top: 5px; */
+/*         padding-left: 10px; */
+/*         padding-right: 10px;*/
+/* 	text-align: justify; */
+	font: 12px Arial, Helvetica, sans-serif;
+	border: 1px solid red;
+	display: inline;
+}
+
+.formbox .main {
+    background: transparent;
+    min-width: 100%;
+    border: 1px solid #336699;
+    float: left;
+}
+
+.formbox .partial {
+    min-witdh: 30%;
+    background-color: #ffffdb;
+    border: 1px inset blue;
+    margin: 10px;
+    padding: 3px;
+    float: right;
 }
 
 .box .options {
@@ -313,7 +330,6 @@ p {
 	font:  12px Arial,  sans-serif;	
 	font-weight: bold;
 }
-
 
 input {
   background-color: #fff;

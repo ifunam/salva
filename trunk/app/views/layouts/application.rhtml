@@ -9,34 +9,31 @@
   <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "salva", "overlib" %>
 </head>
 <body>
-<div id="site">
+<div class="site">
 <a href="<%= get_cfg('institution_url') %>" target="_new"> <%= get_cfg('institution') %></a>
-</div>
-<div class="rbroundbox">
- <div class="rbtop"><div></div></div>
-  <div class="rbcontent">
+</div> <!-- /site -->
+<div class="container">
+<div class="container_border">
    <div class="topbar">
 	<img src="/images/logo_salva.png" border="0" > 
 	 PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR
-   </div>
+   </div> <!-- /topbar -->
    <div class="toplinks"> 
    <%= get_label('login') %>: <span class="logged_user"><%= logged_user%> </span> |
    <%= link_to('Ayuda', { :controller => 'help' })%> | 
    <%= link_to('Salir', { :controller => 'user', :action => 'logout'}) %> |
    <%= link_to('Soporte técnico', { :controller => 'techsupport', :action => 'request'}) %> 
-   </div>
+   </div> <!-- /toplinks -->
    <div class="title">
    <%= navbar_icons %> <%= title %>
-   </div>
-   <div id="navbar">
+   </div> <!-- title -->
+   <div class="navbar">
      <%= render :partial => '/salva/navbar' %>
+   </div> <!-- /navbar -->
+   <div class="formbox">
+    <%= @content_for_layout %>
    </div>
-  <div class="box">
-   <p style="color: green"><%= flash[:notice] %></p> 
-   <%= @content_for_layout %>
-   </div>
-  </div><!-- /rbcontent -->
- <div class="rbbot"><div></div></div>
-</div><!-- /rbroundbox -->
+</div> <!-- /container_border -->
+</div> <!-- /container -->
 </body>
 </html>

@@ -1,6 +1,7 @@
+<div class="main">
 <%= form_tag({:action=>'create'}, {:multipart => true}) %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Guardar" %>
 <%= end_form_tag %>
+</div> <!-- /main -->
 <%= render :partial => 'quickpost' %>
-

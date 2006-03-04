@@ -1,15 +1,11 @@
-<div id="nifty">
-<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
-
+<div class="partial">
 <%= form_remote_tag(:success => "new Effect.BlindUp('state', {duration: 0.4}); return false;", 404 => "alert('Not found...? Wrong URL...?')",  :failure => "alert('HTTP Error ' + request.status + '!');", :url  => { :controller => 'state', :action => 'create' } ) %>
 <%= render :partial => "/state/form" %>
 <div id="operations">
 <%= submit_tag "Guardar" %> | <a href="#" onclick="new Effect.BlindUp('state', {duration: 0.4}); return false;" >Cancelar</a>
 </div>
 <%= end_form_tag %>
-
-<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
-</div>
+</div> <!-- /partial -->
 
 
 
