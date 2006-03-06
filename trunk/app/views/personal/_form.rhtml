@@ -49,7 +49,7 @@
 <div id="birth_state_id">
 <%= table_select('edit', State, {:prefix => 'birth'}, {:div=>'birth_city_id', :model => 'City'}) %>
 </div>
-<%= quickpost('Agregar', 'state') %>
+<%= quickpost('state') %> 
 </div>
 <br/>
 <div class="row"> 
@@ -58,7 +58,7 @@
 <div id="birth_city_id">
 <%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>
-<%= quickpost('Agregar', 'city') %>
+<%= quickpost('city') %>
 </div>
 <hr/>
 <div class="row"> 

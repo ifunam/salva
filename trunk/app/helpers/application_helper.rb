@@ -150,12 +150,16 @@ module ApplicationHelper
     end
   end
 
-  def quickpost(title, partial)
-    link_to_function(title, toggle_effect(partial, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))    
+  def quickpost(partial)
+    link_to_function(image_tag('add.gif', {:border=>0, :valign => 'middle', :alt=> 'Agregar'}), toggle_effect(partial, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))    
   end
 
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
   end
-  
+
+  # This can be moved into application_helper.rb
+  def loading_indicator_tag(scope,id)
+    "<img src=\"/images/indicator.gif\" style=\"display: none;\" id=\"#{scope}-#{id}-loading-indicator\" alt=\"loading indicator\" class=\"loading-indicator\" />"
+  end  
 end 

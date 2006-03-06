@@ -144,11 +144,6 @@ body {
 .row {
     display: table-row;
     vertical-align: middle;
-//    float: none;
-//    z-index: 2;
-//    padding: 5px;
-//    height: inherit !important;
-//    position: absolute;
 }
 
 .formbox .partial {
@@ -161,13 +156,14 @@ body {
     float: right;
 }
 
-.formbox .partial .title{
-    background-color: #ffffdb;
-    border: 2px groove #336699;
-    padding: 5px;
-    margin: 10px;
-    position: fixed;
-    float: right;
+.formbox .partial .title {
+    background-color: #336699;
+    border: 1px solid #336699;
+    color: #ffffdb;
+    height: 16px;
+    text-align: center;
+    font: 14px Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .box .options {
