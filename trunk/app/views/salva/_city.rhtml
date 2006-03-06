@@ -1,4 +1,4 @@
-<div class="box">
+<div class="partial">
 <%= form_remote_tag(:success => "new Effect.BlindUp('city', {duration: 0.4}); return false;", 404 => "alert('Not found...? Wrong URL...?')",  :failure => "alert('HTTP Error ' + request.status + '!');", :url  => { :controller => 'city', :action => 'create' } ) %>
 <%= render :partial => "/city/form" %>
 <div id="operations">

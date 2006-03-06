@@ -5,8 +5,8 @@
   <meta name="description"  content="Plataforma de informaci&oacute;n curricular SALVA" /> 
   <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" />
   <link rel="icon" href="/images/favicon.ico" />
-  <%= stylesheet_link_tag "form", "administration", "ligthbox" %>
-  <%= javascript_include_tag "prototype", "effects", "dragdrop", "controls", "typo", "salva", "overlib" %>
+  <%= stylesheet_link_tag 'form', 'administration', 'ligthbox', 'ajax_scaffold', :media => 'all' %>
+  <%= javascript_include_tag 'prototype', 'effects', 'dragdrop', 'controls', 'typo', 'salva', 'overlib', 'rico_corner', 'ajax_scaffold' %> 
 </head>
 <body>
 <div class="site">
@@ -31,8 +31,8 @@
      <%= render :partial => '/salva/navbar' %>
    </div> <!-- /navbar -->
    <div class="formbox">
-    <%= @content_for_layout %>
-   </div>
+     <%= @content_for_layout %>
+   </div> <!-- /formbox -->
 </div> <!-- /container_border -->
 </div> <!-- /container -->
 </body>

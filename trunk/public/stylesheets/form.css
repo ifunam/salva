@@ -25,13 +25,13 @@ body {
 
 .container {
   width: 100%; 
-  border: 3px double #93b6e2;
+  height: 100%; 
+  border: 4px double #93b6e2;
   background-color: #ffffff;
 }
 
 .container_border {
   border: 1px solid #578fd3;
-  padding-bottom: 3px;
 }
 
 .topbar {
@@ -126,37 +126,52 @@ body {
 	color: yellow;
 }
 
-.formbox {
-	background: #ffffff url(/images/login_body_bg.jpg) top left repeat-y;
-/*         margin-left: 15px; */
-/*         margin-right: 15px; */
-/*         margin-top: 5px; */
-/*         padding-left: 10px; */
-/*         padding-right: 10px;*/
-/* 	text-align: justify; */
-	font: 12px Arial, Helvetica, sans-serif;
-	border: 1px solid red;
-	display: inline;
-}
+.formbox { 
+    z-index: 1; 
+    height: inherit !important;
+    font: 12px Arial, Helvetica, sans-serif; 
+    background: #ffffff url(/images/login_body_bg.jpg) top left repeat-y; 
+    border: 1px solid #336699;
+} 
 
 .formbox .main {
-    background: transparent;
-    min-width: 100%;
-    border: 1px solid #336699;
-    float: left;
+    z-index: 2;
+    padding: 5px;
+    height: inherit !important;
+    position: absolute;
+}
+
+.row {
+    display: table-row;
+    vertical-align: middle;
+//    float: none;
+//    z-index: 2;
+//    padding: 5px;
+//    height: inherit !important;
+//    position: absolute;
 }
 
 .formbox .partial {
-    min-witdh: 30%;
+    z-index: 3;
     background-color: #ffffdb;
-    border: 1px inset blue;
+    border: 2px groove #336699;
+    padding: 5px;
     margin: 10px;
-    padding: 3px;
+    position: fixed;
+    float: right;
+}
+
+.formbox .partial .title{
+    background-color: #ffffdb;
+    border: 2px groove #336699;
+    padding: 5px;
+    margin: 10px;
+    position: fixed;
     float: right;
 }
 
 .box .options {
-	background: transparent;
+    background: transparent;
 }
 
 .box .options a {
