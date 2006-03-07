@@ -307,5 +307,20 @@ body {
   border-bottom: 1px solid #6377a9;
 }
 
+.w3c_links {
+  width: 688px;
+  display: table;
+  font:  11px Arial, Helvetica, sans-serif;
+  color: yellow; 
+}
 
+.w3c_links a {
+  text-decoration: none;
+}
 
+.w3c_links a:hover {
+  text-decoration: none;
+}
+.w3c_links a:visited {
+  text-decoration: none;
+}

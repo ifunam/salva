@@ -9,22 +9,21 @@ Inicio de sesi&oacute;n en el SALVA <a href="<%= help_link %>" target="_new">Ayu
 </div>
 <% end %>
 <div class="loginform"> 
-
-<div class="row">
 <%= start_form_tag :action => 'login' %>
+<div class="row">
 <label for="user_login" class="label" > Login: </label> 
-<%= text_field 'user', 'login', 'size' => 15, 'maxsize'=> 15, 'tabindex'=> 1, 'id' => 'user_login' %>
+<%= text_field 'user', 'login', 'size' => 15, 'maxlength'=> 15, 'tabindex'=> 1, 'id' => 'user_login' %>
 </div>
 
 <div class="row">
-<label for="user_password" class="label" > Contrase&ntilde;a: </label>   
-<%= password_field 'user', 'passwd', 'size' => 15, 'maxsize'=> 30, 'tabindex' => 2, 'id' => 'user_passwd' %>
+<label for="user_passwd" class="label" > Contrase&ntilde;a: </label>   
+<%= password_field 'user', 'passwd', 'size' => 15, 'maxlength'=> 30, 'tabindex' => 2, 'id' => 'user_passwd' %>
 </div>
 
 <div class="row">
  <%= submit_tag 'Iniciar sesión', :class => "button", :tabindex => 3 %>
- <%= end_form_tag %>
 </div>
+<%= end_form_tag %>
 <hr/>
 <div class="row"> 
 ¿No tiene una cuenta en el SALVA?
