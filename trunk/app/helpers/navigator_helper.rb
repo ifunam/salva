@@ -33,8 +33,8 @@ module NavigatorHelper
     render(:partial => '/salva/navtab')
   end
 
-  def img_tag(image)
-    image_tag(image+"_on.png", :size => '32x32', :border => 0, :alt => '*', :valign => 'middle')
+  def img_tag(image, size=32)
+    image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
   end
 
   def link_tag(label)
@@ -62,14 +62,14 @@ module NavigatorHelper
     if controller == 'navigator' then
       path.delete_at(0)
     end
-    images = ''
+    links = ''
     size = 28
     size = size - ((path.length - 1) * 4) if path.length > 0
     path.reverse.each {  |image|
-      images += image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, :alt => '*')
+      links += img_tag(image, size)
       size += 4
     }
-    images
+    links
   end
 
 end  

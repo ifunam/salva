@@ -72,9 +72,6 @@ class WizardController < ApplicationController
       }
     }
     invalid = false
-#    models.each { | model |
-#      invalid = true unless model.valid?
-#    }
     if invalid
       redirect_to :action => 'edit_multi'
     else
@@ -132,7 +129,6 @@ class WizardController < ApplicationController
     sequence = get_sequence
     composite = sequence.get_model
     @list = composite.get_children
-    # @list = sequence.sequence if !@list
   end
 	  
   def update_multi
