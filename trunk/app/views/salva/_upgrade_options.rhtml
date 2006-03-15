@@ -4,5 +4,10 @@
 <!-- <h1>Prefix <%= @prefix %> </h1> -->
 <!-- <h1>Div <%= @div %> </h1> -->
 <!-- <h1>Ref_model <%= @ref_model %> </h1> -->
-
-<%= table_select('edit', @model, {:prefix => @prefix}, {}, {:ref_model => @ref_model, :id => @id} ) %>
+<% if @model_dest then %>
+ <%= table_select('edit', @model, {:prefix => @prefix}, {},
+ {:ref_model => @ref_model, :id => @id} ) %>
+<% else %>
+ <%= table_select('edit', @model, {:prefix => @prefix}, {:div =>  @div_id, :model => @model_dest},  {:ref_model => @ref_model, :id =>
+ @id} ) %>
+<% end %>
