@@ -126,17 +126,14 @@ body {
 }
 
 .formbox { 
-    z-index: 1; 
+    z-index: 1;
     font: 12px Arial, Helvetica, sans-serif; 
     background: #fff url(/images/login_body_bg.jpg) top;
     border: 1px solid #336699;
+    position: static;
+    margin: 5px;
+    padding: 5px;
 } 
-
-.formbox .main {
-    z-index: 2;
-    padding: 10px;
-    position: relative;
-}
 
 .formbox .partial {
     z-index: 3;
@@ -145,7 +142,8 @@ body {
     padding: 5px;
     margin: 10px;
     position: fixed;
-    float: right;
+    top: 100px;
+    left: 200px;
 }
 
 .formbox .partial .title {
