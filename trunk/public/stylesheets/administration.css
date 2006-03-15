@@ -5,7 +5,6 @@
  #container {
   text-align: left;
   font-size: 80%;
-  //margin: 0 auto;
  }
 
  #header {
@@ -106,7 +105,7 @@
    }
 
   #tabs li a:hover {
-    #color: #fff;
+    color: #fff;
     background: #D7DFE4;
     border-color: #859AA8;
    }

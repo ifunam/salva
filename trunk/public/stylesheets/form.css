@@ -25,7 +25,6 @@ body {
 
 .container {
   width: 100%; 
-  height: 100%; 
   border: 4px double #93b6e2;
   background-color: #ffffff;
 }
@@ -41,7 +40,7 @@ body {
 	height: 50px;
 	text-align: left;
 	color: #C2f9ff;
-	font: 18px Arial, Helvetica, sans-serif;
+	font: 16px Arial, Helvetica, sans-serif;
 	font-weight: bold; 
 	padding-top: 5px;
 }
@@ -55,7 +54,7 @@ body {
 .toplinks {
 	width: 100%;
 	height: 13px;
-	background: #FFFFF;
+	background: #FFFFFF;
 	color: #0F4180;
 	margin-top: 2px;
 	vertical-align: bottom;
@@ -86,7 +85,7 @@ body {
 .title {
 	width: 100%;
 	height: 50px;
-	background: #FFFFF;
+	background: #FFFFFF;
 	color: #336699;
 	margin-top: 0px;
 	vertical-align: bottom;
@@ -128,22 +127,15 @@ body {
 
 .formbox { 
     z-index: 1; 
-    height: inherit !important;
     font: 12px Arial, Helvetica, sans-serif; 
-    background: #ffffff url(/images/login_body_bg.jpg) top left repeat-y; 
+    background: #fff url(/images/login_body_bg.jpg) top;
     border: 1px solid #336699;
 } 
 
 .formbox .main {
     z-index: 2;
-    padding: 5px;
-    height: inherit !important;
-    position: absolute;
-}
-
-.row {
-    display: table-row;
-    vertical-align: middle;
+    padding: 10px;
+    position: relative;
 }
 
 .formbox .partial {
@@ -166,6 +158,12 @@ body {
     font-weight: bold;
 }
 
+.row {
+    display: table-row;
+    float: none;
+    vertical-align: middle;
+}
+
 .box .options {
     background: transparent;
 }
@@ -175,8 +173,7 @@ body {
 	color: #fff;
 	padding: 0px;
 	font-size: 12px;
-	font-color: black;
-	text-aling: center;
+	text-align: center;
 	text-decoration: none;
 	border-width: 1px;
 	border-style: solid;
@@ -188,7 +185,7 @@ body {
 	color: #fff;
 	padding: 0px;
 	font-size: 12px;
-	text-aling: center;
+	text-align: center;
 	text-decoration: none;
 	padding: 3px;
 	border-width: 2px;
@@ -201,7 +198,7 @@ a.show {
   background: url(/images/browse_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
 }
 
 a:hover.show {
@@ -209,7 +206,7 @@ a:hover.show {
   background: url(/images/browse_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
 }
 
 a.edit {
@@ -217,7 +214,7 @@ a.edit {
   background: url(/images/edit_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
 }
 
 a:hover.edit {
@@ -225,7 +222,7 @@ a:hover.edit {
   background: url(/images/edit_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
 }
 
 a.purge {
@@ -233,7 +230,7 @@ a.purge {
   background: url(/images/destroy_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
 }
 
 a:hover.purge {
@@ -241,7 +238,7 @@ a:hover.purge {
   background: url(/images/destroy_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
 }
 
 .box .top_options {
@@ -380,7 +377,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 
 /* table used for lists with blue color */
 table.list {
-	width: 550px;
+	width: 100%;
 	background: #336699;
 	border: 1px solid #336699;
 	margin-bottom: 10px;
@@ -413,7 +410,7 @@ table.list th {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #709bd1 #518ac8  #6377a9 #709bd2;
-	text-aling: center;
+	text-align: center;
 	padding: 2px;
 }
 
@@ -437,7 +434,7 @@ table.list td.link .show {
   background: url(/images/browse_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
   float: left;
 }
 
@@ -446,7 +443,7 @@ table.list td.link .show:hover {
   background: url(/images/browse_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
   float: left;
 }
 
@@ -455,7 +452,7 @@ table.list td.link .edit {
   background: url(/images/edit_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
   float: left;
 }
 
@@ -464,7 +461,7 @@ table.list td.link .edit:hover {
   background: url(/images/edit_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
   float: left;
 }
 
@@ -473,7 +470,7 @@ table.list td.link .purge {
   background: url(/images/destroy_off_16x16.gif) no-repeat;
   text-decoration: none;
   width: 17px;
-  heigth: 17px;
+  height: 17px;
   float: left;
 }
 
@@ -482,12 +479,12 @@ table.list td.link .purge:hover {
   background: url(/images/destroy_on_16x16.gif) no-repeat;
   text-decoration: none;
   width: 16px;
-  heigth: 16px;
+  height: 16px;
   float: left;
 }
 
 .status {
- margin: 5px;/
+ margin: 5px;
 }
 
 div.progressBar {
