@@ -1,66 +1,77 @@
 module SelectHelper   
-  def simple_select(object, model, model_id, rparams=nil)
-    params = [ object, model_id,  
-               model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
-               {:prompt => '-- Seleccionar --'} ]
-    
-    params.push({:onchange => remote_function_tag(*rparams.to_a)}) if rparams.length > 0
+  def simple_select(object, model, model_id)
+    args = [ object, model_id,  
+             model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
+             {:prompt => '-- Seleccionar --'} ]
+    select(*args.to_a)
   end
+
+  def selected_select(object, model, model_id, id) 
+    args = [ object, model_id, 
+             model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
+             id ]
+    select = "<select name=\"#{object}[#{model_id}]\">" 
+    select += "<option>-- Seleccionar --</option> \n" 
+    select += options_for_select(*args.to_a) + "\n</select>"
+  end    
   
-  def conditional_select(object, model, model_id, condition_id, ref_model, rparams=nil)
-    conditions = [ ref_model + ' = ?', condition_id ]
-    params = [ object, model_id, 
-               model.find(:all, :order => 'name ASC', 
-                          :conditions => conditions).collect {|p| [ p.name, p.id ]}, 
-               {:prompt => '-- Seleccionar --'} ]
-    params.push({:onchange => remote_function_tag(*rparams.to_a)}) if rparams.length > 0
-  end
-  
-  def selected_select(object, model, model_id) 
-    [ model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, id ]
-  end
-  
-  def selectedref_select(object, model, model_id, ref_model, condition_id) 
-    conditions = [ ref_model + ' = ?', condition_id ]
-    [ model.find(:all, :order => 'name ASC', 
-                 :conditions => conditions).collect { |p| [ p.name, p.id ]}, 
-      id ]
-  end
-  
-  def selected_select
-    select = "<select name=\"#{object}[#{model_id}]\" " 
-    select += rparams.length > 0 ? 'onchange="' + remote_function_tag(*rparams.to_a) + '">' : '>' 
-    select += "<option>-- Seleccionar --</option> \n" + options_for_select(*params.to_a) + "\n</select>"
-  end
-  
-  def table_select(object, model, options={}, remote={}, conditions={})
-    options = options.stringify_keys
-    prefix = nil
+  def table_select(object, model, options={})
     model_id = model.name.downcase+'_id'      
-    if options['prefix'] then
-      model_id = options['prefix']+'_'+model.name.downcase+'_id'
-      prefix = options['prefix']
+    if options[:prefix] then
+      model_id = options[:prefix]+'_'+model.name.downcase+'_id'
     end
-    
-    remote = remote.stringify_keys    
-    rparams = []
-    if remote['div'] and remote['model']
-      rparams = [ remote['div'], "model=#{remote['model']}&div=#{remote['div']}&ref_model=#{model_id}&id='+value",  prefix]
-    end
-    
-    conditions = conditions.stringify_keys
-    if (options['id'] != nil) then
-      select_selected(object, model, model_id, options['id'], conditions['ref_model'], conditions['id'], rparams)
+    if (options[:id] != nil) then
+      selected_select(object, model, model_id, options[:id])
     else
-      select_simple(object, model, model_id, conditions['ref_model'], conditions['id'], rparams)
+      simple_select(object, model, model_id)
     end       
   end
 
-  def remote_function_tag(div, with, prefix=nil)
-    prefix ?  with = "'prefix=#{prefix}&#{with}" :  with = "'#{with}" 
+  def list2update_select(object, model, options={})
+    model_id = model.name.downcase+'_id'      
+    if options[:prefix] then
+      model_id = options[:prefix]+'_'+model.name.downcase+'_id'
+    end
+    destmodel = options[:destmodel]
+    destmodel_id = destmodel.downcase + '_id'
+    destmodel_id = options[:destprefix] + '_' + destmodel_id if options[:prefix] != nil
+    args = [ object, model_id,  
+             model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
+             {:prompt => '-- Seleccionar --'} ]
+    args << {:onchange => remote_functag(model, destmodel, destmodel_id)} 
+    select(*args.to_a)
+  end
+
+  def remote_functag(model, destmodel, destmodel_id)
+    div = destmodel_id + '_note'
+    with = "'destmodel=#{destmodel}&div=#{div}&origmodel=#{model}&id='+value"
+    success_msg = "new Effect.BlindUp('#{div}', {duration: 0.4}); return false;"
+    loading_msg = "Toggle.display('#{div}')",
     remote_function(:update => div, :with => with, 
                     :url => {:action => :upgrade_select_dest},  
-                    :loading => "Toggle.display('#{div}_note')",
-                    :success => "new Effect.BlindUp('#{div}_note', {duration: 0.4}); return false;")
+                    :loading => loading_msg,
+                    :success => success_msg)
   end
+
+  #def bycondition_select(object, model, model_id, condition_id, ref_model, rargs=nil)
+  #  conditions = [ ref_model + ' = ?', condition_id ]
+  #args = [ object, model_id, 
+  #           model.find(:all, :order => 'name ASC', 
+  #                      :conditions => conditions).collect {|p| [ p.name, p.id ]}, 
+  #           {:prompt => '-- Seleccionar --'} ]
+  #end
+  
+#   def condiselected_select(object, model, model_id, ref_model, condition_id, rargs=nil) 
+#     conditions = [ ref_model + ' = ?', condition_id ]
+#     args = [ object, model_id, 
+#              model.find(:all, :order => 'name ASC', 
+#                         :conditions => conditions).collect { |p| [ p.name, p.id ]}, 
+#              id ]
+#     select = "<select name=\"#{object}[#{model_id}]\" " 
+#     select += rargs.length > 0 ? 'onchange="' + remote_functag(*rargs.to_a) + \
+#     '">' : '>' 
+#     select += "<option>-- Seleccionar --</option> \n" 
+#     select += options_for_select(*args.to_a) + "\n</select>"
+#   end
+  
 end

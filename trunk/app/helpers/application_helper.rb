@@ -1,5 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper 
+  def head_title 
+    "#{@controller.controller_class_name} : #{@controller.action_name}" 
+  end   
   def action_link(action, id, alt, question=nil)
     image ='/images/invisible_16x16.png'
     miceover = "return overlib('#{alt}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, "

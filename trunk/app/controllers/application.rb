@@ -23,13 +23,9 @@ class ApplicationController < ActionController::Base
 
   def upgrade_select_dest
     # Necesita el id actual
-    @model = eval(@params[:model])
+    @destmodel = eval(@params[:destmodel])
     @div = @params[:div]
-    @ref_model = @params[:ref_model]
-    @prefix = @params[:prefix]
-    if @prefix then
-      @ref_model.sub!(/^#{@prefix}_/, '')
-    end
+    @origmodel = @params[:origmodel]
     @id = @params[:id]
     render(:partial => 'salva/upgrade_options')
   end
