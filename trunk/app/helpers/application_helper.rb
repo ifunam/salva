@@ -43,27 +43,6 @@ module ApplicationHelper
     ckbox_group += "</ul>\n"
     ckbox_group
   end
-
-  def remote_function_tag(div, with, prefix=nil)
-    prefix ?  with = "'prefix=#{prefix}&#{with}" :  with = "'#{with}" 
-    remote_function(:update => div, :with => with, :url => {:action => :upgrade_select_dest},  
-                    :loading => "Toggle.display('#{div}_note')",
-                    :success => "new Effect.BlindUp('#{div}_note', {duration: 0.4}); return false;")
-  end
-  
-  def remote_upgrade_select(model, name, question='¿Desea agregar este elemento?', options={}) 
-    options = options.stringify_keys
-    if ( options['prefix'] == nil ) then
-      div2upgrade = model.downcase.to_s+'_id'
-      field = model.downcase
-      "if (handleKeyPress(event) && checkString(document.forms[0].#{field}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&name='+document.forms[0].#{field}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
-    else 
-      prefix = options['prefix']
-      div2upgrade = options['prefix']+'_'+model.downcase.to_s+'_id'
-      field = options['prefix']+'_'+model.downcase
-      "if (handleKeyPress(event) && checkString(document.forms[0].#{field}_#{name}.value)) { var agree=confirm('#{question}'); if (agree) {new Ajax.Updater('#{div2upgrade}', '/wizard/upgrade_select?class=#{model}&prefix=#{prefix}&name='+document.forms[0].#{field}_#{name}.value, {asynchronous:true, evalScripts:true}); return false;} }"
-    end
-  end
   
   def quickpost(partial)
     link_to_function(image_tag('add.gif', {:border=>0, :valign => 'middle', :alt=> 'Agregar'}), toggle_effect(partial, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))    

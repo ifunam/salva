@@ -55,4 +55,12 @@ module SelectHelper
       select_simple(object, model, model_id, conditions['ref_model'], conditions['id'], rparams)
     end       
   end
+
+  def remote_function_tag(div, with, prefix=nil)
+    prefix ?  with = "'prefix=#{prefix}&#{with}" :  with = "'#{with}" 
+    remote_function(:update => div, :with => with, 
+                    :url => {:action => :upgrade_select_dest},  
+                    :loading => "Toggle.display('#{div}_note')",
+                    :success => "new Effect.BlindUp('#{div}_note', {duration: 0.4}); return false;")
+  end
 end
