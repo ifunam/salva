@@ -24,60 +24,6 @@ module ApplicationHelper
   def purge_link(id,question)
     action_link('purge', id, 'Borrar', question)
   end
-  
-  
-  def select_simple(object, model, model_id, rparams=nil)
-    params = [ object, model_id,  
-               model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, 
-               {:prompt => '-- Seleccionar --'} ]
-   
-    params.push({:onchange => remote_function_tag(*rparams.to_a)}) if rparams.length > 0
-    select(*params.to_a)    
-  end
-
-  def select_condition(object, model, model_id, condition_id, ref_model, rparams=nil)
-    condition = ref_model + ' = ?'
-    params = [ object, model_id, 
-               model.find(:all, :order => 'name ASC', 
-                          :conditions => [ condition,condition_id ]
-                          ).collect {|p| [ p.name, p.id ]}, 
-               {:prompt => '-- Seleccionar --'} ]
-    params.push({:onchange => remote_function_tag(*rparams.to_a)}) if rparams.length > 0
-    select(*params.to_a)    
-  end
-  
-  def select_selected(object, model, model_id, id, ref_model=nil, condition_id=nil, rparams=nil) 
-    params = [ model.find(:all, :order => 'name ASC').collect {|p| [ p.name, p.id ]}, id ]
-    if ref_model and condition_id then
-      params = [ model.find(:all, :order => 'name ASC', :conditions => [ ref_model + ' = ?', conditions_id ]).collect {|p| [ p.name, p.id ]}, id ]
-    end
-    select = "<select name=\"#{object}[#{model_id}]\" " 
-    select += rparams.length > 0 ? 'onchange="' + remote_function_tag(*rparams.to_a) + '">' : '>' 
-    select += "<option>-- Seleccionar --</option> \n" + options_for_select(*params.to_a) + "\n</select>"
-  end
-
-  def table_select(object, model, options={}, remote={}, conditions={})
-    options = options.stringify_keys
-    prefix = nil
-    model_id = model.name.downcase+'_id'      
-    if options['prefix'] then
-      model_id = options['prefix']+'_'+model.name.downcase+'_id'
-      prefix = options['prefix']
-    end
-    
-    remote = remote.stringify_keys    
-    rparams = []
-    if remote['div'] and remote['model']
-      rparams = [ remote['div'], "model=#{remote['model']}&div=#{remote['div']}&ref_model=#{model_id}&id='+value",  prefix]
-    end
-    
-    conditions = conditions.stringify_keys
-    if (options['id'] != nil) then
-      select_selected(object, model, model_id, options['id'], conditions['ref_model'], conditions['id'], rparams)
-    else
-      select_simple(object, model, model_id, conditions['ref_model'], conditions['id'], rparams)
-    end       
-  end
 
   def check_box(object, id, checked=false, prefix='item_id')
     check_box_tag("#{object}[#{prefix}][]", id, checked = false, 

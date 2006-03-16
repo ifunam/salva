@@ -8,9 +8,9 @@ module DateHelper
   
   def year_select(object, attribute=nil, start_year=nil, end_year=nil)
     y = Date.today.year
-    start_year, end_year = (start_year || y), (end_year || y-70)
-    step_val = start_year < end_year ? 1 : -1
-    years = [ start_year .. end_year]
+    start_year = start_year || y
+    end_year = end_year || y - 90
+    years = [ start_year .. end_year ]
     select(object, attribute || 'year', years);
   end
   
