@@ -21,13 +21,13 @@ class ApplicationController < ActionController::Base
     render(:partial => 'salva/upgrade_select')
   end
 
-  def upgrade_select_dest
+  def update_select_dest
     # Necesita el id actual
     @destmodel = eval(@params[:destmodel])
-    @div = @params[:div]
-    @origmodel = @params[:origmodel]
+    @origmodel = @params[:origmodel] 
     @id = @params[:id]
-    render(:partial => 'salva/upgrade_options')
+    # @div = @params[:div]
+    render(:partial => 'salva/update_select_dest')
   end
   
   def configure_charsets
