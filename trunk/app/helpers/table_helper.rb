@@ -1,5 +1,4 @@
 module TableHelper
-  
   def table_list(collection, options = {} )
     options = options.stringify_keys
     header = options['header']

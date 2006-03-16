@@ -34,7 +34,7 @@
 </div>
 <div class="row"> 
 <label for="dateofbirth" class="label"><%= get_label('dateofbirth')%></label> 
-<%= date_forselect('edit', 'dateofbirth') %>
+<%= date_for_select('edit', 'dateofbirth') %>
 </div>
 <br/>
 <div class="row"> 
@@ -46,7 +46,7 @@
 <label for="birth_state_id" class="label"><%= get_label('birth_state_id') %></label> 
 <div id="birth_state_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
 <div id="birth_state_id">
-<%= table_select('edit', State, {:prefix => 'birth'} ) %>
+<%= select2update_select('edit', State, {:prefix => 'birth', :destmodel => 'City', :destprefix => 'birth'}) %>
 </div>
 <%= quickpost('state') %> 
 </div>

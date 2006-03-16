@@ -142,7 +142,7 @@ body {
     padding: 5px;
     margin: 10px;
     position: fixed;
-    top: 100px;
+    top: 150px;
     left: 200px;
 }
 
@@ -503,7 +503,7 @@ div.progressBar div.background {
 
 .upgrade_note {
   background: #fad163;
-  border: 2px groove red;
+  border: 2px groove #fad163;
   padding: 3px;
   color: black; 
 }
