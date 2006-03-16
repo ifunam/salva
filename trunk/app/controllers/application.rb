@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     @destmodel = eval(@params[:destmodel])
     @origmodel = @params[:origmodel] 
     @id = @params[:id]
-    # @div = @params[:div]
+    @prefix = @params[:prefix]
     render(:partial => 'salva/update_select_dest')
   end
   

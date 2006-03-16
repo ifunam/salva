@@ -1,5 +1,6 @@
 <!-- <h1> Hola pinche wey! </h1> -->
-<!-- <h1>Id <%= @id %> </h1> -->
 <!-- <h1>DestModel <%= @destmodel %> </h1> -->
+<!-- <h1>Prefix <%= @prefix %> </h1> -->
 <!-- <h1>OrigModel <%= @origmodel %> </h1> -->
-<%= bycondition_select('edit', @destmodel, {:belongs_to => @origmodel, :id=> @id}) %>
+<!-- <h1>Id <%= @id %> </h1> -->
+<%= bycondition_select('edit', @destmodel,  {:prefix => @prefix, :belongs_to => @origmodel, :id=> @id}) %>

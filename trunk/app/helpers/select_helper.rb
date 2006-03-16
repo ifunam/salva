@@ -47,11 +47,16 @@ module SelectHelper
 
   def remote_functag(origmodel, destmodel, destprefix=nil)
     destmodel_id = destmodel.downcase + '_id'
-    destmodel_id = destprefix + '_' + destmodel_id if destprefix != nil
     div = destmodel_id 
     div_note = div + '_note'
 
     withparams = "'destmodel=#{destmodel}&origmodel=#{origmodel}&id='+value"
+    if destprefix != nil
+      destmodel_id = destprefix + '_' + destmodel_id 
+      withparams = "'prefix=#{destprefix}&" + withparams
+    else
+      withparams = "'" + withparams
+    end
     success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.10}); "
     success_msg += "return false;"
     loading_msg = "Toggle.display('#{div_note}');"
