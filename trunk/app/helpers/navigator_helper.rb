@@ -25,8 +25,8 @@ module NavigatorHelper
           link_tag(child.data)
 
       else
-        @list << link_to(img_tag(child.data), {:controller => 'navigator', :item => counter }) + 
-          link_tag_navtab(child.data, counter)
+        @list << link_to(img_tag(child.data), {:controller => 'navigator', 
+                           :item => counter }) + link_tag_navtab(child.data, counter)
       end
       counter += 1
     }    
@@ -34,7 +34,8 @@ module NavigatorHelper
   end
 
   def img_tag(image, size=32)
-    image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
+    image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, 
+              :alt => '*', :valign => 'middle')
   end
 
   def link_tag(label)

@@ -1,22 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper 
-  # <head> .... </head>
-  def head_title
-    "#{@controller.controller_class_name} : #{@controller.action_name}"
-  end  
-
-  def help_link
-    "/doc/help/#{@controller.controller_class_name}/#{@controller.action_name}.html"
-  end  
-  
-  def logout_link
-    '/user/logout/'
-  end
-  
-  def sendbug_link
-    '/sendbug/'
-  end
-
   def action_link(action, id, alt, question=nil)
     image ='/images/invisible_16x16.png'
     miceover = "return overlib('#{alt}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, "
@@ -26,7 +9,7 @@ module ApplicationHelper
     html_options = { :class => action, :onmouseover => miceover, :onmouseout => miceout }
     html_options[:confirm] = question if question != nil
     
-    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt]), 
+    link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt), 
             link_options, html_options )
   end
   
@@ -40,40 +23,6 @@ module ApplicationHelper
   
   def purge_link(id,question)
     action_link('purge', id, 'Borrar', question)
-  end
-  
-  def check_box(object, id, checked=false, prefix='item_id')
-    check_box_tag("#{object}[#{prefix}][]", id, checked = false, options = {:id => prefix}) 
-  end
-  
-  def month_select(object, options={})  
-    select(object, options[:field_name] || 'month', [["Enero", 1], ["Febrero", 2], ["Marzo", 3], 
-             ["Abril", 4], ["Mayo", 5], ["Junio", 6], ["Julio", 7], ["Agosto", 8],
-             ["Septiembre", 9], ["Octubre", 10], ["Noviembre", 11], ["Diciembre", 12]])
-  end
-  
-  def year_select(object, options={})
-    year_options = []
-    y = Date.today.year
-    start_year, end_year = (options[:start_year] || y), (options[:end_year] || y-70)
-    step_val = start_year < end_year ? 1 : -1
-    
-    start_year.step(end_year, step_val) do |year|
-      year_options << year
-    end     
-    select(object, options[:field_name] || 'year', year_options);
-  end
-  
-  def date_for_select(object, attribute, options={})
-    year = Date.today.year
-    # Tal vez alguien a los 90 años siga produciendo
-    options[:start_year] = year - 90 if  options[:start_year] == nil
-    # Por si se aparece el pinche 'Doggie Hauser'
-    # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
-    options[:end_year] = year - 15 if  options[:end_year] == nil
-    date_select(object, attribute, :start_year =>  options[:start_year], 
-                :end_year => options[:end_year], :use_month_numbers => true, 
-                :order => [:day, :month, :year])
   end
   
   
@@ -128,6 +77,11 @@ module ApplicationHelper
     else
       select_simple(object, model, model_id, conditions['ref_model'], conditions['id'], rparams)
     end       
+  end
+
+  def check_box(object, id, checked=false, prefix='item_id')
+    check_box_tag("#{object}[#{prefix}][]", id, checked = false, 
+                  options = {:id => prefix}) 
   end
   
   def check_box_group(object, model, options={})

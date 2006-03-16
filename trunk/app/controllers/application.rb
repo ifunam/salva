@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
-  helper :salva, :table, :user, :navigator
+  helper :salva, :table, :user, :navigator, :date
   
   def upgrade_select
     @model =  eval(Inflector.classify(@params[:class]))
