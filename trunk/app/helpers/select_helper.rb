@@ -42,9 +42,9 @@ module SelectHelper
     select(*args.to_a)
   end
 
-  def remote_functag(model, destmodel, destmodel_id)
+  def remote_functag(origmodel, destmodel, destmodel_id)
     div = destmodel_id + '_note'
-    with = "'destmodel=#{destmodel}&div=#{div}&origmodel=#{model}&id='+value"
+    with = "'destmodel=#{destmodel}&div=#{div}&origmodel=#{origmodel}&id='+value"
     success_msg = "new Effect.BlindUp('#{div}', {duration: 0.4}); return false;"
     loading_msg = "Toggle.display('#{div}')",
     remote_function(:update => div, :with => with, 
