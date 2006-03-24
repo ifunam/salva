@@ -8,7 +8,8 @@ module NavigatorHelper
     path = tree.path
     counter = path.length - 1
     path.reverse.each { |item|
-      list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
+      list << link_to(get_label(item), 
+                      {:controller => 'navigator', :depth => counter})
       counter -= 1
     }
     list.join(' | ')    
@@ -60,17 +61,22 @@ module NavigatorHelper
     tree = @session[:navtree]
     path = tree.path
     controller = @controller.class.name.sub(/Controller/,'').downcase
+
     if controller == 'navigator' then
       path.delete_at(0)
     end
-    links = ''
+    counter = path.length - 1
+
     size = 28
     size = size - ((path.length - 1) * 4) if path.length > 0
+    links = []
     path.reverse.each {  |image|
-      links += img_tag(image, size)
+      links << link_to(img_tag(image, size), 
+                       {:controller => 'navigator', :depth => counter})
       size += 4
+      counter -= 1
     }
-    links
+    links.join(' ')
   end
 
 end  

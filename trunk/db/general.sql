@@ -119,11 +119,12 @@ CREATE TABLE addresses (
             REFERENCES addresstypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    address text NOT NULL, 
+    pobox text NULL,
     country_id int4 NOT NULL 
               REFERENCES countries(id)
               ON UPDATE CASCADE
               DEFERRABLE,
-    postaddress text NOT NULL, 
     state_id int4 NULL
 		REFERENCES states(id)
 		ON UPDATE CASCADE

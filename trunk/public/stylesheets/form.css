@@ -133,6 +133,7 @@ body {
     position: static;
     margin: 5px;
     padding: 5px;
+    text-align: left;
 } 
 
 .formbox .partial {
