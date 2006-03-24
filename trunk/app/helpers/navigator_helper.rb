@@ -33,7 +33,7 @@ module NavigatorHelper
     }    
     render(:partial => '/salva/navtab')
   end
-
+  
   def img_tag(image, size=32)
     image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, 
               :alt => '*', :valign => 'middle')
@@ -59,22 +59,26 @@ module NavigatorHelper
 
   def navbar_icons
     tree = @session[:navtree]
-    path = tree.path
     controller = @controller.class.name.sub(/Controller/,'').downcase
+    path = tree.path
+    counter = path.length 
+    counter -= 1
 
     if controller == 'navigator' then
-      path.delete_at(0)
+      path.delete_at(0) 
     end
-    counter = path.length - 1
 
-    size = 28
-    size = size - ((path.length - 1) * 4) if path.length > 0
+    maxsize = 28
+    maxicons = 4
+    imgsize = maxsize - ((path.length - 1) * maxicons) if path.length > 0
+
     links = []
     path.reverse.each {  |image|
-      links << link_to(img_tag(image, size), 
+      links << link_to(img_tag(image, imgsize), 
                        {:controller => 'navigator', :depth => counter})
-      size += 4
+      imgsize += 4
       counter -= 1
+
     }
     links.join(' ')
   end
