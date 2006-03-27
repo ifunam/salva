@@ -30,51 +30,41 @@ module SelectHelper
     end       
   end
 
-  def select2update_select(object, model, opts={})
-    model_id = model.name.downcase+'_id'      
-    if opts[:prefix] then
-      model_id = opts[:prefix]+'_'+model.name.downcase+'_id'
-    end
+  def select2update_select(object, model, opts={}, dest={})
+    model_id = model.name.downcase + '_id'      
+    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
     select(object, model_id,  
            model.find(:all, :order => 'name ASC').collect {
              |p| [ p.name, p.id ]
            }, 
            { :prompt => '-- Seleccionar --' },
-           { :onchange => remote_functag(model, opts[:destmodel],
-                                        opts[:destprefix]) }
+           { :onchange => remote_functag(model.name, dest[:model], dest[:prefix]) }
            )
   end
 
-  def remote_functag(origmodel, destmodel, destprefix=nil)
-    destmodel_id = destmodel.downcase + '_id'
-    withparams = "destmodel=#{destmodel}&origmodel=#{origmodel}&id='+value"
+  def remote_functag(origmodel, destmodel, prefix=nil)
+    model_id = destmodel.downcase + '_id'
+    model_id = prefix + '_' + model_id if prefix != nil
+    origmodel = origmodel.downcase
+    destmodel = destmodel.downcase
 
-    if destprefix != nil
-      destmodel_id = destprefix + '_' + destmodel_id 
-      withparams = "'prefix=#{destprefix}&" + withparams
-    else
-      withparams = "'" + withparams
-    end
-    div = destmodel_id 
-    div_note = destmodel_id + '_note'
-
+    withparams = "'template=select_#{origmodel}_#{destmodel}&id='+value"
+    div_note = model_id + '_note'
     success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.10}); "
     success_msg += "return false;"
     loading_msg = "Toggle.display('#{div_note}');"
 
-    remote_function(:update => div, :url => {:action => :update_select_dest},
+    remote_function(:update => model_id, 
+                    :url => {:action => :update_select_dest},
                     :with => withparams, :loading => loading_msg,
                     :success => success_msg)
   end
   
-  def bycondition_select(object, model, opts={} )
+  def bycondition_select(object, model, opts={}, dest={} )
     model_id = model.name.downcase+'_id'
-    if opts[:prefix] then
-      model_id = opts[:prefix]+'_'+model.name.downcase+'_id'
-    end
-    
-    belongs_to = opts[:belongs_to].downcase + '_id'
-    conditions = [ belongs_to + ' = ?', opts[:id] ]
+    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] != nil
+
+    conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
     
     params = [ object, model_id, 
                model.find(:all, :order => 'name ASC', 
@@ -84,9 +74,10 @@ module SelectHelper
                {:prompt => '-- Seleccionar --'} 
              ]
     
-    if opts[:destmodel] and opts[:destprefix] then
-      params << {:onchange => remote_functag(model, opts[:destmodel],
-                                             opts[:destprefix]) }
+    if dest[:model] then
+      params << {:onchange => remote_functag(model.name,
+                                             dest[:model],
+                                             dest[:prefix]) }
     end
     select(*params.to_a)
   end

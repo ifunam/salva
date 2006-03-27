@@ -22,14 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def update_select_dest
-    # Necesita el id actual
-    @destmodel = eval(@params[:destmodel])
-    @origmodel = @params[:origmodel] 
     @id = @params[:id]
-    @prefix = @params[:prefix]
-    render(:partial => 'salva/update_select_dest')
+    template = @params[:template]
+    render(:partial => 'salva/'+template)
   end
-  
+
   def configure_charsets
     @response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
   end
