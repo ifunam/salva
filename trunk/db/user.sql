@@ -60,6 +60,9 @@ CREATE TABLE users (
             DEFERRABLE
 	    DEFAULT 1,
     email text NULL, 
+    homepage text NULL, 
+    blog text NULL, 
+    calendar text NULL, 
     pkcs7 text NULL,
     token text NULL,
     token_expiry timestamp DEFAULT CURRENT_TIMESTAMP,
