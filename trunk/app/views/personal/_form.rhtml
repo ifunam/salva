@@ -46,7 +46,7 @@
 <label for="birth_state_id" class="label"><%= get_label('birth_state_id') %></label> 
 <div id="birth_state_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
 <div id="birth_state_id">
-<%= select2update_select({:object => 'edit', :model =>State, :prefix => 'birth'}, {:model => 'City', :prefix => 'birth'}) %>  -->
+<%= select2update_select({:object => 'edit', :model =>State, :prefix => 'birth'}, {:model => 'City', :prefix => 'birth'}) %>
 </div>
 <%= quickpost('state') %> 
 </div>
