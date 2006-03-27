@@ -30,16 +30,38 @@ module SelectHelper
     end       
   end
 
-  def select2update_select(object, model, opts={}, dest={})
-    model_id = model.name.downcase + '_id'      
+  def select2update_select(opts={}, dest={})
+    model_id = opts[:model].name.downcase + '_id'      
     model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
-    select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect {
+    select(opts[:object], model_id,  
+           opts[:model].find(:all, :order => 'name ASC').collect {
              |p| [ p.name, p.id ]
            }, 
            { :prompt => '-- Seleccionar --' },
-           { :onchange => remote_functag(model.name, dest[:model], dest[:prefix]) }
+           { :onchange => remote_functag(opts[:model].name, dest[:model], 
+                                         dest[:prefix]) }
            )
+  end
+
+  def bycondition_select(opts={}, dest={} )
+    model_id = opts[:model].name.downcase+'_id'
+    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] != nil
+
+    conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
+    
+    params = [ opts[:object], model_id, 
+               opts[:model].find(:all, :order => 'name ASC', 
+                          :conditions => conditions).collect {
+                 |p| [ p.name, p.id ]
+               }, 
+               {:prompt => '-- Seleccionar --'} 
+             ]
+    
+    if dest[:model] then
+      params << {:onchange => remote_functag(opts[:model].name, dest[:model],
+                                             dest[:prefix]) }
+    end
+    select(*params.to_a)
   end
 
   def remote_functag(origmodel, destmodel, prefix=nil)
@@ -48,37 +70,16 @@ module SelectHelper
     origmodel = origmodel.downcase
     destmodel = destmodel.downcase
 
-    withparams = "'template=select_#{origmodel}_#{destmodel}&id='+value"
+    params = "'template=select_#{origmodel}_#{destmodel}&id='+value"
     div_note = model_id + '_note'
-    success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.10}); "
+    success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.05}); "
     success_msg += "return false;"
     loading_msg = "Toggle.display('#{div_note}');"
 
     remote_function(:update => model_id, 
                     :url => {:action => :update_select_dest},
-                    :with => withparams, :loading => loading_msg,
+                    :with => params, :loading => loading_msg,
                     :success => success_msg)
   end
-  
-  def bycondition_select(object, model, opts={}, dest={} )
-    model_id = model.name.downcase+'_id'
-    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] != nil
 
-    conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
-    
-    params = [ object, model_id, 
-               model.find(:all, :order => 'name ASC', 
-                          :conditions => conditions).collect {
-                 |p| [ p.name, p.id ]
-               }, 
-               {:prompt => '-- Seleccionar --'} 
-             ]
-    
-    if dest[:model] then
-      params << {:onchange => remote_functag(model.name,
-                                             dest[:model],
-                                             dest[:prefix]) }
-    end
-    select(*params.to_a)
-  end
 end

@@ -1,2 +1,2 @@
-<%= bycondition_select('edit', State, {:prefix => 'birth', :belongs_to => 'country_id', :id=> @id}, {:model => 'City', :prefix => 'birth'} ) %>
+<%= bycondition_select({ :object => 'edit', :model => State, :prefix => 'birth', :belongs_to => 'country_id', :id=> @id}, {:model => 'City', :prefix => 'birth'} ) %>
 
