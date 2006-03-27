@@ -10,7 +10,8 @@ module ApplicationHelper
     miceover += "SNAPX, 2, SNAPY, 2)"
     miceout = "return nd()" 
     link_options = { :action => action, :id => id}
-    html_options = { :class => action, :onmouseover => miceover, :onmouseout => miceout }
+    html_options = { :class => action, :onmouseover => miceover, 
+                     :onmouseout => miceout }
     html_options[:confirm] = question if question != nil
     
     link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt), 
