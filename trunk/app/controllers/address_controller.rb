@@ -2,10 +2,10 @@ class AddressController < SalvaController
   def initialize
     super
     @model = Address
-    @create_msg = 'La dirección se ha guardado'
-    @update_msg = 'la dirección se ha actualizado'
-    @purge_msg = 'La dirección ha sido borrada'
+    @create_msg = 'El Address ha sido agregado'
+    @update_msg = 'El Address ha sido actualizado'
+    @purge_msg = 'El Address se ha borrado'
     @per_pages = 10
-    @order_by = 'postaddress DESC'
+    @order_by = 'id'
   end
 end

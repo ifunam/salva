@@ -1,7 +1,17 @@
 class Address < ActiveRecord::Base
-  validates_presence_of :addresstype_id, :message => "Proporcione el tipo de dirección"
-  validates_presence_of :country_id, :message => "Proporcione el país"
-  validates_presence_of :postaddress, :message => "Proporcione la dirección"
-  validates_presence_of :city, :message => 'Proporcione la información de la ciudad'
-  validates_presence_of :mail, :message => 'Indique si usara esta dirección como domicilio postal'
+<!--[salva_model:]-->
+validates_presence_of :city, :country_id, :addresstype_id, :is_postaddress, :address
+
+validates_numericality_of :country_id, :addresstype_id, :state_id
+
+belongs_to :country
+
+belongs_to :addresstype
+
+belongs_to :state
+
+
+<!--[eof_salva_model:]-->
+
 end
+

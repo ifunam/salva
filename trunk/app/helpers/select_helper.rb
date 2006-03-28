@@ -1,19 +1,22 @@
 module SelectHelper   
-  def simple_select(object, model, model_id)
+  def simple_select(object, model, model_id, tabindex=nil)
     select(object, model_id,  
            model.find(:all, :order => 'name ASC').collect {
              |p| [ p.name, p.id ]
            },
-           {:prompt => '-- Seleccionar --'})
+           {:prompt => '-- Seleccionar --'}, 
+           {:tabindex => tabindex })
+
   end
   
-  def selected_select(object, model, model_id, id) 
+  def selected_select(object, model, model_id, id, tabindex=nil) 
     args = [ object, model_id, 
              model.find(:all, :order => 'name ASC').collect { 
                |p|[p.name, p.id]
              }, 
              id ]
-    select = "<select name=\"#{object}[#{model_id}]\">" 
+    select = "<select name=\"#{object}[#{model_id}]\""
+    tabindex ? select += "tabindex=\"#{tabindex}\">" : ">"
     select += "<option>-- Seleccionar --</option> \n" 
     select += options_for_select(*args.to_a) + "\n</select>"
   end    
@@ -24,9 +27,9 @@ module SelectHelper
       model_id = opts[:prefix]+'_'+model.name.downcase+'_id'
     end
     if (opts[:id] != nil) then
-      selected_select(object, model, model_id, opts[:id])
+      selected_select(object, model, model_id, opts[:id], opts[:tabindex])
     else
-      simple_select(object, model, model_id)
+      simple_select(object, model, model_id, opts[:tabindex])
     end       
   end
 

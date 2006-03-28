@@ -1,4 +1,4 @@
-<%= render :partial => 'show' %>
-
+<%= table_show(Address.columns) %>
+<%= render :partial =>"salva/moduser" %>
 <%= link_to 'Editar', :action => 'edit', :id => @address %> |
 <%= link_to 'Regresar', :action => 'list' %>

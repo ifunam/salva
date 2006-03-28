@@ -5,11 +5,10 @@ class ScaffoldingSandbox
   end
 
   def salva_tags (model_instance, singular_name)
-    #model_instance #and singular_name.class
     attrs = model_instance.attributes()
-    #attributes()
     html = "\n"
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    tabindex = 1
     attrs.each_key { | column | 
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
@@ -25,26 +24,61 @@ class ScaffoldingSandbox
           (prefix, model_select) = model_select.split('_')
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{prefix}_#{model_select}\">\n" 
-          html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}'}) %>\n" 
-          html << "<input name='#{prefix}_#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?', { :prefix => '#{prefix}'} ) %>\">\n" 
+          html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}'}) %>\n" 
+          html << "<%= quickpost('#{model_select}') %> \n"
           html << "</div>\n"
         else
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{model_select}\">\n"
-          html << "<%= table_select('edit', #{model_select}) %> \n" 
-          html << "<input name='#{model_select}_name' size='20', maxsize='255' type='text' onkeydown=\"<%= remote_upgrade_select('#{model_select}', 'name', '¿Desea agregar este elemento?' ) %>\">\n" 
+          html << "<%= table_select('edit', #{model_select}, {:tabindex => '#{tabindex}'}) %> \n" 
+          html << "<%= quickpost('#{model_select}') %> \n"
           html << "</div>\n"
         end
       elsif column =~ /month/ then
-        html << "<%= month_select('edit', {:field_name => '#{column}' } ) %> \n"
+        html << "<%= month_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
       elsif column =~ /year/ then
-        html << "<%= year_select('edit', {:field_name => '#{column}' } ) %> \n"
+        html << "<%= year_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
       else
-        html << "<%= text_field 'edit', '#{column}' %>\n"  
+        html << "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 20,'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
       end
       html << "</div>\n\n"
+      tabindex += 1
     }
     html
+  end
+
+  def salva_model (model_instance, singular_name)
+    attrs = model_instance.attributes()
+    required = []
+    numeric = []
+    belongs_to = []
+    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    attrs.each_key { | column | 
+      next if hidden.include? column
+      if column =~ /_id$/ then
+        numeric << ':'+column
+        required << ':'+column if !model_instance.column_for_attribute(column).null
+        refmodel = column.sub(/_id/,'') 
+        if refmodel =~ /^\w+_/ then
+          (prefix, model) = refmodel.split('_')
+          belongs_to << [ refmodel, Inflector.camelize(model), column ]
+        else
+          belongs_to << [ refmodel ]
+        end
+      else
+        required << ':'+column if !model_instance.column_for_attribute(column).null
+      end
+    }
+    classmodel = 'validates_presence_of ' + required.join(', ') + "\n\n"
+    classmodel += 'validates_numericality_of ' + numeric.join(', ') + "\n\n"
+    belongs_to.each { | params |
+      if params.length > 1 then
+        classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n\n"
+      else 
+        classmodel += "belongs_to :" + params[0].to_s + "\n\n"
+      end
+    }
+    classmodel
   end
 end  
 
@@ -96,10 +130,17 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
       m.directory File.join('test/functional', controller_class_path)
       m.directory File.join('test/unit', class_path)
 
-      m.template 'model.rb',
-                  File.join('app/models',
-                            class_path,
-                            "#{file_name}.rb")
+      # Scaffolded models.
+        m.complex_template "model_salva.rb",
+        File.join('app/models',
+                  class_path,
+                  "#{file_name}.rb"),
+        :insert => 'model_scaffolding.rb',
+        :sandbox => lambda { create_sandbox },
+        :begin_mark => 'salva_model',
+        :end_mark => 'eof_salva_model'
+#        :mark_id => singular_name
+
 
       m.template 'controller.rb',
                   File.join('app/controllers',
