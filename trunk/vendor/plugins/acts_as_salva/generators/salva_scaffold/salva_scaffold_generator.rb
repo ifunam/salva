@@ -6,14 +6,19 @@ class ScaffoldingSandbox
 
   def salva_tags (model_instance, singular_name)
     #model_instance #and singular_name.class
-    @attrs = model_instance.attributes()
+    attrs = model_instance.attributes()
+    #attributes()
     html = "\n"
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
-   
-    @attrs.each { | column, attr | 
+    attrs.each_key { | column | 
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
-      html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
+      # Check the documentation for ActiveRecord::ConnectionAdapters::Column
+      if model_instance.column_for_attribute(column).null then
+        html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
+      else
+        html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %> <span class=\"required\">*</span></label> \n"
+      end
       if column =~ /_id$/ then
         model_select = column.sub(/_id/,'') 
         if model_select =~ /^\w+_/ then
@@ -170,13 +175,13 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
     end
     
     def model_instance
-      base = class_nesting.split('::').inject(Object) do |base, nested|
-        break base.const_get(nested) if base.const_defined?(nested)
-        base.const_set(nested, Module.new)
-      end
-      unless base.const_defined?(@class_name_without_nesting)
-        base.const_set(@class_name_without_nesting, Class.new(ActiveRecord::Base))
-      end
+       base = class_nesting.split('::').inject(Object) do |base, nested|
+         break base.const_get(nested) if base.const_defined?(nested)
+         base.const_set(nested, Module.new)
+       end
+       unless base.const_defined?(@class_name_without_nesting)
+         base.const_set(@class_name_without_nesting, Class.new(ActiveRecord::Base))
+       end
       class_name.constantize.new
     end
 end
