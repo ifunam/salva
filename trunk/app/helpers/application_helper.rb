@@ -43,22 +43,33 @@ module ApplicationHelper
     end
     ckbox_group = "<ul>\n"
     model.find(:all, :order => 'name ASC').collect { |m| 
-      ckbox_group += '<li>' + check_box_tag("#{object}[#{prefix}][]", m.id, checked = false, options = {:id => prefix})  + m.name + "</li>\n"
+      ckbox_group += '<li>' + \
+      check_box_tag("#{object}[#{prefix}][]", m.id, checked = false, 
+                    options = {:id => prefix}) + \
+      m.name + "</li>\n"
     }
     ckbox_group += "</ul>\n"
     ckbox_group
   end
   
   def quickpost(partial)
-    link_to_function(image_tag('add.gif', {:border=>0, :valign => 'middle', :alt=> 'Agregar'}), toggle_effect(partial, 'Effect.BlindUp', "duration:0.4", "Effect.BlindDown", "duration:0.4"))    
+    link_to_function(image_tag('add.gif', 
+                               { :border=>0, :valign => 'middle', 
+                                 :alt=> 'Agregar' }), 
+                     toggle_effect(partial, 'Effect.BlindUp', 
+                                   "duration:0.5", "Effect.BlindDown", 
+                                   "duration:0.5"))    
   end
 
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
-    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}', {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); return false;"
+    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}'," +
+      " {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); " + 
+      "return false;"
+
   end
-  
-  # This can be moved into application_helper.rb
+
   def loading_indicator_tag(scope,id)
-    "<img src=\"/images/indicator.gif\" style=\"display: none;\" id=\"#{scope}-#{id}-loading-indicator\" alt=\"loading indicator\" class=\"loading-indicator\" />"
+    render(:partial => '/salva/loading_indicator_tag', 
+           :locals => { :scope => scope, :id => id })
   end  
 end 
