@@ -52,15 +52,16 @@ class SalvaController < ApplicationController
 
   def create
     @edit = @model.new(params[:edit])
-    @edit.moduser_id = @session[:user] if @edit.attribute_present?('moduser_id')
-    @edit.user_id = @session[:user] if @edit.attribute_present?('user_id')
+    @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
+    @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
     if @edit.save
       flash[:notice] = @create_msg
       redirect_to :action => 'list'
     else
       logger.info "*** Algo esta mal <<wey>>, checalo! ***"
       logger.info @edit.errors.full_messages
-      redirect_to :action => 'list'
+      flash[:notice] = 'Hay errores al guardar esta información'
+      render :action => 'new'
     end
   end
  
