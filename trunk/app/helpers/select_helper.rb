@@ -72,8 +72,11 @@ module SelectHelper
     model_id = prefix + '_' + model_id if prefix != nil
     origmodel = origmodel.downcase
     destmodel = destmodel.downcase
-
-    params = "'template=select_#{origmodel}_#{destmodel}&id='+value"
+    
+    template = "select_#{origmodel}_#{destmodel}" 
+    template += "_prefix" if prefix != nil
+    
+    params = "'template=#{template}&id='+value"
     div_note = model_id + '_note'
     success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.5}); "
     success_msg += "return false;"
