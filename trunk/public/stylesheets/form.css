@@ -163,6 +163,11 @@ body {
     vertical-align: middle;
 }
 
+.row .required { 
+  font-weight: bold;
+  color: #0866B7;
+}
+
 .box .options {
     background: transparent;
 }
@@ -337,6 +342,7 @@ p {
 	font:  12px Arial,  sans-serif;	
 	font-weight: bold;
 }
+
 
 input {
   background-color: #fff;

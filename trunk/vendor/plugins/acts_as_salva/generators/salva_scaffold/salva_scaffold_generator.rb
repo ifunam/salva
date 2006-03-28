@@ -23,13 +23,13 @@ class ScaffoldingSandbox
         if model_select =~ /^\w+_/ then
           (prefix, model_select) = model_select.split('_')
 	  model_select = Inflector.camelize(model_select)
-          html << "<div id=\"#{prefix}_#{model_select}\">\n" 
+          html << "<div id=\"#{column}\">\n" 
           html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}'}) %>\n" 
           html << "<%= quickpost('#{model_select}') %> \n"
           html << "</div>\n"
         else
 	  model_select = Inflector.camelize(model_select)
-          html << "<div id=\"#{model_select}\">\n"
+          html << "<div id=\"#{column}\">\n"
           html << "<%= table_select('edit', #{model_select}, {:tabindex => '#{tabindex}'}) %> \n" 
           html << "<%= quickpost('#{model_select}') %> \n"
           html << "</div>\n"
@@ -39,7 +39,7 @@ class ScaffoldingSandbox
       elsif column =~ /year/ then
         html << "<%= year_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
       else
-        html << "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 20,'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+        html << "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40,'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
       end
       html << "</div>\n\n"
       tabindex += 1
@@ -69,13 +69,13 @@ class ScaffoldingSandbox
         required << ':'+column if !model_instance.column_for_attribute(column).null
       end
     }
-    classmodel = 'validates_presence_of ' + required.join(', ') + "\n\n"
-    classmodel += 'validates_numericality_of ' + numeric.join(', ') + "\n\n"
+    classmodel = 'validates_presence_of ' + required.join(', ') + "\n"
+    classmodel += 'validates_numericality_of ' + numeric.join(', ') + "\n"
     belongs_to.each { | params |
       if params.length > 1 then
-        classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n\n"
+        classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
       else 
-        classmodel += "belongs_to :" + params[0].to_s + "\n\n"
+        classmodel += "belongs_to :" + params[0].to_s + "\n"
       end
     }
     classmodel
@@ -175,7 +175,7 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
         :mark_id => singular_name
 
       # Scaffolded views and partials.
-      %w(list show new edit).each do |action|
+      %w(list show _show new edit).each do |action|
                               m.template "view_#{action}.rhtml",
                    File.join('app/views',
                              controller_class_path,

@@ -1,4 +1,4 @@
-<%%= table_show(<%= Inflector.camelize(singular_name) %>.columns) %>
+<%%= render :partial => "<%= singular_name %>/show" %>
 <%%= render :partial =>"salva/moduser" %>
 <%%= link_to 'Editar', :action => 'edit', :id => @<%= singular_name %> %> |
 <%%= link_to 'Regresar', :action => 'list' %>

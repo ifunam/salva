@@ -1,76 +1,74 @@
 <%= error_messages_for 'edit' %>
-
-<!--[form:address]-->
+<!--[form:edit]-->
 
 <div class="row"> 
-<label for="city" class="label"><%= get_label('city') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'city', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 1, 'id' => 'city' %>
+<label for="addresstype_id" class="label"><%= get_label('addresstype_id') %> <span class="required">*</span></label> 
+<%= table_select('edit', Addresstype, {:tabindex => '1'}) %> 
+</div>
+
+<div class="row"> 
+<label for="addr" class="label"><%= get_label('addr') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'addr', 'rows' => 4, 'cols'=> 40,'tabindex'=> 2, 'id' => 'addr' %>
 </div>
 
 <div class="row"> 
 <label for="pobox" class="label"><%= get_label('pobox') %></label> 
-<%= text_field 'edit', 'pobox', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 2, 'id' => 'pobox' %>
-</div>
-
-<div class="row"> 
-<label for="movil" class="label"><%= get_label('movil') %></label> 
-<%= text_field 'edit', 'movil', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 3, 'id' => 'movil' %>
-</div>
-
-<div class="row"> 
-<label for="zipcode" class="label"><%= get_label('zipcode') %></label> 
-<%= text_field 'edit', 'zipcode', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 4, 'id' => 'zipcode' %>
+<%= text_field 'edit', 'pobox', 'size' => 30, 'maxsize'=> 40,'tabindex'=> 3, 'id' => 'pobox' %>
 </div>
 
 <div class="row"> 
 <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
-<div id="Country">
-<%= table_select('edit', Country, {:tabindex => '5'}) %> 
-<%= quickpost('Country') %> 
-</div>
-</div>
-
-<div class="row"> 
-<label for="addresstype_id" class="label"><%= get_label('addresstype_id') %> <span class="required">*</span></label> 
-<div id="Addresstype">
-<%= table_select('edit', Addresstype, {:tabindex => '6'}) %> 
-<%= quickpost('Addresstype') %> 
-</div>
-</div>
-
-<div class="row"> 
-<label for="phone" class="label"><%= get_label('phone') %></label> 
-<%= text_field 'edit', 'phone', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 7, 'id' => 'phone' %>
-</div>
-
-<div class="row"> 
-<label for="fax" class="label"><%= get_label('fax') %></label> 
-<%= text_field 'edit', 'fax', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 8, 'id' => 'fax' %>
+<%= table_select('edit', Country, {:tabindex => '4'}) %> 
 </div>
 
 <div class="row"> 
 <label for="state_id" class="label"><%= get_label('state_id') %></label> 
-<div id="State">
-<%= table_select('edit', State, {:tabindex => '9'}) %> 
+<div id="state_id">
+<%= table_select('edit', State, {:tabindex => '5'}) %> 
 <%= quickpost('State') %> 
 </div>
 </div>
 
 <div class="row"> 
+<label for="city_id" class="label"><%= get_label('city_id') %></label> 
+<div id="city_id">
+<%= table_select('edit', City, {:tabindex => '6'}) %> 
+<%= quickpost('City') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="zipcode" class="label"><%= get_label('zipcode') %></label> 
+<%= text_field 'edit', 'zipcode', 'size' => 30, 'maxsize'=> 40,'tabindex'=> 7, 'id' => 'zipcode' %>
+</div>
+
+<div class="row"> 
+<label for="phone" class="label"><%= get_label('phone') %></label> 
+<%= text_field 'edit', 'phone', 'size' => 30, 'maxsize'=> 40,'tabindex'=> 8, 'id' => 'phone' %>
+</div>
+
+<div class="row"> 
+<label for="fax" class="label"><%= get_label('fax') %></label> 
+<%= text_field 'edit', 'fax', 'size' => 30, 'maxsize'=> 40,'tabindex'=> 9, 'id' => 'fax' %>
+</div>
+
+<div class="row"> 
+<label for="movil" class="label"><%= get_label('movil') %></label> 
+<%= text_field 'edit', 'movil', 'size' => 30, 'maxsize'=> 40,'tabindex'=> 10, 'id' => 'movil' %>
+</div>
+
+<div class="row"> 
 <label for="other" class="label"><%= get_label('other') %></label> 
-<%= text_field 'edit', 'other', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 10, 'id' => 'other' %>
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols'=> 40,'tabindex'=> 11, 'id' => 'other' %>
 </div>
 
 <div class="row"> 
 <label for="is_postaddress" class="label"><%= get_label('is_postaddress') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'is_postaddress', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 11, 'id' => 'is_postaddress' %>
+<select id="edit_is_postaddress" name="edit[is_postaddress]">  
+ 	<option value="true">Sí</option>  
+ 	<option value="false">No</option>  
+</select>  
 </div>
 
-<div class="row"> 
-<label for="address" class="label"><%= get_label('address') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'address', 'size' => 30, 'maxsize'=> 20,'tabindex'=> 12, 'id' => 'address' %>
-</div>
-
-
-<!--[eoform:address]-->
+<!--[eoform:edit]-->
 

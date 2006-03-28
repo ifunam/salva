@@ -3,7 +3,7 @@ class Personal < ActiveRecord::Base
 
   validates_presence_of :firstname,  :lastname1, 
   :dateofbirth, :birth_country_id, :birth_state_id, :birth_city, 
-  :maritalstatus_id, :message => 'wey, estos campos son obligatorios'
+  :maritalstatus_id
   validates_numericality_of :birth_country_id, :birth_state_id, :maritalstatus_id
   
   #  validates_inclusion_of :sex, :in=> ['true', 'false'], :message=>"wow! Entonces qué pinche genero tienes? pinche indeciso ;)!..."
