@@ -2,6 +2,7 @@
 <%= start_form_tag :action => 'update', :id => @edit %>
   <%= render :partial => 'form' %>
   <div id="operations">
-  <%= submit_tag get_label('update') %> | <%= link_to get_label('cancel'), :action => 'list' %>
+  <%= submit_tag get_label('update') %> | 
+  <%= link_to get_label('cancel'), :action => 'list' %>
   </div>
 <%= end_form_tag %>

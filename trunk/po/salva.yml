@@ -40,7 +40,10 @@ name: Nombre
 moduser_id: Identificador de usuario
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
+next: Siguiente
 add: Agregar
+del: Borrar
+edit: Modificar
 save: Guardar
 update: Guardar cambios
 cancel: Cancelar
