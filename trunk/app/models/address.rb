@@ -6,5 +6,11 @@ class Address < ActiveRecord::Base
   belongs_to :addresstype
   belongs_to :city
   belongs_to :state
+
+   def name
+   end
+  
+   def code
+   end
 end
 

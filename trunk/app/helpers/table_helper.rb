@@ -11,10 +11,10 @@ module TableHelper
         columns.each { |attr| 
           if item.send(attr) != nil then
             if is_id?(attr) then
-              belongs_to = set_belongs_to(attr)
-              cell << item.send(belongs_to[:model]).send(belongs_to[:attr])
+              (model, field) = set_belongs_to(attr)
+              cell << item.send(model).send(field) if item.send(model) != nil
             else
-              cell << item.send(attr)
+              cell << item.send(attr) if item.send(attr) != nil
             end
           end
         } 
@@ -43,14 +43,14 @@ module TableHelper
       
       if !default_hidden.include?(attr) then
         if is_id?(attr) then
-          belongs_to = set_belongs_to(attr)
-          body << [ attr, @edit.send(belongs_to[:model]).send(belongs_to[:attr]) ]
+          (model, field) = set_belongs_to(attr)
+          body << [ attr, @edit.send(model).send(field) ] if @edit.send(model) != nil 
         else
           case attr 
           when 'sex' 
             body << [ attr, sex(@edit.send(column.name))]
           else
-            body << [ attr, @edit.send(attr) ]
+            body << [ attr, @edit.send(attr) ] if @edit.send(attr) != nil
           end
         end
       end
@@ -66,10 +66,10 @@ module TableHelper
   end
     
   def set_belongs_to(attr)
-    belongs_to = { :model => attr.sub(/_id$/,''), :attr => 'name' }
+    belongs_to = [ attr.sub(/_id$/,''), 'name' ]
     case attr
     when /citizen/
-      belongs_to['attr'] = 'citizen'
+      belongs_to[1] = 'citizen'
     end
     belongs_to
   end
