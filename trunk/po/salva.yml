@@ -39,6 +39,11 @@ code: Código
 name: Nombre
 moduser_id: Identificador de usuario
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
+back: Regresar
+add: Agregar
+save: Guardar
+update: Guardar cambios
+cancel: Cancelar
 home: Inicio
 navigator: Inicio
 profile: Perfil

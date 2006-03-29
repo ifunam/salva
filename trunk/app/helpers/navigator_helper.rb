@@ -82,5 +82,4 @@ module NavigatorHelper
     }
     links.join(' ')
   end
-
 end  

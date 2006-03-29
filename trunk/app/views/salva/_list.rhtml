@@ -16,7 +16,7 @@
 <% end %>
 </table>
 <% if list.length > 0 %>
-<%= submit_tag "Borrar elementos seleccionados" %>
+<%= submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('¿Desea borrar los elementos seleccionados?');"} %>
 <% end %>
 <% if @pages.page_count > 1 %>
 <br/>

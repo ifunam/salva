@@ -2,7 +2,8 @@
 <%%= start_form_tag :action => 'create' %>
   <%%= render :partial => 'form' %>
   <div id="operations">
-  <%%= submit_tag "Guardar" %> | <%%= link_to 'Cancelar', :action => 'list' %>
-  </div
+  <%= submit_tag get_label('save') %> | 
+  <%= link_to get_label('cancel'), :action => 'list' %>
+  </div>
 <%%= end_form_tag %>
 
