@@ -18,19 +18,21 @@
 
 <div class="row"> 
 <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
-<%= table_select('edit', Country, {:tabindex => '4'}) %> 
+<%= select2update_select({:object => 'edit', :model => Country, :tabindex => '4'}, {:model => 'State'} ) %>
 </div>
 
 <div class="row"> 
-<label for="state_id" class="label"><%= get_label('state_id') %></label> 
+<label for="state_id" class="label"><%= get_label('state_id')%></label> 
+<div id="state_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
 <div id="state_id">
-<%= table_select('edit', State, {:tabindex => '5'}) %> 
+<%= select2update_select({:object => 'edit', :model =>State, :tabindex => '5' }, {:model => 'City'}) %>
 <%= quickpost('State') %> 
 </div>
 </div>
 
 <div class="row"> 
 <label for="city_id" class="label"><%= get_label('city_id') %></label> 
+<div id="city_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
 <div id="city_id">
 <%= table_select('edit', City, {:tabindex => '6'}) %> 
 <%= quickpost('City') %> 
