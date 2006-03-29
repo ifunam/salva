@@ -433,6 +433,13 @@ table.list td {
 	border-bottom: 1px dotted #336699;
 }
 
+table.list td.item {
+	text-align: left;
+	width: 20px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
 table.list td.link {
 	text-align: left;
 	width: 60px;

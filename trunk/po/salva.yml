@@ -38,6 +38,8 @@ numcites: Número de citas
 code: Código
 name: Nombre
 moduser_id: Identificador de usuario
+migratorystatus_id: Estado migratorio
+citizen_country_id: Nacionalidad
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
@@ -62,5 +64,3 @@ user_grants: Becas
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
-
-

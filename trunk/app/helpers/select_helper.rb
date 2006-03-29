@@ -88,4 +88,14 @@ module SelectHelper
                     :success => success_msg)
   end
 
+  def byattr_select(object, model, model_id, opts={})
+    attr = 'name'
+    select(object, model_id,  
+           model.find(:all, :order => 'name ASC').collect {
+             |p| [ p.send( opts[:attr] || attr), p.id ]
+           },
+           {:prompt => '-- Seleccionar --'}, 
+           {:tabindex => opts[:tabindex] })
+
+  end
 end
