@@ -1,4 +1,4 @@
-<%= start_form_tag :action => 'list_selected' %>
+<%= start_form_tag :action => 'purge_selected' %>
 <table class="list">
   <tr>
     <th>*</th>
@@ -8,15 +8,17 @@
 <% rowcolor = 1 %>  
 <% for item in list %>
   <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
-  <% @rowcolor == 1 ? @rowcolor = 0 : @rowcolor = 1 %>
-    <td><%= check_box('edit', item['id']) %> </td>
+  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
+    <td><%= check_box_tag("item[]", item['id'], checked=false) %> </td>
     <td><%=item['cell_content']%></td>
     <td class="link"><%= show_link(item['id']) %> <%= edit_link(item['id']) %> <%= purge_link(item['id'], 'Desea borrar este elemento?') %></td>
   </tr>
 <% end %>
 </table>
+<% if list.length > 0 %>
 <%= submit_tag "Borrar elementos seleccionados" %>
-<% if @pages %>
+<% end %>
+<% if @pages.page_count > 1 %>
 <br/>
 Resultados: <%= pagination_links(@pages) %> <br/>
 <% end %>

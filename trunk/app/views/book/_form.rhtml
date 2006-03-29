@@ -30,14 +30,12 @@
 
 <div id="orig_Language">
 <%= table_select('edit', Language, { :prefix => 'orig'}) %>
-<input name="orig_Language_name" size="20", maxsize="255" type="text" onkeydown="<%= remote_upgrade_select('Language', 'name', '¿Desea agregar este idioma?', { :prefix => 'orig'} ) %>">
 </div>
 <br/>
 
 <label for="translanguage_id">Traducci&oacute;n</label>
 <div id="trans_Language">
 <%= table_select('edit', Language, { :prefix =>  'trans'}) %>
-<input name="trans_Language_name" size="20", maxsize="255" type="text" onkeydown="<%= remote_upgrade_select('Language', 'name', '¿Desea agregar este idioma?', { :prefix => 'trans'} ) %>">
 <div>
 <br/>
 <!--[eoform:edit]-->

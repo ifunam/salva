@@ -82,11 +82,9 @@ class SalvaController < ApplicationController
   end
 
   def purge_selected
-    unless @params[:item].nil?
+    if  @params[:item]
       @params[:item].each { |id, contents|
-        if contents[:checked]
-          @model.find(id).destroy
-        end
+        @model.find(id).destroy
       }
     end
     redirect_to :action => 'list'
