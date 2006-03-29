@@ -157,6 +157,12 @@ body {
     font-weight: bold;
 }
 
+.required_legend {
+    display: inline;
+    font-weight: bold;
+    color: #0866B7;
+}
+
 .row {
     display: table-row;
     float: none;

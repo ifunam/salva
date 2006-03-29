@@ -1,9 +1,7 @@
-<h1>Editando Address</h1>
-
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
 <%= start_form_tag :action => 'update', :id => @edit %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <div id="operations">
+  <%= submit_tag 'Guardar cambios' %> | <%= link_to 'Cancelar', :action => 'list' %>
+  </div>
 <%= end_form_tag %>
-
-<%= link_to 'Mostrar', :action => 'show', :id => @edit %> |
-<%= link_to 'Regresar', :action => 'list' %>

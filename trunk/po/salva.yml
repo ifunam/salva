@@ -38,6 +38,7 @@ numcites: Número de citas
 code: Código
 name: Nombre
 moduser_id: Identificador de usuario
+required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 home: Inicio
 navigator: Inicio
 profile: Perfil

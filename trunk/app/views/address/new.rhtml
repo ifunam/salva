@@ -1,5 +1,8 @@
+<div class="required_legend"><%= get_label('required_legend')%>.</div>
 <%= start_form_tag :action => 'create' %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Guardar" %>
+  <div id="operations">
+  <%= submit_tag "Guardar" %> | <%= link_to 'Cancelar', :action => 'list' %>
+  </div>
 <%= end_form_tag %>
 <%= render :partial => 'quickpost' %>
