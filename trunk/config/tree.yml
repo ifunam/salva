@@ -3,8 +3,8 @@
 - - general
   - - personal
     - address
-    - user_personalids
-    - user_citizens
+    - citizens
+    - user_ids
   - schooling
   - user_jobpositions
   - user_stimulus

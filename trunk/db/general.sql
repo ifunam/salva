@@ -87,27 +87,6 @@ CREATE UNIQUE INDEX "personals_firstname_lastname1_lastname2_idx" ON personals(u
 COMMENT ON TABLE personals IS
 	'Datos personales del usuario';
 
-CREATE TABLE personalids ( 
-   user_id int4 NOT NULL 
-   	   REFERENCES users(id)
-           ON UPDATE CASCADE
-           ON DELETE CASCADE   
-           DEFERRABLE,
-   personalidtype_id int4 
-   	   REFERENCES personalidtypes(id)
-           ON UPDATE CASCADE
-           DEFERRABLE,
-   content text NULL,
-   moduser_id int4  NULL    	     -- Use it only to know who has
-   REFERENCES users(id)             -- inserted, updated or deleted  
-	      ON UPDATE CASCADE                -- data into or from this table.
-   	      DEFERRABLE,
-   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (user_id)
-);
-COMMENT ON TABLE personalids IS
-	'Cada una de las identificaciones de un usuario';
-
 CREATE TABLE addresses ( 
     id SERIAL,
     user_id int4 NOT NULL 
@@ -150,29 +129,52 @@ CREATE TABLE addresses (
 COMMENT ON TABLE addresses IS
 	'Las direcciones postales de un usuario';
 
-CREATE TABLE user_citizens ( 
+CREATE TABLE citizens ( 
+  id serial,
   user_id int4 NOT NULL 
 	   REFERENCES users(id)
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
 	   DEFERRABLE,
-  citizen_country_id int4 NOT NULL
+  citizen_id int4 NOT NULL
 	   REFERENCES countries(id)
 	   ON UPDATE CASCADE
            DEFERRABLE,
   migratorystatus_id int4 NULL REFERENCES migratorystatuses(id)
 	   ON UPDATE CASCADE
 	   DEFERRABLE,
-  passport text NULL,
   moduser_id int4  NULL    	     -- Use it only to know who has
   REFERENCES users(id)             -- inserted, updated or deleted  
 	      ON UPDATE CASCADE                -- data into or from this table.
    	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (user_id, citizen_country_id)
+  PRIMARY KEY (id),
+  UNIQUE (user_id, citizen_id)
 );
-COMMENT ON TABLE user_citizens IS
+COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';
+
+CREATE TABLE user_ids ( 
+   id serial,
+   user_id int4 NOT NULL 
+   	   REFERENCES users(id)
+           ON UPDATE CASCADE
+           ON DELETE CASCADE   
+           DEFERRABLE,
+   personalidtype_id int4 
+   	   REFERENCES personalidtypes(id)
+           ON UPDATE CASCADE
+           DEFERRABLE,
+   content text NULL,
+   moduser_id int4  NULL    	     -- Use it only to know who has
+   REFERENCES users(id)             -- inserted, updated or deleted  
+	      ON UPDATE CASCADE                -- data into or from this table.
+   	      DEFERRABLE,
+   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (user_id)
+);
+COMMENT ON TABLE user_ids IS
+	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE user_memberships ( 
   user_id int4 NOT NULL 

@@ -53,8 +53,8 @@ profile: Perfil
 general: Información general
 personal: Datos personales
 address: Domicilio(s)
-user_personalids: Identidad
-user_citizens: Nacionalidad
+user_ids: Identidad
+citizens: Nacionalidad
 schooling: Escolaridad
 user_jobpositions: Experiencia laboral
 user_stimulus: Estímulos
