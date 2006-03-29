@@ -22,26 +22,6 @@ COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
 -- Domicilio profesional, Domicilio particular, Domicilio temporal
 
-CREATE TABLE personalidtypes ( 
-        id SERIAL,
-        name text NOT NULL,
-        PRIMARY KEY(id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE personalidtypes IS
-	'Tipo de (documento de) identificación';
--- Pasaporte, credencial de elector, ...
-
-CREATE TABLE migratorystatuses (
-	id SERIAL,
-	name text NOT NULL,
-	PRIMARY KEY (id), 
-	UNIQUE (name)
-);
-COMMENT ON TABLE migratorystatuses IS
-	'Status migratorio de un extranjero';
--- Turista, residente temporal, residente permanente
-
 CREATE TABLE personals ( 
     user_id int4 NOT NULL 
             REFERENCES users(id)
@@ -129,6 +109,16 @@ CREATE TABLE addresses (
 COMMENT ON TABLE addresses IS
 	'Las direcciones postales de un usuario';
 
+CREATE TABLE migratorystatuses (
+	id SERIAL,
+	name text NOT NULL,
+	PRIMARY KEY (id), 
+	UNIQUE (name)
+);
+COMMENT ON TABLE migratorystatuses IS
+	'Status migratorio de un extranjero';
+-- Turista, residente temporal, residente permanente
+
 CREATE TABLE citizens ( 
   id serial,
   user_id int4 NOT NULL 
@@ -154,7 +144,22 @@ CREATE TABLE citizens (
 COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';
 
-CREATE TABLE user_ids ( 
+
+CREATE TABLE personalidtypes ( 
+        id SERIAL,
+        name text NOT NULL,
+	citizen_country_id int4 NOT NULL 
+        REFERENCES countries(id)
+                   ON UPDATE CASCADE
+                   DEFERRABLE,
+        PRIMARY KEY(id),
+	UNIQUE (name, citizen_country_id)
+);
+COMMENT ON TABLE personalidtypes IS
+	'Tipo de (documento de) identificación';
+-- Pasaporte, credencial de elector, ...
+
+CREATE TABLE peopleids ( 
    id serial,
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
@@ -173,7 +178,7 @@ CREATE TABLE user_ids (
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id)
 );
-COMMENT ON TABLE user_ids IS
+COMMENT ON TABLE peopleids IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE user_memberships ( 
