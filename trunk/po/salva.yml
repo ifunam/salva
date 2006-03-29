@@ -54,7 +54,7 @@ general: Información general
 personal: Datos personales
 address: Domicilio(s)
 user_ids: Identidad
-citizens: Nacionalidad
+citizen: Nacionalidad
 schooling: Escolaridad
 user_jobpositions: Experiencia laboral
 user_stimulus: Estímulos

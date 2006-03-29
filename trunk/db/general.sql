@@ -136,7 +136,7 @@ CREATE TABLE citizens (
 	   ON UPDATE CASCADE
            ON DELETE CASCADE
 	   DEFERRABLE,
-  citizen_id int4 NOT NULL
+  citizen_country_id int4 NOT NULL
 	   REFERENCES countries(id)
 	   ON UPDATE CASCADE
            DEFERRABLE,
@@ -149,7 +149,7 @@ CREATE TABLE citizens (
    	      DEFERRABLE,
   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE (user_id, citizen_id)
+  UNIQUE (user_id, citizen_country_id)
 );
 COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';

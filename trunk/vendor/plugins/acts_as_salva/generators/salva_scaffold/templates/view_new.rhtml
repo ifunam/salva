@@ -1,9 +1,9 @@
-<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<div class="required_legend"><%%= get_label('required_legend') %>.</div>
 <%%= start_form_tag :action => 'create' %>
   <%%= render :partial => 'form' %>
   <div id="operations">
-  <%= submit_tag get_label('save') %> | 
-  <%= link_to get_label('cancel'), :action => 'list' %>
+  <%%= submit_tag get_label('save') %> | 
+  <%%= link_to get_label('cancel'), :action => 'list' %>
   </div>
 <%%= end_form_tag %>
 

@@ -1,0 +1,23 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:citizen]-->
+
+<div class="row"> 
+<label for="migratorystatus_id" class="label"><%= get_label('migratorystatus_id') %></label> 
+<div id="migratorystatus_id">
+<%= table_select('edit', Migratorystatus, {:tabindex => '1'}) %> 
+<%= quickpost('Migratorystatus') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label> 
+<div id="citizen_country_id">
+<%= table_select('edit', Country, {:prefix => 'citizen', :tabindex => '2'}) %>
+<%= quickpost('Country') %> 
+</div>
+</div>
+
+
+<!--[eoform:citizen]-->
+
