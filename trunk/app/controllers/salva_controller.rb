@@ -1,4 +1,6 @@
 #  app/controllers/shared_controller
+#require 'iconv'
+
 class SalvaController < ApplicationController
   $debug = 1
 
@@ -51,6 +53,11 @@ class SalvaController < ApplicationController
   end
 
   def create
+    if @request.env['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' then
+      name ||= params[:edit][:name]  
+      logger.info "nombre utf[" +name+"]"
+      params[:edit][:name] = Iconv.new('iso-8859-15','utf-8').iconv(name)
+    end
     @edit = @model.new(params[:edit])
     @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
     @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
