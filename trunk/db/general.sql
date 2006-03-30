@@ -166,11 +166,11 @@ CREATE TABLE peopleids (
            ON UPDATE CASCADE
            ON DELETE CASCADE   
            DEFERRABLE,
-   personalidtype_id int4 
+   personalidtype_id int4 NOT NULL
    	   REFERENCES personalidtypes(id)
            ON UPDATE CASCADE
            DEFERRABLE,
-   content text NULL,
+   descr text NULL,
    moduser_id int4  NULL    	     -- Use it only to know who has
    REFERENCES users(id)             -- inserted, updated or deleted  
 	      ON UPDATE CASCADE                -- data into or from this table.

@@ -69,8 +69,8 @@ class ScaffoldingSandbox
         required << ':'+column if !model_instance.column_for_attribute(column).null
       end
     }
-    classmodel = 'validates_presence_of ' + required.join(', ') + "\n" if required.length > 0
-    classmodel += 'validates_numericality_of ' + numeric.join(', ') + "\n" if numeric.length > 0
+    classmodel = 'validates_presence_of ' + required.join(', ') + "\n"
+    classmodel += 'validates_numericality_of ' + numeric.join(', ') + "\n" 
     belongs_to.each { | params |
       if params.length > 1 then
         classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"

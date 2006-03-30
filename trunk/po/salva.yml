@@ -40,6 +40,8 @@ name: Nombre
 moduser_id: Identificador de usuario
 migratorystatus_id: Estado migratorio
 citizen_country_id: Nacionalidad
+personalidtype_id: Identificación
+descr: Descripción
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
@@ -55,7 +57,7 @@ profile: Perfil
 general: Información general
 personal: Datos personales
 address: Domicilio(s)
-user_ids: Identidad
+peopleid: Identidad
 citizen: Nacionalidad
 schooling: Escolaridad
 user_jobpositions: Experiencia laboral
