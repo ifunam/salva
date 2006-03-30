@@ -1,8 +1,6 @@
 class Peopleid < ActiveRecord::Base
-
-validates_presence_of :personalidtype_id
-validates_numericality_of :personalidtype_id
-belongs_to :personalidtype
-
+  validates_presence_of :idcitizen_id
+  validates_numericality_of :idcitizen_id
+  belongs_to :idcitizen
 end
 

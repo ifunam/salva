@@ -144,21 +144,20 @@ CREATE TABLE citizens (
 COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';
 
-CREATE TABLE peopleids (
+CREATE TABLE identifications (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE peopleids IS
+COMMENT ON TABLE identifications IS
 	'Tipo de (documento de) identificación';
 -- Pasaporte, credencial de elector, ...
 
-CREATE TABLE peopleidcitizens ( 
+CREATE TABLE idcitizens ( 
         id SERIAL,
-        name text NOT NULL,
-	peopleid_id int4 NOT NULL 
-        REFERENCES peopleids(id)
+	identification_id int4 NOT NULL 
+        REFERENCES identifications(id)
                    ON UPDATE CASCADE
                    DEFERRABLE,
 	citizen_country_id int4 NOT NULL 
@@ -166,20 +165,20 @@ CREATE TABLE peopleidcitizens (
                    ON UPDATE CASCADE
                    DEFERRABLE,
         PRIMARY KEY(id),
-	UNIQUE (peopleid_id, citizen_country_id)
+	UNIQUE (identification_id, citizen_country_id)
 );
-COMMENT ON TABLE peopleidcitizens IS
+COMMENT ON TABLE idcitizens IS
 	'Se relaciona la identificación con la nacionalidad';
 
-CREATE TABLE user_peopleidcitizens ( 
+CREATE TABLE peopleids ( 
    id serial,
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
            ON UPDATE CASCADE
            ON DELETE CASCADE   
            DEFERRABLE,
-   peopleidcitizen_id int4 NOT NULL
-   	   REFERENCES peopleidcitizens(id)
+   idcitizen_id int4 NOT NULL
+   	   REFERENCES idcitizens(id)
            ON UPDATE CASCADE
            DEFERRABLE,
    descr text NULL,
@@ -191,7 +190,7 @@ CREATE TABLE user_peopleidcitizens (
    PRIMARY KEY (user_id)
 );
 
-COMMENT ON TABLE user_peopleidcitizens IS
+COMMENT ON TABLE peopleids IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE user_memberships ( 

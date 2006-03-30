@@ -1,7 +1,11 @@
 <div id="state" style="display:none;position:absolute;">
- <%= render :partial => "/salva/state" %>
+ <%= render :partial => "/salva/quickpost", 
+            :locals => {:controller => 'state', :title => 'Estados'} 
+  %>
 </div>
 <div id="city" style="display:none;position:absolute;">
- <%= render :partial => "/salva/city" %>
+ <%= render :partial => "/salva/quickpost", 
+            :locals => {:controller => 'city', :title => 'Ciudades'} 
+  %>
 </div>
 

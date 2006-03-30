@@ -2,10 +2,10 @@
 <div class="title"> 
 <%= loading_indicator_tag controller, "new" %> <%= title %>
 </div>
-<%= form_remote_tag(:success => "new Effect.BlindUp('#{controller}', {duration:0.4}); return false;", 404 => "alert('Not found...? Wrong URL...?')", :loading => "AjaxScaffold.newOnLoading(request,'#{controller}');", :failure => "alert('HTTP Error ' + request.status + '!');", :url  => { :controller => controller, :action => 'create' } ) %>
+<%= form_remote_tag(:success => "new Effect.BlindUp('"+controller+"', {duration:0.4}); return false;", 404 => "alert('Not found...? Wrong URL...?')", :loading => "AjaxScaffold.newOnLoading(request,'"+controller+"');", :failure => "alert('HTTP Error ' + request.status + '!');", :url  => { :controller => controller, :action => 'create' } ) %>
 <%= render :partial => "/#{controller}/form" %>
 <div id="operations">
-<%= submit_tag "Guardar" %> | <a href="#" onclick="new Effect.BlindUp('#{controller}', {duration: 0.4}); return false;">Cancelar</a>
+<%= submit_tag "Guardar" %> | <a href="#" onclick="new Effect.BlindUp('<%= controller %>', {duration: 0.4}); return false;">Cancelar</a>
 </div>
 <%= end_form_tag %>
 </div>
