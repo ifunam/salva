@@ -25,13 +25,13 @@ class ScaffoldingSandbox
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{column}\">\n" 
           html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}'}) %>\n" 
-          html << "<%= quickpost('#{model_select}') %> \n"
+          html << "<%= quickpost('#{model_select.downcase}') %> \n"
           html << "</div>\n"
         else
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{column}\">\n"
           html << "<%= table_select('edit', #{model_select}, {:tabindex => '#{tabindex}'}) %> \n" 
-          html << "<%= quickpost('#{model_select}') %> \n"
+          html << "<%= quickpost('#{model_select.downcase}') %> \n"
           html << "</div>\n"
         end
       elsif column =~ /month/ then
