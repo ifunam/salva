@@ -49,12 +49,17 @@ module NavigatorHelper
 
   def title
     controller = @controller.class.name.sub(/Controller/,'').downcase
+    imgpath = RAILS_ROOT + "/public/images/" + controller + "_on.png"
+    img = controller
+    label = controller
     if controller == 'navigator' then
       tree = @session[:navtree]
-      img_tag(tree.data) + get_label(tree.data)
-    else
-      img_tag(controller) + get_label(controller)
+      img = tree.data
+      label = tree.data
+      imgpath = RAILS_ROOT + "/public/images/" + tree.data + "_on.png"
     end
+    img = "comodin_salva" if !File.exists?(imgpath) 
+    img_tag(img) + get_label(label)
   end
 
   def navbar_icons
