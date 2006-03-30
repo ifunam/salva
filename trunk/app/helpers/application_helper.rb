@@ -65,7 +65,6 @@ module ApplicationHelper
     "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}'," +
       " {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); " + 
       "return false;"
-
   end
 
   def loading_indicator_tag(scope,id)
