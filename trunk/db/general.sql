@@ -144,30 +144,42 @@ CREATE TABLE citizens (
 COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';
 
+CREATE TABLE peopleids (
+	id SERIAL,
+	name text NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE peopleids IS
+	'Tipo de (documento de) identificación';
+-- Pasaporte, credencial de elector, ...
 
-CREATE TABLE personalidtypes ( 
+CREATE TABLE peopleidcitizens ( 
         id SERIAL,
         name text NOT NULL,
+	peopleid_id int4 NOT NULL 
+        REFERENCES peopleids(id)
+                   ON UPDATE CASCADE
+                   DEFERRABLE,
 	citizen_country_id int4 NOT NULL 
         REFERENCES countries(id)
                    ON UPDATE CASCADE
                    DEFERRABLE,
         PRIMARY KEY(id),
-	UNIQUE (name, citizen_country_id)
+	UNIQUE (peopleid_id, citizen_country_id)
 );
-COMMENT ON TABLE personalidtypes IS
-	'Tipo de (documento de) identificación';
--- Pasaporte, credencial de elector, ...
+COMMENT ON TABLE peopleidcitizens IS
+	'Se relaciona la identificación con la nacionalidad';
 
-CREATE TABLE peopleids ( 
+CREATE TABLE user_peopleidcitizens ( 
    id serial,
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
            ON UPDATE CASCADE
            ON DELETE CASCADE   
            DEFERRABLE,
-   personalidtype_id int4 NOT NULL
-   	   REFERENCES personalidtypes(id)
+   peopleidcitizen_id int4 NOT NULL
+   	   REFERENCES peopleidcitizens(id)
            ON UPDATE CASCADE
            DEFERRABLE,
    descr text NULL,
@@ -178,7 +190,8 @@ CREATE TABLE peopleids (
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id)
 );
-COMMENT ON TABLE peopleids IS
+
+COMMENT ON TABLE user_peopleidcitizens IS
 	'Cada una de las identificaciones de un usuario';
 
 CREATE TABLE user_memberships ( 
