@@ -50,6 +50,8 @@ abbrev: Siglás
 institution_id: Institución
 institutiontype_id: Tipo de institución
 administrative_key: Clave presupuestal
+startyear: Año de inicio
+endyear: Año de término
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
@@ -74,6 +76,7 @@ user_grants: Becas
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
+membership: Membresias en asociaciones académicas 
 migratorystatus: Estado migratorio
 institution: Institución
 institutiontype: Tipo de institución

@@ -207,9 +207,9 @@ CREATE TABLE memberships (
 	   REFERENCES institutions(id)
 	   ON UPDATE CASCADE
            DEFERRABLE,
+  descr text NULL,
   startyear int4 NULL,
   endyear int4 NULL,
-  other text NULL,
   moduser_id int4  NULL    	     -- Use it only to know who has
  	   REFERENCES users(id)             -- inserted, updated or deleted  
 	   ON UPDATE CASCADE                -- data into or from this table.
