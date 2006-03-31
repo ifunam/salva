@@ -44,6 +44,12 @@ citizen_country_id: Nacionalidad
 personalidtype_id: Identificación
 identification_id: Identificación
 descr: Descripción
+institutiontitle_id: Título de la institución
+url: Página web
+abbrev: Siglás
+institution_id: Institución
+institutiontype_id: Tipo de institución
+administrative_key: Clave presupuestal
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
