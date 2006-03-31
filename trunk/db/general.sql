@@ -180,6 +180,7 @@ CREATE TABLE peopleids (
            REFERENCES identifications(id)
            ON UPDATE CASCADE
            DEFERRABLE,
+   descr text NOT NULL,
    citizen_country_id int4 NOT NULL 
            REFERENCES countries(id)
            ON UPDATE CASCADE
