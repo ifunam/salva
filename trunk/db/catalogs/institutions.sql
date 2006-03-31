@@ -2,7 +2,7 @@
 -- Data for Name: institutions; Type: TABLE DATA; Schema: public; Owner: salva
 --
 
-COPY institutions (id, name, url, abbrev, parent_id, institutiontype_id, institutiontitle_id, address, country_id, state_id, city_id, zipcode, phone, fax, administrative_key, other, moduser_id) FROM stdin;
+COPY institutions (id, name, url, abbrev, institution_id, institutiontype_id, institutiontitle_id, addr, country_id, state_id, city_id, zipcode, phone, fax, administrative_key, other, moduser_id) FROM stdin;
 1	Universidad Nacional Autónoma de México	http://www.unam.mx	UNAM	\N	1	1	Ciudad Universitaria, Delegación Coyoacán	484	9	1	04510	\N	\N	\N	\N	\N
 98	Proyectos de Investigación y Mejoramiento de la Enseñanza en el Bachillerato	\N	\N	1	1	14	\N	484	9	1	\N	\N	\N	45901	\N	\N
 99	Programa Universitario de Estudios de Género	\N	\N	1	1	14	\N	484	9	1	\N	\N	\N	21109	\N	\N

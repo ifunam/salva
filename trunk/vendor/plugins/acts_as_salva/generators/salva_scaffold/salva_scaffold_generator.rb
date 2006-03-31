@@ -25,14 +25,14 @@ class ScaffoldingSandbox
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{column}\">\n" 
           html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}'}) %>\n" 
-          html << "<%= quickpost('#{model_select.downcase}') %> \n"
           html << "</div>\n"
+          html << "<%= quickpost('#{model_select.downcase}') %> \n"
         else
 	  model_select = Inflector.camelize(model_select)
           html << "<div id=\"#{column}\">\n"
           html << "<%= table_select('edit', #{model_select}, {:tabindex => '#{tabindex}'}) %> \n" 
-          html << "<%= quickpost('#{model_select.downcase}') %> \n"
           html << "</div>\n"
+          html << "<%= quickpost('#{model_select.downcase}') %> \n"
         end
       elsif column =~ /month/ then
         html << "<%= month_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
@@ -122,10 +122,9 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                                                 #"#{class_name}Test"
 
 
-      # Controller, helper, views, and test directories.
+      # Controller, views, and test directories.
       m.directory File.join('app/models', class_path)
       m.directory File.join('app/controllers', controller_class_path)
-      m.directory File.join('app/helpers', controller_class_path)
       m.directory File.join('app/views', controller_class_path, controller_file_name)
       m.directory File.join('test/functional', controller_class_path)
       m.directory File.join('test/unit', class_path)
@@ -151,11 +150,6 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                   File.join('test/functional',
                             controller_class_path,
                             "#{controller_file_name}_controller_test.rb")
-
-      m.template 'helper.rb',
-                  File.join('app/helpers',
-                            controller_class_path,
-                            "#{controller_file_name}_helper.rb")
 
       m.template 'unit_test.rb',
                   File.join('test/unit',

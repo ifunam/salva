@@ -20,23 +20,23 @@ COMMENT ON TABLE institutiontitles IS
 
 CREATE TABLE institutions (  
         id SERIAL,
-        name text NOT NULL,
-        url  text NULL,
-        abbrev text NULL,
-	parent_id integer NULL
-            	REFERENCES institutions(id) 
-            	ON UPDATE CASCADE           
-            	ON DELETE CASCADE           
-            	DEFERRABLE,
 	institutiontype_id int4 NOT NULL
             	REFERENCES institutiontypes(id) 
             	ON UPDATE CASCADE           
+            	DEFERRABLE,
+        name text NOT NULL,
+        url  text NULL,
+        abbrev text NULL,
+	institution_id integer NULL
+            	REFERENCES institutions(id) 
+            	ON UPDATE CASCADE           
+            	ON DELETE CASCADE           
             	DEFERRABLE,
 	institutiontitle_id int4 NOT NULL
             	REFERENCES institutiontitles(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	address text NULL,
+	addr text NULL,
 	country_id int4 NOT NULL 
             	REFERENCES countries(id) 
             	ON UPDATE CASCADE           
@@ -58,12 +58,13 @@ CREATE TABLE institutions (
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+ 	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
 	UNIQUE(name, country_id, state_id) 
 ); 
 COMMENT ON TABLE institutions IS
 	'Instituciones';
-COMMENT ON COLUMN institutions.parent_id IS
+COMMENT ON COLUMN institutions.institution_id IS
 	'Institución padre, para expresar jerarquías (p.ej. UNAM es la 
 	institución padre de IIEc)';
 COMMENT ON COLUMN institutions.administrative_key IS
