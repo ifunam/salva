@@ -61,6 +61,5 @@
 \i catalogs/publicationcategories.sql
 \i catalogs/articlestatuses.sql
 \i catalogs/identifications.sql
-\i catalogs/citizenids.sql
 \i catalogs/migratorystatuses.sql
 \i catalogs/citizenmodalities.sql

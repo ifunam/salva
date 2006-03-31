@@ -169,22 +169,6 @@ COMMENT ON TABLE identifications IS
 	'Tipo de (documento de) identificación';
 -- Pasaporte, credencial de elector, ...
 
-CREATE TABLE citizenids ( 
-        id SERIAL,
-	identification_id int4 NOT NULL 
-        REFERENCES identifications(id)
-                   ON UPDATE CASCADE
-                   DEFERRABLE,
-	citizen_country_id int4 NOT NULL 
-        REFERENCES countries(id)
-                   ON UPDATE CASCADE
-                   DEFERRABLE,
-        PRIMARY KEY(id),
-	UNIQUE (identification_id, citizen_country_id)
-);
-COMMENT ON TABLE citizenids IS
-	'Se relaciona la identificación con cada nacionalidad';
-
 CREATE TABLE peopleids ( 
    id serial,
    user_id int4 NOT NULL 
@@ -192,18 +176,21 @@ CREATE TABLE peopleids (
            ON UPDATE CASCADE
            ON DELETE CASCADE   
            DEFERRABLE,
-   citizenid_id int4 NOT NULL
-   	   REFERENCES citizenids(id)
+   identification_id int4 NOT NULL 
+           REFERENCES identifications(id)
            ON UPDATE CASCADE
            DEFERRABLE,
-   descr text NULL,
+   citizen_country_id int4 NOT NULL 
+           REFERENCES countries(id)
+           ON UPDATE CASCADE
+           DEFERRABLE,
    moduser_id int4  NULL    	     -- Use it only to know who has
    REFERENCES users(id)              -- inserted, updated or deleted  
 	      ON UPDATE CASCADE      -- data into or from this table.
    	      DEFERRABLE,
    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id),
-   UNIQUE (user_id, citizenid_id)
+   UNIQUE (user_id, identification_id, citizen_country_id)
 );
 COMMENT ON TABLE peopleids IS
 	'Identificaciones de un usuario asociadas a su nacionalidad';
