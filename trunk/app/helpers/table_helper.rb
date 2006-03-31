@@ -44,11 +44,11 @@ module TableHelper
           body << [ attr, @edit.send(model).send(field) ] unless
             @edit.send(model) == nil 
         else
-          case attr 
-          when 'sex' 
-            body << [ attr, sex(@edit.send(column.name))]
+          next if @edit.send(attr) == nil
+          if @edit.column_for_attribute(attr).type.to_s == 'boolean' then
+            body << [ attr, setbool_tag(attr,@edit.send(attr))] 
           else
-            body << [ attr, @edit.send(attr) ] if @edit.send(attr) != nil
+            body << [ attr, @edit.send(attr) ] 
           end
         end
       end
@@ -71,7 +71,11 @@ module TableHelper
     belongs_to
   end
 
-  def sex(condition)
-    condition ? 'Femenino' : 'Masculino'
+  def setbool_tag(attr,condition)
+    condition ? 'Sí' : 'No'
+    case attr
+    when /sex/
+      condition ? 'Femenino' : 'Masculino'
+    end
   end
 end
