@@ -6,6 +6,6 @@ class CitizenController < SalvaController
     @update_msg = 'La nacionalidad ha sido actualizada'
     @purge_msg = 'La nacionalidad se ha borrado'
     @per_pages = 10
-    @order_by = 'citizen_country_id'
+    @order_by = 'citizen_country_id, migratorystatus_id, citizenmodality_id'
   end
 end

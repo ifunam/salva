@@ -65,7 +65,7 @@ module TableHelper
   def set_belongs_to(attr)
     belongs_to = [ attr.sub(/_id$/,''), 'name' ]
     case attr
-    when /citizen/
+    when /citizen_/
       belongs_to[1] = 'citizen'
     end
     belongs_to

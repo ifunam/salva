@@ -39,6 +39,7 @@ code: Código
 name: Nombre
 moduser_id: Identificador de usuario
 migratorystatus_id: Estado migratorio
+citizenmodality_id: Modalidad de la nacionalidad
 citizen_country_id: Nacionalidad
 personalidtype_id: Identificación
 descr: Descripción
