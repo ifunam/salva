@@ -45,7 +45,10 @@ CREATE TABLE institutions (
 		REFERENCES states(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	city text NULL,
+        city_id int4 NULL
+		REFERENCES cities(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
 	zipcode text NULL,
 	phone text NULL,
 	fax text NULL,
