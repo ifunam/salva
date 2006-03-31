@@ -166,7 +166,8 @@ body {
 .row {
     display: table-row;
     float: none;
-    vertical-align: middle;
+    vertical-align: top;
+    color: #990033;
 }
 
 .row .required { 
@@ -305,7 +306,6 @@ a:hover.purge {
 fieldset {
 	margin-bottom: 10px;
 	border: 1px solid silver;
-
 }
 
 legend {
@@ -347,6 +347,7 @@ p {
 	margin-bottom: 5px;
 	font:  12px Arial,  sans-serif;	
 	font-weight: bold;
+	color: #000000;
 }
 
 
@@ -375,15 +376,17 @@ input[type="text"], input[type="password"], textarea {
   border-top: 1px solid #999;
   border-left: 1px solid #999;
   padding:3px;
-  margin-bottom: 10px;
-  font: 12px Arial, Helvetica, sans-serif;	
+  margin-bottom: 0px;
+  font: 12px Arial, Helvetica, sans-serif;
+  margin-right: 10px;	
 }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus { 
   background-color: #fff; 
   border: 1px solid #666;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   font: 12px Arial, Helvetica, sans-serif;	
+  margin-right: 10px;	
 }
 
 /* table used for lists with blue color */
