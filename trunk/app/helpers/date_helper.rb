@@ -6,7 +6,7 @@ module DateHelper
                ["Diciembre", 12] ]
 
     options = {:tabindex => opts[:tabindex]}
-    if opts[:required] == '1'
+    if opts[:required] == 1
       options['z:required'] = 'true'
       options['z:required_message'] = 'Seleccione una opción'
     end
@@ -18,10 +18,14 @@ module DateHelper
     y = Date.today.year
     start_year = opts[:start_year] || y - 90
     end_year = opts[:end_year] || y 
-    years = [ start_year .. end_year ]
+
+    years = [ ]
+    for i in start_year .. end_year
+      years << i
+    end
 
     options = {:tabindex => opts[:tabindex]}
-    if opts[:required] == '1'
+    if opts[:required] == 1
       options['z:required'] = 'true'
       options['z:required_message'] = 'Seleccione una opción'
     end

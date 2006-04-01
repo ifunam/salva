@@ -1,7 +1,7 @@
 module SelectHelper   
   def simple_select(object, model, model_id, tabindex=nil, required=nil)
     opts = { :tabindex => tabindex }
-    if required == '1'
+    if required == 1
       opts['z:required'] = 'true' 
       opts['z:required_message'] = 'Seleccione una opción'
     end
@@ -23,7 +23,7 @@ module SelectHelper
     if tabindex
       select += "tabindex=\"#{tabindex}\" " 
     end
-    if required == '1'
+    if required == 1
       select +='z:required="true" z:required_message="Seleccione una opción" ' 
     end
     select += ">"

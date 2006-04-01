@@ -32,12 +32,12 @@ class ScaffoldingSandbox
     required ? req = 1 : req = 0
     select = "<div id=\"#{column}\">\n" 
     if prefix then 
-      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}', :required => '#{req}'}) %>\n" 
+      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:prefix => '#{prefix}', :tabindex => #{tabindex}, :required => #{req} }) %>\n" 
       select << "</div>\n"
       select << "<%= quickpost('#{model.downcase}') %> \n"
     else
       select << "<div id=\"#{column}\">\n"
-      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:tabindex => '#{tabindex}', :required => '#{req}' }) %> \n" 
+      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:tabindex => #{tabindex}, :required => #{req} }) %> \n" 
       select << "</div>\n"
       select << "<%= quickpost('#{model.downcase}') %> \n"
     end
@@ -46,12 +46,12 @@ class ScaffoldingSandbox
 
   def set_month(column, tabindex, required=nil)
     required ? req = 1 : req = 0
-    "<%= month_select('edit', '#{column}', {:tabindex => '#{tabindex}', :required => '#{req}'}) %> \n"
+    "<%= month_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
   
   def set_year(column, tabindex, required=nil)
     required ? req = 1 : req = 0
-    "<%= year_select('edit', '#{column}', {:tabindex => '#{tabindex}', :required => '#{req}'}) %> \n"
+    "<%= year_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
   
   def salva_tags (model_instance, singular_name)

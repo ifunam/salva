@@ -8,14 +8,14 @@
 
 <div class="row"> 
 <label for="startyear" class="label"><%= get_label('startyear') %></label> 
-<%= year_select('edit', 'startyear', {:tabindex => '2', :required => '0'}) %> 
+<%= year_select('edit', 'startyear', {:tabindex => 2, :required => 0 }) %> 
 </div>
 
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="institution_id">
 <div id="institution_id">
-<%= table_select('edit', Institution, {:tabindex => '3', :required => '1' }) %> 
+<%= table_select('edit', Institution, {:tabindex => 3, :required => 1 }) %> 
 </div>
 <%= quickpost('institution') %> 
 </div>
@@ -23,7 +23,7 @@
 
 <div class="row"> 
 <label for="endyear" class="label"><%= get_label('endyear') %></label> 
-<%= year_select('edit', 'endyear', {:tabindex => '4', :required => '0'}) %> 
+<%= year_select('edit', 'endyear', {:tabindex => 4, :required => 0 }) %> 
 </div>
 
 
