@@ -1,28 +1,29 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:membership]-->
-
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="institution_id">
-<%= table_select('edit', Institution, {:tabindex => '1'}) %> 
-</div>
-<%= quickpost('institution') %> 
-</div>
-
 <div class="row"> 
 <label for="descr" class="label"><%= get_label('descr') %></label> 
-<%= text_field 'edit', 'descr', 'size' => 40, 'maxsize'=> 80,'tabindex'=> 2, 'id' => 'descr' %>
+<%= text_field 'edit', 'descr', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'descr' %>
 </div>
 
 <div class="row"> 
 <label for="startyear" class="label"><%= get_label('startyear') %></label> 
-<%= year_select('edit', 'startyear', {:tabindex => '3'}) %> 
+<%= year_select('edit', 'startyear', {:tabindex => '2', :required => '0'}) %> 
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="institution_id">
+<div id="institution_id">
+<%= table_select('edit', Institution, {:tabindex => '3', :required => '1' }) %> 
+</div>
+<%= quickpost('institution') %> 
+</div>
 </div>
 
 <div class="row"> 
 <label for="endyear" class="label"><%= get_label('endyear') %></label> 
-<%= year_select('edit', 'endyear', {:tabindex => '3'}) %> 
+<%= year_select('edit', 'endyear', {:tabindex => '4', :required => '0'}) %> 
 </div>
 
 

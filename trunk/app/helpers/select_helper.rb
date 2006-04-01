@@ -1,22 +1,33 @@
 module SelectHelper   
-  def simple_select(object, model, model_id, tabindex=nil)
+  def simple_select(object, model, model_id, tabindex=nil, required=nil)
+    opts = { :tabindex => tabindex }
+    if required == '1'
+      opts['z:required'] = 'true' 
+      opts['z:required_message'] = 'Seleccione una opción'
+    end
+    
     select(object, model_id,  
            model.find(:all, :order => 'name ASC').collect {
              |p| [ p.name, p.id ]
            },
-           {:prompt => '-- Seleccionar --'}, 
-           {:tabindex => tabindex })
-
+           {:prompt => '-- Seleccionar --'}, opts)
   end
   
-  def selected_select(object, model, model_id, id, tabindex=nil) 
+  def selected_select(object, model, model_id, id, tabindex=nil, required=nil) 
     args = [ object, model_id, 
              model.find(:all, :order => 'name ASC').collect { 
                |p|[p.name, p.id]
              }, 
              id ]
-    select = "<select name=\"#{object}[#{model_id}]\""
-    tabindex ? select += "tabindex=\"#{tabindex}\">" : ">"
+    select = "<select name=\"#{object}[#{model_id}]\" "
+    if tabindex
+      select += "tabindex=\"#{tabindex}\" " 
+    end
+    if required == '1'
+      select +='z:required="true" z:required_message="Seleccione una opción" ' 
+    end
+    select += ">"
+
     select += "<option>-- Seleccionar --</option> \n" 
     select += options_for_select(*args.to_a) + "\n</select>"
   end    
@@ -27,9 +38,10 @@ module SelectHelper
       model_id = opts[:prefix]+'_'+model.name.downcase+'_id'
     end
     if (opts[:id] != nil) then
-      selected_select(object, model, model_id, opts[:id], opts[:tabindex])
+      selected_select(object, model, model_id, opts[:id], 
+                      opts[:tabindex], opts[:required])
     else
-      simple_select(object, model, model_id, opts[:tabindex])
+      simple_select(object, model, model_id, opts[:tabindex], opts[:required])
     end       
   end
 
@@ -67,6 +79,17 @@ module SelectHelper
     select(*params.to_a)
   end
 
+  def byattr_select(object, model, model_id, opts={})
+    attr = 'name'
+    select(object, model_id,  
+           model.find(:all, :order => 'name ASC').collect {
+             |p| [ p.send( opts[:attr] || attr), p.id ]
+           },
+           {:prompt => '-- Seleccionar --'}, 
+           {:tabindex => opts[:tabindex] })
+
+  end
+
   def remote_functag(origmodel, destmodel, prefix=nil)
     model_id = destmodel.downcase + '_id'
     model_id = prefix + '_' + model_id if prefix != nil
@@ -88,14 +111,5 @@ module SelectHelper
                     :success => success_msg)
   end
 
-  def byattr_select(object, model, model_id, opts={})
-    attr = 'name'
-    select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect {
-             |p| [ p.send( opts[:attr] || attr), p.id ]
-           },
-           {:prompt => '-- Seleccionar --'}, 
-           {:tabindex => opts[:tabindex] })
 
-  end
 end

@@ -4,7 +4,14 @@ module DateHelper
                ["Mayo", 5], ["Junio", 6], ["Julio", 7], ["Agosto", 8], 
                ["Septiembre", 9], ["Octubre", 10], ["Noviembre", 11], 
                ["Diciembre", 12] ]
-    select(object, attr || 'month', months, {}, {:tabindex => opts[:tabindex]})
+
+    options = {:tabindex => opts[:tabindex]}
+    if opts[:required] == '1'
+      options['z:required'] = 'true'
+      options['z:required_message'] = 'Seleccione una opción'
+    end
+
+    select(object, attr || 'month', months, {}, options)
   end
   
   def year_select(object, attr=nil, opts={})
@@ -12,7 +19,14 @@ module DateHelper
     start_year = opts[:start_year] || y - 90
     end_year = opts[:end_year] || y 
     years = [ start_year .. end_year ]
-    select(object, attr || 'year', years, {}, {:tabindex => opts[:tabindex]});
+
+    options = {:tabindex => opts[:tabindex]}
+    if opts[:required] == '1'
+      options['z:required'] = 'true'
+      options['z:required_message'] = 'Seleccione una opción'
+    end
+    
+    select(object, attr || 'year', years, {}, options);
   end
   
   def date_for_select(object, attr=nil)

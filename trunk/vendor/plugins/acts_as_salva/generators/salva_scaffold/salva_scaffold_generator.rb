@@ -3,56 +3,92 @@ class ScaffoldingSandbox
   def sandbox_binding
     binding
   end
+  
+  def set_label(column, required=nil)
+    if required then 
+      "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %> <span class=\"required\">*</span></label> \n"      
+    else
+      "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
+    end
+  end
 
+  def set_textfield(column, tabindex, required=nil)
+    if required then
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
+    else
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+    end
+  end
+  
+  def set_textarea(column, tabindex, required=nil)
+    if required then
+      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
+    else
+      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>"
+    end
+  end
+  
+  def set_select(column, model, tabindex, prefix=nil, required=nil)
+    required ? req = 1 : req = 0
+    select = "<div id=\"#{column}\">\n" 
+    if prefix then 
+      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}', :required => '#{req}'}) %>\n" 
+      select << "</div>\n"
+      select << "<%= quickpost('#{model.downcase}') %> \n"
+    else
+      select << "<div id=\"#{column}\">\n"
+      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:tabindex => '#{tabindex}', :required => '#{req}' }) %> \n" 
+      select << "</div>\n"
+      select << "<%= quickpost('#{model.downcase}') %> \n"
+    end
+    select << "</div>\n"
+  end
+
+  def set_month(column, tabindex, required=nil)
+    required ? req = 1 : req = 0
+    "<%= month_select('edit', '#{column}', {:tabindex => '#{tabindex}', :required => '#{req}'}) %> \n"
+  end
+  
+  def set_year(column, tabindex, required=nil)
+    required ? req = 1 : req = 0
+    "<%= year_select('edit', '#{column}', {:tabindex => '#{tabindex}', :required => '#{req}'}) %> \n"
+  end
+  
   def salva_tags (model_instance, singular_name)
     attrs = model_instance.attributes()
-    html = "\n"
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    html = ""
     tabindex = 1
     attrs.each_key { | column | 
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
-      # Check the documentation for ActiveRecord::ConnectionAdapters::Column
-      if model_instance.column_for_attribute(column).null then
-        html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
-      else
-        html << "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %> <span class=\"required\">*</span></label> \n"
-      end
+      model_instance.column_for_attribute(column).null ? required = false : required = true 
+      html << set_label(column, required)
       if column =~ /_id$/ then
-        model_select = column.sub(/_id/,'') 
-        if model_select =~ /^\w+_/ then
-          (prefix, model_select) = model_select.split('_')
-	  model_select = Inflector.camelize(model_select)
-          html << "<div id=\"#{column}\">\n" 
-          html << "<%= table_select('edit', #{model_select}, {:prefix => '#{prefix}', :tabindex => '#{tabindex}'}) %>\n" 
-          html << "</div>\n"
-          html << "<%= quickpost('#{model_select.downcase}') %> \n"
-        else
-	  model_select = Inflector.camelize(model_select)
-          html << "<div id=\"#{column}\">\n"
-          html << "<%= table_select('edit', #{model_select}, {:tabindex => '#{tabindex}'}) %> \n" 
-          html << "</div>\n"
-          html << "<%= quickpost('#{model_select.downcase}') %> \n"
-        end
+        prefix = nil
+        model = column.sub(/_id/,'') 
+        (prefix, model) = model.split('_') if model =~ /^\w+_/ 
+        html << set_select(column, model, tabindex, prefix, required)
       elsif column =~ /month/ then
-        html << "<%= month_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
+        html << set_month(column, tabindex, required)
       elsif column =~ /year/ then
-        html << "<%= year_select('edit', '#{column}', {:tabindex => '#{tabindex}'}) %> \n"
+        html << set_year(column, tabindex, required)
+      elsif column =~ /other/ then
+        html << set_textarea(column, tabindex, required)
       else
-        html << "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40,'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+        html << set_textfield(column, tabindex, required)
       end
-      html << "</div>\n\n"
+      html << "</div>\n\n" #</div class="row">
       tabindex += 1
     }
     html
   end
-
+  
   def salva_model (model_instance, singular_name)
     attrs = model_instance.attributes()
-    required = []
-    numeric = []
-    belongs_to = []
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    required = [], numeric = [], belongs_to = []
+
     attrs.each_key { | column | 
       next if hidden.include? column
       if column =~ /_id$/ then
@@ -69,8 +105,14 @@ class ScaffoldingSandbox
         required << ':'+column if !model_instance.column_for_attribute(column).null
       end
     }
-    classmodel = "validates_presence_of " + required.join(', ') + "\n" if required
-    classmodel += "validates_numericality_of " + numeric.join(', ') + "\n" if numeric
+
+    if required.length > 0
+      classmodel = "validates_presence_of " + required.join(', ') + "\n" 
+    end
+    if numeric.length > 0
+      classmodel += "validates_numericality_of " + numeric.join(', ') + "\n" 
+    end
+
     belongs_to.each { | params |
       if params.length > 1 then
         classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
