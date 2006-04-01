@@ -204,7 +204,7 @@ INSERT INTO cities (state_id, name) VALUES (18, 'COMPOSTELA');
 INSERT INTO cities (state_id, name) VALUES (18, 'IXTLAN DEL RIO');
 INSERT INTO cities (state_id, name) VALUES (18, 'SANTIAGO IXCUINTLA');
 INSERT INTO cities (state_id, name) VALUES (18, 'TEPIC');
-INSERT INTO cities (state_id, name) VALUES (18, 'TUXPAN');
+INSERT INTO cities (state_id, name) VALUES (18, 'TUXPAN  (Nayarit)');
 INSERT INTO cities (state_id, name) VALUES (19, 'ANAHUAC');
 INSERT INTO cities (state_id, name) VALUES (19, 'CADEREYTA JIMENEZ');
 INSERT INTO cities (state_id, name) VALUES (19, 'CIUDAD DE ALLENDE');
