@@ -44,8 +44,8 @@ CREATE TABLE thesis (
 	    REFERENCES institutions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    	academicdegree_id integer NOT NULL
-            REFERENCES academicdegrees(id) 
+    	degree_id integer NOT NULL
+            REFERENCES degrees(id) 
             ON UPDATE CASCADE              
             DEFERRABLE,
     	thesisstatus_id integer NOT NULL
@@ -56,8 +56,8 @@ CREATE TABLE thesis (
 	    REFERENCES thesismodality(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	academiccareer_id int4 NOT NULL 
-            	REFERENCES academiccareers(id) 
+	career_id int4 NOT NULL 
+            	REFERENCES careers(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	year int4 NOT NULL,
@@ -67,11 +67,11 @@ CREATE TABLE thesis (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY (id),
-    	UNIQUE (title, academicdegree_id, year)
+    	UNIQUE (title, degree_id, year)
 );
 COMMENT ON TABLE thesis IS 
 	'Datos generales de cada una de las tesis';
-COMMENT ON COLUMN thesis.academicdegree_id IS
+COMMENT ON COLUMN thesis.degree_id IS
 	'Grado académico que esta tesis persigue';
 
 CREATE TABLE userthesis (

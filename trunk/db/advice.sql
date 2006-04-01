@@ -74,8 +74,8 @@ CREATE TABLE instadvice (
             REFERENCES instadvicetarget(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-	academicdegrees_id int4 NULL       -- Defined in schoolinghistory
-            REFERENCES academicdegrees(id)
+	degrees_id int4 NULL       -- Defined in schoolinghistory
+            REFERENCES degrees(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	other text NULL,
@@ -133,8 +133,8 @@ CREATE TABLE indivadvice (
             REFERENCES indivadviceprogram(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-	academicdegrees_id int4 NULL       -- Defined in schoolinghistory
-            REFERENCES academicdegrees(id)
+	degrees_id int4 NULL       -- Defined in schoolinghistory
+            REFERENCES degrees(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	year int4 NOT NULL,

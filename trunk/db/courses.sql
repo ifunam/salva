@@ -71,13 +71,13 @@ CREATE TABLE courses (
                         REFERENCES coursetype(id)
                         ON UPDATE CASCADE
                         DEFERRABLE,
-    academicdegrees_id int4 NULL 
-                           REFERENCES academicdegrees(id)
+    degrees_id int4 NULL 
+                           REFERENCES degrees(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
     hours int4 NULL,
     PRIMARY KEY(id),
-    UNIQUE (title,  coursetype_id, academicdegrees_id )
+    UNIQUE (title,  coursetype_id, degrees_id )
 );
 COMMENT ON TABLE courses IS
 	'Cursos impartidos (de actualización o en un plan de estudios) y

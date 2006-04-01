@@ -1,27 +1,17 @@
 ------------------
 --  Escolaridad --
 ------------------
-CREATE TABLE gotdegreetype( 
-	id SERIAL NOT NULL,
-	name char(30) NOT NULL,     
-	PRIMARY KEY (id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE gotdegreetype IS
-	'Modalidad de titulación por medio de la cual alguien puede graduarse';
--- Tesis, Ceneval, tesina, reporte técnico, por promedio...
-
-CREATE TABLE academicdegrees ( 
+CREATE TABLE degrees ( 
 	id SERIAL NOT NULL,           
     	name text NOT NULL,
     	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE academicdegrees IS
+COMMENT ON TABLE degrees IS
 	'Lista de grados académicos';
 -- Técnico, licenciatura, maestría, doctorado...
 
-CREATE TABLE subtitles (
+CREATE TABLE credentials (
 	id SERIAL,
 	name text NULL,
 	abbrev text NULL,
@@ -32,11 +22,11 @@ CREATE TABLE subtitles (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE subtitles IS
-	'Título que obtiene una persona al titularse de determinada carrera';
+COMMENT ON TABLE credentials IS
+	'Títulos o credenciales que obtiene una persona al titularse en determinada grado acadÃmico';
 -- Lic., Mat., Fis., Arq., Dr., M. en C., etc.
 
-CREATE TABLE academiccareers (
+CREATE TABLE careers (
 	id SERIAL,
         name text NOT NULL,
         moduser_id int4 NULL    -- Use it only to know who has
@@ -46,10 +36,10 @@ CREATE TABLE academiccareers (
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE academiccareers IS
+COMMENT ON TABLE careers IS
 	'Listado de carreras';
 
-CREATE TABLE institutionsacadcareers (
+CREATE TABLE institutioncareers (
 	id SERIAL,
         url  text NULL,
         abbrev text NULL,
@@ -58,12 +48,12 @@ CREATE TABLE institutionsacadcareers (
             	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	academiccareer_id int4 NOT NULL 
-            	REFERENCES academiccareers(id) 
+	career_id int4 NOT NULL 
+            	REFERENCES careers(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	academicdegree_id int4 NOT NULL 
-            	REFERENCES academicdegrees(id) 
+	degree_id int4 NOT NULL 
+            	REFERENCES degrees(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
         moduser_id int4 NULL    -- Use it only to know who has
@@ -71,25 +61,24 @@ CREATE TABLE institutionsacadcareers (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
         PRIMARY KEY(id),
-	UNIQUE (institution_id, academiccareer_id)
+	UNIQUE (institution_id, career_id)
 );
-COMMENT ON TABLE institutionsacadcareers IS
-	'Institución a la que pertenece cada una de las carreras de 
-	academiccareers';
+COMMENT ON TABLE institutioncareers IS
+	'Carreras ligadas a las instituciónes';
 
-CREATE TABLE schooling (
+CREATE TABLE schoolings (
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    institutionacadcareer_id int4 NOT NULL 
-            REFERENCES institutionsacadcareers(id)       
+    institutioncareer_id int4 NOT NULL 
+            REFERENCES institutioncareers(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
-    subtitle_id int4 NOT NULL 
-            REFERENCES subtitles(id)       
+    credential_id int4 NOT NULL 
+            REFERENCES credentials(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
     startyear int4 NOT NULL,
@@ -104,30 +93,41 @@ CREATE TABLE schooling (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (user_id,  institutionacadcareer_id),
+    UNIQUE (user_id,  institutioncareer_id),
     CONSTRAINT choose_credits_or_year CHECK 
 	(endyear IS NULL OR credits IS NULL OR credits = 100),
     CONSTRAINT valid_period CHECK (startyear < endyear)
 );
-COMMENT ON TABLE schooling IS
+COMMENT ON TABLE schoolings IS
 	'Los diferentes pasos (grados) en la historia académica de un usuario';
-COMMENT ON COLUMN schooling.endyear IS
+COMMENT ON COLUMN schoolings.endyear IS
 	'Año de egreso';
-COMMENT ON COLUMN schooling.studentid IS
+COMMENT ON COLUMN schoolings.studentid IS
 	'Matrícula';
-COMMENT ON COLUMN schooling.titleholder IS
+COMMENT ON COLUMN schoolings.titleholder IS
 	'¿Es ya titulado? (endyear marca únicamente egreso)';
-COMMENT ON COLUMN schooling.credits IS
+COMMENT ON COLUMN schoolings.credits IS
 	'Porcentaje de créditos - No se reporta si ya egresó (endyear) ';
 
-CREATE TABLE titlesholding (
+CREATE TABLE titlemodalities( 
+	id SERIAL NOT NULL,
+	name char(30) NOT NULL,     
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE titlemodalities IS
+	'Modalidad de titulación por medio de la cual alguien puede graduarse';
+-- Tesis, Ceneval, tesina, reporte técnico, por promedio...
+
+
+CREATE TABLE professionaltitles (
 	id SERIAL,
-        schoolinghistory_id integer NOT NULL 
-             REFERENCES schooling(id) 
+        schooling_id integer NOT NULL 
+             REFERENCES schoolings(id) 
              ON UPDATE CASCADE            
              DEFERRABLE,
-        gotdegreetype_id integer NOT NULL
-             REFERENCES gotdegreetype(id)
+        titlemodalities_id integer NOT NULL
+             REFERENCES titlemodalities(id)
              ON UPDATE CASCADE                 
              DEFERRABLE,
 	professionalid text NULL,
@@ -138,12 +138,12 @@ CREATE TABLE titlesholding (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (schoolinghistory_id)
+	UNIQUE (schooling_id)
 );
-COMMENT ON TABLE titlesholding IS
+COMMENT ON TABLE professionaltitles IS
 	'El usuario está ya titulado (de cada uno de los grados reportados en
 	schooling)? Aquí van los datos de la titulación';
-COMMENT ON COLUMN titlesholding.professionalid IS
+COMMENT ON COLUMN professionaltitles.professionalid IS
 	'Cédula profesional';
-COMMENT ON COLUMN titlesholding.year IS
+COMMENT ON COLUMN professionaltitles.year IS
 	'Año de titulación';

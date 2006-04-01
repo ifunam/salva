@@ -29,8 +29,8 @@ CREATE TABLE externalusers (
 	    REFERENCES externaluserlevels(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    academicdegrees_id integer NULL
-	    REFERENCES academicdegrees(id)
+    degrees_id integer NULL
+	    REFERENCES degrees(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     PRIMARY KEY (id)

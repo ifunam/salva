@@ -64,3 +64,6 @@
 \i catalogs/identifications.sql
 \i catalogs/migratorystatuses.sql
 \i catalogs/citizenmodalities.sql
+\i catalogs/degrees.sql
+\i catalogs/titlemodalities.sql
+\i catalogs/credentials.sql
