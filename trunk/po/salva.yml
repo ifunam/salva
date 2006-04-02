@@ -51,7 +51,7 @@ institution_id: Institución
 institutiontype_id: Tipo de institución
 administrative_key: Clave presupuestal
 startyear: Año de inicio
-endyear: Año de término
+endyear: Año de egreso
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
@@ -70,6 +70,11 @@ address: Domicilio(s)
 peopleid: Identidad
 citizen: Nacionalidad
 schooling: Escolaridad
+studentid: Matrícula
+titleholder: Titulado
+degree: Grado
+credits: Créditos
+career: Carrera
 user_jobpositions: Experiencia laboral
 user_stimulus: Estímulos
 user_grants: Becas
