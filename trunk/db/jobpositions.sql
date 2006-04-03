@@ -2,17 +2,17 @@
 -- se establecen las siguientes tablas
 
 -- Ejemplo de puesto: Un Investigador Ordinario Asociado C de Tiempo Completo:
---     jobpositioncategory: Investigador Ordinario
---     jobpositionlevel: Asociado C TC
---     jobpositiontype: (el ID que corresponda a Investigación)
+--     jobpositioncategories: Investigador Ordinario
+--     jobpositionlevels: Asociado C TC
+--     jobpositiontypes: (el ID que corresponda a Investigación)
 
-CREATE TABLE jobpositiontype (  
+CREATE TABLE jobpositiontypes (  
 	id SERIAL,		
 	name text NOT NULL,   	
 	PRIMARY KEY (id), 	
 	UNIQUE (name)           
 );
-COMMENT ON TABLE jobpositiontype IS 
+COMMENT ON TABLE jobpositiontypes IS 
 	'Tipos de personal';
 	-- Las cuatro posibilidades que entran a esta tabla son:
 	-- Personal académico para docencia: Investigador y técnico académico * usa niveles *
@@ -20,52 +20,52 @@ COMMENT ON TABLE jobpositiontype IS
 	-- Personal administrativo de base * usa ramas *	  
 	-- Personal administrativo de confianza	* NO usa niveles NI ramas *  
 
-CREATE TABLE jobpositionlevel (
+CREATE TABLE jobpositionlevels (
 	id SERIAL,		
 	name text NOT NULL,     
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE jobpositionlevel IS 
+COMMENT ON TABLE jobpositionlevels IS 
 	'Niveles (para académicos) o ramas (para administrativos) de 
 	contratación';
 -- Nivel A, Nivel B, Nivel C, no usa
 -- Rama administrativa, rama obrera, rama...
 
-CREATE TABLE jobpositioncategory (
+CREATE TABLE jobpositioncategories (
 	id SERIAL,
 	name text NOT NULL,
 	jobpositiontype_id smallint NOT NULL 
-                         REFERENCES jobpositiontype(id)
+                         REFERENCES jobpositiontypes(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	jobpositionlevel_id smallint NOT NULL 
-                         REFERENCES jobpositionlevel(id)
+                         REFERENCES jobpositionlevels(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	administrative_id text NULL, 
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE jobpositioncategory IS 
-	'Los puestos existentes en la UNAM, dependientes de jobpositiontype y
-	jobpositionlevel';
+COMMENT ON TABLE jobpositioncategories IS 
+	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
+	jobpositionlevels';
 -- Investigador ordinario, técnico académico, ...
-COMMENT ON COLUMN jobpositioncategory.administrative_id IS
+COMMENT ON COLUMN jobpositioncategories.administrative_id IS
 	'ID administrativo de la adscripción en la universidad - Lo mantenemos
 	únicamente como descripción en texto';
 
-CREATE TABLE contracttype (
+CREATE TABLE contracttypes (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE contracttype IS 
+COMMENT ON TABLE contracttypes IS 
 	'Tipos de contratación ';
 -- Definitivo, temporal, Art. 51, ...
 
-CREATE TABLE userjobposition (
+CREATE TABLE jobpositions (
 	id SERIAL, 
 	user_id int4 NOT NULL 
             REFERENCES users(id)
@@ -73,7 +73,7 @@ CREATE TABLE userjobposition (
             ON DELETE CASCADE   
             DEFERRABLE,
 	jobpositioncategory_id smallint NULL 
-                         REFERENCES jobpositioncategory(id)
+                         REFERENCES jobpositioncategories(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
@@ -81,7 +81,7 @@ CREATE TABLE userjobposition (
 	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
 	endyear  int4 NULL,
 	contracttype_id integer NULL
-		REFERENCES contracttype(id)
+		REFERENCES contracttypes(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	description text NULL,
@@ -93,15 +93,15 @@ CREATE TABLE userjobposition (
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-COMMENT ON TABLE userjobposition IS 
+COMMENT ON TABLE jobpositions IS 
 	'Relación entre un usuario y todos los datos que describen a su puesto
 	(incluye periodos, para construir la historia laboral)';
-COMMENT ON COLUMN userjobposition.jobpositioncategory_id IS
+COMMENT ON COLUMN jobpositions.jobpositioncategory_id IS
 	'Puesto en que laboró en la UNAM - En caso de ser personal por 
 	honorarios, queda nulo (no hay catálogo de puestos por honorarios),
 	manejando sólo la descripción, y asociando a la institución adecuada.';
 
-CREATE TABLE stimulustype (
+CREATE TABLE stimulustypes (
 	id SERIAL,
 	name text NOT NULL,
 	descr text NULL,
@@ -112,29 +112,29 @@ CREATE TABLE stimulustype (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE stimulustype IS 
+COMMENT ON TABLE stimulustypes IS 
 	'Tipos de estímulos';
-COMMENT ON COLUMN stimulustype.name IS 
+COMMENT ON COLUMN stimulustypes.name IS 
 	'Nombre corto/abreviación del estímulo';
-COMMENT ON COLUMN stimulustype.descr IS 
+COMMENT ON COLUMN stimulustypes.descr IS 
 	'Nombre completo del estímulo';
-COMMENT ON COLUMN stimulustype.institution_id IS 
+COMMENT ON COLUMN stimulustypes.institution_id IS 
 	'Institución que lo otorga';
 -- {PAIPA, Programa de Apoyo a la Incorporación de Personal Académico, UNAM},
 -- {PRIDE, Programa de Reconocimiento a la Investigación y Desarrollo
 -- Académico, UNAM}, {SNI, Sistema Nacional de Investigadores, CONACyT}, ...
 
-CREATE TABLE stimuluslevel (
+CREATE TABLE stimuluslevels (
 	id SERIAL,
 	name text NOT NULL,
 	stimulustype_id int4 NOT NULL
-		REFERENCES stimulustype(id)
+		REFERENCES stimulustypes(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
 	PRIMARY KEY (id),
 	UNIQUE (name, stimulustype_id)
 );
-COMMENT ON TABLE stimuluslevel IS 
+COMMENT ON TABLE stimuluslevels IS 
 	'Niveles de estímulos para cada uno de los tipos';
 	-- PAIPA: A, B, C, D
 	-- PRIDE: A, B, C, D, E
@@ -149,7 +149,7 @@ CREATE TABLE userstimulus (
             ON DELETE CASCADE   
             DEFERRABLE,
 	stimuluslevel_id smallint NULL 
-                         REFERENCES stimuluslevel(id)
+                         REFERENCES stimuluslevels(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
@@ -178,7 +178,7 @@ COMMENT ON TABLE stimulusstatus IS
 	'Estados de cada cambio de nivel de estímulos';
 -- solicitado, aprobado, rechazado, en proceso
 
-CREATE TABLE stimuluslog (
+CREATE TABLE stimuluslogs (
     id SERIAL, 
     stimulus_id integer NOT NULL 
             REFERENCES userstimulus(id)
@@ -197,12 +197,12 @@ CREATE TABLE stimuluslog (
     dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-COMMENT ON TABLE stimuluslog IS 
+COMMENT ON TABLE stimuluslogs IS 
 	'Fecha de cambio de estado de solicitudes de nivel estímulos';
 
 -- Name for the area a user works in - "Departamento de Cómputo", "Unidad
 -- de blah", "Secretaría Fulana", "Dirección"
-CREATE TABLE adscription (
+CREATE TABLE adscriptions (
 	id serial,
 	name text NOT NULL,
 	abbrev text NULL, 
@@ -211,30 +211,30 @@ CREATE TABLE adscription (
 		REFERENCES institutions(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	administrative_id text NULL, -- An ID for the adscription in the
+	administrative_id text NULL, -- An ID for the adscriptions in the
 			-- university - we only keep it as text, no
 			-- referential integrity is attempted.
 	PRIMARY KEY(id),
 	UNIQUE(name),
 	UNIQUE(abbrev)
 );
-COMMENT ON TABLE adscription IS 
+COMMENT ON TABLE adscriptions IS 
 	'Nombre de las adscripciones registradas';
-COMMENT ON COLUMN adscription.administrative_id IS
+COMMENT ON COLUMN adscriptions.administrative_id IS
 	'ID administrativo de la adscripción en la universidad - Lo mantenemos
 	únicamente como descripción en texto';
 
--- We are stating here the work period, which is also in userjobposition - Why?
+-- We are stating here the work period, which is also in jobpositions - Why?
 -- Because a user might retain his jobposition (category/level/...) but the
--- adscription he works at can be renamed or change.
-CREATE TABLE useradscription (
+-- adscriptions he works at can be renamed or change.
+CREATE TABLE useradscriptions (
 	id SERIAL,
-	userjobposition_id int4 NOT NULL 
-                         REFERENCES userjobposition(id)
+	jobposition_id int4 NOT NULL 
+                         REFERENCES jobpositions(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	adscription_id int4 NOT NULL 
-                         REFERENCES adscription(id)
+                         REFERENCES adscriptions(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
         name text NULL,
@@ -245,18 +245,18 @@ CREATE TABLE useradscription (
 	endyear  int4 NULL,
 	PRIMARY KEY (id)
 );
-COMMENT ON TABLE useradscription IS 
+COMMENT ON TABLE useradscriptions IS 
 	'Adscripción a la que pertenece un usuario en determinado periodo';
-COMMENT ON COLUMN useradscription.name IS
+COMMENT ON COLUMN useradscriptions.name IS
 	'Describir el nombre de la participación institucional: Jefe de departamento, Coordinador, etc';
-COMMENT ON COLUMN useradscription.descr IS
+COMMENT ON COLUMN useradscriptions.descr IS
 	'Se usa para describir las funciones o actividades del puesto institucional';
-COMMENT ON COLUMN useradscription.startyear IS
-	'El periodo aparece tanto aquí como en userjobposition ya que un 
+COMMENT ON COLUMN useradscriptions.startyear IS
+	'El periodo aparece tanto aquí como en jobpositions ya que un 
 	usuario puede cambiar de adscripción sin cambiar su categoría';
 
 ------
--- Update stimuluslog if there was a status change
+-- Update stimuluslogs if there was a status change
 ------
 CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER 
 SECURITY DEFINER AS '
@@ -265,7 +265,7 @@ BEGIN
 	IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
 		RETURN NEW;
 	END IF;
-	INSERT INTO stimuluslog (stimulus_id, old_stimulusstatus_id, 
+	INSERT INTO stimuluslogs (stimulus_id, old_stimulusstatus_id, 
 		moduser_id) 
 		VALUES (OLD.id, OLD.stimulusstatus_id, OLD.moduser_id);
         RETURN NEW;

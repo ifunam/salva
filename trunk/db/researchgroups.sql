@@ -36,7 +36,7 @@ CREATE TABLE researchgroupmodalities (
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	adscription_id smallint NULL 
-                         REFERENCES adscription(id)
+                         REFERENCES adscriptions(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	PRIMARY KEY (id)
