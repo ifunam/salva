@@ -55,11 +55,13 @@ class ScaffoldingSandbox
   end
   
   def salva_tags (model_instance, singular_name)
-    attrs = model_instance.attributes()
+    table_name =  Inflector.tableize(model_instance.class.name)
+    attrs = model_instance.connection.columns(table_name)
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
     html = ""
     tabindex = 1
-    attrs.each_key { | column | 
+    attrs.each { | attr | 
+      column = attr.name
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
       model_instance.column_for_attribute(column).null ? required = false : required = true 
@@ -84,16 +86,42 @@ class ScaffoldingSandbox
     html
   end
   
-  def salva_model (model_instance, singular_name)
-    attrs = model_instance.attributes()
-    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
-    required = [], numeric = [], belongs_to = []
+  def set_classmodel(required=[], numeric=[], belongs_to=[])
+    classmodel = ''
+    if required.length > 0
+      classmodel = "validates_presence_of " + required.join(', ') + "\n"
+    end
+    
+    if numeric.length > 0
+      classmodel += "validates_numericality_of " + numeric.join(', ') + "\n" 
+    end
+    belongs_to.each { | params |
+      if params.length > 1 then
+        classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '"\
+        + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
+      else 
+        classmodel += "belongs_to :" + params[0].to_s + "\n"
+      end
+    }
+    classmodel
+  end
 
-    attrs.each_key { | column | 
+  def salva_model (model_instance, singular_name)
+    table_name =  Inflector.tableize(model_instance.class.name)
+    attrs = model_instance.connection.columns(table_name)
+    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    required = []
+    numeric = []
+    belongs_to = []
+    
+    attrs.each { | attr | 
+      column = attr.name
       next if hidden.include? column
       if column =~ /_id$/ then
         numeric << ':'+column
-        required << ':'+column if !model_instance.column_for_attribute(column).null
+        if !model_instance.column_for_attribute(column).null
+          required << ':'+column 
+        end
         refmodel = column.sub(/_id/,'') 
         if refmodel =~ /^\w+_/ then
           (prefix, model) = refmodel.split('_')
@@ -102,25 +130,12 @@ class ScaffoldingSandbox
           belongs_to << [ refmodel ]
         end
       else
-        required << ':'+column if !model_instance.column_for_attribute(column).null
+        if !model_instance.column_for_attribute(column).null
+          required << ':'+column
+        end
       end
     }
-
-    if required.length > 0
-      classmodel = "validates_presence_of " + required.join(', ') + "\n" 
-    end
-    if numeric.length > 0
-      classmodel += "validates_numericality_of " + numeric.join(', ') + "\n" 
-    end
-
-    belongs_to.each { | params |
-      if params.length > 1 then
-        classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '" + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
-      else 
-        classmodel += "belongs_to :" + params[0].to_s + "\n"
-      end
-    }
-    classmodel
+    set_classmodel(required, numeric, belongs_to)
   end
 end  
 
@@ -163,25 +178,21 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
       m.class_collisions class_path,            "#{class_name}"
                                                 #"#{class_name}Test"
 
-
       # Controller, views, and test directories.
       m.directory File.join('app/models', class_path)
       m.directory File.join('app/controllers', controller_class_path)
-      m.directory File.join('app/views', controller_class_path, controller_file_name)
+      m.directory File.join('app/views', controller_class_path, 
+                            controller_file_name)
       m.directory File.join('test/functional', controller_class_path)
       m.directory File.join('test/unit', class_path)
 
       # Scaffolded models.
-        m.complex_template "model_salva.rb",
+      m.complex_template "model_salva.rb",
         File.join('app/models',
                   class_path,
                   "#{file_name}.rb"),
         :insert => 'model_scaffolding.rb',
-        :sandbox => lambda { create_sandbox },
-        :begin_mark => 'salva_model',
-        :end_mark => 'eof_salva_model'
-#        :mark_id => singular_name
-
+        :sandbox => lambda { create_sandbox }
 
       m.template 'controller.rb',
                   File.join('app/controllers',
@@ -240,25 +251,28 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
     def suffix
       "_#{singular_name}" if options[:suffix]
     end
-    
 
     def create_sandbox
       sandbox = ScaffoldingSandbox.new
       sandbox.singular_name = singular_name
       sandbox.model_instance = model_instance
-      sandbox.instance_variable_set("@#{singular_name}", sandbox.model_instance)
+      sandbox.instance_variable_set("@#{singular_name}", 
+                                    sandbox.model_instance)
       sandbox.suffix = suffix
       sandbox
     end
     
     def model_instance
-       base = class_nesting.split('::').inject(Object) do |base, nested|
-         break base.const_get(nested) if base.const_defined?(nested)
-         base.const_set(nested, Module.new)
-       end
-       unless base.const_defined?(@class_name_without_nesting)
-         base.const_set(@class_name_without_nesting, Class.new(ActiveRecord::Base))
-       end
-      class_name.constantize.new
+      base = class_nesting.split('::').inject(Object) do |base, nested|
+        break base.const_get(nested) if base.const_defined?(nested)
+        print "nested #{nested}\n"
+        base.const_set(nested, Module.new)
+      end
+      unless base.const_defined?(@class_name_without_nesting)
+        base.const_set(@class_name_without_nesting, 
+                       Class.new(ActiveRecord::Base))
+      end
+      class_name.constantize.new 
     end
-end
+    
+  end
