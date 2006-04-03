@@ -168,7 +168,6 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
     end
   end
 
-
   def manifest
     record do |m|
       # Check for class naming collisions.
@@ -192,7 +191,9 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                   class_path,
                   "#{file_name}.rb"),
         :insert => 'model_scaffolding.rb',
-        :sandbox => lambda { create_sandbox }
+        :sandbox => lambda { create_sandbox },
+        :begin_mark => 'salva_model',
+        :end_mark => 'salva_model'
 
       m.template 'controller.rb',
                   File.join('app/controllers',
@@ -229,11 +230,26 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                              controller_file_name,
                              "#{action}.rhtml"),
                               :assigns => { :action => action }
-                            end
-                            
-                          end
-                        end
+       end
+       m.clean_model
+    end
+  end
 
+  def clean_model
+    modelfh = "app/models/#{file_name}.rb"
+    print "Cleaning dirty comments in: #{modelfh} ...\n"
+    File.open(modelfh, 'r+') do |f|   
+      out = ""
+      f.each do |line|
+        out << line if line !~ /salva_model/ and line.length > 1
+      end
+      f.pos = 0                     
+      f.print out
+      f.truncate(f.pos)             
+    end
+    print "OK\n"
+  end
+                        
   protected
     # Override with your own usage banner.
     def banner
@@ -276,3 +292,6 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
     end
     
   end
+
+
+ 
