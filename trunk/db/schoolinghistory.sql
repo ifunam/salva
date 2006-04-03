@@ -41,21 +41,21 @@ COMMENT ON TABLE careers IS
 
 CREATE TABLE institutioncareers (
 	id SERIAL,
-        url  text NULL,
-        abbrev text NULL,
-        other text NULL,
-	institution_id int4 NOT NULL 
-            	REFERENCES institutions(id) 
-            	ON UPDATE CASCADE           
-            	DEFERRABLE,
 	career_id int4 NOT NULL 
             	REFERENCES careers(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
+        abbrev text NULL,
 	degree_id int4 NOT NULL 
             	REFERENCES degrees(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
+	institution_id int4 NOT NULL 
+            	REFERENCES institutions(id) 
+            	ON UPDATE CASCADE           
+            	DEFERRABLE,
+        url  text NULL,
+        other text NULL,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
@@ -81,13 +81,13 @@ CREATE TABLE schoolings (
             REFERENCES credentials(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
+    studentid text NULL,
     startyear int4 NOT NULL,
     endyear   int4 NULL,
-    studentid text NULL,
     titleholder bool DEFAULT 'f' NOT NULL,
-    other text NULL,
     credits int4 NULL
 		CHECK (credits >= 0 AND credits <= 100),
+    other text NULL,
     moduser_id int4 NULL    -- Use it only to know who has
            REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.

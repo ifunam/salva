@@ -2,23 +2,28 @@
 
 <!--[form:institutioncareer]-->
 <div class="row"> 
+<label for="career_id" class="label"><%= get_label('career_id') %> <span class="required">*</span></label> 
+<div id="career_id">
+<div id="career_id">
+<%= table_select('edit', Career, {:tabindex => 1, :required => 1 }) %> 
+</div>
+<%= quickpost('career') %> 
+</div>
+</div>
+
+<div class="row"> 
 <label for="abbrev" class="label"><%= get_label('abbrev') %></label> 
-<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'abbrev' %>
+<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'abbrev' %>
 </div>
 
 <div class="row"> 
 <label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label> 
 <div id="degree_id">
 <div id="degree_id">
-<%= table_select('edit', Degree, {:tabindex => 2, :required => 1 }) %> 
+<%= table_select('edit', Degree, {:tabindex => 3, :required => 1 }) %> 
 </div>
 <%= quickpost('degree') %> 
 </div>
-</div>
-
-<div class="row"> 
-<label for="url" class="label"><%= get_label('url') %></label> 
-<%= text_field 'edit', 'url', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'url' %>
 </div>
 
 <div class="row"> 
@@ -32,13 +37,8 @@
 </div>
 
 <div class="row"> 
-<label for="career_id" class="label"><%= get_label('career_id') %> <span class="required">*</span></label> 
-<div id="career_id">
-<div id="career_id">
-<%= table_select('edit', Career, {:tabindex => 5, :required => 1 }) %> 
-</div>
-<%= quickpost('career') %> 
-</div>
+<label for="url" class="label"><%= get_label('url') %></label> 
+<%= text_field 'edit', 'url', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 5, 'id' => 'url' %>
 </div>
 
 <div class="row"> 

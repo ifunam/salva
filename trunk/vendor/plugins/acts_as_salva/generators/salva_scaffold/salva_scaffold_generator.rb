@@ -33,12 +33,9 @@ class ScaffoldingSandbox
     select = "<div id=\"#{column}\">\n" 
     if prefix then 
       select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:prefix => '#{prefix}', :tabindex => #{tabindex}, :required => #{req} }) %>\n" 
-      select << "</div>\n"
       select << "<%= quickpost('#{model.downcase}') %> \n"
     else
-      select << "<div id=\"#{column}\">\n"
       select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:tabindex => #{tabindex}, :required => #{req} }) %> \n" 
-      select << "</div>\n"
       select << "<%= quickpost('#{model.downcase}') %> \n"
     end
     select << "</div>\n"

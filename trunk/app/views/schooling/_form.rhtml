@@ -1,21 +1,23 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:schooling]-->
+
+<div class="row"> 
+<label for="credential_id" class="label"><%= get_label('credential_id') %> <span class="required">*</span></label> 
+<div id="credential_id">
+<%= table_select('edit', Credential, {:tabindex => 2, :required => 1 }) %> 
+<%= quickpost('credential') %> 
+</div>
+</div>
+
 <div class="row"> 
 <label for="studentid" class="label"><%= get_label('studentid') %></label> 
-<%= text_field 'edit', 'studentid', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'studentid' %>
+<%= text_field 'edit', 'studentid', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'studentid' %>
 </div>
 
 <div class="row"> 
 <label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
-<%= year_select('edit', 'startyear', {:tabindex => 2, :required => 1 }) %> 
-</div>
-
-<div class="row"> 
-<label for="titleholder" class="label"><%= get_label('titleholder') %> <span class="required">*</span></label> 
-
-<%= check_box_tag('edit[titleholder]', 'false', false) %>
-
+<%= year_select('edit', 'startyear', {:tabindex => 4, :required => 1 }) %> 
 </div>
 
 <div class="row"> 
@@ -24,13 +26,10 @@
 </div>
 
 <div class="row"> 
-<label for="credential_id" class="label"><%= get_label('credential_id') %> <span class="required">*</span></label> 
-<div id="credential_id">
-<div id="credential_id">
-<%= table_select('edit', Credential, {:tabindex => 6, :required => 1 }) %> 
-</div>
-<%= quickpost('credential') %> 
-</div>
+<label for="titleholder" class="label"><%= get_label('titleholder') %> <span class="required">*</span></label> 
+No <%= radio_button('edit', 'titleholder', 'false') %>
+Sí <%= radio_button('edit', 'titleholder', 'true') %>
+
 </div>
 
 <div class="row"> 
