@@ -67,3 +67,5 @@
 \i catalogs/degrees.sql
 \i catalogs/titlemodalities.sql
 \i catalogs/credentials.sql
+\i catalogs/jobpositiontypes.sql
+\i catalogs/jobpositionlevels.sql
