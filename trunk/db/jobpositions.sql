@@ -20,6 +20,22 @@ COMMENT ON TABLE jobpositiontypes IS
 	-- Personal administrativo de base * usa ramas *	  
 	-- Personal administrativo de confianza	* NO usa niveles NI ramas *  
 
+CREATE TABLE roleinjobpositions (
+	id SERIAL,
+	name text NOT NULL,
+	jobpositiontype_id smallint NOT NULL 
+                         REFERENCES jobpositiontypes(id)
+                         ON UPDATE CASCADE
+                         DEFERRABLE,
+	PRIMARY KEY (id)
+);
+COMMENT ON TABLE roleinjobpositions IS 
+	'Rol desempeñado: técnico académico, investigador, ayudante, etc.';
+-- Rol en la categoría del usuario:
+-- Técnico académico
+-- Investigador
+-- Ayudan de investigador
+
 CREATE TABLE jobpositionlevels (
 	id SERIAL,		
 	name text NOT NULL,     
@@ -32,11 +48,12 @@ COMMENT ON TABLE jobpositionlevels IS
 -- Nivel A, Nivel B, Nivel C, no usa
 -- Rama administrativa, rama obrera, rama...
 
+
 CREATE TABLE jobpositioncategories (
 	id SERIAL,
 	name text NOT NULL,
-	jobpositiontype_id smallint NOT NULL 
-                         REFERENCES jobpositiontypes(id)
+	roleinjobposition_id smallint NOT NULL 
+                         REFERENCES roleinjobpositions(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	jobpositionlevel_id smallint NOT NULL 
@@ -76,19 +93,19 @@ CREATE TABLE jobpositions (
                          REFERENCES jobpositioncategories(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
-	startyear int4 NOT NULL,
-	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
-	endyear  int4 NULL,
 	contracttype_id integer NULL
 		REFERENCES contracttypes(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	description text NULL,
 	institution_id int4 NOT NULL 
             	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
+	descr text NULL,
+	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
+	startyear int4 NOT NULL,
+	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
+	endyear  int4 NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
