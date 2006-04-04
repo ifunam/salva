@@ -43,7 +43,7 @@ CREATE TABLE jobpositioncategories (
                          REFERENCES jobpositionlevels(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-	administrative_id text NULL, 
+	administrative_key text NULL, 
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -51,7 +51,7 @@ COMMENT ON TABLE jobpositioncategories IS
 	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
 	jobpositionlevels';
 -- Investigador ordinario, técnico académico, ...
-COMMENT ON COLUMN jobpositioncategories.administrative_id IS
+COMMENT ON COLUMN jobpositioncategories.administrative_key IS
 	'ID administrativo de la adscripción en la universidad - Lo mantenemos
 	únicamente como descripción en texto';
 
