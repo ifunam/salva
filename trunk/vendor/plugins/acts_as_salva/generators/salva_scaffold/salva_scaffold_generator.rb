@@ -100,15 +100,49 @@ class ScaffoldingSandbox
     }
     html
   end
+
+  def set_attrs(model_instance, attrs)
+    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
+    required = []
+    numeric = []
+    belongs_to = []
+    
+    attrs.each { | attr | 
+      column = attr.name
+      next if hidden.include? column
+      if column =~ /_id$/ then
+        numeric << column
+        if !model_instance.column_for_attribute(column).null
+          required << column 
+        end
+        refmodel = column.sub(/_id/,'') 
+        if refmodel =~ /^\w+_/ then
+          (prefix, model) = refmodel.split('_')
+          belongs_to << column
+        else
+          belongs_to << refmodel
+        end
+      else
+        if !model_instance.column_for_attribute(column).null
+          required << column
+        end
+      end
+    }
+    [required, numeric, belongs_to]
+  end
   
+  def set_attrmodel(attrs)
+    attrs.map{ |attr| ':'+ attr}.join(', ') + "\n"
+  end
+
   def set_classmodel(required=[], numeric=[], belongs_to=[])
     classmodel = ''
     if required.length > 0
-      classmodel = "validates_presence_of " + required.join(', ') + "\n"
+      classmodel = "validates_presence_of " + set_attrmodel(required)
     end
     
     if numeric.length > 0
-      classmodel += "validates_numericality_of " + numeric.join(', ') + "\n" 
+      classmodel += "validates_numericality_of " + set_attrmodel(numeric)
     end
     belongs_to.each { | params |
       if params.length > 1 then
@@ -124,35 +158,19 @@ class ScaffoldingSandbox
   def salva_model (model_instance, singular_name)
     table_name =  Inflector.tableize(model_instance.class.name)
     attrs = model_instance.connection.columns(table_name)
-    hidden = %w( id moduser_id user_id dbtime updated_on created_on)
-    required = []
-    numeric = []
-    belongs_to = []
-    
-    attrs.each { | attr | 
-      column = attr.name
-      next if hidden.include? column
-      if column =~ /_id$/ then
-        numeric << ':'+column
-        if !model_instance.column_for_attribute(column).null
-          required << ':'+column 
-        end
-        refmodel = column.sub(/_id/,'') 
-        if refmodel =~ /^\w+_/ then
-          (prefix, model) = refmodel.split('_')
-          belongs_to << [ refmodel, Inflector.camelize(model), column ]
-        else
-          belongs_to << [ refmodel ]
-        end
-      else
-        if !model_instance.column_for_attribute(column).null
-          required << ':'+column
-        end
-      end
-    }
+    (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
     set_classmodel(required, numeric, belongs_to)
   end
+
+  def view_list (model_instance, singular_name)
+    table_name =  Inflector.tableize(model_instance.class.name)
+    attrs = model_instance.connection.columns(table_name)
+    (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
+    required.join(' ')
+  end
+
 end  
+
 
 class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   attr_reader   :controller_name,
@@ -237,8 +255,19 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
         :end_mark => 'eoform',
         :mark_id => singular_name
 
+         m.complex_template "list.rhtml",
+         File.join('app/views',
+                   controller_class_path,
+                   controller_file_name,
+                   "list.rhtml"),
+         :insert => 'list_scaffolding.rhtml',
+         :sandbox => lambda { create_sandbox },
+         :begin_mark => 'list',
+         :end_mark => 'eoflist',
+         :mark_id => singular_name
+
       # Scaffolded views and partials.
-      %w(list show _show new edit).each do |action|
+      %w(show _show new edit).each do |action|
                               m.template "view_#{action}.rhtml",
                    File.join('app/views',
                              controller_class_path,
@@ -246,6 +275,7 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                              "#{action}.rhtml"),
                               :assigns => { :action => action }
        end
+
        m.clean_model
     end
   end
