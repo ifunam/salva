@@ -118,7 +118,7 @@ class ScaffoldingSandbox
         refmodel = column.sub(/_id/,'') 
         if refmodel =~ /^\w+_/ then
           (prefix, model) = refmodel.split('_')
-          belongs_to << column
+          belongs_to << [ refmodel, Inflector.camelize(model), column ] 
         else
           belongs_to << refmodel
         end
@@ -145,11 +145,11 @@ class ScaffoldingSandbox
       classmodel += "validates_numericality_of " + set_attrmodel(numeric)
     end
     belongs_to.each { | params |
-      if params.length > 1 then
+      if params.is_a? Array then
         classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '"\
         + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
       else 
-        classmodel += "belongs_to :" + params[0].to_s + "\n"
+        classmodel += "belongs_to :" + params + "\n"
       end
     }
     classmodel
