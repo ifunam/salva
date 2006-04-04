@@ -19,6 +19,19 @@ class ScaffoldingSandbox
       "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
     end
   end
+
+
+  def set_radiobutton(column, tabindex, required=nil)
+    radio = "<div class=\"radio\"> \n"
+    if required then
+      radio << "No <%= radio_button('edit', '#{column}', 'false', {'z:required' => 'true', 'z:message' => 'Este campo es requerido' }) %>\n" 
+      radio << "Sí <%= radio_button('edit', '#{column}', 'true', {'z:required' => 'true', 'z:message' => 'Este campo es requerido' }) %>\n"
+    else
+      radio << "No <%= radio_button('edit', '#{column}', 'false') %>\n" 
+      radio << "Sí <%= radio_button('edit', '#{column}', 'true') %> \n"
+    end
+    radio << "</div>\n"
+  end
   
   def set_textarea(column, tabindex, required=nil)
     if required then
@@ -51,6 +64,8 @@ class ScaffoldingSandbox
     "<%= year_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
   
+
+
   def salva_tags (model_instance, singular_name)
     table_name =  Inflector.tableize(model_instance.class.name)
     attrs = model_instance.connection.columns(table_name)
@@ -63,11 +78,14 @@ class ScaffoldingSandbox
       html << "<div class=\"row\"> \n"
       model_instance.column_for_attribute(column).null ? required = false : required = true 
       html << set_label(column, required)
+
       if column =~ /_id$/ then
         prefix = nil
         model = column.sub(/_id/,'') 
         (prefix, model) = model.split('_') if model =~ /^\w+_/ 
         html << set_select(column, model, tabindex, prefix, required)
+      elsif model_instance.column_for_attribute(column).type.to_s == 'boolean' then
+        html << set_radiobutton(column, tabindex, required)
       elsif column =~ /month/ then
         html << set_month(column, tabindex, required)
       elsif column =~ /year/ then
