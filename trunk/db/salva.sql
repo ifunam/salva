@@ -70,5 +70,6 @@
 \i catalogs/jobpositiontypes.sql
 \i catalogs/roleinjobpositions.sql
 \i catalogs/jobpositionlevels.sql
+\i catalogs/jobpositioncategories.sql
 \i catalogs/contracttypes.sql
 
