@@ -16,7 +16,8 @@ CREATE TABLE articlesfiles (
 		REFERENCES users(id) -- inserted, updated or deleted  
 		ON UPDATE CASCADE    -- data into or from this table.
 		DEFERRABLE,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (articles_id, filename)
 );
@@ -43,7 +44,8 @@ CREATE TABLE booksfiles (
 		REFERENCES users(id) -- inserted, updated or deleted  
 		ON UPDATE CASCADE    -- data into or from this table.
 		DEFERRABLE,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (books_id, filename)
 );
@@ -70,7 +72,8 @@ CREATE TABLE chapterinbooksfiles (
 		REFERENCES users(id) -- inserted, updated or deleted  
 		ON UPDATE CASCADE    -- data into or from this table.
 		DEFERRABLE,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (chapterinbook_id, filename)
 );
@@ -98,7 +101,8 @@ CREATE TABLE conferencetalksfiles (
 		REFERENCES users(id) -- inserted, updated or deleted  
 		ON UPDATE CASCADE    -- data into or from this table.
 		DEFERRABLE,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (conferencetalks_id, filename)
 );
@@ -127,7 +131,8 @@ CREATE TABLE genericworksfiles (
 		REFERENCES users(id) -- inserted, updated or deleted  
 		ON UPDATE CASCADE    -- data into or from this table.
 		DEFERRABLE,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (genericworks_id, filename)
 );

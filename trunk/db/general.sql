@@ -57,7 +57,8 @@ CREATE TABLE personals (
     REFERENCES users(id)             -- inserted, updated or deleted  
     ON UPDATE CASCADE                -- data into or from this table.
               DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
 CREATE INDEX "personals_firstname_idx" ON personals(firstname);
@@ -102,7 +103,8 @@ CREATE TABLE addresses (
     REFERENCES users(id)             -- inserted, updated or deleted  
 	      ON UPDATE CASCADE                -- data into or from this table.
    	      DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id, addresstype_id)
 );
@@ -152,7 +154,8 @@ CREATE TABLE citizens (
   REFERENCES users(id)             -- inserted, updated or deleted  
 	      ON UPDATE CASCADE                -- data into or from this table.
    	      DEFERRABLE,
-  dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+  created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE (user_id, citizen_country_id)
 );
@@ -189,7 +192,8 @@ CREATE TABLE peopleids (
    REFERENCES users(id)              -- inserted, updated or deleted  
 	      ON UPDATE CASCADE      -- data into or from this table.
    	      DEFERRABLE,
-   dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id),
    UNIQUE (user_id, identification_id, citizen_country_id)
 );
@@ -214,7 +218,8 @@ CREATE TABLE memberships (
  	   REFERENCES users(id)             -- inserted, updated or deleted  
 	   ON UPDATE CASCADE                -- data into or from this table.
    	   DEFERRABLE,
-  dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+  created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
 COMMENT ON TABLE memberships IS

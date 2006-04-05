@@ -211,7 +211,8 @@ CREATE TABLE stimuluslogs (
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE stimuluslogs IS 

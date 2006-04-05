@@ -42,7 +42,8 @@ CREATE TABLE usernewspaper_articles (
             DEFERRABLE,
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, newspaperarticle_id)
 );
 COMMENT ON TABLE usernewspaper_articles IS
@@ -66,7 +67,8 @@ CREATE TABLE newspaper_articleslog (
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE newspaper_articleslog IS

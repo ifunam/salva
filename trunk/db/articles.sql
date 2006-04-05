@@ -119,7 +119,8 @@ CREATE TABLE user_journals (
 	endmonth int4 NULL CHECK (endmonth >=1 AND endmonth <= 12),
 	numcites int4 NULL CHECK (numcites >= 0),
 	other text NULL,
-	dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
@@ -177,7 +178,8 @@ CREATE TABLE user_articles (
             DEFERRABLE,
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, article_id)
 );
 COMMENT ON TABLE user_articles IS
@@ -201,7 +203,8 @@ CREATE TABLE articleslog (
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE articleslog IS
@@ -223,7 +226,8 @@ CREATE TABLE file_articles (
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
-    dbtime timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (article_id, filename)
 );
