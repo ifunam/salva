@@ -2,7 +2,9 @@
 <label for="moduser_id" class="label"> Información registrada por el usuario: </label>
 <%= db_moduser(@edit.send('moduser_id')) %>
 <br/>
-<label for="dbtime" class="label"> Fecha y hora de registro: </label>
-<%= @edit.send('dbtime') %>
+<label for="created_on" class="label"> Fecha y hora de registro: </label>
+<%= @edit.send('created_on') %>
+<label for="updated_on" class="label"> Última actualización: </label>
+<%= @edit.send('updated_on') %>
 </div>
 <br/>
