@@ -6,7 +6,7 @@
     - citizen
     - peopleid
   - schooling
-  - user_jobpositions
+  - jobposition
   - user_stimulus
   - membership
 - science_and_tech_production

@@ -1,7 +1,6 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:schooling]-->
-
 <div class="row"> 
 <label for="credential_id" class="label"><%= get_label('credential_id') %> <span class="required">*</span></label> 
 <div id="credential_id">
@@ -27,9 +26,10 @@
 
 <div class="row"> 
 <label for="titleholder" class="label"><%= get_label('titleholder') %> <span class="required">*</span></label> 
-No <%= radio_button('edit', 'titleholder', 'false') %>
-Sí <%= radio_button('edit', 'titleholder', 'true') %>
-
+<div class="radio"> 
+No <%= radio_button('edit', 'titleholder', 'false', {'z:regexp' => '{exp: /false]}',  'z:message' => 'Este campo es requerido' }) %>
+Sí <%= radio_button('edit', 'titleholder', 'true', {'z:regexp' => '{exp: /true/}',  'z:message' => 'Este campo es requerido' }) %>
+</div>
 </div>
 
 <div class="row"> 

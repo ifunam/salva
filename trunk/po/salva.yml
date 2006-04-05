@@ -52,6 +52,11 @@ institutiontype_id: Tipo de institución
 administrative_key: Clave presupuestal
 startyear: Año de inicio
 endyear: Año de egreso
+startmonth: Mes de inicio
+endmonth: Mes de egreso
+jobpositiontype_id: Tipo de plaza
+roleinjobposition_id: Categoría
+jobpositionlevel_id: Nivel
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 back: Regresar
 next: Siguiente
@@ -75,7 +80,9 @@ titleholder: Titulado
 degree: Grado
 credits: Créditos
 career: Carrera
-user_jobpositions: Experiencia laboral
+jobpositioncategory_id: Categoría
+contracttype_id: Tipo de contrato
+jobposition: Experiencia laboral
 user_stimulus: Estímulos
 user_grants: Becas
 science_and_tech_production: Producción científica y tecnológica
@@ -86,3 +93,7 @@ migratorystatus: Estado migratorio
 institution: Institución
 institutiontype: Tipo de institución
 institutiontitle: Título(s) para las instituciones
+jobpositioncategory: Categoría(s)
+jobpositionlevel: Nivel de plaza
+jobpositiontype: Tipo de plaza
+roleinjobposition: Role de la categoría
