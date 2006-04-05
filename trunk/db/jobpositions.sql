@@ -23,11 +23,8 @@ COMMENT ON TABLE jobpositiontypes IS
 CREATE TABLE roleinjobpositions (
 	id SERIAL,
 	name text NOT NULL,
-	jobpositiontype_id smallint NOT NULL 
-                         REFERENCES jobpositiontypes(id)
-                         ON UPDATE CASCADE
-                         DEFERRABLE,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (name)
 );
 COMMENT ON TABLE roleinjobpositions IS 
 	'Rol desempeñado: técnico académico, investigador, ayudante, etc.';
@@ -51,7 +48,10 @@ COMMENT ON TABLE jobpositionlevels IS
 
 CREATE TABLE jobpositioncategories (
 	id SERIAL,
-	name text NOT NULL,
+	jobpositiontype_id smallint NOT NULL 
+                         REFERENCES jobpositiontypes(id)
+                         ON UPDATE CASCADE
+                         DEFERRABLE,
 	roleinjobposition_id smallint NOT NULL 
                          REFERENCES roleinjobpositions(id)
                          ON UPDATE CASCADE
@@ -62,7 +62,7 @@ CREATE TABLE jobpositioncategories (
                          DEFERRABLE,
 	administrative_key text NULL, 
 	PRIMARY KEY (id),
-	UNIQUE (name)
+	UNIQUE (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id)
 );
 COMMENT ON TABLE jobpositioncategories IS 
 	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
