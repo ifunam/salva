@@ -49,7 +49,7 @@ CREATE TABLE cities (
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
 	PRIMARY KEY(id),
-	UNIQUE(name)
+	UNIQUE(state_id, name)
 );
 COMMENT ON TABLE cities IS
 	'Lista de ciudades';
