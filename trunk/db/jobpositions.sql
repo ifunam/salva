@@ -106,6 +106,12 @@ CREATE TABLE jobpositions (
 	startyear int4 NOT NULL,
 	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
 	endyear  int4 NULL,
+        moduser_id int4  NULL    	     -- Use it only to know who has
+    	REFERENCES users(id)             -- inserted, updated or deleted  
+    	ON UPDATE CASCADE                -- data into or from this table.
+              DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
