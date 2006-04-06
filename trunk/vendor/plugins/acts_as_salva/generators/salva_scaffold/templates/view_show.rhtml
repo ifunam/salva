@@ -1,9 +1,0 @@
-<%%= render :partial => "<%= singular_name %>/show" %>
-<% moduser_attrs = ismoduser(@model_instance, @singular_name) %>
-<% if moduser_attrs.length > 0 %>
-  <%%= render :partial =>"salva/moduser" %>
-<% end %>
-<div id="operations">
- <%%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
- <%%= link_to get_label('back'), :action => 'list' %>
-</div>
