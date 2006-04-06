@@ -59,11 +59,14 @@ class ScaffoldingSandbox
     "<%= year_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
   
-
-
-  def salva_tags (model_instance, singular_name)
+  def get_tableattr(model_instance, singular_name)
     table_name =  Inflector.tableize(model_instance.class.name)
     attrs = model_instance.connection.columns(table_name)
+    [table_name, attrs]
+  end
+
+  def salva_tags (model_instance, singular_name)
+    (table_name, attrs) = get_tableattr(model_instance, singular_name)
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
     html = ""
     tabindex = 1
@@ -151,21 +154,27 @@ class ScaffoldingSandbox
   end
 
   def salva_model (model_instance, singular_name)
-    table_name =  Inflector.tableize(model_instance.class.name)
-    attrs = model_instance.connection.columns(table_name)
+    (table_name, attrs) = get_tableattr(model_instance, singular_name)
     (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
     set_classmodel(required, numeric, belongs_to)
   end
-
+  
   def view_list (model_instance, singular_name)
-    table_name =  Inflector.tableize(model_instance.class.name)
-    attrs = model_instance.connection.columns(table_name)
+    (table_name, attrs) = get_tableattr(model_instance, singular_name)
     (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
     required.join(' ')
   end
 
+  def ismoduser(model_instance, singular_name)
+    (table_name, attrs) = get_tableattr(model_instance, singular_name)
+    moduser_attrs = %w(moduser_id updated_on created_on)
+    columns = []
+    attrs.each { | attr | 
+      columns << attr.name if moduser_attrs.include? attr.name
+    }
+    columns
+  end
 end  
-
 
 class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   attr_reader   :controller_name,
@@ -261,8 +270,19 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
          :end_mark => 'eoflist',
          :mark_id => singular_name
 
+         m.complex_template "show.rhtml",
+         File.join('app/views',
+                   controller_class_path,
+                   controller_file_name,
+                   "show.rhtml"),
+         :insert => 'show_scaffolding.rhtml',
+         :sandbox => lambda { create_sandbox },
+         :begin_mark => 'show',
+         :end_mark => 'eofshow',
+         :mark_id => singular_name
+
       # Scaffolded views and partials.
-      %w(show _show new edit).each do |action|
+      %w(_show new edit).each do |action|
                               m.template "view_#{action}.rhtml",
                    File.join('app/views',
                              controller_class_path,
