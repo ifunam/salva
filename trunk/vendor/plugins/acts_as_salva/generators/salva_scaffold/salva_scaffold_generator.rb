@@ -165,7 +165,7 @@ class ScaffoldingSandbox
     required.join(' ')
   end
 
-  def ismoduser(model_instance, singular_name)
+  def get_moduser(model_instance, singular_name)
     (table_name, attrs) = get_tableattr(model_instance, singular_name)
     moduser_attrs = %w(moduser_id updated_on created_on)
     columns = []
