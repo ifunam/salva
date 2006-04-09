@@ -20,19 +20,6 @@ class Personal < ActiveRecord::Base
   :class_name => 'City',
   :foreign_key => 'birth_city_id'
   belongs_to :maritalstatus
-  # Es necesario documentarnos como agregar attributos sin necesida de que existan en la tabla
-  def name
-  end
-  
-  def code
-  end
-   
-  def country_id
-  end
-
-  def city_id
-  end
-
-  def state_id
-  end
+	
+  attr_accessor :name, :code, :country_id, :state_id
 end
