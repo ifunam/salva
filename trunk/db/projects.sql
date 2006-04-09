@@ -216,6 +216,7 @@ COMMENT ON COLUMN userprojects.user_is_internal IS
 	si no, exigimos externaluser_id';
 
 CREATE TABLE projectsarticles (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -224,12 +225,14 @@ CREATE TABLE projectsarticles (
 	    REFERENCES articles(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, article_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, article_id)
 );
 COMMENT ON TABLE projectsarticles IS
 	'Artículos relacionados con cada proyecto';
 
 CREATE TABLE projectsthesis (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -238,12 +241,14 @@ CREATE TABLE projectsthesis (
 	    REFERENCES thesis(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, thesis_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, thesis_id)
 );
 COMMENT ON TABLE projectsthesis IS
 	'Artículos relacionados con cada proyecto';
 
 CREATE TABLE projectsbooks (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -252,12 +257,14 @@ CREATE TABLE projectsbooks (
 	    REFERENCES books(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, books_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, books_id)
 );
 COMMENT ON TABLE projectsbooks IS
 	'Libros relacionados con cada proyecto';
 
 CREATE TABLE projectschapterinbooks (
+	id serial, 
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -266,12 +273,14 @@ CREATE TABLE projectschapterinbooks (
 	    REFERENCES chapterinbooks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, chapterinbook_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, chapterinbook_id)
 );
 COMMENT ON TABLE projectschapterinbooks IS
 	'Capítulos en libro relacionados con cada proyecto';
 
 CREATE TABLE projectsconferencetalks (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -280,12 +289,14 @@ CREATE TABLE projectsconferencetalks (
 	    REFERENCES conferencetalks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, conferencetalks_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, conferencetalks_id)
 );
 COMMENT ON TABLE projectsconferencetalks IS
 	'Ponencias en congreso relacionadas con cada proyecto';
 
 CREATE TABLE projectsacadvisits (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -294,12 +305,14 @@ CREATE TABLE projectsacadvisits (
 	    REFERENCES acadvisits(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, acadvisits_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, acadvisits_id)
 );
 COMMENT ON TABLE projectsacadvisits IS
 	'Estancias académicas relacionadas con cada proyecto';
 
 CREATE TABLE projectsgenericworks (
+	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
@@ -308,7 +321,8 @@ CREATE TABLE projectsgenericworks (
 	    REFERENCES genericworks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	PRIMARY KEY (project_id, genericworks_id)
+	PRIMARY KEY (id),
+	UNIQUE (project_id, genericworks_id)
 );
 COMMENT ON TABLE projectsgenericworks IS
 	'Trabajos genéricos relacionados con cada proyecto';

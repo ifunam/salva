@@ -2,13 +2,13 @@
 -- Estancias y sabaticos              --
 ----------------------------------------
 
-CREATE TABLE acadvisittype (
+CREATE TABLE acadvisittypes (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE acadvisittype IS
+COMMENT ON TABLE acadvisittypes IS
 	'Tipos de visita académica';
 -- Sabático, posdoctoral, de investigación...
 
@@ -28,7 +28,7 @@ CREATE TABLE acadvisits (
             ON UPDATE CASCADE
             DEFERRABLE,
 	acadvisittype_id integer NOT NULL 
-	    REFERENCES acadvisittype(id)
+	    REFERENCES acadvisittypes(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
         name text NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE sponsorsacadvisits (
 	    REFERENCES  acadvisits(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
- 	sponsorinst_id integer NOT NULL 
+ 	institution_id integer NOT NULL 
 	    REFERENCES institutions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
