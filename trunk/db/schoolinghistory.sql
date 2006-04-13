@@ -14,6 +14,7 @@ COMMENT ON TABLE degrees IS
 CREATE TABLE careers (
 	id SERIAL,
         name text NOT NULL,
+        abbrev text NULL,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
@@ -26,17 +27,16 @@ COMMENT ON TABLE careers IS
 
 CREATE TABLE institutioncareers (
 	id SERIAL,
-	career_id int4 NOT NULL 
-            	REFERENCES careers(id) 
+	institution_id int4 NOT NULL 
+            	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-        abbrev text NULL,
 	degree_id int4 NOT NULL 
             	REFERENCES degrees(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	institution_id int4 NOT NULL 
-            	REFERENCES institutions(id) 
+	career_id int4 NOT NULL 
+            	REFERENCES careers(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
         url  text NULL,

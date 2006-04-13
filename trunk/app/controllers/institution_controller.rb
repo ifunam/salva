@@ -1,4 +1,5 @@
 class InstitutionController < SalvaController
+  attr_accessor :order_by	  
   def initialize
     super
     @model = Institution

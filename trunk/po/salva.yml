@@ -66,6 +66,7 @@ edit: Modificar
 save: Guardar
 update: Guardar cambios
 cancel: Cancelar
+search: Buscar
 home: Inicio
 navigator: Inicio
 profile: Perfil
@@ -98,3 +99,6 @@ jobpositionlevel: Nivel de plaza
 jobpositiontype: Tipo de plaza
 roleinjobposition: Rol en la categoría
 group: Grupo
+career_id: Carrera
+institutioncareer: Carrera en institución
+degree_id: Grado

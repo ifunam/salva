@@ -6,6 +6,11 @@
 <%= text_field 'edit', 'name', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
+<div class="row"> 
+<label for="abbrev" class="label"><%= get_label('abbrev') %></label> 
+<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'abbrev' %>
+</div>
+
 
 <!--[eoform:career]-->
 

@@ -1,6 +1,9 @@
-<%= table_list(@collection, { :header => "Título", :columns => %w() }) %>
+<!--[list:institutioncareer]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( institution_id degree_id career_id ) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
 <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
 </div>
+<!--[eoflist:institutioncareer]-->
+

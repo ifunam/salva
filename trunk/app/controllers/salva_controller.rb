@@ -13,7 +13,20 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @pages, @collection = paginate Inflector.pluralize(@model), :per_page => @per_pages, :order_by =>  @order_by
+    if @params[:edit]
+      @conditions = []
+      values = []
+      keys = []
+      @conditions[0] = nil
+      @params[:edit].each { |key, value|
+        keys << key + " = ?"
+        @conditions << value
+      }	
+      @conditions[0] = keys.join(' AND ')
+      logger.info("CONDITIONS"+@conditions.join('|').to_s)
+    end
+
+    @pages, @collection = paginate Inflector.pluralize(@model), :per_page => @per_pages, :order_by =>  @order_by, :conditions => @conditions
     render :action => 'list'
   end
   
