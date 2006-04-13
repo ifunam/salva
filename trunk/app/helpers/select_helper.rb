@@ -7,8 +7,8 @@ module SelectHelper
     end
     
     select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect {
-             |p| [ p.name, p.id ]
+           model.find(:all, :order => 'name ASC').collect! {
+             |p| [ p.name, p.id ] if p.name.length > 0
            },
            {:prompt => '-- Seleccionar --'}, opts)
   end
@@ -16,7 +16,7 @@ module SelectHelper
   def selected_select(object, model, model_id, id, tabindex=nil, required=nil) 
     args = [ object, model_id, 
              model.find(:all, :order => 'name ASC').collect { 
-               |p|[p.name, p.id]
+               |p| [ p.name, p.id ] if p.name.length > 0
              }, 
              id ]
     select = "<select name=\"#{object}[#{model_id}]\" "
@@ -50,7 +50,7 @@ module SelectHelper
     model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
     select(opts[:object], model_id,  
            opts[:model].find(:all, :order => 'name ASC').collect {
-             |p| [ p.name, p.id ]
+             |p| [ p.name, p.id ] if p.name.length > 0
            }, 
            { :prompt => '-- Seleccionar --' },
            { :onchange => remote_functag(opts[:model].name, dest[:model], 
@@ -67,7 +67,7 @@ module SelectHelper
     params = [ opts[:object], model_id, 
                opts[:model].find(:all, :order => 'name ASC', 
                           :conditions => conditions).collect {
-                 |p| [ p.name, p.id ]
+                 |p| [ p.name, p.id ] if p.name.length > 0               
                }, 
                {:prompt => '-- Seleccionar --'} 
              ]
@@ -82,9 +82,11 @@ module SelectHelper
   def byattr_select(object, model, model_id, opts={})
     attr = 'name'
     select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect {
-             |p| [ p.send( opts[:attr] || attr), p.id ]
-           },
+           model.find(:all, :order => 'name ASC').collect { |p| 
+             if p.send( opts[:attr] || attr).length != 0
+               [ p.send( opts[:attr] || attr), p.id ] 
+             end
+           }.compact!,
            {:prompt => '-- Seleccionar --'}, 
            {:tabindex => opts[:tabindex] })
 
@@ -110,6 +112,4 @@ module SelectHelper
                     :with => params, :loading => loading_msg,
                     :success => success_msg)
   end
-
-
 end
