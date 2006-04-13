@@ -11,21 +11,6 @@ COMMENT ON TABLE degrees IS
 	'Lista de grados académicos';
 -- Técnico, licenciatura, maestría, doctorado...
 
-CREATE TABLE credentials (
-	id SERIAL,
-	name text NULL,
-	abbrev text NULL,
-	moduser_id int4 NULL    -- Use it only to know who has
-        	   REFERENCES users(id)    -- inserted, updated or deleted  
-           	ON UPDATE CASCADE       -- data into or from this table.
-            	DEFERRABLE,
-	PRIMARY KEY (id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE credentials IS
-	'Títulos o credenciales que obtiene una persona al titularse en determinada grado acadÃmico';
--- Lic., Mat., Fis., Arq., Dr., M. en C., etc.
-
 CREATE TABLE careers (
 	id SERIAL,
         name text NOT NULL,
@@ -65,6 +50,22 @@ CREATE TABLE institutioncareers (
 );
 COMMENT ON TABLE institutioncareers IS
 	'Carreras ligadas a las instituciónes';
+
+
+CREATE TABLE credentials (
+	id SERIAL,
+	name text NULL,
+	abbrev text NULL,
+	moduser_id int4 NULL    -- Use it only to know who has
+        	   REFERENCES users(id)    -- inserted, updated or deleted  
+           	ON UPDATE CASCADE       -- data into or from this table.
+            	DEFERRABLE,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE credentials IS
+	'Títulos o credenciales que obtiene una persona al titularse en determinada grado acadÃmico';
+-- Lic., Mat., Fis., Arq., Dr., M. en C., etc.
 
 CREATE TABLE schoolings (
     id SERIAL,
