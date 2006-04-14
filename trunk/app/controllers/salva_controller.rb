@@ -1,6 +1,5 @@
 #  app/controllers/shared_controller
 #require 'iconv'
-
 class SalvaController < ApplicationController
   $debug = 1
 
@@ -13,20 +12,9 @@ class SalvaController < ApplicationController
   end
   
   def list
-    if @params[:edit]
-      @conditions = []
-      values = []
-      keys = []
-      @conditions[0] = nil
-      @params[:edit].each { |key, value|
-        keys << key + " = ?"
-        @conditions << value
-      }	
-      @conditions[0] = keys.join(' AND ')
-      logger.info("CONDITIONS"+@conditions.join('|').to_s)
-    end
-
-    @pages, @collection = paginate Inflector.pluralize(@model), :per_page => @per_pages, :order_by =>  @order_by, :conditions => @conditions
+    conditions = set_conditions
+    @pages, @collection = paginate Inflector.pluralize(@model), 
+    :per_page => @per_pages, :order_by =>  @order_by, :conditions => conditions
     render :action => 'list'
   end
   
@@ -42,27 +30,15 @@ class SalvaController < ApplicationController
     else 
       @edit = @model.new
       render :action => 'new'
-    end
+   end
   end
-
-
+  
   def new_else
     model_other = params[:model]
     lider =  @model.find(params[:lider])
     logger.info "New else Lider "+lider.to_s if lider != nil
-    redirect_to :controller => model_other, :action => 'new', :lider_id => lider, :lider_name => Inflector.undescore(@model.name)
-  end
-
-  def new_sequence
-#    lider_id = params[:lider_id]
-#    lider_name =  params[:lider_name]
-    sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = @session[:user] 
-    sequence.user_id = @session[:user] 
-    #   logger.info "New sequence Lider "+lider_id.to_s if lider_id != nilmo
-#    sequence.set_lider(lider_id, lider_name) if lider_id != nil and lider_name != nil
-    session[:sequence] = sequence
-    redirect_to :controller => 'wizard', :action => 'new'
+    redirect_to :controller => model_other, :action => 'new', 
+    :lider_id => lider, :lider_name => Inflector.undescore(@model.name)
   end
 
   def create
@@ -108,9 +84,34 @@ class SalvaController < ApplicationController
       }
     end
     redirect_to :action => 'list'
- end
+  end
  
- def show
+  def show
     @edit = @model.find(params[:id])
- end
+  end
+
+  private
+  def new_sequence
+    sequence = ModelSequence.new(@sequence)
+    sequence.moduser_id = @session[:user] 
+    sequence.user_id = @session[:user] 
+    session[:sequence] = sequence
+    redirect_to :controller => 'wizard', :action => 'new'
+  end
+
+  def set_conditions
+    session_key = controller_name.to_s + "list_conditions"
+    if @params[:edit]
+      conditions = [ nil ]
+      keys = []
+      @params[:edit].each { |key, value|
+        keys << key + " = ?"
+        conditions << value
+      }	
+      conditions[0] = keys.join(' AND ')
+      @session[session_key] = conditions
+    else 
+      @session[session_key] unless !@session[session_key]
+    end
+  end
 end
