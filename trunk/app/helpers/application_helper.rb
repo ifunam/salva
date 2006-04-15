@@ -71,4 +71,17 @@ module ApplicationHelper
     render(:partial => '/salva/loading_indicator_tag', 
            :locals => { :scope => scope, :id => id })
   end  
+
+  def link_to_searchdialog(label,partial)
+    params = "'partial=#{partial}'"
+    success_msg = "new Effect.BlindUp('search_note', {duration: 0.5}); "
+    success_msg += "return false;"
+    loading_msg = "Toggle.display('search_note');"
+    link_to_function(label,
+                     remote_function(:update => 'search', :with => params,
+                                     :url => {:action => :update_searchdialog},
+                                     :loading => loading_msg,
+                                     :success => success_msg)
+                     )
+  end
 end 

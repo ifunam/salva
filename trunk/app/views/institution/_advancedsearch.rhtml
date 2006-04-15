@@ -1,0 +1,23 @@
+<div id="search">
+<div id="search_note" style="display: none"><%= get_label('searchdialog') %></div>
+<%= start_form_tag :action => 'list' %>
+<div class="row"> 
+<label for="institutiontitle_id" class="label"><%= get_label('institutiontitle_id') %> <span class="required">*</span></label> 
+<div id="institutiontitle_id">
+<%= table_select('institution', Institutiontitle, {:tabindex => '1'}) %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="institutiontype_id" class="label"><%= get_label('institutiontype_id') %> <span class="required">*</span></label> 
+<div id="institutiontype_id">
+<%= table_select('institution', Institutiontype, {:tabindex => '6'}) %> 
+</div>
+</div>
+
+ <div id="operations">
+  <%= submit_tag get_label('search') %> | 
+  <%= link_to_searchdialog(get_label('simplesearch'),'search') %>
+  </div>
+<%= end_form_tag %>
+</div>

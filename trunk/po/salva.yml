@@ -67,6 +67,10 @@ save: Guardar
 update: Guardar cambios
 cancel: Cancelar
 search: Buscar
+advancedsearch: Búsqueda avanzada
+simplesearch: Búsqueda simple 
+searchdialog: Cargando diálogo para búsqueda simple...
+advancedsearchdialog: Cargando diálogo para búsqueda avanzada...
 home: Inicio
 navigator: Inicio
 profile: Perfil

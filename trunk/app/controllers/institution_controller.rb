@@ -1,5 +1,5 @@
 class InstitutionController < SalvaController
-  attr_accessor :order_by	  
+  auto_complete_for :institution, :name
   def initialize
     super
     @model = Institution

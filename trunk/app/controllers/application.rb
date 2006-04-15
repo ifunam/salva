@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
     render(:partial => 'salva/'+template)
   end
 
+  def update_searchdialog
+    partial = @params[:partial]
+    render(:partial => partial)
+  end
+
   def configure_charsets
     @response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
   end

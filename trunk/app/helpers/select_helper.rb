@@ -103,13 +103,13 @@ module SelectHelper
     
     params = "'template=#{template}&id='+value"
     div_note = model_id + '_note'
-    success_msg = "new Effect.BlindUp('#{div_note}', {duration: 0.5}); "
+    success_msg = "Effect.BlindUp('#{div_note}', {duration: 0.5});; "
     success_msg += "return false;"
     loading_msg = "Toggle.display('#{div_note}');"
 
-    remote_function(:update => model_id, 
+    remote_function(:update => model_id, :with => params, 
                     :url => {:action => :update_select_dest},
-                    :with => params, :loading => loading_msg,
+                    :loading => loading_msg,
                     :success => success_msg)
   end
 end
