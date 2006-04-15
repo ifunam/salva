@@ -11,17 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_required   
   helper :salva, :table, :user, :navigator, :date, :select
   
-  def upgrade_select
-    @model =  eval(Inflector.classify(@params[:class]))
-    @prefix =  @params[:prefix]
-    model = @model.new
-    model.name = @params[:name]
-    model.save
-    @id = model.id
-    render(:partial => 'salva/upgrade_select')
-  end
-
-  def update_select_dest
+  def update_select
     @id = @params[:id]
     template = @params[:template]
     render(:partial => 'salva/'+template)

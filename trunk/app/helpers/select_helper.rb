@@ -108,7 +108,7 @@ module SelectHelper
     loading_msg = "Toggle.display('#{div_note}');"
 
     remote_function(:update => model_id, :with => params, 
-                    :url => {:action => :update_select_dest},
+                    :url => {:action => :update_select},
                     :loading => loading_msg,
                     :success => success_msg)
   end
