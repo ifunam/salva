@@ -13,8 +13,12 @@ class SalvaController < ApplicationController
   
   def list
     conditions = set_conditions
+    per_page = set_per_page
+
     @pages, @collection = paginate Inflector.pluralize(@model), 
-    :per_page => @per_pages, :order_by => @order_by, :conditions => conditions
+    :per_page => per_page || @per_pages, :order_by => @order_by, 
+    :conditions => conditions
+
     render :action => 'list'
   end
   
@@ -100,7 +104,7 @@ class SalvaController < ApplicationController
   end
 
   def set_conditions
-    session_key = controller_name.to_s + "list_conditions"
+    session_key = controller_name.to_s + "_list_conditions"
     if @params[controller_name]
       @session[session_key] = sql_conditions(@params[controller_name])
     else 
@@ -124,5 +128,14 @@ class SalvaController < ApplicationController
     }	
     conditions[0] = keys.join(' AND ')
     conditions
+  end
+
+  def set_per_page
+    session_key = controller_name.to_s + "_per_page"
+    if @params[:per_page] 
+      @session[session_key] = @params[:per_page].to_i
+    else
+      @session[session_key] unless !@session[session_key] 
+    end
   end
 end

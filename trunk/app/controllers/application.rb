@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
-  helper :salva, :table, :user, :navigator, :date, :select
+  helper :salva, :table, :user, :navigator, :date, :select, :paginator
   
   def update_select
     @id = @params[:id]
-    template = @params[:template]
-    render(:partial => 'salva/'+template)
+    partial = @params[:partial]
+    render(:partial => 'salva/'+partial)
   end
 
   def update_searchdialog

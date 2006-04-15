@@ -58,6 +58,7 @@ jobpositiontype_id: Tipo de plaza
 roleinjobposition_id: Categoría
 jobpositionlevel_id: Nivel
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
+prev: Anterior
 back: Regresar
 next: Siguiente
 add: Agregar
@@ -71,6 +72,10 @@ advancedsearch: Búsqueda avanzada
 simplesearch: Búsqueda simple 
 searchdialog: Cargando diálogo para búsqueda simple...
 advancedsearchdialog: Cargando diálogo para búsqueda avanzada...
+per_page: Número de elementos por página
+previus_page: Página anterior
+next_page: Página siguiente
+results_page: Página(s) de resultados
 home: Inicio
 navigator: Inicio
 profile: Perfil

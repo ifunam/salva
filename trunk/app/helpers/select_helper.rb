@@ -98,10 +98,10 @@ module SelectHelper
     origmodel = origmodel.downcase
     destmodel = destmodel.downcase
     
-    template = "select_#{origmodel}_#{destmodel}" 
-    template += "_prefix" if prefix != nil
+    partial = "select_#{origmodel}_#{destmodel}" 
+    partial += "_prefix" if prefix != nil
     
-    params = "'template=#{template}&id='+value"
+    params = "'partial=#{partial}&id='+value"
     div_note = model_id + '_note'
     success_msg = "Effect.BlindUp('#{div_note}', {duration: 0.5});; "
     success_msg += "return false;"
