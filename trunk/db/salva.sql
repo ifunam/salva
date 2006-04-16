@@ -72,4 +72,6 @@
 \i catalogs/jobpositionlevels.sql
 \i catalogs/jobpositioncategories.sql
 \i catalogs/contracttypes.sql
+\i catalogs/careers.sql
+\i catalogs/institutioncareers.sql
 
