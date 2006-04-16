@@ -1,5 +1,5 @@
 #  app/controllers/shared_controller
-#require 'iconv'
+require 'iconv'
 class SalvaController < ApplicationController
   $debug = 1
 
@@ -46,14 +46,9 @@ class SalvaController < ApplicationController
   end
 
   def create
-    if @request.env['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' then
-      name ||= params[:edit][:name]  
-      logger.info "nombre utf[" +name+"]"
-      params[:edit][:name] = Iconv.new('iso-8859-15','utf-8').iconv(name)
-    end
+    setinput_xmlhttprequest if  @request.xml_http_request?
     @edit = @model.new(params[:edit])
-    @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
-    @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
+    set_userid
     if @edit.save
       flash[:notice] = @create_msg
       redirect_to :action => 'list'
@@ -67,6 +62,7 @@ class SalvaController < ApplicationController
  
   def update
     @edit = @model.find(params[:id])
+    set_userid
     if @edit.update_attributes(params[:edit])
       flash[:notice] = @update_msg
       redirect_to :action => 'list'
@@ -137,5 +133,18 @@ class SalvaController < ApplicationController
     else
       @session[session_key] unless !@session[session_key] 
     end
+  end
+
+  def setinput_xmlhttprequest
+    @params[:edit].each { |key, value|
+      unless key.match(/\_id$/)
+        @params[:edit][key] = Iconv.new('iso-8859-15','utf-8').iconv(value) 
+      end
+    }
+  end
+
+  def set_userid
+    @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
+    @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
   end
 end
