@@ -53,7 +53,7 @@ module SelectHelper
              |p| [ p.name, p.id ] if p.name.length > 0
            }, 
            { :prompt => '-- Seleccionar --' },
-           { :onchange => remote_functag(opts[:model].name, dest[:model], 
+           { :onchange => remote_functag(opts[:model].name, dest[:model],
                                          dest[:prefix]) }
            )
   end
@@ -93,21 +93,16 @@ module SelectHelper
   end
 
   def remote_functag(origmodel, destmodel, prefix=nil)
-    model_id = destmodel.downcase + '_id'
-    model_id = prefix + '_' + model_id if prefix != nil
-    origmodel = origmodel.downcase
-    destmodel = destmodel.downcase
-    
-    partial = "select_#{origmodel}_#{destmodel}" 
-    partial += "_prefix" if prefix != nil
+    partial = "select_#{origmodel.downcase}_#{destmodel.downcase}" 
+    partial += "_prefix" if prefix 
     
     params = "'partial=#{partial}&id='+value"
-    div_note = model_id + '_note'
-    success_msg = "Effect.BlindUp('#{div_note}', {duration: 0.5});; "
+    partial_note =  partial + "_note"
+    success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
     success_msg += "return false;"
-    loading_msg = "Toggle.display('#{div_note}');"
+    loading_msg = "Toggle.display('#{partial_note}');"
 
-    remote_function(:update => model_id, :with => params, 
+    remote_function(:update => partial, :with => params, 
                     :url => {:action => :update_select},
                     :loading => loading_msg,
                     :success => success_msg)

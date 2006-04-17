@@ -44,8 +44,8 @@
 <br/>
 <div class="row"> 
 <label for="birth_state_id" class="label"><%= get_label('birth_state_id') %></label> 
-<div id="birth_state_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
-<div id="birth_state_id">
+<div id="select_country_state_prefix_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
+<div id="select_country_state_prefix">
 <%= select2update_select({:object => 'edit', :model =>State, :prefix => 'birth'}, {:model => 'City', :prefix => 'birth'}) %>
 </div>
 <%= quickpost('state') %> 
@@ -53,8 +53,8 @@
 <br/>
 <div class="row"> 
 <label for="birth_city_id" class="label"><%= get_label('birth_city_id') %></label> 
-<div id="birth_city_id_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
-<div id="birth_city_id">
+<div id="select_state_city_prefix_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
+<div id="select_state_city_prefix">
 <%= table_select('edit', City, {:prefix => 'birth'}) %>
 </div>
 <%= quickpost('city') %>

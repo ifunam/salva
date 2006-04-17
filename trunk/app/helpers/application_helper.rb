@@ -29,11 +29,6 @@ module ApplicationHelper
   def purge_link(id,question)
     action_link('purge', id, 'Borrar', question)
   end
-
-  def check_box(object, id, checked=false, prefix='item_id')
-    check_box_tag("#{object}[#{prefix}][]", id, checked = false, 
-                  options = {:id => prefix}) 
-  end
   
   def check_box_group(object, model, options={})
     options = options.stringify_keys
@@ -52,26 +47,6 @@ module ApplicationHelper
     ckbox_group
   end
   
-  def quickpost(partial)
-    link_to_function(image_tag('add.gif', 
-                               { :border=>0, :valign => 'middle', 
-                                 :alt=> 'Agregar' }), 
-                     toggle_effect(partial, 'Effect.BlindUp', 
-                                   "duration:0.5", "Effect.BlindDown", 
-                                   "duration:0.5"))    
-  end
-
-  def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
-    "$('#{domid}').style.display == 'none' ? new #{false_effect}('#{domid}'," +
-      " {#{false_opts}}) : new #{true_effect}('#{domid}', {#{true_opts}}); " + 
-      "return false;"
-  end
-
-  def loading_indicator_tag(scope,id)
-    render(:partial => '/salva/loading_indicator_tag', 
-           :locals => { :scope => scope, :id => id })
-  end  
-
   def link_to_searchdialog(label,partial)
     params = "'partial=#{partial}'"
     success_msg = "new Effect.BlindUp('search_note', {duration: 0.5}); "
