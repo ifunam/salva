@@ -4,6 +4,9 @@
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
 
+# Specifies gem version of Rails to use when vendor/rails is not present
+RAILS_GEM_VERSION = '1.1.2'
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -21,12 +24,13 @@ Rails::Initializer.run do |config|
   # config.log_level = :debug
 
   # Use the database for sessions instead of the file system
-  # (create the session table with 'rake create_sessions_table')
+  # (create the session table with 'rake db:sessions:create')
   config.action_controller.session_store = :active_record_store
 
-  # Enable page/fragment caching by setting a file-based store
-  # (remember to create the caching directory and make it readable to the application)
-  # config.action_controller.fragment_cache_store = :file_store, "#{RAILS_ROOT}/cache"
+  # Use SQL instead of Active Record's schema dumper when creating the test database.
+  # This is necessary if your schema can't be completely dumped by the schema dumper, 
+  # like if you have constraints or database-specific column types
+  # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
@@ -35,19 +39,14 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
   
-  # Use Active Record's schema dumper instead of SQL when creating the test database
-  # (enables use of different database adapters for development and test environments)
-  # config.active_record.schema_format = :ruby
-
   # See Rails::Configuration for more options
-
   # ActionMailer configuration: http://api.rubyonrails.com/classes/ActionMailer/Base.html
   ActionMailer::Base.delivery_method = :sendmail 
   ActionMailer::Base.server_settings = {:domain  => "salva.fisica.unam.mx"}
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.default_charset = "iso-8859-1"
-  #ActionController::Base.enable_upload_progress
+
 end
 
 # Add new inflection rules using the following format 
@@ -59,10 +58,4 @@ end
 #   inflect.uncountable %w( fish sheep )
 # end
 
-# Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
-# UploadProgress se declaren oficialmente como código estable, referencias:
-# http://vantulder.net/rails/magick/
-# http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
-#
-#require 'action_controller/cgi_ext/upload_progress.rb'
-#require_gem 'actionpack-imagemagick'
+# Include your application configuration below
