@@ -1,4 +1,6 @@
 class InstitutioncareerController < SalvaController
+  auto_complete_for :careers, :name
+
   def initialize
     super
     @model = Institutioncareer

@@ -1,5 +1,6 @@
 <%= render :partial => '/salva/perpage' %>
-<%= start_form_tag :action => 'purge_selected' %>
+<%= start_form_tag(:action => @parent_controller ? 'return_to_parent_controller' : 'purge_selected' ) %>
+
 <table class="list">
   <tr>
     <th>*</th>
@@ -10,14 +11,16 @@
 <% for item in list %>
   <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
   <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
-    <td class="item"><%= check_box_tag("item[]", item['id'], checked=false) %> </td>
+    <td class="item">
+    <%= @parent_controller ? radio_button('edit', 'id', item['id']) : check_box_tag("item[]", item['id'], checked=false)%> 
+    </td>
     <td><%=item['cell_content']%></td>
     <td class="link"><%= show_link(item['id']) %> <%= edit_link(item['id']) %> <%= purge_link(item['id'], 'Desea borrar este elemento?') %></td>
   </tr>
 <% end %>
 </table>
 <% if list.length > 0 %>
-<%= submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('¿Desea borrar los elementos seleccionados?');"} %>
+<%= @parent_controller ? submit_tag('Seleccionar') : (submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('¿Desea borrar los elementos seleccionados?');"}) %>
 <% end %>
 <%= render :partial => '/salva/paginator' %>
 <%= end_form_tag %>

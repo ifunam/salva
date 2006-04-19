@@ -3,7 +3,7 @@
 <%= start_form_tag :action => 'list' %>
 <div class="row"> 
 <label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
-<%= text_field :name, :limit => 50, :order => 'institution_id', :size => 40  %>
+<%= text_field :institutioncareer, :name, :limit => 50, :order => 'institution_id', :size => 40  %>
 </div>
 <div id="operations">
   <%= submit_tag get_label('search') %>  |

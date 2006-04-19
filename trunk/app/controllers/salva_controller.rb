@@ -12,19 +12,31 @@ class SalvaController < ApplicationController
   end
   
   def list
+    @parent_controller = set_parent_controller
+
     conditions = set_conditions
     per_page = set_per_page
-
+    
     @pages, @collection = paginate Inflector.pluralize(@model), 
     :per_page => per_page || @per_pages, :order_by => @order_by, 
     :conditions => conditions
 
     render :action => 'list'
   end
-
+  
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :create, :update ],
+  verify :method => :post, :only => [ :create, :update, 
+                                      :return_to_parent_controller ],
   :redirect_to => { :action => :list }
+
+  def return_to_parent_controller
+    parent = @session[:parent].pop
+    @session[:child] = { :key => parent[:child_key], 
+                         :value => @params[:edit][:id] }
+
+    redirect_to :controller => parent[:name], :action => parent[:action],
+                :id => parent[:id]
+  end
   
   def edit
     @edit = @model.find(params[:id])
@@ -117,7 +129,7 @@ class SalvaController < ApplicationController
     keys = []
     params.each { |key, value|
       if value != nil and value.length > 0 
-        if key.match(/_id$/) and value.is_a? Integer 
+        if key.match(/_id$/) 
           keys << key + " = ?"
           conditions << value
         else
@@ -150,5 +162,22 @@ class SalvaController < ApplicationController
   def set_userid
     @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
     @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
+  end
+  
+  def set_parent_controller
+    if @params[:parent] and @params[:parent_action] and @params[:key]
+      set_parent_stack(@params[:parent], @params[:parent_action], 
+                       @params[:key], @params[:id]) 
+    end
+    @session[:parent].last if @session[:parent] # Using the *LIFO stack*
+  end
+  
+  def set_parent_stack(name, action, key, id=nil)
+    parent = { :name => name, :action => action, :id => id, :child_key => key }
+    if @session[:parent] 
+      @session[:parent] << parent
+    else
+      @session[:parent] = [ parent ]
+    end
   end
 end
