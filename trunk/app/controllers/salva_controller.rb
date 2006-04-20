@@ -13,7 +13,6 @@ class SalvaController < ApplicationController
   
   def list
     @parent_controller = set_parent_controller
-
     conditions = set_conditions
     per_page = set_per_page
     
@@ -30,10 +29,8 @@ class SalvaController < ApplicationController
   :redirect_to => { :action => :list }
 
   def return_to_parent_controller
-    parent = @session[:parent].pop
-    @session[:child] = { :key => parent[:child_key], 
-                         :value => @params[:edit][:id] }
-
+    parent = @session[:stack].pop
+    set_child_params(parent[:child_key], @params[:edit][:id]) 
     redirect_to :controller => parent[:name], :action => parent[:action],
                 :id => parent[:id]
   end
@@ -166,18 +163,20 @@ class SalvaController < ApplicationController
   
   def set_parent_controller
     if @params[:parent] and @params[:parent_action] and @params[:key]
-      set_parent_stack(@params[:parent], @params[:parent_action], 
-                       @params[:key], @params[:id]) 
+      @session[:stack] = Stack.new() unless @session[:stack] 
+      args = set_stack_params(@params)
+      @session[:stack].push(args)
     end
-    @session[:parent].last if @session[:parent] # Using the *LIFO stack*
+    @session[:stack].has_items? if @session[:stack]
   end
-  
-  def set_parent_stack(name, action, key, id=nil)
-    parent = { :name => name, :action => action, :id => id, :child_key => key }
-    if @session[:parent] 
-      @session[:parent] << parent
-    else
-      @session[:parent] = [ parent ]
-    end
+
+  def set_stack_params(args)
+    { :name => args[:parent], :action => args[:parent_action],
+      :child_key =>  args[:key], :id => args[:id]
+    }
+  end
+
+  def set_child_params(child_key, id)
+    @session[:child] = { :name => child_key, :value => id }
   end
 end
