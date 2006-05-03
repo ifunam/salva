@@ -46,7 +46,7 @@ class WizardController < ApplicationController
     sequence = get_sequence
     if !sequence.is_composite then
       model = get_sequence.get_model
-      @params[:edit].each { |key, value|
+      params[:edit].each { |key, value|
         model[key.to_sym] = value
       }
       if model.valid? then
@@ -64,7 +64,7 @@ class WizardController < ApplicationController
     sequence = get_sequence
     composite =  sequence.get_model
     models = composite.get_children
-    @params[:edit].each { |attr, value|
+    params[:edit].each { |attr, value|
       models.each { | model |
         if model.has_attribute? attr
           model[attr.to_sym] = value
@@ -82,7 +82,7 @@ class WizardController < ApplicationController
   def update
     sequence = get_sequence
     mymodel = sequence.get_model
-    @params[:edit].each { |key, value|
+    params[:edit].each { |key, value|
       mymodel[key.to_sym] = value
     }	  
     if sequence.is_filled
@@ -134,7 +134,7 @@ class WizardController < ApplicationController
   def update_multi
      sequence = get_sequence
      sequence.sequence.each { |model|
-	@params[:edit].each { |key, value|
+	params[:edit].each { |key, value|
 	   model[key.to_sym] = value if model[key.to_sym] != nil
 	}
      }

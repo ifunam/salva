@@ -29,8 +29,8 @@ class SalvaController < ApplicationController
   :redirect_to => { :action => :list }
 
   def return_to_parent_controller
-    parent = @session[:stack].pop
-    set_child_params(parent[:child_key], @params[:edit][:id]) 
+    parent = session[:stack].pop
+    set_child_params(parent[:child_key], params[:edit][:id]) 
     redirect_to :controller => parent[:name], :action => parent[:action],
                 :id => parent[:id]
   end
@@ -59,7 +59,7 @@ class SalvaController < ApplicationController
   end
 
   def create
-    setinput_xmlhttprequest if  @request.xml_http_request?
+    setinput_xmlhttprequest if request.xml_http_request?
     @edit = @model.new(params[:edit])
     set_userid
     if @edit.save
@@ -91,8 +91,8 @@ class SalvaController < ApplicationController
   end
 
   def purge_selected
-    if  @params[:item]
-      @params[:item].each { |id, contents|
+    if  params[:item]
+      params[:item].each { |id, contents|
         @model.find(id).destroy
       }
     end
@@ -106,18 +106,18 @@ class SalvaController < ApplicationController
   private
   def new_sequence
     sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = @session[:user] 
-    sequence.user_id = @session[:user] 
+    sequence.moduser_id = session[:user] 
+    sequence.user_id = session[:user] 
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end
 
   def set_conditions
     session_key = controller_name.to_s + "_list_conditions"
-    if @params[controller_name]
-      @session[session_key] = sql_conditions(@params[controller_name])
+    if params[controller_name]
+      session[session_key] = sql_conditions(params[controller_name])
     else 
-      @session[session_key] unless !@session[session_key]
+      session[session_key] unless !session[session_key]
     end
   end
   
@@ -141,33 +141,33 @@ class SalvaController < ApplicationController
 
   def set_per_page
     session_key = controller_name.to_s + "_per_page"
-    if @params[:per_page] 
-      @session[session_key] = @params[:per_page].to_i
+    if params[:per_page] 
+      session[session_key] = params[:per_page].to_i
     else
-      @session[session_key] unless !@session[session_key] 
+      session[session_key] unless !session[session_key] 
     end
   end
 
   def setinput_xmlhttprequest
-    @params[:edit].each { |key, value|
+    params[:edit].each { |key, value|
       unless key.match(/\_id$/)
-        @params[:edit][key] = Iconv.new('iso-8859-15','utf-8').iconv(value) 
+        params[:edit][key] = Iconv.new('iso-8859-15','utf-8').iconv(value) 
       end
     }
   end
 
   def set_userid
-    @edit.moduser_id = @session[:user] if @edit.has_attribute?('moduser_id')
-    @edit.user_id = @session[:user] if @edit.has_attribute?('user_id')
+    @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
+    @edit.user_id = session[:user] if @edit.has_attribute?('user_id')
   end
   
   def set_parent_controller
-    if @params[:parent] and @params[:parent_action] and @params[:key]
-      @session[:stack] = Stack.new() unless @session[:stack] 
-      args = set_stack_params(@params)
-      @session[:stack].push(args)
+    if params[:parent] and params[:parent_action] and params[:key]
+      session[:stack] = Stack.new() unless session[:stack] 
+      args = set_stack_params(params)
+      session[:stack].push(args)
     end
-    @session[:stack].has_items? if @session[:stack]
+    session[:stack].has_items? if session[:stack]
   end
 
   def set_stack_params(args)
@@ -177,6 +177,6 @@ class SalvaController < ApplicationController
   end
 
   def set_child_params(child_key, id)
-    @session[:child] = { :name => child_key, :value => id }
+    session[:child] = { :name => child_key, :value => id }
   end
 end

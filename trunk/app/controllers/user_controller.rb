@@ -18,8 +18,8 @@ class UserController < ApplicationController
   
   def login
     return unless request.post?
-    self.current_user = auth(@params[:user][:login],
-                             @params[:user][:passwd])
+    self.current_user = auth(params[:user][:login],
+                             params[:user][:passwd])
     if current_user
       flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
@@ -29,7 +29,7 @@ class UserController < ApplicationController
   end
   
   def login_by_token
-    self.current_user = User.find_by_id_and_token(@params[:id], @params[:token])
+    self.current_user = User.find_by_id_and_token(params[:id], params[:token])
     if current_user
       flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
@@ -59,7 +59,7 @@ class UserController < ApplicationController
   # Method for activating the current user
   def activate
     @user = User.find(:first, :conditions => [ 'id = ? AND token = ? AND token_expiry >= ?',
-                        @params[:id], @params[:token], 0.minutes.from_now ])
+                        params[:id], params[:token], 0.minutes.from_now ])
     if @user
       reset_session # Reset old sessions if exists
       @user.update_attributes({ :userstatus_id => 2,
@@ -75,7 +75,7 @@ class UserController < ApplicationController
   # Send out a forgot-password email.
   def forgot_password
     return unless request.post?
-    @user = User.find_first(['email = ?', @params[:user]['email']])
+    @user = User.find_first(['email = ?', params[:user]['email']])
     if @user
       @user.update_attributes({ :token => token_string(10),
                                 :token_expiry => 7.days.from_now })
@@ -84,7 +84,7 @@ class UserController < ApplicationController
       UserNotifier.deliver_forgot_password(@user, url) 
       render :action => 'forgot_password_done'
     else
-      flash[:notice] = "El correo #{@params[:user]['email']} NO existe en el salva!"
+      flash[:notice] = "El correo #{params[:user]['email']} NO existe en el salva!"
     end
   end
   

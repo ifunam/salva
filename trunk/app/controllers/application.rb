@@ -12,18 +12,18 @@ class ApplicationController < ActionController::Base
   helper :salva, :table, :user, :navigator, :date, :select, :paginator, :quickpost
   
   def update_select
-    @id = @params[:id]
-    partial = @params[:partial]
+    @id = params[:id]
+    partial = params[:partial]
     render(:partial => 'salva/'+partial)
   end
 
   def update_searchdialog
-    partial = @params[:partial]
+    partial = params[:partial]
     render(:partial => partial)
   end
 
   def configure_charsets
-    @response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
+    response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
   end
 
   def configure_datestyle

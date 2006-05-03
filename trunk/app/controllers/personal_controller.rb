@@ -45,8 +45,8 @@ class PersonalController < ApplicationController
   
   def create 
     @edit = Personal.new(params[:edit])
-    @edit.id = @session[:user] 
-    @edit.moduser_id = @session[:user] if @session[:user]
+    @edit.id = session[:user] 
+    @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
 
     if @edit.save 
@@ -60,8 +60,8 @@ class PersonalController < ApplicationController
   
   def update
     @edit = Personal.new(params[:edit])
-    @edit.id = @session[:user] 
-    @edit.moduser_id = @session[:user] if @session[:user]
+    @edit.id = session[:user] 
+    @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
 
     if @edit.update 
@@ -102,7 +102,7 @@ class PersonalController < ApplicationController
   end
   
   def get_personal
-    @edit = Personal.find(:first, :conditions => [ "user_id=?", @session[:user]])
+    @edit = Personal.find(:first, :conditions => [ "user_id=?", session[:user]])
   end
 
 end
