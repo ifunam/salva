@@ -1,4 +1,5 @@
-<%= table_list(@collection, { :header => "Título", :columns => %w() }) %>
+<%= table_list(@collection, { :header => "Título", :columns =>
+%w(institutioncareer_id credential_id startyear ) }) %>
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

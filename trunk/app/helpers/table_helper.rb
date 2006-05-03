@@ -11,7 +11,13 @@ module TableHelper
           if row.send(attr) != nil then
             if is_id?(attr) then
               (model, field) = set_belongs_to(attr)
-              cell << row.send(model).send(field) if row.send(model) != nil
+              myclass = row.class.name
+              belongs_opts = myclass.constantize.reflect_on_association(model.to_sym).options
+              if belongs_opts[:include]
+                cell << row.send(model).send(belongs_opts[:include]).send(field) if row.send(model) != nil
+              else
+                cell << row.send(model).send(field) if row.send(model) != nil
+              end
             else
               cell << row.send(attr) if row.send(attr) != nil
             end
