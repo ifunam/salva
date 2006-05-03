@@ -29,6 +29,15 @@ module ApplicationHelper
   def purge_link(id,question)
     action_link('purge', id, 'Borrar', question)
   end
+
+  def controller_link(child_controller,parent_controller,parent_action,key,id)
+    link_to('Seleccionar',
+            { :controller => child_controller, :action => 'list',
+              :parent_controller => parent_controller,
+              :parent_action => parent_action, :key => key,
+              :id => id
+            } )
+  end
   
   def check_box_group(object, model, options={})
     options = options.stringify_keys
