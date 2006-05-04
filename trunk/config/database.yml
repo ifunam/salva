@@ -1,5 +1,19 @@
 development:
    adapter:  postgresql
+   database: salva_dev
+   username: salva
+   password: 
+   encoding: LATIN1
+
+test: 
+   adapter:  postgresql
+   database: salva_test
+   username: salva
+   password: 
+   encoding: LATIN1
+
+production: 
+   adapter:  postgresql
    database: salva
    username: salva
    password: 
