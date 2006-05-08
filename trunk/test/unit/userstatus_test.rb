@@ -7,7 +7,6 @@ class UserstatusTest < Test::Unit::TestCase
   fixtures :userstatuses
 
   # CRUD test
-
   def test_create
     # create a brand new userstatus
     @userstatus = userstatuses(:example)
@@ -42,4 +41,6 @@ class UserstatusTest < Test::Unit::TestCase
     # the userstatus gets killed
     assert @userstatus.destroy
   end
+
+  #
 end

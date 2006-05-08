@@ -1,48 +1,40 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+require 'group'
 class GroupTest < Test::Unit::TestCase
   fixtures :groups
+  # CRUD test
+  def test_create
+    # create a brand new group
+    @group = groups(:example)
 
-  def test_should_create_group
-    assert create_group.valid?
+    # save him
+    assert @group.save
+  end  
+  
+  def test_read
+    # read him back
+    @group = Group.find(groups(:example).id)
+    
+    # compare the names
+    assert_equal @group.name, groups(:example).name
+    
+    # compare the ids
+    assert_equal @group.id, groups(:example).id
   end
-
-  def test_should_require_login
-    u = create_group(:login => nil)
-    assert u.errors.on(:login)
+  
+  def test_update
+    @group = Group.find(groups(:example).id)
+    
+    # change the name for the user status by using hi-tech encryption ;)
+     @group.name = @group.name.reverse
+    
+    # save the changes
+    assert @group.update
   end
-
-  def test_should_require_password
-    u = create_group(:password => nil)
-    assert u.errors.on(:password)
-  end
-
-  def test_should_require_password_confirmation
-    u = create_group(:password_confirmation => nil)
-    assert u.errors.on(:password_confirmation)
-  end
-
-  def test_should_require_email
-    u = create_group(:email => nil)
-    assert u.errors.on(:email)
-  end
-
-  def test_should_reset_password
-    groups(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    assert_equal groups(:quentin), Group.authenticate('quentin', 'new password')
-  end
-
-  def test_should_not_rehash_password
-    groups(:quentin).update_attribute(:login, 'quentin2')
-    assert_equal groups(:quentin), Group.authenticate('quentin2', 'quentin')
-  end
-
-  def test_should_authenticate_group
-    assert_equal groups(:quentin), Group.authenticate('quentin', 'quentin')
-  end
-
-  protected
-  def create_group(options = {})
-    Group.create({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+  
+  def test_delete
+    @group = Group.find(groups(:example).id)
+    # the group gets killed
+    assert @group.destroy
   end
 end
