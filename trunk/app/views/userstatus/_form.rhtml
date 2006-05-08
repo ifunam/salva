@@ -1,19 +1,11 @@
 <%= error_messages_for 'edit' %>
 
-<!--[form:edit]-->
-<label for="userstatus">Estado de usuario</label>
-<%= text_field 'edit', 'name', 'size' => 20, 'maxsize'=>20, 'tabindex' => 1, 'id' => 'userstatus' %>
-</br>
-
-<label for="created_on">Fecha de creaci&oacute;n</label>
-<%= @edit.created_on %>
-</br>
-
-<label for="updated_on">Fecha de actualizaci&oacute;n</label>
-<%= @edit.updated_on %>
-</br>
-
-<!--[eoform:edit]-->
+<!--[form:userstatus]-->
+<div class="row"> 
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'name', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
 
 
+<!--[eoform:userstatus]-->
 

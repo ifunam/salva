@@ -1,0 +1,4 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+example:
+  id: 1
+  name: salva

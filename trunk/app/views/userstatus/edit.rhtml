@@ -1,15 +1,11 @@
-<% @head_title = 'Modificaci&oacute;n del estado de usuario' %>
-<% @keywords = "modificar;estado;usuario" %>
-<% @description = @head_title %>
-<% @title = @head_title %>
-<% @title_icon = 'salvita_write_32x32.png' %>
-
-<fieldset>
-<legend>Informaci&oacute;n del estado de usuario</legend>
-
-<%= start_form_tag :action => 'update', :id => @edit %>
-  <%= render :partial => 'form'  %>
-  <%= submit_tag 'Guardar cambios' %>
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<%= start_form_tag ({:action => 'update', :id => @edit}, {'z:display' => "inline", 'z:options' => "{inline:blur}"}) %>
+  <%= render :partial => 'form' %>
+  <div id="operations">
+  <%= submit_tag get_label('update') %> | 
+  <%= link_to get_label('cancel'), :action => 'list' %>
+  </div>
 <%= end_form_tag %>
-</fieldset>
-<%= link_to 'Regresar', :action => 'list' %>
+
+
+
