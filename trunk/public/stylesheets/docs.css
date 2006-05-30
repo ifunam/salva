@@ -52,7 +52,7 @@ body
 /* topbar: Section to draw the background of the toolbars after the header */
 #topbar 
 {
-  width: 688px;
+  width: 860px;
   display: table;
   background: url(/images/bg_center_toolbar.png) top left repeat-x;
   float: none;
@@ -61,7 +61,7 @@ body
 /* toolbar: Toolbar inside topbar used for the scienti, conacyt and presidencia logos */ 
 #topbar .toolbar 
 {
-  min-width: 688px;
+  min-width: 860px;
   height: 53px;
   background: url(/images/bg_bottom_options.png) bottom repeat-x;
 }
@@ -371,7 +371,7 @@ body
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 5px;
-  width: 515px;
+  width: 700px;
   color: #333333;
   font: 11px, arial, sans-serif;
   border: 2px solid  #5268a0;
