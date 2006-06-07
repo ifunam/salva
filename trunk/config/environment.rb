@@ -38,15 +38,7 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
-  
-  # See Rails::Configuration for more options
-  # ActionMailer configuration: http://api.rubyonrails.com/classes/ActionMailer/Base.html
-  ActionMailer::Base.delivery_method = :sendmail 
-  ActionMailer::Base.server_settings = {:domain  => "salva.fisica.unam.mx"}
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.default_charset = "iso-8859-1"
-
+ 
 end
 
 # Add new inflection rules using the following format 
@@ -59,3 +51,19 @@ end
 # end
 
 # Include your application configuration below
+
+# ActionMailer configuration:
+# http://api.rubyonrails.com/classes/ActionMailer/Base.html
+if RAILS_ENV != 'test'
+  begin
+    mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
+    ActionMailer::Base.delivery_method = mail_settings['method'].to_sym
+    ActionMailer::Base.default_charset = mail_settings['charset']
+    ActionMailer::Base.server_settings = mail_settings['settings']
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.raise_delivery_errors = true
+  rescue
+    # Fall back to using sendmail by default
+    ActionMailer::Base.delivery_method = :sendmail
+  end
+end
