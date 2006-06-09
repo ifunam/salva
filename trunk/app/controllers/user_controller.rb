@@ -45,7 +45,7 @@ class UserController < ApplicationController
   
   def create
     return unless request.post?
-    @user = User.new(params[:user])
+    @user = User.new(@params[:user])
     if @user.save
       url = url_for(:controller => 'user', :action => 'activate', 
                     :id => @user.id, :token => @user.token)

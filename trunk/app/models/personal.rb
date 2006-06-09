@@ -1,14 +1,15 @@
 class Personal < ActiveRecord::Base
   set_primary_key "user_id"
+  
+  attr_protected :id, :moduser_id, :created_on, :updated_on
 
   validates_presence_of :firstname,  :lastname1, 
   :dateofbirth, :birth_country_id, :birth_state_id, :birth_city, 
   :maritalstatus_id
-  validates_numericality_of :birth_country_id, :birth_state_id, :maritalstatus_id
-  
-  #  validates_inclusion_of :sex, :in=> ['true', 'false'], :message=>"wow! Entonces qué pinche genero tienes? pinche indeciso ;)!..."
-  #  validates_format_of  :photo_content_type,  :with => /^image/
-  
+  validates_numericality_of :birth_country_id, :birth_state_id, 
+  :maritalstatus_id
+  validates_inclusion_of :gender, :in=>%w( t f ), 
+  :message=>"woah! what are you then!??!!"
 
   belongs_to :birth_country,
   :class_name => 'Country',
@@ -20,6 +21,7 @@ class Personal < ActiveRecord::Base
   :class_name => 'City',
   :foreign_key => 'birth_city_id'
   belongs_to :maritalstatus
-	
+  
+ 
   attr_accessor :name, :code, :country_id, :state_id
 end

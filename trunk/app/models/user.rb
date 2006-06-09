@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include AuthenticatedSystem
 
+  attr_accessible :email, :login, :passwd
+  
   belongs_to :userstatus
 
   validates_presence_of     :login, :email, :passwd
