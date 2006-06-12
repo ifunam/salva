@@ -1,4 +1,4 @@
-class Personal < ActiveRecord::Base
+class Person < ActiveRecord::Base
   set_primary_key "user_id"
   
   attr_protected :id, :moduser_id, :created_on, :updated_on
