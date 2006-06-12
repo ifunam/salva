@@ -79,8 +79,8 @@ module TableHelper
 
   def setbool_tag(attr,condition)
     case attr
-    when /sex/
-      condition ? 'Femenino' : 'Masculino'
+    when /gender/
+      condition ? 'Masculino' : 'Femenino' 
     else
       condition ? 'Sí' : 'No'
     end

@@ -1,5 +1,5 @@
 require 'RMagick'
-class PersonalController < ApplicationController
+class PersonController < ApplicationController
   include Magick
   # Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
   # UploadProgress se declaren oficialmente como código estable, referencias:
@@ -10,7 +10,7 @@ class PersonalController < ApplicationController
   # upload_status_for :create, :update
   
   def index
-    get_personal
+    get_person
     if @edit then
      redirect_to :action => 'show'
     else
@@ -19,19 +19,19 @@ class PersonalController < ApplicationController
   end
   
   def show
-     get_personal
+     get_person
   end
 
   def new
-    @edit = Personal.new 
+    @edit = Person.new 
   end
 
   def edit 
-    get_personal
+    get_person
   end  
 
   def photo
-    get_personal
+    get_person
     @headers['Pragma'] = 'no-cache'
     @headers['Cache-Control'] = 'no-cache, must-revalidate'
     if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'png' then
@@ -44,7 +44,7 @@ class PersonalController < ApplicationController
   end
   
   def create 
-    @edit = Personal.new(params[:edit])
+    @edit = Person.new(params[:edit])
     @edit.id = session[:user] 
     @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
@@ -59,7 +59,7 @@ class PersonalController < ApplicationController
   end
   
   def update
-    @edit = Personal.new(params[:edit])
+    @edit = Person.new(params[:edit])
     @edit.id = session[:user] 
     @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
@@ -101,8 +101,8 @@ class PersonalController < ApplicationController
     photo.to_blob
   end
   
-  def get_personal
-    @edit = Personal.find(:first, :conditions => [ "user_id=?", session[:user]])
+  def get_person
+    @edit = Person.find(:first, :conditions => [ "user_id=?", session[:user]])
   end
 
 end

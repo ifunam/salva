@@ -6,7 +6,7 @@ kcs7: Certificado para firma digital
 firstname: Nombre
 lastname1: Apellido paterno
 lastname2: Apellido materno
-sex: Sexo
+gender: Sexo
 dateofbirth: Fecha
 birth_country_id: País
 birth_city_id: Ciudad
@@ -80,7 +80,7 @@ home: Inicio
 navigator: Inicio
 profile: Perfil
 general: Información general
-personal: Datos personales
+person: Datos personales
 address: Domicilio(s)
 peopleid: Identidad
 citizen: Nacionalidad
