@@ -8,8 +8,7 @@ class Person < ActiveRecord::Base
   :maritalstatus_id
   validates_numericality_of :birth_country_id, :birth_state_id, 
   :maritalstatus_id
-  validates_inclusion_of :gender, :in=>%w( t f ), 
-  :message=>"woah! what are you then!??!!"
+  #validates_inclusion_of :gender, :in=> %w(f t),  :message=>"woah! what are you then!??!!"
 
   belongs_to :birth_country,
   :class_name => 'Country',
