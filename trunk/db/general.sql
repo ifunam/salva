@@ -22,7 +22,7 @@ COMMENT ON TABLE addresstypes IS
 	'Tipo de dirección';
 -- Domicilio profesional, Domicilio particular, Domicilio temporal
 
-CREATE TABLE personals ( 
+CREATE TABLE people ( 
     user_id int4 NOT NULL 
             REFERENCES users(id)
             ON UPDATE CASCADE
@@ -31,7 +31,7 @@ CREATE TABLE personals (
     firstname text NOT NULL,
     lastname1 text NOT NULL,
     lastname2 text NULL,
-    sex boolean NOT NULL,
+    gender boolean NOT NULL,
     maritalstatus_id int4 NOT NULL 
                            REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE
@@ -61,11 +61,11 @@ CREATE TABLE personals (
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
-CREATE INDEX "personals_firstname_idx" ON personals(firstname);
-CREATE INDEX "personals_lastname1_idx" ON personals(lastname1);
-CREATE INDEX "personals_lastname2_idx" ON personals(lastname2);
-CREATE UNIQUE INDEX "personals_firstname_lastname1_lastname2_idx" ON personals(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
-COMMENT ON TABLE personals IS
+CREATE INDEX "people_firstname_idx" ON people(firstname);
+CREATE INDEX "people_lastname1_idx" ON people(lastname1);
+CREATE INDEX "people_lastname2_idx" ON people(lastname2);
+CREATE UNIQUE INDEX "people_firstname_lastname1_lastname2_idx" ON people(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
+COMMENT ON TABLE people IS
 	'Datos personales del usuario';
 
 CREATE TABLE addresses ( 
