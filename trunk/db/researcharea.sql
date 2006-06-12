@@ -36,7 +36,7 @@ CREATE TABLE researchlines(
 COMMENT ON TABLE researchlines IS
 	'Líneas de investigación';
 
-CREATE TABLE userresearchlines(
+CREATE TABLE user_researchlines(
     id SERIAL,
     user_id int4 NOT NULL
             REFERENCES users(id)     
@@ -49,5 +49,21 @@ CREATE TABLE userresearchlines(
             DEFERRABLE,
     PRIMARY KEY (user_id, researchlines_id)
 );
-COMMENT ON TABLE userresearchlines IS
+COMMENT ON TABLE user_researchlines IS
 	'Líneas de investigación en que participa un usuario';
+
+CREATE TABLE user_researchareas(
+    id SERIAL,
+    user_id int4 NOT NULL
+            REFERENCES users(id)     
+            ON UPDATE CASCADE   
+            ON DELETE CASCADE  
+            DEFERRABLE,
+    researcharea_id int4 NOT NULL
+            REFERENCES researchareas(id)     
+            ON UPDATE CASCADE   
+            DEFERRABLE,
+    PRIMARY KEY (user_id, researcharea_id)
+);
+COMMENT ON TABLE user_researchareas IS
+	'Áreas de investigación en que participa un usuario';
