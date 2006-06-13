@@ -38,6 +38,8 @@
 \i plan.sql
 \i researchgroups.sql 
 \i advice.sql
+\i documents.sql
+
 
 \i catalogs/groups.sql
 \i catalogs/userstatuses.sql
@@ -74,4 +76,5 @@
 \i catalogs/contracttypes.sql
 \i catalogs/careers.sql
 \i catalogs/institutioncareers.sql
+\i catalogs/documenttypes.sql
 
