@@ -8,11 +8,11 @@ CREATE TABLE techproducttypes (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE techproducttypes IS
-	'Tipos de producto técnico';
--- Desarrollo de instrumentación, Implementación de técnicas nuevas,
--- Desarrollo de nuevos dispositivos, Desarrollo de hardware, Desarrollo de
--- software, Patentes, Productos electrónicos, Productos magnéticos,
--- Audio, video, CD, Floppy, DVD, otro
+	'Tipos de producto técnico:
+	Desarrollo de instrumentación, Implementación de técnicas nuevas,
+	Desarrollo de nuevos dispositivos, Desarrollo de hardware, Desarrollo de
+	 software, Patentes, Productos electrónicos, Productos magnéticos,
+	 Audio, video, CD, Floppy, DVD, otro';
 
 CREATE TABLE techproductstatus (
 	id SERIAL,	    
@@ -21,8 +21,7 @@ CREATE TABLE techproductstatus (
 	UNIQUE (name)
 );
 COMMENT ON TABLE techproductstatus IS 
-	'Estado en que puede estar un producto técnico';
--- En desarrollo, entregado, publicado.
+	'Estado en que puede estar un producto técnico: En desarrollo, entregado, publicado, otro';
 
 CREATE TABLE techproducts (
 	id serial,

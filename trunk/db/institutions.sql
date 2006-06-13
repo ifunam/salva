@@ -5,8 +5,8 @@ CREATE TABLE institutiontypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE institutiontypes IS
-	'Tipos de institución';
--- Pública, privada, ONG, otra
+	'Tipo de institución:
+	Pública, privada, ONG, otra';
 
 CREATE TABLE institutiontitles (
 	id SERIAL,
@@ -15,8 +15,8 @@ CREATE TABLE institutiontitles (
 	UNIQUE (name)
 );
 COMMENT ON TABLE institutiontitles IS
-	'Título (tipo, primer elemento del nombre) de una institución';
--- Universidad, Escuela, Facultad, Instituto, Departamento, Unidad, Secretaría, Centro...
+	'Título (tipo, primer elemento del nombre) de una institución:
+	 Universidad, Escuela, Facultad, Instituto, Departamento, Unidad, Secretaría, Centro...';
 
 CREATE TABLE institutions (  
         id SERIAL,
@@ -85,8 +85,8 @@ CREATE TABLE sectors (
 );
 COMMENT ON TABLE sectors IS
 	'Una institución pertences a cierto sectores - ¿cuáles? (tan
-	genérico como sea posible)';
--- Educación, investigación, salud, energéticos, etc.
+	genérico como sea posible: 
+	Educación, investigación, salud, energéticos, etc.';
 
 CREATE TABLE institution_sectors (
 	id SERIAL,

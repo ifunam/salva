@@ -9,8 +9,7 @@ CREATE TABLE organtype (
 	UNIQUE (name)
 );
 COMMENT ON TABLE organtype IS
-	'Tipos de órgano - Colegiado, editorial, otro';
--- Órgano colegiado, órgano editorial, otro
+	'Tipos de órgano: Colegiado, editorial, otro';
 
 CREATE TABLE roleinorgan (
 	id serial,
@@ -23,13 +22,9 @@ CREATE TABLE roleinorgan (
 	UNIQUE (name)
 );
 COMMENT ON TABLE roleinorgan IS
-	'Roles definidos en un órgano';
----- Organos Colegiados ----
--- Presidente, propietario, suplente, vocal, representante, miembro, 
--- secretario
----- Organos editoriales ----
--- Director de revista, director de colección, miembro de comité editorial,
--- secretario de redacción
+	'Roles definidos en un órgano: 
+	 Organos Colegiados: Presidente, propietario, suplente, vocal, representante, miembro, secretario, etc.
+	 Organos editoriales:  Director de revista, director de colección, miembro de comité editorial,  secretario de redacción, etc';
 
 CREATE TABLE organ (
 	id serial,
@@ -52,13 +47,11 @@ CREATE TABLE organ (
 	UNIQUE (abbrev)
 );
 COMMENT ON TABLE organ IS
-	'Catálogo de órganos colegiados/editoriales';
----- Organos Colegiados ----
--- Junta de gobierno, Consejo universitario, Consejo técnico, Consejo académico
--- de área, Consejo interno, Comité académico, Comité de becas, Comisiones
--- evaluadoras, Comisiones dictaminadoras, Otro
----- Organos editoriales ----
--- ..
+	'Catálogo de órganos colegiados/editoriales:
+	Junta de gobierno, Consejo universitario, Consejo técnico, Consejo académico
+	de área, Consejo interno, Comité académico, Comité de becas, Comisiones
+	evaluadoras, Comisiones dictaminadoras, Otro
+	Organos editoriales: ';
 
 CREATE TABLE userorgan (
 	id SERIAL,

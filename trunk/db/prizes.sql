@@ -9,8 +9,7 @@ CREATE TABLE prizetypes(
 	UNIQUE (name)
 );
 COMMENT ON TABLE prizetypes IS
-	'Tipos de premio';
--- Medalla, diploma, económico, ...
+	'Tipos de premio:  Medalla, diploma, económico, ...';
 
 CREATE TABLE prizes ( 
     id SERIAL,

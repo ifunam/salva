@@ -1,12 +1,13 @@
 
--- Instutional project, research project, magazine, book, article, 
--- contest, prize,
 CREATE TABLE pubtorefereed (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)	
 );
+COMMENT ON TABLE pubtorefereed IS 
+	'Tipo de publicación o *cosa* que debe arbitrarse:
+	Instutional project, research project, magazine, book, article, contest, prize,';
 
 CREATE TABLE refereedpubs(
 	id serial,
@@ -25,6 +26,9 @@ CREATE TABLE refereedpubs(
             DEFERRABLE,
 	PRIMARY KEY (id)	
 );
+COMMENT ON TABLE refereedpubs IS
+	'Actividad del arbitraje';
+
 
 CREATE TABLE userrefereedpubs (
 	id SERIAL,
@@ -53,3 +57,5 @@ CREATE TABLE userrefereedpubs (
 	 -- (anyuser, thesis_id).
 	UNIQUE (refereedpubs_id, externaluser_id, internaluser_id)
 );
+COMMENT ON TABLE refereedpubs IS
+	'Rol del usuario en la actividad del arbitraje';

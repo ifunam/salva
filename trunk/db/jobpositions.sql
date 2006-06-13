@@ -5,7 +5,6 @@
 --     jobpositioncategories: Investigador Ordinario
 --     jobpositionlevels: Asociado C TC
 --     jobpositiontypes: (el ID que corresponda a Investigación)
-
 CREATE TABLE jobpositiontypes (  
 	id SERIAL,		
 	name text NOT NULL,   	
@@ -13,12 +12,12 @@ CREATE TABLE jobpositiontypes (
 	UNIQUE (name)           
 );
 COMMENT ON TABLE jobpositiontypes IS 
-	'Tipos de personal';
-	-- Las cuatro posibilidades que entran a esta tabla son:
-	-- Personal académico para docencia: Investigador y técnico académico * usa niveles *
-	-- Personal académico para investigación: Investigador y técnico académico * usa niveles *
-	-- Personal administrativo de base * usa ramas *	  
-	-- Personal administrativo de confianza	* NO usa niveles NI ramas *  
+	'Tipos de personal:
+	Las cuatro posibilidades que entran a esta tabla son:
+	Personal académico para docencia: Investigador y técnico académico * usa niveles *
+	Personal académico para investigación: Investigador y técnico académico * usa niveles *
+	Personal administrativo de base * usa ramas *	  
+	Personal administrativo de confianza	* NO usa niveles NI ramas * ';
 
 CREATE TABLE roleinjobpositions (
 	id SERIAL,
@@ -28,10 +27,7 @@ CREATE TABLE roleinjobpositions (
 );
 COMMENT ON TABLE roleinjobpositions IS 
 	'Rol desempeñado: técnico académico, investigador, ayudante, etc.';
--- Rol en la categoría del usuario:
--- Técnico académico
--- Investigador
--- Ayudan de investigador
+
 
 CREATE TABLE jobpositionlevels (
 	id SERIAL,		
@@ -41,9 +37,9 @@ CREATE TABLE jobpositionlevels (
 );
 COMMENT ON TABLE jobpositionlevels IS 
 	'Niveles (para académicos) o ramas (para administrativos) de 
-	contratación';
--- Nivel A, Nivel B, Nivel C, no usa
--- Rama administrativa, rama obrera, rama...
+	contratación: 
+	Nivel A, Nivel B, Nivel C,
+	Rama administrativa, rama obrera, rama...';
 
 
 CREATE TABLE jobpositioncategories (
@@ -66,8 +62,7 @@ CREATE TABLE jobpositioncategories (
 );
 COMMENT ON TABLE jobpositioncategories IS 
 	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
-	jobpositionlevels';
--- Investigador ordinario, técnico académico, ...
+	jobpositionlevels:  Investigador ordinario, técnico académico, ...';
 COMMENT ON COLUMN jobpositioncategories.administrative_key IS
 	'ID administrativo de la adscripción en la universidad - Lo mantenemos
 	únicamente como descripción en texto';
@@ -79,8 +74,7 @@ CREATE TABLE contracttypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE contracttypes IS 
-	'Tipos de contratación ';
--- Definitivo, temporal, Art. 51, ...
+	'Tipos de contratación: Definitivo, temporal, Art. 51, ...';
 
 CREATE TABLE jobpositions (
 	id SERIAL, 
@@ -136,16 +130,17 @@ CREATE TABLE stimulustypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE stimulustypes IS 
-	'Tipos de estímulos';
+	'Tipos de estímulos:
+	{PAIPA, Programa de Apoyo a la Incorporación de Personal Académico, UNAM},
+	{PRIDE, Programa de Reconocimiento a la Investigación y Desarrollo
+	Académico, UNAM}, {SNI, Sistema Nacional de Investigadores, CONACyT}, ...';
 COMMENT ON COLUMN stimulustypes.name IS 
 	'Nombre corto/abreviación del estímulo';
 COMMENT ON COLUMN stimulustypes.descr IS 
 	'Nombre completo del estímulo';
 COMMENT ON COLUMN stimulustypes.institution_id IS 
 	'Institución que lo otorga';
--- {PAIPA, Programa de Apoyo a la Incorporación de Personal Académico, UNAM},
--- {PRIDE, Programa de Reconocimiento a la Investigación y Desarrollo
--- Académico, UNAM}, {SNI, Sistema Nacional de Investigadores, CONACyT}, ...
+
 
 CREATE TABLE stimuluslevels (
 	id SERIAL,

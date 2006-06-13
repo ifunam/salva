@@ -9,11 +9,10 @@ CREATE TABLE skilltypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE skilltypes IS
-	'Diferentes habilidades que un usuario (Tec. Acad.) puede reportar';
--- Habilidades relacionadas con la computación
--- Habilidades relacionadas con máquinas de oficina
--- Habilidad para hacerse guaje <<aka p#$@!@jo>>
--- Otras habilidades
+	'Diferentes habilidades que un usuario (Tec. Acad.) puede reportar:
+	 Habilidades relacionadas con la computación
+	 Habilidades relacionadas con máquinas de oficina
+	 Otras habilidades';
 
 CREATE TABLE userskills (
 	id serial,
@@ -32,3 +31,4 @@ CREATE TABLE userskills (
 COMMENT ON TABLE userskills IS
 	'Las habilidades que cada usuario tiene, junto con una descripción
 	opcional';
+

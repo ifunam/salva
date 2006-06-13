@@ -8,8 +8,7 @@ CREATE TABLE degrees (
 	UNIQUE (name)
 );
 COMMENT ON TABLE degrees IS
-	'Lista de grados académicos';
--- Técnico, licenciatura, maestría, doctorado...
+	'Lista de grados académicos:  Técnico, licenciatura, maestría, doctorado...';
 
 CREATE TABLE careers (
 	id SERIAL,
@@ -64,8 +63,8 @@ CREATE TABLE credentials (
 	UNIQUE (name)
 );
 COMMENT ON TABLE credentials IS
-	'Títulos o credenciales que obtiene una persona al titularse en determinada grado acadÃmico';
--- Lic., Mat., Fis., Arq., Dr., M. en C., etc.
+	'Títulos o credenciales que obtiene una persona al titularse en determinado
+	 grado académico: Lic., Mat., Fis., Arq., Dr., M. en C., etc.';
 
 CREATE TABLE schoolings (
     id SERIAL,
@@ -117,8 +116,8 @@ CREATE TABLE titlemodalities(
 	UNIQUE (name)
 );
 COMMENT ON TABLE titlemodalities IS
-	'Modalidad de titulación por medio de la cual alguien puede graduarse';
--- Tesis, Ceneval, tesina, reporte técnico, por promedio...
+	'Modalidad de titulación por medio de la cual alguien puede graduarse:
+	Tesis, Ceneval, tesina, reporte técnico, por promedio...';
 
 
 CREATE TABLE professionaltitles (

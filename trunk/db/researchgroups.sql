@@ -10,10 +10,10 @@ CREATE TABLE researchgroups (
 	UNIQUE (name)
 );
 COMMENT ON TABLE researchgroups IS
-	'Grupos de investigación';
--- Grupo de Propiedades Ópticas de Defectos en Sólidos 
--- Grupo de Biocomplejidad y Redes
--- ....
+	'Grupos de investigación (e.g.): 
+	 Grupo de Propiedades Ópticas de Defectos en Sólidos 
+	 Grupo de Biocomplejidad y Redes
+	 ....';
 
 CREATE TABLE groupmodalities (
 	id SERIAL,
@@ -22,8 +22,7 @@ CREATE TABLE groupmodalities (
 	UNIQUE (name)
 );	
 COMMENT ON TABLE groupmodalities IS
-	'Modalidad de un grupo de investigación';
--- Administrativa, Académica, etc..
+	'Modalidad de un grupo de investigación: Administrativa, Académica, etc..';
 
 CREATE TABLE researchgroupmodalities (
 	id SERIAL,

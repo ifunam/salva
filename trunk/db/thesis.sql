@@ -9,8 +9,7 @@ CREATE TABLE thesisstatus (
     UNIQUE (name)
 );
 COMMENT ON TABLE thesisstatus IS 
-	'Estado de avance de la tesis';
--- En proceso, aprobada, publicada, ...
+	'Estado de avance de la tesis: En proceso, aprobada, publicada, ...';
 
 CREATE TABLE thesismodality (
     id SERIAL,
@@ -19,8 +18,7 @@ CREATE TABLE thesismodality (
     UNIQUE (name)
 );
 COMMENT ON TABLE thesismodality IS 
-	'Modalidad del trabajo generado';
--- Tesis, tesina, informe académico, ...
+	'Modalidad del trabajo generado:  Tesis, tesina, informe académico, ...';
 
 CREATE TABLE roleinthesis (
     id SERIAL,
@@ -29,13 +27,12 @@ CREATE TABLE roleinthesis (
     UNIQUE (name)
 );
 COMMENT ON TABLE roleinthesis IS 
-	'Roles en una tesis';
--- Rol del usuario en la tesis: Director, tutor o asesor, ...
--- Se considera participaciÃn³en comitÃs tutoriales cuando
--- el usuario NO es director de tesis. Por ejemplo:
--- Un comitÃ© tutorial puede estar integrado po el director 
--- de tesis y dos Asesores.
-
+	'Roles en una tesis: 
+	- Rol del usuario en la tesis: Director, tutor o asesor, ...
+	- Se considera participación comités tutorales cuando
+	el usuario NO es director de tesis. Por ejemplo:
+	un comité tutoral puede estar integrado po el director 
+	de tesis y dos Asesores.';
 
 CREATE TABLE thesis (
 	id SERIAL NOT NULL,
@@ -171,8 +168,10 @@ CREATE TABLE roleindissertation (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
+COMMENT ON TABLE roleindissertation IS
+	'Jurado de examenes: Presidente, Secretario, Vocal, ...';
 -- Role in thesis presentations or dissertations.
--- Jurado de examenes: Presidente, Secretario, Vocal, ...
+
 
 CREATE TABLE userdissthesis (
    id SERIAL,
@@ -194,7 +193,7 @@ CREATE TABLE userdissthesis (
    UNIQUE (user_id, thesis_id, roleindissertation_id)
 );
 COMMENT ON TABLE userdissthesis IS 
-	'La relación entre un usuario, el rol en la disertaciÃn
+	'La relación entre un usuario, el rol en la disertación
 	(sinodal, presidente, secretario y vocal) y la tesis';
 
 

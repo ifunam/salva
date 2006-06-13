@@ -13,8 +13,7 @@ CREATE TABLE languages (
 	UNIQUE (name)
 );
 COMMENT ON TABLE languages IS
-	'Idiomas';
--- Español, inglés, francés, nahuatl, ztzotzil, etc
+	'Idiomas:  Español, inglés, francés, nahuatl, ztzotzil, etc';
 
 CREATE TABLE userlanguages (
 	id serial,
