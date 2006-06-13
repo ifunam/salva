@@ -42,6 +42,9 @@
 
 
 \i catalogs/groups.sql
+\i catalogs/accessrules.sql
+\i catalogs/roleingroups.sql
+\i catalogs/permissions.sql
 \i catalogs/userstatuses.sql
 \i catalogs/default_user.sql
 \i catalogs/countries.sql

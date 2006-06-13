@@ -1,3 +1,3 @@
-INSERT INTO groups (name) VALUES ('Admin');
-INSERT INTO groups (name) VALUES ('Salva');
-INSERT INTO groups (name) VALUES ('Capturistas');
+INSERT INTO groups (name) VALUES ('SALVA');
+INSERT INTO groups (name) VALUES ('Secretaría académica');
+INSERT INTO groups (name) VALUES ('Depto x');
