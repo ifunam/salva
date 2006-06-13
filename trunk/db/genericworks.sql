@@ -1,9 +1,3 @@
--- Productos de divulgación
--- Productos de extensión y difusión
--- Productos de difusión
--- Productos de docencia
--- Publicaciones internas
--- Otro
 CREATE TABLE genericworkgroups (
 	id serial,
 	name text NOT NULL,
@@ -11,7 +5,14 @@ CREATE TABLE genericworkgroups (
 	UNIQUE (name)
 );
 COMMENT ON TABLE genericworkgroups IS
-	'Listado del grupo al que pertenecen las trabajos genericos';
+	'Listado del grupo al que pertenecen las trabajos genericos:
+	Productos de divulgación
+	Productos de extensión y difusión
+	Productos de difusión
+	Productos de docencia
+	Publicaciones internas
+	Otro';
+
 
 CREATE TABLE genericworktypes (
 	id serial,
@@ -30,54 +31,42 @@ CREATE TABLE genericworktypes (
 	UNIQUE (abbrev)
 );
 COMMENT ON TABLE genericworktypes IS 
-	'Tipos de trabajos genéricos que manejamos';
------------------------------
--- Productos de divulgación:
---  Reportes técnicos públicos
---  Artículos In extenso
---  Artículos en memorias
---  Artículos o ensayos en revistas
---  Divulgación de la ciencia
---  Nota de investigación
---  Reseña
---  ...
---
--- Productos de extensión y difusión:
---  Colecciones (infantiles, impresos)
---  ....
---
--- Publicaciones internas:
---  Reportes técnicos internos
---  Gaceta
---  ...
---
--- Otro:
---  Traducción de artículo
---  ...
---
--- Productos de docencia:
---  Antología
---  Antología critica
---  Guía de estudio
---  Notas de clase
---  Cuadernos
---  Manual de apoyo docente
---  Catalogos
---  ...
+	'Tipos de trabajos genéricos que manejamos:
+
+	Productos de divulgación:
+	Reportes técnicos públicos
+	Artículos In extenso
+	Artículos en memorias
+	Artículos o ensayos en revistas
+	Divulgación de la ciencia
+	Nota de investigación
+	Reseña
+	...
+
+	Productos de extensión y difusión:
+	Colecciones (infantiles, impresos)
+	....
+
+	Publicaciones internas:
+	Reportes técnicos internos
+	Gaceta
+	...
+
+	Otro:
+	Traducción de artículo
+	 ...
+
+	Productos de docencia:
+	Antología
+	Antología critica
+	Guía de estudio
+	Notas de clase
+	Cuadernos
+	Manual de apoyo docente
+	Catalogos
+	...';
 
 
------------------------------
-
--------------------------
--- Generic work status --
--------------------------
--- published           --
--- in process          --
--- in press            --
--- sent                --
--- accepted for publ   --
--- .....               --
--------------------------
 CREATE TABLE genericworkstatus (
 	id serial,
 	name text NOT NULL,
@@ -85,8 +74,8 @@ CREATE TABLE genericworkstatus (
 	UNIQUE (name)
 );
 COMMENT ON TABLE genericworkstatus IS 
-	'Estado de un trabajo genérico';
--- Propuesto, enviado, aceptado, en prensa, publicado
+	'Estado de un trabajo genérico:
+	Propuesto, enviado, aceptado, en prensa, publicado, ..';
 
 CREATE TABLE genericworks( 
     id SERIAL,

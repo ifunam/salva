@@ -13,8 +13,8 @@ CREATE TABLE externaluserlevels (
   	PRIMARY KEY (id)
 );	
 COMMENT ON TABLE externaluserlevels IS
-	'Nivel de una persona (usuario externo) en su institución';
--- Estudiante, Investigador, Técnico Académico, ...
+	'Nivel de una persona (usuario externo) en su institución:
+	Estudiante, Investigador, Técnico Académico, ...';
 
 CREATE TABLE externalusers ( 
     id SERIAL,

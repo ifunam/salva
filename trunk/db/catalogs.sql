@@ -66,11 +66,10 @@ CREATE TABLE userrole (
 );
 COMMENT ON TABLE userrole IS
 	'Rol que juega un usuario en diferentes tablas genéricas 
-	(usergenericworks, usertechproducts, userotheractivities)';
--- Autor, coautor, traductor, entrevistador, entrevistado, ...
+	(usergenericworks, usertechproducts, userotheractivities):
+	Autor, coautor, traductor, entrevistador, entrevistado, ...';
 
--- Used both in articles and in newspaperarticles
--- Published, in press, sent, accepted for publication, in process
+
 CREATE TABLE articlestatuses (  
 	id SERIAL, 
 	name varchar(50) NOT NULL,
@@ -78,8 +77,8 @@ CREATE TABLE articlestatuses (
 	UNIQUE(name)
 );
 COMMENT ON TABLE articlestatuses IS
-	'Estado de un artículo (utilizado en articles y newspaperarticles)';
--- Publicado, en prensa, enviado, aceptado, en proceso, ...
+	'Estado de un artículo (utilizado en articles y newspaperarticles):
+	Publicado, en prensa, enviado, aceptado, en proceso, ...';
 
 CREATE TABLE mediatypes ( 
     id SERIAL, 
@@ -88,8 +87,8 @@ CREATE TABLE mediatypes (
     UNIQUE (name)
 );
 COMMENT ON TABLE mediatypes IS
-	'Medio físico en el que un trabajo está publicado';
--- Impreso, electrónico, página Web, ...
+	'Medio físico en el que un trabajo está publicado: 
+	Impreso, electrónico, página Web, ...';
 
 CREATE TABLE publishers ( 
 	id SERIAL,
@@ -113,8 +112,8 @@ CREATE TABLE modalities (
     UNIQUE (name)
 );
 COMMENT ON TABLE modalities IS 
-	'Modalidad en que es impartido un curso o de una ponencia';
--- Presencial, Distancia, ambas o ninguna de las anteriores :)
+	'Modalidad en que es impartido un curso o de una ponencia:
+	 Presencial, Distancia, ambas o ninguna de las anteriores :)';
 
 CREATE TABLE menus (
 	id SERIAL,

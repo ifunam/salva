@@ -9,8 +9,8 @@ CREATE TABLE acadvisittypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE acadvisittypes IS
-	'Tipos de visita académica';
--- Sabático, posdoctoral, de investigación...
+	'Tipos de visita académica: 
+	Sabático, posdoctoral, de investigación...';
 
 CREATE TABLE acadvisits (
 	id  SERIAL NOT NULL,

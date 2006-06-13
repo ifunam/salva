@@ -8,10 +8,10 @@ CREATE TABLE attendeetype (
 	UNIQUE (name)
 );
 COMMENT ON TABLE attendeetype IS
-	'Rol de un usuario en un congreso';
--- Asistente, ponente, organizador, instructor, coordinador general, 
--- coordinador de mesa, comité académico, comité técnico, moderador de mesa,
--- relator de mesa, relator general
+	'Rol de un usuario en un congreso:
+	Asistente, ponente, organizador, instructor, coordinador general, 
+	coordinador de mesa, comité académico, comité técnico, moderador de mesa,
+	relator de mesa, relator general, ...';
 
 CREATE TABLE conferencetypes ( 
         id SERIAL,
@@ -20,9 +20,9 @@ CREATE TABLE conferencetypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE conferencetypes IS
-	'Tipos de congreso';
--- Congreso, seminario, coloquio, encuentro, homenaje, jornadas, mesa redonda,
--- simposio, taller
+	'Tipos de congreso:
+	Congreso, seminario, coloquio, encuentro, homenaje, jornadas, mesa redonda,
+	simposio, taller';
 
 CREATE TABLE conferencescope ( 
         id SERIAL,
@@ -31,8 +31,8 @@ CREATE TABLE conferencescope (
 	UNIQUE (name)
 );
 COMMENT ON TABLE conferencescope IS 
-	'Ámbito del congreso';
--- Local, Nacional, Internacional, ...
+	'Ámbito del congreso:
+	Local, Nacional, Internacional, ...';
 
 CREATE TABLE talktype ( 
         id SERIAL,
@@ -41,8 +41,8 @@ CREATE TABLE talktype (
 	UNIQUE (name)
 );
 COMMENT ON TABLE talktype IS
-	'Tipo de ponencia';
--- Conferencia, plática, tutorial, taller, magistral, poster, ...
+	'Tipo de ponencia:
+	Conferencia, plática, tutorial, taller, magistral, poster, ...';
 
 CREATE TABLE conferences ( 
     id SERIAL,
@@ -117,8 +117,8 @@ CREATE TABLE talkacceptance (
 	UNIQUE (name)
 );
 COMMENT ON TABLE talkacceptance IS
-	'Cómo fue la inscripción/aceptación de la ponencia en el congreso?';
--- Invitado, Arbitrado, Inscrito, ....
+	'Cómo fue la inscripción/aceptación de la ponencia en el congreso?:
+	Invitado, Arbitrado, Inscrito, ....';
 
 CREATE TABLE conferencetalks (
     id SERIAL,

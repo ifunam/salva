@@ -9,8 +9,8 @@ CREATE TABLE maritalstatuses (
 	UNIQUE (name)
 );
 COMMENT ON TABLE maritalstatuses IS
-	'Estado civil';
--- Casado, soltero, divorciado, viudo, unión libre, ...
+	'Estado civil: 
+	 Casado, soltero, divorciado, viudo, unión libre, ...';
 
 CREATE TABLE addresstypes ( 
 	id serial NOT NULL,
@@ -19,8 +19,8 @@ CREATE TABLE addresstypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE addresstypes IS
-	'Tipo de dirección';
--- Domicilio profesional, Domicilio particular, Domicilio temporal
+	'Tipo de dirección:
+	 Domicilio profesional, Domicilio particular, Domicilio temporal';
 
 CREATE TABLE people ( 
     user_id int4 NOT NULL 
@@ -118,8 +118,8 @@ CREATE TABLE migratorystatuses (
 	UNIQUE (name)
 );
 COMMENT ON TABLE migratorystatuses IS
-	'Status migratorio de un extranjero';
--- Turista, residente temporal, residente permanente
+	'Status migratorio de un extranjero:
+	Turista, residente temporal, residente permanente';
 
 CREATE TABLE citizenmodalities (
 	id SERIAL,
@@ -128,8 +128,8 @@ CREATE TABLE citizenmodalities (
 	UNIQUE (name)
 );
 COMMENT ON TABLE citizenmodalities IS
-	'Modalidad de la nacionalidad';
--- Por nacimiento, Por naturalizaciÃn, Otro.
+	'Modalidad de la nacionalidad:
+ 	Por nacimiento, Por naturalizaciÃn, Otro.';
 
 CREATE TABLE citizens ( 
   id serial,
@@ -169,8 +169,8 @@ CREATE TABLE identifications (
 	UNIQUE (name)
 );
 COMMENT ON TABLE identifications IS
-	'Tipo de (documento de) identificación';
--- Pasaporte, credencial de elector, ...
+	'Tipo de (documento de) identificación:
+	Pasaporte, credencial de elector, ...';
 
 CREATE TABLE peopleids ( 
    id serial,
@@ -223,5 +223,5 @@ CREATE TABLE memberships (
   PRIMARY KEY (id)
 );
 COMMENT ON TABLE memberships IS
-	'Instituciones académicas a las que pertenece un usuario';
+	'Instituciones(Asociaciones) académicas a las que pertenece un usuario';
 

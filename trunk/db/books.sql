@@ -9,8 +9,8 @@ CREATE TABLE roleinbooks (
 	UNIQUE (name)
 );
 COMMENT ON TABLE roleinbooks IS
-	'El rol que un usuario tiene en un libro';
--- Autor, coautor, revisor, traductor, editor, compilador, coordinador
+	'El rol que un usuario tiene en un libro:
+	 Autor, coautor, revisor, traductor, editor, compilador, coordinador';
 
 CREATE TABLE booktypes (
 	id SERIAL,
@@ -19,8 +19,8 @@ CREATE TABLE booktypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE booktypes IS
-	'Tipo de libro - Único, serie, colección, etc.';
--- Único, serie, colección, libro arbitrado, etc.
+	'Tipo de libro:
+	 Único, serie, colección, libro arbitrado, etc.';
 
 CREATE TABLE volumes (
 	id serial,
@@ -29,8 +29,8 @@ CREATE TABLE volumes (
 	UNIQUE(name)
 );
 COMMENT ON TABLE volumes IS
-	'Volúmenes (normalmente numerados) de libros';
--- I, II, III, ...
+	'Volúmenes (normalmente numerados) de libros:
+	I, II, III, ...';
 
 CREATE TABLE books ( 
     id SERIAL,
@@ -77,8 +77,8 @@ CREATE TABLE editions (
 	UNIQUE(name)
 );
 COMMENT ON TABLE editions IS
-	'Ediciones (normalmente numeradas) de libros';
--- Primera, segunda, tercera, ..., especial, ...
+	'Ediciones (normalmente numeradas) de libros:
+	Primera, segunda, tercera, especial, ...';
 
 CREATE TABLE editionstatuses (
 	id SERIAL,
@@ -87,8 +87,8 @@ CREATE TABLE editionstatuses (
 	UNIQUE(name)
 );
 COMMENT ON TABLE editionstatuses IS
-	'Estado de una edición de un libro';
--- Publicado, en prensa, aceptado para publicación, en dictámen/en evaluación
+	'Estado de una edición de un libro:
+	Publicado, en prensa, aceptado para publicación, en dictámen/en evaluación';
 
 CREATE TABLE bookeditions ( --
     id serial,

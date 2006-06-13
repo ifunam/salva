@@ -14,9 +14,9 @@ CREATE TABLE publicationcategories (
 	UNIQUE(name)
 );
 COMMENT ON TABLE publicationcategories IS 
-	'Áreas del conocimiento a los que responde una revista';
--- Genéricos: Ciencias sociales, ciencias naturales, humanidades
--- Específicos: (desglose :) )
+	'Áreas del conocimiento a los que responde una revista:
+	 Genéricos: Ciencias sociales, ciencias naturales, humanidades
+	 Específicos: (desglose :)';
 
 CREATE TABLE journaltypes ( 
 	id SERIAL,
@@ -25,8 +25,8 @@ CREATE TABLE journaltypes (
 	UNIQUE(name)
 );
 COMMENT ON TABLE journaltypes IS
-	'Tipo de revista que publica (arbitrada/no arbitrada)';
--- Arbitrada, no arbitrada
+	'Tipo de revista que publica (arbitrada/no arbitrada):
+	 Arbitrada, no arbitrada, otra?';
 
 CREATE TABLE journals (
         id SERIAL,
@@ -94,8 +94,8 @@ CREATE TABLE roleinjournals (
 	UNIQUE (name)
 );
 COMMENT ON TABLE roleinjournals IS
-	'Roles que un usuario puede tener en una publicación';
--- Editor, compilador, revisor, etc..
+	'Roles que un usuario puede tener en una publicación:
+	Editor, compilador, revisor, etc..';
 
 
 CREATE TABLE user_journals ( 

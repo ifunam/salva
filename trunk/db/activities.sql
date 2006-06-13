@@ -1,16 +1,6 @@
 ----------------------
 -- Other Activities --
 ----------------------
-
--- Actividades de divulgación
--- Actividades de extensión
--- Actividades de difusión
--- Servicios de apoyo
--- Asesorías y consultorías
--- Actividades de docencia
--- Actividades de vinculación
--- Actividades artisticas
--- Otras actividades
 CREATE TABLE activitygroups (
 	id serial,
 	name text NOT NULL,
@@ -18,7 +8,16 @@ CREATE TABLE activitygroups (
 	UNIQUE (name)
 );
 COMMENT ON TABLE activitygroups IS
-	'Listado del grupo al que pertenecen las otras actividades';
+	'Listado del grupo al que pertenecen las otras actividades:
+	Actividades de divulgación
+	Actividades de extensión
+	Actividades de difusión
+	Servicios de apoyo
+	Asesorías y consultorías
+	Actividades de docencia
+	Actividades de vinculación
+	Actividades artisticas
+	Otras actividades';
 
 CREATE TABLE activitytypes (
 	id serial,
@@ -37,59 +36,59 @@ CREATE TABLE activitytypes (
 	UNIQUE (abbrev)
 );
 COMMENT ON TABLE activitytypes IS
-	'Listado de otros tipos de actividades';
--- Actividades de divulgación:
--- Organización de actividades de divulgación
--- ...
---
--- Actividades de difusión:
---  Programas de radio
---  Entrevistas
---  Reportajes
---  Crónicas
---  Opiniones
---  Elaboración de guiones
---  Conducción de programas de radio
---  Conducción de programas de TV
---  Crestomatias
---  Participación en programas de radio y TV
---  Otras actividades de difusión
---  ...
---
--- Actividades de extensión:
---  Exhibiciones
---  Presentaciones
---  Excursiones (museos, centros o institutos de investigación, facultades)
---  Visitas guiadas
---  ...
---
--- Servicios de apoyo:
---  Actividades de servicio en su área
---  Asesorías profesionales
---  Servicios internos
---  Servicios a otras dependencias de la UNAM
---  Servicios a instituciones externas
---  ...
---
--- Asesorías y consultorías
---  A estudiantes
---  A profesores
---  A proyectos de investigación
---  ...
---
--- Actividades de docencia:
---  Servicios de apoyo 
---  Programas de estudios
---  Evaluación de aprendizaje
---  Otras actividades docentes no incluídas
---
--- Actividades de vinculación
--- Convenios
--- ...
--- 
--- Actividades artisticas
--- ?
---  ....
+	'Listado de otro tipo de actividades:
+	* Actividades de divulgación:
+	Organización de actividades de divulgación
+	...
+
+	Actividades de difusión:
+	Programas de radio
+	Entrevistas
+	Reportajes
+	Crónicas
+	Opiniones
+	Elaboración de guiones
+	Conducción de programas de radio
+	Conducción de programas de TV
+	Crestomatias
+	Participación en programas de radio y TV
+	Otras actividades de difusión
+	...
+
+	Actividades de extensión:
+	Exhibiciones
+	Presentaciones
+	Excursiones (museos, centros o institutos de investigación, facultades)
+	Visitas guiadas
+	...
+
+	Servicios de apoyo:
+	Actividades de servicio en su área
+	Asesorías profesionales
+	Servicios internos
+	Servicios a otras dependencias de la UNAM
+	Servicios a instituciones externas
+	...
+
+	Asesorías y consultorías
+	A estudiantes
+	A profesores
+	A proyectos de investigación
+	...
+
+	Actividades de docencia:
+	Servicios de apoyo 
+	Programas de estudios
+	Evaluación de aprendizaje
+	Otras actividades docentes no incluídas
+
+	Actividades de vinculación
+	Convenios
+	...
+
+	Actividades artisticas
+	?
+	...';
 
 CREATE TABLE activities( 
     id SERIAL,
