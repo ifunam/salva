@@ -108,11 +108,19 @@ Por lo tanto proponemos el siguiente estándar para el manejo de la
 informaci&oacute;n curricular:
 </p>
 <div id="proposal">
+<h3>Usuarios, grupos y control de acceso</h3>
+<ul>
+<li><a href="dev/db/salva.html#public.table.users" >Usuarios</a></li>
+<li><a href="dev/db/salva.html#public.table.groups">Grupos</a></li>
+<li><a href="dev/db/salva.html#public.table.roleingroups">Roles</a></li>
+<li><a href="dev/db/salva.html#public.table.permissions">Permisos</a></li>
+<li><a href="dev/db/salva.html#public.table.acccesrules">Control de acceso</a></li>
+</ul>
 <h3>Información general</h3>
 <ul>
-<li><a href="dev/db/salva.html#public.table.personal" >Datos personales</a></li>
-<li><a href="dev/db/salva.html#public.table.personalid">Identificación(es)</a></li>
-<li><a href="dev/db/salva.html#public.table.address" >Domicilio(s)</a></li>
+<li><a href="dev/db/salva.html#public.table.people" >Datos personales</a></li>
+<li><a href="dev/db/salva.html#public.table.peopleid">Identificación(es)</a></li>
+<li><a href="dev/db/salva.html#public.table.addresses" >Domicilio(s)</a></li>
 <li><a href="dev/db/salva.html#public.table.schooling" >Formaci&oacute;n acad&eacute;mica</a></li>
 <li><a href="dev/db/salva.html#public.table.jobpositions" >Experiencia laboral</a></li>
 <li><a href="dev/db/salva.html#public.table.userstimulus" >Est&iacute;mulos</a></li>
@@ -200,17 +208,25 @@ informaci&oacute;n curricular:
  <li> <a href="dev/db/salva.html#public.table.userotheractivities">.</a></li>
 </ul>
 
+<h3>Tr&aacute;mites</h3>
+<ul>
+ <li> <a href="dev/db/salva.html#public.table.documents">Informe anual</a></li>
+ <li> <a href="dev/db/salva.html#public.table.documents">Plan anual de actividades</a></li>
+ <li> <a href="dev/db/salva.html#public.table.documents">Curriculum vitae</a></li>
+ <li> <a href="dev/db/salva.html#public.table.documents">...</a></li>
+</ul>
+
+
 
 <h2> Comentarios adicionales </h2>
 <p>
 La informaci&oacute;n que está a disposición del usuario en varios
-campos del SALVA usan categorías que han sido diseñadas para la
-clasificación  automatizada de la información a nivel interno,
-intentando que en el futuro se formalizen a nivel local, regional 
-y nacional.
+campos del SALVA usan categorías que precargadas para 
+clasificar la información a nivel interno, intentando que en el
+futuro se usen a nivel local, regional y nacional.
 </p>
 <p>
-Adem&aacute;s el usuario puede elegir las opciones que le correspondan
+Adem&aacute;s, el usuario puede seleccionar las opciones que le correspondan
 entre las que existen de manera predefinida, pero tambi&eacute;n puede
 incluir nuevas categorías cuando las existentes no le correspondan 
 bajo ningún concepto.
@@ -218,14 +234,41 @@ bajo ningún concepto.
 <p>
 Se ha previsto usar algunos campos de texto libre para pegar frases o
 fragmentos  de texto (previamente) copiados de documentos provenientes
-de  otras aplicaciones (como procesadores de textos) o incluir archivos en
-diferentes formatos, y para el caso de algunos productos como los
-proyectos,  art&iacute;culos o algunos otros, se incluye el soporte de 
-estados y una bit&aacute;cora correspondiente a sus cambios.
+de  otras aplicaciones (como procesadores de textos), incluir archivos en
+diferentes formatos, el soporte de estados y una bit&aacute;cora 
+correspondiente a sus cambios.
 </p>
 
 <p>
+<h3>Herencia</h3>
+Se decidi&oacute; prescindir de las caracter&iacute;sticas  de
+herencia que ofrece PostgreSQL por las siguientes razones:
+<ul>
+<li> La implementaci&oacute;n de herencia en PostgreSQL difiere en
+muchos aspectos respecto a lo que establece el est&aacute;ndar
+SQL:1999 o para versiones m&aacute; recientes. </li>
+<li> Los permisos no son autom&aacute;ticamente heredados a las tablas
+herederas hijas.</li>
+<li> Existen limitaciones serias para manejar la herencia en
+&iacute;ndices (Por ejemplo, el constraint UNIQUE y las llaves
+for&aacute;neas se aplican solamente a tablas base y no a sus hijas)
+</li>
+</ul>
+</p>
 
+<p>
+<h3>Lenguaje procedural PL/PGSQL</h3>
+<ul>
+<li> El lenguaje procedural se explota al m&aacute;ximo cuando las
+reglas del negocio implican interacci&oacute;n con otras tablas
+(cambios de estado, bit&aacute;ras, etc).
+</li>
+<li> Cuando las reglas del negocio implca la interacci&oacute;n con
+componentes externos, como por ejemplo servicios para env&iacute;e de correos se hace uso de componentes de tipo
+'observer'.
+</li>
+<li> ... </li>
+</ul>
 </p>
 
 <div id="linksforindex">
