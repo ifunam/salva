@@ -25,4 +25,78 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = true
 
   # Add more helper methods to be used by all tests here...
+
+  # Simple CRUD (Create-Read, Update and Delete) testing methods
+  module UnitSimple
+    # Create and Read test
+    def create(keys,model,mfixtures)
+      #print "Running *Create and Read*\n"
+      modelfix = method(mfixtures)
+      keys.each { | item |
+        @model = model.find(modelfix.call(item.to_sym).id)
+        assert_kind_of model, @model
+        assert_equal modelfix.call(item.to_sym).id, @model.id
+        assert_equal modelfix.call(item.to_sym).name, @model.name
+      }
+    end  
+
+    def update(keys,model,mfixtures)
+      #print "Running *Update*\n"
+      modelfix = method(mfixtures)
+      keys.each { | item |
+        @model = model.find(modelfix.call(item.to_sym).id)
+        assert_equal modelfix.call(item.to_sym).name, @model.name
+        name = @model.name.reverse 
+        @model.name = name 
+        assert @model.save, @model.errors.full_messages.join("; ")
+        @model.reload
+        assert_equal name, @model.name
+      }
+    end  
+
+    def delete(keys,model,mfixtures)
+      #print "Running *Delete*\n"
+      modelfix = method(mfixtures)
+      keys.each { | item |
+        @model = model.find(modelfix.call(item.to_sym).id)
+        @model.destroy
+        assert_raise (ActiveRecord::RecordNotFound) { 
+          model.find(modelfix.call(item.to_sym).id) 
+        }
+      }
+    end 
+
+    def crud_test(keys,model,mfixtures)
+      #print "\nCRUD testing for '", Inflector.tableize(model), "'\n"
+      create(keys,model,mfixtures)
+      update(keys,model,mfixtures)
+      delete(keys,model,mfixtures)
+      #print "done\n"
+    end
+
+    def validate_test(keys,model,mfixtures)
+      modelfix = method(mfixtures)
+      keys.each { | item |
+        @model = model.find(modelfix.call(item.to_sym).id)
+        assert_equal modelfix.call(item.to_sym).id, @model.id
+        
+        assert_equal modelfix.call(item.to_sym).name, @model.name
+        @model.name = nil
+        assert !@model.save
+        assert_not_nil @model.errors.count
+      }
+    end
+    
+    def collision_test(values,model,mfixtures)
+      #print "\nRunning collision test for '", Inflector.tableize(model), "'\n"
+      modelfix = method(mfixtures)
+      values.each { | item |
+        @model = model.find(modelfix.call(item.to_sym).id)
+        @newmodel = model.new
+        @newmodel.name = @model.name
+        assert !@newmodel.save
+        assert_not_nil @newmodel.errors.count
+      }
+    end
+  end
 end
