@@ -1,7 +1,6 @@
 class InitialSchema < ActiveRecord::Migration
   def self.up
     ActiveRecord::Schema.define() do
-
       create_table "acadvisits", :force => true do |t|
         t.column "user_id", :integer, :null => false
         t.column "institution_id", :integer, :null => false
@@ -10,7 +9,7 @@ class InitialSchema < ActiveRecord::Migration
         t.column "name", :text, :null => false
         t.column "startyear", :integer, :null => false
         t.column "startmonth", :integer
-        t.column "endyear", :integer
+        t.column "endyear", :integre
         t.column "endmonth", :integer
         t.column "place", :text
         t.column "goals", :text
@@ -23,6 +22,14 @@ class InitialSchema < ActiveRecord::Migration
       end
 
       add_index "acadvisittypes", ["name"], :name => "acadvisittypes_name_key", :unique => true
+
+      create_table "accessrules", :force => true do |t|
+        t.column "name", :text, :null => false
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      add_index "accessrules", ["name"], :name => "accessrules_name_key", :unique => true
 
       create_table "activities", :force => true do |t|
         t.column "user_id", :integer, :null => false
@@ -95,6 +102,16 @@ class InitialSchema < ActiveRecord::Migration
       end
 
       add_index "adviceactivity", ["name"], :name => "adviceactivity_name_key", :unique => true
+
+      create_table "approved_documents", :force => true do |t|
+        t.column "document_id", :integer, :null => false
+        t.column "user_id", :integer, :null => false
+        t.column "ip_address", :text, :null => false
+        t.column "approved", :boolean, :null => false
+        t.column "moduser_id", :integer
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
 
       create_table "articles", :force => true do |t|
         t.column "title", :text, :null => false
@@ -422,6 +439,27 @@ class InitialSchema < ActiveRecord::Migration
 
       add_index "degrees", ["name"], :name => "degrees_name_key", :unique => true
 
+      create_table "documents", :force => true do |t|
+        t.column "user_id", :integer, :null => false
+        t.column "is_published", :boolean, :null => false
+        t.column "date_published", :date, :null => false
+        t.column "documenttype_id", :integer, :null => false
+        t.column "document", :binary, :null => false
+        t.column "document_filename", :text, :null => false
+        t.column "document_content_type", :text, :null => false
+        t.column "ip_addr", :text, :null => false
+        t.column "moduser_id", :integer
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      create_table "documenttypes", :force => true do |t|
+        t.column "name", :text, :null => false
+        t.column "descr", :text
+      end
+
+      add_index "documenttypes", ["name"], :name => "documenttypes_name_key", :unique => true
+
       create_table "editions", :force => true do |t|
         t.column "name", :text, :null => false
       end
@@ -560,14 +598,6 @@ class InitialSchema < ActiveRecord::Migration
       end
 
       add_index "groups", ["name"], :name => "groups_name_key", :unique => true
-
-      create_table "groups_permissions", :force => true do |t|
-        t.column "group_id", :integer, :null => false
-        t.column "permission_id", :integer, :null => false
-      end
-
-      add_index "groups_permissions", ["group_id", "permission_id"], :name => "gp_map_idx"
-      add_index "groups_permissions", ["group_id", "permission_id"], :name => "groups_permissions_group_id_key", :unique => true
 
       create_table "identifications", :force => true do |t|
         t.column "name", :text, :null => false
@@ -857,31 +887,12 @@ class InitialSchema < ActiveRecord::Migration
 
       add_index "organtype", ["name"], :name => "organtype_name_key", :unique => true
 
-      create_table "peopleids", :force => true do |t|
-        t.column "user_id", :integer, :null => false
-        t.column "identification_id", :integer, :null => false
-        t.column "descr", :text, :null => false
-        t.column "citizen_country_id", :integer, :null => false
-        t.column "moduser_id", :integer
-        t.column "created_on", :datetime
-        t.column "updated_on", :datetime
-      end
-
-      add_index "peopleids", ["user_id", "identification_id", "citizen_country_id"], :name => "peopleids_user_id_key", :unique => true
-
-      create_table "permissions", :force => true do |t|
-        t.column "name", :text, :null => false
-        t.column "descr", :text
-        t.column "created_on", :datetime
-        t.column "updated_on", :datetime
-      end
-
-      create_table "personals", :id => false, :force => true do |t|
+      create_table "people", :id => false, :force => true do |t|
         t.column "user_id", :integer, :null => false
         t.column "firstname", :text, :null => false
         t.column "lastname1", :text, :null => false
         t.column "lastname2", :text
-        t.column "sex", :boolean, :null => false
+        t.column "gender", :boolean, :null => false
         t.column "maritalstatus_id", :integer, :null => false
         t.column "dateofbirth", :date, :null => false
         t.column "birth_country_id", :integer, :null => false
@@ -896,10 +907,30 @@ class InitialSchema < ActiveRecord::Migration
         t.column "updated_on", :datetime
       end
 
-      add_index "personals", ["firstname"], :name => "personals_firstname_idx"
-      add_index "personals", ["dateofbirth"], :name => "personals_firstname_lastname1_lastname2_idx", :unique => true
-      add_index "personals", ["lastname1"], :name => "personals_lastname1_idx"
-      add_index "personals", ["lastname2"], :name => "personals_lastname2_idx"
+      add_index "people", ["firstname"], :name => "people_firstname_idx"
+      add_index "people", ["dateofbirth"], :name => "people_firstname_lastname1_lastname2_idx", :unique => true
+      add_index "people", ["lastname1"], :name => "people_lastname1_idx"
+      add_index "people", ["lastname2"], :name => "people_lastname2_idx"
+
+      create_table "peopleids", :force => true do |t|
+        t.column "user_id", :integer, :null => false
+        t.column "identification_id", :integer, :null => false
+        t.column "descr", :text, :null => false
+        t.column "citizen_country_id", :integer, :null => false
+        t.column "moduser_id", :integer
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      add_index "peopleids", ["user_id", "identification_id", "citizen_country_id"], :name => "peopleids_user_id_key", :unique => true
+
+      create_table "permissions", :force => true do |t|
+        t.column "name", :text, :null => false
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      add_index "permissions", ["name"], :name => "permissions_name_key", :unique => true
 
       create_table "plan", :force => true do |t|
         t.column "user_id", :integer, :null => false
@@ -912,6 +943,7 @@ class InitialSchema < ActiveRecord::Migration
         t.column "title", :text, :null => false
         t.column "prizetypes_id", :integer, :null => false
         t.column "institution_id", :integer, :null => false
+        t.column "other", :text
         t.column "moduser_id", :integer
       end
 
@@ -1139,6 +1171,14 @@ class InitialSchema < ActiveRecord::Migration
       end
 
       add_index "roleindissertation", ["name"], :name => "roleindissertation_name_key", :unique => true
+
+      create_table "roleingroups", :force => true do |t|
+        t.column "name", :text, :null => false
+        t.column "descr", :text
+        t.column "accessrule_id", :integer, :null => false
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
 
       create_table "roleinjobpositions", :force => true do |t|
         t.column "name", :text, :null => false
@@ -1372,13 +1412,6 @@ class InitialSchema < ActiveRecord::Migration
         t.column "updated_on", :datetime
       end
 
-      create_table "user_groups", :force => true do |t|
-        t.column "user_id", :integer, :null => false
-        t.column "group_id", :integer, :default => 1, :null => false
-        t.column "created_on", :datetime
-        t.column "updated_on", :datetime
-      end
-
       create_table "user_journals", :force => true do |t|
         t.column "user_id", :integer, :null => false
         t.column "journal_id", :integer, :null => false
@@ -1391,6 +1424,16 @@ class InitialSchema < ActiveRecord::Migration
         t.column "other", :text
         t.column "created_on", :datetime
         t.column "updated_on", :datetime
+      end
+
+      create_table "user_researchareas", :force => true do |t|
+        t.column "user_id", :integer, :null => false
+        t.column "researcharea_id", :integer, :null => false
+      end
+
+      create_table "user_researchlines", :force => true do |t|
+        t.column "user_id", :integer, :null => false
+        t.column "researchlines_id", :integer, :null => false
       end
 
       create_table "useractivities", :force => true do |t|
@@ -1535,6 +1578,25 @@ class InitialSchema < ActiveRecord::Migration
 
       add_index "usergrants", ["grants_id", "user_id", "startyear", "startmonth"], :name => "usergrants_grants_id_key", :unique => true
 
+      create_table "usergroup_permissions", :force => true do |t|
+        t.column "usergroup_id", :integer, :null => false
+        t.column "permission_id", :integer, :null => false
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      add_index "usergroup_permissions", ["usergroup_id", "permission_id"], :name => "usergroup_permissions_usergroup_id_key", :unique => true
+
+      create_table "usergroups", :force => true do |t|
+        t.column "user_id", :integer, :null => false
+        t.column "group_id", :integer, :default => 1, :null => false
+        t.column "roleingroup_id", :integer, :null => false
+        t.column "created_on", :datetime
+        t.column "updated_on", :datetime
+      end
+
+      add_index "usergroups", ["user_id", "group_id", "roleingroup_id"], :name => "usergroups_user_id_key", :unique => true
+
       create_table "userlanguages", :force => true do |t|
         t.column "user_id", :integer, :null => false
         t.column "languages_id", :integer, :null => false
@@ -1601,11 +1663,6 @@ class InitialSchema < ActiveRecord::Migration
 
       add_index "userresearchgroups", ["researchgroup_id", "internaluser_id"], :name => "userresearchgroups_researchgroup_id_key", :unique => true
       add_index "userresearchgroups", ["researchgroup_id", "externaluser_id"], :name => "userresearchgroups_researchgroup_id_key1", :unique => true
-
-      create_table "userresearchlines", :force => true do |t|
-        t.column "user_id", :integer, :null => false
-        t.column "researchlines_id", :integer, :null => false
-      end
 
       create_table "userrole", :force => true do |t|
         t.column "name", :text, :null => false
@@ -1681,8 +1738,9 @@ class InitialSchema < ActiveRecord::Migration
       create_table "volumes", :force => true do |t|
         t.column "name", :text, :null => false
       end
-      
+
       add_index "volumes", ["name"], :name => "volumes_name_key", :unique => true
+
     end
   end
 
