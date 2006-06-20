@@ -16,12 +16,11 @@ if RAILS_ROOT then
     dbparams = [ "--with-db=#{dbname}", "--with-user=#{dbuser}"]
     dbparams << "--with-usepasswd=yes" if dbpasswd
     dbparams << "--with-encoding=#{dbencoding}" if dbencoding
-
-    cd("#{RAILS_ROOT}/db")
-    system("./configure", *dbparams.to_a)
-    system("make drop") if ActiveRecord::Base.establish_connection(conf[RAILS_ENV])
-    system("make createdb && make createlang && make create_tables")
-    system("make load_catalogs") if RAILS_ENV != 'test'
+    cd(RAILS_ROOT + '/db')
+    system('./configure', *dbparams.to_a)
+    system('make drop') if ActiveRecord::Base.establish_connection(conf[RAILS_ENV])
+    system('make createdb && make createlang && make create_tables')
+    system('make load_catalogs') if RAILS_ENV != 'test'
   end
  end
 
