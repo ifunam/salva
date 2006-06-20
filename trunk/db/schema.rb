@@ -26,14 +26,6 @@ ActiveRecord::Schema.define() do
 
   add_index "acadvisittypes", ["name"], :name => "acadvisittypes_name_key", :unique => true
 
-  create_table "accessrules", :force => true do |t|
-    t.column "name", :text, :null => false
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
-
-  add_index "accessrules", ["name"], :name => "accessrules_name_key", :unique => true
-
   create_table "activities", :force => true do |t|
     t.column "user_id", :integer, :null => false
     t.column "activitytype_id", :integer, :null => false
@@ -105,16 +97,6 @@ ActiveRecord::Schema.define() do
   end
 
   add_index "adviceactivity", ["name"], :name => "adviceactivity_name_key", :unique => true
-
-  create_table "approved_documents", :force => true do |t|
-    t.column "document_id", :integer, :null => false
-    t.column "user_id", :integer, :null => false
-    t.column "ip_address", :text, :null => false
-    t.column "approved", :boolean, :null => false
-    t.column "moduser_id", :integer
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
 
   create_table "articles", :force => true do |t|
     t.column "title", :text, :null => false
@@ -442,27 +424,6 @@ ActiveRecord::Schema.define() do
 
   add_index "degrees", ["name"], :name => "degrees_name_key", :unique => true
 
-  create_table "documents", :force => true do |t|
-    t.column "user_id", :integer, :null => false
-    t.column "is_published", :boolean, :null => false
-    t.column "date_published", :date, :null => false
-    t.column "documenttype_id", :integer, :null => false
-    t.column "document", :binary, :null => false
-    t.column "document_filename", :text, :null => false
-    t.column "document_content_type", :text, :null => false
-    t.column "ip_addr", :text, :null => false
-    t.column "moduser_id", :integer
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
-
-  create_table "documenttypes", :force => true do |t|
-    t.column "name", :text, :null => false
-    t.column "descr", :text
-  end
-
-  add_index "documenttypes", ["name"], :name => "documenttypes_name_key", :unique => true
-
   create_table "editions", :force => true do |t|
     t.column "name", :text, :null => false
   end
@@ -601,6 +562,14 @@ ActiveRecord::Schema.define() do
   end
 
   add_index "groups", ["name"], :name => "groups_name_key", :unique => true
+
+  create_table "groups_permissions", :force => true do |t|
+    t.column "group_id", :integer, :null => false
+    t.column "permission_id", :integer, :null => false
+  end
+
+  add_index "groups_permissions", ["group_id", "permission_id"], :name => "gp_map_idx"
+  add_index "groups_permissions", ["group_id", "permission_id"], :name => "groups_permissions_group_id_key", :unique => true
 
   create_table "identifications", :force => true do |t|
     t.column "name", :text, :null => false
@@ -890,31 +859,6 @@ ActiveRecord::Schema.define() do
 
   add_index "organtype", ["name"], :name => "organtype_name_key", :unique => true
 
-  create_table "people", :id => false, :force => true do |t|
-    t.column "user_id", :integer, :null => false
-    t.column "firstname", :text, :null => false
-    t.column "lastname1", :text, :null => false
-    t.column "lastname2", :text
-    t.column "gender", :boolean, :null => false
-    t.column "maritalstatus_id", :integer, :null => false
-    t.column "dateofbirth", :date, :null => false
-    t.column "birth_country_id", :integer, :null => false
-    t.column "birth_state_id", :integer
-    t.column "birth_city_id", :integer
-    t.column "photo_filename", :text
-    t.column "photo_content_type", :text
-    t.column "photo", :binary
-    t.column "other", :text
-    t.column "moduser_id", :integer
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
-
-  add_index "people", ["firstname"], :name => "people_firstname_idx"
-  add_index "people", ["dateofbirth"], :name => "people_firstname_lastname1_lastname2_idx", :unique => true
-  add_index "people", ["lastname1"], :name => "people_lastname1_idx"
-  add_index "people", ["lastname2"], :name => "people_lastname2_idx"
-
   create_table "peopleids", :force => true do |t|
     t.column "user_id", :integer, :null => false
     t.column "identification_id", :integer, :null => false
@@ -929,11 +873,35 @@ ActiveRecord::Schema.define() do
 
   create_table "permissions", :force => true do |t|
     t.column "name", :text, :null => false
+    t.column "descr", :text
     t.column "created_on", :datetime
     t.column "updated_on", :datetime
   end
 
-  add_index "permissions", ["name"], :name => "permissions_name_key", :unique => true
+  create_table "personals", :id => false, :force => true do |t|
+    t.column "user_id", :integer, :null => false
+    t.column "firstname", :text, :null => false
+    t.column "lastname1", :text, :null => false
+    t.column "lastname2", :text
+    t.column "sex", :boolean, :null => false
+    t.column "maritalstatus_id", :integer, :null => false
+    t.column "dateofbirth", :date, :null => false
+    t.column "birth_country_id", :integer, :null => false
+    t.column "birth_state_id", :integer
+    t.column "birth_city_id", :integer
+    t.column "photo_filename", :text
+    t.column "photo_content_type", :text
+    t.column "photo", :binary
+    t.column "other", :text
+    t.column "moduser_id", :integer
+    t.column "created_on", :datetime
+    t.column "updated_on", :datetime
+  end
+
+  add_index "personals", ["firstname"], :name => "personals_firstname_idx"
+  add_index "personals", ["dateofbirth"], :name => "personals_firstname_lastname1_lastname2_idx", :unique => true
+  add_index "personals", ["lastname1"], :name => "personals_lastname1_idx"
+  add_index "personals", ["lastname2"], :name => "personals_lastname2_idx"
 
   create_table "plan", :force => true do |t|
     t.column "user_id", :integer, :null => false
@@ -946,7 +914,6 @@ ActiveRecord::Schema.define() do
     t.column "title", :text, :null => false
     t.column "prizetypes_id", :integer, :null => false
     t.column "institution_id", :integer, :null => false
-    t.column "other", :text
     t.column "moduser_id", :integer
   end
 
@@ -1174,14 +1141,6 @@ ActiveRecord::Schema.define() do
   end
 
   add_index "roleindissertation", ["name"], :name => "roleindissertation_name_key", :unique => true
-
-  create_table "roleingroups", :force => true do |t|
-    t.column "name", :text, :null => false
-    t.column "descr", :text
-    t.column "accessrule_id", :integer, :null => false
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
 
   create_table "roleinjobpositions", :force => true do |t|
     t.column "name", :text, :null => false
@@ -1415,6 +1374,13 @@ ActiveRecord::Schema.define() do
     t.column "updated_on", :datetime
   end
 
+  create_table "user_groups", :force => true do |t|
+    t.column "user_id", :integer, :null => false
+    t.column "group_id", :integer, :default => 1, :null => false
+    t.column "created_on", :datetime
+    t.column "updated_on", :datetime
+  end
+
   create_table "user_journals", :force => true do |t|
     t.column "user_id", :integer, :null => false
     t.column "journal_id", :integer, :null => false
@@ -1427,16 +1393,6 @@ ActiveRecord::Schema.define() do
     t.column "other", :text
     t.column "created_on", :datetime
     t.column "updated_on", :datetime
-  end
-
-  create_table "user_researchareas", :force => true do |t|
-    t.column "user_id", :integer, :null => false
-    t.column "researcharea_id", :integer, :null => false
-  end
-
-  create_table "user_researchlines", :force => true do |t|
-    t.column "user_id", :integer, :null => false
-    t.column "researchlines_id", :integer, :null => false
   end
 
   create_table "useractivities", :force => true do |t|
@@ -1581,25 +1537,6 @@ ActiveRecord::Schema.define() do
 
   add_index "usergrants", ["grants_id", "user_id", "startyear", "startmonth"], :name => "usergrants_grants_id_key", :unique => true
 
-  create_table "usergroup_permissions", :force => true do |t|
-    t.column "usergroup_id", :integer, :null => false
-    t.column "permission_id", :integer, :null => false
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
-
-  add_index "usergroup_permissions", ["usergroup_id", "permission_id"], :name => "usergroup_permissions_usergroup_id_key", :unique => true
-
-  create_table "usergroups", :force => true do |t|
-    t.column "user_id", :integer, :null => false
-    t.column "group_id", :integer, :default => 1, :null => false
-    t.column "roleingroup_id", :integer, :null => false
-    t.column "created_on", :datetime
-    t.column "updated_on", :datetime
-  end
-
-  add_index "usergroups", ["user_id", "group_id", "roleingroup_id"], :name => "usergroups_user_id_key", :unique => true
-
   create_table "userlanguages", :force => true do |t|
     t.column "user_id", :integer, :null => false
     t.column "languages_id", :integer, :null => false
@@ -1666,6 +1603,11 @@ ActiveRecord::Schema.define() do
 
   add_index "userresearchgroups", ["researchgroup_id", "internaluser_id"], :name => "userresearchgroups_researchgroup_id_key", :unique => true
   add_index "userresearchgroups", ["researchgroup_id", "externaluser_id"], :name => "userresearchgroups_researchgroup_id_key1", :unique => true
+
+  create_table "userresearchlines", :force => true do |t|
+    t.column "user_id", :integer, :null => false
+    t.column "researchlines_id", :integer, :null => false
+  end
 
   create_table "userrole", :force => true do |t|
     t.column "name", :text, :null => false
@@ -1743,5 +1685,478 @@ ActiveRecord::Schema.define() do
   end
 
   add_index "volumes", ["name"], :name => "volumes_name_key", :unique => true
+
+  add_foreign_key_constraint "acadvisits", "visitor_id", "externalusers", "id", :name => "acadvisits_visitor_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "acadvisits", "acadvisittype_id", "acadvisittypes", "id", :name => "acadvisits_acadvisittype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "acadvisits", "country_id", "countries", "id", :name => "acadvisits_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "acadvisits", "institution_id", "institutions", "id", :name => "acadvisits_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "acadvisits", "user_id", "users", "id", :name => "acadvisits_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "activities", "activitytype_id", "activitytypes", "id", :name => "activities_activitytype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "activities", "user_id", "users", "id", :name => "activities_user_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "activitiesinstitutions", "institution_id", "institutions", "id", :name => "activitiesinstitutions_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "activitiesinstitutions", "activities_id", "activities", "id", :name => "activitiesinstitutions_activities_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "activitytypes", "moduser_id", "users", "id", :name => "activitytypes_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "activitytypes", "activitygroup_id", "activitygroups", "id", :name => "activitytypes_activitygroup_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "addresses", "moduser_id", "users", "id", :name => "addresses_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "addresses", "city_id", "cities", "id", :name => "addresses_city_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "addresses", "state_id", "states", "id", :name => "addresses_state_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "addresses", "country_id", "countries", "id", :name => "addresses_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "addresses", "addresstype_id", "addresstypes", "id", :name => "addresses_addresstype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "addresses", "user_id", "users", "id", :name => "addresses_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "adscriptions", "institution_id", "institutions", "id", :name => "adscriptions_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "adviceactivity", "moduser_id", "users", "id", :name => "adviceactivity_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "articles", "moduser_id", "users", "id", :name => "articles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "articles", "journal_id", "journals", "id", :name => "articles_journal_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "articles", "articlestatus_id", "articlestatuses", "id", :name => "articles_articlestatus_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "articlesfiles", "moduser_id", "users", "id", :name => "articlesfiles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "articlesfiles", "articles_id", "articles", "id", :name => "articlesfiles_articles_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "articleslog", "moduser_id", "users", "id", :name => "articleslog_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "articleslog", "old_articlestatus_id", "articlestatuses", "id", :name => "articleslog_old_articlestatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "articleslog", "article_id", "articles", "id", :name => "articleslog_article_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "bookedition_comments", "bookedition_id", "bookeditions", "id", :name => "bookedition_comments_bookedition_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookedition_comments", "user_id", "users", "id", :name => "bookedition_comments_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "bookedition_publishers", "publisher_id", "publishers", "id", :name => "bookedition_publishers_publisher_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookedition_publishers", "bookedition_id", "bookeditions", "id", :name => "bookedition_publishers_bookedition_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "bookedition_roleinbooks", "roleinbook_id", "roleinbooks", "id", :name => "bookedition_roleinbooks_roleinbook_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookedition_roleinbooks", "bookedition_id", "bookeditions", "id", :name => "bookedition_roleinbooks_bookedition_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookedition_roleinbooks", "user_id", "users", "id", :name => "bookedition_roleinbooks_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "bookeditions", "moduser_id", "users", "id", :name => "bookeditions_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookeditions", "editionstatus_id", "editionstatuses", "id", :name => "bookeditions_editionstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookeditions", "mediatype_id", "mediatypes", "id", :name => "bookeditions_mediatype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookeditions", "publisher_id", "publishers", "id", :name => "bookeditions_publisher_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookeditions", "edition_id", "editions", "id", :name => "bookeditions_edition_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "bookeditions", "book_id", "books", "id", :name => "bookeditions_book_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "books", "moduser_id", "users", "id", :name => "books_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "books", "trans_language_id", "languages", "id", :name => "books_trans_language_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "books", "orig_language_id", "languages", "id", :name => "books_orig_language_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "books", "volume_id", "volumes", "id", :name => "books_volume_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "books", "booktype_id", "booktypes", "id", :name => "books_booktype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "books", "country_id", "countries", "id", :name => "books_country_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "booksfiles", "moduser_id", "users", "id", :name => "booksfiles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "booksfiles", "books_id", "books", "id", :name => "booksfiles_books_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "careers", "moduser_id", "users", "id", :name => "careers_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "chapterinbook_comments", "chapterinbook_id", "chapterinbooks", "id", :name => "chapterinbook_comments_chapterinbook_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "chapterinbook_comments", "user_id", "users", "id", :name => "chapterinbook_comments_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "chapterinbook_roleinbooks", "roleinbook_id", "roleinbooks", "id", :name => "chapterinbook_roleinbooks_roleinbook_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "chapterinbook_roleinbooks", "chapterinbook_id", "chapterinbooks", "id", :name => "chapterinbook_roleinbooks_chapterinbook_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "chapterinbook_roleinbooks", "user_id", "users", "id", :name => "chapterinbook_roleinbooks_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "chapterinbooks", "moduser_id", "users", "id", :name => "chapterinbooks_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "chapterinbooks", "bookedition_id", "bookeditions", "id", :name => "chapterinbooks_bookedition_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "chapterinbooksfiles", "moduser_id", "users", "id", :name => "chapterinbooksfiles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "chapterinbooksfiles", "chapterinbook_id", "chapterinbooks", "id", :name => "chapterinbooksfiles_chapterinbook_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "cities", "moduser_id", "users", "id", :name => "cities_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "cities", "state_id", "states", "id", :name => "cities_state_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "citizens", "moduser_id", "users", "id", :name => "citizens_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "citizens", "citizenmodality_id", "citizenmodalities", "id", :name => "citizens_citizenmodality_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "citizens", "migratorystatus_id", "migratorystatuses", "id", :name => "citizens_migratorystatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "citizens", "citizen_country_id", "countries", "id", :name => "citizens_citizen_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "citizens", "user_id", "users", "id", :name => "citizens_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "conferenceinstitutions", "institution_id", "institutions", "id", :name => "conferenceinstitutions_institution_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "conferenceinstitutions", "conference_id", "conferences", "id", :name => "conferenceinstitutions_conference_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "conferences", "moduser_id", "users", "id", :name => "conferences_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferences", "conferencescope_id", "conferencescope", "id", :name => "conferences_conferencescope_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferences", "country_id", "countries", "id", :name => "conferences_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferences", "conferencetype_id", "conferencetypes", "id", :name => "conferences_conferencetype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "conferencetalks", "modality_id", "modalities", "id", :name => "conferencetalks_modality_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferencetalks", "talkacceptance_id", "talkacceptance", "id", :name => "conferencetalks_talkacceptance_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferencetalks", "talktype_id", "talktype", "id", :name => "conferencetalks_talktype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferencetalks", "conference_id", "conferences", "id", :name => "conferencetalks_conference_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "conferencetalksfiles", "moduser_id", "users", "id", :name => "conferencetalksfiles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "conferencetalksfiles", "conferencetalks_id", "conferencetalks", "id", :name => "conferencetalksfiles_conferencetalks_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "coursegroup", "coursegrouptype_id", "coursegrouptype", "id", :name => "coursegroup_coursegrouptype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "courses", "degrees_id", "degrees", "id", :name => "courses_degrees_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "courses", "coursetype_id", "coursetype", "id", :name => "courses_coursetype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "credentials", "moduser_id", "users", "id", :name => "credentials_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "externalusers", "degrees_id", "degrees", "id", :name => "externalusers_degrees_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "externalusers", "externaluserlevel_id", "externaluserlevels", "id", :name => "externalusers_externaluserlevel_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "externalusers", "institution_id", "institutions", "id", :name => "externalusers_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "file_articles", "moduser_id", "users", "id", :name => "file_articles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "file_articles", "article_id", "articles", "id", :name => "file_articles_article_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "filesprojects", "moduser_id", "users", "id", :name => "filesprojects_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "filesprojects", "project_id", "projects", "id", :name => "filesprojects_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "genericworks", "moduser_id", "users", "id", :name => "genericworks_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworks", "publisher_id", "publishers", "id", :name => "genericworks_publisher_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworks", "institution_id", "institutions", "id", :name => "genericworks_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworks", "genericworkstatus_id", "genericworkstatus", "id", :name => "genericworks_genericworkstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworks", "genericworktypes_id", "genericworktypes", "id", :name => "genericworks_genericworktypes_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "genericworksfiles", "moduser_id", "users", "id", :name => "genericworksfiles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworksfiles", "genericworks_id", "genericworks", "id", :name => "genericworksfiles_genericworks_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "genericworktypes", "moduser_id", "users", "id", :name => "genericworktypes_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "genericworktypes", "genericworkgroup_id", "genericworkgroups", "id", :name => "genericworktypes_genericworkgroup_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "grants", "moduser_id", "users", "id", :name => "grants_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "grants", "institution_id", "institutions", "id", :name => "grants_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "groups_permissions", "permission_id", "permissions", "id", :name => "groups_permissions_permission_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "groups_permissions", "group_id", "groups", "id", :name => "groups_permissions_group_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "indivadvice", "degrees_id", "degrees", "id", :name => "indivadvice_degrees_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "indivadviceprogram_id", "indivadviceprogram", "id", :name => "indivadvice_indivadviceprogram_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "indivadvicetarget_id", "instadvicetarget", "id", :name => "indivadvice_indivadvicetarget_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "institution_id", "institutions", "id", :name => "indivadvice_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "internaluser_id", "users", "id", :name => "indivadvice_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "externaluser_id", "externalusers", "id", :name => "indivadvice_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "indivadvice", "user_id", "users", "id", :name => "indivadvice_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "indivadviceprogram", "moduser_id", "users", "id", :name => "indivadviceprogram_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "indivadvicetarget", "moduser_id", "users", "id", :name => "indivadvicetarget_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "instadvice", "degrees_id", "degrees", "id", :name => "instadvice_degrees_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "instadvice", "instadvicetarget_id", "instadvicetarget", "id", :name => "instadvice_instadvicetarget_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "instadvice", "institution_id", "institutions", "id", :name => "instadvice_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "instadvice", "user_id", "users", "id", :name => "instadvice_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "instadviceactivity", "adviceactivity_id", "adviceactivity", "id", :name => "instadviceactivity_adviceactivity_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "instadviceactivity", "instadvice_id", "instadvice", "id", :name => "instadviceactivity_instadvice_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "instadvicetarget", "moduser_id", "users", "id", :name => "instadvicetarget_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "institution_sectors", "moduser_id", "users", "id", :name => "institution_sectors_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institution_sectors", "sector_id", "sectors", "id", :name => "institution_sectors_sector_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institution_sectors", "institution_id", "institutions", "id", :name => "institution_sectors_institution_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "institutioncareers", "moduser_id", "users", "id", :name => "institutioncareers_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutioncareers", "career_id", "careers", "id", :name => "institutioncareers_career_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutioncareers", "degree_id", "degrees", "id", :name => "institutioncareers_degree_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutioncareers", "institution_id", "institutions", "id", :name => "institutioncareers_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "institutions", "moduser_id", "users", "id", :name => "institutions_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutions", "city_id", "cities", "id", :name => "institutions_city_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutions", "state_id", "states", "id", :name => "institutions_state_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutions", "country_id", "countries", "id", :name => "institutions_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutions", "institutiontitle_id", "institutiontitles", "id", :name => "institutions_institutiontitle_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "institutions", "institution_id", "institutions", "id", :name => "institutions_institution_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "institutions", "institutiontype_id", "institutiontypes", "id", :name => "institutions_institutiontype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "jobpositioncategories", "jobpositionlevel_id", "jobpositionlevels", "id", :name => "jobpositioncategories_jobpositionlevel_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositioncategories", "roleinjobposition_id", "roleinjobpositions", "id", :name => "jobpositioncategories_roleinjobposition_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositioncategories", "jobpositiontype_id", "jobpositiontypes", "id", :name => "jobpositioncategories_jobpositiontype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "jobpositions", "moduser_id", "users", "id", :name => "jobpositions_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositions", "institution_id", "institutions", "id", :name => "jobpositions_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositions", "contracttype_id", "contracttypes", "id", :name => "jobpositions_contracttype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositions", "jobpositioncategory_id", "jobpositioncategories", "id", :name => "jobpositions_jobpositioncategory_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "jobpositions", "user_id", "users", "id", :name => "jobpositions_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "journal_publicationcategories", "moduser_id", "users", "id", :name => "journal_publicationcategories_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journal_publicationcategories", "publicationcategory_id", "publicationcategories", "id", :name => "journal_publicationcategories_publicationcategory_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journal_publicationcategories", "journal_id", "journals", "id", :name => "journal_publicationcategories_journal_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "journals", "moduser_id", "users", "id", :name => "journals_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journals", "country_id", "countries", "id", :name => "journals_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journals", "publisher_id", "publishers", "id", :name => "journals_publisher_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journals", "mediatype_id", "mediatypes", "id", :name => "journals_mediatype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "journals", "journaltype_id", "journaltypes", "id", :name => "journals_journaltype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "languages", "moduser_id", "users", "id", :name => "languages_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "memberships", "moduser_id", "users", "id", :name => "memberships_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "memberships", "institution_id", "institutions", "id", :name => "memberships_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "memberships", "user_id", "users", "id", :name => "memberships_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "menus", "group_id", "groups", "id", :name => "menus_group_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "menus", "parent_menu_id", "menus", "id", :name => "menus_parent_menu_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "newspaper_articles", "newspaper_id", "newspapers", "id", :name => "newspaper_articles_newspaper_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "newspaper_articleslog", "moduser_id", "users", "id", :name => "newspaper_articleslog_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "newspaper_articleslog", "old_articlestatus_id", "articlestatuses", "id", :name => "newspaper_articleslog_old_articlestatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "newspaper_articleslog", "newspaperarticle_id", "newspaper_articles", "id", :name => "newspaper_articleslog_newspaperarticle_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "newspapers", "moduser_id", "users", "id", :name => "newspapers_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "organ", "moduser_id", "users", "id", :name => "organ_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "organ", "institution_id", "institutions", "id", :name => "organ_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "organ", "organtype_id", "organtype", "id", :name => "organ_organtype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "peopleids", "moduser_id", "users", "id", :name => "peopleids_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "peopleids", "citizen_country_id", "countries", "id", :name => "peopleids_citizen_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "peopleids", "identification_id", "identifications", "id", :name => "peopleids_identification_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "peopleids", "user_id", "users", "id", :name => "peopleids_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "personals", "moduser_id", "users", "id", :name => "personals_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "personals", "birth_city_id", "cities", "id", :name => "personals_birth_city_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "personals", "birth_state_id", "states", "id", :name => "personals_birth_state_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "personals", "birth_country_id", "countries", "id", :name => "personals_birth_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "personals", "maritalstatus_id", "maritalstatuses", "id", :name => "personals_maritalstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "personals", "user_id", "users", "id", :name => "personals_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "plan", "user_id", "users", "id", :name => "plan_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "prizes", "moduser_id", "users", "id", :name => "prizes_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "prizes", "institution_id", "institutions", "id", :name => "prizes_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "prizes", "prizetypes_id", "prizetypes", "id", :name => "prizes_prizetypes_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "professionaltitles", "moduser_id", "users", "id", :name => "professionaltitles_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "professionaltitles", "titlemodalities_id", "titlemodalities", "id", :name => "professionaltitles_titlemodalities_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "professionaltitles", "schooling_id", "schoolings", "id", :name => "professionaltitles_schooling_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectfinancingsource", "financingsource_id", "institutions", "id", :name => "projectfinancingsource_financingsource_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectfinancingsource", "project_id", "projects", "id", :name => "projectfinancingsource_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectinstitutions", "institution_id", "institutions", "id", :name => "projectinstitutions_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectinstitutions", "project_id", "projects", "id", :name => "projectinstitutions_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectresearchareas", "researchareas_id", "researchareas", "id", :name => "projectresearchareas_researchareas_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectresearchareas", "project_id", "projects", "id", :name => "projectresearchareas_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectresearchlines", "researchlines_id", "researchlines", "id", :name => "projectresearchlines_researchlines_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectresearchlines", "project_id", "projects", "id", :name => "projectresearchlines_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projects", "moduser_id", "users", "id", :name => "projects_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projects", "parentproject_id", "projects", "id", :name => "projects_parentproject_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projects", "projectstatus_id", "projectstatus", "id", :name => "projects_projectstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projects", "projectstype_id", "projectstype", "id", :name => "projects_projectstype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsacadvisits", "acadvisits_id", "acadvisits", "id", :name => "projectsacadvisits_acadvisits_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsacadvisits", "project_id", "projects", "id", :name => "projectsacadvisits_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsarticles", "article_id", "articles", "id", :name => "projectsarticles_article_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsarticles", "project_id", "projects", "id", :name => "projectsarticles_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsbooks", "books_id", "books", "id", :name => "projectsbooks_books_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsbooks", "project_id", "projects", "id", :name => "projectsbooks_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectschapterinbooks", "chapterinbook_id", "chapterinbooks", "id", :name => "projectschapterinbooks_chapterinbook_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectschapterinbooks", "project_id", "projects", "id", :name => "projectschapterinbooks_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsconferencetalks", "conferencetalks_id", "conferencetalks", "id", :name => "projectsconferencetalks_conferencetalks_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsconferencetalks", "project_id", "projects", "id", :name => "projectsconferencetalks_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsgenericworks", "genericworks_id", "genericworks", "id", :name => "projectsgenericworks_genericworks_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsgenericworks", "project_id", "projects", "id", :name => "projectsgenericworks_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectslog", "moduser_id", "users", "id", :name => "projectslog_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectslog", "old_projectstatus_id", "projectstatus", "id", :name => "projectslog_old_projectstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectslog", "project_id", "projects", "id", :name => "projectslog_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "projectsthesis", "thesis_id", "thesis", "id", :name => "projectsthesis_thesis_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "projectsthesis", "project_id", "projects", "id", :name => "projectsthesis_project_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "publicationcategories", "moduser_id", "users", "id", :name => "publicationcategories_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "publishers", "moduser_id", "users", "id", :name => "publishers_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "refereedpubs", "moduser_id", "users", "id", :name => "refereedpubs_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "refereedpubs", "institution_id", "institutions", "id", :name => "refereedpubs_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "refereedpubs", "pubtorefereed_id", "pubtorefereed", "id", :name => "refereedpubs_pubtorefereed_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "researchareas", "moduser_id", "users", "id", :name => "researchareas_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "researchgroupmodalities", "adscription_id", "adscriptions", "id", :name => "researchgroupmodalities_adscription_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "researchgroupmodalities", "researchgroup_id", "researchgroups", "id", :name => "researchgroupmodalities_researchgroup_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "researchgroupmodalities", "groupmodality_id", "groupmodalities", "id", :name => "researchgroupmodalities_groupmodality_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "researchgroups", "moduser_id", "users", "id", :name => "researchgroups_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "researchlines", "moduser_id", "users", "id", :name => "researchlines_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "roleinorgan", "moduser_id", "users", "id", :name => "roleinorgan_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "schoolings", "moduser_id", "users", "id", :name => "schoolings_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "schoolings", "credential_id", "credentials", "id", :name => "schoolings_credential_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "schoolings", "institutioncareer_id", "institutioncareers", "id", :name => "schoolings_institutioncareer_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "schoolings", "user_id", "users", "id", :name => "schoolings_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "sectors", "moduser_id", "users", "id", :name => "sectors_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "selfevaluation", "user_id", "users", "id", :name => "selfevaluation_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "skilltypes", "moduser_id", "users", "id", :name => "skilltypes_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "sponsorsacadvisits", "institution_id", "institutions", "id", :name => "sponsorsacadvisits_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "sponsorsacadvisits", "acadvisit_id", "acadvisits", "id", :name => "sponsorsacadvisits_acadvisit_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "states", "moduser_id", "users", "id", :name => "states_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "states", "country_id", "countries", "id", :name => "states_country_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "stimuluslevels", "stimulustype_id", "stimulustypes", "id", :name => "stimuluslevels_stimulustype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "stimuluslogs", "moduser_id", "users", "id", :name => "stimuluslogs_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "stimuluslogs", "old_stimulusstatus_id", "stimulusstatus", "id", :name => "stimuluslogs_old_stimulusstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "stimuluslogs", "stimulus_id", "userstimulus", "id", :name => "stimuluslogs_stimulus_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "stimulustypes", "institution_id", "institutions", "id", :name => "stimulustypes_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "studentsthesis", "internaluser_id", "users", "id", :name => "studentsthesis_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "studentsthesis", "externaluser_id", "externalusers", "id", :name => "studentsthesis_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "studentsthesis", "thesis_id", "thesis", "id", :name => "studentsthesis_thesis_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "techproductfinancingsource", "financingsource_id", "institutions", "id", :name => "techproductfinancingsource_financingsource_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "techproductfinancingsource", "techproduct_id", "techproducts", "id", :name => "techproductfinancingsource_techproduct_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "techproducts", "moduser_id", "users", "id", :name => "techproducts_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "techproducts", "institution_id", "institutions", "id", :name => "techproducts_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "techproducts", "techproducttype_id", "techproducttypes", "id", :name => "techproducts_techproducttype_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "techproducttypes", "moduser_id", "users", "id", :name => "techproducttypes_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "techproductversions", "techproductstatus_id", "techproductstatus", "id", :name => "techproductversions_techproductstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "techproductversions", "techproduct_id", "techproducts", "id", :name => "techproductversions_techproduct_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "thesis", "moduser_id", "users", "id", :name => "thesis_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesis", "career_id", "careers", "id", :name => "thesis_career_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesis", "thesismodality_id", "thesismodality", "id", :name => "thesis_thesismodality_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesis", "thesisstatus_id", "thesisstatus", "id", :name => "thesis_thesisstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesis", "degree_id", "degrees", "id", :name => "thesis_degree_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesis", "institution_id", "institutions", "id", :name => "thesis_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "thesislog", "moduser_id", "users", "id", :name => "thesislog_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesislog", "old_thesisstatus_id", "thesisstatus", "id", :name => "thesislog_old_thesisstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "thesislog", "thesis_id", "thesis", "id", :name => "thesislog_thesis_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "user_articles", "article_id", "articles", "id", :name => "user_articles_article_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "user_articles", "user_id", "users", "id", :name => "user_articles_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "user_groups", "group_id", "groups", "id", :name => "user_groups_group_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "user_groups", "user_id", "users", "id", :name => "user_groups_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "user_journals", "roleinjournal_id", "roleinjournals", "id", :name => "user_journals_roleinjournal_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "user_journals", "journal_id", "journals", "id", :name => "user_journals_journal_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "user_journals", "user_id", "users", "id", :name => "user_journals_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "useractivities", "activities_id", "activities", "id", :name => "useractivities_activities_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "useractivities", "userrole_id", "userrole", "id", :name => "useractivities_userrole_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "useractivities", "user_id", "users", "id", :name => "useractivities_user_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "useradscriptions", "adscription_id", "adscriptions", "id", :name => "useradscriptions_adscription_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "useradscriptions", "jobposition_id", "jobpositions", "id", :name => "useradscriptions_jobposition_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userconferencerole", "conferencetalk_id", "conferencetalks", "id", :name => "userconferencerole_conferencetalk_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "userconferencerole", "attendeetype_id", "attendeetype", "id", :name => "userconferencerole_attendeetype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userconferencerole", "userconference_id", "userconferences", "id", :name => "userconferencerole_userconference_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "userconferences", "user_id", "users", "id", :name => "userconferences_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "userconferences", "conference_id", "conferences", "id", :name => "userconferences_conference_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "usercourses", "modality_id", "modalities", "id", :name => "usercourses_modality_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "coursesduration_id", "coursesduration", "id", :name => "usercourses_coursesduration_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "country_id", "countries", "id", :name => "usercourses_country_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "institution_id", "institutions", "id", :name => "usercourses_institution_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "roleincourse_id", "roleincourse", "id", :name => "usercourses_roleincourse_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "coursegroup_id", "coursegroup", "id", :name => "usercourses_coursegroup_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "courses_id", "courses", "id", :name => "usercourses_courses_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercourses", "user_id", "users", "id", :name => "usercourses_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "usercredits", "externalusergive_id", "externalusers", "id", :name => "usercredits_externalusergive_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercredits", "internalusergive_id", "users", "id", :name => "usercredits_internalusergive_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercredits", "user_id", "users", "id", :name => "usercredits_user_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usercreditsarticles", "articles_id", "articles", "id", :name => "usercreditsarticles_articles_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercreditsarticles", "usercredits_id", "usercredits", "id", :name => "usercreditsarticles_usercredits_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usercreditsbooks", "books_id", "articles", "id", :name => "usercreditsbooks_books_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercreditsbooks", "usercredits_id", "usercredits", "id", :name => "usercreditsbooks_usercredits_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usercreditschapterinbooks", "chapterinbooks_id", "chapterinbooks", "id", :name => "usercreditschapterinbooks_chapterinbooks_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercreditschapterinbooks", "usercredits_id", "usercredits", "id", :name => "usercreditschapterinbooks_usercredits_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usercreditsconferencetalks", "conferencetalks_id", "articles", "id", :name => "usercreditsconferencetalks_conferencetalks_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercreditsconferencetalks", "usercredits_id", "usercredits", "id", :name => "usercreditsconferencetalks_usercredits_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usercreditsgenericworks", "genericworks_id", "articles", "id", :name => "usercreditsgenericworks_genericworks_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usercreditsgenericworks", "usercredits_id", "usercredits", "id", :name => "usercreditsgenericworks_usercredits_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userdissthesis", "roleindissertation_id", "roleindissertation", "id", :name => "userdissthesis_roleindissertation_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userdissthesis", "thesis_id", "thesis", "id", :name => "userdissthesis_thesis_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userdissthesis", "user_id", "users", "id", :name => "userdissthesis_user_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usergenericworks", "userrole_id", "userrole", "id", :name => "usergenericworks_userrole_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usergenericworks", "internaluser_id", "users", "id", :name => "usergenericworks_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usergenericworks", "externaluser_id", "externalusers", "id", :name => "usergenericworks_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usergenericworks", "genericwork_id", "genericworks", "id", :name => "usergenericworks_genericwork_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "usergenericworkslog", "moduser_id", "users", "id", :name => "usergenericworkslog_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usergenericworkslog", "old_genericworkstatus_id", "genericworkstatus", "id", :name => "usergenericworkslog_old_genericworkstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usergenericworkslog", "usergenericworks_id", "articles", "id", :name => "usergenericworkslog_usergenericworks_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "usergrants", "user_id", "users", "id", :name => "usergrants_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "usergrants", "grants_id", "grants", "id", :name => "usergrants_grants_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userlanguages", "languages_id", "languages", "id", :name => "userlanguages_languages_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userlanguages", "user_id", "users", "id", :name => "userlanguages_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "usernewspaper_articles", "newspaperarticle_id", "newspaper_articles", "id", :name => "usernewspaper_articles_newspaperarticle_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usernewspaper_articles", "user_id", "users", "id", :name => "usernewspaper_articles_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "userorgan", "roleinorgan_id", "roleinorgan", "id", :name => "userorgan_roleinorgan_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userorgan", "organ_id", "organ", "id", :name => "userorgan_organ_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userorgan", "user_id", "users", "id", :name => "userorgan_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "userprizes", "user_id", "users", "id", :name => "userprizes_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+  add_foreign_key_constraint "userprizes", "prize_id", "prizes", "id", :name => "userprizes_prize_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userprojects", "roleinproject_id", "roleinproject", "id", :name => "userprojects_roleinproject_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userprojects", "internaluser_id", "users", "id", :name => "userprojects_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userprojects", "externaluser_id", "externalusers", "id", :name => "userprojects_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userprojects", "projects_id", "projects", "id", :name => "userprojects_projects_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userrefereedpubs", "internaluser_id", "users", "id", :name => "userrefereedpubs_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userrefereedpubs", "externaluser_id", "externalusers", "id", :name => "userrefereedpubs_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userrefereedpubs", "refereedpubs_id", "refereedpubs", "id", :name => "userrefereedpubs_refereedpubs_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userresearchgroups", "moduser_id", "users", "id", :name => "userresearchgroups_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userresearchgroups", "internaluser_id", "users", "id", :name => "userresearchgroups_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userresearchgroups", "externaluser_id", "externalusers", "id", :name => "userresearchgroups_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userresearchgroups", "researchgroup_id", "researchgroups", "id", :name => "userresearchgroups_researchgroup_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userresearchlines", "researchlines_id", "researchlines", "id", :name => "userresearchlines_researchlines_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userresearchlines", "user_id", "users", "id", :name => "userresearchlines_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "userrole", "moduser_id", "users", "id", :name => "userrole_moduser_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "users", "userstatus_id", "userstatuses", "id", :name => "users_userstatus_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userskills", "skilltype_id", "skilltypes", "id", :name => "userskills_skilltype_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userskills", "user_id", "users", "id", :name => "userskills_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "userstimulus", "stimuluslevel_id", "stimuluslevels", "id", :name => "userstimulus_stimuluslevel_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userstimulus", "user_id", "users", "id", :name => "userstimulus_user_id_fkey", :on_update => :cascade, :on_delete => :cascade
+
+  add_foreign_key_constraint "usertechproducts", "userrole_id", "userrole", "id", :name => "usertechproducts_userrole_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usertechproducts", "internaluser_id", "users", "id", :name => "usertechproducts_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usertechproducts", "externaluser_id", "externalusers", "id", :name => "usertechproducts_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "usertechproducts", "techproduct_id", "techproducts", "id", :name => "usertechproducts_techproduct_id_fkey", :on_update => :cascade, :on_delete => nil
+
+  add_foreign_key_constraint "userthesis", "internaluser_id", "users", "id", :name => "userthesis_internaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userthesis", "externaluser_id", "externalusers", "id", :name => "userthesis_externaluser_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userthesis", "roleinthesis_id", "roleinthesis", "id", :name => "userthesis_roleinthesis_id_fkey", :on_update => :cascade, :on_delete => nil
+  add_foreign_key_constraint "userthesis", "thesis_id", "thesis", "id", :name => "userthesis_thesis_id_fkey", :on_update => :cascade, :on_delete => nil
 
 end
