@@ -28,6 +28,7 @@ TMPL1=template1
 LANGNAME=plpgsql
 
 SQLFILE=salva.sql
+DATA=data_catalogs.sql
 SQLLOG=/tmp/salva_sql.log
 
 backup:
@@ -80,15 +81,22 @@ createlang:
 		echo "The ${LANGNAME} language exists"; \
 	fi;
 
-createtables:
+create_tables:
 	if test "Password ${USEPASSWD}" = "Password yes"; then \
 		${PSQL} -U ${USER} -W ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLLOG}; \
 	else \
 		${PSQL} -U ${USER} ${DB}  -f  ${SQLPATH}/${SQLFILE} -e  2>&1 > ${SQLLOG}; \
 	fi;
 
+load_catalogs:
+	if test "Password ${USEPASSWD}" = "Password yes"; then \
+		${PSQL} -U ${USER} -W ${DB}  -f  ${SQLPATH}/${DATA} -e  2>&1 > ${SQLLOG}; \
+	else \
+		${PSQL} -U ${USER} ${DB}  -f  ${SQLPATH}/${DATA} -e  2>&1 > ${SQLLOG}; \
+	fi;
 
-install: createdb createlang createtables
+
+install: createdb createlang create_tables load_catalogs
 
 all: install
 
