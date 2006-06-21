@@ -29,23 +29,22 @@ class Test::Unit::TestCase
   # Simple CRUD (Create-Read, Update and Delete) testing methods
   module UnitSimple
     # Create and Read test
-    def create(keys,model,mfixtures)
+    def create(keys,model)
       #print "Running *Create and Read*\n"
-      modelfix = method(mfixtures)
+      fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
-        @model = model.find(modelfix.call(item.to_sym).id)
+        @model = model.find(fixture.call(item.to_sym).id)
         assert_kind_of model, @model
-        assert_equal modelfix.call(item.to_sym).id, @model.id
-        assert_equal modelfix.call(item.to_sym).name, @model.name
+        assert_equal fixture.call(item.to_sym).id, @model.id
+        assert_equal fixture.call(item.to_sym).name, @model.name
       }
     end  
 
-    def update(keys,model,mfixtures)
-      #print "Running *Update*\n"
-      modelfix = method(mfixtures)
+    def update(keys,model)
+      fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
-        @model = model.find(modelfix.call(item.to_sym).id)
-        assert_equal modelfix.call(item.to_sym).name, @model.name
+        @model = model.find(fixture.call(item.to_sym).id)
+        assert_equal fixture.call(item.to_sym).name, @model.name
         name = @model.name.reverse 
         @model.name = name 
         assert @model.save, @model.errors.full_messages.join("; ")
@@ -54,44 +53,42 @@ class Test::Unit::TestCase
       }
     end  
 
-    def delete(keys,model,mfixtures)
-      #print "Running *Delete*\n"
-      modelfix = method(mfixtures)
+    def delete(keys,model)
+      fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
-        @model = model.find(modelfix.call(item.to_sym).id)
+        @model = model.find(fixture.call(item.to_sym).id)
         @model.destroy
         assert_raise (ActiveRecord::RecordNotFound) { 
-          model.find(modelfix.call(item.to_sym).id) 
+          model.find(fixture.call(item.to_sym).id) 
         }
       }
     end 
 
-    def crud_test(keys,model,mfixtures)
+    def crud_test(keys,model)
       #print "\nCRUD testing for '", Inflector.tableize(model), "'\n"
-      create(keys,model,mfixtures)
-      update(keys,model,mfixtures)
-      delete(keys,model,mfixtures)
+      create(keys,model)
+      update(keys,model)
+      delete(keys,model)
       #print "done\n"
     end
 
-    def validate_test(keys,model,mfixtures)
-      modelfix = method(mfixtures)
+    def validate_test(keys,model)
+      fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
-        @model = model.find(modelfix.call(item.to_sym).id)
-        assert_equal modelfix.call(item.to_sym).id, @model.id
+        @model = model.find(fixture.call(item.to_sym).id)
+        assert_equal fixture.call(item.to_sym).id, @model.id
         
-        assert_equal modelfix.call(item.to_sym).name, @model.name
+        assert_equal fixture.call(item.to_sym).name, @model.name
         @model.name = nil
         assert !@model.save
         assert_not_nil @model.errors.count
       }
     end
     
-    def collision_test(values,model,mfixtures)
-      #print "\nRunning collision test for '", Inflector.tableize(model), "'\n"
-      modelfix = method(mfixtures)
+    def collision_test(values,model)
+      fixture = method(Inflector.pluralize(model.name).downcase)
       values.each { | item |
-        @model = model.find(modelfix.call(item.to_sym).id)
+        @model = model.find(fixture.call(item.to_sym).id)
         @newmodel = model.new
         @newmodel.name = @model.name
         assert !@newmodel.save

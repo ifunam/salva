@@ -2,39 +2,21 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'group'
 class GroupTest < Test::Unit::TestCase
   fixtures :groups
-  # CRUD test
-  def test_create
-    # create a brand new group
-    @group = groups(:example)
+  include UnitSimple
 
-    # save him
-    assert @group.save
-  end  
-  
-  def test_read
-    # read him back
-    @group = Group.find(groups(:example).id)
-    
-    # compare the names
-    assert_equal @group.name, groups(:example).name
-    
-    # compare the ids
-    assert_equal @group.id, groups(:example).id
+  def setup
+    @user_groups = %w(salva sa)
   end
-  
-  def test_update
-    @group = Group.find(groups(:example).id)
-    
-    # change the name for the user status by using hi-tech encryption ;)
-     @group.name = @group.name.reverse
-    
-    # save the changes
-    assert @group.update
+
+  def test_crud 
+    crud_test(@user_groups, Group)
   end
-  
-  def test_delete
-    @group = Group.find(groups(:example).id)
-    # the group gets killed
-    assert @group.destroy
+
+  def test_validation
+    validate_test(@user_groups, Group)
+  end
+
+  def test_collision
+    collision_test(@user_groups, Group)
   end
 end

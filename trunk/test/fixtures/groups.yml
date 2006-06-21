@@ -1,4 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-example:
+salva:
   id: 1
-  name: salva
+  name: SALVA
+sa:
+  id: 2
+  name: Secretaría academica
