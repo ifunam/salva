@@ -65,12 +65,10 @@ class Test::Unit::TestCase
     end 
 
     def crud_test(keys,model)
-      #print "\nCRUD testing for '", Inflector.tableize(model), "'\n"
       create(keys,model)
       update(keys,model)
       delete(keys,model)
-      #print "done\n"
-    end
+     end
 
     def validate_test(keys,model)
       fixture = method(Inflector.pluralize(model.name).downcase)
