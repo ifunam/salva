@@ -1,10 +1,11 @@
 \set ON_ERROR_STOP 1
 
 \i catalogs/groups.sql
-\i catalogs/accessrules.sql
-\i catalogs/roleingroups.sql
-\i catalogs/permissions.sql
+\i catalogs/roles.sql
+\i catalogs/actions.sql
+\i catalogs/controllers.sql
 \i catalogs/userstatuses.sql
+\i catalogs/roleingroups.sql
 \i catalogs/default_user.sql
 \i catalogs/countries.sql
 \i catalogs/states.sql

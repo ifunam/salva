@@ -6,8 +6,8 @@ COPY users (id, login, passwd, salt, userstatus_id, email, pkcs7, token, token_e
 \.
 
 --
--- Data for Name: user_groups; Type: TABLE DATA; Schema: public; Owner: salva
+-- Data for Name: user_roleingroups; Type: TABLE DATA; Schema: public; Owner: salva
 --
-COPY usergroups (id, user_id, group_id, roleingroup_id, created_on, updated_on) FROM stdin;
-1	1	1	2	2005-11-29 16:29:50	2005-11-29 16:29:50
+COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FROM stdin;
+1	1	1	2005-11-29 16:29:50	2005-11-29 16:29:50
 \.

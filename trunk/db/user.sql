@@ -58,7 +58,21 @@ COMMENT ON TABLE groups IS
 	'Grupos (tipos) de usuario del sistema:
 	 SALVA, Secretaría académica, Nombre de los deptos';
 
-CREATE TABLE accessrules (
+CREATE TABLE roles (
+    id serial, 
+    name text NOT NULL,
+    descr text NULL,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id),
+    UNIQUE (name)
+);
+COMMENT ON TABLE roles IS
+	'Rol para cada grupo, basado en el estándar RBAC (Role Based Access Control):
+         https://activerbac.turingstudio.com/trac
+	 Administrador, Usuario normal, Secretarío académico, Jefe de departamento, Secretaria, etc';
+
+CREATE TABLE actions (
 	id serial,
  	name text NOT NULL,
  	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -66,80 +80,77 @@ CREATE TABLE accessrules (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE accessrules IS
-	'Reglas de control de accesso:
-	 Global, Group, Individual';
+COMMENT ON TABLE actions IS
+	'Permisos: List, Show, New, Edit, Purge, ...';
+
+CREATE TABLE controllers (
+	id serial,
+ 	name text NOT NULL,
+ 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE controllers IS
+	'Lista de controladores: people, address, book, etc';
 
 CREATE TABLE roleingroups (
-    id serial, 
-    name text NOT NULL,
-    descr text NULL,
-    accessrule_id int4 NOT NULL 
-	   REFERENCES accessrules(id)
-           ON UPDATE CASCADE,
-    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id)
-);
-COMMENT ON TABLE roleingroups IS
-	'Rol para cada grupo, basado en el estándar RBAC (Role Based Access Control):
-         https://activerbac.turingstudio.com/trac
-	 Administrador, Usuario normal, Secretarío académico, Jefe de departamento, Secretaria, etc';
-
-CREATE TABLE usergroups (
     id SERIAL,
-    user_id int4 NOT NULL
-	REFERENCES users(id)
-        ON UPDATE CASCADE
-       	ON DELETE CASCADE
-	DEFERRABLE,
     group_id int4 NOT NULL
 	REFERENCES groups(id)
 	ON UPDATE CASCADE
 	DEFERRABLE
 	DEFAULT 1,
-    roleingroup_id int4 NOT NULL 
-        REFERENCES roleingroups(id)
+    role_id int4 NOT NULL 
+        REFERENCES roles(id)
 	ON UPDATE CASCADE
 	DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (user_id, group_id, roleingroup_id)
- );
-COMMENT ON TABLE usergroups IS
+    UNIQUE (group_id, role_id)
+);
+COMMENT ON TABLE roleingroups IS
  	'Grupo y rol que tiene cada usuario';
 
 CREATE TABLE permissions (
-	id serial,
- 	name text NOT NULL,
- 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE permissions IS
-	'Permisos:
-	 CRUD (Create, Read, Upgrade and Delete)';
-
-CREATE TABLE usergroup_permissions (
 	id SERIAL,
-	usergroup_id int4 NOT NULL
-		REFERENCES usergroups(id)
+        roleingroup_id int4 NOT NULL
+		REFERENCES roleingroups(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	permission_id int4 NOT NULL
-		REFERENCES permissions(id)
+        controller_id int4 NOT NULL
+		REFERENCES controllers(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+        action_id int4 NOT NULL
+		REFERENCES actions(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
  	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-	UNIQUE (usergroup_id, permission_id)
+	UNIQUE (roleingroup_id, controller_id, action_id)
 );
-COMMENT ON TABLE usergroup_permissions IS
-	'Permisos específicos al grupo y rol:
-	 CRUD (Create, Read, Upgrade and Delete)';
+COMMENT ON TABLE permissions IS
+	'Acciones específicas al controlador y al rol';
+
+CREATE TABLE user_roleingroups (
+	id serial,
+    	user_id int4 NOT NULL
+		REFERENCES users(id)
+        	ON UPDATE CASCADE
+       		ON DELETE CASCADE
+		DEFERRABLE,
+    	roleingroup_id int4 NOT NULL
+		REFERENCES roleingroups(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+	UNIQUE (user_id, roleingroup_id)
+);
 
 CREATE TABLE sessions (
     id serial NOT NULL,
@@ -151,3 +162,4 @@ CREATE TABLE sessions (
 CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
 COMMENT ON TABLE sessions IS
  	'Almacenamiento de sesiones';
+
