@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   set_primary_key "user_id"
   
-  attr_protected :id, :moduser_id, :created_on, :updated_on
+ # attr_protected :id, :moduser_id, :created_on, :updated_on
 
   validates_presence_of :firstname,  :lastname1, 
   :dateofbirth, :birth_country_id, :birth_state_id, :birth_city, 

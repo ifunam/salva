@@ -5,7 +5,7 @@ class GroupTest < Test::Unit::TestCase
   include UnitSimple
 
   def setup
-    @user_groups = %w(salva sa)
+    @user_groups = %w(salva sa depto)
   end
 
   def test_crud 
