@@ -4,12 +4,14 @@
 # Likewise, all the methods added will be available for all controllers.
 
 require 'authenticated_system'
+require 'rbac'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  include Rbac
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
-#  before_filter :rbac_required   
+  before_filter :rbac_required   
 
   helper :salva, :table, :user, :navigator, :date, :select, :paginator, :quickpost
   
