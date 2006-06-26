@@ -1,5 +1,7 @@
 require 'yaml'
 class NavigatorController < ApplicationController
+  skip_before_filter :rbac_required
+
   def tree_loader
     ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
     tree = YAML::parse( File.open(ymlfile) )

@@ -6,6 +6,7 @@
 \i catalogs/controllers.sql
 \i catalogs/userstatuses.sql
 \i catalogs/roleingroups.sql
+\i catalogs/permissions.sql
 \i catalogs/default_user.sql
 \i catalogs/countries.sql
 \i catalogs/states.sql
