@@ -1,5 +1,5 @@
 class WizardController < ApplicationController
-
+  skip_before_filter :rbac_required
   model :model_sequence
 
   def index
