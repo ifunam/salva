@@ -1,7 +1,8 @@
 module Rbac
   def rbac_required
     roles = get_roleingroup(session[:user])
-    if roles == nil
+
+    if roles.length <= 0
       flash[:warning] = 'Por favor defina un rol para el usuario en sesión...'
     else
       controller = Controller.find_by_name(controller_name) 
@@ -32,11 +33,12 @@ module Rbac
     rolesid = []
     roles = UserRoleingroup.find(:all, :conditions => [ 'user_id = ?', user_id])
     roles.each {  |rol| rolesid << rol.id }
-    return rolesid if rolesid.length > 0
+    return rolesid 
   end
   
   def check_permission(rol_id,controller_id,action_id)
-    return true if Permission.find(:first, :conditions => ['roleingroup_id = ? AND controller_id = ? AND action_id = ?', rol_id, controller_id, action_id ])
+    return false unless Permission.find(:first, :conditions => ['roleingroup_id = ? AND controller_id = ? AND action_id = ?', rol_id, controller_id, action_id ]) 
+    return true
   end
   
 end
