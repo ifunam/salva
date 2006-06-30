@@ -11,6 +11,14 @@
 <%= text_field 'edit', 'descr', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'descr' %>
 </div>
 
+<div class="row"> 
+<label for="group_id" class="label"><%= get_label('group_id') %></label> 
+<div id="group_id">
+<%= table_select('edit', Group, {:tabindex => 3, :required => 0 }) %> 
+<%= quickpost('group') %> 
+</div>
+</div>
+
 
 <!--[eoform:group]-->
 

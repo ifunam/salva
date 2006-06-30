@@ -62,6 +62,27 @@ module TableHelper
     render(:partial => '/salva/show', :locals => { :body => body})
   end
   
+  def list_tree(collection, options = {} )
+    header = options[:header]
+    columns = options[:columns]
+    list = []
+    attr = 'name'
+    collection.each { |row|
+      cell = []
+      if row.ancestors
+        row.ancestors.reverse.each { | parent | 
+          cell << parent.send(attr)
+        }
+      end
+      cell << row.send(attr).to_s if row.send(attr) != nil        
+
+      cell_content = cell.join(', ').to_s+'.'
+      list.push({'id' => row.id, 'cell_content' => cell_content })
+    }
+    render(:partial => '/salva/list', 
+           :locals => { :header => header, :list => list })
+  end
+
   def is_id?(name)
     if name =~/_id$/ then
       true
