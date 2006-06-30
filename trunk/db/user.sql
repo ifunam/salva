@@ -49,14 +49,19 @@ CREATE TABLE groups (
     id serial NOT NULL,
     name text NOT NULL,
     descr text NULL,
+    group_id integer NULL
+	REFERENCES groups(id) 
+        ON UPDATE CASCADE           
+        ON DELETE CASCADE           
+        DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE(name)
+    UNIQUE(name, group_id)
 );
 COMMENT ON TABLE groups IS
 	'Grupos (tipos) de usuario del sistema:
-	 SALVA, Secretaría académica, Nombre de los deptos';
+	 Admin,SALVA, Secretaría académica, Nombre de los deptos';
 
 CREATE TABLE roles (
     id serial, 
@@ -94,17 +99,6 @@ CREATE TABLE controllers (
 COMMENT ON TABLE controllers IS
 	'Lista de controladores: people, address, book, etc';
 
-CREATE TABLE accessrules (
-	id serial,
- 	name text NOT NULL,
- 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE accessrules IS
-	'Reglas de acceso: Global, Individual, Grupo';
-
 CREATE TABLE roleingroups (
     id SERIAL,
     group_id int4 NOT NULL
@@ -116,14 +110,10 @@ CREATE TABLE roleingroups (
         REFERENCES roles(id)
 	ON UPDATE CASCADE
 	DEFERRABLE,
-    accessrule_id int4 NOT NULL 
-        REFERENCES accessrules(id)
-	ON UPDATE CASCADE
-	DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (group_id, role_id, accessrule_id)
+    UNIQUE (group_id, role_id)
 );
 COMMENT ON TABLE roleingroups IS
  	'Grupo y rol que tiene cada usuario';
