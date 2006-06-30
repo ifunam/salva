@@ -49,7 +49,7 @@ CREATE TABLE groups (
     id serial NOT NULL,
     name text NOT NULL,
     descr text NULL,
-    group_id integer NULL
+    parent_id integer NULL
 	REFERENCES groups(id) 
         ON UPDATE CASCADE           
         ON DELETE CASCADE           
@@ -57,7 +57,7 @@ CREATE TABLE groups (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE(name, group_id)
+    UNIQUE(name, parent_id)
 );
 COMMENT ON TABLE groups IS
 	'Grupos (tipos) de usuario del sistema:
@@ -66,6 +66,7 @@ COMMENT ON TABLE groups IS
 CREATE TABLE roles (
     id serial, 
     name text NOT NULL,
+    has_group_right BOOLEAN NOT NULL default 't',
     descr text NULL,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,

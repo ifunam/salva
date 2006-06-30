@@ -1,8 +1,9 @@
 class Group < ActiveRecord::Base
-  acts_as_tree :foreign_key => "group_id"
-
+  acts_as_tree 
+  
   validates_presence_of :name
-  validates_numericality_of :group_id
-  belongs_to :group
-  validates_uniqueness_of :name
+  validates_uniqueness_of :group_id, :scope => [:name, :parent_id]
+  validates_numericality_of :parent_id
+  
+  belongs_to :group, :class_name => 'Group', :foreign_key => 'parent_id'
 end
