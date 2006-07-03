@@ -111,3 +111,5 @@ group: Grupo
 career_id: Carrera
 institutioncareer: Carrera en institución
 degree_id: Grado
+has_group_right: Privilegios de grupo
+role: Rol(es) de usuario

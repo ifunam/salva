@@ -16,10 +16,18 @@ module TableHelper
               if belongs_opts[:include]
                 cell << row.send(model).send(belongs_opts[:include]).send(field) if row.send(model) != nil
               else
-                cell << row.send(model).send(field) if row.send(model) != nil
+                if row.column_for_attribute(attr).type.to_s == 'boolean' then
+                  cell << setbool_tag(attr,row.send(attr))
+                else
+                  cell << row.send(model).send(field) if row.send(model) != nil
+                end
               end
             else
-              cell << row.send(attr) if row.send(attr) != nil
+              if row.column_for_attribute(attr).type.to_s == 'boolean' then
+                cell << setbool_tag(attr,row.send(attr))
+              else
+                cell << row.send(attr) if row.send(attr) != nil
+              end
             end
           end
         } 
@@ -102,6 +110,8 @@ module TableHelper
     case attr
     when /gender/
       condition ? 'Masculino' : 'Femenino' 
+    when /has_group_right/
+      condition ? 'Con privilegios de grupo' : 'Sin privilegios'
     else
       condition ? 'Sí' : 'No'
     end

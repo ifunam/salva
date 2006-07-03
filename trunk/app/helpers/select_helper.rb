@@ -107,4 +107,25 @@ module SelectHelper
                     :loading => loading_msg,
                     :success => success_msg)
   end
-end
+
+  def tree_select(object, model, opts={})
+    opts['z:required'] = 'true' 
+    opts['z:required_message'] = 'Seleccione una opción'
+    select(object, 'parent_id',  
+           model.find(:all, :order => 'name, parent_id ASC').collect! {  |p| 
+             [ optionlabel(p), p.id ]  if p.name.length > 0
+           },
+           {:prompt => '-- Seleccionar --'}, opts)
+  end
+
+  def optionlabel(p)
+    option = []
+    if p.ancestors
+      p.ancestors.reverse.each { | parent | 
+        option << parent.name
+      }
+    end
+    option << p.name
+    option.join(' / ') 
+  end
+end  
