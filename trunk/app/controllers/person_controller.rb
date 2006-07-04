@@ -45,7 +45,7 @@ class PersonController < ApplicationController
   
   def create 
     @edit = Person.new(params[:edit])
-    @edit.id = session[:user] 
+    @edit.id = session[:user_id] 
     @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
 
@@ -60,7 +60,7 @@ class PersonController < ApplicationController
   
   def update
     @edit = Person.new(params[:edit])
-    @edit.id = session[:user] 
+    @edit.id = session[:user_id]
     @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
 
@@ -102,7 +102,7 @@ class PersonController < ApplicationController
   end
   
   def get_person
-    @edit = Person.find(:first, :conditions => [ "user_id=?", session[:user]])
+    @edit = Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
   end
 
 end

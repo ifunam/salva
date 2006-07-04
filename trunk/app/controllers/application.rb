@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
+  before_filter :set_userid
+  before_filter :set_user
   #  before_filter :rbac_required   
   
   helper :salva, :table, :user, :navigator, :date, :select, :paginator, :quickpost
@@ -35,5 +37,14 @@ class ApplicationController < ActionController::Base
       ActiveRecord::Base.connection.execute  "SET datestyle TO 'SQL, DMY';"
     end
   end
-  
+
+  def set_userid
+    if @params[:user_id]
+      session[:user_id] = @params[:user_id] if is_admin(session[:user])
+    end
+  end
+
+  def set_user
+    session[:user_id] = session[:user_id] || session[:user]
+  end
 end

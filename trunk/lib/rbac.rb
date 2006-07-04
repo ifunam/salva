@@ -29,6 +29,14 @@ module Rbac
     end
   end
 
+  def is_admin(user_id)
+    roleingroups = get_roleingroup(user_id)
+    roleingroups.each { |roleingroup|
+      roleingroup = Roleingroup.find(:first, roleingroup.roleingroup_id)
+      return true if roleingroup.group_id == 1 and roleingroup.role_id == 1
+     }
+  end
+  
   def get_roleingroup(user_id)
     rolesid = []
     roles = UserRoleingroup.find(:all, :conditions => [ 'user_id = ?', user_id])

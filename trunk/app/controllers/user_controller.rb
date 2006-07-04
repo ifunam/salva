@@ -98,10 +98,12 @@ class UserController < ApplicationController
   # Authenticates a user by their login name and unencrypted password in the
   # datatabes and verify if the userstatus is equal to 2(Activo)
   def auth(login, passwd)
-    @user = User.find_by_login(login) 
-    if @user.passwd == encrypt(passwd, @user.salt) \
-      and @user.userstatus_id == 2
-      return @user 
+    @user = User.find(:first, :conditions => [ 'login = ? ', login])
+    if @user
+      if @user.passwd == encrypt(passwd, @user.salt) \
+        and @user.userstatus_id == 2
+        return @user 
+      end
     end
   end
 end
