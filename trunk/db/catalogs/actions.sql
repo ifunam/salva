@@ -7,4 +7,5 @@ INSERT INTO actions (name) VALUES ('purge');
 INSERT INTO actions (name) VALUES ('purge_selected');
 INSERT INTO actions (name) VALUES ('create');
 INSERT INTO actions (name) VALUES ('update');
+INSERT INTO actions (name) VALUES ('update_select');
 
