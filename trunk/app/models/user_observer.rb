@@ -5,12 +5,12 @@ class UserObserver < ActiveRecord::Observer
     @new = user.new_record?
   end
   
-  def after_save(user)
-    if @new
-      @usergroup= UserGroup.new
-      @usergroup.user_id = user.id
-      @usergroup.group_id = 2 # Salva group
-      @usergroup.save
-    end
-  end
+  #   def after_save(user)
+  #     if @new
+  #       @usergroup= UserRoleingroup.new
+  #       @usergroup.user_id = user.id
+  #       @usergroup.group_id = 2 # Salva group
+  #       @usergroup.save
+  #     end
+  #   end
 end
