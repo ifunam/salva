@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_required   
   before_filter :change_userid
   before_filter :set_user_id
-  before_filter :rbac_required   
+#  before_filter :rbac_required   
   
   helper :salva, :table, :user, :navigator, :date, :select, :paginator, :quickpost
   

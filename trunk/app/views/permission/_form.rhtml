@@ -1,0 +1,30 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:permission]-->
+<div class="row"> 
+<label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
+<div id="roleingroup_id">
+<%= table_select('edit', Roleingroup, {:tabindex => 1, :required => 1 }) %> 
+<%= quickpost('roleingroup') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="controller_id" class="label"><%= get_label('controller_id') %> <span class="required">*</span></label> 
+<div id="controller_id">
+<%= table_select('edit', Controller, {:tabindex => 2, :required => 1 }) %> 
+<%= quickpost('controller') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="action_id" class="label"><%= get_label('action_id') %> <span class="required">*</span></label> 
+<div id="action_id">
+<%= table_select('edit', Action, {:tabindex => 3, :required => 1 }) %> 
+<%= quickpost('action') %> 
+</div>
+</div>
+
+
+<!--[eoform:permission]-->
+
