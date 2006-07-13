@@ -30,6 +30,10 @@ class PersonController < ApplicationController
     get_person
   end  
 
+  def list
+     @person_pages, @persons = paginate :person, :per_page => 10
+  end
+  
   def photo
     get_person
     @headers['Pragma'] = 'no-cache'

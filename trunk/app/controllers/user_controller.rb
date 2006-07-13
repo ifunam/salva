@@ -93,6 +93,10 @@ class UserController < ApplicationController
     self.current_user = nil
     reset_session
   end
+
+  def list
+      @user_pages, @users = paginate :user, :per_page => 10
+  end
   
   protected
   # Authenticates a user by their login name and unencrypted password in the
