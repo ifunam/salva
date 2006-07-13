@@ -1,5 +1,5 @@
 require 'digest/sha2'
-module AuthenticatedSystem
+module Auth
   
   # Create a security token for use in logging in a user who has forgotten
   # his password or has just created his login.
