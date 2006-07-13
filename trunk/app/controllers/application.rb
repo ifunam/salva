@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
-  before_filter :set_userid
-  before_filter :set_user
+  before_filter :change_userid
+  before_filter :set_user_id
   before_filter :rbac_required   
   
   helper :salva, :table, :user, :navigator, :date, :select, :paginator, :quickpost
@@ -38,16 +38,17 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def set_userid
+  def change_userid
     if @params[:user_id]
-      if is_admin?(session[:user]) or 
-          has_rights_overuser?(session[:user],@params[:user_id])
+      if is_admin?(session[:user])
+        #or 
+        #  has_rights_overuser?(session[:user],@params[:user_id])
         session[:user_id] = @params[:user_id] 
       end
     end
   end
   
-  def set_user
-    session[:user_id] = session[:user_id] || session[:user]
+  def set_user_id
+    session[:user_id] = session[:user] unless session[:user_id] 
   end
 end

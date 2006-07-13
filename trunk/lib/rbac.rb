@@ -49,13 +49,13 @@ module Rbac
     roleingroup = UserRoleingroup.find(:first, 
                                        :conditions => [ 'user_id = ? AND group_id', 
                                                         user_id, group_id])
-    if roleingroup.role.name == 'SALVA' and roleingroup.role.has_group_right == false  
+    if roleingroup.role.name == 'Salva' and roleingroup.role.has_group_right == false  
       return true 
     end
   end
   
-  def has_rights_overuser?(user_id,thisuser_id)
-    groups = get_groups(user_id, thisuser_id)    
+  def has_rights_overuser?(user_id, thisuser_id)
+    groups = get_groups(thisuser_id)    
     groups.each { | group_id |
       return true if has_group_rights?(user_id, group_id)
     }
@@ -65,19 +65,29 @@ module Rbac
     roleingroup = UserRoleingroup.find(:first, 
                                        :conditions => [ 'user_id = ? AND group_id', 
                                                         user_id, group_id])
-    return true  if roleingroup.role.has_group_right == true
+    return true  if roleingroup.role.has_group_right
+    return false
   end
   
+  def get_roleingroup_id(id)
+    rol = UserRoleingroup.find(:first, :conditions => [ 'id = ?', id])
+    return rol.roleingroup_id
+  end
+
   def is_admin?(user_id)
-    roleingroups = get_roleingroups(user_id)
-    roleingroups.each { |roleingroup|
-      roleingroup = Roleingroup.find(:first, roleingroup.roleingroup_id)
-      unless roleingroup.group.name == 'ADMIN' and \
-        roleingroup.role.name == 'Administrador'and \
-        roleingroup.role.has_group_right == true
+    user_roleingroups = get_roleingroups(user_id)
+    user_roleingroups.each { |user_roleingroup_id|
+      roleingroup_id = get_roleingroup_id(user_roleingroup_id)
+      roleingroup = Roleingroup.find(:first, roleingroup_id)
+#      if roleingroup.group.name == 'ADMIN' and \
+#        roleingroup.role.name == 'Administrador' and \
+#        roleingroup.role.has_group_right 
+      if roleingroup.group_id == 1 and  roleingroup.role_id == 1
+        logger.info("IS_ADMIN"+roleingroup_id.to_s+user_id.to_s + roleingroup.group_id.to_s + roleingroup.role_id.to_s)
         return true
       end
     }
+    return false
   end
   
   def check_permission(rol_id,controller_id,action_id)
