@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include AuthenticatedSystem
+  include Auth
 
   attr_accessible :email, :login, :passwd
   

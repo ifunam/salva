@@ -6,7 +6,7 @@ class <%= controller_class_name %>Controller; def rescue_action(e) raise e end; 
 
 class <%= controller_class_name %>ControllerTest < Test::Unit::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  include AuthenticatedTestHelper
+  include Auth
 
   fixtures :<%= table_name %>
 
