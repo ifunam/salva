@@ -1,4 +1,6 @@
+require 'table_helper'
 module SelectHelper   
+  include TableHelper
   def simple_select(object, model, model_id, tabindex=nil, required=nil)
     opts = { :tabindex => tabindex }
     if required == 1
@@ -111,7 +113,8 @@ module SelectHelper
   def tree_select(object, model, opts={})
     opts['z:required'] = 'true' 
     opts['z:required_message'] = 'Seleccione una opción'
-    select(object, 'parent_id',  
+    attr_name = opts[:attr_name] || 'parent_id'
+    select(object, attr_name,
            model.find(:all, :order => 'name, parent_id ASC').collect! {  |p| 
              [ optionlabel(p), p.id ]  if p.name.length > 0
            },
@@ -128,4 +131,11 @@ module SelectHelper
     option << p.name
     option.join(' / ') 
   end
+
+  def tree_select2(object, model, columns)
+    collection = model.find(:all)
+    list = list_list(collection, columns)
+    select(object, model.name.downcase + '_id', list)      
+  end
+  
 end  

@@ -1,9 +1,16 @@
 module TableHelper
 
   def table_list(collection, options = {} )
-    header = options[:header]
-    columns = options[:columns]
-    
+    header = options[:header] 
+    list = []
+    list_list(collection, options[:columns]).each { |cell, id|
+      list << { 'id' => id, 'cell_content' =>  cell}
+    }
+    render(:partial => '/salva/list', 
+           :locals => { :header => header, :list => list })
+  end
+  
+  def list_list(collection, columns)
     list = []
     collection.each { |row|
       cell = []
@@ -15,12 +22,11 @@ module TableHelper
         } 
       end
       cell_content = cell.join(', ').to_s+'.'
-      list.push({'id' => row.id, 'cell_content' => cell_content })
+      list.push([cell_content, row.id])
     }
-    render(:partial => '/salva/list', 
-           :locals => { :header => header, :list => list })
+    list
   end
-  
+
   def table_show(collection, options = {})
     default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
     hidden = options[:hidden]    
@@ -64,7 +70,11 @@ module TableHelper
                 cell << setbool_tag(attr,row.send(attr))
               else
                 if row.send(model).has_attribute?(field) then
-                  cell << row.send(model).send(field) if row.send(model) != nil
+                  if row.send(model).public_methods.include? 'ancestors'
+                    cell << list_tree_path(model, row.send(attr))
+                  else
+                    cell << row.send(model).send(field) if row.send(model) != nil
+                  end
                 else
                   attributes = []
                   row.send(model).attribute_names().each { |name|
@@ -93,21 +103,29 @@ module TableHelper
     header = options[:header]
     columns = options[:columns]
     list = []
-    attr = 'name'
     collection.each { |row|
-      cell = []
-      if row.ancestors
-        row.ancestors.reverse.each { | parent | 
-          cell << parent.send(attr)
-        }
+      if row.public_methods.include? 'ancestors'
+        cell_content = list_tree_path(row.class.name, row.id)        
+      else
+        cell_content = table_cell(row, columns)
       end
-      cell << row.send(attr).to_s if row.send(attr) != nil        
-
-      cell_content = cell.join(', ').to_s+'.'
       list.push({'id' => row.id, 'cell_content' => cell_content })
     }
     render(:partial => '/salva/list', 
            :locals => { :header => header, :list => list })
+  end
+
+  def list_tree_path(model, id)
+    attr = 'name'
+    cell = []
+    row = Inflector.constantize(Inflector.camelize(model)).find(id)
+    if row.ancestors
+      row.ancestors.reverse.each { | parent |
+        cell << parent.send(attr)
+      }
+    end
+    cell << row.send(attr).to_s if row.send(attr) != nil
+    cell.join(', ')
   end
 
   def is_id?(name)
