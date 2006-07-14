@@ -1,4 +1,5 @@
 module TableHelper
+
   def table_list(collection, options = {} )
     header = options[:header]
     columns = options[:columns]
@@ -7,30 +8,7 @@ module TableHelper
     collection.each { |row|
       cell = []
       if columns.is_a?Array then
-        columns.each { |attr| 
-          if row.send(attr) != nil then
-            if is_id?(attr) then
-              (model, field) = set_belongs_to(attr)
-              myclass = row.class.name
-              belongs_opts = myclass.constantize.reflect_on_association(model.to_sym).options
-              if belongs_opts[:include]
-                cell << row.send(model).send(belongs_opts[:include]).send(field) if row.send(model) != nil
-              else
-                if row.column_for_attribute(attr).type.to_s == 'boolean' then
-                  cell << setbool_tag(attr,row.send(attr))
-                else
-                  cell << row.send(model).send(field) if row.send(model) != nil
-                end
-              end
-            else
-              if row.column_for_attribute(attr).type.to_s == 'boolean' then
-                cell << setbool_tag(attr,row.send(attr))
-              else
-                cell << row.send(attr) if row.send(attr) != nil
-              end
-            end
-          end
-        } 
+        cell = table_cell(row, columns)
       else
         row.attributes().each { |key, value| 
           cell << value if key != 'id' and value != nil 
@@ -70,6 +48,47 @@ module TableHelper
     render(:partial => '/salva/show', :locals => { :body => body})
   end
   
+  def table_cell(row, columns)
+    cell = []
+    if columns.is_a?Array then
+      columns.each { |attr| 
+        if row.send(attr) != nil then
+          if is_id?(attr) then
+            (model, field) = set_belongs_to(attr)
+            myclass = row.class.name
+            belongs_opts = myclass.constantize.reflect_on_association(model.to_sym).options
+            if belongs_opts[:include]
+              cell << row.send(model).send(belongs_opts[:include]).send(field) if row.send(model) != nil
+            else
+              if row.column_for_attribute(attr).type.to_s == 'boolean' then
+                cell << setbool_tag(attr,row.send(attr))
+              else
+                if row.send(model).has_attribute?(field) then
+                  cell << row.send(model).send(field) if row.send(model) != nil
+                else
+                  attributes = []
+                  row.send(model).attribute_names().each { |name|
+                    s = StringScanner.new(name)
+                    s.match?(/\w+_id/)
+                    attributes << name if s.matched?
+                  }
+                  cell << '['+table_cell( row.send(model), attributes).join(',').to_s+']'
+                end
+              end
+            end
+          else
+            if row.column_for_attribute(attr).type.to_s == 'boolean' then
+              cell << setbool_tag(attr,row.send(attr))
+            else
+              cell << row.send(attr) if row.send(attr) != nil
+            end
+          end
+        end
+      } 
+    end
+    cell
+  end
+
   def list_tree(collection, options = {} )
     header = options[:header]
     columns = options[:columns]
