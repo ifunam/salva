@@ -49,6 +49,7 @@ module Rbac
   end
   
   def has_rights_overuser?(user_id, thisuser_id)
+    return true if user_id == thisuser_id
     groups = groups_with_basic_role(thisuser_id)    
     groups.each { | group_id |
       return true if has_group_rights?(user_id, group_id)
@@ -76,11 +77,6 @@ module Rbac
       return true if roleingroup.group_id == group_id and roleingroup.role.has_group_right
     }
     return false
-  end
-
-  def myself?(user_id, thisuser_id)
-    return false unless user_id == thisuser_id
-    return true
   end
 
   def check_permission(rol_id,controller_id,action_id)

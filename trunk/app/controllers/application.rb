@@ -40,8 +40,7 @@ class ApplicationController < ActionController::Base
   
   def change_userid
     if @params[:user_id]
-      if  myself?(session[:user], @params[:user_id]) or
-          is_admin?(session[:user]) or 
+      if  is_admin?(session[:user]) or 
           has_rights_overuser?(session[:user], @params[:user_id]) 
         session[:user_id] = @params[:user_id] 
       end
