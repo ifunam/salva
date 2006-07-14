@@ -48,8 +48,9 @@ module Rbac
     return rolesid 
   end
   
-  def has_rights_overuser?(user_id, thisuser_id)
-    return true if user_id == thisuser_id
+  def has_rights_overuser?(user_id,thisuser_id)
+    return true if user_id.to_i == thisuser_id.to_i
+    
     groups = groups_with_basic_role(thisuser_id)    
     groups.each { | group_id |
       return true if has_group_rights?(user_id, group_id)
