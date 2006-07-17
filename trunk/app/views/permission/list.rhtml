@@ -1,6 +1,6 @@
 <!--[list:permission]-->
 <%= table_list(@collection, { :header => "Título", :columns =>
-%w(controller_id action_id roleingroup_id) }) %> 
+%w(controller_id action_id roleingroup_id), :group => %w( controller_id roleingroup_id) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

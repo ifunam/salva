@@ -2,15 +2,14 @@ module TableHelper
 
   def table_list(collection, options = {} )
     header = options[:header] 
-    list = []
-    list_list(collection, options[:columns]).each { |cell, id|
-      list << { 'id' => id, 'cell_content' =>  cell}
-    }
+    list = list_list(collection, options)
     render(:partial => '/salva/list', 
            :locals => { :header => header, :list => list })
   end
   
-  def list_list(collection, columns)
+  def list_list(collection, options)
+    columns = options[:columns]
+    group = options[:group]
     list = []
     collection.each { |row|
       cell = []
@@ -26,6 +25,36 @@ module TableHelper
     }
     list
   end
+
+#   def group_list(collection, options)
+#     columns = options[:columns]
+#     group = options[:group]
+#     ungroup = columns - group
+#     grouped = Hash.new
+    
+#     collection.each { |row|
+#       a = []
+#       group.each { |attr|
+#         (model, field) = set_belongs_to(attr)        
+#         a << row.send(model).send(field)
+#       }      
+#       key = a.join('_')      
+#       if grouped[key] == nil then
+#          grouped[key] = []
+#       end
+#       ungroup.each { |attr|
+#         (model, field) = set_belongs_to(attr)        
+#         grouped[key] << row.send(model).send(field)
+
+#       }
+#     }    
+
+#     grouped.each { |key, content|
+#       cell_content = key + content.join(' ')
+#       list.push([cell_content, row.id])
+#     }
+#     list
+#   end
 
   def table_show(collection, options = {})
     default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
