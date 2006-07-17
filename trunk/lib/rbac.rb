@@ -1,21 +1,14 @@
 module Rbac
   def rbac_required
     uroles = get_roleingroups(session[:user])
-
+    
     if uroles.length <= 0
       flash[:warning] = 'Por favor defina un rol para el usuario en sesión...'
     else
       controller = Controller.find_by_name(controller_name) 
       action = Action.find_by_name(action_name) 
-      if controller and action
-        authorized = false
-        uroles.each { | roleingroup_id |
-          if check_permission(roleingroup_id, controller.id, action.id) 
-            authorized = true 
-            break
-          end
-        }
-        if authorized == false
+      if controller and action 
+        unless is_authorized?(uroles, controller.id, action.id)
           flash[:warning] = "No tiene permisos para usar este controlador '#{controller_name} => #{action_name}'..."
         end
       else 
@@ -33,8 +26,9 @@ module Rbac
     roleingroups = get_roleingroups(user_id)
     roleingroups.each { |roleingroup_id|
       roleingroup = Roleingroup.find(:first, :conditions => [ 'id = ?', roleingroup_id])
-      if roleingroup.group.name == 'ADMIN' and roleingroup.role.name == 'Administrador' \
-        and roleingroup.role.has_group_right 
+      if roleingroup.group.name == 'ADMIN' and \
+        roleingroup.role.name == 'Administrador' and \
+        roleingroup.role.has_group_right 
         return true
       end
     }
@@ -76,6 +70,13 @@ module Rbac
       roleingroup = Roleingroup.find(:first, 
                                      :conditions => [ 'id = ?', roleingroup_id])
       return true if roleingroup.group_id == group_id and roleingroup.role.has_group_right
+    }
+    return false
+  end
+
+  def is_authorized?(uroles, controller_id, action_id)
+    uroles.each { | roleingroup_id |
+      return true if check_permission(roleingroup_id, controller_id, action_id)
     }
     return false
   end
