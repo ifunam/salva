@@ -134,7 +134,7 @@ module SelectHelper
 
   def tree_select2(object, model, columns)
     collection = model.find(:all)
-    list = list_list(collection, columns)
+    list = list_collection(collection, columns)
     select(object, model.name.downcase + '_id', list)      
   end
   

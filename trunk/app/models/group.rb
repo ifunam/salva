@@ -5,6 +5,4 @@ class Group < ActiveRecord::Base
   validates_numericality_of :parent_id
   
   belongs_to :group, :class_name => 'Group', :foreign_key => 'parent_id'
-
-
 end

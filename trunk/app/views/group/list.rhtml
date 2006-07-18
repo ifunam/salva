@@ -1,5 +1,5 @@
 <!--[list:group]-->
-<%= list_tree(@collection, { :header => "Título", :columns => %w(name ) }) %> 
+<%= table_list(@collection, { :header => "Título", :columns => %w(parent_id name) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
