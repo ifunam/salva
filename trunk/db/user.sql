@@ -129,10 +129,10 @@ CREATE TABLE permissions (
 		REFERENCES controllers(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-        action_id integer[] NOT NULL,
---                REFERENCES actions(id)
---		ON UPDATE CASCADE
---		DEFERRABLE,
+        action_id integer NOT NULL
+                REFERENCES actions(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
  	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
