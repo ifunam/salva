@@ -166,19 +166,26 @@ CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
 COMMENT ON TABLE sessions IS
  	'Almacenamiento de sesiones';
 
--- CREATE OR REPLACE FUNCTION check_action_reference() RETURNS TRIGGER 
--- SECURITY DEFINER AS '
--- DECLARE 
--- BEGIN
--- 	action_id.each  { |action_id|
--- 	return NEW if SELECT id FROM actions WHERE id = action_id
--- 	}
---         RETURN NEW;
--- END;
--- ' LANGUAGE 'plpgsql';
+CREATE OR REPLACE FUNCTION check_action_reference() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE
+	array_size integer;
+	actions_rec actions%ROWTYPE;
+BEGIN 
+	SELECT INTO array_size array_upper(NEW.action_id, 1);
+	FOR i IN 1..array_size LOOP
+	 	SELECT INTO actions_rec * FROM actions WHERE id = NEW.action_id[i];
+	  	IF NOT FOUND THEN
+			RAISE  NOTICE ''Key (action_id)=(%) is not present in table "roleingroups"'', NEW.action_id[i];
+		  	RAISE EXCEPTION ''insert or update on table "permissions" violates foreign key	 constraint "permissions_action_id_fkey"'';
+		END IF;
+	END LOOP;
+	RETURN NEW;
+END;'
+LANGUAGE 'plpgsql';
 
--- CREATE TRIGGER check_action_insert BEFORE INSERT ON permissions
--- 	FOR EACH ROW EXECUTE PROCEDURE check_action_reference
+CREATE TRIGGER check_action_on_permission_insert BEFORE INSERT 
+ON permissions	FOR EACH ROW EXECUTE PROCEDURE check_action_reference();
 
--- CREATE TRIGGER check_action_insert BEFORE UPDATE ON permissions
--- 	FOR EACH ROW EXECUTE PROCEDURE check_action_reference
+CREATE TRIGGER check_action_on_permission_update BEFORE UPDATE 
+ON permissions	FOR EACH ROW EXECUTE PROCEDURE check_action_reference();
