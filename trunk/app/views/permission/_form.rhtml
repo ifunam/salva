@@ -19,7 +19,7 @@
 <div class="row"> 
 <label for="action_id" class="label"><%= get_label('action_id') %> <span class="required">*</span></label> 
 <div id="action_id">
-<%= check_box_array('edit', Action, get_array_ids(@edit, "action_id")) %> </p>
+<%= check_box_array('edit', Action, get_ids_fromarray(@edit, "action_id")) %> </p>
 </div>
 </div>
 

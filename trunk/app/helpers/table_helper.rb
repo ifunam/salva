@@ -1,5 +1,4 @@
 module TableHelper
-
   def table_list(collection, options = {} )
     header = options[:header] 
     list = list_collection(collection, options[:columns])
@@ -10,117 +9,104 @@ module TableHelper
   def list_collection(collection, columns)
     list = []
     collection.each { |row|
-      cell_content = cell_content(row, columns).join(', ').to_s+'.'
-      list.push([cell_content, row.id])
+      text = columns_content(row, columns).join(', ').to_s+'.'
+      list.push([text, row.id])
     }
-    list
+    return list
   end
   
-  def cell_content(row, columns)
-    cell = []
+  def columns_content(row, columns)
+    s = []
     if columns.is_a?Array then
-      cell = attr_content(row, columns)
+      s = columns_totext(row, columns)
     else
       row.attributes().each { |key, value| 
-        cell << value if key != 'id' and value != nil 
+        s << value if key != 'id' and value != nil 
       } 
     end
-    return cell
+    return s
   end
   
-  def attr_content(row, columns)
-    cell = []
+  def columns_totext(row, columns)
+    s = []
     columns.each { |attr| 
-      if row.send(attr) != nil then
-        if is_id?(attr) then
-          cell << attr_complex(row, attr)
-        else
-          cell << attr_simple(row, attr)
-        end
+      next if row.send(attr) == nil 
+      if is_id?(attr) then
+        s << attributeid_totext(row, attr)
+      else
+        s << attribute_totext(row, attr)
       end
     } 
-    return cell
+    return s
   end
   
-  def attr_simple(row, attr)
+  def attribute_totext(row, attr)
     return false unless row.send(attr) 
     if row.column_for_attribute(attr).type.to_s == 'boolean' then
-      return setbool_tag(attr,row.send(attr))
+      return get_boolean_tag(attr,row.send(attr))
     else
       return row.send(attr) 
     end
   end
-
-  def check_attr_array(row, attr1)
-    row.attributes_before_type_cast.each { |attr, value|
-      if value =~ /,/ and attr1.to_s == attr.to_s then
-#        logger.info('attr_array2 '+value)
-        return value
-
-      end
-    }
-    return nil
-  end
-      
-     
-  def get_array_ids(row, attr1)
-    row.attributes_before_type_cast.each { |attr, value|
-      if value =~ /,/ and attr1.to_s == attr.to_s then
-        return value.delete('{}').split(',')
-      end
-    }
-    return nil
-  end
-           
-  def attr_complex(row, attr)
-    if attr.to_s == 'parent_id' and row.public_methods.include? 'ancestors'
-      return attr_tree_path(row, 'name')
-    elsif check_attr_array(row, attr) != nil  
-      value = check_attr_array(row, attr) 
-      (model, field) = set_belongs_to(attr)
-      return get_something(model, value)
+  
+  def attributeid_totext(row, attr)
+    (model, field) = get_modelname(attr)
+    if has_ancestors?(row,attr)
+      return attribute_tree_path(row, field)
+    elsif is_attribute_array?(row, attr)
+      return ids_toname(model, get_ids_fromarray(row, attr))
+    elsif has_associated_model?(row,attr,model) 
+      return get_associated_attributes(row,attr,model,field)
+    elsif row.send(model).has_attribute?(field)
+      return row.send(model).send(field) 
     else 
-      (model, field) = set_belongs_to(attr)
-      associated_model = reflect_on_association_model(row,attr,model)
-      if associated_model != nil 
-        return associated_attr(row,model,associated_model,field)
-      elsif row.send(model).has_attribute?(field)
-        return row.send(model).send(field) 
-      else 
-        attributes = get_row_attr(row,model)
-        return attr_content( row.send(model), attributes).join(', ')
-      end
-    end
-  end
-
-  def get_something(model, ids)
-    a = []
-    ids.delete('{}').split(',').each { |id|
-      a << Inflector.camelize(model).constantize.find(id).name
-    }
-    a.join(',')
-  end
-
-  def attr_tree_path(row, attr)
-    cell = []
-    row.ancestors.reverse.each { | parent |
-      cell << parent.send(attr)
-    }
-    return cell
-  end
-  
-  def reflect_on_association_model(row,attr,model)
-    myclass = row.class.name
-    return myclass.constantize.reflect_on_association(model.to_sym).options[:include]
-  end
-  
-  def associated_attr(row,model,associated_model,field)
-    if row.send(model).send(associated_model).has_attribute?(field)
-      return row.send(model).send(associated_model).send(field) 
+      return columns_content(row.send(model), get_attributes(row,model)).join(', ')
     end
   end
   
-  def get_row_attr(row,model)
+  def has_ancestors?(row, attr)
+    return true if attr.to_s == 'parent_id' and \
+    row.public_methods.include? 'ancestors'
+    return false
+  end
+
+  def attribute_tree_path(row, attr)
+    s = []
+    row.ancestors.reverse.each { | parent | s << parent.send(attr) }
+    return s.join(',')
+  end  
+  
+  def is_attribute_array?(row, attr)
+    s = StringScanner.new(row.attributes_before_type_cast[attr])
+    return true if s.match?(/^\{([0-9]+,*)+\}$/) != nil
+    return false
+  end
+  
+  def get_ids_fromarray(row, attr)
+    return row.attributes_before_type_cast[attr].delete('{}').split(',')
+  end
+  
+  def ids_toname(model, ids)
+    s = []
+    ids.each { |id| s << Inflector.camelize(model).constantize.find(id).name }
+    s.join(',')
+  end
+  
+  def has_associated_model?(row,attr,model)
+    klass = row.class.name
+    return true if klass.constantize.reflect_on_association(model.to_sym).options[:include]
+    return false
+  end
+
+  def get_associated_attributes(row,attr,model,field)
+    klass = row.class.name
+    amodel = klass.constantize.reflect_on_association(model.to_sym).options[:include]
+    if row.send(model).send(amodel).has_attribute?(field)
+      return row.send(model).send(amodel).send(field) 
+    end
+  end
+  
+  def get_attributes(row,model)
     attributes = []
     row.send(model).attribute_names().each { |name|
       s = StringScanner.new(name)
@@ -136,7 +122,7 @@ module TableHelper
     end
   end
   
-  def set_belongs_to(attr)
+  def get_modelname(attr)
     belongs_to = [ attr.sub(/_id$/,''), 'name' ]
     case attr
     when /citizen_/
@@ -145,7 +131,7 @@ module TableHelper
     belongs_to
   end
   
-  def setbool_tag(attr,condition)
+  def get_boolean_tag(attr,condition)
     case attr
     when /gender/
       condition ? 'Masculino' : 'Femenino' 
@@ -155,37 +141,8 @@ module TableHelper
       condition ? 'Sí' : 'No'
     end
   end  
-  
-  #   def group_list(collection, options)
-  #     columns = options[:columns]
-  #     group = options[:group]
-#     ungroup = columns - group
-#     grouped = Hash.new
-    
-#     collection.each { |row|
-#       a = []
-#       group.each { |attr|
-#         (model, field) = set_belongs_to(attr)        
-#         a << row.send(model).send(field)
-#       }      
-#       key = a.join('_')      
-#       if grouped[key] == nil then
-#          grouped[key] = []
-#       end
-#       ungroup.each { |attr|
-#         (model, field) = set_belongs_to(attr)        
-#         grouped[key] << row.send(model).send(field)
 
-#       }
-#     }    
-
-#     grouped.each { |key, content|
-#       cell_content = key + content.join(' ')
-#       list.push([cell_content, row.id])
-#     }
-#     list
-#   end
-
+  # ...
   def table_show(collection, options = {})
     default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
     hidden = options[:hidden]    
