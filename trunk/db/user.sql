@@ -129,10 +129,7 @@ CREATE TABLE permissions (
 		REFERENCES controllers(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-        action_id integer NOT NULL
-                REFERENCES actions(id)
-		ON UPDATE CASCADE
-		DEFERRABLE,
+        action_id integer[] NOT NULL,
  	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
@@ -169,3 +166,19 @@ CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
 COMMENT ON TABLE sessions IS
  	'Almacenamiento de sesiones';
 
+-- CREATE OR REPLACE FUNCTION check_action_reference() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	action_id.each  { |action_id|
+-- 	return NEW if SELECT id FROM actions WHERE id = action_id
+-- 	}
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
+
+-- CREATE TRIGGER check_action_insert BEFORE INSERT ON permissions
+-- 	FOR EACH ROW EXECUTE PROCEDURE check_action_reference
+
+-- CREATE TRIGGER check_action_insert BEFORE UPDATE ON permissions
+-- 	FOR EACH ROW EXECUTE PROCEDURE check_action_reference

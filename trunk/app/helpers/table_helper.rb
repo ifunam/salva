@@ -51,9 +51,34 @@ module TableHelper
     end
   end
 
+  def check_attr_array(row, attr1)
+    row.attributes_before_type_cast.each { |attr, value|
+      if value =~ /,/ and attr1.to_s == attr.to_s then
+#        logger.info('attr_array2 '+value)
+        return value
+
+      end
+    }
+    return nil
+  end
+      
+     
+  def get_array_ids(row, attr1)
+    row.attributes_before_type_cast.each { |attr, value|
+      if value =~ /,/ and attr1.to_s == attr.to_s then
+        return value.delete('{}').split(',')
+      end
+    }
+    return nil
+  end
+           
   def attr_complex(row, attr)
     if attr.to_s == 'parent_id' and row.public_methods.include? 'ancestors'
       return attr_tree_path(row, 'name')
+    elsif check_attr_array(row, attr) != nil  
+      value = check_attr_array(row, attr) 
+      (model, field) = set_belongs_to(attr)
+      return get_something(model, value)
     else 
       (model, field) = set_belongs_to(attr)
       associated_model = reflect_on_association_model(row,attr,model)
@@ -67,7 +92,15 @@ module TableHelper
       end
     end
   end
-  
+
+  def get_something(model, ids)
+    a = []
+    ids.delete('{}').split(',').each { |id|
+      a << Inflector.camelize(model).constantize.find(id).name
+    }
+    a.join(',')
+  end
+
   def attr_tree_path(row, attr)
     cell = []
     row.ancestors.reverse.each { | parent |

@@ -37,6 +37,9 @@ class SalvaController < ApplicationController
   
   def edit
     @edit = @model.find(params[:id])
+    @edit.attributes_before_type_cast.each { |attr,value|
+      logger.info('edit_attr '+attr.to_s+' '+ value.class.name.to_s+' '+value.to_s)
+    }
     render :action => 'edit'
   end
   

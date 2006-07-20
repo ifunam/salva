@@ -1,11 +1,10 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:permission]-->
-
 <div class="row"> 
-<label for="controller_id" class="label"><%= get_label('controller_id') %> <span class="required">*</span></label> 
-<div id="controller_id">
-<%= tree_select2('edit', Roleingroup, %w(group_id role_id)) %> 
+<label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
+<div id="roleingroup_id">
+<%= tree_select2('edit', Roleingroup, %w(group_id role_id)) %>
 </div>
 </div>
 
@@ -17,14 +16,13 @@
 </div>
 </div>
 
-<br/>
 <div class="row"> 
 <label for="action_id" class="label"><%= get_label('action_id') %> <span class="required">*</span></label> 
 <div id="action_id">
-<!-- <%= table_select('edit', Action, {:tabindex => 2, :required => 1 }) %>  -->
-<%= check_box_group('edit', Action) %>  
+<%= check_box_array('edit', Action, get_array_ids(@edit, "action_id")) %> </p>
 </div>
 </div>
-<br/>
+
+
 <!--[eoform:permission]-->
 
