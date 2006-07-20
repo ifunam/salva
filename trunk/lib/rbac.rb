@@ -81,9 +81,11 @@ module Rbac
     return false
   end
 
-  def check_permission(rol_id,controller_id,action_id)
-    return false unless Permission.find(:first, :conditions => ['roleingroup_id = ? AND controller_id = ? AND action_id = ?', rol_id, controller_id, action_id ]) 
-    return true
+  def check_permission(rol_id, controller_id, action_id)
+    permission = Permission.find(:first, :conditions => ['roleingroup_id = ? AND controller_id = ?', rol_id, controller_id])
+    return false if permission==nil
+    return permission.attributes_before_type_cast['action_id'].delete('{}').split(',').include?(action_id.to_s)
   end
+
 end
 
