@@ -83,7 +83,7 @@ module TableHelper
   end
   
   def get_ids_fromarray(row, attr)
-    return row.attributes_before_type_cast[attr].delete('{}').split(',')
+    return row.attributes_before_type_cast[attr].delete('{}').split(',') if row.send(attr) != nil
   end
   
   def ids_toname(model, ids)

@@ -133,7 +133,7 @@ CREATE TABLE permissions (
  	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-	UNIQUE (roleingroup_id, controller_id, action_id)
+	UNIQUE (roleingroup_id, controller_id)
 );
 COMMENT ON TABLE permissions IS
 	'Acciones específicas al controlador y al rol';
