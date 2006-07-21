@@ -143,30 +143,29 @@ module TableHelper
   end  
 
   # ...
-  def table_show(collection, options = {})
-    default_hidden = %w(id dbtime moduser_id user_id created_on updated_on) 
-    hidden = options[:hidden]    
-    hidden = [ hidden ] unless hidden.is_a?Array
-    hidden.each { |attr| default_hidden << attr } if hidden != nil
-    
+  def table_show(row, options = {})
+    hidden = hidden_attributes(options[:hidden])
     body = []
-    collection.each { |column| 
+    row.each { |column| 
       attr = column.name
-      if !default_hidden.include?(attr) then
-        if is_id?(attr) then
-          (model, field) = set_belongs_to(attr)
-          body << [ attr, @edit.send(model).send(field) ] unless
-            @edit.send(model) == nil 
-        else
-          next if @edit.send(attr) == nil
-          if @edit.column_for_attribute(attr).type.to_s == 'boolean' then
-            body << [ attr, setbool_tag(attr,@edit.send(attr))] 
+      next if @edit.send(attr) == nil 
+      if !hidden.include?(attr) and 
+          if is_id?(attr) then
+            body << [ attr, attributeid_totext(@edit, attr)]
           else
-            body << [ attr, @edit.send(attr) ] 
+            body << [ attr, attribute_totext(@edit, attr)]
           end
-        end
       end
     }
     render(:partial => '/salva/show', :locals => { :body => body})
   end
+
+  def hidden_attributes(attrs=nil)
+    default = %w(id dbtime moduser_id user_id created_on updated_on) 
+    attrs = [ attrs ] unless attrs.is_a?Array
+    attrs.each { |attr| default << attr } if attrs != nil
+    return default
+  end
+    
+
 end

@@ -176,8 +176,9 @@ BEGIN
 	FOR i IN 1..array_size LOOP
 	 	SELECT INTO actions_rec * FROM actions WHERE id = NEW.action_id[i];
 	  	IF NOT FOUND THEN
-			RAISE  NOTICE ''Key (action_id)=(%) is not present in table "roleingroups"'', NEW.action_id[i];
-		  	RAISE EXCEPTION ''insert or update on table "permissions" violates foreign key	 constraint "permissions_action_id_fkey"'';
+			RAISE  NOTICE ''Key (action_id)=(%) is not present in table "actions"'';
+	                -- , NEW.action_id[i];
+		  	RAISE EXCEPTION ''insert or update on table "permissions" violates foreign key constraint "permissions_action_id_fkey"'';
 		END IF;
 	END LOOP;
 	RETURN NEW;
