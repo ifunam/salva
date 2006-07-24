@@ -125,6 +125,8 @@ module TableHelper
     case attr
     when /citizen_/
       belongs_to[1] = 'citizen'
+    when /user_/
+      belongs_to[1] = 'login'
     end
     belongs_to
   end

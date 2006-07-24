@@ -8,12 +8,19 @@
 
 <div class="row"> 
 <label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'passwd', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'passwd', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+<%= password_field 'edit', 'passwd', 'size' => 15, 'maxsize'=>
+ 30,'tabindex' => 2, 'id' => 'edit_passwd', 'z:required' => 'true',
+ 'z:message' => 'Este campo es requerido' 
+ %>
 </div>
 
 <div class="row"> 
-<label for="salt" class="label"><%= get_label('salt') %></label> 
-<%= text_field 'edit', 'salt', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'salt' %>
+<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label> 
+<%= password_field 'edit', 'passwd_confirmation', 'size' => 15,
+'maxsize'=>  30,'tabindex' => 2, 'id' => 'edit_passwdconfirmation',
+'z:required' => 'true',  'z:message' => 'Este campo es requerido' 
+ %>
+</div>
 </div>
 
 <div class="row"> 
@@ -42,21 +49,6 @@
 <div class="row"> 
 <label for="calendar" class="label"><%= get_label('calendar') %></label> 
 <%= text_field 'edit', 'calendar', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 8, 'id' => 'calendar' %>
-</div>
-
-<div class="row"> 
-<label for="pkcs7" class="label"><%= get_label('pkcs7') %></label> 
-<%= text_field 'edit', 'pkcs7', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 9, 'id' => 'pkcs7' %>
-</div>
-
-<div class="row"> 
-<label for="token" class="label"><%= get_label('token') %></label> 
-<%= text_field 'edit', 'token', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 10, 'id' => 'token' %>
-</div>
-
-<div class="row"> 
-<label for="token_expiry" class="label"><%= get_label('token_expiry') %></label> 
-<%= text_field 'edit', 'token_expiry', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 11, 'id' => 'token_expiry' %>
 </div>
 
 

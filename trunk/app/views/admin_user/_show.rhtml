@@ -1,1 +1,1 @@
-<%= table_show(Users.columns) %>
+<%= table_show(User.columns,  { :hidden => %w(salt passwd)} ) %>

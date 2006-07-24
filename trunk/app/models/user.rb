@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Auth
 
   attr_accessible :email, :login, :passwd
-  
+#  attr_writtable
   belongs_to :userstatus
 
   validates_presence_of     :login, :email, :passwd
