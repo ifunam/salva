@@ -5,9 +5,9 @@ module Rbac
     if uroles.length <= 0
       flash[:warning] = 'Por favor defina un rol para el usuario en sesión...'
     else
-      controller = Controller.find_by_name(controller_name) 
-      action = Action.find_by_name(action_name) 
-      if controller and action 
+      if has_controller_action?(controller_name, action_name)
+        controller = Controller.find_by_name(action_name)
+        action = Action.find_by_name(action_name)
         unless is_authorized?(uroles, controller.id, action.id)
           flash[:warning] = "No tiene permisos para usar este controlador '#{controller_name} => #{action_name}'..."
         end
@@ -63,17 +63,28 @@ module Rbac
     }
     return groupsid
   end
-  
+
   def has_group_rights?(user_id, group_id)
     uroleingroups = get_roleingroups(user_id)
     uroleingroups.each { | roleingroup_id |
       roleingroup = Roleingroup.find(:first, 
                                      :conditions => [ 'id = ?', roleingroup_id])
-      return true if roleingroup.group_id == group_id and roleingroup.role.has_group_right
+
+      if has_parent_groups?(group_id, roleingroup.group_id) or
+          (roleingroup.group_id == group_id and roleingroup.role.has_group_right)
+        return true
+      end
     }
     return false
   end
-
+  
+  def has_parent_groups?(group_id, thisgroup_id)
+    group = Group.find(group_id)
+    group_ids = []
+    group.ancestors.reverse.each { | parent | group_ids << parent.id}
+    return group_ids.include?(thisgroup_id)
+  end
+  
   def is_authorized?(uroles, controller_id, action_id)
     uroles.each { | roleingroup_id |
       return true if check_permission(roleingroup_id, controller_id, action_id)
@@ -86,6 +97,10 @@ module Rbac
     return false if permission==nil
     return permission.attributes_before_type_cast['action_id'].delete('{}').split(',').include?(action_id.to_s)
   end
-
+  
+  def has_controller_action?(cname,aname)
+    return true if Controller.find_by_name(cname) and Action.find_by_name(aname) 
+  end
 end
+
 
