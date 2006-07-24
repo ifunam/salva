@@ -1,0 +1,39 @@
+<div id="login">
+<div class="title"> 
+Registro de usuarios en el SALVA <a href="/" target="_new">Ayuda</a> 
+</div>
+
+<% if error_messages_for 'user' %>
+<div class="notes">
+<%= error_messages_for 'user' %>
+</div>
+<% end %>
+
+<div class="loginform">
+<%= start_form_tag :action => 'create'%>
+
+<div class="row">
+<label>Login:</label> 
+<%= text_field 'user', 'login', 'size' => 15, 'maxsize'=> 15,'tabindex'=> 1, 'id' => 'user_login' %>
+</div>
+
+<div class="row">
+<label for="passwd">Contraseña</label>
+<%= password_field 'user', 'passwd', 'size' => 15, 'maxsize'=> 30,'tabindex' => 2, 'id' => 'user_password' %>
+</div>
+
+<div class="row">
+<label for="passwd_confirmation">Confirmar contraseña</label>
+<%= password_field 'user', 'passwd_confirmation', 'size' => 15, 'maxsize'=> 30,'tabindex' => 3, 'id' => 'user_passwd_confirmation' %>
+</div>
+
+<div class="row">
+<label for="email">Dirección de correo electrónico:</label>
+<%= text_field 'user', 'email', 'size' => 40, 'maxsize'=> 60, 'tabindex' => 4, 'id' => 'user_email' %>
+</div>
+
+<%= submit_tag 'Registrarse', :tabindex => 5 %>
+
+<%= end_form_tag %>
+</div>
+</div>
