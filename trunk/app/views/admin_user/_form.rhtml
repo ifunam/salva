@@ -1,28 +1,64 @@
-<% if error_messages_for 'user' %>
-<div class="notes">
-<%= error_messages_for 'user' %>
-</div>
-<% end %>
+<%= error_messages_for 'edit' %>
 
-<div class="loginform">
-<%= start_form_tag :action => 'create'%>
-
-<div class="row">
-<label>Login:</label> 
-<%= text_field 'user', 'login', 'size' => 15, 'maxsize'=> 15,'tabindex'=> 1, 'id' => 'user_login' %>
+<!--[form:users]-->
+<div class="row"> 
+<label for="login" class="label"><%= get_label('login') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'login', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'login', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
-<div class="row">
-<label for="passwd">Contraseña</label>
-<%= password_field 'user', 'passwd', 'size' => 15, 'maxsize'=> 30,'tabindex' => 2, 'id' => 'user_password' %>
+<div class="row"> 
+<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'passwd', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'passwd', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
-<div class="row">
-<label for="passwd_confirmation">Confirmar contraseña</label>
-<%= password_field 'user', 'passwd_confirmation', 'size' => 15, 'maxsize'=> 30,'tabindex' => 3, 'id' => 'user_passwd_confirmation' %>
+<div class="row"> 
+<label for="salt" class="label"><%= get_label('salt') %></label> 
+<%= text_field 'edit', 'salt', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'salt' %>
 </div>
 
-<div class="row">
-<label for="email">Dirección de correo electrónico:</label>
-<%= text_field 'user', 'email', 'size' => 40, 'maxsize'=> 60, 'tabindex' => 4, 'id' => 'user_email' %>
+<div class="row"> 
+<label for="userstatus_id" class="label"><%= get_label('userstatus_id') %> <span class="required">*</span></label> 
+<div id="userstatus_id">
+<%= table_select('edit', Userstatus, {:tabindex => 4, :required => 1 }) %> 
+<%= quickpost('userstatus') %> 
 </div>
+</div>
+
+<div class="row"> 
+<label for="email" class="label"><%= get_label('email') %></label> 
+<%= text_field 'edit', 'email', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 5, 'id' => 'email' %>
+</div>
+
+<div class="row"> 
+<label for="homepage" class="label"><%= get_label('homepage') %></label> 
+<%= text_field 'edit', 'homepage', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 6, 'id' => 'homepage' %>
+</div>
+
+<div class="row"> 
+<label for="blog" class="label"><%= get_label('blog') %></label> 
+<%= text_field 'edit', 'blog', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 7, 'id' => 'blog' %>
+</div>
+
+<div class="row"> 
+<label for="calendar" class="label"><%= get_label('calendar') %></label> 
+<%= text_field 'edit', 'calendar', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 8, 'id' => 'calendar' %>
+</div>
+
+<div class="row"> 
+<label for="pkcs7" class="label"><%= get_label('pkcs7') %></label> 
+<%= text_field 'edit', 'pkcs7', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 9, 'id' => 'pkcs7' %>
+</div>
+
+<div class="row"> 
+<label for="token" class="label"><%= get_label('token') %></label> 
+<%= text_field 'edit', 'token', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 10, 'id' => 'token' %>
+</div>
+
+<div class="row"> 
+<label for="token_expiry" class="label"><%= get_label('token_expiry') %></label> 
+<%= text_field 'edit', 'token_expiry', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 11, 'id' => 'token_expiry' %>
+</div>
+
+
+<!--[eoform:users]-->
+
