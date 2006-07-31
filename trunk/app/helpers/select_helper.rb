@@ -1,13 +1,13 @@
-require 'table_helper'
+require 'list_helper'
 module SelectHelper   
-  include TableHelper
-
-  def sorted_find(model)
-    sorted_list(model.find(:all, :order => 'name ASC').collect! { |p| 
-                  [ p.name, p.id ] if p.name.length > 0
+  include ListHelper
+  
+  def sorted_find(model, attr='name', order='ASC')
+    sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
+                  [ p.send(attr), p.id ] if p.send(attr) != nil  
                 })
   end
-  
+
   def simple_select(object, model, model_id, tabindex=nil, required=nil)
     opts = { :tabindex => tabindex }
     if required == 1
@@ -66,17 +66,9 @@ module SelectHelper
     select(*params.to_a)
   end
 
-  def sorted_find_byattribute(model, attr='name')
-    sorted_list(model.find(:all, :order => 'name ASC').collect { |p| 
-                  if p.send( opts[:attr] || attr).length != 0 
-                    [ p.send( opts[:attr] || attr), p.id ] 
-                  end
-                }.compact!)
-  end
   
   def byattr_select(object, model, model_id, opts={})
-    select(object, model_id, sorted_find_byattribute(model, opts[:attr]), {:prompt => '-- Seleccionar --'},  {:tabindex => opts[:tabindex] })
-    
+    select(object, model_id, sorted_find(model, opts[:attr]), {:prompt => '-- Seleccionar --'},  {:tabindex => opts[:tabindex] })
   end
 
   def remote_functag(origmodel, destmodel, prefix=nil)
@@ -99,7 +91,12 @@ module SelectHelper
     opts['z:required'] = 'true' 
     opts['z:required_message'] = 'Seleccione una opción'
     collection = model.find(:all)
+    if columns.include? 'parent_id' then
+      fieldname = 'parent_id' 
+    else
+      fieldname = model.name.downcase + '_id'
+    end
     list = list_collection(collection, columns)
-    select(object, model.name.downcase + '_id', list, {:prompt => '-- Seleccionar --'}, opts)
+    select(object, fieldname, list, {:prompt => '-- Seleccionar --'}, opts)
   end
 end  
