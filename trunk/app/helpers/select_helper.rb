@@ -1,26 +1,24 @@
 require 'table_helper'
 module SelectHelper   
   include TableHelper
+
+  def sorted_find(model)
+    sorted_list(model.find(:all, :order => 'name ASC').collect! { |p| 
+                  [ p.name, p.id ] if p.name.length > 0
+                })
+  end
+  
   def simple_select(object, model, model_id, tabindex=nil, required=nil)
     opts = { :tabindex => tabindex }
     if required == 1
       opts['z:required'] = 'true' 
       opts['z:required_message'] = 'Seleccione una opción'
     end
-    
-    select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect! {
-             |p| [ p.name, p.id ] if p.name.length > 0
-           },
-           {:prompt => '-- Seleccionar --'}, opts)
+    select(object, model_id, sorted_find(model), {:prompt => '-- Seleccionar --'}, opts)
   end
   
   def selected_select(object, model, model_id, id, tabindex=nil, required=nil) 
-    args = [ object, model_id, 
-             model.find(:all, :order => 'name ASC').collect { 
-               |p| [ p.name, p.id ] if p.name.length > 0
-             }, 
-             id ]
+    args = [ object, model_id, sorted_find(model), id ]
     select = "<select name=\"#{object}[#{model_id}]\" "
     if tabindex
       select += "tabindex=\"#{tabindex}\" " 
@@ -29,7 +27,7 @@ module SelectHelper
       select +='z:required="true" z:required_message="Seleccione una opción" ' 
     end
     select += ">"
-
+    
     select += "<option>-- Seleccionar --</option> \n" 
     select += options_for_select(*args.to_a) + "\n</select>"
   end    
@@ -50,14 +48,7 @@ module SelectHelper
   def select2update_select(opts={}, dest={})
     model_id = opts[:model].name.downcase + '_id'      
     model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
-    select(opts[:object], model_id,  
-           opts[:model].find(:all, :order => 'name ASC').collect {
-             |p| [ p.name, p.id ] if p.name.length > 0
-           }, 
-           { :prompt => '-- Seleccionar --' },
-           { :onchange => remote_functag(opts[:model].name, dest[:model],
-                                         dest[:prefix]) }
-           )
+    select(opts[:object], model_id, sorted_find(opts[:model]), { :prompt => '-- Seleccionar --' }, { :onchange => remote_functag(opts[:model].name, dest[:model], dest[:prefix]) })
   end
 
   def bycondition_select(opts={}, dest={} )
@@ -66,13 +57,7 @@ module SelectHelper
 
     conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
     
-    params = [ opts[:object], model_id, 
-               opts[:model].find(:all, :order => 'name ASC', 
-                          :conditions => conditions).collect {
-                 |p| [ p.name, p.id ] if p.name.length > 0               
-               }, 
-               {:prompt => '-- Seleccionar --'} 
-             ]
+    params = [ opts[:object], model_id, sorted_find(opts[:model]), {:prompt => '-- Seleccionar --'} ]
     
     if dest[:model] then
       params << {:onchange => remote_functag(opts[:model].name, dest[:model],
@@ -81,17 +66,17 @@ module SelectHelper
     select(*params.to_a)
   end
 
+  def sorted_find_byattribute(model, attr='name')
+    sorted_list(model.find(:all, :order => 'name ASC').collect { |p| 
+                  if p.send( opts[:attr] || attr).length != 0 
+                    [ p.send( opts[:attr] || attr), p.id ] 
+                  end
+                }.compact!)
+  end
+  
   def byattr_select(object, model, model_id, opts={})
-    attr = 'name'
-    select(object, model_id,  
-           model.find(:all, :order => 'name ASC').collect { |p| 
-             if p.send( opts[:attr] || attr).length != 0
-               [ p.send( opts[:attr] || attr), p.id ] 
-             end
-           }.compact!,
-           {:prompt => '-- Seleccionar --'}, 
-           {:tabindex => opts[:tabindex] })
-
+    select(object, model_id, sorted_find_byattribute(model, opts[:attr]), {:prompt => '-- Seleccionar --'},  {:tabindex => opts[:tabindex] })
+    
   end
 
   def remote_functag(origmodel, destmodel, prefix=nil)
@@ -110,32 +95,11 @@ module SelectHelper
                     :success => success_msg)
   end
 
-  def tree_select(object, model, opts={})
+  def tree_select(object, model, columns, opts={})
     opts['z:required'] = 'true' 
     opts['z:required_message'] = 'Seleccione una opción'
-    attr_name = opts[:attr_name] || 'parent_id'
-    select(object, attr_name,
-           model.find(:all, :order => 'name, parent_id ASC').collect! {  |p| 
-             [ optionlabel(p), p.id ]  if p.name.length > 0
-           },
-           {:prompt => '-- Seleccionar --'}, opts)
-  end
-
-  def optionlabel(p)
-    option = []
-    if p.ancestors
-      p.ancestors.reverse.each { | parent | 
-        option << parent.name
-      }
-    end
-    option << p.name
-    option.join(' / ') 
-  end
-
-  def tree_select2(object, model, columns)
     collection = model.find(:all)
     list = list_collection(collection, columns)
-    select(object, model.name.downcase + '_id', list)      
+    select(object, model.name.downcase + '_id', list, {:prompt => '-- Seleccionar --'}, opts)
   end
-  
 end  

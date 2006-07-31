@@ -12,7 +12,17 @@ module TableHelper
       text = columns_content(row, columns).join(', ').to_s+'.'
       list.push([text, row.id])
     }
-    return list
+    return sorted_list(list)
+  end
+  
+  def sorted_list(list,i=0)
+    list.sort {|a, b| 
+      latin1_to_utf8(a[i]).downcase <=> latin1_to_utf8(b[i]).downcase 
+    }
+  end
+  
+  def latin1_to_utf8(str)
+    str.tr('áéíóúÁÉÍÓÚñÑ','aeiouAEIOUnN')
   end
   
   def columns_content(row, columns)
@@ -156,7 +166,8 @@ module TableHelper
       end
       
     }
-    render(:partial => '/salva/show', :locals => { :body => body})
+    render(:partial => '/salva/show', 
+           :locals => { :body => sorted_list(body,1)})
   end
   
   def hidden_attributes(attrs=nil)
