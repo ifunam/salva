@@ -1,0 +1,7 @@
+<%= start_form_tag :action => 'create' %>
+  <%= render :partial =>  Inflector.underscore(@edit.model).downcase.to_s+'/form' %>
+  <div id="operations">
+  <%= submit_tag get_label('save') %> |
+  <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+  </div>
+<%= end_form_tag %>

@@ -47,9 +47,11 @@ class SalvaController < ApplicationController
     logger.info "New Lider "+@lider.to_s if @lider != nil
    if @sequence
      new_sequence
-    else 
-      @edit = @model.new
-      render :action => 'new'
+   elsif @composed_keys 
+     new_composed_keys
+   else
+     @edit = @model.new
+     render :action => 'new'
    end
   end
   
@@ -113,6 +115,14 @@ class SalvaController < ApplicationController
     sequence.user_id = session[:user] 
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
+  end
+
+  def new_composed_keys
+    composed = ModelComposedKeys.new(@model, @composed_keys)
+    composed.moduser_id = session[:user] 
+    composed.user_id = session[:user] 
+    session[:composed] = composed
+    redirect_to :controller => 'composed_keys', :action => 'new'
   end
 
   def set_conditions

@@ -1,8 +1,8 @@
-class UserroleingroupController < HasManyKeysController
+class UserRoleingroupController < SalvaController
   def initialize
     super
     @model = UserRoleingroup
-    @group_keys = %w( user_id )
+    @composed_keys = %w( user_id )
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
