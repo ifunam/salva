@@ -39,35 +39,6 @@ module ApplicationHelper
             } )
   end
   
-  def check_box_group(object, model, options={})
-    options = options.stringify_keys
-    prefix = model.name.downcase+'_id'      
-    if options['prefix'] then
-      prefix = options['prefix']+'_'+model.name.downcase+'_id'
-    end
-    ckbox_group = "<ul>\n"
-    model.find(:all, :order => 'name ASC').collect { |m| 
-      ckbox_group += '<li>' + \
-      check_box_tag("#{object}[#{prefix}][]", m.id, checked = false, 
-                    options = {:id => prefix}) + \
-      m.name + "</li>\n"
-    }
-    ckbox_group += "</ul>\n"
-    ckbox_group
-  end
-  
-  def check_box_array(object, model, values)
-    ckbox_group = "<ul>\n"
-    model.find(:all, :order => 'name ASC').collect { |m| 
-      checked_id = values.include?(m.id.to_s) if values != nil
-      ckbox_group += '<li>' + \
-      check_box_tag("#{object}[#{model.name.downcase}_id][]", m.id, checked = checked_id) + \
-      m.name + "</li>\n"
-    }
-    ckbox_group += "</ul>\n"
-    ckbox_group
-  end
-  
   def link_to_searchdialog(label,partial)
     params = "'partial=#{partial}'"
     success_msg = "new Effect.BlindUp('search_note', {duration: 0.5}); "
@@ -79,5 +50,9 @@ module ApplicationHelper
                                      :loading => loading_msg,
                                      :success => success_msg)
                      )
+  end
+
+  def model_id(model)
+    model.name.downcase + '_id'
   end
 end 

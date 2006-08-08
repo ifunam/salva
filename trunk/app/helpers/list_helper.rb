@@ -1,4 +1,5 @@
 module ListHelper
+
   def list_collection(collection, columns)
     list = []
     collection.each { |row|
@@ -6,6 +7,12 @@ module ListHelper
       list.push([text, row.id])
     }
     return sorted_list(list)
+  end
+
+  def sorted_find(model, attr='name', order='ASC')
+    sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
+                  [ p.send(attr), p.id ] if p.send(attr) != nil  
+                })
   end
   
   def sorted_list(list,i=0)

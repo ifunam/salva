@@ -1,13 +1,7 @@
 require 'list_helper'
+require 'application_helper'
 module SelectHelper   
-  include ListHelper
   
-  def sorted_find(model, attr='name', order='ASC')
-    sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
-                  [ p.send(attr), p.id ] if p.send(attr) != nil  
-                })
-  end
-
   def simple_select(object, model, model_id, tabindex=nil, required=nil)
     opts = { :tabindex => tabindex }
     if required == 1
@@ -33,7 +27,7 @@ module SelectHelper
   end    
   
   def table_select(object, model, opts={})
-    model_id = model.name.downcase+'_id'      
+    model_id = model_id(model)
     if opts[:prefix] then
       model_id = opts[:prefix]+'_'+model.name.downcase+'_id'
     end
@@ -46,13 +40,13 @@ module SelectHelper
   end
 
   def select2update_select(opts={}, dest={})
-    model_id = opts[:model].name.downcase + '_id'      
+    model_id = model_id(opts[:model])
     model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
     select(opts[:object], model_id, sorted_find(opts[:model]), { :prompt => '-- Seleccionar --' }, { :onchange => remote_functag(opts[:model].name, dest[:model], dest[:prefix]) })
   end
 
   def bycondition_select(opts={}, dest={} )
-    model_id = opts[:model].name.downcase+'_id'
+    model_id = model_id(opts[:model])
     model_id = opts[:prefix] + '_' + model_id if opts[:prefix] != nil
 
     conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
@@ -94,7 +88,7 @@ module SelectHelper
     if columns.include? 'parent_id' then
       fieldname = 'parent_id' 
     else
-      fieldname = model.name.downcase + '_id'
+      fieldname = model_id(model)
     end
     list = list_collection(collection, columns)
     select(object, fieldname, list, {:prompt => '-- Seleccionar --'}, opts)

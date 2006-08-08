@@ -5,7 +5,7 @@
 <div class="row"> 
 <label for="roleingroup_id" class="label"><%= get_label('login') %> <span class="required">*</span></label> 
 <div id="user_id">
-<%= tree_select2('edit', User, %w(login email)) %>
+<%= tree_select('edit', User, %w(login email)) %>
 </div>
 </div>
 
@@ -13,7 +13,7 @@
 <div class="row"> 
 <label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
 <div id="roleingroup_id">
-<%= tree_select2('edit', Roleingroup, %w(group_id role_id)) %>
+<%= tree_checkbox_list('edit', Roleingroup, %w(group_id role_id)) %>
 </div>
 </div>
 
