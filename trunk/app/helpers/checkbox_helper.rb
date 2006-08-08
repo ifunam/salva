@@ -1,5 +1,5 @@
 require 'list_helper'
-requite 'application_helper'
+require 'application_helper'
 module CheckboxHelper   
   def checkbox_array(object, model, values=nil)
     collection = sorted_find(model)
