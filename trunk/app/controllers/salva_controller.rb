@@ -18,9 +18,7 @@ class SalvaController < ApplicationController
     
     if @composed_keys 
       @pages = Paginator.new self, @model.count, 10, per_page
-      @collection = @model.find (:all, :select => @composed_keys.join(','), :group => @composed_keys.join(','),
-                          :limit  =>  @pages.items_per_page,
-                          :offset =>  @pages.current.offset )
+      @collection = ModelComposedKeys.new(@model, @composed_keys).list      
     else
       @pages, @collection = paginate Inflector.pluralize(@model), 
       :per_page => per_page || @per_pages, :order_by => @order_by, 
