@@ -16,7 +16,6 @@ class ComposedKeysController < ApplicationController
   
   def create
     @edit = get_composed
-    logger.info params[:edit].keys.to_s
     @edit.prepare(params[:edit])
     if @edit.is_valid?
       @edit.save
@@ -30,6 +29,12 @@ class ComposedKeysController < ApplicationController
     end
   end
   
+  def edit
+    @edit = get_composed
+
+    @edit.model.find(:All, :conditions => [ 'where user_id'])
+  end
+
   def update
     composed = get_composed
     composed.prepare(params[:edit])

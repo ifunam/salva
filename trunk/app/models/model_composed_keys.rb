@@ -44,7 +44,6 @@ class ModelComposedKeys
   def save
     @models.each { |model|
       model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
-      model['user_id'] = @user_id if model.has_attribute? 'user_id' 
       model.save
     }
   end

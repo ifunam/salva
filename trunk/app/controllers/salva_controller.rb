@@ -16,10 +16,17 @@ class SalvaController < ApplicationController
     conditions = set_conditions
     per_page = set_per_page
     
-    @pages, @collection = paginate Inflector.pluralize(@model), 
-    :per_page => per_page || @per_pages, :order_by => @order_by, 
-    :conditions => conditions
-
+    if @composed_keys 
+      @pages = Paginator.new self, @model.count, 10, per_page
+      @collection = @model.find (:all, :select => @composed_keys.join(','), :group => @composed_keys.join(','),
+                          :limit  =>  @pages.items_per_page,
+                          :offset =>  @pages.current.offset )
+    else
+      @pages, @collection = paginate Inflector.pluralize(@model), 
+      :per_page => per_page || @per_pages, :order_by => @order_by, 
+      :conditions => conditions
+    end
+    
     render :action => 'list'
   end
   
@@ -120,7 +127,6 @@ class SalvaController < ApplicationController
   def new_composed_keys
     composed = ModelComposedKeys.new(@model, @composed_keys)
     composed.moduser_id = session[:user] 
-    composed.user_id = session[:user] 
     session[:composed] = composed
     redirect_to :controller => 'composed_keys', :action => 'new'
   end
