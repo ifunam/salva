@@ -63,16 +63,16 @@ module ListHelper
     (model, field) = get_modelname(attr)
     if has_ancestors?(row,attr)
       return attribute_tree_path(row, field)
-    elsif row.send(attr).is_a? Array
+    elsif row.attributes_before_type_cast[attr].is_a? Array
       #is_attribute_array?(row, attr)
 #      return ids_toname(model, get_ids_fromarray(row, attr))
-      return ids_toname(model, row.send(attr))
+      return ids_toname(model, row.attributes_before_type_cast[attr])
     elsif has_associated_model?(row,attr,model) 
       return get_associated_attributes(row,attr,model,field)
     elsif row.send(model).has_attribute?(field)
       return row.send(model).send(field) 
     else 
-      return columns_content(row.send(model), get_attributes(row,model)).join(', ')
+      return columns_content(row.send(model), get_attributes(row.send(model))).join(', ')
     end
   end
   
@@ -100,7 +100,10 @@ module ListHelper
   
   def ids_toname(model, ids)
     s = []
-    ids.each { |id| s << Inflector.camelize(model).constantize.find(id).name }
+    ids.each { |id| 
+      row = Inflector.camelize(model).constantize.find(id)
+      s << '['+columns_content(row, get_attributes(row)).join(', ')+']'
+    }
     s.join(',')
   end
   
@@ -118,9 +121,9 @@ module ListHelper
     end
   end
   
-  def get_attributes(row,model)
+  def get_attributes(row)
     attributes = []
-    row.send(model).attribute_names().each { |name|
+    row.attribute_names().each { |name|
       attributes << name if name =~/\w+_id$/
     }
     return attributes

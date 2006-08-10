@@ -50,22 +50,25 @@ class ModelComposedKeys
   
   def list
     collection = @model.find(:all, :select => @composed_keys.join(','), :group => @composed_keys.join(','))
-    attributes = %w(user_id roleingroup_id) - @composed_keys
-    keys = []
-    @composed_keys.each { |key| keys << key + ' = ?' }
-    a_list = []
+    mylist = []
     collection.each { |row|
-      conditions =  [ keys.join(' AND ') ]
-      @composed_keys.each { |key| conditions <<  row.send(key) }
+      conditions = set_conditions(row, @composed_keys)
+      attributes = %w(user_id roleingroup_id) - @composed_keys
       grouped_collection = @model.find(:all, :select => attributes.join(','), :conditions => conditions)
       attributes.each { |attribute|
         array = []
         grouped_collection.each { |row2| array << row2.send(attribute) }
         row.[]=(attribute, array) 
-        a_list << row
+        mylist << row
       }
     }
-    a_list
+    mylist
+  end
+  
+  def set_conditions(row, keys)
+    conditions = [ keys.collect { |key|  key + ' = ?' }.join(' AND ') ]
+    keys.each { |key| conditions << row.send(key) }
+    return conditions
   end
   
 end
