@@ -64,8 +64,6 @@ module ListHelper
     if has_ancestors?(row,attr)
       return attribute_tree_path(row, field)
     elsif row.attributes_before_type_cast[attr].is_a? Array
-      #is_attribute_array?(row, attr)
-#      return ids_toname(model, get_ids_fromarray(row, attr))
       return ids_toname(model, row.attributes_before_type_cast[attr])
     elsif has_associated_model?(row,attr,model) 
       return get_associated_attributes(row,attr,model,field)

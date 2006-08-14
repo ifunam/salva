@@ -1,4 +1,4 @@
-class UserRoleingroupController < SalvaController
+class UserRoleingroupController < ComposedKeysController
   def initialize
     super
     @model = UserRoleingroup

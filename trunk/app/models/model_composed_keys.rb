@@ -14,27 +14,39 @@ class ModelComposedKeys
     attributes = params.keys - @composed_keys
     i = 0
     @models = []
-    while  i <= get_max_array_size(params, attributes)
+    while  i <= max_array_size_from_params(params, attributes)
       model = @model.new
-      @composed_keys.each { |attribute| model.[]=(attribute, params[attribute.to_sym]) }
-      params.each { |key, value| 
-        next if @composed_keys.include?(key)
-        if value.is_a?(Array) then
-          model.[]=(key, value[i]) 
-        else
-          model.[]=(key, value) 
-        end
-      }
+      self.set_composed_keys(model,@composed_keys, params)
+      self.set_keys(model,@composed_keys, params, i)
       @models << model
       i = i + 1
     end
   end
   
-  def get_max_array_size(params, attributes)
+  def max_array_size_from_params(params, attributes)
     array = []
-    params.each { |key,value| array << value.size if value.is_a?(Array) and attributes.include?(key) }
+    params.each { |key,value| 
+      array << value.size if value.is_a?(Array) and attributes.include?(key) 
+    }
     array.sort.last ? array.sort.last - 1 : 0
+  end    
+
+  def set_composed_keys(model,keys,params)
+    keys.each { |attribute| 
+      model.[]=(attribute, params[attribute.to_sym]) 
+    }
   end  
+  
+  def set_keys(model,keys,params,i)
+    params.each { |key, value| 
+      next if keys.include?(key)
+      if value.is_a?(Array) then
+        model.[]=(key, value[i]) 
+      else
+        model.[]=(key, value) 
+      end
+    } 
+  end
   
   def is_valid?
     @models.each { |model| return false unless model.valid? }
@@ -49,7 +61,8 @@ class ModelComposedKeys
   end
   
   def list
-    collection = @model.find(:all, :select => @composed_keys.join(','), :group => @composed_keys.join(','))
+    collection = @model.find(:all, :select => @composed_keys.join(','), 
+                             :group => @composed_keys.join(','))
     mylist = []
     collection.each { |row|
       conditions = set_conditions(row, @composed_keys)
@@ -59,6 +72,7 @@ class ModelComposedKeys
         array = []
         grouped_collection.each { |row2| array << row2.send(attribute) }
         row.[]=(attribute, array) 
+        row.id = @composed_keys.collect { |key| row.send(key) }.join(':')
         mylist << row
       }
     }
@@ -70,5 +84,40 @@ class ModelComposedKeys
     keys.each { |key| conditions << row.send(key) }
     return conditions
   end
-  
+
+  def set_conditions2(values, keys)
+    conditions = [ keys.collect { |key|  key + ' = ?' }.join(' AND ') ]
+    values.each { |value| conditions << value }
+    return conditions
+  end
+
+  def find(composed_id)
+    ids = composed_id.split(':')
+    i = 0
+    conditions = set_conditions2(ids, @composed_keys)
+    row = @model.find(:first, :conditions => conditions)
+    attributes = %w(roleingroup_id user_id) - @composed_keys
+    grouped_collection = @model.find(:all, :select => attributes.join(','), 
+                                     :conditions => conditions)
+    attributes.each { |attribute|
+      array = []
+      grouped_collection.each { |row2| array << row2.send(attribute) }
+      row.[]=(attribute, array) 
+      row.id = @composed_keys.collect { |key| row.send(key) }.join(':')
+    }
+    row
+  end
+
+  def update(params)
+    attributes = params.keys - @composed_keys
+    @models = []
+    i = 0
+    while  i <= max_array_size_from_params(params, attributes)
+      self.set_composed_keys(model,@composed_keys, params)
+      self.set_keys(model,@composed_keys, params, i)
+      @models << model
+      i = i + 1
+    end
+  end
+
 end

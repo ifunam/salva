@@ -1,27 +1,28 @@
-class ComposedKeysController < ApplicationController
-  skip_before_filter :rbac_required
+class ComposedKeysController < SalvaController
   model :model_composed_keys
   
-  def index
+  def list
+    @parent_controller = set_parent_controller
+    conditions = set_conditions
+    per_page = set_per_page
+    model = set_model_in_session(@model,@composed_keys)
+    @pages = Paginator.new self, @model.count, 10, per_page
+    @collection = model.list      
+    render :action => 'list'
+  end  
+  
+  def new
+    @edit = get_model
     render :action => 'new'
   end
   
-  def get_composed
-    session[:composed] 
-  end
-  
-  def new
-    @edit = get_composed
-  end
-  
   def create
-    @edit = get_composed
+    @edit = get_model
     @edit.prepare(params[:edit])
     if @edit.is_valid?
       @edit.save
       flash[:notice] = @create_msg
-      redirect_to :controller => Inflector.underscore(@edit.model).downcase, :action => 'list'
-      
+      redirect_to :action => 'list'
     else
       logger.info "*** Algo esta mal <<wey>>, checalo! ***"
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -29,20 +30,41 @@ class ComposedKeysController < ApplicationController
     end
   end
   
-  def edit
-    @edit = get_composed
-
-    @edit.model.find(:All, :conditions => [ 'where user_id'])
+  def show
+    model = get_model
+    @edit = model.find(params[:id])
+    render :action => 'show'
   end
-
+  
+  def edit
+    model = get_model
+    @edit = model.find(params[:id])
+    render :action => 'edit'
+  end
+  
   def update
-    composed = get_composed
-    composed.prepare(params[:edit])
-    if composed.update
+    @edit = get_model
+    @edit.prepare_update(params[:edit])
+    if @edit.is_valid?
+      @edit.update
+      flash[:notice] = @create_msg
+      redirect_to :action => 'list'
     else
+      logger.info "*** Algo esta mal <<wey>>, checalo! ***"
+      flash[:notice] = 'Hay errores al guardar esta información'
+      render :action => 'new'
     end
   end
-  #  def list
-  #  end
+  
+  private
+  def set_model_in_session(model, keys)
+    model = ModelComposedKeys.new(model, keys)    
+    model.moduser_id = session[:user] 
+    session[:composedkeys] = model
+  end
+  
+  def get_model
+    session[:composedkeys]
+  end
 
 end

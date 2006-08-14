@@ -16,15 +16,10 @@ class SalvaController < ApplicationController
     conditions = set_conditions
     per_page = set_per_page
     
-    if @composed_keys 
-      @pages = Paginator.new self, @model.count, 10, per_page
-      @collection = ModelComposedKeys.new(@model, @composed_keys).list      
-    else
-      @pages, @collection = paginate Inflector.pluralize(@model), 
-      :per_page => per_page || @per_pages, :order_by => @order_by, 
-      :conditions => conditions
-    end
-    
+    @pages, @collection = paginate Inflector.pluralize(@model), 
+    :per_page => per_page || @per_pages, :order_by => @order_by, 
+    :conditions => conditions
+
     render :action => 'list'
   end
   
@@ -42,9 +37,6 @@ class SalvaController < ApplicationController
   
   def edit
     @edit = @model.find(params[:id])
-    @edit.attributes_before_type_cast.each { |attr,value|
-      logger.info('edit_attr '+attr.to_s+' '+ value.class.name.to_s+' '+value.to_s)
-    }
     render :action => 'edit'
   end
   
@@ -52,8 +44,6 @@ class SalvaController < ApplicationController
     logger.info "New Lider "+@lider.to_s if @lider != nil
    if @sequence
      new_sequence
-   elsif @composed_keys 
-     new_composed_keys
    else
      @edit = @model.new
      render :action => 'new'
@@ -111,6 +101,7 @@ class SalvaController < ApplicationController
  
   def show
     @edit = @model.find(params[:id])
+    render :action => 'show'
   end
 
   private
@@ -120,13 +111,6 @@ class SalvaController < ApplicationController
     sequence.user_id = session[:user] 
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
-  end
-
-  def new_composed_keys
-    composed = ModelComposedKeys.new(@model, @composed_keys)
-    composed.moduser_id = session[:user] 
-    session[:composed] = composed
-    redirect_to :controller => 'composed_keys', :action => 'new'
   end
 
   def set_conditions
