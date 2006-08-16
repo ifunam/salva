@@ -19,8 +19,7 @@ class ComposedKeysController < SalvaController
   def create
     @edit = get_model
     @edit.prepare(params[:edit])
-    if @edit.is_valid?
-      @edit.save
+    if @edit.save
       flash[:notice] = @create_msg
       redirect_to :action => 'list'
     else
@@ -44,18 +43,26 @@ class ComposedKeysController < SalvaController
   
   def update
     @edit = get_model
-    @edit.prepare_update(params[:edit])
-    if @edit.is_valid?
-      @edit.update
-      flash[:notice] = @create_msg
+    @edit.update(params[:edit])
+    
+#    if @edit.is_valid?
+#      @edit.update
+#      flash[:notice] = @create_msg
       redirect_to :action => 'list'
-    else
-      logger.info "*** Algo esta mal <<wey>>, checalo! ***"
-      flash[:notice] = 'Hay errores al guardar esta información'
-      render :action => 'new'
-    end
+#    else
+#      logger.info "*** Algo esta mal <<wey>>, checalo! ***"
+#      flash[:notice] = 'Hay errores al guardar esta información'
+#      render :action => 'new'
+    #    end
   end
-  
+
+  def purge
+    model = get_model
+    @edit = model.find(params[:id])
+    @edit.destroy
+    redirect :action => 'list'
+  end
+
   private
   def set_model_in_session(model, keys)
     model = ModelComposedKeys.new(model, keys)    

@@ -109,15 +109,49 @@ class ModelComposedKeys
   end
 
   def update(params)
-    attributes = params.keys - @composed_keys
-    @models = []
+    composed_id = []
+    @composed_keys.collect { |key| composed_id << params[key] }
+    mymodel = self.find(composed_id.join(':'))
+    new_items= Hash.new
+    delete_items= Hash.new
+    (mymodel.attribute_names & params.keys).each { |key| 
+      next if @composed_keys.include?(key)
+      if params[key].is_a?(Array) and mymodel.attributes_before_type_cast[key].is_a?(Array) 
+        array = []
+        params[key].each { |item| array << item.to_i }
+        new_items[key] = array - mymodel.attributes_before_type_cast[key]
+        delete_items[key] = mymodel.attributes_before_type_cast[key] - array
+      end
+    }
     i = 0
-    while  i <= max_array_size_from_params(params, attributes)
-      self.set_composed_keys(model,@composed_keys, params)
-      self.set_keys(model,@composed_keys, params, i)
-      @models << model
-      i = i + 1
+    myparams = Hash.new
+    @composed_keys.each { |key| 
+      myparams[key.to_sym] = params[key]
+    }
+    new_items.each {  |key, value|
+      myparams[key.to_sym] = value
+    }
+    self.prepare(myparams) 
+    if self.is_valid?
+      self.save
     end
+    #  #      #    @Models << @model.new()
+    #  #      #    @models << @model.find() @model.delete
   end
+
+  def destroy(delete_items)
+    
+  end
+ 
+  #  attributes = params.keys - @composed_keys
+  #  @models = []
+  #  i = 0
+  #  while  i <= max_array_size_from_params(params, attributes)
+  #    self.set_composed_keys(model,@composed_keys, params)
+  #    self.set_keys(model,@composed_keys, params, i)
+  #    @models << model
+  #    i = i + 1
+  #  end
+  #end
 
 end
