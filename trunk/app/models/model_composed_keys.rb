@@ -123,7 +123,7 @@ class ModelComposedKeys
         delete_items[key] = mymodel.attributes_before_type_cast[key] - array
       end
     }
-    i = 0
+
     myparams = Hash.new
     @composed_keys.each { |key| 
       myparams[key.to_sym] = params[key]
@@ -135,12 +135,56 @@ class ModelComposedKeys
     if self.is_valid?
       self.save
     end
+
+    myparams2 = Hash.new
+    @composed_keys.each { |key| 
+      myparams2[key.to_sym] = params[key]
+    }
+    delete_items.each {  |key, value|
+      myparams2[key.to_sym] = value
+    }
+
+    self.prepare_delete(myparams2) 
+    if self.is_valid?
+      self.destroy
+    end
     #  #      #    @Models << @model.new()
     #  #      #    @models << @model.find() @model.delete
   end
 
-  def destroy(delete_items)
-    
+  def prepare_delete(params)
+    @models = [] 
+    attributes = params.keys - @composed_keys
+    i = 0
+    while  i <= max_array_size_from_params(params, attributes)
+      array1 = @composed_keys.collect { |key|  key.to_s + ' = ?' } 
+      array2 = params.keys.collect { |key| key.to_s + ' = ?' unless @composed_keys.include?(key.to_s) }.compact!
+      conditions = [ (array1 + array2).join(' AND ')]
+      @composed_keys.each { |key| conditions << params[key.to_sym] }
+      params.keys.each { |key| 
+        conditions << params[key][i].to_i unless @composed_keys.include?(key.to_s)
+      }
+      model = @model.find(:first, :conditions => conditions)
+      @models << model
+      i = i + 1
+    end
+  end    
+  
+  def prepare_destroy(composed_id)
+    ids = composed_id.split(':')
+    i = 0
+    @models = []
+    conditions = set_conditions2(ids, @composed_keys)
+    collection = @model.find(:all, :conditions => conditions)
+    collection. each { |model|
+      @models << model
+    }    
+  end
+  
+  def destroy
+    @models.each { |model|
+      model.destroy
+    }
   end
  
   #  attributes = params.keys - @composed_keys

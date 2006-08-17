@@ -57,10 +57,10 @@ class ComposedKeysController < SalvaController
   end
 
   def purge
-    model = get_model
-    @edit = model.find(params[:id])
+    @edit = get_model
+    @edit.prepare_destroy(params[:id])
     @edit.destroy
-    redirect :action => 'list'
+    redirect_to :action => 'list'
   end
 
   private
