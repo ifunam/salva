@@ -4,7 +4,7 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content(row, columns).join(', ').to_s+'.'
-      list.push([text, row.id])
+      list.push([text, row.attributes_before_type_cast['id']])
     }
     return sorted_list(list)
   end
@@ -64,7 +64,7 @@ module ListHelper
     if has_ancestors?(row,attr)
       return attribute_tree_path(row, field)
     elsif row.attributes_before_type_cast[attr].is_a? Array
-      return ids_toname(model, row.attributes_before_type_cast[attr])
+      return ids_to_name(model, row.attributes_before_type_cast[attr])
     elsif has_associated_model?(row,attr,model) 
       return get_associated_attributes(row,attr,model,field)
     elsif row.send(model).has_attribute?(field)
@@ -96,7 +96,7 @@ module ListHelper
     return row.attributes_before_type_cast[attr].delete('{}').split(',') if row.send(attr) != nil
   end
   
-  def ids_toname(model, ids)
+  def ids_to_name(model, ids)
     s = []
     ids.each { |id| 
       row = Inflector.camelize(model).constantize.find(id)
@@ -122,7 +122,7 @@ module ListHelper
   def get_attributes(row)
     attributes = []
     row.attribute_names().each { |name|
-      attributes << name if name =~/\w+_id$/
+      attributes << name if name =~/\w+_id$/ or name.to_s == 'name'
     }
     return attributes
   end

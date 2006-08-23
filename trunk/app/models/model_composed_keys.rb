@@ -4,10 +4,12 @@ class ModelComposedKeys
   attr_accessor :moduser_id
   attr_accessor :user_id
   attr_accessor :models
+  attr_accessor :reserved_keywords
   
   def initialize(model, keys)
     @model = model
     @composed_keys = keys
+    @reserved_keywords = %w(updated_on created_on)
   end
   
   def prepare(params)
@@ -66,7 +68,7 @@ class ModelComposedKeys
     mylist = []
     collection.each { |row|
       conditions = set_conditions(row, @composed_keys)
-      attributes = %w(user_id roleingroup_id) - @composed_keys
+      attributes = (@model.new.attributes.keys -  @reserved_keywords) - @composed_keys
       grouped_collection = @model.find(:all, :select => attributes.join(','), :conditions => conditions)
       attributes.each { |attribute|
         array = []
@@ -96,7 +98,7 @@ class ModelComposedKeys
     i = 0
     conditions = set_conditions2(ids, @composed_keys)
     row = @model.find(:first, :conditions => conditions)
-    attributes = %w(roleingroup_id user_id) - @composed_keys
+    attributes = (@model.new.attributes.keys  -  @reserved_keywords) - @composed_keys
     grouped_collection = @model.find(:all, :select => attributes.join(','), 
                                      :conditions => conditions)
     attributes.each { |attribute|
