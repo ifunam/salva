@@ -37,15 +37,15 @@ CREATE TABLE people (
                            ON UPDATE CASCADE
                            DEFERRABLE,
     dateofbirth date NOT NULL,
-    birth_country_id int4 NOT NULL 
+    country_id int4 NOT NULL 
                          REFERENCES countries(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-    birth_state_id int4 NULL
+    state_id int4 NULL
 			REFERENCES states(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
-    birth_city_id int4 NULL
+    city_id int4 NULL
 			REFERENCES cities(id)
 			ON UPDATE CASCADE
 			DEFERRABLE,
@@ -64,9 +64,15 @@ CREATE TABLE people (
 CREATE INDEX "people_firstname_idx" ON people(firstname);
 CREATE INDEX "people_lastname1_idx" ON people(lastname1);
 CREATE INDEX "people_lastname2_idx" ON people(lastname2);
-CREATE UNIQUE INDEX "people_firstname_lastname1_lastname2_idx" ON people(upper(firstname), upper(lastname1), upper(lastname2), dateofbirth);
 COMMENT ON TABLE people IS
 	'Datos personales del usuario';
+COMMENT ON COLUMN people.country_id IS
+	'Pais de nacimiento';
+COMMENT ON COLUMN people.state_id IS
+	'Estado donde nacio';
+COMMENT ON COLUMN people.city_id IS
+	'Ciudad o municipio de nacimiento';
+
 
 CREATE TABLE addresses ( 
     id SERIAL,
