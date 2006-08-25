@@ -22,7 +22,7 @@ module ListHelper
   end
   
   def latin1_to_utf8(str)
-    str.tr('áéíóúÁÉÍÓÚñÑ','aeiouAEIOUnN')
+    str.to_s.tr('áéíóúÁÉÍÓÚñÑ','aeiouAEIOUnN')
   end
   
   def columns_content(row, columns)

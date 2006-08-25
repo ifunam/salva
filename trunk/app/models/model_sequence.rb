@@ -12,22 +12,28 @@ class ModelSequence
   def initialize(array)
     component = []
     prev_child = nil
+    first_child = nil
     array.each { |model| 
       if model.is_a? Array then
         composite = ModelSequence.new(model)
+        composite.user_id =  @user_id if @user_id
+        composite.moduser_id = @moduser_id if @moduser_id
+        composite.return_action = 'list'
+        @return_controller = composite.return_controller if first_child == nil
         composite.parent = prev_child if prev_child
         component << composite
       else
         child = model.new
         component << child
         prev_child = child
+        first_child = child if first_child == nil
       end
     }
     @sequence = component
     @current = 0
     @is_filled = false
     @return_action = 'list'
-    @return_controller = Inflector.underscore(array[0].name)
+    @return_controller = Inflector.underscore(first_child.class.name) unless first_child == nil
     @parent = nil
   end
   
@@ -66,10 +72,12 @@ class ModelSequence
   def save
     lider = @parent ? @parent: sequence[0]
     lider_id = Inflector.underscore(lider.class.name)+'_id'    
-    @sequence.each { |model|      
+    @sequence.each { |model|            
+      model.moduser_id = @moduser_id if model.has_attribute? 'moduser_id' 
+      model.user_id = @user_id if model.has_attribute? 'user_id' 
       if model.class.name.to_s != self.class.name then
-        model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
-        model['user_id'] = @user_id
+#        model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
+#        model['user_id'] = @user_id if model.has_attribute? 'user_id' 
         if lider_id != nil then
           model[lider_id] = lider.id
         end
@@ -100,6 +108,10 @@ class ModelSequence
       end
     }
     flat.flatten
+  end
+
+  def has_attribute?(s)
+    true
   end
 
 end

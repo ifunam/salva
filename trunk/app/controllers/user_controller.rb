@@ -12,7 +12,7 @@ class UserController < ApplicationController
   #   skip_before_filter :login_required
   skip_before_filter :login_required
   skip_before_filter :rbac_required
-  filter_parameter_logging :passwd
+  #filter_parameter_logging :passwd
 
   public
   def index
