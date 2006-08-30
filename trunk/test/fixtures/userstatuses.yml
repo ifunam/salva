@@ -1,4 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-example:
-  id: 1
-  name: New
+new:
+ id: 1
+ name: Nuevo
+activated:
+ id: 2
+ name: Activado
+locked:
+ id: 3
+ name: Bloqueado
+xfiles:
+ id: 4
+ name: Archivo muerto
+

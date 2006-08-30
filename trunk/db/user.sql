@@ -19,10 +19,10 @@ CREATE TABLE users (
     passwd text NULL,
     salt text NULL,
     userstatus_id int4 NOT NULL 
-            REFERENCES userstatuses(id)
-            ON UPDATE CASCADE
-            DEFERRABLE
-	    DEFAULT 1,
+	REFERENCES userstatuses(id)
+        ON UPDATE CASCADE
+        DEFERRABLE
+	DEFAULT 1,
     email text NULL, 
     homepage text NULL, 
     blog text NULL, 

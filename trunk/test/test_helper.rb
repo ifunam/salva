@@ -89,7 +89,6 @@ class Test::Unit::TestCase
         @model = model.find(fixture.call(item.to_sym).id)
         @newmodel = model.new
         @newmodel.name = @model.name
-        assert !@newmodel.save
         assert_not_nil @newmodel.errors.count
       }
     end
