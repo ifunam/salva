@@ -126,7 +126,7 @@ CREATE TABLE professionaltitles (
              REFERENCES schoolings(id) 
              ON UPDATE CASCADE            
              DEFERRABLE,
-        titlemodalities_id integer NOT NULL
+        titlemodality_id integer NOT NULL
              REFERENCES titlemodalities(id)
              ON UPDATE CASCADE                 
              DEFERRABLE,
