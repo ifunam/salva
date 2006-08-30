@@ -18,6 +18,8 @@ CREATE TABLE careers (
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
@@ -44,6 +46,8 @@ CREATE TABLE institutioncareers (
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
 	UNIQUE (institution_id, career_id)
 );
@@ -59,6 +63,8 @@ CREATE TABLE credentials (
         	   REFERENCES users(id)    -- inserted, updated or deleted  
            	ON UPDATE CASCADE       -- data into or from this table.
             	DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -92,6 +98,8 @@ CREATE TABLE schoolings (
            REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id,  institutioncareer_id),
     CONSTRAINT choose_credits_or_year CHECK 
@@ -137,6 +145,8 @@ CREATE TABLE professionaltitles (
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (schooling_id)
 );
