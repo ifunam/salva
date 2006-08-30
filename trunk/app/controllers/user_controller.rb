@@ -20,10 +20,9 @@ class UserController < ApplicationController
   end
   
   def login
-    return unless request.post?
-    self.current_user = auth(params[:user][:login],
-                             params[:user][:passwd])
-    if current_user
+    return true unless request.post?
+    if auth_user?(params[:user][:login],params[:user][:passwd])
+      session[:user] = User.find(:first, :conditions => ['login = ?', params[:user][:login]]).id
       flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
@@ -32,8 +31,8 @@ class UserController < ApplicationController
   end
   
   def login_by_token
-    self.current_user = User.find_by_id_and_token(params[:id], params[:token])
-    if current_user
+    if auth_user_by_id_and_token?(params[:id], params[:token])
+      session[:user] = params[:id]
       flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
@@ -50,8 +49,7 @@ class UserController < ApplicationController
     return unless request.post?
     @user = User.new(@params[:user])
     if @user.save
-      url = url_for(:controller => 'user', :action => 'activate', 
-                    :id => @user.id, :token => @user.token)
+      url = url_for(:controller => 'user', :action => 'activate', :id => @user.id, :token => @user.token)
       UserNotifier.deliver_new_notification(@user, url) 
       render :action => 'create'
     else
@@ -92,24 +90,6 @@ class UserController < ApplicationController
   end
   
   def logout
-    self.current_user = nil
     reset_session
-  end
-
-  def list
-      @user_pages, @users = paginate :user, :per_page => 10
-  end
-  
-  protected
-  # Authenticates a user by their login name and unencrypted password in the
-  # datatabes and verify if the userstatus is equal to 2(Activo)
-  def auth(login, passwd)
-    @user = User.find(:first, :conditions => [ 'login = ? ', login])
-    if @user
-      if @user.passwd == encrypt(passwd, @user.salt) \
-        and @user.userstatus_id == 2
-        return @user 
-      end
-    end
   end
 end

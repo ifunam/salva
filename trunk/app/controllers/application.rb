@@ -3,10 +3,10 @@
 
 # Likewise, all the methods added will be available for all controllers.
 
-require 'auth'
+require 'auth_user'
 require 'rbac'
 class ApplicationController < ActionController::Base
-  include Auth
+  include AuthUser
   include Rbac
   before_filter :configure_charsets
   before_filter :configure_datestyle

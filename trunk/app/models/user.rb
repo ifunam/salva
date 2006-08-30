@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
-  include Auth
-
-  attr_accessible :email, :login, :passwd
-#  attr_writtable
+  include Digest
   belongs_to :userstatus
-
+  attr_accessible :email, :login, :passwd
+  
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..20
@@ -12,10 +10,11 @@ class User < ActiveRecord::Base
   validates_length_of       :passwd,:within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
-
+  
   before_create :prepare_new_record
   after_validation_on_create :prepare_password  
   
+  private
   def prepare_new_record
     # New userstatus and preparing the tokens for the account activation process
     # The salt is used to add a random factor to the plaintext. This might
@@ -24,12 +23,15 @@ class User < ActiveRecord::Base
     self.token = token_string(10)
     self.token_expiry = 7.days.from_now
   end
-
+  
   def prepare_password
     if new_record?
-      self.salt = salted
-      self.passwd = encrypt(self.passwd, self.salt)
-      self.passwd_confirmation = nil    
+      if self.passwd
+        self.salt = salted
+        self.passwd = encrypt(self.passwd, self.salt) 
+        self.passwd_confirmation = nil    
+      end
     end
   end
+  
 end
