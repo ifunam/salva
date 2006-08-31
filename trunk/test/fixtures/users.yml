@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+admin:
+  id: 1
+  email: alex@bsdcoders.org
+  login: admin
+  passwd: adminmaltiempo
+  userstatus_id: 1
+juana:
+  id: 2
+  email: alex@fisica.unam.mx
+  login: juana
+  passwd: juanamaltiempo
+  userstatus_id: 1
+panchito:
+  id: 3
+  email: alexjr85@gmail.com
+  login: panchito
+  passwd: panchitomaltiempo
+  userstatus_id: 1
+
