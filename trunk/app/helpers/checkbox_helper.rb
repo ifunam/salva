@@ -16,6 +16,11 @@ module CheckboxHelper
     list = list_collection(collection, columns)
     checkbox_group(object, model, list, values)
   end
+
+  def checkbox_list(object, model, values=nil)
+    list = sorted_find(model)
+    checkbox_group(object, model, list, values)
+  end
   
   def checkbox_group(object, model, collection, values=nil)
     ckbox_group = "<ul>\n"
@@ -27,6 +32,6 @@ module CheckboxHelper
   end
 
   def li_tag(object, model, id, name, checked_id)
-    '<li>' + check_box_tag("#{object}[#{model_id(model)}][]", id, checked = checked_id) + name + "</li>\n"
+    '<li>' + check_box_tag("#{object}[#{model_id(model)}][]", id, checked = checked_id) + name.to_s + "</li>\n"
   end
 end
