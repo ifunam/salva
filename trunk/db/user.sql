@@ -25,16 +25,21 @@ CREATE TABLE users (
 	DEFAULT 1,
     email text NULL, 
     homepage text NULL, 
-    blog text NULL, 
+    blog text NULL,
     calendar text NULL, 
     pkcs7 text NULL,
     token text NULL,
     token_expiry timestamp DEFAULT CURRENT_TIMESTAMP,
+    moduser_id int4 NULL 
+	REFERENCES users(id)
+        ON UPDATE CASCADE
+        DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(login)
 );
+
 CREATE INDEX users_id_idx ON users(id);
 CREATE INDEX users_login_idx ON users(login);
 COMMENT ON TABLE users IS

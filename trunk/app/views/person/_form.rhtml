@@ -37,28 +37,6 @@
 <%= date_for_select('edit', 'dateofbirth') %>
 </div>
 <br/>
-<div class="row"> 
-<label for="birth_country_id" class="label"><%= get_label('birth_country_id') %></label> 
-<%= select2update_select({:object => 'edit', :model => Country, :prefix => 'birth'}, {:model => 'State', :prefix => 'birth'} ) %>
-</div>
-<br/>
-<div class="row"> 
-<label for="birth_state_id" class="label"><%= get_label('birth_state_id') %></label> 
-<div id="select_country_state_prefix_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
-<div id="select_country_state_prefix">
-<%= select2update_select({:object => 'edit', :model =>State, :prefix => 'birth'}, {:model => 'City', :prefix => 'birth'}) %>
-</div>
-<%= quickpost('state') %> 
-</div>
-<br/>
-<div class="row"> 
-<label for="birth_city_id" class="label"><%= get_label('birth_city_id') %></label> 
-<div id="select_state_city_prefix_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
-<div id="select_state_city_prefix">
-<%= table_select('edit', City, {:prefix => 'birth'}) %>
-</div>
-<%= quickpost('city') %>
-</div>
 <hr/>
 <div class="row"> 
 <label for="photo" class="label"><%= get_label('photo') %></label> 
