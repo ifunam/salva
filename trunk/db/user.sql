@@ -33,7 +33,7 @@ CREATE TABLE users (
     moduser_id int4 NULL 
 	REFERENCES users(id)
         ON UPDATE CASCADE
-        DEFERRABLE,
+        DEFERRABLE,   
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
@@ -50,6 +50,45 @@ COMMENT ON COLUMN users.email IS
 COMMENT ON COLUMN users.pkcs7 IS 
 	'A ser utilizado con PKI (Public Key Infraestructure)';
 
+CREATE TABLE users_logs (
+	id serial,
+	user_id int4 NOT NULL
+		REFERENCES users(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,
+	old_userstatus_id int4 NOT NULL 
+		REFERENCES userstatuses(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,
+	moduser_id int4 NULL 
+		REFERENCES users(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,    
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	PRIMARY KEY (id)
+);
+
+CREATE TABLE usersstatuses_comments (
+	id serial,
+	user_id int4 NOT NULL
+		REFERENCES users(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,
+	userstatus_id int4 NOT NULL 
+		REFERENCES userstatuses(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,
+	comments text NOT NULL,
+	moduser_id int4 NOT NULL 
+		REFERENCES users(id)
+	        ON UPDATE CASCADE
+        	DEFERRABLE,    
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	PRIMARY KEY (id)
+);
+	
 CREATE TABLE groups (
     id serial NOT NULL,
     name text NOT NULL,
@@ -173,3 +212,22 @@ CREATE TABLE sessions (
 CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
 COMMENT ON TABLE sessions IS
  	'Almacenamiento de sesiones';
+
+------
+-- Update stimuluslogs if there was a status change
+------
+CREATE OR REPLACE FUNCTION userstatus_update() RETURNS TRIGGER 
+SECURITY DEFINER AS '
+DECLARE 
+ BEGIN
+ 	IF OLD.userstatus_id = NEW.userstatus_id THEN
+		RETURN NEW;
+	END IF;
+ 	INSERT INTO users_logs (user_id, old_userstatus_id,  moduser_id) 
+ 		VALUES (OLD.id, OLD.userstatus_id, OLD.moduser_id);
+        RETURN NEW;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER userstatus_update BEFORE UPDATE ON users
+	FOR EACH ROW EXECUTE PROCEDURE userstatus_update();
