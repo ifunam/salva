@@ -2,7 +2,7 @@
 - Salva
 - - profile
   - - general
-  - - - person
+    - - person
       - address
       - citizen
       - peopleid
@@ -12,7 +12,7 @@
     - membership
 - - science_and_tech_production
   - - publications
-  - - - book
+    - - book
 - Administrador
 - - users
   - - admin_user

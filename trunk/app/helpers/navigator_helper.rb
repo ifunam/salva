@@ -26,7 +26,7 @@ module NavigatorHelper
           link_tag(child.data)
 
       else
-        @list << link_to(img_tag(child.data), {:controller => 'navigator', 
+        @list << link_to(img_tag(child.data), { :controller => 'navigator', 
                            :item => counter }) + link_tag_navtab(child.data, counter)
       end
       counter += 1
@@ -34,11 +34,10 @@ module NavigatorHelper
     render(:partial => '/salva/navtab')
   end
   
-  def img_tag(image, size=32)
-    image_tag(image+"_on.png", :size => "#{size}x#{size}", :border => 0, 
-              :alt => '*', :valign => 'middle')
+  def img_tag(image=' salvita_welcome', size=32, ext='_32x32.png')
+    image_tag(image+ext, :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
   end
-
+  
   def link_tag(label)
     link_to(get_label(label), { :controller => label })
   end

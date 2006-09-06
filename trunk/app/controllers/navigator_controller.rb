@@ -17,7 +17,7 @@ class NavigatorController < ApplicationController
       navtree.data = 'home'
       @session[:navtree] = navtree
       navtree
-      end
+    end
   end
   
   def index
@@ -25,26 +25,25 @@ class NavigatorController < ApplicationController
   end
   
   def navbar
-    #     @tree = get_tree
+    @tree = get_tree
   end
   
-   def navtab
-     item = params[:item] if params[:item]
-     tree = get_tree
-      if item !=nil and tree.children[item.to_i] then
-	 tree = tree.children[item.to_i]
-	 @session[:navtree] = tree
-      elsif params[:depth] then
-        depth = params[:depth].to_i
-        while depth > 0
-          tree = tree.parent
-          depth += -1
-        end
-        @session[:navtree] = tree
+  def navtab
+    item = params[:item] if params[:item]
+    tree = get_tree
+    if item !=nil and tree.children[item.to_i] then
+      tree = tree.children[item.to_i]
+      @session[:navtree] = tree
+    elsif params[:depth] then
+      depth = params[:depth].to_i
+      while depth > 0
+        tree = tree.parent
+        depth += -1
       end
-
-      @tree = tree  
-      render :action => 'navtab'
-   end
-   
+      @session[:navtree] = tree
+    end
+    
+    @tree = tree  
+    render :action => 'navtab'
+  end
 end
