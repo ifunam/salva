@@ -87,12 +87,15 @@ CREATE TABLE schoolings (
             REFERENCES credentials(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
-    studentid text NULL,
     startyear int4 NOT NULL,
     endyear   int4 NULL,
-    titleholder bool DEFAULT 'f' NOT NULL,
+    studentid text NULL,
     credits int4 NULL
 		CHECK (credits >= 0 AND credits <= 100),
+    average int4 NULL
+		CHECK (credits >= 1 AND credits <= 10),
+    is_studying_this bool DEFAULT 'f' NOT NULL,
+    is_titleholder bool DEFAULT 'f' NOT NULL,
     other text NULL,
     moduser_id int4 NULL    -- Use it only to know who has
            REFERENCES users(id)    -- inserted, updated or deleted  
@@ -102,17 +105,26 @@ CREATE TABLE schoolings (
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id,  institutioncareer_id),
+    CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
+	     (is_studying_this = 'f' AND is_titleholder IS NOT NULL)),
     CONSTRAINT choose_credits_or_year CHECK 
 	(endyear IS NULL OR credits IS NULL OR credits = 100),
     CONSTRAINT valid_period CHECK (startyear < endyear)
+
 );
 COMMENT ON TABLE schoolings IS
-	'Los diferentes pasos (grados) en la historia académica de un usuario';
+	'Los diferentes grados en la historia académica de un usuario:
+	* El nivel de estudios
+	* Lugar y periodo correspondiente a cada uno de sus grados
+	* Si esta estudiando el grado o ya lo termino?
+	* Nos permite saber si esta titulado?
+	* ..
+';
 COMMENT ON COLUMN schoolings.endyear IS
 	'Año de egreso';
 COMMENT ON COLUMN schoolings.studentid IS
 	'Matrícula';
-COMMENT ON COLUMN schoolings.titleholder IS
+COMMENT ON COLUMN schoolings.is_titleholder IS
 	'¿Es ya titulado? (endyear marca únicamente egreso)';
 COMMENT ON COLUMN schoolings.credits IS
 	'Porcentaje de créditos - No se reporta si ya egresó (endyear) ';

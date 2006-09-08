@@ -227,7 +227,7 @@ CREATE TABLE file_articles (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (article_id, filename)
 );
