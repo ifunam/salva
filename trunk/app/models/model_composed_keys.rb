@@ -1,19 +1,78 @@
 class ModelComposedKeys < ActiveRecord::Base
-  include ComposedKeys
-  attr_accessor :composed_keys
-  attr_accessor :model
-  attr_accessor :moduser_id
-  attr_accessor :user_id
-  
+
+  # Class Methods
+  class << self
+    def set_primary_keys(*keys)
+      cattr_accessor :primary_keys, :reserved_attributes 
+      self.primary_keys = keys.collect {|key| key.to_s}
+      self.reserved_attributes = %w(created_on updated_on)
+    end
+    
+    def find(*args)
+      options = extract_options_from_args!(args)
+      case args.first      
+      when :first then find_initial(options)
+      when :all   then find_every(options)
+      else             find_composed_keys(args.first)
+      end
+    end
+
+    def set_conditions_for_primary_keys(ids)
+      [ set_query(self.primary_keys) ] + ids.split(':') 
+    end
+
+    private
+    def find_composed_keys(ids)
+      set_ids(ids) # Used for destroy
+      conditions = set_conditions_for_primary_keys(ids)
+      record = self.find(:first, :conditions => conditions)
+      attributes = %w(action_id)   #(self.attributes.keys  -  self.reserved_attributes) - self.primary_keys
+      grouped_records = self.find(:all, :select => attributes.join(','), :conditions => conditions) #Grouped collection
+      record = set_arrays_in_record(record, grouped_records, attributes)
+      record.id = ids
+      record
+    end
+    
+    
+    def set_query(keys)
+      keys.collect { |key|  key.to_s + ' = ?' }.join(' AND ')
+    end
+
+    def set_ids(ids)
+      cattr_accessor :ids
+      self.ids = ids
+    end
+
+    def set_arrays_in_record (record, records, attributes)
+      attributes.each { |attribute|
+        record.[]=(attribute, records.collect { |myrecord| myrecord.send(attribute) })
+      }
+      record
+    end
+  end
+
+  # Instance Methods
+  def destroy
+    conditions = self.class.set_conditions_for_primary_keys(self.ids) 
+    self.class.find(:all, :conditions => conditions).each { |object|
+      super
+      object.destroy
+    }
+    freeze
+   end
+
   def save 
-    uncomposed_attributes = set_uncomposed_attributes
-    models = fill_models(uncomposed_attributes)
+    attributes = set_uncomposed_attributes
+    models = fill_models(attributes)
     return false unless are_valid_models?(models)
     models.each { |model|
-      sql = set_sql_to_save(model, uncomposed_attributes)
-      connection.insert(sql,"#{self.class.name} Create", self.class.primary_key, self.id, self.class.sequence_name)
-    }      
+      model.create_or_update
+    }
     return true
+  end
+  
+  def create_or_update
+    super
   end
   
   private
@@ -24,16 +83,21 @@ class ModelComposedKeys < ActiveRecord::Base
     }
     return attributes
   end
-  
-  def fill_models(uncomposed_attributes)
+
+  def fill_models(attributes)
     models = []
     i = 0
-    while  i <= get_max_array_size(uncomposed_attributes)
-      models << fill_model(uncomposed_attributes, i)
+    while  i <= get_max_array_size(attributes)
+      models << fill_model(attributes, i)
       i = i + 1
     end
-    return models
+    models
   end
+  
+  def get_max_array_size(uncomposed_attributes)
+    array = uncomposed_attributes.collect { |key,value|  value.size if value.is_a?(Array) }
+    array.sort.last ? array.sort.last - 1 : 0
+  end 
 
   def fill_model(uncomposed_attributes, i)
     model = self.class.new
@@ -48,21 +112,8 @@ class ModelComposedKeys < ActiveRecord::Base
     return model
   end
   
-  def get_max_array_size(uncomposed_attributes)
-    array = uncomposed_attributes.collect { |key,value|  value.size if value.is_a?(Array) }
-    array.sort.last ? array.sort.last - 1 : 0
-  end 
-  
   def are_valid_models?(models)
     models.each { |model| return false unless model.valid? }
     return true
-  end
-
-  def set_sql_to_save(model, uncomposed_attributes)
-    keys = self.primary_keys + uncomposed_attributes.keys #+ self.reserved_attributes
-    values = self.primary_keys.collect { |key| self.attributes[key] }
-    uncomposed_attributes.keys.each {|key|  values << model.send(key) }
-    #self.reserved_attributes.each { |key| values << self.attributes[key] }
-    "INSERT INTO #{self.class.table_name} (#{keys.join(', ')}) VALUES (#{values.join(',')} )"
   end
 end
