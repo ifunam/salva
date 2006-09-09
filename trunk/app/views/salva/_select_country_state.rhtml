@@ -1,2 +1,3 @@
-<%= bycondition_select({ :object => 'edit', :model => State, :belongs_to => 'country_id', :id=> @id}, {:model => 'City' } ) %>
+<%= select_bycondition_to_update_select('edit', State, Country, @id, City) %>
+
 

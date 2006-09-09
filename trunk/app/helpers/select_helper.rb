@@ -39,36 +39,28 @@ module SelectHelper
     end       
   end
 
-  def select2update_select(opts={}, dest={})
-    model_id = model_id(opts[:model])
-    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] !=nil
-    select(opts[:object], model_id, sorted_find(opts[:model]), { :prompt => '-- Seleccionar --' }, { :onchange => remote_functag(opts[:model].name, dest[:model], dest[:prefix]) })
+  def select_to_update_select(obj, model, model_dest)
+    select(obj, model_id(model), sorted_find(model), { :prompt => '-- Seleccionar --' }, { :onchange => remote_functag(model, model_dest) })
   end
 
-  def bycondition_select(opts={}, dest={} )
-    model_id = model_id(opts[:model])
-    model_id = opts[:prefix] + '_' + model_id if opts[:prefix] != nil
-
-    conditions = [ opts[:belongs_to] + ' = ?', opts[:id] ]
-    
-    params = [ opts[:object], model_id, sorted_find(opts[:model]), {:prompt => '-- Seleccionar --'} ]
-    
-    if dest[:model] then
-      params << {:onchange => remote_functag(opts[:model].name, dest[:model],
-                                             dest[:prefix]) }
+  def select_bycondition_to_update_select(obj, model, model_parent, id, model_dest=nil)
+    conditions = [ model_id(model_parent) + ' = ?', id ]
+    list = sorted_list(model.find(:all, :conditions => conditions).collect! {|record| [ record.name, record.id ] if record.name != nil })
+    if model_dest != nil
+      select(obj, model_id(model), list, {:prompt => '-- Seleccionar --'},  {:onchange => remote_functag(model, model_dest) })
+    else
+      select(obj, model_id(model), list, {:prompt => '-- Seleccionar --'})
     end
-    select(*params.to_a)
   end
-
   
   def byattr_select(object, model, model_id, opts={})
     select(object, model_id, sorted_find(model, opts[:attr]), {:prompt => '-- Seleccionar --'},  {:tabindex => opts[:tabindex] })
   end
 
   def remote_functag(origmodel, destmodel, prefix=nil)
-    partial = "select_#{origmodel.downcase}_#{destmodel.downcase}" 
+    partial = "select_#{origmodel.name.downcase}_#{destmodel.name.downcase}" 
     partial += "_prefix" if prefix 
-    
+
     params = "'partial=#{partial}&id='+value"
     partial_note =  partial + "_note"
     success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
