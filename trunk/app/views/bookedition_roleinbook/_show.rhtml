@@ -1,3 +1,1 @@
-
-<%= link_to 'Editar', :action => 'edit', :id => @bookedition_roleinbook %> |
-<%= link_to 'Regresar', :action => 'list' %>
+<%= table_show(BookeditionRoleinbook.columns, :hidden => %w(bookedition_id)) %>

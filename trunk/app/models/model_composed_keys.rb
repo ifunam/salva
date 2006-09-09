@@ -11,7 +11,7 @@ class ModelComposedKeys < ActiveRecord::Base
     def find(*args)
       options = extract_options_from_args!(args)
       case args.first      
-      when :first then find_initial(options)
+      when :first then find_first_composed_keys(options)
       when :all   then find_every_composed_keys(options)
       else             find_composed_keys(args.first)
       end
@@ -25,8 +25,8 @@ class ModelComposedKeys < ActiveRecord::Base
     def find_composed_keys(ids)
       set_ids(ids) # Used for destroy
       conditions = set_conditions_for_primary_keys(ids)
-      record = self.find(:first, :conditions => conditions)
-      attributes = (record.attribute_names  -  self.reserved_attributes) - self.primary_keys
+      record = find_initial({:conditions => conditions})
+      attributes = (record.attribute_names - self.reserved_attributes) - self.primary_keys
       grouped_records = find_every({:select => attributes.join(','), :conditions => conditions})
       record = set_arrays_in_record(record, grouped_records, attributes)
       record.id = ids
@@ -43,18 +43,28 @@ class ModelComposedKeys < ActiveRecord::Base
     
     def set_arrays_in_record (record, records, attributes)
       attributes.each { |attribute|
-        record.[]=(attribute.to_sym, records.collect { |myrecord| myrecord.send(attribute) })
+        array = records.collect { |myrecord| myrecord.send(attribute) }
+        record.[]=(attribute.to_sym, array)
       }
       record
     end
 
     def find_every_composed_keys(options)
-      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(',')})
+      grouped_records = find_every({:select => self.primary_keys.join(','), 
+                                     :group => self.primary_keys.join(',')})
       records = []
       grouped_records.each { |grouped_record|
         records << find_composed_keys(get_ids_from_record(grouped_record))
       }
       records
+    end
+
+    def find_first_composed_keys(options)
+      record = find_initial({:conditions =>  options[:conditions]})
+      grouped_records = find_every({:conditions => options[:conditions]})
+      attributes = (record.attribute_names - self.reserved_attributes) - self.primary_keys
+      record = set_arrays_in_record(record, grouped_records, attributes)
+      record
     end
 
     def get_ids_from_record(record)

@@ -28,7 +28,7 @@ module ListHelper
   def columns_content(row, columns)
     s = []
     if columns.is_a?Array then
-      s = columns_totext(row, columns)
+      s = columns_to_text(row, columns)
     else
       row.attributes().each { |key, value| 
         s << value if key != 'id' and value != nil 
@@ -37,20 +37,20 @@ module ListHelper
     return s
   end
   
-  def columns_totext(row, columns)
+  def columns_to_text(row, columns)
     s = []
     columns.each { |attr| 
       next if row.send(attr) == nil 
       if is_id?(attr) then
-        s << attributeid_totext(row, attr)
+        s << attributeid_to_text(row, attr)
       else
-        s << attribute_totext(row, attr)
+        s << attribute_to_text(row, attr)
       end
     } 
     return s
   end
   
-  def attribute_totext(row, attr)
+  def attribute_to_text(row, attr)
     return false unless row.send(attr) 
     if row.column_for_attribute(attr).type.to_s == 'boolean' then
       return get_boolean_tag(attr,row.send(attr))
@@ -59,7 +59,7 @@ module ListHelper
     end
   end
   
-  def attributeid_totext(row, attr)
+  def attributeid_to_text(row, attr)
     (model, field) = get_modelname(attr)
     if has_ancestors?(row,attr)
       return attribute_tree_path(row, field)
@@ -106,8 +106,8 @@ module ListHelper
   end
   
   def has_associated_model?(row,attr,model)
- #   klass = row.class.name
-#    return true if klass.constantize.reflect_on_association(model.to_sym).options[:include]
+#   klass = row.class.name
+#   return true if klass.constantize.reflect_on_association(model.to_sym).options[:include]
     return false
   end
 
@@ -122,6 +122,7 @@ module ListHelper
   def get_attributes(row)
     attributes = []
     row.attribute_names().each { |name|
+      next if %w(moduser_id created_on updated_on).include? name 
       attributes << name if name =~/\w+_id$/ or name.to_s == 'name'
     }
     return attributes

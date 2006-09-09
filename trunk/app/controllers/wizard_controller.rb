@@ -20,12 +20,7 @@ class WizardController < ApplicationController
  
   def edit
     sequence = get_sequence
-    logger.info "Editsecuencia "+sequence.flat_sequence.to_s+"  "+sequence.sequence.length.to_s
-    if sequence.is_sequence(sequence.sequence[0]) then
-      logger.info "edotseconcia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s
-    end
     sequence.set_current_by_element((params[:current] != nil) ? params[:current].to_i: 0)
-    logger.info "editcurrent "+sequence.current.to_s
     if sequence.is_composite 
       composite = sequence.get_model
       @list = composite.flat_sequence

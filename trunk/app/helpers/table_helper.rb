@@ -16,9 +16,9 @@ module TableHelper
       attr = column.name
       next if @edit.send(attr) == nil or hidden.include?(attr)
       if is_id?(attr) then
-#        body << [ attr, attributeid_totext(@edit, attr)]
+        body << [ attr, attributeid_to_text(@edit, attr)]
       else
-        body << [ attr, attribute_totext(@edit, attr)]
+        body << [ attr, attribute_to_text(@edit, attr)]
       end
       
     }
@@ -27,7 +27,7 @@ module TableHelper
   end
   
   def hidden_attributes(attrs=nil)
-    default = %w(id dbtime moduser_id user_id created_on updated_on) 
+    default = %w(id dbtime moduser_id user_id created_on updated_on moduser) 
     attrs = [ attrs ] unless attrs.is_a?Array
     attrs.each { |attr| default << attr } if attrs != nil
     return default
