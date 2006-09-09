@@ -162,7 +162,7 @@ CREATE TABLE bookedition_roleinbooks (
             ON UPDATE CASCADE
             DEFERRABLE,
     PRIMARY KEY(id),
-    UNIQUE (user_id, bookedition_id)
+    UNIQUE (user_id, bookedition_id, roleinbook_id)
 );
 COMMENT ON TABLE bookedition_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
@@ -225,7 +225,7 @@ CREATE TABLE chapterinbook_roleinbooks (
             ON UPDATE CASCADE
             DEFERRABLE,
     PRIMARY KEY (id),
-    UNIQUE (user_id, chapterinbook_id)
+    UNIQUE (user_id, chapterinbook_id, roleinbook_id)
 );
 COMMENT ON TABLE chapterinbook_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo

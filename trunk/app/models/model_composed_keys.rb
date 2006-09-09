@@ -91,7 +91,7 @@ class ModelComposedKeys < ActiveRecord::Base
   private
   def set_uncomposed_attributes
     attributes = Hash.new
-    ((self.attributes.keys - self.reserved_attributes) - self.primary_keys).each { |key|
+    ((self.attribute_names - self.reserved_attributes) - self.primary_keys).each { |key|
       attributes[key] = self.attributes_before_type_cast[key]
     }
     return attributes
@@ -108,8 +108,9 @@ class ModelComposedKeys < ActiveRecord::Base
   end
   
   def get_max_array_size(uncomposed_attributes)
-    array = uncomposed_attributes.collect { |key,value|  value.size if value.is_a?(Array) }
-    array.sort.last ? array.sort.last - 1 : 0
+    array = []
+    uncomposed_attributes.map { |key,value|  array << value.size if value.is_a?(Array) }
+    array.empty? ? 0 : array.sort.last - 1
   end 
 
   def fill_model(uncomposed_attributes, i)
