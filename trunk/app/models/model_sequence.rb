@@ -146,7 +146,7 @@ class ModelSequence
       else
         index += 1
       end
-      break if (index >= element)      
+      break if (index > element)      
       @current += 1        
     }
   end
