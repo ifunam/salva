@@ -34,7 +34,7 @@ module NavigatorHelper
     render(:partial => '/salva/navtab')
   end
   
-  def img_tag(image=' salvita_welcome', size=32, ext='_32x32.png')
+  def img_tag(image=' salvita_welcome', size=32, ext='.png')
     image_tag(image+ext, :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
   end
   
