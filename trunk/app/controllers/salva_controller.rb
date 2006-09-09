@@ -36,8 +36,12 @@ class SalvaController < ApplicationController
   end
   
   def edit
-    @edit = @model.find(params[:id])
-    render :action => 'edit'
+    if @sequence
+      edit_sequence
+    else
+      @edit = @model.find(params[:id])
+      render :action => 'edit'
+    end
   end
   
   def new
@@ -85,7 +89,15 @@ class SalvaController < ApplicationController
   end
   
   def purge
-    @model.find(params[:id]).destroy
+    if @sequence
+      sequence = ModelSequence.new(@sequence)
+      sequence.moduser_id = session[:user] 
+      sequence.user_id = session[:user] 
+      sequence.fill(params[:id])
+      logger.info "Sequencedel "+sequence.delete.to_s
+    else
+      @model.find(params[:id]).destroy
+    end
     flash[:notice] = @purge_msg
     redirect_to :action => 'list'
   end
@@ -100,9 +112,17 @@ class SalvaController < ApplicationController
   end
  
   def show
-    @edit = @model.find(params[:id])
-    render :action => 'show'
-  end
+    if @sequence
+      sequence = ModelSequence.new(@sequence)
+      sequence.moduser_id = session[:user] 
+      sequence.user_id = session[:user] 
+      sequence.fill(params[:id])
+      session[:sequence] = sequence
+      redirect_to :controller => 'wizard', :action => 'show'
+    else
+      @edit = @model.find(params[:id])
+      render :action => 'show'
+    end  end
 
   private
   def new_sequence
@@ -111,6 +131,15 @@ class SalvaController < ApplicationController
     sequence.user_id = session[:user] 
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
+  end
+
+  def edit_sequence
+    sequence = ModelSequence.new(@sequence)
+    sequence.moduser_id = session[:user] 
+    sequence.user_id = session[:user] 
+    sequence.fill(params[:id])
+    session[:sequence] = sequence
+    redirect_to :controller => 'wizard', :action => 'edit'
   end
 
   def set_conditions

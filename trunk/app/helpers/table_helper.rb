@@ -16,7 +16,7 @@ module TableHelper
       attr = column.name
       next if @edit.send(attr) == nil or hidden.include?(attr)
       if is_id?(attr) then
-        body << [ attr, attributeid_totext(@edit, attr)]
+#        body << [ attr, attributeid_totext(@edit, attr)]
       else
         body << [ attr, attribute_totext(@edit, attr)]
       end

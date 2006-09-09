@@ -1,9 +1,10 @@
-<% for model in @list %>
+<% for @edit in @list %>
  <hr>
- <h2><%= model.class.name %></h2>
+ <a name="<%=Inflector.underscore(@edit.class.name)%>"> </a>
+ <h2><%= @edit.class.name %></h2>
  
- <% errors = model.errors.full_messages %>
+ <% errors = @edit.errors.full_messages %>
  <%= errors.map { | error| error+'<br/>' } if errors.length > 0 %>
- <%= render :partial => Inflector.underscore(model.class.name)+'/form' %>
+ <%= render :partial => Inflector.underscore(@edit.class.name)+'/form' %>
 <% end %>
 

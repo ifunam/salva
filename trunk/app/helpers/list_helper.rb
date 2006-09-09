@@ -106,8 +106,8 @@ module ListHelper
   end
   
   def has_associated_model?(row,attr,model)
-    klass = row.class.name
-    return true if klass.constantize.reflect_on_association(model.to_sym).options[:include]
+ #   klass = row.class.name
+#    return true if klass.constantize.reflect_on_association(model.to_sym).options[:include]
     return false
   end
 

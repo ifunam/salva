@@ -6,40 +6,41 @@ class WizardController < ApplicationController
     render :action => 'new'
   end
 
-  def get_sequence
-     session[:sequence] 
-  end
-  
   def new
     sequence = get_sequence
+    logger.info "Secuencia "+sequence.flat_sequence.to_s
     if sequence.is_composite 
-      redirect_to :action => 'new_multi'
+      composite = sequence.get_model
+      @list = composite.flat_sequence
+      render :action => 'new_multi'
     else
       @edit = sequence.get_model
     end
   end
-  
-  def new_multi
-    sequence = get_sequence
-    composite = sequence.get_model
-    @list = composite.get_children
-  end
  
   def edit
     sequence = get_sequence
-    sequence.current = params[:current].to_i if params[:current] != nil
-    @edit = sequence.get_model
-  end
- 
-  def edit_multi
-    sequence = get_sequence
-    composite = sequence.get_model
-    @list = composite.get_children
+    logger.info "Editsecuencia "+sequence.flat_sequence.to_s+"  "+sequence.sequence.length.to_s
+    if sequence.is_sequence(sequence.sequence[0]) then
+      logger.info "edotseconcia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s
+    end
+    sequence.set_current_by_element((params[:current] != nil) ? params[:current].to_i: 0)
+    logger.info "editcurrent "+sequence.current.to_s
+    if sequence.is_composite 
+      composite = sequence.get_model
+      @list = composite.flat_sequence
+      render :action => 'edit_multi'
+    else
+      @edit = sequence.get_model
+    end
   end
 
-  def list
+  def show
     sequence = get_sequence
     @list = sequence.flat_sequence
+    if sequence.is_sequence(sequence.sequence[0]) then
+      logger.info "showsecuencia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s+";"+@list[0].id.to_s+";"+@list[1].id.to_s
+    end
   end
   
   def create
@@ -50,7 +51,7 @@ class WizardController < ApplicationController
         model[key.to_sym] = value
       }
       if model.valid? then
-        next_model 
+        next_page 
       else
         @edit = sequence.get_model
         render :action => 'edit'
@@ -63,7 +64,7 @@ class WizardController < ApplicationController
   def create_composite
     sequence = get_sequence
     composite =  sequence.get_model
-    models = composite.get_children
+    models = composite.flat_sequence
     params[:edit].each { |attr, value|
       models.each { | model |
         if model.has_attribute? attr
@@ -75,41 +76,54 @@ class WizardController < ApplicationController
     if invalid
       redirect_to :action => 'edit_multi'
     else
-      next_model
+      next_page
     end
   end
 
   def update
     sequence = get_sequence
     mymodel = sequence.get_model
-    params[:edit].each { |key, value|
-      mymodel[key.to_sym] = value
-    }	  
+
+    if (sequence.is_composite) then
+      models = mymodel.flat_sequence
+      params[:edit].each { |attr, value|
+        models.each { | model |
+          if model.has_attribute? attr
+            model[attr.to_sym] = value
+          end
+        }
+    }
+    else
+      params[:edit].each { |key, value|
+        mymodel[key.to_sym] = value        
+      }	  
+    end
+    
     if sequence.is_filled
-      list
-      redirect_to :action  => 'list'
+      redirect_to :action  => 'show'
     else	      
-      next_model
+      next_page
     end
   end
   
-  def previous_model
+  def previous_page
     sequence = get_sequence
-    sequence.previous_model
-    edit
-    render :action => 'edit'
+    sequence.previous_component
+    redirect_to :action  => 'edit'
   end
   
-  def next_model
+  def next_page
     sequence = get_sequence
     if sequence.is_last
-      redirect_to :action  => 'list'
+      redirect_to :action  => 'show'
     else
-      sequence.next_model 
+      logger.info "Nextpagein "+sequence.current.to_s
+      sequence.next_component 
+      logger.info "Nextpageout "+sequence.current.to_s
       if sequence.is_filled
-        edit
+        redirect_to :action  => 'edit'
       else
-        new
+        redirect_to :action  => 'new'
       end
     end
   end
@@ -125,12 +139,6 @@ class WizardController < ApplicationController
      redirect_to :controller => sequence.return_controller, :action => sequence.return_action
   end
 
-  def edit_multi
-    sequence = get_sequence
-    composite = sequence.get_model
-    @list = composite.get_children
-  end
-	  
   def update_multi
      sequence = get_sequence
      sequence.sequence.each { |model|
@@ -138,7 +146,12 @@ class WizardController < ApplicationController
 	   model[key.to_sym] = value if model[key.to_sym] != nil
 	}
      }
-     redirect_to :action  => 'list'     
+     redirect_to :action  => 'show'
   end
-						  
+
+  private
+  def get_sequence
+     session[:sequence] 
+  end
+  
 end

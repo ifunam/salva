@@ -37,16 +37,39 @@ class ModelSequence
     @parent = nil
   end
   
-  def next_model
+  def fill(id)
+    lider = @parent
+    lider_id = Inflector.underscore(lider.class.name)+'_id' if lider != nil
+    i = 0
+    prev_child = nil
+    @sequence.each { |child|
+      if !is_sequence(child) then
+        if lider == nil
+          lider =  child.class.name.constantize.find(id) if id != nil
+          lider_id = Inflector.underscore(lider.class.name)+'_id' if lider != nil
+          @sequence[i] = lider
+        elsif lider != nil then
+          @sequence[i] = child.class.name.constantize.find(:first, :conditions => ["#{lider_id}  = ?", lider.id])
+          prev_child = @sequence[i]
+        end
+      else
+        child.parent = prev_child if prev_child
+        child.fill(id)
+      end
+      i += 1
+    }
+  end
+
+
+  def next_component
     if @current < @sequence.length 
       @current += 1
-      @current += 1 if @sequence[@current+1].class.name == self.class.name
     else
       @is_filled = true
     end
   end
   
-  def previous_model
+  def previous_component
     if @current > 0
       @current -= 1
     end	    
@@ -69,8 +92,12 @@ class ModelSequence
     end
   end
   
+  def is_sequence(child)
+    return child.class == ModelSequence
+  end
+
   def save
-    lider = @parent ? @parent: sequence[0]
+    lider = @parent != nil ? @parent: sequence[0]
     lider_id = Inflector.underscore(lider.class.name)+'_id'    
     @sequence.each { |model|            
       model.moduser_id = @moduser_id if model.has_attribute? 'moduser_id' 
@@ -87,27 +114,41 @@ class ModelSequence
   end    
   
   def is_composite
-    get_model.class.name == self.class.name ? true : false
+    is_sequence(get_model)
   end
   
-  def get_children
-    children = [ @parent ]
-    @sequence.each { |model| 
-      model.class.name.to_s != self.class.name ? children << model : break
-    }
-    children.compact
-  end
-
   def flat_sequence
     flat = []
-    @sequence.each { |model| 
-      if model.class.name.to_s != self.class.name then
-        flat << model 
+    @sequence.each { |child| 
+      if is_sequence(child) then
+        flat << child.flat_sequence 
       else
-        flat << model.flat_sequence
+        flat << child
       end
     }
     flat.flatten
+  end
+
+  def delete
+    array = flat_sequence.compact
+    array.reverse_each { |child|
+      child.destroy
+    }   
+    array
+  end
+  
+  def set_current_by_element(element)
+    @current = 0
+    index = 0    
+    @sequence.each { |child| 
+      if is_sequence(child) then
+        index += child.flat_sequence.length 
+      else
+        index += 1
+      end
+      break if (index >= element)      
+      @current += 1        
+    }
   end
 
   def has_attribute?(s)
