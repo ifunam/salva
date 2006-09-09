@@ -161,7 +161,8 @@ CREATE TABLE bookedition_roleinbooks (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    PRIMARY KEY (user_id, bookedition_id)
+    PRIMARY KEY(id),
+    UNIQUE (user_id, bookedition_id)
 );
 COMMENT ON TABLE bookedition_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un libro';
@@ -179,7 +180,8 @@ CREATE TABLE bookedition_comments (
             ON UPDATE CASCADE
             DEFERRABLE,
     comment text NULL,        -- User comments for each edition
-    PRIMARY KEY (user_id, bookedition_id)
+    PRIMARY KEY(id),
+    UNIQUE (user_id, bookedition_id)
 );
 COMMENT ON TABLE bookedition_comments IS 
 	'Comentarios adicionales del usuario para cada edicición';
@@ -199,7 +201,7 @@ CREATE table chapterinbooks (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
    PRIMARY KEY (id),
-  UNIQUE (bookedition_id, chapter)
+   UNIQUE (bookedition_id, chapter)
 );
 CREATE INDEX chapterinbooks_chapter_idx ON chapterinbooks(chapter);
 COMMENT ON TABLE chapterinbooks IS
@@ -222,7 +224,8 @@ CREATE TABLE chapterinbook_roleinbooks (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    PRIMARY KEY (user_id, chapterinbook_id)
+    PRIMARY KEY (id),
+    UNIQUE (user_id, chapterinbook_id)
 );
 COMMENT ON TABLE chapterinbook_roleinbooks IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
@@ -240,7 +243,8 @@ CREATE TABLE chapterinbook_comments (
             ON UPDATE CASCADE
             DEFERRABLE,
     comment text NULL,        -- User comments for each edition
-    PRIMARY KEY (user_id, chapterinbook_id)
+    PRIMARY KEY (id),
+    UNIQUE (user_id, chapterinbook_id)
 );
 COMMENT ON TABLE chapterinbook_comments IS 
 	'Comentarios adicionales del usuario para cada capítulo';

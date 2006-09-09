@@ -27,7 +27,7 @@
 \i catalogs/languages.sql
 \i catalogs/publicationcategories.sql
 \i catalogs/articlestatuses.sql
-\i catalogs/identifications.sql
+\i catalogs/idtypes.sql
 \i catalogs/migratorystatuses.sql
 \i catalogs/citizenmodalities.sql
 \i catalogs/degrees.sql

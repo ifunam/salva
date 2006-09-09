@@ -161,24 +161,44 @@ CREATE TABLE citizens (
 	      ON UPDATE CASCADE                -- data into or from this table.
    	      DEFERRABLE,
   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE (user_id, citizen_country_id)
 );
 COMMENT ON TABLE citizens IS
 	'Nacionalidades que tiene un usuario';
 
-CREATE TABLE identifications (
+CREATE TABLE idtypes (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE identifications IS
+COMMENT ON TABLE idtypes IS
 	'Tipo de (documento de) identificación:
 	Pasaporte, credencial de elector, ...';
 
-CREATE TABLE peopleids ( 
+CREATE TABLE identifications (
+	id SERIAL,
+	idtype_id int4 NOT NULL 
+		 REFERENCES idtypes(id)
+           	ON UPDATE CASCADE
+           	DEFERRABLE,
+	citizen_country_id int4 NOT NULL 
+		 REFERENCES countries(id)
+           	ON UPDATE CASCADE
+           	DEFERRABLE,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+		REFERENCES users(id)             -- inserted, updated or deleted  
+	      	ON UPDATE CASCADE                -- data into or from this table.
+   	      	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	UNIQUE (idtype_id, citizen_country_id)
+);
+
+CREATE TABLE people_identifications ( 
    id serial,
    user_id int4 NOT NULL 
    	   REFERENCES users(id)
@@ -190,20 +210,16 @@ CREATE TABLE peopleids (
            ON UPDATE CASCADE
            DEFERRABLE,
    descr text NOT NULL,
-   citizen_country_id int4 NOT NULL 
-           REFERENCES countries(id)
-           ON UPDATE CASCADE
-           DEFERRABLE,
    moduser_id int4  NULL    	     -- Use it only to know who has
    REFERENCES users(id)              -- inserted, updated or deleted  
 	      ON UPDATE CASCADE      -- data into or from this table.
    	      DEFERRABLE,
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (user_id),
-   UNIQUE (user_id, identification_id, citizen_country_id)
+   UNIQUE (user_id, identification_id)
 );
-COMMENT ON TABLE peopleids IS
+COMMENT ON TABLE people_identifications IS
 	'Identificaciones de un usuario asociadas a su nacionalidad';
 
 CREATE TABLE memberships ( 
