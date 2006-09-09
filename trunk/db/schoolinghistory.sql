@@ -105,11 +105,11 @@ CREATE TABLE schoolings (
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id,  institutioncareer_id),
-    CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
-	     (is_studying_this = 'f' AND is_titleholder IS NOT NULL)),
-    CONSTRAINT choose_credits_or_year CHECK 
-	(endyear IS NULL OR credits IS NULL OR credits = 100),
-    CONSTRAINT valid_period CHECK (startyear < endyear)
+    CONSTRAINT is_studying_or_is_finished_degree CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
+	     (is_studying_this = 'f' AND  endyear IS NOT NULL AND is_titleholder IS NOT NULL)), 
+	CONSTRAINT choose_credits_or_year CHECK 
+		(endyear IS NULL OR credits IS NULL OR credits = 100),
+	CONSTRAINT valid_period CHECK (startyear < endyear)
 
 );
 COMMENT ON TABLE schoolings IS
@@ -128,6 +128,7 @@ COMMENT ON COLUMN schoolings.is_titleholder IS
 	'¿Es ya titulado? (endyear marca únicamente egreso)';
 COMMENT ON COLUMN schoolings.credits IS
 	'Porcentaje de créditos - No se reporta si ya egresó (endyear) ';
+--  CONSTRAINT is_studying_or_is_finished_degre: Finished Degree (with or without proffessional title)    
 
 CREATE TABLE titlemodalities( 
 	id SERIAL NOT NULL,

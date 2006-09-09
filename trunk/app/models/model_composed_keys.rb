@@ -12,7 +12,7 @@ class ModelComposedKeys < ActiveRecord::Base
       options = extract_options_from_args!(args)
       case args.first      
       when :first then find_initial(options)
-      when :all   then find_every(options)
+      when :all   then find_every_composed_keys(options)
       else             find_composed_keys(args.first)
       end
     end
@@ -26,29 +26,41 @@ class ModelComposedKeys < ActiveRecord::Base
       set_ids(ids) # Used for destroy
       conditions = set_conditions_for_primary_keys(ids)
       record = self.find(:first, :conditions => conditions)
-      attributes = %w(action_id)   #(self.attributes.keys  -  self.reserved_attributes) - self.primary_keys
-      grouped_records = self.find(:all, :select => attributes.join(','), :conditions => conditions) #Grouped collection
+      attributes = (record.attribute_names  -  self.reserved_attributes) - self.primary_keys
+      grouped_records = find_every({:select => attributes.join(','), :conditions => conditions})
       record = set_arrays_in_record(record, grouped_records, attributes)
       record.id = ids
       record
     end
-    
-    
     def set_query(keys)
       keys.collect { |key|  key.to_s + ' = ?' }.join(' AND ')
     end
-
+    
     def set_ids(ids)
       cattr_accessor :ids
       self.ids = ids
     end
-
+    
     def set_arrays_in_record (record, records, attributes)
       attributes.each { |attribute|
-        record.[]=(attribute, records.collect { |myrecord| myrecord.send(attribute) })
+        record.[]=(attribute.to_sym, records.collect { |myrecord| myrecord.send(attribute) })
       }
       record
     end
+
+    def find_every_composed_keys(options)
+      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(',')})
+      records = []
+      grouped_records.each { |grouped_record|
+        records << find_composed_keys(get_ids_from_record(grouped_record))
+      }
+      records
+    end
+
+    def get_ids_from_record(record)
+      self.primary_keys.collect { |key| record.send(key) }.join(':')
+    end
+    
   end
 
   # Instance Methods
@@ -74,7 +86,8 @@ class ModelComposedKeys < ActiveRecord::Base
   def create_or_update
     super
   end
-  
+
+
   private
   def set_uncomposed_attributes
     attributes = Hash.new
