@@ -51,9 +51,9 @@ institution_id: Institución
 institutiontype_id: Tipo de institución
 administrative_key: Clave presupuestal
 startyear: Año de inicio
-endyear: Año de egreso
+endyear: Año de término
 startmonth: Mes de inicio
-endmonth: Mes de egreso
+endmonth: Mes de término
 jobpositiontype_id: Tipo de plaza
 roleinjobposition_id: Categoría
 jobpositionlevel_id: Nivel
@@ -93,6 +93,7 @@ career: Carrera
 jobpositioncategory_id: Categoría
 contracttype_id: Tipo de contrato
 jobposition: Experiencia laboral
+jobposition_id: Empleo
 user_stimulus: Estímulos
 user_grants: Becas
 science_and_tech_production: Producción científica y tecnológica
@@ -113,3 +114,22 @@ institutioncareer: Carrera en institución
 degree_id: Grado
 has_group_right: Privilegios de grupo
 role: Rol(es) de usuario
+institutioncareer_id: Carrera e institución
+credential_id: Nivel
+average: Promedio
+is_studying_this: ¿Está cursando este grado?
+is_titleholder: ¿Titulado?
+titlemodality_id: Modalidad de titulación
+professionalid: Cédula profesional
+year: Año
+thesistitle: Título de tesis
+schoolings: Escolaridad
+professionaltitles: Título profesional
+schooling_id: Escolaridad
+bookedition_roleinbooks: Rol en edición
+grant_id: Beca
+grants: Becas
+grant: Beca
+adscription: Adscripción
+useradscription: Adscripción del Usuario
+adscription_id: Adscripción

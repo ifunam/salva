@@ -8,7 +8,7 @@ module ListHelper
     }
     return sorted_list(list)
   end
-
+  
   def sorted_find(model, attr='name', order='ASC')
     sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
                   [ p.send(attr), p.id ] if p.send(attr) != nil  
@@ -122,7 +122,7 @@ module ListHelper
   def get_attributes(row)
     attributes = []
     row.attribute_names().each { |name|
-      next if %w(moduser_id created_on updated_on).include? name 
+      next if %w(moduser_id created_on updated_on user_id).include? name 
       attributes << name if name =~/\w+_id$/ or name.to_s == 'name'
     }
     return attributes

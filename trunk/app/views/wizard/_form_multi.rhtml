@@ -1,7 +1,7 @@
 <% for @edit in @list %>
  <hr>
- <a name="<%=Inflector.underscore(@edit.class.name)%>"> </a>
- <h2><%= @edit.class.name %></h2>
+ <a name="<%=Inflector.tableize(@edit.class.name)%>"> </a>
+ <h2><%= get_label(Inflector.tableize(@edit.class.name)) %></h2>
  
  <% errors = @edit.errors.full_messages %>
  <%= errors.map { | error| error+'<br/>' } if errors.length > 0 %>

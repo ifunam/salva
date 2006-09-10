@@ -4,7 +4,7 @@
    for row in @list 
 %>
 <% @edit = row %>
-  <%= @edit.class.name %> <%= link_to 'Modificar', :action => 'edit', :current => current %>
+  <%= get_label(Inflector.tableize(@edit.class.name)) %> <%= link_to 'Modificar', :action => 'edit', :current => current %>
   <br/>
   <%= render :partial => Inflector.underscore(@edit.class.name)+'/show' %>
   <br/>

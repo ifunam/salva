@@ -5,13 +5,13 @@ module DateHelper
                ["Septiembre", 9], ["Octubre", 10], ["Noviembre", 11], 
                ["Diciembre", 12] ]
 
-    options = {:tabindex => opts[:tabindex]}
+    options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
     if opts[:required] == 1
       options['z:required'] = 'true'
       options['z:required_message'] = 'Seleccione una opción'
     end
-
-    select(object, attr || 'month', months, {}, options)
+    
+    select(object, attr || 'month', months, options)
   end
   
   def year_select(object, attr=nil, opts={})
@@ -24,13 +24,13 @@ module DateHelper
       years << i
     end
 
-    options = {:tabindex => opts[:tabindex]}
+    options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
     if opts[:required] == 1
       options['z:required'] = 'true'
       options['z:required_message'] = 'Seleccione una opción'
     end
     
-    select(object, attr || 'year', years, {}, options);
+    select(object, attr || 'year', years, options);
   end
   
   def date_for_select(object, attr=nil)

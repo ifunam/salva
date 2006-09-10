@@ -2,10 +2,10 @@ class MembershipController < SalvaController
   def initialize
     super
     @model = Membership
-    @create_msg = 'La membresÃ­a ha sido agregada'
-    @update_msg = 'La membresÃ­a ha sido actualizada'
-    @purge_msg = 'La membresÃ­a se ha borrado'
+    @create_msg = 'La información se ha guardado'
+    @update_msg = 'La información ha sido actualizada'
+    @purge_msg = 'La información se ha borrado'
     @per_pages = 10
-    @order_by = 'descr, endyear, startyear'
+    @order_by = 'id'
   end
 end

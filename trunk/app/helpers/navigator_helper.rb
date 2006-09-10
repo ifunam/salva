@@ -48,7 +48,7 @@ module NavigatorHelper
 
   def title
     controller = @controller.class.name.sub(/Controller/,'').downcase
-    imgpath = RAILS_ROOT + "/public/images/" + controller + "_on.png"
+    imgpath = RAILS_ROOT + "/public/images/" + controller + ".png"
     img = controller
     label = controller
     if controller == 'navigator' then

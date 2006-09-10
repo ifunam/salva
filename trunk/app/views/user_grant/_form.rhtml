@@ -1,0 +1,39 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_grant]-->
+<div class="row"> 
+<label for="grant_id" class="label"><%= get_label('grant_id') %> <span class="required">*</span></label> 
+<div id="grant_id">
+<%= tree_select('edit', Grant, %w(name institution_id)) %> 
+<%= quickpost('grant') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="description" class="label"><%= get_label('description') %></label> 
+<%= text_field 'edit', 'description', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'description' %>
+</div>
+
+<div class="row"> 
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<%= year_select('edit', 'startyear', {:tabindex => 3, :required => 1 }) %> 
+</div>
+
+<div class="row"> 
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
+<%= month_select('edit', 'startmonth', {:tabindex => 4, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<%= year_select('edit', 'endyear', {:tabindex => 5, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
+<%= month_select('edit', 'endmonth', {:tabindex => 6, :required => 0 }) %> 
+</div>
+
+
+<!--[eoform:user_grant]-->
+

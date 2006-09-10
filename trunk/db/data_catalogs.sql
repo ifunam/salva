@@ -41,4 +41,4 @@
 \i catalogs/careers.sql
 \i catalogs/institutioncareers.sql
 \i catalogs/documenttypes.sql
-
+\i catalogs/stimulus.sql

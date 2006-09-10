@@ -1,6 +1,9 @@
-<%= table_list(@collection, { :header => "Título", :columns => %w(descr institution_id startyear endyear) }) %>
+<!--[list:membership]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w(institution_id descr startyear endyear ) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
 <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
 </div>
+<!--[eoflist:membership]-->
+

@@ -109,7 +109,11 @@ class ModelSequence
           model[lider_id] = lider.id
         end
       end
-      model.save
+#      if model.id != nil and model.id > 0
+        model.save
+#     else
+#        model.update_attributed(params)
+#      end
     } 
   end    
   

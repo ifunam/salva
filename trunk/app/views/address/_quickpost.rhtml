@@ -1,11 +1,18 @@
 <div id="state" style="display:none;position:absolute;">
  <%= render :partial => "/salva/quickpost", 
-            :locals => {:controller => 'state', :title => 'Estados'} 
-  %>
+            :locals => {:controller => 'state', :title => 'Estados',
+	                :partial => 'select_country_state', 
+			:attrdiv_id => 'country_id'
+			} 
+			%>
+
 </div>
 <div id="city" style="display:none;position:absolute;">
  <%= render :partial => "/salva/quickpost", 
-            :locals => {:controller => 'city', :title => 'Ciudades'} 
-  %>
+            :locals => {:controller => 'city', :title => 'Ciudades',
+	                :partial => 'select_state_city', 
+			:attrdiv_id => 'state_id'
+			} 
+			%>
 </div>
 

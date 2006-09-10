@@ -159,7 +159,7 @@ COMMENT ON TABLE stimuluslevels IS
 	-- SNI: I, II, III
 	-- SNC: ???
 
-CREATE TABLE userstimulus (
+CREATE TABLE user_stimulus (
 	id SERIAL, 
 	user_id int4 NOT NULL 
             REFERENCES users(id)
@@ -178,7 +178,7 @@ CREATE TABLE userstimulus (
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-COMMENT ON TABLE userstimulus IS 
+COMMENT ON TABLE user_stimulus IS 
 	'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha
 	de inicio/término';
 
@@ -199,7 +199,7 @@ COMMENT ON TABLE stimulusstatus IS
 CREATE TABLE stimuluslogs (
     id SERIAL, 
     stimulus_id integer NOT NULL 
-            REFERENCES userstimulus(id)
+            REFERENCES user_stimulus(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
@@ -230,23 +230,22 @@ CREATE TABLE adscriptions (
 		REFERENCES institutions(id)
 		ON UPDATE CASCADE
 		DEFERRABLE,
-	administrative_id text NULL, -- An ID for the adscriptions in the
+	administrative_key text NULL, -- An ID for the adscriptions in the
 			-- university - we only keep it as text, no
 			-- referential integrity is attempted.
 	PRIMARY KEY(id),
-	UNIQUE(name),
-	UNIQUE(abbrev)
+	UNIQUE(name, institution_id)
 );
 COMMENT ON TABLE adscriptions IS 
 	'Nombre de las adscripciones registradas';
-COMMENT ON COLUMN adscriptions.administrative_id IS
+COMMENT ON COLUMN adscriptions.administrative_key IS
 	'ID administrativo de la adscripción en la universidad - Lo mantenemos
 	únicamente como descripción en texto';
 
 -- We are stating here the work period, which is also in jobpositions - Why?
 -- Because a user might retain his jobposition (category/level/...) but the
 -- adscriptions he works at can be renamed or change.
-CREATE TABLE useradscriptions (
+CREATE TABLE user_adscriptions (
 	id SERIAL,
 	jobposition_id int4 NOT NULL 
                          REFERENCES jobpositions(id)
@@ -264,13 +263,13 @@ CREATE TABLE useradscriptions (
 	endyear  int4 NULL,
 	PRIMARY KEY (id)
 );
-COMMENT ON TABLE useradscriptions IS 
+COMMENT ON TABLE user_adscriptions IS 
 	'Adscripción a la que pertenece un usuario en determinado periodo';
-COMMENT ON COLUMN useradscriptions.name IS
+COMMENT ON COLUMN user_adscriptions.name IS
 	'Describir el nombre de la participación institucional: Jefe de departamento, Coordinador, etc';
-COMMENT ON COLUMN useradscriptions.descr IS
+COMMENT ON COLUMN user_adscriptions.descr IS
 	'Se usa para describir las funciones o actividades del puesto institucional';
-COMMENT ON COLUMN useradscriptions.startyear IS
+COMMENT ON COLUMN user_adscriptions.startyear IS
 	'El periodo aparece tanto aquí como en jobpositions ya que un 
 	usuario puede cambiar de adscripción sin cambiar su categoría';
 
@@ -291,5 +290,5 @@ BEGIN
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER stimulus_update BEFORE DELETE ON userstimulus
+CREATE TRIGGER stimulus_update BEFORE DELETE ON user_stimulus
 	FOR EACH ROW EXECUTE PROCEDURE stimulus_update();
