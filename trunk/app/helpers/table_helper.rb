@@ -23,7 +23,7 @@ module TableHelper
       
     }
     render(:partial => '/salva/show', 
-           :locals => { :body => sorted_list(body,1)})
+           :locals => { :body => body })
   end
   
   def hidden_attributes(attrs=nil)

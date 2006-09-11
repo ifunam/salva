@@ -55,9 +55,9 @@ module NavigatorHelper
       tree = @session[:navtree]
       img = tree.data
       label = tree.data
-      imgpath = RAILS_ROOT + "/public/images/" + tree.data + "_on.png"
+      imgpath = RAILS_ROOT + "/public/images/" + tree.data + ".png"
     end
-    img = "comodin_salva" if !File.exists?(imgpath) 
+    #img = "comodin_salva" if !File.exists?(imgpath) 
     img_tag(img) + get_label(label)
   end
 

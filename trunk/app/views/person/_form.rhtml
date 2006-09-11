@@ -1,12 +1,12 @@
 <%= error_messages_for 'edit' %>
 <!--[form:edit]-->
 <div class="row"> 
-<label for="firstname" class="label"><%= get_label('firstname') %></label> 
+<label for="firstname" class="label"><%= get_label('firstname') %> <span class="required">*</span></label> 
 <%= text_field 'edit', 'firstname' %>
 </div>
 
 <div class="row"> 
-<label for="lastname1" class="label"><%= get_label('lastname1') %></label> 
+<label for="lastname1" class="label"><%= get_label('lastname1') %> <span class="required">*</span></label> 
 <%= text_field 'edit', 'lastname1' %>
 </div>
 
@@ -16,7 +16,7 @@
 </div>
 
 <div class="row"> 
-<label for="gender" class="label"><%= get_label('gender') %></label> 
+<label for="gender" class="label"><%= get_label('gender') %> <span class="required">*</span></label> 
 
 <select id="edit_gender" name="edit[gender]">  
  	<option value="f">Femenino</option>  
@@ -33,20 +33,20 @@
 <p><b>Fecha y lugar de nacimiento</b></p>
 </div>
 <div class="row"> 
-<label for="dateofbirth" class="label"><%= get_label('dateofbirth')%></label> 
+<label for="dateofbirth" class="label"><%= get_label('dateofbirth')%> <span class="required">*</span></label> 
 <%= date_for_select('edit', 'dateofbirth') %>
 </div>
 <br/>
 
 <br/>
 <div class="row">
- <label for="country_id" class="label"><%= get_label('country_id') %></label>
+ <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
  <%= select_to_update_select('edit', Country, State) %>
  </div>
 <br/>
 
 <div class="row">
-  <label for="state_id" class="label"><%= get_label('state_id') %></label>
+  <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
   <div id="select_country_state_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
   <div id="select_country_state">
   <%= select_to_update_select('edit', State, City) %>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="row">
-  <label for="city_id" class="label"><%= get_label('city_id') %></label>
+  <label for="city_id" class="label"><%= get_label('city_id') %><span class="required">*</span></label>
   <div id="select_state_city_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
   <div id="select_state_city">
   <%= table_select('edit', City) %>

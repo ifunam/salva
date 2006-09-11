@@ -1,5 +1,5 @@
-<%= render :partial => 'salva/form_notes' %>
-<%= start_form_tag :action => 'create' %>
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<%= start_form_tag ({:action => 'create'}, {'z:display' => "inline", 'z:options' => "{inline:blur}"}) %>
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('save') %> | 

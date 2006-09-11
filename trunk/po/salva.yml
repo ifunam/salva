@@ -82,7 +82,8 @@ profile: Perfil
 general: Información general
 person: Datos personales
 address: Domicilio(s)
-peopleid: Identidad
+people_identification: Identificaciones
+peopleidentification: Identificaciones
 citizen: Nacionalidad
 schooling: Escolaridad
 studentid: Matrícula
@@ -95,7 +96,10 @@ contracttype_id: Tipo de contrato
 jobposition: Experiencia laboral
 jobposition_id: Empleo
 user_stimulus: Estímulos
+userstimulus: Estímulos
 user_grants: Becas
+user_grant: Becas
+usergrant: Becas
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
@@ -133,3 +137,4 @@ grant: Beca
 adscription: Adscripción
 useradscription: Adscripción del Usuario
 adscription_id: Adscripción
+stimuluslevel_id: Tipo de estímulo y nivel

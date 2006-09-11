@@ -166,17 +166,17 @@ CREATE TABLE user_stimulus (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-	stimuluslevel_id smallint NULL 
+	stimuluslevel_id INT4 NOT NULL 
                          REFERENCES stimuluslevels(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
 	startyear int4 NOT NULL,
-	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
+	startmonth int4 NULL CHECK (startmonth<=12 AND startmonth>=1),
 	endyear  int4 NULL,
-	PRIMARY KEY (id),
-	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
+	PRIMARY KEY (id)
+--	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+--	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_stimulus IS 
 	'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha

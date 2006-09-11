@@ -42,3 +42,5 @@
 \i catalogs/institutioncareers.sql
 \i catalogs/documenttypes.sql
 \i catalogs/stimulus.sql
+\i catalogs/identifications.sql
+\i catalogs/grants.sql

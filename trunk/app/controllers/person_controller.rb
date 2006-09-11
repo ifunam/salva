@@ -53,7 +53,6 @@ class PersonController < ApplicationController
     @edit.moduser_id = session[:user] if session[:user]
     save_photo if @edit.photo.size > 0
 
-    logger.info "Editid "+@edit.country_id
     if @edit.save 
       flash[:notice] = 'Sus datos personales han sido guardados'
       render :action => 'show'

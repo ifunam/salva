@@ -1,31 +1,12 @@
 ---
-- Salva
-- - profile
-  - - general
-    - - person
-      - address
-      - citizen
-      - peopleid
-  - - schooling
-    - jobposition
-    - user_stimulus
-    - membership
-- - science_and_tech_production
-  - - publications
-    - - book
-- Administrador
-- - users
-  - - admin_user
-    - userstatus
-- - permissions
-  - - permission 
-    - group
-    - controllers
-    - actions
-- - admin_catalogs
-  - - institution
-    - institutiontype
-    - institutiontitle
-    - country
-    - state
-    - city
+- profile
+- - general
+  - - person
+    - address
+    - citizen
+    - people_identification
+- - schooling
+  - jobposition
+  - user_stimulus
+  - user_grant
+  - membership

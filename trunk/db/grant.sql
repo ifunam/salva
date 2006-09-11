@@ -36,9 +36,9 @@ CREATE TABLE user_grants (
     endyear int4  NULL,
     endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
     PRIMARY KEY (id),
-    UNIQUE (grant_id, user_id, startyear, startmonth),
-    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+    UNIQUE (grant_id, user_id, startyear, startmonth)
+--    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+--	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_grants IS
 	'Quién ha recibido qué becas';

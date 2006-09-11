@@ -4,14 +4,15 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content(row, columns).join(', ').to_s+'.'
-      list.push([text, row.attributes_before_type_cast['id']])
+      id = row.attributes_before_type_cast['id'] =~ /:/ ?  row.attributes_before_type_cast['id'] : row.id
+      list.push([text, id])
     }
     return sorted_list(list)
   end
   
   def sorted_find(model, attr='name', order='ASC')
     sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
-                  [ p.send(attr), p.id ] if p.send(attr) != nil  
+                  [ p.send(attr), p.id ] if p.send(attr) != nil
                 })
   end
   

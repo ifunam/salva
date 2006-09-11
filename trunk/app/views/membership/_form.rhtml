@@ -4,8 +4,7 @@
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="institution_id">
-<%= table_select('edit', Institution, {:tabindex => 1, :required => 1 }) %> 
-<%= quickpost('institution') %> 
+<%= select_without_universities('edit', Institution,  1, 1) %> 
 </div>
 </div>
 

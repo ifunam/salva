@@ -85,4 +85,15 @@ module SelectHelper
     list = list_collection(collection, columns)
     select(object, fieldname, list, {:prompt => '-- Seleccionar --'}, opts)
   end
+
+  def select_without_universities(object, model, tabindex=nil, required=nil)
+    opts = { :tabindex => tabindex }
+    if required == 1
+      opts['z:required'] = 'true' 
+      opts['z:required_message'] = 'Seleccione una opción'
+    end
+    select(object, model_id(model), 
+           sorted_list(model.find(:all, :order => 'name DESC', :conditions => [ 'institutiontitle_id != ?', 1]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
+           {:prompt => '-- Seleccionar --'}, opts)
+  end
 end  

@@ -330,13 +330,6 @@ p {
    font:  12px Arial,  sans-serif;	
 }
 
-.box .moduser {
-	background: #ffffcc;
-    	text-align: left;	
-	border: 1px solid silver;
-	padding: 5px;
-}
-
 .label {
 	float: left;
 	width: 160px;
@@ -529,3 +522,16 @@ div.progressBar div.background {
   padding: 3px;
   color: black; 
 }
+
+.moduser {
+	background: #ffffcc;
+    	text-align: left;	
+	border: 1px solid silver;
+	padding: 5px;
+}
+
+.moduser .label {
+ float:none;
+
+}
+

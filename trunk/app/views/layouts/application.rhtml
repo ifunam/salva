@@ -31,6 +31,9 @@
     Men&uacute; de navegaci&oacute;n: <%= render :partial => '/salva/navbar' %>
    </div> <!-- /navbar -->
    <div class="formbox">
+   <% if flash[:notice] %>
+   <p style="color: green"> <%= flash[:notice] %></p> 
+   <% end %>
      <%= @content_for_layout %>
    </div> <!-- /formbox -->
 </div> <!-- /container_border -->
