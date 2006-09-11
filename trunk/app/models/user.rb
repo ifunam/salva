@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Digest
   belongs_to :userstatus
-  attr_accessible :email, :login, :passwd
+  # attr_accessible :email, :login, :passwd
   
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
