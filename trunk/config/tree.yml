@@ -7,6 +7,7 @@
     - people_identification
 - - schooling
   - jobposition
+  - user_adscription
   - user_stimulus
   - user_grant
   - membership

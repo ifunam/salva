@@ -106,9 +106,9 @@ CREATE TABLE jobpositions (
               DEFERRABLE,
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (id),
-	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+	PRIMARY KEY (id)
+--	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+--	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE jobpositions IS 
 	'Relación entre un usuario y todos los datos que describen a su puesto

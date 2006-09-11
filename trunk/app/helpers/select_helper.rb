@@ -96,4 +96,26 @@ module SelectHelper
            sorted_list(model.find(:all, :order => 'name DESC', :conditions => [ 'institutiontitle_id != ?', 1]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
            {:prompt => '-- Seleccionar --'}, opts)
   end
+
+  def select_adscription_area(object, model, tabindex=nil, required=nil)
+    opts = { :tabindex => tabindex }
+    if required == 1
+      opts['z:required'] = 'true' 
+      opts['z:required_message'] = 'Seleccione una opción'
+    end
+    select(object, model_id(model), 
+           sorted_list(Institution.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 15]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
+           {:prompt => '-- Seleccionar --'}, opts)
+  end
+
+  def select_unam(object, model, tabindex=nil, required=nil)
+    opts = { :tabindex => tabindex }
+    if required == 1
+      opts['z:required'] = 'true' 
+      opts['z:required_message'] = 'Seleccione una opción'
+    end
+    select(object, model_id(model), 
+           sorted_list(model.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 1]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
+           {:prompt => '-- Seleccionar --'}, opts)
+  end
 end  

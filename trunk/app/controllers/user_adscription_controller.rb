@@ -8,4 +8,14 @@ class UserAdscriptionController < SalvaController
     @per_pages = 10
     @order_by = 'id'
   end
+
+  def index
+    @jobposition = Jobposition.find(:first, :conditions => [ 'user_id = ?', session[:user]])
+    if @jobposition
+      list
+    else
+      flash[:notice] = 'Por favor registre una categoría antes de ingresar su adscripción...'
+      redirect_to :controller => 'jobposition', :action => 'list'
+    end
+  end
 end
