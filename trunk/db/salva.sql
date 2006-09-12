@@ -39,3 +39,5 @@
 \i researchgroups.sql 
 \i advice.sql
 \i documents.sql
+\i schoolarships.sql
+\i students.sql

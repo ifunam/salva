@@ -44,4 +44,4 @@
 \i catalogs/stimulus.sql
 \i catalogs/identifications.sql
 \i catalogs/grants.sql
-\i catalogs/fcpys/institutions_adscription_areas.sql
+\i catalogs/schoolarships.sql
