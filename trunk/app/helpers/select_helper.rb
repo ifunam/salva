@@ -104,7 +104,7 @@ module SelectHelper
       opts['z:required_message'] = 'Seleccione una opción'
     end
     select(object, model_id(model), 
-           sorted_list(Institution.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 15]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
+           sorted_list(Adscription.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 15]).collect! { |p|   [ p.name, p.id ] if p.name != nil }), 
            {:prompt => '-- Seleccionar --'}, opts)
   end
 

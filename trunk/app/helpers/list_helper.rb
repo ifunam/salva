@@ -150,6 +150,10 @@ module ListHelper
     case attr
     when /gender/
       condition ? 'Masculino' : 'Femenino' 
+    when /is_studying_this/
+      condition ? 'Grado en curso' : 'Grado terminado' 
+    when /is_titleholder/
+      condition ? 'Titulado' : 'Sin titulo' 
     when /has_group_right/
       condition ? 'Con privilegios de grupo' : 'Sin privilegios'
     else
