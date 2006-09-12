@@ -1,6 +1,6 @@
 /*
 
-Zebda javascript library, version 0.2
+Zebda javascript library, version 0.3
  http://labs.cavorite.com/zebda
 Copyright (C) 2006 Juan Manuel Caicedo
 
@@ -24,93 +24,131 @@ See http://www.gnu.org/copyleft/lesser.html for more information
 */
  
 var Zebda = {
-  Version: '0.2'
-}
+  Version: '0.3'
+};
 
-if (!JSON || !JSON.parse){
-    var JSON = {
+
+// Common functions
+
+//Simple JSON parser
+if (!window.JSON){
+    JSON = {
       parse: function(str){
-         return eval('(' + str + ')')
+         return eval('(' + str + ')');
       }
-    }
+    };
 }
 
-/*
+/**
+ * Removes trailing withspace
+ */
+String.prototype.trim = function(){
+    return this.replace(/ /g, '');
+};
 
-Erik Arvidsson
-http://webfx.eae.net/dhtml/sortabletable/api.html
-*/
+
+/**
+ * Javascript sets
+ * 
+ * Example:
+ * var typeInSet = nodeType in set(2, 3, 4, 7, 8);
+ *
+ * http://laurens.vd.oever.nl/weblog/items2005/setsinjavascript/
+ */
+function set (){
+    var result = {};
+    for (var i = 0; i < arguments.length; i++){
+        result[arguments[i]] = true;
+	}
+    return result;
+}
+
+
+/** 
+ * Finds the position of a node
+ *
+ */
+Element.getSiblingPosition = function(element){
+    var pos = 0;
+    while (element.previousSibling) {
+      if (element.previousSibling.nodeType != 3){
+        pos++;
+      }
+      element = element.previousSibling;
+    }
+    return pos;
+};
+
+
+/**
+ * 
+ *
+ */
+Element.getParentNodeByName = function(element, tagName){
+    var par = element;
+    while(par.tagName.toLowerCase() != tagName && par.parentNode) {
+        par = par.parentNode;
+    }
+    return par;
+};
+
+/**
+ * @see  http://www.litotes.demon.co.uk/example_scripts/fastTableSort_src.html
+ */
 Element.getInnerText = function(element){
+  if (!element || (typeof element).search(/string|undefined/) > -1){
+      return element;
+	}
 
-  if ((typeof element).search(/string|undefined/) > -1)
-      return element
-
-  if (element.innerText)
+  if (element.innerText){
       return element.innerText;
-
-  var rtn = ''
-  var cs = el.childNodes;
-  var l = cs.length;
-  for (var i = 0; i < l; i++) {
-    switch (cs[i].nodeType) {
+  }
+  var rtn = '';
+  var nodes = element.childNodes;
+  var len = nodes.length;
+  for (var i = 0; i < len; i++) {
+    switch (nodes[i].nodeType) {
       case 1: //ELEMENT_NODE
-        rtn += Element.getInnerText(cs[i]);
+        rtn += Element.getInnerText(nodes[i]);
         break;
       case 3: //TEXT_NODE
-        rtn += cs[i].nodeValue;
+        rtn += nodes[i].nodeValue;
         break;
     }
   }
   return rtn;
+};
+
+
+/**
+ * Sets the value of a form field
+ * 
+ */
+Form.Element.setValue = function(element, value){
+    element = $(element);
+    els = ((element.tagName)) && [element] || element;
+
+	$A(els).each(function(element){
+	    var elmType = element.tagName.toLowerCase();
+	    switch(elmType){
+	    	case 'select':
+	    		if (typeof(value) != 'object')
+	    			value = [value];
+	    		
+	    		$A(element.options).each(function(opt){
+	    			opt.selected = value.include(opt.value);
+				});
+	    		break;
+	    	case 'input':
+	    		if (element.type in set('radio', 'checkbox')){
+	    			element.checked = (element.value == value);
+	    		}else{
+		    		element.value = value;
+		    	}
+	    }
+	});
 }
-
 /*--------------------------------------------------------------------------*/
-// Synchronous xml http requests
-
-
-var SynRequest = {
-
-  json: function(url, options){
-    options = options || {}
-    options.json = true
-    return this.make(url, options)
-  },
-
-  make: function (url, options){
-    options = options || {}
-    options.asynchronous = false
-    options.method = 'GET'
-    if (options.json){
-      options.requestHeaders = ['Accept', 'text/x-json']
-      delete options.json
-    }
-
-    if (options.args){
-      url += '?' + $H(options.args).toQueryString()
-      delete options.args
-    }
-
-    var r = new Ajax.Request(url, options)
-
-    //Should I try an exception instead?
-    if (r.responseIsFailure())
-      return new Error(r.transport.status)
-
-
-    try {
-      return JSON.parse(r.transport.responseText)
-    }catch(e){}
-
-    if (r.evalJSON()){
-      return r.evalJSON()
-    }
-    return r.transport.responseText
-  }
-}
-
- 
-/*--------------------------------------------------------------------------*/
- 
 
 var FormValidator = {
   
@@ -119,58 +157,100 @@ var FormValidator = {
   */
   NSprefix: 'z',
 
+  defaultOptions : {
+		inline: false,
+		inlineFilters: false
+  },
+
   
   /**
    * Load the defined condition and filters
    * Find all the forms with a validation rule and modify theirs onsubmit function
    */
   init: function(){
-    this._definedConditions = new Array()
+    this._definedConditions = [];
     for (name in FormValidator.Conditions){
-      this._definedConditions.push(name)
+      this._definedConditions.push(name);
     }
 
-    this._definedFilters = new Array()
+    this._definedFilters = [];
     for (name in FormValidator.Filters){
-      this._definedFilters.push(name)
+      this._definedFilters.push(name);
     }
 
-    var forms =  new Array()
+    var forms = $A(document.forms).filter(FormValidator.initForm);
 
-    $A(document.forms).map(function(frm){
-      frm._options = eval('(' + frm.getAttribute('z:options') + ')') || {};
-      return Form.getElements(frm).map(function(elm){
-        FormValidator.Element.init(elm)
-        if (FormValidator.Element.hasRules(elm)){
-          if (forms.indexOf(frm) == -1)
-            forms.push(frm)
-        }
-      })
-    })
-
-
-    //If exists an onsubmit function, call if the validation went ok
-    forms.map(function(f){
-      var __submit = (f.onsubmit || function(){return true})
+	//Modify onsubmit function for forms with defined rules
+    forms.each(function(f){
       f.onsubmit = function(){
-        return (FormValidator.validate(f) && (__submit.call(f) || false))
-      }
-      var disp = f.getAttribute('z:display')
-      f._displayFunction = (FormValidator.Display[disp] || FormValidator.Display.alert)
-    })
+      	try {
+      		FormValidator.initForm(f);
+	      	f.beforeValidate();
+	      	if (FormValidator.validate(f)){
+	      		return f.afterValidate();
+	      	}else{
+	      		return false;
+	      	}
+      	} catch (e){
+			console.error(e);
+      		return false;
+      	}
+      };
+
+      var disp = f.getAttribute('z:display');
+      f._displayFunction = (FormValidator.Display[disp] || FormValidator.Display.alert);
+    });
   },
+
+  /**
+   * Configures a form
+   *
+   */
+  initForm: function(frm){
+
+      //Validation options
+      frm._options = {};
+  	  for (opc in FormValidator.defaultOptions){
+  	  	frm._options[opc] = FormValidator.defaultOptions[opc];
+  	  }
+      opts = eval('(' + frm.getAttribute('z:options') + ')') || {};
+  	  for (opc in opts){
+  	  	frm._options[opc] = opts[opc];
+  	  }
+  	  
+	  //Before and after validate functions
+	  if (!frm.beforeValidate){
+		  func = frm.getAttribute('z:beforeValidate') || 'return true';
+		  frm.beforeValidate = new Function(func);
+	  }
+
+	  if (!frm.afterValidate){
+		  func = frm.getAttribute('z:afterValidate') || 'return true';
+		  frm.afterValidate = new Function(func);
+	  }
+
+  	  rtn = false;
+  	  //Configure elements
+      Form.getElements(frm).each(function(elm){
+        FormValidator.Element.init(elm);
+        if (!rtn && FormValidator.Element.hasRules(elm)){
+			rtn = true;
+        }
+      });
+      return rtn;
+    },
 
   /**
    * Validates a form
    *
    */
   validate: function(form){
-    var errs = Form.getElements(form).map(FormValidator.Element.validate).flatten()
+    var errs = Form.getElements(form).map(FormValidator.Element.validate).flatten();
     if (errs.length > 0){
-      form['_displayFunction'](errs)
-      return false
+      form._displayFunction(errs);
+      return false;
     }
-    return true
+    return true;
   },
 
   /**
@@ -178,8 +258,7 @@ var FormValidator = {
    *
    */
   Display: {
-
-
+  
     /*
      * Show inline errors.
      * Based on examples by Cameron Adams:
@@ -188,20 +267,23 @@ var FormValidator = {
     inline: function(errs){
 
       $A(document.getElementsByClassName('_zebda_message')).each(function (elm){
-        elm.parentNode.removeChild(elm)
-      })
+        elm.parentNode.removeChild(elm);
+      });
       errs.map(function(e){
-        var t = document.createElement('span')
-        t.className = '_zebda_message correctionText warning'
-        t.appendChild(document.createTextNode(e.message))
-        e.element.parentNode.insertBefore(t, e.element.nextSibling)
+        var t = document.createElement('span');
+        t.className = '_zebda_message correctionText warning';
+        t.appendChild(document.createTextNode(e.message));
+        e.element.parentNode.insertBefore(t, e.element.nextSibling);
 
-        e.element.focus()
-      })
+//        e.element.focus();
+      });
     },
-
+    
+	/**
+	 * Show an alert with all errors
+	 */
     alert: function(errs){
-      alert(errs.pluck('message').join('\n'))
+      alert(errs.pluck('message').join('\n'));
     }
   },
 
@@ -210,45 +292,45 @@ var FormValidator = {
    */
   Conditions: {
     required: function(value){
-      return value
+      return String(value).length > 0;
     },
 
     length: function(value){
-      var rtn = true
-      value = (value || '')
+      var rtn = true;
+      value = (value || '');
       if (this.options.max)
-        rtn = (value.length <= this.options.max)
+        rtn = (value.length <= this.options.max);
 
       if (this.options.min)
-        rtn = rtn && (value.length >= this.options.min)
+        rtn = rtn && (value.length >= this.options.min);
 
-      return rtn
+      return rtn;
     },
 
     numeric: function(){
-      var rtn, val
+      var rtn, val;
 
       rtn = true;
-      val = (this.options.isFloat) ? parseFloat(value) : parseInt(value)
+      val = (this.options.isFloat) ? parseFloat(value) : parseInt(value);
 
       if (isNaN(val))
-        return false
+        return false;
 
       if (!(this.options.maxValue === undefined))
-        rtn = rtn && (this.options.maxValue > val)
+        rtn = rtn && (this.options.maxValue > val);
 
       if (!isUndefined(this.args.minValue))
-        rtn = rtn && (val > this.options.minValue)
+        rtn = rtn && (val > this.options.minValue);
 
-      return rtn
+      return rtn;
     },
 
     /**
      *
      */
     regexp: function(value){
-      var reg = (this.options.constructor == RegExp) ? this.options : this.options.exp
-      return reg.test(value)
+      var reg = (this.options.constructor == RegExp) ? this.options : this.options.exp;
+      return reg.test(value);
     },
 
     /**
@@ -257,8 +339,8 @@ var FormValidator = {
      * http://www.regexlib.com/REDetails.aspx?regexp_id=333
      */
     email: function(value){
-      var expMail = /^[\w](([_\.\-\+]?[\w]+)*)@([\w]+)(([\.-]?[\w]+)*)\.([A-Za-z]{2,})$/
-      return expMail.test(value)
+      var expMail = /^[\w](([_\.\-\+]?[\w]+)*)@([\w]+)(([\.-]?[\w]+)*)\.([A-Za-z]{2,})$/;
+      return expMail.test(value);
     },
 
     /**
@@ -266,7 +348,7 @@ var FormValidator = {
      * TODO
      */
     compare: function(value){
-      return false
+      return false;
     },
 
     /**
@@ -274,7 +356,7 @@ var FormValidator = {
      * TODO
      */
     conditional: function(value){
-      return false
+      return false;
     }
   },
   
@@ -284,15 +366,15 @@ var FormValidator = {
    */
   Filters: {
     trim: function(value){
-      return FormValidator.Filters.trimleft(FormValidator.Filters.trimright(value))
+      return FormValidator.Filters.trimleft(FormValidator.Filters.trimright(value));
     },
   
     trimleft: function(value){
-      return new String(value).replace(/^\s+/, '')
+      return new String(value).replace(/^\s+/, '');
     },
   
     trimright: function(value){
-      return new String(value).replace(/\s+$/, '')
+      return new String(value).replace(/\s+$/, '');
     },
   
     /**
@@ -300,37 +382,44 @@ var FormValidator = {
      *
      */
     singlespace: function(value){
-      return new String(value).replace(/(\s{2,})/g,' ')
+      return new String(value).replace(/(\s{2,})/g,' ');
     },
   
     lowercase: function(value){
-      return new String(value).toLowerCase()
+      return new String(value).toLowerCase();
     },
 
     uppercase: function(value){
-      return new String(value).toUpperCase()
+      return new String(value).toUpperCase();
     },
 
     numbers: function(value){
-      return new String(value).replace(/([^0-9])/g, '')
+      return new String(value).replace(/([^0-9])/g, '');
     }
   }
  }
  
 
-var Rule = Class.create()
+var Rule = Class.create();
 Rule.prototype = {
   initialize: function(element, ruleName, options, message){
-    this.condition = Prototype.K
-    this.message = (message || '')
-    this.options = eval('(' + options + ')');
-    this.element = element
-    this.condition = FormValidator.Conditions[ruleName] //no bind needed
+    this.condition = Prototype.K;
+    this.message = (message || '');
+    
+    options = options || {};
+	this.options = (typeof(options) == 'string') && eval('(' + options + ')') || options;
+
+    this.element = element;
+    
+    if (typeof(ruleName) == 'string')
+	    this.condition = FormValidator.Conditions[ruleName]; //no bind needed
+	else 
+		this.condition = ruleName;
   },
   evaluate: function(){
-    return this['condition'].call(this, Form.Element.getValue(this.element))
+    return this['condition'].call(this, Form.Element.getValue(this.element));
   }
-}
+};
 
 Rule.Conditions = {
 
@@ -338,40 +427,39 @@ Rule.Conditions = {
    * The value is required
    */
   required: function(value){
-    return value
+    return value;
   },
   length: function(value){
-    var rtn = true
-    value = (value || '')
+    var rtn = true;
+    value = (value || '');
     if (this.options.max)
-      rtn = (value.length <= this.options.max)
+      rtn = (value.length <= this.options.max);
 
     if (this.options.min)
-      rtn = rtn && (value.length >= this.options.min)
+      rtn = rtn && (value.length >= this.options.min);
 
-    return rtn
+    return rtn;
   }
 }
-
 
 var Filter = Class.create()
 Filter.prototype = {
   initialize: function(element, filter, options){
-    this.element = element
+    this.element = element;
     this.options = eval('(' + options + ')');
-    this.evaluate = FormValidator.Filters[filter]
+    this.evaluate = FormValidator.Filters[filter];
   }
 }
 
-FormValidator.Error = Class.create()
+FormValidator.Error = Class.create();
 FormValidator.Error.prototype = {
   initialize: function(element, message){
-    this.element = element
-    this.message = message
+    this.element = element;
+    this.message = message;
   },
 
   inspect: function() {
-    return '#<FormValidator.Error:element=' + this.element + ',message=' + this.message + '>'
+    return '#<FormValidator.Error:element=' + this.element + ',message=' + this.message + '>';
   }
 }
 
@@ -386,6 +474,7 @@ Object.extend(FormValidator,{Element: {
         var msg = (element.getAttribute(FormValidator.NSprefix + ':' + cond + '_message')
            || element.getAttribute(FormValidator.NSprefix + ':' + 'message'))
         return new Rule(element, cond, condOptions, msg)
+        
       }
     }).compact()
 
@@ -402,6 +491,21 @@ Object.extend(FormValidator,{Element: {
         element.focus()
       })
     }
+    
+    //Inline filters
+    if (element.form._options.inlineFilters){
+      Event.observe(element, 'change', function(){
+			FormValidator.Element.applyFilters(element);
+      })
+    }
+  },
+  
+  addRule: function(element, rule, inline){
+  	element._rules.push(rule);
+  },
+
+  addFilter: function(element, filter, inline){
+  	element._filters.push(filter);
   },
 
   /**
@@ -426,7 +530,7 @@ Object.extend(FormValidator,{Element: {
 
   isText: function(element){
     return ((element.tagName.toLowerCase() == 'input' &&
-          (element.type.toLowerCase() == 'text' || element.type.toLowerCase() == 'password')) ||
+          (element.type.toLowerCase() in set('text','hidden','password'))) ||
           (element.tagName.toLowerCase() == 'textarea'))
   },
 
@@ -445,7 +549,7 @@ Object.extend(FormValidator,{Element: {
    *
    */
   validate: function(element){
-    FormValidator.Element.applyFilters(element)
+    FormValidator.Element.applyFilters(element);
     return FormValidator.Element.getRules(element).map(function(rule){
       if (!rule.evaluate())
         return new FormValidator.Error(element, rule.message)
@@ -457,4 +561,5 @@ Object.extend(FormValidator,{Element: {
 /*
 Initialize FormValidator after the page has loaded
 */
-Event.observe(window,'load',FormValidator.init )
+Event.observe(window,'load',FormValidator.init);
+/*--------------------------------------------------------------------------*/
