@@ -213,7 +213,7 @@ CREATE TABLE stimuluslogs (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE stimuluslogs IS 
@@ -233,6 +233,12 @@ CREATE TABLE adscriptions (
 	administrative_key text NULL, -- An ID for the adscriptions in the
 			-- university - we only keep it as text, no
 			-- referential integrity is attempted.
+    	moduser_id integer NULL      -- It will be used only to know who has
+            REFERENCES users(id) -- inserted, updated or deleted  
+            ON UPDATE CASCADE    -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE(name, institution_id)
 );
@@ -261,6 +267,12 @@ CREATE TABLE user_adscriptions (
 	startyear int4 NOT NULL,
 	endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
 	endyear  int4 NULL,
+    	moduser_id integer NULL      -- It will be used only to know who has
+            REFERENCES users(id) -- inserted, updated or deleted  
+            ON UPDATE CASCADE    -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_adscriptions IS 
@@ -273,7 +285,32 @@ COMMENT ON COLUMN user_adscriptions.startyear IS
 	'El periodo aparece tanto aquí como en jobpositions ya que un 
 	usuario puede cambiar de adscripción sin cambiar su categoría';
 
-------
+CREATE TABLE jobposition_logs (
+	id serial,
+	user_id int4 NOT NULL 
+            REFERENCES users(id)
+            ON UPDATE CASCADE	
+            ON DELETE CASCADE   	
+            DEFERRABLE,
+	administrative_key text NOT NULL,
+	years integer NOT NULL CHECK (years >=1),
+    	moduser_id integer NULL      -- It will be used only to know who has
+            REFERENCES users(id) -- inserted, updated or deleted  
+            ON UPDATE CASCADE    -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id),
+	UNIQUE(user_id)
+);
+COMMENT ON TABLE jobposition_logs IS
+	'Antiguedad del usuario en la UNAM';
+COMMENT ON COLUMN jobposition_logs.administrative_key IS
+	'Número de trabajador en la UNAM (es único)';
+COMMENT ON COLUMN jobposition_logs.years IS
+	'Número de años trabajando en UNAM (Se calculará el número a partir de la información de la tabla jobpositions';
+
+------	
 -- Update stimuluslogs if there was a status change
 ------
 CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER 
