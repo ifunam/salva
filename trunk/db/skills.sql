@@ -5,6 +5,8 @@ CREATE TABLE skilltypes (
         	REFERENCES users(id) -- inserted, updated or deleted  
             	ON UPDATE CASCADE    -- data into or from this table.
             	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -14,7 +16,7 @@ COMMENT ON TABLE skilltypes IS
 	 Habilidades relacionadas con máquinas de oficina
 	 Otras habilidades';
 
-CREATE TABLE userskills (
+CREATE TABLE user_skills (
 	id serial,
 	user_id integer NOT NULL  
         	REFERENCES users(id) 
@@ -26,9 +28,15 @@ CREATE TABLE userskills (
             	ON UPDATE CASCADE  
             	DEFERRABLE,
 	descr text NULL,
+	moduser_id integer NULL  -- It will be used only to know who has
+        	REFERENCES users(id) -- inserted, updated or deleted  
+            	ON UPDATE CASCADE    -- data into or from this table.
+            	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
-COMMENT ON TABLE userskills IS
+COMMENT ON TABLE user_skills IS
 	'Las habilidades que cada usuario tiene, junto con una descripción
 	opcional';
 

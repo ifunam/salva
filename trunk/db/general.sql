@@ -1,7 +1,6 @@
 ----------------------------------------
 -- General Information                --
 ----------------------------------------
-
 CREATE TABLE maritalstatuses ( 
     	id serial NOT NULL,
     	name text NOT NULL,
@@ -161,7 +160,7 @@ CREATE TABLE citizens (
 	      ON UPDATE CASCADE                -- data into or from this table.
    	      DEFERRABLE,
   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+  updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE (user_id, citizen_country_id)
 );
