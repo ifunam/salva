@@ -36,16 +36,12 @@ class ScaffoldingSandbox
     end
   end
   
-  def set_select(column, model, tabindex, prefix=nil, required=nil)
-    required ? req = 1 : req = 0
+  def set_select(column, model, tabindex, required=nil, prefix=nil)
+    options = tabindex.to_i.to_s
+    options << ', ' + required.to_i.to_s if required
+    options << ", '#{prefix}'" if prefix
     select = "<div id=\"#{column}\">\n" 
-    if prefix then 
-      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:prefix => '#{prefix}', :tabindex => #{tabindex}, :required => #{req} }) %>\n" 
-      select << "<%= quickpost('#{model.downcase}') %> \n"
-    else
-      select << "<%= table_select('edit', #{Inflector.camelize(model)}, {:tabindex => #{tabindex}, :required => #{req} }) %> \n" 
-      select << "<%= quickpost('#{model.downcase}') %> \n"
-    end
+    select << "<%= table_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n" 
     select << "</div>\n"
   end
 
@@ -74,14 +70,14 @@ class ScaffoldingSandbox
       column = attr.name
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
-      model_instance.column_for_attribute(column).null ? required = false : required = true 
+      model_instance.column_for_attribute(column).null ? required = nil : required = 1
       html << set_label(column, required)
 
       if column =~ /_id$/ then
         prefix = nil
         model = column.sub(/_id/,'') 
         (prefix, model) = model.split('_') if model =~ /^\w+_/ 
-        html << set_select(column, model, tabindex, prefix, required)
+        html << set_select(column, model, tabindex, required, prefix)
       elsif model_instance.column_for_attribute(column).type.to_s == 'boolean' then
         html << set_radiobutton(column, tabindex, required)
       elsif column =~ /month/ then
