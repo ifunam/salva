@@ -1,5 +1,4 @@
 module ListHelper
-
   def list_collection(collection, columns)
     list = []
     collection.each { |row|
@@ -14,6 +13,10 @@ module ListHelper
     sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
                   [ p.send(attr), p.id ] if p.send(attr) != nil
                 })
+  end
+  
+  def list_from_collection(list)
+    sorted_list(list.collect! { |p| [ p.name, p.id ] if p.name != nil })
   end
   
   def sorted_list(list,i=0)

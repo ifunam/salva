@@ -32,6 +32,6 @@ module CheckboxHelper
   end
 
   def li_tag(object, model, id, name, checked_id)
-    '<li>' + check_box_tag("#{object}[#{model_id(model)}][]", id, checked = checked_id) + name.to_s + "</li>\n"
+    '<li>' + check_box_tag("#{object}[#{set_model_id(model)}][]", id, checked = checked_id) + name.to_s + "</li>\n"
   end
 end

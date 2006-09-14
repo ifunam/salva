@@ -52,7 +52,7 @@ module ApplicationHelper
                      )
   end
 
-  def model_id(model)
+  def set_model_id(model)
     model.name.downcase + '_id'
   end
 end 
