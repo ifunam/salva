@@ -2,7 +2,7 @@
 <div class="title"> 
 <%= loading_indicator_tag controller, "new" %> <%= title %>
 </div>
-<%= form_remote_tag_for_quickpost(controller, partial, attrdiv_id) %>
+<%= form_remote_tag_for_quickpost(controller, partial, attribute) %>
 <%= render :partial => "/#{controller}/form" %>
 <div id="operations">
 <%= submit_tag get_label('save') %> | <%= link_to_cancel_for_quickpost(controller) %>
