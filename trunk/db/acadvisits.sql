@@ -55,7 +55,7 @@ COMMENT ON COLUMN acadvisits.visitor_id IS
 	'Si esta columna apunta a un usuario externo, significa que el usuario participo
 	 en la coordinación de una visita o estancia académica de un invitado';
 
-CREATE TABLE sponsorsacadvisits (
+CREATE TABLE sponsor_acadvisits (
 	id  SERIAL NOT NULL,
 	acadvisit_id integer NOT NULL 
 	    REFERENCES  acadvisits(id)
@@ -68,5 +68,5 @@ CREATE TABLE sponsorsacadvisits (
 	amount integer NOT NULL,
 	PRIMARY KEY(id)
 );
-COMMENT ON TABLE sponsorsacadvisits IS
+COMMENT ON TABLE sponsor_acadvisits IS
 	'Institución patrocinadora de cada visita académica';

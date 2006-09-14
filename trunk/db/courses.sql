@@ -2,46 +2,46 @@
 -- Research Courses -- 
 ----------------------
 
-CREATE TABLE coursetype ( 
+CREATE TABLE coursetypes ( 
 	id SERIAL NOT NULL,
 	name text NOT NULL,
     	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE coursetype IS
+COMMENT ON TABLE coursetypes IS
 	'Tipo de curso en cuesstión - Regular, especial, ...';
 -- Regular (parte  de un plan de estudios), Especial (único), ...
 
-CREATE TABLE coursesduration (
+CREATE TABLE coursedurations (
 	id serial NOT NULL,
 	name text NOT NULL,
 	days int4 NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE coursesduration IS
+COMMENT ON TABLE coursedurations IS
 	'Duración de los periodos en que se imparten los cursos';
-COMMENT ON COLUMN coursesduration.name IS
+COMMENT ON COLUMN coursedurations.name IS
 	'Nombre del periodo (semanal, mensual, trimestral, semestral, anual)';
-COMMENT ON COLUMN coursesduration.days IS
+COMMENT ON COLUMN coursedurations.days IS
 	'Número de días dentro de este periodo';
 -- {semanal,5}, {mensual,30}, {trimestral,90}, {semestral,180}, {anual,365}...
 
-CREATE TABLE coursegrouptype ( 
+CREATE TABLE coursegrouptypes ( 
 	id SERIAL NOT NULL,
 	name text NOT NULL,
     	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE coursegrouptype IS
+COMMENT ON TABLE coursegrouptypes IS
 	'Tipo de agrupador de cursos (diplomado, certificación, etc.)';
 -- Certification, diplomado, ...
 
-CREATE TABLE coursegroup (
+CREATE TABLE coursegroups (
 	id serial,
 	name text,
     	coursegrouptype_id int4 NOT NULL 
-                        REFERENCES coursegrouptype(id)
+                        REFERENCES coursegrouptypes(id)
                         ON UPDATE CASCADE
                         DEFERRABLE,
 	startyear int4 NOT NULL,
@@ -54,10 +54,10 @@ CREATE TABLE coursegroup (
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 		  (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-COMMENT ON TABLE coursegroup IS
+COMMENT ON TABLE coursegroups IS
 	'Datos de un supercurso/agrupador de cursos';
-COMMENT ON COLUMN coursegroup.totalhours IS
-	'No tiene relación con coursesduration - Por ejemplo, un diplomado 
+COMMENT ON COLUMN coursegroups.totalhours IS
+	'No tiene relación con coursedurations - Por ejemplo, un diplomado 
 	puede durar 150 horas a lo largo de un mes, de un semestre, de años.';
 
 -- Las horas del curso seran calculadas basandonos en la duracion
@@ -68,16 +68,16 @@ CREATE TABLE courses (
     id SERIAL NOT NULL,
     title text NOT NULL,
     coursetype_id int4 NOT NULL 
-                        REFERENCES coursetype(id)
+                        REFERENCES coursetypes(id)
                         ON UPDATE CASCADE
                         DEFERRABLE,
-    degrees_id int4 NULL 
+    degree_id int4 NULL 
                            REFERENCES degrees(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
     hours int4 NULL,
     PRIMARY KEY(id),
-    UNIQUE (title,  coursetype_id, degrees_id )
+    UNIQUE (title,  coursetype_id, degree_id )
 );
 COMMENT ON TABLE courses IS
 	'Cursos impartidos (de actualización o en un plan de estudios) y
@@ -89,20 +89,20 @@ COMMENT ON COLUMN courses.hours IS
 	serán guardadas en ningún campo, solo serviran como referencia
 	en la aplicación.';
 
-CREATE TABLE roleincourse (
+CREATE TABLE roleincourses (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE roleincourse IS
+COMMENT ON TABLE roleincourses IS
 	'Rol del usaurio en el curso';
 -- Instructor, asistente, autor; etc.
 
 -- Ojo cuando el usuario especifica horas por semana: Sera nencesario
 -- revisar que las horas esten en un rango aceptable correspondiente
 -- a la duración.
-CREATE TABLE usercourses (
+CREATE TABLE user_courses (
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -114,11 +114,11 @@ CREATE TABLE usercourses (
             ON UPDATE CASCADE
             DEFERRABLE,
     coursegroup_id int4 NULL 
-            REFERENCES coursegroup(id)
+            REFERENCES coursegroups(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     roleincourse_id int4 NOT NULL 
-            REFERENCES roleincourse(id)
+            REFERENCES roleincourses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     institution_id int4 NULL
@@ -129,8 +129,8 @@ CREATE TABLE usercourses (
               REFERENCES countries(id)
               ON UPDATE CASCADE
               DEFERRABLE,
-    coursesduration_id int4 NOT NULL
-              REFERENCES coursesduration(id)
+    courseduration_id int4 NOT NULL
+              REFERENCES coursedurations(id)
               ON UPDATE CASCADE
               DEFERRABLE,
     modality_id int4 NOT NULL 
@@ -147,7 +147,7 @@ CREATE TABLE usercourses (
     CONSTRAINT either_course_or_group CHECK (courses_id IS NOT NULL OR
 	coursegroup_id IS NOT NULL)
 );
-COMMENT ON TABLE usercourses IS
+COMMENT ON TABLE user_courses IS
 	'Cursos a los que está asociado un usuario';
-COMMENT ON COLUMN usercourses.acadprogram IS
+COMMENT ON COLUMN user_courses.acadprogram IS
 	'Carrera o programa académico a que este curso pertenece';
