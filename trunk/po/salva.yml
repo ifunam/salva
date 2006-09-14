@@ -6,7 +6,7 @@ kcs7: Certificado para firma digital
 firstname: Nombre
 lastname1: Apellido paterno
 lastname2: Apellido materno
-gender: Sexo
+gender: Género
 dateofbirth: Fecha
 birth_country_id: País
 birth_city_id: Ciudad
@@ -135,7 +135,7 @@ grant_id: Beca
 grants: Becas
 grant: Beca
 adscription: Adscripción
-useradscription: Adscripción del Usuario
-user_adscription: Adscripción del Usuario
+useradscription: Adscripción 
+user_adscription: Adscripción
 adscription_id: Adscripción
 stimuluslevel_id: Tipo de estímulo y nivel
