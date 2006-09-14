@@ -27,7 +27,7 @@ CREATE TABLE userlanguages (
             	ON UPDATE CASCADE
 		DEFERRABLE,
 	spokenpercentage int4 NULL, -- 100%
-	writtenpercentaje int4 NULL, -- 100%
+	writtenpercentage int4 NULL, -- 100%
 	comment text NULL,
 	PRIMARY KEY(id)
 );
