@@ -7,7 +7,11 @@
     - people_identification
 - - schooling
   - jobposition
-  - user_adscription
+  - - jobposition_internal
+    - - jobposition_at_institution
+      - user_adscription
+      - jobposition_log
+    - jobposition_external
   - user_stimulus
   - user_grant
   - membership
