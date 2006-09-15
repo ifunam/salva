@@ -10,7 +10,7 @@ class UserAdscriptionController < SalvaController
   end
 
   def index
-    @jobposition = Jobposition.find(:first, :conditions => [ 'user_id = ?', session[:user]])
+    @jobposition = Jobposition.find(:first, :conditions => [ 'user_id = ?', session[:user]]) # Buscar jobpositions en la UNAM
     if @jobposition
       list
     else
