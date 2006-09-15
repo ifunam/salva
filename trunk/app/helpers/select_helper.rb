@@ -50,7 +50,7 @@ module SelectHelper
     select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
-  def select_without_universities(object, model, tabindex, required=nil)
+  def select_without_universities(object, model, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
     list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institutiontitle_id != ?', 1]))
     select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
