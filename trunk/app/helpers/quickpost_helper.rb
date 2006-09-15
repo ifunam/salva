@@ -27,9 +27,9 @@ module QuickpostHelper
     success += update_select_from_quickpost(partial,attribute) if partial
     form_remote_tag(:success => success,
                     404 => "alert('Not found...? Wrong URL...?')", 
-                    :loading => "AjaxScaffold.newOnLoading(request,'"+controller+"');", 
-                    :failure => "alert('HTTP Error ' + request.status + '!');")
-                    :url  => { :controller => controller, :action => 'create' } )
+                    :loading => "AjaxScaffold.newOnLoading(request,'"+controller+"');",
+                    :failure => "alert('HTTP Error ' + request.status + '!');",
+                    :url  => { :controller => controller, :action => 'create' }) 
   end
 
   def update_select_from_quickpost(partial,attribute)

@@ -139,3 +139,6 @@ useradscription: Adscripción
 user_adscription: Adscripción
 adscription_id: Adscripción
 stimuluslevel_id: Tipo de estímulo y nivel
+skilltype: Tipo de habilidad
+skilltype_id: Tipo de habilidad
+userskill: Habilidades
