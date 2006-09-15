@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   
   def update_select
     @id = params[:id]
+    @tabindex =  params[:tabindex]
     partial = params[:partial]
     render(:partial => 'salva/'+partial)
   end

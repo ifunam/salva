@@ -1,4 +1,4 @@
-class JobpositionController < SalvaController
+class JobpositionExternalController < SalvaController
   def initialize
     super
     @model = Jobposition
