@@ -17,7 +17,11 @@ class Stack
   end
 
   def has_items?
-    true if self.size > 0 or @stack.empty? == false
+    if self.size > 0 or @stack.empty? == false
+      true
+    else
+      false
+    end
   end
 
 end
