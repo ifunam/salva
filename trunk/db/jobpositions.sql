@@ -293,7 +293,7 @@ CREATE TABLE jobposition_logs (
             ON DELETE CASCADE   	
             DEFERRABLE,
 	worker_key text NOT NULL,
-	years integer NOT NULL CHECK (years >=1),
+	years integer NOT NULL CHECK (years >=1 OR years <= 80),
     	moduser_id integer NULL      -- It will be used only to know who has
             REFERENCES users(id) -- inserted, updated or deleted  
             ON UPDATE CASCADE    -- data into or from this table.
