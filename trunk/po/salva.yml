@@ -126,6 +126,7 @@ is_titleholder: ¿Titulado?
 titlemodality_id: Modalidad de titulación
 professionalid: Cédula profesional
 year: Año
+years: Años
 thesistitle: Título de tesis
 schoolings: Escolaridad
 professionaltitles: Título profesional
@@ -142,3 +143,12 @@ stimuluslevel_id: Tipo de estímulo y nivel
 skilltype: Tipo de habilidad
 skilltype_id: Tipo de habilidad
 userskill: Habilidades
+language_id: Lenguaje
+spoken_languagelevel_id: Nivel de lenguaje hablado
+written_languagelevel_id: Nivel de lenguaje escrito
+comment: Comentario
+jobposition_log: Antigüedad en la UNAM
+worker_key: Número de trabajador
+jobposition_internal: Experiencia laboral en la UNAM
+jobposition_at_institution: Experiencia laboral en la UNAM
+jobposition_external: Experiencia laboral externa

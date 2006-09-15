@@ -292,7 +292,7 @@ CREATE TABLE jobposition_logs (
             ON UPDATE CASCADE	
             ON DELETE CASCADE   	
             DEFERRABLE,
-	administrative_key text NOT NULL,
+	worker_key text NOT NULL,
 	years integer NOT NULL CHECK (years >=1),
     	moduser_id integer NULL      -- It will be used only to know who has
             REFERENCES users(id) -- inserted, updated or deleted  
@@ -301,11 +301,11 @@ CREATE TABLE jobposition_logs (
     	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
-	UNIQUE(user_id)
+	UNIQUE(user_id, worker_key)
 );
 COMMENT ON TABLE jobposition_logs IS
 	'Antiguedad del usuario en la UNAM';
-COMMENT ON COLUMN jobposition_logs.administrative_key IS
+COMMENT ON COLUMN jobposition_logs.worker_key IS
 	'Número de trabajador en la UNAM (es único)';
 COMMENT ON COLUMN jobposition_logs.years IS
 	'Número de años trabajando en UNAM (Se calculará el número a partir de la información de la tabla jobpositions';
