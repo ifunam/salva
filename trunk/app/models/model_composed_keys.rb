@@ -7,7 +7,7 @@ class ModelComposedKeys < ActiveRecord::Base
       self.primary_keys = keys.collect {|key| key.to_s}
       self.reserved_attributes = %w(created_on updated_on)
     end
-    
+
     def find(*args)
       options = extract_options_from_args!(args)
       case args.first      
@@ -32,6 +32,7 @@ class ModelComposedKeys < ActiveRecord::Base
       record.id = ids
       record
     end
+
     def set_query(keys)
       keys.collect { |key|  key.to_s + ' = ?' }.join(' AND ')
     end
@@ -80,8 +81,7 @@ class ModelComposedKeys < ActiveRecord::Base
       super
       object.destroy
     }
-    freeze
-   end
+  end
 
   def save 
     attributes = set_uncomposed_attributes
@@ -92,11 +92,10 @@ class ModelComposedKeys < ActiveRecord::Base
     }
     return true
   end
-  
-  def create_or_update
-    super
-  end
 
+  def update_attributes(attributes)
+    self.save
+  end
 
   private
   def set_uncomposed_attributes

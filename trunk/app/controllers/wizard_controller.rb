@@ -144,6 +144,7 @@ class WizardController < ApplicationController
      redirect_to :action  => 'show'
   end
 
+
   def stack
     stack = StackOfController.new
     stack.push('wizard', 'new')   # Queremos regresar aqui

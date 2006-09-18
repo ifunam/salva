@@ -87,7 +87,7 @@ class ScaffoldingSandbox
         html << set_month(column, tabindex, required)
       elsif column =~ /year/ then
         html << set_year(column, tabindex, required)
-      elsif column =~/other/ or column =~/descr/ or column =~/comment/x then
+      elsif column =~/other/ or column =~/descr/ or column =~/comment/ then
         html << set_textarea(column, tabindex, required)
       else
         html << set_textfield(column, tabindex, required)

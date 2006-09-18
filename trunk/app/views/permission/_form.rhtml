@@ -4,7 +4,7 @@
 <div class="row"> 
 <label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
 <div id="roleingroup_id">
-<%= tree_select('edit', Roleingroup, %w(group_id role_id)) %>
+<%= select_as_tree('edit', Roleingroup, %w(group_id role_id), 1, 1) %>
 </div>
 </div>
 
