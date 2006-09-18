@@ -122,7 +122,16 @@ class SalvaController < ApplicationController
     else
       @edit = @model.find(params[:id])
       render :action => 'show'
-    end  end
+    end  
+  end
+
+  def stack
+    stack = StackOfController.new
+    stack.push(self.controller_name, 'new')   # Queremos regresar aqui, sea new o edit
+    stack.push(params[:handler], 'new')
+    session[:stack] = stack
+    redirect_to :controller  => 'stack'
+  end
 
   private
   def new_sequence
@@ -209,4 +218,5 @@ class SalvaController < ApplicationController
   def set_child_params(child_key, id)
     session[:child] = { :name => child_key, :value => id }
   end
+
 end

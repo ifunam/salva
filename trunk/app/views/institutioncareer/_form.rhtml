@@ -5,7 +5,7 @@
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="institution_id">
 <%= table_select('edit', Institution, {:tabindex => 1, :required => 1 }) %> 
-<%= quickpost('institution') %> 
+<%=link_to "Add", { :action => "stack", :handler => "institution" }%>
 </div>
 </div>
 

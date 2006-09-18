@@ -147,6 +147,8 @@ language_id: Lenguaje
 spoken_languagelevel_id: Nivel de lenguaje hablado
 written_languagelevel_id: Nivel de lenguaje escrito
 userlanguage: Idiomas
+user_language: Idiomas
+user_skill: Habilidades
 comment: Comentario
 jobposition_log: Antigüedad en la UNAM
 jobpositionlog: Antigüedad en la UNAM

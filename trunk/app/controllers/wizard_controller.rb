@@ -144,6 +144,14 @@ class WizardController < ApplicationController
      redirect_to :action  => 'show'
   end
 
+  def stack
+    stack = StackOfController.new
+    stack.push('wizard', 'new')   # Queremos regresar aqui
+    stack.push(params[:handler], 'new')
+    session[:stack] = stack
+    redirect_to :controller  => 'stack'
+  end
+
   private
   def get_sequence
      session[:sequence] 
