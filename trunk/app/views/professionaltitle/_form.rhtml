@@ -1,12 +1,10 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:professionaltitle]-->
-
 <div class="row"> 
-<label for="titlemodalities_id" class="label"><%= get_label('titlemodality_id') %> <span class="required">*</span></label> 
+<label for="titlemodality_id" class="label"><%= get_label('titlemodality_id') %> <span class="required">*</span></label> 
 <div id="titlemodality_id">
-<%= table_select('edit', Titlemodality, {:tabindex => 2, :required => 1 }) %> 
-
+<%= table_select('edit', Titlemodality, 2, 1) %>
 </div>
 </div>
 
@@ -17,8 +15,7 @@
 
 <div class="row"> 
 <label for="year" class="label"><%= get_label('year') %></label> 
-<%= year_select('edit', 'year', {:tabindex => 4, :required => 0 }) %> 
-</div>
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 4}, :skip_style => true %><br/></div>
 
 <div class="row"> 
 <label for="thesistitle" class="label"><%= get_label('thesistitle') %></label> 

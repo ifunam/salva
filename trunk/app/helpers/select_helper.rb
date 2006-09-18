@@ -23,11 +23,10 @@ module SelectHelper
     select(obj, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
   
-  def select_by_attribute(object, model, tabindex, validation_type=nil, model_id=nil, attr=nil)
+  def select_by_attribute(object, model, tabindex, validation_type=nil, model_id=nil, attribute='name')
     options = set_options_tags(tabindex, validation_type)
-    attribute = model_id != nil ? model_id : set_model_id(model)
-    attr = 'name' if attr = nil
-    select(object, attribute, sorted_find(model, attr), {:prompt => '-- Seleccionar --'}, options)
+    attribute_id = model_id != nil ? model_id : set_model_id(model)
+    select(object, attribute_id, sorted_find(model, attribute), {:prompt => '-- Seleccionar --'}, options)
   end
   
   def select_as_tree(object, model, columns, tabindex, validation_type=nil)
@@ -82,12 +81,12 @@ module SelectHelper
 
   def remote_functag(origmodel, destmodel, tabindex, prefix=nil)
     partial = "select_#{origmodel.name.downcase}_#{destmodel.name.downcase}" 
-    partial_note =  partial + "_note"
     params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value"
+    partial_note =  partial + "_note"
     success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
     success_msg += "return false;"
     loading_msg = "Toggle.display('#{partial_note}');"
-    remote_function(:update => partial, :with => params,  :url => {:action => :update_select},
+    remote_function(:update => partial, :with => params, :url => {:action => :update_select},
                     :loading => loading_msg, :success => success_msg)
   end
 

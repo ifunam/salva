@@ -3,8 +3,8 @@
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('update') %> | 
-  <%= link_to get_label('cancel'), :action => 'list' %>
-  </div>
+  <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+   </div>
 <%= end_form_tag %>
 
 

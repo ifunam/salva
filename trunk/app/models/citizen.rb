@@ -5,4 +5,3 @@ class Citizen < ActiveRecord::Base
   belongs_to :citizen_country, :class_name => 'Country', :foreign_key => 'citizen_country_id'
   belongs_to :citizenmodality
 end
-

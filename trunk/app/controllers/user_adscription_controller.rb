@@ -9,13 +9,14 @@ class UserAdscriptionController < SalvaController
     @order_by = 'id'
   end
 
-  def index
-    @jobposition = Jobposition.find(:first, :conditions => [ 'user_id = ?', session[:user]]) # Buscar jobpositions en la UNAM
-    if @jobposition
-      list
-    else
-      flash[:notice] = 'Por favor registre una categoría antes de ingresar su adscripción...'
-      redirect_to :controller => 'jobposition', :action => 'list'
-    end
-  end
+#   def index
+#     @jobposition = Jobposition.find_first([ 'user_id = ?', session[:user]]) # Buscar jobpositions en la UNAM
+#     if @jobposition != nil
+#       list
+#     else
+#       flash[:notice] = 'Por favor registre una categoría antes de ingresar su adscripción...'
+#       redirect_to :controller => 'jobposition_at_institution', :action => 'list'
+#     end
+#   end
+
 end

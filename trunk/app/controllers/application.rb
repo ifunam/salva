@@ -52,4 +52,34 @@ class ApplicationController < ActionController::Base
   def set_user_id
     session[:user_id] = session[:user] unless session[:user_id]
   end
+
+  def auto_complete_for_edit_years 
+    auto_complete_responder_for_years params[:edit][:years]
+  end
+
+  def auto_complete_for_edit_startyear 
+    min = Date.today.year - 90
+    max = Date.today.year
+    auto_complete_responder_for_years params[:edit][:startyear], min, max
+  end
+
+  def auto_complete_for_edit_endyear 
+    min = Date.today.year - 90
+    max = Date.today.year
+    auto_complete_responder_for_years params[:edit][:endyear], min, max
+  end
+
+  def auto_complete_for_edit_year 
+    min = Date.today.year - 90
+    max = Date.today.year
+    auto_complete_responder_for_years params[:edit][:endyear], min, max
+  end
+  private
+  def auto_complete_responder_for_years(value,min=1,max=90)
+    list = [ ]
+    for i in (min .. max)
+      list << i if i.to_s =~ /^#{value}/ 
+    end
+    render :partial => 'salva/autocomplete_list', :locals => {:list => list}
+  end
 end

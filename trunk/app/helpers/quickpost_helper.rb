@@ -22,27 +22,35 @@ module QuickpostHelper
            :locals => { :scope => scope, :id => id })
   end  
   
-  def form_remote_tag_for_quickpost(controller, partial, attribute)
-    success = "new Effect.BlindUp('"+controller+"', {duration:0.4}); " 
-    success += update_select_from_quickpost(partial,attribute) if partial
-    form_remote_tag(:success => success,
-                    404 => "alert('Not found...? Wrong URL...?')", 
-                    :loading => "AjaxScaffold.newOnLoading(request,'"+controller+"');",
-                    :failure => "alert('HTTP Error ' + request.status + '!');",
-                    :url  => { :controller => controller, :action => 'create' }) 
-  end
+#  def form_remote_tag_for_quickpost(controller, partial, attribute)
+#    success = update_select_from_quickpost(partial,attribute) if partial
+#    form_remote_tag (:url => {:controller => controller, :action => "create"},
+#                     :update => {:success => "alert('Cargando esta mierda');"},
+#                     :loading => "alert('Cargando esta mierda');",
+#                     :complete => "alert('Esta mierda esta completa')",
+#                     :failure => "alert('Not found...? Wrong URL...?')")
+#  end
+   def form_remote_tag_for_quickpost(controller, partial, attribute)
+     success = update_select_from_quickpost(partial,attribute) 
+     form_remote_tag(:update => {:success => "alert('Cargando esta mierda');",
+                                 :loading => "alert('Cargando esta mierda');",
+                                  :complete => "alert('Esta mierda esta completa')"},
+                     :url => { :controller => controller, :action => 'create' })
+   end
+   
+   def submit_remote_tag_for_quickpost(controller, partial, attribute)
+     success = update_select_from_quickpost(partial,attribute) 
+   end
 
-  def update_select_from_quickpost(partial,attribute)
-    params = "'partial=#{partial}&id='+$F('#{attribute}')" 
-    partial_note = partial + '_note'
-    success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.4}); "
-    success_msg += "return false;"
-    loading_msg = "Toggle.display('#{partial_note}');"
-    remote_function(:update => partial, :with => params, 
-                    :url => {:action => :update_select},
-                    :loading => loading_msg,
-                    :success => success_msg)
-  end
+   def update_select_from_quickpost(partial,attribute)
+     params = "'partial=#{partial}&id='+$F('#{attribute}')" 
+     partial_note = partial + '_note'
+     success_msg = "Effect.BlindUp('#{partial}', {duration: 0.4}); "
+     success_msg += "return false;"
+     loading_msg = "Toggle.display('#{partial_note}');"
+     remote_function(:update => partial, :with => params, :url => {:action => :update_select},
+                     :loading => loading_msg, :success => success_msg)
+   end
   
   def link_to_cancel_for_quickpost(controller)
     "<a href=\"#\" onclick=\"new Effect.BlindUp('#{controller}', {duration: 0.4}); " +

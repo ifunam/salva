@@ -1,52 +1,58 @@
+<%= error_messages_for 'edit' %>
 
-<p>
-<!--[form:edit]-->
-<%= hidden_field 'edit', 'book_id', 'value' => params['book_id']  %></p>
+<!--[form:bookedition]-->
 
-<p><label for="bookedition_editions">Edición</label><br/>
-<div id="Edition">
-<%= table_select('edit', Edition) %> 
-<%= quickpost('edition') %>
+<div class="row"> 
+<label for="edition_id" class="label"><%= get_label('edition_id') %> <span class="required">*</span></label> 
+<div id="edition_id">
+<%= table_select('edit', Edition, 2, 1) %>
+</div>
 </div>
 
-<p><label for="bookedition_status">Estado de la edición</label><br/>
-<div id="Editionstatus">
-<%= table_select('edit', Editionstatus) %>
-<%= quickpost('editionstatus') %>
+<div class="row"> 
+<label for="pages" class="label"><%= get_label('pages') %></label> 
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
 </div>
 
-
-<p><label for="bookedition_pages">Páginas</label><br/>
-<%= text_field 'edit', 'pages', :tabindex => 2  %></p>
-
-<p><label for="bookedition_isbn">Isbn</label><br/>
-<%= text_field 'edit', 'isbn'  %></p>
-
-
-<p><label for="bookedition_publisher_id">Editorial</label><br/>
-<div id="Publisher">
-<%= table_select('edit', Publisher) %> 
-<%= quickpost('publisher') %>
+<div class="row"> 
+<label for="isbn" class="label"><%= get_label('isbn') %></label> 
+<%= text_field 'edit', 'isbn', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
 </div>
 
-<p><label for="bookedition_mediatype_id">Medio</label><br/>
-<div class="row">
-<div id="Mediatype">
-<%= table_select('edit', Mediatype) %>
+<div class="row"> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
+<div id="publisher_id">
+<%= table_select('edit', Publisher, 5) %>
 </div>
-<%= quickpost('mediatype') %>
 </div>
 
-<p><label for="bookedition_month">Mes</label><br/>
-<%= month_select('edit') %>
+<div class="row"> 
+<label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label> 
+<div id="mediatype_id">
+<%= table_select('edit', Mediatype, 6, 1) %>
+</div>
+</div>
 
-<p><label for="bookedition_year">Año</label><br/>
-<%= year_select('edit') %>
+<div class="row"> 
+<label for="editionstatus_id" class="label"><%= get_label('editionstatus_id') %></label> 
+<div id="editionstatus_id">
+<%= table_select('edit', Editionstatus, 7) %>
+</div>
+</div>
 
-<p><label for="bookedition_other">Informaci&oacute;n adicional</label><br/>
-<%= text_area 'edit', 'other', 'rows' => 5  %>
+<div class="row"> 
+<label for="month" class="label"><%= get_label('month') %></label> 
+<%= month_select('edit', 'month', {:tabindex => 8, :required => 0 }) %> 
+</div>
 
-<!--[eoform:edit]-->
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 9}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %></div>
 
 
+<!--[eoform:bookedition]-->
 

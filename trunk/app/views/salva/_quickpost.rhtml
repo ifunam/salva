@@ -1,6 +1,6 @@
 <div class="partial">
 <div class="title"> 
-<%= loading_indicator_tag controller, "new" %> <%= title %>
+<%= loading_indicator_tag controller, "new" %><%= title %>
 </div>
 <%= form_remote_tag_for_quickpost(controller, partial, attribute) %>
 <%= render :partial => "/#{controller}/form" %>

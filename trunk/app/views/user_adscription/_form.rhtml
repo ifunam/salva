@@ -1,6 +1,6 @@
 <%= error_messages_for 'edit' %>
-
 <!--[form:user_adscription]-->
+
 <div class="row"> 
 <label for="jobposition_id" class="label"><%= get_label('jobposition_id') %> <span class="required">*</span></label> 
 <div id="jobposition_id">
@@ -12,7 +12,6 @@
 <label for="adscription_id" class="label"><%= get_label('adscription_id') %> <span class="required">*</span></label> 
 <div id="adscription_id">
 <%= select_adscription('edit', Adscription,  2, 1) %> 
-<%= quickpost('adscription') %> 
 </div>
 </div>
 
@@ -23,8 +22,7 @@
 
 <div class="row"> 
 <label for="descr" class="label"><%= get_label('descr') %></label> 
-<%= text_field 'edit', 'descr', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 4, 'id' => 'descr' %>
-</div>
+<%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'descr' %></div>
 
 <div class="row"> 
 <label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
@@ -33,8 +31,7 @@
 
 <div class="row"> 
 <label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
-<%= year_select('edit', 'startyear', {:tabindex => 6, :required => 1 }) %> 
-</div>
+<%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 6, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
 
 <div class="row"> 
 <label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
@@ -43,9 +40,7 @@
 
 <div class="row"> 
 <label for="endyear" class="label"><%= get_label('endyear') %></label> 
-<%= year_select('edit', 'endyear', {:tabindex => 8, :required => 0 }) %> 
-</div>
-
+<%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 8}, :skip_style => true %><br/></div>
 
 <!--[eoform:user_adscription]-->
 

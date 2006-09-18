@@ -9,15 +9,12 @@ class JobpositionLogController < SalvaController
     @order_by = 'id'
   end
 
-# No usar list como accion predefinida
-# Regresar debe apuntar a index y nunca a list.
-#
-#   def index 
-#     @jobposition_log = JobpositionLog.find(:first, :conditions => [ 'user_id = ?', session[:user]])
-#     if @jobposition_log
-#       new
-#     else
-#       redirect_to :controller => 'jobposition_log', :action => 'show', :id => @jobposition_log.id
-#     end
-#   end 
+  def index 
+    @jobposition_log = JobpositionLog.find_first([ 'user_id = ?', session[:user]])
+    if @jobposition_log == nil
+      new
+    else
+      redirect_to  :action => 'show', :id => @jobposition_log.id
+    end
+  end 
 end

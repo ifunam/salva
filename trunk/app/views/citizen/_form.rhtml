@@ -1,27 +1,27 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:citizen]-->
-
 <div class="row"> 
 <label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label> 
 <div id="citizen_country_id">
-<%= byattr_select('edit', Country,'citizen_country_id', {:attr => 'citizen', :tabindex =>'2'}) %>
-</div>
-</div>
-
-<div class="row"> 
-<label for="citizenmodality_id" class="label"><%= get_label('citizenmodality_id') %> <span class="required">*</span></label> 
-<div id="citizenmodality_id">
-<%= table_select('edit', Citizenmodality, {:tabindex => '2'}) %> 
+<%=  select_by_attribute('edit', Country, 1, 1, 'citizen_country_id', 'citizen') %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="migratorystatus_id" class="label"><%= get_label('migratorystatus_id') %> <span class="required">*</span></label> 
 <div id="migratorystatus_id">
-<%= table_select('edit', Migratorystatus, {:tabindex => '3'}) %> 
+<%= table_select('edit', Migratorystatus, 2, 1) %>
 </div>
 </div>
+
+<div class="row"> 
+<label for="citizenmodality_id" class="label"><%= get_label('citizenmodality_id') %> <span class="required">*</span></label> 
+<div id="citizenmodality_id">
+<%= table_select('edit', Citizenmodality, 3, 1) %>
+</div>
+</div>
+
 
 <!--[eoform:citizen]-->
 
