@@ -44,15 +44,18 @@ class ScaffoldingSandbox
     select << "<%= table_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n" 
     select << "</div>\n"
   end
-
+  
   def set_month(column, tabindex, required=nil)
     required ? req = 1 : req = 0
     "<%= month_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
   
   def set_year(column, tabindex, required=nil)
-    required ? req = 1 : req = 0
-    "<%= year_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
+    if required != nil
+      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/>"
+    else
+      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
+    end
   end
   
   def get_tableattr(model_instance, singular_name)
@@ -84,7 +87,7 @@ class ScaffoldingSandbox
         html << set_month(column, tabindex, required)
       elsif column =~ /year/ then
         html << set_year(column, tabindex, required)
-      elsif column =~ /other/ then
+      elsif column =~/other/ or column =~/descr/ or column =~/comment/x then
         html << set_textarea(column, tabindex, required)
       else
         html << set_textfield(column, tabindex, required)
