@@ -17,11 +17,11 @@ class StackController < ApplicationController
     if session[:stack] != nil
       stack = session[:stack]
 
-#      model = stack.get_model
-#      params[:edit].each { |key, value|
-#        model[key.to_sym] = value
-#      }
-#      model.save if model.valid?
+      model = stack.get_model.new
+      params[:edit].each { |key, value|
+        model[key.to_sym] = value
+      }
+      model.save if model.valid?
 
       stack.pop
 
