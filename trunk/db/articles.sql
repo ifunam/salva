@@ -218,7 +218,7 @@ CREATE TABLE file_articles (
             ON UPDATE CASCADE
             DEFERRABLE,
    filename text NOT NULL,
-   filedescr text NULL,
+   conten_type text NULL,
    content bytea NOT NULL,
    creationtime timestamp NOT NULL DEFAULT now(),
    lastmodiftime timestamp NOT NULL DEFAULT now(),
