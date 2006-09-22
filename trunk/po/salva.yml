@@ -160,3 +160,9 @@ updating_current_skills: Actualización personal
 user_course: Cursos recibidos
 user_conference: Asistencia a congresos y seminarios
 acadvisit: Estancias
+acadvisittype_id: Tipo de estancia
+place: Lugar
+goals: Objetivos
+externaluserlevel_id: Nivel del usuario externo
+visitor_id: Visitante
+
