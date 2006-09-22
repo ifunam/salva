@@ -47,3 +47,4 @@
 \i catalogs/grants.sql
 \i catalogs/schoolarships.sql
 \i catalogs/schooling_filetypes.sql
+\i catalogs/acadvisittypes.sql

@@ -5,6 +5,12 @@
 CREATE TABLE acadvisittypes (
 	id SERIAL,
 	name text NOT NULL,
+	moduser_id int4 NULL  -- Use it only to know who has
+             REFERENCES users(id) -- inserted, update or delete  
+               ON UPDATE CASCADE  -- data into or from this table.
+               DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -43,6 +49,12 @@ CREATE TABLE acadvisits (
             REFERENCES externalusers(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
+	moduser_id int4 NULL  -- Use it only to know who has
+             REFERENCES users(id) -- inserted, update or delete  
+               ON UPDATE CASCADE  -- data into or from this table.
+               DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
@@ -66,6 +78,12 @@ CREATE TABLE sponsor_acadvisits (
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	amount integer NOT NULL,
+	moduser_id int4 NULL  -- Use it only to know who has
+             REFERENCES users(id) -- inserted, update or delete  
+               ON UPDATE CASCADE  -- data into or from this table.
+               DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id)
 );
 COMMENT ON TABLE sponsor_acadvisits IS
