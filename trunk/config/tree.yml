@@ -13,6 +13,9 @@
       - jobposition_log
     - jobposition_external
   - user_stimulus
+  - updating_current_skills
+  - - user_course
+    - user_conference
   - user_grant
   - membership
   - user_language
