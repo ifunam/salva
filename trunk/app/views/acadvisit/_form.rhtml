@@ -1,0 +1,71 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:acadvisit]-->
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="institution_id">
+<%= table_select('edit', Institution, 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div id="country_id">
+<%= table_select('edit', Country, 2, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="acadvisittype_id" class="label"><%= get_label('acadvisittype_id') %> <span class="required">*</span></label> 
+<div id="acadvisittype_id">
+<%= table_select('edit', Acadvisittype, 3, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'name', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 4, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 5, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
+<%= month_select('edit', 'startmonth', {:tabindex => 6, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 7}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
+<%= month_select('edit', 'endmonth', {:tabindex => 8, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="place" class="label"><%= get_label('place') %></label> 
+<%= text_field 'edit', 'place', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 9, 'id' => 'place' %>
+</div>
+
+<div class="row"> 
+<label for="goals" class="label"><%= get_label('goals') %></label> 
+<%= text_field 'edit', 'goals', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 10, 'id' => 'goals' %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 11, 'id' => 'other' %></div>
+
+<div class="row"> 
+<label for="visitor_id" class="label"><%= get_label('visitor_id') %></label> 
+<div id="visitor_id">
+<%= table_select('edit', Visitor, 12) %>
+</div>
+</div>
+
+
+<!--[eoform:acadvisit]-->
+
