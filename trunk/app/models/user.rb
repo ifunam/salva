@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   
   before_create :prepare_new_record
   after_validation_on_create :prepare_password  
-  
+  after_create :clean_password
+
   private
   def prepare_new_record
     # New userstatus and preparing the tokens for the account activation process
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
         self.passwd_confirmation = nil    
       end
     end
+  end
+  
+  def clean_password
+    self.passwd = nil
   end
   
 end

@@ -29,15 +29,11 @@ CREATE TABLE externalusers (
 	    REFERENCES externaluserlevels(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    degrees_id integer NULL
+    degree_id integer NULL
 	    REFERENCES degrees(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     PRIMARY KEY (id)
 );
-CREATE INDEX externalusers_firstname_idx ON externalusers(firstname);
-CREATE INDEX externalusers_lastname1_idx ON externalusers(lastname1);
-CREATE INDEX externalusers_lastname2_idx ON externalusers(lastname2);
-CREATE INDEX externalusers_firstname_lastname1_lastname2_idx ON externalusers(firstname, lastname1, lastname2);
 COMMENT ON TABLE externalusers IS
 	'Datos registrados de un usuario externo - Nombre e institución';

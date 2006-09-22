@@ -45,7 +45,7 @@ CREATE TABLE acadvisits (
 	place text NULL,
 	goals text NULL,
     	other text  NULL,
-	visitor_id integer NULL 
+	externaluser_id integer NULL 
             REFERENCES externalusers(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
@@ -63,7 +63,7 @@ COMMENT ON TABLE acadvisits IS
 	'Cada una de las visitas académicas, relacionadas con el usuario en 
 	cuestión';
 
-COMMENT ON COLUMN acadvisits.visitor_id IS
+COMMENT ON COLUMN acadvisits.externaluser_id IS
 	'Si esta columna apunta a un usuario externo, significa que el usuario participo
 	 en la coordinación de una visita o estancia académica de un invitado';
 

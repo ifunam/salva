@@ -1,0 +1,42 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:externaluser]-->
+<div class="row"> 
+<label for="firstname" class="label"><%= get_label('firstname') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'firstname', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'firstname', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="lastname1" class="label"><%= get_label('lastname1') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'lastname1', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'lastname1', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="lastname2" class="label"><%= get_label('lastname2') %></label> 
+<%= text_field 'edit', 'lastname2', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'lastname2' %>
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
+<div id="institution_id">
+<%= table_select('edit', Institution, 4) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="externaluserlevel_id" class="label"><%= get_label('externaluserlevel_id') %></label> 
+<div id="externaluserlevel_id">
+<%= table_select('edit', Externaluserlevel, 5) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="degree_id" class="label"><%= get_label('degree_id') %></label> 
+<div id="degree_id">
+<%= table_select('edit', Degree, 6) %>
+</div>
+</div>
+
+
+<!--[eoform:externaluser]-->
+
