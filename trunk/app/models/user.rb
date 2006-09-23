@@ -36,11 +36,11 @@ class User < ActiveRecord::Base
   end
   
   def verify_current_password
-    if User.find(:first, :conditions => ["id = ?", self.id]).passwd != encrypt(self.current_passwd, self.salt)
+    if User.find(:first, :conditions => ["id = ?", self.id]).passwd == encrypt(self.current_passwd, self.salt)
+      prepare_password
+    else
       errors.add("current_passwd", "is not valid")  
       return false
-    else
-      prepare_password
     end
   end
   
