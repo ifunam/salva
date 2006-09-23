@@ -12,6 +12,7 @@ class ChangePasswordController < ApplicationController
 
   def edit
     @edit = @model.find(session[:user])
+    @edit.passwd = nil
     render :action => 'edit'
   end
 

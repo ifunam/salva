@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Digest
   belongs_to :userstatus
   # attr_accessible :email, :login, :passwd
-  
+  attr_accessor :current_passwd
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..20
@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   
   before_create :prepare_new_record
-  before_update :prepare_new_record
 
   after_validation_on_create :prepare_password  
-  after_create :clean_password
+  before_validation_on_update :verify_current_password 
+  #:prepare_password
 
   private
   def prepare_new_record
@@ -28,17 +28,20 @@ class User < ActiveRecord::Base
   end
   
   def prepare_password
-    #if new_record?
-      if self.passwd
-        self.salt = salted
-        self.passwd = encrypt(self.passwd, self.salt) 
-        self.passwd_confirmation = nil    
-      end
-    #end
+    if self.passwd
+      self.salt = salted
+      self.passwd = encrypt(self.passwd, self.salt) 
+      self.passwd_confirmation = nil    
+    end
   end
   
-  def clean_password
-    self.passwd = nil
+  def verify_current_password
+    if User.find(:first, :conditions => ["id = ?", self.id]).passwd != encrypt(self.current_passwd, self.salt)
+      errors.add("current_passwd", "is not valid")  
+      return false
+    else
+      prepare_password
+    end
   end
   
 end
