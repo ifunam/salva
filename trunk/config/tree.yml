@@ -16,8 +16,9 @@
   - updating_current_skills
   - - user_course
     - user_conference
-  - acadvisit
+    - acadvisit
   - user_grant
   - membership
   - user_language
   - user_skill
+  - change_password

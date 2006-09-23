@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   
   before_create :prepare_new_record
+  before_update :prepare_new_record
+
   after_validation_on_create :prepare_password  
   after_create :clean_password
 
@@ -26,13 +28,13 @@ class User < ActiveRecord::Base
   end
   
   def prepare_password
-    if new_record?
+    #if new_record?
       if self.passwd
         self.salt = salted
         self.passwd = encrypt(self.passwd, self.salt) 
         self.passwd_confirmation = nil    
       end
-    end
+    #end
   end
   
   def clean_password
