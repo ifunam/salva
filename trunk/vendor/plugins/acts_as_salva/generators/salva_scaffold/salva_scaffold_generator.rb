@@ -14,9 +14,9 @@ class ScaffoldingSandbox
 
   def set_textfield(column, tabindex, required=nil)
     if required then
-      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
     else
-      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
     end
   end
 
