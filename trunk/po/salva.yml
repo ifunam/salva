@@ -169,4 +169,15 @@ change_password: Cambiar contraseña
 current_passwd: Contraseña actual
 new_passwd: Nueva contraseña 
 confirm_passwd: Confirmar contraseña 
+changepassword: Cambiar contraseña
+coursetype: Tipos de curso
+coursetype_id: Tipo de curso
+course: Cursos
+hours: Horas
+days: Días
+courseduration: Duraciones de curso
+coursegrouptype: Tipos de grupo de curso
+coursegrouptype_id: Tipo de grupo de curso
+totalhours: Horas en total
+coursegroup: Grupos de curso
 
