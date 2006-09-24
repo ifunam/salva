@@ -2,18 +2,19 @@
 
 <!--[form:acadvisit]-->
 <div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="institution_id">
-<%= table_select('edit', Institution, 1, 1) %>
-<%=link_to "Add", { :action => "stack", :handler => "institution" }%>
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div id="country_id">
+<%= select_to_update_select('edit', Country, Institution, 2, 1) %>
 </div>
 </div>
 
 <div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
-<div id="country_id">
-<%= table_select('edit', Country, 2, 1) %>
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+<div id="select_country_institution">
+<%= table_select('edit', Institution, 1, 1) %>
 </div>
+<%=link_to "Add", { :action => "stack", :handler => "institution" }%>
 </div>
 
 <div class="row"> 
