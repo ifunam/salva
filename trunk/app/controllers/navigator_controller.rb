@@ -1,25 +1,9 @@
-require 'yaml'
+require 'navigator_tree'
 class NavigatorController < ApplicationController
+  include NavigatorTree
+
   skip_before_filter :rbac_required
 
-  def tree_loader
-    ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
-    tree = YAML::parse( File.open(ymlfile) )
-    tree.transform    
-  end
-  
-  def get_tree
-    if @session[:navtree] then
-      @session[:navtree]
-    else
-      tree = tree_loader
-      navtree = Tree.new(tree)
-      navtree.data = 'home'
-      @session[:navtree] = navtree
-      navtree
-    end
-  end
-  
   def index
     navtab
   end

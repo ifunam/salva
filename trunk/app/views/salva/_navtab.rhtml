@@ -1,13 +1,7 @@
-<div id="navtab_container">
- <table>
-   <tr>
-<% 
-   @list.each { |child| 
-%>
-  <td><%=child%></td>
-<% } %>
-  </tr>
-</table>
-
+<div class="navtab">
+ <% for child in list %> 
+<!--  <div class="item"> <%=child%> </div> -->
+   <%=child%>
+ <% end %>
 </div>
 

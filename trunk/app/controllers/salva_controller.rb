@@ -13,6 +13,7 @@ class SalvaController < ApplicationController
   
   def list
     @parent_controller = set_parent_controller
+    @params[controller_name] = { :user_id => 3 } if @list_user
     conditions = set_conditions
     per_page = set_per_page
     
@@ -164,7 +165,7 @@ class SalvaController < ApplicationController
     conditions = [ nil ]
     keys = []
     params.each { |key, value|
-      if value != nil and value.length > 0 
+      if value != nil and value.size > 0 
         if key.match(/_id$/) 
           keys << key + " = ?"
           conditions << value

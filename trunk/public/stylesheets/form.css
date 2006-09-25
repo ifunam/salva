@@ -125,6 +125,22 @@ body {
 	color: yellow;
 }
 
+.navtab {
+    display: table-row;
+    width: 99.5%;
+    text-align: left;
+    padding: 2px;
+    font: 12px Arial, Helvetica, sans-serif;
+}
+
+.navtab item {
+}
+
+.navtab item img {
+	vertical-align: middle;
+	padding-right: 25px;
+	border: 0px;
+}
 .formbox { 
     z-index: 1;
     font: 12px Arial, Helvetica, sans-serif; 
