@@ -15,10 +15,11 @@ module SelectHelper
     select(obj, set_model_id(model), sorted_find(model), { :prompt => '-- Seleccionar --' }, options)
   end
   
-  def select_id_to_update_select(obj, model, model_parent, id, model_dest, tabindex, validation_type=nil) 
+  def select_id_to_update_select(obj, model, model_parent, id, model_dest, tabindex, validation_type=nil, columns=['name']) 
     options = set_options_tags(tabindex, validation_type)
     conditions = [ set_model_id(model_parent) + ' = ?', id ]
-    list = list_from_collection(model.find(:all, :conditions => conditions))
+    collection = model.find(:all, :conditions => conditions)
+    list = list_collection(collection,  columns) 
     options[:onchange] = remote_functag(model, model_dest, tabindex) if model_dest != nil
     select(obj, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
@@ -55,7 +56,7 @@ module SelectHelper
     select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
-  def select_unam(object, model, tabindex, validation_type=nil)
+  def select_institution(object, model, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
     list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 1]))
     select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
