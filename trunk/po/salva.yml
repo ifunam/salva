@@ -150,11 +150,11 @@ userlanguage: Idiomas
 user_language: Idiomas
 user_skill: Habilidades
 comment: Comentario
-jobposition_log: Antigüedad en la UNAM
-jobpositionlog: Antigüedad en la UNAM
+jobposition_log: Antigüedad 
+jobpositionlog: Antigüedad
 worker_key: Número de trabajador
-jobposition_internal: Experiencia laboral en la UNAM
-jobposition_at_institution: Experiencia laboral en la UNAM
+jobposition_internal: UNAM
+jobposition_at_institution: Categorías
 jobposition_external: Experiencia laboral externa
 jobpositionexternal: Experiencia laboral externa
 updating_current_skills: Actualización profesional
