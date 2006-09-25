@@ -126,21 +126,40 @@ body {
 }
 
 .navtab {
-    display: table-row;
-    width: 99.5%;
-    text-align: left;
-    padding: 2px;
-    font: 12px Arial, Helvetica, sans-serif;
+	width: 99.5%;
+	text-align: left;
+	padding: 2px;
+	font: 12px Arial, Helvetica, sans-serif;
 }
 
-.navtab item {
+.navtab_item {
+       	display: table-cell;
+	width: 185px;
+	padding: 10px;
+	margin: 15px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }
 
-.navtab item img {
+.navtab_item img {
 	vertical-align: middle;
-	padding-right: 25px;
+	padding-right: 3px;
 	border: 0px;
 }
+
+.navtab_item a {
+	color: #0F4180;
+	text-decoration: none;
+}
+
+.navtab_item a:visited {
+	color: #0F4180;
+}
+
+.navtab_item a:hover {
+	color: green;
+}
+
 .formbox { 
     z-index: 1;
     font: 12px Arial, Helvetica, sans-serif; 

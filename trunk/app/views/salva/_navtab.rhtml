@@ -1,7 +1,12 @@
-<div class="navtab">
+<div class="navtab">	
+ <% max_item_per_line = 4 %>
+ <% counter = 1 %>
  <% for child in list %> 
-<!--  <div class="item"> <%=child%> </div> -->
-   <%=child%>
+   <% if counter > max_item_per_line %>
+    <% max_item_per_line += 4 %>
+     <br/>
+  <% end %>
+  <span class="navtab_item"> <%=child%> </span>
+ <% counter += 1 %>
  <% end %>
 </div>
-
