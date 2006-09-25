@@ -21,4 +21,5 @@
   - membership
   - user_language
   - user_skill
-  - change_password
+  - user_settings
+  - - change_password
