@@ -49,3 +49,4 @@
 \i catalogs/schooling_filetypes.sql
 \i catalogs/acadvisittypes.sql
 \i catalogs/coursemodalities.sql
+\i catalogs/attendeetypes.sql
