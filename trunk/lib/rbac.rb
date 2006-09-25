@@ -1,27 +1,37 @@
 module Rbac
   def rbac_required
-    uroles = get_roleingroups(session[:user])
+    flash[:warning] = 'Por favor defina un rol para el usuario en sesión...' unless has_role_defined? 
     
-    if uroles.length <= 0
-      flash[:warning] = 'Por favor defina un rol para el usuario en sesión...'
-    else
-      if has_controller_action?(controller_name, action_name)
-        controller = Controller.find_by_name(action_name)
-        action = Action.find_by_name(action_name)
-        unless is_authorized?(uroles, controller.id, action.id)
-          flash[:warning] = "No tiene permisos para usar este controlador '#{controller_name} => #{action_name}'..."
-        end
-      else 
-        flash[:warning] = "El controlador '#{controller_name}' o la acción '#{action_name}' aún no estan registrados.."
+    if controller_and_action_exist?(controller_name, action_name)
+      unless has_permission_in_this_controller?
+        flash[:warning] = "No tiene permisos para usar este controlador '#{controller_name} => #{action_name}'..."  
       end
+    else
+      flash[:warning] = "El controlador '#{controller_name}' o la acción '#{action_name}' aún no estan registrados.."
     end
     
-    if flash[:warning] 
-      redirect_to :controller =>"/rbac", :action => 'index'
-      return false
-    end
+    redirect_to_rbac if flash[:warning]
   end
 
+  def has_permission_in_this_controller?
+    uroles = get_roleingroups(session[:user])
+    controller = Controller.find_by_name(action_name)
+    action = Action.find_by_name(action_name)
+    return true if is_authorized?(uroles, controller.id, action.id)
+    return false
+  end
+  
+  def has_roles_defined?
+    uroles = get_roleingroups(session[:user])
+    return true if uroles.length <= 0
+    return false
+  end
+  
+  def redirect_to_rbac
+    redirect_to :controller =>"/rbac", :action => 'index'
+    return false
+  end
+  
   def is_admin?(user_id)
     roleingroups = get_roleingroups(user_id)
     roleingroups.each { |roleingroup_id|
@@ -98,7 +108,7 @@ module Rbac
     return permission.attributes_before_type_cast['action_id'].delete('{}').split(',').include?(action_id.to_s)
   end
   
-  def has_controller_action?(cname,aname)
+  def controller_and_action_exist?(cname,aname)
     return true if Controller.find_by_name(cname) and Action.find_by_name(aname) 
   end
 end
