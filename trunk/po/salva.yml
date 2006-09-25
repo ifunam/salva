@@ -156,6 +156,7 @@ worker_key: Número de trabajador
 jobposition_internal: Experiencia laboral en la UNAM
 jobposition_at_institution: Experiencia laboral en la UNAM
 jobposition_external: Experiencia laboral externa
+jobpositionexternal: Experiencia laboral externa
 updating_current_skills: Actualización personal
 user_course: Cursos recibidos
 user_conference: Asistencia a congresos y seminarios
@@ -180,4 +181,3 @@ coursegrouptype: Tipos de grupo de curso
 coursegrouptype_id: Tipo de grupo de curso
 totalhours: Horas en total
 coursegroup: Grupos de curso
-
