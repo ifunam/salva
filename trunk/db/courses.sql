@@ -89,6 +89,16 @@ COMMENT ON COLUMN courses.hours IS
 	serán guardadas en ningún campo, solo serviran como referencia
 	en la aplicación.';
 
+CREATE TABLE coursemodalities (
+    id SERIAL,  
+    name text NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (name)
+);
+COMMENT ON TABLE coursemodalities IS 
+	'Modalidad en que es impartido un curso o de una ponencia:
+	 Presencial, Distancia, ambas o ninguna de las anteriores :)';
+
 CREATE TABLE roleincourses (
 	id SERIAL,
 	name text NOT NULL,
@@ -109,7 +119,7 @@ CREATE TABLE user_courses (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    courses_id int4 NULL 
+    course_id int4 NULL 
             REFERENCES courses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -133,8 +143,8 @@ CREATE TABLE user_courses (
               REFERENCES coursedurations(id)
               ON UPDATE CASCADE
               DEFERRABLE,
-    modality_id int4 NOT NULL 
-            REFERENCES modalities(id)
+    coursemodality_id int4 NOT NULL 
+            REFERENCES coursemodalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     hoursxweek int4 NULL,
@@ -144,7 +154,7 @@ CREATE TABLE user_courses (
     acadprogram text NULL,
     other text NULL,
     PRIMARY KEY (id),
-    CONSTRAINT either_course_or_group CHECK (courses_id IS NOT NULL OR
+    CONSTRAINT either_course_or_group CHECK (course_id IS NOT NULL OR
 	coursegroup_id IS NOT NULL)
 );
 COMMENT ON TABLE user_courses IS
