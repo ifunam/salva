@@ -52,13 +52,13 @@ CREATE TABLE jobpositioncategories (
                          REFERENCES roleinjobpositions(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-	jobpositionlevel_id smallint NOT NULL 
+	jobpositionlevel_id smallint NULL 
                          REFERENCES jobpositionlevels(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
 	administrative_key text NULL, 
-	PRIMARY KEY (id),
-	UNIQUE (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id)
+	PRIMARY KEY (id)
+	-- UNIQUE (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id)
 );
 COMMENT ON TABLE jobpositioncategories IS 
 	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
