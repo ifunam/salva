@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   before_create :prepare_new_record
 
   after_validation_on_create :prepare_password  
-  before_validation_on_update :verify_current_password 
+#  before_validation_on_update :verify_current_password 
   #:prepare_password
 
   private

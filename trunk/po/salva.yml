@@ -181,5 +181,8 @@ coursegrouptype: Tipos de grupo de curso
 coursegrouptype_id: Tipo de grupo de curso
 totalhours: Horas en total
 coursegroup: Grupos de curso
-user_settings: Configuración de mi cuenta
-
+user_settings: Información de mi cuenta
+homepage: Página personal
+blog: Bitácora
+calendar: Calendario
+user_setting: Correo electrónico
