@@ -1,13 +1,13 @@
 ----------------------------------------
 -- Conferences Information            --
 ----------------------------------------
-CREATE TABLE attendeetype ( 
+CREATE TABLE attendeetypes ( 
         id SERIAL,
         name text NOT NULL, 
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE attendeetype IS
+COMMENT ON TABLE attendeetypes IS
 	'Rol de un usuario en un congreso:
 	Asistente, ponente, organizador, instructor, coordinador general, 
 	coordinador de mesa, comité académico, comité técnico, moderador de mesa,
@@ -24,23 +24,23 @@ COMMENT ON TABLE conferencetypes IS
 	Congreso, seminario, coloquio, encuentro, homenaje, jornadas, mesa redonda,
 	simposio, taller';
 
-CREATE TABLE conferencescope ( 
+CREATE TABLE conferencescopes ( 
         id SERIAL,
         name text NOT NULL,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE conferencescope IS 
+COMMENT ON TABLE conferencescopes IS 
 	'Ámbito del congreso:
 	Local, Nacional, Internacional, ...';
 
-CREATE TABLE talktype ( 
+CREATE TABLE talktypes ( 
         id SERIAL,
         name text NOT NULL,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE talktype IS
+COMMENT ON TABLE talktypes IS
 	'Tipo de ponencia:
 	Conferencia, plática, tutorial, taller, magistral, poster, ...';
 
@@ -59,7 +59,7 @@ CREATE TABLE conferences (
                          ON UPDATE CASCADE
                          DEFERRABLE,
     conferencescope_id smallint NOT NULL 
-                         REFERENCES conferencescope(id)
+                         REFERENCES conferencescopes(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
     location text NULL,
@@ -75,7 +75,7 @@ COMMENT ON TABLE conferences IS
 COMMENT ON COLUMN conferences.location IS
 	'En qué parte/región del país es este congreso';
 
-CREATE TABLE conferenceinstitutions ( 
+CREATE TABLE conference_institutions ( 
     conference_id int4 NOT NULL 
             REFERENCES conferences(id)      
             ON UPDATE CASCADE
@@ -88,7 +88,7 @@ CREATE TABLE conferenceinstitutions (
             DEFERRABLE,
     PRIMARY KEY (institution_id, conference_id)
 );
-COMMENT ON TABLE conferenceinstitutions IS
+COMMENT ON TABLE conference_institutions IS
 	'Instituciones que organizan este congreso';
 
 CREATE TABLE userconferences ( 
@@ -110,13 +110,13 @@ COMMENT ON TABLE userconferences IS
 	'Usuarios que asistieron a un congreso (su rol aparece en 
 	userconferencerole)';
 
-CREATE TABLE talkacceptance (
+CREATE TABLE talkacceptances (
        id SERIAL,
         name text NOT NULL,
         PRIMARY KEY(id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE talkacceptance IS
+COMMENT ON TABLE talkacceptances IS
 	'Cómo fue la inscripción/aceptación de la ponencia en el congreso?:
 	Invitado, Arbitrado, Inscrito, ....';
 
@@ -128,11 +128,11 @@ CREATE TABLE conferencetalks (
             ON DELETE CASCADE
             DEFERRABLE,
     talktype_id integer NOT NULL
-            REFERENCES talktype(id)      
+            REFERENCES talktypes(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     talkacceptance_id integer NOT NULL
-            REFERENCES talkacceptance(id)      
+            REFERENCES talkacceptances(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
     modality_id int4 NOT NULL 
@@ -147,12 +147,12 @@ CREATE TABLE conferencetalks (
 );
 COMMENT ON TABLE conferencetalks IS
 	'Las pláticas que forman parte de un congreso';
-COMMENT ON COLUMN articles.authors IS
+COMMENT ON COLUMN conferencetalks.authors IS
 	'Listado de autores tal cual aparece en la ponencia - La 
 	relación entre usuarios y ponencias es independiente de esta, ver 
 	userconferencerole.';
 
-CREATE TABLE userconferencerole (
+CREATE TABLE user_conferenceroles (
     id SERIAL,
     userconference_id integer NOT NULL 
 	    REFERENCES userconferences(id)
@@ -160,7 +160,7 @@ CREATE TABLE userconferencerole (
 	    ON DELETE CASCADE
 	    DEFERRABLE,
     attendeetype_id int4 NOT NULL 
-            REFERENCES attendeetype(id)
+            REFERENCES attendeetypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     conferencetalk_id integer NULL
@@ -172,9 +172,9 @@ CREATE TABLE userconferencerole (
     PRIMARY KEY (id),
     UNIQUE (userconference_id, attendeetype_id, conferencetalk_id)
 );
-COMMENT ON TABLE userconferencerole IS
+COMMENT ON TABLE user_conferenceroles IS
 	'Tipo de participación de un usuario en un congreso - Si sólamente 
 	fue como asistente, no requiere ningún registro en esta tabla.';
-COMMENT ON COLUMN userconferencerole.conferencetalk_id IS
+COMMENT ON COLUMN user_conferenceroles.conferencetalk_id IS
 	'Si el usuario fue ponente, indicará aquí el ID de su ponencia. Si es
 	organizador, este campo debe quedar nulo.';
