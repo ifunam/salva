@@ -89,15 +89,6 @@ COMMENT ON COLUMN courses.hours IS
 	serán guardadas en ningún campo, solo serviran como referencia
 	en la aplicación.';
 
-CREATE TABLE coursemodalities (
-    id SERIAL,  
-    name text NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (name)
-);
-COMMENT ON TABLE coursemodalities IS 
-	'Modalidad en que es impartido un curso o de una ponencia:
-	 Presencial, Distancia, ambas o ninguna de las anteriores :)';
 
 CREATE TABLE roleincourses (
 	id SERIAL,
@@ -143,8 +134,8 @@ CREATE TABLE user_courses (
               REFERENCES coursedurations(id)
               ON UPDATE CASCADE
               DEFERRABLE,
-    coursemodality_id int4 NOT NULL 
-            REFERENCES coursemodalities(id)
+    modality_id int4 NOT NULL 
+            REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     hoursxweek int4 NULL,

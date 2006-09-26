@@ -1,12 +1,11 @@
-
 INSERT INTO coursetypes (name) VALUES ('Regular');
 INSERT INTO coursetypes (name) VALUES ('Especial');
 
-INSERT INTO courseduration (name, days) VALUES ('Semanal', 5);
-INSERT INTO courseduration (name, days) VALUES ('Mensual', 20);
-INSERT INTO courseduration (name, days) VALUES ('Trimestral', 90);
-INSERT INTO courseduration (name, days) VALUES ('Semestral', 180);
-INSERT INTO courseduration (name, days) VALUES ('Anual', 365);
+INSERT INTO coursedurations (name, days) VALUES ('Semanal', 5);
+INSERT INTO coursedurations (name, days) VALUES ('Mensual', 30);
+INSERT INTO coursedurations (name, days) VALUES ('Trimestral', 90);
+INSERT INTO coursedurations (name, days) VALUES ('Semestral', 180);
+INSERT INTO coursedurations (name, days) VALUES ('Anual', 365);
 
 INSERT INTO coursegrouptypes (name) VALUES ('Actualización');
 INSERT INTO coursegrouptypes (name) VALUES ('Certificación');

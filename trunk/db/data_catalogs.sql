@@ -48,5 +48,6 @@
 \i catalogs/schoolarships.sql
 \i catalogs/schooling_filetypes.sql
 \i catalogs/acadvisittypes.sql
-\i catalogs/coursemodalities.sql
+\i catalogs/courses.sql
+\i catalogs/modalities.sql
 \i catalogs/attendeetypes.sql
