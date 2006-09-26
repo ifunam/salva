@@ -7,7 +7,7 @@ module NavigatorHelper
   def navbar_list
     tree = get_tree
     path = tree.path
-    counter = path.length 
+    counter = path.length - 1
     list = []
     path.reverse.collect { |item| 
       list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
@@ -31,6 +31,32 @@ module NavigatorHelper
     }    
     render(:partial => '/salva/navtab', :locals => { :list => list})
   end
+
+  def navbar_icons
+    controller = get_controller_name
+    path = get_tree.path
+    counter = (path.length - 1)
+    path.delete_at(0) if controller == 'navigator' or controller == 'wizard'
+    imgsize = get_image_size(path.length)
+    links = []
+    path.reverse.each {  |image|
+      links << link_to(img_tag(image, imgsize), {:controller => 'navigator', :depth => counter})
+      imgsize += 4
+      counter -= 1
+    }
+    links.join(' ')
+  end
+  
+  def controller_title
+    controller = get_controller_name
+    image = controller
+    if controller == 'navigator' or controller == 'wizard' then
+      controller = get_tree.data
+      image = controller
+    end
+    image = "comodin_salva" if !File.exists?(get_image_path(controller))
+    img_tag(image) + get_label(controller)
+  end
   
   def img_tag(image=' salvita_welcome', size=32, ext='.png')
     image_tag(image+ext, :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
@@ -48,37 +74,10 @@ module NavigatorHelper
     @controller_name ||= @controller.class.name.sub(/Controller$/, '').underscore
   end
 
-  def title
-    controller = get_controller_name
-    imgpath = RAILS_ROOT + "/public/images/" + controller + ".png"
-    img = controller
-    label = controller
-    if controller == 'navigator' or controller == 'wizard'then
-      tree = @session[:navtree]
-      img = tree.data
-      label = tree.data
-      imgpath = RAILS_ROOT + "/public/images/" + tree.data + ".png"
-    end
-    img = "comodin_salva" if !File.exists?(imgpath) 
-    img_tag(img) + get_label(label)
+  def get_image_path(controller)
+    RAILS_ROOT + "/public/images/" + controller + ".png"
   end
-  
-  def navbar_icons
-    controller = get_controller_name
-    tree = get_tree
-    path = tree.path
-    counter = (path.length - 1)
-    path.delete_at(0) if controller == 'navigator' or controller == 'wizard'
-    imgsize = get_image_size(path.length)
-    links = []
-    path.reverse.each {  |image|
-      links << link_to(img_tag(image, imgsize), {:controller => 'navigator', :depth => counter})
-      imgsize += 4
-      counter -= 1
-    }
-    links.join(' ')
-  end
-  
+
   def get_image_size(path_length)
     maxsize = 28
     maxicons = 4
