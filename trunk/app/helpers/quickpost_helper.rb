@@ -2,13 +2,14 @@ require 'salva_helper'
 module QuickpostHelper 
   include SalvaHelper
 
-  def quickpost(partial)
-    link_to_function(image_tag('add.gif', 
-                               { :border=>0, :valign => 'middle', 
-                                 :alt=> get_label('add') }), 
-                     toggle_effect(partial, 'Effect.BlindUp', 
-                                   "duration:0.5", "Effect.BlindDown", 
-                                   "duration:0.5"))    
+  def quickpost(partial,mode='simple')
+    if mode  == 'simple'
+      link_to_function(image_tag('add.gif', { :border=>0, :valign => 'middle', :alt=> get_label('add') }), 
+                       toggle_effect(partial, 'Effect.BlindUp',  "duration:0.5", "Effect.BlindDown", "duration:0.5"))    
+    else
+      link_to(image_tag('add.gif', { :border=>0, :valign => 'middle', :alt=> get_label('add') }), 
+              { :action => "stack", :handler => partial })
+    end
   end
   
   def toggle_effect(domid, true_effect, true_opts, false_effect, false_opts)
