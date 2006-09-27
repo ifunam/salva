@@ -46,7 +46,7 @@ Asistente
   <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
   <div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
   <div id="select_country_institution">
-   <%= table_select('edit', Institution, 4) %>
+  <%= select_id_to_update_select('edit', Institution, Country, 484, nil, 4, 1, %w(name institutiontitle_id) ) %>
   </div>
   <%= quickpost('institution','stack') %>
 </div>
