@@ -2,40 +2,68 @@
 
 <!--[form:user_course]-->
 <div class="row"> 
-<label for="courses_id" class="label"><%= get_label('courses_id') %></label> 
-<div id="courses_id">
-<%= select_as_tree('edit', Course, %w(title coursetype_id), 1, 1) %>
+<p><b>Tipo de curso </b></p>
+</div> 
+
+<div class="row">
+ <label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Degree, Course, 3, 1) %>
 </div>
+
+<div class="row">
+  <label for="course_id" class="label"><%= get_label('course') %> <span class="required">*</span></label>
+  <div id="select_degree_course_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_degree_course">
+  <%= select_as_tree('edit', Course, %w(title coursetype_id), 2, 1) %>
+  </div>
+  <%= quickpost('course','stack') %>
 </div>
 
 <div class="row"> 
 <label for="coursegroup_id" class="label"><%= get_label('coursegroup_id') %></label> 
 <div id="coursegroup_id">
-<%= table_select('edit', Coursegroup, 2) %>
+<%= table_select('edit', Coursegroup, 2) %> 
+<%= quickpost('coursegroup','stack') %>
 </div>
 </div>
 
 <div class="row"> 
-<label for="roleincourse_id" class="label"><%= get_label('roleincourse_id') %> <span class="required">*</span></label> 
-<div id="roleincourse_id">
-<%= table_select('edit', Roleincourse, 3, 1) %>
+<label for="roleincourse_id" class="label"><%=get_label('roleincourse_id') %> <span class="required">*</span></label> 
+Asistente
+<%= hidden_field('edit', 'roleincourse_id', :value => Roleincourse.find_by_name('Asistente').id) %>
 </div>
+<hr/>
+<div class="row"> 
+<p><b>Lugar y fecha </b></p>
+</div>
+
+<div class="row">
+ <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Country, Institution, 3, 1) %>
+</div>
+
+<div class="row">
+  <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
+  <div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_country_institution">
+   <%= table_select('edit', Institution, 4) %>
+  </div>
+  <%= quickpost('institution','stack') %>
 </div>
 
 <div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
-<div id="institution_id">
-<%= table_select('edit', Institution, 4) %>
-</div>
-</div>
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 9, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
 
 <div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
-<div id="country_id">
-<%= table_select('edit', Country, 5, 1) %>
-</div>
+<label for="month" class="label"><%= get_label('month') %></label> 
+<%= month_select('edit', 'month', {:tabindex => 10, :required => 0 }) %> 
 </div>
 
+<hr/>
+<div class="row"> 
+<p><b>Duración y modalidad </b></p>
+</div> 
 <div class="row"> 
 <label for="courseduration_id" class="label"><%= get_label('courseduration_id') %> <span class="required">*</span></label> 
 <div id="courseduration_id">
@@ -55,23 +83,18 @@
 <%= text_field 'edit', 'hoursxweek', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 8, 'id' => 'hoursxweek' %>
 </div>
 
+<hr/>
 <div class="row"> 
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
-<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 9, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
-
-<div class="row"> 
-<label for="month" class="label"><%= get_label('month') %></label> 
-<%= month_select('edit', 'month', {:tabindex => 10, :required => 0 }) %> 
-</div>
-
+<p><b>Otra información </b></p>
+</div> 
 <div class="row"> 
 <label for="location" class="label"><%= get_label('location') %></label> 
-<%= text_field 'edit', 'location', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 11, 'id' => 'location' %>
+<%= text_area 'edit', 'location', 'rows' => 4, 'cols' => 40, 'tabindex' => 11, 'id' => 'location' %>
 </div>
 
 <div class="row"> 
-<label for="acadprogram" class="label"><%= get_label('acadprogram') %></label> 
-<%= text_field 'edit', 'acadprogram', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 12, 'id' => 'acadprogram' %>
+<label for="acadprogram" class="label"><%= get_label('acadprogram')%></label> 
+<%= text_area 'edit', 'acadprogram', 'rows' => 4, 'cols' => 40, 'tabindex' => 12, 'id' => 'acadprogram' %>
 </div>
 
 <div class="row"> 
