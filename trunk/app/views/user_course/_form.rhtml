@@ -8,13 +8,15 @@
 <div class="row">
  <label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label>
  <%= select_to_update_select('edit', Degree, Course, 3, 1) %>
+ <br/>
+ <%= reset_select('Recargar lista de cursos', 'select_course') %>
 </div>
 
 <div class="row">
   <label for="course_id" class="label"><%= get_label('course') %> <span class="required">*</span></label>
-  <div id="select_degree_course_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_degree_course_note" style="display: none"><span class="upgrade_note">Actualizando la lista de cursos...</span></div>
   <div id="select_degree_course">
-  <%= select_as_tree('edit', Course, %w(title coursetype_id), 2, 1) %>
+     <%= render :partial => 'salva/select_course' %>
   </div>
   <%= quickpost('course','stack') %>
 </div>
