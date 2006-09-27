@@ -7,12 +7,7 @@
 
 <div class="row">
  <label for="degree_id" class="label">Lista de cursos por grado</label>
- <%= select_to_update_select('edit', Degree, Course, 3, 1) %> 
-
-</div>
-
-<div class="row">
- <%= reset_select('Lista cursos completa', 'select_course', 'select_degree_course') %>
+ <%= select_to_update_select('edit', Degree, Course, 3, 1) %> <%= reset_select('Lista de cursos completa', 'select_course', 'select_degree_course') %>
 </div>
 
 <div class="row">
@@ -25,7 +20,7 @@
 </div>
 
 <div class="row"> 
-<label for="coursegroup_id" class="label"><%= get_label('coursegroup_id') %></label> 
+<label for="coursegroup_id" class="label">¿El curso es parte de un diplomado o certificación? </label> 
 <div id="coursegroup_id">
 <%= table_select('edit', Coursegroup, 2) %> 
 <%= quickpost('coursegroup','stack') %>
