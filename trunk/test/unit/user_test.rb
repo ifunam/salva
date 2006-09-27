@@ -68,8 +68,37 @@ class UserTest < Test::Unit::TestCase
     @user = User.new
     @user.login = 'tomas'
     @user.email = 'tomas@lachingada.com'
-    @user.passwd = 'Wr0n3ncryp710n'
+    @user.passwd = encrypt('Wr0n3ncryp710n', salted)
     @user.userstatus_id = Userstatus.find_by_name('Nuevo').id
     assert @user.save
+  end
+
+  def test_change_password
+    for login in (@default_users)
+      @user = User.find_by_login(login)
+      @user.current_passwd = encrypt('maltiempo', users(login.to_sym).salt)
+      @user.passwd = encrypt('Wr0n3ncryp710n', salted)
+      assert @user.update
+    end
+  end  
+
+  def test_change_bad_password
+    for login in (@default_users)
+      @user = User.find_by_login(login)
+      @user.current_passwd = encrypt('maltiempo', users(login.to_sym).salt)
+      @user.passwd = "caca"
+      assert !@user.valid?
+    end
+  end
+  
+  def test_change_email
+    for login in (@default_users)
+      @user = User.find_by_login(login)
+      @user.email = login+"@lachingada.com"
+      assert @user.update
+      # Check for invalid email
+      @user.email = login+".una.pinche.direccion.sin.@"
+      assert !@user.valid?
+    end
   end
 end
