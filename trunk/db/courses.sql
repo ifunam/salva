@@ -122,14 +122,16 @@ CREATE TABLE user_courses (
             REFERENCES roleincourses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    institution_id int4 NULL
-		REFERENCES institutions(id)
-		ON UPDATE CASCADE
-		DEFERRABLE,
     country_id int4 NOT NULL 
               REFERENCES countries(id)
               ON UPDATE CASCADE
               DEFERRABLE,
+    institution_id int4 NULL
+		REFERENCES institutions(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+    year int4 NOT NULL,
+    month int4 NULL CHECK (month >= 1 AND month <= 12),
     courseduration_id int4 NOT NULL
               REFERENCES coursedurations(id)
               ON UPDATE CASCADE
@@ -139,8 +141,6 @@ CREATE TABLE user_courses (
             ON UPDATE CASCADE
             DEFERRABLE,
     hoursxweek int4 NULL,
-    year int4 NOT NULL,
-    month int4 NULL CHECK (month >= 1 AND month <= 12),
     location text NULL,
     acadprogram text NULL,
     other text NULL,
