@@ -90,6 +90,4 @@ module SelectHelper
     remote_function(:update => partial, :with => params, :url => {:action => :update_select},
                     :loading => loading_msg, :success => success_msg)
   end
-
-
 end  

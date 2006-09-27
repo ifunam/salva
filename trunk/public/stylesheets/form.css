@@ -209,6 +209,19 @@ body {
   color: #0866B7;
 }
 
+.row a {
+     color: #0866B7; 
+     text-decoration: none;
+}
+
+.row a:visited {
+     text-decoration: none;
+}
+
+.row a:hover {
+     color: green;      
+     text-decoration: none;
+}
 .box .options {
     background: transparent;
 }

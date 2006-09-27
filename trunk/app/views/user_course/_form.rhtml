@@ -6,10 +6,13 @@
 </div> 
 
 <div class="row">
- <label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label>
- <%= select_to_update_select('edit', Degree, Course, 3, 1) %>
- <br/>
- <%= reset_select('Recargar lista de cursos', 'select_course') %>
+ <label for="degree_id" class="label">Lista de cursos por grado</label>
+ <%= select_to_update_select('edit', Degree, Course, 3, 1) %> 
+
+</div>
+
+<div class="row">
+ <%= reset_select('Lista cursos completa', 'select_course', 'select_degree_course') %>
 </div>
 
 <div class="row">
