@@ -6,7 +6,7 @@
     <% max_item_per_line += 4 %>
      <br/>
   <% end %>
-   <span class="navtab_item" id="effect-fade" onclick="new Effect.Fade(this); window.setTimeout('Effect.Appear(\'effect-fade\', {duration:.4})',2500);"><%=child%> </span>
+   <span class="navtab_item" onclick="new Effect.Pulsate(this);"> <%=child%> </span>
  <% counter += 1 %>
  <% end %>
 </div>
