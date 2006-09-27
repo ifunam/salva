@@ -55,6 +55,7 @@ CREATE TABLE users_logs (
 	user_id int4 NOT NULL
 		REFERENCES users(id)
 	        ON UPDATE CASCADE
+		ON DELETE CASCADE
         	DEFERRABLE,
 	old_userstatus_id int4 NOT NULL 
 		REFERENCES userstatuses(id)
