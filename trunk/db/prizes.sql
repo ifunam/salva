@@ -14,7 +14,7 @@ COMMENT ON TABLE prizetypes IS
 CREATE TABLE prizes ( 
     id SERIAL,
     title text NOT NULL,
-    prizetypes_id int4 NOT NULL 
+    prizetype_id int4 NOT NULL 
             REFERENCES prizetypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -35,7 +35,7 @@ COMMENT ON TABLE prizes IS
 COMMENT ON COLUMN prizes.institution_id IS
 	'Institución que otorga el premio';
 
-CREATE TABLE userprizes (
+CREATE TABLE user_prizes (
     id serial,
     year   int4 NOT NULL,
     prize_id int4 NOT NULL 
@@ -50,5 +50,5 @@ CREATE TABLE userprizes (
     PRIMARY KEY (id),
     UNIQUE (prize_id, user_id, year)
 );
-COMMENT ON TABLE userprizes IS
+COMMENT ON TABLE user_prizes IS
 	'Qué usuarios han recibido qué premios';
