@@ -1,14 +1,19 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:jobposition]-->
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="institution_id">
-<%=   select_without_universities('edit', Institution, 1, 1) %> 
-<%=link_to image_tag('add.gif',
-                               { :border=>0, :valign => 'middle',
-                                 :alt=> get_label('add') }), { :action => "stack", :handler => "institution" }%>
+
+<div class="row">
+ <label for="country_id" class="label">Listar instituciones por <%= get_label('country_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Country, Institution, 1, 1) %>
 </div>
+
+<div class="row">
+  <label for="institution_id" class="label"><%= get_label('institution_id') %> u organización <span class="required">*</span></label>
+  <div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_country_institution">
+  <%= select_without_universities('edit', Institution, 1, 1) %> 
+  </div>
+  <%= quickpost('institution','stack') %>
 </div>
 
 <div class="row"> 
