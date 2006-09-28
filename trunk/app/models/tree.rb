@@ -1,6 +1,4 @@
-
 class Tree
-   
    attr_accessor :data
    attr_accessor :parent
    attr_accessor :children
@@ -76,5 +74,32 @@ class Tree
       }
       p
    end
-						
-end
+   
+   def has_left_node?
+     return true if left_node != nil
+     return false
+   end
+   
+   def left_node
+     if self.parent 
+       return self.parent.children[index_for_node - 1] if self.parent.children.size > 1 and index_for_node != 0
+     end
+   end
+   
+   def has_right_node?
+     return true if right_node != nil
+     return false
+   end
+   
+   def right_node
+     return nil unless self.parent
+     if self.parent.children.last.data != self.data and self.parent.children.size > 1
+       return self.parent.children[index_for_node + 1]
+     end
+   end
+   
+   def index_for_node
+     self.parent.children.collect { |child | child.data }.index(self.data) 
+   end
+ end
+   
