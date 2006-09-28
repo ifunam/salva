@@ -5,6 +5,12 @@
 CREATE TABLE prizetypes( 
 	id SERIAL NOT NULL,
    	name text NOT NULL,     
+	moduser_id int4 NULL  -- Use it only to know who has
+             REFERENCES users(id) -- inserted, update or delete  
+               ON UPDATE CASCADE  -- data into or from this table.
+               DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -23,10 +29,12 @@ CREATE TABLE prizes (
             ON UPDATE CASCADE           
             DEFERRABLE,
     other text NULL,
-    moduser_id int4 NULL              -- Use it only to know who has
-            REFERENCES users(id)   -- inserted, updated or deleted  
-            ON UPDATE CASCADE      -- data into or from this table.
-            DEFERRABLE,
+    moduser_id int4 NULL  -- Use it only to know who has
+             REFERENCES users(id) -- inserted, update or delete  
+             ON UPDATE CASCADE  -- data into or from this table.
+             DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (title, institution_id)
 );
@@ -37,16 +45,23 @@ COMMENT ON COLUMN prizes.institution_id IS
 
 CREATE TABLE user_prizes (
     id serial,
-    year   int4 NOT NULL,
-    prize_id int4 NOT NULL 
-            REFERENCES prizes(id)      
-            ON UPDATE CASCADE
-            DEFERRABLE,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
+    prize_id int4 NOT NULL 
+            REFERENCES prizes(id)      
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    year   int4 NOT NULL,
+    month  int4 NULL,
+    moduser_id int4 NULL              -- Use it only to know who has
+            REFERENCES users(id)   -- inserted, updated or deleted  
+            ON UPDATE CASCADE      -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (prize_id, user_id, year)
 );

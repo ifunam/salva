@@ -51,3 +51,4 @@
 \i catalogs/courses.sql
 \i catalogs/modalities.sql
 \i catalogs/attendeetypes.sql
+\i catalogs/prizetypes.sql
