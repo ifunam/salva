@@ -1,20 +1,18 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:acadvisit]-->
-<div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
-<div id="country_id">
-<%= select_to_update_select('edit', Country, Institution, 2, 1) %>
-</div>
+<div class="row">
+ <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Country, Institution, 1, 1) %>
 </div>
 
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
-<div id="select_country_institution">
-<%= table_select('edit', Institution, 1, 1) %>
-</div>
-<%=link_to "Add", { :action => "stack", :handler => "institution" }%>
+<div class="row">
+  <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
+  <div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_country_institution">
+  <%= select_id_to_update_select('edit', Institution, Country, 484, nil, 2, 1, %w(name institutiontitle_id) ) %>
+  </div>
+  <%= quickpost('institution','stack') %>
 </div>
 
 <div class="row"> 
@@ -49,18 +47,17 @@
 
 <div class="row"> 
 <label for="place" class="label"><%= get_label('place') %></label> 
-<%= text_field 'edit', 'place', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 9, 'id' => 'place' %>
+<%= text_area 'edit', 'place', 'rows' => 4, 'cols' => 40, 'tabindex' => 9, 'id' => 'place' %>
 </div>
 
 <div class="row"> 
 <label for="goals" class="label"><%= get_label('goals') %></label> 
-<%= text_field 'edit', 'goals', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 10, 'id' => 'goals' %>
+<%= text_area 'edit', 'goals', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'goals' %>
 </div>
 
 <div class="row"> 
 <label for="other" class="label"><%= get_label('other') %></label> 
-<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 11, 'id' => 'other' %></div>
-
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 11, 'id' => 'other' %>
 </div>
 
 
