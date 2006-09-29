@@ -2,8 +2,8 @@
 <%= form_tag({:action=>'create'}, {:multipart => true}) %>
   <%= render :partial => 'form' %>
   <div id="operations">
-  <%= submit_tag get_label('save') %> |
-  <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+  <%= submit_tag get_label('save') %>
   </div>
 <%= end_form_tag %>
 <%= render :partial => 'quickpost' %>
+<%= navcontrol %>

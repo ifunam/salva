@@ -1,6 +1,6 @@
 <%= table_list(@collection, { :header => "Domicilio(s)", :columns => %w(addresstype_id addr pobox phone fax) }) %>
 <br/>
 <div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+<%= link_to get_label('add'), :action => 'new' %> 
 </div>
+<%= navcontrol %>

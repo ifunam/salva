@@ -10,7 +10,7 @@ module NavigatorHelper
     counter = path.length - 1
     list = []
     path.reverse.collect { |item| 
-      list << link_to(get_label(item), {:controller => 'navigator', :depth => counter})
+      list << link_tag_navtab_depth(item, counter)
       counter -= 1
     }
     list.join(' | ')    
@@ -19,19 +19,10 @@ module NavigatorHelper
   def navtab_list
     tree = get_tree
     children = tree.children
-    counter = 0
-    list = []
-    children.each { |child|
-      if child.is_leaf?
-        list << link_to(img_tag(child.data), {:controller => child.data }) + link_tag(child.data)
-      else
-        list << link_to(img_tag(child.data), { :controller => 'navigator', :item => counter }) + link_tag_navtab(child.data, counter)
-      end
-      counter += 1
-    }    
+    list = children.collect { |child| link_to_node(child) }    
     render(:partial => '/salva/navtab', :locals => { :list => list})
   end
-
+  
   def navbar_icons
     controller = get_controller_name
     path = get_tree.path
@@ -57,8 +48,17 @@ module NavigatorHelper
     image = "comodin_salva" if !File.exists?(get_image_path(controller))
     img_tag(image) + get_label(controller)
   end
+
+  def link_to_node(child)
+    if child.is_leaf?
+      link_to(img_tag(child.data), {:controller => child.data }) + link_tag(child.data)
+    else
+      link_to(img_tag(child.data), { :controller => 'navigator', :item => child.index_for_node }) + 
+        link_tag_navtab(child.data, child.index_for_node)
+    end
+  end
   
-  def img_tag(image=' salvita_welcome', size=32, ext='.png')
+  def img_tag(image='salvita_welcome', size=32, ext='.png')
     image_tag(image+ext, :size => "#{size}x#{size}", :border => 0, :alt => '*', :valign => 'middle')
   end
   
@@ -68,6 +68,14 @@ module NavigatorHelper
   
   def link_tag_navtab(label,counter)
     link_to(get_label(label), { :controller => 'navigator', :item => counter})
+  end
+
+  def link_tag_navtab_depth(label,counter,prefix=nil)
+    if prefix != nil
+      link_to(prefix + ' ' + get_label(label), { :controller => 'navigator', :depth => counter})
+    else
+      link_to(get_label(label), { :controller => 'navigator', :depth => counter})
+    end
   end
 
   def get_controller_name
@@ -83,4 +91,29 @@ module NavigatorHelper
     maxicons = 4
     imgsize = maxsize - ((path_length - 1) * maxicons) if path_length > 0
   end
-end  
+
+  def navcontrol
+    tree = get_tree
+    tree.children.collect{ |child| tree = child if child.data == get_controller_name }
+    if tree.has_parent?
+      list = set_links_for_navcontrol(tree)
+      render(:partial => '/salva/navcontrol', :locals => { :list => list})
+    end
+  end
+  
+  def set_links_for_navcontrol(tree)
+    list = [ ]
+    list << link_to_control(tree.left_node)  if tree.has_left_node? 
+    list << link_to_control(tree.parent) 
+    list << link_to_control(tree.right_node) if tree.has_right_node? 
+    list
+  end
+
+  def link_to_control(child)
+    if child.is_leaf?
+      link_tag(child.data)
+    else
+      link_tag_navtab_depth(child.data, (child.index_for_node + 1), 'Sección')
+    end
+  end
+end

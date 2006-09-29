@@ -99,6 +99,7 @@ class Tree
    end
    
    def index_for_node
+     return 0 unless self.parent
      self.parent.children.collect { |child | child.data }.index(self.data) 
    end
  end

@@ -160,6 +160,60 @@ body {
 	color: green;
 }
 
+
+.navcontrol {
+	background: transparent;
+	height: 14;
+	text-align: left;
+	font: 12px Arial, Helvetica, sans-serif;
+	padding: 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.navcontrol a {
+     text-decoration: none;
+     margin-bottom: 0.5em;
+     margin-top: 0.5em;
+     color: white;
+     background: #4381CE;
+     border-width: 1px;
+     border-style: solid;
+     border-color: #5268a0 #6377a9 #112153 #09143a; 
+     padding: 0.15em 0.25em 0.15em 0.75em;
+     width: 11em; 
+} 
+
+.navcontrol a#current { 
+  border-color: #5268a0 #6377a9 #112153 #CCFF00; 
+  color: #CCFF00; 
+}
+
+.navcontrol a {
+  width: 99%; 
+  /* only necessary for Internet Explorer */
+}
+
+.navcontrol a {
+  voice-family: "\"}\"";
+  voice-family: inherit;
+  width: 6.6em; 
+  /* Tantek-hack should only used if Internet-Explorer 6 is in standards-compliant mode */
+}
+
+.navcontrol a:hover, .navcontrol a#current:hover {
+  background: #4381CE;
+  border-color: #112153 #6377a9 #5268a0 #5268a0;
+  color: yellow; 
+  padding: 0.15em 0.25em 0.15em 0.75em;
+}
+
+.navcontrol a:active, .navcontrol a#current:active {
+  background: #17a;
+  border-color: #069 #6cf #5bd #5bd;
+  padding: 0.4em 0.35em 0.25em 0.9em;
+}
+
 .formbox { 
     z-index: 1;
     font: 12px Arial, Helvetica, sans-serif; 
