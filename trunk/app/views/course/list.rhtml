@@ -1,5 +1,5 @@
 <!--[list:course]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( title coursetype_id ) }) %> 
+<%= table_list(@collection, { :header => "Título", :columns => %w( name coursetype_id country_id courseduration_id modality_id startyear ) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

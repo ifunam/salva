@@ -2,8 +2,8 @@
 
 <!--[form:course]-->
 <div class="row"> 
-<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'title', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'title', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
 <div class="row"> 
@@ -20,9 +20,81 @@
 </div>
 </div>
 
+
+<div class="row">
+ <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Country, Institution, 4, 1) %>
+</div>
+
+<div class="row">
+  <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
+  <div id="select_country_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
+  <div id="select_country_institution">
+  <%= select_id_to_update_select('edit', Institution, Country, 484, nil, 5, 1, %w(name institutiontitle_id) ) %>
+  </div>
+  <%= quickpost('institution','stack') %>
+</div>
+
+
 <div class="row"> 
-<label for="hours" class="label"><%= get_label('hours') %></label> 
-<%= text_field 'edit', 'hours', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 4, 'id' => 'hours' %>
+<label for="coursegroup_id" class="label">¿El curso es parte de un diplomado o certificación? </label> 
+<div id="coursegroup_id">
+<%= table_select('edit', Coursegroup, 6) %> 
+<%= quickpost('coursegroup','stack') %>
+</div>
+</div>
+
+
+<div class="row"> 
+<label for="courseduration_id" class="label"><%= get_label('courseduration_id') %> <span class="required">*</span></label> 
+<div id="courseduration_id">
+<%= table_select('edit', Courseduration, 7, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="modality_id" class="label"><%= get_label('modality_id') %> <span class="required">*</span></label> 
+<div id="modality_id">
+<%= table_select('edit', Modality, 8, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 9, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
+<%= month_select('edit', 'startmonth', {:tabindex => 10, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 11}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
+<%= month_select('edit', 'endmonth', {:tabindex => 12, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label> 
+<%= text_field 'edit', 'hoursxweek', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 13, 'id' => 'hoursxweek' %>
+</div>
+
+<div class="row"> 
+<label for="location" class="label"><%= get_label('location') %></label> 
+<%= text_field 'edit', 'location', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 14, 'id' => 'location' %>
+</div>
+
+<div class="row"> 
+<label for="acadprogram" class="label"><%= get_label('acadprogram') %></label> 
+<%= text_field 'edit', 'acadprogram', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 15, 'id' => 'acadprogram' %>
+</div>
+
+<div class="row"> 
+<label for="totalhours" class="label"><%= get_label('totalhours') %></label> 
+<%= text_field 'edit', 'totalhours', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 16, 'id' => 'totalhours' %>
 </div>
 
 

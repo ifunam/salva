@@ -60,35 +60,64 @@ COMMENT ON COLUMN coursegroups.totalhours IS
 	'No tiene relación con coursedurations - Por ejemplo, un diplomado 
 	puede durar 150 horas a lo largo de un mes, de un semestre, de años.';
 
+
 -- Las horas del curso seran calculadas basandonos en la duracion
 -- del curso (usercourses) y la horas por semana (las cuales no
 -- seran guardadas en ningún campo, solo serviran como referencia
 -- en la aplicación.
-CREATE TABLE courses (
-    id SERIAL NOT NULL,
-    title text NOT NULL,
-    coursetype_id int4 NOT NULL 
+CREATE TABLE courses (  
+	id SERIAL NOT NULL,
+    	name text NOT NULL,
+    	coursetype_id int4 NOT NULL 
                         REFERENCES coursetypes(id)
                         ON UPDATE CASCADE
                         DEFERRABLE,
-    degree_id int4 NULL 
-                           REFERENCES degrees(id)
+  	degree_id int4 NULL 
+        	          REFERENCES degrees(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
-    hours int4 NULL,
-    PRIMARY KEY(id),
-    UNIQUE (title,  coursetype_id, degree_id )
+	country_id int4 NOT NULL 
+              REFERENCES countries(id)
+              ON UPDATE CASCADE
+              DEFERRABLE,
+	institution_id int4 NULL
+		REFERENCES institutions(id)
+		ON UPDATE CASCADE
+		DEFERRABLE,
+   	coursegroup_id int4 NULL 
+                        REFERENCES coursegroups(id)
+                        ON UPDATE CASCADE
+                       DEFERRABLE,
+    	courseduration_id int4 NOT NULL
+              REFERENCES coursedurations(id)
+              ON UPDATE CASCADE
+              DEFERRABLE,
+    	modality_id int4 NOT NULL 
+            REFERENCES modalities(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    	startyear int4 NOT NULL,
+    	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
+    	endyear int4  NULL,
+	endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
+    	hoursxweek int4 NULL,
+    	location text NULL,
+	acadprogram text NULL, -- En el futuro sera parte de un catalogo
+    	totalhours int4 NULL,
+    	PRIMARY KEY(id),
+    	UNIQUE (name,  coursetype_id, degree_id )
 );
 COMMENT ON TABLE courses IS
 	'Cursos impartidos (de actualización o en un plan de estudios) y
 	recibidos (de actualización - los de plan de estudios son historial
 	académico - ver schooling)';
-COMMENT ON COLUMN courses.hours IS
+COMMENT ON COLUMN courses.totalhours IS
 	'Las horas del curso serán calculadas basándonos en la duración
 	del curso (usercourses) y la horas por semana (las cuales no
 	serán guardadas en ningún campo, solo serviran como referencia
 	en la aplicación.';
-
+COMMENT ON COLUMN courses.acadprogram IS
+	'Carrera o programa académico a que este curso pertenece';
 
 CREATE TABLE roleincourses (
 	id SERIAL,
@@ -114,41 +143,13 @@ CREATE TABLE user_courses (
             REFERENCES courses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    coursegroup_id int4 NULL 
-            REFERENCES coursegroups(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
     roleincourse_id int4 NOT NULL 
             REFERENCES roleincourses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    country_id int4 NOT NULL 
-              REFERENCES countries(id)
-              ON UPDATE CASCADE
-              DEFERRABLE,
-    institution_id int4 NULL
-		REFERENCES institutions(id)
-		ON UPDATE CASCADE
-		DEFERRABLE,
-    year int4 NOT NULL,
-    month int4 NULL CHECK (month >= 1 AND month <= 12),
-    courseduration_id int4 NOT NULL
-              REFERENCES coursedurations(id)
-              ON UPDATE CASCADE
-              DEFERRABLE,
-    modality_id int4 NOT NULL 
-            REFERENCES modalities(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    hoursxweek int4 NULL,
-    location text NULL,
-    acadprogram text NULL,
     other text NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT either_course_or_group CHECK (course_id IS NOT NULL OR
-	coursegroup_id IS NOT NULL)
+    PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_courses IS
 	'Cursos a los que está asociado un usuario';
-COMMENT ON COLUMN user_courses.acadprogram IS
-	'Carrera o programa académico a que este curso pertenece';
+
