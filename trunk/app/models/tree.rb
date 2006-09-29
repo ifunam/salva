@@ -92,9 +92,8 @@ class Tree
    end
    
    def right_node
-     return nil unless self.parent
-     if self.parent.children.last.data != self.data and self.parent.children.size > 1
-       return self.parent.children[index_for_node + 1]
+     if self.parent
+       return self.parent.children[index_for_node + 1] if self.parent.children.last.data != self.data and self.parent.children.size > 1
      end
    end
    
