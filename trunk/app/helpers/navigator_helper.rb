@@ -16,6 +16,7 @@ module NavigatorHelper
     list.join(' | ')    
   end
   
+
   def navtab_list
     tree = get_tree
     children = tree.children
@@ -66,8 +67,12 @@ module NavigatorHelper
     link_to(get_label(label), { :controller => label })
   end
   
-  def link_tag_navtab(label,counter)
-    link_to(get_label(label), { :controller => 'navigator', :item => counter})
+  def link_tag_navtab(label,counter,prefix=nil)
+    if prefix != nil
+      link_to(prefix + ' ' + get_label(label), { :controller => 'navigator', :item => counter})
+    else
+      link_to(get_label(label), { :controller => 'navigator', :item => counter})
+    end
   end
 
   def link_tag_navtab_depth(label,counter,prefix=nil)
@@ -94,26 +99,47 @@ module NavigatorHelper
 
   def navcontrol
     tree = get_tree
-    tree.children.collect{ |child| tree = child if child.data == get_controller_name }
+    index = tree.path.length - (tree.path.length - 1)
     if tree.has_parent?
-      list = set_links_for_navcontrol(tree)
+      is_controller = is_current_node_a_controller?(tree) ? true : false
+      if is_controller
+        tree.children.collect { |child| tree = child if child.data == get_controller_name }
+        index -= 1
+      end
+      list = set_links_for_navcontrol(tree,index)
       render(:partial => '/salva/navcontrol', :locals => { :list => list})
     end
   end
   
-  def set_links_for_navcontrol(tree)
+  def is_current_node_a_controller?(tree)
+    is_controller = false
+    tree.children.collect { |child| 
+      is_controller = true if child.data == get_controller_name 
+    }
+    return is_controller
+  end
+  
+  def set_links_for_navcontrol(tree,i)
     list = [ ]
-    list << link_to_control(tree.left_node)  if tree.has_left_node? 
-    list << link_to_control(tree.parent) 
-    list << link_to_control(tree.right_node) if tree.has_right_node? 
+    list << link_to_side_node(tree.left_node)  if tree.has_left_node? 
+    list << link_to_parent(tree.parent,i)
+    list << link_to_side_node(tree.right_node) if tree.has_right_node? 
     list
   end
-
-  def link_to_control(child)
+  
+  def link_to_parent(child,i=nil)
     if child.is_leaf?
       link_tag(child.data)
     else
-      link_tag_navtab_depth(child.data, (child.index_for_node + 1), 'Sección')
+      link_tag_navtab_depth(child.data, i, 'Sección')
+    end
+  end
+
+  def link_to_side_node(child)
+    if child.is_leaf?
+      link_tag(child.data)
+    else
+      link_tag_navtab(child.data, child.index_for_node)
     end
   end
 end
