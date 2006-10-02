@@ -55,11 +55,10 @@ module ListHelper
   end
   
   def attribute_to_text(row, attr)
-    return false unless row.send(attr) 
     if row.column_for_attribute(attr).type.to_s == 'boolean' then
       return get_boolean_tag(attr,row.send(attr))
     else
-      return row.send(attr) 
+      return row.send(attr)
     end
   end
   
@@ -152,7 +151,7 @@ module ListHelper
   def get_boolean_tag(attr,condition)
     case attr
     when /gender/
-      condition ? 'Masculino' : 'Femenino' 
+      condition == true ? 'Masculino' : 'Femenino' 
     when /is_studying_this/
       condition ? 'Grado en curso' : 'Grado terminado' 
     when /is_titleholder/

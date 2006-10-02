@@ -13,12 +13,12 @@ module TableHelper
     hidden = hidden_attributes(options[:hidden])
     body = []
     row.each { |column| 
-      attr = column.name
-      next if @edit.send(attr) == nil or hidden.include?(attr)
-      if is_id?(attr) then
-        body << [ attr, attributeid_to_text(@edit, attr)]
+      attribute = column.name
+      next if @edit.send(attribute) == nil or hidden.include?(attribute)
+      if is_id?(attribute) then
+        body << [ attribute, attributeid_to_text(@edit, attribute)]
       else
-        body << [ attr, attribute_to_text(@edit, attr)]
+        body << [ attribute, attribute_to_text(@edit, attribute)]
       end
       
     }
