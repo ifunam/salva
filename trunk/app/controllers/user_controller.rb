@@ -1,5 +1,7 @@
+require 'auth_user'
 class UserController < ApplicationController
   helper :user
+  include AuthUser
   # To require logins, use:
   #
   #   before_filter :login_required                            
@@ -21,9 +23,9 @@ class UserController < ApplicationController
   
   def login
     return true unless request.post?
-    if auth_user?(params[:user][:login],params[:user][:passwd])
+    if auth?(params[:user][:login],params[:user][:passwd])
       session[:user] = User.find(:first, :conditions => ['login = ?', params[:user][:login]]).id
-      flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
+      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
       flash[:notice] = "El login o el password es incorrecto!"
@@ -33,7 +35,7 @@ class UserController < ApplicationController
   def login_by_token
     if auth_user_by_id_and_token?(params[:id], params[:token])
       session[:user] = params[:id]
-      flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
+      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
       flash[:notice] = "El pase proporcionado es inválido!"

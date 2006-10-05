@@ -13,8 +13,8 @@ class UserTest < Test::Unit::TestCase
     #    @panchito = 
   end
 
-  def test_new_userstatus
-    userstatus = Userstatus.find_by_name('Nuevo')
+  def test_default_userstatus
+    userstatus = Userstatus.find_by_name('Activo')
     for login in (@default_users)
       user = User.find_by_login(login)
       assert_equal userstatus.id, user.userstatus_id

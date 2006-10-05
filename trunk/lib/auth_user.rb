@@ -21,10 +21,11 @@ module AuthUser
     access_denied and return false 
   end
   
-  def auth_user?(login, passwd)
+  def auth?(login,passwd)
     if user_exists?(login)
       return true if check_db_passwd?(login,passwd)
     end
+    return false
   end
 
   def auth_user_by_id_and_token?(id,token)
@@ -59,12 +60,14 @@ module AuthUser
   
   def user_exists?(login)
     return true if User.find(:first, :conditions => [ 'login = ?', login]) 
+    return false
   end
   
   # Authenticates a user by their login name and unencrypted password in the
   # datatabes and verify if the userstatus is equal to 2(Activo)
   def check_db_passwd?(login, passwd)
-    @user = User.find(:first, :conditions => [ 'login = ?', login])
-    return true if @user.passwd == encrypt(passwd, @user.salt) and @user.userstatus_id == 2
+    user = User.find(:first, :conditions => [ 'login = ?', login])
+    return true if user.passwd == encrypt(passwd, user.salt) and user.userstatus_id == 2
+    return false
   end
 end
