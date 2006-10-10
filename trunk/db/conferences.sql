@@ -122,6 +122,9 @@ COMMENT ON TABLE talkacceptances IS
 
 CREATE TABLE conferencetalks (
     id SERIAL,
+    name text NOT NULL,
+    authors text NOT NULL,
+    abstract text NULL,
     conference_id integer NOT NULL
             REFERENCES conferences(id)      
             ON UPDATE CASCADE
@@ -139,10 +142,7 @@ CREATE TABLE conferencetalks (
             REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    title text NOT NULL,
-    authors text NOT NULL,
-    abstract text NULL,
-    UNIQUE (conference_id, title, authors),
+    UNIQUE (conference_id, name, authors),
     PRIMARY KEY (id)    
 );
 COMMENT ON TABLE conferencetalks IS

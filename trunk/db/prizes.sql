@@ -36,7 +36,7 @@ CREATE TABLE prizes (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (title, institution_id)
+    UNIQUE (name, institution_id)
 );
 COMMENT ON TABLE prizes IS
 	'Cada uno de los premios';
