@@ -27,6 +27,7 @@ movil: Celular o radio
 is_postaddress: Dirección postal
 title: Título
 author: Autor(es)
+authors: Autor(es)
 coauthor: Coautor(es)
 booklink: Página web
 country_id: País
@@ -200,3 +201,16 @@ prize: Premio
 prize_id: Premio
 prizetype_id: Tipo de premio
 user_prize: Premios
+attendeetype: Roles en congresos
+conferencetype: Tipos de congreso
+conferencetype_id: Tipo de congreso
+conferencescope: Ámbitos de congreso
+conferencescope_id: Ámbito del congreso
+talktype: Tipos de ponencia
+talktype_id: Tipo de ponencia
+conference: Congresos
+conference_id: Congreso
+conferencetalk: Ponencias en congreso
+talkacceptance_id: Tipo de inscripción
+abstract: Resumen
+conference_institution: Instituciones que organizan el congreso

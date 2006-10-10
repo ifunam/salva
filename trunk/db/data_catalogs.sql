@@ -52,3 +52,4 @@
 \i catalogs/modalities.sql
 \i catalogs/attendeetypes.sql
 \i catalogs/prizetypes.sql
+\i catalogs/conferences.sql

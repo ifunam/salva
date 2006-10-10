@@ -1,0 +1,10 @@
+<!--[show:talktype]-->
+<%= render :partial => "talktype/show" %>
+
+
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'list' %>
+</div>
+<!--[eofshow:talktype]-->
+

@@ -1,0 +1,9 @@
+<!--[list:conferencetalk]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( name authors conference_id talktype_id talkacceptance_id modality_id ) }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:conferencetalk]-->
+

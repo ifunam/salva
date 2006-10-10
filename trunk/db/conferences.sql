@@ -75,8 +75,9 @@ COMMENT ON TABLE conferences IS
 COMMENT ON COLUMN conferences.location IS
 	'En qué parte/región del país es este congreso';
 
-CREATE TABLE conference_institutions ( 
-    conference_id int4 NOT NULL 
+CREATE TABLE conference_institutions (
+    id SERIAL,
+    conference_id int4 NOT NULL
             REFERENCES conferences(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -86,7 +87,8 @@ CREATE TABLE conference_institutions (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    PRIMARY KEY (institution_id, conference_id)
+    PRIMARY KEY (id),
+    UNIQUE (conference_id,  institution_id)
 );
 COMMENT ON TABLE conference_institutions IS
 	'Instituciones que organizan este congreso';
