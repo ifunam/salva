@@ -19,7 +19,7 @@ COMMENT ON TABLE prizetypes IS
 
 CREATE TABLE prizes ( 
     id SERIAL,
-    title text NOT NULL,
+    name text NOT NULL,
     prizetype_id int4 NOT NULL 
             REFERENCES prizetypes(id)
             ON UPDATE CASCADE
