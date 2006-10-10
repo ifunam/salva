@@ -196,3 +196,7 @@ location: Locación
 coursegroup_id: Grupo
 roleincourse_id: Rol en curso
 course_id: Curso
+prize: Premio
+prize_id: Premio
+prizetype_id: Tipo de premio
+user_prize: Premios

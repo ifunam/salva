@@ -2,7 +2,7 @@ class CitizenController < SalvaController
   def initialize
     super
     @model = Citizen
-    @list_user = true
+#    @list_user = true
     @create_msg = 'La nacionalidad ha sido agregada'
     @update_msg = 'La nacionalidad ha sido actualizada'
     @purge_msg = 'La nacionalidad se ha borrado'
