@@ -6,7 +6,7 @@
 <div id="course_id">
 <%= select_as_tree('edit', Course, %w(name coursetype_id startyear), 1) %>
 </div>
-<%= quickpost('course','stack') %>
+  <%= image_submit_tag('/images/add.gif', {:name => 'stack', :value => 'course'}) %> 
 </div>
 
 <div class="row"> 

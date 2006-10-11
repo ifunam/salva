@@ -4,18 +4,18 @@ class StackOfController
     @stack = [ ] 
   end
   
-  def push(controller, action)
-    @stack << [ controller, action ]
+  def push(model, action)
+    @stack << [ model, action ]
   end
-
+  
   def pop
     @stack.pop
   end
-
+  
   def size
     @stack.length
   end
-
+  
   def has_items?
     if  @stack.length > 0 or @stack.empty? == false
       true
@@ -28,14 +28,18 @@ class StackOfController
     @stack.length==1
   end
 
+  def empty?
+    @stack.empty?
+  end
+
   def get_model
     if has_items? 
-      model_name = Inflector.constantize(Inflector.camelize(@stack.last[0]))
+      @stack.last[0] #model_name = Inflector.constantize(Inflector.camelize(@stack.last[0]))
     end
   end
 
   def get_controller
-    has_items? ? @stack.last[0]: nil
+    has_items? ? Inflector.singularize(Inflector.tableize(@stack.last[0].class.name)) : nil
   end
 
   def get_action
@@ -50,6 +54,5 @@ class StackOfController
   def last
     @stack.last
   end
-
 end
 
