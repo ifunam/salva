@@ -2,6 +2,13 @@ require 'list_helper'
 require 'application_helper'
 require 'salva_helper'
 module SelectHelper   
+  def table_select_puerco(object, model, tabindex, validation_type, html_options={})
+    #options = set_options_tags(tabindex, validation_type)
+    model_id = set_model_id(model)
+    #    model_id = prefix + '_' + model_id if prefix !=nil
+    select(object, model_id, sorted_find(model), {:prompt => '-- Seleccionar --'}, html_options)
+  end
+  
   def table_select(object, model, tabindex, validation_type=nil, prefix=nil)
     options = set_options_tags(tabindex, validation_type)
     model_id = set_model_id(model)

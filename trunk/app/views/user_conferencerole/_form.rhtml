@@ -4,7 +4,7 @@
 <div class="row"> 
 <label for="userconference_id" class="label"><%= get_label('userconference_id') %> <span class="required">*</span></label> 
 <div id="userconference_id">
-<%= table_select('edit', Userconference, 1, 1) %>
+<%= select_as_tree('edit', Userconference, %w( conference_id ), 1, 1) %>
 </div>
 </div>
 
@@ -23,8 +23,8 @@
 </div>
 
 <div class="row"> 
-<label for="comments" class="label"><%= get_label('comments') %></label> 
-<%= text_area 'edit', 'comments', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'comments' %></div>
+<label for="comment" class="label"><%= get_label('comments') %></label> 
+<%= text_area 'edit', 'comment', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'comments' %></div>
 
 
 <!--[eoform:user_conferencerole]-->

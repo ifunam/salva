@@ -67,6 +67,8 @@ CREATE TABLE conferences (
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (name, year, country_id)
 );
@@ -87,6 +89,12 @@ CREATE TABLE conference_institutions (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
+    moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (conference_id,  institution_id)
 );
@@ -105,6 +113,12 @@ CREATE TABLE userconferences (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
+    moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (user_id, conference_id),
     PRIMARY KEY (id)
 );
@@ -144,6 +158,12 @@ CREATE TABLE conferencetalks (
             REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (conference_id, name, authors),
     PRIMARY KEY (id)    
 );
@@ -170,7 +190,13 @@ CREATE TABLE user_conferenceroles (
 	    ON UPDATE CASCADE
 	    ON DELETE CASCADE
 	    DEFERRABLE,
-    comments text NULL,
+    comment text NULL,
+    moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (userconference_id, attendeetype_id, conferencetalk_id)
 );

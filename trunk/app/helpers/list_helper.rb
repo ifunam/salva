@@ -9,6 +9,15 @@ module ListHelper
     return sorted_list(list)
   end
   
+  def list_collection_text(collection, columns)
+    list = []
+    collection.each { |row|
+      text = columns_content(row, columns).join(', ').to_s
+      list << text
+    }
+    list
+  end
+  
   def sorted_find(model, attr='name', order='ASC')
     sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
                   [ p.send(attr), p.id ] if p.send(attr) != nil
@@ -30,27 +39,37 @@ module ListHelper
   end
   
   def columns_content(row, columns)
-    s = []
-    if columns.is_a?Array then
+#    s = []
+    if columns.is_a?Array or columns.is_a?Hash then
       s = columns_to_text(row, columns)
-    else
-      row.attributes().each { |key, value| 
-        s << value if key != 'id' and value != nil 
-      } 
+#    else
+#      row.attributes().each { |key, value| 
+#        s << value if key != 'id' and value != nil 
+#      } 
     end
     return s
   end
   
   def columns_to_text(row, columns)
     s = []
-    columns.each { |attr| 
-      next if row.send(attr) == nil 
-      if is_id?(attr) then
-        s << attributeid_to_text(row, attr)
-      else
-        s << attribute_to_text(row, attr)
-      end
-    } 
+    if (columns.is_a? Array)
+      columns.each { |attr| 
+        next if row.send(attr) == nil 
+        if is_id?(attr) then
+          s << attributeid_to_text(row, attr)
+        else
+          s << attribute_to_text(row, attr)
+       end
+      }
+    elsif (columns.is_a? Hash)
+      columns.keys.each { |key| 
+  #      next if row.send(key) == nil 
+        model = key.sub(/_id$/,'')
+        collection = [Inflector.camelize(model).constantize.find(row.send(key))]
+        s << list_collection_text(collection, columns[key])
+      } 
+    end
+
     return s
   end
   

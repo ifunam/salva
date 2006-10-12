@@ -15,12 +15,14 @@
   - user_stimulus
   - updating_current_skills
   - - user_course
-    - user_conference
+    - userconference
     - acadvisit
   - user_grant
   - membership
+  - user_prize
   - user_language
   - user_skill
   - user_settings
   - - change_password
     - user_setting
+  
