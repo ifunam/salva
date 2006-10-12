@@ -19,13 +19,24 @@ module Stackcontroller
   
   def has_model_in_stack?
     if session[:stack]
-      return true if (!session[:stack].empty?) and (session[:stack].get_controller == controller_name)
+      return true unless session[:stack].empty? 
+    end
+    return false
+  end
+  
+  def is_this_model_in_stack?
+    if has_model_in_stack? 
+      return true if session[:stack].get_controller == controller_name
     end
     return false
   end
 
   def get_controller_options_from_stack
-    [session[:stack].get_controller, session[:stack].get_action]
+    if has_model_in_stack? 
+      [ session[:stack].get_controller, session[:stack].get_action ] 
+    else
+      [ controller_name, 'list'] 
+    end
   end
   
   def redirect_to_controller(controller, action='new')

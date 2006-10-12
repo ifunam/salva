@@ -34,7 +34,7 @@ class StackOfController
 
   def get_model
     if has_items? 
-      @stack.last[0] #model_name = Inflector.constantize(Inflector.camelize(@stack.last[0]))
+      @stack.last[0] 
     end
   end
 

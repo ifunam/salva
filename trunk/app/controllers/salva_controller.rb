@@ -33,7 +33,7 @@ class SalvaController < ApplicationController
     if @sequence != nil
       edit_sequence
     else
-      @edit = has_model_in_stack? ? get_model_from_stack : @model.find(params[:id])
+      @edit = is_this_model_in_stack? ? get_model_from_stack : @model.find(params[:id])
       render :action => 'edit'
     end
   end
@@ -42,7 +42,7 @@ class SalvaController < ApplicationController
     if @sequence != nil
       new_sequence
     else
-      @edit = has_model_in_stack? ? get_model_from_stack : @model.new
+      @edit = is_this_model_in_stack? ? get_model_from_stack : @model.new
       render :action => 'new'
     end
   end
@@ -54,8 +54,7 @@ class SalvaController < ApplicationController
     set_model_into_stack(@edit,@params[:stack]) and return true if @params[:stack] != nil
     if @edit.save
       flash[:notice] = @create_msg
-      options = (has_model_in_stack?) ?  get_options_to_redirect : [ controller_name, 'list']
-      redirect_to_controller(*options.to_a) 
+      redirect_to_controller(*get_options_to_redirect.to_a)
     else
       flash[:notice] = 'Hay errores al guardar esta información'
       render :action => 'new'
@@ -68,9 +67,7 @@ class SalvaController < ApplicationController
     set_model_into_stack(@edit,@params[:stack],'edit') and return true if @params[:stack] != nil
     if @edit.update_attributes(params[:edit])
       flash[:notice] = @update_msg
-      options = (has_model_in_stack?) ?  get_options_to_redirect : [ controller_name, 'list']
-      redirect_to_controller(*options.to_a) 
-#      redirect_to_controller(get_options_to_redirect.to_a) 
+      redirect_to_controller(*get_options_to_redirect.to_a)
     else
       flash[:notice] = 'Hay errores al guardar esta información'
       render :action => 'edit'
