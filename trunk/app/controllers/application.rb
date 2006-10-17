@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
   def auto_complete_for_edit_year 
     min = Date.today.year - 90
     max = Date.today.year
-    auto_complete_responder_for_years params[:edit][:endyear], min, max
+    auto_complete_responder_for_years params[:edit][:year], min, max
   end
   private
   def auto_complete_responder_for_years(value,min=1,max=90)
