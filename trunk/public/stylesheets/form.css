@@ -663,4 +663,10 @@ div.auto_complete ul strong.highlight {
  margin:0;
  padding:0;
 }
+select
+{
+  font-style:none;
+  max-width: 500px;
+  overflow:scroll;
+}
 
