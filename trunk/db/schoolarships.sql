@@ -5,7 +5,7 @@
 CREATE TABLE schoolarships ( 
     id SERIAL,
     name text NOT NULL,
-    institution_id int4 NOT NULL
+    institution_id int4  NULL
             REFERENCES institutions(id) 
             ON UPDATE CASCADE           
             DEFERRABLE,
