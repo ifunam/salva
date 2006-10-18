@@ -5607,3 +5607,19 @@ INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id,
 INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Universidad Pedagógica Nacional', 'UPN', 1, 1, 484);
 INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Universidades Tecnológicas.', 'UT', 1, 1, 484);
 INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Universidad Virtual.', 'UV', 1, 1, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Asociación Mexicana de Estudios Internacionales','AMEI',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Asociación Mexicana de Investigadores en Comunicación','AMIC',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Asociación Latinoamericana de Sociología','ALAS',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Asociación Mexicana de Investigación en Políticas Públicas','',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('European Community Studies Association','ECSA',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('International Studies Association','ISA',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Latin American Studies Association','LASA',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('American Political Science Association','APSA',1, 17, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Academia Mexicana de las Ciencias','',1, 1, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Academia Iberoamericana de Administración Pública','',1, 1, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Colegio de Ciencias Políticas y Administración Pública','',1, 25, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Colegio Metropolitano de Ciencia Política y Administración Pública','',1, 25, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Consejo Nacional para la Enseñanza y la Investigación en Ciencias de la Comunicación','CONEICC',1, 15, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Instituto Nacional de Administración Pública','INAP',1, 4, 484);
+INSERT INTO institutions (name, abbrev, institutiontype_id, institutiontitle_id, country_id) VALUES ('Instituto Mexicano de Estudios Parlamentarios','',1, 4, 484);
+
