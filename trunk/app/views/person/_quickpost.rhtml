@@ -1,10 +1,9 @@
 <div id="state" style="display:none;position:absolute;">
  <%= render :partial => "/salva/quickpost", 
- :locals => {:controller => 'state', :title => 'Estados', :partial =>
- 'select_state_city', :attribute => 'country_id'} %>
+ :locals => {:controller => 'state', :title => 'Estados', :partial => 'select_country_state', :attribute => 'country_id'} %>
 </div>
 <div id="city" style="display:none;position:absolute;">
  <%= render :partial => "/salva/quickpost", 
- :locals => {:controller => 'city', :title => 'Ciudades', :partial => 'select_city', :attribute => 'city_id'} %>
+ :locals => {:controller => 'city', :title => 'Ciudades', :partial => 'select_state_city', :attribute => 'state_id'} %>
 </div>
 

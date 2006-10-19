@@ -133,7 +133,7 @@ COMMENT ON COLUMN schoolings.credits IS
 
 CREATE TABLE titlemodalities( 
 	id SERIAL NOT NULL,
-	name char(30) NOT NULL,     
+	name text NOT NULL,     
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
