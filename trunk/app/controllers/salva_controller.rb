@@ -15,7 +15,7 @@ class SalvaController < ApplicationController
   end
   
   def list # Maybe we will need a specific class to the *lists* handling
-    @params[controller_name] = { :user_id => 3 } if @list_user
+    #@params[controller_name] = { :user_id => 3 } if @list_user
     conditions = set_conditions_from_search
     per_page = set_per_page
     

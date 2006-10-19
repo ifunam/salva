@@ -31,7 +31,7 @@ CREATE TABLE people (
     lastname1 text NOT NULL,
     lastname2 text NULL,
     gender boolean NOT NULL,
-    maritalstatus_id int4 NOT NULL 
+    maritalstatus_id int4 NULL 
                            REFERENCES maritalstatuses(id)
                            ON UPDATE CASCADE
                            DEFERRABLE,
