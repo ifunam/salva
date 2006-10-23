@@ -16,14 +16,7 @@
   <div id="select_degree_institutioncareer">
   <%= select_as_tree('edit', Institutioncareer, %w(career_id institution_id), 1) %>
   </div>
-  <%= quickpost('institutioncareer', 'stack') %>
-</div>
-
-<div class="row"> 
-<label for="credential_id" class="label"><%= get_label('credential_id') %> <span class="required">*</span></label> 
-<div id="credential_id">
-<%= table_select('edit', Credential, 2, 1) %>
-</div>
+  <%= image_submit_tag('/images/add.gif', {:name => 'stack', :value => 'institutioncareer'}) %> 
 </div>
 
 <div class="row"> 
