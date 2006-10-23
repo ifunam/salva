@@ -14,6 +14,10 @@ CREATE TABLE careers (
 	id SERIAL,
         name text NOT NULL,
         abbrev text NULL,
+	degree_id int4 NOT NULL 
+            	REFERENCES degrees(id) 
+            	ON UPDATE CASCADE           
+            	DEFERRABLE,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
@@ -21,7 +25,7 @@ CREATE TABLE careers (
     	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
-	UNIQUE (name)
+	UNIQUE (name,degree_id)
 );
 COMMENT ON TABLE careers IS
 	'Listado de carreras';
@@ -30,10 +34,6 @@ CREATE TABLE institutioncareers (
 	id SERIAL,
 	institution_id int4 NOT NULL 
             	REFERENCES institutions(id) 
-            	ON UPDATE CASCADE           
-            	DEFERRABLE,
-	degree_id int4 NOT NULL 
-            	REFERENCES degrees(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
 	career_id int4 NOT NULL 
@@ -83,10 +83,10 @@ CREATE TABLE schoolings (
             REFERENCES institutioncareers(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
-    credential_id int4 NOT NULL 
-            REFERENCES credentials(id)       
-            ON UPDATE CASCADE
-            DEFERRABLE,
+--    credential_id int4 NOT NULL 
+--            REFERENCES credentials(id)       
+--            ON UPDATE CASCADE
+--            DEFERRABLE,
     startyear int4 NOT NULL,
     endyear   int4 NULL,
     studentid text NULL,
