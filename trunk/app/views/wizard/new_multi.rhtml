@@ -1,7 +1,10 @@
 <%= start_form_tag :action => 'create' %>
   <%= render :partial => 'form_multi' %>
-  <br/>  
-  <%= submit_tag "Create" %>
+  <br/> 
+<div id="operations"> 
+  <%= submit_tag get_label('save') %> |
+  <%= link_to get_label('cancel'), :action => 'cancel' %>
+</div>
 <%= end_form_tag %>
 
 <%= render :partial => 'navbar' %>
