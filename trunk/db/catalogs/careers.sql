@@ -6,7 +6,7 @@ INSERT INTO careers (name) VALUES ('Artes Visuales');
 INSERT INTO careers (name) VALUES ('Bibliotecología');
 INSERT INTO careers (name) VALUES ('Biología');
 INSERT INTO careers (name) VALUES ('Canto');
-INSERT INTO careers (name) VALUES ('Ciencias Políticas y Administración Pública');
+INSERT INTO careers (name) VALUES ('Ciencias Políticas y Administración Pública - Opción Administración Pública');
 INSERT INTO careers (name) VALUES ('Ciencias de la Computación');
 INSERT INTO careers (name) VALUES ('Ciencias de la Comunicación');
 INSERT INTO careers (name) VALUES ('Cirujano Dentista (Odontología)');
@@ -67,3 +67,5 @@ INSERT INTO careers (name) VALUES ('Relaciones Internacionales');
 INSERT INTO careers (name) VALUES ('Sociología');
 INSERT INTO careers (name) VALUES ('Trabajo Social');
 INSERT INTO careers (name) VALUES ('Urbanismo');
+INSERT INTO careers (name) VALUES ('Ciencias Políticas y Administración Pública - Opción Ciencia Política');
+

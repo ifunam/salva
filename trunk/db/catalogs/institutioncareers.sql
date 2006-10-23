@@ -109,3 +109,4 @@ INSERT INTO institutioncareers (institution_id,degree_id,career_id) VALUES (12, 
 INSERT INTO institutioncareers (institution_id,degree_id,career_id) VALUES (15, 3, 67);
 INSERT INTO institutioncareers (institution_id,degree_id,career_id) VALUES (10, 3, 68);
 INSERT INTO institutioncareers (institution_id,degree_id,career_id) VALUES (13, 3, 69);
+INSERT INTO institutioncareers (institution_id,degree_id,career_id) VALUES (11, 3, 70);
