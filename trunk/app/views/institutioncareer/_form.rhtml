@@ -4,23 +4,16 @@
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="institution_id">
-<%= table_select('edit', Institution, {:tabindex => 1, :required => 1 }) %> 
-<%=link_to "Add", { :action => "stack", :handler => "institution" }%>
+<%= table_select('edit', Institution, 1, 1) %> 
+ <%= image_submit_tag('/images/add.gif', {:name => 'stack', :value => 'institution'}) %> 
 </div>
 </div>
 
-<div class="row"> 
-<label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label> 
-<div id="degree_id">
-<%= table_select('edit', Degree, {:tabindex => 2, :required => 1 }) %> 
-<%= quickpost('degree') %> 
-</div>
-</div>
 
 <div class="row"> 
 <label for="career_id" class="label"><%= get_label('career_id') %> <span class="required">*</span></label> 
 <div id="career_id">
-<%= table_select('edit', Career, {:tabindex => 3, :required => 1 }) %> 
+<%= select_as_tree('edit', Career, %w(name degree_id), 2, 1) %>
 <%= quickpost('career') %> 
 </div>
 </div>

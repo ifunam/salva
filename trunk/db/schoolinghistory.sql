@@ -83,10 +83,6 @@ CREATE TABLE schoolings (
             REFERENCES institutioncareers(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
---    credential_id int4 NOT NULL 
---            REFERENCES credentials(id)       
---            ON UPDATE CASCADE
---            DEFERRABLE,
     startyear int4 NOT NULL,
     endyear   int4 NULL,
     studentid text NULL,
