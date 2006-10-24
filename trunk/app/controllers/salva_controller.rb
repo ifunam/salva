@@ -111,6 +111,10 @@ class SalvaController < ApplicationController
     end  
   end
 
+  def cancel
+    redirect_to_controller(*get_options_to_redirect.to_a)
+  end
+
   private
   def new_sequence
     sequence = ModelSequence.new(@sequence)
@@ -149,7 +153,7 @@ class SalvaController < ApplicationController
     @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
     @edit.user_id = session[:user] if @edit.has_attribute?('user_id')
   end
-
+  
 #   def new_else
 #     model_other = params[:model]
 #     lider =  @model.find(params[:lider])

@@ -12,11 +12,15 @@ module Stackcontroller
   def get_model_from_stack
     unless session[:stack].empty?
       model = session[:stack].get_model         
-      session[:stack].pop 
+      pop_model_from_stack
       return model
     end
   end
-  
+
+  def pop_model_from_stack
+    session[:stack].pop unless session[:stack].empty?
+  end
+
   def has_model_in_stack?
     if session[:stack]
       return true unless session[:stack].empty? 
