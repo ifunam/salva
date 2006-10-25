@@ -32,7 +32,9 @@ coauthor: Coautor(es)
 booklink: Página web
 country_id: País
 booktype_id: Tipo de libro
+booktype: Tipo de libro
 volume_id: Volúmen
+volume: Volúmen
 orig_language_id: Idioma original
 trans_language_id: Traducción
 numcites: Número de citas
@@ -104,6 +106,7 @@ usergrant: Becas
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
+books: Libros
 membership: Membresias en asociaciones académicas 
 migratorystatus: Estado migratorio
 institution: Institución
@@ -133,6 +136,9 @@ schoolings: Escolaridad
 professionaltitles: Título profesional
 schooling_id: Escolaridad
 bookedition_roleinbooks: Rol en edición
+roleinbook_id: Rol en edición
+bookedition_comments: Comentarios a la edición
+bookeditions: Ediciones
 grant_id: Beca
 grants: Becas
 grant: Beca
