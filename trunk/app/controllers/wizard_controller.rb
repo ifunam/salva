@@ -1,4 +1,6 @@
+require 'stackcontroller'
 class WizardController < ApplicationController
+  include Stackcontroller
   skip_before_filter :rbac_required
   model :model_sequence
 
@@ -45,6 +47,7 @@ class WizardController < ApplicationController
       params[:edit].each { |key, value|
         model[key.to_sym] = value
       }
+      set_model_into_stack(sequence, @params[:stack]) and return true if @params[:stack] != nil
       if model.valid? then
         next_page 
       else
@@ -65,14 +68,11 @@ class WizardController < ApplicationController
         if model.has_attribute? attr
           model[attr.to_sym] = value
         end
-      }
+      }      
     }
-    invalid = false
-    if invalid
-      redirect_to :action => 'edit_multi'
-    else
-      next_page
-    end
+    set_model_into_stack(sequence, @params[:stack]) and return true if @params[:stack] != nil
+
+    next_page
   end
 
   def update

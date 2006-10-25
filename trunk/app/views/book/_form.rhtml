@@ -26,7 +26,8 @@
 <div class="row"> 
 <label for="booktype_id" class="label"><%= get_label('booktype_id') %> <span class="required">*</span></label> 
 <div id="booktype_id">
-<%= table_select('edit', Booktype, 5, 1) %>
+<%= table_select('edit', Booktype, 5, 1) %> 
+<%= submit_for_stack('booktype') %>
 </div>
 </div>
 
@@ -34,6 +35,7 @@
 <label for="volume_id" class="label"><%= get_label('volume_id') %></label> 
 <div id="volume_id">
 <%= table_select('edit', Volume, 6) %>
+<%= submit_for_stack('volume') %>
 </div>
 </div>
 

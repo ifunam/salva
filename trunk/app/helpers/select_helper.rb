@@ -100,7 +100,7 @@ module SelectHelper
 
   def select_institutioncareer_by_degree(obj, model, columns, id, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
-    collection = model.find_by_sql "SELECT ic.career_id, ic.institution_id FROM institutioncareers ic, careers c WHERE c.degree_id = #{id} AND c.id = ic.career_id"
+    collection = model.find_by_sql "SELECT ic.id, ic.career_id, ic.institution_id FROM institutioncareers ic, careers c WHERE c.degree_id = #{id} AND c.id = ic.career_id"
     list = list_collection(collection,  columns) 
     select(obj, set_model_id(model), list, {:prompt => '-- Seleccionar --'})
   end

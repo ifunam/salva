@@ -1,6 +1,6 @@
 module Stackcontroller
-  def set_model_into_stack(model,controller,action='new')
-    save_model_into_stack(@edit,action) 
+  def set_model_into_stack(model, controller, action='new')
+    save_model_into_stack(model, action) 
     redirect_to_controller(@params[:stack]) 
   end
 

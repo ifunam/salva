@@ -103,15 +103,15 @@ class ModelSequence
       model.moduser_id = @moduser_id if model.has_attribute? 'moduser_id' 
       model.user_id = @user_id if model.has_attribute? 'user_id' 
       if model.class.name.to_s != self.class.name then
-#        model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
-#        model['user_id'] = @user_id if model.has_attribute? 'user_id' 
+        # model['moduser_id'] = @moduser_id if model.has_attribute? 'moduser_id' 
+        # model['user_id'] = @user_id if model.has_attribute? 'user_id' 
         if lider_id != nil then
           model[lider_id] = lider.id
         end
       end
-#      if model.id != nil and model.id > 0
+      # if model.id != nil and model.id > 0
         model.save
-#     else
+      #     else
 #        model.update_attributed(params)
 #      end
     } 

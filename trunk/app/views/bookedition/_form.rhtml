@@ -6,6 +6,7 @@
 <label for="edition_id" class="label"><%= get_label('edition_id') %> <span class="required">*</span></label> 
 <div id="edition_id">
 <%= table_select('edit', Edition, 2, 1) %>
+<%= submit_for_stack('edition') %>
 </div>
 </div>
 
@@ -23,6 +24,7 @@
 <label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
 <div id="publisher_id">
 <%= table_select('edit', Publisher, 5) %>
+<%= submit_for_stack('publisher') %>
 </div>
 </div>
 
@@ -30,6 +32,8 @@
 <label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label> 
 <div id="mediatype_id">
 <%= table_select('edit', Mediatype, 6, 1) %>
+<%= submit_for_stack('mediatype') %>
+
 </div>
 </div>
 
