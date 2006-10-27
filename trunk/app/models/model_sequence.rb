@@ -50,6 +50,7 @@ class ModelSequence
           @sequence[i] = lider
         elsif lider != nil then
           @sequence[i] = child.class.name.constantize.find(:first, :conditions => ["#{lider_id}  = ?", lider.id])
+          @sequence[i] = child.class.new if @sequence[i] == nil
           prev_child = @sequence[i]
         end
       else

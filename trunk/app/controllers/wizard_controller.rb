@@ -35,9 +35,10 @@ class WizardController < ApplicationController
   def show
     sequence = get_sequence
     @list = sequence.flat_sequence
-    if sequence.is_sequence(sequence.sequence[0]) then
-      logger.info "showsecuencia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s+";"+@list[0].id.to_s+";"+@list[1].id.to_s
-    end
+    logger.info "listsecuencia "+@list.to_s+", "+@list.length.to_s 
+#    if sequence.is_sequence(sequence.sequence[0]) then
+ #     logger.info "showsecuencia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s+";"+@list[0].id.to_s+";"+@list[1].id.to_s
+  #  end
   end
   
   def create
