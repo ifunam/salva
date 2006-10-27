@@ -8,8 +8,8 @@ class StackTest < Test::Unit::TestCase
   def setup
     @stack = StackOfController.new
   end
-  def push_model(model)
-    @stack.push(model.new, 'new')
+  def push_model(model,handler)
+    @stack.push(model.new, 'new', handler)
   end
 
   def pop_model
@@ -17,18 +17,21 @@ class StackTest < Test::Unit::TestCase
   end
 
   def test_push
-    push_model(Book)
+    push_model(Book, 'bookedition_id')
     assert_equal 'book', @stack.get_controller
     assert_equal 'new', @stack.get_action
+    assert_equal 'bookedition_id', @stack.get_handler
   end
   
-  def test_pop_models
-    models = [ Book, Bookedition, Publisher ]
-    models.each { |model|
-      push_model(model)
-      assert_equal Inflector.singularize(Inflector.tableize(model)), @stack.get_controller
-    }      
-    models.each { |model| pop_model }
+  def test_pop_model
+    push_model(Book,'bookedition_id')
+    @stack.set_handler_id(10)
+    assert_equal 'book', @stack.get_controller
+    assert_equal 'new', @stack.get_action
+    assert_equal 'bookedition_id', @stack.get_handler
+    assert_not_equal 1, @stack.get_handler_id
+    assert_equal 10, @stack.get_handler_id
+    pop_model 
     assert @stack.empty?
   end
 end

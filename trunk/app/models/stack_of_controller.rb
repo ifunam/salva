@@ -1,11 +1,11 @@
 class StackOfController
-
+  
   def initialize()
     @stack = [ ] 
   end
   
-  def push(model, action)
-    @stack << [ model, action ]
+  def push(model, action, handler, id=nil)
+    @stack << [ model, action, handler, id]
   end
   
   def pop
@@ -47,10 +47,18 @@ class StackOfController
     has_items? ? @stack.last[1]: nil
   end
 
-  def get_id
-    has_items? ? @stack.last[2]: nil
+  def set_handler_id(id)
+    @stack[@stack.length - 1][3] = id if has_items? 
+  end
+  
+  def get_handler_id 
+    has_items? ? @stack[@stack.length - 1][3] : nil
   end
 
+  def get_handler
+    has_items? ? @stack[@stack.length - 1][2] : nil
+  end
+  
   private
   def last
     @stack.last
