@@ -31,5 +31,4 @@ class StackTest < Test::Unit::TestCase
     models.each { |model| pop_model }
     assert @stack.empty?
   end
-
 end
