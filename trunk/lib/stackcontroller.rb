@@ -1,12 +1,13 @@
 module Stackcontroller
-  def set_model_into_stack(model, controller, action='new')
-    save_model_into_stack(model, action) 
+  def set_model_into_stack(model,action,handler)
+    handler = handler + '_id'
+    save_model_into_stack(model,action,handler) 
     redirect_to_controller(@params[:stack]) 
   end
-
-  def save_model_into_stack(object,action)
+  
+  def save_model_into_stack(object,action,handler)
     session[:stack] ||= StackOfController.new
-    session[:stack].push(object,action)
+    session[:stack].push(object,action,handler)
   end
 
   def get_model_from_stack

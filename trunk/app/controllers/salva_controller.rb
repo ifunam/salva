@@ -15,7 +15,7 @@ class SalvaController < ApplicationController
   end
   
   def list # Maybe we will need a specific class to the *lists* handling
-    #@params[controller_name] = { :user_id => 3 } if @list_user
+
     conditions = set_conditions_from_search
     per_page = set_per_page
     
@@ -51,7 +51,7 @@ class SalvaController < ApplicationController
     setinput_xmlhttprequest if request.xml_http_request?
     @edit = @model.new(params[:edit])
     set_userid
-    set_model_into_stack(@edit,@params[:stack]) and return true if @params[:stack] != nil
+    set_model_into_stack(@edit,'new',@params[:stack]) and return true if @params[:stack] != nil
     if @edit.save
       flash[:notice] = @create_msg
       redirect_to_controller(*get_options_to_redirect.to_a)
@@ -64,7 +64,7 @@ class SalvaController < ApplicationController
   def update
     @edit = @model.find(params[:id])
     set_userid
-    set_model_into_stack(@edit,@params[:stack],'edit') and return true if @params[:stack] != nil
+    set_model_into_stack(@edit,'edit',@params[:stack]) and return true if @params[:stack] != nil
     if @edit.update_attributes(params[:edit])
       flash[:notice] = @update_msg
       redirect_to_controller(*get_options_to_redirect.to_a)
