@@ -100,9 +100,10 @@ jobposition: Experiencia laboral
 jobposition_id: Empleo
 user_stimulus: Estímulos
 userstimulus: Estímulos
-user_grants: Becas
-user_grant: Becas
-usergrant: Becas
+user_schoolarships: Becas
+user_schoolarship: Becas
+userschoolarship: Becas
+amount: Monto
 science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
@@ -139,9 +140,9 @@ bookedition_roleinbooks: Rol en edición
 roleinbook_id: Rol en edición
 bookedition_comments: Comentarios a la edición
 bookeditions: Ediciones
-grant_id: Beca
-grants: Becas
-grant: Beca
+schoolarship_id: Beca
+schoolarships: Becas
+schoolarship: Beca
 adscription: Adscripción
 useradscription: Adscripción 
 user_adscription: Adscripción
@@ -150,9 +151,9 @@ stimuluslevel_id: Tipo de estímulo y nivel
 skilltype: Tipo de habilidad
 skilltype_id: Tipo de habilidad
 userskill: Habilidades
-language_id: Lenguaje
-spoken_languagelevel_id: Nivel de lenguaje hablado
-written_languagelevel_id: Nivel de lenguaje escrito
+language_id: Idioma
+spoken_languagelevel_id: Nivel de idioma hablado
+written_languagelevel_id: Nivel de idioma escrito
 userlanguage: Idiomas
 user_language: Idiomas
 user_skill: Habilidades

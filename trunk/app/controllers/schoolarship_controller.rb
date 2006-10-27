@@ -1,7 +1,7 @@
-class UserGrantController < SalvaController
+class SchoolarshipController < SalvaController
   def initialize
     super
-    @model = UserGrant
+    @model = Schoolarship
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
