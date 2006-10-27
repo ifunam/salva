@@ -225,3 +225,9 @@ abstract: Resumen
 conference_institution: Instituciones que organizan el congreso
 userconference: Asistencia a congresos
 userconference_id: Congreso
+edition_id: Edición
+pages: Páginas
+isbn: ISBN
+mediatype_id: Medio
+editionstatus_id: Estado la edición
+publisher_id: Editor
