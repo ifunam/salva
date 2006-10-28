@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'book'
-require 'bookedition'
-require 'publisher'
+require 'user_course'
+require 'course'
 
 class StackTest < Test::Unit::TestCase
 
@@ -17,20 +16,17 @@ class StackTest < Test::Unit::TestCase
   end
 
   def test_push
-    push_model(Book, 'bookedition_id')
-    assert_equal 'book', @stack.get_controller
+    push_model(UserCourse, 'course_id')
+    assert_equal 'user_course', @stack.get_controller
     assert_equal 'new', @stack.get_action
-    assert_equal 'bookedition_id', @stack.get_handler
   end
   
   def test_pop_model
-    push_model(Book,'bookedition_id')
+    push_model(UserCourse,'course_id')
     @stack.set_handler_id(10)
-    assert_equal 'book', @stack.get_controller
+    assert_equal 'user_course', @stack.get_controller
     assert_equal 'new', @stack.get_action
-    assert_equal 'bookedition_id', @stack.get_handler
-    assert_not_equal 1, @stack.get_handler_id
-    assert_equal 10, @stack.get_handler_id
+    assert_equal 10, @stack.get_model.course_id
     pop_model 
     assert @stack.empty?
   end

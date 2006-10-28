@@ -95,7 +95,7 @@ CREATE TABLE roleinjournals (
 );
 COMMENT ON TABLE roleinjournals IS
 	'Roles que un usuario puede tener en una publicación:
-	Editor, compilador, revisor, etc..';
+	Editor, Compilador, Revisor, Arbitro, Otro';
 
 
 CREATE TABLE user_journals ( 
