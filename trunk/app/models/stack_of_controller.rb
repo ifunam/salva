@@ -39,8 +39,7 @@ class StackOfController
   end
   
   def get_controller
-    controller_name = (@stack.last[0].class.name != 'ModelSequence') ? Inflector.singularize(Inflector.tableize(@stack.last[0].class.name)) : 'wizard'
-    has_items? ? controller_name: nil
+    has_items? ? set_controller_name : nil
   end
 
   def get_action
@@ -48,7 +47,7 @@ class StackOfController
   end
 
   def set_handler_id(id)
-    @stack.last[3] = id if has_items? 
+    @stack.last.push(id) if has_items? 
   end
   
   private
@@ -57,7 +56,7 @@ class StackOfController
   end
 
   def get_updated_model
-    model = @stack.last[0] 
+    model = @stack.last.first
     model.[]=(get_handler, get_handler_id)
     return  model
   end
@@ -68,6 +67,11 @@ class StackOfController
 
   def get_handler
     has_items? ? @stack.last[2] : nil
+  end
+
+  def set_controller_name
+    class_name = @stack.last.first.class.name
+    class_name != 'ModelSequence' ? Inflector.singularize(Inflector.tableize(class_name)) : 'wizard'
   end
 end
 

@@ -48,4 +48,8 @@ module Stackcontroller
     redirect_to :controller => controller, :action => action
     return true
   end
+
+  def set_stack_handler_id(id)
+    session[:stack].set_handler_id(id)
+  end
 end

@@ -54,7 +54,7 @@ class SalvaController < ApplicationController
     set_model_into_stack(@edit,'new',@params[:stack]) and return true if @params[:stack] != nil
     if @edit.save
       flash[:notice] = @create_msg
-      # set_handler_id_into_stack(@edit.id) if has_model_in_stack?
+      set_stack_handler_id(@edit.id) if has_model_in_stack?
       redirect_to_controller(*get_options_to_redirect.to_a)
     else
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -68,6 +68,7 @@ class SalvaController < ApplicationController
     set_model_into_stack(@edit,'edit',@params[:stack]) and return true if @params[:stack] != nil
     if @edit.update_attributes(params[:edit])
       flash[:notice] = @update_msg
+      set_stack_handler_id(@edit.id) if has_model_in_stack?
       redirect_to_controller(*get_options_to_redirect.to_a)
     else
       flash[:notice] = 'Hay errores al guardar esta información'
