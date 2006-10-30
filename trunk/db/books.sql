@@ -15,6 +15,12 @@ COMMENT ON TABLE roleinbooks IS
 CREATE TABLE booktypes (
 	id SERIAL,
 	name text NOT NULL,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
@@ -25,6 +31,12 @@ COMMENT ON TABLE booktypes IS
 CREATE TABLE volumes (
 	id serial,
 	name text NOT NULL,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE(name)
 );
@@ -62,6 +74,8 @@ CREATE TABLE books (
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE books IS
@@ -73,6 +87,12 @@ COMMENT ON COLUMN books.author IS 'Nombre de los autores del libro
 CREATE TABLE editions (
 	id SERIAL,
 	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE(name)
 );
@@ -117,10 +137,12 @@ CREATE TABLE bookeditions ( --
     month int4 NULL CHECK (month >= 1 AND month <= 12),
     year  int4 NULL,       -- Edition year
     other text NULL,        -- Which URL / where can you find it / whatever
-    moduser_id int4 NULL           -- Use it to known who
-            REFERENCES users(id)   -- has inserted, updated or deleted
-            ON UPDATE CASCADE      -- data into or  from this table.
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (book_id, edition_id, editionstatus_id)
 );
@@ -139,6 +161,12 @@ CREATE TABLE bookedition_publishers (
 	    REFERENCES publishers(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     UNIQUE (bookedition_id, publisher_id)
 );
@@ -180,6 +208,12 @@ CREATE TABLE bookedition_comments (
             ON UPDATE CASCADE
             DEFERRABLE,
     comment text NULL,        -- User comments for each edition
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     UNIQUE (user_id, bookedition_id)
 );

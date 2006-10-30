@@ -6,10 +6,12 @@ CREATE TABLE publicationcategories (
 	id SERIAL,
 	name varchar(50) NOT NULL,
 	descr text NULL,
-        moduser_id int4  NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
@@ -55,10 +57,12 @@ CREATE TABLE journals (
             	REFERENCES countries(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-        moduser_id int4 NULL    -- Use it only to know who has
-            REFERENCES users(id)    -- inserted, updated or deleted  
-            ON UPDATE CASCADE       -- data into or from this table.
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
 	UNIQUE(issn) 
 );
@@ -77,10 +81,12 @@ CREATE TABLE journal_publicationcategories (
             REFERENCES publicationcategories(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE(journal_id, publicationcategory_id)
 );
@@ -119,6 +125,10 @@ CREATE TABLE user_journals (
 	endmonth int4 NULL CHECK (endmonth >=1 AND endmonth <= 12),
 	numcites int4 NULL CHECK (numcites >= 0),
 	other text NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
@@ -134,6 +144,14 @@ COMMENT ON COLUMN user_journals.roleinjournal_id IS
 CREATE TABLE articles ( 
     id SERIAL,
     title text NOT NULL,
+    journal_id int4 NOT NULL 
+            REFERENCES journals(id)      
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    articlestatus_id int4 NOT NULL  
+            REFERENCES articlestatuses(id)      
+            ON UPDATE CASCADE
+            DEFERRABLE,
     pages text NULL,   
     year  int4 NOT NULL,
     month  int4 NULL CHECK (month >= 1 AND month <= 12),
@@ -142,19 +160,13 @@ CREATE TABLE articles (
     authors text NULL ,
     url text NULL,
     pacsnum text NULL,
-    articlestatus_id int4 NOT NULL  
-            REFERENCES articlestatuses(id)      
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    journal_id int4 NOT NULL 
-            REFERENCES journals(id)      
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    moduser_id int4 NULL         -- It will be used only to know who has
-            REFERENCES users(id) -- inserted, updated or deleted  
-            ON UPDATE CASCADE    -- data into or from this table.
-            DEFERRABLE,
     other text NULL,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE(title, journal_id, year)
 );
@@ -178,8 +190,12 @@ CREATE TABLE user_articles (
             DEFERRABLE,
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, article_id)
 );
 COMMENT ON TABLE user_articles IS

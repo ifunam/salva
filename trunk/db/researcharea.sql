@@ -12,29 +12,40 @@ CREATE TABLE researchareas(
     id SERIAL,
     name text NOT NULL,
     description text NULL,
-    moduser_id int4 NULL                 -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, update or delete  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+    DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (name)
 );
 COMMENT ON TABLE researchareas IS
 	'Áreas de investigación (ligadas desde projectresearchareas)';
 
+
+
 CREATE TABLE researchlines(
     id SERIAL,
     name text NOT NULL,
     description text NULL,
-    moduser_id int4 NULL                 -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, update or delete  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+    researcharea_id int4  NULL 	     -- Use it only to know who has
+    REFERENCES researchareas(id)     -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+    DEFERRABLE,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+              DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (name)
 );
 COMMENT ON TABLE researchlines IS
 	'Líneas de investigación';
+
 
 CREATE TABLE user_researchlines(
     id SERIAL,
@@ -43,11 +54,17 @@ CREATE TABLE user_researchlines(
             ON UPDATE CASCADE   
             ON DELETE CASCADE  
             DEFERRABLE,
-    researchlines_id int4 NOT NULL
+    researchline_id int4 NOT NULL
             REFERENCES researchlines(id)     
             ON UPDATE CASCADE   
             DEFERRABLE,
-    PRIMARY KEY (user_id, researchlines_id)
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+    DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, researchline_id)
 );
 COMMENT ON TABLE user_researchlines IS
 	'Líneas de investigación en que participa un usuario';
@@ -59,10 +76,16 @@ CREATE TABLE user_researchareas(
             ON UPDATE CASCADE   
             ON DELETE CASCADE  
             DEFERRABLE,
-    researcharea_id int4 NOT NULL
+    researcharea_id int4  NULL
             REFERENCES researchareas(id)     
             ON UPDATE CASCADE   
             DEFERRABLE,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    REFERENCES users(id)             -- inserted, updated or deleted  
+    ON UPDATE CASCADE                -- data into or from this table.
+    DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, researcharea_id)
 );
 COMMENT ON TABLE user_researchareas IS
