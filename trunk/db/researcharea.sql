@@ -11,7 +11,7 @@
 CREATE TABLE researchareas (
     id SERIAL,
     name text NOT NULL,
-    description text NULL,
+    descr text NULL,
     moduser_id int4  NULL    	     -- Use it only to know who has
     REFERENCES users(id)             -- inserted, updated or deleted  
     ON UPDATE CASCADE                -- data into or from this table.
@@ -29,7 +29,7 @@ COMMENT ON TABLE researchareas IS
 CREATE TABLE researchlines (
     id SERIAL,
     name text NOT NULL,
-    description text NULL,
+    descr text NULL,
     researcharea_id int4  NULL 	     -- Use it only to know who has
     REFERENCES researchareas(id)     -- inserted, updated or deleted  
     ON UPDATE CASCADE                -- data into or from this table.

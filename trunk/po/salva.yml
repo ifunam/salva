@@ -231,3 +231,8 @@ isbn: ISBN
 mediatype_id: Medio
 editionstatus_id: Estado la edición
 publisher_id: Editor
+researcharea: Areas de investigación
+researcharea_id: Area de investigación
+researchline: Líneas de investigación
+researchline_id: Línea de investigación
+user_researchline: Líneas de investigación

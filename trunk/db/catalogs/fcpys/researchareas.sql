@@ -76,10 +76,10 @@ INSERT INTO researchlines (name, researcharea_id) VALUES ('Estrategias de aprend
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Modelos de desarrollo económico', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('El Tratado de Libre Comercio México-Japón', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Geopolítica', 4);
-INSERT INTO researchlines (name, researcharea_id) VALUES (' teoría y práctica', 4);
+INSERT INTO researchlines (name, researcharea_id) VALUES ('Teoría y práctica', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Diccionario de política internacional', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Pensamiento político estadounidense',4);
-INSERT INTO researchlines (name, researcharea_id) VALUES (' pragmatismo y globalización', 4);
+INSERT INTO researchlines (name, researcharea_id) VALUES ('Pragmatismo y globalización', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Seguridad internacional y seguridad hemisférica', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Negociaciones internacionales', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Medio ambiente y cooperación internacional', 4);
@@ -94,7 +94,7 @@ INSERT INTO researchlines (name, researcharea_id) VALUES ('Reforma de la ONU', 4
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Desarrollos temáticos actuales para la enseñanza del derecho internacional', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Estudios africanos', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Procesos de integración', 4);
-INSERT INTO researchlines (name, researcharea_id) VALUES ('la Unión Europea, MERCOSUR, TLCAN y  ALCA', 4);
+INSERT INTO researchlines (name, researcharea_id) VALUES ('La Unión Europea, MERCOSUR, TLCAN y  ALCA', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Migración Coreana a México', 4); 
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Prospectiva global en los escenarios regionales', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('México y la Cuenca del Pacífico', 4);

@@ -1,4 +1,4 @@
-<h1>Edit <%= @edit.class.name %></h1>
+<h1> <%= get_label(Inflector.tableize(@edit.class.name)) %></h1>
 
 <%= start_form_tag :action => 'update', :id => @edit %>
   <%= render :partial => Inflector.underscore(@edit.class.name)+'/form' %>
