@@ -1,0 +1,14 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_researchline]-->
+<div class="row"> 
+<label for="researchline_id" class="label"><%= get_label('researchline_id') %> <span class="required">*</span></label> 
+<div id="researchline_id">
+<%= table_select('edit', Researchline, 1, 1) %>
+<%= submit_for_stack('researchline') %>
+</div>
+</div>
+
+
+<!--[eoform:user_researchline]-->
+
