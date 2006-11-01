@@ -8,7 +8,7 @@
 ------ this semantic difference? Other institutions might have different such
 ------ categories...)
 
-CREATE TABLE researchareas(
+CREATE TABLE researchareas (
     id SERIAL,
     name text NOT NULL,
     description text NULL,
@@ -22,11 +22,11 @@ CREATE TABLE researchareas(
     UNIQUE (name)
 );
 COMMENT ON TABLE researchareas IS
-	'Áreas de investigación (ligadas desde projectresearchareas)';
+	'Areas de investigación (ligadas desde projectresearchareas)';
 
 
 
-CREATE TABLE researchlines(
+CREATE TABLE researchlines (
     id SERIAL,
     name text NOT NULL,
     description text NULL,
@@ -41,13 +41,12 @@ CREATE TABLE researchlines(
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (name)
+    UNIQUE (name,researcharea_id)
 );
 COMMENT ON TABLE researchlines IS
 	'Líneas de investigación';
 
-
-CREATE TABLE user_researchlines(
+CREATE TABLE user_researchlines (
     id SERIAL,
     user_id int4 NOT NULL
             REFERENCES users(id)     
@@ -69,24 +68,4 @@ CREATE TABLE user_researchlines(
 COMMENT ON TABLE user_researchlines IS
 	'Líneas de investigación en que participa un usuario';
 
-CREATE TABLE user_researchareas(
-    id SERIAL,
-    user_id int4 NOT NULL
-            REFERENCES users(id)     
-            ON UPDATE CASCADE   
-            ON DELETE CASCADE  
-            DEFERRABLE,
-    researcharea_id int4  NULL
-            REFERENCES researchareas(id)     
-            ON UPDATE CASCADE   
-            DEFERRABLE,
-    moduser_id int4  NULL    	     -- Use it only to know who has
-    REFERENCES users(id)             -- inserted, updated or deleted  
-    ON UPDATE CASCADE                -- data into or from this table.
-    DEFERRABLE,
-    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, researcharea_id)
-);
-COMMENT ON TABLE user_researchareas IS
-	'Áreas de investigación en que participa un usuario';
+
