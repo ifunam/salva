@@ -1,4 +1,5 @@
 class ResearchlineController < SalvaController
+  auto_complete_for :researchline, :name
   def initialize
     super
     @model = Researchline
