@@ -7,6 +7,13 @@ module TableHelper
     render(:partial => '/salva/list', 
            :locals => { :header => header, :list => list })
   end
+
+  def table_simple_list(collection, options = {} )
+    header = options[:header] 
+    list = list_collection(collection, options[:columns])
+    render(:partial => '/salva/simple_list', 
+           :locals => { :header => header, :list => list })
+  end
   
   # ...
   def table_show(row, options = {})

@@ -39,6 +39,7 @@ class SalvaController < ApplicationController
   end
   
   def new
+#    set_model_into_stack(@edit,'new',@params[:stack]) and return true if @params[:id] != nil
     if @sequence != nil
       new_sequence
     else

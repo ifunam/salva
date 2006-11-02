@@ -1,4 +1,4 @@
-<%= table(@collection, { :header => "Chingaderas" }) %>
+<%= table_list(@collection, { :header => ">Ediciones", :columns => %w(book_id) }) %>
 
 <br />
 <%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>

@@ -1,7 +1,7 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:bookedition]-->
-
+<%= hidden_field('edit', 'book_id', :value => @params[:id]) %>
 <div class="row"> 
 <label for="edition_id" class="label"><%= get_label('edition_id') %> <span class="required">*</span></label> 
 <div id="edition_id">

@@ -1,3 +1,4 @@
 <%= table_list(@collection, { :header => "Título", :columns => %w(roleinbook_id) }) %>
 <br/>
-<%= link_to 'Agregar BookeditionRoleinbook', :action => 'new' %>
+<%= link_to 'Agregar '+get_label('bookeditionroleinbook'), :action => 'new' %>
+<%= link_to 'Seleccionar '+get_label('book'), :action => 'new' %>
