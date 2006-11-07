@@ -6,6 +6,6 @@ class BookeditionRoleinbookController < SalvaController
     @purge_msg = 'El BookeditionRoleinbook se ha ido borrado'
     @per_pages = 10
     @order_by = 'id'
-    @sequence = [ Book, Bookedition, [BookeditionRoleinbook, BookeditionComment]]
+#    @sequence = [ Book, Bookedition, BookeditionRoleinbook ]
   end
 end

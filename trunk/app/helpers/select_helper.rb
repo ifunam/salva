@@ -16,10 +16,10 @@ module SelectHelper
     select(object, model_id, sorted_find(model), {:prompt => '-- Seleccionar --'}, options)
   end
   
-  def select_to_update_select(obj, model, model_dest, tabindex, validation_type=nil)
+  def select_to_update_select(obj, model, model_dest, tabindex, validation_type=nil, attr='name')
     options = set_options_tags(tabindex, validation_type)
     options[:onchange] = remote_functag(model, model_dest, tabindex) 
-    select(obj, set_model_id(model), sorted_find(model), { :prompt => '-- Seleccionar --' }, options)
+    select(obj, set_model_id(model), sorted_find(model, attr), { :prompt => '-- Seleccionar --' }, options)
   end
   
   def select_id_to_update_select(obj, model, model_parent, id, model_dest, tabindex, validation_type=nil, columns=['name']) 

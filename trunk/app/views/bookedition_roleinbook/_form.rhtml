@@ -1,4 +1,18 @@
 <!--[form:bookedition_roleinbook]-->
+<div class="row">
+ <label for="book_id" class="label"><%= get_label('book_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Book, Bookedition, 1, 1, 'title') %>
+</div>
+
+<div class="row">
+  <label for="bookedition_id" class="label"><%= get_label('bookedition_id') %><span class="required">*</span></label>
+  <div id="select_book_bookedition_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ediciones...</span></div>
+  <div id="select_book_bookedition">
+  <%= select_as_tree('edit', Bookedition, %w(edition_id mediatype_id), 1, 1)%>
+  </div>
+  <%= quickpost('Bookedition','stack') %>
+</div>
+
 <p><label for="bookedition_roleinbook">Indique la actividad que
 realizó en esta edición</label><br/>
 
