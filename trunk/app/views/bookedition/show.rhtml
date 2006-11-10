@@ -1,8 +1,10 @@
-<% for column in Bookedition.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @bookedition.send(column.name) %>
-</p>
-<% end %>
+<!--[show:bookedition]-->
+<%= render :partial => "bookedition/show" %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @bookedition %> |
-<%= link_to 'Back', :action => 'list' %>
+ <%= render :partial =>"salva/moduser" %> 
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'list' %>
+</div>
+<!--[eofshow:bookedition]-->
+

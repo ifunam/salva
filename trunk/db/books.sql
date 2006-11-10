@@ -69,7 +69,6 @@ CREATE TABLE books (
         	REFERENCES languages(id)
             	ON UPDATE CASCADE
 		DEFERRABLE,	
-    numcites int4 NULL CHECK (numcites >= 0),
     moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
@@ -122,7 +121,7 @@ CREATE TABLE bookeditions ( --
             DEFERRABLE,
     pages int4 NULL,     -- Number of pages
     isbn  text NULL,     -- ISBN
-    publisher_id int4 NULL 
+    publisher_id int4 NOT NULL 
 	    REFERENCES publishers(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -135,7 +134,7 @@ CREATE TABLE bookeditions ( --
             ON UPDATE CASCADE
             DEFERRABLE,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
-    year  int4 NULL,       -- Edition year
+    year  int4 NOT NULL,       -- Edition year
     other text NULL,        -- Which URL / where can you find it / whatever
     moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
@@ -150,29 +149,6 @@ COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
 	fue impresa? Cuál es el estado de cada una de ellas?';
 
--- Does this book edition have more than one publisher?
-CREATE TABLE bookedition_publishers (
-    id serial,
-    bookedition_id int4 NOT NULL
-	    REFERENCES bookeditions(id)
-	    ON UPDATE CASCADE
-	    DEFERRABLE,
-    publisher_id int4 NULL 
-	    REFERENCES publishers(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    moduser_id int4 NULL               	    -- Use it to known who
-            REFERENCES users(id)            -- has inserted, updated or deleted
-            ON UPDATE CASCADE               -- data into or  from this table.
-            DEFERRABLE,
-    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id),
-    UNIQUE (bookedition_id, publisher_id)
-);
-COMMENT ON TABLE bookedition_publishers IS
-	'Para las ediciones que tengan más de una editorial (la principal 
-	está ya en bookeditions.publisher_id';
 
 CREATE TABLE bookedition_roleinbooks ( 
     id SERIAL,

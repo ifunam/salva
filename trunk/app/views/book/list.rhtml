@@ -1,5 +1,9 @@
-<%= table_list(@collection, { :header => "Libros", :columns => %w(author title booktype_id volume_id orig_language_id trans_language_id) }) %>
+<!--[list:book]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( title author country_id booktype_id ) }) %> 
 <br/>
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
-<%= link_to 'Agregar libro', :action => 'new' %>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:book]-->
+

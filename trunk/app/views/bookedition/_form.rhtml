@@ -2,28 +2,30 @@
 
 <!--[form:bookedition]-->
 <%= hidden_field('edit', 'book_id', :value => @params[:id]) %>
+
 <div class="row"> 
 <label for="edition_id" class="label"><%= get_label('edition_id') %> <span class="required">*</span></label> 
 <div id="edition_id">
 <%= table_select('edit', Edition, 2, 1) %>
 <%= submit_for_stack('edition') %>
 </div>
+
 </div>
 
 <div class="row"> 
 <label for="pages" class="label"><%= get_label('pages') %></label> 
-<%= text_field 'edit', 'pages', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
 </div>
 
 <div class="row"> 
 <label for="isbn" class="label"><%= get_label('isbn') %></label> 
-<%= text_field 'edit', 'isbn', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
+<%= text_field 'edit', 'isbn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
 </div>
 
 <div class="row"> 
-<label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %> <span class="required">*</span></label> 
 <div id="publisher_id">
-<%= table_select('edit', Publisher, 5) %>
+<%= table_select('edit', Publisher, 5, 1) %>
 <%= submit_for_stack('publisher') %>
 </div>
 </div>
@@ -33,7 +35,6 @@
 <div id="mediatype_id">
 <%= table_select('edit', Mediatype, 6, 1) %>
 <%= submit_for_stack('mediatype') %>
-
 </div>
 </div>
 
@@ -41,6 +42,7 @@
 <label for="editionstatus_id" class="label"><%= get_label('editionstatus_id') %></label> 
 <div id="editionstatus_id">
 <%= table_select('edit', Editionstatus, 7) %>
+<%= submit_for_stack('editionstatus') %>
 </div>
 </div>
 
@@ -50,8 +52,8 @@
 </div>
 
 <div class="row"> 
-<label for="year" class="label"><%= get_label('year') %></label> 
-<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 9}, :skip_style => true %><br/></div>
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 9, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
 
 <div class="row"> 
 <label for="other" class="label"><%= get_label('other') %></label> 

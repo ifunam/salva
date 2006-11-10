@@ -9,5 +9,5 @@ class BookeditionRoleinbook < ModelComposedKeys
   belongs_to :roleinbook
   belongs_to :user
   
-  attr_accessor :book_id
+#  attr_accessor :book_id
 end

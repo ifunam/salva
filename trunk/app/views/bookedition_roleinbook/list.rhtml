@@ -1,6 +1,5 @@
-<%= table_list(@collection, { :header => "Título", :columns => %w(book_id bookedition_id roleinbook_id) }) %>
-
-
+<%= table_array(@collection, { :header => "Título", :columns => [bookedition_id, [book_id [title] edition_id year], roleinbook_id] })
+%>
 <br/>
 <%= link_to 'Agregar ', :action => 'new' %> |
 <%= link_to 'Seleccionar '+get_label('book'), :action => 'new' %>

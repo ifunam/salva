@@ -13,4 +13,6 @@ class Book < ActiveRecord::Base
   belongs_to :trans_language,
   :class_name => 'Language',
   :foreign_key => 'trans_language_id'
+
+  has_many :bookedition
 end
