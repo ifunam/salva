@@ -108,6 +108,7 @@ science_and_tech_production: Producción científica y tecnológica
 publications: Publicaciones
 book: Libro
 books: Libros
+book_id: Libro
 membership: Membresias en asociaciones académicas 
 migratorystatus: Estado migratorio
 institution: Institución
@@ -140,6 +141,7 @@ bookedition_roleinbooks: Rol en edición
 roleinbook_id: Rol en edición
 bookedition_comments: Comentarios a la edición
 bookeditions: Ediciones
+bookedition_id: Edición
 schoolarship_id: Beca
 schoolarships: Becas
 schoolarship: Beca
@@ -236,3 +238,4 @@ researcharea_id: Area de investigación
 researchline: Líneas de investigación
 researchline_id: Línea de investigación
 user_researchline: Líneas de investigación
+bookedition_roleinbook: Participación en libros

@@ -8,6 +8,13 @@ module TableHelper
            :locals => { :header => header, :list => list })
   end
 
+  def table_array(collection, options = {} )
+    header = options[:header] 
+    list = list_collection_array(collection, options[:columns])
+    render(:partial => '/salva/list', 
+           :locals => { :header => header, :list => list })
+  end
+
   def table_simple_list(collection, options = {} )
     header = options[:header] 
     list = list_collection(collection, options[:columns])

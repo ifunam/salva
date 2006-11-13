@@ -1,4 +1,5 @@
-<%= table_array(@collection, { :header => "Título", :columns => [bookedition_id, [book_id [title] edition_id year], roleinbook_id] })
+<%= table_array(@collection, { :header => "Título", :columns =>
+[ ['bookedition_id', 'book_id', 'edition_id', 'year'], 'roleinbook_id'] })
 %>
 <br/>
 <%= link_to 'Agregar ', :action => 'new' %> |

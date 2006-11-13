@@ -9,6 +9,16 @@ module ListHelper
     return sorted_list(list)
   end
   
+  def list_collection_array(collection, columns)
+    list = []
+    collection.each { |row|
+      text = columns_content_array(row, columns).join(', ').to_s+'.'
+      id = row.attributes_before_type_cast['id'] =~ /:/ ?  row.attributes_before_type_cast['id'] : row.id
+      list.push([text, id])
+    }
+    return sorted_list(list)
+  end
+
   def list_collection_text(collection, columns)
     list = []
     collection.each { |row|
@@ -50,6 +60,14 @@ module ListHelper
     return s
   end
   
+
+  def columns_content_array(row, columns)
+    if columns.is_a?Array or columns.is_a?Hash then
+      s = columns_to_text_array(row, columns)
+    end
+    return s
+  end
+
   def columns_to_text(row, columns)
     s = []
     if (columns.is_a? Array)
@@ -71,6 +89,31 @@ module ListHelper
     end
 
     return s
+  end
+  
+  def columns_to_text_array(row, columns)
+    s = []
+    if (columns.is_a? Array)
+      columns.each { |attr|
+        if attr.is_a? Array then
+          prev = attr[0]
+          model = prev.sub(/_id$/,'')
+          id = row.send(prev)
+          row2 = Inflector.camelize(model).constantize.find(id)
+          s << columns_to_text_array(row2, attr[1..-1])
+        else
+          next if row.send(attr) == nil 
+          if is_id?(attr) then
+            s << attributeid_to_text(row, attr)
+          else
+            s << attribute_to_text(row, attr)
+          end
+        end
+      }
+      return s
+    else
+      nil
+    end
   end
   
   def attribute_to_text(row, attr)
@@ -163,6 +206,8 @@ module ListHelper
       belongs_to[1] = 'citizen'
     when /user_/
       belongs_to[1] = 'login'
+    when /book_/
+      belongs_to[1] = 'title'
     end
     belongs_to
   end
