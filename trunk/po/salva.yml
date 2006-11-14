@@ -241,3 +241,7 @@ user_researchline: Líneas de investigación
 bookedition_roleinbook: Participación en libros
 idtype_id: Tipo de identificación
 identification: Identificación
+stimulustype_id: Tipo de estímulo
+stimulustype: Tipo de estímulo
+stimuluslevel_id: Nivel de estímulo
+stimuluslevel: Nivel de estímulo
