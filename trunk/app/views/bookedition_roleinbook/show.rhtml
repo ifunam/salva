@@ -1,3 +1,2 @@
 <%= render :partial => "bookedition_roleinbook/show" %>
-<%= link_to 'Editar', :action => 'edit', :id => @bookedition_roleinbook %> |
-<%= link_to 'Regresar', :action => 'list' %>
+<%= link_to 'Editar', :action => 'edit', :id => @edit.attributes_before_type_cast['id'] %> | <%= link_to 'Regresar', :action => 'list' %>

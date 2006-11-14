@@ -1,10 +1,22 @@
 module Stackcontroller
-  def set_model_into_stack(model,action,handler)
-    handler = handler + '_id'
-    save_model_into_stack(model,action,handler) 
-    redirect_to_controller(@params[:stack]) 
+  def set_model_into_stack(model,action,handler,myparams)
+    options = set_options(handler,myparams)
+    save_model_into_stack(model,action,options[:handler]+'_id') 
+    redirect_to_controller(options[:handler],'new', options[:id]) 
   end
   
+  def set_options(handler,myparams)
+    options = { :id => nil}
+    if handler =~ /:/
+      attribute = handler.split(':')[1]
+      options[:handler] = handler.split(':')[0]
+      options[:id] = myparams[attribute.to_sym]
+    else
+      options[:handler] = handler
+    end
+    options
+  end
+
   def save_model_into_stack(object,action,handler)
     session[:stack] ||= StackOfController.new
     session[:stack].push(object,action,handler)
@@ -44,8 +56,8 @@ module Stackcontroller
     end
   end
   
-  def redirect_to_controller(controller, action='new')
-    redirect_to :controller => controller, :action => action
+  def redirect_to_controller(controller, action='new', id=nil)
+    redirect_to :controller => controller, :action => action, :id => id
     return true
   end
 

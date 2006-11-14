@@ -1,9 +1,9 @@
 <h1>Editando BookeditionRoleinbook</h1>
 
-<%= start_form_tag :action => 'update', :id => @edit %>
+<%= start_form_tag :action => 'update', :id => @edit.attributes_before_type_cast['id'] %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <%= end_form_tag %>
 
-<%= link_to 'Mostrar', :action => 'show', :id => @edit %> |
+<%= link_to 'Mostrar', :action => 'show', :id => @edit.attributes_before_type_cast['id'] %> |
 <%= link_to 'Regresar', :action => 'list' %>

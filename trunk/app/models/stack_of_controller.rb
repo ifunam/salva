@@ -5,7 +5,7 @@ class StackOfController
   end
   
   def push(model, action, handler)
-    @stack << [ model, action, handler] if model.has_attribute? handler
+    @stack << [ model, action, handler] 
   end
   
   def pop

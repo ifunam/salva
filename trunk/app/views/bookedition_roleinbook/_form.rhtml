@@ -11,17 +11,15 @@
   <div id="select_book_bookedition">
   <%= select_as_tree('edit', Bookedition, %w(edition_id mediatype_id), 1, 1)%>
   </div>
-  <%= submit_for_stack('bookedition') %>
+  <%= submit_for_stack('bookedition:book_id') %>
 </div>
 
 <p><label for="bookedition_roleinbook">Indique la actividad que
 realizó en esta edición</label><br/>
 
 <% if @edit.id ==nil || @edit == 0 %>
-  New
   <%= render :partial => 'bookedition_roleinbook/form_new' %>
 <% else %>
-  Edit
   <%= render :partial => 'bookedition_roleinbook/form_edit' %>
 <% end %>
 </p>
