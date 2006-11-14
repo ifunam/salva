@@ -4,16 +4,15 @@
 <div class="row"> 
 <label for="idtype_id" class="label"><%= get_label('idtype_id') %> <span class="required">*</span></label> 
 <div id="idtype_id">
-<%= table_select('edit', Idtype, {:tabindex => 1, :required => 1 }) %> 
-<%= quickpost('idtype') %> 
+<%= table_select('edit', Idtype, 1, 1) %>
+<%= submit_for_stack('idtype') %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label> 
 <div id="citizen_country_id">
-<%= table_select('edit', Country, {:prefix => 'citizen', :tabindex => 2, :required => 1 }) %>
-<%= quickpost('country') %> 
+<%= table_select('edit', Country, 2, 1, 'citizen') %>
 </div>
 </div>
 
