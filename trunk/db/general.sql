@@ -71,7 +71,8 @@ COMMENT ON COLUMN people.state_id IS
 	'Estado donde nacio';
 COMMENT ON COLUMN people.city_id IS
 	'Ciudad o municipio de nacimiento';
-
+COMMENT ON COLUMN people.gender IS
+        'Gender será usado de la siguiente manera: f para indicar el genéro femenino y t para indicar el genéro másculino';
 
 CREATE TABLE addresses ( 
     id SERIAL,

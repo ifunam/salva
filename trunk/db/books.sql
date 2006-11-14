@@ -205,11 +205,12 @@ CREATE table chapterinbooks (
             DEFERRABLE,
    chapter text NOT NULL,
    pages   text NULL,
-   numcites int4 NULL CHECK (numcites >= 0),
-   moduser_id int4 NULL      -- Use it to known who
-            REFERENCES users(id) -- has inserted, updated or deleted
-            ON UPDATE CASCADE    -- data into or from this table.
+   moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
    UNIQUE (bookedition_id, chapter)
 );
@@ -234,6 +235,12 @@ CREATE TABLE chapterinbook_roleinbooks (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id, chapterinbook_id, roleinbook_id)
 );
@@ -253,6 +260,12 @@ CREATE TABLE chapterinbook_comments (
             ON UPDATE CASCADE
             DEFERRABLE,
     comment text NULL,        -- User comments for each edition
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id, chapterinbook_id)
 );
