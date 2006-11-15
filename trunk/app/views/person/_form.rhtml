@@ -17,10 +17,9 @@
 
 <div class="row"> 
 <label for="gender" class="label"><%= get_label('gender') %> <span class="required">*</span></label> 
-
 <div class="radio">  
-Femenino <%= radio_button('edit', 'gender', 'f', 'tabindex' => 4) %>
-Masculino <%= radio_button('edit', 'gender', 't', 'tabindex' => 4) %> 
+Femenino <%= radio_button('edit', 'gender', false, 'tabindex' => 4) %>
+Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %> 
 </div>  
 </div>
 
