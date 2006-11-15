@@ -15,8 +15,9 @@ class SalvaController < ApplicationController
   end
   
   def list # Maybe we will need a specific class to the *lists* handling
-
-    conditions = set_conditions_from_search
+    
+    conditions = params[controller_name] ? set_conditions_from_search : 
+(@model.new.has_attribute?('user_id') ? [ 'user_id = ?', session[:user]]: nil)
     per_page = set_per_page
     
     @pages, @collection = paginate Inflector.pluralize(@model), 
