@@ -1,4 +1,10 @@
-<%= render :partial => 'show' %>
+<!--[show:article]-->
+<%= render :partial => "article/show" %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @article %> |
-<%= link_to 'Back', :action => 'list' %>
+ <%= render :partial =>"salva/moduser" %> 
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'list' %>
+</div>
+<!--[eofshow:article]-->
+

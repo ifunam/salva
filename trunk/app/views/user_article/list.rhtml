@@ -1,6 +1,11 @@
-<%= table(@collection, { :header => "Titulo", :columns => %w() }) %>
+<!--[list:user_article]-->
+<%= table_array(@collection, { :header => "Artículo", :columns =>
+[ ['article_id', 'title', 'journal_id', 'year'], 'ismainauthor'] })
+%>
 <br/>
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:user_article]-->
 
-<%= link_to 'Agregar UserArticle', :action => 'new' %>

@@ -246,3 +246,18 @@ stimulustype: Tipo de estímulo
 stimuluslevel_id: Nivel de estímulo
 stimuluslevel: Nivel de estímulo
 language: Idioma(s)
+journal: Revistas
+journal_id: Revista
+article: Artículos
+article_id: Artículo
+user_article: Participación en Artículos
+ismainauthor: ¿Es autor principal?
+articlestatus_id: Estado del artículo
+vol: Volumen
+num: Número
+issn: ISSN
+impactfactor: Factor de impacto
+journaltype_id: Tipo de revista
+immediacy: Inmediatez
+dateupdate: Fecha de actualización del factor de impacto
+totalcites: Total de citas

@@ -1,6 +1,9 @@
-<%= table_list(@collection, { :header => "Titulo", :columns => %w() }) %>
+<!--[list:article]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( title journal_id articlestatus_id year ) }) %> 
 <br/>
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:article]-->
 
-<%= link_to 'Agregar Article', :action => 'new' %>

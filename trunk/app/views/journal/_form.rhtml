@@ -1,0 +1,79 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:journal]-->
+<div class="row"> 
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="issn" class="label"><%= get_label('issn') %></label> 
+<%= text_field 'edit', 'issn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'issn' %>
+</div>
+
+<div class="row"> 
+<label for="url" class="label"><%= get_label('url') %></label> 
+<%= text_field 'edit', 'url', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 3, 'id' => 'url' %>
+</div>
+
+<div class="row"> 
+<label for="abbrev" class="label"><%= get_label('abbrev') %></label> 
+<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'abbrev' %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 5, 'id' => 'other' %></div>
+
+<div class="row"> 
+<label for="totalcites" class="label"><%= get_label('totalcites') %></label> 
+<%= text_field 'edit', 'totalcites', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'totalcites' %>
+</div>
+
+<div class="row"> 
+<label for="impactfactor" class="label"><%= get_label('impactfactor') %></label> 
+<%= text_field 'edit', 'impactfactor', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 7, 'id' => 'impactfactor' %>
+</div>
+
+<div class="row"> 
+<label for="immediacy" class="label"><%= get_label('immediacy') %></label> 
+<%= text_field 'edit', 'immediacy', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 8, 'id' => 'immediacy' %>
+</div>
+
+<div class="row"> 
+<label for="dateupdate" class="label"><%= get_label('dateupdate') %></label> 
+<%= text_field 'edit', 'dateupdate', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'dateupdate' %>
+</div>
+
+<div class="row"> 
+<label for="journaltype_id" class="label"><%= get_label('journaltype_id') %> <span class="required">*</span></label> 
+<div id="journaltype_id">
+<%= table_select('edit', Journaltype, 10, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label> 
+<div id="mediatype_id">
+<%= table_select('edit', Mediatype, 11, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div id="country_id">
+<%= table_select('edit', Country, 13, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %> <span class="required">*</span></label> 
+<div id="publisher_id">
+<%= table_select('edit', Publisher, 12, 1) %>
+</div>
+<%= submit_for_stack('publisher') %>
+</div>
+
+
+<!--[eoform:journal]-->
+
