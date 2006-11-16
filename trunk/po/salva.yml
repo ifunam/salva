@@ -248,7 +248,7 @@ stimuluslevel: Nivel de estímulo
 language: Idioma(s)
 journal: Revistas
 journal_id: Revista
-article: Artículos
+article: Artículos  arbitrados
 article_id: Artículo
 user_article: Participación en Artículos
 ismainauthor: ¿Es autor principal?
@@ -263,6 +263,6 @@ dateupdate: Fecha de actualización del factor de impacto
 totalcites: Total de citas
 pacsnum: Número de PACS
 chapterinbook_roleinbook: Capítulos en libros
-articles: Artículos arbitrados
+articles: Artículos
 chapter: Capítulo
 chapterinbook_id: Capítulo
