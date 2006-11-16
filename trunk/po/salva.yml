@@ -268,3 +268,7 @@ chapter: Capítulo
 chapterinbook_id: Capítulo
 genericworkgroup: Clasificación trabajos generales
 genericworkgroup_id:  Clasificación trabajos generales
+genericworkstatus: Estado
+genericworkstatus_id: Estado
+genericworktype: Tipo de trabajo
+genericworktype_id: Tipo de trabajo

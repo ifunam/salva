@@ -74,7 +74,7 @@ COMMENT ON TABLE genericworktypes IS
        ';
 
 
-CREATE TABLE genericworkstatus (
+CREATE TABLE genericworkstatuses (
 	id serial,
 	name text NOT NULL,
 	moduser_id int4 NULL               	    -- Use it to known who
@@ -86,7 +86,7 @@ CREATE TABLE genericworkstatus (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE genericworkstatus IS 
+COMMENT ON TABLE genericworkstatuses IS 
 	'Estado de un trabajo genérico:
 	Propuesto, enviado, aceptado, en prensa, publicado, ..';
 
@@ -99,7 +99,7 @@ CREATE TABLE genericworks(
             ON UPDATE CASCADE 
             DEFERRABLE,
     genericworkstatus_id int4 NOT NULL     
-            REFERENCES genericworkstatus(id)
+            REFERENCES genericworkstatuses(id)
             ON UPDATE CASCADE 
             DEFERRABLE,
     institution_id integer NULL 
@@ -181,7 +181,7 @@ CREATE TABLE usergenericworkslog (
             ON DELETE CASCADE
             DEFERRABLE,
     old_genericworkstatus_id integer NOT NULL 
-            REFERENCES genericworkstatus(id)
+            REFERENCES genericworkstatuses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     changedate date NOT NULL default now()::date,

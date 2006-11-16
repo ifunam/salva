@@ -55,3 +55,4 @@
 \i catalogs/conferences.sql
 \i catalogs/genericworkgroups.sql
 \i catalogs/genericworktypes.sql
+\i catalogs/genericworkstatuses.sql
