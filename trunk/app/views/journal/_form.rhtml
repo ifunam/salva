@@ -26,50 +26,23 @@
 <%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 5, 'id' => 'other' %></div>
 
 <div class="row"> 
-<label for="totalcites" class="label"><%= get_label('totalcites') %></label> 
-<%= text_field 'edit', 'totalcites', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'totalcites' %>
-</div>
-
-<div class="row"> 
-<label for="impactfactor" class="label"><%= get_label('impactfactor') %></label> 
-<%= text_field 'edit', 'impactfactor', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 7, 'id' => 'impactfactor' %>
-</div>
-
-<div class="row"> 
-<label for="immediacy" class="label"><%= get_label('immediacy') %></label> 
-<%= text_field 'edit', 'immediacy', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 8, 'id' => 'immediacy' %>
-</div>
-
-<div class="row"> 
-<label for="dateupdate" class="label"><%= get_label('dateupdate') %></label> 
-<%= text_field 'edit', 'dateupdate', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'dateupdate' %>
-</div>
-
-<div class="row"> 
-<label for="journaltype_id" class="label"><%= get_label('journaltype_id') %> <span class="required">*</span></label> 
-<div id="journaltype_id">
-<%= table_select('edit', Journaltype, 10, 1) %>
-</div>
-</div>
-
-<div class="row"> 
 <label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label> 
 <div id="mediatype_id">
-<%= table_select('edit', Mediatype, 11, 1) %>
+<%= table_select('edit', Mediatype, 6, 1) %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
 <div id="country_id">
-<%= table_select('edit', Country, 13, 1) %>
+<%= table_select('edit', Country, 8, 1) %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="publisher_id" class="label"><%= get_label('publisher_id') %> <span class="required">*</span></label> 
 <div id="publisher_id">
-<%= table_select('edit', Publisher, 12, 1) %>
+<%= table_select('edit', Publisher, 7, 1) %>
 </div>
 <%= submit_for_stack('publisher') %>
 </div>

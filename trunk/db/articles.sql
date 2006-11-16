@@ -20,15 +20,6 @@ COMMENT ON TABLE publicationcategories IS
 	 Genéricos: Ciencias sociales, ciencias naturales, humanidades
 	 Específicos: (desglose :)';
 
-CREATE TABLE journaltypes ( 
-	id SERIAL,
-	name varchar(50) NOT NULL,
-	PRIMARY KEY (id),
-	UNIQUE(name)
-);
-COMMENT ON TABLE journaltypes IS
-	'Tipo de revista que publica (arbitrada/no arbitrada):
-	 Arbitrada, no arbitrada, otra?';
 
 CREATE TABLE journals (
         id SERIAL,
@@ -37,14 +28,6 @@ CREATE TABLE journals (
         url  text NULL,
         abbrev text NULL,      
         other text NULL,           
-	totalcites integer NULL,
-	impactfactor float NULL, 	
-	immediacy   text NULL,
-	dateupdate date NULL, 
-	journaltype_id int4 NOT NULL 
-            	REFERENCES journaltypes(id) 
-            	ON UPDATE CASCADE           
-            	DEFERRABLE,
 	mediatype_id int4 NOT NULL 
             	REFERENCES mediatypes(id) 
             	ON UPDATE CASCADE           
@@ -68,8 +51,31 @@ CREATE TABLE journals (
 );
 COMMENT ON TABLE journals IS
 	'Revistas en las cuales pueden publicarse artículos';
-COMMENT ON COLUMN journals.dateupdate IS
-	'Fecha en que fué actualizado el factor de impacto/inmediatez';
+
+
+CREATE TABLE journalstatistics (
+	id SERIAL,
+	journal_id int4 NOT NULL 
+	    REFERENCES journals(id)      
+            ON UPDATE CASCADE
+	    DEFERRABLE,
+	totalcites integer NULL,
+	impactfactor float NULL, 	
+	immediacy   text NULL,
+	dateupdate date NULL, 
+        moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+COMMENT ON TABLE journalstatistics IS
+	'Estadísticas asociadas a la revista';
+COMMENT ON COLUMN journalstatistics.dateupdate IS
+	'Fecha en que fue actualizado el factor de impacto/inmediatez';
+
 
 CREATE TABLE journal_publicationcategories ( 
 	id SERIAL,
@@ -157,7 +163,7 @@ CREATE TABLE articles (
     month  int4 NULL CHECK (month >= 1 AND month <= 12),
     vol text NULL,
     num text NULL,
-    authors text NULL ,
+    authors text NOT NULL ,
     url text NULL,
     pacsnum text NULL,
     other text NULL,
