@@ -2,9 +2,9 @@ class ChapterinbookRoleinbookController < SalvaController
   def initialize
     super
     @model = ChapterinbookRoleinbook
-    @create_msg = 'El ChapterinbookRoleinbook ha sido agregado'
-    @update_msg = 'El ChapterinbookRoleinbook ha sido actualizado'
-    @purge_msg = 'El ChapterinbookRoleinbook se ha ido borrado'
+    @create_msg = 'La información se ha guardado'
+    @update_msg = 'La información ha sido actualizada'
+    @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
   end

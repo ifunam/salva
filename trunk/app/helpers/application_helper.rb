@@ -4,12 +4,13 @@ module ApplicationHelper
     "#{@controller.controller_class_name} : #{@controller.action_name}" 
   end   
 
-  def action_link(action, id, alt, question=nil)
+  def action_link(action, id, alt, question=nil, controller=nil)
     image ='/images/invisible_16x16.png'
     miceover = "return overlib('#{alt}', WIDTH, 20, HEIGHT, 20, RIGHT, BELOW, "
     miceover += "SNAPX, 2, SNAPY, 2)"
     miceout = "return nd()" 
     link_options = { :action => action, :id => id}
+    link_options[:controller] = controller if  controller != nil
     html_options = { :class => action, :onmouseover => miceover, 
                      :onmouseout => miceout }
     html_options[:confirm] = question if question != nil
@@ -18,16 +19,16 @@ module ApplicationHelper
             link_options, html_options )
   end
   
-  def show_link(id)
-    action_link('show', id, 'Mostrar')
+  def show_link(id,controller=nil)
+    action_link('show', id, 'Mostrar', nil, controller)
   end
   
-  def edit_link(id)
-    action_link('edit', id, 'Modificar')
+  def edit_link(id,controller=nil)
+    action_link('edit', id, 'Modificar', nil, controller)
   end
   
-  def purge_link(id,question)
-    action_link('purge', id, 'Borrar', question)
+  def purge_link(id,question,controller=nil)
+    action_link('purge', id, 'Borrar', question, controller)
   end
 
   def controller_link(child_controller,parent_controller,parent_action,key,id)

@@ -1,28 +1,16 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:chapterinbook]-->
+<%= hidden_field('edit', 'bookedition_id', :value => @params[:id]) %>
 
 <div class="row"> 
-<label for="chapter" class="label"><%= get_label('chapter') %></label> 
-<%= text_field 'edit', 'chapter' %>
-</div>
-
-<div class="row"> 
-<label for="numcites" class="label"><%= get_label('numcites') %></label> 
-<%= text_field 'edit', 'numcites' %>
-</div>
-
-<div class="row"> 
-<label for="bookedition_id" class="label"><%= get_label('bookedition_id') %></label> 
-<div id="Bookedition">
-<%= table_select('edit', Bookedition) %> 
-<input name='Bookedition_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Bookedition', 'name', '¿Desea agregar este elemento?' ) %>">
-</div>
+<label for="chapter" class="label"><%= get_label('chapter') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'chapter', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 2, 'id' => 'chapter', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
 <div class="row"> 
 <label for="pages" class="label"><%= get_label('pages') %></label> 
-<%= text_field 'edit', 'pages' %>
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
 </div>
 
 

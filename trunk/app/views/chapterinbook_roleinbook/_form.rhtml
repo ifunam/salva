@@ -1,23 +1,31 @@
 <%= error_messages_for 'edit' %>
 
+<div class="row">
+ <label for="book_id" class="label"><%= get_label('book_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Book, Bookedition, 1, 1, 'title')%>
+ <%= submit_for_stack('book') %>
+</div>
+
+<div class="row">
+  <label for="bookedition_id" class="label"><%= get_label('bookedition_id') %><span class="required">*</span></label>
+  <div id="select_book_bookedition_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ediciones...</span></div>
+  <div id="select_book_bookedition">
+   <%= select_to_update_select('edit', Bookedition, Chapterinbook, 2,  1, %w(edition_id mediatype_id year))%>
+  </div>
+  <%= submit_for_stack('bookedition:book_id') %>
+</div>
+
 <!--[form:chapterinbook_roleinbook]-->
-
 <div class="row"> 
-<label for="roleinbook_id" class="label"><%= get_label('roleinbook_id') %></label> 
-<div id="Roleinbook">
-<%= table_select('edit', Roleinbook) %> 
-<input name='Roleinbook_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Roleinbook', 'name', '¿Desea agregar este elemento?' ) %>">
-</div>
-</div>
-
-<div class="row"> 
-<label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %></label> 
-<div id="Chapterinbook">
-<%= table_select('edit', Chapterinbook) %> 
-<input name='Chapterinbook_name' size='20', maxsize='255' type='text' onkeydown="<%= remote_upgrade_select('Chapterinbook', 'name', '¿Desea agregar este elemento?' ) %>">
-</div>
+<label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %> <span class="required">*</span></label> 
+  <div id="select_bookedition_chapterinbook_note" style="display: none"><span class="upgrade_note">Actualizando la lista de capítulos...</span></div>
+  <div id="select_bookedition_chapterinbook">
+  Seleccionar edición
+  </div>
 </div>
 
+<div class="row"><label for="bookedition_roleinbook">Indique la actividad que realizó en este captítulo</label><br/>
+<%= checkbox_list('edit', Roleinbook) %> </div>
 
 <!--[eoform:chapterinbook_roleinbook]-->
 

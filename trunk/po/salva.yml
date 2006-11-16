@@ -261,4 +261,8 @@ journaltype_id: Tipo de revista
 immediacy: Inmediatez
 dateupdate: Fecha de actualización del factor de impacto
 totalcites: Total de citas
-pacsnum: Número PAC
+pacsnum: Número PACS
+chapterinbook_roleinbook: Capítulos en libros
+articles: Artículos
+chapter: Capítulo
+chapterinbook_id: Capítulo

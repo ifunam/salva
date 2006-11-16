@@ -1,4 +1,9 @@
-<%= table_show(ChapterinbookRoleinbook.columns) %>
-<%= render :partial =>"salva/moduser" %>
-<%= link_to 'Editar', :action => 'edit', :id => @chapterinbook_roleinbook %> |
-<%= link_to 'Regresar', :action => 'list' %>
+<!--[show:chapterinbook_roleinbook]-->
+<%= render :partial => "chapterinbook_roleinbook/show" %>
+ <%= render :partial =>"salva/moduser" %> 
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit.attributes_before_type_cast['id'] %> |
+ <%= link_to get_label('back'), :action => 'list' %>
+</div>
+<!--[eofshow:chapterinbook_roleinbook]-->
+

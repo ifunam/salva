@@ -1,10 +1,12 @@
 <!--[show:bookedition]-->
 <%= render :partial => "bookedition/show" %>
-
  <%= render :partial =>"salva/moduser" %> 
 <div id="operations">
  <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
  <%= link_to get_label('back'), :action => 'list' %>
 </div>
+<hr/>
+<%= table_simple_list(Chapterinbook, {:conditions => ["bookedition_id = ?", @edit.id], :header => "Capítulos", :columns=> %w(chapter pages) }) %>
+<%= link_to 'Agregar capítulo', :action => 'new', :controller => 'chapterinbook', :id => @edit.id %>
 <!--[eofshow:bookedition]-->
 

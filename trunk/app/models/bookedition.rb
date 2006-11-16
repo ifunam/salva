@@ -9,4 +9,5 @@ class Bookedition < ActiveRecord::Base
   belongs_to :editionstatus
   has_many :bookedition_roleinbook
   has_many :bookedition_comment
+  has_many :chapterinbook
 end

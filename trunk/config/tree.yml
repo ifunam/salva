@@ -27,4 +27,8 @@
     - user_setting
 - user_researchline
 - publications
-- - bookedition_roleinbook
+- - books
+  - - bookedition_roleinbook
+    - chapterinbook_roleinbook
+  - articles
+  - - article
