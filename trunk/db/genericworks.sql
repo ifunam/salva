@@ -1,6 +1,12 @@
 CREATE TABLE genericworkgroups (
 	id serial,
 	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -22,10 +28,12 @@ CREATE TABLE genericworktypes (
 	    REFERENCES genericworkgroups(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	moduser_id int4 NULL    	     -- Use it only to know who has
-	    REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
+        moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name),
 	UNIQUE (abbrev)
@@ -70,6 +78,12 @@ COMMENT ON TABLE genericworktypes IS
 CREATE TABLE genericworkstatus (
 	id serial,
 	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -105,10 +119,12 @@ CREATE TABLE genericworks(
     isbn_issn text NULL,
     numcites int4 NULL CHECK (numcites >= 0),
     other text NULL,
-    moduser_id int4 NULL    	     -- Use it only to know who has
-	    REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE genericworks IS 
@@ -136,6 +152,12 @@ CREATE TABLE usergenericworks (
             REFERENCES userrole(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+   moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
    UNIQUE (genericwork_id, internaluser_id ),
    UNIQUE (genericwork_id, externaluser_id ),
@@ -169,7 +191,7 @@ CREATE TABLE usergenericworkslog (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE usergenericworkslog IS

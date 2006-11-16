@@ -53,3 +53,4 @@
 \i catalogs/attendeetypes.sql
 \i catalogs/prizetypes.sql
 \i catalogs/conferences.sql
+\i catalogs/genericworkgroups.sql
