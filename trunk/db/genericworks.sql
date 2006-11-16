@@ -14,9 +14,8 @@ COMMENT ON TABLE genericworkgroups IS
 	'Listado del grupo al que pertenecen las trabajos genericos:
 	Productos de divulgación
 	Productos de extensión y difusión
-	Productos de difusión
-	Productos de docencia
 	Publicaciones internas
+	Productos de docencia
 	Otro';
 
 
@@ -35,8 +34,7 @@ CREATE TABLE genericworktypes (
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
-	UNIQUE (name),
-	UNIQUE (abbrev)
+	UNIQUE (name,genericworkgroup_id)
 );
 COMMENT ON TABLE genericworktypes IS 
 	'Tipos de trabajos genéricos que manejamos:
@@ -60,10 +58,6 @@ COMMENT ON TABLE genericworktypes IS
 	Gaceta
 	...
 
-	Otro:
-	Traducción de artículo
-	 ...
-
 	Productos de docencia:
 	Antología
 	Antología critica
@@ -72,7 +66,12 @@ COMMENT ON TABLE genericworktypes IS
 	Cuadernos
 	Manual de apoyo docente
 	Catalogos
-	...';
+	...
+
+	Otro:
+	Traducción de artículo
+	 ...
+       ';
 
 
 CREATE TABLE genericworkstatus (
