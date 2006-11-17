@@ -196,6 +196,18 @@ CREATE TABLE bookedition_comments (
 COMMENT ON TABLE bookedition_comments IS 
 	'Comentarios adicionales del usuario para cada edicición';
 
+CREATE TABLE bookchaptertypes (
+	id SERIAL,
+	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
 
 CREATE table chapterinbooks (
    id SERIAL,
@@ -203,7 +215,11 @@ CREATE table chapterinbooks (
            REFERENCES bookeditions(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   chapter text NOT NULL,
+   bookchaptertype_id int4 NOT NULL 
+           REFERENCES bookchaptertypes(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   title text NOT NULL,
    pages   text NULL,
    moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
@@ -212,13 +228,13 @@ CREATE table chapterinbooks (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (bookedition_id, chapter)
+   UNIQUE (bookedition_id, bookchaptertype_id)
 );
-CREATE INDEX chapterinbooks_chapter_idx ON chapterinbooks(chapter);
-COMMENT ON TABLE chapterinbooks IS
+CREATE INDEX chapterinbooks_title_idx ON chapterinbooks(title);
+COMMENT ON TABLE chapterinbooks IS	
 	'Capítulos en un libro (cuando son reportados por separado)';
-COMMENT ON COLUMN chapterinbooks.chapter IS
-	'Nombre del capítulo';
+COMMENT ON COLUMN chapterinbooks.title IS
+	'Título del capítulo';
 
 CREATE TABLE chapterinbook_roleinbooks ( 
     id SERIAL,

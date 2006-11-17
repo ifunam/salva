@@ -14,6 +14,7 @@
 \i catalogs/maritalstatuses.sql
 \i catalogs/addresstypes.sql
 \i catalogs/booktypes.sql
+\i catalogs/bookchaptertypes.sql
 \i catalogs/volumes.sql
 \i catalogs/mediatypes.sql
 \i catalogs/publishers.sql
