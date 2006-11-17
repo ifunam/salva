@@ -7,6 +7,6 @@ class UserInproceedingController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @model_conditions = [ 'genericwork_id', ['genericworktype_id != ?', 3] ]
+    @model_conditions = [ 'genericwork_id = ?', ['genericworktype_id != ?', 3] ]
   end
 end
