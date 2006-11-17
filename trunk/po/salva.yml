@@ -272,3 +272,7 @@ genericworkstatus: Estado
 genericworkstatus_id: Estado
 genericworktype: Tipo de trabajo
 genericworktype_id: Tipo de trabajo
+bookchaptertype: Tipo de capítulo
+bookchaptertype_id: Tipo de capítulo
+chapterinbook: Capítulo
+chapterinbook_id: Capítulo
