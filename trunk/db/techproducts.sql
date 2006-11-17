@@ -107,7 +107,7 @@ CREATE TABLE usertechproducts (
 	        ON UPDATE CASCADE               
 	        DEFERRABLE,
 	userrole_id integer NULL 
-        	REFERENCES userrole(id)
+        	REFERENCES userroles(id)
 	        ON UPDATE CASCADE
         	DEFERRABLE,
 	PRIMARY KEY (id),

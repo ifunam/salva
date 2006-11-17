@@ -17,6 +17,10 @@ class SalvaController < ApplicationController
   def list
     conditions = params[controller_name] ? set_conditions_from_search : 
       (@model.column_names.include?('user_id') ? [ 'user_id = ?', session[:user]]: nil)
+
+#    conditions = [ 'institution_id != ?', 57]
+    contitions = [ 'genericwork_id', ['genericworktype_id != ?', 3] ]
+
     per_page = set_per_page
     
     @pages, @collection = paginate Inflector.pluralize(@model), 

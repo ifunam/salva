@@ -173,7 +173,7 @@ userprojects                     projects.sql
 userrefereedpubs                 refereedpubs.sql
 userresearchgroups               researchgroups.sql
 userresearchlines                researcharea.sql
-userrole                         catalogs.sql
+userroles                        catalogs.sql
 users                            user.sql
 userskills                       skills.sql
 userstatuses                     user.sql

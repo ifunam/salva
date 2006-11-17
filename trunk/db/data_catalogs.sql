@@ -57,3 +57,4 @@
 \i catalogs/genericworkgroups.sql
 \i catalogs/genericworktypes.sql
 \i catalogs/genericworkstatuses.sql
+\i catalogs/userroles.sql

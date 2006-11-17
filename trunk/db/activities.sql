@@ -127,7 +127,7 @@ CREATE TABLE useractivities (
             ON UPDATE CASCADE               
             DEFERRABLE,
    userrole_id int4 NULL 
-            REFERENCES userrole(id)
+            REFERENCES userroles(id)
             ON UPDATE CASCADE
             DEFERRABLE,  
    activities_id int4 NOT NULL 

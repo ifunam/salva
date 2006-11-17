@@ -54,7 +54,7 @@ CREATE TABLE cities (
 COMMENT ON TABLE cities IS
 	'Lista de ciudades';
 
-CREATE TABLE userrole ( 
+CREATE TABLE userroles ( 
     	id SERIAL NOT NULL,
    	name text NOT NULL,
         moduser_id int4 NULL    	     -- Use it only to know who has
@@ -64,7 +64,7 @@ CREATE TABLE userrole (
     	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE userrole IS
+COMMENT ON TABLE userroles IS
 	'Rol que juega un usuario en diferentes tablas genéricas 
 	(usergenericworks, usertechproducts, userotheractivities):
 	Autor, coautor, traductor, entrevistador, entrevistado, ...';

@@ -90,11 +90,11 @@ COMMENT ON TABLE genericworkstatuses IS
 	'Estado de un trabajo genérico:
 	Propuesto, enviado, aceptado, en prensa, publicado, ..';
 
-CREATE TABLE genericworks( 
+CREATE TABLE genericworks ( 
     id SERIAL,
     authors text NOT NULL,
     title   text NOT NULL,
-    genericworktypes_id int4 NOT NULL     
+    genericworktype_id int4 NOT NULL     
             REFERENCES genericworktypes(id)
             ON UPDATE CASCADE 
             DEFERRABLE,
@@ -116,7 +116,6 @@ CREATE TABLE genericworks(
     year int4 NOT NULL,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
     isbn_issn text NULL,
-    numcites int4 NULL CHECK (numcites >= 0),
     other text NULL,
     moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
@@ -132,23 +131,23 @@ COMMENT ON TABLE genericworks IS
 COMMENT ON COLUMN genericworks.isbn_issn IS
 	'Dependiendo del tipo de trabajo, puede recibir número ISBN o ISSN';
 	
-CREATE TABLE usergenericworks (
+CREATE TABLE user_genericworks (
    id SERIAL,
    genericwork_id int4 NOT NULL 
             REFERENCES genericworks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_is_internal bool,
-   externaluser_id integer 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   internaluser_id integer 
-             REFERENCES users(id)            
+   user_is_internal BOOLEAN NOT NULL default 't',
+--   externaluser_id integer 
+--           REFERENCES externalusers(id)            
+--            ON UPDATE CASCADE               
+--            DEFERRABLE,
+   user_id integer 
+            REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
    userrole_id integer NOT NULL 
-            REFERENCES userrole(id)
+            REFERENCES userroles(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    moduser_id int4 NULL               	    -- Use it to known who
@@ -158,25 +157,25 @@ CREATE TABLE usergenericworks (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (genericwork_id, internaluser_id ),
-   UNIQUE (genericwork_id, externaluser_id ),
+   UNIQUE (genericwork_id, user_id )
+--   UNIQUE (genericwork_id, externaluser_id ),
    -- Sanity checks: If this is a full system user, require the user
    -- to be filled in. Likewise for an external one.
-   CHECK (user_is_internal = 't' OR
-	(internaluser_id IS NOT NULL AND externaluser_id IS NULL)),
-   CHECK (user_is_internal = 'f' OR
-	(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
+--   CHECK (user_is_internal = 't' OR
+--	(user_id IS NOT NULL AND externaluser_id IS NULL)),
+--   CHECK (user_is_internal = 'f' OR
+--	(externaluser_id IS NOT NULL AND user_id IS NULL))
 );
-COMMENT ON TABLE usergenericworks IS 
+COMMENT ON TABLE user_genericworks IS 
 	'Rol de cada uno de los usuarios involucrados en un trabajo genérico';
-COMMENT ON COLUMN usergenericworks.user_is_internal IS
-	'Este usuario es interno o externo? Eige (NOT NULL) el tipo de usuario 
-	adecuado: externaluser_id o internaluser_id';
+--COMMENT ON COLUMN user_genericworks.user_is_internal IS
+--	'Este usuario es interno o externo? Eige (NOT NULL) el tipo de usuario 
+--	adecuado: externaluser_id o internaluser_id';
 
-CREATE TABLE usergenericworkslog (
+CREATE TABLE genericworkslog (
     id SERIAL, 
-    usergenericworks_id integer NOT NULL 
-            REFERENCES articles(id)
+    genericwork_id integer NOT NULL 
+            REFERENCES genericworks(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
@@ -193,26 +192,26 @@ CREATE TABLE usergenericworkslog (
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-COMMENT ON TABLE usergenericworkslog IS
+COMMENT ON TABLE genericworkslog IS
 	'Estado actual (y bitácora) de un trabajo genérico - Cuándo fue
 	 enviado, cuándo fue aceptado, etc.';
 
 ------
 -- Update usergenericworkslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION usergenericworks_update() RETURNS TRIGGER 
-SECURITY DEFINER AS '
-DECLARE 
-BEGIN
-	IF OLD.genericworkstatus_id = NEW.genericworkstatus_id THEN
-		RETURN NEW;
-	END IF;
-	INSERT INTO usergenericworkslog (usergenericworks_id, 
-		old_usergenericworkstatus_id, moduser_id) VALUES
-		(OLD.id, OLD.genericworkstatus_id, OLD.moduser_id);
-        RETURN NEW;
-END;
-' LANGUAGE 'plpgsql';
+-- CREATE OR REPLACE FUNCTION usergenericworks_update() RETURNS TRIGGER 
+-- SECURITY DEFINER AS '
+-- DECLARE 
+-- BEGIN
+-- 	IF OLD.genericworkstatus_id = NEW.genericworkstatus_id THEN
+-- 		RETURN NEW;
+-- 	END IF;
+-- 	INSERT INTO usergenericworkslog (usergenericworks_id, 
+-- 		old_usergenericworkstatus_id, moduser_id) VALUES
+-- 		(OLD.id, OLD.genericworkstatus_id, OLD.moduser_id);
+--         RETURN NEW;
+-- END;
+-- ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER usergenericworks_update BEFORE DELETE ON usergenericworks
-	FOR EACH ROW EXECUTE PROCEDURE usergenericworks_update();
+-- CREATE TRIGGER usergenericworks_update BEFORE DELETE ON usergenericworks
+-- 	FOR EACH ROW EXECUTE PROCEDURE usergenericworks_update();

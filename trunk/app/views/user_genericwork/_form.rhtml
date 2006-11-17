@@ -1,0 +1,28 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_genericwork]-->
+<div class="row"> 
+<label for="genericwork_id" class="label"><%= get_label('genericwork_id') %> <span class="required">*</span></label> 
+<div id="genericwork_id">
+<%= select_as_tree('edit', Genericwork, %w( authors title year), 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="user_is_internal" class="label"><%= get_label('user_is_internal') %> <span class="required">*</span></label> 
+<div class="radio"> 
+No <%= radio_button('edit', 'user_is_internal', 'false') %>
+Sí <%= radio_button('edit', 'user_is_internal', 'true') %> 
+</div>
+</div>
+
+<div class="row"> 
+<label for="userrole_id" class="label"><%= get_label('userrole_id') %> <span class="required">*</span></label> 
+<div id="userrole_id">
+<%= table_select('edit', Userrole, 3, 1) %>
+</div>
+</div>
+
+
+<!--[eoform:user_genericwork]-->
+
