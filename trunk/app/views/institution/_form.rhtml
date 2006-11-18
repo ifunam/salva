@@ -52,7 +52,7 @@
 <br/>
 
 <div class="row">
-  <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
+  <label for="state_id" class="label"><%= get_label('state_id') %> 
   <div id="select_country_state_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
   <div id="select_country_state">
    <%= select_to_update_select('edit', State, City, 9) %>
@@ -61,7 +61,7 @@
 </div>
 
 <div class="row">
-  <label for="city_id" class="label"><%= get_label('city_id') %><span class="required">*</span></label>
+  <label for="city_id" class="label"><%= get_label('city_id') %>
   <div id="select_state_city_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
   <div id="select_state_city">
   <%= table_select('edit', City, 10) %>
