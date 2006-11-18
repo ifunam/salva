@@ -20,11 +20,12 @@ class SalvaController < ApplicationController
   
   def list
     conditions = @list_conditions
-#    if @model.column_names.include?('user_id')
-#      conditions = @list_conditions + " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}"
-#    end
+    if @model.column_names.include?('user_id')
+      conditions = "#{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}"
+      conditions += ' AND ' + @list_conditions if @list_conditions != nil
+    end
     conditions = set_conditions_from_search if params[controller_name]
-
+    
     per_page = set_per_page
 
     @pages, @collection = paginate Inflector.pluralize(@model), 
