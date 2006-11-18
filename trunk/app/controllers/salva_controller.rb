@@ -8,6 +8,10 @@ class SalvaController < ApplicationController
   
   def initialize
     @sequence = nil
+
+    # Default variables for the list method
+    @list_conditions = nil
+    @list_include = nil
   end
   
   def index
@@ -15,14 +19,17 @@ class SalvaController < ApplicationController
   end
   
   def list
-    conditions = params[controller_name] ? set_conditions_from_search : 
-      (@model.column_names.include?('user_id') ? [ 'user_id = ?', session[:user]]: nil)
+    conditions = @list_conditions
+#    if @model.column_names.include?('user_id')
+#      conditions = @list_conditions + " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}"
+#    end
+    conditions = set_conditions_from_search if params[controller_name]
 
     per_page = set_per_page
-    
+
     @pages, @collection = paginate Inflector.pluralize(@model), 
-    :per_page => per_page || @per_pages, :order_by => @order_by, 
-    :conditions => conditions
+    :conditions => conditions, :include => @list_include,
+    :per_page => per_page || @per_pages
 
     render :action => 'list'
   end

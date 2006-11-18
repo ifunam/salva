@@ -108,6 +108,10 @@ module NavigatorHelper
       end
       list = set_links_for_navcontrol(tree,index)
       render(:partial => '/salva/navcontrol', :locals => { :list => list})
+    else
+      list = [ ]
+      list << link_to_side_node(tree.left_node)  if tree.has_left_node? 
+      render(:partial => '/salva/navcontrol', :locals => { :list => list})
     end
   end
   
@@ -128,7 +132,7 @@ module NavigatorHelper
   end
   
   def link_to_parent(child,i=nil)
-    if child.is_leaf?
+    if child.is_leaf? 
       link_tag(child.data)
     else
       link_tag_navtab_depth(child.data, i, 'Sección')

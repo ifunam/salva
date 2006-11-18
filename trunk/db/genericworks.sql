@@ -73,7 +73,6 @@ COMMENT ON TABLE genericworktypes IS
 	 ...
        ';
 
-
 CREATE TABLE genericworkstatuses (
 	id serial,
 	name text NOT NULL,

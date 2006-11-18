@@ -5,7 +5,7 @@
     - address
     - citizen
     - people_identification
-- - schooling
+  - schooling
   - jobposition
   - - jobposition_internal
     - - jobposition_at_institution
