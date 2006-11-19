@@ -44,9 +44,9 @@ module SelectHelper
     select(object, attribute_id, sorted_find(model, attribute), {:prompt => '-- Seleccionar --'}, options)
   end
   
-  def select_as_tree(object, model, columns, tabindex, validation_type=nil)
+  def select_as_tree(object, model, columns, tabindex, validation_type=nil, conditions=nil)
     options = set_options_tags(tabindex, validation_type)
-    collection = model.find(:all)
+    collection = model.find(:all, conditions)
     list = list_collection(collection, columns)
     fieldname = set_model_id(model) 
     fieldname = 'parent_id' if columns.include? 'parent_id'

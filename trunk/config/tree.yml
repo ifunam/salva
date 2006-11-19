@@ -31,4 +31,5 @@
   - - bookedition_roleinbook
     - chapterinbook_roleinbook
   - articles
-  - - article
+  - - user_article
+  - - user_inproceeding 

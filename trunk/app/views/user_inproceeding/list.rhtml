@@ -1,9 +1,11 @@
-<!--[list:user_genericwork]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( genericwork_id user_is_internal userrole_id ) }) %> 
+<!--[list:user_inproceeding]-->
+<%= table_array(@collection, { :header => "Artículo", :columns =>
+[ ['genericwork_id', 'authors', 'title', 'year'], 'userrole_id'] })
+%>
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
 <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
 </div>
-<!--[eoflist:user_genericwork]-->
+<!--[eoflist:user_inproceeding]-->
 

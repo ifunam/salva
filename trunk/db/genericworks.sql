@@ -136,11 +136,6 @@ CREATE TABLE user_genericworks (
             REFERENCES genericworks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_is_internal BOOLEAN NOT NULL default 't',
---   externaluser_id integer 
---           REFERENCES externalusers(id)            
---            ON UPDATE CASCADE               
---            DEFERRABLE,
    user_id integer 
             REFERENCES users(id)            
             ON UPDATE CASCADE               
@@ -155,21 +150,12 @@ CREATE TABLE user_genericworks (
             DEFERRABLE,
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (id),
-   UNIQUE (genericwork_id, user_id )
---   UNIQUE (genericwork_id, externaluser_id ),
-   -- Sanity checks: If this is a full system user, require the user
-   -- to be filled in. Likewise for an external one.
---   CHECK (user_is_internal = 't' OR
---	(user_id IS NOT NULL AND externaluser_id IS NULL)),
---   CHECK (user_is_internal = 'f' OR
---	(externaluser_id IS NOT NULL AND user_id IS NULL))
+   PRIMARY KEY (id)
+--   UNIQUE (genericwork_id, user_id )  -- Un usuario podría tener más de un rol
 );
 COMMENT ON TABLE user_genericworks IS 
 	'Rol de cada uno de los usuarios involucrados en un trabajo genérico';
---COMMENT ON COLUMN user_genericworks.user_is_internal IS
---	'Este usuario es interno o externo? Eige (NOT NULL) el tipo de usuario 
---	adecuado: externaluser_id o internaluser_id';
+
 
 CREATE TABLE genericworkslog (
     id SERIAL, 
