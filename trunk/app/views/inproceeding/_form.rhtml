@@ -1,0 +1,72 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:genericwork]-->
+<div class="row"> 
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'authors', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'authors', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'title', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'title', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<%= hidden_field('edit', 'genericworktype_id', :value =>Genericworktype.find_by_name('Artículos en memorias').id) %>
+
+<div class="row"> 
+<label for="genericworkstatus_id" class="label"><%= get_label('genericworkstatus_id') %> <span class="required">*</span></label> 
+<div id="genericworkstatus_id">
+<%= table_select('edit', Genericworkstatus, 4, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
+<div id="institution_id">
+<%= table_select('edit', Institution, 5) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
+<div id="publisher_id">
+<%= table_select('edit', Publisher, 6) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="reference" class="label"><%= get_label('reference') %></label> 
+<%= text_field 'edit', 'reference', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 7, 'id' => 'reference' %>
+</div>
+
+<div class="row"> 
+<label for="vol" class="label"><%= get_label('vol') %></label> 
+<%= text_field 'edit', 'vol', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 8, 'id' => 'vol' %>
+</div>
+
+<div class="row"> 
+<label for="pages" class="label"><%= get_label('pages') %></label> 
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'pages' %>
+</div>
+
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 10, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="month" class="label"><%= get_label('month') %></label> 
+<%= month_select('edit', 'month', {:tabindex => 11, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="isbn_issn" class="label"><%= get_label('isbn_issn') %></label> 
+<%= text_field 'edit', 'isbn_issn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 12, 'id' => 'isbn_issn' %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 13, 'id' => 'other' %></div>
+
+
+<!--[eoform:genericwork]-->
+
