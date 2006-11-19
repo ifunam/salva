@@ -28,8 +28,8 @@ module ListHelper
     list
   end
   
-  def sorted_find(model, attr='name', order='ASC', conditions=nil)
-    sorted_list(model.find(:all, :order => attr + ' ' + order, conditions).collect! { |p| 
+  def sorted_find(model, attr='name', order='ASC')
+    sorted_list(model.find(:all, :order => attr + ' ' + order).collect! { |p| 
                   [ p.send(attr), p.id ] if p.send(attr) != nil
                 })
   end
