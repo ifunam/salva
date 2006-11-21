@@ -35,12 +35,12 @@ class ModelComposedKeys < ActiveRecord::Base
     end
 
     def find_every_composed_keys(options)
-      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(','), :conditions => options[:conditions]})
+      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(','), :conditions => options[:conditions], :include => options[:include] })
       grouped_records.collect { |grouped_record| find_composed_keys(get_ids_from_record(grouped_record)) }
     end
 
     def find_first_composed_keys(options)
-      record = find_initial({:conditions =>  options[:conditions]})
+      record = find_initial({:conditions => options[:conditions], :include => options[:include] })
       if record != nil
         grouped_records = find_every({:conditions => options[:conditions]})
         attributes = (record.attribute_names - self.reserved_attributes) - self.primary_keys
@@ -50,11 +50,11 @@ class ModelComposedKeys < ActiveRecord::Base
     end
 
     def first_nogroup_composed_keys(options)
-      find_initial({:conditions =>  options[:conditions]})
+      find_initial({:conditions =>  options[:conditions], :include => options[:include] })
     end
 
     def every_nogroup_composed_keys(options)
-      find_every({:conditions => options[:conditions]})
+      find_every({:conditions => options[:conditions], :include => options[:include] })
     end
     
     def set_ids(ids)

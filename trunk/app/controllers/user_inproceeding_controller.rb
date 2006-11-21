@@ -7,7 +7,7 @@ class UserInproceedingController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list_include = :genericwork
+    @list_include = :genericwork, :userrole
     @list_conditions = "genericworks.genericworktype_id = 3 AND user_genericworks.genericwork_id = genericworks.id"
   end
 end
