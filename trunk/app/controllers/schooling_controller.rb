@@ -7,6 +7,6 @@ class SchoolingController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'endyear, startyear DESC'
-#    @sequence = [ [Schooling, Professionaltitle] ]
+    @sequence = [ [Schooling, Professionaltitle] ]
   end
 end
