@@ -91,8 +91,8 @@ COMMENT ON TABLE genericworkstatuses IS
 
 CREATE TABLE genericworks ( 
     id SERIAL,
-    authors text NOT NULL,
     title   text NOT NULL,
+    authors text NOT NULL,
     genericworktype_id int4 NOT NULL     
             REFERENCES genericworktypes(id)
             ON UPDATE CASCADE 
