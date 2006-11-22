@@ -150,8 +150,8 @@ CREATE TABLE user_genericworks (
             DEFERRABLE,
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (id)
---   UNIQUE (genericwork_id, user_id )  -- Un usuario podría tener más de un rol
+   PRIMARY KEY (id),
+   UNIQUE (genericwork_id, user_id, userrole_id)  -- Un usuario podría tener más de un rol
 );
 COMMENT ON TABLE user_genericworks IS 
 	'Rol de cada uno de los usuarios involucrados en un trabajo genérico';
