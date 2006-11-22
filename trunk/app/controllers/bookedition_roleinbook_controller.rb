@@ -1,5 +1,6 @@
 class BookeditionRoleinbookController < SalvaController
   def initialize
+    super
     @model = BookeditionRoleinbook
     @create_msg = 'La edición  ha sido agregada'
     @update_msg = 'La edición ha sido actualizada'
