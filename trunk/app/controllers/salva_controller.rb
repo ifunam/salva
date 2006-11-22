@@ -18,18 +18,22 @@ class SalvaController < ApplicationController
   end
   
   def list
-    @list = Hash.new if @list == nil
-    if @model.column_names.include?('user_id') 
-      @list[:conditions] += " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}" if @list[:conditions] != nil  # No es C, nil != false
-      @list[:joins] += " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}" if @list[:joins] != nil
+    if @model.column_names.include?('user_id')
+      if @list.has_key?(:joins)
+        @list[:joins] += " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}"
+      elsif @list.has_key?(:conditions)
+        @list[:conditions] += " AND #{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}" 
+      else
+        @list[:conditions] = "#{Inflector.pluralize(Inflector.tableize(@model))}.user_id = #{session[:user]}" 
+      end
     end
     @list[:conditions] = set_conditions_from_search if params[controller_name]
     
     per_page = set_per_page
 
     @pages, @collection = paginate Inflector.pluralize(@model), 
-    :conditions => @list[:conditions], :include => @list[:include],
-    :per_page => per_page || @per_pages, :joins => @list[:joins]
+    :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
+    :per_page => per_page || @per_pages
 
     render :action => 'list'
   end
