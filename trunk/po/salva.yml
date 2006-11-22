@@ -250,7 +250,7 @@ journal: Revistas
 journal_id: Revista
 article: Artículos  arbitrados
 article_id: Artículo
-user_article: Participación en Artículos
+user_article: Participación en artículos arbitrados
 ismainauthor: ¿Es autor principal?
 articlestatus_id: Estado del artículo
 vol: Volumen

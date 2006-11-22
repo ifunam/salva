@@ -4,8 +4,8 @@ class StackOfController
     @stack = [ ] 
   end
   
-  def push(model, action, handler)
-    @stack << [ model, action, handler] 
+  def push(model, action, handler, controller=nil)
+    @stack << [ model, action, handler, controller] 
   end
   
   def pop
@@ -47,31 +47,35 @@ class StackOfController
   end
 
   def set_handler_id(id)
-    @stack.last.push(id) if has_items? 
+    @stack.last[4] = id if has_items? 
   end
-  
+
   private
   def last
     @stack.last
   end
-
+  
   def get_updated_model
     model = @stack.last.first
     model.[]=(get_handler, get_handler_id)
     return  model
   end
-
+  
   def get_handler_id 
-    has_items? ? @stack.last.last : nil
+    has_items? ? @stack.last[4] : nil
   end
-
+  
   def get_handler
     has_items? ? @stack.last[2] : nil
   end
 
   def set_controller_name
-    class_name = @stack.last.first.class.name
-    class_name != 'ModelSequence' ? Inflector.singularize(Inflector.tableize(class_name)) : 'wizard'
+    if @stack.last[3] == nil 
+      class_name = @stack.last.first.class.name
+      class_name != 'ModelSequence' ? Inflector.singularize(Inflector.tableize(class_name)) : 'wizard'
+    else
+      @stack.last[3]
+    end
   end
 end
 

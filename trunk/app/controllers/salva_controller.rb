@@ -64,7 +64,7 @@ class SalvaController < ApplicationController
     setinput_xmlhttprequest if request.xml_http_request?
     @edit = @model.new(params[:edit])
     set_userid
-    set_model_into_stack(@edit,'new', params[:stack], params[:edit]) and return true if @params[:stack] != nil
+    set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
     if @edit.save
       flash[:notice] = @create_msg
       set_stack_handler_id(@edit.id) if has_model_in_stack?
@@ -78,7 +78,7 @@ class SalvaController < ApplicationController
   def update
     @edit = @model.find(params[:id])
     set_userid
-    set_model_into_stack(@edit, 'edit', params[:stack], params[:edit]) and return true if @params[:stack] != nil
+    set_model_into_stack(@edit, 'edit', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
     if @edit.update_attributes(params[:edit])
       flash[:notice] = @update_msg
       set_stack_handler_id(@edit.id) if has_model_in_stack?

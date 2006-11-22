@@ -1,30 +1,33 @@
 module Stackcontroller
-  def set_model_into_stack(model,action,handler,myparams)
+  def set_model_into_stack(model,action,handler,myparams,controller)
     options = set_options(handler,myparams)
-    save_model_into_stack(model,action,options[:handler]+'_id') 
+    save_model_into_stack(model,action,options[:handler_id],controller) 
     redirect_to_controller(options[:handler],'new', options[:id]) 
   end
   
   def set_options(handler,myparams)
-    options = { :id => nil}
     if handler =~ /:/
-      attribute = handler.split(':')[1]
-      options[:handler] = handler.split(':')[0]
-      options[:id] = myparams[attribute.to_sym]
+      { :handler => handler.split(':')[0], :handler_id => handler.split(':')[0] + '_id', :id => myparams[handler.split(':')[1].to_sym] }
+    elsif handler =~ /\,/
+      { :handler => handler.split(',')[0], :handler_id => handler.split(',')[1] }
     else
-      options[:handler] = handler
+      { :handler => handler, :handler_id => handler + '_id'}
     end
-    options
   end
-
-  def save_model_into_stack(object,action,handler)
+  
+  def save_model_into_stack(object,action,handler,controller=nil)
     session[:stack] ||= StackOfController.new
-    session[:stack].push(object,action,handler)
+    if controller == Inflector.pluralize(Inflector.tableize(object))
+      session[:stack].push(object,action,handler)
+    else
+      session[:stack].push(object,action,handler,controller)
+    end
   end
 
   def get_model_from_stack
     unless session[:stack].empty?
-      model = session[:stack].get_model         
+     model = session[:stack].get_model
+      logger.info "STACK " +model.attribute_names.flatten.to_s
       pop_model_from_stack
       return model
     end
