@@ -6,7 +6,6 @@ class JobpositionAtInstitutionController < SalvaController
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
-    @list_include = :institution
-    @list_conditions = "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id "
+    @list = { :include => [:institution], :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id " }
   end
 end

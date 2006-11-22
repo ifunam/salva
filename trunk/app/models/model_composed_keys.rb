@@ -35,7 +35,9 @@ class ModelComposedKeys < ActiveRecord::Base
     end
 
     def find_every_composed_keys(options)
-      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(','), :conditions => options[:conditions], :include => options[:include] })
+      grouped_records = find_every({:select => self.primary_keys.join(','), :group => self.primary_keys.join(','),
+                                     :conditions => options[:conditions], :include => options[:include], 
+                                     :joins => options[:joins] })
       grouped_records.collect { |grouped_record| find_composed_keys(get_ids_from_record(grouped_record)) }
     end
 
