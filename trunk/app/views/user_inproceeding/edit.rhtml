@@ -1,5 +1,6 @@
-<div class="required_legend"><%= get_label('required_legend')%>.</div>
+<%= render :partial => 'show' %>
 
+<div class="required_legend"><%= get_label('required_legend')%>.</div>
 <%= start_form_tag :action => 'update', :id => @edit.attributes_before_type_cast['id'] %>
 
   <%= render :partial => 'form_edit' %>
