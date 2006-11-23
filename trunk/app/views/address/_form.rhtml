@@ -31,7 +31,7 @@
   <div id="select_country_state">
    <%= select_to_update_select('edit', State, City, 8) %>
   </div>
-  <%= quickpost('state') %>
+  <%= submit_for_stack('state:country_id') %>
 </div>
 
 <div class="row">
@@ -40,7 +40,7 @@
   <div id="select_state_city">
   <%= table_select('edit', City, 9) %>
   </div>
-  <%= quickpost('city') %>
+  <%= submit_for_stack('city:state_id') %>
 </div>
 
 <div class="row"> 
@@ -74,7 +74,6 @@ No <%= radio_button('edit', 'is_postaddress', false) %>
 Sí <%= radio_button('edit', 'is_postaddress', true) %> 
 </div>
 </div>
-
 
 <!--[eoform:address]-->
 

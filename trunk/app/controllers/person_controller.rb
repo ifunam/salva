@@ -1,6 +1,10 @@
 require 'RMagick'
+require 'stackcontroller'
+require 'sql'
 class PersonController < ApplicationController
   include Magick
+  include Stackcontroller
+  include Sql
   # Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
   # UploadProgress se declaren oficialmente como código estable, referencias:
   # http://vantulder.net/rails/magick/
@@ -23,7 +27,7 @@ class PersonController < ApplicationController
   end
 
   def new
-    @edit = Person.new 
+    @edit = is_this_model_in_stack? ? get_model_from_stack : Person.new 
   end
 
   def edit 
@@ -51,8 +55,12 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id] 
     @edit.moduser_id = session[:user] if session[:user]
+    if @params[:stack] != nil
+      clean_photo_attributes
+      set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true 
+    end
     save_photo if @edit.photo.size > 0
-
+ 
     if @edit.save 
       flash[:notice] = 'Sus datos personales han sido guardados'
       render :action => 'show'
@@ -66,6 +74,10 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id]
     @edit.moduser_id = session[:user] if session[:user]
+    if @params[:stack] != nil
+      clean_photo_attributes
+      set_model_into_stack(@edit,'edit', params[:stack], params[:edit], controller_name) and return true 
+    end
     save_photo if @edit.photo.size > 0
 
     if @edit.update 
@@ -106,7 +118,12 @@ class PersonController < ApplicationController
   end
   
   def get_person
-    @edit = Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
+    @edit = is_this_model_in_stack? ? get_model_from_stack : Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
   end
-
+  
+  def clean_photo_attributes
+      @edit.photo_filename = nil
+      @edit.photo_content_type = nil
+      @edit.photo = nil
+  end
 end

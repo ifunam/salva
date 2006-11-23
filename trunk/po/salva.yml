@@ -18,7 +18,9 @@ addresstype_id: Tipo de dirección
 addr: Dirección
 country_id: País
 state_id: Estado
+state: Estado
 city_id: Ciudad
+city: Ciudad
 pobox: Apartado postal
 zipcode: Código postal
 phone: Teléfono(s)

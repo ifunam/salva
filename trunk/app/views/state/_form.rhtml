@@ -12,7 +12,8 @@
 </div>
 
 <div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id') %></label> 
+<label for="country_id" class="label"><%= get_label('country_id')%></label> 
+<% @edit.country_id = params[:id] if params[:id] %>
 <%= table_select('edit', Country, 3) %> 
 </div>
 
