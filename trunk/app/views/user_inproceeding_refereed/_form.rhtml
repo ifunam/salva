@@ -4,10 +4,9 @@
 <div class="row"> 
 <label for="inproceeding_id" class="label"><%= get_label('inproceeding_id') %> <span class="required">*</span></label> 
 <div id="inproceeding_id">
-<%= select_as_tree('edit', Inproceeding, %w(title authors),1,1) %>
+<%= select_as_tree('edit', Inproceeding, %w(title authors),1,1, {:include => [:proceeding], :conditions => "inproceedings.proceeding_id = proceedings.id AND proceedings.isrefereed = 't' "}) %>
 </div>
-<%= submit_for_stack('inproceeding') %>
-
+<%= submit_for_stack('inproceeding_refereed,iproceeding_id') %>
 </div>
 
 <div class="row"> 

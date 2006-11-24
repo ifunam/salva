@@ -7,9 +7,14 @@
 </div>
 
 <div class="row"> 
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'authors', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 2, 'id' => 'authors', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
 <label for="journal_id" class="label"><%= get_label('journal_id') %> <span class="required">*</span></label> 
 <div id="journal_id">
-<%= table_select('edit', Journal, 2, 1) %>
+<%= table_select('edit', Journal, 3, 1) %>
 </div>
 <%= submit_for_stack('journal') %>
 </div>
@@ -17,13 +22,13 @@
 <div class="row"> 
 <label for="articlestatus_id" class="label"><%= get_label('articlestatus_id') %> <span class="required">*</span></label> 
 <div id="articlestatus_id">
-<%= table_select('edit', Articlestatus, 3, 1) %>
+<%= table_select('edit', Articlestatus, 4, 1) %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="pages" class="label"><%= get_label('pages') %></label> 
-<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'pages' %>
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 5, 'id' => 'pages' %>
 </div>
 
 <div class="row"> 
@@ -43,11 +48,6 @@
 <div class="row"> 
 <label for="num" class="label"><%= get_label('num') %></label> 
 <%= text_field 'edit', 'num', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 8, 'id' => 'num' %>
-</div>
-
-<div class="row"> 
-<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label> 
-<%= text_area 'edit', 'authors', 'cols' => 4, 'rows'=> 40, 'tabindex'=> 9, 'id' => 'authors', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
 </div>
 
 <div class="row"> 

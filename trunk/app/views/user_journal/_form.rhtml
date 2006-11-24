@@ -1,0 +1,42 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_journal]-->
+<div class="row"> 
+<label for="journal_id" class="label"><%= get_label('journal_id') %> <span class="required">*</span></label> 
+<div id="journal_id">
+<%= table_select('edit', Journal, 1, 1) %>
+</div>
+</div>
+
+<label for="userrole_id" class="label"><%= get_label('userrole_id') %><span class="required">*</span></label> 
+<br/>
+<p>
+<%= checkbox_list('edit', Roleinjournal, @edit.attributes_before_type_cast['roleinjournal_id']) %> 
+</p>
+
+
+<div class="row"> 
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 3, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
+<%= month_select('edit', 'startmonth', {:tabindex => 4, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 5}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
+<%= month_select('edit', 'endmonth', {:tabindex => 6, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 7, 'id' => 'other' %></div>
+
+
+<!--[eoform:user_journal]-->
+

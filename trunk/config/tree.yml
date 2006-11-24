@@ -30,9 +30,15 @@
 - - books
   - - bookedition_roleinbook
     - chapterinbook_roleinbook
-  - articles
+  - refereedpubs
   - - user_article
-  - - user_inproceeding 
-  - techreports
+    - user_inproceeding_refereed
+  - reports
   - - user_techreport
-    - user_techreport_external
+    - user_techreport_internal
+- other
+- - user_journal
+  - user_proceeding_refereed
+  - user_proceeding_unrefereed
+
+

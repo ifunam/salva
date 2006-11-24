@@ -252,7 +252,7 @@ journal: Revistas
 journal_id: Revista
 article: Artículos  arbitrados
 article_id: Artículo
-user_article: Participación en artículos arbitrados
+user_article: Artículos arbitrados
 ismainauthor: ¿Es autor principal?
 articlestatus_id: Estado del artículo
 vol: Volumen
@@ -265,7 +265,7 @@ dateupdate: Fecha de actualización del factor de impacto
 totalcites: Total de citas
 pacsnum: Número de PACS
 chapterinbook_roleinbook: Capítulos en libros
-articles: Artículos
+refereedpubs: Publicaciones arbitradas
 chapter: Capítulo
 chapterinbook_id: Capítulo
 genericworkgroup: Clasificación trabajos generales
@@ -280,8 +280,24 @@ chapterinbook: Capítulo
 chapterinbook_id: Capítulo
 reference: Referencia
 isbn_issn: ISBN o ISSN
-user_inproceeding: Participación en memorias
-inproceeding: Artículos en memorias
+user_inproceeding: Artículos en memorias arbitradas
+inproceeding: Artículos en memorias arbitradas
 userrole_id: Rol
 genericwork: Trabajos generales
 genericwork_id: Trabajo general
+techreports: Reportes técnicos
+user_techreport: Reportes técnicos 
+user_techreport_internal: Reportes internos
+inproceeding_id: Trabajo en memoria
+inproceeding_id: Memoria
+roleinjournal: Rol
+roleinjournal_id: Rol
+user_journal: Arbitraje en revistas
+user_proceeding_refereed: Arbitraje de Memorias Arbitradas
+user_proceeding_unrefereed: Arbitraje de Memorias In Extenso
+proceeding: Memorias 
+refereedpubs: Publicaciones arbitradas
+reports: Reportes
+proceeding_refereed: Memorias arbitradas
+proceeding_unrefereed: Memorias In Extenso
+isrefereed: ¿Es arbitrada?
