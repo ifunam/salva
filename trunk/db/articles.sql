@@ -32,7 +32,7 @@ CREATE TABLE journals (
             	REFERENCES mediatypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	publisher_id int4 NOT NULL 
+	publisher_id int4 NULL 
             	REFERENCES publishers(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
