@@ -58,3 +58,4 @@
 \i catalogs/genericworktypes.sql
 \i catalogs/genericworkstatuses.sql
 \i catalogs/userroles.sql
+\i catalogs/roleinjournals.sql

@@ -102,6 +102,12 @@ COMMENT ON TABLE journal_publicationcategories IS
 CREATE TABLE roleinjournals (
 	id serial,
 	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE (name)
 );
@@ -129,7 +135,6 @@ CREATE TABLE user_journals (
 	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
 	endyear   int4 NULL,
 	endmonth int4 NULL CHECK (endmonth >=1 AND endmonth <= 12),
-	numcites int4 NULL CHECK (numcites >= 0),
 	other text NULL,
 	moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
@@ -138,8 +143,9 @@ CREATE TABLE user_journals (
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
-	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+	UNIQUE(user_id, journal_id, roleinjournal_id)
+--	CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+--	       (startyear * 12 + coalesce(startmonth,	0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_journals IS
 	'Relación entre usuarios del sistema y las publicaciones';

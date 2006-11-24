@@ -220,6 +220,7 @@ CREATE TABLE proceedings (
 	    REFERENCES publishers(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+	is_refereed BOOLEAN NOT NULL default 't',	
 	comment text NULL,
 	moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
@@ -229,6 +230,19 @@ CREATE TABLE proceedings (
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     	UNIQUE (conference_id),
     	PRIMARY KEY (id)
+);
+
+CREATE table roleproceedings (
+	id serial,
+	name text NOT NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id),
+	UNIQUE (name)	
 );
 
 CREATE TABLE user_proceedings (
@@ -241,8 +255,8 @@ CREATE TABLE user_proceedings (
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
-   userrole_id integer NOT NULL 
-            REFERENCES userroles(id)
+   roleproceeding_id integer NOT NULL 
+            REFERENCES roleproceedings(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    moduser_id int4 NULL               	    -- Use it to known who
@@ -252,7 +266,7 @@ CREATE TABLE user_proceedings (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (proceeding_id, user_id, userrole_id)  -- Un usuario podría tener más de un rol
+   UNIQUE (proceeding_id, user_id, roleproceeding_id)  -- Un usuario podría tener más de un rol
 );
 COMMENT ON TABLE user_proceedings IS 
 	'Rol de cada uno de los usuarios involucrados en memorias';
@@ -289,10 +303,7 @@ CREATE TABLE user_inproceedings (
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
-   userrole_id integer NOT NULL 
-            REFERENCES userroles(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
+   ismainauthor BOOLEAN NOT NULL default 't',	
    moduser_id int4 NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
@@ -300,7 +311,7 @@ CREATE TABLE user_inproceedings (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (inproceeding_id, user_id, userrole_id)  -- Un usuario podría tener más de un rol
+   UNIQUE (inproceeding_id, user_id)  -- Un usuario podría tener más de un rol
 );
 COMMENT ON TABLE user_inproceedings IS 
 	'Rol de cada uno de los usuarios involucrados en un articulo en memorias';

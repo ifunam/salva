@@ -169,7 +169,7 @@ INSERT INTO researchlines (name, researcharea_id) VALUES ('Estados resonantes', 
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Estructura del vacio cuantico', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Estudio de Condensados de Bose-Einstein', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Extensiones del modelo estándar, y modelo extendido de espín', 4);
-INSERT INTO researchlines (name, researcharea_id) VALUES ('Física de altas presiones dina'micas', 4);
+INSERT INTO researchlines (name, researcharea_id) VALUES ('Física de altas presiones dinámicas', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Fundamentos de teoría cuántica', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Física Teórica', 4);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Física atómica', 4);
