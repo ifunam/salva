@@ -36,6 +36,7 @@
   - reports
   - - user_techreport
     - user_techreport_internal
+  - user_inproceeding_unrefereed
 - other
 - - user_journal
   - user_proceeding_refereed

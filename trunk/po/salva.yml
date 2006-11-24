@@ -301,3 +301,5 @@ reports: Reportes
 proceeding_refereed: Memorias arbitradas
 proceeding_unrefereed: Memorias In Extenso
 isrefereed: ¿Es arbitrada?
+user_inproceeding_refereed: Artículos en Memorias Arbitradas
+user_inproceeding_unrefereed: Artículos en Memorias In Extenso
