@@ -1,10 +1,10 @@
-<!--[show:user_genericwork]-->
-<%= render :partial => "user_genericwork/show" %>
+<!--[show:user_inproceeding]-->
+<%= render :partial => "user_inproceeding/show" %>
 
  <%= render :partial =>"salva/moduser" %> 
 <div id="operations">
- <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('edit'), :action => 'edit', :id => @edit.attributes_before_type_cast['id'] %> |
  <%= link_to get_label('back'), :action => 'list' %>
 </div>
-<!--[eofshow:user_genericwork]-->
+<!--[eofshow:user_inproceeding]-->
 

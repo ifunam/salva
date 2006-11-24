@@ -33,3 +33,6 @@
   - articles
   - - user_article
   - - user_inproceeding 
+  - techreports
+  - - user_techreport
+    - user_techreport_external

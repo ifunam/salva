@@ -15,7 +15,7 @@
 <label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
 <div id="roleingroup_id">
 
-<%= checkbox_array('edit', Roleingroup, @edit.attributes_before_type_cast['roleingroup_id']) %>
+<%= checkbox_list('edit', Roleingroup, @edit.attributes_before_type_cast['roleingroup_id']) %>
 </div>
 </div>
 

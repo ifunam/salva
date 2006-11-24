@@ -158,7 +158,12 @@ class ModelComposedKeys < ActiveRecord::Base
   end
   
   def are_valid_models?(models)
-    models.each { |model| return false unless model.valid? }
+    models.each { |model| 
+      unless model.valid? 
+        self.errors.add_to_base(model.errors.full_messages)
+        return false 
+      end
+      }
     return true
   end
   

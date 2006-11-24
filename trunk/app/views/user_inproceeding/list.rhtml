@@ -1,7 +1,5 @@
 <!--[list:user_inproceeding]-->
-<%= table_array(@collection, { :header => "Artículo", :columns =>
-[ ['genericwork_id', 'authors', 'title', 'year'], 'userrole_id'] })
-%>
+<%= table_list(@collection, { :header => "Título", :columns => %w( inproceeding_id userrole_id ) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

@@ -1,7 +1,7 @@
-class InproceedingController < SalvaController
+class UserProceedingController < SalvaController
   def initialize
     super
-    @model = Inproceeding
+    @model = UserProceeding
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

@@ -1,5 +1,5 @@
 <div class="required_legend"><%= get_label('required_legend') %>.</div>
-<%= start_form_tag ({:action => 'update', :id => @edit.attributes_before_type_cast['id']}, {'z:display' => "inline", 'z:options' => "{inline:blur}"}) %>
+<%= start_form_tag ({:action => 'update', :id => @edit}, {'z:display' => "inline", 'z:options' => "{inline:blur}"}) %>
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('update') %> | 

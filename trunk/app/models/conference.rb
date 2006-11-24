@@ -4,6 +4,7 @@ class Conference < ActiveRecord::Base
   belongs_to :conferencetype
   belongs_to :country
   belongs_to :conferencescope
-
+ 
+  has_many :institution
   attr_accessor :institution_id
 end
