@@ -206,3 +206,101 @@ COMMENT ON TABLE user_conferenceroles IS
 COMMENT ON COLUMN user_conferenceroles.conferencetalk_id IS
 	'Si el usuario fue ponente, indicará aquí el ID de su ponencia. Si es
 	organizador, este campo debe quedar nulo.';
+
+CREATE TABLE proceedings (
+	id SERIAL,
+	conference_id int4 NOT NULL 
+            REFERENCES conferences(id)      
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+            DEFERRABLE,
+	title text NULL,
+	year int4 NULL,
+        publisher_id int4 NULL 
+	    REFERENCES publishers(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+	comment text NULL,
+	moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	UNIQUE (conference_id),
+    	PRIMARY KEY (id)
+);
+
+CREATE TABLE user_proceedings (
+   id SERIAL,
+   proceeding_id int4 NOT NULL 
+            REFERENCES proceedings(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   user_id integer 
+            REFERENCES users(id)            
+            ON UPDATE CASCADE               
+            DEFERRABLE,
+   userrole_id integer NOT NULL 
+            REFERENCES userroles(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (id),
+   UNIQUE (proceeding_id, user_id, userrole_id)  -- Un usuario podría tener más de un rol
+);
+COMMENT ON TABLE user_proceedings IS 
+	'Rol de cada uno de los usuarios involucrados en memorias';
+
+CREATE TABLE inproceedings (
+	id SERIAL,
+	proceeding_id int4 NOT NULL 
+            REFERENCES proceedings(id)      
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+            DEFERRABLE,
+	title text NOT NULL,
+	authors text NOT NULL,
+	pages text NULL,
+	comment text NULL,
+	moduser_id int4 NOT NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted  
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	UNIQUE (proceeding_id, title),
+    	PRIMARY KEY (id)
+);
+
+
+CREATE TABLE user_inproceedings (
+   id SERIAL,
+   inproceeding_id int4 NOT NULL 
+            REFERENCES inproceedings(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   user_id integer 
+            REFERENCES users(id)            
+            ON UPDATE CASCADE               
+            DEFERRABLE,
+   userrole_id integer NOT NULL 
+            REFERENCES userroles(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (id),
+   UNIQUE (inproceeding_id, user_id, userrole_id)  -- Un usuario podría tener más de un rol
+);
+COMMENT ON TABLE user_inproceedings IS 
+	'Rol de cada uno de los usuarios involucrados en un articulo en memorias';
