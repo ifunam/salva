@@ -59,3 +59,8 @@
 \i catalogs/genericworkstatuses.sql
 \i catalogs/userroles.sql
 \i catalogs/roleinjournals.sql
+\i catalogs/roleindissertations.sql
+\i catalogs/roleinthesis.sql
+\i catalogs/thesismodalities.sql
+\i catalogs/iiec
+\i catalogs/thesisstatuses.sql
