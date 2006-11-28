@@ -60,6 +60,6 @@
 \i catalogs/userroles.sql
 \i catalogs/roleinjournals.sql
 \i catalogs/roleindissertations.sql
-\i catalogs/roleinthesis.sql
+\i catalogs/roleintheses.sql
 \i catalogs/thesismodalities.sql
 \i catalogs/thesisstatuses.sql
