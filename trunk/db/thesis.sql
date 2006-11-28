@@ -31,7 +31,7 @@ CREATE TABLE thesismodalities (
 COMMENT ON TABLE thesismodalities IS 
 	'Modalidad del trabajo generado:  Tesis, tesina, informe académico, ...';
 
-CREATE TABLE roleinthesis (
+CREATE TABLE roleintheses (
     id SERIAL,
     name text NOT NULL,
     moduser_id int4 NULL               	    -- Use it to known who
@@ -43,7 +43,7 @@ CREATE TABLE roleinthesis (
     PRIMARY KEY (id),
     UNIQUE (name)
 );
-COMMENT ON TABLE roleinthesis IS 
+COMMENT ON TABLE roleintheses IS 
 	'Roles en una tesis: 
 	- Rol del usuario en la tesis: Director, tutor o asesor, ...
 	- Se considera participación comités tutorales cuando
@@ -51,16 +51,17 @@ COMMENT ON TABLE roleinthesis IS
 	un comité tutoral puede estar integrado po el director 
 	de tesis y dos Asesores.';
 
-CREATE TABLE thesis (
+CREATE TABLE theses (
 	id SERIAL NOT NULL,
     	title text NOT NULL,
-	institution_id integer NOT NULL 
-	    REFERENCES institutions(id)
-	    ON UPDATE CASCADE
-	    DEFERRABLE,
+	authors text NOT NULL,
     	degree_id integer NOT NULL
             REFERENCES degrees(id) 
             ON UPDATE CASCADE              
+            DEFERRABLE,
+	institutioncareer_id int4 NOT NULL 
+            REFERENCES institutioncareers(id)       
+            ON UPDATE CASCADE
             DEFERRABLE,
     	thesisstatus_id integer NOT NULL
 	    REFERENCES thesisstatuses(id)
@@ -70,13 +71,9 @@ CREATE TABLE thesis (
 	    REFERENCES thesismodalities(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	career_id int4 NOT NULL 
-            	REFERENCES careers(id) 
-            	ON UPDATE CASCADE           
-            	DEFERRABLE,
 	year int4 NOT NULL,
 	month int4 NULL CHECK (month >= 1 AND month <= 12),
-
+        other text NULL,
         moduser_id int4 NULL               	    -- Use it to known who
         REFERENCES users(id)            -- has inserted, updated or deleted
         ON UPDATE CASCADE               -- data into or  from this table.
@@ -86,29 +83,24 @@ CREATE TABLE thesis (
 	PRIMARY KEY (id),
     	UNIQUE (title, degree_id, year)
 );
-COMMENT ON TABLE thesis IS 
+COMMENT ON TABLE theses IS 
 	'Datos generales de cada una de las tesis';
-COMMENT ON COLUMN thesis.degree_id IS
+COMMENT ON COLUMN theses.degree_id IS
 	'Grado académico que esta tesis persigue';
 
-CREATE TABLE user_thesis (
+CREATE TABLE user_theses (
    id SERIAL,
    thesis_id integer NOT NULL 
-            REFERENCES thesis(id)
+            REFERENCES theses(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+   user_id integer	
+            REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    roleinthesis_id integer NOT NULL
-            REFERENCES roleinthesis(id)
+            REFERENCES roleintheses(id)
             ON UPDATE CASCADE
-            DEFERRABLE,
-   user_is_internal bool,
-   externaluser_id integer NULL 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   internaluser_id integer NULL
-            REFERENCES users(id)            
-            ON UPDATE CASCADE               
             DEFERRABLE,
    moduser_id int4 NULL               	    -- Use it to known who
    REFERENCES users(id)            -- has inserted, updated or deleted
@@ -119,26 +111,24 @@ CREATE TABLE user_thesis (
    PRIMARY KEY (id),
    -- Sanity checks: If the user is a full system user, require the user
    -- to be filled in. Likewise for an external one.
-   CHECK (user_is_internal = 't' OR
-	(internaluser_id IS NOT NULL AND externaluser_id IS NULL)),
-   CHECK (user_is_internal = 'f' OR
-	(externaluser_id IS NOT NULL AND internaluser_id IS NULL)),
+--   CHECK (user_is_internal = 't' OR
+--	(internaluser_id IS NOT NULL AND externaluser_id IS NULL)),
+--   CHECK (user_is_internal = 'f' OR
+--	(externaluser_id IS NOT NULL AND internaluser_id IS NULL)),
    -- By having only internal or external present, we can make this UNIQUE
    -- constraint on thesis_id and both of them, and then have unicity on
    -- (anyuser, thesis_id).
-   UNIQUE (thesis_id, externaluser_id, internaluser_id)
+   UNIQUE (thesis_id, user_id, roleinthesis_id)
 );
-COMMENT ON TABLE user_thesis IS 
+COMMENT ON TABLE user_theses IS 
 	'La relación entre un usuario (en rol de director/asesor/etc.) y una
 	tesis';
-COMMENT ON COLUMN user_thesis.user_is_internal IS
-	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
-	si no, exigimos externaluser_id';
+
 
 CREATE TABLE thesislog (
     id SERIAL,
     thesis_id integer NOT NULL
-            REFERENCES thesis(id)
+            REFERENCES theses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     old_thesisstatuses_id integer  NOT NULL 
@@ -158,19 +148,14 @@ CREATE TABLE thesislog (
 COMMENT ON TABLE thesislog IS 
 	'Bitácora de cambios de estado en la tesis';
 
-CREATE TABLE student_thesis ( 
+CREATE TABLE student_theses ( 
    id SERIAL,
    thesis_id integer NOT NULL 
-            REFERENCES thesis(id)
+            REFERENCES theses(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-   user_is_internal bool, 
-   externaluser_id integer 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   internaluser_id integer
+   user_id integer NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
@@ -181,18 +166,15 @@ CREATE TABLE student_thesis (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (thesis_id, internaluser_id ),
-   UNIQUE (thesis_id, externaluser_id ),
+   UNIQUE (thesis_id, user_id )
    -- Sanity checks: If the user is an full system user, require the user
    -- to be filled in. Likewise for an external one.
-   CHECK (user_is_internal = 't' or internaluser_id IS NOT NULL),
-   CHECK (user_is_internal = 'f' or externaluser_id IS NOT NULL)
 );
-COMMENT ON TABLE student_thesis IS 
+COMMENT ON TABLE student_theses IS 
 	'Relación entre un usuario (en rol de alumno) y una tesis';
-COMMENT ON COLUMN student_thesis.user_is_internal IS
-	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
-	si no, exigimos externaluser_id';
+--COMMENT ON COLUMN student_theses.user_is_internal IS
+--	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
+--	si no, exigimos externaluser_id';
 
 CREATE TABLE roleindissertations (
 	id SERIAL,
@@ -218,7 +200,7 @@ CREATE TABLE thesis_dissertations (
             ON UPDATE CASCADE               
             DEFERRABLE,
    thesis_id integer NOT NULL 
-            REFERENCES thesis(id)
+            REFERENCES theses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    roleindissertation_id integer NOT NULL
@@ -257,5 +239,5 @@ BEGIN
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER thesis_update BEFORE DELETE ON thesis
+CREATE TRIGGER thesis_update BEFORE DELETE ON theses
 	FOR EACH ROW EXECUTE PROCEDURE thesis_update();

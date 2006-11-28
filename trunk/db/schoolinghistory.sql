@@ -52,7 +52,7 @@ CREATE TABLE institutioncareers (
 	UNIQUE (institution_id, career_id)
 );
 COMMENT ON TABLE institutioncareers IS
-	'Carreras ligadas a las instituciónes';
+	'Carreras ligadas a las instituciones';
 
 
 CREATE TABLE credentials (

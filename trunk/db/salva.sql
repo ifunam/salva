@@ -26,7 +26,7 @@
 \i techproducts.sql 
 \i activities.sql
 
-\i projects.sql 
+-- \i projects.sql 
 
 \i skills.sql
 \i organ.sql
