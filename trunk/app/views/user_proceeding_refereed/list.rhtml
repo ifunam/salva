@@ -1,5 +1,5 @@
 <!--[list:user_proceeding]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( proceeding_id userrole_id ) }) %> 
+<%= table_list(@collection, { :header => "Título", :columns => %w( proceeding_id roleproceeding_id ) }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

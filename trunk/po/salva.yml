@@ -293,8 +293,7 @@ inproceeding_id: Memoria
 roleinjournal: Rol
 roleinjournal_id: Rol
 user_journal: Arbitraje en revistas
-user_proceeding_refereed: Arbitraje de Memorias Arbitradas
-user_proceeding_unrefereed: Arbitraje de Memorias In Extenso
+user_proceeding_refereed: Arbitraje en memorias 
 proceeding: Memorias 
 refereedpubs: Publicaciones arbitradas
 reports: Reportes
@@ -311,3 +310,5 @@ roleinthesis_id: Rol en tesis
 user_thesis: Asesoría de tesis
 student_thesis: Tesis
 student_formation: Formación de estudiantes
+proceeding_id: Memoria
+roleproceeding_id: Rol

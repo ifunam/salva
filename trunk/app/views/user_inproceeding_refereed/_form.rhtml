@@ -6,7 +6,7 @@
 <div id="inproceeding_id">
 <%= select_as_tree('edit', Inproceeding, %w(title authors),1,1, {:include => [:proceeding], :conditions => "inproceedings.proceeding_id = proceedings.id AND proceedings.isrefereed = 't' "}) %>
 </div>
-<%= submit_for_stack('inproceeding_refereed,iproceeding_id') %>
+<%= submit_for_stack('inproceeding_refereed,inproceeding_id') %>
 </div>
 
 <div class="row"> 
