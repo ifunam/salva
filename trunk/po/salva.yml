@@ -303,3 +303,11 @@ proceeding_unrefereed: Memorias In Extenso
 isrefereed: ¿Es arbitrada?
 user_inproceeding_refereed: Artículos en Memorias Arbitradas
 user_inproceeding_unrefereed: Artículos en Memorias In Extenso
+thesis: Tesis
+thesis_id: Tesis
+thesisstatus_id: Estado de la tesis
+thesismodality_id: Modalidad de la tesis
+roleinthesis_id: Rol en tesis
+user_thesis: Asesoría de tesis
+student_thesis: Tesis
+student_formation: Formación de estudiantes

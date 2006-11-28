@@ -1,0 +1,11 @@
+<!--[list:student_thesis]-->
+<%= table_array(@collection, { :header => "Tesis", :columns =>
+[ ['thesis_id', 'title', 'year', 'degree_id', 'institutioncareer_id'] ] })
+%>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:student_thesis]-->
+

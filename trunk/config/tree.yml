@@ -37,9 +37,12 @@
   - - user_techreport
     - user_techreport_internal
   - user_inproceeding_unrefereed
+  - thesis
+  - - student_thesis
 - other
 - - user_journal
   - user_proceeding_refereed
   - user_proceeding_unrefereed
-
+- student_formation
+- - user_thesis
 
