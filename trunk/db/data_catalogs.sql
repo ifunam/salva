@@ -64,3 +64,4 @@
 \i catalogs/thesismodalities.sql
 \i catalogs/thesisstatuses.sql
 \i catalogs/roleinregularcourses.sql
+\i catalogs/newspapers.sql

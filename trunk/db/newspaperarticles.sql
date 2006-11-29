@@ -2,17 +2,19 @@ CREATE TABLE newspapers (
 	id SERIAL,
 	name text NOT NULL,
 	url text NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
 COMMENT ON TABLE newspapers IS
 	'Periódicos';
 
-CREATE TABLE newspaper_articles (
+CREATE TABLE newspaperarticles (
 	id serial,
 	title text NOT NULL,
 	authors text NOT NULL,
@@ -23,13 +25,19 @@ CREATE TABLE newspaper_articles (
  	newsdate date NOT NULL,
 	pages text NULL,
 	url text NULL,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (title, newspaper_id, newsdate)
 );
-COMMENT ON TABLE newspaper_articles IS
+COMMENT ON TABLE newspaperarticles IS
 	'Artículos publicados en periódico';
 
-CREATE TABLE usernewspaper_articles ( 
+CREATE TABLE user_newspaperarticles ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -37,24 +45,28 @@ CREATE TABLE usernewspaper_articles (
             ON DELETE CASCADE   
             DEFERRABLE,
     newspaperarticle_id int4 NOT NULL 
-            REFERENCES newspaper_articles(id)
+            REFERENCES newspaperarticles(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     ismainauthor BOOLEAN NOT NULL default 't',
     other text NULL,
+    moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, newspaperarticle_id)
 );
-COMMENT ON TABLE usernewspaper_articles IS
+COMMENT ON TABLE user_newspaperarticles IS
 	'Autores de un artículo periodístico';
-COMMENT ON COLUMN usernewspaper_articles.ismainauthor IS
+COMMENT ON COLUMN user_newspaperarticles.ismainauthor IS
 	'Registramos únicamente si es el autor primario o no';
 
-CREATE TABLE newspaper_articleslog (
+CREATE TABLE newspaperarticle_logs(
     id SERIAL, 
     newspaperarticle_id integer NOT NULL 
-            REFERENCES  newspaper_articles(id)
+            REFERENCES  newspaperarticles(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
@@ -68,28 +80,28 @@ CREATE TABLE newspaper_articleslog (
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-COMMENT ON TABLE newspaper_articleslog IS
+COMMENT ON TABLE newspaperarticle_logs IS
 	'Cambios en el estado de los artículos periodísticos';
 
 ------
--- Update newspaper_articleslog if there was a status change
+-- Update newspaperarticleslog if there was a status change
 ------
-CREATE OR REPLACE FUNCTION newspaper_articles_update() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION newspaperarticles_update() RETURNS TRIGGER 
 SECURITY DEFINER AS '
 DECLARE 
 BEGIN
 	IF OLD.articlestatus_id = NEW.articlestatus_id THEN
 		RETURN NEW;
 	END IF;
-	INSERT INTO newspaper_articleslog (newspaperarticle_id, 
+	INSERT INTO newspaperarticle_logs (newspaperarticle_id, 
 		old_articlestatus_id, moduser_id) 
 		VALUES (OLD.id, OLD.articlestatus_id, OLD.moduser_id);
         RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER newspaper_articles_update BEFORE DELETE ON newspaper_articles
-	FOR EACH ROW EXECUTE PROCEDURE newspaper_articles_update();
+CREATE TRIGGER newspaperarticles_update BEFORE DELETE ON newspaperarticles
+	FOR EACH ROW EXECUTE PROCEDURE newspaperarticles_update();
