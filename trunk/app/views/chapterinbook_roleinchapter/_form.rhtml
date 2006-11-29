@@ -15,7 +15,7 @@
   <%= submit_for_stack('bookedition:book_id') %>
 </div>
 
-<!--[form:chapterinbook_roleinbook]-->
+<!--[form:chapterinbook_roleinchapter]-->
 <div class="row"> 
 <label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %> <span class="required">*</span></label> 
   <div id="select_bookedition_chapterinbook_note" style="display: none"><span class="upgrade_note">Actualizando la lista de capítulos...</span></div>
@@ -24,8 +24,8 @@
   </div>
 </div>
 
-<div class="row"><label for="bookedition_roleinbook">Indique la actividad que realizó en este captítulo</label><br/>
-<%= checkbox_list('edit', Roleinbook) %> </div>
+<div class="row"><label for="bookedition_roleinchapter">Indique la actividad que realizó en este captítulo</label><br/>
+<%= checkbox_list('edit', Roleinchapter) %> </div>
 
-<!--[eoform:chapterinbook_roleinbook]-->
+<!--[eoform:chapterinbook_roleinchapter]-->
 

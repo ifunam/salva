@@ -1,0 +1,31 @@
+<%= error_messages_for 'edit' %>
+
+<div class="row">
+ <label for="book_id" class="label"><%= get_label('book_id') %> <span class="required">*</span></label>
+ <%= select_to_update_select('edit', Book, Bookedition, 1, 1, 'title')%>
+ <%= submit_for_stack('book') %>
+</div>
+
+<div class="row">
+  <label for="bookedition_id" class="label"><%= get_label('bookedition_id') %><span class="required">*</span></label>
+  <div id="select_book_bookedition_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ediciones...</span></div>
+  <div id="select_book_bookedition">
+   <%= select_to_update_select('edit', Bookedition, Chapterinbook, 2,  1, %w(edition_id mediatype_id year))%>
+  </div>
+  <%= submit_for_stack('bookedition:book_id') %>
+</div>
+
+<!--[form:chapterinbook_roleinchapter]-->
+<div class="row"> 
+<label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %> <span class="required">*</span></label> 
+  <div id="select_bookedition_chapterinbook_note" style="display: none"><span class="upgrade_note">Actualizando la lista de capítulos...</span></div>
+  <div id="select_bookedition_chapterinbook">
+  Seleccionar edición
+  </div>
+</div>
+
+<div class="row"><label for="bookedition_roleinchapter">Indique la actividad que realizó en este captítulo</label><br/>
+<%= checkbox_list('edit', Roleinchapter) %> </div>
+
+<!--[eoform:chapterinbook_roleinchapter]-->
+

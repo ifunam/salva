@@ -264,7 +264,7 @@ immediacy: Inmediatez
 dateupdate: Fecha de actualización del factor de impacto
 totalcites: Total de citas
 pacsnum: Número de PACS
-chapterinbook_roleinbook: Capítulos en libros
+chapterinbook_roleinchapter: Capítulos en libros
 refereedpubs: Publicaciones arbitradas
 chapter: Capítulo
 chapterinbook_id: Capítulo
@@ -292,8 +292,8 @@ inproceeding_id: Trabajo en memoria
 inproceeding_id: Memoria
 roleinjournal: Rol
 roleinjournal_id: Rol
-user_journal: Arbitraje en revistas
-user_proceeding_refereed: Arbitraje en memorias 
+user_journal: Colaboración en revistas
+user_proceeding_refereed: Colaboración en memorias 
 proceeding: Memorias 
 refereedpubs: Publicaciones arbitradas
 reports: Reportes
@@ -308,7 +308,21 @@ thesisstatus_id: Estado de la tesis
 thesismodality_id: Modalidad de la tesis
 roleinthesis_id: Rol en tesis
 user_thesis: Asesoría de tesis
-student_thesis: Tesis
-student_formation: Formación de estudiantes
+student_thesis: Autoría de tesis
+human_resources_formation_and_teaching: Formación de recursos humanos y docencia 
+human_resources_formation: Formación de recursos humanos  
 proceeding_id: Memoria
 roleproceeding_id: Rol
+arbitration: Arbitraje
+colaboration_on_publications: Colaboración en publicaciones
+thesis_juror: Jurado de tesis
+roleinjury_id: Tipo de participación
+teaching: Docencia
+user_regularcourse: Cursos regulares
+regularcourse: Cursos regulares
+regularcourse_id: Curso
+roleinregularcourse_id: Rol en curso
+period: Periodos
+period_id: Periodo
+startdate: Fecha de inicio
+enddate: Fecha de termino

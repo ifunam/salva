@@ -5,14 +5,14 @@
 <label for="thesis_id" class="label"><%= get_label('thesis_id') %> <span class="required">*</span></label> 
 <div id="thesis_id">
 <%= select_as_tree('edit', Thesis, %w( title year), 1, 1) %>
-<%= submit_for_stack('thesis') %>
 </div>
+<%= submit_for_stack('thesis') %>
 </div>
 
 <div class="row"> 
 <label for="roleinthesis_id" class="label"><%= get_label('roleinthesis_id') %> <span class="required">*</span></label> 
 <div id="roleinthesis_id">
-<%= table_select('edit', Roleinthesis, 2, 1) %>
+<%= select_as_tree('edit', Roleinthesis, %w( name ), 2, 1, :conditions => 'id  != 1') %>
 </div>
 </div>
 

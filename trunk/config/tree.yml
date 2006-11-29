@@ -29,7 +29,7 @@
 - publications
 - - books
   - - bookedition_roleinbook
-    - chapterinbook_roleinbook
+    - chapterinbook_roleinchapter
   - refereedpubs
   - - user_article
     - user_inproceeding_refereed
@@ -37,11 +37,14 @@
   - - user_techreport
     - user_techreport_internal
   - user_inproceeding_unrefereed
-  - thesis
-  - - student_thesis
-- other
+  - student_thesis
+- colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed
-- student_formation
-- - user_thesis
+- human_resources_formation_and_teaching
+- - human_resources_formation
+  - - user_thesis
+    - thesis_juror
+  - teaching
+  - - user_regularcourse
 

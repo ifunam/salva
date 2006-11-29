@@ -1,7 +1,7 @@
-class ChapterinbookRoleinbookController < SalvaController
+class RegularcourseController < SalvaController
   def initialize
     super
-    @model = ChapterinbookRoleinbook
+    @model = Regularcourse
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

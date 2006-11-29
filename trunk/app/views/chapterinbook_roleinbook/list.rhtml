@@ -1,9 +1,0 @@
-<!--[list:chapterinbook_roleinbook]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( chapterinbook_id roleinbook_id ) }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-</div>
-<!--[eoflist:chapterinbook_roleinbook]-->
-
