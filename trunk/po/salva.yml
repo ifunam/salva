@@ -171,7 +171,7 @@ jobposition_external: Experiencia laboral externa
 jobpositionexternal: Experiencia laboral externa
 updating_current_skills: Actualización profesional
 user_course: Cursos recibidos
-user_conference: Asistencia a congresos y seminarios
+user_conference: Asistencia a eventos académicos
 acadvisit: Estancias
 acadvisittype_id: Tipo de estancia
 place: Lugar
@@ -214,21 +214,21 @@ prizetype_id: Tipo de premio
 user_prize: Premios
 attendeetype: Roles en congresos
 attendeetype_id: Rol
-conferencetype: Tipos de congreso
-conferencetype_id: Tipo de congreso
-conferencescope: Ámbitos de congreso
-conferencescope_id: Ámbito del congreso
+conferencetype: Tipo de evento académico
+conferencetype_id: Tipo
+conferencescope: Ámbito
+conferencescope_id: Ámbito 
 talktype: Tipos de ponencia
 talktype_id: Tipo de ponencia
-conference: Congresos
-conference_id: Congreso
+conference: Evento académico
+conference_id: Evento académico
 conferencetalk: Ponencias en congreso
 conferencetalk_id: Ponencia en congreso
 talkacceptance_id: Tipo de inscripción
 abstract: Resumen
 conference_institution: Instituciones que organizan el congreso
-userconference: Asistencia a congresos
-userconference_id: Congreso
+userconference: Asistencia a eventos académicos
+userconference_id: Evento académico
 edition_id: Edición
 pages: Páginas
 isbn: ISBN
