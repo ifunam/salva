@@ -236,7 +236,14 @@ COMMENT ON TABLE chapterinbooks IS
 COMMENT ON COLUMN chapterinbooks.title IS
 	'Título del capítulo';
 
-CREATE TABLE chapterinbook_roleinbooks ( 
+CREATE TABLE roleinchapters (
+	id serial,
+	name text NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+
+CREATE TABLE chapterinbook_roleinchapters ( 
     id SERIAL,
     user_id int4 NOT NULL 
             REFERENCES users(id)      
@@ -247,8 +254,8 @@ CREATE TABLE chapterinbook_roleinbooks (
             REFERENCES chapterinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    roleinbook_id int4 NOT NULL 
-            REFERENCES roleinbooks(id)
+    roleinchapter_id int4 NOT NULL 
+            REFERENCES roleinchapters(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     moduser_id int4 NULL               	    -- Use it to known who
@@ -258,9 +265,9 @@ CREATE TABLE chapterinbook_roleinbooks (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (user_id, chapterinbook_id, roleinbook_id)
+    UNIQUE (user_id, chapterinbook_id, roleinchapter_id)
 );
-COMMENT ON TABLE chapterinbook_roleinbooks IS 
+COMMENT ON TABLE chapterinbook_roleinchapters IS 
 	'El rol de cada uno de los usuarios que participaron en un capítulo
 	 de libro';
 

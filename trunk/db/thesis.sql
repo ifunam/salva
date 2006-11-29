@@ -148,35 +148,8 @@ CREATE TABLE thesislog (
 COMMENT ON TABLE thesislog IS 
 	'Bitácora de cambios de estado en la tesis';
 
-CREATE TABLE student_theses ( 
-   id SERIAL,
-   thesis_id integer NOT NULL 
-            REFERENCES theses(id)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
-            DEFERRABLE,
-   user_id integer NOT NULL
-            REFERENCES users(id)
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   moduser_id int4 NULL               	    -- Use it to known who
-   REFERENCES users(id)            -- has inserted, updated or deleted
-   ON UPDATE CASCADE               -- data into or  from this table.
-   DEFERRABLE,
-   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (id),
-   UNIQUE (thesis_id, user_id )
-   -- Sanity checks: If the user is an full system user, require the user
-   -- to be filled in. Likewise for an external one.
-);
-COMMENT ON TABLE student_theses IS 
-	'Relación entre un usuario (en rol de alumno) y una tesis';
---COMMENT ON COLUMN student_theses.user_is_internal IS
---	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
---	si no, exigimos externaluser_id';
 
-CREATE TABLE roleindissertations (
+CREATE TABLE roleinjuries (
 	id SERIAL,
 	name text NOT NULL,
         moduser_id int4 NULL               	    -- Use it to known who
@@ -188,12 +161,12 @@ CREATE TABLE roleindissertations (
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE roleindissertations IS
+COMMENT ON TABLE roleinjuries IS
 	'Jurado de examenes: Presidente, Secretario, Vocal, ...';
 -- Role in thesis presentations or dissertations.
 
 
-CREATE TABLE thesis_dissertations (
+CREATE TABLE thesis_jurors (
    id SERIAL,
    user_id integer NULL
             REFERENCES users(id)            
@@ -203,8 +176,8 @@ CREATE TABLE thesis_dissertations (
             REFERENCES theses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   roleindissertation_id integer NOT NULL
-            REFERENCES roleindissertations(id)
+   roleinjury_id integer NOT NULL
+            REFERENCES roleinjuries(id)
             ON UPDATE CASCADE
             DEFERRABLE,
    year integer NOT NULL,
@@ -216,9 +189,9 @@ CREATE TABLE thesis_dissertations (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (user_id, thesis_id, roleindissertation_id)
+   UNIQUE (user_id, thesis_id, roleinjury_id)
 );
-COMMENT ON TABLE thesis_dissertations IS 
+COMMENT ON TABLE thesis_jurors IS 
 	'La relación entre un usuario, el rol en la disertación
 	(sinodal, presidente, secretario y vocal) y la tesis';
 

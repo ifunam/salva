@@ -102,7 +102,6 @@ CREATE TABLE courses (
 	endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
     	hoursxweek int4 NULL,
     	location text NULL,
-	acadprogram text NULL, -- En el futuro sera parte de un catalogo
     	totalhours int4 NULL,
     	PRIMARY KEY(id),
     	UNIQUE (name,  coursetype_id, degree_id )
@@ -116,8 +115,6 @@ COMMENT ON COLUMN courses.totalhours IS
 	del curso (usercourses) y la horas por semana (las cuales no
 	serán guardadas en ningún campo, solo serviran como referencia
 	en la aplicación.';
-COMMENT ON COLUMN courses.acadprogram IS
-	'Carrera o programa académico a que este curso pertenece';
 
 CREATE TABLE roleincourses (
 	id SERIAL,
@@ -128,6 +125,7 @@ CREATE TABLE roleincourses (
 COMMENT ON TABLE roleincourses IS
 	'Rol del usaurio en el curso';
 -- Instructor, asistente, autor; etc.
+
 
 -- Ojo cuando el usuario especifica horas por semana: Sera nencesario
 -- revisar que las horas esten en un rango aceptable correspondiente
@@ -152,4 +150,69 @@ CREATE TABLE user_courses (
 );
 COMMENT ON TABLE user_courses IS
 	'Cursos a los que está asociado un usuario';
+
+CREATE TABLE regularcourses (  
+	id SERIAL NOT NULL,
+    	name text NOT NULL,
+	institutioncareer_id int4 NOT NULL 
+            REFERENCES institutioncareers(id)       
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    	courseduration_id int4 NOT NULL
+              REFERENCES coursedurations(id)
+              ON UPDATE CASCADE
+              DEFERRABLE,
+    	modality_id int4 NOT NULL 
+            REFERENCES modalities(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+	period_id int4 NULL    -- Use it only to know who has
+   	    REFERENCES periods(id)    -- inserted, updated or deleted  
+            ON UPDATE CASCADE       -- data into or from this table.
+	    ON DELETE CASCADE
+            DEFERRABLE,
+    	year int4 NOT NULL,
+   	hoursxweek int4 NULL,
+	moduser_id int4 NULL    -- Use it only to know who has
+  	    REFERENCES users(id)    -- inserted, updated or deleted  
+       	    ON UPDATE CASCADE       -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	PRIMARY KEY(id)
+);
+COMMENT ON TABLE regularcourses IS
+	'Cursos regulares';
+
+CREATE TABLE roleinregularcourses (
+	id SERIAL,
+	name text NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE(name)
+);
+
+CREATE TABLE user_regularcourses (
+    id SERIAL,
+    user_id int4 NOT NULL 
+            REFERENCES users(id)      
+            ON UPDATE CASCADE
+            ON DELETE CASCADE   
+            DEFERRABLE,
+    regularcourse_id int4 NULL 
+            REFERENCES regularcourses(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    roleinregularcourse_id int4 NOT NULL 
+            REFERENCES roleinregularcourses(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
+    moduser_id int4 NULL    -- Use it only to know who has
+  	    REFERENCES users(id)    -- inserted, updated or deleted  
+       	    ON UPDATE CASCADE       -- data into or from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
 
