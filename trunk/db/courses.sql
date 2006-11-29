@@ -1,17 +1,3 @@
-----------------------
--- Research Courses -- 
-----------------------
-
-CREATE TABLE coursetypes ( 
-	id SERIAL NOT NULL,
-	name text NOT NULL,
-    	PRIMARY KEY (id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE coursetypes IS
-	'Tipo de curso en cuesstión - Regular, especial, ...';
--- Regular (parte  de un plan de estudios), Especial (único), ...
-
 CREATE TABLE coursedurations (
 	id serial NOT NULL,
 	name text NOT NULL,
@@ -68,14 +54,6 @@ COMMENT ON COLUMN coursegroups.totalhours IS
 CREATE TABLE courses (  
 	id SERIAL NOT NULL,
     	name text NOT NULL,
-    	coursetype_id int4 NOT NULL 
-                        REFERENCES coursetypes(id)
-                        ON UPDATE CASCADE
-                        DEFERRABLE,
-  	degree_id int4 NULL 
-        	          REFERENCES degrees(id)
-                           ON UPDATE CASCADE
-                           DEFERRABLE,
 	country_id int4 NOT NULL 
               REFERENCES countries(id)
               ON UPDATE CASCADE
@@ -104,7 +82,7 @@ CREATE TABLE courses (
     	location text NULL,
     	totalhours int4 NULL,
     	PRIMARY KEY(id),
-    	UNIQUE (name,  coursetype_id, degree_id )
+    	UNIQUE (name, startyear, startmonth)
 );
 COMMENT ON TABLE courses IS
 	'Cursos impartidos (de actualización o en un plan de estudios) y

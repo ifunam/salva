@@ -1,6 +1,3 @@
-INSERT INTO coursetypes (name) VALUES ('Regular');
-INSERT INTO coursetypes (name) VALUES ('Especial');
-
 INSERT INTO coursedurations (name, days) VALUES ('Semanal', 5);
 INSERT INTO coursedurations (name, days) VALUES ('Mensual', 30);
 INSERT INTO coursedurations (name, days) VALUES ('Trimestral', 90);
