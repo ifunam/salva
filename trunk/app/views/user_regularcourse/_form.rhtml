@@ -10,11 +10,13 @@
 </div>
 
 <div class="row"> 
-<label for="period_id" class="label"><%= get_label('period_id') %></label> 
+<label for="period_id" class="label"><%= get_label('period_id') %>
+ (<a href="http://www.dgae.unam.mx/noticias/calendar/calendar.html" target="_new">Ver calendario</a>) </label> 
+
 <div id="period_id">
 <%= table_select('edit', Period, 5) %>
 </div>
-<%= submit_for_stack('period') %>
+<%= submit_for_stack('period') %>  
 </div>
 
 <div class="row"> 
