@@ -39,18 +39,6 @@
 </div>
 
 <div class="row"> 
-<label for="period_id" class="label"><%= get_label('period_id') %></label> 
-<div id="period_id">
-<%= table_select('edit', Period, 5) %>
-</div>
-<%= submit_for_stack('period') %>
-</div>
-
-<div class="row"> 
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
-<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 6, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
-
-<div class="row"> 
 <label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label> 
 <%= text_field 'edit', 'hoursxweek', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 7, 'id' => 'hoursxweek' %>
 </div>

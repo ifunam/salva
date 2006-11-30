@@ -144,12 +144,6 @@ CREATE TABLE regularcourses (
             REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-	period_id int4 NULL    -- Use it only to know who has
-   	    REFERENCES periods(id)    -- inserted, updated or deleted  
-            ON UPDATE CASCADE       -- data into or from this table.
-	    ON DELETE CASCADE
-            DEFERRABLE,
-    	year int4 NOT NULL,
    	hoursxweek int4 NULL,
 	moduser_id int4 NULL    -- Use it only to know who has
   	    REFERENCES users(id)    -- inserted, updated or deleted  
@@ -183,6 +177,11 @@ CREATE TABLE user_regularcourses (
     roleinregularcourse_id int4 NOT NULL 
             REFERENCES roleinregularcourses(id)
             ON UPDATE CASCADE
+            DEFERRABLE,
+    period_id int4 NULL   
+   	    REFERENCES periods(id)
+            ON UPDATE CASCADE     
+	    ON DELETE CASCADE
             DEFERRABLE,
     moduser_id int4 NULL    -- Use it only to know who has
   	    REFERENCES users(id)    -- inserted, updated or deleted  

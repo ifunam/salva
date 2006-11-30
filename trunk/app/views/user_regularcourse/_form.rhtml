@@ -4,9 +4,17 @@
 <div class="row"> 
 <label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %></label> 
 <div id="regularcourse_id">
-<%= select_as_tree('edit', Regularcourse, %w(name period_id), 1,1) %>
+<%= select_as_tree('edit', Regularcourse, %w(name), 1,1) %>
 </div>
 <%= submit_for_stack('regularcourse') %>
+</div>
+
+<div class="row"> 
+<label for="period_id" class="label"><%= get_label('period_id') %></label> 
+<div id="period_id">
+<%= table_select('edit', Period, 5) %>
+</div>
+<%= submit_for_stack('period') %>
 </div>
 
 <div class="row"> 
