@@ -253,7 +253,7 @@ journal_id: Revista
 article: Artículos  arbitrados
 article_id: Artículo
 user_article: Artículos arbitrados
-ismainauthor: ¿Es autor principal?
+ismainauthor: Indique su rol
 articlestatus_id: Estado del artículo
 vol: Volumen
 num: Número
@@ -328,3 +328,8 @@ startdate: Fecha de inicio
 enddate: Fecha de termino
 newspaper: Periódicos
 newspaper_id: Periódico
+newsdate: Fecha
+newspaperarticle_id: Artículo periodístico
+newspaperarticle:  Artículos periodísticos
+user_newspaperarticle: Participación en artículos periodísticos
+scientific_spreading: Divulgación

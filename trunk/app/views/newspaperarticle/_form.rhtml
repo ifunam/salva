@@ -1,0 +1,39 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:newspaperarticle]-->
+<div class="row"> 
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'authors', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'authors', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="newspaper_id" class="label"><%= get_label('newspaper_id') %> <span class="required">*</span></label> 
+<div id="newspaper_id">
+<%= table_select('edit', Newspaper, 3, 1) %>
+</div>
+<%= submit_for_stack('newspaper') %>
+</div>
+
+<div class="row"> 
+<label for="newsdate" class="label"><%= get_label('newsdate') %> <span class="required">*</span></label> 
+<%= date_for_select('edit', 'newsdate', 4) %>
+</div>
+
+<div class="row"> 
+<label for="pages" class="label"><%= get_label('pages') %></label> 
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 5, 'id' => 'pages' %>
+</div>
+
+<div class="row"> 
+<label for="url" class="label"><%= get_label('url') %></label> 
+<%= text_field 'edit', 'url', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'url' %>
+</div>
+
+
+<!--[eoform:newspaperarticle]-->
+

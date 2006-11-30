@@ -38,6 +38,8 @@
     - user_techreport_internal
   - user_inproceeding_unrefereed
   - student_thesis
+- scientific_spreading
+- - user_newspaperarticle
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed

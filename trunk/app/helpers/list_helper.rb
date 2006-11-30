@@ -222,6 +222,8 @@ module ListHelper
       condition ? 'Titulado' : 'Sin titulo' 
     when /has_group_right/
       condition ? 'Con privilegios de grupo' : 'Sin privilegios'
+    when /ismainauthor/
+      condition ? 'Autor principal' : 'Coautor'
     else
       condition ? 'Sí' : 'No'
     end

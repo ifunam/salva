@@ -11,6 +11,13 @@
 <%= text_field 'edit', 'url', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'url' %>
 </div>
 
+<div class="row"> 
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div id="country_id">
+<%= table_select('edit', Country, 3, 1) %>
+</div>
+</div>
+
 
 <!--[eoform:newspaper]-->
 

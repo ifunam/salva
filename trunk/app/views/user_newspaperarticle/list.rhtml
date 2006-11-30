@@ -1,0 +1,9 @@
+<!--[list:user_newspaperarticle]-->
+<%= table_array(@collection, { :header => "Tesis", :columns => [ ['newspaperarticle_id', 'title', 'newsdate', 'newspaper_id'], 'ismainauthor' ] }) %>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:user_newspaperarticle]-->
+
