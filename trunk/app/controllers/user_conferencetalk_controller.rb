@@ -1,7 +1,7 @@
-class UserConferenceroleController < SalvaController
+class UserConferencetalkController < SalvaController
   def initialize
     super
-    @model = UserConferencerole
+    @model = UserConferencetalk
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

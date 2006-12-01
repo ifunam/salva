@@ -1,4 +1,3 @@
-INSERT INTO attendeetypes (name) VALUES ('Asistente');
 INSERT INTO attendeetypes (name) VALUES ('Ponente');
 INSERT INTO attendeetypes (name) VALUES ('Organizador');
 INSERT INTO attendeetypes (name) VALUES ('Instructor');

@@ -138,7 +138,7 @@ COMMENT ON TABLE talkacceptances IS
 
 CREATE TABLE conferencetalks (
     id SERIAL,
-    name text NOT NULL,
+    title text NOT NULL,
     authors text NOT NULL,
     abstract text NULL,
     conference_id integer NOT NULL
@@ -164,7 +164,7 @@ CREATE TABLE conferencetalks (
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (conference_id, name, authors),
+    UNIQUE (conference_id, title, authors),
     PRIMARY KEY (id)    
 );
 COMMENT ON TABLE conferencetalks IS
@@ -174,10 +174,15 @@ COMMENT ON COLUMN conferencetalks.authors IS
 	relación entre usuarios y ponencias es independiente de esta, ver 
 	userconferencerole.';
 
-CREATE TABLE user_conferenceroles (
+CREATE TABLE user_conferencetalks (
     id SERIAL,
-    userconference_id integer NOT NULL 
-	    REFERENCES userconferences(id)
+    user_id integer NOT NULL 
+	    REFERENCES users(id)
+	    ON UPDATE CASCADE
+	    ON DELETE CASCADE
+	    DEFERRABLE,
+    conferencetalk_id integer NULL
+	    REFERENCES conferencetalks(id)
 	    ON UPDATE CASCADE
 	    ON DELETE CASCADE
 	    DEFERRABLE,
@@ -185,11 +190,6 @@ CREATE TABLE user_conferenceroles (
             REFERENCES attendeetypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    conferencetalk_id integer NULL
-	    REFERENCES conferencetalks(id)
-	    ON UPDATE CASCADE
-	    ON DELETE CASCADE
-	    DEFERRABLE,
     comment text NULL,
     moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
@@ -198,12 +198,12 @@ CREATE TABLE user_conferenceroles (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (userconference_id, attendeetype_id, conferencetalk_id)
+    UNIQUE (user_id, attendeetype_id, conferencetalk_id)
 );
-COMMENT ON TABLE user_conferenceroles IS
+COMMENT ON TABLE user_conferencetalks IS
 	'Tipo de participación de un usuario en un congreso - Si sólamente 
 	fue como asistente, no requiere ningún registro en esta tabla.';
-COMMENT ON COLUMN user_conferenceroles.conferencetalk_id IS
+COMMENT ON COLUMN user_conferencetalks.conferencetalk_id IS
 	'Si el usuario fue ponente, indicará aquí el ID de su ponencia. Si es
 	organizador, este campo debe quedar nulo.';
 

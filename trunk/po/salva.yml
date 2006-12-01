@@ -331,5 +331,6 @@ newspaper_id: Periódico
 newsdate: Fecha
 newspaperarticle_id: Artículo periodístico
 newspaperarticle:  Artículos periodísticos
-user_newspaperarticle: Participación en artículos periodísticos
+user_newspaperarticle: Artículos periodísticos
 scientific_spreading: Divulgación
+user_conferencetalk: Trabajos presentados en congresos y seminarios
