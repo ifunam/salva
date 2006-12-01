@@ -1,0 +1,80 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:project]-->
+<div class="row"> 
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="responsible" class="label"><%= get_label('responsible') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'responsible', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'responsible', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="descr" class="label"><%= get_label('descr') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'descr', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="projecttype_id" class="label"><%= get_label('projecttype_id') %> <span class="required">*</span></label> 
+<div id="projecttype_id">
+<%= table_select('edit', Projecttype, 4, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="projectstatus_id" class="label"><%= get_label('projectstatus_id') %> <span class="required">*</span></label> 
+<div id="projectstatus_id">
+<%= table_select('edit', Projectstatus, 5, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('parentproject_id') %></label> 
+<div id="project_id">
+<%= table_select('edit', Project, 6) %>
+</div>
+<%= submit_for_stack('project') %>
+</div>
+
+<div class="row"> 
+<label for="abbrev" class="label"><%= get_label('abbrev') %></label> 
+<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 8, 'id' => 'abbrev' %>
+</div>
+
+<div class="row"> 
+<label for="abstract" class="label"><%= get_label('abstract')%></label> 
+<%= text_area 'edit', 'abstract', 'rows' => 4, 'cols' => 40, 'tabindex' => 7, 'id' => 'abstract' %>
+</div>
+
+<div class="row"> 
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 9, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
+<%= month_select('edit', 'startmonth', {:tabindex => 10, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 11}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
+<%= month_select('edit', 'endmonth', {:tabindex => 12, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="url" class="label"><%= get_label('url') %></label> 
+<%= text_field 'edit', 'url', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 13, 'id' => 'url' %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 14, 'id' => 'other' %></div>
+
+
+<!--[eoform:project]-->
+

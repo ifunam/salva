@@ -334,3 +334,11 @@ newspaperarticle:  Artículos periodísticos
 user_newspaperarticle: Artículos periodísticos
 scientific_spreading: Divulgación
 user_conferencetalk: Trabajos presentados en congresos y seminarios
+project: Proyectos
+project_id: Proyecto
+responsible: Responsable(s)
+projecttype_id: Tipo de proyecto
+projectstatus_id: Estado del proyecto
+parentproject_id: Proyecto padre
+user_project: Participación en proyectos
+roleinproject_id: Tipo de participación
