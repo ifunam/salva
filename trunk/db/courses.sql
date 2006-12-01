@@ -189,7 +189,8 @@ CREATE TABLE user_regularcourses (
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (user_id, regularcourse_id, period_id, roleinregularcourse_id)
 );
 
 

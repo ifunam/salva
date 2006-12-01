@@ -4,47 +4,48 @@
 
 -- Estas tablas dependen de la existencia de las de conferences.sql.
 
-CREATE TABLE projectstype (
+CREATE TABLE projecttypes (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE projectstype IS
+COMMENT ON TABLE projecttypes IS
 	'Tipos de proyectos';
--- Investigación, Apoyo, Infraestructura, Otro.
+-- Investigación, Docencia, Apoyo, Infraestructura, Otro.
 
-CREATE TABLE projectstatus (
+CREATE TABLE projectstatuses (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE projectstatus IS
+COMMENT ON TABLE projectstatuses IS
 	'Estado de los proyectos';
 -- En desarrollo, planeación, terminado,
 
 CREATE TABLE projects ( 
     id SERIAL,   
-    title   text NOT NULL,
-    description text NOT NULL,
-    projectstype_id integer NOT NULL
-	    REFERENCES projectstype(id)
+    name   text NOT NULL,
+    responsible text NOT NULL,
+    descr text NOT NULL,
+    projecttype_id integer NOT NULL
+	    REFERENCES projecttypes(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     projectstatus_id integer NOT NULL
-	    REFERENCES projectstatus(id)
+	    REFERENCES projectstatuses(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    parentproject_id integer NULL
+    project_id integer NULL
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    subject  text NULL,
-    summary  text NULL, 
+--    subject  text NULL,
+    abstract  text NULL, 
     abbrev   text NULL,
-    goals   text NULL, 
-    notes   text NULL,
+--    goals   text NULL, 
+--    notes   text NULL,
     startyear int4 NOT NULL,
     startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
     endyear int4  NULL,
@@ -56,22 +57,26 @@ CREATE TABLE projects (
                ON UPDATE CASCADE                -- data into or from this table.
                DEFERRABLE,
     PRIMARY KEY(id),
-    UNIQUE (title),
+    UNIQUE (name),
     CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
-CREATE INDEX projects_title_idx ON projects(title);
-CREATE INDEX projects_description_idx ON projects(description);
+CREATE INDEX projects_name_idx ON projects(name);
+CREATE INDEX projects_descr_idx ON projects(descr);
 COMMENT ON TABLE projects IS
 	'Datos generales de cada uno de los proyectos';
-COMMENT ON COLUMN projects.parentproject_id IS
+COMMENT ON COLUMN projects.project_id IS
 	'Para implementar sub-proyectos, relacionamos con un proyecto padre';
-COMMENT ON COLUMN projects.subject IS
-	'Temática, tema (no confundir con title)';
+COMMENT ON COLUMN projects.responsible IS
+	'Nombre del responsable del proyecto';
+--COMMENT ON COLUMN projects.subject IS
+--	'Temática, tema (no confundir con name)';
 COMMENT ON COLUMN projects.abbrev IS
 	'Acrónimo';
-COMMENT ON COLUMN projects.notes IS
-	'Logros y avances';
+--COMMENT ON COLUMN projects.notes IS
+--	'Logros y avances';
+COMMENT ON COLUMN projects.other IS
+	'Número de alumnos, grado, etc.';
 
 CREATE TABLE projectinstitutions (
     id SERIAL,
@@ -88,7 +93,7 @@ CREATE TABLE projectinstitutions (
     UNIQUE (project_id, institution_id)
 );
 COMMENT ON TABLE projectinstitutions IS
-	'Relación de cada proyecto con las instituciones relacionadas';
+	'Relación del proyecto con instituciones';
 
 CREATE TABLE projectresearchlines (
     id SERIAL,
@@ -105,7 +110,7 @@ CREATE TABLE projectresearchlines (
     UNIQUE (project_id, researchlines_id)
 );
 COMMENT ON TABLE projectresearchlines IS
-	'Relación de cada proyecto con las líneas de investigación';
+	'Relación del proyecto con las líneas de investigación';
 
 CREATE TABLE projectresearchareas (
     id SERIAL,
@@ -122,7 +127,7 @@ CREATE TABLE projectresearchareas (
     UNIQUE (project_id, researchareas_id)
 );
 COMMENT ON TABLE projectresearchareas IS
-	'Relación de cada proyecto con las líneas de investigación';
+	'Relación del proyecto con las áreas de investigación';
 
 CREATE TABLE filesprojects (
    id serial NOT NULL,
@@ -169,51 +174,39 @@ CREATE TABLE projectfinancingsource (
 COMMENT ON TABLE projectfinancingsource IS
 	'Fuentes de financiamiento (instituciones) de cada proyecto';
 
-CREATE TABLE roleinproject (
+CREATE TABLE roleinprojects (
 	id SERIAL,
 	name text NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
-COMMENT ON TABLE roleinproject IS
+COMMENT ON TABLE roleinprojects IS
 	'Roles en un proyecto';
 -- Responsable, corresponsable, participante, apoyo a la investigación (T.A.),
 -- becario; etc.
 
-CREATE TABLE userprojects (
+CREATE TABLE user_projects (
    id SERIAL,
-   projects_id integer NOT NULL 
+   project_id integer NOT NULL 
             REFERENCES projects(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_is_internal bool, 
-   externaluser_id integer 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   internaluser_id integer 
+   user_id integer 
              REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
    roleinproject_id integer NOT NULL 
-            REFERENCES roleinproject(id)
+            REFERENCES roleinprojects(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   PRIMARY KEY (id),
-   UNIQUE (projects_id, internaluser_id ),
-   UNIQUE (projects_id, externaluser_id ),
-   -- Sanity checks: If this is a full system user, require the user
-   -- to be filled in. Likewise for an external one.
-   CHECK (user_is_internal = 't' OR
-	(internaluser_id IS NOT NULL AND externaluser_id IS NULL)),
-   CHECK (user_is_internal = 'f' OR
-	(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
+   PRIMARY KEY (id)
+--   UNIQUE (projects_id, user_id ),
 );
-COMMENT ON TABLE userprojects IS
-	'Relación entre usuarios (internos/externos) y proyectos';
-COMMENT ON COLUMN userprojects.user_is_internal IS
-	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
-	si no, exigimos externaluser_id';
+COMMENT ON TABLE user_projects IS
+	'Relación entre usuarios y proyectos';
+-- COMMENT ON COLUMN user_projects.user_is_internal IS
+--	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
+--	si no, exigimos externaluser_id';
 
 CREATE TABLE projectsarticles (
 	id serial,
@@ -229,23 +222,23 @@ CREATE TABLE projectsarticles (
 	UNIQUE (project_id, article_id)
 );
 COMMENT ON TABLE projectsarticles IS
-	'Artículos relacionados con cada proyecto';
+	'Artículos relacionados con un proyecto';
 
-CREATE TABLE projectsthesis (
+CREATE TABLE projectstheses (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	thesis_id integer NOT NULL 
-	    REFERENCES thesis(id)
+	    REFERENCES theses(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	PRIMARY KEY (id),
 	UNIQUE (project_id, thesis_id)
 );
-COMMENT ON TABLE projectsthesis IS
-	'Artículos relacionados con cada proyecto';
+COMMENT ON TABLE projectstheses IS
+	'Tesis relacionados con un proyecto';
 
 CREATE TABLE projectsbooks (
 	id serial,
@@ -334,7 +327,7 @@ CREATE TABLE projectslog (
             ON UPDATE CASCADE
             DEFERRABLE,
     old_projectstatus_id integer  NOT NULL 
-	    REFERENCES projectstatus(id)
+	    REFERENCES projectstatuses(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     year int4 NOT NULL,
