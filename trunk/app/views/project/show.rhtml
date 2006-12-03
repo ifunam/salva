@@ -1,10 +1,22 @@
 <!--[show:project]-->
 <%= render :partial => "project/show" %>
-
- <%= render :partial =>"salva/moduser" %> 
+<%= render :partial =>"salva/moduser" %> 
 <div id="operations">
  <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
  <%= link_to get_label('back'), :action => 'list' %>
 </div>
+
+<hr/>
+<%= table_simple_list(@edit.projectinstitution, { :header => get_label('projectinstitution'), :columns => %w( project_id institution_id ), :controller => 'projectinstitution'}) %>
+<%= link_to 'Agregar', :action => 'new', :controller => 'projectinstitution', :id => @edit.id %>
+
+<hr/>
+<%= table_simple_list(@edit.projectfinancingsource, { :header => get_label('projectfinancingsource'), :columns => %w( project_id institution_id amount), :controller => 'projectfinancingsource'}) %>
+<%= link_to 'Agregar', :action => 'new', :controller =>
+'projectfinancingsource', :id => @edit.id %>
+
+<hr/>
+<%= table_simple_list(@edit.projectresearchline, { :header => get_label('researchline'), :columns => %w(researchline_id), :controller => 'projectresearchline'}) %>
+<%= link_to 'Agregar', :action => 'new', :controller => 'projectresearchline', :id => @edit.id %>
 <!--[eofshow:project]-->
 

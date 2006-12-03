@@ -3,7 +3,7 @@
 <%= link_to 'Editar', :action => 'edit', :id => @edit %> | <%= link_to 'Regresar', :action => 'list' %>
 <hr/>
 <b>Ediciones</b>
-<%= table_simple_list(Bookedition, { :conditions =>  ["book_id= ?", @edit.id],  
-                                     :header => "Ediciones", :columns => %w(year edition_id book_id) }) %>
+<%= table_simple_list(@edit.bookedition, { :conditions =>  ["book_id= ?", @edit.id],  
+                                     :header => "Ediciones", :columns => %w(year edition_id book_id), :controller => 'bookedition' }) %>
 <%= link_to 'Agregar edición', :action => 'new', :controller => 'bookedition', :id => @edit.id %>
 

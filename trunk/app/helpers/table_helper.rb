@@ -15,9 +15,8 @@ module TableHelper
            :locals => { :header => header, :list => list })
   end
 
-  def table_simple_list(model, options = {} )
-    collection = model.find(:all, :conditions => options[:conditions])
-    controller = options[:controller] ? options[:controller] : Inflector.singularize(Inflector.tableize(model))
+  def table_simple_list(collection, options = {} )
+    controller = options[:controller] 
     list = list_collection(collection, options[:columns])
     render(:partial => '/salva/simple_list', :locals => { :header => options[:header], :list => list, :controller => controller})
   end

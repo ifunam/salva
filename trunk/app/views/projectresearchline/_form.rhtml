@@ -1,0 +1,25 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectresearchline]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<div id="project_id">
+<%= table_select('edit', Project, 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="researchline_id" class="label"><%= get_label('researchline_id') %> <span class="required">*</span></label> 
+<div id="researchline_id">
+<%= table_select('edit', Researchline, 2, 1) %>
+</div>
+<%= submit_for_stack('researchline') %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'other' %></div>
+
+
+<!--[eoform:projectresearchline]-->
+

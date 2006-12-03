@@ -173,6 +173,7 @@ updating_current_skills: Actualización profesional
 user_course: Cursos recibidos
 user_conference: Asistencia a eventos académicos
 acadvisit: Estancias
+acadvisit_id: Estancia
 acadvisittype_id: Tipo de estancia
 place: Lugar
 goals: Objetivos
@@ -342,3 +343,5 @@ projectstatus_id: Estado del proyecto
 parentproject_id: Proyecto padre
 user_project: Participación en proyectos
 roleinproject_id: Tipo de participación
+projectinstitution: Instituciones relacionadas con el proyecto
+projectfinancingsource: Fuentes financieras del proyecto

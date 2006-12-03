@@ -1,0 +1,9 @@
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<%= start_form_tag ({:action => 'create'}, {'z:display' => "inline", 'z:options' => "{inline:blur}"}) %>
+  <%= render :partial => 'form' %>
+  <div id="operations">
+  <%= submit_tag get_label('save') %> | 
+  <%= link_to get_label('cancel'), :action => 'cancel' %>
+  </div>
+<%= end_form_tag %>
+

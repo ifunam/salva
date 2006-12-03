@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectarticle]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<div id="project_id">
+<%= table_select('edit', Project, 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="article_id" class="label"><%= get_label('article_id') %> <span class="required">*</span></label> 
+<div id="article_id">
+<%= table_select('edit', Article, 2, 1) %>
+</div>
+</div>
+
+
+<!--[eoform:projectarticle]-->
+
