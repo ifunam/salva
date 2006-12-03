@@ -56,6 +56,8 @@ CREATE TABLE projects (
                REFERENCES users(id)             -- inserted, update or delete  
                ON UPDATE CASCADE                -- data into or from this table.
                DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     UNIQUE (name),
     CONSTRAINT valid_duration CHECK (endyear IS NULL OR
@@ -101,13 +103,13 @@ CREATE TABLE projectresearchlines (
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    researchlines_id integer NOT NULL 
+    researchline_id integer NOT NULL 
 	    REFERENCES researchlines(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     other text NULL,
     PRIMARY KEY (id),
-    UNIQUE (project_id, researchlines_id)
+    UNIQUE (project_id, researchline_id)
 );
 COMMENT ON TABLE projectresearchlines IS
 	'Relación del proyecto con las líneas de investigación';
@@ -118,18 +120,18 @@ CREATE TABLE projectresearchareas (
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    researchareas_id integer NOT NULL 
+    researcharea_id integer NOT NULL 
 	    REFERENCES researchareas(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     other text NULL,
     PRIMARY KEY (id),
-    UNIQUE (project_id, researchareas_id)
+    UNIQUE (project_id, researcharea_id)
 );
 COMMENT ON TABLE projectresearchareas IS
 	'Relación del proyecto con las áreas de investigación';
 
-CREATE TABLE filesprojects (
+CREATE TABLE projectfiles (
    id serial NOT NULL,
    project_id int4 NOT NULL
             REFERENCES projects(id)
@@ -149,29 +151,27 @@ CREATE TABLE filesprojects (
     PRIMARY KEY (id),
     UNIQUE (project_id, filename)
 );
-COMMENT ON TABLE filesprojects IS
+COMMENT ON TABLE projectfiles IS
 	'Archivos relacionados a los proyectos';
-COMMENT ON COLUMN filesprojects.project_id IS
-	'ID del proyect referenciado';
-COMMENT ON COLUMN filesprojects.content IS
+COMMENT ON COLUMN projectfiles.content IS
 	'Contenido (binario) del archivo';
 
-CREATE TABLE projectfinancingsource (
+CREATE TABLE projectfinancingsources (
     id SERIAL,
     project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-    financingsource_id integer NOT NULL 
+    institution_id integer NOT NULL 
 	    REFERENCES institutions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
     amount integer NOT NULL,
     other text NULL,
     PRIMARY KEY (id),
-    UNIQUE (project_id, financingsource_id )
+    UNIQUE (project_id, institution_id )
 );
-COMMENT ON TABLE projectfinancingsource IS
+COMMENT ON TABLE projectfinancingsources IS
 	'Fuentes de financiamiento (instituciones) de cada proyecto';
 
 CREATE TABLE roleinprojects (
@@ -199,8 +199,14 @@ CREATE TABLE user_projects (
             REFERENCES roleinprojects(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   PRIMARY KEY (id)
---   UNIQUE (projects_id, user_id ),
+   moduser_id int4 NULL               	    -- Use it to known who
+   REFERENCES users(id)            -- has inserted, updated or deleted
+   ON UPDATE CASCADE               -- data into or  from this table.
+   DEFERRABLE,
+   created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (id),
+   UNIQUE (project_id, user_id, roleinproject_id)
 );
 COMMENT ON TABLE user_projects IS
 	'Relación entre usuarios y proyectos';
@@ -208,7 +214,7 @@ COMMENT ON TABLE user_projects IS
 --	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
 --	si no, exigimos externaluser_id';
 
-CREATE TABLE projectsarticles (
+CREATE TABLE projectarticles (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
@@ -221,10 +227,10 @@ CREATE TABLE projectsarticles (
 	PRIMARY KEY (id),
 	UNIQUE (project_id, article_id)
 );
-COMMENT ON TABLE projectsarticles IS
+COMMENT ON TABLE projectarticles IS
 	'Artículos relacionados con un proyecto';
 
-CREATE TABLE projectstheses (
+CREATE TABLE projecttheses (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
@@ -237,26 +243,26 @@ CREATE TABLE projectstheses (
 	PRIMARY KEY (id),
 	UNIQUE (project_id, thesis_id)
 );
-COMMENT ON TABLE projectstheses IS
+COMMENT ON TABLE projecttheses IS
 	'Tesis relacionados con un proyecto';
 
-CREATE TABLE projectsbooks (
+CREATE TABLE projectbooks (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	books_id integer NOT NULL 
+	book_id integer NOT NULL 
 	    REFERENCES books(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (project_id, books_id)
+	UNIQUE (project_id, book_id)
 );
-COMMENT ON TABLE projectsbooks IS
+COMMENT ON TABLE projectbooks IS
 	'Libros relacionados con cada proyecto';
 
-CREATE TABLE projectschapterinbooks (
+CREATE TABLE projectchapterinbooks (
 	id serial, 
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
@@ -269,55 +275,55 @@ CREATE TABLE projectschapterinbooks (
 	PRIMARY KEY (id),
 	UNIQUE (project_id, chapterinbook_id)
 );
-COMMENT ON TABLE projectschapterinbooks IS
+COMMENT ON TABLE projectchapterinbooks IS
 	'Capítulos en libro relacionados con cada proyecto';
 
-CREATE TABLE projectsconferencetalks (
+CREATE TABLE projectconferencetalks (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	conferencetalks_id integer NOT NULL 
+	conferencetalk_id integer NOT NULL 
 	    REFERENCES conferencetalks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (project_id, conferencetalks_id)
+	UNIQUE (project_id, conferencetalk_id)
 );
-COMMENT ON TABLE projectsconferencetalks IS
+COMMENT ON TABLE projectconferencetalks IS
 	'Ponencias en congreso relacionadas con cada proyecto';
 
-CREATE TABLE projectsacadvisits (
+CREATE TABLE projectacadvisits (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	acadvisits_id integer NOT NULL 
+	acadvisit_id integer NOT NULL 
 	    REFERENCES acadvisits(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (project_id, acadvisits_id)
+	UNIQUE (project_id, acadvisit_id)
 );
-COMMENT ON TABLE projectsacadvisits IS
+COMMENT ON TABLE projectacadvisits IS
 	'Estancias académicas relacionadas con cada proyecto';
 
-CREATE TABLE projectsgenericworks (
+CREATE TABLE projectgenericworks (
 	id serial,
 	project_id integer NOT NULL 
 	    REFERENCES projects(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-	genericworks_id integer NOT NULL 
+	genericwork_id integer NOT NULL 
 	    REFERENCES genericworks(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE (project_id, genericworks_id)
+	UNIQUE (project_id, genericwork_id)
 );
-COMMENT ON TABLE projectsgenericworks IS
+COMMENT ON TABLE projectgenericworks IS
 	'Trabajos genéricos relacionados con cada proyecto';
 
 CREATE TABLE projectslog (
