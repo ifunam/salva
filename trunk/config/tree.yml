@@ -25,6 +25,7 @@
   - user_settings
   - - change_password
     - user_setting
+- user_project
 - user_researchline
 - publications
 - - books

@@ -81,8 +81,8 @@ class Tree
    end
    
    def left_node
-     if self.parent 
-       return self.parent.children[index_for_node - 1] if self.parent.children.size > 1 and index_for_node != 0
+     if self.has_parent? 
+       return self.parent.children[index_for_node - 1] if self.parent.children.size > 1  and index_for_node != 0
      end
    end
    
@@ -92,14 +92,17 @@ class Tree
    end
    
    def right_node
-     if self.parent
+     if self.has_parent?
        return self.parent.children[index_for_node + 1] if self.parent.children.last.data != self.data and self.parent.children.size > 1
      end
    end
    
-   def index_for_node
-     return 0 unless self.parent
-     self.parent.children.collect { |child | child.data }.index(self.data) 
+   def index_for_node(data=self.data)
+     if self.has_parent?
+       self.parent.children_data.index(data)
+     else
+       self.children_data.index(data)
+     end
    end
  end
    

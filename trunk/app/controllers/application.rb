@@ -5,15 +5,21 @@
 
 require 'auth_user'
 require 'rbac'
+require 'navigator_tree'
 class ApplicationController < ActionController::Base
   include AuthUser
   include Rbac
+  include NavigatorTree
   before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
   before_filter :change_userid
   before_filter :set_user_id
+
+  
+
   #  before_filter :rbac_required   
+
   
   helper :salva, :table, :user, :navigator, :date, :select, :checkbox, \
   :paginator, :quickpost

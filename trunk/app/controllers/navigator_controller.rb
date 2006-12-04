@@ -15,6 +15,10 @@ class NavigatorController < ApplicationController
   def navtab
     item = params[:item] if params[:item]
     tree = get_tree
+    if params[:parent] != nil 
+      tree = (tree.has_parent?) ? tree.parent : tree.root
+    end
+
     if item !=nil and tree.children[item.to_i] then
       tree = tree.children[item.to_i]
       @session[:navtree] = tree
