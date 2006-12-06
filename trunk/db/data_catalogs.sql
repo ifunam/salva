@@ -51,7 +51,8 @@
 \i catalogs/acadvisittypes.sql
 \i catalogs/courses.sql
 \i catalogs/modalities.sql
-\i catalogs/attendeetypes.sql
+\i catalogs/roleinconferences.sql
+\i catalogs/roleinconferencetalks.sql
 \i catalogs/prizetypes.sql
 \i catalogs/conferences.sql
 \i catalogs/genericworkgroups.sql

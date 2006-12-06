@@ -1,18 +1,6 @@
 ----------------------------------------
 -- Conferences Information            --
 ----------------------------------------
-CREATE TABLE attendeetypes ( 
-        id SERIAL,
-        name text NOT NULL, 
-        PRIMARY KEY(id),
-	UNIQUE (name)
-);
-COMMENT ON TABLE attendeetypes IS
-	'Rol de un usuario en un congreso:
-	Asistente, ponente, organizador, instructor, coordinador general, 
-	coordinador de mesa, comité académico, comité técnico, moderador de mesa,
-	relator de mesa, relator general, ...';
-
 CREATE TABLE conferencetypes ( 
         id SERIAL,
         name text NOT NULL,
@@ -63,6 +51,7 @@ CREATE TABLE conferences (
                          ON UPDATE CASCADE
                          DEFERRABLE,
     location text NULL,
+    istechnical BOOLEAN NOT NULL default 'f',
     moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
@@ -101,6 +90,13 @@ CREATE TABLE conference_institutions (
 COMMENT ON TABLE conference_institutions IS
 	'Instituciones que organizan este congreso';
 
+CREATE TABLE roleinconferences ( 
+        id SERIAL,
+        name text NOT NULL, 
+        PRIMARY KEY(id),
+	UNIQUE (name)
+);
+
 CREATE TABLE userconferences ( 
     id SERIAL,
     conference_id int4 NOT NULL 
@@ -113,6 +109,10 @@ CREATE TABLE userconferences (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
+    roleinconference_id int4 NOT NULL 
+            REFERENCES roleinconferences(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
     moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
@@ -123,8 +123,7 @@ CREATE TABLE userconferences (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE userconferences IS
-	'Usuarios que asistieron a un congreso (su rol aparece en 
-	userconferencerole)';
+	'Usuarios que asistieron a un congreso (su rol aparece en roleinconferences)';
 
 CREATE TABLE talkacceptances (
        id SERIAL,
@@ -174,6 +173,17 @@ COMMENT ON COLUMN conferencetalks.authors IS
 	relación entre usuarios y ponencias es independiente de esta, ver 
 	userconferencerole.';
 
+CREATE TABLE roleinconferencetalks ( 
+        id SERIAL,
+        name text NOT NULL, 
+        PRIMARY KEY(id),
+	UNIQUE (name)
+);
+COMMENT ON TABLE roleinconferencetalks IS
+	'Rol de un usuario en un congreso: Ponente, instructor c
+	Asistente, ponente, instructor, coordinador de mesa, moderador de mesa, elator de mesa, relator general, ...';
+
+
 CREATE TABLE user_conferencetalks (
     id SERIAL,
     user_id integer NOT NULL 
@@ -186,8 +196,8 @@ CREATE TABLE user_conferencetalks (
 	    ON UPDATE CASCADE
 	    ON DELETE CASCADE
 	    DEFERRABLE,
-    attendeetype_id int4 NOT NULL 
-            REFERENCES attendeetypes(id)
+    roleinconferencetalk_id int4 NOT NULL 
+            REFERENCES roleinconferencetalks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
     comment text NULL,
@@ -198,7 +208,7 @@ CREATE TABLE user_conferencetalks (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (user_id, attendeetype_id, conferencetalk_id)
+    UNIQUE (user_id, roleinconferencetalk_id, conferencetalk_id)
 );
 COMMENT ON TABLE user_conferencetalks IS
 	'Tipo de participación de un usuario en un congreso - Si sólamente 
