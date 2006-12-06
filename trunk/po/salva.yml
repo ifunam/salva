@@ -343,5 +343,7 @@ projectstatus_id: Estado del proyecto
 parentproject_id: Proyecto padre
 user_project: Participación en proyectos
 roleinproject_id: Tipo de participación
-projectinstitution: Instituciones relacionadas con el proyecto
-projectfinancingsource: Fuentes financieras del proyecto
+projectinstitution: Instituciones participantes
+projectfinancingsource: Fuentes de financiamiento 
+bookedition: Ediciones
+projectresearchline: Líneas de investigación

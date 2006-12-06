@@ -7,6 +7,8 @@ class ProjectController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-#    @sequence = [ Project, [ Projectinstitution, Projectfinancingsource], [Projectsarticle, Projectsbook], Projectsacadvisit ]
+    @children = { 'projectinstitution' => %w( project_id institution_id ),
+                  'projectfinancingsource' => %w( project_id institution_id amount), 
+                  'projectresearchline' => %w(researchline_id) }
   end
 end

@@ -66,9 +66,15 @@ class SalvaController < ApplicationController
     set_userid
     set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
     if @edit.save
-      flash[:notice] = @create_msg
-      set_stack_handler_id(@edit.id) if has_model_in_stack?
-      redirect_to_controller(*get_options_to_redirect.to_a)
+      if @parent != nil
+        redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
+      elsif @children != nil
+        redirect_to :action => 'show', :id => @edit.id 
+      else
+        flash[:notice] = @create_msg
+        set_stack_handler_id(@edit.id) if has_model_in_stack?
+        redirect_to_controller(*get_options_to_redirect.to_a)
+      end
     else
       flash[:notice] = 'Hay errores al guardar esta información'
       render :action => 'new'

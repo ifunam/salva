@@ -4,15 +4,8 @@ class BookeditionController < SalvaController
   def initialize
     super
     @model = Bookedition
-#    @sequence = [ Book, Bookedition ]
+    @parent = 'book'
+    @children = { 'chapterinbook' => %w(title pages) }
   end
   
-  def per_pages
-    10
-  end
-  
-  def order_by
-#    'title DESC'
-  end
-
 end

@@ -143,7 +143,7 @@ CREATE TABLE bookeditions ( --
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id, editionstatus_id)
+    UNIQUE (book_id, edition_id)
 );
 COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
@@ -228,7 +228,7 @@ CREATE table chapterinbooks (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (bookedition_id, bookchaptertype_id)
+   UNIQUE (bookedition_id, bookchaptertype_id, title)
 );
 CREATE INDEX chapterinbooks_title_idx ON chapterinbooks(title);
 COMMENT ON TABLE chapterinbooks IS	

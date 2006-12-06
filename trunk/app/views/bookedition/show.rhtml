@@ -5,8 +5,8 @@
  <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
  <%= link_to get_label('back'), :action => 'list' %>
 </div>
-<hr/>
-<%= table_simple_list(@edit.chapterinbook, {:conditions => ["bookedition_id = ?", @edit.id], :header => "Capítulos", :columns=> %w(title pages), :controller => 'chapterinbook' }) %>
-<%= link_to 'Agregar capítulo', :action => 'new', :controller => 'chapterinbook', :id => @edit.id %>
+
+<%= children_list(@edit, @children) if @children != nil %>
+
 <!--[eofshow:bookedition]-->
 
