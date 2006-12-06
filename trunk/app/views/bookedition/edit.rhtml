@@ -3,7 +3,7 @@
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('update') %> | 
-  <%= link_to get_label('cancel'), :action => 'list' %>
+  <%= link_to get_label('cancel'), :action => 'cancel', :id => @edit.id %>
   </div>
 <%= end_form_tag %>
 

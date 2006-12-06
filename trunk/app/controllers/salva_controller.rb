@@ -66,9 +66,9 @@ class SalvaController < ApplicationController
     set_userid
     set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
     if @edit.save
-      if @parent != nil
+      if @parent != nil and !has_model_in_stack? 
         redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
-      elsif @children != nil
+      elsif @children != nil and !has_model_in_stack? 
         redirect_to :action => 'show', :id => @edit.id 
       else
         flash[:notice] = @create_msg
@@ -86,7 +86,7 @@ class SalvaController < ApplicationController
     set_userid
     set_model_into_stack(@edit, 'edit', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
     if @edit.update_attributes(params[:edit])
-      if @parent != nil
+      if @parent != nil 
         redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
       elsif @children != nil
         redirect_to :action => 'show', :id => @edit.id 
@@ -139,6 +139,7 @@ class SalvaController < ApplicationController
   end
 
   def cancel
+    @edit = @model.find(params[:id]) if @params[:id] != nil
     redirect_to_controller(*get_options_to_redirect.to_a)
   end
 
@@ -168,10 +169,12 @@ class SalvaController < ApplicationController
     }
   end
 
-  def get_options_to_redirect
+  def get_options_to_redirect   
     options = [ controller_name, 'list']
-    if session[:stack] 
-      options = get_controller_options_from_stack unless session[:stack].empty?
+    if session[:stack] and !session[:stack].empty?
+      options = get_controller_options_from_stack
+    elsif @parent != nil
+      options = [ @parent, 'show', @edit.send(@parent) ]
     end
     options
   end

@@ -143,7 +143,7 @@ CREATE TABLE bookeditions ( --
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id)
+    UNIQUE (book_id, edition_id, mediatype_id) -- Un medio distinto es otra edición
 );
 COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 
