@@ -213,8 +213,8 @@ prize: Premio
 prize_id: Premio
 prizetype_id: Tipo de premio
 user_prize: Premios
-attendeetype: Roles en congresos
-attendeetype_id: Rol
+roleinconferencetalk: Roles en congresos
+roleinconferencetalk_id: Rol
 conferencetype: Tipo de evento académico
 conferencetype_id: Tipo
 conferencescope: Ámbito
@@ -334,7 +334,7 @@ newspaperarticle_id: Artículo periodístico
 newspaperarticle:  Artículos periodísticos
 user_newspaperarticle: Artículos periodísticos
 scientific_spreading: Divulgación
-user_conferencetalk: Trabajos presentados en congresos y seminarios
+user_conferencetalk: Trabajos presentados en congresos y conferencias de divulgación
 project: Proyectos
 project_id: Proyecto
 responsible: Responsable(s)
