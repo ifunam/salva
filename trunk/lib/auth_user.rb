@@ -1,6 +1,8 @@
 require 'digest'
+require 'ssh'
 module AuthUser
   include Digest
+  include Ssh
   # To require logins, use:
   #
   #   before_filter :login_required                            # restrict all actions
@@ -24,6 +26,13 @@ module AuthUser
   def auth?(login,passwd)
     if user_exists?(login)
       return true if check_db_passwd?(login,passwd)
+    end
+    return false
+  end
+
+  def ssh_auth?(login,passwd)
+    if user_exists?(login)
+      return true if check_ssh_auth?(login,passwd)
     end
     return false
   end
@@ -68,6 +77,12 @@ module AuthUser
   def check_db_passwd?(login, passwd)
     user = User.find(:first, :conditions => [ 'login = ?', login])
     return true if user.passwd == encrypt(passwd, user.salt) and user.userstatus_id == 2
+    return false
+  end
+
+  # Authenticates a user by login and password against a ssh server
+  def check_ssh_auth?(login, passwd)
+    return true if ssh_auth('fenix.fisica.unam.mx', login, passwd)
     return false
   end
 end

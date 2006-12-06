@@ -1,12 +1,12 @@
-$:.unshift "/usr/local/lib/ruby/gems/1.8/gems/net-ssh-1.0.9/lib"
-$:.unshift "/usr/local/lib/ruby/gems/1.8/gems/needle-1.3.0/lib"
+# $:.unshift "/usr/local/lib/ruby/gems/1.8/gems/net-ssh-1.0.10/lib"
+# $:.unshift "/usr/local/lib/ruby/gems/1.8/gems/needle-1.3.0/lib"
 require 'net/ssh'
-
-def ssh_session(host,user,passwd)
+module Ssh
+  def ssh_auth(host,user,passwd)
     begin
-      if Net::SSH.start(host, user, passwd)
-        return true
-      end
+      return true if Net::SSH::Session.new(host, user, passwd)
     rescue StandardError => bang
+      return false
     end
+  end
 end

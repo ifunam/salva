@@ -55,9 +55,9 @@ module SelectHelper
   
   def select_adscription(object, model, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
-    institution_id = get_myinstitution_id 
-    if institution_id != nil
-      list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', institution_id]))
+    institution = get_myinstitution
+    if institution.id != nil
+      list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', institution.id]))
     else
       list = list_from_collection(model.find(:all, :order => 'name DESC'))
     end
