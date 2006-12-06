@@ -27,6 +27,8 @@
     - user_setting
 - user_project
 - user_researchline
+- conferences_and_seminaries
+- - user_technicalconferencetalk
 - publications
 - - books
   - - bookedition_roleinbook

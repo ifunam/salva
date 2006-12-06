@@ -1,0 +1,25 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_conferencetalk]-->
+<div class="row"> 
+<label for="conferencetalk_id" class="label"><%= get_label('conferencetalk_id') %></label> 
+<div id="conferencetalk_id">
+<%= select_as_tree('edit', Conferencetalk, %w(title talktype_id), 1, 1, {:conditions => "conferences.istechnical = 't' AND conferences.conferencetype_id = 1 AND conferencetalks.conference_id = conferences.id", :include => [:conference] }) %>
+</div>
+<%= submit_for_stack('technicalconferencetalk,conferencetalk_id') %>
+</div>
+
+<div class="row"> 
+<label for="roleinconferencetalk_id" class="label"><%= get_label('roleinconferencetalk_id') %> <span class="required">*</span></label> 
+<div id="roleinconferencetalk_id">
+<%= table_select('edit', Roleinconferencetalk, 2, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="comment" class="label"><%= get_label('comment') %></label> 
+<%= text_area 'edit', 'comment', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'comment' %></div>
+
+
+<!--[eoform:user_conferencetalk]-->
+

@@ -223,8 +223,10 @@ talktype: Tipos de ponencia
 talktype_id: Tipo de ponencia
 conference: Evento académico
 conference_id: Evento académico
-conferencetalk: Ponencias en congreso
+conferencetalk: Ponencias en congresos de divulgación
 conferencetalk_id: Ponencia en congreso
+technicalconferencetalk: Ponencias en congresos
+technicalconferencetalk_id: Ponencia en congreso
 talkacceptance_id: Tipo de inscripción
 abstract: Resumen
 conference_institution: Instituciones que organizan el congreso
@@ -348,4 +350,6 @@ projectfinancingsource: Fuentes de financiamiento
 bookedition: Ediciones
 projectresearchline: Líneas de investigación
 user_specialcourse: Cursos especiales
-
+technicalconference: Congresos
+user_technicalconferencetalk: Trabajos en congresos
+conferences_and_seminaries: Trabajos en congresos y seminarios
