@@ -1,7 +1,4 @@
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reportes técnicos públicos', 1);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Artículos In extenso', 1);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Artículos o ensayos en revistas', 1);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Divulgación de la ciencia', 1);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Nota de investigación', 1);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reseña', 1);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Colecciones infantiles', 2);

@@ -59,9 +59,9 @@ CREATE TABLE projects (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
-    UNIQUE (name),
-    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+    UNIQUE (name)
+--    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+--	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 CREATE INDEX projects_name_idx ON projects(name);
 CREATE INDEX projects_descr_idx ON projects(descr);

@@ -28,22 +28,6 @@ COMMENT ON TABLE booktypes IS
 	'Tipo de libro:
 	 Único, serie, colección, libro arbitrado, etc.';
 
-CREATE TABLE volumes (
-	id serial,
-	name text NOT NULL,
-	moduser_id int4  NULL    	     -- Use it only to know who has
-    	    REFERENCES users(id)             -- inserted, updated or deleted  
-	    ON UPDATE CASCADE                -- data into or from this table.
-	    DEFERRABLE,
-	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY(id),
-	UNIQUE(name)
-);
-COMMENT ON TABLE volumes IS
-	'Volúmenes (normalmente numerados) de libros:
-	I, II, III, ...';
-
 CREATE TABLE books ( 
     id SERIAL,
     title   text NOT NULL,
@@ -143,7 +127,7 @@ CREATE TABLE bookeditions ( --
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id, mediatype_id) -- Un medio distinto es otra edición
+    UNIQUE (book_id, edition_id)
 );
 COMMENT ON TABLE bookeditions IS
 	'Historial de las ediciones de un libro - En qué edición va? Cuándo 

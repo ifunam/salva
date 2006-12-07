@@ -130,6 +130,23 @@ CREATE TABLE periods (
 	UNIQUE (name,startdate,enddate)
 );
 
+CREATE TABLE volumes (
+	id serial,
+	name text NOT NULL,
+	moduser_id int4  NULL    	     -- Use it only to know who has
+    	    REFERENCES users(id)             -- inserted, updated or deleted  
+	    ON UPDATE CASCADE                -- data into or from this table.
+	    DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
+COMMENT ON TABLE volumes IS
+	'Volúmenes (normalmente numerados) de libros:
+	I, II, III, ...';
+
+
 CREATE TABLE menus (
 	id SERIAL,
 	label text NOT NULL,
