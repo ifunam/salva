@@ -5,6 +5,7 @@ class BookeditionController < SalvaController
     super
     @model = Bookedition
     @parent = 'book'
+    @per_pages = 10
     @children = { 'chapterinbook' => %w(title pages) }
   end
   

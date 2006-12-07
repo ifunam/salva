@@ -358,3 +358,9 @@ seminary: Seminarios y conferencias
 roleinseminary_id: Rol
 seminary_id: Seminario o conferencia
 user_seminary: Seminarios y conferencias
+activitygroup_id: Grupo de actividad
+activitytype: Tipos de actividad
+activitytype_id: Tipo de actividad
+activity: Actividades
+user_activity: Actividades
+activity_id: Actividad

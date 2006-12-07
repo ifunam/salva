@@ -5,6 +5,12 @@ CREATE TABLE activitygroups (
 	id serial,
 	name text NOT NULL,
 	PRIMARY KEY (id),
+	moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE (name)
 );
 COMMENT ON TABLE activitygroups IS
@@ -31,6 +37,8 @@ CREATE TABLE activitytypes (
 	    REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name),
 	UNIQUE (abbrev)
@@ -90,7 +98,7 @@ COMMENT ON TABLE activitytypes IS
 	?
 	...';
 
-CREATE TABLE activities( 
+CREATE TABLE activities ( 
     id SERIAL,
     user_id int4 NOT NULL            -- Use it only to know who has
             REFERENCES users(id) -- inserted, updated or deleted  
@@ -100,14 +108,20 @@ CREATE TABLE activities(
             REFERENCES activitytypes(id)
             ON UPDATE CASCADE 
             DEFERRABLE,
-    title   text NOT NULL,
+    name   text NOT NULL,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE activities IS
 	'Otras actividades académicas en las que participan los usuarios';
 
-CREATE TABLE activitiesinstitutions (
-   activities_id int4 NOT NULL 
+CREATE TABLE activityinstitutions (
+   activity_id int4 NOT NULL 
             REFERENCES activities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -115,12 +129,12 @@ CREATE TABLE activitiesinstitutions (
 	    REFERENCES institutions(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-   PRIMARY KEY (activities_id, institution_id)
+   PRIMARY KEY (activity_id, institution_id)
 );
-COMMENT ON TABLE activitiesinstitutions IS
+COMMENT ON TABLE activityinstitutions IS
 	'Instituciones que participen en otras actividades académicas';
 
-CREATE TABLE useractivities (
+CREATE TABLE user_activities (
    id SERIAL,
    user_id int4 NOT NULL 
             REFERENCES users(id)            
@@ -130,7 +144,7 @@ CREATE TABLE useractivities (
             REFERENCES userroles(id)
             ON UPDATE CASCADE
             DEFERRABLE,  
-   activities_id int4 NOT NULL 
+   activity_id int4 NOT NULL 
             REFERENCES activities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -138,11 +152,15 @@ CREATE TABLE useractivities (
     startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
     endyear int4  NULL,
     endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
-    other text  NULL,  
-    PRIMARY KEY (id),
-    CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+    other text  NULL,
+    moduser_id int4 NULL               	    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
-COMMENT ON TABLE useractivities IS
+COMMENT ON TABLE user_activities IS
 	'Relación entre usuarios y las actividades académicas, las fechas de inicio y de termino 
 	 corresponden al período de la participación del usuario en la actividad';

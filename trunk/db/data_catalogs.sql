@@ -68,3 +68,4 @@
 \i catalogs/roleinregularcourses.sql
 \i catalogs/newspapers.sql
 \i catalogs/projects.sql
+\i catalogs/activities.sql
