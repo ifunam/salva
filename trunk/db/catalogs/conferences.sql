@@ -1,5 +1,4 @@
 INSERT INTO conferencetypes (name) VALUES ('Congreso');
-INSERT INTO conferencetypes (name) VALUES ('Seminario');
 INSERT INTO conferencetypes (name) VALUES ('Coloquio');
 INSERT INTO conferencetypes (name) VALUES ('Encuentro');
 INSERT INTO conferencetypes (name) VALUES ('Homenaje');

@@ -107,3 +107,5 @@ INSERT INTO roleinjobpositions (name) VALUES ('Primero Oficial de Máquinas');
 INSERT INTO roleinjobpositions (name) VALUES ('Segundo Oficial de Cubierta');
 INSERT INTO roleinjobpositions (name) VALUES ('Segundo Oficial de Máquinas');
 INSERT INTO roleinjobpositions (name) VALUES ('Supervisor de Escuelas Incorporadas');
+INSERT INTO roleinjobpositions (name) VALUES ('Investigador emérito');
+INSERT INTO roleinjobpositions (name) VALUES ('Investigador posdoctoral');

@@ -9,7 +9,7 @@ INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('A',1);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('B',1);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('C',1);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('D',1);
-INSERT INTO stimuluslevels (name, stimulustype_id) VALUES (0,2);
+INSERT INTO stimuluslevels (name, stimulustype_id) VALUES (0,2); -- Pride de castigo
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('A',2);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('B',2);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('C',2);
@@ -22,5 +22,6 @@ INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Emérito',3);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estudios de posgrado',4);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia sabática',4);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia de investigación',4);
+INSERT INTO stimuluslevels (name, stimulustype_id) VALUES (2,2); -- Pride para emeritos
 
  

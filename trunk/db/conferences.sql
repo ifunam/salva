@@ -46,7 +46,7 @@ CREATE TABLE conferences (
                          REFERENCES countries(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,
-    conferencescope_id smallint NOT NULL 
+    conferencescope_id smallint NULL 
                          REFERENCES conferencescopes(id)
                          ON UPDATE CASCADE
                          DEFERRABLE,

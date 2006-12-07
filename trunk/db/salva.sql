@@ -14,6 +14,7 @@
 \i articles.sql
 \i researcharea.sql 
 \i conferences.sql
+\i seminaries.sql
 \i books.sql  
 \i acadvisits.sql 
 \i thesis.sql 

@@ -34,6 +34,8 @@ INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, job
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('1', '3', '30', 'I-9484');
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('1', '3', '34', 'I-9585');
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('1', '3', '38', 'I-9689');
+INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, administrative_key) VALUES ('1', 110, '');
+INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, administrative_key) VALUES ('1', 111, '');
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('2', '4', '19', 'D-4100');
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('2', '4', '22', 'D-4200');
 INSERT INTO jobpositioncategories (jobpositiontype_id, roleinjobposition_id, jobpositionlevel_id, administrative_key) VALUES ('2', '5', '19', 'D-1200');
