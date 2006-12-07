@@ -366,6 +366,8 @@ user_activity: Actividades
 activity_id: Actividad
 thesis_committee: Comités tutorales
 roleinconference_id: Rol
-userconference_committee: Particpación en comités de eventos académicos
+userconference_committee: Participación en comités de eventos académicos
 inproceeding_unrefereed: Trabajos presentados en memorias in extenso
 techreport: Reporte técnico
+other_activities_or_products: Otras actividades o productos
+userconference_committee: Participación en comités de congresos.
