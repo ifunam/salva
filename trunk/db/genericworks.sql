@@ -53,8 +53,9 @@ COMMENT ON TABLE genericworktypes IS
 	Colecciones (infantiles, impresos)
 	....
 
-	Publicaciones internas:
-	Reportes técnicos internos
+	Publicaciones:
+	Reportes técnicos
+	Reporte interno
 	Gaceta
 	...
 

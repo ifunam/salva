@@ -35,6 +35,7 @@
 <div id="volume_id">
 <%= table_select('edit', Volume, 6) %>
 </div>
+<%= submit_for_stack('volume') %>
 </div>
 
 <div class="row"> 
@@ -42,6 +43,7 @@
 <div id="orig_language_id">
 <%= table_select('edit', Language, 7, 1, 'orig') %>
 </div>
+<%= submit_for_stack('language,orig_language_id') %>
 </div>
 
 <div class="row"> 
@@ -49,6 +51,7 @@
 <div id="trans_language_id">
 <%= table_select('edit', Language, 8, 1, 'trans') %>
 </div>
+<%= submit_for_stack('language,trans_language_id') %>
 </div>
 
 
