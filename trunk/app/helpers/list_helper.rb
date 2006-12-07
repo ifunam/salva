@@ -224,6 +224,8 @@ module ListHelper
       condition ? 'Con privilegios de grupo' : 'Sin privilegios'
     when /ismainauthor/
       condition ? 'Autor principal' : 'Coautor'
+    when /isseminary/
+      condition ? 'Seminario' : 'Conferencia'
     else
       condition ? 'Sí' : 'No'
     end

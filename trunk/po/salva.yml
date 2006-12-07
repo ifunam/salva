@@ -205,7 +205,7 @@ modality_id: Modalidad
 courses_id: Curso
 month: Mes
 acadprogram: Programa académico
-location: Locación
+location: Lugar
 coursegroup_id: Grupo
 roleincourse_id: Rol en curso
 course_id: Curso
@@ -352,4 +352,9 @@ projectresearchline: Líneas de investigación
 user_specialcourse: Cursos especiales
 technicalconference: Congresos
 user_technicalconferencetalk: Trabajos en congresos
-conferences_and_seminaries: Trabajos en congresos y seminarios
+conferences_and_seminaries: Trabajos en congresos, seminarios y conferencias
+isseminary: Tipo
+seminary: Seminarios y conferencias
+roleinseminary_id: Rol
+seminary_id: Seminario o conferencia
+user_seminary: Seminarios y conferencias

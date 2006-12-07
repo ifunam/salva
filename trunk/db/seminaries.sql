@@ -1,6 +1,7 @@
 CREATE TABLE seminaries ( 
     id SERIAL,
     title text NOT NULL,
+    isseminary BOOLEAN NOT NULL default 't',
     url text NULL,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
     year  int4 NOT NULL,
@@ -10,7 +11,6 @@ CREATE TABLE seminaries (
             ON DELETE CASCADE   
             DEFERRABLE,
     location text NULL,
-    isseminary BOOLEAN NOT NULL default 't',
     moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.

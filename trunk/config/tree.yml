@@ -29,6 +29,7 @@
 - user_researchline
 - conferences_and_seminaries
 - - user_technicalconferencetalk
+  - user_seminary
 - publications
 - - books
   - - bookedition_roleinbook
