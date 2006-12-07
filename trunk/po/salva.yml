@@ -365,3 +365,5 @@ activity: Actividades
 user_activity: Actividades
 activity_id: Actividad
 thesis_committee: Comités tutorales
+roleinconference_id: Rol
+userconference_committee: Particpación en comités de eventos académicos

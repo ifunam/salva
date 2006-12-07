@@ -119,11 +119,11 @@ CREATE TABLE userconferences (
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (user_id, conference_id),
+    UNIQUE (user_id, conference_id, roleinconference_id),
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE userconferences IS
-	'Usuarios que asistieron a un congreso (su rol aparece en roleinconferences)';
+	'Usuarios que participaron en un congreso como asistentes, organizadores, comites, etc (los roles en las ponencias estan user_conferencetalks)';
 
 CREATE TABLE talkacceptances (
        id SERIAL,

@@ -1,4 +1,4 @@
-class UserconferenceController < SalvaController
+class UserconferenceCommitteeController < SalvaController
   def initialize
     super
     @model = Userconference
@@ -7,6 +7,6 @@ class UserconferenceController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :include => [:roleinconference], :conditions => "roleinconferences.name = 'Asistente'  AND userconferences.roleinconference_id = roleinconferences.id"}
+    @list = { :include => [:roleinconference], :conditions => "roleinconferences.name != 'Asistente'  AND userconferences.roleinconference_id = roleinconferences.id"}
   end
 end
