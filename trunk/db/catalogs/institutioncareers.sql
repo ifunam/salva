@@ -110,18 +110,3 @@ INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,67);
 INSERT INTO institutioncareers (institution_id,career_id) VALUES (10,68);
 INSERT INTO institutioncareers (institution_id,career_id) VALUES (13,69);
 INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,70);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,106);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,107);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,108);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,109);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,110);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,111);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,112);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,113);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,143);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,144);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,145);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,146);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,147);
-INSERT INTO institutioncareers (institution_id,career_id) VALUES (15,148);
-
