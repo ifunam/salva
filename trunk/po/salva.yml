@@ -310,7 +310,7 @@ thesis_id: Tesis
 thesisstatus_id: Estado de la tesis
 thesismodality_id: Modalidad de la tesis
 roleinthesis_id: Rol en tesis
-user_thesis: Asesoría de tesis
+user_thesis: Dirección o asesoría de tesis
 student_thesis: Autoría de tesis
 human_resources_formation_and_teaching: Formación de recursos humanos y docencia 
 human_resources_formation: Formación de recursos humanos  
@@ -364,3 +364,4 @@ activitytype_id: Tipo de actividad
 activity: Actividades
 user_activity: Actividades
 activity_id: Actividad
+thesis_committee: Comités tutorales

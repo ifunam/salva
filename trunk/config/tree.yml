@@ -52,6 +52,7 @@
 - - human_resources_formation
   - - user_thesis
     - thesis_juror
+    - thesis_committee
   - teaching
   - - user_regularcourse
   - - user_specialcourse
