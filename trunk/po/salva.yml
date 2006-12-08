@@ -288,6 +288,7 @@ inproceeding: Artículos en memorias arbitradas
 userrole_id: Rol
 genericwork: Trabajos generales
 genericwork_id: Trabajo general
+user_genericwork: Otros productos
 techreports: Reportes técnicos
 user_techreport: Reportes técnicos 
 user_techreport_internal: Reportes internos
@@ -361,8 +362,7 @@ user_seminary: Seminarios y conferencias
 activitygroup_id: Grupo de actividad
 activitytype: Tipos de actividad
 activitytype_id: Tipo de actividad
-activity: Actividades
-user_activity: Actividades
+activity: Otras actividades
 activity_id: Actividad
 thesis_committee: Comités tutorales
 roleinconference_id: Rol

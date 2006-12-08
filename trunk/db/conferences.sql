@@ -51,7 +51,7 @@ CREATE TABLE conferences (
                          ON UPDATE CASCADE
                          DEFERRABLE,
     location text NULL,
-    istechnical BOOLEAN NOT NULL default 'f',
+    isspecialized BOOLEAN NOT NULL default 'f',
     moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.

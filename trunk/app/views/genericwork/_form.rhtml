@@ -12,10 +12,21 @@
 </div>
 
 <div class="row"> 
-<label for="genericworktype_id" class="label"><%= get_label('genericworktype_id') %> <span class="required">*</span></label> 
-<div id="genericworktype_id">
-<%= table_select('edit', Genericworktype, 3, 1) %>
+<label for="genericworkgroup_id" class="label"><%= get_label('genericworkgroup_id') %></label> 
+<div id="genericworkgroup_id">
+ <%= select_to_update_select('edit', Genericworkgroup, Genericworktype, 1, 1) %>
 </div>
+</div>
+
+<div class="row"> 
+<label for="genericworktype_id" class="label"><%= get_label('genericworktype_id') %></label> 
+  <div id="select_genericworkgroup_genericworktype_note"  style="display: none">
+  <span class="upgrade_note">Actualizando la lista de carreras...</span>
+  </div>
+  <div id="select_genericworkgroup_genericworktype">
+  <%= select_as_tree('edit', Genericworktype, %w(name), 2) %>
+  </div>
+ <%= submit_for_stack('genericworktype') %>
 </div>
 
 <div class="row"> 

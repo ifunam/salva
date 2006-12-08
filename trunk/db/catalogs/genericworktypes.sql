@@ -4,6 +4,7 @@ INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reseña', 1);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Colecciones infantiles', 2);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Impresos', 2);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reportes internos', 3);
+INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reportes técnicos', 3);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Gaceta', 3);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Antología', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Antología critica', 4);
@@ -14,4 +15,3 @@ INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Manual de apoy
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Catálogos', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Traducción de artículo', 5);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Traducción de sitio web', 5);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Reportes técnicos', 3);
