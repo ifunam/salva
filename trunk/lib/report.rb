@@ -16,36 +16,6 @@ class Report
     end
   end
 
-  def record_content_array(record, columns)
-    association = modelize(columns.first)
-    myrecord = record.send(association)
-    record_content(myrecord, (columns - [columns.first]))
-  end
-  
-  def get_attributes(record)
-    attributes = []
-    record.attribute_names.each { |name|
-      next if %w(moduser_id created_on updated_on user_id).include? name 
-      attributes << name if name !~/\w+_id$/ 
-    }
-    return attributes
-  end
-  
-  def record_content_from_association(record, column)
-    association = modelize(column)
-    case record.class.reflect_on_association(association.to_sym).macro
-    when :has_one, :belongs_to
-      if record.send(association).attribute_names.include? 'name' 
-        record.send(association).send('name')  
-       elsif record.send(association).attribute_names.include? 'title' 
-        record.send(association).send('title')  
-      else
-        myrecord = record.send(association)
-        record_content(myrecord, get_attributes(myrecord)) 
-      end
-    end
-  end
-  
   def record_content(record, columns)
     content = []
     columns.each { |column|
@@ -61,6 +31,40 @@ class Report
       end
     } 
     content.join(', ')
+  end
+
+  def record_content_from_association(record, column)
+    association = modelize(column)
+    case record.class.reflect_on_association(association.to_sym).macro
+    when :has_one, :belongs_to
+      record_content_from_belongs_to(record,association)
+    end
+  end
+  
+  def record_content_from_belongs_to(record, association)
+    if record.send(association).attribute_names.include? 'name' 
+      record.send(association).send('name')  
+    elsif record.send(association).attribute_names.include? 'title' 
+      record.send(association).send('title')  
+    else
+      myrecord = record.send(association)
+      record_content(myrecord, get_attributes(myrecord)) 
+    end
+  end
+
+  def get_attributes(record)
+    attributes = []
+    record.attribute_names.each { |name|
+      next if %w(moduser_id created_on updated_on user_id).include? name 
+      attributes << name if name !~/\w+_id$/ 
+    }
+    return attributes
+  end
+
+  def record_content_array(record, columns)
+    association = modelize(columns.first)
+    myrecord = record.send(association)
+    record_content(myrecord, (columns - [columns.first]))
   end
   
   def list_collection
