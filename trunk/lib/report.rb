@@ -15,12 +15,11 @@ class Report
       report
     end
   end
-  
+
   def record_content_array(record, columns)
-    model = modelize(columns.unshift)
-    columns.collect { | column | 
-      record.send(model).send(column) if record.send(model).send(column) != nil
-    }.join(',')
+    association = modelize(columns.first)
+    myrecord = record.send(association)
+    record_content(myrecord, (columns - [columns.first]))
   end
   
   def get_attributes(record)
@@ -61,7 +60,7 @@ class Report
         
       end
     } 
-    content.join(',')
+    content.join(', ')
   end
   
   def list_collection
@@ -71,12 +70,12 @@ class Report
   def as(style)
     #...
   end
-  
+
   private
   def modelize(column)
     Inflector.tableize(column.sub(/_id$/,'')).singularize
-  end
-  
+  end    
+
   module Styles
     #...
   end
