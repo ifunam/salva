@@ -1,4 +1,4 @@
-ENV["RAILS_ENV"] = "development"
+ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
@@ -76,7 +76,6 @@ class Test::Unit::TestCase
       keys.each { | item |
         @model = model.find(fixture.call(item.to_sym).id)
         assert_equal fixture.call(item.to_sym).id, @model.id
-        
         assert_equal fixture.call(item.to_sym).name, @model.name
         @model.name = nil
         assert !@model.save
