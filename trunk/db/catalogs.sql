@@ -24,6 +24,7 @@ CREATE TABLE states (
 	country_id int4 NOT NULL
 		REFERENCES countries(id)
 		ON UPDATE CASCADE
+		ON DELETE CASCADE
 		DEFERRABLE,
 	name text NOT NULL,
 	code text NULL, 
@@ -42,6 +43,7 @@ CREATE TABLE cities (
 	state_id int4 NOT NULL
 		REFERENCES states(id)
 		ON UPDATE CASCADE
+		ON DELETE CASCADE
 		DEFERRABLE,
 	name text NOT NULL,
 	moduser_id int4 NULL    	     -- Use it only to know who has

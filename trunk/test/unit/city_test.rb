@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'country'
 require 'state'
 require 'city'
 class CityTest < Test::Unit::TestCase
-  fixtures :states, :cities
+  fixtures :countries, :states, :cities
   include UnitSimple
   
   def setup

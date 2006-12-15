@@ -21,6 +21,7 @@ CREATE TABLE users (
     userstatus_id int4 NOT NULL 
 	REFERENCES userstatuses(id)
         ON UPDATE CASCADE
+        ON DELETE CASCADE
         DEFERRABLE
 	DEFAULT 1,
     email text NULL, 
