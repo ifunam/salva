@@ -17,7 +17,7 @@ class CountryTest < Test::Unit::TestCase
     validate_test(@country, Country)
   end
 
-#  def test_collision
-#    collision_test(@country, Country)
-#  end
+  def test_collision
+    collision_test(@country, Country)
+  end
 end

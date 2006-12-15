@@ -1,0 +1,8 @@
+culiacan:
+  id: 1
+  state_id: 19
+  name: Culiacán
+monterrey:   
+  id: 2
+  state_id: 25
+  name: Monterrey
