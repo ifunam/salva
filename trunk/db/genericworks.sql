@@ -41,8 +41,6 @@ COMMENT ON TABLE genericworktypes IS
 
 	Productos de divulgación:
 	Reportes técnicos públicos
-	Artículos In extenso
-	Artículos en memorias
 	Artículos o ensayos en revistas
 	Divulgación de la ciencia
 	Nota de investigación
@@ -54,8 +52,6 @@ COMMENT ON TABLE genericworktypes IS
 	....
 
 	Publicaciones:
-	Reportes técnicos
-	Reporte interno
 	Gaceta
 	...
 
