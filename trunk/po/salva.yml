@@ -336,7 +336,7 @@ newsdate: Fecha
 newspaperarticle_id: Artículo periodístico
 newspaperarticle:  Artículos periodísticos
 user_newspaperarticle: Artículos periodísticos
-scientific_spreading: Divulgación
+popular_science: Divulgación
 user_conferencetalk: Trabajos presentados en congresos y conferencias de divulgación
 project: Proyectos
 project_id: Proyecto
@@ -371,3 +371,4 @@ inproceeding_unrefereed: Trabajos presentados en memorias in extenso
 techreport: Reporte técnico
 other_activities_or_products: Otras actividades o productos
 userconference_committee: Participación en comités de congresos.
+user_popularsciencework: Otros trabajos de divulgación

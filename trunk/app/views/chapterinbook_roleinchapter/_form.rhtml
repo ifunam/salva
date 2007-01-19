@@ -25,7 +25,7 @@
 </div>
 
 <div class="row"><label for="bookedition_roleinchapter">Indique la actividad que realizó en este captítulo</label><br/>
-<%= checkbox_list('edit', Roleinchapter) %> </div>
+<%= checkbox_list('edit', Roleinchapter, @edit.attributes_before_type_cast['roleinchapter_id']) %> </div>
 
 <!--[eoform:chapterinbook_roleinchapter]-->
 

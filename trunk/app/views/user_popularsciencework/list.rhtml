@@ -1,5 +1,8 @@
 <!--[list:user_genericwork]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( genericwork_id userrole_id ) }) %> 
+<%= table_array(@collection, { :header => "Título", :columns =>
+[ ['genericwork_id', 'authors', 'title', 'year'], 'userrole_id'] })
+%>
+
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

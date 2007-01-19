@@ -42,9 +42,10 @@
     - user_techreport_internal
   - user_inproceeding_unrefereed
   - student_thesis
-- scientific_spreading
+- popular_science
 - - user_newspaperarticle
   - user_conferencetalk
+  - user_popularsciencework
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed

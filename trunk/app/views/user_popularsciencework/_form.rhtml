@@ -4,15 +4,15 @@
 <div class="row"> 
 <label for="genericwork_id" class="label"><%= get_label('genericwork_id') %> <span class="required">*</span></label> 
 <div id="genericwork_id">
-<%= table_select('edit', Genericwork, 1, 1) %>
-</div>
+<%= select_as_tree('edit', Genericwork, %w(title),1,1, :include=> :genericworktype, :conditions=>"genericworktypes.genericworkgroup_id = 1 AND genericworks.genericworktype_id = genericworktypes.id") %>
+</div><%= submit_for_stack('popularsciencework,genericwork_id') %>
 </div>
 
 <div class="row"> 
 <label for="userrole_id" class="label"><%= get_label('userrole_id') %> <span class="required">*</span></label> 
-<div id="userrole_id">
-<%= table_select('edit', Userrole, 2, 1) %>
-</div>
+<div id="userrole_id"><br/>
+<%= checkbox_list('edit', Userrole, @edit.attributes_before_type_cast['userrole_id']) %> </div>
+
 </div>
 
 

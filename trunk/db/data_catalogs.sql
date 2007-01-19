@@ -70,3 +70,4 @@
 \i catalogs/projects.sql
 \i catalogs/activities.sql
 \i catalogs/periods.sql
+\i catalogs/roleproceedings.sql
