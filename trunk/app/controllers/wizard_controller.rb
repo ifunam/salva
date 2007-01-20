@@ -35,6 +35,8 @@ class WizardController < ApplicationController
   def show
     sequence = get_sequence
     @list = sequence.flat_sequence
+    @set_prev = !sequence.is_first
+    @set_next = !sequence.is_last
     logger.info "listsecuencia "+@list.to_s+", "+@list.length.to_s 
 #    if sequence.is_sequence(sequence.sequence[0]) then
  #     logger.info "showsecuencia  "+sequence.sequence[0].sequence[0].id.to_s+","+sequence.sequence[0].sequence[1].id.to_s+";"+@list[0].id.to_s+";"+@list[1].id.to_s

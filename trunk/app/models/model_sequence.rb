@@ -93,6 +93,14 @@ class ModelSequence
     end
   end
   
+  def is_first
+    if @current == 0
+       true 
+    else
+      false
+    end
+  end
+  
   def is_sequence(child)
     return child.class == ModelSequence
   end
