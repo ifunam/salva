@@ -6,5 +6,7 @@
  <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
  <%= link_to get_label('back'), :action => 'list' %>
 </div>
+
+<%= children_list(@edit, @children) if @children != nil %>
 <!--[eofshow:conference]-->
 
