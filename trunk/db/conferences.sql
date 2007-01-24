@@ -224,17 +224,14 @@ CREATE TABLE proceedings (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-	title text NULL,
+	title text NOT NULL,
 	year int4 NULL,
         publisher_id int4 NULL 
 	    REFERENCES publishers(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	isrefereed BOOLEAN NOT NULL default 't',
-	volume_id int4 NULL 	
-	        REFERENCES volumes(id) 
-        	ON UPDATE CASCADE
-	        DEFERRABLE,
+	volume text NULL,
 	other text NULL,	
 	moduser_id int4 NOT NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  

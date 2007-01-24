@@ -2,16 +2,9 @@ require 'list_helper'
 require 'application_helper'
 require 'salva_helper'
 module SelectHelper   
-  def table_select_puerco(object, model, tabindex, validation_type, html_options={})
-    #options = set_options_tags(tabindex, validation_type)
-    model_id = set_model_id(model)
-    #    model_id = prefix + '_' + model_id if prefix !=nil
-    select(object, model_id, sorted_find(model), {:prompt => '-- Seleccionar --'}, html_options)
-  end
-  
   def table_select(object, model, tabindex, validation_type=nil, prefix=nil)
-    options = set_options_tags(tabindex, validation_type)
     model_id = set_model_id(model)
+    options = set_options_tags(tabindex, validation_type)
     model_id = prefix + '_' + model_id if prefix !=nil
     select(object, model_id, sorted_find(model), {:prompt => '-- Seleccionar --'}, options)
   end
@@ -76,8 +69,23 @@ module SelectHelper
     select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
+  def selects_to_update_select(obj, models, model_dest, tabindex, validation_type=nil, attribute='name')
+    options = set_options_tags(tabindex, validation_type)
+    model = models.first
+    options[:onchange] = "alert($F('institutiontitle_id'));" #remote_functag(models, model_dest, tabindex) 
+    list = []
+    #models.each { |model|
+      if attribute.is_a? Array
+        collection = model.find(:all)
+        list = list_collection(collection, attribute)
+      else
+        list = sorted_find(model, 'name')
+      end
+      select(obj, set_model_id(model),  list, { :prompt => '-- Seleccionar --' }, options)
+    #}
+  end
   private
-  def set_options_tags(tabindex,validation_type=nil)
+  def set_options_tags(tabindex, validation_type=nil)
     options = Hash.new
     options = set_zebda_tags(validation_type) if validation_type != nil
     options[:tabindex] = tabindex 
@@ -94,9 +102,10 @@ module SelectHelper
     end
   end  
 
-  def remote_functag(origmodel, destmodel, tabindex, prefix=nil)
-    partial = "select_#{origmodel.name.downcase}_#{destmodel.name.downcase}" 
-    params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value"
+  def remote_functag(origmodels, destmodel, tabindex, prefix=nil)
+    origname = (origmodels.is_a? Array) ? origmodels.join('_').downcase: origmodels.name.downcase
+    partial = "select_#{origname}_#{destmodel.name.downcase}" 
+    params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value" #+'&institutiontitle_id='+$F('institutiontitle_id');
     partial_note =  partial + "_note"
     success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
     success_msg += "return false;"
@@ -104,7 +113,7 @@ module SelectHelper
     remote_function(:update => partial, :with => params, :url => {:action => :update_select},
                     :loading => loading_msg, :success => success_msg)
   end
-
+  
   def select_institutioncareer_by_degree(obj, model, columns, id, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
     collection = model.find_by_sql "SELECT ic.id, ic.career_id, ic.institution_id FROM institutioncareers ic, careers c WHERE c.degree_id = #{id} AND c.id = ic.career_id"
