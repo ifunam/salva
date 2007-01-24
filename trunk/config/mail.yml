@@ -1,7 +1,7 @@
 settings:
-  :address: fenix.fisica.unam.mx
+  :address: modelos1.atmosfcu.unam.mx
   :port:    25
-  :domain:  fisica.unam.mx
+  :domain:  atmosfcu.unam.mx
 
 method: sendmail  
 

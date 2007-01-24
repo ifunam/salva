@@ -10,7 +10,7 @@
 </div>
 
 <div class="row"> 
-<label for="jobpositioncategory_id" class="label"><%= get_label('jobpositioncategory_id') %></label> 
+<label for="jobpositioncategory_id" class="label"><%= get_label('jobpositioncategory_id') %><span class="required">*</span></label> 
   <div id="select_jobpositiontype_jobpositioncategory_note"  style="display: none">
   <span class="upgrade_note">Actualizando la lista de categorías...</span>
   </div>
@@ -20,7 +20,7 @@
 </div>
 
 <div class="row"> 
-<label for="contracttype_id" class="label"><%= get_label('contracttype_id') %></label> 
+<label for="contracttype_id" class="label"><%= get_label('contracttype_id') %> <span class="required">*</span></label> 
 <div id="contracttype_id">
 <%= table_select('edit', Contracttype, 2) %>
 </div>
