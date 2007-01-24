@@ -223,7 +223,7 @@ talktype: Tipos de ponencia
 talktype_id: Tipo de ponencia
 conference: Evento académico
 conference_id: Evento académico
-conferencetalk: Ponencias en congresos de divulgación
+conferencetalk: Ponencias en congresos
 conferencetalk_id: Ponencia en congreso
 technicalconferencetalk: Ponencias en congresos
 technicalconferencetalk_id: Ponencia en congreso
@@ -337,7 +337,7 @@ newspaperarticle_id: Artículo periodístico
 newspaperarticle:  Artículos periodísticos
 user_newspaperarticle: Artículos periodísticos
 popular_science: Divulgación
-user_conferencetalk: Trabajos presentados en congresos y conferencias de divulgación
+user_conferencetalk: Trabajos presentados en congresos
 project: Proyectos
 project_id: Proyecto
 responsible: Responsable(s)

@@ -1,9 +1,0 @@
-<!--[list:conferencetalk]-->
-<%= table_array(@collection, { :header => "Título", :columns => ['title', 'authors', [ 'conference_id', 'name', 'year'],  'talktype_id', 'talkacceptance_id', 'modality_id'] }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-</div>
-<!--[eoflist:conferencetalk]-->
-

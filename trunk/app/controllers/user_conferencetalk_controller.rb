@@ -7,6 +7,6 @@ class UserConferencetalkController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = {:joins => "INNER JOIN conferences ON conferences.istechnical = 'f' INNER JOIN conferencetalks ON conferencetalks.conference_id = conferences.id AND conferencetalks.id = user_conferencetalks.conferencetalk_id"}
+#    @list = {:joins => "INNER JOIN conferences ON INNER JOIN conferencetalks ON conferencetalks.conference_id = conferences.id AND conferencetalks.id = user_conferencetalks.conferencetalk_id"}
   end
 end
