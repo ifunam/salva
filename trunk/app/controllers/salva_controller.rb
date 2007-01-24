@@ -20,11 +20,11 @@ class SalvaController < ApplicationController
   def list
     if @model.column_names.include?('user_id')
       if @list.has_key?(:joins)
-        @list[:joins] += " AND #{Inflector.pluralize(Inflector.tableize(@model).pluralize)}.user_id = #{session[:user]}"
+        @list[:joins] += " AND #{@model.table_name}.user_id = #{session[:user]}"
       elsif @list.has_key?(:conditions)
-        @list[:conditions] += " AND #{Inflector.pluralize(Inflector.tableize(@model).pluralize)}.user_id = #{session[:user]}" 
+        @list[:conditions] += " AND #{@model.table_name}.user_id = #{session[:user]}" 
       else
-        @list[:conditions] = "#{Inflector.pluralize(Inflector.tableize(@model).pluralize)}.user_id = #{session[:user]}" 
+        @list[:conditions] = "#{@model.table_name}.user_id = #{session[:user]}" 
       end
     end
     @list[:conditions] = set_conditions_from_search if params[controller_name]
