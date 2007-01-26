@@ -31,6 +31,12 @@ class ApplicationController < ActionController::Base
     render(:partial => 'salva/'+partial)
   end
 
+  def update_select_from_selects
+    @params = params
+    partial = params[:partial]
+    render(:partial => 'salva/'+partial)
+  end
+
   def update_searchdialog
     partial = params[:partial]
     render(:partial => partial)

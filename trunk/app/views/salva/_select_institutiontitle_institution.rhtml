@@ -1,0 +1,2 @@
+<% collection = Institution.find(:all, :select => "institutions.name, institutiontitles.name, institutions.id", :include => [:institutiontitle], :conditions => ['institutions.institutiontitle_id = ? AND institutions.country_id = ? AND institutions.institutiontitle_id = institutiontitles.id', @params[:id], @params[:country_id] ] ) %>
+<%= select('edit', 'institution_id', list_from_collection(collection), {:prompt => '-- Seleccionar --'}, {:tabindex => 1} ) %>

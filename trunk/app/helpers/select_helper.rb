@@ -71,19 +71,17 @@ module SelectHelper
 
   def selects_to_update_select(obj, models, model_dest, tabindex, validation_type=nil, attribute='name')
     options = set_options_tags(tabindex, validation_type)
-    model = models.first
-    options[:onchange] = "alert($F('institutiontitle_id'));" #remote_functag(models, model_dest, tabindex) 
+    options[:onchange] = remote_functag(model, model_dest, tabindex) 
     list = []
-    #models.each { |model|
-      if attribute.is_a? Array
-        collection = model.find(:all)
-        list = list_collection(collection, attribute)
-      else
-        list = sorted_find(model, 'name')
-      end
-      select(obj, set_model_id(model),  list, { :prompt => '-- Seleccionar --' }, options)
-    #}
+    if attribute.is_a? Array
+      collection = model.find(:all)
+      list = list_collection(collection, attribute)
+    else
+      list = sorted_find(model, 'name')
+    end
+    select(obj, set_model_id(model),  list, { :prompt => '-- Seleccionar --' }, options)
   end
+
   private
   def set_options_tags(tabindex, validation_type=nil)
     options = Hash.new
@@ -105,7 +103,7 @@ module SelectHelper
   def remote_functag(origmodels, destmodel, tabindex, prefix=nil)
     origname = (origmodels.is_a? Array) ? origmodels.join('_').downcase: origmodels.name.downcase
     partial = "select_#{origname}_#{destmodel.name.downcase}" 
-    params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value" #+'&institutiontitle_id='+$F('institutiontitle_id');
+    params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value"
     partial_note =  partial + "_note"
     success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
     success_msg += "return false;"
@@ -113,6 +111,22 @@ module SelectHelper
     remote_function(:update => partial, :with => params, :url => {:action => :update_select},
                     :loading => loading_msg, :success => success_msg)
   end
+
+   def remote_functag2(origmodels, destmodel, tabindex, prefix=nil)
+     origname = origmodels.shift
+     partial = "select_#{origname.name.downcase}_#{destmodel.name.downcase}" 
+     params = "'partial=#{partial}&tabindex=#{tabindex}&id='+value"
+     origmodels.each { | model | 
+       model_id = set_model_id(model)
+       params << "+'&#{model_id}='+$F('edit_#{model_id}')"
+     }
+     partial_note =  partial + "_note"
+     success_msg = "Effect.BlindUp('#{partial_note}', {duration: 0.5});; "
+     success_msg += "return false;"
+     loading_msg = "Toggle.display('#{partial_note}');"
+     remote_function(:update => partial, :with => params, :url => {:action => :update_select_from_selects},
+                     :loading => loading_msg, :success => success_msg)
+   end
   
   def select_institutioncareer_by_degree(obj, model, columns, id, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)

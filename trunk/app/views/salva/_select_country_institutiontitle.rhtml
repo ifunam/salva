@@ -1,0 +1,2 @@
+<% collection = Institutiontitle.find(:all, :select => 'institutiontitles.id, institutiontitles.name', :include => [:institution], :conditions => ['institutions.country_id = ? AND institutions.institutiontitle_id = institutiontitles.id', @id], :group => 'institutiontitles.id, institutiontitles.name') %>
+<%= select('edit', 'institutiontitle_id', list_from_collection(collection), {:prompt => '-- Seleccionar --'}, {:onchange => remote_functag2([Institutiontitle, Country], Institution, 1)} ) %>
