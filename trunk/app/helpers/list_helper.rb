@@ -98,9 +98,11 @@ module ListHelper
         if attr.is_a? Array then
           prev = attr[0]
           model = prev.sub(/_id$/,'')
-          id = row.send(prev)
-          row2 = Inflector.camelize(model).constantize.find(id)
-          s << columns_to_text_array(row2, attr[1..-1])
+          if (row.send(prev) != nil) then
+            id = row.send(prev)
+            row2 = Inflector.camelize(model).constantize.find(id)
+            s << columns_to_text_array(row2, attr[1..-1])
+          end
         else
           next if row.send(attr) == nil 
           if is_id?(attr) then
