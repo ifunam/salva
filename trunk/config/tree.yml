@@ -42,12 +42,13 @@
     - user_techreport_internal
   - user_inproceeding_unrefereed
   - student_thesis
-- popular_science
-- - user_newspaperarticle
-  - user_popularsciencework
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed
+- popular_science
+- - user_newspaperarticle
+  - user_popularsciencework
+- diffusion
 - human_resources_formation_and_teaching
 - - human_resources_formation
   - - user_thesis
@@ -55,7 +56,8 @@
     - thesis_committee
   - teaching
   - - user_regularcourse
-  - - user_specialcourse
+    - user_specialcourse
+    - teaching_activity
 - other_activities_or_products
 - - userconference_committee
   - activity
