@@ -24,7 +24,7 @@ CREATE TABLE articlesfiles (
 CREATE INDEX articlesfiles_filename_idx ON articlesfiles(filename);
 CREATE INDEX articlesfiles_articles_idx ON articlesfiles(articles_id);
 COMMENT ON TABLE articlesfiles IS
-	'Archivos relacionados a un artículo';
+	'Archivos relacionados a un artÃ­culo';
 COMMENT ON COLUMN articlesfiles.content IS
 	'Contenido (binario) del archivo';
 
@@ -81,7 +81,7 @@ CREATE INDEX chapterinbooksfiles_filename_idx ON chapterinbooksfiles(filename);
 CREATE INDEX chapterinbooksfiles_chapterinbooks_idx ON
 	chapterinbooksfiles(chapterinbook_id);
 COMMENT ON TABLE chapterinbooksfiles IS
-	'Archivos relacionados a un capítulo de libro';
+	'Archivos relacionados a un capÃ­tulo de libro';
 COMMENT ON COLUMN chapterinbooksfiles.content IS
 	'Contenido (binario) del archivo';
 
@@ -140,6 +140,6 @@ CREATE INDEX genericworksfiles_filename_idx ON genericworksfiles(filename);
 CREATE INDEX genericworksfiles_genericworks_idx ON 
 	genericworksfiles(genericworks_id);
 COMMENT ON TABLE genericworksfiles IS
-	'Archivos relacionados a un trabajo genérico';
+	'Archivos relacionados a un trabajo genÃ©rico';
 COMMENT ON COLUMN genericworksfiles.content IS
 	'Contenido (binario) del archivo';

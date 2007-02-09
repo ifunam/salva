@@ -22,7 +22,7 @@ CREATE TABLE researchareas (
     UNIQUE (name)
 );
 COMMENT ON TABLE researchareas IS
-	'Areas de investigación (ligadas desde projectresearchareas)';
+	'Areas de investigaciÃ³n (ligadas desde projectresearchareas)';
 
 
 
@@ -44,7 +44,7 @@ CREATE TABLE researchlines (
     UNIQUE (name,researcharea_id)
 );
 COMMENT ON TABLE researchlines IS
-	'Líneas de investigación';
+	'LÃ­neas de investigaciÃ³n';
 
 CREATE TABLE user_researchlines (
     id SERIAL,
@@ -66,6 +66,6 @@ CREATE TABLE user_researchlines (
     PRIMARY KEY (user_id, researchline_id)
 );
 COMMENT ON TABLE user_researchlines IS
-	'Líneas de investigación en que participa un usuario';
+	'LÃ­neas de investigaciÃ³n en que participa un usuario';
 
 

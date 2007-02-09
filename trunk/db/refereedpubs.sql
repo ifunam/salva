@@ -6,7 +6,7 @@ CREATE TABLE pubtorefereed (
 	UNIQUE(name)	
 );
 COMMENT ON TABLE pubtorefereed IS 
-	'Tipo de publicación o *cosa* que debe arbitrarse:
+	'Tipo de publicaciÃ³n o *cosa* que debe arbitrarse:
 	Instutional project, research project, magazine, book, article, contest, prize,';
 
 CREATE TABLE refereedpubs(

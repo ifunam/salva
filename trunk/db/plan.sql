@@ -25,4 +25,4 @@ CREATE TABLE selfevaluation (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE selfevaluation IS
-	'Auto-evaluación anual';
+	'Auto-evaluaciÃ³n anual';

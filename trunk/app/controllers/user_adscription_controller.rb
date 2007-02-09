@@ -2,9 +2,9 @@ class UserAdscriptionController < SalvaController
   def initialize
     super
     @model = UserAdscription
-    @create_msg = 'La informaci髇 se ha guardado'
-    @update_msg = 'La informaci髇 ha sido actualizada'
-    @purge_msg = 'La informaci髇 se ha borrado'
+    @create_msg = 'La informaci贸n se ha guardado'
+    @update_msg = 'La informaci贸n ha sido actualizada'
+    @purge_msg = 'La informaci贸n se ha borrado'
     @per_pages = 10
     @order_by = 'id'
   end
@@ -14,7 +14,7 @@ class UserAdscriptionController < SalvaController
 #     if @jobposition != nil
 #       list
 #     else
-#       flash[:notice] = 'Por favor registre una categor韆 antes de ingresar su adscripci髇...'
+#       flash[:notice] = 'Por favor registre una categor铆a antes de ingresar su adscripci贸n...'
 #       redirect_to :controller => 'jobposition_at_institution', :action => 'list'
 #     end
 #   end

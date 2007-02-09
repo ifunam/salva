@@ -29,7 +29,7 @@ CREATE TABLE thesismodalities (
     UNIQUE (name)
 );
 COMMENT ON TABLE thesismodalities IS 
-	'Modalidad del trabajo generado:  Tesis, tesina, informe acadÈmico, ...';
+	'Modalidad del trabajo generado:  Tesis, tesina, informe acad√©mico, ...';
 
 CREATE TABLE roleintheses (
     id SERIAL,
@@ -46,9 +46,9 @@ CREATE TABLE roleintheses (
 COMMENT ON TABLE roleintheses IS 
 	'Roles en una tesis: 
 	- Rol del usuario en la tesis: Director, tutor o asesor, ...
-	- Se considera participaciÛn comitÈs tutorales cuando
+	- Se considera participaci√≥n comit√©s tutorales cuando
 	el usuario NO es director de tesis. Por ejemplo:
-	un comitÈ tutoral puede estar integrado po el director 
+	un comit√© tutoral puede estar integrado po el director 
 	de tesis y dos Asesores.';
 
 CREATE TABLE theses (
@@ -86,7 +86,7 @@ CREATE TABLE theses (
 COMMENT ON TABLE theses IS 
 	'Datos generales de cada una de las tesis';
 COMMENT ON COLUMN theses.degree_id IS
-	'Grado acadÈmico que esta tesis persigue';
+	'Grado acad√©mico que esta tesis persigue';
 
 CREATE TABLE user_theses (
    id SERIAL,
@@ -121,7 +121,7 @@ CREATE TABLE user_theses (
    UNIQUE (thesis_id, user_id, roleinthesis_id)
 );
 COMMENT ON TABLE user_theses IS 
-	'La relaciÛn entre un usuario (en rol de director/asesor/etc.) y una
+	'La relaci√≥n entre un usuario (en rol de director/asesor/etc.) y una
 	tesis';
 
 
@@ -146,7 +146,7 @@ CREATE TABLE thesislog (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE thesislog IS 
-	'Bit·cora de cambios de estado en la tesis';
+	'Bit√°cora de cambios de estado en la tesis';
 
 
 CREATE TABLE roleinjuries (
@@ -192,7 +192,7 @@ CREATE TABLE thesis_jurors (
    UNIQUE (user_id, thesis_id, roleinjury_id)
 );
 COMMENT ON TABLE thesis_jurors IS 
-	'La relaciÛn entre un usuario, el rol en la disertaciÛn
+	'La relaci√≥n entre un usuario, el rol en la disertaci√≥n
 	(sinodal, presidente, secretario y vocal) y la tesis';
 
 

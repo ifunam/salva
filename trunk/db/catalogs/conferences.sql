@@ -13,12 +13,12 @@ INSERT INTO conferencescopes (name) VALUES ('Internacional');
 
 INSERT INTO talktypes (name) VALUES ('Ponencia');
 INSERT INTO talktypes (name) VALUES ('Conferencia magistral');
-INSERT INTO talktypes (name) VALUES ('Pl·tica');
+INSERT INTO talktypes (name) VALUES ('Pl√°tica');
 INSERT INTO talktypes (name) VALUES ('Tutorial');
 INSERT INTO talktypes (name) VALUES ('Taller');
 INSERT INTO talktypes (name) VALUES ('Poster');
 
-INSERT INTO talkacceptances (name) VALUES ('InscripciÛn');
-INSERT INTO talkacceptances (name) VALUES ('InvitaciÛn');
+INSERT INTO talkacceptances (name) VALUES ('Inscripci√≥n');
+INSERT INTO talkacceptances (name) VALUES ('Invitaci√≥n');
 INSERT INTO talkacceptances (name) VALUES ('Arbitrado');
 

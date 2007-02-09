@@ -3,7 +3,7 @@ login: &login
   host: localhost
   username: salva
   password:
-  encoding: LATIN1
+  encoding: UTF-8 
 
 development:
   database: salva_dev

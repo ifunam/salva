@@ -16,7 +16,7 @@ CREATE TABLE newspapers (
 	UNIQUE(name)
 );
 COMMENT ON TABLE newspapers IS
-	'Periódicos';
+	'PeriÃ³dicos';
 
 CREATE TABLE newspaperarticles (
 	id serial,
@@ -39,7 +39,7 @@ CREATE TABLE newspaperarticles (
 	UNIQUE (title, newspaper_id, newsdate)
 );
 COMMENT ON TABLE newspaperarticles IS
-	'Artículos publicados en periódico';
+	'ArtÃ­culos publicados en periÃ³dico';
 
 CREATE TABLE user_newspaperarticles ( 
     id SERIAL,
@@ -63,9 +63,9 @@ CREATE TABLE user_newspaperarticles (
     PRIMARY KEY (user_id, newspaperarticle_id)
 );
 COMMENT ON TABLE user_newspaperarticles IS
-	'Autores de un artículo periodístico';
+	'Autores de un artÃ­culo periodÃ­stico';
 COMMENT ON COLUMN user_newspaperarticles.ismainauthor IS
-	'Registramos únicamente si es el autor primario o no';
+	'Registramos Ãºnicamente si es el autor primario o no';
 
 CREATE TABLE newspaperarticle_logs(
     id SERIAL, 
@@ -88,7 +88,7 @@ CREATE TABLE newspaperarticle_logs(
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE newspaperarticle_logs IS
-	'Cambios en el estado de los artículos periodísticos';
+	'Cambios en el estado de los artÃ­culos periodÃ­sticos';
 
 ------
 -- Update newspaperarticleslog if there was a status change

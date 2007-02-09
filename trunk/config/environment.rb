@@ -59,7 +59,7 @@ if RAILS_ENV != 'test'
     mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
     ActionMailer::Base.delivery_method = mail_settings['method'].to_sym
     ActionMailer::Base.default_charset = mail_settings['charset']
-    ActionMailer::Base.server_settings = mail_settings['settings']
+    ActionMailer::Base.smtp_settings = mail_settings['settings']
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.raise_delivery_errors = true
   rescue

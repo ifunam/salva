@@ -1,8 +1,8 @@
-INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PAIPA', 'Programa de Apoyo a la Incorporaci髇 de Personal Acad閙ico', 5603);
-INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PRIDE', 'Programa de Reconocimiento a la Investigaci髇 y Desarrollo Acad閙ico', 5603);
+INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PAIPA', 'Programa de Apoyo a la Incorporaci贸n de Personal Acad茅mico', 5603);
+INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PRIDE', 'Programa de Reconocimiento a la Investigaci贸n y Desarrollo Acad茅mico', 5603);
 INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('SNI', 'Sistema Nacional de Investigadores', 5453);
-INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PASPA', 'Programa de Apoyos para la Superaci髇 del Personal Acad閙ico', 5603);
-INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('FORMDOC', 'Programa de Formaci髇 Docente Continua', 5603);
+INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('PASPA', 'Programa de Apoyos para la Superaci贸n del Personal Acad茅mico', 5603);
+INSERT INTO stimulustypes (name, descr, institution_id) VALUES ('FORMDOC', 'Programa de Formaci贸n Docente Continua', 5603);
 
 
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('A',1);
@@ -18,10 +18,10 @@ INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Candidato a investig
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('I',3);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('II',3);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('III',3);
-INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Em閞ito',3);
+INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Em茅rito',3);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estudios de posgrado',4);
-INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia sab醫ica',4);
-INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia de investigaci髇',4);
+INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia sab谩tica',4);
+INSERT INTO stimuluslevels (name, stimulustype_id) VALUES ('Estancia de investigaci贸n',4);
 INSERT INTO stimuluslevels (name, stimulustype_id) VALUES (2,2); -- Pride para emeritos
 
  

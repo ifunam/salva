@@ -6,11 +6,11 @@ CREATE TABLE coursedurations (
 	UNIQUE (name)
 );
 COMMENT ON TABLE coursedurations IS
-	'Duración de los periodos en que se imparten los cursos';
+	'DuraciÃ³n de los periodos en que se imparten los cursos';
 COMMENT ON COLUMN coursedurations.name IS
 	'Nombre del periodo (semanal, mensual, trimestral, semestral, anual)';
 COMMENT ON COLUMN coursedurations.days IS
-	'Número de días dentro de este periodo';
+	'NÃºmero de dÃ­as dentro de este periodo';
 -- {semanal,5}, {mensual,30}, {trimestral,90}, {semestral,180}, {anual,365}...
 
 CREATE TABLE coursegrouptypes ( 
@@ -20,7 +20,7 @@ CREATE TABLE coursegrouptypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE coursegrouptypes IS
-	'Tipo de agrupador de cursos (diplomado, certificación, etc.)';
+	'Tipo de agrupador de cursos (diplomado, certificaciÃ³n, etc.)';
 -- Certification, diplomado, ...
 
 CREATE TABLE coursegroups (
@@ -43,14 +43,14 @@ CREATE TABLE coursegroups (
 COMMENT ON TABLE coursegroups IS
 	'Datos de un supercurso/agrupador de cursos';
 COMMENT ON COLUMN coursegroups.totalhours IS
-	'No tiene relación con coursedurations - Por ejemplo, un diplomado 
-	puede durar 150 horas a lo largo de un mes, de un semestre, de años.';
+	'No tiene relaciÃ³n con coursedurations - Por ejemplo, un diplomado 
+	puede durar 150 horas a lo largo de un mes, de un semestre, de aÃ±os.';
 
 
 -- Las horas del curso seran calculadas basandonos en la duracion
 -- del curso (usercourses) y la horas por semana (las cuales no
--- seran guardadas en ningún campo, solo serviran como referencia
--- en la aplicación.
+-- seran guardadas en ningÃºn campo, solo serviran como referencia
+-- en la aplicaciÃ³n.
 CREATE TABLE courses (  
 	id SERIAL NOT NULL,
     	name text NOT NULL,
@@ -85,14 +85,14 @@ CREATE TABLE courses (
     	UNIQUE (name, startyear, startmonth)
 );
 COMMENT ON TABLE courses IS
-	'Cursos impartidos (de actualización o en un plan de estudios) y
-	recibidos (de actualización - los de plan de estudios son historial
-	académico - ver schooling)';
+	'Cursos impartidos (de actualizaciÃ³n o en un plan de estudios) y
+	recibidos (de actualizaciÃ³n - los de plan de estudios son historial
+	acadÃ©mico - ver schooling)';
 COMMENT ON COLUMN courses.totalhours IS
-	'Las horas del curso serán calculadas basándonos en la duración
+	'Las horas del curso serÃ¡n calculadas basÃ¡ndonos en la duraciÃ³n
 	del curso (usercourses) y la horas por semana (las cuales no
-	serán guardadas en ningún campo, solo serviran como referencia
-	en la aplicación.';
+	serÃ¡n guardadas en ningÃºn campo, solo serviran como referencia
+	en la aplicaciÃ³n.';
 
 CREATE TABLE roleincourses (
 	id SERIAL,
@@ -107,7 +107,7 @@ COMMENT ON TABLE roleincourses IS
 
 -- Ojo cuando el usuario especifica horas por semana: Sera nencesario
 -- revisar que las horas esten en un rango aceptable correspondiente
--- a la duración.
+-- a la duraciÃ³n.
 CREATE TABLE user_courses (
     id SERIAL,
     user_id int4 NOT NULL 
@@ -127,7 +127,7 @@ CREATE TABLE user_courses (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_courses IS
-	'Cursos a los que está asociado un usuario';
+	'Cursos a los que estÃ¡ asociado un usuario';
 
 CREATE TABLE regularcourses (  
 	id SERIAL NOT NULL,

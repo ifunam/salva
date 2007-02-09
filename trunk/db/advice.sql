@@ -9,9 +9,9 @@ CREATE TABLE instadvicetarget (
 	UNIQUE (name)
 );
 COMMENT ON TABLE instadvicetarget IS 
-	'Destino de asesorÌa institucional';
--- Proyecto de investigaciÛn, planes/programas de estudio, materiales 
--- did·cticos, evaluaciÛn, ...
+	'Destino de asesor√≠a institucional';
+-- Proyecto de investigaci√≥n, planes/programas de estudio, materiales 
+-- did√°cticos, evaluaci√≥n, ...
 
 CREATE TABLE indivadvicetarget (
 	id SERIAL,
@@ -24,9 +24,9 @@ CREATE TABLE indivadvicetarget (
 	UNIQUE (name)
 );
 COMMENT ON TABLE indivadvicetarget IS
-	'Tipo de persona que recibiÛ asesorÌa individual';
+	'Tipo de persona que recibi√≥ asesor√≠a individual';
 -- Profesor, estudiante de servicio social, estudiante becario, estudiante
--- de bachillerato, estudiante de licenciatura, estudiante de maestrÌa,
+-- de bachillerato, estudiante de licenciatura, estudiante de maestr√≠a,
 -- estudiante de doctorado
 
 CREATE TABLE indivadviceprogram (
@@ -40,8 +40,8 @@ CREATE TABLE indivadviceprogram (
 	UNIQUE (name)
 );
 COMMENT ON TABLE indivadviceprogram IS
-	'Tipo de programa a que pertenece la persona que recibiÛ asesorÌa';
--- PAAS, PIDI, PITID, FundaciÛn UNAM, PAPIIT, DGAPA, DGEP, CONACyT
+	'Tipo de programa a que pertenece la persona que recibi√≥ asesor√≠a';
+-- PAAS, PIDI, PITID, Fundaci√≥n UNAM, PAPIIT, DGAPA, DGEP, CONACyT
 
 CREATE TABLE adviceactivity (
 	id SERIAL,
@@ -54,8 +54,8 @@ CREATE TABLE adviceactivity (
 	UNIQUE (name)
 );
 COMMENT ON TABLE adviceactivity IS 
-	'Actividades de la que constÛ una asesorÌa';
--- DiseÒo, evaluaciÛn, reestructuraciÛn, elaboraciÛn, ...
+	'Actividades de la que const√≥ una asesor√≠a';
+-- Dise√±o, evaluaci√≥n, reestructuraci√≥n, elaboraci√≥n, ...
 
 CREATE TABLE instadvice (
 	id SERIAL,
@@ -84,7 +84,7 @@ CREATE TABLE instadvice (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE instadvice IS 
-	'AsesorÌa prestada por un acadÈmico a una instituciÛn';
+	'Asesor√≠a prestada por un acad√©mico a una instituci√≥n';
 
 -- What activities were performed in a specific advice?
 CREATE TABLE instadviceactivity (
@@ -102,7 +102,7 @@ CREATE TABLE instadviceactivity (
 	UNIQUE (instadvice_id, adviceactivity_id)
 );
 COMMENT ON TABLE instadviceactivity IS 
-	'Las actividades de las que constÛ una asesorÌa institucional';
+	'Las actividades de las que const√≥ una asesor√≠a institucional';
 
 -- Advice given to an individual
 CREATE TABLE indivadvice (
@@ -150,4 +150,4 @@ CREATE TABLE indivadvice (
 		(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
 );
 COMMENT ON TABLE indivadvice IS 
-	'AsesorÌa prestada por un acadÈmico a un individuo';
+	'Asesor√≠a prestada por un acad√©mico a un individuo';

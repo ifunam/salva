@@ -1,14 +1,14 @@
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Gravitaci髇 y Teor韆 de Campos', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Qu韒ica de Radiaciones y Radioqu韒ica', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Gravitaci贸n y Teor铆a de Campos', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Qu铆mica de Radiaciones y Radioqu铆mica', '', '', 36, '');
 INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Estructura de la Materia', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de C髆puto', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de F韘ica de Altas Energ韆s', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Plasmas y de Interacci髇 com la Materia', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Radiaci髇', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de C贸mputo', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de F铆sica de Altas Energ铆as', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Departamento de Plasmas y de Interacci贸n com la Materia', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Radiaci贸n', '', '', 36, '');
 INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Docencia', '', '', 36, '');
 INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad Administrativa', '', '', 36, '');
 INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Biblioteca', '', '', 36, '');
-INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Difusi髇', '', '', 36, '');
+INSERT INTO adscriptions (name, abbrev, descr, institution_id, administrative_key) VALUES ('Unidad de Difusi贸n', '', '', 36, '');
 
  
  

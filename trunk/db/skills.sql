@@ -12,8 +12,8 @@ CREATE TABLE skilltypes (
 );
 COMMENT ON TABLE skilltypes IS
 	'Diferentes habilidades que un usuario (Tec. Acad.) puede reportar:
-	 Habilidades relacionadas con la computaciÛn
-	 Habilidades relacionadas con m·quinas de oficina
+	 Habilidades relacionadas con la computaci√≥n
+	 Habilidades relacionadas con m√°quinas de oficina
 	 Otras habilidades';
 
 CREATE TABLE user_skills (
@@ -37,6 +37,6 @@ CREATE TABLE user_skills (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_skills IS
-	'Las habilidades que cada usuario tiene, junto con una descripciÛn
+	'Las habilidades que cada usuario tiene, junto con una descripci√≥n
 	opcional';
 

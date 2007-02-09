@@ -1,8 +1,8 @@
-INSERT INTO sectors (name) VALUES ('Investigaci髇 cient韋ica');
-INSERT INTO sectors (name) VALUES ('Investigaci髇 human韘tica');
+INSERT INTO sectors (name) VALUES ('Investigaci贸n cient铆fica');
+INSERT INTO sectors (name) VALUES ('Investigaci贸n human铆stica');
 INSERT INTO sectors (name) VALUES ('Docencia');
-INSERT INTO sectors (name) VALUES ('Difusi髇 y extensi髇');
+INSERT INTO sectors (name) VALUES ('Difusi贸n y extensi贸n');
 INSERT INTO sectors (name) VALUES ('Servicios');
 INSERT INTO sectors (name) VALUES ('Salud');
-INSERT INTO sectors (name) VALUES ('Energ閠icos');
+INSERT INTO sectors (name) VALUES ('Energ茅ticos');
 INSERT INTO sectors (name) VALUES ('Otro');

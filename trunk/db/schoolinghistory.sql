@@ -8,7 +8,7 @@ CREATE TABLE degrees (
 	UNIQUE (name)
 );
 COMMENT ON TABLE degrees IS
-	'Lista de grados académicos:  Técnico, licenciatura, maestría, doctorado...';
+	'Lista de grados acadÃ©micos:  TÃ©cnico, licenciatura, maestrÃ­a, doctorado...';
 
 CREATE TABLE careers (
 	id SERIAL,
@@ -69,8 +69,8 @@ CREATE TABLE credentials (
 	UNIQUE (name)
 );
 COMMENT ON TABLE credentials IS
-	'Títulos o credenciales que obtiene una persona al titularse en determinado
-	 grado académico: Lic., Mat., Fis., Arq., Dr., M. en C., etc.';
+	'TÃ­tulos o credenciales que obtiene una persona al titularse en determinado
+	 grado acadÃ©mico: Lic., Mat., Fis., Arq., Dr., M. en C., etc.';
 
 CREATE TABLE schoolings (
     id SERIAL,
@@ -110,7 +110,7 @@ CREATE TABLE schoolings (
 
 );
 COMMENT ON TABLE schoolings IS
-	'Los diferentes grados en la historia académica de un usuario:
+	'Los diferentes grados en la historia acadÃ©mica de un usuario:
 	* El nivel de estudios
 	* Lugar y periodo correspondiente a cada uno de sus grados
 	* Si esta estudiando el grado o ya lo termino?
@@ -118,13 +118,13 @@ COMMENT ON TABLE schoolings IS
 	* ..
 ';
 COMMENT ON COLUMN schoolings.endyear IS
-	'Año de egreso';
+	'AÃ±o de egreso';
 COMMENT ON COLUMN schoolings.studentid IS
-	'Matrícula';
+	'MatrÃ­cula';
 COMMENT ON COLUMN schoolings.is_titleholder IS
-	'¿Es ya titulado? (endyear marca únicamente egreso)';
+	'Â¿Es ya titulado? (endyear marca Ãºnicamente egreso)';
 COMMENT ON COLUMN schoolings.credits IS
-	'Porcentaje de créditos - No se reporta si ya egresó (endyear) ';
+	'Porcentaje de crÃ©ditos - No se reporta si ya egresÃ³ (endyear) ';
 --  CONSTRAINT is_studying_or_is_finished_degre: Finished Degree (with or without proffessional title)    
 
 CREATE TABLE titlemodalities( 
@@ -134,8 +134,8 @@ CREATE TABLE titlemodalities(
 	UNIQUE (name)
 );
 COMMENT ON TABLE titlemodalities IS
-	'Modalidad de titulación por medio de la cual alguien puede graduarse:
-	Tesis, Ceneval, tesina, reporte técnico, por promedio...';
+	'Modalidad de titulaciÃ³n por medio de la cual alguien puede graduarse:
+	Tesis, Ceneval, tesina, reporte tÃ©cnico, por promedio...';
 
 
 CREATE TABLE professionaltitles (
@@ -161,9 +161,9 @@ CREATE TABLE professionaltitles (
 	UNIQUE (schooling_id)
 );
 COMMENT ON TABLE professionaltitles IS
-	'El usuario está ya titulado (de cada uno de los grados reportados en
-	schooling)? Aquí van los datos de la titulación';
+	'El usuario estÃ¡ ya titulado (de cada uno de los grados reportados en
+	schooling)? AquÃ­ van los datos de la titulaciÃ³n';
 COMMENT ON COLUMN professionaltitles.professionalid IS
-	'Cédula profesional';
+	'CÃ©dula profesional';
 COMMENT ON COLUMN professionaltitles.year IS
-	'Año de titulación';
+	'AÃ±o de titulaciÃ³n';

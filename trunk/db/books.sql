@@ -26,7 +26,7 @@ CREATE TABLE booktypes (
 );
 COMMENT ON TABLE booktypes IS
 	'Tipo de libro:
-	 ⁄nico, serie, colecciÛn, libro arbitrado, etc.';
+	 √önico, serie, colecci√≥n, libro arbitrado, etc.';
 
 CREATE TABLE books ( 
     id SERIAL,
@@ -64,7 +64,7 @@ CREATE TABLE books (
 COMMENT ON TABLE books IS
 	'Los libros que maneje el sistema';
 COMMENT ON COLUMN books.author IS 'Nombre de los autores del libro 
-	(no es referencia, muchas veces no ser· usuario del sistema. Ver 
+	(no es referencia, muchas veces no ser√° usuario del sistema. Ver 
 	tabla userbooks)';
 	
 CREATE TABLE editions (
@@ -90,8 +90,8 @@ CREATE TABLE editionstatuses (
 	UNIQUE(name)
 );
 COMMENT ON TABLE editionstatuses IS
-	'Estado de una ediciÛn de un libro:
-	Publicado, en prensa, aceptado para publicaciÛn, en dict·men/en evaluaciÛn';
+	'Estado de una edici√≥n de un libro:
+	Publicado, en prensa, aceptado para publicaci√≥n, en dict√°men/en evaluaci√≥n';
 
 CREATE TABLE bookeditions ( --
     id serial,
@@ -130,8 +130,8 @@ CREATE TABLE bookeditions ( --
     UNIQUE (book_id, edition_id)
 );
 COMMENT ON TABLE bookeditions IS
-	'Historial de las ediciones de un libro - En quÈ ediciÛn va? Cu·ndo 
-	fue impresa? Cu·l es el estado de cada una de ellas?';
+	'Historial de las ediciones de un libro - En qu√© edici√≥n va? Cu√°ndo 
+	fue impresa? Cu√°l es el estado de cada una de ellas?';
 
 
 CREATE TABLE bookedition_roleinbooks ( 
@@ -178,7 +178,7 @@ CREATE TABLE bookedition_comments (
     UNIQUE (user_id, bookedition_id)
 );
 COMMENT ON TABLE bookedition_comments IS 
-	'Comentarios adicionales del usuario para cada ediciciÛn';
+	'Comentarios adicionales del usuario para cada edicici√≥n';
 
 CREATE TABLE bookchaptertypes (
 	id SERIAL,
@@ -216,9 +216,9 @@ CREATE table chapterinbooks (
 );
 CREATE INDEX chapterinbooks_title_idx ON chapterinbooks(title);
 COMMENT ON TABLE chapterinbooks IS	
-	'CapÌtulos en un libro (cuando son reportados por separado)';
+	'Cap√≠tulos en un libro (cuando son reportados por separado)';
 COMMENT ON COLUMN chapterinbooks.title IS
-	'TÌtulo del capÌtulo';
+	'T√≠tulo del cap√≠tulo';
 
 CREATE TABLE roleinchapters (
 	id serial,
@@ -252,7 +252,7 @@ CREATE TABLE chapterinbook_roleinchapters (
     UNIQUE (user_id, chapterinbook_id, roleinchapter_id)
 );
 COMMENT ON TABLE chapterinbook_roleinchapters IS 
-	'El rol de cada uno de los usuarios que participaron en un capÌtulo
+	'El rol de cada uno de los usuarios que participaron en un cap√≠tulo
 	 de libro';
 
 CREATE TABLE chapterinbook_comments ( 
@@ -277,4 +277,4 @@ CREATE TABLE chapterinbook_comments (
     UNIQUE (user_id, chapterinbook_id)
 );
 COMMENT ON TABLE chapterinbook_comments IS 
-	'Comentarios adicionales del usuario para cada capÌtulo';
+	'Comentarios adicionales del usuario para cada cap√≠tulo';

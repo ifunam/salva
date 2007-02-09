@@ -15,12 +15,12 @@ CREATE TABLE activitygroups (
 );
 COMMENT ON TABLE activitygroups IS
 	'Listado del grupo al que pertenecen las otras actividades:
-	Actividades de divulgaci髇
-	Actividades de extensi髇
-	Actividades de difusi髇
+	Actividades de divulgaci贸n
+	Actividades de extensi贸n
+	Actividades de difusi贸n
 	Servicios de apoyo
 	Actividades de docencia
-	Actividades de vinculaci髇
+	Actividades de vinculaci贸n
 	Otras actividades';
 
 CREATE TABLE activitytypes (
@@ -66,4 +66,4 @@ CREATE TABLE activities (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE activities IS
-	'Otras actividades acad閙icas en las que participan los usuarios';
+	'Otras actividades acad茅micas en las que participan los usuarios';

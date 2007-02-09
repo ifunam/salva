@@ -10,8 +10,8 @@ CREATE TABLE researchgroups (
 	UNIQUE (name)
 );
 COMMENT ON TABLE researchgroups IS
-	'Grupos de investigación (e.g.): 
-	 Grupo de Propiedades Ópticas de Defectos en Sólidos 
+	'Grupos de investigaciÃ³n (e.g.): 
+	 Grupo de Propiedades Ã“pticas de Defectos en SÃ³lidos 
 	 Grupo de Biocomplejidad y Redes
 	 ....';
 
@@ -22,7 +22,7 @@ CREATE TABLE groupmodalities (
 	UNIQUE (name)
 );	
 COMMENT ON TABLE groupmodalities IS
-	'Modalidad de un grupo de investigación: Administrativa, Académica, etc..';
+	'Modalidad de un grupo de investigaciÃ³n: Administrativa, AcadÃ©mica, etc..';
 
 CREATE TABLE researchgroupmodalities (
 	id SERIAL,
@@ -75,7 +75,7 @@ CREATE TABLE userresearchgroups (
 	(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
 );
 COMMENT ON TABLE userresearchgroups IS
-	'Grupos de investigación a los que pertenece un usuario (interno o
+	'Grupos de investigaciÃ³n a los que pertenece un usuario (interno o
 	externo)';
 COMMENT ON COLUMN userresearchgroups.year IS
-	'Año en que comenzó a participar en el grupo'
+	'AÃ±o en que comenzÃ³ a participar en el grupo'

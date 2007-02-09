@@ -93,9 +93,9 @@ module SelectHelper
   def set_zebda_tags(type)
     case type
     when 1  
-      { 'z:required' => 'true', 'z:required_message' => 'Seleccione una opciÛn' }
+      { 'z:required' => 'true', 'z:required_message' => 'Seleccione una opci√≥n' }
     when 2
-      { 'z:required' => 'true', 'z:required_message' => 'Registre la informaciÛn de este campo' }
+      { 'z:required' => 'true', 'z:required_message' => 'Registre la informaci√≥n de este campo' }
     else
     end
   end  

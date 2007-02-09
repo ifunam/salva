@@ -45,7 +45,7 @@ module ListHelper
   end
   
   def latin1_to_utf8(str)
-    str.to_s.tr('·ÈÌÛ˙¡…Õ”⁄Ò—','aeiouAEIOUnN')
+    str.to_s.tr('√°√©√≠√≥√∫√Å√â√ç√ì√ö√±√ë','aeiouAEIOUnN')
   end
   
   def columns_content(row, columns)
@@ -229,7 +229,7 @@ module ListHelper
     when /isseminary/
       condition ? 'Seminario' : 'Conferencia'
     else
-      condition ? 'SÌ' : 'No'
+      condition ? 'S√≠' : 'No'
     end
   end  
 end

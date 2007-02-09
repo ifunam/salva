@@ -1,5 +1,5 @@
-INSERT INTO booktypes (name) VALUES ('Único');
+INSERT INTO booktypes (name) VALUES ('Ãšnico');
 INSERT INTO booktypes (name) VALUES ('Serie');
-INSERT INTO booktypes (name) VALUES ('Colección');
+INSERT INTO booktypes (name) VALUES ('ColecciÃ³n');
 INSERT INTO booktypes (name) VALUES ('Arbitrado');
 INSERT INTO booktypes (name) VALUES ('Otro');

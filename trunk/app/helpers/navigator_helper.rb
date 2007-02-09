@@ -125,7 +125,7 @@ module NavigatorHelper
       path = child.path
       counter = child.path.size + 1
       path.reverse.collect { |item|  counter -= 1 }
-      link_tag_navtab_depth(child.data, counter, 'Sección')
+      link_tag_navtab_depth(child.data, counter, 'SecciÃ³n')
     end
   end
 
@@ -137,7 +137,7 @@ module NavigatorHelper
       path = child.path
       counter = child.path.size
       path.reverse.collect { |item|  counter -= 1 }
-      link_tag_navtab_depth(child.data, counter, 'Sección')
+      link_tag_navtab_depth(child.data, counter, 'SecciÃ³n')
     end
   end
 

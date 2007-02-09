@@ -5,8 +5,8 @@ CREATE TABLE institutiontypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE institutiontypes IS
-	'Tipo de institución:
-	Pública, privada, ONG, otra';
+	'Tipo de instituciÃ³n:
+	PÃºblica, privada, ONG, otra';
 
 CREATE TABLE institutiontitles (
 	id SERIAL,
@@ -15,8 +15,8 @@ CREATE TABLE institutiontitles (
 	UNIQUE (name)
 );
 COMMENT ON TABLE institutiontitles IS
-	'Título (tipo, primer elemento del nombre) de una institución:
-	 Universidad, Escuela, Facultad, Instituto, Departamento, Unidad, Secretaría, Centro...';
+	'TÃ­tulo (tipo, primer elemento del nombre) de una instituciÃ³n:
+	 Universidad, Escuela, Facultad, Instituto, Departamento, Unidad, SecretarÃ­a, Centro...';
 
 CREATE TABLE institutions (  
         id SERIAL,
@@ -66,11 +66,11 @@ CREATE TABLE institutions (
 COMMENT ON TABLE institutions IS
 	'Instituciones';
 COMMENT ON COLUMN institutions.institution_id IS
-	'Institución padre, para expresar jerarquías (p.ej. UNAM es la 
-	institución padre de IIEc)';
+	'InstituciÃ³n padre, para expresar jerarquÃ­as (p.ej. UNAM es la 
+	instituciÃ³n padre de IIEc)';
 COMMENT ON COLUMN institutions.administrative_key IS
-	'Si la institución tiene alguna clave en su institución padre, la 
-	indicamos aquí. Lo guardamos sólo como texto, no buscamos la integridad
+	'Si la instituciÃ³n tiene alguna clave en su instituciÃ³n padre, la 
+	indicamos aquÃ­. Lo guardamos sÃ³lo como texto, no buscamos la integridad
 	referencial';
 
 CREATE TABLE sectors (
@@ -84,9 +84,9 @@ CREATE TABLE sectors (
 	UNIQUE(name) 
 );
 COMMENT ON TABLE sectors IS
-	'Una institución pertences a cierto sectores - ¿cuáles? (tan
-	genérico como sea posible: 
-	Educación, investigación, salud, energéticos, etc.';
+	'Una instituciÃ³n pertences a cierto sectores - Â¿cuÃ¡les? (tan
+	genÃ©rico como sea posible: 
+	EducaciÃ³n, investigaciÃ³n, salud, energÃ©ticos, etc.';
 
 CREATE TABLE institution_sectors (
 	id SERIAL,
@@ -107,5 +107,5 @@ CREATE TABLE institution_sectors (
 	UNIQUE (institution_id, sector_id)
 );
 COMMENT ON TABLE institution_sectors IS
-	'Relación entre cada una de las instituciones y los sectores a los que pertenece';
+	'RelaciÃ³n entre cada una de las instituciones y los sectores a los que pertenece';
 

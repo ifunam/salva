@@ -20,7 +20,7 @@
 <% end %>
 </table>
 <% if list.length > 0 %>
-<%= @parent_controller ? submit_tag('Seleccionar') : (submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('¿Desea borrar los elementos seleccionados?');"}) %>
+<%= @parent_controller ? submit_tag('Seleccionar') : (submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('Â¿Desea borrar los elementos seleccionados?');"}) %>
 <% end %>
 <%= render :partial => '/salva/paginator' %>
 <%= end_form_tag %>

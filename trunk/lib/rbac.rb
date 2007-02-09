@@ -1,13 +1,13 @@
 module Rbac
   def rbac_required
-    flash[:warning] = 'Por favor defina un rol para el usuario en sesión...' unless has_role_defined? 
+    flash[:warning] = 'Por favor defina un rol para el usuario en sesiÃ³n...' unless has_role_defined? 
     
     if controller_and_action_exist?(controller_name, action_name)
       unless has_permission_in_this_controller?
         flash[:warning] = "No tiene permisos para usar este controlador '#{controller_name} => #{action_name}'..."  
       end
     else
-      flash[:warning] = "El controlador '#{controller_name}' o la acción '#{action_name}' aún no estan registrados.."
+      flash[:warning] = "El controlador '#{controller_name}' o la acciÃ³n '#{action_name}' aÃºn no estan registrados.."
     end
     
     redirect_to_rbac if flash[:warning]

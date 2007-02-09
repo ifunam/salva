@@ -19,7 +19,7 @@ CREATE TABLE conferencescopes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE conferencescopes IS 
-	'¡mbito del congreso:
+	'√Åmbito del congreso:
 	Local, Nacional, Internacional, ...';
 
 CREATE TABLE talktypes ( 
@@ -30,7 +30,7 @@ CREATE TABLE talktypes (
 );
 COMMENT ON TABLE talktypes IS
 	'Tipo de ponencia:
-	Conferencia, pl·tica, tutorial, taller, magistral, poster, ...';
+	Conferencia, pl√°tica, tutorial, taller, magistral, poster, ...';
 
 CREATE TABLE conferences ( 
     id SERIAL,
@@ -64,7 +64,7 @@ CREATE TABLE conferences (
 COMMENT ON TABLE conferences IS
 	'Congresos';
 COMMENT ON COLUMN conferences.location IS
-	'En quÈ parte/regiÛn del paÌs es este congreso';
+	'En qu√© parte/regi√≥n del pa√≠s es este congreso';
 
 CREATE TABLE conference_institutions (
     id SERIAL,
@@ -132,7 +132,7 @@ CREATE TABLE talkacceptances (
 	UNIQUE (name)
 );
 COMMENT ON TABLE talkacceptances IS
-	'CÛmo fue la inscripciÛn/aceptaciÛn de la ponencia en el congreso?:
+	'C√≥mo fue la inscripci√≥n/aceptaci√≥n de la ponencia en el congreso?:
 	Invitado, Arbitrado, Inscrito, ....';
 
 CREATE TABLE conferencetalks (
@@ -167,10 +167,10 @@ CREATE TABLE conferencetalks (
     PRIMARY KEY (id)    
 );
 COMMENT ON TABLE conferencetalks IS
-	'Las pl·ticas que forman parte de un congreso';
+	'Las pl√°ticas que forman parte de un congreso';
 COMMENT ON COLUMN conferencetalks.authors IS
 	'Listado de autores tal cual aparece en la ponencia - La 
-	relaciÛn entre usuarios y ponencias es independiente de esta, ver 
+	relaci√≥n entre usuarios y ponencias es independiente de esta, ver 
 	userconferencerole.';
 
 CREATE TABLE roleinconferencetalks ( 
@@ -211,10 +211,10 @@ CREATE TABLE user_conferencetalks (
     UNIQUE (user_id, roleinconferencetalk_id, conferencetalk_id)
 );
 COMMENT ON TABLE user_conferencetalks IS
-	'Tipo de participaciÛn de un usuario en un congreso - Si sÛlamente 
-	fue como asistente, no requiere ning˙n registro en esta tabla.';
+	'Tipo de participaci√≥n de un usuario en un congreso - Si s√≥lamente 
+	fue como asistente, no requiere ning√∫n registro en esta tabla.';
 COMMENT ON COLUMN user_conferencetalks.conferencetalk_id IS
-	'Si el usuario fue ponente, indicar· aquÌ el ID de su ponencia. Si es
+	'Si el usuario fue ponente, indicar√° aqu√≠ el ID de su ponencia. Si es
 	organizador, este campo debe quedar nulo.';
 
 CREATE TABLE proceedings (
@@ -278,7 +278,7 @@ CREATE TABLE user_proceedings (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (proceeding_id, user_id, roleproceeding_id)  -- Un usuario podrÌa tener m·s de un rol
+   UNIQUE (proceeding_id, user_id, roleproceeding_id)  -- Un usuario podr√≠a tener m√°s de un rol
 );
 COMMENT ON TABLE user_proceedings IS 
 	'Rol de cada uno de los usuarios involucrados en memorias';
@@ -323,7 +323,7 @@ CREATE TABLE user_inproceedings (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (inproceeding_id, user_id)  -- Un usuario podrÌa tener m·s de un rol
+   UNIQUE (inproceeding_id, user_id)  -- Un usuario podr√≠a tener m√°s de un rol
 );
 COMMENT ON TABLE user_inproceedings IS 
 	'Rol de cada uno de los usuarios involucrados en un articulo en memorias';

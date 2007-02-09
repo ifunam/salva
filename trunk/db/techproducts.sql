@@ -8,10 +8,10 @@ CREATE TABLE techproducttypes (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE techproducttypes IS
-	'Tipos de producto técnico:
-	Desarrollo de instrumentación, Implementación de técnicas nuevas,
+	'Tipos de producto tÃ©cnico:
+	Desarrollo de instrumentaciÃ³n, ImplementaciÃ³n de tÃ©cnicas nuevas,
 	Desarrollo de nuevos dispositivos, Desarrollo de hardware, Desarrollo de
-	 software, Patentes, Productos electrónicos, Productos magnéticos,
+	 software, Patentes, Productos electrÃ³nicos, Productos magnÃ©ticos,
 	 Audio, video, CD, Floppy, DVD, otro';
 
 CREATE TABLE techproductstatus (
@@ -21,7 +21,7 @@ CREATE TABLE techproductstatus (
 	UNIQUE (name)
 );
 COMMENT ON TABLE techproductstatus IS 
-	'Estado en que puede estar un producto técnico: En desarrollo, entregado, publicado, otro';
+	'Estado en que puede estar un producto tÃ©cnico: En desarrollo, entregado, publicado, otro';
 
 CREATE TABLE techproducts (
 	id serial,
@@ -43,10 +43,10 @@ CREATE TABLE techproducts (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE techproducts IS
-	'Cada uno de los productos técnicos generados';
+	'Cada uno de los productos tÃ©cnicos generados';
 COMMENT ON COLUMN techproducts.institution_id IS
-	'Institución en la que este producto fue creado (independiente de las
-	instituciones de adscripción de cada uno de sus participantes)';
+	'InstituciÃ³n en la que este producto fue creado (independiente de las
+	instituciones de adscripciÃ³n de cada uno de sus participantes)';
 
 CREATE TABLE techproductversions (
 	id SERIAL,
@@ -67,11 +67,11 @@ CREATE TABLE techproductversions (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE techproductversions IS 
-	'Cada una de las versiones de un proucto técnico';
+	'Cada una de las versiones de un proucto tÃ©cnico';
 COMMENT ON COLUMN techproductversions.release IS 
-	'Número de versión o descripción de edición';
+	'NÃºmero de versiÃ³n o descripciÃ³n de ediciÃ³n';
 COMMENT ON COLUMN techproductversions.isbn IS 
-	'Número de registro (ISBN u otro) del producto';
+	'NÃºmero de registro (ISBN u otro) del producto';
 
 CREATE TABLE techproductfinancingsource (
     id SERIAL,
@@ -89,7 +89,7 @@ CREATE TABLE techproductfinancingsource (
     UNIQUE (techproduct_id, financingsource_id )
 );
 COMMENT ON TABLE techproductfinancingsource IS
-	'Fuentes de financiamiento de cada producto técnico';
+	'Fuentes de financiamiento de cada producto tÃ©cnico';
 
 CREATE TABLE usertechproducts (
 	id SERIAL,
@@ -121,7 +121,7 @@ CREATE TABLE usertechproducts (
 		(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
 );
 COMMENT ON TABLE usertechproducts IS
-	'Productos técnicos en los que cada usuario ha estado involucrado';
+	'Productos tÃ©cnicos en los que cada usuario ha estado involucrado';
 COMMENT ON COLUMN usertechproducts.user_is_internal IS
-	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
+	'El usuario es interno del sistema? Si sÃ­, exigimos internaluser_id; 
 	si no, exigimos externaluser_id';

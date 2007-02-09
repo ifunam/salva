@@ -12,8 +12,8 @@ CREATE TABLE genericworkgroups (
 );
 COMMENT ON TABLE genericworkgroups IS
 	'Listado del grupo al que pertenecen las trabajos genericos:
-	Productos de divulgaciÛn
-	Productos de extensiÛn y difusiÛn
+	Productos de divulgaci√≥n
+	Productos de extensi√≥n y difusi√≥n
 	Publicaciones internas
 	Productos de docencia
 	Otro';
@@ -37,17 +37,17 @@ CREATE TABLE genericworktypes (
 	UNIQUE (name,genericworkgroup_id)
 );
 COMMENT ON TABLE genericworktypes IS 
-	'Tipos de trabajos genÈricos que manejamos:
+	'Tipos de trabajos gen√©ricos que manejamos:
 
-	Productos de divulgaciÛn:
-	Reportes tÈcnicos p˙blicos
-	ArtÌculos o ensayos en revistas
-	DivulgaciÛn de la ciencia
-	Nota de investigaciÛn
-	ReseÒa
+	Productos de divulgaci√≥n:
+	Reportes t√©cnicos p√∫blicos
+	Art√≠culos o ensayos en revistas
+	Divulgaci√≥n de la ciencia
+	Nota de investigaci√≥n
+	Rese√±a
 	...
 
-	Productos de extensiÛn y difusiÛn:
+	Productos de extensi√≥n y difusi√≥n:
 	Colecciones (infantiles, impresos)
 	....
 
@@ -56,9 +56,9 @@ COMMENT ON TABLE genericworktypes IS
 	...
 
 	Productos de docencia:
-	AntologÌa
-	AntologÌa critica
-	GuÌa de estudio
+	Antolog√≠a
+	Antolog√≠a critica
+	Gu√≠a de estudio
 	Notas de clase
 	Cuadernos
 	Manual de apoyo docente
@@ -66,7 +66,7 @@ COMMENT ON TABLE genericworktypes IS
 	...
 
 	Otro:
-	TraducciÛn de artÌculo
+	Traducci√≥n de art√≠culo
 	 ...
        ';
 
@@ -83,7 +83,7 @@ CREATE TABLE genericworkstatuses (
 	UNIQUE (name)
 );
 COMMENT ON TABLE genericworkstatuses IS 
-	'Estado de un trabajo genÈrico:
+	'Estado de un trabajo gen√©rico:
 	Propuesto, enviado, aceptado, en prensa, publicado, ..';
 
 CREATE TABLE genericworks ( 
@@ -122,10 +122,10 @@ CREATE TABLE genericworks (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE genericworks IS 
-	'Trabajos genÈricos (publicaciones no contempladas en otros 
+	'Trabajos gen√©ricos (publicaciones no contempladas en otros 
 	apartados del sistema)';
 COMMENT ON COLUMN genericworks.isbn_issn IS
-	'Dependiendo del tipo de trabajo, puede recibir n˙mero ISBN o ISSN';
+	'Dependiendo del tipo de trabajo, puede recibir n√∫mero ISBN o ISSN';
 	
 CREATE TABLE user_genericworks (
    id SERIAL,
@@ -148,10 +148,10 @@ CREATE TABLE user_genericworks (
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (id),
-   UNIQUE (genericwork_id, user_id, userrole_id)  -- Un usuario podrÌa tener m·s de un rol
+   UNIQUE (genericwork_id, user_id, userrole_id)  -- Un usuario podr√≠a tener m√°s de un rol
 );
 COMMENT ON TABLE user_genericworks IS 
-	'Rol de cada uno de los usuarios involucrados en un trabajo genÈrico';
+	'Rol de cada uno de los usuarios involucrados en un trabajo gen√©rico';
 
 
 CREATE TABLE genericworkslog (
@@ -175,8 +175,8 @@ CREATE TABLE genericworkslog (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE genericworkslog IS
-	'Estado actual (y bit·cora) de un trabajo genÈrico - Cu·ndo fue
-	 enviado, cu·ndo fue aceptado, etc.';
+	'Estado actual (y bit√°cora) de un trabajo gen√©rico - Cu√°ndo fue
+	 enviado, cu√°ndo fue aceptado, etc.';
 
 ------
 -- Update usergenericworkslog if there was a status change

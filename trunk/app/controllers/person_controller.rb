@@ -5,8 +5,8 @@ class PersonController < ApplicationController
   include Magick
   include Stackcontroller
   include Sql
-  # Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y 
-  # UploadProgress se declaren oficialmente como código estable, referencias:
+  # Usaremos las siguientes dos lÃ­neas cuando actionpack-imagemagick-0.4.gem y 
+  # UploadProgress se declaren oficialmente como cÃ³digo estable, referencias:
   # http://vantulder.net/rails/magick/
   # http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
   # 
@@ -65,7 +65,7 @@ class PersonController < ApplicationController
       flash[:notice] = 'Sus datos personales han sido guardados'
       render :action => 'show'
     else
-      flash[:notice] = 'Hay errores al guardar esta información'
+      flash[:notice] = 'Hay errores al guardar esta informaciÃ³n'
       render :action => 'new'
     end
   end
@@ -84,7 +84,7 @@ class PersonController < ApplicationController
       flash[:notice] = 'Sus datos personales han sido actualizados'
       render :action => 'show'
     else
-      flash[:notice] = 'Hay errores al actualizar esta información'
+      flash[:notice] = 'Hay errores al actualizar esta informaciÃ³n'
       render :action => 'edit'
     end
   end

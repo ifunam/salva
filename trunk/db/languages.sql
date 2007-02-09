@@ -15,7 +15,7 @@ CREATE TABLE languages (
 	UNIQUE (name)
 );
 COMMENT ON TABLE languages IS
-	'Idiomas:  Español, inglés, francés, nahuatl, ztzotzil, etc';
+	'Idiomas:  EspaÃ±ol, inglÃ©s, francÃ©s, nahuatl, ztzotzil, etc';
 
 CREATE TABLE languagelevels (
 	id serial,
@@ -30,7 +30,7 @@ CREATE TABLE languagelevels (
 	UNIQUE (name)
 );
 COMMENT ON TABLE languagelevels IS
-	'Nivel de dominio del lenguaje: Básico, Medio, Avanzado';
+	'Nivel de dominio del lenguaje: BÃ¡sico, Medio, Avanzado';
 
 CREATE TABLE user_languages (
 	id serial,
@@ -56,6 +56,6 @@ CREATE TABLE user_languages (
 	UNIQUE (language_id, spoken_languagelevel_id, written_languagelevel_id)
 );
 COMMENT ON TABLE user_languages IS
-	'Relación de usuarios con lenguajes, indicando nivel de manejo';
+	'RelaciÃ³n de usuarios con lenguajes, indicando nivel de manejo';
 COMMENT ON COLUMN user_languages.comment IS
-	'P.ej. indicando el curso o la institución donde lo aprendió';
+	'P.ej. indicando el curso o la instituciÃ³n donde lo aprendiÃ³';

@@ -1,51 +1,51 @@
-		      ¿Cómo usar este depósito?
+		      Â¿CÃ³mo usar este depÃ³sito?
 		      =========================
 
-Rails es un framework completo, y como tal, tendrá detalles que
-cambien de sistema a sistema - Es por eso que no podemos usar un sólo
-checkout del CVS para trabajar todos. ¿Qué tienes que hacer para tener
+Rails es un framework completo, y como tal, tendrÃ¡ detalles que
+cambien de sistema a sistema - Es por eso que no podemos usar un sÃ³lo
+checkout del CVS para trabajar todos. Â¿QuÃ© tienes que hacer para tener
 un rails funcional?
 
 Instala Rails en tu computadora
 -------------------------------
 
-No entramos acá en detalles ;-) Asómate a http://www.rubyonrails.com/
-para más información
+No entramos acÃ¡ en detalles ;-) AsÃ³mate a http://www.rubyonrails.com/
+para mÃ¡s informaciÃ³n
 
 Crea un proyecto rails temporal
 -------------------------------
 $ cd /tmp
 $ rails temporal
 
-Mueve los directorios necesarios de lo que generó Rails a este directorio
+Mueve los directorios necesarios de lo que generÃ³ Rails a este directorio
 -------------------------------------------------------------------------
 $ cd temporal
 $ mv script config vendor /ruta/a/salva/onrails/
 
-No te preocupes, estos directorios no interferirán con los de los
-demás desarrolladores/usuarios - Son ignorados por Subversion.
+No te preocupes, estos directorios no interferirÃ¡n con los de los
+demÃ¡s desarrolladores/usuarios - Son ignorados por Subversion.
 
 Configura tu acceso a base de datos
 -----------------------------------
-- En config/database.yml, configura los parámetros de acceso a la BD
+- En config/database.yml, configura los parÃ¡metros de acceso a la BD
 
-- En config/environment.rb, agrega la línea:
+- En config/environment.rb, agrega la lÃ­nea:
   ActiveRecord::Base.pluralize_table_names = false
 
-- Para configurar la información de tu institución edita el archivo
+- Para configurar la informaciÃ³n de tu instituciÃ³n edita el archivo
   RAILS_ROOT/config/salva.yml:
 $vi salva.yml
 
-- Para cargar la configuración de tu sitio y las cadenas del salva
-  agrega las siguientes líneas al archivo RAILS_ROOT/config/environment.rb:
+- Para cargar la configuraciÃ³n de tu sitio y las cadenas del salva
+  agrega las siguientes lÃ­neas al archivo RAILS_ROOT/config/environment.rb:
 require 'salva'
 Salva::load_config_settings
 Salva::load_strings
 
-Y... ¡Disfruta de tu Salva sobre Ruby on Rails! :-D
+Y... Â¡Disfruta de tu Salva sobre Ruby on Rails! :-D
 
 ----------------------------------------------------------------------
-Documentación útil para aprender acerca del FrameWork
+DocumentaciÃ³n Ãºtil para aprender acerca del FrameWork
 * Sitio oficial:
   http://www.rubyonrails.org
 
@@ -87,10 +87,10 @@ Documentación útil para aprender acerca del FrameWork
   Time
 
 - Tips
-  Cómo desactivar la pluralization de las tablas?
+  CÃ³mo desactivar la pluralization de las tablas?
   http://wiki.rubyonrails.com/rails/pages/HowtoDisableAutoTableNamePluralisation
-  Donde reviso la configuración de la BD?
+  Donde reviso la configuraciÃ³n de la BD?
   /salva/onrails/config/database.yml
-  Ejemplo para ejecutar la aplicación desde apache?
+  Ejemplo para ejecutar la aplicaciÃ³n desde apache?
   /salva/onrails/config/httpd.conf
 

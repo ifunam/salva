@@ -16,9 +16,9 @@ CREATE TABLE publicationcategories (
 	UNIQUE(name)
 );
 COMMENT ON TABLE publicationcategories IS 
-	'Áreas del conocimiento a los que responde una revista:
-	 Genéricos: Ciencias sociales, ciencias naturales, humanidades
-	 Específicos: (desglose :)';
+	'Ãreas del conocimiento a los que responde una revista:
+	 GenÃ©ricos: Ciencias sociales, ciencias naturales, humanidades
+	 EspecÃ­ficos: (desglose :)';
 
 
 CREATE TABLE journals (
@@ -50,7 +50,7 @@ CREATE TABLE journals (
 	UNIQUE(issn) 
 );
 COMMENT ON TABLE journals IS
-	'Revistas en las cuales pueden publicarse artículos';
+	'Revistas en las cuales pueden publicarse artÃ­culos';
 
 
 CREATE TABLE journalstatistics (
@@ -72,7 +72,7 @@ CREATE TABLE journalstatistics (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE journalstatistics IS
-	'Estadísticas asociadas a la revista';
+	'EstadÃ­sticas asociadas a la revista';
 COMMENT ON COLUMN journalstatistics.dateupdate IS
 	'Fecha en que fue actualizado el factor de impacto/inmediatez';
 
@@ -97,7 +97,7 @@ CREATE TABLE journal_publicationcategories (
 	UNIQUE(journal_id, publicationcategory_id)
 );
 COMMENT ON TABLE journal_publicationcategories IS
-	'Categorías (áreas del conocimiento) a las que pertenece una revista';
+	'CategorÃ­as (Ã¡reas del conocimiento) a las que pertenece una revista';
 
 CREATE TABLE roleinjournals (
 	id serial,
@@ -112,7 +112,7 @@ CREATE TABLE roleinjournals (
 	UNIQUE (name)
 );
 COMMENT ON TABLE roleinjournals IS
-	'Roles que un usuario puede tener en una publicación:
+	'Roles que un usuario puede tener en una publicaciÃ³n:
 	Editor, Compilador, Revisor, Arbitro, Otro';
 
 
@@ -148,9 +148,9 @@ CREATE TABLE user_journals (
 --	       (startyear * 12 + coalesce(startmonth,	0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_journals IS
-	'Relación entre usuarios del sistema y las publicaciones';
+	'RelaciÃ³n entre usuarios del sistema y las publicaciones';
 COMMENT ON COLUMN user_journals.roleinjournal_id IS
-	'Es el rol que tiene el usuario en la publicación';
+	'Es el rol que tiene el usuario en la publicaciÃ³n';
 
 
 CREATE TABLE articles ( 
@@ -183,10 +183,10 @@ CREATE TABLE articles (
     UNIQUE(title, journal_id, year)
 );
 COMMENT ON TABLE articles IS
-	'Datos de un artículo publicado';
+	'Datos de un artÃ­culo publicado';
 COMMENT ON COLUMN articles.authors IS
-	'Listado de autores tal cual aparece en el artículo - La relación 
-	entre usuarios y artículos es independiente de esta, ver 
+	'Listado de autores tal cual aparece en el artÃ­culo - La relaciÃ³n 
+	entre usuarios y artÃ­culos es independiente de esta, ver 
 	authorarticles.';
 
 CREATE TABLE user_articles ( 
@@ -211,9 +211,9 @@ CREATE TABLE user_articles (
     PRIMARY KEY (user_id, article_id)
 );
 COMMENT ON TABLE user_articles IS
-	'Relación entre usuarios del sistema y artículos';
+	'RelaciÃ³n entre usuarios del sistema y artÃ­culos';
 COMMENT ON COLUMN user_articles.ismainauthor IS
-	'Basta con señalar si el usuario es autor principal o es coautor';
+	'Basta con seÃ±alar si el usuario es autor principal o es coautor';
 
 CREATE TABLE articleslog (
     id SERIAL, 
@@ -236,8 +236,8 @@ CREATE TABLE articleslog (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE articleslog IS
-	'Estado actual (y bitácora) de un artículo - Cuándo fue enviado, 
-	cuándo fue aceptado, etc.';
+	'Estado actual (y bitÃ¡cora) de un artÃ­culo - CuÃ¡ndo fue enviado, 
+	cuÃ¡ndo fue aceptado, etc.';
 
 CREATE TABLE file_articles (
    id serial NOT NULL,
@@ -260,9 +260,9 @@ CREATE TABLE file_articles (
     UNIQUE (article_id, filename)
 );
 COMMENT ON TABLE file_articles IS
-	'Archivos relacionados a los artículos';
+	'Archivos relacionados a los artÃ­culos';
 COMMENT ON COLUMN file_articles.article_id IS
-	'ID del artículo referenciado';
+	'ID del artÃ­culo referenciado';
 COMMENT ON COLUMN file_articles.content IS
 	'Contenido (binario) del archivo';
 

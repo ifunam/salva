@@ -12,7 +12,7 @@ CREATE TABLE projecttypes (
 );
 COMMENT ON TABLE projecttypes IS
 	'Tipos de proyectos';
--- Investigación, Docencia, Apoyo, Infraestructura, Otro.
+-- InvestigaciÃ³n, Docencia, Apoyo, Infraestructura, Otro.
 
 CREATE TABLE projectstatuses (
 	id SERIAL,
@@ -22,7 +22,7 @@ CREATE TABLE projectstatuses (
 );
 COMMENT ON TABLE projectstatuses IS
 	'Estado de los proyectos';
--- En desarrollo, planeación, terminado,
+-- En desarrollo, planeaciÃ³n, terminado,
 
 CREATE TABLE projects ( 
     id SERIAL,   
@@ -72,13 +72,13 @@ COMMENT ON COLUMN projects.project_id IS
 COMMENT ON COLUMN projects.responsible IS
 	'Nombre del responsable del proyecto';
 --COMMENT ON COLUMN projects.subject IS
---	'Temática, tema (no confundir con name)';
+--	'TemÃ¡tica, tema (no confundir con name)';
 COMMENT ON COLUMN projects.abbrev IS
-	'Acrónimo';
+	'AcrÃ³nimo';
 --COMMENT ON COLUMN projects.notes IS
 --	'Logros y avances';
 COMMENT ON COLUMN projects.other IS
-	'Número de alumnos, grado, etc.';
+	'NÃºmero de alumnos, grado, etc.';
 
 CREATE TABLE projectinstitutions (
     id SERIAL,
@@ -95,7 +95,7 @@ CREATE TABLE projectinstitutions (
     UNIQUE (project_id, institution_id)
 );
 COMMENT ON TABLE projectinstitutions IS
-	'Relación del proyecto con instituciones';
+	'RelaciÃ³n del proyecto con instituciones';
 
 CREATE TABLE projectresearchlines (
     id SERIAL,
@@ -112,7 +112,7 @@ CREATE TABLE projectresearchlines (
     UNIQUE (project_id, researchline_id)
 );
 COMMENT ON TABLE projectresearchlines IS
-	'Relación del proyecto con las líneas de investigación';
+	'RelaciÃ³n del proyecto con las lÃ­neas de investigaciÃ³n';
 
 CREATE TABLE projectresearchareas (
     id SERIAL,
@@ -129,7 +129,7 @@ CREATE TABLE projectresearchareas (
     UNIQUE (project_id, researcharea_id)
 );
 COMMENT ON TABLE projectresearchareas IS
-	'Relación del proyecto con las áreas de investigación';
+	'RelaciÃ³n del proyecto con las Ã¡reas de investigaciÃ³n';
 
 CREATE TABLE projectfiles (
    id serial NOT NULL,
@@ -182,7 +182,7 @@ CREATE TABLE roleinprojects (
 );
 COMMENT ON TABLE roleinprojects IS
 	'Roles en un proyecto';
--- Responsable, corresponsable, participante, apoyo a la investigación (T.A.),
+-- Responsable, corresponsable, participante, apoyo a la investigaciÃ³n (T.A.),
 -- becario; etc.
 
 CREATE TABLE user_projects (
@@ -209,9 +209,9 @@ CREATE TABLE user_projects (
    UNIQUE (project_id, user_id, roleinproject_id)
 );
 COMMENT ON TABLE user_projects IS
-	'Relación entre usuarios y proyectos';
+	'RelaciÃ³n entre usuarios y proyectos';
 -- COMMENT ON COLUMN user_projects.user_is_internal IS
---	'El usuario es interno del sistema? Si sí, exigimos internaluser_id; 
+--	'El usuario es interno del sistema? Si sÃ­, exigimos internaluser_id; 
 --	si no, exigimos externaluser_id';
 
 CREATE TABLE projectarticles (
@@ -228,7 +228,7 @@ CREATE TABLE projectarticles (
 	UNIQUE (project_id, article_id)
 );
 COMMENT ON TABLE projectarticles IS
-	'Artículos relacionados con un proyecto';
+	'ArtÃ­culos relacionados con un proyecto';
 
 CREATE TABLE projecttheses (
 	id serial,
@@ -276,7 +276,7 @@ CREATE TABLE projectchapterinbooks (
 	UNIQUE (project_id, chapterinbook_id)
 );
 COMMENT ON TABLE projectchapterinbooks IS
-	'Capítulos en libro relacionados con cada proyecto';
+	'CapÃ­tulos en libro relacionados con cada proyecto';
 
 CREATE TABLE projectconferencetalks (
 	id serial,
@@ -308,7 +308,7 @@ CREATE TABLE projectacadvisits (
 	UNIQUE (project_id, acadvisit_id)
 );
 COMMENT ON TABLE projectacadvisits IS
-	'Estancias académicas relacionadas con cada proyecto';
+	'Estancias acadÃ©micas relacionadas con cada proyecto';
 
 CREATE TABLE projectgenericworks (
 	id serial,
@@ -324,7 +324,7 @@ CREATE TABLE projectgenericworks (
 	UNIQUE (project_id, genericwork_id)
 );
 COMMENT ON TABLE projectgenericworks IS
-	'Trabajos genéricos relacionados con cada proyecto';
+	'Trabajos genÃ©ricos relacionados con cada proyecto';
 
 CREATE TABLE projectslog (
     id SERIAL,
@@ -347,7 +347,7 @@ CREATE TABLE projectslog (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE projectslog IS 
-	'Bitácora de cambios de estado en proyectos';
+	'BitÃ¡cora de cambios de estado en proyectos';
 
 ------
 -- Update projectslog if there was a status change

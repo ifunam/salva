@@ -15,8 +15,8 @@ CREATE TABLE acadvisittypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE acadvisittypes IS
-	'Tipos de visita acad閙ica: 
-	Sab醫ico, posdoctoral, de investigaci髇...';
+	'Tipos de visita acad茅mica: 
+	Sab谩tico, posdoctoral, de investigaci贸n...';
 
 CREATE TABLE acadvisits (
 	id  SERIAL NOT NULL,
@@ -60,12 +60,12 @@ CREATE TABLE acadvisits (
 --	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE acadvisits IS
-	'Cada una de las visitas acad閙icas, relacionadas con el usuario en 
-	cuesti髇';
+	'Cada una de las visitas acad茅micas, relacionadas con el usuario en 
+	cuesti贸n';
 
 COMMENT ON COLUMN acadvisits.externaluser_id IS
 	'Si esta columna apunta a un usuario externo, significa que el usuario participo
-	 en la coordinaci髇 de una visita o estancia acad閙ica de un invitado';
+	 en la coordinaci贸n de una visita o estancia acad茅mica de un invitado';
 
 CREATE TABLE sponsor_acadvisits (
 	id  SERIAL NOT NULL,
@@ -87,4 +87,4 @@ CREATE TABLE sponsor_acadvisits (
 	PRIMARY KEY(id)
 );
 COMMENT ON TABLE sponsor_acadvisits IS
-	'Instituci髇 patrocinadora de cada visita acad閙ica';
+	'Instituci贸n patrocinadora de cada visita acad茅mica';

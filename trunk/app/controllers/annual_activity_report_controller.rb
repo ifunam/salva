@@ -7,7 +7,7 @@ class AnnualActivityReportController < ApplicationController
     useradscription = UserAdscription.find(:first, :conditions => [ 'jobposition_id = ?', jobposition.id])
     
 #     production = [
-#                   { :label => 'Líneas de investigación', 
+#                   { :label => 'LÃ­neas de investigaciÃ³n', 
 #                     :query => UseResearchline.find(:all, :conditions => ['user_id = ?', user_id]), 
 #                     :attributes => w%(name)
 #                     row.researchline.name
@@ -22,7 +22,7 @@ class AnnualActivityReportController < ApplicationController
     
     pdf = PDF::Writer.new
     pdf.select_font "Helvetica" 
-    pdf.text 'Instituto de Física', :font_size => 18, :justification => :center
+    pdf.text 'Instituto de FÃ­sica', :font_size => 18, :justification => :center
     pdf.text "Informe anual de actividades", :font_size => 16, :justification => :center
     pdf.move_pointer(30, make_space = false)   
     pdf.text "#{person.lastname1} #{person.lastname2} #{person.firstname}", :font_size => 18, :font_families => :b, :justification => :justify

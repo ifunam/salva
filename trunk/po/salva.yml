@@ -1,66 +1,66 @@
 login: Usuario
-passwd: ContraseÒa
+passwd: Contrase√±a
 userstatus_id: Estado del usuario
-email: Correo electrÛnico
+email: Correo electr√≥nico
 kcs7: Certificado para firma digital
 firstname: Nombre
 lastname1: Apellido paterno
 lastname2: Apellido materno
-gender: GÈnero
+gender: G√©nero
 dateofbirth: Fecha
-birth_country_id: PaÌs
+birth_country_id: Pa√≠s
 birth_city_id: Ciudad
 birth_state_id: Estado
 maritalstatus_id: Estado civil
-photo: FotografÌa
-other: InformaciÛn adicional
-addresstype_id: Tipo de direcciÛn
-addr: DirecciÛn
-country_id: PaÌs
+photo: Fotograf√≠a
+other: Informaci√≥n adicional
+addresstype_id: Tipo de direcci√≥n
+addr: Direcci√≥n
+country_id: Pa√≠s
 state_id: Estado
 state: Estado
 city_id: Ciudad
 city: Ciudad
 pobox: Apartado postal
-zipcode: CÛdigo postal
-phone: TelÈfono(s)
+zipcode: C√≥digo postal
+phone: Tel√©fono(s)
 fax: Fax
 movil: Celular o radio
-is_postaddress: DirecciÛn postal
-title: TÌtulo
+is_postaddress: Direcci√≥n postal
+title: T√≠tulo
 author: Autor(es)
 authors: Autor(es)
 coauthor: Coautor(es)
-booklink: P·gina web
-country_id: PaÌs
+booklink: P√°gina web
+country_id: Pa√≠s
 booktype_id: Tipo de libro
 booktype: Tipo de libro
-volume_id: Vol˙men
-volume: Vol˙men
+volume_id: Vol√∫men
+volume: Vol√∫men
 orig_language_id: Idioma original
-trans_language_id: TraducciÛn
-numcites: N˙mero de citas
-code: CÛdigo
+trans_language_id: Traducci√≥n
+numcites: N√∫mero de citas
+code: C√≥digo
 name: Nombre
 moduser_id: Identificador de usuario
 migratorystatus_id: Estado migratorio
 citizenmodality_id: Modalidad de la nacionalidad
 citizen_country_id: Nacionalidad
-personalidtype_id: IdentificaciÛn
-identification_id: IdentificaciÛn
-descr: DescripciÛn
-institutiontitle_id: TÌtulo de la instituciÛn
-url: P·gina web
-abbrev: Sigl·s
-institution_id: InstituciÛn
-institutiontype_id: Tipo de instituciÛn
+personalidtype_id: Identificaci√≥n
+identification_id: Identificaci√≥n
+descr: Descripci√≥n
+institutiontitle_id: T√≠tulo de la instituci√≥n
+url: P√°gina web
+abbrev: Sigl√°s
+institution_id: Instituci√≥n
+institutiontype_id: Tipo de instituci√≥n
 administrative_key: Clave presupuestal
-startyear: AÒo de inicio
-endyear: AÒo de tÈrmino
+startyear: A√±o de inicio
+endyear: A√±o de t√©rmino
 startmonth: Mes de inicio
-endmonth: Mes de tÈrmino
+endmonth: Mes de t√©rmino
 jobpositiontype_id: Tipo de plaza
-roleinjobposition_id: CategorÌa
+roleinjobposition_id: Categor√≠a
 jobpositionlevel_id: Nivel
 required_legend: Los elementos marcados con asterisco(*) son obligatorios 
 prev: Anterior
@@ -73,18 +73,18 @@ save: Guardar
 update: Guardar cambios
 cancel: Cancelar
 search: Buscar
-advancedsearch: B˙squeda avanzada
-simplesearch: B˙squeda simple 
-searchdialog: Cargando di·logo para b˙squeda simple...
-advancedsearchdialog: Cargando di·logo para b˙squeda avanzada...
-per_page: N˙mero de elementos por p·gina
-previus_page: P·gina anterior
-next_page: P·gina siguiente
-results_page: P·gina(s) de resultados
+advancedsearch: B√∫squeda avanzada
+simplesearch: B√∫squeda simple 
+searchdialog: Cargando di√°logo para b√∫squeda simple...
+advancedsearchdialog: Cargando di√°logo para b√∫squeda avanzada...
+per_page: N√∫mero de elementos por p√°gina
+previus_page: P√°gina anterior
+next_page: P√°gina siguiente
+results_page: P√°gina(s) de resultados
 home: Inicio
 navigator: Inicio
 profile: Perfil
-general: InformaciÛn general
+general: Informaci√≥n general
 person: Datos personales
 address: Domicilio(s)
 people_identification: Identificaciones
@@ -94,64 +94,64 @@ schooling: Escolaridad
 studentid: No. de cuenta
 titleholder: Titulado
 degree: Grado
-credits: CrÈditos
+credits: Cr√©ditos
 career: Carrera
-jobpositioncategory_id: CategorÌa
+jobpositioncategory_id: Categor√≠a
 contracttype_id: Tipo de contrato
 jobposition: Experiencia laboral
 jobposition_id: Empleo
-user_stimulus: EstÌmulos
-userstimulus: EstÌmulos
+user_stimulus: Est√≠mulos
+userstimulus: Est√≠mulos
 user_schoolarships: Becas
 user_schoolarship: Becas
 userschoolarship: Becas
 amount: Monto
-science_and_tech_production: ProducciÛn cientÌfica y tecnolÛgica
+science_and_tech_production: Producci√≥n cient√≠fica y tecnol√≥gica
 publications: Publicaciones
 book: Libro
 books: Libros
 book_id: Libro
-membership: Membresias en asociaciones acadÈmicas 
+membership: Membresias en asociaciones acad√©micas 
 migratorystatus: Estado migratorio
-institution: InstituciÛn
-institutiontype: Tipo de instituciÛn
-institutiontitle: TÌtulo(s) para las instituciones
-jobpositioncategory: CategorÌa(s)
+institution: Instituci√≥n
+institutiontype: Tipo de instituci√≥n
+institutiontitle: T√≠tulo(s) para las instituciones
+jobpositioncategory: Categor√≠a(s)
 jobpositionlevel: Nivel de plaza
 jobpositiontype: Tipo de plaza
-roleinjobposition: Rol en la categorÌa
+roleinjobposition: Rol en la categor√≠a
 group: Grupo
 career_id: Carrera
-institutioncareer: Carrera en instituciÛn
+institutioncareer: Carrera en instituci√≥n
 degree_id: Grado
 has_group_right: Privilegios de grupo
 role: Rol(es) de usuario
-institutioncareer_id: Carrera e instituciÛn
+institutioncareer_id: Carrera e instituci√≥n
 credential_id: Nivel
 average: Promedio
-is_studying_this: øEst· cursando este grado?
-is_titleholder: øTitulado?
-titlemodality_id: Modalidad de titulaciÛn
-professionalid: CÈdula profesional
-year: AÒo
-years: AÒos
-thesistitle: TÌtulo de tesis
+is_studying_this: ¬øEst√° cursando este grado?
+is_titleholder: ¬øTitulado?
+titlemodality_id: Modalidad de titulaci√≥n
+professionalid: C√©dula profesional
+year: A√±o
+years: A√±os
+thesistitle: T√≠tulo de tesis
 schoolings: Escolaridad
-professionaltitles: TÌtulo profesional
+professionaltitles: T√≠tulo profesional
 schooling_id: Escolaridad
-bookedition_roleinbooks: Rol en ediciÛn
-roleinbook_id: Rol en ediciÛn
-bookedition_comments: Comentarios a la ediciÛn
+bookedition_roleinbooks: Rol en edici√≥n
+roleinbook_id: Rol en edici√≥n
+bookedition_comments: Comentarios a la edici√≥n
 bookeditions: Ediciones
-bookedition_id: EdiciÛn
+bookedition_id: Edici√≥n
 schoolarship_id: Beca
 schoolarships: Becas
 schoolarship: Beca
-adscription: AdscripciÛn
-useradscription: AdscripciÛn 
-user_adscription: AdscripciÛn
-adscription_id: AdscripciÛn
-stimuluslevel_id: Tipo de estÌmulo y nivel
+adscription: Adscripci√≥n
+useradscription: Adscripci√≥n 
+user_adscription: Adscripci√≥n
+adscription_id: Adscripci√≥n
+stimuluslevel_id: Tipo de est√≠mulo y nivel
 skilltype: Tipo de habilidad
 skilltype_id: Tipo de habilidad
 userskill: Habilidades
@@ -162,16 +162,16 @@ userlanguage: Idiomas
 user_language: Idiomas
 user_skill: Habilidades
 comment: Comentario
-jobposition_log: Antig¸edad 
-jobpositionlog: Antig¸edad
-worker_key: N˙mero de trabajador
+jobposition_log: Antig√ºedad 
+jobpositionlog: Antig√ºedad
+worker_key: N√∫mero de trabajador
 jobposition_internal: UNAM
-jobposition_at_institution: CategorÌas
+jobposition_at_institution: Categor√≠as
 jobposition_external: Experiencia laboral externa
 jobpositionexternal: Experiencia laboral externa
-updating_current_skills: ActualizaciÛn profesional
+updating_current_skills: Actualizaci√≥n profesional
 user_course: Cursos recibidos
-user_conference: Asistencia a eventos acadÈmicos
+user_conference: Asistencia a eventos acad√©micos
 acadvisit: Estancias
 acadvisit_id: Estancia
 acadvisittype_id: Tipo de estancia
@@ -179,32 +179,32 @@ place: Lugar
 goals: Objetivos
 externaluserlevel_id: Nivel del usuario externo
 visitor_id: Visitante
-change_password: Cambiar contraseÒa
-current_passwd: ContraseÒa actual
-new_passwd: Nueva contraseÒa 
-confirm_passwd: Confirmar contraseÒa 
-changepassword: Cambiar contraseÒa
+change_password: Cambiar contrase√±a
+current_passwd: Contrase√±a actual
+new_passwd: Nueva contrase√±a 
+confirm_passwd: Confirmar contrase√±a 
+changepassword: Cambiar contrase√±a
 coursetype: Tipos de curso
 coursetype_id: Tipo de curso
 course: Cursos
 hours: Horas
-days: DÌas
+days: D√≠as
 courseduration: Duraciones de curso
 coursegrouptype: Tipos de grupo de curso
 coursegrouptype_id: Tipo de grupo de curso
 totalhours: Horas en total
 coursegroup: Grupos de curso
-user_settings: InformaciÛn de mi cuenta
-homepage: P·gina personal
-blog: Bit·cora
+user_settings: Informaci√≥n de mi cuenta
+homepage: P√°gina personal
+blog: Bit√°cora
 calendar: Calendario
-user_setting: Correo electrÛnico
+user_setting: Correo electr√≥nico
 hoursxweek: Horas por semana
-courseduration_id: DuraciÛn
+courseduration_id: Duraci√≥n
 modality_id: Modalidad
 courses_id: Curso
 month: Mes
-acadprogram: Programa acadÈmico
+acadprogram: Programa acad√©mico
 location: Lugar
 coursegroup_id: Grupo
 roleincourse_id: Rol en curso
@@ -215,112 +215,112 @@ prizetype_id: Tipo de premio
 user_prize: Premios
 roleinconferencetalk: Roles en congresos
 roleinconferencetalk_id: Rol
-conferencetype: Tipo de evento acadÈmico
+conferencetype: Tipo de evento acad√©mico
 conferencetype_id: Tipo
-conferencescope: ¡mbito
-conferencescope_id: ¡mbito 
+conferencescope: √Åmbito
+conferencescope_id: √Åmbito 
 talktype: Tipos de ponencia
 talktype_id: Tipo de ponencia
-conference: Evento acadÈmico
-conference_id: Evento acadÈmico
+conference: Evento acad√©mico
+conference_id: Evento acad√©mico
 conferencetalk: Ponencias en congresos
 conferencetalk_id: Ponencia en congreso
 technicalconferencetalk: Ponencias en congresos
 technicalconferencetalk_id: Ponencia en congreso
-talkacceptance_id: Tipo de inscripciÛn
+talkacceptance_id: Tipo de inscripci√≥n
 abstract: Resumen
 conference_institution: Instituciones que organizan el congreso
-userconference: Asistencia a eventos acadÈmicos
-userconference_id: Evento acadÈmico
-edition_id: EdiciÛn
-pages: P·ginas
+userconference: Asistencia a eventos acad√©micos
+userconference_id: Evento acad√©mico
+edition_id: Edici√≥n
+pages: P√°ginas
 isbn: ISBN
 mediatype_id: Medio
-editionstatus_id: Estado la ediciÛn
+editionstatus_id: Estado la edici√≥n
 publisher_id: Editorial
-researcharea: Areas de investigaciÛn
-researcharea_id: Area de investigaciÛn
-researchline: LÌneas de investigaciÛn
-researchline_id: LÌnea de investigaciÛn
-user_researchline: LÌneas de investigaciÛn
-bookedition_roleinbook: ParticipaciÛn en libros
-idtype_id: Tipo de identificaciÛn
-identification: IdentificaciÛn
-stimulustype_id: Tipo de estÌmulo
-stimulustype: Tipo de estÌmulo
-stimuluslevel_id: Nivel de estÌmulo
-stimuluslevel: Nivel de estÌmulo
+researcharea: Areas de investigaci√≥n
+researcharea_id: Area de investigaci√≥n
+researchline: L√≠neas de investigaci√≥n
+researchline_id: L√≠nea de investigaci√≥n
+user_researchline: L√≠neas de investigaci√≥n
+bookedition_roleinbook: Participaci√≥n en libros
+idtype_id: Tipo de identificaci√≥n
+identification: Identificaci√≥n
+stimulustype_id: Tipo de est√≠mulo
+stimulustype: Tipo de est√≠mulo
+stimuluslevel_id: Nivel de est√≠mulo
+stimuluslevel: Nivel de est√≠mulo
 language: Idioma(s)
 journal: Revistas
 journal_id: Revista
-article: ArtÌculos  arbitrados
-article_id: ArtÌculo
-user_article: ArtÌculos arbitrados
+article: Art√≠culos  arbitrados
+article_id: Art√≠culo
+user_article: Art√≠culos arbitrados
 ismainauthor: Indique su rol
-articlestatus_id: Estado del artÌculo
+articlestatus_id: Estado del art√≠culo
 vol: Volumen
-num: N˙mero
+num: N√∫mero
 issn: ISSN
 impactfactor: Factor de impacto
 journaltype_id: Tipo de revista
 immediacy: Inmediatez
-dateupdate: Fecha de actualizaciÛn del factor de impacto
+dateupdate: Fecha de actualizaci√≥n del factor de impacto
 totalcites: Total de citas
-pacsnum: N˙mero de PACS
-chapterinbook_roleinchapter: CapÌtulos en libros
+pacsnum: N√∫mero de PACS
+chapterinbook_roleinchapter: Cap√≠tulos en libros
 refereedpubs: Publicaciones arbitradas
-chapter: CapÌtulo
-chapterinbook_id: CapÌtulo
-genericworkgroup: ClasificaciÛn trabajos generales
-genericworkgroup_id:  ClasificaciÛn trabajos generales
+chapter: Cap√≠tulo
+chapterinbook_id: Cap√≠tulo
+genericworkgroup: Clasificaci√≥n trabajos generales
+genericworkgroup_id:  Clasificaci√≥n trabajos generales
 genericworkstatus: Estado
 genericworkstatus_id: Estado
 genericworktype: Tipo de trabajo
 genericworktype_id: Tipo de trabajo
-bookchaptertype: Tipo de capÌtulo
-bookchaptertype_id: Tipo de capÌtulo
-chapterinbook: CapÌtulo
-chapterinbook_id: CapÌtulo
+bookchaptertype: Tipo de cap√≠tulo
+bookchaptertype_id: Tipo de cap√≠tulo
+chapterinbook: Cap√≠tulo
+chapterinbook_id: Cap√≠tulo
 reference: Referencia
 isbn_issn: ISBN o ISSN
-user_inproceeding: ArtÌculos en memorias arbitradas
-inproceeding: ArtÌculos en memorias arbitradas
+user_inproceeding: Art√≠culos en memorias arbitradas
+inproceeding: Art√≠culos en memorias arbitradas
 userrole_id: Rol
 genericwork: Trabajos generales
 genericwork_id: Trabajo general
 user_genericwork: Otros productos
-techreports: Reportes tÈcnicos
-user_techreport: Reportes tÈcnicos 
+techreports: Reportes t√©cnicos
+user_techreport: Reportes t√©cnicos 
 user_techreport_internal: Reportes internos
 inproceeding_id: Trabajo en memoria
 inproceeding_id: Memoria
 roleinjournal: Rol
 roleinjournal_id: Rol
-user_journal: ColaboraciÛn en revistas
-user_proceeding_refereed: ColaboraciÛn en memorias 
+user_journal: Colaboraci√≥n en revistas
+user_proceeding_refereed: Colaboraci√≥n en memorias 
 proceeding: Memorias 
 refereedpubs: Publicaciones arbitradas
 reports: Reportes
 proceeding_refereed: Memorias arbitradas
 proceeding_unrefereed: Memorias In Extenso
-isrefereed: øEs arbitrada?
-user_inproceeding_refereed: ArtÌculos en Memorias Arbitradas
-user_inproceeding_unrefereed: ArtÌculos en Memorias In Extenso
+isrefereed: ¬øEs arbitrada?
+user_inproceeding_refereed: Art√≠culos en Memorias Arbitradas
+user_inproceeding_unrefereed: Art√≠culos en Memorias In Extenso
 thesis: Tesis
 thesis_id: Tesis
 thesisstatus_id: Estado de la tesis
 thesismodality_id: Modalidad de la tesis
 roleinthesis_id: Rol en tesis
-user_thesis: DirecciÛn o asesorÌa de tesis
-student_thesis: AutorÌa de tesis
-human_resources_formation_and_teaching: FormaciÛn de recursos humanos y docencia 
-human_resources_formation: FormaciÛn de recursos humanos  
+user_thesis: Direcci√≥n o asesor√≠a de tesis
+student_thesis: Autor√≠a de tesis
+human_resources_formation_and_teaching: Formaci√≥n de recursos humanos y docencia 
+human_resources_formation: Formaci√≥n de recursos humanos  
 proceeding_id: Memoria
 roleproceeding_id: Rol
 arbitration: Arbitraje
-colaboration_on_publications: Arbitraje y colaboraciÛn en publicaciones
+colaboration_on_publications: Arbitraje y colaboraci√≥n en publicaciones
 thesis_juror: Jurado de tesis
-roleinjury_id: Tipo de participaciÛn
+roleinjury_id: Tipo de participaci√≥n
 teaching: Docencia
 user_regularcourse: Cursos regulares
 regularcourse: Cursos regulares
@@ -330,13 +330,13 @@ period: Periodos
 period_id: Periodo
 startdate: Fecha de inicio
 enddate: Fecha de termino
-newspaper: PeriÛdicos
-newspaper_id: PeriÛdico
+newspaper: Peri√≥dicos
+newspaper_id: Peri√≥dico
 newsdate: Fecha
-newspaperarticle_id: ArtÌculo periodÌstico
-newspaperarticle:  ArtÌculos periodÌsticos
-user_newspaperarticle: ArtÌculos periodÌsticos
-popular_science: DivulgaciÛn
+newspaperarticle_id: Art√≠culo period√≠stico
+newspaperarticle:  Art√≠culos period√≠sticos
+user_newspaperarticle: Art√≠culos period√≠sticos
+popular_science: Divulgaci√≥n
 user_conferencetalk: Trabajos presentados en congresos
 project: Proyectos
 project_id: Proyecto
@@ -344,12 +344,12 @@ responsible: Responsable(s)
 projecttype_id: Tipo de proyecto
 projectstatus_id: Estado del proyecto
 parentproject_id: Proyecto padre
-user_project: ParticipaciÛn en proyectos
-roleinproject_id: Tipo de participaciÛn
+user_project: Participaci√≥n en proyectos
+roleinproject_id: Tipo de participaci√≥n
 projectinstitution: Instituciones participantes
 projectfinancingsource: Fuentes de financiamiento 
 bookedition: Ediciones
-projectresearchline: LÌneas de investigaciÛn
+projectresearchline: L√≠neas de investigaci√≥n
 user_specialcourse: Cursos especiales
 technicalconference: Congresos
 user_technicalconferencetalk: Trabajos en congresos
@@ -364,14 +364,14 @@ activitytype: Tipos de actividad
 activitytype_id: Tipo de actividad
 activity: Otras actividades
 activity_id: Actividad
-thesis_committee: ComitÈs tutorales
+thesis_committee: Comit√©s tutorales
 roleinconference_id: Rol
-userconference_committee: ParticipaciÛn en comitÈs de eventos acadÈmicos
+userconference_committee: Participaci√≥n en comit√©s de eventos acad√©micos
 inproceeding_unrefereed: Trabajos presentados en memorias in extenso
-techreport: Reporte tÈcnico
+techreport: Reporte t√©cnico
 other_activities_or_products: Otras actividades o productos
-userconference_committee: ParticipaciÛn en comitÈs de congresos.
-user_popularsciencework: Otros trabajos de divulgaciÛn
-diffusion: DifusiÛn y extensiÛn
+userconference_committee: Participaci√≥n en comit√©s de congresos.
+user_popularsciencework: Otros trabajos de divulgaci√≥n
+diffusion: Difusi√≥n y extensi√≥n
 teaching_activity: Otras actividades de docencia
-popularsciencework: Trabajo de divulgaciÛn
+popularsciencework: Trabajo de divulgaci√≥n

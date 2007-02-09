@@ -11,13 +11,13 @@ CREATE TABLE countries (
 	UNIQUE(code)
 );
 COMMENT ON TABLE countries IS
-	'Listado de paÌses';
+	'Listado de pa√≠ses';
 COMMENT ON COLUMN countries.name IS
-	'Nombre del paÌs';
+	'Nombre del pa√≠s';
 COMMENT ON COLUMN countries.citizen IS
-	'Gentilicio de los ciudadanos del paÌs';
+	'Gentilicio de los ciudadanos del pa√≠s';
 COMMENT ON COLUMN countries.code IS
-	'AbreviaciÛn (3 letras) del paÌs';
+	'Abreviaci√≥n (3 letras) del pa√≠s';
 
 CREATE TABLE states (
 	id SERIAL,
@@ -67,7 +67,7 @@ CREATE TABLE userroles (
 	UNIQUE (name)
 );
 COMMENT ON TABLE userroles IS
-	'Rol que juega un usuario en diferentes tablas genÈricas 
+	'Rol que juega un usuario en diferentes tablas gen√©ricas 
 	(usergenericworks, usertechproducts, userotheractivities):
 	Autor, coautor, traductor, entrevistador, entrevistado, ...';
 
@@ -79,7 +79,7 @@ CREATE TABLE articlestatuses (
 	UNIQUE(name)
 );
 COMMENT ON TABLE articlestatuses IS
-	'Estado de un artÌculo (utilizado en articles y newspaperarticles):
+	'Estado de un art√≠culo (utilizado en articles y newspaperarticles):
 	Publicado, en prensa, enviado, aceptado, en proceso, ...';
 
 CREATE TABLE mediatypes ( 
@@ -89,8 +89,8 @@ CREATE TABLE mediatypes (
     UNIQUE (name)
 );
 COMMENT ON TABLE mediatypes IS
-	'Medio fÌsico en el que un trabajo est· publicado: 
-	Impreso, electrÛnico, p·gina Web, ...';
+	'Medio f√≠sico en el que un trabajo est√° publicado: 
+	Impreso, electr√≥nico, p√°gina Web, ...';
 
 CREATE TABLE publishers ( 
 	id SERIAL,
@@ -145,7 +145,7 @@ CREATE TABLE volumes (
 	UNIQUE(name)
 );
 COMMENT ON TABLE volumes IS
-	'Vol˙menes (normalmente numerados) de libros:
+	'Vol√∫menes (normalmente numerados) de libros:
 	I, II, III, ...';
 
 
@@ -172,16 +172,16 @@ CREATE TABLE menus (
 	UNIQUE (label, parent_menu_id)
 );
 COMMENT ON TABLE menus IS
-	'Cada uno de los elementsentos del men˙ que se muestra al usuario';
+	'Cada uno de los elementsentos del men√∫ que se muestra al usuario';
 COMMENT ON COLUMN menus.parent_menu_id IS
-	'ID del elemento padre - NULL siginfica que est· sobre la raiz';
+	'ID del elemento padre - NULL siginfica que est√° sobre la raiz';
 COMMENT ON COLUMN menus.group_id IS
-	'Nivel mÌnimo de usuario que tiene derecho de ver este elemento';
+	'Nivel m√≠nimo de usuario que tiene derecho de ver este elemento';
 COMMENT ON COLUMN menus.expanded IS
 	'Si tiene sub-elementos, expanded indica si por default los mostramos o no';
 COMMENT ON COLUMN menus.ordering IS
-	'Dentro de su ·rbol, el Ûrden relativo en que aparece este elemento. Si hay m·s
-	de un elemento con el mismo nivel de ordenamiento, se muestran por Ûrden de ID';
+	'Dentro de su √°rbol, el √≥rden relativo en que aparece este elemento. Si hay m√°s
+	de un elemento con el mismo nivel de ordenamiento, se muestran por √≥rden de ID';
 COMMENT ON COLUMN menus.style IS
 	'';
 COMMENT ON COLUMN menus.action IS

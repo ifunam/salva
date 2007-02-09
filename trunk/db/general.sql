@@ -9,7 +9,7 @@ CREATE TABLE maritalstatuses (
 );
 COMMENT ON TABLE maritalstatuses IS
 	'Estado civil: 
-	 Casado, soltero, divorciado, viudo, uniÛn libre, ...';
+	 Casado, soltero, divorciado, viudo, uni√≥n libre, ...';
 
 CREATE TABLE addresstypes ( 
 	id serial NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE addresstypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE addresstypes IS
-	'Tipo de direcciÛn:
+	'Tipo de direcci√≥n:
 	 Domicilio profesional, Domicilio particular, Domicilio temporal';
 
 CREATE TABLE people ( 
@@ -72,7 +72,7 @@ COMMENT ON COLUMN people.state_id IS
 COMMENT ON COLUMN people.city_id IS
 	'Ciudad o municipio de nacimiento';
 COMMENT ON COLUMN people.gender IS
-        'Gender ser· usado de la siguiente manera: f para indicar el genÈro femenino y t para indicar el genÈro m·sculino';
+        'Gender ser√° usado de la siguiente manera: f para indicar el gen√©ro femenino y t para indicar el gen√©ro m√°sculino';
 
 CREATE TABLE addresses ( 
     id SERIAL,
@@ -135,7 +135,7 @@ CREATE TABLE citizenmodalities (
 );
 COMMENT ON TABLE citizenmodalities IS
 	'Modalidad de la nacionalidad:
- 	Por nacimiento, Por naturalizaci√n, Otro.';
+ 	Por nacimiento, Por naturalizaci√Én, Otro.';
 
 CREATE TABLE citizens ( 
   id serial,
@@ -175,7 +175,7 @@ CREATE TABLE idtypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE idtypes IS
-	'Tipo de (documento de) identificaciÛn:
+	'Tipo de (documento de) identificaci√≥n:
 	Pasaporte, credencial de elector, ...';
 
 CREATE TABLE identifications (
@@ -245,5 +245,5 @@ CREATE TABLE memberships (
   PRIMARY KEY (id)
 );
 COMMENT ON TABLE memberships IS
-	'Instituciones(Asociaciones) acadÈmicas a las que pertenece un usuario';
+	'Instituciones(Asociaciones) acad√©micas a las que pertenece un usuario';
 

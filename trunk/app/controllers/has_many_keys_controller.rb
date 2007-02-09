@@ -9,7 +9,7 @@ class HasManyKeysController < SalvaController
     else
       logger.info "*** Algo esta mal <<wey>>, checalo! ***"
       logger.info @edit.errors.full_messages
-      flash[:notice] = 'Hay errores al guardar esta información'
+      flash[:notice] = 'Hay errores al guardar esta informaciÃ³n'
       render :action => 'new'
     end
   end

@@ -8,7 +8,7 @@ module DateHelper
     options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
     if opts[:required] == 1
       options['z:required'] = 'true'
-      options['z:required_message'] = 'Seleccione una opción'
+      options['z:required_message'] = 'Seleccione una opciÃ³n'
     end
     
     select(object, attr || 'month', months, options)
@@ -27,7 +27,7 @@ module DateHelper
     options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
     if opts[:required] == 1
       options['z:required'] = 'true'
-      options['z:required_message'] = 'Seleccione una opción'
+      options['z:required_message'] = 'Seleccione una opciÃ³n'
     end
     
     select(object, attr || 'year', years, options);
@@ -35,7 +35,7 @@ module DateHelper
   
   def date_for_select(object, attr, tabindex)
     year = Date.today.year
-    # Tal vez alguien a los 90 años siga produciendo
+    # Tal vez alguien a los 90 aÃ±os siga produciendo
     start_year = year
     # Por si se aparece el pinche 'Doggie Hauser'
     # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml

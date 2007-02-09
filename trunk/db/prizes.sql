@@ -15,7 +15,7 @@ CREATE TABLE prizetypes(
 	UNIQUE (name)
 );
 COMMENT ON TABLE prizetypes IS
-	'Tipos de premio:  Medalla, diploma, económico, ...';
+	'Tipos de premio:  Medalla, diploma, econÃ³mico, ...';
 
 CREATE TABLE prizes ( 
     id SERIAL,
@@ -41,7 +41,7 @@ CREATE TABLE prizes (
 COMMENT ON TABLE prizes IS
 	'Cada uno de los premios';
 COMMENT ON COLUMN prizes.institution_id IS
-	'Institución que otorga el premio';
+	'InstituciÃ³n que otorga el premio';
 
 CREATE TABLE user_prizes (
     id serial,
@@ -66,4 +66,4 @@ CREATE TABLE user_prizes (
     UNIQUE (prize_id, user_id, year)
 );
 COMMENT ON TABLE user_prizes IS
-	'Qué usuarios han recibido qué premios';
+	'QuÃ© usuarios han recibido quÃ© premios';

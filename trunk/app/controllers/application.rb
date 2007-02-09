@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include AuthUser
   include Rbac
   include NavigatorTree
-  before_filter :configure_charsets
+#  before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
   before_filter :change_userid

@@ -2,11 +2,11 @@ class PopularscienceworkController < SalvaController
   def initialize
     super
     @model = Genericwork
-    @create_msg = 'La informaci髇 se ha guardado'
-    @update_msg = 'La informaci髇 ha sido actualizada'
-    @purge_msg = 'La informaci髇 se ha borrado'
+    @create_msg = 'La informaci贸n se ha guardado'
+    @update_msg = 'La informaci贸n ha sido actualizada'
+    @purge_msg = 'La informaci贸n se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = {:joins => "INNER JOIN genericworkgroups ON genericworkgroups.name = 'Productos de divulgaci髇'  INNER JOIN genericworktypes ON genericworktypes.genericworkgroup_id = genericworkgroups.id AND genericworks.genericworktype_id = genericworktypes.id"}
+    @list = {:joins => "INNER JOIN genericworkgroups ON genericworkgroups.name = 'Productos de divulgaci贸n'  INNER JOIN genericworktypes ON genericworktypes.genericworkgroup_id = genericworkgroups.id AND genericworks.genericworktype_id = genericworktypes.id"}
   end
 end

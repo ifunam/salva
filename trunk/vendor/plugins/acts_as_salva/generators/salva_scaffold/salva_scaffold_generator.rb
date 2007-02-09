@@ -24,7 +24,7 @@ class ScaffoldingSandbox
   def set_radiobutton(column, tabindex, required=nil)
     radio = "<div class=\"radio\"> \n"
     radio << "No <%= radio_button('edit', '#{column}', 'false') %>\n" 
-    radio << "Sí <%= radio_button('edit', '#{column}', 'true') %> \n"
+    radio << "SÃ­ <%= radio_button('edit', '#{column}', 'true') %> \n"
     radio << "</div>\n"
   end
   

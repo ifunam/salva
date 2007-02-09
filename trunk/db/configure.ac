@@ -2,7 +2,7 @@
 # the SALVA-SQL's COPYING file for more details and other copyrights
 # that may apply:
 #
-# Portions Copyright © 2005 UNAM, Inc. All rights reserved.
+# Portions Copyright Â© 2005 UNAM, Inc. All rights reserved.
 # Use is subject to license terms specified in the COPYING file
 # distributed with the SALVA-SQL package.
 #
@@ -104,7 +104,7 @@ AC_MSG_RESULT([])
 AC_SUBST(USEPASSWD)])dnl
 WITHPASSWD
 
-ENCODING=LATIN1
+ENCODING=UTF-8
 define(WITHENCODING,[
 AC_ARG_WITH(
   [encoding],

@@ -76,7 +76,7 @@ class SalvaController < ApplicationController
         redirect_to_controller(*get_options_to_redirect.to_a)
       end
     else
-      flash[:notice] = 'Hay errores al guardar esta información'
+      flash[:notice] = 'Hay errores al guardar esta informaciÃ³n'
       render :action => 'new'
     end
   end
@@ -96,7 +96,7 @@ class SalvaController < ApplicationController
         redirect_to_controller(*get_options_to_redirect.to_a)
       end
     else
-      flash[:notice] = 'Hay errores al guardar esta información'
+      flash[:notice] = 'Hay errores al guardar esta informaciÃ³n'
       render :action => 'edit'
     end
   end

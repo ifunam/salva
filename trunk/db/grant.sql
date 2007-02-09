@@ -17,7 +17,7 @@ CREATE TABLE grants (
     UNIQUE (name, institution_id)
 );
 COMMENT ON TABLE grants IS
-	'Listado de becas, institución que las otorga';
+	'Listado de becas, instituciÃ³n que las otorga';
 
 CREATE TABLE user_grants (
     id serial,
@@ -41,6 +41,6 @@ CREATE TABLE user_grants (
 --	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_grants IS
-	'Quién ha recibido qué becas';
+	'QuiÃ©n ha recibido quÃ© becas';
 COMMENT ON COLUMN user_grants.descr IS
-	'¿Existe un objetivo de esta beca? ¿Cuál es?';
+	'Â¿Existe un objetivo de esta beca? Â¿CuÃ¡l es?';

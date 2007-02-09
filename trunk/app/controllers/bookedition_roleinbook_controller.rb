@@ -2,9 +2,9 @@ class BookeditionRoleinbookController < SalvaController
   def initialize
     super
     @model = BookeditionRoleinbook
-    @create_msg = 'La edición  ha sido agregada'
-    @update_msg = 'La edición ha sido actualizada'
-    @purge_msg = 'La edición ha sido borrado'
+    @create_msg = 'La ediciÃ³n  ha sido agregada'
+    @update_msg = 'La ediciÃ³n ha sido actualizada'
+    @purge_msg = 'La ediciÃ³n ha sido borrado'
     @per_pages = 10
     @order_by = 'id'
   end

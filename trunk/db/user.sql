@@ -46,8 +46,8 @@ CREATE INDEX users_login_idx ON users(login);
 COMMENT ON TABLE users IS
 	'Usuarios del sistema';
 COMMENT ON COLUMN users.email IS 
-	'El correo ser· utilizado para la recuperaciÛn de contraseÒas o 
-	notificaciÛn de cambios generados por terceros';
+	'El correo ser√° utilizado para la recuperaci√≥n de contrase√±as o 
+	notificaci√≥n de cambios generados por terceros';
 COMMENT ON COLUMN users.pkcs7 IS 
 	'A ser utilizado con PKI (Public Key Infraestructure)';
 
@@ -107,7 +107,7 @@ CREATE TABLE groups (
 );
 COMMENT ON TABLE groups IS
 	'Grupos (tipos) de usuario del sistema:
-	 Admin,SALVA, SecretarÌa acadÈmica, Nombre de los deptos';
+	 Admin,SALVA, Secretar√≠a acad√©mica, Nombre de los deptos';
 
 CREATE TABLE roles (
     id serial, 
@@ -120,9 +120,9 @@ CREATE TABLE roles (
     UNIQUE (name)
 );
 COMMENT ON TABLE roles IS
-	'Rol para cada grupo, basado en el est·ndar RBAC (Role Based Access Control):
+	'Rol para cada grupo, basado en el est√°ndar RBAC (Role Based Access Control):
          https://activerbac.turingstudio.com/trac
-	 Administrador, Usuario normal, SecretarÌo acadÈmico, Jefe de departamento, Secretaria, etc';
+	 Administrador, Usuario normal, Secretar√≠o acad√©mico, Jefe de departamento, Secretaria, etc';
 
 CREATE TABLE actions (
 	id serial,
@@ -185,7 +185,7 @@ CREATE TABLE permissions (
 	UNIQUE (roleingroup_id, controller_id, action_id)
 );
 COMMENT ON TABLE permissions IS
-	'Acciones especÌficas al controlador y al rol';
+	'Acciones espec√≠ficas al controlador y al rol';
 
 CREATE TABLE user_roleingroups (
 	id serial,

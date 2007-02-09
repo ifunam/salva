@@ -25,7 +25,7 @@ CREATE TABLE usercredits (
 	(externalusergive_id IS NOT NULL AND internalusergive_id IS NULL))
 );
 COMMENT ON TABLE usercredits IS 
-	'Agradecimientos, crÈditos y reconocimientos por apoyo tÈcnico';
+	'Agradecimientos, cr√©ditos y reconocimientos por apoyo t√©cnico';
 COMMENT ON COLUMN usercredits.usergive_is_internal IS
 	'Quien otorga el agradecimiento es usuario interno o externo? 
 	Exige (NOT NULL) el tipo de usuario adecuado: externalusergive_id o
@@ -45,7 +45,7 @@ CREATE TABLE usercreditsarticles (
 	UNIQUE (usercredits_id, articles_id)
 );
 COMMENT ON TABLE usercreditsarticles IS
-	'ArtÌculos producto del trabajo que se est· agradeciendo';
+	'Art√≠culos producto del trabajo que se est√° agradeciendo';
 
 CREATE TABLE usercreditsbooks (
 	id SERIAL,
@@ -61,7 +61,7 @@ CREATE TABLE usercreditsbooks (
 	UNIQUE (usercredits_id, books_id)
 );
 COMMENT ON TABLE usercreditsbooks IS
-	'Libros producto del trabajo que se est· agradeciendo';
+	'Libros producto del trabajo que se est√° agradeciendo';
 
 CREATE TABLE usercreditschapterinbooks (
 	id SERIAL,
@@ -77,7 +77,7 @@ CREATE TABLE usercreditschapterinbooks (
 	UNIQUE (usercredits_id, chapterinbooks_id)
 );
 COMMENT ON TABLE usercreditschapterinbooks IS
-	'CapÌtulos en libro producto del trabajo que se est· agradeciendo';
+	'Cap√≠tulos en libro producto del trabajo que se est√° agradeciendo';
 
 CREATE TABLE usercreditsconferencetalks (
 	id SERIAL,
@@ -93,7 +93,7 @@ CREATE TABLE usercreditsconferencetalks (
 	UNIQUE (usercredits_id, conferencetalks_id)
 );
 COMMENT ON TABLE usercreditsconferencetalks IS
-	'Conferencias producto del trabajo que se est· agradeciendo';
+	'Conferencias producto del trabajo que se est√° agradeciendo';
 
 CREATE TABLE usercreditsgenericworks (
 	id SERIAL,
@@ -109,4 +109,4 @@ CREATE TABLE usercreditsgenericworks (
 	UNIQUE (usercredits_id, genericworks_id)
 );
 COMMENT ON TABLE usercreditsgenericworks IS
-	'Trabajos genÈricos producto del trabajo que se est· agradeciendo';
+	'Trabajos gen√©ricos producto del trabajo que se est√° agradeciendo';

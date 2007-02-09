@@ -25,7 +25,7 @@ class UserController < ApplicationController
     return true unless request.post?
     if auth?(params[:user][:login],params[:user][:passwd])
       session[:user] = User.find(:first, :conditions => ['login = ?', params[:user][:login]]).id
-      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
+      flash[:notice] = "Bienvenido (a), ha iniciado una sesiÃ³n en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
       flash[:notice] = "El login o el password es incorrecto!"
@@ -35,10 +35,10 @@ class UserController < ApplicationController
   def login_by_token
     if auth_user_by_id_and_token?(params[:id], params[:token])
       session[:user] = params[:id]
-      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
+      flash[:notice] = "Bienvenido (a), ha iniciado una sesiÃ³n en el SALVA!"
       redirect_back_or_default :controller => 'navigator'
     else
-      flash[:notice] = "El pase proporcionado es inválido!"
+      flash[:notice] = "El pase proporcionado es invÃ¡lido!"
       render :action => 'login'
     end
   end

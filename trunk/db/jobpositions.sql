@@ -1,10 +1,10 @@
--- De acuerdo al manual de categorías y tabuladores de sueldos de la UNAM
+-- De acuerdo al manual de categorÃ­as y tabuladores de sueldos de la UNAM
 -- se establecen las siguientes tablas
 
 -- Ejemplo de puesto: Un Investigador Ordinario Asociado C de Tiempo Completo:
 --     jobpositioncategories: Investigador Ordinario
 --     jobpositionlevels: Asociado C TC
---     jobpositiontypes: (el ID que corresponda a Investigación)
+--     jobpositiontypes: (el ID que corresponda a InvestigaciÃ³n)
 CREATE TABLE jobpositiontypes (  
 	id SERIAL,		
 	name text NOT NULL,   	
@@ -14,8 +14,8 @@ CREATE TABLE jobpositiontypes (
 COMMENT ON TABLE jobpositiontypes IS 
 	'Tipos de personal:
 	Las cuatro posibilidades que entran a esta tabla son:
-	Personal académico para docencia: Investigador y técnico académico * usa niveles *
-	Personal académico para investigación: Investigador y técnico académico * usa niveles *
+	Personal acadÃ©mico para docencia: Investigador y tÃ©cnico acadÃ©mico * usa niveles *
+	Personal acadÃ©mico para investigaciÃ³n: Investigador y tÃ©cnico acadÃ©mico * usa niveles *
 	Personal administrativo de base * usa ramas *	  
 	Personal administrativo de confianza	* NO usa niveles NI ramas * ';
 
@@ -26,7 +26,7 @@ CREATE TABLE roleinjobpositions (
 	UNIQUE (name)
 );
 COMMENT ON TABLE roleinjobpositions IS 
-	'Rol desempeñado: técnico académico, investigador, ayudante, etc.';
+	'Rol desempeÃ±ado: tÃ©cnico acadÃ©mico, investigador, ayudante, etc.';
 
 
 CREATE TABLE jobpositionlevels (
@@ -36,8 +36,8 @@ CREATE TABLE jobpositionlevels (
 	UNIQUE (name)
 );
 COMMENT ON TABLE jobpositionlevels IS 
-	'Niveles (para académicos) o ramas (para administrativos) de 
-	contratación: 
+	'Niveles (para acadÃ©micos) o ramas (para administrativos) de 
+	contrataciÃ³n: 
 	Nivel A, Nivel B, Nivel C,
 	Rama administrativa, rama obrera, rama...';
 
@@ -62,10 +62,10 @@ CREATE TABLE jobpositioncategories (
 );
 COMMENT ON TABLE jobpositioncategories IS 
 	'Los puestos existentes en la UNAM, dependientes de jobpositiontypes y
-	jobpositionlevels:  Investigador ordinario, técnico académico, ...';
+	jobpositionlevels:  Investigador ordinario, tÃ©cnico acadÃ©mico, ...';
 COMMENT ON COLUMN jobpositioncategories.administrative_key IS
-	'ID administrativo de la adscripción en la universidad - Lo mantenemos
-	únicamente como descripción en texto';
+	'ID administrativo de la adscripciÃ³n en la universidad - Lo mantenemos
+	Ãºnicamente como descripciÃ³n en texto';
 
 CREATE TABLE contracttypes (
 	id SERIAL,
@@ -74,7 +74,7 @@ CREATE TABLE contracttypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE contracttypes IS 
-	'Tipos de contratación: Definitivo, temporal, Art. 51, ...';
+	'Tipos de contrataciÃ³n: Definitivo, temporal, Art. 51, ...';
 
 CREATE TABLE jobpositions (
 	id SERIAL, 
@@ -111,12 +111,12 @@ CREATE TABLE jobpositions (
 --	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE jobpositions IS 
-	'Relación entre un usuario y todos los datos que describen a su puesto
+	'RelaciÃ³n entre un usuario y todos los datos que describen a su puesto
 	(incluye periodos, para construir la historia laboral)';
 COMMENT ON COLUMN jobpositions.jobpositioncategory_id IS
-	'Puesto en que laboró en la UNAM - En caso de ser personal por 
-	honorarios, queda nulo (no hay catálogo de puestos por honorarios),
-	manejando sólo la descripción, y asociando a la institución adecuada.';
+	'Puesto en que laborÃ³ en la UNAM - En caso de ser personal por 
+	honorarios, queda nulo (no hay catÃ¡logo de puestos por honorarios),
+	manejando sÃ³lo la descripciÃ³n, y asociando a la instituciÃ³n adecuada.';
 
 CREATE TABLE stimulustypes (
 	id SERIAL,
@@ -130,16 +130,16 @@ CREATE TABLE stimulustypes (
 	UNIQUE (name)
 );
 COMMENT ON TABLE stimulustypes IS 
-	'Tipos de estímulos:
-	{PAIPA, Programa de Apoyo a la Incorporación de Personal Académico, UNAM},
-	{PRIDE, Programa de Reconocimiento a la Investigación y Desarrollo
-	Académico, UNAM}, {SNI, Sistema Nacional de Investigadores, CONACyT}, ...';
+	'Tipos de estÃ­mulos:
+	{PAIPA, Programa de Apoyo a la IncorporaciÃ³n de Personal AcadÃ©mico, UNAM},
+	{PRIDE, Programa de Reconocimiento a la InvestigaciÃ³n y Desarrollo
+	AcadÃ©mico, UNAM}, {SNI, Sistema Nacional de Investigadores, CONACyT}, ...';
 COMMENT ON COLUMN stimulustypes.name IS 
-	'Nombre corto/abreviación del estímulo';
+	'Nombre corto/abreviaciÃ³n del estÃ­mulo';
 COMMENT ON COLUMN stimulustypes.descr IS 
-	'Nombre completo del estímulo';
+	'Nombre completo del estÃ­mulo';
 COMMENT ON COLUMN stimulustypes.institution_id IS 
-	'Institución que lo otorga';
+	'InstituciÃ³n que lo otorga';
 
 
 CREATE TABLE stimuluslevels (
@@ -153,7 +153,7 @@ CREATE TABLE stimuluslevels (
 	UNIQUE (name, stimulustype_id)
 );
 COMMENT ON TABLE stimuluslevels IS 
-	'Niveles de estímulos para cada uno de los tipos';
+	'Niveles de estÃ­mulos para cada uno de los tipos';
 	-- PAIPA: A, B, C, D
 	-- PRIDE: A, B, C, D, E
 	-- SNI: I, II, III
@@ -179,11 +179,11 @@ CREATE TABLE user_stimulus (
 --	       (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_stimulus IS 
-	'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha
-	de inicio/término';
+	'EstÃ­mulos con que ha contado un usuario, incluyendo nivel, con fecha
+	de inicio/tÃ©rmino';
 
 -- NOTA
--- Encontrar un mecanismo para evitar más de un nivel de estímulos del mismo
+-- Encontrar un mecanismo para evitar mÃ¡s de un nivel de estÃ­mulos del mismo
 -- tipo (p.ej. PRIDE A y PRIDE B) en el mismo momento
 
 CREATE TABLE stimulusstatus (
@@ -193,7 +193,7 @@ CREATE TABLE stimulusstatus (
 	UNIQUE(name)
 );
 COMMENT ON TABLE stimulusstatus IS 
-	'Estados de cada cambio de nivel de estímulos';
+	'Estados de cada cambio de nivel de estÃ­mulos';
 -- solicitado, aprobado, rechazado, en proceso
 
 CREATE TABLE stimuluslogs (
@@ -217,10 +217,10 @@ CREATE TABLE stimuluslogs (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE stimuluslogs IS 
-	'Fecha de cambio de estado de solicitudes de nivel estímulos';
+	'Fecha de cambio de estado de solicitudes de nivel estÃ­mulos';
 
--- Name for the area a user works in - "Departamento de Cómputo", "Unidad
--- de blah", "Secretaría Fulana", "Dirección"
+-- Name for the area a user works in - "Departamento de CÃ³mputo", "Unidad
+-- de blah", "SecretarÃ­a Fulana", "DirecciÃ³n"
 CREATE TABLE adscriptions (
 	id serial,
 	name text NOT NULL,
@@ -245,8 +245,8 @@ CREATE TABLE adscriptions (
 COMMENT ON TABLE adscriptions IS 
 	'Nombre de las adscripciones registradas';
 COMMENT ON COLUMN adscriptions.administrative_key IS
-	'ID administrativo de la adscripción en la universidad - Lo mantenemos
-	únicamente como descripción en texto';
+	'ID administrativo de la adscripciÃ³n en la universidad - Lo mantenemos
+	Ãºnicamente como descripciÃ³n en texto';
 
 -- We are stating here the work period, which is also in jobpositions - Why?
 -- Because a user might retain his jobposition (category/level/...) but the
@@ -276,14 +276,14 @@ CREATE TABLE user_adscriptions (
 	PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_adscriptions IS 
-	'Adscripción a la que pertenece un usuario en determinado periodo';
+	'AdscripciÃ³n a la que pertenece un usuario en determinado periodo';
 COMMENT ON COLUMN user_adscriptions.name IS
-	'Describir el nombre de la participación institucional: Jefe de departamento, Coordinador, etc';
+	'Describir el nombre de la participaciÃ³n institucional: Jefe de departamento, Coordinador, etc';
 COMMENT ON COLUMN user_adscriptions.descr IS
 	'Se usa para describir las funciones o actividades del puesto institucional';
 COMMENT ON COLUMN user_adscriptions.startyear IS
-	'El periodo aparece tanto aquí como en jobpositions ya que un 
-	usuario puede cambiar de adscripción sin cambiar su categoría';
+	'El periodo aparece tanto aquÃ­ como en jobpositions ya que un 
+	usuario puede cambiar de adscripciÃ³n sin cambiar su categorÃ­a';
 
 CREATE TABLE jobposition_logs (
 	id serial,
@@ -306,9 +306,9 @@ CREATE TABLE jobposition_logs (
 COMMENT ON TABLE jobposition_logs IS
 	'Antiguedad del usuario en la UNAM';
 COMMENT ON COLUMN jobposition_logs.worker_key IS
-	'Número de trabajador en la UNAM (es único)';
+	'NÃºmero de trabajador en la UNAM (es Ãºnico)';
 COMMENT ON COLUMN jobposition_logs.years IS
-	'Número de años trabajando en UNAM (Se calculará el número a partir de la información de la tabla jobpositions';
+	'NÃºmero de aÃ±os trabajando en UNAM (Se calcularÃ¡ el nÃºmero a partir de la informaciÃ³n de la tabla jobpositions';
 
 ------	
 -- Update stimuluslogs if there was a status change

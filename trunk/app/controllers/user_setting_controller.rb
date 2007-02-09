@@ -2,7 +2,7 @@ class UserSettingController < ApplicationController
   def initialize
     super
     @model = User
-    @update_msg = 'La información ha sido actualizada'
+    @update_msg = 'La informaciÃ³n ha sido actualizada'
   end
   verify :method => :post, :only => [ :update ]
 
