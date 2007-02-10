@@ -1,21 +1,18 @@
-#Report.do(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
-#          :all, :conditions => ['user_id = ?', 1]).as(:article) 
+#Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
+#           :all, :conditions => ['user_id = ?', 1])
 
-class Report
+
+class Finder
   attr_accessor :model
   attr_accessor :columns
   attr_accessor :records
   
-  class << self
-    def do(model, columns, *options)
-      report = self.new
-      report.model = model
-      report.columns = columns
-      report.records = model.find(*options)
-      report
-    end
+  def initialize(model, columns, *options)
+    @model = model
+    @columns = columns
+    @records = model.find(*options)
   end
-
+  
   def record_content(record, columns)
     content = []
     columns.each { |column|
@@ -68,7 +65,7 @@ class Report
   end
   
   def list_collection
-    self.records.collect { |record| record_content(record, self.columns) }
+    @records.collect { |record| record_content(record, @columns) }
   end  
   
   def as(style)
@@ -79,9 +76,5 @@ class Report
   def modelize(column)
     Inflector.tableize(column.sub(/_id$/,'')).singularize
   end    
-
-  module Styles
-    #...
-  end
 end
 

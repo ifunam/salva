@@ -10,14 +10,11 @@ class ApplicationController < ActionController::Base
   include AuthUser
   include Rbac
   include NavigatorTree
-#  before_filter :configure_charsets
   before_filter :configure_datestyle
   before_filter :login_required   
   before_filter :change_userid
   before_filter :set_user_id
-
   
-
   #  before_filter :rbac_required   
 
   
@@ -40,10 +37,6 @@ class ApplicationController < ActionController::Base
   def update_searchdialog
     partial = params[:partial]
     render(:partial => partial)
-  end
-
-  def configure_charsets
-    response.headers["Content-Type"] = "text/html; charset=ISO-8859-1"
   end
 
   def configure_datestyle
