@@ -85,7 +85,7 @@ CREATE TABLE addresses (
             REFERENCES addresstypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    addr text NOT NULL, 
+    street text NOT NULL, 
     pobox text NULL,
     country_id int4 NOT NULL 
               REFERENCES countries(id)

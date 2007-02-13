@@ -20,33 +20,51 @@ class Finder
         content << record_content_array(record, column)
       else 
         if (column =~/_id$/)
-          content << record_content_from_association(record, column)
+          # Error, usar belongs_to
         else
-          content << record.send(column) if record.send(column) != nil
+          item = record.send(column)
+          if item != nil then
+            if item.class == Object || item.class.superclass == Object then
+              content << item
+            else              
+              if item.attribute_names.include? 'name' 
+                content << item.name  
+              elsif item.attribute_names.include? 'title'
+                content << item.title              
+              end
+            end
+          end
         end
-        
       end
     } 
     content.join(', ')
   end
 
-  def record_content_from_association(record, column)
-    association = modelize(column)
-    case record.class.reflect_on_association(association.to_sym).macro
-    when :has_one, :belongs_to
-      record_content_from_belongs_to(record,association)
-    end
-  end
-  
-  def record_content_from_belongs_to(record, association)
-    if record.send(association).attribute_names.include? 'name' 
-      record.send(association).send('name')  
-    elsif record.send(association).attribute_names.include? 'title' 
-      record.send(association).send('title')  
-    else
-      myrecord = record.send(association)
-      record_content(myrecord, get_attributes(myrecord)) 
-    end
+  def record_content_hash(record, columns)
+    content = Hash.new
+    columns.each { |column|
+      if column.is_a? Array then
+        content << record_content_hash(record, column)
+      else 
+        if (column =~/_id$/)
+          # Error, usar belongs_to
+        else
+          item = record.send(column)
+          if item != nil then
+            if item.class == Object || item.class.superclass == Object then
+              content[column] = item
+            else              
+              if item.attribute_names.include? 'name' 
+                content[column] = item.name  
+              elsif item.attribute_names.include? 'title'
+                content[column] = item.title              
+              end
+            end
+          end
+        end
+      end
+    } 
+    content
   end
 
   def get_attributes(record)
@@ -66,7 +84,12 @@ class Finder
   
   def list_collection
     @records.collect { |record| record_content(record, @columns) }
-  end  
+  end 
+
+ 
+  def list_collection_hash
+    @records.collect { |record| record_content_hash(record, @columns) }
+  end 
   
   def as(style)
     #...

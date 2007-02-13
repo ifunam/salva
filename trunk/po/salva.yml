@@ -16,6 +16,7 @@ photo: Fotografía
 other: Información adicional
 addresstype_id: Tipo de dirección
 addr: Dirección
+street: Calle y numero
 country_id: País
 state_id: Estado
 state: Estado
