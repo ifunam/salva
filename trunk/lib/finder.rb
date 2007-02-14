@@ -82,22 +82,19 @@ class Finder
     record_content(myrecord, (columns - [columns.first]))
   end
   
-  def list_collection
+  def as_text
     @records.collect { |record| record_content(record, @columns) }
   end 
 
- 
-  def list_collection_hash
-    @records.collect { |record| record_content_hash(record, @columns) }
+  def as_hash
+    if @records.is_a? Array then
+      [ @model.name.downcase,  @records.collect { |record| 
+        record_content_hash(record, @columns) } 
+      ]
+    else
+      [ @model.name.downcase, record_content_hash(@records, @columns) ]
+    end
   end 
-  
-  def as(style)
-    #...
-  end
 
-  private
-  def modelize(column)
-    Inflector.tableize(column.sub(/_id$/,'')).singularize
-  end    
 end
 
