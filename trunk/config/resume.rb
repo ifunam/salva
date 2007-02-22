@@ -5,6 +5,6 @@ CONFIG = [
 	    :first, {:conditions => [ 'user_id = ?', 2]} ]
           },
           { :title => 'Domicilios',
-            :query => [Address, ['street', 'city', 'state', 'country'], :all, {:conditions => [ 'user_id = ?', 2]} ]
+            :query => [Address, ['location', 'city', 'state', 'country'], :all, {:conditions => [ 'user_id = ?', 2]} ]
 	 },
 	 ]
