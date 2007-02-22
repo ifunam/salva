@@ -1,63 +1,65 @@
-CREATE TABLE instadvicetarget (
+CREATE TABLE instadvicetargets (
 	id SERIAL,
 	name text NOT NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE instadvicetarget IS 
+COMMENT ON TABLE instadvicetargets IS 
 	'Destino de asesoría institucional';
 -- Proyecto de investigación, planes/programas de estudio, materiales 
 -- didácticos, evaluación, ...
 
-CREATE TABLE indivadvicetarget (
+CREATE TABLE indivadvicetargets (
 	id SERIAL,
-	name text NOT NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+	name text NOT NULL, 
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,              	    -- Use it to known who
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE indivadvicetarget IS
+COMMENT ON TABLE indivadvicetargets IS
 	'Tipo de persona que recibió asesoría individual';
 -- Profesor, estudiante de servicio social, estudiante becario, estudiante
 -- de bachillerato, estudiante de licenciatura, estudiante de maestría,
 -- estudiante de doctorado
 
-CREATE TABLE indivadviceprogram (
+CREATE TABLE indivadviceprograms (
 	id SERIAL,
-	name text NOT NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+	name text NOT NULL, 
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE indivadviceprogram IS
+COMMENT ON TABLE indivadviceprograms IS
 	'Tipo de programa a que pertenece la persona que recibió asesoría';
 -- PAAS, PIDI, PITID, Fundación UNAM, PAPIIT, DGAPA, DGEP, CONACyT
 
-CREATE TABLE adviceactivity (
+CREATE TABLE adviceactivities (
 	id SERIAL,
-	name text NOT NULL,
-        moduser_id int4 NULL    	     -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
-            ON UPDATE CASCADE                -- data into or from this table.
-            DEFERRABLE,
+	name text NOT NULL, 
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,              	
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
-COMMENT ON TABLE adviceactivity IS 
+COMMENT ON TABLE adviceactivities IS 
 	'Actividades de la que constó una asesoría';
 -- Diseño, evaluación, reestructuración, elaboración, ...
 
-CREATE TABLE instadvice (
+CREATE TABLE instadvices (
 	id SERIAL,
 	title text NOT NULL,
 	acadprogram text NULL, -- Carreer or academic program
@@ -71,53 +73,61 @@ CREATE TABLE instadvice (
             ON UPDATE CASCADE
             DEFERRABLE,
 	instadvicetarget_id int4 NOT NULL 
-            REFERENCES instadvicetarget(id)      
+            REFERENCES instadvicetargets(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-	degrees_id int4 NULL       -- Defined in schoolinghistory
+	degree_id int4 NULL       -- Defined in schoolinghistory
             REFERENCES degrees(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	other text NULL,
 	year int4 NOT NULL,
 	month int4 NULL CHECK (month >= 1 AND month <= 12),
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
-COMMENT ON TABLE instadvice IS 
+COMMENT ON TABLE instadvices IS 
 	'Asesoría prestada por un académico a una institución';
 
 -- What activities were performed in a specific advice?
-CREATE TABLE instadviceactivity (
+CREATE TABLE instadviceactivities (
 	id SERIAL,
 	instadvice_id int4 NOT NULL
-            REFERENCES instadvice(id)
+            REFERENCES instadvices(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	adviceactivity_id int4 NOT NULL
-            REFERENCES adviceactivity(id)
+            REFERENCES adviceactivities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	duration text NULL, -- It can range wildly - any value is OK :-/ 
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE (instadvice_id, adviceactivity_id)
 );
-COMMENT ON TABLE instadviceactivity IS 
+COMMENT ON TABLE instadviceactivities IS 
 	'Las actividades de las que constó una asesoría institucional';
 
 -- Advice given to an individual
-CREATE TABLE indivadvice (
+CREATE TABLE indivadvices (
 	id SERIAL,
-	user_is_internal bool, -- Is the user a full system user?
 	user_id int4 NOT NULL 
-            REFERENCES users(id)      
+	    REFERENCES users(id)      
             ON UPDATE CASCADE
             ON DELETE CASCADE   
-            DEFERRABLE,
-	externaluser_id integer NULL 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-	internaluser_id integer NULL
+            DEFERRABLE,	    
+	indivname text NULL,
+	indivuser_id integer NULL 
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,
@@ -126,14 +136,14 @@ CREATE TABLE indivadvice (
             ON UPDATE CASCADE
             DEFERRABLE,
 	indivadvicetarget_id int4 NOT NULL 
-            REFERENCES instadvicetarget(id)      
+            REFERENCES indivadvicetargets(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
 	indivadviceprogram_id int4 NULL 
-            REFERENCES indivadviceprogram(id)      
+            REFERENCES indivadviceprograms(id)      
             ON UPDATE CASCADE
             DEFERRABLE,
-	degrees_id int4 NULL       -- Defined in schoolinghistory
+	degree_id int4 NULL       -- Defined in schoolinghistory
             REFERENCES degrees(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -141,13 +151,16 @@ CREATE TABLE indivadvice (
 	month int4 NULL CHECK (month >= 1 AND month <= 12),
 	hours int4 NOT NULL,
 	other text NULL,
+	moduser_id int4 NULL               	    -- Use it to known who
+	REFERENCES users(id)            -- has inserted, updated or deleted
+	ON UPDATE CASCADE               -- data into or  from this table.
+	DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
-	-- Sanity checks: If the user is a full system user, require the user
-	-- to be filled in. Likewise for an external one.
-	CHECK (user_is_internal = 't' OR
-		(internaluser_id IS NOT NULL AND externaluser_id IS NULL)),
-	CHECK (user_is_internal = 'f' OR
-		(externaluser_id IS NOT NULL AND internaluser_id IS NULL))
+	-- Sanity checks: If the individual adviced is a full system user, 
+	-- require the user to be filled in, otherwise use name. 
+	CHECK (indivuser_id IS NOT NULL OR indivname IS NOT NULL)
 );
-COMMENT ON TABLE indivadvice IS 
+COMMENT ON TABLE indivadvices IS 
 	'Asesoría prestada por un académico a un individuo';

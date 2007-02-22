@@ -71,3 +71,4 @@
 \i catalogs/activities.sql
 \i catalogs/periods.sql
 \i catalogs/roleproceedings.sql
+\i catalogs/advice.sql
