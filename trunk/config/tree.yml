@@ -55,6 +55,7 @@
     - thesis_juror
     - thesis_committee
     - socialservice_advice
+    - student_advice
   - teaching
   - - user_regularcourse
     - user_specialcourse

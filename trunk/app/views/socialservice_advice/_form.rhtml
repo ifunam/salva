@@ -16,7 +16,7 @@
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
 <div id="institution_id">
-<%= table_select('edit', Institution, 3) %>
+<%= select_as_tree('edit', Institution, %w(name), 3, 1, { :include => [:institutiontitle], :conditions => "institutions.institutiontitle_id = institutiontitles.id AND (institutiontitles.name = 'Escuela' OR institutiontitles.name = 'Facultad')" }) %>
 </div>
 </div>
 
