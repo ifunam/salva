@@ -1,7 +1,10 @@
 #Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
 #           :all, :conditions => ['user_id = ?', 1])
 
-
+#* as_pair - Regresa una colección que sustituye a list_collection de list_helper
+#* as_tree - Regresa una colección de la misma manera que lo hace el método en list_helper
+#* as_text - Nos regresa una colección con registros en plaintext
+#* as_hash - Regresa valores como el hash
 class Finder
   attr_accessor :model
   attr_accessor :columns
@@ -18,50 +21,34 @@ class Finder
     columns.each { |column|
       if column.is_a? Array then
         content << record_content_array(record, column)
-      else 
-        if (column =~/_id$/)
-          # Error, usar belongs_to
-        else
-          item = record.send(column)
-          if item != nil then
-            if item.class == Object || item.class.superclass == Object then
-              content << item
-            else              
-              if item.attribute_names.include? 'name' 
-                content << item.name  
-              elsif item.attribute_names.include? 'title'
-                content << item.title              
-              end
-            end
-          end
-        end
+      elsif !record.class.reflect_on_association(column.to_sym).nil?
+        content<< record_content_from_belongs_to(record.send(column))
+      else
+        content << record.send(column)
       end
     } 
     content.join(', ')
   end
 
+  def record_content_from_belongs_to(record)
+    if record.attribute_names.include? 'name' 
+      record.send('name')  
+    elsif record.attribute_names.include? 'title' 
+      record.send('title')  
+    else
+      record_content(record, get_attributes(record)) 
+    end
+  end
+  
   def record_content_hash(record, columns)
     content = Hash.new
     columns.each { |column|
       if column.is_a? Array then
-        content << record_content_hash(record, column)
-      else 
-        if (column =~/_id$/)
-          # Error, usar belongs_to
-        else
-          item = record.send(column)
-          if item != nil then
-            if item.class == Object || item.class.superclass == Object then
-              content[column] = item
-            else              
-              if item.attribute_names.include? 'name' 
-                content[column] = item.name  
-              elsif item.attribute_names.include? 'title'
-                content[column] = item.title              
-              end
-            end
-          end
-        end
+        content[column] = record_content_array(record, column)
+      elsif !record.class.reflect_on_association(column.to_sym).nil?
+        content[column] = record_content_from_belongs_to(record.send(column))
+      else
+        content[column] = record.send(column) 
       end
     } 
     content
@@ -83,18 +70,28 @@ class Finder
   end
   
   def as_text
-    @records.collect { |record| record_content(record, @columns) }
+    if @records.is_a? Array then
+      [ @records.collect { |record|  record_content(record, @columns)} ]
+    else
+      [ record_content(@records, @columns) ]
+    end
   end 
+
+  def as_pair
+    if @records.is_a? Array then
+      [ @records.collect { |record|  [ record.id, record_content(record, @columns) ] }  ]
+    else
+      [ @records.id, record_content(@records, @columns) ]
+    end
+  end
 
   def as_hash
     if @records.is_a? Array then
-      [ @model.name.downcase,  @records.collect { |record| 
-        record_content_hash(record, @columns) } 
-      ]
+      [ @model.name.downcase,  @records.collect { |record|  record_content_hash(record, @columns) }  ]
     else
       [ @model.name.downcase, record_content_hash(@records, @columns) ]
     end
   end 
-
+  
 end
 
