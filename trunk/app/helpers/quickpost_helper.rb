@@ -50,8 +50,8 @@ module QuickpostHelper
       "return false;\">"+get_label('cancel')+"</a>"
   end
 
-  def submit_for_stack(controller)
-    image_submit_tag('/images/add.gif', {:name => 'stack', :value => controller })
+  def submit_for_stack(controller
+)    image_submit_tag('/images/add.gif', {:name => 'stack', :value => controller })
   end
 
 end

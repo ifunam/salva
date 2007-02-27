@@ -55,6 +55,8 @@ body {
   min-width: 688px;
   height: 53px;
   background: url(/images/bg_bottom_options.png) bottom repeat-x;
+  font: 10pt "arial";
+  color: #40984d;
 }
 
 #maintopbar .toolbar .left_toolbar {

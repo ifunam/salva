@@ -51,7 +51,9 @@
   </div> <!-- End for options -->
 </div> <!-- End for toolbar -->
 </div><!-- End of topbar -->
-
+<% if flash[:notice] %>
+   <p style="color: green"> <%= flash[:notice] %></p> 
+<% end %>
 <div class="bgcolor"> <!-- form: used for the form or content of this -->
 <!-- page -->
       <ul id="treemenu">
@@ -71,7 +73,11 @@
        <li class="simple"><a href="http://www.scienti.net/xml2html/xmlRoot.php?xml=xml/es/bvs.xml&amp;xsl=xsl/level2.xsl&amp;lang=es&amp;tab=collection&amp;item=91&amp;graphic=yes" target="_new">Grupos de investigaci&oacute;n</a></li>
        <li><a href="http://www.presidencia.gob.mx"target="_new">M&eacute;xico</a></li>
       </ul>
-	   <%= @content_for_layout %>
+	<div id="login">
+		<% if flash[:notice] %>  <p style="color: yellow"> <%= flash[:notice] %></p> <% end %>
+		<%= error_messages_for 'user',  :header_tag => 'p' %>
+		<%= @content_for_layout %>
+	</div>
 </div> <!-- /bgcolor-->
 <div class="w3c">
 <a href="http://validator.w3.org/check?uri=referer"> 

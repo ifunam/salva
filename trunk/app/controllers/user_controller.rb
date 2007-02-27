@@ -1,93 +1,109 @@
-require 'auth_user'
 class UserController < ApplicationController
   helper :user
-  include AuthUser
-  # To require logins, use:
-  #
-  #   before_filter :login_required                            
-  #   restrict all actions
-  #   before_filter :login_required, :only => [:edit, :update] 
-  #   only restrict these actions
-  # 
-  #   To skip this in a subclassed controller:
-  #
-  #   skip_before_filter :login_required
   skip_before_filter :login_required
   skip_before_filter :rbac_required
-  #filter_parameter_logging :passwd
-
-  public
+  
+  
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :signup, :create, :password_recovery ]
+  
+  # Signup Methods
   def index
-    login
-  end
-  
-  def login
-    return true unless request.post?
-    if auth?(params[:user][:login],params[:user][:passwd])
-      session[:user] = User.find(:first, :conditions => ['login = ?', params[:user][:login]]).id
-      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
-      redirect_back_or_default :controller => 'navigator'
-    else
-      flash[:notice] = "El login o el password es incorrecto!"
+    respond_to do |format|
+      format.html # index.rhtml
     end
   end
   
-  def login_by_token
-    if auth_user_by_id_and_token?(params[:id], params[:token])
-      session[:user] = params[:id]
-      flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
-      redirect_back_or_default :controller => 'navigator'
-    else
-      flash[:notice] = "El pase proporcionado es inválido!"
-      render :action => 'login'
+  def signup
+    respond_to do |format|
+      if authenticate?(params[:user][:login],params[:user][:passwd])
+        set_session_for_user(params[:user][:login])
+        flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
+        format.html { redirect_back_or_default :controller => 'navigator' }
+      else
+        flash[:notice] = "El login o el password es incorrecto!"
+        format.html { render :action => "index" } 
+      end
     end
   end
   
+  def signup_by_token
+    respond_to do |format|
+      if authenticate_by_token?(params[:id], params[:token])
+        session[:user] = params[:id]
+        flash[:notice] = "Bienvenido(a), por favor cambie su contraseña..."
+        format.html { redirect_back_or_default :controller => 'change_password' }
+      else
+        flash[:notice] = "La información del token es inválida!"
+        format.html { render :action => "index" }
+      end
+    end
+  end  
+
+  # User accounts creation methods
   def new
     @user = User.new
+    respond_to do |format|
+      format.html # index.rhtml
+    end
   end
   
   def create
-    return unless request.post?
-    @user = User.new(@params[:user])
-    if @user.save
-      url = url_for(:controller => 'user', :action => 'activate', :id => @user.id, :token => @user.token)
-      UserNotifier.deliver_new_notification(@user, url) 
-      render :action => 'create'
-    else
-      render :action => 'new'
+    @user = User.new(params[:user])
+    respond_to do |format|
+      if @user.save
+        UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token)) 
+        format.html { render :action => 'created' }
+        format.xml  { head :created, :location => users_url(@user) }
+      else
+        @user.passwd = nil
+        @user.passwd_confirmation = nil
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @user.errors.to_xml }
+      end
     end
   end
-
+  
   # Method for activating the current user
   def activate
     @user = User.find(:first, :conditions => [ 'id = ? AND token = ? AND token_expiry >= ?',
-                        params[:id], params[:token], 0.minutes.from_now ])
-    if @user
-      reset_session # Reset old sessions if exists
-      @user.update_attributes({ :userstatus_id => 2,
-                                :token => nil, :token_expiry => nil })
-      url = url_for(:controller => 'user', :action => 'login')
-      UserNotifier.deliver_activation(@user, url) 
-      render :action => 'activated'
-    else
-      render :action => 'invalid'
+                                               params[:id], params[:token], 0.minutes.from_now ])
+    respond_to do |format|
+      if !@user.nil?
+        reset_session # Reset old sessions if exists
+        @user.activate
+        @user.save
+        UserNotifier.deliver_activation(@user, url_for(:action => 'index')) 
+        format.html { render :action => "activated" }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'La liga para activar su cuenta ha expirado.'
+        format.html { render :action => "index" }
+      end
     end
   end
 
-  # Send out a forgot-password email.
-  def forgot_password
-    return unless request.post?
+  
+  # Recovery password stuff
+  def forgotten_password_recovery
+    respond_to do |format|
+      format.html # index.rhtml
+    end
+  end
+
+  def password_recovery
     @user = User.find_first(['email = ?', params[:user]['email']])
-    if @user
-      @user.update_attributes({ :token => token_string(10),
-                                :token_expiry => 7.days.from_now })
-      url = url_for(:controller => 'user', :action => 'login_by_token', 
-                    :id => @user.id, :token => @user.token)
-      UserNotifier.deliver_forgot_password(@user, url) 
-      render :action => 'forgot_password_done'
-    else
-      flash[:notice] = "El correo #{params[:user]['email']} NO existe en el salva!"
+    respond_to do |format|
+      if !@user.nil?
+        @user.set_new_token
+        @user.save
+        UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token)) 
+        format.html { render :action => 'password_recovery'}
+        format.xml  { head :ok }
+      else
+        flash[:notice] = "El correo #{params[:user]['email']} NO existe en el salva!"
+        format.html { render :action => "forgotten_password_recovery" }
+      end
     end
   end
   

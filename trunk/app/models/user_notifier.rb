@@ -22,7 +22,7 @@ class UserNotifier < ActionMailer::Base
     @body[:url]  = url
   end
 
-  def forgot_password(user,url)
+  def password_recovery(user,url)
     setup_email(user.email)
     @subject    += 'Información para cambiar la contraseña de su cuenta'
     @body[:user] = user

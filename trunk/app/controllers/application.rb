@@ -3,11 +3,13 @@
 
 # Likewise, all the methods added will be available for all controllers.
 
-require 'auth_user'
+require 'authentication'
+require 'sessions'
 require 'rbac'
 require 'navigator_tree'
 class ApplicationController < ActionController::Base
-  include AuthUser
+  include Authentication
+  include Sessions
   include Rbac
   include NavigatorTree
   before_filter :configure_datestyle
@@ -46,10 +48,10 @@ class ApplicationController < ActionController::Base
   end
   
   def change_userid
-    if @params[:user_id]
+    if params[:user_id]
       if is_admin?(session[:user]) or 
-          has_rights_overuser?(session[:user], @params[:user_id]) 
-        session[:user_id] = @params[:user_id] 
+          has_rights_overuser?(session[:user], params[:user_id]) 
+        session[:user_id] = params[:user_id] 
       end
     end
   end

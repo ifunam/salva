@@ -4,7 +4,9 @@ class UserObserver < ActiveRecord::Observer
   def before_save(user)
     @new = user.new_record?
   end
-  
+
+#  Useroleingroup.new({:user_id => @user.id, :roleingroup_id => }
+                           
   #   def after_save(user)
   #     if @new
   #       @usergroup= UserRoleingroup.new
