@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resume>
+<person>  
+  <country>MÃÂ©xico</country> 
+  <firstname>Juana</firstname>
+  <lastname1>La</lastname1>
+  <lastname2>Cubana</lastname2>
+</person>
+<addresses>
+<address>
+  <city>Alvarado</city>
+  <country>MÃÂ©xico</country>
+  <state>Baja California Sur</state>
+  <location>Esquina Sullivan y Tlalpan</location>
+</address>
+
+<address>
+  <city>Altotonga</city>
+  <country>MÃÂ©xico</country>
+  <state>Campeche</state>
+  <location>Amargura 13</location>
+</address>
+</addresses>
+</resume>
+
