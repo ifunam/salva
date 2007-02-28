@@ -72,7 +72,6 @@ class UserController < ApplicationController
       if !@user.nil?
         reset_session # Reset old sessions if exists
         @user.activate
-        @user.save
         UserNotifier.deliver_activation(@user, url_for(:action => 'index')) 
         format.html { render :action => "activated" }
         format.xml  { head :ok }
@@ -95,8 +94,7 @@ class UserController < ApplicationController
     @user = User.find_first(['email = ?', params[:user]['email']])
     respond_to do |format|
       if !@user.nil?
-        @user.set_new_token
-        @user.save
+        @user.new_token
         UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token)) 
         format.html { render :action => 'password_recovery'}
         format.xml  { head :ok }

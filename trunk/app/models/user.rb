@@ -19,29 +19,27 @@ class User < ActiveRecord::Base
   before_validation_on_update :verify_current_password 
   
   # UserStatus handling 
+
   def activate
-    self.attributes = { :userstatus_id => 2 , :token => nil}
-    save(false)
+    change_userstatus({ :userstatus_id => 2 , :token => nil})
   end
-
+  
   def locked
-    self.attributes = { :userstatus_id => 3 }
-    save(false)
+    change_userstatus({ :userstatus_id => 3 })
   end
-
+  
   def reject
-    self.attributes = { :userstatus_id => 4 }
-    save(false)
+    change_userstatus({ :userstatus_id => 4 })
   end
   
   def is_activated?
     self.userstatus_id == 2 # Look for approved or activated status in the userstatuses catalog.
   end
-
+  
   def is_locked?
     self.userstatus_id == 3 # Look for locked or inactivated status in the userstatuses catalog.
   end
-
+  
   def is_rejected?
     self.userstatus_id == 4 # Look for rejected status in the userstatuses catalog.
   end
@@ -50,14 +48,16 @@ class User < ActiveRecord::Base
     self.userstatus_id == 5 # Look for history file or 'Archivo muerto' status in the userstatuses catalog.
   end
   
-  def set_new_token
+  def new_token
     self.token = token_string(10)
     self.token_expiry = 7.days.from_now
+    save(true)
   end
-
+  
   def destroy_token
     self.token = nil
     self.token_expiry = nil
+    save(true)
   end
 
   private
@@ -88,5 +88,10 @@ class User < ActiveRecord::Base
         return false
       end
     end
+  end
+  
+  def change_userstatus(myattributes)
+    self.attributes = myattributes
+    save(true)
   end
 end

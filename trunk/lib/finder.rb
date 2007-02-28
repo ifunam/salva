@@ -1,10 +1,5 @@
 #Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
 #           :all, :conditions => ['user_id = ?', 1])
-
-#* as_pair - Regresa una colección que sustituye a list_collection de list_helper
-#* as_tree - Regresa una colección de la misma manera que lo hace el método en list_helper
-#* as_text - Nos regresa una colección con registros en plaintext
-#* as_hash - Regresa valores como el hash
 class Finder
   attr_accessor :model
   attr_accessor :columns
@@ -44,7 +39,7 @@ class Finder
     content = Hash.new
     columns.each { |column|
       if column.is_a? Array then
-        content[column] = record_content_array(record, column)
+        content[column.first] = record_content_array(record, column)
       elsif !record.class.reflect_on_association(column.to_sym).nil?
         content[column] = record_content_from_belongs_to(record.send(column))
       else
@@ -64,14 +59,16 @@ class Finder
   end
 
   def record_content_array(record, columns)
-    association = modelize(columns.first)
-    myrecord = record.send(association)
-    record_content(myrecord, (columns - [columns.first]))
+    model = columns.first
+    if model != nil
+      myrecord = record.send(model.to_sym)
+      record_content(myrecord, columns - [model])
+    end
   end
   
   def as_text
     if @records.is_a? Array then
-      [ @records.collect { |record|  record_content(record, @columns)} ]
+      @records.collect { |record|  record_content(record, @columns)} 
     else
       [ record_content(@records, @columns) ]
     end
@@ -79,9 +76,9 @@ class Finder
 
   def as_pair
     if @records.is_a? Array then
-      [ @records.collect { |record|  [ record.id, record_content(record, @columns) ] }  ]
+      @records.collect { |record|  [ record.id, record_content(record, @columns) ] }
     else
-      [ @records.id, record_content(@records, @columns) ]
+      [ [@records.id, record_content(@records, @columns) ]]
     end
   end
 
@@ -92,6 +89,5 @@ class Finder
       [ @model.name.downcase, record_content_hash(@records, @columns) ]
     end
   end 
-  
 end
 

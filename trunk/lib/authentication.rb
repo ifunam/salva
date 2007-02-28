@@ -16,7 +16,6 @@ module Authentication
     @user = User.find_by_id_and_token(id,token)
     unless @user.nil?
       @user.destroy_token
-      @user.save
       return true
     end
     return false
