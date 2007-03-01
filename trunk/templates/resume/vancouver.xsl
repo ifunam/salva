@@ -4,16 +4,22 @@
           <xsl:element name="html">
             <xsl:element name="head">
               <xsl:element name="title">Curriculum</xsl:element>
-            </xsl:element>
+	       </xsl:element>
 
             <xsl:element name="body">
-              <xsl:element name="p"><xsl:value-of select="resume/person/lastname1" /></xsl:element>
-              <xsl:element name="p"><xsl:value-of select="resume/person/lastname2" /></xsl:element>
-              <xsl:element name="p"><xsl:value-of select="resume/person/firstname" /></xsl:element>
+		<xsl:element name="div"><xsl:attribute name="class">section</xsl:attribute>
+			<xsl:element name="div"><xsl:attribute name="class">row</xsl:attribute>
+				<xsl:element name="span"><xsl:attribute name="class">label</xsl:attribute>Nombre</xsl:element>
+	        		<xsl:element name="span" style="content">
+							<xsl:value-of select="resume/person/lastname1" /> 
+							<xsl:value-of select="resume/person/lastname2" />
+			    				<xsl:value-of select="resume/person/firstname" />
+	        		</xsl:element>
+		        </xsl:element>
+	        </xsl:element>
               <xsl:for-each select="./resume/addresses/address">
                 <xsl:apply-templates />
               </xsl:for-each>
-
             </xsl:element>
           </xsl:element>
         </xsl:template>
