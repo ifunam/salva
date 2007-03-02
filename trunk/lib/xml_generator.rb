@@ -1,9 +1,11 @@
 class XmlGenerator
 
   attr_accessor :content
+  attr_accessor :root
 
-  def initialize()
+  def initialize(root)
     @content = []
+    @root = root
   end
 
   def addPair(pair)
@@ -23,7 +25,7 @@ class XmlGenerator
         xml += XmlSimple.xml_out(pair[1], 'rootname' => pair[0], 'noattr' => true)
       end
     }
-    xml
+    '<'+@root+'>'+xml+'</'+@root+'>'
   end
 
 end  

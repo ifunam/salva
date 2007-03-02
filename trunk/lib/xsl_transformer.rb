@@ -1,15 +1,15 @@
+require 'rubygems'
 require 'xml/libxml'
 require 'xml/libxslt'
 class XslTransformer
-  def initialize(style, xml, rootname='resume')
+  def initialize(style)
     @xslt = XML::XSLT.file(style)
-    @xslt.doc = XML::Document.new()
-    @xslt.doc.encoding = "UTF-8"
-    @xslt.doc.root = XML::Node.new(rootname)
-    @xslt.doc.root << xml
   end
   
-  def as_html
+  def as_html(xml)
+    xp = XML::Parser.new()
+    xp.string = xml
+    @xslt.doc = xp.parse
     html = @xslt.parse
     html.apply
     html.print
