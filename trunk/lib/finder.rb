@@ -40,8 +40,8 @@ class Finder
     columns.each { |column|
       if column.is_a? Array then
         content[column.first] = record_content_array(record, column)
-#      elsif !record.class.reflect_on_association(column.to_sym).nil?
-#        content[column] = record_content_from_belongs_to(record.send(column))
+      elsif !record.class.reflect_on_association(column.to_sym).nil?
+        content[column] = record_content_from_belongs_to(record.send(column))
       else
         content[column] = record.send(column) 
       end

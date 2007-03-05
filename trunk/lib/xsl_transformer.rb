@@ -12,6 +12,6 @@ class XslTransformer
     @xslt.doc = xp.parse
     html = @xslt.parse
     html.apply
-    html.print
+    html.to_s
   end
 end
