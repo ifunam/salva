@@ -36,6 +36,11 @@ COMMENT ON TABLE indivadvicetargets IS
 CREATE TABLE indivadviceprograms (
 	id SERIAL,
 	name text NOT NULL, 
+	descr text NULL,
+	institution_id int4 NOT NULL
+            REFERENCES institutions(id)
+            ON UPDATE CASCADE
+            DEFERRABLE,
 	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -62,7 +67,6 @@ COMMENT ON TABLE adviceactivities IS
 CREATE TABLE instadvices (
 	id SERIAL,
 	title text NOT NULL,
-	acadprogram text NULL, -- Carreer or academic program
 	user_id int4 NOT NULL 
             REFERENCES users(id)      
             ON UPDATE CASCADE
@@ -74,10 +78,6 @@ CREATE TABLE instadvices (
             DEFERRABLE,
 	instadvicetarget_id int4 NOT NULL 
             REFERENCES instadvicetargets(id)      
-            ON UPDATE CASCADE
-            DEFERRABLE,
-	degree_id int4 NULL       -- Defined in schoolinghistory
-            REFERENCES degrees(id)
             ON UPDATE CASCADE
             DEFERRABLE,
 	other text NULL,

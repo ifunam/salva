@@ -1,0 +1,55 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:indivadvice]-->
+<div class="row"> 
+<label for="indivname" class="label">Nombre del profesor</label> 
+<%= text_field 'edit', 'indivname', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'indivname' %>
+</div>
+
+<div class="row"> 
+<label for="indivuser_id" class="label"><%= get_label('indivuser_id') %></label> 
+<div id="indivuser_id">
+</div>
+</div>
+
+
+<div class="row"> 
+<label for="indivadviceprogram_id" class="label"><%= get_label('indivadviceprogram_id') %></label> 
+<div id="indivadviceprogram_id">
+<%= table_select('edit', Indivadviceprogram, 3, 1) %>
+</div>
+<%= submit_for_stack('indivadviceprogram') %>
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
+<div id="institution_id">
+<%= select_as_tree('edit', Institution, %w(name), 3, 1, { :include => [:institutiontitle], :conditions => "institutions.institutiontitle_id = institutiontitles.id AND (institutiontitles.name = 'Escuela' OR institutiontitles.name = 'Facultad')" }) %>
+</div>
+<%= submit_for_stack('institution') %>
+</div>
+
+<%= hidden_field('edit', 'indivadvicetarget_id', :value => Indivadvicetarget.find_by_name('Profesor').id ) %>
+
+
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 7, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="month" class="label"><%= get_label('month') %></label> 
+<%= month_select('edit', 'month', {:tabindex => 8, :required => 0 }) %> 
+</div>
+
+<div class="row"> 
+<label for="hours" class="label"><%= get_label('hours') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'hours', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'hours', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %></div>
+
+
+<!--[eoform:indivadvice]-->
+

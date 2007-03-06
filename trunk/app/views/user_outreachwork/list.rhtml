@@ -1,0 +1,12 @@
+<!--[list:user_genericwork]-->
+<%= table_array(@collection, { :header => "Título", :columns =>
+[ ['genericwork_id', 'authors', 'title', 'year'], 'userrole_id'] })
+%>
+
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:user_genericwork]-->
+

@@ -60,6 +60,10 @@
   - - user_regularcourse
     - user_specialcourse
     - teaching_activity
+- outreach
+- - professor_advice
+  - instadvice
+  - user_outreachwork
 - other_activities_or_products
 - - userconference_committee
   - activity
