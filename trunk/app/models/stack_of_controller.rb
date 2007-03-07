@@ -50,6 +50,14 @@ class StackOfController
     @stack.last[4] = id if has_items? 
   end
 
+  def get_handler
+    has_items? ? @stack.last[2] : nil
+  end
+
+  def set_empty
+    @stack = [ ]
+  end
+
   private
   def last
     @stack.last
@@ -63,10 +71,6 @@ class StackOfController
   
   def get_handler_id 
     has_items? ? @stack.last[4] : nil
-  end
-  
-  def get_handler
-    has_items? ? @stack.last[2] : nil
   end
 
   def set_controller_name

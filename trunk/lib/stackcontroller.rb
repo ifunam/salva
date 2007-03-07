@@ -53,7 +53,12 @@ module Stackcontroller
 
   def get_controller_options_from_stack
     if has_model_in_stack? 
-      [ session[:stack].get_controller, session[:stack].get_action ] 
+      if  session[:stack].get_handler.sub(/_id$/,'') == controller_name
+        [ session[:stack].get_controller, session[:stack].get_action ] 
+      else
+        session[:stack].set_empty
+        [ controller_name, 'list'] 
+      end
     else
       [ controller_name, 'list'] 
     end
