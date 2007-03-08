@@ -20,8 +20,7 @@ class ApplicationController < ActionController::Base
   #  before_filter :rbac_required   
 
   
-  helper :salva, :table, :user, :navigator, :date, :select, :checkbox, \
-  :paginator, :quickpost
+  helper :table, :user, :navigator, :date, :select, :checkbox, :paginator, :quickpost
   
   def update_select
     @id = params[:id]

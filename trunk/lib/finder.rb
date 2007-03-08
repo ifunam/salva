@@ -1,6 +1,8 @@
 #Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
 #           :all, :conditions => ['user_id = ?', 1])
+require 'labels'
 class Finder
+  include Labels
   attr_accessor :model
   attr_accessor :columns
   attr_accessor :records
@@ -17,7 +19,9 @@ class Finder
       if column.is_a? Array then
         content << record_content_array(record, column)
       elsif !record.class.reflect_on_association(column.to_sym).nil?
-        content<< record_content_from_belongs_to(record.send(column))
+        content << record_content_from_belongs_to(record.send(column))
+      elsif record.column_for_attribute(column).type.to_s == 'boolean'
+        content << label_for_boolean(column,record.send(column))
       else
         content << record.send(column)
       end
@@ -42,6 +46,8 @@ class Finder
         content[column.first] = record_content_array(record, column)
       elsif !record.class.reflect_on_association(column.to_sym).nil?
         content[column] = record_content_from_belongs_to(record.send(column))
+      elsif record.column_for_attribute(column).type.to_s == 'boolean'
+        content[column] = label_for_boolean(column,record.send(column))
       else
         content[column] = record.send(column) 
       end

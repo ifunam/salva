@@ -389,3 +389,17 @@ instadvicetarget: Objetivos
 instadvicetarget_id: Objetivo
 outreachwork: Trabajos de vinculación
 user_outreachwork: Otros trabajos de vinculación
+male: Masculino
+female: Femenino
+inprogress_degree: Grado en curso
+finished_degree: Grado terminado
+title_holder: Titulado
+without_title: Sin título
+group_permission: Con privilegios de grupo
+without_group_permission: Sin privilegios 
+mainauthor: Autor principal
+coauthor: Coautor
+seminary: Seminario
+talk: Conferencia
+yes: Sí
+not: No

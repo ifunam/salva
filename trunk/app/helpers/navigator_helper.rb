@@ -1,8 +1,9 @@
-require 'navigator_tree'
-require 'salva_helper'
+require 'labels'
+require 'salva'
 module NavigatorHelper
-  include SalvaHelper
   include NavigatorTree
+  include Labels
+  include Salva
 
   def navbar_list
     tree = get_tree

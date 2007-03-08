@@ -1,6 +1,6 @@
-require 'salva_helper'
+require 'labels'
 module QuickpostHelper 
-  include SalvaHelper
+  include Labels
   
   def quickpost(partial,mode='simple')
     if mode  == 'simple'

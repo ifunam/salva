@@ -1,7 +1,8 @@
 require 'list_helper'
 require 'application_helper'
-require 'salva_helper'
+require 'labels'
 module SelectHelper   
+  include Labels
   def table_select(object, model, tabindex, validation_type=nil, prefix=nil)
     model_id = set_model_id(model)
     options = set_options_tags(tabindex, validation_type)

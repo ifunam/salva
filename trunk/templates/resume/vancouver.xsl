@@ -14,6 +14,11 @@
 					<xsl:value-of select="resume/person/lastname2" />
 					<xsl:value-of select="resume/person/firstname" />
        				</xsl:element>
+
+				<xsl:element name="span"><xsl:attribute name="class">label</xsl:attribute>Genéro</xsl:element>
+       				<xsl:element name="span" style="content">
+					<xsl:value-of select="resume/person/gender" /> 
+       				</xsl:element>
 	        	</xsl:element>
 		</xsl:element>
         	<xsl:for-each select="./resume/addresses/address">
