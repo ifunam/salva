@@ -82,9 +82,9 @@ class Finder
 
   def as_pair
     if @records.is_a? Array then
-      @records.collect { |record|  [ record.id, record_content(record, @columns) ] }
+      @records.collect { |record|  [ record_content(record, @columns), record.id ] }
     else
-      [ [@records.id, record_content(@records, @columns) ]]
+      [ [record_content(@records, @columns), @records.id ]]
     end
   end
 
