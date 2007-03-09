@@ -1,8 +1,30 @@
+require 'finder'
 require 'list_helper'
 require 'application_helper'
 require 'labels'
 module SelectHelper   
   include Labels
+
+  def foreignize(model, prefix=nil)
+    foreignkey = Inflector.foreign_key(model)
+    foreignkey = prefix + '_' + foreignkey unless prefix.nil?
+    foreignkey
+  end
+  
+  def simple_select(object, model, tabindex, options={})
+    field = foreignize(model,options[:prefix])
+    @list = Finder.new(model, %w(name), :all, :order => 'name ASC')
+    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => options[:selected]}, {:tabindex => tabindex})
+  end
+
+  def select_conditions(object, model, tabindex, *options)
+    field = foreignize(model)
+    attributes = options[1][:attributes] || %w(name)
+    options[1].delete(:attributes)
+    @list = Finder.new(model, attributes, *options.to_a)
+    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --'}, {:tabindex => tabindex})
+  end
+  
   def table_select(object, model, tabindex, validation_type=nil, prefix=nil)
     model_id = set_model_id(model)
     options = set_options_tags(tabindex, validation_type)

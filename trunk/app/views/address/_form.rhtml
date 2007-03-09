@@ -10,7 +10,7 @@
 
 <div class="row"> 
 <label for="location" class="label"><%= get_label('location') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'location', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 2, 'id' => 'location', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>
+<%= text_area 'edit', 'location', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'location' %></div>
 </div>
 
 <div class="row"> 
@@ -18,27 +18,28 @@
 <%= text_field 'edit', 'pobox', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'pobox' %>
 </div>
 
-<br/>
 <div class="row">
  <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
- <%= select_to_update_select('edit', Country, State, 7, 1) %>
+ <%= simple_select('edit', Country, 4, {:selected => @edit.country_id || 484 }) %>
  </div>
 <br/>
 
+<%= observe_field_to_update_select('country_id', 'select_country_state', 5) %>
+
 <div class="row">
   <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
-  <div id="select_country_state_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
   <div id="select_country_state">
-   <%= select_to_update_select('edit', State, City, 8) %>
+  <%= select_conditions('edit', State, 5, :all, :conditions => 'country_id = 484') %>
   </div>
   <%= submit_for_stack('state:country_id') %>
 </div>
 
+<%= observe_field_to_update_select('state_id', 'select_state_city', 5) %>
+
 <div class="row">
   <label for="city_id" class="label"><%= get_label('city_id') %><span class="required">*</span></label>
-  <div id="select_state_city_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
   <div id="select_state_city">
-  <%= table_select('edit', City, 9) %>
+  <%= select_conditions('edit', City, 6, :all, :conditions => 'state_id = 0') %>
   </div>
   <%= submit_for_stack('city:state_id') %>
 </div>

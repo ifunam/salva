@@ -1,1 +1,1 @@
-<%= select_id_to_update_select('edit', City, State, @id, nil, @tabindex) %>
+<%= select_conditions('edit', City, @tabindex, :all, :conditions => "state_id = #@id") %>
