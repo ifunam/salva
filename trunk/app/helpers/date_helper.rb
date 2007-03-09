@@ -6,11 +6,6 @@ module DateHelper
                ["Diciembre", 12] ]
 
     options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
-    if opts[:required] == 1
-      options['z:required'] = 'true'
-      options['z:required_message'] = 'Seleccione una opción'
-    end
-    
     select(object, attr || 'month', months, options)
   end
   
@@ -25,10 +20,6 @@ module DateHelper
     end
 
     options = {:tabindex => opts[:tabindex], :prompt => '-- Seleccionar --'}
-    if opts[:required] == 1
-      options['z:required'] = 'true'
-      options['z:required_message'] = 'Seleccione una opción'
-    end
     
     select(object, attr || 'year', years, options);
   end

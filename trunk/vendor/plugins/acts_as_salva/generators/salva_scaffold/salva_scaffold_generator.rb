@@ -14,7 +14,7 @@ class ScaffoldingSandbox
 
   def set_textfield(column, tabindex, required=nil)
     if required then
-      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
     else
       "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
     end
@@ -30,7 +30,7 @@ class ScaffoldingSandbox
   
   def set_textarea(column, tabindex, required=nil)
     if required then
-      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}', 'z:required' => 'true', 'z:message' => 'Este campo es requerido' %>\n"  
+      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>\n"  
     else
       "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>"
     end
@@ -52,7 +52,7 @@ class ScaffoldingSandbox
   
   def set_year(column, tabindex, required=nil)
     if required != nil
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}, 'z:required' => 'true', 'z:message' => 'Este campo es requerido'}, :skip_style => true %><br/>"
+      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}, :skip_style => true %><br/>"
     else
       "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
     end

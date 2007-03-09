@@ -108,20 +108,10 @@ module SelectHelper
   private
   def set_options_tags(tabindex, validation_type=nil)
     options = Hash.new
-    options = set_zebda_tags(validation_type) if validation_type != nil
     options[:tabindex] = tabindex 
     options
   end
 
-  def set_zebda_tags(type)
-    case type
-    when 1  
-      { 'z:required' => 'true', 'z:required_message' => 'Seleccione una opción' }
-    when 2
-      { 'z:required' => 'true', 'z:required_message' => 'Registre la información de este campo' }
-    else
-    end
-  end  
 
   def remote_functag(origmodels, destmodel, tabindex, prefix=nil)
     origname = (origmodels.is_a? Array) ? origmodels.join('_').downcase: origmodels.name.downcase
