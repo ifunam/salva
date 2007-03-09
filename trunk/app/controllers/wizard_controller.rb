@@ -50,7 +50,7 @@ class WizardController < ApplicationController
       params[:edit].each { |key, value|
         model[key.to_sym] = value
       }
-      set_model_into_stack(sequence, 'new', @params[:stack]) and return true if @params[:stack] != nil
+      set_model_into_stack(sequence, 'new', @params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
       if model.valid? then
         next_page 
       else
@@ -73,7 +73,7 @@ class WizardController < ApplicationController
         end
       }      
     }
-    set_model_into_stack(sequence, @params[:stack]) and return true if @params[:stack] != nil
+    set_model_into_stack(sequence, 'new', @params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
 
     next_page
   end
