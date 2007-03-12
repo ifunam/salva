@@ -1,1 +1,1 @@
-<%= select_id_to_update_select('edit', Activitytype, Activitygroup, @id, nil, @tabindex) %>
+<%= select_conditions('edit', Activitytype, @tabindex, :all, :conditions => "activitygroup_id = #@id") %>

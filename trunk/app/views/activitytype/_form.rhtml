@@ -7,14 +7,9 @@
 </div>
 
 <div class="row"> 
-<label for="abbrev" class="label"><%= get_label('abbrev') %></label> 
-<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'abbrev' %>
-</div>
-
-<div class="row"> 
 <label for="activitygroup_id" class="label"><%= get_label('activitygroup_id') %> <span class="required">*</span></label> 
 <div id="activitygroup_id">
-<%= table_select('edit', Activitygroup, 3, 1) %>
+<%= table_select('edit', Activitygroup, 2, 1) %>
 </div>
 </div>
 
