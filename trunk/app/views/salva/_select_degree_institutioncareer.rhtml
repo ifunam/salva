@@ -1,4 +1,5 @@
-<%= select_institutioncareer_by_degree('edit', Institutioncareer, %w(career_id institution_id), @id, @tabindex, 1) %>
-
-
-
+<% unless @id.empty? %>
+<%= select_conditions('edit', Institutioncareer, @tabindex, :all, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.career_id = careers.id AND careers.degree_id = #@id AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484", :include => [:institution, :career])%>
+<% else %>
+  <%= select_conditions('edit', Institutioncareer, 2, :all, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => 'institutioncareers.institution_id = institutions.id AND (institutions.institution_id = 1 OR institutions.id = 1) AND institutions.institutiontitle_id <= 3', :include => [:institution])%>
+<% end %>
