@@ -42,3 +42,4 @@
 \i documents.sql
 \i schoolarships.sql
 \i students.sql
+\i institutional_activities.sql
