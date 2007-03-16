@@ -208,7 +208,7 @@ courses_id: Curso
 month: Mes
 acadprogram: Programa académico
 location: Ubicación
-coursegroup_id: Grupo
+coursegroup_id: Certificación o diplomado al que pertenece el curso
 roleincourse_id: Rol en curso
 course_id: Curso
 prize: Premio

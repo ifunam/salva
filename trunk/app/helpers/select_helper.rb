@@ -24,6 +24,10 @@ module SelectHelper
     @list = Finder.new(model, attributes, *options.to_a)
     select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --'}, {:tabindex => tabindex})
   end
+  
+  def observable_select(partial, id, tabindex)
+    render :partial => "salva/#{partial}", :locals => { :id => id, :tabindex => tabindex }
+  end
 
   def table_select(object, model, tabindex, validation_type=nil, prefix=nil)
     model_id = set_model_id(model)

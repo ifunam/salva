@@ -10,7 +10,7 @@
 
 <div class="row"> 
 <label for="location" class="label"><%= get_label('location') %> <span class="required">*</span></label> 
-<%= text_area 'edit', 'location', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'location' %></div>
+<%= text_area 'edit', 'location', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'location' %>
 </div>
 
 <div class="row"> 
@@ -29,17 +29,18 @@
 <div class="row">
   <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
   <div id="select_country_state">
-  <%= select_conditions('edit', State, 5, :all, :conditions => 'country_id = 484') %>
-  </div>
+    <%= observable_select('select_country_state', 484, 5) %>
+   </div>
   <%= submit_for_stack('state:country_id') %>
 </div>
 
 <%= observe_field_to_update_select('state_id', 'select_state_city', 5) %>
 
 <div class="row">
-  <label for="city_id" class="label"><%= get_label('city_id') %><span class="required">*</span></label>
+  <label for="city_id" class="label"><%= get_label('city_id') %><span
+  class="required">*</span></label>
   <div id="select_state_city">
-  <%= select_conditions('edit', City, 6, :all, :conditions => 'state_id = 0') %>
+   <%= observable_select('select_state_city', 0, 6) %>     
   </div>
   <%= submit_for_stack('city:state_id') %>
 </div>

@@ -14,11 +14,12 @@ class Finder
   end
   
   def record_content(record, columns)
+    return '' if record.nil?
     content = []
     columns.each { |column|
       if column.is_a? Array then
         content << record_content_array(record, column)
-      elsif !record.class.reflect_on_association(column.to_sym).nil?
+      elsif ! record.class.reflect_on_association(column.to_sym).nil?
         content << record_content_from_belongs_to(record.send(column))
       elsif record.column_for_attribute(column).type.to_s == 'boolean'
         content << label_for_boolean(column,record.send(column))

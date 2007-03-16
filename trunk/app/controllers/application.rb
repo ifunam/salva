@@ -23,10 +23,7 @@ class ApplicationController < ActionController::Base
   helper :table, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
   
   def update_select
-    @id = params[:id]
-    @tabindex =  params[:tabindex]
-    partial = params[:partial]
-    render(:partial => 'salva/'+partial)
+    render(:partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] })
   end
 
   def update_select_from_selects

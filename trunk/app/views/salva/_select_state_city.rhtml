@@ -1,1 +1,3 @@
-<%= select_conditions('edit', City, @tabindex, :all, :conditions => "state_id = #@id") %>
+<% unless id.to_s.empty? %>
+   <%= select_conditions('edit', City, tabindex, :all, :conditions => "state_id = #{id}") %>
+<% end %>

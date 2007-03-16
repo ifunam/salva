@@ -25,7 +25,7 @@ COMMENT ON TABLE coursegrouptypes IS
 
 CREATE TABLE coursegroups (
 	id serial,
-	name text,
+	name text NOT NULL,
     	coursegrouptype_id int4 NOT NULL 
                         REFERENCES coursegrouptypes(id)
                         ON UPDATE CASCADE
