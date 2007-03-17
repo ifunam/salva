@@ -117,21 +117,6 @@ COMMENT ON TABLE modalities IS
 	'Modalidad en que es impartido un curso o de una ponencia:
 	 Presencial, Distancia, ambas o ninguna de las anteriores :)';
 
-
-CREATE TABLE periods (
-	id serial PRIMARY KEY,
-	name text NOT NULL UNIQUE,
-	startdate date NOT NULL,
-	enddate date NOT NULL,
-	moduser_id int4 NULL    -- Use it only to know who has
-        REFERENCES users(id)    -- inserted, updated or deleted  
-        ON UPDATE CASCADE       -- data into or from this table.
-        DEFERRABLE,
-    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-	UNIQUE (name,startdate,enddate)
-);
-
 CREATE TABLE volumes (
 	id serial,
 	name text NOT NULL,
