@@ -127,7 +127,7 @@ CREATE TABLE indivadvices (
             ON DELETE CASCADE   
             DEFERRABLE,	    
 	indivname text NULL,
-	indivuser_id integer NULL 
+	indivuser_id integer NULL  -- use this if the indiv has user_id
             REFERENCES users(id)            
             ON UPDATE CASCADE               
             DEFERRABLE,

@@ -378,13 +378,18 @@ diffusion: Difusión y extensión
 teaching_activity: Otras actividades de docencia
 popularsciencework: Trabajo de divulgación
 publisher: Editorial
+indivadvice: Asesoría a individuos
 socialservice_advice: Asesoría a estudiantes de servicio social
-student_advice: Asesoría a estudiantes becarios
+student_advice: Asesoría a estudiantes
 professor_advice: Asesoría a profesores
 indivadviceprogram: Programas
 indivadviceprogram_id: Programa
+indivname: Nombre del asesorado
+indivuser_id: Usuario
 instadvice: Asesoría a instituciones
 outreach: Vinculación
+indivadvicetarget: Objetivos
+indivadvicetarget_id: Objetivo
 instadvicetarget: Objetivos
 instadvicetarget_id: Objetivo
 outreachwork: Trabajos de vinculación

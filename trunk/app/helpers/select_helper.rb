@@ -20,9 +20,11 @@ module SelectHelper
   def select_conditions(object, model, tabindex, *options)
     field = foreignize(model)
     attributes = options[1][:attributes] || %w(name)
+    selected =options[1][:selected]
     options[1].delete(:attributes)
+    options[1].delete(:selected)
     @list = Finder.new(model, attributes, *options.to_a)
-    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --'}, {:tabindex => tabindex})
+    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
   
   def observable_select(partial, id, tabindex)
