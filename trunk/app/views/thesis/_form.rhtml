@@ -14,9 +14,11 @@
 <div class="row"> 
 <label for="degree_id" class="label"><%= get_label('degree_id') %></label> 
 <div id="degree_id">
- <%= select_to_update_select('edit', Degree, Institutioncareer, 1, 1) %>
+ <%= render :partial => 'salva/select_professional_degrees', :locals => {:tabindex => 3} %> 
 </div>
 </div>
+
+<%= observe_field_to_update_select('degree_id', 'select_degree_institutioncareer', 4) %>
 
 <div class="row"> 
 <label for="institutioncareer_id" class="label"><%= get_label('institutioncareer_id') %></label> 
@@ -24,7 +26,7 @@
   <span class="upgrade_note">Actualizando la lista de carreras...</span>
   </div>
   <div id="select_degree_institutioncareer">
-  <%= select_as_tree('edit', Institutioncareer, %w(career_id institution_id), 2) %>
+   <%= observable_select('select_degree_institutioncareer', 1, 4) %>
   </div>
   <%= submit_for_stack('institutioncareer') %>
 </div>
