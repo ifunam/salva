@@ -1,8 +1,7 @@
 class UserController < ApplicationController
-  helper :user
+  helper :user, :theme
   skip_before_filter :login_required
   skip_before_filter :rbac_required
-  
   
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :signup, :create, :password_recovery ]

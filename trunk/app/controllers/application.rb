@@ -17,10 +17,12 @@ class ApplicationController < ActionController::Base
   before_filter :change_userid
   before_filter :set_user_id
   
+#  layout '/home/alex/projects/rails/salva/app/views/layouts/application'
+
   #  before_filter :rbac_required   
 
-  
-  helper :table, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
+  helper :table, :theme, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
+
   
   def update_select
     render(:partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] })
