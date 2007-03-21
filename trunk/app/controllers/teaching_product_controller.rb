@@ -1,4 +1,4 @@
-class OutreachworkController < SalvaController
+class TeachingProductController < SalvaController
   def initialize
     super
     @model = Genericwork
@@ -6,7 +6,7 @@ class OutreachworkController < SalvaController
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
-    @order_by = 'id'     
-    @list = { :include => [:genericworktype], :conditions => 'genericworktypes.genericworkgroup_id = 6 AND genericworks.genericworktype_id = genericworktypes.id' }
+    @order_by = 'id'  
+    @list = { :include => [:genericworktype], :conditions => 'genericworktypes.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id' }
   end
 end
