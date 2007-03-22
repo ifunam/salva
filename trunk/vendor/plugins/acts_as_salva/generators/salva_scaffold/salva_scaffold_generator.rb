@@ -38,10 +38,9 @@ class ScaffoldingSandbox
   
   def set_select(column, model, tabindex, required=nil, prefix=nil)
     options = tabindex.to_i.to_s
-    options << ', ' + required.to_i.to_s if required
     options << ", '#{prefix}'" if prefix
     select = "<div id=\"#{column}\">\n" 
-    select << "<%= table_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n" 
+    select << "<%= simple_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n" 
     select << "</div>\n"
   end
   
@@ -52,7 +51,7 @@ class ScaffoldingSandbox
   
   def set_year(column, tabindex, required=nil)
     if required != nil
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}, :skip_style => true %><br/>"
+      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
     else
       "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
     end

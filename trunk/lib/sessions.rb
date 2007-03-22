@@ -46,6 +46,6 @@ module Sessions
   # example use :
   # a popup window might just close itself for instance
   def access_denied
-    redirect_to :controller=>"/user", :action =>"login"
+    redirect_to :controller=>"/user"
   end  
 end

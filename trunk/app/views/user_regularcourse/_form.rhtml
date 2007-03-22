@@ -2,28 +2,30 @@
 
 <!--[form:user_regularcourse]-->
 <div class="row"> 
-<label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %></label> 
+<label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %> <span class="required">*</span></label> 
 <div id="regularcourse_id">
-<%= select_as_tree('edit', Regularcourse, %w(name), 1,1) %>
+<%= select_conditions('edit', Regularcourse, 1, :all, :attributes => ['title']) %>
 </div>
-<%= submit_for_stack('regularcourse') %>
+  <%= submit_for_stack('regularcourse') %>
 </div>
 
 <div class="row"> 
-<label for="period_id" class="label"><%= get_label('period_id') %>
- (<a href="http://www.dgae.unam.mx/noticias/calendar/calendar.html" target="_new">Ver calendario</a>) </label> 
-
+<label for="period_id" class="label"><%= get_label('period_id') %></label> 
 <div id="period_id">
-<%= table_select('edit', Period, 5) %>
+<%= select_conditions('edit', Period, 2, :all, :attributes => ['title']) %>
 </div>
-<%= submit_for_stack('period') %>  
 </div>
 
 <div class="row"> 
 <label for="roleinregularcourse_id" class="label"><%= get_label('roleinregularcourse_id') %> <span class="required">*</span></label> 
 <div id="roleinregularcourse_id">
-<%= table_select('edit', Roleinregularcourse, 2, 1) %>
+<%= simple_select('edit', Roleinregularcourse, 3) %>
 </div>
+</div>
+
+<div class="row"> 
+<label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label> 
+<%= text_field 'edit', 'hoursxweek', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'hoursxweek' %>
 </div>
 
 

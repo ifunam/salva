@@ -1,11 +1,24 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+# The default password is 'maltiempo'
+admin:
   id: 1
-  login: MyString
-  password: MyString
-  email: MyString
-two:
+  email: alex@bsdcoders.org
+  login: admin
+  passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
+  salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
+  userstatus_id: 2
+juana:
   id: 2
-  login: MyString
-  password: MyString
-  email: MyString
+  email: alex@fisica.unam.mx
+  login: juana
+  passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
+  salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
+  userstatus_id: 2
+panchito:
+  id: 3
+  email: alexjr85@gmail.com
+  login: panchito
+  passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
+  salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
+  userstatus_id: 2
+

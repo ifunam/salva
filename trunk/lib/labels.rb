@@ -19,6 +19,7 @@ module Labels
     end
   end 
 
+
   def get_label(name)
     ymlfile =  File.join(RAILS_ROOT, 'po', 'salva.yml')
     salva = YAML::parse( File.open(ymlfile) )

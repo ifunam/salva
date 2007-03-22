@@ -1,8 +1,6 @@
 class Regularcourse < ActiveRecord::Base
-validates_presence_of :name, :institutioncareer_id, :courseduration_id, :modality_id
-validates_numericality_of :institutioncareer_id, :courseduration_id, :modality_id
-belongs_to :institutioncareer
-belongs_to :courseduration
+validates_presence_of :title, :modality_id
+validates_numericality_of :academicprogram_id, :modality_id
+belongs_to :academicprogram
 belongs_to :modality
-  attr_accessor :degree_id
 end

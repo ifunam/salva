@@ -410,3 +410,8 @@ yes: Sí
 not: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
+academicprogram: Programas académicos 
+academicprogram_id: Programa académico
+academicprogramtype: Tipo de programa académico
+academicprogramtype_id: Tipo de programa académico
+semester: Semestre

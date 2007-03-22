@@ -129,14 +129,30 @@ CREATE TABLE user_courses (
 COMMENT ON TABLE user_courses IS
 	'Cursos a los que está asociado un usuario';
 
+CREATE TABLE academicprogramtypes (
+	id SERIAL NOT NULL,
+	name text NOT NULL,
+	moduser_id int4 NULL    -- Use it only to know who has
+  	    REFERENCES users(id)    -- inserted, updated or deleted  
+       	    ON UPDATE CASCADE       -- data into or from this table.
+            DEFERRABLE,
+    	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+
 CREATE TABLE academicprograms (
 	id serial NOT NULL,
 	institutioncareer_id int4 NOT NULL 
             REFERENCES institutioncareers(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
+	academicprogramtype_id int4 NOT NULL 
+            REFERENCES academicprogramtypes(id)       
+            ON UPDATE CASCADE
+            DEFERRABLE,
 	year int NOT NULL,
-	isopenuniversity BOOLEAN NOT NULL default 'f', -- Escolarizado o Universidad Abierta
 	moduser_id int4 NULL    -- Use it only to know who has
   	    REFERENCES users(id)    -- inserted, updated or deleted  
        	    ON UPDATE CASCADE       -- data into or from this table.
@@ -154,15 +170,15 @@ CREATE TABLE regularcourses (
             REFERENCES academicprograms(id)       
             ON UPDATE CASCADE
             DEFERRABLE,
-	semester int NOT NULL,
     	modality_id int4 NOT NULL 
             REFERENCES modalities(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   	hoursxweek int4 NULL, -- Total de horas a la semana
+	semester int NULL, --  This is optional If don't have semester
+   	credits int NULL,
 	administrative_key text NULL,
 	other text NULL,
-	moduser_id int4 NULL    -- Use it only to know who has
+	moduser_id int4 NULL        -- Use it only to know who has
   	    REFERENCES users(id)    -- inserted, updated or deleted  
        	    ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
@@ -211,14 +227,14 @@ CREATE TABLE user_regularcourses (
             REFERENCES regularcourses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    roleinregularcourse_id int4 NOT NULL 
-            REFERENCES roleinregularcourses(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
     period_id int4 NULL   
    	    REFERENCES periods(id)
             ON UPDATE CASCADE     
 	    ON DELETE CASCADE
+            DEFERRABLE,
+    roleinregularcourse_id int4 NOT NULL 
+            REFERENCES roleinregularcourses(id)
+            ON UPDATE CASCADE
             DEFERRABLE,
     hoursxweek int4 NULL, -- Horas por rol, ejemplo: 6 profesor y 4 ayudante
     moduser_id int4 NULL    -- Use it only to know who has
