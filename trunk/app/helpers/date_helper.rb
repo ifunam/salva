@@ -36,4 +36,8 @@ module DateHelper
                 :end_year => end_year, :use_month_numbers => true, 
                 :order => [:day, :month, :year], :tabindex => tabindex)
   end
+
+  def auto_complete_year(attribute, tabindex)
+    text_field_with_auto_complete(:edit, attribute, {:size =>4, :maxlength =>4, :tabindex => tabindex, :value => @edit.send(attribute) ||Date.today.year}, :skip_style => true)
+  end
 end
