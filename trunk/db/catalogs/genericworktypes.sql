@@ -13,5 +13,5 @@ INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Notas de clase
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Cuadernos', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Manual de apoyo docente', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Catálogos', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Traducción de artículo', 5);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Traducción de sitio web', 5);
+INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES ('Otro', 5);
+

@@ -4,9 +4,9 @@
 <div class="row"> 
 <label for="genericwork_id" class="label"><%= get_label('genericwork_id') %> <span class="required">*</span></label> 
 <div id="genericwork_id">
-<%= select_as_tree('edit', Genericwork, %w( authors title year genericworktype_id), 1, 1) %>
+<%= select_as_tree('edit', Genericwork, %w( authors title year ), 1, 1) %>
 </div>
-<%= submit_for_stack('genericwork') %>
+<%= submit_for_stack('otherwork') %>
 </div>
 
 <div class="row"> 
