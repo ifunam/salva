@@ -6,18 +6,58 @@ class StateTest < Test::Unit::TestCase
   include UnitSimple
   
   def setup
-    @state = %w(sinaloa nuevo_leon)
+    @states = %w(sinaloa nuevo_leon)
   end
 
-  def test_crud 
-    crud_test(@state, State)
-  end
+  # Right - CRUD
+   def test_crud 
+     crud_test(@states, State)
+   end
 
-  def test_validation
-    validate_test(@state, State)
-  end
+   def test_validation
+     validate_test(@states, State)
+   end
 
-  def test_collision
-    collision_test(@state, State)
-  end
+   def test_collision
+     collision_test(@states, State)
+   end
+
+   def test_create_with_empty_attributes
+     @state = State.new
+     assert !@state.save
+   end
+
+   # Boundary
+   def test_validate_states_with_bad_values
+
+     # Checking constraints for ID
+     @state = State.new({:name => 'Chiapas', :code => nil, :country_id => 484})
+     assert @state.save
+
+     # Non numeric ID 
+     @state.country_id = 'xx'
+     assert !@state.valid?
+     # Nil ID 
+     @state.country_id = nil
+     assert !@state.valid?
+     # Negative number ID 
+     @state.country_id = -1
+     assert !@state.valid?
+     # Very large number for ID 
+     @state.id = 10000
+     assert !@state.valid?
+
+     @state.id = 999
+     # Checking constraints for name
+     # Nil name
+     @state.name = nil
+     assert !@state.valid?
+     @state.name = 'Chiapas'
+
+     # Checking uniqueness for name and country_id
+     @state2 = State.new({:name => 'Chiapas', :code => nil, :country_id => 484})
+     assert !@state2.save
+   end
+
+
 end

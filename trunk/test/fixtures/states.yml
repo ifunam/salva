@@ -1,8 +1,10 @@
 sinaloa:
   id: 19
-  country_id: 484
-  name: Nuevo Léon
+  country_id: <%= Country.find_by_name('México').id %>
+  name: Nuevo León
+  code:
 nuevo_leon:   
   id: 25
-  country_id: 484
+  country_id: <%= Country.find_by_name('México').id %>
   name: Sinaloa
+  code:

@@ -1,8 +1,8 @@
 culiacan:
   id: 1
-  state_id: 19
+  state_id: <%= State.find_by_name('Sinaloa').id %>
   name: Culiacán
 monterrey:   
   id: 2
-  state_id: 25
+  state_id: <%= State.find_by_name('Nuevo León').id %>
   name: Monterrey

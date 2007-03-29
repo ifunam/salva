@@ -1,20 +1,20 @@
 juana:
-  id: User.find_by_login('juana').id
+  id: <%= User.find_by_login('juana').id %>
   firstname: Juana
   lastname1: Maltiempo
   gender: f
-  maritalstatus_id: Maritalstatuses.find_by_name('Soltero(a)').id
+  maritalstatus_id: <%= Maritalstatuses.find_by_name('Soltero(a)').id %>
   dateofbirth: 17/03/1977
-  country_id: Country.find_by_name('México').id
-  state_id: State.find_by_name('Sinaloa')
-  city_id: State.find_by_name('Culiacán')
+  country_id: <%= Country.find_by_name('México').id %>
+  state_id: <%= State.find_by_name('Sinaloa').id %>
+  city_id: <%= State.find_by_name('Culiacán').id %>
 panchito:
-  id: User.find_by_login('panchito').id
+  id: <%= User.find_by_login('panchito').id %>
   firstname: Francisco
   lastname1: Buentiempo
   gender: f
-  maritalstatus_id: Maritalstatuses.find_by_name('Divorciado(a)').id
+  maritalstatus_id: <%= Maritalstatuses.find_by_name('Divorciado(a)').id %>
   dateofbirth: 07/02/1986
-  country_id: Country.find_by_name('México').id
-  state_id: State.find_by_name('Nuevo León')
-  city_id: State.find_by_name('Monterrey')
+  country_id: <%= Country.find_by_name('México').id %>
+  state_id: <%= State.find_by_name('Nuevo León').id %>
+  city_id: <%= State.find_by_name('Monterrey').id %>

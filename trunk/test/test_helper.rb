@@ -46,7 +46,7 @@ class Test::Unit::TestCase
       keys.each { | item |
         @model = model.find(fixture.call(item.to_sym).id)
         assert_equal fixture.call(item.to_sym).name, @model.name
-        name = @model.name.reverse 
+        name = @model.name.chars.reverse 
         @model.name = name 
         assert @model.save, @model.errors.full_messages.join("; ")
         @model.reload
