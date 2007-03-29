@@ -32,7 +32,6 @@ class StateTest < Test::Unit::TestCase
 
      # Checking constraints for ID
      @state = State.new({:name => 'Chiapas', :code => nil, :country_id => 484})
-     assert @state.save
 
      # Non numeric ID 
      @state.country_id = 'xx'
@@ -53,11 +52,13 @@ class StateTest < Test::Unit::TestCase
      @state.name = nil
      assert !@state.valid?
      @state.name = 'Chiapas'
+   end
 
-     # Checking uniqueness for name and country_id
+   def test_check_uniqueness
+     @state = State.new({:name => 'Chiapas', :code => nil, :country_id => 484})
+     assert @state.save
+
      @state2 = State.new({:name => 'Chiapas', :code => nil, :country_id => 484})
      assert !@state2.save
    end
-
-
 end
