@@ -32,6 +32,8 @@ CREATE TABLE states (
      	      REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE(name)
 );
@@ -50,6 +52,8 @@ CREATE TABLE cities (
             REFERENCES users(id)    -- inserted, updated or deleted  
             ON UPDATE CASCADE       -- data into or from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id),
 	UNIQUE(state_id, name)
 );
@@ -63,6 +67,8 @@ CREATE TABLE userroles (
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     	PRIMARY KEY (id),
 	UNIQUE (name)
 );
@@ -101,6 +107,8 @@ CREATE TABLE publishers (
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
+	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
