@@ -1,5 +1,6 @@
 <!--[list:user_regularcourse]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( regularcourse_id roleinregularcourse_id ) }) %> 
+<%= table_array(@collection, { :header => "Título", :columns =>
+[['regularcourse_id', 'title'], 'roleinregularcourse_id' ] }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
