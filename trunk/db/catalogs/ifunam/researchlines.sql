@@ -118,9 +118,7 @@ INSERT INTO researchlines (name, researcharea_id) VALUES ('USO DE PIXE PARA DETE
 INSERT INTO researchlines (name, researcharea_id) VALUES ('USO DE TECNICAS DE ORIGEN NUCLEAR PARA EL ANALISIS DE MATERIALES', 2);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('astrofisica nuclear', 2);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('caracterización de materiales por técnicas de origen nuclear', 2);
-INSERT INTO researchlines (name, researcharea_id) VALUES ('fisica de radiaciones', 2);
-INSERT INTO researchlines (name, researcharea_id) VALUES ('fisica nuclear', 2);
-INSERT INTO researchlines (name, researcharea_id) VALUES ('Instrumentación nuclear', 2);
+INSERT INTO researchlines (name, researcharea_id) VALUES ('Física de radiaciones', 2);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Catalizadores multifásicos, metales soportados y óxidos, para control de la contaminación ambiental', 3);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Ciencia y Tecnología del Mexico Milenario', 3);
 INSERT INTO researchlines (name, researcharea_id) VALUES ('Cinética de Transformaciones de Fases', 3);

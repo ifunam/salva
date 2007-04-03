@@ -72,3 +72,4 @@
 \i catalogs/periods.sql
 \i catalogs/roleproceedings.sql
 \i catalogs/advice.sql
+\i catalogs/techproductstatuses.sql
