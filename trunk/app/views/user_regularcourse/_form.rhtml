@@ -1,19 +1,28 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:user_regularcourse]-->
+<div class="row">
+<label for="academicprogram_id" class="label"><%=get_label('academicprogram_id') %> </label> 
+<div id="academicprogram_id">
+<%= select_conditions('edit', Academicprogram, 1, :all, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
+</div>
+</div>
+<%= observe_field_to_update_select('academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
+
 <div class="row"> 
 <label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %> <span class="required">*</span></label> 
-<div id="regularcourse_id">
-<%= select_conditions('edit', Regularcourse, 1, :all, :attributes => ['title']) %>
+<div id="select_academicprogram_regularcourse">
+ <%= observable_select('select_academicprogram_regularcourse', 0, 2) %>
 </div>
   <%= submit_for_stack('regularcourse') %>
 </div>
 
 <div class="row"> 
-<label for="period_id" class="label"><%= get_label('period_id') %></label> 
+<label for="period_id" class="label"><%= get_label('period_id') %><span class="required">*</span></label> 
 <div id="period_id">
 <%= select_conditions('edit', Period, 2, :all, :attributes => ['title']) %>
 </div>
+  <%= submit_for_stack('period') %>
 </div>
 
 <div class="row"> 

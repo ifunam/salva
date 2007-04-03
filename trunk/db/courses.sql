@@ -227,7 +227,7 @@ CREATE TABLE user_regularcourses (
             REFERENCES regularcourses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    period_id int4 NULL   
+    period_id int4 NOT NULL   
    	    REFERENCES periods(id)
             ON UPDATE CASCADE     
 	    ON DELETE CASCADE
