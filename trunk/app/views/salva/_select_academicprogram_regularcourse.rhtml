@@ -1,10 +1,10 @@
 <% unless id.to_i < 1  %> 
 <%= select_conditions('edit', Regularcourse, 1, :all, 
 :attributes => ['title', ['academicprogram', [ 'institutioncareer', 'career' ] ] ],  
-:conditions => "regularcourses.academicprogram_id=#{id}"
+:conditions => "regularcourses.academicprogram_id=#{id}", :order => 'regularcourses.title ASC'
  ) %>
 <% else %>
-<%= select_conditions('edit', Regularcourse, 1, :all, 
+<%= select_conditions('edit', Regularcourse, 1, :all, :order => 'regularcourses.title ASC',
 :attributes => ['title', ['academicprogram', [ 'institutioncareer', 'career' ] ] ]
 ) %>
 <% end %>

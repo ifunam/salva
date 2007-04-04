@@ -4,17 +4,17 @@
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="institution_id">
-<%= table_select('edit', Institution, 1, 1) %> 
+<%= simple_select('edit', Institution, 1, { :selected => get_myinstitution.id }) %> 
+<%= submit_for_stack('institution') %> 
 </div>
-<%= image_submit_tag('/images/add.gif', {:name => 'stack', :value => 'institution'}) %> 
 </div>
 
 
 <div class="row"> 
 <label for="career_id" class="label"><%= get_label('career_id') %> <span class="required">*</span></label> 
 <div id="career_id">
-<%= select_as_tree('edit', Career, %w(name degree_id), 2, 1) %>
-<%= quickpost('career') %> 
+<%= select_conditions('edit', Career, 2, :all, :attributes => ['name', 'degree']) %>
+ <%= submit_for_stack('career') %> 
 </div>
 </div>
 

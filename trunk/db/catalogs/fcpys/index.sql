@@ -4,3 +4,4 @@
 \i careers.sql
 \i institutioncareers.sql
 \i regularcourses.sql
+\i advice.sql

@@ -13,14 +13,15 @@ module SelectHelper
   
   def simple_select(object, model, tabindex, options={})
     field = foreignize(model,options[:prefix])
+    selected = (@edit.nil?) ? options[:selected] : options[:selected] || @edit.send(field)
     @list = Finder.new(model, %w(name), :all, :order => 'name ASC')
-    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => options[:selected]}, {:tabindex => tabindex})
+    select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
   def select_conditions(object, model, tabindex, *options)
     field = foreignize(model)
     attributes = options[1][:attributes] || %w(name)
-    selected =options[1][:selected]
+    selected = (@edit.nil?) ? options[1][:selected] : options[1][:selected] || @edit.send(field)
     options[1].delete(:attributes)
     options[1].delete(:selected)
     @list = Finder.new(model, attributes, *options.to_a)

@@ -1,0 +1,10 @@
+<%=
+# Corregir condiciones join
+select_conditions('edit', Academicprogram, tabindex, :all,
+[['institutioncareer', 'career', ['institution', ['institution',
+'abbrev']]], 'year', 'academicprogramtype'], :joins =>
+[:institutioncareer, :career, :institution], :order => 'careers.name,
+institutions.abbrev ASC', :conditions => 'INNER JOIN
+institutioncareers ON institutioncareers.career_id = careers.id AND
+institutioncareers.institution_id = institutions.id')
+%>
