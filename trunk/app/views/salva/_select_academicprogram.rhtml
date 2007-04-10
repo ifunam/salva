@@ -1,7 +1,6 @@
 <%=
 # Corregir condiciones join
-select_conditions('edit', Academicprogram, tabindex, :all,
-[['institutioncareer', 'career', ['institution', ['institution',
+select_conditions('edit', Academicprogram, tabindex, :attributes => [['institutioncareer', 'career', ['institution', ['institution',
 'abbrev']]], 'year', 'academicprogramtype'], :joins =>
 [:institutioncareer, :career, :institution], :order => 'careers.name,
 institutions.abbrev ASC', :conditions => 'INNER JOIN

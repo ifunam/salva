@@ -18,13 +18,12 @@ module SelectHelper
     select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
-  def select_conditions(object, model, tabindex, *options)
-    field = foreignize(model)
-    attributes = options[1][:attributes] || %w(name)
-    selected = (@edit.nil?) ? options[1][:selected] : options[1][:selected] || @edit.send(field)
-    options[1].delete(:attributes)
-    options[1].delete(:selected)
-    @list = Finder.new(model, attributes, *options.to_a)
+  def select_conditions(object, model, tabindex, options={})
+    field = options[:field] || foreignize(model)
+    attributes = options[:attributes] || %w(name)
+    selected = (@edit.nil?) ? options[:selected] : options[:selected] || @edit.send(field)
+    [:attributes, :selected, :field].each { |key| options.delete(key) }
+    @list = Finder.new(model, attributes, :all, options)
     select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
   
