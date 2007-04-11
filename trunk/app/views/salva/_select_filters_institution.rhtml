@@ -1,0 +1,19 @@
+<div class="row"> 
+<label for="institutiontitle_id" class="label"><%= get_label('institutiontitle_id') %> <span class="required">*</span></label> 
+<div id="institutiontitle_id">
+<%= simple_select('edit', Institutiontitle, 1) %> 
+</div>
+</div>
+<%= observe_field_to_update_select('institutiontitle_id', 'select_institutiontitle_institution', 2) %>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="institution_id">
+ <%= observable_select('select_institutiontitle_institution', 1, 2) %>
+</div>
+</div>
+
+ <div id="operations">
+  <%= link_to_searchdialog('Instituciones de la UNAM'),  'select_institution_unam') %>
+ </div>
+
