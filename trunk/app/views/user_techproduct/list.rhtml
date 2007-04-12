@@ -1,5 +1,6 @@
 <!--[list:user_techproduct]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( techproduct_id ) }) %> 
+<%= table_array(@collection, { :header => "Título", :columns => [
+['techproduct_id', 'title', 'techproducttype_id'], 'userrole_id'] }) %> 
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |

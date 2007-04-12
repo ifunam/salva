@@ -18,11 +18,11 @@ COMMENT ON TABLE techproducttypes IS
 
 CREATE TABLE techproducts (
 	id serial,
+	title text NOT NULL,
 	techproducttype_id int4  NULL 
             	REFERENCES techproducttypes(id) 
             	ON UPDATE CASCADE           
             	DEFERRABLE,
-	title text NOT NULL,
 	authors text NOT NULL,
 	descr text NULL,
 	institution_id int4  NULL
