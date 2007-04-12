@@ -6,12 +6,13 @@
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'descr' %>
 </div>
 
+
 <div class="row"> 
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="search">
-  <%= render :partial => 'salva/select_institution_unam' %> |  <%=  link_to_searchdialog('Otras instituciones','/salva/select_institutiontitle_institution') %>
-</div> 
+<div id="partial">
+  <%= render :partial => 'salva/select_institution_unam' %>
 </div>
+</div> 
 
 <div class="row"> 
 <label for="startmonth" class="label"><%= get_label('startmonth') %></label> 

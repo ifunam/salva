@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def update_select_from_selects
     @params = params
     partial = params[:partial]
-    render(:partial => 'salva/'+partial)
+    render :partial => 'salva/'+partial
   end
 
   def update_searchdialog
@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     render(:partial => partial)
   end
 
+  def update_remote_partial
+    render :partial => 'salva/'+params[:partial]
+  end
+  
   def configure_datestyle
     suppress(ActiveRecord::StatementInvalid) do
       ActiveRecord::Base.connection.execute  "SET datestyle TO 'SQL, DMY';"
