@@ -12,9 +12,10 @@ module SelectHelper
   end
   
   def simple_select(object, model, tabindex, options={})
+    name = (model.column_names.include? 'title') ? 'title': 'name'
     field = foreignize(model,options[:prefix])
     selected = (@edit.nil?) ? options[:selected] : options[:selected] || @edit.send(field)
-    @list = Finder.new(model, %w(name), :all, :order => 'name ASC')
+    @list = Finder.new(model, [ name ], :all, :order => name+' ASC')
     select(object, field, @list.as_pair, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
