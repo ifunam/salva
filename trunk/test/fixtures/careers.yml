@@ -1,0 +1,9 @@
+actuaria:
+  id: 1
+  name: Actuaria
+  degree_id: 3
+  #Falta incluir fixtures dinámicos, ver caso de states
+administración:
+  id: 2
+  name: Administración
+  degree_id: 3
