@@ -5,3 +5,7 @@ salva:
 sa:
   id: 2
   name: Secretaría Académica
+geneticos:
+  id: 3
+  name: Departamento de experimentos genéticos 
+  parent_id: 2

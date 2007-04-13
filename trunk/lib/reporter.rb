@@ -19,7 +19,12 @@ class Reporter
   end     
   
   def as_html
-    xslt = XslTransformer.new(RAILS_ROOT+"/templates/#{MYROOT}/#{STYLE}.xsl")
+    xslt = XslTransformer.new(RAILS_ROOT+"/templates/#{MYROOT}/#{STYLE}_html.xsl")
     xslt.as_html(xml)
+  end
+  
+  def as_pdf
+    xslt = XslTransformer.new(RAILS_ROOT+"/templates/#{MYROOT}/#{STYLE}_pdf.xsl")
+    xslt.as_pdf(xml)
   end
 end

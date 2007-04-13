@@ -151,6 +151,7 @@ CREATE TABLE roleingroups (
     group_id int4 NOT NULL
 	REFERENCES groups(id)
 	ON UPDATE CASCADE
+	ON DELETE CASCADE
 	DEFERRABLE
 	DEFAULT 1,
     role_id int4 NOT NULL 
