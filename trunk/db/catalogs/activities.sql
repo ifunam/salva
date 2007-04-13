@@ -4,6 +4,7 @@ INSERT INTO activitygroups (name) VALUES ('Actividades de docencia');
 INSERT INTO activitygroups (name) VALUES ('Actividades de vinculación');
 INSERT INTO activitygroups (name) VALUES ('Servicios de apoyo');
 INSERT INTO activitygroups (name) VALUES ('Otras actividades');
+INSERT INTO activitygroups (name) VALUES ('Actividades técnicas');
 
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Programas de radio', 1);
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Entrevistas', 1);
@@ -36,4 +37,5 @@ INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Servicios a otras de
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Servicios a instituciones externas', 5);
 
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Otras actividades', 6);
+
 

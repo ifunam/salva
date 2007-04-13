@@ -54,7 +54,6 @@
   - - user_thesis
     - thesis_juror
     - thesis_committee
-    - socialservice_advice
     - student_advice
   - teaching
   - - user_regularcourse
@@ -66,6 +65,9 @@
   - instadvice
   - user_outreachwork
 - institutional_activity
+- technical_activity
+- - user_techproduct
+  - techactivity
 - other_activities_or_products
 - - userconference_committee
   - activity
