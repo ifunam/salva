@@ -6,6 +6,7 @@ class CareerTest < Test::Unit::TestCase
 
   def setup
     @careers = %w(actuaria administración)
+    @mycareer = Career.new({:name => 'COmputer Science', :degree_id => 3})
   end
   
   # Right - CRUD
@@ -50,27 +51,38 @@ class CareerTest < Test::Unit::TestCase
      assert !@career.save
    end
 
-   # Boundary
-   def test_validating_careers_with_bad_values
-
-     # Checking constraints for DEGREE_ID
-     @career = Career.new({:name => 'Actuaria', :degree_id => 3})
-
-     # Negative number ID 
-     @career.id = -9
-     assert !@career.valid?
-
+   ######################
+   # Boundary 
+   #
+   ######################
+   def test_bad_values_for_id
      # Float number for ID 
-     @career.id = 1.6
-     assert !@career.valid?
-
-     # Checking constraints for name
-     # Nil name
-     @career.name = nil
-     assert !@career.valid?
+     @mycareer.id = 1.6
+     assert !@mycareer.valid?
    end
 
-   # Put here the Unit testing for the foreing key models..
+   def test_bad_values_for_name
+     @mycareer.name = nil
+     assert !@mycareer.valid?
+
+     @mycareer.name = 'AB' 
+     assert !@mycareer.valid?
+
+     @mycareer.name = 'AB' * 800
+     assert !@mycareer.valid?
+   end
+
+   def test_bad_values_for_degree_id
+     # Checking constraints for name
+     # Nil name
+     @mycareer.degree_id = nil
+     assert !@mycareer.valid?
+
+     @mycareer.degree_id = 3.1416
+     assert !@mycareer.valid?
+   end
+
+   # Put here the Unit testing for the foreing keys
    # ...
 end
 

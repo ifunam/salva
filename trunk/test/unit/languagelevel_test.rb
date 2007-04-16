@@ -7,53 +7,51 @@ class LanguagelevelTest < Test::Unit::TestCase
   
   def setup
     @languagelevels = %w(basico intermedio avanzado)
+    @mylanguagelevel = Languagelevel.new({:name => 'superavanzado'})
+  end
+  
+  # Right - CRUD
+  def test_crud 
+    crud_test(@languagelevels, Languagelevel)
+  end
+  
+  def test_validation
+    validate_test(@languagelevels, Languagelevel)
+  end
+  
+  def test_collision
+    collision_test(@languagelevels, Languagelevel)
+  end
+  
+  def test_creating_languagelevel_with_empty_attributes
+    @languagelevel = Languagelevel.new
+    assert !@languagelevel.save
+  end
+  
+  def test_uniqueness
+    @languagelevel = Languagelevel.new({:name => 'Avanzado'})
+    assert !@languagelevel.save
   end
 
-  # Right - CRUD
-   def test_crud 
-     crud_test(@languagelevels, Languagelevel)
-   end
+  def test_bad_values_for_id
+    #Negative number 
+    @mylanguagelevel.id = -5
+    assert !@mylanguagelevel.valid?
 
-   def test_validation
-     validate_test(@languagelevels, Languagelevel)
-   end
+    #Negative number ID 
+    @mylanguagelevel.id= 1.8
+    assert !@mylanguagelevel.valid?
+  end   
 
-   def test_collision
-     collision_test(@languagelevels, Languagelevel)
-   end
+  def test_bad_values_for_name
+    @mylanguagelevel.name = nil
+    assert !@mylanguagelevel.valid?
 
-   def test_creating_languagelevel_with_empty_attributes
-     @languagelevel = Languagelevel.new
-     assert !@languagelevel.save
-   end
+    @mylanguagelevel.name = ''
+    assert !@mylanguagelevel.valid?
 
-   def test_checking_uniqueness
-     @languagelevel = Languagelevel.new({:name => 'Hiperavanzado'})
-     assert @languagelevel.save
-
-     @languagelevel2 = Languagelevel.new({:name => 'Hiperavanzado'})
-     assert !@languagelevel2.save
-   end
-
-   def test_validating_languagelevels_with_bad_values	
-     @languagelevel = Languagelevel.new({:name => 'superavanzado'})
-
-     #Non numeric ID --> Valid because the ID is a serial number
-     @languagelevel.id = nil
-     assert @languagelevel.valid?
-     
-     #Nil ID 
-     @languagelevel.name = nil
-     assert !@languagelevel.valid?
-
-     #Negative number 
-     @languagelevel.id = -5
-
-     assert !@languagelevel.valid?
-
-     #Negative number ID 
-     @languagelevel.id= 1.8
-     assert !@languagelevel.valid?
-   end   
+    @mylanguagelevel.name = 'K' * 101
+    assert !@mylanguagelevel.valid?
+  end
 end
- 
+
