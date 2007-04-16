@@ -66,6 +66,12 @@ class BooktypeTest < Test::Unit::TestCase
   def test_bad_values_for_name
     @mybooktype.name = nil
     assert !@mybooktype.valid?
+
+    @mybooktype.name = ''
+    assert !@mybooktype.valid?
+
+    @mybooktype.name = 'X' * 251
+    assert !@mybooktype.valid?
   end
 end
 

@@ -27,11 +27,6 @@ class LanguagelevelTest < Test::Unit::TestCase
     @languagelevel = Languagelevel.new
     assert !@languagelevel.save
   end
-  
-  def test_uniqueness
-    @languagelevel = Languagelevel.new({:name => 'Avanzado'})
-    assert !@languagelevel.save
-  end
 
   def test_bad_values_for_id
     #Negative number 
