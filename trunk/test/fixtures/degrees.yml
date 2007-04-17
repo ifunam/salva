@@ -1,0 +1,6 @@
+bachillerato:
+  id: 1
+  name: Bachillerato
+tecnico:
+  id: 2
+  name: Técnico
