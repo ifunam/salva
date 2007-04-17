@@ -1,11 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'degree'
 require 'career'
 
 class CareerTest < Test::Unit::TestCase
-  fixtures :careers
+  fixtures :degrees, :careers
 
   def setup
-    @careers = %w(actuaria administración)
+    @careers = %w(actuaria administracion)
     @mycareer = Career.new({:name => 'COmputer Science', :degree_id => 3})
   end
   
@@ -51,10 +52,7 @@ class CareerTest < Test::Unit::TestCase
      assert !@career.save
    end
 
-   ######################
-   # Boundary 
-   #
-   ######################
+     # Boundary 
    def test_bad_values_for_id
      # Float number for ID 
      @mycareer.id = 1.6
@@ -81,8 +79,23 @@ class CareerTest < Test::Unit::TestCase
      @mycareer.degree_id = 3.1416
      assert !@mycareer.valid?
    end
+   #Cross-Checking test
+ 
+ def test_cross_checking_for_degree_id
+   @careers.each { | career|
+      @career = Career.find(careers(career.to_sym).id)
+      assert_kind_of Career, @career
+      assert_equal @career.degree_id, Degree.find(@career.degree_id).id 
+    }
+ end 
 
-   # Put here the Unit testing for the foreing keys
-   # ...
+ def test_cross_checking_with_bad_values_for_degree_id
+   @careers.each { | career|
+      @career = Career.find(careers(career.to_sym).id)
+      assert_kind_of Career, @career
+      @career.degree_id = 10
+      assert !@career.update
+     }
+ end
 end
 

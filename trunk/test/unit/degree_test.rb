@@ -5,7 +5,7 @@ class DegreeTest < Test::Unit::TestCase
   fixtures :degrees
 
   def setup
-    @degrees = %w(bachillerato tecnico)
+    @degrees = %w(maestria licenciatura)
     @mydegree = Degree.new({:name => 'PHD', :id => 6})
   end
   
@@ -46,8 +46,8 @@ class DegreeTest < Test::Unit::TestCase
    end
 
    def test_uniqueness
-     @degree = Degree.new({:name => 'Bachillerato', :id => 1})
-     @degree.id = 1
+     @degree = Degree.new({:name => 'Licenciatura', :id => 3})
+     @degree.id = 3
      assert !@degree.save
    end
 
