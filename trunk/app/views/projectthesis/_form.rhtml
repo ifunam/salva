@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectthesis]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<div id="project_id">
+<%= simple_select('edit', Project, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="thesis_id" class="label"><%= get_label('thesis_id') %> <span class="required">*</span></label> 
+<div id="thesis_id">
+<%= simple_select('edit', Thesis, 2) %>
+</div>
+</div>
+
+
+<!--[eoform:projectthesis]-->
+

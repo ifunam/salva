@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectconferencetalk]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<div id="project_id">
+<%= simple_select('edit', Project, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="conferencetalk_id" class="label"><%= get_label('conferencetalk_id') %> <span class="required">*</span></label> 
+<div id="conferencetalk_id">
+<%= simple_select('edit', Conferencetalk, 2) %>
+</div>
+</div>
+
+
+<!--[eoform:projectconferencetalk]-->
+
