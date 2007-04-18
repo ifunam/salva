@@ -3,9 +3,7 @@
 <!--[form:projectresearchline]-->
 <div class="row"> 
 <label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
-<div id="project_id">
-<%= table_select('edit', Project, 1, 1) %>
-</div>
+<%= render :partial => 'salva/hidden_project' %>
 </div>
 
 <div class="row"> 
