@@ -1,0 +1,13 @@
+--- 
+reportajes: 
+ id: 3 
+ name: Reportajes
+ activitygroup_id: <%=Activitygroup.find_by_name('Actividades de extensión y difusión').id.to_i%> 
+programas_de_radio: 
+ id: 1 
+ name: Programas de radio
+ activitygroup_id: <%=Activitygroup.find_by_name('Actividades de extensión y difusión').id.to_i%>
+entrevistas: 
+ id: 2
+ name: Entrevistas
+ activitygroup_id: <%=Activitygroup.find_by_name('Actividades de extensión y difusión').id.to_i%>

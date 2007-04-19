@@ -1,0 +1,11 @@
+--- 
+actividades_de_extension_y_difusion: 
+ id: 1 
+ name: Actividades de extensión y difusión
+actividades_de_docencia: 
+ id: 3 
+ name: Actividades de docencia
+actividades_de_divulgacion: 
+ id: 2 
+ name: Actividades de divulgación
+  
