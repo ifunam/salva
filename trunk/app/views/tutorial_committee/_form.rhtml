@@ -1,0 +1,42 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:tutorial_committee]-->
+<div class="row"> 
+<label for="student" class="label"><%= get_label('student') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'student', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'student' %>
+</div>
+
+<div class="row"> 
+<label for="descr" class="label"><%= get_label('descr') %></label> 
+<%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'descr' %></div>
+
+<div class="row"> 
+<label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label> 
+<div id="degree_id">
+<%= simple_select('edit', Degree, 3) %>
+</div>
+</div>
+ <%= observe_field_to_update_select('degree_id',  'select_degree_institutioncareer', 4) %>
+
+<div class="row"> 
+<label for="institutioncareer_id" class="label"><%= get_label('institutioncareer_id') %></label> 
+  <div id="select_degree_institutioncareer_note"  style="display: none">
+  <span class="upgrade_note">Actualizando la lista de carreras...</span>
+  </div>
+  <div id="select_degree_institutioncareer">
+   <%= observable_select('select_degree_institutioncareer', 1, 4) %>
+  </div>
+  <%= submit_for_stack('institutioncareer') %>
+</div>
+
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 5}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 6, 'id' => 'other' %></div>
+
+
+<!--[eoform:tutorial_committee]-->
+
