@@ -1,7 +1,12 @@
 CREATE TABLE tutorial_committees (
 	id SERIAL NOT NULL,
-	student text NOT NULL,
-    	descr text NULL,
+	user_id int4 NOT NULL 
+	    REFERENCES users(id)     
+            ON UPDATE CASCADE        
+            ON DELETE CASCADE         
+	DEFERRABLE,
+	student text NOT NULL, -- Foreign_key for students table?
+    	descr text NULL,       
     	degree_id integer NOT NULL
             REFERENCES degrees(id) 
             ON UPDATE CASCADE              
