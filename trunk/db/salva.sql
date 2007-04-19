@@ -43,3 +43,4 @@
 \i schoolarships.sql
 \i students.sql
 \i institutional_activities.sql
+\i tutorial_committees.sql
