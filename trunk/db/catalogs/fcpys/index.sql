@@ -5,3 +5,6 @@
 \i institutioncareers.sql
 \i regularcourses.sql
 \i advice.sql
+\i genericworktypes.sql
+\i activitytypes.sql
+\i techproducttypes.sql
