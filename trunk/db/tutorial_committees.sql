@@ -5,7 +5,7 @@ CREATE TABLE tutorial_committees (
             ON UPDATE CASCADE        
             ON DELETE CASCADE         
 	DEFERRABLE,
-	student text NOT NULL, -- Foreign_key for students table?
+	studentname text NOT NULL, -- Foreign_key for students table?
     	descr text NULL,       
     	degree_id integer NOT NULL
             REFERENCES degrees(id) 
@@ -25,7 +25,7 @@ CREATE TABLE tutorial_committees (
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
-COMMENT ON TABLE theses IS 
+COMMENT ON TABLE tutorial_committees IS 
 	'Participación en comités tutorales';
-COMMENT ON COLUMN theses.degree_id IS
+COMMENT ON COLUMN tutorial_committees.degree_id IS
 	'Grado académico que esta tesis persigue';
