@@ -366,7 +366,7 @@ activitytype: Tipos de actividad
 activitytype_id: Tipo de actividad
 activity: Otras actividades
 activity_id: Actividad
-thesis_committee: Comités tutorales
+tutorial_committee: Comités tutorales
 roleinconference_id: Rol
 userconference_committee: Participación en comités de eventos académicos
 inproceeding_unrefereed: Trabajos presentados en memorias in extenso
@@ -431,3 +431,4 @@ projectchapterinbook: Capítulos en libros
 projectbook: Libros
 projectgenericwork: Otros trabajos
 projectarticle: Artículos
+student: Estudiante
