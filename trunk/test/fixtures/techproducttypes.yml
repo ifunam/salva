@@ -1,0 +1,14 @@
+--
+diaporamas:
+  id: 1
+  name: Diaporamas
+videos:
+  id: 2
+  name: Videos
+
+carteles:
+  id: 3
+  name: Carteles
+spots:
+  id: 4
+  name: Spots
