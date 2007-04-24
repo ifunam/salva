@@ -1,0 +1,16 @@
+congreso:
+  id: 1
+  name: Congreso
+  year: 1998
+  country_id: <%= Country.find_by_name('México').id.to_i%>
+  moduser_id: 1
+  conferencetype_id: <%= Conferencetype.find_by_name('Congreso').id.to_i%>
+  conferencescope_id: <%= Conferencescope.find_by_name('Nacional').id.to_i%>
+coloquio:
+  id: 2
+  name: Coloquio
+  year: 1998
+  country_id: <%= Country.find_by_name('Japón').id.to_i%>
+  moduser_id: 1
+  conferencetype_id: <%= Conferencetype.find_by_name('Coloquio').id.to_i%>
+  conferencescope_id: <%= Conferencescope.find_by_name('Internacional').id.to_i%>
