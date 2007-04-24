@@ -1,0 +1,10 @@
+--- 
+medalla: 
+  name: Medalla
+  id: 2
+diploma: 
+  name: Diploma
+  id: 1
+premio: 
+  name: Premio
+  id: 3
