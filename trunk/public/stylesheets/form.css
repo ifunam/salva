@@ -253,6 +253,10 @@ body {
 }
 
 
+.filters {
+  border: 1px dotted green;
+  text-align: right;
+}
 .row {
     display: table-row;
     float: none;
@@ -553,6 +557,9 @@ table.list td.link .show {
   height: 17px;
   float: left;
 }
+
+
+
 
 table.list td.link .show:hover {
   display: block;

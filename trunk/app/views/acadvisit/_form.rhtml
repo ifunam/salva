@@ -3,25 +3,17 @@
 <!--[form:acadvisit]-->
 <div class="row">
  <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
- <% @edit.country_id = 484 if @edit.country_id == nil %>
- <%= select_to_update_select('edit', Country, Institutiontitle, 1, 1) %>
+ <%= simple_select('edit', Country, 1, {:selected => @edit.country_id || 484 }) %>
 </div>
 
 <div class="row">
- <label for="country_id" class="label"><%=  get_label('institutiontitle_id') %> <span class="required">*</span></label>
-  <div id="select_country_institutiontitle_note" style="display: none"><span class="upgrade_note">Actualizando lista...</span></div>
-  <div id="select_country_institutiontitle">
-   <% @edit.institutiontitle_id = 2 if @edit.institutiontitle_id == nil %>
-   <%= table_select('edit', Institutiontitle, 1, 1) %>
-  </div>
+  <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+
+  <%= render :partial => 'salva/filter_institutions' %>
+<div id="partial">
+  <%= render :partial => 'salva/select_institution_unam' %>
 </div>
 
-<div class="row">
-  <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
-  <div id="select_institutiontitle_institution_note" style="display: none"><span class="upgrade_note">Actualizando la lista de instituciones...</span></div>
-  <div id="select_institutiontitle_institution">
-  <%= select_id_to_update_select('edit', Institution, Country, 484, nil, 2, 1, %w(name institutiontitle_id) ) %>
-  </div>
  <%=submit_for_stack('institution')%>
 </div>
 

@@ -154,4 +154,5 @@ module SelectHelper
     list = list_collection(collection,  columns) 
     select(obj, set_model_id(model), list, {:prompt => '-- Seleccionar --'})
   end
+
 end  
