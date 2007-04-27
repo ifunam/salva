@@ -254,9 +254,12 @@ body {
 
 
 .filters {
+  display: table-cell;
   border: 1px dotted green;
   text-align: right;
+  float: inherits;
 }
+
 .row {
     display: table-row;
     float: none;
@@ -409,6 +412,9 @@ a:hover.purge {
   font: 12px Arial, Helvetica, sans-serif;	
 }
 
+.add:hover {
+   border: 1px groove green;
+}
 fieldset {
 	margin-bottom: 10px;
 	border: 1px solid silver;
@@ -671,10 +677,12 @@ div.auto_complete ul strong.highlight {
  margin:0;
  padding:0;
 }
+
 select
 {
   font-style:none;
   max-width: 450px;
   overflow:scroll;
+  float: left;
 }
 

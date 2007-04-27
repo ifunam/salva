@@ -7,7 +7,8 @@ module QuickpostHelper
   end
 
   def submit_for_stack(controller)    
-    image_submit_tag('/images/add.gif', {:name => 'stack', :value => controller })
+    tag :input, { "type" => "image", "src" => image_path('add.gif'), 
+                   "class" => "add", "name" => 'stack', "value" => controller }
   end
 
 end
