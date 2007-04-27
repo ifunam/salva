@@ -2,16 +2,16 @@
 -- superior y media de la UNESCO y de la SEP. Además, se incluyen
 -- las excepciones como Sr., pasante, etc.
 -- http://www.unesco.org/iau/onlinedatabases/systems_data/mx.rtf
-INSERT INTO credentials (name) VALUES ('Sr.');
-INSERT INTO credentials (name) VALUES ('Técnico');
-INSERT INTO credentials (name) VALUES ('Pasante');
-INSERT INTO credentials (name) VALUES ('Lic.');
-INSERT INTO credentials (name) VALUES ('Ing.');
-INSERT INTO credentials (name) VALUES ('Mat.');
-INSERT INTO credentials (name) VALUES ('Fis.');
-INSERT INTO credentials (name) VALUES ('Arq.');
-INSERT INTO credentials (name) VALUES ('Médico cirujano');
-INSERT INTO credentials (name) VALUES ('M. en C.');
-INSERT INTO credentials (name) VALUES ('Dr.');
+INSERT INTO credentials (name,abbrev) VALUES ('Señor','Sr.');
+INSERT INTO credentials (name,abbrev) VALUES ('Técnico','Tec.');
+INSERT INTO credentials (name,abbrev) VALUES ('Pasante','Pasante');
+INSERT INTO credentials (name,abbrev) VALUES ('Licenciado','Lic.');
+INSERT INTO credentials (name,abbrev) VALUES ('Ingeniero','Ing.');
+INSERT INTO credentials (name,abbrev) VALUES ('Matemático','Mat.');
+INSERT INTO credentials (name,abbrev) VALUES ('Físico','Fis.');
+INSERT INTO credentials (name,abbrev) VALUES ('Arquitecto','Arq.');
+INSERT INTO credentials (name,abbrev) VALUES ('Médico cirujano','Médico cirujano');
+INSERT INTO credentials (name,abbrev) VALUES ('Maestro en Ciencias','M. en C.');
+INSERT INTO credentials (name,abbrev) VALUES ('Doctor','Dr.');
 
 
