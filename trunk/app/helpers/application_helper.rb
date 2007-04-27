@@ -53,6 +53,10 @@ module ApplicationHelper
                      )
   end
 
+  def back_from_show
+    link_to (get_label('back'), @request.env['HTTP_REFERER'] || { :action => 'list'})
+  end
+
   def set_model_id(model)
     model.name.downcase + '_id'
   end

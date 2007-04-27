@@ -26,11 +26,12 @@
 </div>
 
 <div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
-<div id="institution_id">
-<%= table_select('edit', Institution, 5) %>
-</div>
-</div>
+  <label for="institution_id" class="label"><%= get_label('institution_id') %></label> 
+  <%= render :partial => 'salva/filter_institutions' %>
+  <div id="partial">
+   <%= render :partial => 'salva/select_institution_unam' %>
+  </div>
+</div> 
 
 <div class="row"> 
 <label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 

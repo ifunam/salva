@@ -91,11 +91,11 @@ class CareerTest < Test::Unit::TestCase
 
  def test_cross_checking_with_bad_values_for_degree_id
    @careers.each { | career|
-      @career = Career.find(careers(career.to_sym).id)
-      assert_kind_of Career, @career
-      @career.degree_id = 10
-      assert !@career.update
-     }
+     @career = Career.find(careers(career.to_sym).id)
+     assert_kind_of Career, @career
+     @career.degree_id = 10
+     assert !@career.update
+   }
  end
 end
 
