@@ -26,6 +26,10 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+  def deny(condition, message)
+    assert !condition, message
+  end
+  
 
   # Simple CRUD (Create-Read, Update and Delete) testing methods
   module UnitSimple

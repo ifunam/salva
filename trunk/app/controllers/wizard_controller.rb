@@ -50,7 +50,7 @@ class WizardController < ApplicationController
       params[:edit].each { |key, value|
         model[key.to_sym] = value
       }
-      set_model_into_stack(sequence, 'new', @params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
+      model_into_stack(sequence, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
       if model.valid? then
         next_page 
       else
@@ -73,7 +73,7 @@ class WizardController < ApplicationController
         end
       }      
     }
-    set_model_into_stack(sequence, 'new', @params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
+    model_into_stack(sequence, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
 
     next_page
   end
@@ -145,15 +145,6 @@ class WizardController < ApplicationController
 	}
      }
      redirect_to :action  => 'show'
-  end
-
-
-  def stack
-    stack = StackOfController.new
-    stack.push('wizard', 'new')   # Queremos regresar aqui
-    stack.push(params[:handler], 'new')
-    session[:stack] = stack
-    redirect_to :controller  => 'stack'
   end
 
   private

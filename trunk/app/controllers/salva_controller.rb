@@ -45,26 +45,25 @@ class SalvaController < ApplicationController
     if @sequence != nil
       edit_sequence
     else
-      @edit = is_this_model_in_stack? ? get_model_from_stack : @model.find(params[:id])
+      @edit = model_from_stack || @model.find(params[:id])
       render :action => 'edit'
     end
   end
   
   def new
-    #set_model_into_stack(@model,'show',@params[:id]) and return true if @params[:id] != nil
+    #model_into_stack(@model,'show',@params[:id]) and return true if @params[:id] != nil
     if @sequence != nil
       new_sequence
     else
-      @edit = is_this_model_in_stack? ? get_model_from_stack : @model.new
+      @edit = model_from_stack || @model.new
       render :action => 'new'
     end
   end
   
   def create
-    setinput_xmlhttprequest if request.xml_http_request?
     @edit = @model.new(params[:edit])
     set_userid
-    set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
+    model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
     if @edit.save
       if @parent != nil
         redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
@@ -72,8 +71,8 @@ class SalvaController < ApplicationController
         redirect_to :action => 'show', :id => @edit.id 
       else
         flash[:notice] = @create_msg
-        set_stack_handler_id(@edit.id) if has_model_in_stack?
-        redirect_to_controller(*get_options_to_redirect.to_a)
+        save_stack_attribute(@edit.id) if has_model_in_stack?
+        redirect_to (options_to_redirect)
       end
     else
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -84,7 +83,7 @@ class SalvaController < ApplicationController
   def update
     @edit = @model.find(params[:id])
     set_userid
-    set_model_into_stack(@edit, 'edit', params[:stack], params[:edit], controller_name) and return true if @params[:stack] != nil
+    model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
     if @edit.update_attributes(params[:edit])
       if @parent != nil
         redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
@@ -92,8 +91,8 @@ class SalvaController < ApplicationController
         redirect_to :action => 'show', :id => @edit.id 
       else
         flash[:notice] = @update_msg
-        set_stack_handler_id(@edit.id) if has_model_in_stack?
-        redirect_to_controller(*get_options_to_redirect.to_a)
+        save_stack_attribute(@edit.id) if has_model_in_stack?
+        redirect_to (options_to_redirect)
       end
     else
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -139,7 +138,7 @@ class SalvaController < ApplicationController
   end
 
   def cancel
-    redirect_to_controller(*get_options_to_redirect.to_a)
+    redirect_to (options_to_redirect)
   end
 
   private
@@ -160,20 +159,9 @@ class SalvaController < ApplicationController
     redirect_to :controller => 'wizard', :action => 'edit'
   end
 
-  def setinput_xmlhttprequest
-    params[:edit].each { |key, value|
-      unless key.match(/\_id$/)
-        params[:edit][key] = Iconv.new('iso-8859-15','utf-8').iconv(value) 
-      end
-    }
-  end
-
-  def get_options_to_redirect
-    options = [ controller_name, 'list']
-    if session[:stack] 
-      options = get_controller_options_from_stack unless session[:stack].empty?
-    end
-    options
+  def options_to_redirect
+    {:controller => controller_name, :action => 'list'}
+    redirect_options_from_stack if has_model_in_stack?
   end
 
   def set_userid

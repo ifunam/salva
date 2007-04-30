@@ -27,7 +27,7 @@ class PersonController < ApplicationController
   end
 
   def new
-    @edit = is_this_model_in_stack? ? get_model_from_stack : Person.new 
+    @edit = model_from_stack || Person.new 
   end
 
   def edit 
@@ -55,9 +55,9 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id] 
     @edit.moduser_id = session[:user] if session[:user]
-    if @params[:stack] != nil
+    if params[:stack] != nil
       clean_photo_attributes
-      set_model_into_stack(@edit,'new', params[:stack], params[:edit], controller_name) and return true 
+      model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true 
     end
     save_photo if @edit.photo.size > 0
  
@@ -74,9 +74,9 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id]
     @edit.moduser_id = session[:user] if session[:user]
-    if @params[:stack] != nil
+    if params[:stack] != nil
       clean_photo_attributes
-      set_model_into_stack(@edit,'edit', params[:stack], params[:edit], controller_name) and return true 
+      model_into_stack(@edit, controller_name, 'edit', params[:edit], params[:stack]) and return true 
     end
     save_photo if @edit.photo.size > 0
 
@@ -118,7 +118,7 @@ class PersonController < ApplicationController
   end
   
   def get_person
-    @edit = is_this_model_in_stack? ? get_model_from_stack : Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
+    @edit = model_from_stack ||  Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
   end
   
   def clean_photo_attributes

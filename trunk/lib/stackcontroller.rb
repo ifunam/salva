@@ -1,75 +1,51 @@
 module Stackcontroller
-  def set_model_into_stack(model,action,handler,myparams,controller)
-    options = set_options(handler,myparams)
-    save_model_into_stack(model,action,options[:handler_id],controller) 
-    redirect_to_controller(options[:handler],'new', options[:id]) 
-  end
-  
-  def set_options(handler,myparams)
-    if handler =~ /:/
-      { :handler => handler.split(':')[0], :handler_id => handler.split(':')[0] + '_id', :id => myparams[handler.split(':')[1].to_sym] }
-    elsif handler =~ /\,/
-      { :handler => handler.split(',')[0], :handler_id => handler.split(',')[1] }
-    else
-      { :handler => handler, :handler_id => handler + '_id'}
-    end
-  end
-  
-  def save_model_into_stack(object,action,handler,controller=nil)
+  def model_into_stack(model, controller, action, form_params, stack_params)
+    # 'controller' will be used as return_controller
+    # 'next_controller' will be used as previus_controller
+    next_controller, attribute, id = set_options(stack_params, form_params)
     session[:stack] ||= StackOfController.new
-    if controller == Inflector.pluralize(Inflector.tableize(object))
-      session[:stack].push(object,action,handler)
+    session[:stack].push(model, action, attribute, controller, next_controller)
+    redirect_to :controller => next_controller, :action => 'new', :id => id
+  end
+  
+  def set_options(stack_params, form_params)
+    if stack_params =~ /:/
+      [ stack_params.split(':')[0], stack_params.split(':')[1], 
+        form_params[stack_params.split(':')[1].to_sym] ]
+    elsif stack_params =~ /\,/
+      [ stack_params.split(',')[0], stack_params.split(',')[1] ]
     else
-      session[:stack].push(object,action,handler,controller)
+      [ stack_params, stack_params + '_id']
     end
   end
-
-  def get_model_from_stack
-    unless session[:stack].empty?
-     model = session[:stack].get_model
-      logger.info "STACK " +model.attribute_names.flatten.to_s
-      pop_model_from_stack
-      return model
+  
+  def model_from_stack
+    if has_model_in_stack?
+      if session[:stack].include_controller?(controller_name)
+        session[:stack].delete_after_controller(controller_name)
+        return session[:stack].pop_model
+      end
     end
   end
-
-  def pop_model_from_stack
-    session[:stack].pop unless session[:stack].empty?
-  end
-
+  
   def has_model_in_stack?
     if session[:stack]
       return true unless session[:stack].empty? 
     end
     return false
   end
-  
-  def is_this_model_in_stack?
-    if has_model_in_stack? 
-      return true if session[:stack].get_controller == controller_name
-    end
-    return false
+
+  def save_stack_attribute(value)
+    session[:stack].set_attribute(value) 
   end
 
-  def get_controller_options_from_stack
-    if has_model_in_stack? 
-      if  session[:stack].get_handler.sub(/_id$/,'') == controller_name
-        [ session[:stack].get_controller, session[:stack].get_action ] 
-      else
-        session[:stack].set_empty
-        [ controller_name, 'list'] 
-      end
-    else
-      [ controller_name, 'list'] 
+  def redirect_options_from_stack
+    options = {:controller => controller_name, :action => 'list'}
+    if session[:stack].previus_controller == controller_name
+      options = { :controller => session[:stack].return_controller, 
+                  :action => session[:stack].action }
+      options[:id] = session[:stack].value if session[:stack].attribute == 'id'
     end
-  end
-  
-  def redirect_to_controller(controller, action='new', id=nil)
-    redirect_to :controller => controller, :action => action, :id => id
-    return true
-  end
-
-  def set_stack_handler_id(id)
-    session[:stack].set_handler_id(id)
+    return options
   end
 end
