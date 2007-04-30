@@ -216,7 +216,7 @@ CREATE TABLE people_identifications (
    	      DEFERRABLE,
    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (user_id),
+   PRIMARY KEY (id),
    UNIQUE (user_id, identification_id)
 );
 COMMENT ON TABLE people_identifications IS

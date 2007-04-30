@@ -160,8 +160,7 @@ class SalvaController < ApplicationController
   end
 
   def options_to_redirect
-    {:controller => controller_name, :action => 'list'}
-    redirect_options_from_stack if has_model_in_stack?
+    (has_model_in_stack?) ? redirect_options_from_stack : {:controller => controller_name, :action => 'list'}
   end
 
   def set_userid

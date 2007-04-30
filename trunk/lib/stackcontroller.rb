@@ -41,11 +41,11 @@ module Stackcontroller
 
   def redirect_options_from_stack
     options = {:controller => controller_name, :action => 'list'}
-    if session[:stack].previus_controller == controller_name
-      options = { :controller => session[:stack].return_controller, 
-                  :action => session[:stack].action }
-      options[:id] = session[:stack].value if session[:stack].attribute == 'id'
-    end
-    return options
+     if session[:stack].previus_controller == controller_name
+       options = { :controller => session[:stack].return_controller, 
+         :action => session[:stack].action }
+       options[:id] = session[:stack].value if session[:stack].attribute == 'id'
+     end
+    options
   end
 end
