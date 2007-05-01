@@ -50,16 +50,17 @@
   - user_popularsciencework
 - diffusion
 - human_resources_formation_and_teaching
-- - human_resources_formation
-  - - user_thesis
-    - thesis_juror
-    - tutorial_committee
-    - student_advice
-  - teaching
+- - teaching
   - - user_regularcourse
     - user_specialcourse
     - teaching_activity
     - teaching_product
+  - human_resources_formation
+  - - user_thesis
+    - thesis_juror
+    - tutorial_committee
+    - student_advice
+   
 - outreach
 - - professor_advice
   - instadvice

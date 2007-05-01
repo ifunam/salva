@@ -1,5 +1,3 @@
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Antología crítica', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Antología', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Catálogos', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Cronología', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Cuadernos', 4);
