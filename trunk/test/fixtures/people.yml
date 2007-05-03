@@ -1,0 +1,20 @@
+juana:
+  user_id: 2
+  firstname: Juana
+  lastname1: Maltiempo
+  gender: f
+  maritalstatus_id: 1
+  dateofbirth: 03/17/1977
+  country_id: 484
+  state_id: 25
+  city_id: 1
+panchito:
+  user_id: 3
+  firstname: Francisco
+  lastname1: Buentiempo
+  gender: t
+  maritalstatus_id: 2
+  dateofbirth: 07/02/1986
+  country_id: 484
+  state_id: 19
+  city_id: 2

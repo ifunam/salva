@@ -1,9 +1,9 @@
 actuaria:
   id: 1
   name: Actuaria 
-  degree_id: <%= Degree.find_by_name('Licenciatura').id.to_i%>
+  degree_id: 3
 administracion:
   id: 2
   name: Administración  
-  degree_id: <%= Degree.find_by_name('Maestría').id.to_i%>
+  degree_id: 4
   
