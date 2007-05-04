@@ -9,7 +9,7 @@ class StackOfController
     return_controller = controller || set_controller_name(model)
     previus_controller = prev_controller || Inflector.tableize(attribute.sub(/_id$/,'')).singularize
     if include_controller?(return_controller)
-      #Avoiding controller collissions (Perhaps it is a bug, but it helps to avoid infinite bucles..)
+      #Avoiding controller collissions (Perhaps it is a bug, but it helps to avoid infinite loops..)
       @stack[index_by_controller(controller)] = [ model, return_controller, action, attribute, nil, previus_controller ]
     else
       @stack << [ model, return_controller, action, attribute, nil, previus_controller] 

@@ -1,13 +1,19 @@
 module Stackcontroller
-  def model_into_stack(model, controller, action, form_params, stack_params)
+  def options_for_next_controller(model, controller, action, form_params, stack_params)
     # 'controller' will be used as return_controller
     # 'next_controller' will be used as previus_controller
     next_controller, attribute, id = set_options(stack_params, form_params)
-    session[:stack] ||= StackOfController.new
-    session[:stack].push(model, action, attribute, controller, next_controller)
-    redirect_to :controller => next_controller, :action => 'new', :id => id
+    model_into_stack(model, action, attribute, controller, next_controller)
+    { :controller => next_controller, :action => 'new', :id => id }
   end
   
+  def model_into_stack(model, action, attribute, controller=nil, next_controller=nil)
+    # 'controller' will be used as return_controller
+    # 'next_controller' will be used as previus_controller
+    session[:stack] ||= StackOfController.new
+    session[:stack].push(model, action, attribute, controller, next_controller)
+  end 
+
   def set_options(stack_params, form_params)
     if stack_params =~ /:/
       [ stack_params.split(':')[0], stack_params.split(':')[1], 
@@ -39,13 +45,29 @@ module Stackcontroller
     session[:stack].set_attribute(value) 
   end
 
-  def redirect_options_from_stack
+  def options_for_return_controller
     options = {:controller => controller_name, :action => 'list'}
-     if session[:stack].previus_controller == controller_name
-       options = { :controller => session[:stack].return_controller, 
-         :action => session[:stack].action }
-       options[:id] = session[:stack].value if session[:stack].attribute == 'id'
-     end
+    if has_model_in_stack?
+      if session[:stack].previus_controller == controller_name
+        options = { :controller => session[:stack].return_controller, 
+          :action => session[:stack].action }
+        options[:id] = session[:stack].value if session[:stack].attribute == 'id'
+      end
+    end
     options
   end
+  
+  def stack_back
+    hash = {:action => 'list' } 
+    if has_model_in_stack?
+      session[:stack].pop
+      if has_model_in_stack?
+        hash = { :controller => session[:stack].return_controller, 
+          :action => session[:stack].action, 
+          :id => session[:stack].value }
+      end
+    end
+    hash
+  end
+
 end

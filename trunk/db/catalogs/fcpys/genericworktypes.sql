@@ -1,8 +1,3 @@
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Catálogos', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Cronología', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Cuadernos', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Guía de estudio', 4);
-INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Manual de apoyo docente', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Notas clase', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Investigación bibliográfica', 4);
 INSERT INTO genericworktypes (name, genericworkgroup_id) VALUES('Material gráfico', 4);

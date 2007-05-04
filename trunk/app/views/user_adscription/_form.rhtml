@@ -4,14 +4,14 @@
 <div class="row"> 
 <label for="jobposition_id" class="label"><%= get_label('jobposition_id') %> <span class="required">*</span></label> 
 <div id="jobposition_id">
-<%= select_as_tree('edit', Jobposition, %w(jobpositioncategory_id), 1, 1) %>
+<%= select_conditions('edit', Jobposition, 1, :attributes => [['jobpositioncategory', 'jobpositiontype', 'roleinjobposition', 'jobpositionlevel'] ], :conditions => ['institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = ?', session[:user]], :include => :institution) %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="adscription_id" class="label"><%= get_label('adscription_id') %> <span class="required">*</span></label> 
 <div id="adscription_id">
-<%= select_adscription('edit', Adscription,  2, 1) %> 
+<%= simple_select('edit', Adscription,  2) %> 
 </div>
 </div>
 

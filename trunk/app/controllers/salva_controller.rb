@@ -51,7 +51,6 @@ class SalvaController < ApplicationController
   end
   
   def new
-    #model_into_stack(@model,'show',@params[:id]) and return true if @params[:id] != nil
     if @sequence != nil
       new_sequence
     else
@@ -63,40 +62,46 @@ class SalvaController < ApplicationController
   def create
     @edit = @model.new(params[:edit])
     set_userid
-    model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
-    if @edit.save
-      if @parent != nil
-        redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
-      elsif @children != nil
-        redirect_to :action => 'show', :id => @edit.id 
-      else
-        flash[:notice] = @create_msg
-        save_stack_attribute(@edit.id) if has_model_in_stack?
-        redirect_to (options_to_redirect)
-      end
+    if params[:stack] != nil
+      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
     else
+      if @edit.save
+        if @parent != nil
+          redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
+        elsif @children != nil
+        redirect_to :action => 'show', :id => @edit.id 
+        else
+          flash[:notice] = @create_msg
+          save_stack_attribute(@edit.id) if has_model_in_stack?
+          redirect_to (options_for_return_controller)
+        end
+      else
       flash[:notice] = 'Hay errores al guardar esta información'
-      render :action => 'new'
+        render :action => 'new'
+      end
     end
   end
   
   def update
     @edit = @model.find(params[:id])
     set_userid
-    model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
-    if @edit.update_attributes(params[:edit])
-      if @parent != nil
-        redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
-      elsif @children != nil
-        redirect_to :action => 'show', :id => @edit.id 
-      else
-        flash[:notice] = @update_msg
-        save_stack_attribute(@edit.id) if has_model_in_stack?
-        redirect_to (options_to_redirect)
-      end
+    if params[:stack] != nil
+      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
     else
-      flash[:notice] = 'Hay errores al guardar esta información'
-      render :action => 'edit'
+      if @edit.update_attributes(params[:edit])
+        if @parent != nil
+          redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
+        elsif @children != nil
+          redirect_to :action => 'show', :id => @edit.id 
+        else
+        flash[:notice] = @update_msg
+          save_stack_attribute(@edit.id) if has_model_in_stack?
+          redirect_to (options_for_return_controller)
+        end
+      else
+        flash[:notice] = 'Hay errores al guardar esta información'
+        render :action => 'edit'
+      end
     end
   end
   
@@ -133,12 +138,17 @@ class SalvaController < ApplicationController
       redirect_to :controller => 'wizard', :action => 'show'
     else
       @edit = @model.find(params[:id])
+      model_into_stack(@edit,  'show', 'id', controller_name)
       render :action => 'show'
     end  
   end
 
   def cancel
     redirect_to (options_to_redirect)
+  end
+
+  def back
+    redirect_to (stack_back)
   end
 
   private
@@ -157,10 +167,6 @@ class SalvaController < ApplicationController
     sequence.fill(params[:id])
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'edit'
-  end
-
-  def options_to_redirect
-    (has_model_in_stack?) ? redirect_options_from_stack : {:controller => controller_name, :action => 'list'}
   end
 
   def set_userid

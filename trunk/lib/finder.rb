@@ -31,7 +31,9 @@ class Finder
   end
 
   def record_content_from_belongs_to(record)
-    if record.attribute_names.include? 'name' 
+    if record.nil?
+      '----'
+    elsif record.attribute_names.include? 'name' 
       record.send('name')  
     elsif record.attribute_names.include? 'title' 
       record.send('title')  

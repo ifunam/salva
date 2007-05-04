@@ -50,12 +50,15 @@ class WizardController < ApplicationController
       params[:edit].each { |key, value|
         model[key.to_sym] = value
       }
-      model_into_stack(sequence, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
-      if model.valid? then
-        next_page 
+      if params[:stack] != nil
+        redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack]) 
       else
-        @edit = sequence.get_model
-        render :action => 'edit'
+        if model.valid? then
+          next_page 
+        else
+          @edit = sequence.get_model
+          render :action => 'edit'
+        end
       end
     else
       create_composite
@@ -73,7 +76,8 @@ class WizardController < ApplicationController
         end
       }      
     }
-    model_into_stack(sequence, controller_name, 'new', params[:edit], params[:stack]) and return true if params[:stack] != nil
+
+    redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack]) if params[:stack] != nil
 
     next_page
   end

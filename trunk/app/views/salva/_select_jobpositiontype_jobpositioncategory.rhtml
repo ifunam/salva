@@ -1,5 +1,7 @@
-<%= select_id_to_update_select('edit', Jobpositioncategory, Jobpositiontype, @id, nil, @tabindex, 1, %w(roleinjobposition_id
- jobpositionlevel_id)) %>
+<% unless id.to_i < 1 %>  
+<%= select_conditions('edit', Jobpositioncategory, 2, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositiontype_id = #{id}")
+%>
+<% end %>
 
 
 

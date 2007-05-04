@@ -55,18 +55,16 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id] 
     @edit.moduser_id = session[:user] if session[:user]
-    if params[:stack] != nil
-      clean_photo_attributes
-      model_into_stack(@edit, controller_name, 'new', params[:edit], params[:stack]) and return true 
-    end
-    save_photo if @edit.photo.size > 0
+    unless redirect_if_stack
+      save_photo if @edit.photo.size > 0
  
-    if @edit.save 
-      flash[:notice] = 'Sus datos personales han sido guardados'
-      render :action => 'show'
-    else
-      flash[:notice] = 'Hay errores al guardar esta información'
-      render :action => 'new'
+      if @edit.save 
+        flash[:notice] = 'Sus datos personales han sido guardados'
+        render :action => 'show'
+      else
+        flash[:notice] = 'Hay errores al guardar esta información'
+        render :action => 'new'
+      end
     end
   end
   
@@ -74,10 +72,7 @@ class PersonController < ApplicationController
     @edit = Person.new(params[:edit])
     @edit.id = session[:user_id]
     @edit.moduser_id = session[:user] if session[:user]
-    if params[:stack] != nil
-      clean_photo_attributes
-      model_into_stack(@edit, controller_name, 'edit', params[:edit], params[:stack]) and return true 
-    end
+    redirect_if_stack
     save_photo if @edit.photo.size > 0
 
     if @edit.update 
@@ -125,5 +120,14 @@ class PersonController < ApplicationController
       @edit.photo_filename = nil
       @edit.photo_content_type = nil
       @edit.photo = nil
+  end
+
+  def redirect_if_stack
+    if params[:stack] != nil
+      clean_photo_attributes
+      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
+      return true
+    end
+    return false
   end
 end
