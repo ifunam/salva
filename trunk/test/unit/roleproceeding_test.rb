@@ -7,6 +7,7 @@ class RoleproceedingTest < Test::Unit::TestCase
 
   def setup
     @roleproceedings = %w(arbitro editor compilador)
+    @myroleproceeding = Roleproceeding.new({:name => 'Arbitro'})
   end
   
   # Right - CRUD  
@@ -28,13 +29,11 @@ class RoleproceedingTest < Test::Unit::TestCase
    end
 
    def test_check_uniqueness
-     @myroleproceeding = Roleproceeding.new({:name => 'Arbitro'})
      assert !@myroleproceeding.save
    end
 
    # Boundaries
    def test_bad_values_for_id
-    @myroleproceeding = Roleproceeding.new
     @myroleproceeding.id = 'xx'
     assert !@myroleproceeding.valid?
 
@@ -47,20 +46,20 @@ class RoleproceedingTest < Test::Unit::TestCase
     assert !@myroleproceeding.valid?
 
     # Very large number for ID }
-    @myroleproceeding.id = 2
-    rango = 1..3
-    assert rango.include?(@myroleproceeding.id) 
+    @myroleproceeding.id = 20000
+    assert @myroleproceeding.valid?
+    #rango = 1..3
+    #assert rango.include?(@myroleproceeding.id) 
 
     # Nil number ID 
     @myroleproceeding.id = nil
-    assert !@myroleproceeding.valid?
+    assert @myroleproceeding.valid?
   end
 
   def test_bad_values_for_name
     # Checking constraints for name
-    @myroleproceeding = Roleproceeding.new
     @myroleproceeding.name = nil
     assert !@myroleproceeding.valid?
   end
- 
+
 end
