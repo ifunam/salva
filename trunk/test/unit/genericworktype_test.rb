@@ -6,7 +6,7 @@ class GenericworktypeTest < Test::Unit::TestCase
   fixtures :genericworkgroups, :genericworktypes
 
   def setup
-    @genericworktypes = %w(cuadernos catalogos otros)
+    @genericworktypes = %w(cuadernos catalogos impresos)
     @mygenericworktype = Genericworktype.new({:name => 'Antología', :genericworkgroup_id => 4})
   end
   
@@ -88,6 +88,15 @@ class GenericworktypeTest < Test::Unit::TestCase
       assert_equal @genericworktype.genericworkgroup_id, Genericworkgroup.find(@genericworktype.genericworkgroup_id).id 
     }
  end 
+
+
+ def catch_exception_when_update_invalid_key(record)
+   begin
+      return true if record.update
+    rescue ActiveRecord::StatementInvalid => bang
+      return false
+    end
+end
 
  def test_cross_checking_with_bad_values_for_genericworkgroup_id
    @genericworktypes.each { | genericworktype|

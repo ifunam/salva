@@ -6,7 +6,7 @@ cuadernos:
   name: Cuadernos
   id: 2
   genericworkgroup_id: 4
-otros:
-  name: Otro
-  id: 11
-  genericworkgroup_id: 5
+impresos: 
+  name: Impresos
+  id: 5
+  genericworkgroup_id: 2
