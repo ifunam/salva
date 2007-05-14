@@ -2,17 +2,17 @@ class UserController < ApplicationController
   helper :user, :theme
   skip_before_filter :login_required
   skip_before_filter :rbac_required
-  
+
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :signup, :create, :password_recovery ]
-  
+
   # Signup Methods
   def index
     respond_to do |format|
       format.html # index.rhtml
     end
   end
-  
+
   def signup
     respond_to do |format|
       if authenticate?(params[:user][:login],params[:user][:passwd])
@@ -21,11 +21,11 @@ class UserController < ApplicationController
         format.html { redirect_back_or_default :controller => 'navigator' }
       else
         flash[:notice] = "El login o el password es incorrecto!"
-        format.html { render :action => "index" } 
+        format.html { render :action => "index" }
       end
     end
   end
-  
+
   def signup_by_token
     respond_to do |format|
       if authenticate_by_token?(params[:id], params[:token])
@@ -37,7 +37,7 @@ class UserController < ApplicationController
         format.html { render :action => "index" }
       end
     end
-  end  
+  end
 
   # User accounts creation methods
   def new
@@ -46,12 +46,12 @@ class UserController < ApplicationController
       format.html # index.rhtml
     end
   end
-  
+
   def create
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token)) 
+        UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token))
         format.html { render :action => 'created' }
         format.xml  { head :created, :location => users_url(@user) }
       else
@@ -62,7 +62,7 @@ class UserController < ApplicationController
       end
     end
   end
-  
+
   # Method for activating the current user
   def activate
     @user = User.find(:first, :conditions => [ 'id = ? AND token = ? AND token_expiry >= ?',
@@ -71,7 +71,7 @@ class UserController < ApplicationController
       if !@user.nil?
         reset_session # Reset old sessions if exists
         @user.activate
-        UserNotifier.deliver_activation(@user, url_for(:action => 'index')) 
+        UserNotifier.deliver_activation(@user, url_for(:action => 'index'))
         format.html { render :action => "activated" }
         format.xml  { head :ok }
       else
@@ -81,7 +81,7 @@ class UserController < ApplicationController
     end
   end
 
-  
+
   # Recovery password stuff
   def forgotten_password_recovery
     respond_to do |format|
@@ -94,7 +94,7 @@ class UserController < ApplicationController
     respond_to do |format|
       if !@user.nil?
         @user.new_token
-        UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token)) 
+        UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token))
         format.html { render :action => 'password_recovery'}
         format.xml  { head :ok }
       else
@@ -103,7 +103,7 @@ class UserController < ApplicationController
       end
     end
   end
-  
+
   def logout
     reset_session
   end

@@ -29,7 +29,7 @@ class Test::Unit::TestCase
   def deny(condition, message)
     assert !condition, message
   end
-  
+
 
   # Simple CRUD (Create-Read, Update and Delete) testing methods
   module UnitSimple
@@ -43,31 +43,31 @@ class Test::Unit::TestCase
         assert_equal fixture.call(item.to_sym).id, @model.id
         assert_equal fixture.call(item.to_sym).name, @model.name
       }
-    end  
+    end
 
     def update(keys,model)
       fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
         @model = model.find(fixture.call(item.to_sym).id)
         assert_equal fixture.call(item.to_sym).name, @model.name
-        name = @model.name.chars.reverse 
-        @model.name = name 
+        name = @model.name.chars.reverse
+        @model.name = name
         assert @model.save, @model.errors.full_messages.join("; ")
         @model.reload
         assert_equal name, @model.name
       }
-    end  
+    end
 
     def delete(keys,model)
       fixture = method(Inflector.pluralize(model.name).downcase)
       keys.each { | item |
         @model = model.find(fixture.call(item.to_sym).id)
         @model.destroy
-        assert_raise (ActiveRecord::RecordNotFound) { 
-          model.find(fixture.call(item.to_sym).id) 
+        assert_raise (ActiveRecord::RecordNotFound) {
+          model.find(fixture.call(item.to_sym).id)
         }
       }
-    end 
+    end
 
     def crud_test(keys,model)
       create(keys,model)
@@ -86,7 +86,7 @@ class Test::Unit::TestCase
         assert_not_nil @model.errors.count
       }
     end
-    
+
     def collision_test(values,model)
       fixture = method(Inflector.pluralize(model.name).downcase)
       values.each { | item |
@@ -95,6 +95,13 @@ class Test::Unit::TestCase
         @newmodel.name = @model.name
         assert_not_nil @newmodel.errors.count
       }
+    end
+  end
+  module Session
+    def login_as (user, password)
+      @controller = UserController.new
+      post :signup, :user => { :login => user, :passwd => 'maltiempo'}
+      #session[:user]
     end
   end
 end
