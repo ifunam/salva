@@ -15,7 +15,7 @@ class Reporter
       f = Finder.new(*item[:query])
       generator.addPair(f.as_hash)
     }
-    generator.as_xml
+    generator.as_xlm
   end     
   
   def as_html
@@ -24,7 +24,7 @@ class Reporter
   end
   
   def as_pdf
-    xslt = XslTransformer.new(RAILS_ROOT+"/templates/#{MYROOT}/#{STYLE}_pdf.xsl")
+    xslt = XslTransformer.new(RAILS_ROOT+"/templates/#{MYROOT}/#{STYLE}_pdf.xsl)"
     xslt.as_pdf(xml)
   end
 end

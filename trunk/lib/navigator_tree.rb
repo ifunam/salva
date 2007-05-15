@@ -13,6 +13,6 @@ module NavigatorTree
   end
 
   def get_tree
-     @session[:navtree] ||= tree_loader
+     session[:navtree] ||= tree_loader
   end
 end

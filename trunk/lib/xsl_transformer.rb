@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'xml/libxml'
 require 'xml/libxslt'
+require 'rexml/document'
+require 'pdf/writer'
 class XslTransformer
   def initialize(style)
     @xslt = XML::XSLT.file(style)
@@ -14,4 +16,18 @@ class XslTransformer
     html.apply
     html.to_s
   end
+  
+  def as_pdf(xml)
+    xp = XML::Parser.new()
+    xp.string = xml
+
+
+    pdf = PDF::Writer.new
+    xp.node.each do | string |
+      pdf.text(line)
+    end
+    pdf.render
+  end
 end
+
+
