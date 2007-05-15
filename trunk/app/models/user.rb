@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
 
   belongs_to :userstatus
+  
+  has_one :person
+
+  has_many :user_articles
+  has_many :articles, :through => :user_articles
+
+  has_many :user_genericworks
+  has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id' 
 
   # Callbacks
   before_create :prepare_new_record

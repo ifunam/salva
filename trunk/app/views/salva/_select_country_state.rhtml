@@ -1,1 +1,4 @@
-<%= select_conditions('edit', State, tabindex, :conditions => "country_id = #{id}") %>
+<% unless id.to_s.empty? %>
+pito
+  <%= select_conditions('edit', State, tabindex, :conditions => "country_id = #{id}") %>
+<% end %>

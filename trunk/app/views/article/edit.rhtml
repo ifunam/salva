@@ -1,5 +1,5 @@
 <div class="required_legend"><%= get_label('required_legend') %>.</div>
-<%= start_form_tag ({:action => 'update', :id => @edit}) %>
+<%= start_form_tag ({:action => 'update', :id => @edit.id}) %>
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('update') %> | 

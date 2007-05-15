@@ -6,4 +6,5 @@ class UserGenericwork  < ModelComposedKeys
   validates_uniqueness_of :user_id, :scope => [:genericwork_id, :userrole_id], :message => 'El rol del usuario esta duplicado'
   belongs_to :genericwork
   belongs_to :userrole
+  belongs_to :user
 end

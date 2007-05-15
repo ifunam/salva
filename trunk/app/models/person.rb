@@ -5,10 +5,17 @@ class Person < ActiveRecord::Base
   validates_numericality_of :country_id, :state_id
   validates_inclusion_of :gender, :in=> [true, false],  :message=>"woah! what are you then!??!!"
   
+  belongs_to :user
   belongs_to :maritalstatus
   belongs_to :country
   belongs_to :state
   belongs_to :city
 
   attr_accessor :name, :code
+
+
+  def as_text
+    [self.lastname1, self.lastname2, self.firstname, self.dateofbirth ].join(', ')
+  end
+
 end
