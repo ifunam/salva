@@ -3,12 +3,12 @@ module NavigatorTree
   def tree_from_yml
     ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
     tree = YAML::parse(File.open(ymlfile))
-    tree.transform    
+    tree.transform
   end
-  
-  def tree_loader
+
+  def tree_loader(root='home')
     navtree = Tree.new(tree_from_yml)
-    navtree.data = 'home'
+    navtree.data = root
     navtree
   end
 

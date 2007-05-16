@@ -64,7 +64,7 @@ endmonth: Mes de término
 jobpositiontype_id: Tipo de plaza
 roleinjobposition_id: Categoría
 jobpositionlevel_id: Nivel
-required_legend: Los elementos marcados con asterisco(*) son obligatorios 
+required_legend: Los elementos marcados con asterisco(*) son obligatorios
 prev: Anterior
 back: Regresar
 next: Siguiente
@@ -76,7 +76,7 @@ update: Guardar cambios
 cancel: Cancelar
 search: Buscar
 advancedsearch: Búsqueda avanzada
-simplesearch: Búsqueda simple 
+simplesearch: Búsqueda simple
 searchdialog: Cargando diálogo para búsqueda simple...
 advancedsearchdialog: Cargando diálogo para búsqueda avanzada...
 per_page: Número de elementos por página
@@ -113,7 +113,7 @@ publications: Publicaciones
 book: Libro
 books: Libros
 book_id: Libro
-membership: Membresias en asociaciones académicas 
+membership: Membresias en asociaciones académicas
 migratorystatus: Estado migratorio
 institution: Institución
 institutiontype: Tipo de institución
@@ -150,7 +150,7 @@ schoolarship_id: Beca
 schoolarships: Becas
 schoolarship: Beca
 adscription: Adscripción
-useradscription: Adscripción 
+useradscription: Adscripción
 user_adscription: Adscripción
 adscription_id: Adscripción
 stimuluslevel_id: Tipo de estímulo y nivel
@@ -164,7 +164,7 @@ userlanguage: Idiomas
 user_language: Idiomas
 user_skill: Habilidades
 comment: Comentario
-jobposition_log: Antigüedad 
+jobposition_log: Antigüedad
 jobpositionlog: Antigüedad
 worker_key: Número de trabajador
 jobposition_internal: UNAM
@@ -183,8 +183,8 @@ externaluserlevel_id: Nivel del usuario externo
 visitor_id: Visitante
 change_password: Cambiar contraseña
 current_passwd: Contraseña actual
-new_passwd: Nueva contraseña 
-confirm_passwd: Confirmar contraseña 
+new_passwd: Nueva contraseña
+confirm_passwd: Confirmar contraseña
 changepassword: Cambiar contraseña
 coursetype: Tipos de curso
 coursetype_id: Tipo de curso
@@ -220,7 +220,7 @@ roleinconferencetalk_id: Rol
 conferencetype: Tipo de evento académico
 conferencetype_id: Tipo
 conferencescope: Ámbito
-conferencescope_id: Ámbito 
+conferencescope_id: Ámbito
 talktype: Tipos de ponencia
 talktype_id: Tipo de ponencia
 conference: Evento académico
@@ -292,15 +292,15 @@ genericwork: Trabajos generales
 genericwork_id: Trabajo general
 user_genericwork: Otros productos
 techreports: Reportes técnicos
-user_techreport: Reportes técnicos 
+user_techreport: Reportes técnicos
 user_techreport_internal: Reportes internos
 inproceeding_id: Trabajo en memoria
 inproceeding_id: Memoria
 roleinjournal: Rol
 roleinjournal_id: Rol
 user_journal: Colaboración en revistas
-user_proceeding_refereed: Colaboración en memorias 
-proceeding: Memorias 
+user_proceeding_refereed: Colaboración en memorias
+proceeding: Memorias
 refereedpubs: Publicaciones arbitradas
 reports: Reportes
 proceeding_refereed: Memorias arbitradas
@@ -316,7 +316,7 @@ roleinthesis_id: Rol en tesis
 user_thesis: Dirección o asesoría de tesis
 student_thesis: Autoría de tesis
 human_resources_formation_and_teaching: Docencia y formaci�n de recursos humanos
-human_resources_formation: Formación de recursos humanos  
+human_resources_formation: Formación de recursos humanos
 proceeding_id: Memoria
 roleproceeding_id: Rol
 arbitration: Arbitraje
@@ -349,7 +349,7 @@ parentproject_id: Proyecto padre
 user_project: Participación en proyectos
 roleinproject_id: Tipo de participación
 projectinstitution: Instituciones participantes
-projectfinancingsource: Fuentes de financiamiento 
+projectfinancingsource: Fuentes de financiamiento
 bookedition: Ediciones
 projectresearchline: Líneas de investigación
 user_specialcourse: Cursos especiales
@@ -401,16 +401,16 @@ finished_degree: Grado terminado
 title_holder: Titulado
 without_title: Sin título
 group_permission: Con privilegios de grupo
-without_group_permission: Sin privilegios 
+without_group_permission: Sin privilegios
 mainauthor: Autor principal
 coauthor: Coautor
 seminary: Seminario
 talk: Conferencia
-yes: Sí
+yes: S
 not: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
-academicprogram: Programas académicos 
+academicprogram: Programas académicos
 academicprogram_id: Programa académico
 academicprogramtype: Tipo de programa académico
 academicprogramtype_id: Tipo de programa académico
@@ -432,3 +432,4 @@ projectbook: Libros
 projectgenericwork: Otros trabajos
 projectarticle: Artículos
 studentname: Estudiante
+resume: Curriculum

@@ -1,1 +1,3 @@
-<%= resume_as_html %>
+<%= link_to('TXT', :action => 'as_text')%> | <%= link_to('PDF', :action => 'as_pdf') %>
+<hr/>
+<%= Resume.render_html(:data => User.find(session[:user])) %>
