@@ -144,7 +144,7 @@ class SalvaController < ApplicationController
   end
 
   def cancel
-    redirect_to (options_to_redirect)
+    redirect_to (stack_back)
   end
 
   def back
