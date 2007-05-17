@@ -23,12 +23,12 @@ class UserControllerTest < Test::Unit::TestCase
 
   def test_login_user
     @default_users.keys.each { |user|
-      post :index, :user => { :login => user, :passwd => 'maltiempo' }
-      assert_not_nil session[:user], "no ha iniciado sesión"
-      assert_equal User.find_by_login(user).id, session[:user], "No se encontro usuario"
+      post :signup, :user => { :login => user, :passwd => 'maltiempo' }
+      assert_not_nil session[:user]
+      assert_equal User.find(:first, :conditions => "login = '#{user}'").id, session[:user]
       assert_response :redirect
-      assert_redirected_to :controller => 'navigator'
-    }
+      assert_redirected_to :controller => 'navigator'   
+   }
   end
 
   def test_bad_login_user
@@ -101,18 +101,36 @@ class UserControllerTest < Test::Unit::TestCase
       assert_template 'activated'
    }
   end
+def test_activate_bad_values
+  @default_users.keys.each { |user|
+    @user = User.find(:first, :conditions => "login = '#{user}'")
+    @user.token='asdasd'
+    get :activate, {:id => @user.id, :token => @user.token}
+    assert_equal @user.is_activated?, true
+    assert_response :success
+    assert_template 'index'
+  }
+  end
 
-#  def test_activate_with_bad_values
- #   post :password_recovery,  :user => { :email => 'alexjasdas@gmail.com' }
-  #  assert_response :success
-   # assert_template 'forgotten_password_recovery'
-#  end
 
-#  def test_signup_by_token
- #   @user.id=2
-  #  @user.new_token
-   # post :signup_by_token, :user => {:id => @user.id :token=> @user.token }
-   # assert_response :redirect
-   # assert_redirected_to :controller => 'change_password'
-#  end
+  def test_signup_by_token
+    @default_users.keys.each { |user|
+      @user = User.find(:first, :conditions => "login = '#{user}'")
+      @user.new_token
+      post  :signup_by_token, :user => {:id => @user.id, :token => @user.token }
+      assert_response :redirect
+      assert_redirected_to :controller => 'change_password'
+    }
+ end
+ def test_signup_by_token_bad_values
+   @default_users.keys.each { |user|
+     @user = User.find(:first, :conditions => "login = '#{user}'")
+     @user.new_token
+     @user.token= 'jalada'
+      post :signup_by_token, :user => {:id => @user.id, :token => @user.token }
+      assert_response :success
+      assert_template 'index'
+   }
+ end
+
 end

@@ -4,7 +4,7 @@ class UserController < ApplicationController
   skip_before_filter :rbac_required
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :signup, :create, :password_recovery ]
+  verify :method => :post, :only => [ :signup, :create, :password_recovery, :signup_by_token ]
 
   # Signup Methods
   def index
@@ -15,7 +15,8 @@ class UserController < ApplicationController
 
   def signup
     respond_to do |format|
-      if authenticate?(params[:user][:login],params[:user][:passwd])
+      
+     if authenticate?(params[:user][:login],params[:user][:passwd])
         set_session_for_user(params[:user][:login])
         flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
         format.html { redirect_back_or_default :controller => 'navigator' }
@@ -28,7 +29,8 @@ class UserController < ApplicationController
 
   def signup_by_token
     respond_to do |format|
-      if authenticate_by_token?(params[:id], params[:token])
+    
+    if authenticate_by_token?(params[:user][:id], params[:user][:token])
         session[:user] = params[:id]
         flash[:notice] = "Bienvenido(a), por favor cambie su contraseña..."
         format.html { redirect_back_or_default :controller => 'change_password' }
@@ -48,8 +50,8 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    respond_to do |format|
+     @user = User.new(params[:user])
+      respond_to do |format|
       if @user.save
         UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token))
         format.html { render :action => 'created' }
@@ -66,7 +68,7 @@ class UserController < ApplicationController
   # Method for activating the current user
   def activate
     @user = User.find(:first, :conditions => [ 'id = ? AND token = ? AND token_expiry >= ?',
-                                               params[:id], params[:token], 0.minutes.from_now ])
+                                               params[:id], params[:token], 5.minutes.from_now ])
     respond_to do |format|
       if !@user.nil?
         reset_session # Reset old sessions if exists
@@ -90,8 +92,9 @@ class UserController < ApplicationController
   end
 
   def password_recovery
-    @user = User.find_first(['email = ?', params[:user]['email']])
-    respond_to do |format|
+   # @user = User.find_first(['email = ?', params[:user]['email']])
+   @user = User.find(:first, :conditions => ['email = ?', params[:user]['email']])   
+ respond_to do |format|
       if !@user.nil?
         @user.new_token
         UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token))
