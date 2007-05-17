@@ -8,3 +8,4 @@
 \i genericworktypes.sql
 \i activitytypes.sql
 \i techproducttypes.sql
+\i publishers.sql
