@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :userstatus
 
   has_one :person
+  has_many :addresses
 
   has_many :user_articles
   has_many :articles, :through => :user_articles

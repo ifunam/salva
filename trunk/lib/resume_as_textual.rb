@@ -1,9 +1,14 @@
 require 'resume'
 require 'navigator_tree'
 require 'labels'
+require 'ruport/data'
+require 'textile'
 class ResumeAsTextual < Ruport::Formatter::HTML
   include NavigatorTree
   include Labels
+  include Ruport::Data
+  include Textile
+
   renders [:text, :html], :for => Resume
 
   def build_resume_from_tree
@@ -15,37 +20,56 @@ class ResumeAsTextual < Ruport::Formatter::HTML
     tree.children.each { |child|
       if child.has_children?
         section(child.data, child.path.size)
-        navigator(child)
+        if child.data == 'general'
+          general
+          next
+        else
+          navigator(child)
+        end
       else
         build_output(child)
       end
     }
   end
 
-  def section(section, level)
-    text { output << "#{section}, #{level}" }
-    tag_level = "h"+level.to_s+". "
-    html { output << textile(tag_level+get_label(section))}
-  end
-
   def build_output(child)
-    if child.data == 'person'
-      section(child.data, child.path.size)
-      person
+    if child.data == 'article'
+      'article list'
     else
     end
   end
 
-  def person
-    html { output << textile("*Nombre:* " + [data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ')) }
-    text { output << "Nombre: " + [ data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ') + "\n" }
-    text { output << "Edad: " + [ data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ') + "\n" }
+  def section(section, level)
+    text { output << header_text(get_label(section), level)}
+    html { output << header_tag(get_label(section), level)}
   end
 
-  #def build_person
+  def general
+    text { output << data.person.fullname + "\n"}
+    html { output << bold_tag(data.person.fullname) }
 
-  #end
+    table = Table.new(:data => person + address)
+    text { output << table.to_text}
+    html { output << table.to_html}
+  end
+
+  def person
+    [ [ get_label('dateofbirth'), data.person.dateofbirth],
+      [ get_label('maritalstatus_id'), data.person.maritalstatus.name]
+    ]
+  end
+
+  def address
+    [
+     [ get_label('address'), data.addresses.first.as_text],
+     [ get_label('phone'), data.addresses.first.phone],
+     [ get_label('fax'), data.addresses.first.fax],
+     [ get_label('movil'), data.addresses.first.movil],
+     [ get_label('email'), data.email]
+    ]
+  end
 end
+
 
 class ResumeAsPdf < Ruport::Formatter::PDF
   renders :pdf, :for => Resume
