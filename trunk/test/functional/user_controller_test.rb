@@ -27,7 +27,7 @@ class UserControllerTest < Test::Unit::TestCase
       assert_not_nil session[:user]
       assert_equal User.find(:first, :conditions => "login = '#{user}'").id, session[:user]
       assert_response :redirect
-      assert_redirected_to :controller => 'navigator'   
+      assert_redirected_to :controller => 'navigator'
    }
   end
 
@@ -117,20 +117,21 @@ def test_activate_bad_values
     @default_users.keys.each { |user|
       @user = User.find(:first, :conditions => "login = '#{user}'")
       @user.new_token
-      post  :signup_by_token, :user => {:id => @user.id, :token => @user.token }
+      get :signup_by_token, :id => @user.id, :token => @user.token
       assert_response :redirect
       assert_redirected_to :controller => 'change_password'
     }
  end
- def test_signup_by_token_bad_values
-   @default_users.keys.each { |user|
-     @user = User.find(:first, :conditions => "login = '#{user}'")
-     @user.new_token
-     @user.token= 'jalada'
-      post :signup_by_token, :user => {:id => @user.id, :token => @user.token }
+
+  def test_signup_by_token_bad_values
+    @default_users.keys.each { |user|
+      @user = User.find(:first, :conditions => "login = '#{user}'")
+      @user.new_token
+      @user.token= 'jalada'
+      get :signup_by_token, :id => @user.id, :token => @user.token
       assert_response :success
       assert_template 'index'
-   }
- end
+    }
+  end
 
 end

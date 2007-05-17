@@ -4,7 +4,7 @@ class UserController < ApplicationController
   skip_before_filter :rbac_required
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :signup, :create, :password_recovery, :signup_by_token ]
+  verify :method => :post, :only => [ :signup, :create, :password_recovery]
 
   # Signup Methods
   def index
@@ -15,7 +15,7 @@ class UserController < ApplicationController
 
   def signup
     respond_to do |format|
-      
+
      if authenticate?(params[:user][:login],params[:user][:passwd])
         set_session_for_user(params[:user][:login])
         flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
@@ -29,8 +29,7 @@ class UserController < ApplicationController
 
   def signup_by_token
     respond_to do |format|
-    
-    if authenticate_by_token?(params[:user][:id], params[:user][:token])
+    if authenticate_by_token?(params[:id], params[:token])
         session[:user] = params[:id]
         flash[:notice] = "Bienvenido(a), por favor cambie su contraseña..."
         format.html { redirect_back_or_default :controller => 'change_password' }
@@ -93,7 +92,7 @@ class UserController < ApplicationController
 
   def password_recovery
    # @user = User.find_first(['email = ?', params[:user]['email']])
-   @user = User.find(:first, :conditions => ['email = ?', params[:user]['email']])   
+   @user = User.find(:first, :conditions => ['email = ?', params[:user]['email']])
  respond_to do |format|
       if !@user.nil?
         @user.new_token

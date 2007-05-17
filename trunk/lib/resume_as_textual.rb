@@ -39,6 +39,7 @@ class ResumeAsTextual < Ruport::Formatter::HTML
   def person
     html { output << textile("*Nombre:* " + [data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ')) }
     text { output << "Nombre: " + [ data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ') + "\n" }
+    text { output << "Edad: " + [ data.person.lastname1, data.person.lastname2, data.person.firstname].join(' ') + "\n" }
   end
 
   #def build_person
