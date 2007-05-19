@@ -15,7 +15,9 @@ class UserAdscriptionController < SalvaController
       list
     else
       flash[:notice] = 'Por favor registre una categoría antes de ingresar su adscripción...'
-      redirect_to :controller => 'jobposition_at_institution', :action => 'list'
+      model_into_stack(UserAdscription.new, 'new', 'jobposition_id', controller_name)
+      logger.info "stack_empty? "+ session[:stack].empty?.to_s
+      redirect_to :controller => 'jobposition_at_institution', :action => 'new'
     end
   end
 

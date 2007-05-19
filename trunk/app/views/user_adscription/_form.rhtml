@@ -6,6 +6,7 @@
 <div id="jobposition_id">
 <%= select_conditions('edit', Jobposition, 1, :attributes => [['jobpositioncategory', 'jobpositiontype', 'roleinjobposition', 'jobpositionlevel'] ], :conditions => ['institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = ?', session[:user]], :include => :institution) %>
 </div>
+<%= submit_for_stack('jobposition_at_institution:jobposition_id') %>
 </div>
 
 <div class="row"> 

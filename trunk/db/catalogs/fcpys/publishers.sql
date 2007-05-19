@@ -8,7 +8,7 @@ INSERT INTO publishers (name) VALUES ('Fondo de Cultura Económica');
 INSERT INTO publishers (name) VALUES ('Gernika');
 INSERT INTO publishers (name) VALUES ('Grupo Patria Cultural');
 INSERT INTO publishers (name) VALUES ('Juan Pablos, Editor, S.A.');
-INSERT INTO publishers (name) VALUES ('Miguel �ngel Porrúa');
+INSERT INTO publishers (name) VALUES ('Miguel Angel Porrúa');
 INSERT INTO publishers (name) VALUES ('Nostra Ediciones');
 INSERT INTO publishers (name) VALUES ('Pearson');
 INSERT INTO publishers (name) VALUES ('Plaza y Valdés');
