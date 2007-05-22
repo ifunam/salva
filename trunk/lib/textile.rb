@@ -1,17 +1,37 @@
-require 'redcloth'
+require 'rubygems'
+require 'ruport'
 module Textile
   # HTML methods
-  def bold_tag(text)
-    textile("*#{text}*")
+
+  def html
+    Ruport::Formatter::HTML.new
   end
 
-  def header_tag(text,level)
-    textile("h" + level.to_s + ". " + text)
+  def pdf
+    @p = Ruport::Formatter::PDF.new
+    @p.options.text_format = { :font_size => 14 }
+    @p
   end
 
-  # TEXT methods
-  def header_text(text,level)
-    tag = "=" * level
-    [tag, text, tag].join(' ') + "\n"
+  def bold(string,format='text')
+    case  format
+    when 'text'
+      string
+    when 'html'
+      html.textile '*' + string +'*'
+    when 'pdf'
+     pdf.add_text "<b>#{string}</b>"
+    end
   end
+
+  def header(string,level,format='text')
+    case  format
+    when 'text'
+      string.upcase
+    when 'html'
+      html.textile "h" + level.to_s + ". " + string
+    when 'pdf'
+      pdf.add_text(textile("h" + level.to_s + ". " + string))
+    end
+    end
 end

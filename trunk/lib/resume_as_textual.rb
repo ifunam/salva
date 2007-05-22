@@ -9,7 +9,7 @@ class ResumeAsTextual < Ruport::Formatter::HTML
   include Ruport::Data
   include Textile
 
-  renders [:text, :html], :for => Resume
+  renders [:text, :html],  :for => Resume
 
   def build_resume_from_tree
     tree = tree_loader('resume')
@@ -48,26 +48,31 @@ class ResumeAsTextual < Ruport::Formatter::HTML
     text { output << data.person.fullname + "\n"}
     html { output << bold_tag(data.person.fullname) }
 
-    table = Table.new(:data => person + address)
+    table = Table.new(:data => resume[:person] + resume[:address])
+    # get_label(label) -> text plain
+    bold_tag(get_label(label)) - HTML
+    # bold_for_pdf(get_label(label) -> PDF
     text { output << table.to_text}
     html { output << table.to_html}
-  end
 
-  def person
-    [ [ get_label('dateofbirth'), data.person.dateofbirth],
-      [ get_label('maritalstatus_id'), data.person.maritalstatus.name]
-    ]
+    pdf { output << table.to_pdf}
   end
+#   user = data
+#   resume = {
+#     :fullname => user.person.fullname,
+#     :person  => [  [ 'dateofbirth', user.person.dateofbirth],
+#                    [ 'maritalstatus_id', user.person.maritalstatus.name]
+#                 ],
+#     :address => [  [ 'address', user.addresses.first.as_text],
+#                    [ 'phone', user.addresses.first.phone],
+#                    [ 'fax', user.addresses.first.fax],
+#                    [ 'movil', user.addresses.first.movil],
+#                    [ 'email', user.email]
+#                 ],
+#     :articles => [ user.articles ]
+#   }
 
-  def address
-    [
-     [ get_label('address'), data.addresses.first.as_text],
-     [ get_label('phone'), data.addresses.first.phone],
-     [ get_label('fax'), data.addresses.first.fax],
-     [ get_label('movil'), data.addresses.first.movil],
-     [ get_label('email'), data.email]
-    ]
-  end
+
 end
 
 
