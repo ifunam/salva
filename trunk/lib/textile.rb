@@ -24,14 +24,14 @@ module Textile
     end
   end
 
-  def header(string,level,format='text')
+  def header(string,level=1,format='text')
     case  format
     when 'text'
       string.upcase
     when 'html'
       html.textile "h" + level.to_s + ". " + string
     when 'pdf'
-      pdf.add_text(textile("h" + level.to_s + ". " + string))
+      pdf.add_text(html.textile("h" + level.to_s + ". " + string))
     end
-    end
+  end
 end
