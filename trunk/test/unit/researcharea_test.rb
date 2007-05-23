@@ -4,14 +4,14 @@ require 'researcharea'
 class ResearchareaTest < Test::Unit::TestCase
   fixtures :researchareas
   include UnitSimple
-  
+
   def setup
     @researchareas = %w(fisica_del_clima aerobiologia transferencia_de_Radiacion)
     @myresearcharea = Researcharea.new({:name => 'Citogenética Ambiental'})
   end
 
   # Right - CRUD
-   def test_crud 
+   def test_crud
      crud_test(@researchareas, Researcharea)
    end
 
@@ -34,7 +34,7 @@ class ResearchareaTest < Test::Unit::TestCase
      assert !@researcharea.save
 
    end
-  
+
 # boundary
 # Checking constraints for name
   def test_bad_values_for_name
@@ -47,20 +47,19 @@ class ResearchareaTest < Test::Unit::TestCase
      @myresearcharea.name = 'X' * 201
      assert !@myresearcharea.valid?
 
-     @myresearcharea.name = '5' 
+     @myresearcharea.name = '5'
      assert !@myresearcharea.valid?
   end
-   
+
    # Checking constraints for ID
    def test_bad_values_for_id
      @myresearcharea.id = 'xx'
      assert !@myresearcharea.valid?
 
-     @myresearcharea.id = nil
-     assert !@myresearcharea.valid?
-
      @myresearcharea.id = 3.1416
      assert !@myresearcharea.valid?
 
-   end
+     #@myresearcharea.id = -1
+     #assert !@myresearcharea.valid?
+  end
 end
