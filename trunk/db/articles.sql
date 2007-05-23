@@ -47,7 +47,7 @@ CREATE TABLE journals (
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
-	UNIQUE(issn) 
+        UNIQUE (name,issn,mediatype_id,country_id)
 );
 COMMENT ON TABLE journals IS
 	'Revistas en las cuales pueden publicarse artículos';
@@ -209,7 +209,7 @@ CREATE TABLE user_articles (
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, article_id)
-);
+   );
 COMMENT ON TABLE user_articles IS
 	'Relación entre usuarios del sistema y artículos';
 COMMENT ON COLUMN user_articles.ismainauthor IS
