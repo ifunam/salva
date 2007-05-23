@@ -1,0 +1,10 @@
+--- 
+escolarizado: 
+  name: Escolarizado
+  id: 2
+universidad_abierta: 
+  name: Universidad Abierta
+  id: 1
+universidad_abierta_y_escolarizado: 
+  name: Universidad abierta y escolarizado
+  id: 3
