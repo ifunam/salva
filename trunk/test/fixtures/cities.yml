@@ -6,3 +6,7 @@ monterrey:
   id: 2
   state_id: 19
   name: Monterrey
+distrito:
+  id: 64
+  state_id: 9
+  name: Ciudad de México

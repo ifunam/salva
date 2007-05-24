@@ -1,0 +1,13 @@
+--- 
+universidad: 
+  name: Universidad
+  id: 1
+escuela: 
+  name: Escuela
+  id: 2
+facultad: 
+  name: Facultad
+  id: 3
+otro:
+  name: Otro
+  id: 14

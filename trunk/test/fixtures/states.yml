@@ -1,10 +1,15 @@
 sinaloa:
-  id: 19
-  country_id: 484
-  name: Nuevo León
-  code:
-nuevo_leon:
   id: 25
   country_id: 484
   name: Sinaloa
   code:
+nuevo_leon:
+  id: 19
+  country_id: 484
+  name: Nuevo León
+  code:
+distrito:
+  id: 9
+  country_id: 484
+  name: Distrito Federal
+  code: 
