@@ -1,0 +1,15 @@
+linux:
+  id: 1
+  name: Linux
+  country_id: 484
+  courseduration_id: 1
+  modality_id: 3
+  startyear: 1997
+
+matematicas:
+  id: 2
+  name: Matematicas
+  country_id: 484
+  courseduration_id: 2
+  modality_id: 3
+  startyear: 2007
