@@ -1,0 +1,35 @@
+
+programa_Universitario_de_Estudios_de_Genero: 
+  name: Programa Universitario de Estudios de Género
+  abbrev: ""
+  administrative_key: 21109
+  zipcode: ""
+  country_id: 484
+  url: ""
+  id: 3
+  institution_id: 1
+  fax: ""
+  phone: ""
+  city_id: 1
+  institutiontitle_id: 14
+  institutiontype_id: 1
+  other: ""
+  state_id: 9
+  addr: ""
+unam: 
+  name: Universidad Nacional Autónoma de México
+  abbrev: UNAM
+  administrative_key: 
+  zipcode: 4510
+  country_id: 484
+  url: http://www.unam.mx
+  id: 1
+  institution_id: 1
+  fax: ""
+  phone: ""
+  city_id: 1
+  institutiontitle_id: 1
+  institutiontype_id: 1
+  other: ""
+  state_id: 9
+  addr: Ciudad Universitaria, Delegación
