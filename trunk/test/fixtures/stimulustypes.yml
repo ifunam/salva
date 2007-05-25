@@ -1,0 +1,15 @@
+pride: 
+  name: PRIDE
+  descr: Programa de Reconocimiento a la Investigación y Desarrollo Académico
+  id: 2
+  institution_id: 1
+paipa: 
+  name: PAIPA
+  descr: Programa de Apoyo a la Incorporación de Personal Académico
+  id: 1
+  institution_id: 1
+sni: 
+  name: SNI
+  descr: Sistema Nacional de Investigadores
+  id: 3
+  institution_id: 3
