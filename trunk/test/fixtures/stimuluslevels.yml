@@ -1,0 +1,13 @@
+--- 
+a: 
+  name: A
+  id: 1
+  stimulustype_id: 1
+b: 
+  name: B
+  id: 2
+  stimulustype_id: 1
+c: 
+  name: C
+  id: 3
+  stimulustype_id: 1
