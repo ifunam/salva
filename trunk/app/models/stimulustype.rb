@@ -4,5 +4,5 @@ class Stimulustype < ActiveRecord::Base
   validates_uniqueness_of :id, :name
   validates_length_of :name, :within => 4..50
   validates_associated :institutions, :on => :update
-belongs_to :institutions
+belongs_to :institution
 end
