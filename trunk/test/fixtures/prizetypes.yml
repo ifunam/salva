@@ -8,3 +8,6 @@ diploma:
 premio: 
   name: Premio
   id: 3
+distincion: 
+  name: Distinción
+  id: 4
