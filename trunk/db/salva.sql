@@ -30,7 +30,7 @@
 \i projects.sql 
 
 \i skills.sql
-\i organ.sql
+--\i organ.sql
 
 \i files.sql
 \i jobpositions.sql
