@@ -8,6 +8,9 @@ escuela:
 facultad: 
   name: Facultad
   id: 3
+secretaria:
+  name: Secretaría
+  id: 6
 otro:
   name: Otro
   id: 14

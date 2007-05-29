@@ -33,3 +33,20 @@ unam:
   other: ""
   state_id: 9
   addr: Ciudad Universitaria, Delegación
+sep: 
+  name: Secretaría de Educación Pública
+  abbrev: SEP
+  administrative_key: 
+  zipcode:
+  country_id: 484
+  url:
+  id: 5588
+  institution_id: 
+  fax: ""
+  phone: ""
+  city_id:
+  institutiontitle_id: 6
+  institutiontype_id: 1
+  other: ""
+  state_id:
+  addr:
