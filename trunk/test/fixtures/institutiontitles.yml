@@ -14,3 +14,6 @@ secretaria:
 otro:
   name: Otro
   id: 14
+Centro:
+  name: Centro
+  id: 8

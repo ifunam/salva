@@ -41,7 +41,7 @@ sep:
   country_id: 484
   url:
   id: 5588
-  institution_id: 
+  institution_id:
   fax: ""
   phone: ""
   city_id:
@@ -49,4 +49,21 @@ sep:
   institutiontype_id: 1
   other: ""
   state_id:
+  addr:
+centro_de_ciencias:
+  name: Centro de Ciencias de la Atmósfera
+  abbrev:
+  administrative_key: 31102
+  zipcode:
+  country_id: 484
+  url:
+  id: 57
+  institution_id:
+  fax:
+  phone:
+  city_id: 1
+  institutiontitle_id: 8
+  institutiontype_id: 1
+  other:
+  state_id: 9
   addr:
