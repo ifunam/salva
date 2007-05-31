@@ -1,3 +1,20 @@
+personal_academico:
+  name: Dirección General de Asuntos del Personal Académico
+  abbrev:
+  administrative_key: 55101
+  zipcode:
+  country_id: 484
+  url:
+  id: 96
+  institution_id: 
+  fax: 
+  phone: 
+  city_id: 1
+  institutiontitle_id: 14
+  institutiontype_id: 1
+  other: 
+  state_id: 9
+  addr: 
 
 programa_Universitario_de_Estudios_de_Genero: 
   name: Programa Universitario de Estudios de Género
