@@ -1,9 +1,9 @@
 class Degree < ActiveRecord::Base
-  validates_presence_of :name, :id
-  validates_numericality_of :id, :only_integer => true 
-  validates_inclusion_of:id, :in => 1..100 
-  validates_uniqueness_of :id
+  validates_numericality_of :id, :allow_nil => true, :only_integer => true
+  validates_presence_of :name
+  validates_length_of :name, :within => 2..300
+
+  validates_uniqueness_of :name
 
   has_many :careers, :through => :careers
-  validates_associated :career
 end

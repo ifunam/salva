@@ -16,8 +16,7 @@ class DegreeTest < Test::Unit::TestCase
       assert_kind_of Degree, @degree
       assert_equal degrees(degree.to_sym).id, @degree.id
       assert_equal degrees(degree.to_sym).name, @degree.name
-      assert_equal degrees(degree.to_sym).id, @degree.id
-    }
+     }
   end
   
   def test_updating
@@ -46,22 +45,21 @@ class DegreeTest < Test::Unit::TestCase
    end
 
    def test_uniqueness
-     @degree = Degree.new({:name => 'Licenciatura', :id => 3})
-     @degree.id = 3
+     @degree = Degree.new({:name => 'Licenciatura'})
      assert !@degree.save
    end
 
-   ######################
-   # Boundary 
-   #
-   ######################
+   #Boundary
    def test_bad_values_for_id
      # Float number for ID 
      @mydegree.id = 1.6
      assert !@mydegree.valid?
 
      # Negative numbers
-     @mydegree.id = -1
+     #@mydegree.id = -1
+     #assert !@mydegree.valid?
+
+     @mydegree.id = 'mi_id_txt'
      assert !@mydegree.valid?
    end
 
@@ -69,7 +67,7 @@ class DegreeTest < Test::Unit::TestCase
      @mydegree.name = nil
      assert !@mydegree.valid?
 
-     @mydegree.name = 'AB' 
+     @mydegree.name = 'A' 
      assert !@mydegree.valid?
 
      @mydegree.name = 'AB' * 800
