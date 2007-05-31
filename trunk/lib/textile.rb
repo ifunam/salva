@@ -1,37 +1,23 @@
 require 'rubygems'
-require 'ruport'
+require 'redcloth'
 module Textile
-  # HTML methods
-
-  def html
-    Ruport::Formatter::HTML.new
-  end
-
-  def pdf
-    @p = Ruport::Formatter::PDF.new
-    @p.options.text_format = { :font_size => 14 }
-    @p
-  end
 
   def bold(string,format='text')
     case  format
-    when 'text'
-      string
+      when 'text'
+      "'" + string.chars.upcase + "'"
     when 'html'
-      html.textile '*' + string +'*'
-    when 'pdf'
-     pdf.add_text "<b>#{string}</b>"
+      RedCloth.new('**' + string + '**', [:lite_mode]).to_html
     end
   end
 
   def header(string,level=1,format='text')
     case  format
     when 'text'
-      string.upcase
+      string.chars.upcase
     when 'html'
-      html.textile "h" + level.to_s + ". " + string
-    when 'pdf'
-      pdf.add_text(html.textile("h" + level.to_s + ". " + string))
+      RedCloth.new("h" + level.to_s + ". " + string).to_html
     end
   end
+
 end
