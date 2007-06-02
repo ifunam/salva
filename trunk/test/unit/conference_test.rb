@@ -3,7 +3,7 @@ require 'conferencetype'
 require 'conference'
 
 class ConferenceTest < Test::Unit::TestCase
-  fixtures :conferencetypes, :conferences
+  fixtures :userstatuses, :users, :countries, :conferencetypes, :conferencescopes, :conferences
 
   def setup
     @conferences = %w(congreso coloquio)
