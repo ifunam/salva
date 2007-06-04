@@ -41,18 +41,21 @@ CREATE TABLE conferences (
     conferencetype_id integer NOT NULL
                          REFERENCES conferencetypes(id)
                          ON UPDATE CASCADE
+                         ON DELETE CASCADE
                          DEFERRABLE,
     country_id smallint NOT NULL 
                          REFERENCES countries(id)
+                         ON DELETE CASCADE
                          ON UPDATE CASCADE
                          DEFERRABLE,
     conferencescope_id smallint NULL 
                          REFERENCES conferencescopes(id)
                          ON UPDATE CASCADE
+                         ON DELETE CASCADE
                          DEFERRABLE,
     location text NULL,
     isspecialized BOOLEAN NOT NULL default 'f',
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -78,7 +81,7 @@ CREATE TABLE conference_institutions (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -112,8 +115,9 @@ CREATE TABLE userconferences (
     roleinconference_id int4 NOT NULL 
             REFERENCES roleinconferences(id)
             ON UPDATE CASCADE
+            ON DELETE CASCADE   
             DEFERRABLE,
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -148,16 +152,19 @@ CREATE TABLE conferencetalks (
     talktype_id integer NOT NULL
             REFERENCES talktypes(id)      
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
     talkacceptance_id integer NOT NULL
             REFERENCES talkacceptances(id)      
+            ON DELETE CASCADE
             ON UPDATE CASCADE
             DEFERRABLE,
     modality_id int4 NOT NULL 
             REFERENCES modalities(id)
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -199,9 +206,10 @@ CREATE TABLE user_conferencetalks (
     roleinconferencetalk_id int4 NOT NULL 
             REFERENCES roleinconferencetalks(id)
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
     comment text NULL,
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -233,7 +241,7 @@ CREATE TABLE proceedings (
 	isrefereed BOOLEAN NOT NULL default 't',
 	volume text NULL,
 	other text NULL,	
-	moduser_id int4 NOT NULL                 -- Use it only to know who has
+	moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -246,7 +254,7 @@ CREATE TABLE proceedings (
 CREATE table roleproceedings (
 	id serial,
 	name text NOT NULL,
-	moduser_id int4 NULL               	    -- Use it to known who
+	moduser_id int NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
@@ -271,7 +279,7 @@ CREATE TABLE user_proceedings (
             ON UPDATE CASCADE
             DEFERRABLE,
    comment text NULL,	
-   moduser_id int4 NULL               	    -- Use it to known who
+   moduser_id int NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
@@ -294,7 +302,7 @@ CREATE TABLE inproceedings (
 	authors text NOT NULL,
 	pages text NULL,
 	comment text NULL,
-	moduser_id int4 NOT NULL                 -- Use it only to know who has
+	moduser_id int NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
@@ -316,7 +324,7 @@ CREATE TABLE user_inproceedings (
             ON UPDATE CASCADE               
             DEFERRABLE,
    ismainauthor BOOLEAN NOT NULL default 't',	
-   moduser_id int4 NULL               	    -- Use it to known who
+   moduser_id int NULL               	    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,

@@ -229,6 +229,7 @@ CREATE TABLE adscriptions (
 	institution_id int4 NOT NULL
 		REFERENCES institutions(id)
 		ON UPDATE CASCADE
+		ON DELETE CASCADE
 		DEFERRABLE,
 	administrative_key text NULL, -- An ID for the adscriptions in the
 			-- university - we only keep it as text, no
