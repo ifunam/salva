@@ -57,22 +57,27 @@ CREATE TABLE courses (
 	country_id int4 NOT NULL 
               REFERENCES countries(id)
               ON UPDATE CASCADE
+              ON DELETE CASCADE
               DEFERRABLE,
 	institution_id int4 NULL
 		REFERENCES institutions(id)
+                ON DELETE CASCADE
 		ON UPDATE CASCADE
 		DEFERRABLE,
    	coursegroup_id int4 NULL 
                         REFERENCES coursegroups(id)
                         ON UPDATE CASCADE
-                       DEFERRABLE,
+                        ON DELETE CASCADE
+                        DEFERRABLE,
     	courseduration_id int4 NOT NULL
               REFERENCES coursedurations(id)
               ON UPDATE CASCADE
+              ON DELETE CASCADE
               DEFERRABLE,
     	modality_id int4 NOT NULL 
             REFERENCES modalities(id)
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
     	startyear int4 NOT NULL,
     	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),

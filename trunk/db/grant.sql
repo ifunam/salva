@@ -8,6 +8,7 @@ CREATE TABLE grants (
     institution_id int4 NOT NULL
             REFERENCES institutions(id) 
             ON UPDATE CASCADE           
+            ON DELETE CASCADE           
             DEFERRABLE,
     moduser_id int4 NULL       -- Use it only to know who has
             REFERENCES users(id)   -- inserted, updated or deleted  
@@ -24,6 +25,7 @@ CREATE TABLE user_grants (
     grant_id int4 NOT NULL 
             REFERENCES grants(id)      
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
     user_id int4 NOT NULL 
             REFERENCES users(id)      

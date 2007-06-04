@@ -17,6 +17,7 @@ CREATE TABLE careers (
 	degree_id int4 NOT NULL 
             	REFERENCES degrees(id) 
             	ON UPDATE CASCADE           
+            	ON DELETE CASCADE           
             	DEFERRABLE,
         moduser_id int4 NULL    -- Use it only to know who has
             REFERENCES users(id)    -- inserted, updated or deleted  
@@ -35,10 +36,12 @@ CREATE TABLE institutioncareers (
 	institution_id int4 NOT NULL 
             	REFERENCES institutions(id) 
             	ON UPDATE CASCADE           
+            	ON DELETE CASCADE           
             	DEFERRABLE,
 	career_id int4 NOT NULL 
             	REFERENCES careers(id) 
             	ON UPDATE CASCADE           
+            	ON DELETE CASCADE           
             	DEFERRABLE,
         url  text NULL,
         other text NULL,
@@ -82,6 +85,7 @@ CREATE TABLE schoolings (
     institutioncareer_id int4 NOT NULL 
             REFERENCES institutioncareers(id)       
             ON UPDATE CASCADE
+            ON DELETE CASCADE
             DEFERRABLE,
     startyear int4 NOT NULL,
     endyear   int4 NULL,
