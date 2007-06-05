@@ -9,8 +9,10 @@ class StackTest < Test::Unit::TestCase
 
   def setup
     @stack = StackOfController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
   end
-  
+
   def test_should_push_model_into_stack
     assert @stack.push(Person.new, 'new', 'country_id')
     assert_equal @stack.model.class, Person
@@ -20,14 +22,14 @@ class StackTest < Test::Unit::TestCase
     assert_equal @stack.previus_controller, 'country'
     @stack.set_attribute(484)
     assert_equal @stack.value, 484
-    @stack.pop 
+    @stack.pop
     assert @stack.empty?
   end
-  
+
   def test_should_add_error_with_an_invalid_attribute
     deny @stack.push(Person.new, 'new', 'country'), "The attribute should have been invalid"
   end
-  
+
   def test_should_push_modelsecuence_into_stack
     assert @stack.push(ModelSequence.new([Schooling, Professionaltitle]), 'new', 'institutioncareer_id')
     assert_equal @stack.model.class, ModelSequence
@@ -38,7 +40,7 @@ class StackTest < Test::Unit::TestCase
     @stack.pop
     assert @stack.empty?
   end
-  
+
   def test_should_pop_model_from_stack
     assert @stack.push(Person.new, 'new', 'country_id')
     assert @stack.pop
@@ -52,7 +54,7 @@ class StackTest < Test::Unit::TestCase
     deny @stack.pop, "The stack should be empty"
     assert @stack.empty?
   end
-  
+
   def test_should_clear_model_from_stack
     assert @stack.push(Person.new, 'new', 'country_id')
     assert @stack.clear
@@ -66,7 +68,7 @@ class StackTest < Test::Unit::TestCase
     assert_equal @stack.action, 'show'
     assert_equal @stack.attribute, 'id'
     assert_equal @stack.value, 484
-    @stack.clear 
+    @stack.clear
     assert @stack.empty?
   end
 
