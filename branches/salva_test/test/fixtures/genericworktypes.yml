@@ -1,0 +1,12 @@
+catalogos:
+  name: Catálogos
+  id: 1
+  genericworkgroup_id: 4
+cuadernos:
+  name: Cuadernos
+  id: 2
+  genericworkgroup_id: 4
+impresos: 
+  name: Impresos
+  id: 5
+  genericworkgroup_id: 2

@@ -1,0 +1,9 @@
+<!--[list:prize]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( name prizetype_id institution_id ) }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:prize]-->
+

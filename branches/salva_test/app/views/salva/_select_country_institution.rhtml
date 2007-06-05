@@ -1,0 +1,3 @@
+<%= select_conditions('edit', Institution, tabindex, :attributes => ['name', ['institution', 'abbrev']], :conditions => "country_id = #{id} AND id != 1 AND institutiontitle_id <= 3")%>
+
+

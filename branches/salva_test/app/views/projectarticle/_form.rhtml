@@ -1,0 +1,19 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectarticle]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<%= render :partial => 'salva/hidden_project' %>
+</div>
+
+<div class="row"> 
+<label for="article_id" class="label"><%= get_label('article_id') %> <span class="required">*</span></label> 
+<div id="article_id">
+<%= simple_select('edit', Article, 2) %>
+</div>
+ <%= submit_for_stack('article') %>
+</div>
+
+
+<!--[eoform:projectarticle]-->
+

@@ -1,0 +1,11 @@
+<!--[list:user_proceeding]-->
+<%= table_array(@collection, { :header => "Artículo", :columns =>
+[ ['proceeding_id', 'conference_id', 'title', 'year'], 'roleproceeding_id'] })
+%>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:user_proceeding]-->
+

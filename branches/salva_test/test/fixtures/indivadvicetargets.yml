@@ -1,0 +1,10 @@
+--- 
+estudiante_asociado: 
+  name: Estudiante asociado
+  id: 3
+servicio_social: 
+  name: Servicio social
+  id: 1
+becario: 
+  name: Becario
+  id: 2

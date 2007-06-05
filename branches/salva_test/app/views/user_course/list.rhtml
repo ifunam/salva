@@ -1,0 +1,8 @@
+<!--[list:user_course]-->
+<%= table_array(@collection, { :header => "Cursos", :columns => [ ['course_id', 'name', 'startyear'],  'roleincourse_id']  }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> 
+</div>
+<!--[eoflist:user_course]-->
+<%= navcontrol %>

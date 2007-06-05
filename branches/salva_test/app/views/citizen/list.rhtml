@@ -1,0 +1,6 @@
+<%= table_list(@collection, { :header => "Nacionalidad(es)", :columns => %w(citizen_country_id citizenmodality_id migratorystatus_id ) }) %>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %>
+</div>
+<%= navcontrol %>

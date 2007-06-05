@@ -1,0 +1,11 @@
+<!-- Usaremos esta línea cuando  actionpack-imagemagick-0.4.gem sea aparte de actionpack: -->
+<!-- http://vantulder.net/rails/magick/ -->
+<!-- <%= imagemagick_tag 'comodin.png','resize(100x100)+border(1,1,000)+rotate(-10)' %> -->
+
+<img src="<%= url_for(:action => "photo") %>"/> 
+<br/>
+
+<%= table_show(Person.columns, { :hidden => %w(photo photo_filename photo_content_type)}) %>
+<%= render :partial =>"salva/moduser" %>
+<%= link_to 'Editar', :action => 'edit', :id => @person %> 
+

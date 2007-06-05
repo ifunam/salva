@@ -1,0 +1,8 @@
+<!--[list:people_identification]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( identification_id descr ) }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> 
+</div>
+<!--[eoflist:people_identification]-->
+<%= navcontrol %>

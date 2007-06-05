@@ -1,0 +1,10 @@
+--- 
+presencial_y_a_distancia: 
+  name: Presencial y a Distancia
+  id: 3
+a_distancia: 
+  name: A Distancia
+  id: 2
+presencial: 
+  name: Presencial
+  id: 1

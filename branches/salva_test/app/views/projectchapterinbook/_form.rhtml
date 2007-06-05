@@ -1,0 +1,19 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectchapterinbook]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<%= render :partial => 'salva/hidden_project' %>
+</div>
+
+<div class="row"> 
+<label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %> <span class="required">*</span></label> 
+<div id="chapterinbook_id">
+<%= simple_select('edit', Chapterinbook, 2) %>
+</div>
+ <%= submit_for_stack('chapterinbook') %>
+</div>
+
+
+<!--[eoform:projectchapterinbook]-->
+

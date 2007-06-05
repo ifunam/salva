@@ -1,0 +1,25 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:sponsor_acadvisit]-->
+<div class="row"> 
+<label for="acadvisit_id" class="label"><%= get_label('acadvisit_id') %> <span class="required">*</span></label> 
+<div id="acadvisit_id">
+<%= table_select('edit', Acadvisit, 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="institution_id">
+<%= table_select('edit', Institution, 2, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="amount" class="label"><%= get_label('amount') %> <span class="required">*</span></label> 
+<%= text_field 'edit', 'amount', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 3, 'id' => 'amount' %>
+</div>
+
+
+<!--[eoform:sponsor_acadvisit]-->
+

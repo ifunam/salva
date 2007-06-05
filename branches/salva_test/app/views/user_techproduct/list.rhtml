@@ -1,0 +1,10 @@
+<!--[list:user_techproduct]-->
+<%= table_array(@collection, { :header => "Título", :columns => [
+['techproduct_id', 'title', 'techproducttype_id'], 'userrole_id'] }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:user_techproduct]-->
+

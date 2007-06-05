@@ -1,0 +1,23 @@
+<%= error_messages_for 'edit' %>
+
+<div class="row">
+ <label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label>
+ <%= select_to_update_select('edit', Researcharea, Researchline, 1, 1) %>
+ <%= submit_for_stack('researcharea') %>
+</div>
+
+<!--[form:user_researchline]-->
+
+<div class="row"> 
+<label for="researchline_id" class="label"><%= get_label('researchline_id') %> <span class="required">*</span></label> 
+ <div id="select_researcharea_researchline_note" style="display:  none"><span class="upgrade_note">Actualizando las líneas de investigación...</span></div>
+   <div id="select_researcharea_researchline">
+   <%= table_select('edit', Researchline, 1, 1) %>
+   </div>
+   <%= submit_for_stack('researchline:researcharea_id') %>
+</div>
+
+
+
+<!--[eoform:user_researchline]-->
+

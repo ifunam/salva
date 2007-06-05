@@ -1,0 +1,15 @@
+mexico:
+  id: 484
+  name: México
+  citizen: Mexicana
+  code: MX
+japan:
+  id: 392
+  name: Japón
+  citizen: Japonesa
+  code: JP
+ukrania: 
+  id: 804
+  name: Ucrania
+  citizen: Ucraniana
+  code: UA

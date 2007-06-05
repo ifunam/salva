@@ -1,0 +1,27 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:permission]-->
+<div class="row"> 
+<label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
+<div id="roleingroup_id">
+<%= select_as_tree('edit', Roleingroup, %w(group_id role_id), 1, 1) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="controller_id" class="label"><%= get_label('controller_id') %> <span class="required">*</span></label> 
+<div id="controller_id">
+<%= table_select('edit', Controller, {:tabindex => 2, :required => 1 }) %> 
+<%= quickpost('controller') %> 
+</div></div>
+
+<div class="row"> 
+<label for="action_id" class="label"><%= get_label('action_id') %> <span class="required">*</span></label> 
+<div id="action_id">
+<%= checkbox_list('edit', Action, @edit.attributes_before_type_cast['action_id']) %> </p>
+</div>
+</div>
+
+
+<!--[eoform:permission]-->
+

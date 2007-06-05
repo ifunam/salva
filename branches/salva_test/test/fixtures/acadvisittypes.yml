@@ -1,0 +1,10 @@
+--- 
+posdoctoral: 
+  name: Posdoctoral
+  id: 2
+sabatico: 
+  name: Sabático
+  id: 1
+investigacion: 
+  name: Investigación
+  id: 3

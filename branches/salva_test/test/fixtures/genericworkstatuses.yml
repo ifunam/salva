@@ -1,0 +1,10 @@
+--- 
+aceptado: 
+  name: Aceptado
+  id: 3
+propuesto: 
+  name: Propuesto
+  id: 1
+enviado: 
+  name: Enviado
+  id: 2

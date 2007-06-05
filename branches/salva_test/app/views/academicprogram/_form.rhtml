@@ -1,0 +1,37 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:academicprogram]-->
+
+
+<div class="row"> 
+<label for="degree_id" class="label"><%= get_label('degree_id') %></label> 
+<div id="degree_id">
+ <%= simple_select('edit', Degree, 1) %>
+</div>
+</div>
+<%= observe_field_to_update_select('degree_id', 'select_degree_institutioncareer', 2) %>
+
+<div class="row"> 
+<label for="institutioncareer_id" class="label"><%= get_label('institutioncareer_id') %><span class="required">*</span></label> 
+
+  <div id="select_degree_institutioncareer">
+  <%= observable_select('select_degree_institutioncareer', nil, 2) %>
+  </div>
+  <%= submit_for_stack('institutioncareer') %>
+</div>
+
+
+<div class="row"> 
+<label for="academicprogramtype_id" class="label"><%= get_label('academicprogramtype_id') %><span class="required">*</span></label> 
+ <%= simple_select('edit', Academicprogramtype, 3) %>
+</div>
+
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 3}, :skip_style => true %><br/>
+</div>
+
+
+
+<!--[eoform:academicprogram]-->
+

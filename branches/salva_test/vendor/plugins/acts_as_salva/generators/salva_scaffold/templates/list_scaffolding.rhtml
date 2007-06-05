@@ -1,0 +1,6 @@
+<%%= table_list(@collection, { :header => "Título", :columns => %w( <%= view_list(@model_instance, @singular_name) %> ) }) %> 
+<br/>
+<div id="operations">
+<%%= link_to get_label('add'), :action => 'new' %> |
+<%%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>

@@ -1,0 +1,29 @@
+<div class="title"> Registro de usuarios nuevos </div>
+<div class="loginform">
+<% form_for(:user, @user, :url => {:action => 'create'}) do |f| %>
+<div class="row">
+   <label for="user_login" class="label"><%= get_label('login') %></label>
+   <%= f.text_field :login, :size => 15, :maxlength=> 15, :tabindex => 1, :id => :user %>
+</div>
+
+<div class="row">
+<label for="user_passwd"  class="label"><%= get_label('passwd') %></label>
+<%= f.password_field :passwd, :size => 15, :maxsize =>30, :tabindex => 2, :id => :user_passwd %>
+</div>
+
+<div class="row">
+<label for="user_passwd_confirmation"  class="label"> <%= get_label('passwd_confirmation') %>a</label>
+<%= f.password_field :passwd_confirmation, :size => 15, :maxsize => 30, :tabindex => 3, :id => :user_passwd_confirmation %>
+</div>
+
+<div class="row">
+<label for="user_email" class="label"><%= get_label('email') %></label>
+<%= f.text_field :email, :size => 40, :maxsize => 60, :tabindex => 4, :id => 'user_email' %>
+</div>
+
+<div class="row">
+<%= submit_tag 'Registrarse', :tabindex => 5 %> | <%= link_to 'Regresar', :action => 'index' %>
+</div>
+<% end %>
+</div>
+</div>

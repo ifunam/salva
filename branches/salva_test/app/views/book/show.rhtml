@@ -1,0 +1,6 @@
+<%= table_show(Book.columns, { :hidden => %w()}) %>
+
+<%= link_to 'Editar', :action => 'edit', :id => @edit %> | <%= link_to 'Regresar', :action => 'list' %>
+
+<%= children_list(@edit, @children) if @children != nil %>
+

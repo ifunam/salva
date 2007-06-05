@@ -1,0 +1,10 @@
+---
+publica: 
+  name: Pública
+  id: 1
+privada: 
+  name: Privada
+  id: 2
+organizacion_no_gubernamental: 
+  name: ONG - Organización No Gubernamental
+  id: 3

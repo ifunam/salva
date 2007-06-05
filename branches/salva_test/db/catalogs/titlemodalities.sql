@@ -1,0 +1,15 @@
+INSERT INTO titlemodalities (name) VALUES ('Tesis');
+INSERT INTO titlemodalities (name) VALUES ('Tesina');
+INSERT INTO titlemodalities (name) VALUES ('Ensayo');
+INSERT INTO titlemodalities (name) VALUES ('Ceneval');
+INSERT INTO titlemodalities (name) VALUES ('Reporte técnico');
+INSERT INTO titlemodalities (name) VALUES ('Por promedio');
+INSERT INTO titlemodalities (name) VALUES ('Actividad de apoyo a la investigación');
+INSERT INTO titlemodalities (name) VALUES ('Seminario de titulación');
+INSERT INTO titlemodalities (name) VALUES ('Alto rendimiento académico');
+INSERT INTO titlemodalities (name) VALUES ('Actividad de apoyo a la docencia');
+INSERT INTO titlemodalities (name) VALUES ('Informe de pŕactica profesional (trabajo profesional)');
+INSERT INTO titlemodalities (name) VALUES ('Estudios de Posgrado');
+INSERT INTO titlemodalities (name) VALUES ('Ampliación y profundización de conocimiento');
+INSERT INTO titlemodalities (name) VALUES ('Informe de servicio Social');
+INSERT INTO titlemodalities (name) VALUES ('Proyecto de apoyo a la Divulgación');

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+salva:
+  id: 1
+  name: SALVA
+sa:
+  id: 2
+  name: Secretaría Académica
+geneticos:
+  id: 3
+  name: Departamento de experimentos genéticos 
+  parent_id: 2

@@ -1,0 +1,19 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:projectconferencetalk]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<%= render :partial => 'salva/hidden_project' %>
+</div>
+
+<div class="row"> 
+<label for="conferencetalk_id" class="label"><%= get_label('conferencetalk_id') %> <span class="required">*</span></label> 
+<div id="conferencetalk_id">
+<%= simple_select('edit', Conferencetalk, 2) %>
+</div>
+  <%= submit_for_stack('conferencetalk') %>
+</div>
+
+
+<!--[eoform:projectconferencetalk]-->
+

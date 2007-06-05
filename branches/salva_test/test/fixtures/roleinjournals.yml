@@ -1,0 +1,10 @@
+--- 
+compilador: 
+  name: Compilador
+  id: 2
+editor: 
+  name: Editor
+  id: 1 
+revisor: 
+  name: Revisor
+  id: 3

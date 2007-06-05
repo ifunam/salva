@@ -1,0 +1,9 @@
+<!--[list:period]-->
+<%= table_list(@collection, { :header => "Título", :columns => %w( title startdate enddate ) }) %> 
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
+</div>
+<!--[eoflist:period]-->
+

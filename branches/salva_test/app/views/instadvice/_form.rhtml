@@ -1,0 +1,40 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:instadvice]-->
+<div class="row"> 
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
+</div>
+
+<div class="row"> 
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div id="institution_id">
+<%= table_select('edit', Institution, 2, 1) %>
+</div>
+<%= submit_for_stack('institution') %>
+</div>
+
+<div class="row"> 
+<label for="instadvicetarget_id" class="label"><%= get_label('instadvicetarget_id') %> <span class="required">*</span></label> 
+<div id="instadvicetarget_id">
+<%= table_select('edit', Instadvicetarget, 3, 1) %>
+</div>
+<%= submit_for_stack('instadvicetarget') %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'other' %></div>
+
+<div class="row"> 
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 5}, :skip_style => true %><br/></div>
+
+<div class="row"> 
+<label for="month" class="label"><%= get_label('month') %></label> 
+<%= month_select('edit', 'month', {:tabindex => 6, :required => 0 }) %> 
+</div>
+
+
+<!--[eoform:instadvice]-->
+

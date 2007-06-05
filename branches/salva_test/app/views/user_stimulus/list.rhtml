@@ -1,0 +1,10 @@
+<!--[list:user_stimulus]-->
+<%= table_array(@collection, { :header => "Título", :columns =>
+[ ['stimuluslevel_id', 'stimulustype_id', 'name'], 'startyear', 'endyear'] })
+%>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> 
+</div>
+<!--[eoflist:user_stimulus]-->
+<%= navcontrol %>
