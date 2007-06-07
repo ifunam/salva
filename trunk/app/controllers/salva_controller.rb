@@ -73,7 +73,7 @@ class SalvaController < ApplicationController
         else
           flash[:notice] = @create_msg
           save_stack_attribute(@edit.id) if has_model_in_stack?
-          redirect_to (options_for_return_controller)
+          redirect_to (stack_controller)
         end
       else
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -138,7 +138,7 @@ class SalvaController < ApplicationController
       redirect_to :controller => 'wizard', :action => 'show'
     else
       @edit = @model.find(params[:id])
-      model_into_stack(@edit,  'show', 'id', controller_name)
+      model_into_stack(controller_name,  'show', @edit.id)
       render :action => 'show'
     end  
   end

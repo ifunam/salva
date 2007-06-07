@@ -3,15 +3,13 @@ module Stackcontroller
     # 'controller' will be used as return_controller
     # 'next_controller' will be used as previus_controller
     next_controller, attribute, id = set_options(stack_params, form_params)
-    model_into_stack(model, action, attribute, controller, next_controller)
+    model_into_stack(controller, action, id, model, attribute)
     { :controller => next_controller, :action => 'new', :id => id }
   end
   
-  def model_into_stack(model, action, attribute, controller=nil, next_controller=nil)
-    # 'controller' will be used as return_controller
-    # 'next_controller' will be used as previus_controller
+  def model_into_stack(controller, action, id, model=nil, attribute=nil)
     session[:stack] ||= StackOfController.new
-    session[:stack].push(model, action, attribute, controller, next_controller)
+    session[:stack].push(controller, action, id, model, attribute)
   end 
 
   def set_options(stack_params, form_params)
@@ -27,16 +25,20 @@ module Stackcontroller
   
   def model_from_stack
     if has_model_in_stack?
-      if session[:stack].include_controller?(controller_name)
-        session[:stack].delete_after_controller(controller_name)
-        return session[:stack].pop_model
+#      if session[:stack].included_controller?(controller_name)
+ #       session[:stack].delete_after_controller(controller_name)
+      if (session[:stack].controller == controller_name)
+        model = session[:stack].model
+        session[:stack].pop
+        return model
       end
     end
+    nil
   end
   
   def has_model_in_stack?
-    if session[:stack]
-      return true unless session[:stack].empty? 
+    if session[:stack] and !session[:stack].empty? and session[:stack].model != nil
+      return true
     end
     return false
   end
@@ -57,17 +59,21 @@ module Stackcontroller
     options
   end
   
-  def stack_back
+  def stack_controller
     hash = {:action => 'list' } 
-    if has_model_in_stack?
-      session[:stack].pop
-      if has_model_in_stack?
-        hash = { :controller => session[:stack].return_controller, 
-          :action => session[:stack].action, 
-          :id => session[:stack].value }
-      end
+    if session[:stack] != nil and !session[:stack].empty?
+      hash = { :controller => session[:stack].controller, 
+        :action => session[:stack].action, 
+        :id => session[:stack].id }
     end
     hash
+  end
+
+  def stack_back
+    if session[:stack] != nil and !session[:stack].empty?
+      session[:stack].pop
+    end
+    return stack_controller
   end
 
 end
