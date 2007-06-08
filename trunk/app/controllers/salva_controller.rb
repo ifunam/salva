@@ -66,14 +66,11 @@ class SalvaController < ApplicationController
       redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
     else
       if @edit.save
-        if @parent != nil
-          redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
-        elsif @children != nil
-        redirect_to :action => 'show', :id => @edit.id 
+        if @children != nil
+          redirect_to :action => 'show', :id => @edit.id 
         else
           flash[:notice] = @create_msg
-          save_stack_attribute(@edit.id) if has_model_in_stack?
-          redirect_to (stack_controller)
+          redirect_to stack_return(@edit.id)
         end
       else
       flash[:notice] = 'Hay errores al guardar esta información'
@@ -89,14 +86,11 @@ class SalvaController < ApplicationController
       redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
     else
       if @edit.update_attributes(params[:edit])
-        if @parent != nil
-          redirect_to :controller => @parent, :action => 'show', :id => @edit.send(@parent) 
-        elsif @children != nil
+        if @children != nil
           redirect_to :action => 'show', :id => @edit.id 
         else
-        flash[:notice] = @update_msg
-          save_stack_attribute(@edit.id) if has_model_in_stack?
-          redirect_to (options_for_return_controller)
+          flash[:notice] = @update_msg          
+          redirect_to stack_return(@edit.id)
         end
       else
         flash[:notice] = 'Hay errores al guardar esta información'

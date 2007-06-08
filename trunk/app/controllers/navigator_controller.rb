@@ -1,9 +1,13 @@
 require 'navigator_tree'
+require 'stackcontroller'
 class NavigatorController < ApplicationController
   include NavigatorTree
+  include Stackcontroller
+    
 
   skip_before_filter :rbac_required
-
+  before_filter :stack_clear
+        			    
   def index
     navtab
   end

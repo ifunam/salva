@@ -77,9 +77,11 @@ class WizardController < ApplicationController
       }      
     }
 
-    redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack]) if params[:stack] != nil
-
-    next_page
+    if params[:stack] != nil
+      redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack])
+    else 
+      next_page
+    end
   end
 
   def update

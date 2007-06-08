@@ -60,7 +60,12 @@ class StackOfController
     unless @stack.empty? 
       m = model
       t = attribute
-      m.[]=(t, value) unless m == nil or t == nil
+      unless m == nil or t == nil
+        if Inflector.constantize(m.class.name) == ModelSequence 
+          m = model.get_model 
+        end        
+        m.[]=(t, value) if m.has_attribute?(t)             
+      end
     end
   end
 

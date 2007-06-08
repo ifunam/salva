@@ -1,3 +1,4 @@
-<%= select_id_to_update_select('edit', Researchline, Researcharea, @id, nil, @tabindex, 1, %w(name researcharea_id) ) %>
-
-
+<%= "Id #{id}" %>
+<% unless id.to_s.empty? %>
+  <%= select_conditions('edit', Researchline, tabindex, :conditions => "researcharea_id = #{id}") %>
+<% end %>

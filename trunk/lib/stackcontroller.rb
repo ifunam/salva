@@ -24,9 +24,8 @@ module Stackcontroller
   end
   
   def model_from_stack
-    if has_model_in_stack?
-#      if session[:stack].included_controller?(controller_name)
- #       session[:stack].delete_after_controller(controller_name)
+    if has_model_in_stack?      
+      session[:stack].delete_after_controller(controller_name) if session[:stack].included_controller?(controller_name)
       if (session[:stack].controller == controller_name)
         model = session[:stack].model
         session[:stack].pop
@@ -58,7 +57,16 @@ module Stackcontroller
     end
     options
   end
-  
+
+  def stack_return(id) 
+    if session[:stack].included_controller?(controller_name)
+      session[:stack].delete_after_controller(controller_name)             
+      session[:stack].pop
+    end
+    save_stack_attribute(id) if has_model_in_stack?
+    stack_controller
+  end
+    
   def stack_controller
     hash = {:action => 'list' } 
     if session[:stack] != nil and !session[:stack].empty?
@@ -76,4 +84,8 @@ module Stackcontroller
     return stack_controller
   end
 
+  def stack_clear
+        session[:stack].clear if session[:stack] != nil
+  end
+  
 end

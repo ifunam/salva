@@ -1,0 +1,12 @@
+<% if @edit == nil %>
+Stack vacio
+<% else %>
+Size: <%=@edit.size%><br/>
+Controller: <%=@edit.controller%><br/>
+Action: <%=@edit.action%><br/>
+Id: <%=@edit.id%><br/>
+Model: <%=@edit.model.class.name%><br/>
+Attribute: <%=@edit.attribute%><br/>
+<% end %>
+
+
