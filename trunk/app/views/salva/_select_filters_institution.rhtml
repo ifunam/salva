@@ -1,6 +1,6 @@
 <label for="institutiontitle_id" class="label"> Filtrar por <%= get_label('institutiontitle_id') %> <span class="required">*</span></label> 
 <div id="institutiontitle_id"> <%= simple_select('edit', Institutiontitle, 1) %> </div>
-<%= observe_field_to_update_select('institutiontitle_id', 'select_institutiontitle_institution', 2) %>
+<%= observe_select('institutiontitle_id', 'select_institutiontitle_institution', 2) %>
 <br/>
 <label for="institution_id" class="label">Seleccionar <%= get_label('institution_id') %> <span class="required">*</span></label> 
 <div id="select_institutiontitle_institution"> 

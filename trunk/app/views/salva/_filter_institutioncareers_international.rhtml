@@ -1,7 +1,7 @@
 <div class="filters"> 
  <%= select_conditions('edit', Country, 1, :attributes => ['name'], :conditions => "id != 484") %>
  <br/>
- <%= observe_field_to_update_select('country_id', 'select_institutioncareers_by_country', 2) %>
+ <%= observe_select('country_id', 'select_institutioncareers_by_country', 2) %>
  <div id="select_institutioncareers_by_country">
  </div>
 </div>
