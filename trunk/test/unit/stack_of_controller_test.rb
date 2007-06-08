@@ -1,102 +1,125 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'person'
-require 'country'
-require 'model_sequence'
-require 'schooling'
-require 'professionaltitle'
 class StackTest < Test::Unit::TestCase
-  fixtures :countries
 
   def setup
     @stack = StackOfController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
-  def test_should_push_model_into_stack
-    assert @stack.push(Person.new, 'new', 'country_id')
-    assert_equal @stack.model.class, Person
-    assert_equal @stack.return_controller, 'person'
-    assert_equal @stack.action, 'new'
-    assert_equal @stack.attribute, 'country_id'
-    assert_equal @stack.previus_controller, 'country'
-    @stack.set_attribute(484)
-    assert_equal @stack.value, 484
-    @stack.pop
+  def test_should_push_controller_and_action
+    @stack.push('people_identification', 'new')
+    assert_equal  'people_identification', @stack.controller
+    assert_equal 'new', @stack.action
+    @stack.clear
     assert @stack.empty?
   end
 
-  def test_should_add_error_with_an_invalid_attribute
-    deny @stack.push(Person.new, 'new', 'country'), "The attribute should have been invalid"
+  def test_should_push_controller_and_action_and_id
+    @stack.push('project', 'show', 10)
+    assert_equal 'project', @stack.controller
+    assert_equal 'show', @stack.action
+    assert_equal 10, @stack.id
+    @stack.clear
+    assert @stack.empty?
   end
 
-  def test_should_push_modelsecuence_into_stack
-    assert @stack.push(ModelSequence.new([Schooling, Professionaltitle]), 'new', 'institutioncareer_id')
-    assert_equal @stack.model.class, ModelSequence
-    assert_equal @stack.return_controller, 'wizard'
-    assert_equal @stack.action, 'new'
-    assert_equal @stack.attribute, 'institutioncareer_id'
-    assert_equal @stack.previus_controller, 'institutioncareer'
-    @stack.pop
+  def test_should_push_controller_and_action_and_model
+    @stack.push('article', 'new', nil, Article.new)
+    assert_equal 'article', @stack.controller
+    assert_equal 'new', @stack.action
+    assert_equal nil, @stack.id
+    assert_instance_of Article, @stack.model
+    @stack.clear
+    assert @stack.empty?
+  end
+
+  def test_should_push_controller_and_action_and_model_and_attribute
+    @stack.push('article', 'new', nil, Article.new, 'journal_id' )
+    assert_equal 'article', @stack.controller
+    assert_equal 'new', @stack.action
+    assert_equal nil, @stack.id
+    assert_instance_of Article, @stack.model
+    assert_equal 'journal_id', @stack.attribute
+    @stack.clear
+    assert @stack.empty?
+  end
+
+  def test_should_push_controller_and_action_and_model_and_updated_attribute
+    @stack.push('article', 'new', nil, Article.new, 'journal_id' )
+    assert_equal 'article', @stack.controller
+    assert_equal 'new', @stack.action
+    assert_equal nil, @stack.id
+    assert_instance_of Article, @stack.model
+    assert_equal 'journal_id', @stack.attribute
+    assert_equal  nil, @stack.model.journal_id
+    @stack.set_attribute(10)
+    assert_equal  10, @stack.model.journal_id
+    @stack.clear
+    assert @stack.empty?
+  end
+
+  def test_should_push_modelsecuence
+    @stack.push('wizard', 'new', nil, ModelSequence.new([Schooling, Professionaltitle]),  'institutioncareer_id')
+    assert_equal Schooling, @stack.model.class.name.constantize
+    assert_equal  'wizard', @stack.controller
+    assert_equal  'new', @stack.action
+    assert_equal nil, @stack.id
+    assert_equal 'institutioncareer_id', @stack.attribute
+    @stack.clear
     assert @stack.empty?
   end
 
   def test_should_pop_model_from_stack
-    assert @stack.push(Person.new, 'new', 'country_id')
-    assert @stack.pop
+    @stack.push('person', 'new', nil, Person.new,  'country_id')
+    @stack.pop
     deny @stack.pop, "The stack should be empty"
     assert @stack.empty?
   end
 
   def test_should_get_and_pop_model_from_stack
-    assert @stack.push(Person.new, 'new', 'country_id')
-    assert_kind_of Person, @stack.pop_model
+    @stack.push('person', 'new', nil, Person.new,  'country_id')
+    assert_kind_of Person, @stack.model
+    @stack.pop
     deny @stack.pop, "The stack should be empty"
     assert @stack.empty?
   end
 
   def test_should_clear_model_from_stack
-    assert @stack.push(Person.new, 'new', 'country_id')
+    @stack.push('user_article', 'new', nil, UserArticle.new, 'article_id' )
+    @stack.push('article', 'new', nil, Article.new, 'journal_id' )
+    @stack.push('journal', 'new', nil, Journal.new, 'volume_id' )
+    assert_equal 3, @stack.size
     assert @stack.clear
     assert @stack.empty?
   end
 
-  def test_should_get_default_value_from_current_model
-    @country = Country.find(484)
-    @stack.push(@country, 'show', 'id')
-    assert_equal @stack.return_controller, 'country'
-    assert_equal @stack.action, 'show'
-    assert_equal @stack.attribute, 'id'
-    assert_equal @stack.value, 484
+  def test_checking_inclusion_of_controllers
+    @stack.push('user_article', 'new', nil, UserArticle.new, 'article_id' )
+    @stack.push('article', 'new', nil, Article.new, 'journal_id' )
+    @stack.push('journal', 'new', nil, Journal.new, 'volume_id' )
+    assert @stack.included_controller?('user_article')
+    assert @stack.included_controller?('article')
+    assert @stack.included_controller?('journal')
+    assert_equal 'journal', @stack.controller
+    assert !@stack.included_controller?('unexistent_return_controller')
     @stack.clear
     assert @stack.empty?
   end
 
-   def test_checking_inclusion_of_controller
-     assert @stack.push(ModelSequence.new([Schooling, Professionaltitle]), 'new', 'institutioncareer_id')
-     assert @stack.push(Institutioncareer.new, 'new', 'institution_id')
-     assert @stack.push(Institution.new, 'new', 'institution_id')
-     assert @stack.include_controller?('wizard')
-     assert @stack.include_controller?('institutioncareer')
-     assert @stack.include_controller?('institution')
-     assert_equal @stack.previus_controller, 'institution'
+  def test_deleting_items_after_controller
+    @stack.push('user_article', 'new', nil, UserArticle.new, 'article_id' )
+    @stack.push('article', 'new', nil, Article.new, 'journal_id' )
+    @stack.push('journal', 'new', nil, Journal.new, 'volume_id' )
+    @stack.push('volume', 'new', nil, Volume.new, 'user_id' )
+    assert_equal 4, @stack.size
+    @stack.delete_after_controller('article')
+    assert_equal 2, @stack.size
+    assert_equal 'article', @stack.controller
+    @stack.clear
+    assert @stack.empty?
+  end
 
-     assert !@stack.include_controller?('unexistent_return_controller')
-     @stack.clear
-     assert @stack.empty?
-   end
+  #   def test_should_add_error_with_an_invalid_attribute
+  #     deny @stack.push(Person.new, 'new', 'country'), "The attribute should have been invalid"
+  #   end
 
-   def test_deleting_items_after_an_specific_controller_name
-     assert @stack.push(ModelSequence.new([Schooling, Professionaltitle]), 'new', 'institutioncareer_id')
-     assert @stack.push(Institutioncareer.new, 'new', 'institution_id')
-     assert @stack.push(Institution.new, 'new', 'institution_id')
-     assert @stack.push(Career.new, 'new', 'degree_id')
-     assert_equal @stack.size, 4
-     @stack.delete_after_controller('institutioncareer')
-     assert_equal @stack.size, 2
-     assert_equal @stack.return_controller, 'institutioncareer'
-     assert_equal @stack.previus_controller, 'institution'
-     @stack.clear
-     assert @stack.empty?
-   end
-end
+ end
