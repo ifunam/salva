@@ -7,6 +7,8 @@ class StackOfController
   def push(controller, action, id=nil, model=nil, attribute=nil)
     index = index_by_controller(controller)
       #Avoiding controller collissions (Perhaps it is a bug, but it helps to avoid infinite loops..)
+
+    attribute = nil if model!=nil and attribute!=nil and !model.has_attribute?(attribute)             
     unless index == nil
       @stack[index] = [ controller, action, id, model, attribute ]
     else
@@ -64,7 +66,7 @@ class StackOfController
         if Inflector.constantize(m.class.name) == ModelSequence 
           m = model.get_model 
         end        
-        m.[]=(t, value) if m.has_attribute?(t)             
+        m.[]=(t, value)
       end
     end
   end

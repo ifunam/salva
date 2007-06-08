@@ -59,11 +59,13 @@ module Stackcontroller
   end
 
   def stack_return(id) 
-    if session[:stack].included_controller?(controller_name)
-      session[:stack].delete_after_controller(controller_name)             
-      session[:stack].pop
+    if session[:stack] != nil and !session[:stack].empty?
+      if session[:stack].included_controller?(controller_name)
+        session[:stack].delete_after_controller(controller_name)             
+        session[:stack].pop
+      end
+      save_stack_attribute(id) if has_model_in_stack?
     end
-    save_stack_attribute(id) if has_model_in_stack?
     stack_controller
   end
     
