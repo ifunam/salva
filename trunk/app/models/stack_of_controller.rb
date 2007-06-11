@@ -21,7 +21,7 @@ class StackOfController
   end
 
   def clear
-    @stack = [ ]
+    @stack.clear
   end
 
   def size
@@ -74,7 +74,8 @@ class StackOfController
   # Methods to stack handling using an specific controller name 
   def delete_after_controller(controller_name)
     index = index_by_controller(controller_name)
-    @stack = (0 .. index).collect { |i| @stack[i] } # Check delete_at method from array class
+    @stack.slice!(index+1 .. -1) if index != nil
+#    @stack = (0 .. index).collect { |i| @stack[i] } # Check delete_at method from array class
   end
 
   def included_controller?(controller_name)
