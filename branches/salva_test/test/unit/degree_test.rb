@@ -8,9 +8,9 @@ class DegreeTest < Test::Unit::TestCase
     @degrees = %w(maestria licenciatura)
     @mydegree = Degree.new({:name => 'PHD', :id => 6})
   end
-  
+
   # Right - CRUD
-  def test_creating_degrees_from_yaml
+  def test_creating_from_yaml
     @degrees.each { | degree|
       @degree = Degree.find(degrees(degree.to_sym).id)
       assert_kind_of Degree, @degree
@@ -18,28 +18,28 @@ class DegreeTest < Test::Unit::TestCase
       assert_equal degrees(degree.to_sym).name, @degree.name
      }
   end
-  
-  def test_updating
+
+  def test_updating_name
     @degrees.each { |degree|
       @degree = Degree.find(degrees(degree.to_sym).id)
       assert_equal degrees(degree.to_sym).name, @degree.name
-      @degree.name = @degree.name.chars.reverse 
+      @degree.name = @degree.name.chars.reverse
       assert @degree.update
       assert_not_equal degrees(degree.to_sym).name, @degree.name
     }
-  end  
+  end
 
   def test_deleting
     @degrees.each { |degree|
       @degree = Degree.find(degrees(degree.to_sym).id)
       @degree.destroy
-      assert_raise (ActiveRecord::RecordNotFound) { 
-        Degree.find(degrees(degree.to_sym).id) 
+      assert_raise (ActiveRecord::RecordNotFound) {
+        Degree.find(degrees(degree.to_sym).id)
       }
     }
-  end 
+  end
 
-   def test_creating_with_empty_attributes
+   def test_creating_with_empty_object
      @degree = Degree.new
      assert !@degree.save
    end
@@ -49,9 +49,9 @@ class DegreeTest < Test::Unit::TestCase
      assert !@degree.save
    end
 
-   #Boundary
+   #Boundaries
    def test_bad_values_for_id
-     # Float number for ID 
+     # Float number for ID
      @mydegree.id = 1.6
      assert !@mydegree.valid?
 
@@ -67,7 +67,7 @@ class DegreeTest < Test::Unit::TestCase
      @mydegree.name = nil
      assert !@mydegree.valid?
 
-     @mydegree.name = 'A' 
+     @mydegree.name = 'A'
      assert !@mydegree.valid?
 
      @mydegree.name = 'AB' * 800
