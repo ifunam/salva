@@ -86,6 +86,14 @@ module Stackcontroller
     return stack_controller
   end
 
+  def stack_cancel
+    hash = stack_controller
+    if session[:stack] != nil and !session[:stack].empty?
+      session[:stack].pop
+    end
+    return hash
+  end
+
   def stack_clear
         session[:stack].clear if session[:stack] != nil
   end
