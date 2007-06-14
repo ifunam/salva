@@ -1,3 +1,7 @@
 <% unless id.to_s.empty? %>
   <%= select_conditions('edit', State, tabindex, :conditions => "country_id = #{id}") %>
+  <%= stop_observer('state_id') %>
+  <%= observe_select('state_id', 'select_state_city', 9) %>
 <% end %>
+
+

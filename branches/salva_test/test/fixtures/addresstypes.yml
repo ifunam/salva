@@ -1,10 +1,10 @@
-
+--- 
+domicilio_profesional: 
+  name: Domicilio profesional
+  id: 1
 domicilio_particular: 
-   name: Domicilio Particular
-   id: 1
-domicilio_profesional:
-   name: Domicilio Profesional
-   id: 2
-domicilio_temporal:
-  name: Domicilio Temporal 
+  name: Domicilio particular
+  id: 2
+domicilio_temporal: 
+  name: Domicilio temporal
   id: 3

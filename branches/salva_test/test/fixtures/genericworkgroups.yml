@@ -7,6 +7,7 @@ productos_de_divulgacion:
 productos_de_extension_y_difusion:
   name: Productos de extensión y difusión
   id: 2
+
 productos_de_docencia:
   name: Productos de docencia
-  id: 4
+  id: 4 

@@ -1,7 +1,5 @@
 class Genericworkgroup < ActiveRecord::Base
-  validates_numericality_of :id, :allow_nil => true, :only_integer => true
-
+  validates_numericality_of :id, :only_integer => true , :allow_nil => true
   validates_presence_of :name
-  validates_length_of :name, :within => 2..300
   validates_uniqueness_of :name
 end

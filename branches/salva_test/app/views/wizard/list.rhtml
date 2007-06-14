@@ -3,7 +3,7 @@
 <p>
 <% 
    current = 0
-   for row in @list 
+   for row in @cancel 
 %>
 <% @edit = row %>
   <%= @edit.class.name %> <%= link_to 'Modificar', :action => 'edit', :current => current %>

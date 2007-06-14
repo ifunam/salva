@@ -1,20 +1,20 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:state]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %><span class="required">*</span></label>
 <%= text_field 'edit', 'name', :size => 40, :maxlength => 255, :tabindex => 1 %>
 </div>
 
-<div class="row"> 
-<label for="code" class="label"><%= get_label('code') %></label> 
-<%= text_field 'edit', 'code', :size => 4, :maxlength => 4, :tabindex => 2  %>
+<div class="row">
+<label for="code" class="label"><%= get_label('code') %></label>
+<%= text_field 'edit', 'code', :size => 3, :maxlength => 3, :tabindex => 2  %>
 </div>
 
-<div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id')%></label> 
+<div class="row">
+<label for="country_id" class="label"><%= get_label('country_id')%></label>
 <% @edit.country_id = params[:id] if params[:id] %>
-<%= table_select('edit', Country, 3) %> 
+<%= table_select('edit', Country, 3) %>
 </div>
 
 <!--[eoform:state]-->

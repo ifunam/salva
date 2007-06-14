@@ -15,6 +15,7 @@ class PeopleIdentificationController < SalvaController
       list
     else
       flash[:notice] = 'Por favor registre su nacionalidad antes de ingresar alguna de sus identificaciones (RFC, CURP, etc)...'
+      model_into_stack(controller_name, 'new', nil, PeopleIdentification.new, 'citizen_id') 
       redirect_to :controller => 'citizen', :action => 'new'
     end
   end

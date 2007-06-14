@@ -166,7 +166,7 @@ CREATE TABLE projectfinancingsources (
             REFERENCES institutions(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    amount integer NOT NULL,
+    amount text NOT NULL,  -- Money is deprecated, we should use numeric or float in combination with the to_char function, but it sucks for *rails*
     other text NULL,
     PRIMARY KEY (id),
     UNIQUE (project_id, institution_id )
