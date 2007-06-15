@@ -3,8 +3,8 @@ module Stackcontroller
     # 'controller' will be used as return_controller
     # 'next_controller' will be used as previus_controller
     next_controller, attribute, id = set_options(stack_params, form_params)
-    model_into_stack(controller, action, id, model, attribute)
-    { :controller => next_controller, :action => 'new', :id => id }
+    model_into_stack(controller, 'new', id, model, attribute)
+    { :controller => next_controller, :action => action, :id => id }
   end
   
   def model_into_stack(controller, action, id, model=nil, attribute=nil)
@@ -68,7 +68,12 @@ module Stackcontroller
     end
     stack_controller
   end
-    
+
+  def stack_select(id)
+    save_stack_attribute(id) if has_model_in_stack?
+    stack_controller
+  end
+
   def stack_controller
     hash = {:action => 'list' } 
     if session[:stack] != nil and !session[:stack].empty?

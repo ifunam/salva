@@ -1,5 +1,5 @@
 <%= render :partial => '/salva/perpage' %>
-<%= start_form_tag(:action => @parent_controller ? 'return_to_parent_controller' : 'purge_selected' ) %>
+<%= start_form_tag(:action => @parent_controller ? 'select' : 'purge_selected' ) %>
 
 <table class="list">
   <tr>
@@ -12,7 +12,7 @@
   <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
   <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
     <td class="item">
-    <%= @parent_controller ? radio_button('edit', 'id', item[1]) : check_box_tag("item[]", item[1], checked=false)%> 
+    <%= @parent_controllerx ? radio_button('edit', 'id', item[1]) : check_box_tag("item[]", item[1], checked=false)%> 
     </td>
     <td><%= h(item[0]) %></td>
     <td class="link"><%= show_link(item[1]) %> <%= edit_link(item[1]) %> <%= purge_link(item[1], 'Desea borrar este elemento?') %></td>
