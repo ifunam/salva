@@ -4,7 +4,9 @@
 <div class="row"> 
 <label for="identification_id" class="label"><%= get_label('identification_id') %> <span class="required">*</span></label> 
 <div id="identification_id">
-<%= select_conditions('edit', Identification, 1, :attributes => [['idtype', 'name'], ['citizen_country', 'name']], :joins => "INNER JOIN citizens ON citizens.user_id = 2 AND citizens.citizen_country_id = identifications.citizen_country_id") %>
+<%= select_conditions('edit', Identification, 1, :attributes =>
+['idtype', 'citizen_country'], :joins => "INNER JOIN citizens ON citizens.user_id = 2 AND citizens.citizen_country_id = identifications.citizen_country_id",
+:sql => "select identifications.* from identifications,citizens  where identifications.citizen_country_id=citizens.citizen_country_id and citizens.user_id=2") %>
 <%= submit_for_stack('identification') %>
 </div>
 

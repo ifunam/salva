@@ -10,7 +10,8 @@ class Finder
   def initialize(model, columns, *options)
     @model = model
     @columns = columns
-    @records = model.find(*options)
+    @records = (options[1].has_key? :sql) ? model.find_by_sql(options[1][:sql]): 
+      model.find(*options)
   end
   
   def record_content(record, columns)
