@@ -36,20 +36,10 @@ class ConferencescopeTest < Test::Unit::TestCase
      # Float number for ID 
      @myconferencescope.id = 1.6
      assert !@myconferencescope.valid?
-
-     # Negative numbers
-     @myconferencescope.id = nil
-     assert !@myconferencescope.valid?
    end
 
    def test_bad_values_for_name
      @myconferencescope.name = nil
-     assert !@myconferencescope.valid?
-
-     @myconferencescope.name = 'AB' 
-     assert !@myconferencescope.valid?
-
-     @myconferencescope.name = 'AB' * 800
      assert !@myconferencescope.valid?
    end
 end

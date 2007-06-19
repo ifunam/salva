@@ -19,6 +19,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_equal conferences(conference.to_sym).name, @conference.name
       assert_equal conferences(conference.to_sym).conferencetype_id, @conference.conferencetype_id
     }
+ puts "PUTO"
   end
   
   def test_updating_conferences_name
@@ -29,6 +30,12 @@ class ConferenceTest < Test::Unit::TestCase
       assert @conference.update
       assert_not_equal conferences(conference.to_sym).name, @conference.name
     }
+  end  
+
+  def test_valid_conferences
+      @conference = Conference.new({ :name => "Jaja", :year => 2007, :conferencetype_id => 1, :country_id => 484})
+    assert !@conference.valid?
+    puts @conference.errors.full_messages
   end  
 
   def test_deleting_conferences

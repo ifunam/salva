@@ -5,7 +5,6 @@ class Institution < ActiveRecord::Base
   validates_numericality_of :country_id, :allow_nil => true, :only_integer => true
 
   validates_presence_of :name, :institutiontitle_id, :institutiontype_id, :country_id
-  validates_length_of :name, :within => 2..300
 
   belongs_to :country
   belongs_to :institutiontype

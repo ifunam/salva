@@ -68,7 +68,5 @@ class ThesismodalitylTest < Test::Unit::TestCase
     @mythesismodality = Thesismodality.new
     @mythesismodality.name = nil
     assert !@mythesismodality.valid?
-    @mythesismodality.name = 'XX' * 80
-    assert !@mythesismodality.valid?
   end
 end

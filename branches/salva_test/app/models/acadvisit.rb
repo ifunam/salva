@@ -8,7 +8,6 @@ validates_numericality_of :country_id, :only_integer => true
 validates_numericality_of :user_id, :only_integer => true
 validates_numericality_of :acadvisittype_id, :only_integer => true
 validates_uniqueness_of :name
-validates_length_of :name, :within => 5..500
 
 belongs_to :institution
 belongs_to :country

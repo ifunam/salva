@@ -62,12 +62,6 @@ class ActivityTest < Test::Unit::TestCase
    def test_bad_values_for_name
      @myactivity.name = nil
      assert !@myactivity.valid?
-
-     @myactivity.name = 'AB' 
-     assert !@myactivity.valid?
-
-     @myactivity.name = 'AB' * 800
-     assert !@myactivity.valid?
    end
 
    def test_bad_values_for_activity_id

@@ -35,6 +35,7 @@ class SalvaController < ApplicationController
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
     :per_page => per_page || @per_pages
 
+    @parent_controller = 'algo' if has_model_in_stack?
     render :action => 'list'
   end
   
@@ -64,6 +65,8 @@ class SalvaController < ApplicationController
     set_userid
     if params[:stack] != nil
       redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
+    elsif params[:stacklist] != nil
+      redirect_to options_for_next_controller(@edit, controller_name, 'list', params[:edit], params[:stacklist])
     else
       if @edit.save
         if @children != nil
@@ -121,7 +124,18 @@ class SalvaController < ApplicationController
     end
     redirect_to :action => 'list'
   end
- 
+
+  def select
+    idx = nil
+    if  params[:item]
+      params[:item].each { |id, contents|
+        idx = id
+      }
+    end
+    logger.info "Radioparams "+idx.to_s+" "+params[:item].to_s
+    redirect_to stack_select(idx)
+  end
+
   def show
     if @sequence
       sequence = ModelSequence.new(@sequence)
