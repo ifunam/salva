@@ -26,8 +26,7 @@
    <a href="/trac/newticket" target="_new"> Soporte técnico </a>
    </div> <!-- /toplinks -->
    <div class="title">
-     <%=  render_component :controller => "navigator", :action => "trail_of_controllers" %>
-     <%= controller_title %>
+     <%=  render_component :controller => "navigator", :action => "trail_of_controllers" %><%= controller_title %>
    </div> <!-- title -->
    <div class="navbar">
     <b>Men&uacute; de navegaci&oacute;n:</b> <%=  render_component :controller => "navigator", :action => "navbar" %>
@@ -38,10 +37,10 @@
    <% end %>
      <%= @content_for_layout %>
    </div> <!-- /formbox -->
-   <%=  render_component :controller => "navigator", :action => "navcontrol", :params => {
-:controller_name => controller_name } %>
+   <%=  render_component :controller => "navigator", :action => "navcontrol", :params => { :controller_name => controller_name } %>
 </div> <!-- /container_border -->
 </div> <!-- /container -->
 <%= render :partial => 'salva/ajax_unit_test' if params[:debug_ajax].to_i == 1%>
 </body>
 </html>
+ 
