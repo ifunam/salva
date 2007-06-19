@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..20
-  validates_length_of       :email, :within => 3..100
+  validates_length_of       :email, :within => 7..100
   validates_length_of       :passwd,:within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/

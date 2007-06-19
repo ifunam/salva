@@ -66,12 +66,6 @@ class CourseTest < Test::Unit::TestCase
    def test_bad_values_for_name
      @mycourse.name = nil
      assert !@mycourse.valid?
-
-     @mycourse.name = 'AB' 
-     assert !@mycourse.valid?
-
-     @mycourse.name = 'AB' * 800
-     assert !@mycourse.valid?
    end
 
    def test_bad_values_for_country_id

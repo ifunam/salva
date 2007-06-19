@@ -42,15 +42,6 @@ class ActivitygroupTest < Test::Unit::TestCase
   def test_bad_values_for_name
     @myactivitygroup.name = nil
     assert !@myactivitygroup.valid?
-
-    @myactivitygroup.name = 'X'
-    assert !@myactivitygroup.valid?
-
-    @myactivitygroup.name = 'X' * 201
-    assert !@myactivitygroup.valid?
-
-    @myactivitygroup.name = '5'
-    assert !@myactivitygroup.valid?
   end
 
   # Checking constraints for ID

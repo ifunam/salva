@@ -66,12 +66,6 @@ class DegreeTest < Test::Unit::TestCase
    def test_bad_values_for_name
      @mydegree.name = nil
      assert !@mydegree.valid?
-
-     @mydegree.name = 'A' 
-     assert !@mydegree.valid?
-
-     @mydegree.name = 'AB' * 800
-     assert !@mydegree.valid?
    end
 end
 

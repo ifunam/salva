@@ -5,7 +5,6 @@ class Project < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :startyear
   validates_uniqueness_of :name, :scope => [:startyear, :responsible]
-  validates_length_of :name, :within => 2..50
 
 
   belongs_to :projecttype 

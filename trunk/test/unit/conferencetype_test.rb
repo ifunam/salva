@@ -36,20 +36,10 @@ class ConferencetypeTest < Test::Unit::TestCase
      # Float number for ID 
      @myconferencetype.id = 1.6
      assert !@myconferencetype.valid?
-
-     # Negative numbers
-     @myconferencetype.id = nil
-     assert !@myconferencetype.valid?
    end
 
    def test_bad_values_for_name
      @myconferencetype.name = nil
-     assert !@myconferencetype.valid?
-
-     @myconferencetype.name = 'AB' 
-     assert !@myconferencetype.valid?
-
-     @myconferencetype.name = 'AB' * 800
      assert !@myconferencetype.valid?
    end
 end
