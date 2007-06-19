@@ -22,25 +22,32 @@ class Tree
       !is_leaf?
    end
 
+   def get_tree_from_parent(parent)
+     tree = self
+     start = 1
+     (start..parent).to_a.reverse.each  do  tree = tree.parent  end
+     tree
+   end
+
    def addChildren(array)
       if array.is_a? Array then
-   node_prev = nil
-   array.each { |item|
-      node = nil
-      if item.is_a? Array then
-         if node_prev then
-      node_prev.addChildren(item)
+        node_prev = nil
+        array.each { |item|
+         node = nil
+         if item.is_a? Array then
+           if node_prev then
+             node_prev.addChildren(item)
+           else
+             node = Tree.new(item)
+             addChild(node)
+           end
          else
-      node = Tree.new(item)
-      addChild(node)
+           node = Tree.new
+           node.data = item
+           addChild(node)
          end
-      else
-         node = Tree.new
-         node.data = item
-         addChild(node)
-      end
-      node_prev = node if node
-   }
+         node_prev = node if node
+       }
       end
    end
 

@@ -7,6 +7,7 @@ require 'sessions'
 require 'rbac'
 require 'navigator_tree'
 class ApplicationController < ActionController::Base
+#  include ExceptionNotifiable
   include Authentication
   include Sessions
   include Rbac
@@ -15,6 +16,8 @@ class ApplicationController < ActionController::Base
   before_filter :login_required
   before_filter :change_userid
   before_filter :set_user_id
+  before_filter :setup_navtree
+
   #  before_filter :rbac_required
 
   helper :table, :theme, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
@@ -88,4 +91,11 @@ class ApplicationController < ActionController::Base
     end
     render :partial => 'salva/autocomplete_list', :locals => {:list => list}
   end
+
+  def  setup_navtree
+    if params[:parent] == 'true' and !session[:navtree].nil? and @request.env['HTTP_CACHE_CONTROL'].nil?
+      session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
+    end
+  end
+#  alias :rescue_action_locally :rescue_action_in_public
 end
