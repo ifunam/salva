@@ -1,4 +1,4 @@
-require 'vendor/plugins/exception_notification/lib/exception_notifier'
+#require 'vendor/plugins/exception_notification/lib/exception_notifier'
 # Settings specified here will take precedence over those in config/environment.rb
 
 # In the development environment your application's code is reloaded on
