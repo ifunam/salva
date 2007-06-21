@@ -5,13 +5,13 @@ class NavigatorController < ApplicationController
   include Stackcontroller
 
   skip_before_filter :rbac_required
-  before_filter :stack_clear
 
   def index
     navtab
   end
 
   def navtab
+    stack_clear
     tree = get_tree
     #This will help us to avoid a wrong tree when the user makes reload.
     if @request.env['HTTP_CACHE_CONTROL'].nil?
