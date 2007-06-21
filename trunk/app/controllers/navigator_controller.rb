@@ -46,7 +46,7 @@ class NavigatorController < ApplicationController
     else
       tree = tree.parent  if tree.children_data.index(controller)  == nil
       index = tree.children_data.index(controller)
-      @nodes = { :left => tree.children[index].left_node,  :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  }
+      @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  }  unless index.nil?
     end
     render :action => "navcontrol", :layout  => false
   end
