@@ -40,7 +40,8 @@ module TableHelper
       next if @edit.send(attribute) == nil or hidden.include?(attribute)
       if is_id?(attribute) then
         model = attribute.sub(/_id$/,'').sub(/^\w+_/,'')
-        if @edit.class.reflect_on_association(model.to_sym) and Inflector.camelize(model).constantize.columns.size > 5
+        if @edit.class.reflect_on_association(model.to_sym) and (Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on)).size > 0   and !%w(state country city).include?(model)
+          logger.info  "Columnas "+(Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on )).flatten.to_s
           if @edit.class.reflect_on_association(model.to_sym).macro.to_s == 'belongs_to'
             body << [ attribute,  link_to(attributeid_to_text(@edit, attribute), :controller => model, :action => 'show', :id => @edit.send(attribute)) ]
          end
