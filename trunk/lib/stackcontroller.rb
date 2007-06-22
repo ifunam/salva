@@ -1,10 +1,8 @@
 module Stackcontroller
-  def options_for_next_controller(model, controller, action, form_params, stack_params)
-    # 'controller' will be used as return_controller
-    # 'next_controller' will be used as previus_controller
+  def options_for_next_controller(model, controller, action, form_params, stack_params, next_action='new')
     next_controller, attribute, id = set_options(stack_params, form_params)
-    model_into_stack(controller, 'new', id, model, attribute)
-    { :controller => next_controller, :action => action, :id => id }
+    model_into_stack(controller, action, id, model, attribute)
+    { :controller => next_controller, :action => next_action, :id => id }
   end
   
   def model_into_stack(controller, action, id, model=nil, attribute=nil)

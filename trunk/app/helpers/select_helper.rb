@@ -16,7 +16,7 @@ module SelectHelper
     field = foreignize(model,options[:prefix])
     selected = (@edit.nil?) ? options[:selected] : options[:selected] || @edit.send(field)
     @list = Finder.new(model, [ name ], :all, :order => name+' ASC').as_pair
-    @list = @list + (Finder.new(model, [ name ], :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
+#    @list = @list + (Finder.new(model, [ name ], :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
@@ -26,7 +26,7 @@ module SelectHelper
     selected = (@edit.nil?) ? options[:selected] : options[:selected] || @edit.send(field)
     [:attributes, :selected, :field].each { |key| options.delete(key) }
     @list = Finder.new(model, attributes, :all, options).as_pair
-    @list = @list + (Finder.new(model, attributes, :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
+ #   @list = @list + (Finder.new(model, attributes, :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
