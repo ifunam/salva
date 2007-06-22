@@ -40,7 +40,7 @@ Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %>
 <br/>
 <div class="row">
  <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
- <%= simple_select('edit', Country, 7, {:selected => @edit.country_id || 484 }) %>
+ <%= simple_select('edit', Country, 7, {:selected =>484 }) %>
  </div>
 <br/>
 
@@ -53,7 +53,6 @@ Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %>
   </div>
   <%= submit_for_stack('state:country_id') %>
 </div>
-
 
 <div class="row">
   <label for="city_id" class="label"><%= get_label('city_id') %><span class="required">*</span></label>
