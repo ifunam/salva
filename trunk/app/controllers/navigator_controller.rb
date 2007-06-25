@@ -44,7 +44,7 @@ class NavigatorController < ApplicationController
     if controller == 'navigator'
       @nodes = { :left => tree.left_node, :parent => tree.parent,  :right => tree.right_node}
     else
-      tree = tree.parent  if tree.children_data.index(controller)  == nil
+      tree = tree.parent  if tree.children_data.index(controller)  == nil and tree.parent != nil
       index = tree.children_data.index(controller)
       @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  }  unless index.nil?
     end

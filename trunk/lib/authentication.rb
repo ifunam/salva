@@ -1,9 +1,13 @@
-require 'digest'
+#require 'digest'
 require 'ssh'
 module Authentication
-  include Digest
+#  include Digest
   include Ssh
   
+  def encrypt(passwd, mysalt)
+    Digest::SHA512.hexdigest(passwd + mysalt)
+  end
+
   def authenticate?(login,passwd)
     if login_exists?(login)
       @user = User.find_by_login(login)
