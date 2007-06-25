@@ -48,9 +48,18 @@ module NavigatorHelper
 
   def controller_title
     controller = controller_name
-    controller = get_tree.data if controller == 'navigator' or controller == 'wizard'
+    if controller == 'navigator'
+      controller = get_tree.data
+    elsif controller == 'wizard'
+      if session[:sequence].is_composite
+        controller =  Inflector.tableize(session[:sequence].flat_sequence.first.class.name).singularize
+      else
+        controler = Inflector.tableize(session[:sequence].get_model.class.name).singularize
+      end
+    end
+    image = controller
     image = "comodin_salva" if !File.exists?(RAILS_ROOT + "/public/images/" + controller + ".png")
-    img_tag(controller) + get_label(controller)
+    img_tag(image) + get_label(controller)
   end
 
   def controller_name
