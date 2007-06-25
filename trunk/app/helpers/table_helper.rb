@@ -5,14 +5,14 @@ module TableHelper
     header = options[:header]
     list = list_collection(collection, options[:columns])
     render(:partial => '/salva/list',
-           :locals => { :header => header, :list => list })
+           :locals => { :header => header, :list => list, :nolinks => options[:nolinks] })
   end
 
   def table_array(collection, options = {} )
     header = options[:header]
     list = list_collection_array(collection, options[:columns])
     render(:partial => '/salva/list',
-           :locals => { :header => header, :list => list })
+           :locals => { :header => header, :list => list, :nolinks => options[:nolinks]  })
   end
 
   def table_simple_list(collection, options = {} )

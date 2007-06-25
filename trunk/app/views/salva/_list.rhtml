@@ -25,6 +25,7 @@
 <%= render :partial => '/salva/paginator' %>
 <%= end_form_tag %>
 
+<% if nolinks.nil? %>
 <br/>
 <div id="operations">
 <%= link_to get_label('add'), :action => 'new' %> |
@@ -34,3 +35,4 @@
 <%= link_to get_label('back'), :action => 'cancel' %>
 <% end %>
 </div>
+<% end %>
