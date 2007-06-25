@@ -35,7 +35,7 @@ Sí <%= radio_button('edit', 'is_studying_this', 'true', {:onclick =>
 <%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 8}, :skip_style => true %>
 </div>
 
-<div class="row" id="is_titleholder" style="display:none;">
+<div class="row" id="is_titleholder">
 <label for="is_titleholder" class="label"><%= get_label('is_titleholder') %> <span class="required">*</span></label>
 <div class="radio"> 
 No <%= radio_button('edit', 'is_titleholder', 'false', {:onclick =>

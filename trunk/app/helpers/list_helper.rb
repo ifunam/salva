@@ -218,10 +218,6 @@ module ListHelper
     case attr
     when /gender/
       condition == true ? 'Masculino' : 'Femenino' 
-    when /is_studying_this/
-      condition ? 'Grado en curso' : 'Grado terminado' 
-    when /is_titleholder/
-      condition ? 'Titulado' : 'Sin titulo' 
     when /has_group_right/
       condition ? 'Con privilegios de grupo' : 'Sin privilegios'
     when /ismainauthor/
