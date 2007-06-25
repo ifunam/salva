@@ -1,12 +1,8 @@
-#require 'digest'
+require 'mydigest'
 require 'ssh'
 module Authentication
-#  include Digest
+  include Mydigest
   include Ssh
-  
-  def encrypt(passwd, mysalt)
-    Digest::SHA512.hexdigest(passwd + mysalt)
-  end
 
   def authenticate?(login,passwd)
     if login_exists?(login)
@@ -15,7 +11,7 @@ module Authentication
     end
     return false
   end
-  
+
   def authenticate_by_token?(id,token)
     @user = User.find_by_id_and_token(id,token)
     unless @user.nil?
@@ -24,17 +20,17 @@ module Authentication
     end
     return false
   end
-  
+
   def authenticate_by_ssh?(login, passwd)
     if user_exists?(login)
       return true if ssh_auth('fenix.fisica.unam.mx',login,passwd)
     end
     return false
   end
-  
+
   private
   def login_exists?(login)
-    return true unless User.find_by_login(login).nil? 
+    return true unless User.find_by_login(login).nil?
     return false
   end
 end

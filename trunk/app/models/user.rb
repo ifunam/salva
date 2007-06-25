@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Digest
+  include Mydigest
 
   attr_accessor :current_passwd
 
