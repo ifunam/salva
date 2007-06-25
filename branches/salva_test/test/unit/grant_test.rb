@@ -3,7 +3,7 @@ require 'institution'
 require 'grant'
 
 class GrantTest < Test::Unit::TestCase
-  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :grants
+  fixtures   :institutions, :grants
   def setup
     @grants = %w(beca_unam beca_sep)
     @mygrant = Grant.new({:name => 'Beca Genero', :institution_id => 3})
@@ -57,15 +57,14 @@ class GrantTest < Test::Unit::TestCase
     assert !@mygrant.valid?
     @mygrant.id = 'mi_id'
     assert !@mygrant.valid?
+
+    #@mygrant.id = -1
+    #assert !@mygrant.valid?
   end
 
   def test_bad_values_for_name
     # Float number for ID
     @mygrant.name = nil
-    assert !@mygrant.valid?
-    @mygrant.name = 'nombre de mi grant' * 80
-    assert !@mygrant.valid?
-    @mygrant.name = 'a'
     assert !@mygrant.valid?
   end
 

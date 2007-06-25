@@ -2,40 +2,24 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'publicationcategory'
 
 class PublicationcategoryTest < Test::Unit::TestCase
-  fixtures :publicationcategories 
+  fixtures :publicationcategories
+  include UnitSimple
   def setup
     @publicationcategories = %w(acoustics agricultural_economics_&_policy agricultural_engineering)
     @mypublicationcategory = Publicationcategory.new({:name => 'Acustico'})
   end
-  
-  # Right - CRUD
-  def test_creating_from_yaml
-    @publicationcategories.each { |publicationcategory|
-      @publicationcategory = Publicationcategory.find(publicationcategories(publicationcategory.to_sym).id)
-      assert_kind_of Publicationcategory, @publicationcategory
-      assert_equal publicationcategories(publicationcategory.to_sym).id,   @publicationcategory.id
-      assert_equal publicationcategories(publicationcategory.to_sym).name, @publicationcategory.name
-    }
-  end
-  
-  def test_updating_name
-    @publicationcategories.each { |publicationcategory|
-      @publicationcategory = Publicationcategory.find(publicationcategories(publicationcategory.to_sym).id)
-      assert_equal publicationcategories(publicationcategory.to_sym).name, @publicationcategory.name
-      @publicationcategory.name = @publicationcategory.name.chars.reverse 
-      assert @publicationcategory.update
-      assert_not_equal publicationcategories(publicationcategory.to_sym).name, @publicationcategory.name
-    }
-  end  
 
-  def test_deleting
-    @publicationcategories.each { |publicationcategory|
-      @publicationcategory = Publicationcategory.find(publicationcategories(publicationcategory.to_sym).id)
-      @publicationcategory.destroy
-      assert_raise (ActiveRecord::RecordNotFound) { 
-        Publicationcategory.find(publicationcategories(publicationcategory.to_sym).id)
-      }
-    }
+  # Right - CRUD
+  def test_crud
+    crud_test(@publicationcategories, Publicationcategory)
+  end
+
+  def test_validation
+    validate_test(@publicationcategories, Publicationcategory)
+  end
+
+  def test_collision
+    collision_test(@publicationcategories, Publicationcategory)
   end
 
   def test_uniqueness
@@ -53,14 +37,13 @@ class PublicationcategoryTest < Test::Unit::TestCase
     @mypublicationcategory.id = 'xx'
     assert !@mypublicationcategory.valid?
 
-    # Negative number ID 
+    # Negative number ID
     # @mypublicationcategory.id = -1
     # assert !@mypublicationcategory.valid?
 
-    # Float number ID 
+    # Float number ID
     @mypublicationcategory.id = 1.3
     assert !@mypublicationcategory.valid?
-
   end
 
   def test_bad_values_for_name

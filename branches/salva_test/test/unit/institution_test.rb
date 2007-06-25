@@ -70,10 +70,6 @@ class InstitutionTest < Test::Unit::TestCase
     # Float number for ID
     @myinstitution.name = nil
     assert !@myinstitution.valid?
-    @myinstitution.name = 'nombre' * 80
-    assert !@myinstitution.valid?
-    @myinstitution.name = 'a'
-    assert !@myinstitution.valid?
   end
 
   def test_bad_values_for_institutiontitle_id

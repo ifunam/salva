@@ -3,39 +3,23 @@ require 'thesismodality'
 
 class ThesismodalitylTest < Test::Unit::TestCase
   fixtures :thesismodalities
+  include UnitSimple
   def setup
     @thesismodalities = %w(tesis tesina)
     @mythesismodality = Thesismodality.new({:name => 'Reporte'})
   end
 
   # Right - CRUD
-  def test_creating_from_yaml
-    @thesismodalities.each { | thesismodality|
-      @thesismodality = Thesismodality.find(thesismodalities(thesismodality.to_sym).id)
-      assert_kind_of Thesismodality, @thesismodality
-      assert_equal thesismodalities(thesismodality.to_sym).id, @thesismodality.id
-      assert_equal thesismodalities(thesismodality.to_sym).name, @thesismodality.name
-    }
+  def test_crud
+    crud_test(@thesismodalities, Thesismodality)
   end
 
-  def test_updating_name
-    @thesismodalities.each { |thesismodality|
-      @thesismodality = Thesismodality.find(thesismodalities(thesismodality.to_sym).id)
-      assert_equal thesismodalities(thesismodality.to_sym).name, @thesismodality.name
-      @thesismodality.name = @thesismodality.name.chars.reverse
-      assert @thesismodality.update
-      assert_not_equal thesismodalities(thesismodality.to_sym).name, @thesismodality.name
-    }
-  end 
+  def test_validation
+    validate_test(@thesismodalities, Thesismodality)
+  end
 
-  def test_deleting
-    @thesismodalities.each { |thesismodality|
-      @thesismodality = Thesismodality.find(thesismodalities(thesismodality.to_sym).id)
-      @thesismodality.destroy
-      assert_raise (ActiveRecord::RecordNotFound) {
-        Thesismodality.find(thesismodalities(thesismodality.to_sym).id)
-      }
-    }
+  def test_collision
+    collision_test(@thesismodalities, Thesismodality)
   end
 
   def test_uniqueness
