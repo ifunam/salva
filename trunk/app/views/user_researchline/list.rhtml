@@ -1,4 +1,4 @@
 <!--[list:user_researchline]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w(researchline_id) }) %>
+<%= table_array(@collection, { :header => "Líneas", :columns => [ ['researchline', 'name', ['researcharea', 'name']]]  }) %>
 <!--[eoflist:user_researchline]-->
 
