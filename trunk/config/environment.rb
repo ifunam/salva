@@ -52,6 +52,20 @@ end
 
 # Include your application configuration below
 
+ ActiveRecord::Errors.default_error_messages = {
+   :inclusion => "no está incluido en la lista",
+   :exclusion => "está reservado",
+   :invalid => "es inválido",
+   :confirmation => "la confirmación no coincide",
+   :accepted => "deberá ser aceptado",
+   :empty => "no puede estar en blanco",
+   :too_long => "es muy grande (el máximo es de %d caracteres)",
+   :too_short => "es muy pequeño (el minímo es de %d caracteres)",
+   :wrong_length => "la longitud es incorrecta (debería ser de %d caracteres",
+   :taken => "ya ha sido registrado",
+   :not_a_number => "no es un número",
+ }
+
 # ActionMailer configuration:
 # http://api.rubyonrails.com/classes/ActionMailer/Base.html
 if RAILS_ENV != 'test'

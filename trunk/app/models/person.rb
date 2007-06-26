@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :firstname,  :lastname1, :dateofbirth, :country_id, :state_id, :city
   validates_numericality_of :country_id, :state_id
-  validates_inclusion_of :gender, :in=> [true, false],  :message=>"woah! what are you then!??!!"
+  validates_inclusion_of :gender, :in=> [true, false]
 
   belongs_to :user
   belongs_to :maritalstatus
