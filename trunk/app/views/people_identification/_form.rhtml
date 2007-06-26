@@ -4,7 +4,7 @@
 <div class="row">
 <label for="identification_id" class="label"><%= get_label('identification_id') %> <span class="required">*</span></label>
 <div id="identification_id">
-<%= select_conditions('edit', Identification, 1, :attributes =>['idtype', 'citizen_country'],  :conditions => " identifications.id IN (SELECT identifications.id FROM identifications, citizens, people_identifications WHERE citizens.citizen_country_id = identifications.citizen_country_id AND citizens.user_id  = #{session[:user]}  AND people_identifications.user_id =  #{session[:user]} AND people_identifications.identification_id != identifications.id)") %>
+<%= select_conditions('edit', Identification, 1, :attributes =>['idtype', 'citizen_country'],  :conditions => " identifications.id IN (SELECT identifications.id FROM identifications, citizens WHERE citizens.citizen_country_id = identifications.citizen_country_id AND citizens.user_id = #{session[:user]} AND identifications.id NOT IN (SELECT identifications.id FROM identifications, people_identifications WHERE people_identifications.user_id = #{session[:user]} AND people_identifications.identification_id = identifications.id))") %>
 <%= submit_for_stack('identification') %>
 </div>
 </div>
