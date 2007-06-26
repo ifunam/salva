@@ -9,7 +9,6 @@
 <div class="row"> 
 <label for="indivuser_id" class="label"><%= get_label('indivuser_id') %></label> 
 <div id="indivuser_id">
-
 </div>
 </div>
 
@@ -18,6 +17,9 @@
 <div id="institution_id">
 <%= select_conditions('edit', Institution, 3, :attributes => [ 'name' ], :include => [:institutiontitle], :conditions => "institutions.institutiontitle_id = institutiontitles.id AND (institutiontitles.name = 'Escuela' OR institutiontitles.name = 'Facultad')" ) %>
 </div>
+<%= submit_for_stack('institution') %>
+&nbsp;
+<%= submit_for_stack_list('institution') %>
 </div>
 
 <div class="row"> 
@@ -45,7 +47,7 @@
 
 <div class="row"> 
 <label for="hours" class="label"><%= get_label('hours') %> <span class="required">*</span></label> 
-<%= text_field 'edit', 'hours', 'value' => 480, 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'hours' %>
+<%= text_field 'edit', 'hours', 'value' => @edit.hours || 480, 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'hours' %>
 </div>
 
 <div class="row"> 

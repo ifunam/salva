@@ -105,7 +105,7 @@ CREATE TABLE bookeditions ( --
             DEFERRABLE,
     pages int4 NULL,     -- Number of pages
     isbn  text NULL,     -- ISBN
-    publisher_id int4 NOT NULL 
+    publisher_id int4  NULL 
 	    REFERENCES publishers(id)
             ON UPDATE CASCADE
             DEFERRABLE,

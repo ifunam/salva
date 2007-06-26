@@ -6,6 +6,7 @@
 <div id="academicprogram_id">
 <%= select_conditions('edit', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
 </div>
+  <%= submit_for_stack('academicprogram') %>
 </div>
 <%= observe_select('academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
 

@@ -230,7 +230,7 @@ body {
     background-color: #ffffdb;
     border: 2px groove #336699;
     padding: 5px;
-    margin: 10px;
+    margin: 0px;
     position: fixed;
     top: 150px;
     left: 200px;
@@ -410,6 +410,10 @@ a:hover.purge {
   background-color: #ffff99;
   color: #000;
   font: 12px Arial, Helvetica, sans-serif;	
+}
+
+.add {
+  vertical-align:text-top
 }
 
 .add:hover {
