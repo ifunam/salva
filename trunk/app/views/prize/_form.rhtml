@@ -1,28 +1,25 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:prize]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label>
 <%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row"> 
-<label for="prizetype_id" class="label"><%= get_label('prizetype_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="prizetype_id" class="label"><%= get_label('prizetype_id') %> <span class="required">*</span></label>
 <div id="prizetype_id">
 <%= table_select('edit', Prizetype, 2, 1) %>
 <%= submit_for_stack('prizetype') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="institution_id">
-<%= table_select('edit', Institution, 3, 1) %>
-</div>
+<div class="row">
+ <%= render :partial => 'salva/filter_institutions' %>
 </div>
 
-<div class="row"> 
-<label for="other" class="label"><%= get_label('other') %></label> 
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
 <%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'other' %></div>
 
 
