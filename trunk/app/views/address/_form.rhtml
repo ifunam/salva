@@ -3,7 +3,7 @@
 <!--[form:address]-->
 <div class="row">
 <label for="addresstype_id" class="label"><%= get_label('addresstype_id') %> <span class="required">*</span></label>
-<div id="addresstype_id">
+ <div id="addresstype_id">
 <%= select_conditions('edit', Addresstype,  1,  :conditions => "addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = #{session[:user]})") %>
 </div>
 </div>
@@ -24,25 +24,22 @@
  </div>
 <br/>
 
-<%= observe_select('country_id', 'select_country_state', 5) %>
+<%= observe_select('country_id', 'select_country_state', 8) %>
 
 <div class="row">
   <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
   <div id="select_country_state">
-    <%= observable_select('select_country_state', 484, 5) %>
-   </div>
+  <%= observable_select('select_country_state', 484,5) %>
+  </div>
   <%= submit_for_stack('state:country_id') %>
 </div>
 
-<%= observe_select('state_id', 'select_state_city', 5) %>
-
 <div class="row">
-  <label for="city_id" class="label"><%= get_label('city_id') %><span
-  class="required">*</span></label>
+  <label for="city_id" class="label"><%= get_label('city_id') %></label>
   <div id="select_state_city">
-   <%= observable_select('select_state_city', 0, 6) %>
+   <%= observable_select('select_state_city',1,6) %>
   </div>
-  <%= submit_for_stack('city:state_id') %>
+<%= submit_for_stack('city:state_id') %>
 </div>
 
 <div class="row">

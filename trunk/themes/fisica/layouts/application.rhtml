@@ -35,7 +35,7 @@
    <% if flash[:notice] %>
    <p style="color: green"> <%= flash[:notice] %></p>
    <% end %>
-     <%= @content_for_layout %>
+     <%= yield %>
    </div> <!-- /formbox -->
    <%=  render_component :controller => "navigator", :action => "navcontrol", :params => { :controller_name => controller_name } %>
 </div> <!-- /container_border -->
