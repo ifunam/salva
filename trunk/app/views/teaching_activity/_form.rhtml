@@ -1,29 +1,30 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:activity]-->
-<div class="row"> 
-<label for="activitytype_id" class="label"><%= get_label('activitytype_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="activitytype_id" class="label"><%= get_label('activitytype_id') %> <span class="required">*</span></label>
 <div id="activitytype_id">
 <%= select_as_tree('edit', Activitytype, %w(name), 1, 1, :conditions => 'activitytypes.activitygroup_id = 3') %>
 </div>
+<%= submit_for_stack('activitytype') %>
 </div>
 
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label>
 <%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'name' %>
 </div>
 
-<div class="row"> 
-<label for="descr" class="label"><%= get_label('descr') %></label> 
+<div class="row">
+<label for="descr" class="label"><%= get_label('descr') %></label>
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'descr' %></div>
 
-<div class="row"> 
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
 <%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 4}, :skip_style => true %><br/></div>
 
-<div class="row"> 
-<label for="month" class="label"><%= get_label('month') %></label> 
-<%= month_select('edit', 'month', {:tabindex => 5, :required => 0 }) %> 
+<div class="row">
+<label for="month" class="label"><%= get_label('month') %></label>
+<%= month_select('edit', 'month', {:tabindex => 5, :required => 0 }) %>
 </div>
 
 
