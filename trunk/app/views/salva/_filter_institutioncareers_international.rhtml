@@ -1,7 +1,7 @@
 <div class="filters"> 
- <%= select_conditions('edit', Country, 1, :attributes => ['name'], :conditions => "id != 484") %>
+<%= simple_select('filt', Country, 1) %>
  <br/>
- <%= observe_select('country_id', 'select_institutioncareers_by_country', 2) %>
+ <%= observe_select('filt', 'country_id', 'select_institutioncareers_by_country', 2) %>
  <div id="select_institutioncareers_by_country">
  </div>
 </div>
