@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
   has_many :user_genericworks
   has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id'
 
+  has_many :user_proceedings
+  has_many :proceedings, :through => :user_proceedings
+
+  has_many :user_inproceedings
+  has_many :inproceedings, :through => :user_inproceedings
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password

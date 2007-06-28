@@ -2,11 +2,11 @@
 
 <div class="row">
  <label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label>
- <%= simple_select('edit', Researcharea, 1) %>
+ <%= simple_select('filt', Researcharea, 1) %>
  <%= submit_for_stack('researcharea') %>
 </div>
 
-<%= observe_select('edit', 'researcharea_id', 'select_researcharea_researchline', 1) %>
+<%= observe_select('filt', 'researcharea_id', 'select_researcharea_researchline', 1) %>
 
 <div class="row">
 <label for="researchline_id" class="label"><%= get_label('researchline_id') %> <span class="required">*</span></label>

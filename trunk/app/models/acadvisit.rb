@@ -1,5 +1,4 @@
 class Acadvisit < ActiveRecord::Base
-attr_accessor :institutiontitle_id
 
 validates_presence_of :institution_id, :country_id, :acadvisittype_id, :descr, :startyear, :user_id
 validates_numericality_of :id, :allow_nil => true, :only_integer => true

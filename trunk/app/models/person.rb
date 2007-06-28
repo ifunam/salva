@@ -11,9 +11,6 @@ class Person < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
 
-  attr_accessor :name, :code
-
-
   def fullname
     [self.lastname1, self.lastname2, self.firstname].join(' ')
   end
