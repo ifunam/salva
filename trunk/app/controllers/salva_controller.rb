@@ -64,9 +64,9 @@ class SalvaController < ApplicationController
     @edit = @model.new(params[:edit])
     set_userid
     if params[:stack] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack])
+      redirect_to options_for_next_controller(@edit, controller_name, 'new')
     elsif params[:stacklist] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stacklist], 'list')
+      redirect_to options_for_next_controller(@edit, controller_name, 'new', 'list')
     else
       if @edit.save
         if @children != nil
@@ -86,9 +86,9 @@ class SalvaController < ApplicationController
     @edit = @model.find(params[:id])
     set_userid
     if params[:stack] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'edit', params[:edit], params[:stack])
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit')
     elsif params[:stacklist] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'edit', params[:edit], params[:stacklist], 'list')
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit', 'list')
     else
       if @edit.update_attributes(params[:edit])
         if @children != nil

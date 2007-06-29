@@ -126,7 +126,7 @@ class PersonController < ApplicationController
   def redirect_if_stack(action)
     if params[:stack] != nil
       clean_photo_attributes
-      redirect_to options_for_next_controller(@edit, controller_name, action, params[:edit], params[:stack])
+      redirect_to options_for_next_controller(@edit, controller_name, action)
       return true
     end
     return false
