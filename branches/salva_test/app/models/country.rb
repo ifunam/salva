@@ -1,7 +1,9 @@
 class Country < ActiveRecord::Base
   has_many :states
-  has_many  :journals
-  has_many  :newspapers
+  has_many :journals
+  has_many :newspapers
+  has_many :acadvisits
+  has_many :courses
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
 

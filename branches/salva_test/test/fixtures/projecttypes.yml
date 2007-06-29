@@ -1,10 +1,10 @@
---- 
-docencia: 
+---
+docencia:
   name: Docencia
   id: 3
-difusion: 
+difusion:
   name: Difusión
   id: 2
-investigacion: 
+investigacion:
   name: Investigación
   id: 1

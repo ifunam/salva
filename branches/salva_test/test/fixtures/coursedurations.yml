@@ -1,13 +1,13 @@
---- 
-semanal: 
+---
+semanal:
   name: Semanal
-  days: "5"
+  days: 5
   id: 1
-mensual: 
+mensual:
   name: Mensual
-  days: "30"
+  days: 30
   id: 2
-trimestral: 
+trimestral:
   name: Trimestral
-  days: "90"
+  days: 90
   id: 3

@@ -1,10 +1,10 @@
---- 
-concluido: 
+---
+concluido:
   name: Concluído
   id: 3
-inicio: 
+inicio:
   name: Inicio
   id: 1
-en_proceso: 
+en_proceso:
   name: En proceso
   id: 2

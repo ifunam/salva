@@ -6,31 +6,31 @@ class AcadvisittypeTest < Test::Unit::TestCase
   include UnitSimple
 
   def setup
-    @acadvisittype = %w(posdoctoral sabatico investigacion)
+    @acadvisittypes = %w(posdoctoral sabatico investigacion)
     @myacadvisittype = Acadvisittype.new({:name => 'entrevistas'})
   end
 
   #Right - CRUD
   def test_crud
-    crud_test(@acadvisittype, Acadvisittype)
+    crud_test(@acadvisittypes, Acadvisittype)
   end
 
   def test_validation
-    validate_test(@acadvisittype, Acadvisittype)
+    validate_test(@acadvisittypes, Acadvisittype)
   end
 
   def test_collision
-    collision_test(@acadvisittype, Acadvisittype)
+    collision_test(@acadvisittypes, Acadvisittype)
   end
 
   def test_create_with_empty_attributes
-    @acadvisittype = Acadvisittype.new
-    assert !@acadvisittype.save
+    @acadvisittypes = Acadvisittype.new
+    assert !@acadvisittypes.save
   end
 
   def test_check_uniqueness
-    @acadvisittype = Acadvisittype.new({:name => 'Posdoctoral'})
-    assert !@acadvisittype.save
+    @acadvisittypes = Acadvisittype.new({:name => 'Posdoctoral'})
+    assert !@acadvisittypes.save
   end
   # boundary
   # Checking constraints for name
