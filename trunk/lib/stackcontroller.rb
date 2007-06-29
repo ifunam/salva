@@ -9,7 +9,7 @@ module Stackcontroller
   def options_from_params
     stack_params = params[:stack]
     if stack_params =~ /:/
-      [ stack_params.split(':')[0], stack_params.split(':')[0]+'_id',  params[:edit][stack_params.split(':')[1].to_sym] || params[:filt][stack_params.split(':')[1].to_sym] ]
+      [ stack_params.split(':')[0], stack_params.split(':')[0]+'_id',   params[:edit][stack_params.split(':')[1].to_sym]  ||  params[:filt][stack_params.split(':')[1].to_sym] ]
     elsif stack_params =~ /\,/
       [ stack_params.split(',')[0], stack_params.split(',')[1] ]
     else
@@ -27,20 +27,20 @@ module Stackcontroller
     session[:filter].push(controller, action, nil, hash, attribute)
   end
 
-  def model_from_stack
-    if has_model_in_stack?
-      session[:stack].delete_after_controller(controller_name) if session[:stack].included_controller?(controller_name)
-      if (session[:stack].controller == controller_name)
-        model = session[:stack].model
-        session[:stack].pop
+  def model_from_stack(item=:stack)
+    if has_model_in_stack?(item)
+      session[item].delete_after_controller(controller_name) if session[item].included_controller?(controller_name)
+      if (session[item].controller == controller_name)
+        model = session[item].model
+        session[item].pop
         return model
       end
     end
     nil
   end
 
-  def has_model_in_stack?
-    if session[:stack] and !session[:stack].empty? and session[:stack].model != nil
+  def has_model_in_stack?(item=:stack)
+    if session[item] and !session[item].empty? and session[item].model != nil
       return true
     end
     return false

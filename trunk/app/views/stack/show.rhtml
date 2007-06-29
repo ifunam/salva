@@ -1,5 +1,6 @@
+<b>Stack (with or without model)</b><br/>
 <% if @edit == nil %>
-Stack vacio
+Empty
 <% else %>
 Size: <%=@edit.size%><br/>
 Controller: <%=@edit.controller%><br/>
@@ -7,6 +8,19 @@ Action: <%=@edit.action%><br/>
 Id: <%=@edit.id%><br/>
 Model: <%=@edit.model.class.name%><br/>
 Attribute: <%=@edit.attribute%><br/>
+<% end %>
+<hr/>
+
+<b>Stack for filter</b><br/>
+<% if @filter == nil %>
+Empty
+<% else %>
+Size: <%=@filter.size%><br/>
+Controller: <%=@filter.controller%><br/>
+Action: <%=@filter.action%><br/>
+Id: <%=@filter.id%><br/>
+Model: <%=@filter.model.class.name%><br/>
+Attribute: <%=@filter.attribute%><br/>
 <% end %>
 
 

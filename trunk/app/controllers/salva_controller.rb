@@ -47,6 +47,7 @@ class SalvaController < ApplicationController
       edit_sequence
     else
       @edit = model_from_stack || @model.find(params[:id])
+      @filter = model_from_stack(:filter)
       render :action => 'edit'
     end
   end
@@ -56,6 +57,7 @@ class SalvaController < ApplicationController
       new_sequence
     else
       @edit = model_from_stack || @model.new
+      @filter = model_from_stack(:filter)
       render :action => 'new'
     end
   end
