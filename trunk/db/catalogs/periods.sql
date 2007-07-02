@@ -9,3 +9,5 @@ INSERT INTO periods (title, startdate, enddate) VALUES ('2006-1', '2005-08-15', 
 INSERT INTO periods (title, startdate, enddate) VALUES ('2006-2', '2006-02-13', '2006-06-09');
 INSERT INTO periods (title, startdate, enddate) VALUES ('2007-1', '2006-08-14', '2006-11-30');
 INSERT INTO periods (title, startdate, enddate) VALUES ('2007-2', '2007-02-12', '2007-06-06');
+INSERT INTO periods (title, startdate, enddate) VALUES ('2008-1', '2007-08-13', '2007-11-30');
+
