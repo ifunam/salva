@@ -72,3 +72,7 @@
 - - userconference_committee
   - activity
   - user_genericwork
+- user_reports
+- - resume
+  - annual_report
+  - annual_activities_plan

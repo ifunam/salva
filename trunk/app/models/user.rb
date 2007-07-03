@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_many :addresses
+  has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
   has_many :user_articles
   has_many :articles, :through => :user_articles
@@ -27,6 +28,9 @@ class User < ActiveRecord::Base
 
   has_many :user_inproceedings
   has_many :inproceedings, :through => :user_inproceedings
+
+
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password

@@ -159,18 +159,17 @@
 /*
  * =HEADINGS
  */
+  h1 {
+     border-bottom: 1px solid silver;
+  }
 
   h2 {
-    font: normal 170% Georgia, Times, Helvetica;
-    background: url(../images/admin/h-tile.gif) repeat-x;
-    color: #930;
-    padding: 25px 0 0 5px;
-    }
+    font-weight: bold;
+      }
 
    h3 {
-    font-size: 130%;
-    padding: 5px;
     margin-bottom: 0;
+    font-weight: bold;
     }
 
   #header h1 {
@@ -187,9 +186,8 @@
     }
 
   .form h3,  h3 {
-    background: #333;
-    color: #fff;
-    font-weight: normal;
+    color: #00000;
+    font-weight: bold;
     }
 
   .form h4 {
@@ -243,7 +241,7 @@ label {
   }
 
 .form {
-	background: #D7DFE4;
+        background: #D7DFE4;
   margin-bottom: 10px;
   padding: 0 0 0 10px;
   }
@@ -523,7 +521,7 @@ div.user {
 
 #loginform {
   width: 300px;
-  margin-left: 110px;  
+  margin-left: 110px;
   padding: 0px;
 }
 
@@ -569,7 +567,7 @@ div.user {
 }
 
 #footer {
-	font-size: 0.8em;
-	color: #888;
-	font-style: italic;
+        font-size: 0.8em;
+        color: #888;
+        font-style: italic;
 }

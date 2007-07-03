@@ -10,9 +10,9 @@ body {
 
 .site a {
         color: #CDCD9E;
-	text-decoration: none;
-	font-weight: bold;
-	font: 16px Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        font-weight: bold;
+        font: 16px Arial, Helvetica, sans-serif;
 }
 
 .site a:visited {
@@ -20,11 +20,11 @@ body {
 }
 
 .site a:hover {
-	color: #EAF01C;
+        color: #EAF01C;
 }
 
 .container {
-  width: 100%; 
+  width: 100%;
   border: 4px double #93b6e2;
   background-color: #ffffff;
 }
@@ -34,141 +34,146 @@ body {
 }
 
 .topbar {
-	border: 1px solid #336699;
-	background: #4381CE;
-	width: 99.9%;
-	height: 50px;
-	text-align: left;
-	color: #C2f9ff;
-	font: 16px Arial, Helvetica, sans-serif;
-	font-weight: bold; 
-	padding-top: 5px;
+        border: 1px solid #336699;
+        background: #4381CE;
+        width: 99.9%;
+        height: 50px;
+        text-align: left;
+        color: #C2f9ff;
+        font: 16px Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        padding-top: 5px;
 }
 
 .topbar img {
-	vertical-align: middle;
-	padding-right: 25px;
-	border: 0px;
+        vertical-align: middle;
+        padding-right: 25px;
+        border: 0px;
 }
 
 .toplinks {
-	width: 100%;
-	height: 13px;
-	background: #FFFFFF;
-	color: #0F4180;
-	margin-top: 2px;
-	vertical-align: bottom;
-	font: 12px Arial, Helvetica, san-serif;
-	text-align: right;
+        width: 100%;
+        height: 13px;
+        background: #FFFFFF;
+        color: #0F4180;
+        margin-top: 2px;
+        vertical-align: bottom;
+        font: 12px Arial, Helvetica, san-serif;
+        text-align: right;
 }
 
 .toplinks a {
-	color: #0F4180;
-	text-decoration: underline;
-	font: 12px Arial, Helvetica, san-serif;
-	padding-right: 4px;
+        color: #0F4180;
+        text-decoration: underline;
+        font: 12px Arial, Helvetica, san-serif;
+        padding-right: 4px;
 }
 
 .toplinks a:visited {
-	color: #0F4180;
+        color: #0F4180;
 }
 
 .toplinks a:hover {
-	color: blue;
+        color: blue;
 }
-	
+
 .toplinks .logged_user {
-	color: green;
-	font-weight: bold;
+        color: green;
+        font-weight: bold;
 }
 
 .title {
-	width: 100%;
-	height: 50px;
-	background: #FFFFFF;
-	color: #336699;
-	margin-top: 0px;
-	vertical-align: bottom;
-	font: 16px Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: left;
+        width: 100%;
+        height: 50px;
+        background: #FFFFFF;
+        color: #336699;
+        margin-top: 0px;
+        vertical-align: bottom;
+        font: 16px Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-align: left;
 }
 
 .title img {
-	vertical-align: bottom;
-	padding-right: 5px;
-	border: 0px;
+        vertical-align: bottom;
+        padding-right: 5px;
+        border: 0px;
 }
 
 .navbar {
-	background: #4381CE;
-	width: 99.5%;
-	height: 14;
-	border-top: 1px solid #336699;
-	border-bottom: 1px solid #336699;
-	text-align: left;
-	padding: 2px;
-	color: #FFFFFF;
-	font: 12px Arial, Helvetica, sans-serif;
+        background: #4381CE;
+        width: 99.5%;
+        height: 14;
+        border-top: 1px solid #336699;
+        border-bottom: 1px solid #336699;
+        text-align: left;
+        padding: 2px;
+        color: #FFFFFF;
+        font: 12px Arial, Helvetica, sans-serif;
 }
 
 .navbar a {
-	color: #FFFFFF;
+        color: #FFFFFF;
         text-decoration: underline;
 }
 
 .navbar a:visited {
-	color: #FFFFFF;
+        color: #FFFFFF;
 }
 
 .navbar a:hover {
-	color: yellow;
+        color: yellow;
 }
 
+.supported_formats {
+       color: #00000;
+       font-weight: bold;
+       text-align: right;
+}
 .navtab {
-	width: 99.5%;
-	text-align: left;
-	padding: 2px;
-	font: 12px Arial, Helvetica, sans-serif;
+        width: 99.5%;
+        text-align: left;
+        padding: 2px;
+        font: 12px Arial, Helvetica, sans-serif;
 }
 
 .navtab_item {
-       	display: table-cell;
-	width: 185px;
-	padding: 10px;
-	margin: 15px;
-	margin-top: 30px;
-	margin-bottom: 20px;
+        display: table-cell;
+        width: 185px;
+        padding: 10px;
+        margin: 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
 }
 
 .navtab_item img {
-	vertical-align: middle;
-	padding-right: 3px;
-	border: 0px;
+        vertical-align: middle;
+        padding-right: 3px;
+        border: 0px;
 }
 
 .navtab_item a {
-	color: #0F4180;
-	text-decoration: none;
+        color: #0F4180;
+        text-decoration: none;
 }
 
 .navtab_item a:visited {
-	color: #0F4180;
+        color: #0F4180;
 }
 
 .navtab_item a:hover {
-	color: green;
+        color: green;
 }
 
 
 .navcontrol {
-	background: transparent;
-	height: 14;
-	text-align: left;
-	font: 12px Arial, Helvetica, sans-serif;
-	padding: 2px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+        background: transparent;
+        height: 14;
+        text-align: left;
+        font: 12px Arial, Helvetica, sans-serif;
+        padding: 2px;
+        padding-top: 5px;
+        padding-bottom: 5px;
 }
 
 .navcontrol a {
@@ -179,32 +184,32 @@ body {
      background: #4381CE;
      border-width: 1px;
      border-style: solid;
-     border-color: #5268a0 #6377a9 #112153 #09143a; 
+     border-color: #5268a0 #6377a9 #112153 #09143a;
      padding: 0.15em 0.25em 0.15em 0.75em;
-     width: 11em; 
-} 
+     width: 11em;
+}
 
-.navcontrol a#current { 
-  border-color: #5268a0 #6377a9 #112153 #CCFF00; 
-  color: #CCFF00; 
+.navcontrol a#current {
+  border-color: #5268a0 #6377a9 #112153 #CCFF00;
+  color: #CCFF00;
 }
 
 .navcontrol a {
-  width: 99%; 
+  width: 99%;
   /* only necessary for Internet Explorer */
 }
 
 .navcontrol a {
   voice-family: "\"}\"";
   voice-family: inherit;
-  width: 6.6em; 
+  width: 6.6em;
   /* Tantek-hack should only used if Internet-Explorer 6 is in standards-compliant mode */
 }
 
 .navcontrol a:hover, .navcontrol a#current:hover {
   background: #D6E7EF;
   border-color: #112153 #6377a9 #5268a0 #5268a0;
-  color: black; 
+  color: black;
   padding: 0.15em 0.25em 0.15em 0.75em;
 }
 
@@ -214,16 +219,16 @@ body {
   padding: 0.4em 0.35em 0.25em 0.9em;
 }
 
-.formbox { 
+.formbox {
     z-index: 1;
-    font: 12px Arial, Helvetica, sans-serif; 
+    font: 12px Arial, Helvetica, sans-serif;
     background: #fff url(/images/login_body_bg.jpg) top;
     border: 1px solid #336699;
     position: static;
     margin: 5px;
     padding: 5px;
     text-align: left;
-} 
+}
 
 .formbox .partial {
     z-index: 3;
@@ -266,13 +271,13 @@ body {
     vertical-align: top;
 }
 
-.row .required { 
+.row .required {
   font-weight: bold;
   color: #0866B7;
 }
 
 .row a {
-     color: #0866B7; 
+     color: #0866B7;
      text-decoration: none;
 }
 
@@ -281,7 +286,7 @@ body {
 }
 
 .row a:hover {
-     color: green;      
+     color: green;
      text-decoration: none;
 }
 .box .options {
@@ -289,28 +294,28 @@ body {
 }
 
 .box .options a {
-	background: #709bd1;
-	color: #fff;
-	padding: 0px;
-	font-size: 12px;
-	text-align: center;
-	text-decoration: none;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #abcdec #6377a9 #518ac8 #336699;
+        background: #709bd1;
+        color: #fff;
+        padding: 0px;
+        font-size: 12px;
+        text-align: center;
+        text-decoration: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #abcdec #6377a9 #518ac8 #336699;
 }
 
 .box .options a:hover {
-	background: #336699;
-	color: #fff;
-	padding: 0px;
-	font-size: 12px;
-	text-align: center;
-	text-decoration: none;
-	padding: 3px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #709bd1 #518ac8  #6377a9 #abcdec;
+        background: #336699;
+        color: #fff;
+        padding: 0px;
+        font-size: 12px;
+        text-align: center;
+        text-decoration: none;
+        padding: 3px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #709bd1 #518ac8  #6377a9 #abcdec;
 }
 
 a.show {
@@ -362,35 +367,35 @@ a:hover.purge {
 }
 
 .box .top_options {
-	background: url(/images/bg_box_top_options.gif) center left repeat-x;
-	width: 540px;
-	text-align: left;
+        background: url(/images/bg_box_top_options.gif) center left repeat-x;
+        width: 540px;
+        text-align: left;
         padding-left: 10px;
         padding-top: 10px;
-	color: #000000;
-	text-decoration: none;
-	margin-bottom: 5px;
-	display: table;
+        color: #000000;
+        text-decoration: none;
+        margin-bottom: 5px;
+        display: table;
 }
 
 .box .top_options a {
-	color: #034168;
-	background: #D6E7EF; 
-	text-decoration: none;
-	border: 1px solid #999;
+        color: #034168;
+        background: #D6E7EF;
+        text-decoration: none;
+        border: 1px solid #999;
         border-top: 1px solid #ddd;
-	border-left: 1px solid #ddd;
-	padding-top: 1px;
-	padding-bottom: 2px;
-	padding-left: 8px;
-	padding-right: 8px;
-	vertical-align: middle;
+        border-left: 1px solid #ddd;
+        padding-top: 1px;
+        padding-bottom: 2px;
+        padding-left: 8px;
+        padding-right: 8px;
+        vertical-align: middle;
 }
 
 .box .top_options a:hover {
   background-color: #ffff99;
   color: #000;
-  font: 12px Arial, Helvetica, sans-serif;	
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
 .box .top_options input[type="button"], input[type="submit"]  {
@@ -402,14 +407,14 @@ a:hover.purge {
   margin-left: 2px;
   margin-top: 0px;
   margin-right: 2px;
-  font: 12px Arial, Helvetica, sans-serif;	
+  font: 12px Arial, Helvetica, sans-serif;
   vertical-align: top;
 }
 
 .box .top_options input[type="button"]:hover, input[type="submit"]:hover {
   background-color: #ffff99;
   color: #000;
-  font: 12px Arial, Helvetica, sans-serif;	
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
 .add {
@@ -420,43 +425,43 @@ a:hover.purge {
    border: 1px groove green;
 }
 fieldset {
-	margin-bottom: 10px;
-	border: 1px solid silver;
+        margin-bottom: 10px;
+        border: 1px solid silver;
 }
 
 legend {
-	font: 15px Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: center;
-	padding-bottom: 10px;
+        font: 15px Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 10px;
 }
 
 fieldset .error {
-	background: #ffffcc;
-	width: 530px;
-	min-height: 150px;
-	margin: 30px;
+        background: #ffffcc;
+        width: 530px;
+        min-height: 150px;
+        margin: 30px;
         padding: 10px;
-	margin-left: 30px;
-	margin-top: 10px;
-	border: 1px solid silver;
-	text-align: justify;
+        margin-left: 30px;
+        margin-top: 10px;
+        border: 1px solid silver;
+        text-align: justify;
 }
 
 p {
-   font:  12px Arial,  sans-serif;	
+   font:  12px Arial,  sans-serif;
 }
 
 .label {
-	float: left;
-	width: 160px;
-	min-height: 25px;
-	text-align: left;
-	margin-right: 10px;
-	margin-bottom: 5px;
-	font:  12px Arial,  sans-serif;	
-	font-weight: bold;
-	color: #000000;
+        float: left;
+        width: 160px;
+        min-height: 25px;
+        text-align: left;
+        margin-right: 10px;
+        margin-bottom: 5px;
+        font:  12px Arial,  sans-serif;
+        font-weight: bold;
+        color: #000000;
 }
 
 
@@ -476,10 +481,10 @@ input, select {
 textarea {
   width: inherit;
   margin-bottom: 10px;
-  font: 12px Arial, Helvetica, sans-serif;	
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
-input[type="text"], input[type="password"], textarea { 
+input[type="text"], input[type="password"], textarea {
   background-color: #fafafa;
   border: 1px solid #ddd;
   border-top: 1px solid #999;
@@ -487,76 +492,76 @@ input[type="text"], input[type="password"], textarea {
   padding:3px;
   margin-bottom: 0px;
   font: 12px Arial, Helvetica, sans-serif;
-  margin-right: 10px;	
+  margin-right: 10px;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus { 
-  background-color: #fff; 
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+  background-color: #fff;
   border: 1px solid #666;
   margin-bottom: 0px;
-  font: 12px Arial, Helvetica, sans-serif;	
-  margin-right: 10px;	
+  font: 12px Arial, Helvetica, sans-serif;
+  margin-right: 10px;
 }
 
 /* table used for lists with blue color */
 table.list {
-	width: 100%;
-	background: #336699;
-	border: 1px solid #336699;
-	margin-bottom: 10px;
-	empty-cells: show;
-	border-spacing: 0px;
+        width: 100%;
+        background: #336699;
+        border: 1px solid #336699;
+        margin-bottom: 10px;
+        empty-cells: show;
+        border-spacing: 0px;
 }
 
 table.list tr {
-	background: transparent;
+        background: transparent;
 }
 
 table.list tr:hover {
-	background: #ffffdb !important;
+        background: #ffffdb !important;
 }
 
 table.list tr.odd {
-	background: #ecefff;
+        background: #ecefff;
 }
 
 table.list tr.even {
-	background: #f8f8f8;
+        background: #f8f8f8;
 }
 
 table.list th {
-	background: #336699;
-	color: #fff;
-	padding: 0px;
-	font-size: 12px;
-	font-weight: normal;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #709bd1 #518ac8  #6377a9 #709bd2;
-	text-align: center;
-	padding: 2px;
+        background: #336699;
+        color: #fff;
+        padding: 0px;
+        font-size: 12px;
+        font-weight: normal;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #709bd1 #518ac8  #6377a9 #709bd2;
+        text-align: center;
+        padding: 2px;
 }
 
 table.list td {
-	padding-top: 1px;
-	padding-bottom: 1px;
-	padding-left: 2px;
-	padding-right: 2px;
-	border-bottom: 1px dotted #336699;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+        border-bottom: 1px dotted #336699;
 }
 
 table.list td.item {
-	text-align: left;
-	width: 20px;
-	padding-left: 3px;
-	padding-right: 3px;
+        text-align: left;
+        width: 20px;
+        padding-left: 3px;
+        padding-right: 3px;
 }
 
 table.list td.link {
-	text-align: left;
-	width: 60px;
-	padding-left: 3px;
-	padding-right: 3px;
+        text-align: left;
+        width: 60px;
+        padding-left: 3px;
+        padding-right: 3px;
 }
 
 table.list td.link .show {
@@ -640,14 +645,14 @@ div.progressBar div.background {
   background: #fad163;
   border: 2px groove #fad163;
   padding: 3px;
-  color: black; 
+  color: black;
 }
 
 .moduser {
-	background: #ffffcc;
-    	text-align: left;	
-	border: 1px solid silver;
-	padding: 5px;
+        background: #ffffcc;
+        text-align: left;
+        border: 1px solid silver;
+        padding: 5px;
 }
 
 .moduser .label {
@@ -672,12 +677,12 @@ div.auto_complete ul li {
    padding:3px;
 }
 
-div.auto_complete ul li.selected { 
-  background-color: #ffb; 
+div.auto_complete ul li.selected {
+  background-color: #ffb;
 }
 
-div.auto_complete ul strong.highlight { 
- color: #800; 
+div.auto_complete ul strong.highlight {
+ color: #800;
  margin:0;
  padding:0;
 }

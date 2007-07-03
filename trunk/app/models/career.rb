@@ -7,4 +7,8 @@ class Career < ActiveRecord::Base
 
   belongs_to :degree
   validates_associated :degree, :on => :update
+
+  def as_text
+    degree.name + ': ' + name
+  end
 end

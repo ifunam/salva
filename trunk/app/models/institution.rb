@@ -19,5 +19,11 @@ class Institution < ActiveRecord::Base
   validates_associated :country, :on => :update
   validates_associated :state, :on => :update
   validates_associated :city, :on => :update
+
+  def as_text
+    values = [name, abbrev]
+    values << institution.name unless institution.name.nil?
+    values.compact.join(', ')
+  end
 end
 
