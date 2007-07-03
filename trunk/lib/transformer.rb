@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'pdf/writer'
-require 'pdf/quickref'
+require 'pdfwriter_extensions'
 require 'textile'
 class Transformer
   include Textile

@@ -47,7 +47,7 @@ class Resume
   def tags_for_items(collection)
     collection.collect { |item|
       item and next if item.is_a? Hash
-      item.collect {|a| ( a.is_a? Array)  ? [ get_label(a[0]),  a[1].to_s ] :  a }
+      item.collect {|a| ( a.is_a? Array)  ? [ get_label(a[0]),  a[1].to_s ] :  a.to_s }
     }
   end
 
