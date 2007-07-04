@@ -7,6 +7,6 @@ class ProfessorAdviceController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :conditions => "indivadvicetarget_id = 4" }
+    @list = { :conditions => "indivadvicetarget_id = 5" }
   end
 end

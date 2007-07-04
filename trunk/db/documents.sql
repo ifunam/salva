@@ -46,7 +46,6 @@ CREATE TABLE user_documents (
                 ON UPDATE CASCADE
                 DEFERRABLE,
         is_published boolean NOT NULL,
-        date_published date NOT NULL,
         document  bytea NOT NULL,
         filename text NOT NULL,
         content_type text NOT NULL,
@@ -79,7 +78,7 @@ CREATE TABLE approved_documents (
         moduser_id int4  NULL        -- Use it only to know who has
                 REFERENCES users(id) -- inserted, updated or deleted
                 ON UPDATE CASCADE    -- data into or from this table.
-              DEFERRABLE,
+                DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
