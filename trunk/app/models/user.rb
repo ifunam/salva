@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   has_many :inproceedings, :through => :user_inproceedings
 
 
+  has_many :user_documents
+  has_many :documents, :through => :user_documents
+
+
 
   # Callbacks
   before_create :prepare_new_record

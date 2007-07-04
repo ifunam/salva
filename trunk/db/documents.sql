@@ -20,6 +20,7 @@ CREATE TABLE documents (
                 REFERENCES documenttypes(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
+        title text NOT NULL,
         startdate date NOT NULL,
         enddate date NOT NULL,
         moduser_id int4  NULL        -- Use it only to know who has
@@ -28,7 +29,8 @@ CREATE TABLE documents (
               DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY(id)
+        PRIMARY KEY(id),
+        UNIQUE (documenttype_id, title)
 );
 COMMENT ON TABLE documents IS
         'Esta tabla indica el tipo de documento que se va a almacenar y el período válido para su expedición';
@@ -46,8 +48,8 @@ CREATE TABLE user_documents (
         is_published boolean NOT NULL,
         date_published date NOT NULL,
         document  bytea NOT NULL,
-        document_filename text NOT NULL,
-        document_content_type text NOT NULL,
+        filename text NOT NULL,
+        content_type text NOT NULL,
         ip_address text NOT NULL,-- El tipo de dato INET no esta soportado en rails
         moduser_id int4  NULL        -- Use it only to know who has
                REFERENCES users(id) -- inserted, updated or deleted
@@ -55,7 +57,8 @@ CREATE TABLE user_documents (
                DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        UNIQUE (user_id, document_id)
 );
 COMMENT ON TABLE user_documents IS
         'Documentos que ha publicado el usuario';

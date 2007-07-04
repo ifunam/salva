@@ -4,18 +4,23 @@
 <div class="row">
 <label for="documenttype_id" class="label"><%= get_label('documenttype_id') %> <span class="required">*</span></label>
 <div id="documenttype_id">
-<%= simple_select('edit', Documenttype, 1) %>
+<%= simple_select('edit', Documenttype, 1) %>   <%= submit_for_stack('documenttype') %>
 </div>
+</div>
+
+<div class="row">
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'title', 'tabindex' => 2 %>
 </div>
 
 <div class="row">
 <label for="startdate" class="label"><%= get_label('startdate') %> <span class="required">*</span></label>
-<%= date_for_select('edit', 'startdate', 2) %>
+<%= date_for_select('edit', 'startdate', 3) %>
 </div>
 
 <div class="row">
 <label for="enddate" class="label"><%= get_label('enddate') %> <span class="required">*</span></label>
-<%= date_for_select('edit', 'enddate', 3) %>
+<%= date_for_select('edit', 'enddate', 4) %>
 </div>
 
 
