@@ -1,6 +1,11 @@
 class Activity < ActiveRecord::Base
-validates_presence_of :activitytype_id, :name, :year
-validates_numericality_of :activitytype_id
-belongs_to :activitytype
-attr_accessor :activitygroup_id
+  validates_numericality_of :id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :activitytype_id, :only_integer => true
+  validates_numericality_of :user_id, :only_integer => true
+
+  validates_presence_of :name, :activitytype_id, :user_id, :year
+  validates_uniqueness_of :name, :scope => [:activity_id]
+  belongs_to :activitytype
+  belongs_to :user
+  validates_associated :activitytype, :on => :update
 end

@@ -3,6 +3,7 @@ class Institution < ActiveRecord::Base
   has_many :grants
   has_many :acadvisits
   has_many :courses
+  has_many  :scoolarships
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontitle_id, :allow_nil => true, :only_integer => true
@@ -24,5 +25,11 @@ class Institution < ActiveRecord::Base
   validates_associated :country, :on => :update
   validates_associated :state, :on => :update
   validates_associated :city, :on => :update
+
+  def as_text
+    values = [name, abbrev]
+    values << institution.name unless institution.name.nil?
+    values.compact.join(', ')
+  end
 end
 
