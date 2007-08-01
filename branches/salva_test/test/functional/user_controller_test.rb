@@ -12,7 +12,7 @@ class UserControllerTest < Test::Unit::TestCase
     @controller = UserController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @user = User.new({ :login => 'miguel', :passwd => 'hola123', :passwd_confirmation => 'hola123', :email => 'bachitas83@hotmail.com'} )
+    @user = User.new({ :login => 'miguel', :passwd => 'hola123', :passwd_confirmation => 'hola123', :email => 'bachitas83@hotmail.com', :id => 6 } )
  end
 
   def test_login_form
@@ -92,7 +92,8 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_activate
-   @default_users.keys.each { |user|
+puts @use
+  @default_users.keys.each { |user|
       @user = User.find(:first, :conditions => "login = '#{user}'")
       @user.new_token
       get :activate, {:id => @user.id, :token => @user.token}
@@ -114,6 +115,7 @@ def test_activate_bad_values
 
 
   def test_signup_by_token
+    puts @user.id
     @default_users.keys.each { |user|
       @user = User.find(:first, :conditions => "login = '#{user}'")
       @user.new_token
