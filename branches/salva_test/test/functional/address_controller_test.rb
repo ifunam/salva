@@ -11,17 +11,16 @@ class Address_ControllerTest < SalvaControllerTest
   def initialize(*args) #This is an ugly  hack, but  it works
     super
     @mycontroller = AddressController.new
-    @myfixtures =  {
+    @fixtures =  {
       :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez",
       :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true,
        :id => 1}
-    @mybadfixtures = {
+    @badfixtures = {
       :location => nil,
       :zipcode => 03650,  :country_id => nil,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> false,
       :id=>1
     }
-   @class = Address
-
+    @model = Address
   end
 end
 
