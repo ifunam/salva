@@ -1,0 +1,12 @@
+solicitado:
+  name: Solicitado
+  id: 1
+aprobado:
+  name: Aprobado
+  id: 2
+rechazado:
+  name: Rechazado
+  id: 3
+en_proceso:
+  name: En proceso
+  id: 4
