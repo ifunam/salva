@@ -159,4 +159,11 @@ class SalvaControllerTest < Test::Unit::TestCase
       assert_redirected_to :action => 'list'
     end
   end
+
+  def teardown
+   catch :abort  do
+      throw :abort if @controller.nil?
+      @model.destroy_all if  @model.find(:all).size > 0
+   end
+  end
 end

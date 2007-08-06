@@ -2,11 +2,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'acadvisit'
 
 class AcadvisitTest < Test::Unit::TestCase
-  fixtures :countries, :states, :cities, :institutiontitles,:institutiontypes,:institutions,:userstatuses,:users,:acadvisittypes, :acadvisits
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions,:userstatuses, :users, :acadvisittypes, :acadvisits
 
   def setup
     @acadvisits = %w(chavez pipo)
-    @myacadvisit = Acadvisit.new({:name => 'Cuahtemoc Blanco', :acadvisittype_id => 2, :user_id =>2, :country_id => 484, :startyear => 2007, :institution_id => 1})
+    @myacadvisit = Acadvisit.new({:descr => 'Estancia para cuidar patos', :acadvisittype_id => 2, :user_id =>2, :country_id => 484, :startyear => 2007, :institution_id => 1})
   end
 
   # Right - CRUD
@@ -15,7 +15,7 @@ class AcadvisitTest < Test::Unit::TestCase
       @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
       assert_kind_of Acadvisit, @acadvisit
       assert_equal acadvisits(acadvisit.to_sym).id, @acadvisit.id
-      assert_equal acadvisits(acadvisit.to_sym).name, @acadvisit.name
+      assert_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
       assert_equal acadvisits(acadvisit.to_sym).acadvisittype_id, @acadvisit.acadvisittype_id
       assert_equal acadvisits(acadvisit.to_sym).user_id, @acadvisit.user_id
       assert_equal acadvisits(acadvisit.to_sym).country_id, @acadvisit.country_id
@@ -23,13 +23,13 @@ class AcadvisitTest < Test::Unit::TestCase
     }
   end
 
-  def test_updating_acadvisits_name
+  def test_updating_acadvisits_descr
     @acadvisits.each { |acadvisit|
       @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
-      assert_equal acadvisits(acadvisit.to_sym).name, @acadvisit.name
-      @acadvisit.name = @acadvisit.name.chars.reverse
+      assert_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
+      @acadvisit.descr = @acadvisit.descr.chars.reverse
       assert @acadvisit.update
-      assert_not_equal acadvisits(acadvisit.to_sym).name, @acadvisit.name
+      assert_not_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
     }
   end
 
@@ -49,7 +49,7 @@ class AcadvisitTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_acadvisit
-    @myacadvisit = Acadvisit.new({:name => 'Felipe Calderon', :acadvisittype_id => 2, :user_id  =>3, :country_id => 484, :startyear => 2007, :institution_id => 1})
+    @myacadvisit = Acadvisit.new({:descr => 'Estancia de trabajo experimental en las islas marías', :acadvisittype_id => 2, :user_id  =>3, :country_id => 484, :startyear => 2007, :institution_id => 1})
     @myacadvisit.id = 2
     assert !@myacadvisit.save
   end
@@ -65,14 +65,14 @@ class AcadvisitTest < Test::Unit::TestCase
     #assert !@myacadvisit.valid?
   end
 
-  def test_bad_values_for_name
-    @myacadvisit.name = nil
+  def test_bad_values_for_descr
+    @myacadvisit.descr = nil
     assert !@myacadvisit.valid?
   end
 
   def test_bad_values_for_country_id
-    # Checking constraints for name
-    # Nil name
+    # Checking constraints for descr
+    # Nil descr
     @myacadvisit.country_id = nil
     assert !@myacadvisit.valid?
 
@@ -87,8 +87,8 @@ class AcadvisitTest < Test::Unit::TestCase
 
 
   def test_bad_values_for_institutions_id
-    # Checking constraints for name
-    # Nil name
+    # Checking constraints for descr
+    # Nil descr
     @myacadvisit.institution_id = nil
     assert !@myacadvisit.valid?
 
@@ -103,8 +103,8 @@ class AcadvisitTest < Test::Unit::TestCase
 
 
   def test_bad_values_for_acadvisittype_id
-    # Checking constraints for name
-    # Nil name
+    # Checking constraints for descr
+    # Nil descr
     @myacadvisit.acadvisittype_id = nil
     assert !@myacadvisit.valid?
 
@@ -118,8 +118,8 @@ class AcadvisitTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_user_id
-    # Checking constraints for name
-    # Nil name
+    # Checking constraints for descr
+    # Nil descr
     @myacadvisit.user_id = nil
     assert !@myacadvisit.valid?
 
