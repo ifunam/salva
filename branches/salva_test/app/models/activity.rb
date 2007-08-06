@@ -4,7 +4,7 @@ class Activity < ActiveRecord::Base
   validates_numericality_of :user_id, :only_integer => true
 
   validates_presence_of :name, :activitytype_id, :user_id, :year
-  validates_uniqueness_of :name, :scope => [:activity_id]
+  validates_uniqueness_of :name
   belongs_to :activitytype
   belongs_to :user
   validates_associated :activitytype, :on => :update

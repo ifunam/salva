@@ -3,7 +3,7 @@ require 'activitytype'
 require 'activity'
 
 class ActivityTest < Test::Unit::TestCase
-  fixtures :users, :activitytypes, :activities
+  fixtures :userstatuses, :users, :activitygroups, :activitytypes, :activities
 
   def setup
     @activities = %w(opiniones conferencias programas_de_estudios)
