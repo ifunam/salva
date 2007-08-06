@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'course'
 
 class CourseTest < Test::Unit::TestCase
-  fixtures  :courses
+  fixtures  :countries, :coursedurations, :modalities, :courses
 
   def setup
     @courses = %w(linux matematicas)

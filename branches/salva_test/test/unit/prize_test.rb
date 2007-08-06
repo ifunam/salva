@@ -4,7 +4,7 @@ require 'institution'
 require 'prize'
 
 class PrizeTest < Test::Unit::TestCase
-  fixtures       :institutions, :prizetypes, :prizes
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :prizetypes, :prizes
   def setup
     @prizes = %w(ciencia_mexico mejor_estudio_de_genero)
     @myprize = Prize.new({:name => 'Mejor Investigacion', :institution_id => 2, :prizetype_id => 1})

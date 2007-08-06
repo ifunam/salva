@@ -57,7 +57,7 @@ class JournalTest < Test::Unit::TestCase
      # Boundary
    def test_bad_values_for_id
       @myjournal.id ='x'
-     assert !@myjournal.valid
+     assert !@myjournal.valid?
 
      # Float number for ID
      @myjournal.id = 1.6

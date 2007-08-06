@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'stimulustype'
 
 class StimulustypeTest < Test::Unit::TestCase
-  fixtures :stimulustypes
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :stimulustypes
 
   def setup
     @stimulustypes = %w(pride paipa sni)

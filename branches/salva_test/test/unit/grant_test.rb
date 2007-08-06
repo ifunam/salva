@@ -3,7 +3,7 @@ require 'institution'
 require 'grant'
 
 class GrantTest < Test::Unit::TestCase
-  fixtures   :institutions, :grants
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :grants
   def setup
     @grants = %w(beca_unam beca_sep)
     @mygrant = Grant.new({:name => 'Beca Genero', :institution_id => 3})

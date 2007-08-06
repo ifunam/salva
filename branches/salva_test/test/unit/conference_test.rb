@@ -9,7 +9,7 @@ class ConferenceTest < Test::Unit::TestCase
     @conferences = %w(congreso coloquio)
     @myconference = Conference.new({:name => 'Encuentro', :conferencetype_id => 3})
   end
-  
+
   # Right - CRUD
   def test_creating_conferences_from_yaml
     @conferences.each { | conference|
@@ -19,34 +19,32 @@ class ConferenceTest < Test::Unit::TestCase
       assert_equal conferences(conference.to_sym).name, @conference.name
       assert_equal conferences(conference.to_sym).conferencetype_id, @conference.conferencetype_id
     }
- puts "PUTO"
   end
-  
+
   def test_updating_conferences_name
     @conferences.each { |conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_equal conferences(conference.to_sym).name, @conference.name
-      @conference.name = @conference.name.chars.reverse 
+      @conference.name = @conference.name.chars.reverse
       assert @conference.update
       assert_not_equal conferences(conference.to_sym).name, @conference.name
     }
-  end  
+  end
 
   def test_valid_conferences
-      @conference = Conference.new({ :name => "Jaja", :year => 2007, :conferencetype_id => 1, :country_id => 484})
-    assert !@conference.valid?
-    puts @conference.errors.full_messages
-  end  
+      @conference = Conference.new({ :name => "Congreso de las brujas", :year => 2007, :conferencetype_id => 1, :country_id => 484})
+    assert @conference.valid?
+  end
 
   def test_deleting_conferences
     @conferences.each { |conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       @conference.destroy
-      assert_raise (ActiveRecord::RecordNotFound) { 
-        Conference.find(conferences(conference.to_sym).id) 
+      assert_raise (ActiveRecord::RecordNotFound) {
+        Conference.find(conferences(conference.to_sym).id)
       }
     }
-  end 
+  end
 
    def test_creating_with_empty_attributes
      @conference = Conference.new
@@ -59,9 +57,9 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@conference.save
    end
 
-     # Boundary 
+     # Boundary
    def test_bad_values_for_id
-     # Float number for ID 
+     # Float number for ID
      @myconference.id = 1.6
      assert !@myconference.valid?
 
@@ -74,7 +72,7 @@ class ConferenceTest < Test::Unit::TestCase
      @myconference.name = nil
      assert !@myconference.valid?
 
-     @myconference.name = 'AB' 
+     @myconference.name = 'AB'
      assert !@myconference.valid?
 
      @myconference.name = 'AB' * 800
@@ -87,7 +85,7 @@ class ConferenceTest < Test::Unit::TestCase
      @myconference.conferencetype_id = nil
      assert !@myconference.valid?
 
-     # Float number for ID 
+     # Float number for ID
      @myconference.conferencetype_id = 3.1416
      assert !@myconference.valid?
 
@@ -95,31 +93,31 @@ class ConferenceTest < Test::Unit::TestCase
      @myconference.conferencetype_id = -1
      assert !@myconference.valid?
    end
- 
-  #Cross-Checking test 
+
+  #Cross-Checking test
  def test_cross_checking_for_conferencetype_id
    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
-      assert_equal @conference.conferencetype_id, Conferencetype.find(@conference.conferencetype_id).id 
+      assert_equal @conference.conferencetype_id, Conferencetype.find(@conference.conferencetype_id).id
     }
- end 
+ end
 
  def test_cross_checking_for_country_id
    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
-      assert_equal @conference.country_id, Country.find(@conference.country_id).id 
+      assert_equal @conference.country_id, Country.find(@conference.country_id).id
     }
- end 
+ end
 
  def test_cross_checking_for_country_id
    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
-      assert_equal @conference.conferencescope_id, Conferencescope.find(@conference.conferencescope_id).id 
+      assert_equal @conference.conferencescope_id, Conferencescope.find(@conference.conferencescope_id).id
     }
- end 
+ end
 
 
 end

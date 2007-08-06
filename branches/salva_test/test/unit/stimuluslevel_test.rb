@@ -3,7 +3,7 @@ require 'stimuluslevel'
 require 'stimulustype'
 
 class StimuluslevelTest < Test::Unit::TestCase
-  fixtures :stimulustypes, :stimuluslevels
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :stimulustypes, :stimuluslevels
 
   def setup
     @stimuluslevels = %w(a b c)

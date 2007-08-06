@@ -3,7 +3,7 @@ require 'institution'
 require 'adscription'
 
 class AdscriptionTest < Test::Unit::TestCase
-  fixtures  :institutions,  :adscriptions
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions,  :adscriptions
 
   def setup
     @adscriptions = %w(aerosoles_atmosfericos citogenetica_ambiental contaminacion_ambiental)

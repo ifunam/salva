@@ -3,7 +3,7 @@ require 'institution'
 require 'indivadviceprogram'
 
 class IndivadviceprogramTest < Test::Unit::TestCase
-  fixtures    :institutions, :indivadviceprograms
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :indivadviceprograms
   def setup
     @indivadviceprograms = %w(paas pidi pappit)
     @myindivadviceprogram = Indivadviceprogram.new({:name => 'PAIIS', :institution_id => 96})
