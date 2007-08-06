@@ -8,4 +8,5 @@ class Conference < ActiveRecord::Base
   belongs_to :conferencescope
  
   has_many :conference_institution
+  attr_accessor :institution_id
 end

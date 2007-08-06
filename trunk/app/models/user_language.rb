@@ -1,4 +1,5 @@
 class UserLanguage < ActiveRecord::Base
+  attr_accessor :name
 
   validates_presence_of :language_id, :spoken_languagelevel_id, :written_languagelevel_id, :institution_id
   validates_numericality_of :language_id, :spoken_languagelevel_id, :written_languagelevel_id, :institution_id

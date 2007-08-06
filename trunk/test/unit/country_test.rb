@@ -56,6 +56,9 @@ class CountryTest < Test::Unit::TestCase
     @mycountry.id = nil
     assert !@mycountry.valid?
 
+    @mycountry.id ='x'
+    assert !@mycountry.valid?
+
     #@mycountry.id = -2
     #assert !@mycountry.valid?
 

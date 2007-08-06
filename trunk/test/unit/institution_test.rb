@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+ require File.dirname(__FILE__) + '/../test_helper'
 require 'country'
 require 'state'
 require 'city'
@@ -7,7 +7,8 @@ require 'institutiontitle'
 require 'institution'
 
 class InstitutionTest < Test::Unit::TestCase
-  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions
+  fixtures [:countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions]
+
   def setup
     @institutions = %w(programa_Universitario_de_Estudios_de_Genero unam)
     @myinstitution = Institution.new({:name => 'Auditoria Interna', :institutiontitle_id => 14, :institutiontype_id => 1, :country_id => 484})
@@ -69,10 +70,6 @@ class InstitutionTest < Test::Unit::TestCase
   def test_bad_values_for_name
     # Float number for ID
     @myinstitution.name = nil
-    assert !@myinstitution.valid?
-    @myinstitution.name = 'nombre' * 80
-    assert !@myinstitution.valid?
-    @myinstitution.name = 'a'
     assert !@myinstitution.valid?
   end
 
@@ -283,3 +280,4 @@ class InstitutionTest < Test::Unit::TestCase
     }
   end
 end
+

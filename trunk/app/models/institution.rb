@@ -1,4 +1,10 @@
 class Institution < ActiveRecord::Base
+  has_many :prizes
+  has_many :grants
+  has_many :acadvisits
+  has_many :courses
+  has_many :schoolarships
+
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontitle_id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontype_id, :allow_nil => true, :only_integer => true

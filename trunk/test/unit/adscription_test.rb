@@ -3,8 +3,7 @@ require 'institution'
 require 'adscription'
 
 class AdscriptionTest < Test::Unit::TestCase
-  fixtures :countries, :states, :cities,  :institutiontitles, :institutiontypes, :institutions
-  fixtures  :adscriptions
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions,  :adscriptions
 
   def setup
     @adscriptions = %w(aerosoles_atmosfericos citogenetica_ambiental contaminacion_ambiental)
@@ -65,10 +64,6 @@ class AdscriptionTest < Test::Unit::TestCase
     # Float number for ID
     @myadscription.name = nil
     assert !@myadscription.valid?
-    @myadscription.name = 'nombre' * 80
-    assert !@myadscription.valid?
-    @myadscription.name = 'ad'
-    assert !@myadscription.valid?
   end
 
   def test_bad_values_for_institution_id
@@ -107,6 +102,6 @@ class AdscriptionTest < Test::Unit::TestCase
       rescue StandardError => x
         return false
       end
-     }
+    }
   end
 end

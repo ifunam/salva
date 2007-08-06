@@ -24,7 +24,7 @@ class ActivitygroupTest < Test::Unit::TestCase
   end
 
   def test_create_with_empty_attributes
-     @group = Activitygroup.new
+    @group = Activitygroup.new
     assert !@group.save
   end
 
@@ -35,7 +35,7 @@ class ActivitygroupTest < Test::Unit::TestCase
     @group = Activitygroup.find(1)
     @group.id = 2
     assert !@group.valid?
- end
+  end
 
   # Boundary tests
   # Checking constraints for name
@@ -49,11 +49,9 @@ class ActivitygroupTest < Test::Unit::TestCase
     @myactivitygroup.id = 'xx'
     assert !@myactivitygroup.valid?
 
-     @myactivitygroup.id = nil
-    assert @myactivitygroup.valid?
-
     @myactivitygroup.id = 3.1416
     assert !@myactivitygroup.valid?
+
     # @myactivitygroup.id = -1
     # assert !@myactivitygroup.valid?
   end

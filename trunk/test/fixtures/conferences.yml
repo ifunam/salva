@@ -3,7 +3,7 @@ congreso:
   name: Congreso Anual de Ciencias de la Computación
   year: 1998
   country_id: 484
-  conferencetype_id: 1 
+  conferencetype_id: 1
   conferencescope_id: 1
 coloquio:
   id: 2
@@ -12,4 +12,3 @@ coloquio:
   country_id: 392
   conferencetype_id: 2
   conferencescope_id: 2
-  unid: 345

@@ -16,7 +16,7 @@ class Test::Unit::TestCase
   # in MySQL.  Turn off transactional fixtures in this case; however, if you
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
-  self.use_transactional_fixtures = true
+  self.use_transactional_fixtures = false
 
   # Instantiated fixtures are slow, but give you @david where otherwise you
   # would need people(:david).  If you don't want to migrate your existing
@@ -97,11 +97,24 @@ class Test::Unit::TestCase
       }
     end
   end
+
   module Session
     def login_as (user, password)
       @controller = UserController.new
       post :signup, :user => { :login => user, :passwd => 'maltiempo'}
       #session[:user]
+    end
+  end
+
+  def teardown
+    self.class.fixture_table_names.reverse.each do |table_name|
+      klass_name = Inflector.classify(table_name.to_s)
+      if Object.const_defined?(klass_name)
+        klass = Object.const_get(klass_name)
+        klass.connection.delete("DELETE FROM #{table_name}", 'Fixture Delete')
+      else
+        flunk("Cannot find class for table '#{table_name}' to delete fixtures")
+      end
     end
   end
 end

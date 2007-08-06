@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :country
   belongs_to :institution
-  belongs_to :coursegroup
+  belongs_to :coursegroups
   belongs_to :courseduration
   belongs_to :modality
 end

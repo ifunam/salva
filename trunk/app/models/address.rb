@@ -6,12 +6,13 @@ class Address < ActiveRecord::Base
   belongs_to :addresstype
   belongs_to :city
   belongs_to :state
+  attr_accessor :name, :code
 
   def as_text
-    info = [ location ]
-    info << 'Apartado postal: ' + pobox if !pobox.empty? and pobox != nil
+    info = [ 'Ubicación: ' + self.location ]
+    info << 'Apartado postal: ' + self.pobox if !self.pobox.empty? and self.pobox != nil
     %w(country state city).each { |f| info << self.send(f.to_sym).name if self.send(f.to_sym) != nil }
-    info << 'Código postal: ' + zipcode.to_s if zipcode != nil
+    info << 'Código postal: ' + self.zipcode.to_s if self.zipcode != nil
     info.join(', ')
   end
 

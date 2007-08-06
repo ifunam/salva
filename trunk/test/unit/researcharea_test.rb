@@ -11,55 +11,45 @@ class ResearchareaTest < Test::Unit::TestCase
   end
 
   # Right - CRUD
-   def test_crud
-     crud_test(@researchareas, Researcharea)
-   end
-
-   def test_validation
-     validate_test(@researchareas, Researcharea)
-   end
-
-   def test_collision
-     collision_test(@researchareas, Researcharea)
-   end
-
-   def test_create_with_empty_attributes
-     @researcharea = Researcharea.new
-     assert !@researcharea.save
-   end
-
-   def test_check_uniqueness
-     @researcharea = Researcharea.new({:name => 'Aerobiología'})
-     @researcharea.id = 2
-     assert !@researcharea.save
-
-   end
-
-# boundary
-# Checking constraints for name
-  def test_bad_values_for_name
-     @myresearcharea.name = nil
-     assert !@myresearcharea.valid?
-
-     @myresearcharea.name = 'X'
-     assert !@myresearcharea.valid?
-
-     @myresearcharea.name = 'X' * 201
-     assert !@myresearcharea.valid?
-
-     @myresearcharea.name = '5'
-     assert !@myresearcharea.valid?
+  def test_crud
+    crud_test(@researchareas, Researcharea)
   end
 
-   # Checking constraints for ID
-   def test_bad_values_for_id
-     @myresearcharea.id = 'xx'
-     assert !@myresearcharea.valid?
+  def test_validation
+    validate_test(@researchareas, Researcharea)
+  end
 
-     @myresearcharea.id = 3.1416
-     assert !@myresearcharea.valid?
+  def test_collision
+    collision_test(@researchareas, Researcharea)
+  end
 
-     #@myresearcharea.id = -1
-     #assert !@myresearcharea.valid?
+  def test_create_with_empty_attributes
+    @researcharea = Researcharea.new
+    assert !@researcharea.save
+  end
+
+  def test_check_uniqueness
+    @researcharea = Researcharea.new({:name => 'Aerobiología'})
+    @researcharea.id = 2
+    assert !@researcharea.save
+  end
+
+  # boundary
+  # Checking constraints for name
+  def test_bad_values_for_name
+    @myresearcharea.name = nil
+    assert !@myresearcharea.valid?
+  end
+
+  # Checking constraints for ID
+  def test_bad_values_for_id
+    @myresearcharea.id = 'xx'
+    assert !@myresearcharea.valid?
+
+    @myresearcharea.id = 3.1416
+    assert !@myresearcharea.valid?
+
+    #@myresearcharea.id = -1
+    #assert !@myresearcharea.valid?
   end
 end

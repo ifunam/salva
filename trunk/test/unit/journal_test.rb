@@ -10,7 +10,7 @@ class JournalTest < Test::Unit::TestCase
     @journals = %w(quo conozca)
     @myjournal = Journal.new({:name => 'Todo Ciencia', :country_id => 484, :publisher_id => 2, :mediatype_id => 1})
   end
-  
+
   # Right - CRUD
   def test_creating_journals_from_yaml
     @journals.each { | journal|
@@ -23,26 +23,26 @@ class JournalTest < Test::Unit::TestCase
       assert_equal journals(journal.to_sym).publisher_id, @journal.publisher_id
     }
   end
-  
+
   def test_updating_journals_name
       @journals.each { |journal|
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_equal journals(journal.to_sym).name, @journal.name
-      @journal.name = @journal.name.chars.reverse 
+      @journal.name = @journal.name.chars.reverse
       assert @journal.update
       assert_not_equal journals(journal.to_sym).name, @journal.name
     }
-  end  
+  end
 
   def test_deleting_journals
       @journals.each { |journal|
       @journal = Journal.find(journals(journal.to_sym).id)
       @journal.destroy
-      assert_raise (ActiveRecord::RecordNotFound) { 
-        Journal.find(journals(journal.to_sym).id) 
+      assert_raise (ActiveRecord::RecordNotFound) {
+        Journal.find(journals(journal.to_sym).id)
       }
     }
-  end 
+  end
 
    def test_creating_with_empty_attributes
      @journal = Journal.new
@@ -54,18 +54,18 @@ class JournalTest < Test::Unit::TestCase
      assert !@journal.save
    end
 
-     # Boundary 
+     # Boundary
    def test_bad_values_for_id
-     # Float number for ID 
+      @myjournal.id ='x'
+     assert !@myjournal.valid?
+
+     # Float number for ID
      @myjournal.id = 1.6
      assert !@myjournal.valid?
    end
 
    def test_bad_values_for_name
      @myjournal.name = nil
-     assert !@myjournal.valid?
-
-     @myjournal.name = 'AB' * 800
      assert !@myjournal.valid?
    end
 
@@ -84,9 +84,9 @@ class JournalTest < Test::Unit::TestCase
       @journals.each { | journal|
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_kind_of Journal, @journal
-      assert_equal @journal.mediatype_id, Mediatype.find(@journal.mediatype_id).id 
+      assert_equal @journal.mediatype_id, Mediatype.find(@journal.mediatype_id).id
       }
-   end 
+   end
 
    def catch_exception_when_update_invalid_key(record)
     begin
@@ -101,7 +101,7 @@ class JournalTest < Test::Unit::TestCase
      @journal = Journal.find(journals(journal.to_sym).id)
      assert_kind_of Journal, @journal
      @journal.mediatype_id = 10
-     begin 
+     begin
             return true if @journal.update
      rescue StandardError => x
             return false
@@ -112,9 +112,9 @@ class JournalTest < Test::Unit::TestCase
       @journals.each { | journal|
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_kind_of Journal, @journal
-      assert_equal @journal.country_id, Country.find(@journal.country_id).id 
+      assert_equal @journal.country_id, Country.find(@journal.country_id).id
      }
-    end 
+    end
 
    def catch_exception_when_update_invalid_key(record)
     begin
@@ -129,12 +129,12 @@ class JournalTest < Test::Unit::TestCase
      @journal = Journal.find(journals(journal.to_sym).id)
      assert_kind_of Journal, @journal
      @journal.country_id = 1000
-     begin 
+     begin
             return true if @journal.update
      rescue StandardError => x
             return false
      end
-     }	
+     }
     end
 
     def test_bad_values_for_country_id
@@ -157,9 +157,9 @@ class JournalTest < Test::Unit::TestCase
      @journals.each { | journal|
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_kind_of Journal, @journal
-      assert_equal @journal.publisher_id, Publisher.find(@journal.publisher_id).id 
+      assert_equal @journal.publisher_id, Publisher.find(@journal.publisher_id).id
       }
-    end 
+    end
 
    def catch_exception_when_update_invalid_key(record)
      begin
@@ -174,7 +174,7 @@ class JournalTest < Test::Unit::TestCase
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_kind_of Journal, @journal
       @journal.publisher_id = 10
-      begin 
+      begin
             return true if @journal.update
       rescue StandardError => x
             return false

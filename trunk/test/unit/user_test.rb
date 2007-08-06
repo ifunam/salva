@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require RAILS_ROOT + '/lib/digest'
+require RAILS_ROOT + '/lib/mydigest'
 class UserTest < Test::Unit::TestCase
   fixtures :userstatuses, :users
-  include Digest
+  include Mydigest
 
   def setup
     @default_users = %w( admin juana panchito )

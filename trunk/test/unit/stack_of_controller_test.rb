@@ -118,22 +118,7 @@ class StackTest < Test::Unit::TestCase
     assert @stack.empty?
   end
 
-    def test_should_push_controller_and_action_and_hash
-      filter = { :country_id => 484, :state_id => 1 }
-      @stack.push('article', 'new', nil, filter, :state_id)
-      assert_equal 'article', @stack.controller
-      assert_equal 'new', @stack.action
-      assert_equal nil, @stack.id
-      assert_instance_of Hash, @stack.model
-      assert_equal :state_id, @stack.attribute
-      assert_equal 1, @stack.model[:state_id]
-      @stack.set_attribute(10)
-      assert_equal 10, @stack.model[:state_id]
-      @stack.clear
-      assert @stack.empty?
-    end
-
-    #   def test_should_add_error_with_an_invalid_attribute
+  #   def test_should_add_error_with_an_invalid_attribute
   #     deny @stack.push(Person.new, 'new', 'country'), "The attribute should have been invalid"
   #   end
 
