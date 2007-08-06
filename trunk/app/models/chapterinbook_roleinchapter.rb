@@ -7,5 +7,4 @@ class ChapterinbookRoleinchapter < ModelComposedKeys
 
   belongs_to :chapterinbook
   belongs_to :roleinchapter
-  attr_accessor :book_id, :bookedition_id
 end

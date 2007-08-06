@@ -6,7 +6,6 @@ class Address < ActiveRecord::Base
   belongs_to :addresstype
   belongs_to :city
   belongs_to :state
-  attr_accessor :name, :code
 
   def as_text
     info = [ 'Ubicación: ' + self.location ]
