@@ -1,3 +1,4 @@
+#require 'vendor/plugins/exception_notification/lib/exception_notifier'
 # Settings specified here will take precedence over those in config/environment.rb
 
 # In the development environment your application's code is reloaded on
@@ -19,3 +20,4 @@ config.action_view.debug_rjs                         = true
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+# ExceptionNotifier.exception_recipients = %w(alex@fisica.unam.mx)

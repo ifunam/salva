@@ -2,10 +2,5 @@
 <%= table_array(@collection, { :header => "Tesis", :columns =>
 [ ['thesis_id', 'title', 'authors', 'year'], 'roleinthesis_id'] })
 %>
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-</div>
 <!--[eoflist:user_thesis]-->
-<%= navcontrol %>
+

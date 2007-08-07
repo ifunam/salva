@@ -14,4 +14,13 @@ module Salva
       @institution unless @institution.nil?
     end
   end
+
+  def get_myschool
+    myschool = get_cfg('most_common_school')
+    if myschool.is_a? Integer
+      @institution = Institution.find(:first, :conditions => ['id = ?',  myschool])
+      @institution unless @institution.nil?
+    end
+  end
+
 end

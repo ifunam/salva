@@ -37,7 +37,7 @@ CREATE TABLE acadvisits (
 	    REFERENCES acadvisittypes(id)
 	    ON UPDATE CASCADE
 	    DEFERRABLE,
-        name text NOT NULL,
+        descr text NOT NULL,
 	startyear int4 NOT NULL,
 	startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
 	endyear int4  NULL,

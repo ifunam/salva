@@ -51,7 +51,7 @@ class WizardController < ApplicationController
         model[key.to_sym] = value
       }
       if params[:stack] != nil
-        redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack])
+        redirect_to options_for_next_controller(sequence, controller_name, 'new')
       else
         if model.valid? then
           next_page
@@ -78,7 +78,7 @@ class WizardController < ApplicationController
     }
 
     if params[:stack] != nil
-      redirect_to options_for_next_controller(sequence, controller_name, 'new', params[:edit], params[:stack])
+      redirect_to options_for_next_controller(sequence, controller_name, 'new')
     else
       next_page
     end

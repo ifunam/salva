@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Digest
+  include Mydigest
 
   attr_accessor :current_passwd
 
@@ -15,12 +15,25 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_many :addresses
+  has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
   has_many :user_articles
   has_many :articles, :through => :user_articles
 
   has_many :user_genericworks
   has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id'
+
+  has_many :user_proceedings
+  has_many :proceedings, :through => :user_proceedings
+
+  has_many :user_inproceedings
+  has_many :inproceedings, :through => :user_inproceedings
+
+
+  has_many :user_documents
+  has_many :documents, :through => :user_documents
+
+
 
   # Callbacks
   before_create :prepare_new_record

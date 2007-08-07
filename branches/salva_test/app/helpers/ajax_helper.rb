@@ -1,10 +1,10 @@
 module AjaxHelper
-  def observe_select(field, select, tabindex)
-    observe_field("edit_#{field}", :frequency => 0.25, :url => { :action => 'update_select', :partial => select, :tabindex => tabindex}, :update=> select,  :with => "'id='+value", :on => 'click')
+  def observe_select(object, field, select, tabindex)
+    observe_field("#{object}_#{field}", :frequency => 0.25, :url => { :action => 'update_select', :partial => select, :tabindex => tabindex}, :update=> select,  :with => "'id='+value", :on => 'click')
   end
 
-  def stop_observer(field)
-    javascript_tag " $('edit_#{field}').stopObserving('click', String.blank);"
+  def stop_observer(object, field)
+    javascript_tag " $('#{object}_#{field}').stopObserving('click', String.blank);"
     #http://www.prototypejs.org/api/event/stopObserving  (Using Strin.blank instead nil o nothing)
   end
 

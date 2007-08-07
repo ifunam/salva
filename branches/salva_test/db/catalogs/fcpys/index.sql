@@ -9,3 +9,4 @@
 \i activitytypes.sql
 \i techproducttypes.sql
 \i publishers.sql
+\i roleintheses.sql

@@ -12,5 +12,4 @@ class Genericwork < ActiveRecord::Base
   belongs_to :genericworkstatus
   belongs_to :institution
   belongs_to :publisher
-  attr_accessor :genericworkgroup_id
 end

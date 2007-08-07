@@ -1,1 +1,5 @@
-<%= select_id_to_update_select('edit', Genericworktype, Genericworkgroup, @id, nil, @tabindex) %>
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Genericworktype, tabindex, :conditions => "genericworkgroup_id = #{id}") %>
+<% end %>
+
+

@@ -3,6 +3,7 @@ INSERT INTO coursedurations (name, days) VALUES ('Mensual', 30);
 INSERT INTO coursedurations (name, days) VALUES ('Trimestral', 90);
 INSERT INTO coursedurations (name, days) VALUES ('Semestral', 180);
 INSERT INTO coursedurations (name, days) VALUES ('Anual', 365);
+INSERT INTO coursedurations (name, days) VALUES ('Otro', 0);
 
 INSERT INTO coursegrouptypes (name) VALUES ('Actualización');
 INSERT INTO coursegrouptypes (name) VALUES ('Certificación');

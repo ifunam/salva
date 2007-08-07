@@ -25,11 +25,7 @@
 </div>
 
 <div class="row">
-<label for="institution_id" class="label"><%= get_label('institution_id') %></label>
-<div id="institution_id">
-<%= table_select('edit', Institution, {:tabindex => '5'}) %>
-<%= quickpost('institution') %>
-</div>
+ <%= render :partial => 'salva/filter_institutions' %>
 </div>
 
 <div class="row">

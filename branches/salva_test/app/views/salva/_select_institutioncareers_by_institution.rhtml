@@ -1,2 +1,3 @@
- <%= select_conditions('edit', Institutioncareer,  1, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => ['institution_id = ?', 14]) %>
-	
+<div class="filters">
+ <%= select_conditions('edit', Institutioncareer,  1, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => ['institution_id = ?', get_myschool.id]) %>
+</div>

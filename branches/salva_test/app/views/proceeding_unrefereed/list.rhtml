@@ -1,9 +1,4 @@
 <!--[list:proceeding]-->
 <%= table_list(@collection, { :header => "Título", :columns => %w( conference_id isrefereed ) }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-</div>
 <!--[eoflist:proceeding]-->
 

@@ -7,19 +7,19 @@ class Article < ActiveRecord::Base
 
   has_many :user_articles
   has_many :users, :through => :user_articles
-  
-  def as_vancouver
-    [self.authors, self.title, self.journal.name, journal_issue, self.pages].join(', ')
+
+  def as_text
+    [authors, title, journal.name, journal_issue, pages].join(', ')
   end
-  
+
   def journal_issue
-    info = self.year.to_s + ";"
-    if self.vol != nil and self.num != nil
-      info << "#{self.vol}(#{self.num})"
-    elsif self.vol != nil
-      info << self.vol
-    elsif self.num != nil
-      info << "(#{self.num})"
+    info = year.to_s + ";"
+    if vol != nil and num != nil
+      info << "#{vol}(#{num})"
+    elsif vol != nil
+      info << vol
+    elsif num != nil
+      info << "(#{num})"
     end
     info
   end

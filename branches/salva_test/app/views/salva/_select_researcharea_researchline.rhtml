@@ -1,4 +1,3 @@
-<%= "Id #{id}" %>
-<% unless id.to_s.empty? %>
+<% if id.to_i > 0 %>
   <%= select_conditions('edit', Researchline, tabindex, :conditions => "researcharea_id = #{id}") %>
 <% end %>

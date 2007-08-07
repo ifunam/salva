@@ -1,22 +1,17 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:indivadviceprogram]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label>
 <%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row"> 
-<label for="descr" class="label"><%= get_label('descr') %></label> 
+<div class="row">
+<label for="descr" class="label"><%= get_label('descr') %></label>
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'descr' %></div>
 
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
-<div id="institution_id">
-<%= select_conditions('edit', Institution, 3, :conditions => "institution_id = 1") %>
+<div class="row">
+ <%= render :partial => 'salva/filter_institutions' %>
 </div>
-</div>
-
-
 <!--[eoform:indivadviceprogram]-->
 

@@ -1,4 +1,4 @@
-class UserProceedingRefereedController < SalvaController
+ class UserProceedingRefereedController < SalvaController
   def initialize
     super
     @model = UserProceeding
@@ -7,7 +7,6 @@ class UserProceedingRefereedController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :include => [:proceeding], :conditions => "proceedings.isrefereed = 't' AND proceedings.id = user_proceedings.proceeding_id "}
-
+    @list = { :joins => "INNER JOIN proceedings ON user_proceedings.proceeding_id  = proceedings.id AND  proceedings.isrefereed = 't'"}
   end
 end

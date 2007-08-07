@@ -1,2 +1,3 @@
-<%= select_id_to_update_select('edit', Chapterinbook, Bookedition, @id, nil, @tabindex, 1, %w(title pages) ) %>
-<%= submit_for_stack('chapterinbook:bookedition_id') %>
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Chapterinbook, tabindex, :attributes => ['bookchaptertype', 'title'], :conditions => "bookedition_id = #{id}") %>
+<% end %>

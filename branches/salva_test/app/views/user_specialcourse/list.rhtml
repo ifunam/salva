@@ -1,9 +1,4 @@
 <!--[list:user_course]-->
 <%= table_array(@collection, { :header => "Cursos", :columns => [ ['course_id', 'name', 'startyear'],  'roleincourse_id']  }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-</div>
 <!--[eoflist:user_course]-->
 

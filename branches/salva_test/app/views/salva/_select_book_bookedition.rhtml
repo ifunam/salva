@@ -1,1 +1,6 @@
-<%= select_id_to_update_select('edit', Bookedition, Book, @id, Chapterinbook, @tabindex, 1, %w(edition_id year) ) %>
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Bookedition, tabindex, :attributes => ['edition', 'year'], :conditions => "book_id = #{id}") %>
+  <%= stop_observer('edit', 'bookedition_id') %>
+ <%= observe_select('edit', 'bookedition_id', 'select_bookedition_chapterinbook', 1) %>
+ <% end %>
+

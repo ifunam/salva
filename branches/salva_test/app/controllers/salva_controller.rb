@@ -5,72 +5,74 @@ require 'stackcontroller'
 class SalvaController < ApplicationController
   include List
   include Stackcontroller
-  
+
   def initialize
     @sequence = nil
 
     # Default variables for the list method
     @list = {}
   end
-  
+
   def index
     list
   end
-  
+
   def list
     if @model.column_names.include?('user_id')
       if @list.has_key?(:joins)
         @list[:joins] += " AND #{@model.table_name}.user_id = #{session[:user]}"
       elsif @list.has_key?(:conditions)
-        @list[:conditions] += " AND #{@model.table_name}.user_id = #{session[:user]}" 
+        @list[:conditions] += " AND #{@model.table_name}.user_id = #{session[:user]}"
       else
-        @list[:conditions] = "#{@model.table_name}.user_id = #{session[:user]}" 
+        @list[:conditions] = "#{@model.table_name}.user_id = #{session[:user]}"
       end
     end
     @list[:conditions] = set_conditions_from_search if params[controller_name]
-    
+
     per_page = set_per_page
 
-    @pages, @collection = paginate Inflector.pluralize(@model), 
+    @pages, @collection = paginate Inflector.pluralize(@model),
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
     :per_page => per_page || @per_pages
 
     @parent_controller = 'algo' if has_model_in_stack?
     render :action => 'list'
   end
-  
+
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :create, :update ]
-  
+
   def edit
     if @sequence != nil
       edit_sequence
     else
       @edit = model_from_stack || @model.find(params[:id])
+      @filter = model_from_stack(:filter)
       render :action => 'edit'
     end
   end
-  
+
   def new
     if @sequence != nil
       new_sequence
     else
       @edit = model_from_stack || @model.new
+      @filter = model_from_stack(:filter)
       render :action => 'new'
     end
   end
-  
+
   def create
     @edit = @model.new(params[:edit])
     set_userid
     if params[:stack] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
+      redirect_to options_for_next_controller(@edit, controller_name, 'new')
     elsif params[:stacklist] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'list', params[:edit], params[:stacklist])
+      redirect_to options_for_next_controller(@edit, controller_name, 'new', 'list')
     else
       if @edit.save
         if @children != nil
-          redirect_to :action => 'show', :id => @edit.id 
+          redirect_to :action => 'show', :id => @edit.id
         else
           flash[:notice] = @create_msg
           redirect_to stack_return(@edit.id)
@@ -81,18 +83,20 @@ class SalvaController < ApplicationController
       end
     end
   end
-  
+
   def update
     @edit = @model.find(params[:id])
     set_userid
     if params[:stack] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'new', params[:edit], params[:stack]) 
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit')
+    elsif params[:stacklist] != nil
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit', 'list')
     else
       if @edit.update_attributes(params[:edit])
         if @children != nil
-          redirect_to :action => 'show', :id => @edit.id 
+          redirect_to :action => 'show', :id => @edit.id
         else
-          flash[:notice] = @update_msg          
+          flash[:notice] = @update_msg
           redirect_to stack_return(@edit.id)
         end
       else
@@ -101,12 +105,12 @@ class SalvaController < ApplicationController
       end
     end
   end
-  
+
   def purge
     if @sequence
       sequence = ModelSequence.new(@sequence)
-      sequence.moduser_id = session[:user] 
-      sequence.user_id = session[:user] 
+      sequence.moduser_id = session[:user]
+      sequence.user_id = session[:user]
       sequence.fill(params[:id])
       logger.info "Sequencedel "+sequence.delete.to_s
     else
@@ -139,8 +143,8 @@ class SalvaController < ApplicationController
   def show
     if @sequence
       sequence = ModelSequence.new(@sequence)
-      sequence.moduser_id = session[:user] 
-      sequence.user_id = session[:user] 
+      sequence.moduser_id = session[:user]
+      sequence.user_id = session[:user]
       sequence.fill(params[:id])
       session[:sequence] = sequence
       redirect_to :controller => 'wizard', :action => 'show'
@@ -148,7 +152,7 @@ class SalvaController < ApplicationController
       @edit = @model.find(params[:id])
       model_into_stack(controller_name,  'show', @edit.id)
       render :action => 'show'
-    end  
+    end
   end
 
   def cancel
@@ -162,16 +166,16 @@ class SalvaController < ApplicationController
   private
   def new_sequence
     sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = session[:user] 
-    sequence.user_id = session[:user] 
+    sequence.moduser_id = session[:user]
+    sequence.user_id = session[:user]
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'new'
   end
 
   def edit_sequence
     sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = session[:user] 
-    sequence.user_id = session[:user] 
+    sequence.moduser_id = session[:user]
+    sequence.user_id = session[:user]
     sequence.fill(params[:id])
     session[:sequence] = sequence
     redirect_to :controller => 'wizard', :action => 'edit'
@@ -181,13 +185,13 @@ class SalvaController < ApplicationController
     @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
     @edit.user_id = session[:user] if @edit.has_attribute?('user_id')
   end
-  
+
 #   def new_else
 #     model_other = params[:model]
 #     lider =  @model.find(params[:lider])
 #     logger.info "New else Lider "+lider.to_s if lider != nil
-#     redirect_to :controller => model_other, :action => 'new', 
+#     redirect_to :controller => model_other, :action => 'new',
 #     :lider_id => lider, :lider_name => Inflector.undescore(@model.name)
 #   end
-  
+
 end

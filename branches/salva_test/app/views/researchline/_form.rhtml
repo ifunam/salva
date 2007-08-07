@@ -1,18 +1,19 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:researchline]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %><span class="required">*</span></label>
 <%= text_area 'edit', 'name', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'name' %></div>
-<div class="row"> 
+<div class="row">
 
-<div class="row"> 
-<label for="descr" class="label"><%= get_label('descr') %></label> 
+<div class="row">
+<label for="descr" class="label"><%= get_label('descr') %></label>
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'descr' %></div>
-<div class="row"> 
-<label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label> 
+<div class="row">
+<label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label>
 <div id="researcharea_id">
-<%= table_select('edit', Researcharea, 3) %>
+<% @edit.researcharea_id = params[:id] if params[:id] %>
+<%= simple_select('edit', Researcharea, 3) %>
 <%= submit_for_stack('researcharea') %>
 </div>
 </div>

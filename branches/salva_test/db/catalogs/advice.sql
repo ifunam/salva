@@ -1,6 +1,7 @@
 INSERT INTO indivadvicetargets (name) VALUES ('Servicio social');
 INSERT INTO indivadvicetargets (name) VALUES ('Becario');
 INSERT INTO indivadvicetargets (name) VALUES ('Estudiante asociado');
+INSERT INTO indivadvicetargets (name) VALUES ('Rendimiento escolar');
 INSERT INTO indivadvicetargets (name) VALUES ('Profesor');
 
 INSERT INTO instadvicetargets (name) VALUES ('Proyecto de investigación');

@@ -1,8 +1,4 @@
 <!--[list:acadvisit]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w( institution_id country_id acadvisittype_id name startyear ) }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> 
-</div>
+<%= table_list(@collection, { :header => "Título", :columns => %w( institution_id country_id acadvisittype_id descr startyear ) }) %> 
 <!--[eoflist:acadvisit]-->
-<%= navcontrol %>
+

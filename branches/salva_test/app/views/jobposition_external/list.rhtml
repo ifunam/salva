@@ -1,8 +1,4 @@
 <!--[list:jobposition]-->
 <%= table_list(@collection, { :header => "Título", :columns =>%w(institution_id descr startyear endyear ) }) %> 
-<br/>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> 
-</div>
 <!--[eoflist:jobposition]-->
-<%= navcontrol %>
+

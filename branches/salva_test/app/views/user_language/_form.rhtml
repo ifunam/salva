@@ -1,38 +1,35 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:user_language]-->
-<div class="row"> 
-<label for="language_id" class="label"><%= get_label('language_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="language_id" class="label"><%= get_label('language_id') %> <span class="required">*</span></label>
 <div id="language_id">
-  <%= simple_select('edit', Language, 1) %> 
+  <%= simple_select('edit', Language, 1) %>
   <%= submit_for_stack('language') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="spoken_languagelevel_id" class="label"><%= get_label('spoken_languagelevel_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="spoken_languagelevel_id" class="label"><%= get_label('spoken_languagelevel_id') %> <span class="required">*</span></label>
 <div id="spoken_languagelevel_id">
 <%= table_select('edit', Languagelevel, 2, 1, 'spoken') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="written_languagelevel_id" class="label"><%= get_label('written_languagelevel_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="written_languagelevel_id" class="label"><%= get_label('written_languagelevel_id') %> <span class="required">*</span></label>
 <div id="written_languagelevel_id">
 <%= table_select('edit', Languagelevel, 3, 1, 'written') %>
 </div>
 </div>
 
-<div class="row"> 
- <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div class="row">
+ <% @edit.institution_id ||= 71 %>
  <%= render :partial => 'salva/filter_institutions' %>
- <div id="partial">
-  <%= render :partial => 'salva/select_institution_unam', :locals => {:selected => 71} %>
- </div>
-</div> 
+</div>
 
-<div class="row"> 
-<label for="other" class="label"><%= get_label('other') %></label> 
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
 <%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 5, 'id' => 'other' %>
 </div>
 

@@ -315,7 +315,7 @@ thesismodality_id: Modalidad de la tesis
 roleinthesis_id: Rol en tesis
 user_thesis: Dirección o asesoría de tesis
 student_thesis: Autoría de tesis
-human_resources_formation_and_teaching: Docencia y formaci�n de recursos humanos
+human_resources_formation_and_teaching: Docencia y formación de recursos humanos
 human_resources_formation: Formación de recursos humanos
 proceeding_id: Memoria
 roleproceeding_id: Rol
@@ -407,7 +407,7 @@ coauthor: Coautor
 seminary: Seminario
 talk: Conferencia
 yes: S
-not: No
+no: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
 academicprogram: Programas académicos
@@ -434,3 +434,10 @@ projectarticle: Artículos
 studentname: Estudiante
 resume: Curriculum
 isspecialized: � Es especializado ?
+sponsor_acadvisit: Patrocinador
+fullname: Nombre
+user_reports: Trámites y reportes
+annual_activities_report: Informe anual
+annual_activities_plan: Plan anual de actividades
+documenttype_id: Tipo
+document: Documentos

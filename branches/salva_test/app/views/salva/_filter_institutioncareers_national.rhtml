@@ -1,7 +1,7 @@
 <div class="filters"> 
- <%= select_conditions('edit', Institutiontitle, 1, :attributes => ['name'], :conditions => "id < 5") %>
+ <%= select_conditions('filt', Institutiontitle, 1, :attributes => ['name'], :conditions => "id < 5") %>
  <br/>
- <%= observe_select('institutiontitle_id', 'select_institutioncareers_by_institutiontitle', 2) %>
- <div id="select_institutioncareers_by_institutiontitle">
+ <%= observe_select('filt','institutiontitle_id', 'select_institutioncareers_by_institutiontitle_national', 2) %>
+ <div id="select_institutioncareers_by_institutiontitle_national">
  </div>
 </div>
