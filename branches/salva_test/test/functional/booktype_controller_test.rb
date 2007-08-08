@@ -1,10 +1,8 @@
-#require File.dirname(_FILE_) + '/..test_helper'
 require 'salva_controller_test'
 require 'booktype_controller'
 
 # Re-raise errorscaught by the controller.
-#class Address_Controller; def rescue_action(e) raise e end; end
-
+class Booktype_Controller; def rescue_action(e) raise e end; end
 class Booktype_ControllerTest < SalvaControllerTest
   fixtures :booktypes
 
@@ -18,7 +16,6 @@ class Booktype_ControllerTest < SalvaControllerTest
       :name => nil,
       :id => nil}
    @model = Booktype
-
   end
 end
 
