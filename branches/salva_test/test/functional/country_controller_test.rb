@@ -7,7 +7,7 @@ class CountryControllerTest < SalvaControllerTest
   def initialize(*args) #This is an ugly  hack, but  it works
     super
     @mycontroller = CountryController.new
-    @fixtures =  { :name => 'Mexico', :id => 484, :citizen=> 'Mexicana', :code =>'MX' }
+    @fixtures =  { :name => 'País de prueba', :id => 999, :citizen=> 'Nacionalidad de prueba', :code =>'PRB' }
     @badfixtures =  {:name => nil, :id => 484, :citizen=> 'Mexicana', :code =>'MX' }
     @model = Country
   end
