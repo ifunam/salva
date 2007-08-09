@@ -4,34 +4,35 @@ require 'application_helper'
 require 'labels'
 module SelectHelper
   include Labels
+  include ActionView::Helpers::FormOptionsHelper
 
   def foreignize(model, prefix=nil)
-    foreignkey = Inflector.foreign_key(model)
-    foreignkey = prefix + '_' + foreignkey unless prefix.nil?
-    foreignkey
+    (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
+  end
+
+  def selectizedid(object, field, selected=nil, filter={})
+    if filter.is_a? Hash and filter.has_key?(field) and !filter[field].nil? # Default value from filter has priority over defined state_id or selected option
+      filter[field]
+    elsif !object.nil? and object.respond_to? field and !object.send(field).nil?
+      object.send(field)
+    elsif !selected.nil?
+      selected
+    end
   end
 
   def simple_select(object, model, tabindex, options={})
-    name = (model.column_names.include? 'title') ? 'title': 'name'
+    column = (model.column_names.include? 'title') ? 'title' : 'name'
     field = foreignize(model,options[:prefix])
-    if !@filter.nil? and @filter.has_key?(field)
-      selected = @filter[field]
-    else
-      selected = (!@edit.nil? and @edit.respond_to? field) ? @edit.send(field): options[:selected]
-    end
-    @list = Finder.new(model, [ name ], :all, :order => name+' ASC').as_pair
-    @list = @list + (Finder.new(model, [ name ], :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+    selected = selectizedid(@edit, field, options[:selected], @filter)
+    @list = Finder.new(model, [ 'name' ], :all, :order => 'name ASC').as_pair
+    @list = @list + (Finder.new(model, [ column ], :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
+    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected},  { :tabindex => tabindex})
   end
 
   def select_conditions(object, model, tabindex, options={})
     field = options[:field] || foreignize(model)
     attributes = options[:attributes] || %w(name)
-    if !@filter.nil? and @filter.has_key?(field)
-      selected = @filter[field]
-    else
-      selected = (!@edit.nil? and @edit.respond_to? field) ? @edit.send(field): options[:selected]
-    end
+    selected = selectizedid(@edit, field, options[:selected], @filter)
     [:attributes, :selected, :field].each { |key| options.delete(key) }
     @list = Finder.new(model, attributes, :all, options).as_pair
     @list = @list + (Finder.new(model, attributes, :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
