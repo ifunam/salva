@@ -20,12 +20,16 @@ module SelectHelper
     end
   end
 
+  def finder_by_id(model, attributes, id)
+    Finder.new(model, attributes, :first, :conditions => "id = #{id}").as_pair
+  end
+
   def simple_select(object, model, tabindex, options={})
     column = (model.column_names.include? 'title') ? 'title' : 'name'
     field = foreignize(model,options[:prefix])
     selected = selectizedid(@edit, field, options[:selected], @filter)
     @list = Finder.new(model, [ 'name' ], :all, :order => 'name ASC').as_pair
-    @list = @list + (Finder.new(model, [ column ], :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
+    @list = @list + finder_by_id(model, [ column ], selected) if !selected.nil? && @list.rassoc(selected).nil?
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected},  { :tabindex => tabindex})
   end
 
@@ -33,9 +37,9 @@ module SelectHelper
     field = options[:field] || foreignize(model)
     attributes = options[:attributes] || %w(name)
     selected = selectizedid(@edit, field, options[:selected], @filter)
-    [:attributes, :selected, :field].each { |key| options.delete(key) }
+     [:attributes, :selected, :field].each { |key| options.delete(key) }
     @list = Finder.new(model, attributes, :all, options).as_pair
-    @list = @list + (Finder.new(model, attributes, :first, :conditions => "id = #{selected}").as_pair) if !selected.nil? && @list.rassoc(selected).nil?
+    @list = @list + finder_by_id(model, attributes, selected) if !selected.nil? && @list.rassoc(selected).nil?
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 

@@ -31,7 +31,7 @@ class ConferenceTest < Test::Unit::TestCase
     record = Person.find_by_firstname('Juana')
     assert_equal 25, record.state_id
     filter = { 'state_id' => 19}
-    record.state_id = selectizedid('x', 'state_id', 9, filter)
+    record.state_id = selectizedid(record, 'state_id', 9, filter)
     assert_equal 19, record.state_id
   end
 
