@@ -14,7 +14,7 @@
 <div id="researcharea_id">
 <% @edit.researcharea_id = params[:id] if params[:id] %>
 <%= simple_select('edit', Researcharea, 3) %>
-<%= submit_for_stack('researcharea') %>
+<%= quickpost('researcharea') %>
 </div>
 </div>
 

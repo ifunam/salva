@@ -12,7 +12,7 @@
 <label for="edition_id" class="label"><%= get_label('edition_id') %> <span class="required">*</span></label>
 <div id="edition_id">
 <%= simple_select('edit', Edition, 2) %>
-<%= submit_for_stack('edition') %>
+<%= quickpost('edition') %>
 </div>
 
 </div>
@@ -31,7 +31,7 @@
 <label for="publisher_id" class="label"><%= get_label('publisher_id') %> <span class="required">*</span></label>
 <div id="publisher_id">
 <%= simple_select('edit', Publisher, 5) %>
-<%= submit_for_stack('publisher') %>
+<%= quickpost('publisher') %>
 </div>
 </div>
 
@@ -39,7 +39,7 @@
 <label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label>
 <div id="mediatype_id">
 <%= simple_select('edit', Mediatype, 6) %>
-<%= submit_for_stack('mediatype') %>
+<%= quickpost('mediatype') %>
 </div>
 </div>
 
@@ -47,7 +47,7 @@
 <label for="editionstatus_id" class="label"><%= get_label('editionstatus_id') %></label>
 <div id="editionstatus_id">
 <%= simple_select('edit', Editionstatus, 7) %>
-<%= submit_for_stack('editionstatus') %>
+<%= quickpost('editionstatus') %>
 </div>
 </div>
 

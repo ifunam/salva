@@ -6,7 +6,7 @@
 <div id="activitytype_id">
 <%= select_as_tree('edit', Activitytype, %w(name), 1, 1, :conditions => 'activitytypes.activitygroup_id = 3') %>
 </div>
-<%= submit_for_stack('activitytype') %>
+<%= quickpost('activitytype') %>
 </div>
 
 <div class="row">

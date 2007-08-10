@@ -51,7 +51,7 @@ Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %>
   <div id="select_country_state">
   <%= observable_select('select_country_state', 484,8) %>
   </div>
-  <%= submit_for_stack('state:country_id') %>
+  <%= quickpost('state:country_id') %>
 </div>
 
 <div class="row">
@@ -59,7 +59,7 @@ Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %>
   <div id="select_state_city">
    <%= observable_select('select_state_city',1,9) %>
   </div>
-  <%= submit_for_stack('city:state_id') %>
+  <%= quickpost('city:state_id') %>
 </div>
 
 <hr/>

@@ -3,7 +3,7 @@
 <div class="row">
  <label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label>
  <%= simple_select('filt', Researcharea, 1) %>
- <%= submit_for_stack('researcharea') %>
+ <%= quickpost('researcharea') %>
 </div>
 
 <%= observe_select('filt', 'researcharea_id', 'select_researcharea_researchline', 1) %>
@@ -13,7 +13,7 @@
    <div id="select_researcharea_researchline">
      <%= observable_select('select_researcharea_researchline', 1, 2) %>
    </div>
-   <%= submit_for_stack('researchline:researcharea_id') %>
+   <%= quickpost('researchline:researcharea_id') %>
 </div>
 
 

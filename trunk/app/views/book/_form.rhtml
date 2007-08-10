@@ -35,7 +35,7 @@
 <div id="volume_id">
 <%= simple_select('edit', Volume, 6) %>
 </div>
-<%= submit_for_stack('volume') %>
+<%= quickpost('volume') %>
 </div>
 
 <div class="row"> 
@@ -43,7 +43,7 @@
 <div id="orig_language_id">
 <%= simple_select('edit', Language, 7, 'orig') %>
 </div>
-<%= submit_for_stack('language,orig_language_id') %>
+<%= quickpost('language,orig_language_id') %>
 </div>
 
 <div class="row"> 
@@ -51,7 +51,7 @@
 <div id="trans_language_id">
 <%= simple_select('edit', Language, 8, 'trans') %>
 </div>
-<%= submit_for_stack('language,trans_language_id') %>
+<%= quickpost('language,trans_language_id') %>
 </div>
 
 
