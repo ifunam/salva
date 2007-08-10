@@ -4,7 +4,7 @@
 <div class="row"> 
 <label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
 <div id="project_id">
-<%= table_select('edit', Project, 1, 1) %>
+<%= simple_select('edit', Project, 1) %>
 </div>
 <%= submit_for_stack('project') %>
 </div>
@@ -12,7 +12,7 @@
 <div class="row"> 
 <label for="roleinproject_id" class="label"><%= get_label('roleinproject_id') %> <span class="required">*</span></label> 
 <div id="roleinproject_id">
-<%= table_select('edit', Roleinproject, 2, 1) %>
+<%= simple_select('edit', Roleinproject, 2) %>
 </div>
 </div>
 

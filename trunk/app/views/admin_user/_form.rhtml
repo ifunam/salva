@@ -1,53 +1,53 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:users]-->
-<div class="row"> 
-<label for="login" class="label"><%= get_label('login') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="login" class="label"><%= get_label('login') %> <span class="required">*</span></label>
 <%= text_field 'edit', 'login', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 1, 'id' => 'login' %>
 </div>
 
-<div class="row"> 
-<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label>
 <%= password_field 'edit', 'passwd', 'size' => 15, 'maxsize'=>
  30,'tabindex' => 2, 'id' => 'edit_passwd', 'z:required' => 'true',
- 'z:message' => 'Este campo es requerido' 
+ 'z:message' => 'Este campo es requerido'
  %>
 </div>
 
-<div class="row"> 
-<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="passwd" class="label"><%= get_label('passwd') %> <span class="required">*</span></label>
 <%= password_field 'edit', 'passwd_confirmation', 'size' => 15,
 'maxsize'=>  30,'tabindex' => 2, 'id' => 'edit_passwdconfirmation',
-'z:required' => 'true',  'z:message' => 'Este campo es requerido' 
+'z:required' => 'true',  'z:message' => 'Este campo es requerido'
  %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="userstatus_id" class="label"><%= get_label('userstatus_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="userstatus_id" class="label"><%= get_label('userstatus_id') %> <span class="required">*</span></label>
 <div id="userstatus_id">
-<%= table_select('edit', Userstatus, {:tabindex => 4, :required => 1 }) %> 
-<%= quickpost('userstatus') %> 
+<%= simple_select('edit', Userstatus, 4) %>
+<%= quickpost('userstatus') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="email" class="label"><%= get_label('email') %></label> 
+<div class="row">
+<label for="email" class="label"><%= get_label('email') %></label>
 <%= text_field 'edit', 'email', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 5, 'id' => 'email' %>
 </div>
 
-<div class="row"> 
-<label for="homepage" class="label"><%= get_label('homepage') %></label> 
+<div class="row">
+<label for="homepage" class="label"><%= get_label('homepage') %></label>
 <%= text_field 'edit', 'homepage', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 6, 'id' => 'homepage' %>
 </div>
 
-<div class="row"> 
-<label for="blog" class="label"><%= get_label('blog') %></label> 
+<div class="row">
+<label for="blog" class="label"><%= get_label('blog') %></label>
 <%= text_field 'edit', 'blog', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 7, 'id' => 'blog' %>
 </div>
 
-<div class="row"> 
-<label for="calendar" class="label"><%= get_label('calendar') %></label> 
+<div class="row">
+<label for="calendar" class="label"><%= get_label('calendar') %></label>
 <%= text_field 'edit', 'calendar', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 8, 'id' => 'calendar' %>
 </div>
 

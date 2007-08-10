@@ -1,5 +1,0 @@
-<% if @id.length > 0  %> 
- <%= select_id_to_update_select('edit', Course, Degree, @id, nil, @tabindex, 1, %w(title coursetype_id) ) %>
-<% else %>
- <%= render :partial => 'salva/select_course' %>
-<% end %>

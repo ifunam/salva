@@ -3,7 +3,7 @@
 <%= @book.title %></p>
 <%= start_form_tag :action => 'create' %>
 <label for="roleinbook_id">Tipo de participaci&oacute;n</label>
-<%= table_select('edit', 'roleinbooks') %>
+<%= simple_select('edit', Roleinbook, 1) %>
   <%= submit_tag "Guadar"%>
 <%= end_form_tag %>
 <%= link_to 'Back', :action => 'list' %>

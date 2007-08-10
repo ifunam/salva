@@ -1,18 +1,18 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:identification]-->
-<div class="row"> 
-<label for="idtype_id" class="label"><%= get_label('idtype_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="idtype_id" class="label"><%= get_label('idtype_id') %> <span class="required">*</span></label>
 <div id="idtype_id">
-<%= table_select('edit', Idtype, 1, 1) %>
+<%= simple_select('edit', Idtype, 1) %>
 <%= submit_for_stack('idtype') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label>
 <div id="citizen_country_id">
-<%=  select_by_attribute('edit', Country, 2, 1, 'citizen_country_id', 'citizen') %>
+<%=  simple_select('edit', Country, 2, { :prefix => 'citizen', :attribute => 'citizen'}) %>
 </div>
 </div>
 

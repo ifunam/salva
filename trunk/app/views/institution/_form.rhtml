@@ -4,7 +4,7 @@
 <div class="row">
 <label for="institutiontitle_id" class="label"><%= get_label('institutiontitle_id') %> <span class="required">*</span></label>
 <div id="institutiontitle_id">
-<%= table_select('edit', Institutiontitle, {:tabindex => '1'}) %>
+<%= simple_select('edit', Institutiontitle, 1) %>
 <%= quickpost('institutiontitle') %>
 </div>
 </div>
@@ -31,7 +31,7 @@
 <div class="row">
 <label for="institutiontype_id" class="label"><%= get_label('institutiontype_id') %> <span class="required">*</span></label>
 <div id="institutiontype_id">
-<%= table_select('edit', Institutiontype, {:tabindex => '6'}) %>
+<%= simple_select('edit', Institutiontype, 6) %>
 <%= quickpost('institutiontype') %>
 </div>
 </div>
@@ -41,28 +41,29 @@
 <%= text_area 'edit', 'addr', 'rows' => 4, 'cols'=> 40,'tabindex'=> 7, 'id' => 'addr' %>
 </div>
 
+
 <div class="row">
  <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
- <%= select_to_update_select('edit', Country, State, 8, 1) %>
-</div>
+ <%= simple_select('edit', Country, 4, {:selected => @edit.country_id || 484 }) %>
+ </div>
 <br/>
 
+<%= observe_select('edit', 'country_id', 'select_country_state', 8) %>
+
 <div class="row">
-  <label for="state_id" class="label"><%= get_label('state_id') %>
-  <div id="select_country_state_note" style="display: none"><span class="upgrade_note">Actualizando la lista de estados...</span></div>
+  <label for="state_id" class="label"><%= get_label('state_id') %> <span class="required">*</span></label>
   <div id="select_country_state">
-   <%= select_to_update_select('edit', State, City, 9) %>
+  <%= observable_select('select_country_state', 484,9) %>
   </div>
-  <%= quickpost('state') %>
+  <%= submit_for_stack('state:country_id') %>
 </div>
 
 <div class="row">
-  <label for="city_id" class="label"><%= get_label('city_id') %>
-  <div id="select_state_city_note" style="display: none"><span class="upgrade_note">Actualizando la lista de ciudades...</span></div>
+  <label for="city_id" class="label"><%= get_label('city_id') %></label>
   <div id="select_state_city">
-  <%= table_select('edit', City, 10) %>
+   <%= observable_select('select_state_city',1,10) %>
   </div>
-  <%= quickpost('city') %>
+<%= submit_for_stack('city:state_id') %>
 </div>
 
 <div class="row">
