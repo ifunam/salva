@@ -1,0 +1,10 @@
+--- 
+en_prensa: 
+  name: En prensa
+  id: 3
+aceptado: 
+  name: Aceptado
+  id: 1
+enviado: 
+  name: Enviado
+  id: 2
