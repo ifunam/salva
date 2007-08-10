@@ -4,9 +4,9 @@
 <div class="row"> 
 <label for="schoolarship_id" class="label"><%= get_label('schoolarship_id') %> <span class="required">*</span></label> 
 <div id="schoolarship_id">
-<%= table_select('edit', Schoolarship, 1, 1) %>
+<%= simple_select('edit', Schoolarship, 1) %>
 </div>
-<%= submit_for_stack('schoolarship') %>
+<%= quickpost('schoolarship') %>
 </div>
 
 <div class="row"> 

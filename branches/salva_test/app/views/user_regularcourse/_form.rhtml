@@ -6,7 +6,7 @@
 <div id="academicprogram_id">
 <%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
 </div>
-  <%= submit_for_stack('academicprogram') %>
+  <%= quickpost('academicprogram') %>
 </div>
 <%= observe_select('filt', 'academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
 
@@ -15,7 +15,7 @@
 <div id="select_academicprogram_regularcourse">
  <%= observable_select('select_academicprogram_regularcourse', nil, 2) %>
 </div>
-  <%= submit_for_stack('regularcourse') %>
+  <%= quickpost('regularcourse') %>
 </div>
 
 <div class="row">
@@ -23,7 +23,7 @@
 <div id="period_id">
 <%= select_conditions('edit', Period, 2, :attributes => ['title']) %>
 </div>
-  <%= submit_for_stack('period') %>
+  <%= quickpost('period') %>
 </div>
 
 <div class="row">

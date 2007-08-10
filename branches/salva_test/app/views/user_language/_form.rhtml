@@ -5,21 +5,21 @@
 <label for="language_id" class="label"><%= get_label('language_id') %> <span class="required">*</span></label>
 <div id="language_id">
   <%= simple_select('edit', Language, 1) %>
-  <%= submit_for_stack('language') %>
+  <%= quickpost('language') %>
 </div>
 </div>
 
 <div class="row">
 <label for="spoken_languagelevel_id" class="label"><%= get_label('spoken_languagelevel_id') %> <span class="required">*</span></label>
 <div id="spoken_languagelevel_id">
-<%= table_select('edit', Languagelevel, 2, 1, 'spoken') %>
+<%= simple_select('edit', Languagelevel, 2, 'spoken') %>
 </div>
 </div>
 
 <div class="row">
 <label for="written_languagelevel_id" class="label"><%= get_label('written_languagelevel_id') %> <span class="required">*</span></label>
 <div id="written_languagelevel_id">
-<%= table_select('edit', Languagelevel, 3, 1, 'written') %>
+<%= simple_select('edit', Languagelevel, 3, 'written') %>
 </div>
 </div>
 

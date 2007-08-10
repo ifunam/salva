@@ -6,7 +6,7 @@
 <div id="proceeding_id">
 <%= select_as_tree('edit', Proceeding, %w(title year),1,1,:conditions=>" isrefereed = 't' ") %>
 </div>
-<%= submit_for_stack('proceeding_refereed,proceeding_id') %>
+<%= quickpost('proceeding_refereed,proceeding_id') %>
 </div>
 
 <div class="row"> 

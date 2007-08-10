@@ -77,39 +77,3 @@ COMMENT ON COLUMN institutions.administrative_key IS
         indicamos aquí. Lo guardamos sólo como texto, no buscamos la integridad
         referencial';
 
-CREATE TABLE sectors (
-        id SERIAL,
-        name text NOT NULL,
-        moduser_id int4 NULL    -- Use it only to know who has
-            REFERENCES users(id)    -- inserted, updated or deleted
-            ON UPDATE CASCADE       -- data into or from this table.
-            DEFERRABLE,
-        PRIMARY KEY(id),
-        UNIQUE(name)
-);
-COMMENT ON TABLE sectors IS
-        'Una institución pertences a cierto sectores - ¿cuáles? (tan
-        genérico como sea posible:
-        Educación, investigación, salud, energéticos, etc.';
-
-CREATE TABLE institution_sectors (
-        id SERIAL,
-        institution_id int4 NOT NULL
-                REFERENCES institutions(id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-                DEFERRABLE,
-        sector_id int4 NOT NULL
-                REFERENCES sectors(id)
-                ON UPDATE CASCADE
-                DEFERRABLE,
-        moduser_id int4 NULL    -- Use it only to know who has
-            REFERENCES users(id)    -- inserted, updated or deleted
-            ON UPDATE CASCADE       -- data into or from this table.
-            DEFERRABLE,
-        PRIMARY KEY(id),
-        UNIQUE (institution_id, sector_id)
-);
-COMMENT ON TABLE institution_sectors IS
-        'Relación entre cada una de las instituciones y los sectores a los que pertenece';
-

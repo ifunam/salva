@@ -102,6 +102,7 @@ class Test::Unit::TestCase
     def login_as (user, password)
       @controller = UserController.new
       post :signup, :user => { :login => user, :passwd => 'maltiempo'}
+      #session[:user]
     end
   end
 

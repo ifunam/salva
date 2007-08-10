@@ -4,9 +4,9 @@
 <div class="row"> 
 <label for="conference_id" class="label"><%= get_label('conference_id') %> <span class="required">*</span></label> 
 <div id="conference_id">
-<%= table_select('edit', Conference, 1, 1) %>
+<%= simple_select('edit', Conference, 1) %>
 </div>
-<%= submit_for_stack('conference') %>
+<%= quickpost('conference') %>
 </div>
 
 <div class="row"> 
@@ -20,9 +20,9 @@
 <div class="row"> 
 <label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
 <div id="publisher_id">
-<%= table_select('edit', Publisher, 4) %>
+<%= simple_select('edit', Publisher, 4) %>
 </div>
-<%= submit_for_stack('publisher') %>
+<%= quickpost('publisher') %>
 </div>
 
 <%= hidden_field('edit', 'isrefereed', :value => 'false') %>
@@ -31,9 +31,9 @@
 <div class="row"> 
 <label for="volume_id" class="label"><%= get_label('volume_id') %></label> 
 <div id="volume_id">
-<%= table_select('edit', Volume, 6) %>
+<%= simple_select('edit', Volume, 5) %>
 </div>
-<%= submit_for_stack('volume:proceeding_unrefereed') %>
+<%= quickpost('volume:proceeding_unrefereed') %>
 </div>
 
 <div class="row"> 

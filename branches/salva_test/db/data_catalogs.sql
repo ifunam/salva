@@ -23,7 +23,6 @@
 \i catalogs/roleinbooks.sql
 \i catalogs/institutiontypes.sql
 \i catalogs/institutiontitles.sql
-\i catalogs/sectors.sql
 \i catalogs/institutions.sql
 \i catalogs/languages.sql
 \i catalogs/languagelevels.sql

@@ -16,13 +16,13 @@
 <div id="genericworktype_id">
 <%= select_as_tree('edit', Genericworktype, %w(name),1,1,:conditions=> "genericworkgroup_id = 6") %>
 </div>
-<%= submit_for_stack('genericworktype') %>
+<%= quickpost('genericworktype') %>
 </div>
 
 <div class="row">
 <label for="genericworkstatus_id" class="label"><%= get_label('genericworkstatus_id') %> <span class="required">*</span></label>
 <div id="genericworkstatus_id">
-<%= table_select('edit', Genericworkstatus, 4, 1) %>
+<%= simple_select('edit', Genericworkstatus, 4) %>
 </div>
 </div>
 
