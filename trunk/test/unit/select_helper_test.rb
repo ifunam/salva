@@ -1,13 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'select_helper'
-class ConferenceTest < Test::Unit::TestCase
+class SelectHelperTest < Test::Unit::TestCase
   include SelectHelper
   fixtures :userstatuses, :users,  :maritalstatuses, :countries, :states, :cities, :people, :languages
-
-  def test_foreignizing_model
-    assert_equal 'country_id', foreignize(Country)
-    assert_equal 'orig_language_id', foreignize(Language, 'orig')
-  end
 
   def test_should_selectize_id_from_object
     record = Person.find_by_firstname('Juana')

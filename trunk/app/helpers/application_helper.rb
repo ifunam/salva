@@ -13,7 +13,7 @@ module ApplicationHelper
     link_options[:controller] = controller if  controller != nil
     html_options = { :class => action, :onmouseover => miceover,
                      :onmouseout => miceout }
-    html_options[:confirm] = question if question != nil
+    html_options[:confirm] = question if  question != nil
 
     link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt),
             link_options, html_options )
@@ -53,7 +53,7 @@ module ApplicationHelper
                      )
   end
 
-  def set_model_id(model)
-    model.name.downcase + '_id'
+  def foreignize(model, prefix=nil)
+    (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
   end
 end

@@ -3,12 +3,9 @@ require 'list_helper'
 require 'application_helper'
 require 'labels'
 module SelectHelper
+  include ApplicationHelper
   include Labels
   include ActionView::Helpers::FormOptionsHelper
-
-  def foreignize(model, prefix=nil)
-    (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
-  end
 
   def selectize_id(object, field, selected=nil, filter={})
     # Default value from filter has priority over defined state_id or selected option
@@ -52,7 +49,7 @@ module SelectHelper
     options = set_options_tags(tabindex, validation_type)
     collection = model.find(:all, conditions)
     list = list_collection(collection, columns)
-    fieldname = set_model_id(model)
+    fieldname = foreignize(model)
     fieldname = 'parent_id' if columns.include? 'parent_id'
     select(object, fieldname, list, {:prompt => '-- Seleccionar --'}, options)
   end
@@ -65,19 +62,19 @@ module SelectHelper
     else
       list = list_from_collection(model.find(:all, :order => 'name DESC'))
     end
-    select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
+    select(object, foreignize(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
   def select_without_universities(object, model, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
     list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institutiontitle_id != ?', 1]))
-    select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
+    select(object, foreignize(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
   def select_institution(object, model, tabindex, validation_type=nil)
     options = set_options_tags(tabindex, validation_type)
     list = list_from_collection(model.find(:all, :order => 'name DESC', :conditions => [ 'institution_id = ?', 1]))
-    select(object, set_model_id(model), list, {:prompt => '-- Seleccionar --'}, options)
+    select(object, foreignize(model), list, {:prompt => '-- Seleccionar --'}, options)
   end
 
   def set_options_tags(tabindex, validation_type=nil)
