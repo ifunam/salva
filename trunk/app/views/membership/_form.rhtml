@@ -1,25 +1,25 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:membership]-->
-<div class="row"> 
-<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
 <div id="institution_id">
-<%= select_without_universities('edit', Institution,  1, 1) %> 
+<%= select_conditions('edit', Institution,  1, {:attributes => %w(name), :conditions => "institutiontitle_id >= 13", :order => 'name ASC'})  %>
 </div>
 <%= quickpost('institution') %>
 </div>
 
-<div class="row"> 
-<label for="descr" class="label">Tipo de participación</label> 
+<div class="row">
+<label for="descr" class="label">Tipo de participación</label>
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'descr' %>
 </div>
 
-<div class="row"> 
-<label for="startyear" class="label"><%= get_label('startyear') %></label> 
+<div class="row">
+<label for="startyear" class="label"><%= get_label('startyear') %></label>
 <%= text_field_with_auto_complete :edit, :startyear, {:size =>4, :maxlength =>4, :tabindex => 3}, :skip_style => true %><br/></div>
 
-<div class="row"> 
-<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<div class="row">
+<label for="endyear" class="label"><%= get_label('endyear') %></label>
 <%= text_field_with_auto_complete :edit, :endyear, {:size =>4, :maxlength =>4, :tabindex => 4}, :skip_style => true %><br/></div>
 
 

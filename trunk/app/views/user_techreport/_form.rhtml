@@ -1,15 +1,15 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:user_genericwork]-->
-<div class="row"> 
-<label for="genericwork_id" class="label"><%= get_label('genericwork_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="genericwork_id" class="label"><%= get_label('genericwork_id') %> <span class="required">*</span></label>
 <div id="genericwork_id">
-<%= select_as_tree('edit', Genericwork, %w( authors title year),1,1,:conditions=>'genericworktype_id = 10' ) %>
+<%= select_conditions('edit', Genericwork, 1, {:attributes => %w( authors title year), :conditions=>'genericworktype_id = 10' }) %>
 <%= quickpost('techreport,genericwork_id') %>
 </div>
 </div>
 
-<label for="userrole_id" class="label"><%= get_label('userrole_id') %><span class="required">*</span></label> 
+<label for="userrole_id" class="label"><%= get_label('userrole_id') %><span class="required">*</span></label>
 <br/>
 <p>
 <%= checkbox_list('edit', Userrole, @edit.attributes_before_type_cast['userrole_id']) %>

@@ -1,18 +1,18 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:user_inproceeding]-->
-<div class="row"> 
-<label for="inproceeding_id" class="label"><%= get_label('inproceeding_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="inproceeding_id" class="label"><%= get_label('inproceeding_id') %> <span class="required">*</span></label>
 <div id="inproceeding_id">
-<%= select_as_tree('edit', Inproceeding, %w(title authors),1,1, {:include => [:proceeding], :conditions => "inproceedings.proceeding_id = proceedings.id AND proceedings.isrefereed = 'f' "}) %>
+<%= select_conditions('edit', Inproceeding,1, {:attributes => %w(title authors), :include => [:proceeding], :conditions => "inproceedings.proceeding_id = proceedings.id AND proceedings.isrefereed = 'f' "}) %>
 </div>
 <%= quickpost('inproceeding_unrefereed,iproceeding_id') %>
 </div>
 
-<div class="row"> 
-<label for="ismainauthor" class="label"><%= get_label('ismainauthor') %> <span class="required">*</span></label> 
-<div class="radio"> 
-Autor principal <%= radio_button('edit', 'ismainauthor', 'true') %> 
+<div class="row">
+<label for="ismainauthor" class="label"><%= get_label('ismainauthor') %> <span class="required">*</span></label>
+<div class="radio">
+Autor principal <%= radio_button('edit', 'ismainauthor', 'true') %>
 Coautor <%= radio_button('edit', 'ismainauthor', 'false') %>
 </div>
 </div>

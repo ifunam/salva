@@ -1,28 +1,28 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:thesis_juror]-->
-<div class="row"> 
-<label for="thesis_id" class="label"><%= get_label('thesis_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="thesis_id" class="label"><%= get_label('thesis_id') %> <span class="required">*</span></label>
 <div id="thesis_id">
-<%= select_as_tree('edit', Thesis, %w( title year), 1, 1) %>
+<%= select_conditions('edit', Thesis, 1, {:attributes =>%w( title year)}) %>
 <%= quickpost('thesis') %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="roleinjury_id" class="label"><%= get_label('roleinjury_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="roleinjury_id" class="label"><%= get_label('roleinjury_id') %> <span class="required">*</span></label>
 <div id="roleinjury_id">
 <%= simple_select('edit', Roleinjury, 2) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
 <%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 3}, :skip_style => true %><br/></div>
 
-<div class="row"> 
-<label for="month" class="label"><%= get_label('month') %></label> 
-<%= month_select('edit', 'month', {:tabindex => 4, :required => 0 }) %> 
+<div class="row">
+<label for="month" class="label"><%= get_label('month') %></label>
+<%= month_select('edit', 'month', {:tabindex => 4, :required => 0 }) %>
 </div>
 
 

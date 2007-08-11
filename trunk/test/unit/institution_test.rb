@@ -7,7 +7,7 @@ require 'institutiontitle'
 require 'institution'
 
 class InstitutionTest < Test::Unit::TestCase
-  fixtures [:countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions]
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions
 
   def setup
     @institutions = %w(programa_Universitario_de_Estudios_de_Genero unam)
