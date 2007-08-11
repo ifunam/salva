@@ -1,0 +1,10 @@
+--- 
+publicado: 
+  name: Publicado
+  id: 1
+en_prensa: 
+  name: En prensa
+  id: 2
+aceptado_para_publicacion: 
+  name: Aceptado para publicación
+  id: 3
