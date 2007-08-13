@@ -1,32 +1,17 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'salva_controller_test'
 require 'user_language_controller'
 
-class UserLanguageControllerTest < Test::Unit::TestCase
-  fixtures :userstatuses, :users
-  include Session
+class UserLanguageController; def rescue_action(e) raise e end; end
 
-  def setup
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    login_as('juana','maltiempo')
-    @controller = UserLanguageController.new
-    @fixtures =  {
-      :language => 'Inglés',
-      :spoken_languagelevel =>  'Intermedio',
-      :written_languagelevel => 'Avanzado'
-    }
-  end
+class  UserLanguageControllerTest < SalvaControllerTest
   
-  def test_index
-    get :index
-    assert_response  :success
-    assert_template 'list'
-  end
 
-  def test_new
-    get :new
-    assert_response  :success
-    assert_template 'new'
+  def initialize(*args)
+   super
+   @mycontroller =  UserLanguageController.new
+   @myfixtures = {}
+   @mybadfixtures = {   }
+   @model = UserLanguage
+   @quickposts = []
   end
-
 end
