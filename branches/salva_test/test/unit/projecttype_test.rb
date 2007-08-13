@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'projecttype'
 
-class MprojecttypeTest < Test::Unit::TestCase
+class ProjecttypeTest < Test::Unit::TestCase
   fixtures :projecttypes
   include UnitSimple
 
