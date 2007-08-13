@@ -94,20 +94,14 @@ class SalvaControllerTest < Test::Unit::TestCase
     end
   end
 
-  def test_should_post_into_update
-    catch :abort  do
-      throw :abort if @controller.nil?
-      post :update, :id=> @model.find(:first).id, :edit => @myfixtures
-      if @child != nil
-        record = @model.find(:first, :conditions => "name = '#{@myfixtures[:name]}'")
-        assert_response  :redirect
-        assert_redirected_to :action => 'show', :id=> record.id
-      else
-        assert_response  :redirect
-        assert_redirected_to :action => 'list'
-      end
-    end
-  end
+   def test_should_post_into_update
+     catch :abort  do
+       throw :abort if @controller.nil?
+       post :update, :id=> @model.find(:first).id, :edit => @myfixtures
+       assert_response  :redirect
+       assert_redirected_to :action => 'list'
+     end
+   end
 
   def test_should_post_into_update_bad_values
     catch :abort  do
@@ -156,7 +150,7 @@ class SalvaControllerTest < Test::Unit::TestCase
       assert_response :success
       assert_template 'list'
       ids = @model.find(:all).collect  { |record| record.id}
-      post :purge_selected,  :item => ids
+      post :purge_selected,  :item => ids.sort.reverse
       assert_response  :redirect
       assert_redirected_to :action => 'list'
     end
