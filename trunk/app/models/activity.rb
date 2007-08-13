@@ -7,5 +7,4 @@ class Activity < ActiveRecord::Base
   validates_uniqueness_of :name
   belongs_to :activitytype
   belongs_to :user
-  validates_associated :activitytype, :on => :update
 end

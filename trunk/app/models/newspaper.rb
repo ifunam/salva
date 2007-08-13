@@ -6,6 +6,4 @@ class Newspaper < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:country_id]
 
   belongs_to :country
-
-  validates_associated :country, :on => :update
 end

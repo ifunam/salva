@@ -3,8 +3,6 @@ class Institutiontitle < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-
-  validates_associated :institution, :on => :update
-  has_many :institution
+  has_many :institutions
 end
 

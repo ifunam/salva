@@ -7,5 +7,4 @@ class Coursegroup < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:startyear]
 
   belongs_to :coursegrouptype
-  validates_associated :projecttype, :on => :update
 end

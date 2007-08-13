@@ -19,13 +19,6 @@ class Institution < ActiveRecord::Base
   has_many :courses
   has_many :schoolarships
 
-#   validates_associated :institution, :on => :update
-#   validates_associated :institutiontitle, :on => :update
-#   validates_associated :institutiontype, :on => :update
-#   validates_associated :country, :on => :update
-#   validates_associated :state, :on => :update
-#   validates_associated :city, :on => :update
-
   def as_text
     values = [name, abbrev]
     values << institution.name unless institution.name.nil?

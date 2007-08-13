@@ -12,6 +12,5 @@ class  BooktypeControllerTest < SalvaControllerTest
    @myfixtures = { :name => 'Arbitrado_test' }
    @mybadfixtures = {  :name => nil }
    @model = Booktype
-   @quickposts = []
   end
 end

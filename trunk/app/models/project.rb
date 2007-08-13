@@ -21,8 +21,4 @@ class Project < ActiveRecord::Base
   belongs_to :projecttype
   belongs_to :projectstatus
   belongs_to :project
-
-  validates_associated :projecttype, :on => :update
-  validates_associated :projectstatus, :on => :update
-  validates_associated :project, :on => :update
 end
