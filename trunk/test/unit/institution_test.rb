@@ -10,7 +10,7 @@ class InstitutionTest < Test::Unit::TestCase
   fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions
 
   def setup
-    @institutions = %w(programa_Universitario_de_Estudios_de_Genero unam)
+    @institutions = %w(programa_Universitario_de_Estudios_de_Genero unam cele)
     @myinstitution = Institution.new({:name => 'Auditoria Interna', :institutiontitle_id => 14, :institutiontype_id => 1, :country_id => 484})
   end
 

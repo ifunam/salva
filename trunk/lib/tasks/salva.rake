@@ -12,7 +12,7 @@ namespace :salva do
        print "\n"
     end
   end
-  
+
   desc "Creating tables for salva using salva:db_schema_load"
   task :db_schema_load do
     RAILS_ENV = 'test'
@@ -30,27 +30,27 @@ namespace :salva do
     ActiveRecord::Base.establish_connection(db)
     print "Extracting records from #{table}: "
     i = '000'
-    File.open("#{path}/#{table}.yml", 'wb') do |file|
-      file.write ActiveRecord::Base.connection.select_all(sql).inject({}) { |hash, record|  
-        key = set_keyname(record,i)
-        %w(moduser_id created_on updated_on).each { |k| record.delete(k) if record.has_key?(k)}
-        record.keys.each {|k| 
-          if k =~ /(_)*id$/ then
-            record[k] = record[k].to_i 
-          else
-            record[k] = record[k].chars.strip.to_s
-          end
+     File.open("#{path}/#{table}.yml", 'wb') do |file|
+       file.write ActiveRecord::Base.connection.select_all(sql).inject({}) { |hash, record|
+         key = set_keyname(record,i,table)
+         %w(moduser_id created_on updated_on).each { |k| record.delete(k) if record.has_key?(k)}
+         record.keys.each {|k|
+           if k =~ /(_)*id$/ then
+             record[k] = record[k].to_i
+           else
+             record[k] = record[k].chars.strip.to_s
+           end
         }
         print "."
-        hash[key] = record       
+        hash[key] = record
         hash # Aún existe un bug con UTF8
-      }.to_yaml(:Encoding => :Utf8, :Emiter => 'Salva fixtures generator')
-      
+       }.to_yaml(:Encoding => :Utf8, :Emiter => 'Salva fixtures generator')
+
     end
     print "\n"
   end
-  
-  def set_keyname(record,i)
+
+  def set_keyname(record,i,table)
     if record.has_key?('abbrev') then
       keyname(record, 'abbrev')
     elsif record.has_key?('name') then
@@ -58,7 +58,7 @@ namespace :salva do
     elsif record.has_key?('title') then
       keyname(record, 'title')
     else
-      "#{table}_#{i.succ!}" 
+      "#{table}_#{i.succ!}"
     end
   end
 

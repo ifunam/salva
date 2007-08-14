@@ -15,7 +15,6 @@ personal_academico:
   other: 
   state_id: 9
   addr: 
-
 programa_Universitario_de_Estudios_de_Genero: 
   name: Programa Universitario de Estudios de Género
   abbrev: ""
@@ -75,7 +74,7 @@ centro_de_ciencias:
   country_id: 484
   url:
   id: 57
-  institution_id: 1
+  institution_id: 
   fax:
   phone:
   city_id: 1
@@ -92,7 +91,7 @@ cele:
   country_id: 484
   url:
   id: 71
-  institution_id: 1
+  institution_id: 
   fax:
   phone:
   city_id: 1
