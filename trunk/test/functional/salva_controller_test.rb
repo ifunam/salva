@@ -74,14 +74,8 @@ class SalvaControllerTest < Test::Unit::TestCase
     catch :abort  do
       throw :abort if @controller.nil?
       post :create, :edit => @myfixtures
-      if @children != nil
-        record = @model.find(:first, :conditions => "name = '#{@myfixtures[:name]}'")
-        assert_response  :redirect
-        assert_redirected_to :action => 'show', :id=> record.id
-      else
-        assert_response  :redirect
-        assert_redirected_to :action => 'list'
-      end
+      assert_response  :redirect
+      assert_redirected_to :action => 'list'
     end
   end
 
