@@ -3,7 +3,7 @@ conferencia_magistral:
   name: Conferencia magistral
   id: 2
 platica: 
-  name: P1ática
+  name: Plática
   id: 3
 ponencia: 
   name: Ponencia
