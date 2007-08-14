@@ -75,7 +75,7 @@ centro_de_ciencias:
   country_id: 484
   url:
   id: 57
-  institution_id:
+  institution_id: 1
   fax:
   phone:
   city_id: 1
@@ -84,3 +84,21 @@ centro_de_ciencias:
   other:
   state_id: 9
   addr:
+cele:
+  name: Centro de Enseñanza de Lenguas Extranjeras
+  abbrev: CELE
+  administrative_key: 61201 
+  zipcode:
+  country_id: 484
+  url:
+  id: 71
+  institution_id: 1
+  fax:
+  phone:
+  city_id: 1
+  institutiontitle_id: 8
+  institutiontype_id: 1
+  other:
+  state_id: 9
+  addr:
+  
