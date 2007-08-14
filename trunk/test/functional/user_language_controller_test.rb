@@ -4,7 +4,7 @@ require 'user_language_controller'
 class UserLanguageController; def rescue_action(e) raise e end; end
 
 class  UserLanguageControllerTest < SalvaControllerTest
-  fixtures :languages, :languagelevels
+  fixtures :languages, :languagelevels, :institutions
 
   def initialize(*args)
    super
