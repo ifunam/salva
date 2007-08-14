@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  attr_accessor :activitygroup_id
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :activitytype_id, :only_integer => true
   validates_numericality_of :user_id, :only_integer => true
