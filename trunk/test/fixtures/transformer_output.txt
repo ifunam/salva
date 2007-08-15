@@ -1,18 +1,18 @@
-GENERAL
-PERSON
-name: Juárez Robles Jesús Alejandro
-dateofbirth: 17/03/1977
-gender: Masculino
-maritalstatus_id: Soltero
+INFORMACIÓN GENERAL
+DATOS PERSONALES
+Nombre: Juárez Robles Jesús Alejandro
+Fecha: 17/03/1977
+Género: Masculino
+Estado civil: Soltero
 
-ADDRESS
-address: Av. México 1968, Rinconada precolombina, Edificio Tula 002,  Col. Pedregal de Carrasco, Del. Coyoacán,  Ciudad de México, D.F., México, C.P. 04700
-phone: 56225001 ext 289
-movil: 044 55 22 15 06 41
-email: alex@fisica.unam.mx
+DOMICILIO(S)
+Domicilio(s): Av. México 1968, Rinconada precolombina, Edificio Tula 002,  Col. Pedregal de Carrasco, Del. Coyoacán,  Ciudad de México, D.F., México, C.P. 04700
+Teléfono(s): 56225001 ext 289
+Celular o radio: 044 55 22 15 06 41
+Correo electrónico: alex@fisica.unam.mx
 
-PUBLICATIONS
-USER_ARTICLE
+PUBLICACIONES
+ARTÍCULOS ARBITRADOS
 Miramontes O, Juarez A, Rohani P (1998), Intrinsically generated coloured noise in laboratory insect populations, PROCEEDINGS OF THE ROYAL SOCIETY OF LONDON SERIES B-BIOLOGICAL SCIENCES, 265(1398), 785-792.  
 Miramontes O,  Juarez A, Ceccon E (1998), First-difference fluctuations and the complexity of simple population models exhibiting chaos, PHYSICA A-STATISTICAL MECHANICS AND ITS APPLICATIONS, 257(1), 439-447.
 DeSouza O, Miramontes O, Juarez A, Santos CA, et al. (2001), Social facilitation affecting tolerance to poisoning in termites (Insecta, Isoptera), INSECTES SOCIAUX, 48(1), 21-24.
