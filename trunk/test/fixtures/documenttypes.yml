@@ -1,0 +1,9 @@
+--- 
+plan_anual_de_actividades: 
+  name: Plan anual de actividades
+  descr: 
+  id: 2
+informe_anual_de_actividades: 
+  name: Informe anual de actividades
+  descr: 
+  id: 1

@@ -35,6 +35,7 @@ namespace :salva do
          key = set_keyname(record,i,table)
          %w(moduser_id created_on updated_on).each { |k| record.delete(k) if record.has_key?(k)}
          record.keys.each {|k|
+	   next if record[k].nil?
            if k =~ /(_)*id$/ then
              record[k] = record[k].to_i
            else

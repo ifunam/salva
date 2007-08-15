@@ -1,0 +1,13 @@
+--- 
+annual_report: 
+  enddate: 2007-10-01
+  title: 2007
+  documenttype_id: 1
+  id: 1
+  startdate: 2008-01-15
+annual_plan: 
+  enddate: 2007-01-31
+  title: 2008
+  documenttype_id: 2
+  id: 2
+  startdate: 2008-01-01
