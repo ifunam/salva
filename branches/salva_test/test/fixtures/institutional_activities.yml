@@ -1,12 +1,12 @@
 consejo_tecnico:
   id: 1
   user_id: 3 
-  descr: "Revision de casos para permisos con goce de sueldo, contrataciones, et"
+  descr: Revision de casos para permisos con goce de sueldo, contrataciones, etc 
   institution_id: 1
   startyear: 2006
 consejo_computo:
   id: 2 
   user_id: 2 
-  descr: "Estudio de requerimentos de equipo de computo en departamentos del Instituto, planeacion de compras de equipos, etc"
+  descr: Estudio de requerimentos de equipo de computo en departamentos del Instituto, planeacion de compras de equipos, etc
   institution_id: 57
   startyear: 2003

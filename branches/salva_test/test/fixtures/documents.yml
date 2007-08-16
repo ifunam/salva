@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+documento1:
+  id: 1
+  documenttype_id: 3
+  title: Documento1
+  startdate: 2006
+  enddate: 2007
+documento2:
+  id: 2
+  documenttype_id: 2
+  title: Documento2
+  startdate: 2005
+  enddate: 2007
+documento3:
+  id: 3
+  documenttype_id: 1
+  title: Documento2
+  startdate: 2004
+  enddate: 2005

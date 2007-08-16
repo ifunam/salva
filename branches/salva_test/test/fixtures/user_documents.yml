@@ -1,5 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-two:
-  id: 2
+documento1:
+  id: 1 
+  user_id: 2
+  document_id: 1
+  is_published: false
+  filename: documento1.doc
+  contenttype: Contenido del documento1
+  ip_address: 132.248.182.54
+documento2:
+  id: 2 
+  user_id: 2 
+  document_id: 2 
+  is_published: true
+  filename: documento2.doc
+  contenttype: Contenido del documento2
+  ip_address: 132.248.182.54
+documento3:
+  id: 3
+  user_id: 3 
+  document_id: 3 
+  is_published: false
+  filename: documento3.doc
+  contenttype: Contenido del documento3
+  ip_address: 132.248.182.154
