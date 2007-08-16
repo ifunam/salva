@@ -102,6 +102,7 @@ CREATE TABLE user_theses (
             REFERENCES roleintheses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+   other text NULL,
    moduser_id int4 NULL               	    -- Use it to known who
    REFERENCES users(id)            -- has inserted, updated or deleted
    ON UPDATE CASCADE               -- data into or  from this table.
