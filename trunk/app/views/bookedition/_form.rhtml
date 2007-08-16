@@ -27,13 +27,6 @@
 <%= text_field 'edit', 'isbn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
 </div>
 
-<div class="row">
-<label for="publisher_id" class="label"><%= get_label('publisher_id') %> <span class="required">*</span></label>
-<div id="publisher_id">
-<%= simple_select('edit', Publisher, 5) %>
-<%= quickpost('publisher') %>
-</div>
-</div>
 
 <div class="row">
 <label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label>

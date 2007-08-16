@@ -1,9 +1,9 @@
 class Book < ActiveRecord::Base
-  validates_presence_of :title, :message => "Proporcione el título"
-  validates_presence_of :author, :message => "Proporcione el autor"
-  validates_presence_of :country_id, :message => "Proporcione el país"
-  validates_presence_of :booktype_id,:message => "Proporcione el tipo de libro"
-  
+  validates_presence_of :title
+  validates_presence_of :author
+  validates_presence_of :country_id
+  validates_presence_of :booktype_id
+
   belongs_to :country
   belongs_to :booktype
   belongs_to :volume

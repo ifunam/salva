@@ -46,7 +46,7 @@ CREATE TABLE user_documents (
                 ON UPDATE CASCADE
                 DEFERRABLE,
         is_published boolean NOT NULL,
-        document  bytea NOT NULL,
+        file  bytea NOT NULL,
         filename text NOT NULL,
         content_type text NOT NULL,
         ip_address text NOT NULL,-- El tipo de dato INET no esta soportado en rails
