@@ -14,8 +14,8 @@ INSERT INTO roleincourses (name) VALUES ('Autor');
 INSERT INTO roleincourses (name) VALUES ('Asistente');
 INSERT INTO roleincourses (name) VALUES ('Instructor');
 
-INSERT INTO academicprogramtypes (name) VALUES ('Universidad Abierta');
 INSERT INTO academicprogramtypes (name) VALUES ('Escolarizado');
+INSERT INTO academicprogramtypes (name) VALUES ('Universidad Abierta');
 INSERT INTO academicprogramtypes (name) VALUES ('Universidad abierta y escolarizado');
 
 	
