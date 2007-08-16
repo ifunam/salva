@@ -1,0 +1,10 @@
+chavez: 
+id: 1
+acadvisit_id: 1
+institution_id: 1
+amount: 20000
+pipo:
+id: 2
+acadvisit_id: 2
+institution_id: 1
+amount: 12000
