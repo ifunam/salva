@@ -1,14 +1,14 @@
 class Project < ActiveRecord::Base
-  has_many :projectinstitutions
-  has_many :projectfinancingsources
-  has_many :projectresearchlines
-  has_many :projectresearchareas
-  has_many :projectarticles
-  has_many :projectbooks
-  has_many :projectchapterinbooks
-  has_many :projectconferencetalks
-  has_many :projectacadvisits
-  has_many :projectgenericworks
+  has_many :projectinstitution
+  has_many :projectfinancingsource
+  has_many :projectresearchline
+  has_many :projectresearcharea
+  has_many :projectarticle
+  has_many :projectbook
+  has_many :projectchapterinbook
+  has_many :projectconferencetalk
+  has_many :projectacadvisit
+  has_many :projectgenericwork
 
   validates_numericality_of :projecttype_id,:allow_nil => true, :only_integer => true
   validates_numericality_of :projectstatus_id,:allow_nil => true, :only_integer => true

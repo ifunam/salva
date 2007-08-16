@@ -8,7 +8,7 @@ class ProjectController < SalvaController
     @per_pages = 10
     @order_by = 'id'
     @children = { 
-      'projectinstitution' => %w( project_id institution_id ),
+      'projectinstitution' => %w( institution_id ),
       'projectfinancingsource' => %w( project_id institution_id amount), 
       'projectresearchline' => %w(project_id researchline_id),
       'projectresearcharea' => %w(project_id researcharea_id),
@@ -17,7 +17,7 @@ class ProjectController < SalvaController
       'projectconferencetalk' => %w(project_id conferencetalk_id),
       'projectacadvisit' => %w(project_id acadvisit_id),
       'projectgenericwork' => %w(project_id genericwork_id),
-      'projectarticle' => %w( project_id article_id ),
+      'projectarticle' => %w( article_id ),
     }
   end
 end
