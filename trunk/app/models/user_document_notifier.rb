@@ -14,21 +14,22 @@ class UserDocumentNotifier < ActionMailer::Base
     @sent_on     = Time.now
   end
 
-  def add_attachment(content_type, file)
-    attachment :content_type => content_type, :body => StringIO.new(file).read
+  def add_attachment(att)
+    attachment :content_type => att[:content_type], :body => StringIO.new(att[:file]).read
   end
+
   def request_for_approval(options)
     self.setup(options)
-    add_attachment(options[:attachment][:content_type], options[:attachment][:file]) if  options[:attachment].is_a? Hash
+    add_attachment(options[:attachment]) if options[:attachment].is_a? Hash
   end
 
   def approval_notification(options)
     self.setup(options)
-    add_attachment(options[:attachment][:content_type], options[:attachment][:file]) if  options[:attachment].is_a? Hash
+    add_attachment(options[:attachment]) if  options[:attachment].is_a? Hash
   end
 
   def notification_of_delivery(options)
     self.setup(options)
-    add_attachment(options[:attachment][:content_type], options[:attachment][:file]) if  options[:attachment].is_a? Hash
+    add_attachment(options[:attachment]) if  options[:attachment].is_a? Hash
   end
 end
