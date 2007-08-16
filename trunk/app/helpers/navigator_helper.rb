@@ -78,7 +78,7 @@ module NavigatorHelper
     if node.is_leaf?
       link_to(get_label(node.data), { :controller => node.data,  :parent => true})
     else
-      link_to(get_label(node.data), { :controller => 'navigator', :item => node.index_for_node})
+      link_to(get_label(node.data), { :controller => 'navigator', :item => node.index_for_node, :parent => true})
     end
   end
 
