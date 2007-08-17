@@ -1,0 +1,10 @@
+--- 
+ayudante_de_investigador: 
+  name: Ayudante de investigador
+  id: 2
+tecnico_academico: 
+  name: Técnico académico
+  id: 3
+investigador: 
+  name: Investigador
+  id: 1

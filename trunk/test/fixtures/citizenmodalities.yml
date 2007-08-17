@@ -1,0 +1,10 @@
+--- 
+otro: 
+  name: Otro
+  id: 3
+por_naturalizacion: 
+  name: Por naturalización
+  id: 2
+por_nacimiento: 
+  name: Por nacimiento
+  id: 1

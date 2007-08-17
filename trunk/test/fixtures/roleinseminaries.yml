@@ -1,0 +1,10 @@
+--- 
+asistente: 
+  name: Asistente
+  id: 1
+organizador: 
+  name: Organizador
+  id: 3
+ponente: 
+  name: Ponente
+  id: 2

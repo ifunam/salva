@@ -4,7 +4,7 @@ juana:
   lastname1: Maltiempo
   gender: f
   maritalstatus_id: 1
-  dateofbirth: 1977-03-17
+  dateofbirth: 03/17/1977
   country_id: 484
   state_id: 25
   city_id: 1

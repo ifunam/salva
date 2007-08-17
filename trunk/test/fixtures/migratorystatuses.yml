@@ -1,0 +1,10 @@
+--- 
+turista: 
+  name: Turista
+  id: 3
+residente_temporal: 
+  name: Residente temporal
+  id: 2
+residente_permanente: 
+  name: Residente permanente
+  id: 1
