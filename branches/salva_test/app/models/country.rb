@@ -8,6 +8,8 @@ class Country < ActiveRecord::Base
   has_many :newspapers
   has_many :acadvisits
   has_many :courses
+  has_many :identifications
+
   before_validation_on_create  :set_id
 
   def set_id

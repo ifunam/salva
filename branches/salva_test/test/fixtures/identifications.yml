@@ -1,0 +1,13 @@
+--- 
+curp_mexicana: 
+  id: 1
+  idtype_id: 1
+  country_id: 484
+credencial_de_elector_mexicana: 
+  id: 2
+  idtype_id: 2
+  country_id: 484
+pasaporte_mexicana: 
+  id: 3
+  idtype_id: 3
+  country_id: 484
