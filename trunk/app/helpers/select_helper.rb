@@ -1,5 +1,4 @@
 require 'finder'
-require 'list_helper'
 require 'application_helper'
 require 'labels'
 module SelectHelper

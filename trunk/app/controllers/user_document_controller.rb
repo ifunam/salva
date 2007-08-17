@@ -10,17 +10,13 @@ class UserDocumentController < ApplicationController
     @notifier = AnnualActivitiesReportNotifier
   end
 
-  def index
-    list
-    render :action => 'list'
-  end
-
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :send ], :redirect_to => { :action => :list }
 
   def list
     @pages, @collection = paginate :user_documents, :per_page => 10,
     :conditions => "user_id = #{session[:user]} AND document_id = #{@document}"
+    render :action => 'list'
   end
 
   def new
@@ -29,6 +25,8 @@ class UserDocumentController < ApplicationController
 
   def send_document
     record = UserDocument.new(params[:edit])
+    record.ip_address = @request.env['REMOTE_ADDR']
+    record.document_id = @document
     record.file = params[:edit]['file'].read
     record.filename = base_part_of(params[:edit]['file'].original_filename)
     record.content_type = 'application/'+base_part_of(params[:edit]['file'].content_type.chomp)
