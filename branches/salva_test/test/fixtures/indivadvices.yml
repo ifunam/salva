@@ -1,0 +1,10 @@
+manejo_de_hardware:
+  id: 1
+  user_id: 3 
+  indivadvicetarget_id: 1 
+  year: 2006
+manejo_de_software:
+  id: 2
+  user_id: 3 
+  indivadvicetarget_id: 3 
+  year: 2007

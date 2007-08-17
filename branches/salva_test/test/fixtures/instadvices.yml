@@ -1,0 +1,14 @@
+operacion_de_equipos_de_computo:
+  id: 1
+  title: Operacion de equipos de computo
+  user_id: 3 
+  institution_id: 1
+  instadvicetarget_id: 2
+  year: 2005
+cursos_de_capacitacion_en_computo:
+  id: 1
+  title: Cursos de capacitacion en computo
+  user_id: 3 
+  institution_id: 57
+  instadvicetarget_id: 3
+  year: 2007

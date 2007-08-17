@@ -1,10 +1,19 @@
 sismologia:
-book_id: 1243
-edition_id: 3
-mediatype_id: 1
-year: 2004
+  id: 1
+  book_id: 1
+  edition_id: 3
+  mediatype_id: 1
+  year: 2004
 earthquakes:
-book_id: 5345
-edition_id: 1
-mediatype_id: 1
-year: 1999
+  id: 2
+  book_id: 2
+  edition_id: 1
+  mediatype_id: 1
+  year: 1999
+spacephysics:
+  id: 3
+  book_id: 3
+  edition_id: 2
+  mediatype_id: 2
+  year: 2006
+

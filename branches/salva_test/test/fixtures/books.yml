@@ -1,0 +1,18 @@
+Introduccion_a_la_sismologia:
+  id: 1
+  title: Introduccion a la Sismologia
+  author: M. Fujimori
+  country_id: 392
+  booktype_id: 3  
+earthquakes_mexican_studies:
+  id: 2
+  title: Earthquakes Mexican Studies
+  author: S. de la Cruz
+  country_id: 484
+  booktype_id: 2 
+fundamentals_of_spacephysics:
+  id: 3
+  title: Fundamentals of Space Physics
+  author: H. Perez
+  country_id: 484
+  booktype_id: 2 
