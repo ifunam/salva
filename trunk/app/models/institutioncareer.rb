@@ -4,7 +4,7 @@ class Institutioncareer < ActiveRecord::Base
   validates_numericality_of :institution_id, :allow_nil => true, :only_integer => true
   validates_numericality_of :career_id, :allow_nil => true, :only_integer => true
 
-  validates_uniqueness_of :institution_id, :scope => [:career_id], :message => 'La carrera en institucion esta duplicada'
+  validates_uniqueness_of :institution_id, :scope => [:career_id]
 
   belongs_to :institution
   belongs_to :career
