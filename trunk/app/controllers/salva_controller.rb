@@ -78,7 +78,7 @@ class SalvaController < ApplicationController
           redirect_to stack_return(@edit.id)
         end
       else
-      flash[:notice] = 'Hay errores al guardar esta información'
+        flash[:notice] = 'Hay errores al guardar esta información'
         render :action => 'new'
       end
     end

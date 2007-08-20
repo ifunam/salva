@@ -5,12 +5,12 @@
  <%= simple_select('filt', Book, 1)%>
  <%= quickpost('book') %>
 </div>
-<%= observe_select('filt', 'book_id', 'select_book_bookedition', 1) %>
+<%= observe_select('filt', 'book_id', 'filter_book_bookedition', 1) %>
 
 <div class="row">
   <label for="bookedition_id" class="label"><%= get_label('bookedition_id') %><span class="required">*</span></label>
-  <div id="select_book_bookedition">
-    <%= observable_select('select_book_bookedition', 0, 2) %>
+  <div id="filter_book_bookedition">
+    <%= observable_select('filter_book_bookedition', 0, 2) %>
   </div>
   <%= quickpost('bookedition:book_id') %>
 </div>

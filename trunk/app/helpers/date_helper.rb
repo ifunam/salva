@@ -24,13 +24,10 @@ module DateHelper
     select(object, attr || 'year', years, options);
   end
   
-  def date_for_select(object, attr, tabindex)
+  def date_for_select(object, attr, tabindex, options={})
     # Tal vez alguien a los 90 años siga produciendo
-    start_year = Date.today.year
-    # Por si se aparece el pinche 'Doggie Hauser'
-    # http://www.bbc.co.uk/comedy/bbctwocomedy/dogtelly/page31.shtml
-    end_year = start_year - 90
-    options = {:tabindex => tabindex}
+    start_year = options[:start_year] || Date.today.year
+    end_year =  options[:end_year] || start_year - 90
     date_select(object, attr || 'date', :start_year => start_year, 
                 :end_year => end_year, :use_month_numbers => true, 
                 :order => [:day, :month, :year], :tabindex => tabindex)

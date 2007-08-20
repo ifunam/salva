@@ -1,4 +1,7 @@
 <%= table_show(BookeditionComment.columns) %>
 <%= render :partial =>"salva/moduser" %>
-<%= link_to 'Editar', :action => 'edit', :id => @bookedition_comment %> |
-<%= link_to 'Regresar', :action => 'list' %>
+
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'back' %>
+</div>

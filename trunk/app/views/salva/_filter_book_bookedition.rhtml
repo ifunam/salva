@@ -1,0 +1,5 @@
+<% if id.to_i > 0 %>
+  <%= select_conditions('filt', Bookedition, tabindex, :attributes => ['edition', 'year'], :conditions => "book_id = #{id}") %>
+  <%= stop_observer('filt', 'bookedition_id') %>
+ <%= observe_select('filt', 'bookedition_id', 'select_bookedition_chapterinbook', 1) %>
+ <% end %>

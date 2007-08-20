@@ -25,7 +25,7 @@ module TableHelper
     s = ''
     children.each{ |child, columns|
       s += '<hr/>'
-      s += table_simple_list(edit.send(child), { :header => get_label(child), :columns => columns, :controller => child })
+      s += table_simple_list(edit.send(child.pluralize), { :header => get_label(child), :columns => columns, :controller => child })
       s += link_to 'Agregar', :action => 'new', :controller => child, :id => edit.id
     }
     s

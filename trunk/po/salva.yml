@@ -146,6 +146,8 @@ roleinbook_id: Rol en edición
 bookedition_comments: Comentarios a la edición
 bookeditions: Ediciones
 bookedition_id: Edición
+bookedition_publisher: Editorial
+bookedition_comment: Comentario a la edición
 schoolarship_id: Beca
 schoolarships: Becas
 schoolarship: Beca

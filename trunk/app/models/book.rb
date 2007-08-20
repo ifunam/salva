@@ -14,5 +14,5 @@ class Book < ActiveRecord::Base
   :class_name => 'Language',
   :foreign_key => 'trans_language_id'
 
-  has_many :bookedition
+  has_many :bookeditions
 end

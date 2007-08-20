@@ -5,5 +5,7 @@
   <%= submit_tag 'Edit' %>
 <%= end_form_tag %>
 
-<%= link_to 'Mostrar', :action => 'show', :id => @edit %> |
-<%= link_to 'Regresar', :action => 'list' %>
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'back' %>
+</div>

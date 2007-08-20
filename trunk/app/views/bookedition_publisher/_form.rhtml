@@ -1,4 +1,6 @@
-<!--[form:bookedition_comment]-->
+<%= error_messages_for 'edit' %>
+
+<!--[form:bookedition_publisher]-->
 <div class="row"> 
 <label for="bookedition_id" class="label"><%=
 get_label('bookedition_id') %> <span class="required">*</span></label> 
@@ -11,12 +13,13 @@ get_label('bookedition_id') %> <span class="required">*</span></label>
 <% end %>
 </div>
 
-<div class="row">
-<label for="bookedition_comment">Comentarios</label>
-<div id="comment">
-<%= text_area 'edit', 'comment', 'rows' => 5  %><br/>
+<div class="row"> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
+<div id="publisher_id">
+<%= simple_select('edit', Publisher, 2) %>
 </div>
 </div>
 
-<!--[eoform:bookedition_comment]-->
+
+<!--[eoform:bookedition_publisher]-->
 
