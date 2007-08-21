@@ -83,6 +83,7 @@ class ApplicationController < ActionController::Base
     max = Date.today.year
     auto_complete_responder_for_years params[:edit][:year], min, max
   end
+
   private
   def auto_complete_responder_for_years(value,min=1,max=90)
     list = [ ]

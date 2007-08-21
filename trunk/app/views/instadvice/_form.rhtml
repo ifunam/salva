@@ -24,7 +24,7 @@
 
 <div class="row">
 <label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
-<%= text_field_with_auto_complete :edit, :year, {:size =>4, :maxlength =>4, :tabindex => 5}, :skip_style => true %><br/></div>
+<%= auto_complete_year(:year, 5) %><br/></div>
 
 <div class="row">
 <label for="month" class="label"><%= get_label('month') %></label>
