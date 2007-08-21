@@ -1,0 +1,12 @@
+sismologia:
+user_id: 1
+bookedition_id: 1
+roleinbook_id: 1
+earthquakes:
+user_id: 2
+bookedition_id: 2
+roleinbook_id: 2
+spacephysics:
+user_id: 3
+bookedition_id: 3
+roleinbook_id: 3
