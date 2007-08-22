@@ -7,19 +7,13 @@
 </div>
 
 <div class="row">
-<label for="indivuser_id" class="label"><%= get_label('indivuser_id') %></label>
-<div id="indivuser_id">
-</div>
-</div>
-
-<div class="row">
  <%= render :partial => 'salva/filter_institutions' %>
 </div>
 
 <div class="row">
 <label for="indivadvicetarget_id" class="label"><%= get_label('indivadvicetarget_id') %> <span class="required">*</span></label>
 <div id="indivadvicetarget_id">
-<%= select_conditions('edit', Indivadvicetarget, 4, :conditions => "id <= 4", :selected => @edit.indivadvicetarget_id || 1 ) %>
+<%= select_conditions('edit', Indivadvicetarget, 4, :conditions => "id < 4", :selected => @edit.indivadvicetarget_id || 1 ) %>
 </div>
 </div>
 
