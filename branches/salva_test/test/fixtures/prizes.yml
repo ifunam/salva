@@ -1,19 +1,13 @@
----
-ciencia_mexico:
+--- 
+ciencia_mexico: 
   name: CIENCIA MEXICO
   id: 1
   institution_id: 1
   prizetype_id: 2
   other:
-mejor_estudio_de_genero:
+mejor_estudio_de_genero: 
   name: Mejor estudio de genero
   id: 2
   institution_id: 3
-  prizetype_id: 4
-  other:
-universidad_nacional_mejor_docente:
-  name: Univesidad Nacional Mejor Docente
-  id: 3
-  institution_id: 1
   prizetype_id: 4
   other:
