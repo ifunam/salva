@@ -1,4 +1,6 @@
+require 'salva'
 class UserController < ApplicationController
+  include Salva
   helper :user, :theme
   skip_before_filter :login_required
   skip_before_filter :rbac_required
@@ -52,7 +54,7 @@ class UserController < ApplicationController
      @user = User.new(params[:user])
       respond_to do |format|
       if @user.save
-        UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token))
+        UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token), get_myinstitution.name)
         format.html { render :action => 'created' }
         format.xml  { head :created, :location => users_url(@user) }
       else
@@ -72,7 +74,7 @@ class UserController < ApplicationController
       if !@user.nil?
         reset_session # Reset old sessions if exists
         @user.activate
-        UserNotifier.deliver_activation(@user, url_for(:action => 'index'))
+        UserNotifier.deliver_activation(@user, url_for(:action => 'index'), get_myinstitution.name)
         format.html { render :action => "activated" }
         format.xml  { head :ok }
       else
@@ -81,7 +83,6 @@ class UserController < ApplicationController
       end
     end
   end
-
 
   # Recovery password stuff
   def forgotten_password_recovery

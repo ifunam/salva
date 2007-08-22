@@ -13,6 +13,10 @@ class UserDocumentController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :send ], :redirect_to => { :action => :list }
 
+  def index
+     list
+  end
+
   def list
     @pages, @collection = paginate :user_documents, :per_page => 10,
     :conditions => "user_id = #{session[:user]} AND document_id = #{@document}"
@@ -25,7 +29,7 @@ class UserDocumentController < ApplicationController
 
   def send_document
     record = UserDocument.new(params[:edit])
-    record.ip_address = @request.env['REMOTE_ADDR']
+    record.ip_address = request.env['REMOTE_ADDR']
     record.document_id = @document
     record.file = params[:edit]['file'].read
     record.filename = base_part_of(params[:edit]['file'].original_filename)
@@ -33,7 +37,7 @@ class UserDocumentController < ApplicationController
     record.moduser_id = session[:user] if record.has_attribute?('moduser_id')
     record.user_id = session[:user] if record.has_attribute?('user_id')
     if record.save
-        mail_options=  {
+      mail_options=  {
         :recipients => User.find(session[:user]).email,
         :subject =>   @notification_subject,
         :body => { :institution => get_myinstitution.name },
