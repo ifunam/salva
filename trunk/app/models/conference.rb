@@ -6,6 +6,7 @@ class Conference < ActiveRecord::Base
   belongs_to :conferencetype
   belongs_to :country
   belongs_to :conferencescope
- 
-  has_many :conference_institution
+
+  has_many :conference_institutions
+  has_many :institutions, :through => :conference_institutions
 end
