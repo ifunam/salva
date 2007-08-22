@@ -1,8 +1,13 @@
-external_user01:
-  firstname: Israel
-  lastname1: Gomez 
+--- 
+francesca: 
+  firstname: Francesca
+  lastname1: Barzumati
   id: 1
-external_user02:
-  firstname: Ines
-  lastname1: Gonzalez
-  id: 2 
+elena: 
+  firstname: Elena
+  lastname1: Vigil
+  id: 2
+javier: 
+  firstname: Javier
+  lastname1: García
+  id: 3

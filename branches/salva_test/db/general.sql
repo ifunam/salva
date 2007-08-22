@@ -184,7 +184,7 @@ CREATE TABLE identifications (
 		 REFERENCES idtypes(id)
            	ON UPDATE CASCADE
            	DEFERRABLE,
-	country_id int4 NOT NULL 
+	citizen_country_id int4 NOT NULL 
 		 REFERENCES countries(id)
            	ON UPDATE CASCADE
            	DEFERRABLE,
@@ -195,7 +195,7 @@ CREATE TABLE identifications (
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
-	UNIQUE (idtype_id, country_id)
+	UNIQUE (idtype_id, citizen_country_id)
 );
 
 CREATE TABLE people_identifications ( 
