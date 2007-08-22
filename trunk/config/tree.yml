@@ -52,7 +52,7 @@
   - - user_regularcourse
     - user_specialcourse
     - teaching_activity
-    - teaching_product
+    - user_teaching_product
   - human_resources_formation
   - - user_thesis
     - thesis_juror
