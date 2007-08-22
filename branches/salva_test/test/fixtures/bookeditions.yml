@@ -4,16 +4,29 @@ sismologia:
   edition_id: 3
   mediatype_id: 1
   year: 2004
+  month: 3
+  pages: 300
+  publisher_id: 1
+  editionstatus_id: 1
 earthquakes:
   id: 2
   book_id: 2
   edition_id: 1
   mediatype_id: 1
   year: 1999
+  month: 7
+  pages: 200
+  publisher_id: 2
+  editionstatus_id: 2
 spacephysics:
   id: 3
   book_id: 3
   edition_id: 2
   mediatype_id: 2
+  pages: 340
   year: 2006
+  month: 12
+  publisher_id: 1
+  editionstatus_id: 1
+
 

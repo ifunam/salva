@@ -16,3 +16,9 @@ fundamentals_of_spacephysics:
   author: H. Perez
   country_id: 484
   booktype_id: 2 
+erosiones_en_el_subsuelo:
+  id: 4
+  title: Erosiones en el subsuelo
+  author: C. Villar
+  country_id: 484
+  booktype_id: 3
