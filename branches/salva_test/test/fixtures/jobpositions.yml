@@ -1,0 +1,15 @@
+tecnico_academico:
+  id: 1
+  user_id: 2 
+  institution_id: 1
+  startyear: 1998
+investigador:  
+  id: 2
+  user_id: 3
+  institution_id: 57
+  startyear: 2003
+secretario_academico:
+  id: 3
+  user_id: 3
+  institution_id: 57
+  startyear: 2002
