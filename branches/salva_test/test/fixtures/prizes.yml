@@ -11,3 +11,10 @@ mejor_estudio_de_genero:
   institution_id: 3
   prizetype_id: 4
   other:
+joven_docente_UNAM:
+  name: Joven Docente UNAM
+  id: 3
+  institution_id: 1
+  prizetype_id: 4
+  other:
+
