@@ -8,7 +8,7 @@ class IdentificationTest < Test::Unit::TestCase
 
   def setup
     @identifications = %w(curp_mexicana credencial_de_elector_mexicana pasaporte_mexicana)
-    @myidentification = Identification.new({:idtype_id => 4, :country_id => 484})
+    @myidentification = Identification.new({:idtype_id => 4, :citizen_country_id => 484})
   end
 
   # Right - CRUD
@@ -17,7 +17,7 @@ class IdentificationTest < Test::Unit::TestCase
       @identification = Identification.find(identifications(identification.to_sym).id)
       assert_kind_of Identification, @identification
       assert_equal identifications(identification.to_sym).id, @identification.id
-      assert_equal identifications(identification.to_sym).country_id, @identification.country_id
+      assert_equal identifications(identification.to_sym).citizen_country_id, @identification.citizen_country_id
       assert_equal identifications(identification.to_sym).idtype_id, @identification.idtype_id
     }
   end
@@ -38,7 +38,7 @@ class IdentificationTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_identification
-    @identification = Identification.new({:idtype_id => 2, :country_id => 484})
+    @identification = Identification.new({:idtype_id => 2, :citizen_country_id => 484})
     assert !@identification.save
   end
 
@@ -51,14 +51,14 @@ class IdentificationTest < Test::Unit::TestCase
     assert !@myidentification.valid?
   end
 
-  def test_bad_values_for_country_id
-    @myidentification.country_id = nil
+  def test_bad_values_for_citizen_country_id
+    @myidentification.citizen_country_id = nil
     assert !@myidentification.valid?
 
-    @myidentification.country_id= 1.6
+    @myidentification.citizen_country_id= 1.6
     assert !@myidentification.valid?
 
-    @myidentification.country_id = 'mi_id'
+    @myidentification.citizen_country_id = 'mi_id'
     assert !@myidentification.valid?
   end
 
@@ -103,12 +103,12 @@ class IdentificationTest < Test::Unit::TestCase
     }
   end
 
-  def test_cross_checking_for_country_id
+  def test_cross_checking_for_citizen_country_id
     @identifications.each { | identification|
       @identification = Identification.find(identifications(identification.to_sym).id)
 
       assert_kind_of Identification, @identification
-      assert_equal @identification.country_id, Country.find(@identification.country_id).id
+      assert_equal @identification.citizen_country_id, Country.find(@identification.citizen_country_id).id
     }
   end
 
@@ -120,11 +120,11 @@ class IdentificationTest < Test::Unit::TestCase
     end
   end
 
-  def test_cross_checking_with_bad_values_for_country_id
+  def test_cross_checking_with_bad_values_for_citizen_country_id
     @identifications.each { | identification|
       @identification = Identification.find(identifications(identification.to_sym).id)
       assert_kind_of Identification, @identification
-      @identification.country_id = 100000
+      @identification.citizen_country_id = 100000
       begin
         return true if @identification.update
       rescue StandardError => x

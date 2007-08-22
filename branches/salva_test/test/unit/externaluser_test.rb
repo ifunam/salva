@@ -4,7 +4,7 @@ require 'externaluser'
 class ExternaluserTest < Test::Unit::TestCase
   fixtures :externalusers
   def setup
-    @externalusers = %w(francesca elena javier)
+    @externalusers = %w(external_user01 external_user02)
     @myexternaluser = Externaluser.new({:firstname => 'Eliane',  :lastname1 => 'Ceccon'})
   end
 
@@ -44,7 +44,7 @@ class ExternaluserTest < Test::Unit::TestCase
   end
 
   def test_uniqueness
-    @externaluser = Externaluser.new({:firstname => 'Javier', :lastname1 => 'García'})
+    @externaluser = Externaluser.new({:firstname => 'Israel', :lastname1 => 'Gomez'})
     assert !@externaluser.save
   end
 
