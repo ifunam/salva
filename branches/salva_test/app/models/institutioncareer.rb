@@ -8,4 +8,6 @@ class Institutioncareer < ActiveRecord::Base
 
   belongs_to :institution
   belongs_to :career
+  has_many :academicprograms
+  has_many :institutioncareers
 end
