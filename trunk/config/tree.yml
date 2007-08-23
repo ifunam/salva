@@ -30,6 +30,7 @@
 - conferences_and_seminaries
 - - user_conferencetalk
   - user_seminary
+  - userconference_committee
 - publications
 - - books
   - - bookedition_roleinbook
@@ -67,8 +68,7 @@
 - - user_techproduct
   - techactivity
 - other_activities_or_products
-- - userconference_committee
-  - activity
+- - activity
   - user_genericwork
 - user_reports
 - - resume
