@@ -3,4 +3,4 @@
 \i researchlines.sql
 \i adscriptions.sql
 \i techproducttypes.sql
-
+\i roleinprojects.sql

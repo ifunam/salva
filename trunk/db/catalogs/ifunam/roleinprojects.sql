@@ -1,0 +1,1 @@
+INSERT INTO roleinprojects (name) VALUES ('Ayudante de investigador');
