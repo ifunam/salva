@@ -45,11 +45,11 @@ CREATE TABLE user_documents (
                 REFERENCES documents(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
-        is_published boolean NOT NULL,
+        status boolean NOT NULL default 'f', -- True = Approved OR False = Pending
         file  bytea NOT NULL,
         filename text NOT NULL,
         content_type text NOT NULL,
-        ip_address text NOT NULL,-- El tipo de dato INET no esta soportado en rails
+        ip_address text NOT NULL, -- Inet data type is unssupported in rails
         moduser_id int4  NULL        -- Use it only to know who has
                REFERENCES users(id) -- inserted, updated or deleted
                ON UPDATE CASCADE    -- data into or from this table.
@@ -62,27 +62,14 @@ CREATE TABLE user_documents (
 COMMENT ON TABLE user_documents IS
         'Documentos que ha publicado el usuario';
 
-CREATE TABLE approved_documents (
-        id serial,
-        user_document_id int4 NOT NULL
-                REFERENCES user_documents(id)
-                ON UPDATE CASCADE
-                DEFERRABLE,
-        user_id int4 NOT NULL
-                REFERENCES users(id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-                DEFERRABLE,
-        ip_address text NOT NULL,
-        approved boolean NOT NULL,
-        moduser_id int4  NULL        -- Use it only to know who has
-                REFERENCES users(id) -- inserted, updated or deleted
-                ON UPDATE CASCADE    -- data into or from this table.
-                DEFERRABLE,
-        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE user_document_logs (
+       id serial,
+        user_document_id int4 NOT NULL,
+        user_id int4 NOT NULL,
+        prev_ip_address text NOT NULL,
+        prev_status boolean NOT NULL,
         PRIMARY KEY (id)
 );
-COMMENT ON TABLE approved_documents IS
-        'Documentos aprobados por los jefes de departamento o responsables del personal';
+COMMENT ON TABLE user_document_logs IS
+        'En esta tabla se registra el cambio en los estados de los documentos, usualmente hechos por los jefes de departamento o responsables del personal';
 

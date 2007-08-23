@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
 
   belongs_to :userstatus
+  belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
 
   has_one :person
+
   has_many :addresses
   has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
@@ -69,6 +71,10 @@ class User < ActiveRecord::Base
 
   def is_in_history_file?
     self.userstatus_id == 5 # Look for history file or 'Archivo muerto' status in the userstatuses catalog.
+  end
+
+  def has_user_incharge?
+    !self.user_incharge_id.nil?
   end
 
   def new_token

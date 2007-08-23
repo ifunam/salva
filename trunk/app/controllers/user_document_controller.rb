@@ -22,7 +22,7 @@ class UserDocumentController < ApplicationController
     record.moduser_id = session[:user]
     record.user_id = session[:user]
     # Look for conditional to  publish  the document
-    record.is_published = 't'
+    record.status = 't'
     if record.save
       mail_options=  {
         :recipients => User.find(session[:user]).email,
