@@ -38,20 +38,21 @@ module TableHelper
     row.each { |column|
       attribute = column.name
       next if @edit.send(attribute) == nil or hidden.include?(attribute)
+      text = attribute
       if is_id?(attribute) then
-        model = attribute.sub(/_id$/,'').sub(/^\w+_/,'')
+        model = get_model_from_idattribute(attribute)
         if @edit.class.reflect_on_association(model.to_sym) and (Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on)).size > 0   and !%w(state country city).include?(model)
           logger.info  "Columnas "+(Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on )).flatten.to_s
           if @edit.class.reflect_on_association(model.to_sym).macro.to_s == 'belongs_to'
-            body << [ attribute,  link_to(attributeid_to_text(@edit, attribute), :controller => model, :action => 'show', :id => @edit.send(attribute)) ]
-         end
+            text =  link_to(attributeid_to_text(@edit, attribute), :controller => model, :action => 'show', :id => @edit.send(attribute))
+          end
         else
-          body << [ attribute, attributeid_to_text(@edit, attribute)]
+          text = attributeid_to_text(@edit, attribute)
         end
       else
-        body << [ attribute, attribute_to_text(@edit, attribute)]
+        text = attribute_to_text(@edit, attribute)
       end
-
+      body << [ attribute, text ]
     }
     render(:partial => '/salva/show',  :locals => { :body => body })
   end

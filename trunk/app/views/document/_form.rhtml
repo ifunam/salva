@@ -20,7 +20,7 @@
 
 <div class="row">
 <label for="enddate" class="label"><%= get_label('enddate') %> <span class="required">*</span></label>
-<%= date_for_select('edit', 'enddate', 4, :start_year => 2008) %>
+<%= date_for_select('edit', 'enddate', 4, :start_year => Date.today.year+1) %>
 </div>
 
 

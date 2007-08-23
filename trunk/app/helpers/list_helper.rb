@@ -136,8 +136,19 @@ module ListHelper
       return get_associated_attributes(row,attr,model,field)
     elsif row.send(model).has_attribute?(field)
       return row.send(model).send(field) 
-    else 
-      return columns_content(row.send(model), get_attributes(row.send(model))).join(', ')
+    else   
+      # Si tiene nombre o titulo no hace falta traer lo demás
+      attributes = [ 'name' ]
+      attr_row = row.send(model)
+      attr_names = attr_row.attribute_names      
+      if !attr_names.include? 'name' 
+        if attr_names.include? 'title'
+          attributes = [ 'title' ]
+        else
+          attributes = get_attributes(attr_row)
+        end
+      end
+      return columns_content(attr_row, attributes).join(', ') 
     end
   end
   
@@ -201,6 +212,10 @@ module ListHelper
     end
   end
   
+  def get_model_from_idattribute(attr)
+    attr.sub(/_id$/,'').sub(/^\w+_/,'')
+  end
+
   def get_modelname(attr)
     belongs_to = [ attr.sub(/_id$/,''), 'name' ]
     case attr
