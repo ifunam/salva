@@ -146,6 +146,8 @@ roleinbook_id: Rol en edición
 bookedition_comments: Comentarios a la edición
 bookeditions: Ediciones
 bookedition_id: Edición
+bookedition_publisher: Editorial
+bookedition_comment: Comentario a la edición
 schoolarship_id: Beca
 schoolarships: Becas
 schoolarship: Beca
@@ -410,6 +412,7 @@ yes: S
 no: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
+user_teaching_product: Otros productos de docencia
 academicprogram: Programas académicos
 academicprogram_id: Programa académico
 academicprogramtype: Tipo de programa académico
@@ -443,4 +446,5 @@ documenttype_id: Tipo
 document: Documentos
 techproductstatus: Estado del producto
 techproductstatus_id: Estado del producto
+inproceeding_refereed: Artículos en Memorias Arbitradas
 

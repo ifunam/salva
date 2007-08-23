@@ -2,17 +2,6 @@ require 'salva'
 class UserDocumentController < ApplicationController
   include Salva
 
-  def initialize
-    @sent_msg = "Su documento ha sido enviado!"
-    @nosent_msg = "Su documento NO ha sido enviado!"
-    @notification_subject = 'Notificación de envío del informe anual de actividades'
-    @document = 1 #'Informe anual de actividades'
-    @notifier = AnnualActivitiesReportNotifier
-  end
-
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :send ], :redirect_to => { :action => :list }
-
   def index
      list
   end
@@ -23,19 +12,17 @@ class UserDocumentController < ApplicationController
     render :action => 'list'
   end
 
-  def new
-    @edit = UserDocument.new
-  end
-
   def send_document
-    record = UserDocument.new(params[:edit])
+    record = UserDocument.new
     record.ip_address = request.env['REMOTE_ADDR']
     record.document_id = @document
-    record.file = params[:edit]['file'].read
-    record.filename = base_part_of(params[:edit]['file'].original_filename)
-    record.content_type = 'application/'+base_part_of(params[:edit]['file'].content_type.chomp)
-    record.moduser_id = session[:user] if record.has_attribute?('moduser_id')
-    record.user_id = session[:user] if record.has_attribute?('user_id')
+    record.file = StringIO.new(@file).read
+    record.filename = @filename
+    record.content_type = @content_type
+    record.moduser_id = session[:user]
+    record.user_id = session[:user]
+    # Look for conditional to  publish  the document
+    record.is_published = 't'
     if record.save
       mail_options=  {
         :recipients => User.find(session[:user]).email,
@@ -62,8 +49,4 @@ class UserDocumentController < ApplicationController
     end
   end
 
-  def base_part_of(file_name)
-    name = File.basename(file_name)
-    name.gsub(/[^\w._-]/, ' ' )
-  end
 end

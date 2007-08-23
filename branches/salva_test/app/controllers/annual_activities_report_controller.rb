@@ -5,6 +5,9 @@ class AnnualActivitiesReportController < UserDocumentController
     @notification_subject = 'Notificación de envío del informe anual de actividades'
     @document = 1 #'Informe anual de actividades'
     @notifier = AnnualActivitiesReportNotifier
+    @file = nil
+    @filename = nil
+    @content_type = nil
   end
 
   def preview
@@ -14,9 +17,9 @@ class AnnualActivitiesReportController < UserDocumentController
   end
 
   def  send_document
-    super
-    @file = Resume.new(session[:user])
+    @file = Resume.new(session[:user]).as_pdf
     @filename =  'annual_activities_report.pdf'
-    @content_type = 'pdf'
+    @content_type = 'application/pdf'
+    super
   end
 end
