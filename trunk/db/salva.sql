@@ -44,4 +44,4 @@
 \i students.sql
 \i institutional_activities.sql
 \i tutorial_committees.sql
--- \i probatory_documents.sql
+\i probatory_documents.sql

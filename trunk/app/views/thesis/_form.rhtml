@@ -12,24 +12,15 @@
 </div>
 
 <div class="row">
-<label for="degree_id" class="label"><%= get_label('degree_id') %> <span class="required">*</span></label>
-<div id="degree_id">
- <%= render :partial => 'salva/select_professional_degrees', :locals => {:tabindex => 3} %>
-</div>
+ <label for="institutioncareer_id" class="label"><%= get_label('institutioncareer_id') %> <span class="required">*</spa
+n></label>
+ <%= render :partial => 'salva/filter_institutioncareers' %>
+ <div id="partial">
+  <%= render :partial => 'salva/select_institutioncareers_by_institution' %>
+ </div>
+ <%= quickpost('institutioncareer') %>
 </div>
 
-<%= observe_select('edit', 'degree_id', 'select_degree_institutioncareer', 4) %>
-
-<div class="row">
-<label for="institutioncareer_id" class="label"><%= get_label('institutioncareer_id') %> <span class="required">*</span></label>
-  <div id="select_degree_institutioncareer_note"  style="display: none">
-  <span class="upgrade_note">Actualizando la lista de carreras...</span>
-  </div>
-  <div id="select_degree_institutioncareer">
-   <%= observable_select('select_degree_institutioncareer', 1, 4) %>
-  </div>
-  <%= quickpost('institutioncareer') %>
-</div>
 
 <div class="row">
 <label for="thesisstatus_id" class="label"><%= get_label('thesisstatus_id') %> <span class="required">*</span></label>
@@ -41,24 +32,34 @@
 <div class="row">
 <label for="thesismodality_id" class="label"><%= get_label('thesismodality_id') %> <span class="required">*</span></label>
 <div id="thesismodality_id">
-Tesis
-<%= hidden_field('edit', 'thesismodality_id', :value => Thesismodality.find_by_name('Tesis').id ) %>
-
+<% @edit.thesismodality_id ||= 1 %>
+<%= simple_select('edit', Thesismodality, 5) %>
 </div>
 </div>
 
 <div class="row">
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
-<%= auto_complete_year(:year, 7) %><br/></div>
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
+<%= auto_complete_year(:startyear, 7) %><br/></div>
+
 
 <div class="row">
-<label for="month" class="label"><%= get_label('month') %></label>
-<%= month_select('edit', 'month', {:tabindex => 8, :required => 0 }) %>
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label>
+<%= month_select('edit', 'startmonth', {:tabindex => 7, :required => 0 }) %>
+</div>
+
+<div class="row">
+<label for="endyear" class="label"><%= get_label('endyear') %></label>
+<%= auto_complete_year(:startyear, 7, true) %><br/></div>
+
+
+<div class="row">
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label>
+<%= month_select('edit', 'endmonth', {:tabindex => 9, :required => 0 }) %>
 </div>
 
 <div class="row">
 <label for="other" class="label"><%= get_label('other') %></label>
-<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 9, 'id' => 'other' %></div>
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %></div>
 
 
 <!--[eoform:thesis]-->

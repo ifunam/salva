@@ -51,9 +51,9 @@ class ScaffoldingSandbox
 
   def set_year(column, tabindex, required=nil)
     if required != nil
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
+      "<%= auto_complete_year(:#{column}, #{tabindex}) %><br/>\n"
     else
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
+      "<%= auto_complete_year(:#{column}, #{tabindex}, true) %><br/>\n"
     end
   end
 
