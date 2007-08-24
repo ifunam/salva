@@ -1,6 +1,11 @@
 class Article < ActiveRecord::Base
   validates_presence_of :title, :journal_id, :articlestatus_id, :year, :authors
-  validates_numericality_of :journal_id, :articlestatus_id
+  validates_numericality_of :id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :journal_id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :articlestatus_id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :year, :only_integer => true
+
+  validates_uniqueness_of :title, :scope => [:journal_id, :articlestatus_id, :year, :authors]
 
   belongs_to :journal
   belongs_to :articlestatus
