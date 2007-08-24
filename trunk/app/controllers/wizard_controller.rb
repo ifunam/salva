@@ -119,7 +119,11 @@ class WizardController < ApplicationController
   def next_page
     sequence = get_sequence
     if sequence.is_last
-      redirect_to :action  => 'show'
+      if sequence.is_first
+        redirect_to :action  => 'finalize'
+      else
+        redirect_to :action  => 'show'
+      end
     else
       logger.info "Nextpagein "+sequence.current.to_s
       sequence.next_component
