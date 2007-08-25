@@ -4,6 +4,7 @@ class Institution < ActiveRecord::Base
   has_many :acadvisits
   has_many :courses
   has_many :schoolarships
+  has_many :memberships
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontitle_id, :allow_nil => true, :only_integer => true
@@ -18,6 +19,7 @@ class Institution < ActiveRecord::Base
   belongs_to :city
   belongs_to :state
   belongs_to :institution
+
 
   validates_associated :institution, :on => :update
   validates_associated :institutiontitle, :on => :update

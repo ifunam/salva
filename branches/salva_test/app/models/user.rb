@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :user_documents
   has_many :documents, :through => :user_documents
 
-
+  has_many :memberships
 
   # Callbacks
   before_create :prepare_new_record
