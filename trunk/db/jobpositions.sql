@@ -222,6 +222,11 @@ COMMENT ON COLUMN adscriptions.administrative_key IS
 -- adscriptions he works at can be renamed or change.
 CREATE TABLE user_adscriptions (
         id SERIAL,
+        user_id int4 NOT NULL
+            REFERENCES users(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+            DEFERRABLE,
         jobposition_id int4 NOT NULL
                          REFERENCES jobpositions(id)
                          ON UPDATE CASCADE
