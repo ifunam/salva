@@ -13,6 +13,10 @@ test:
   database: salva_test
   <<: *login
 
-production: 
+production:
+  adapter: postgresql
   database: salva
-  <<: *login
+  host: siesta.fisica.unam.mx
+  username: alex
+  password:
+  encoding: UTF-8
