@@ -370,7 +370,7 @@ activity: Otras actividades
 activity_id: Actividad
 tutorial_committee: Comités tutorales
 roleinconference_id: Rol
-userconference_committee: Participación en comités de eventos académicos
+userconference_committee: Participación en organización de eventos académicos
 inproceeding_unrefereed: Trabajos presentados en memorias in extenso
 techreport: Reporte técnico
 other_activities_or_products: Otras actividades o productos
@@ -447,15 +447,4 @@ document: Documentos
 techproductstatus: Estado del producto
 techproductstatus_id: Estado del producto
 inproceeding_refereed: Artículos en Memorias Arbitradas
-user_as_student: Registro de proyectos o actividades
-user_as_student_project: Participación en proyectos
-user_as_student_thesis: Autoría de tesis
-user_as_student_advice: Servicio social
-student_activities_report: Reporte de actividades
-student_association_request: Solicitud de estudiante asociado
-student_probatory_document: Documentos probatorios
-project_for_student: Proyecto
-probatorydoctype_id: Tipo de documento
-probatorydoctype: Tipo de documento
-file: Archivo
-thesis_for_student: Tesis
+
