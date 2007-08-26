@@ -151,7 +151,6 @@ class SalvaController < ApplicationController
     else
       @edit = @model.find(params[:id])
       model_into_stack(controller_name,  'show', @edit.id)
-      render :action => 'show'
     end
   end
 

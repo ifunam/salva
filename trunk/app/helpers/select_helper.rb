@@ -18,7 +18,12 @@ module SelectHelper
   end
 
   def finder_id(model, attributes, id)
-    Finder.new(model, attributes, :first, :conditions => "id = #{id}").as_pair
+    if id.nil?
+      conditions = {}
+    else
+      conditions = { :conditions => "id = #{id}" }
+    end
+    Finder.new(model, attributes, :first, conditions).as_pair
   end
 
   def simple_select(object, model, tabindex, options={})
