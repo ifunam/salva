@@ -1,0 +1,11 @@
+characterizacion_of_position_sensitive:
+  id: 1
+  conference_id: 1
+  title: Characterización of position-sensitive photomultiplier tubesfor microPET, detection modules
+  isrefereed: false
+
+coloquio_de_artes_manuales_y_otras_habilidades:
+  id: 2
+  conference_id: 2
+  title: Coloquio de Artes Manuales y otras habilidades
+  isrefereed: false 
