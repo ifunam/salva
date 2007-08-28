@@ -19,6 +19,12 @@ module ApplicationHelper
             link_options, html_options )
   end
 
+  def text_link(text, id, controller=nil)
+    link_options = { :action => 'show', :id => id}
+    link_options[:controller] = controller if  controller != nil
+    link_to (text, link_options)
+  end
+
   def show_link(id,controller=nil)
     action_link('show', id, 'Mostrar', nil, controller)
   end
