@@ -1,0 +1,26 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:bookedition_publisher]-->
+<div class="row"> 
+<label for="bookedition_id" class="label"><%=
+get_label('bookedition_id') %> <span class="required">*</span></label> 
+<% if @edit.nil? %>
+<div id="bookedition_id">
+<%= simple_select('edit', Bookedition, 1) %>
+</div>
+<% else %>
+<%= render :partial => 'salva/hidden_bookedition' %>
+<% end %>
+</div>
+
+<div class="row"> 
+<label for="publisher_id" class="label"><%= get_label('publisher_id') %></label> 
+<div id="publisher_id">
+<%= simple_select('edit', Publisher, 2) %>
+</div>
+ <%= quickpost('publisher') %>
+</div>
+
+
+<!--[eoform:bookedition_publisher]-->
+
