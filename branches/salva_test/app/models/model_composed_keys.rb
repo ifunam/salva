@@ -91,6 +91,10 @@ class ModelComposedKeys < ActiveRecord::Base
     (self.public_methods.include? 'ids') ? my_update : my_save
   end
 
+  def id
+    (self.public_methods.include? 'ids') ? self.ids: nil
+  end
+
   private
 
   def my_save

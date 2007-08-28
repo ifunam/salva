@@ -30,3 +30,5 @@ COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FRO
 COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FROM stdin;
 3	3	2	2005-11-29 16:29:50	2005-11-29 16:29:50
 \.
+
+UPDATE users SET user_incharge_id = 2 WHERE login = 'panchito';

@@ -78,7 +78,7 @@ class SalvaController < ApplicationController
           redirect_to stack_return(@edit.id)
         end
       else
-      flash[:notice] = 'Hay errores al guardar esta información'
+        flash[:notice] = 'Hay errores al guardar esta información'
         render :action => 'new'
       end
     end
@@ -151,7 +151,6 @@ class SalvaController < ApplicationController
     else
       @edit = @model.find(params[:id])
       model_into_stack(controller_name,  'show', @edit.id)
-      render :action => 'show'
     end
   end
 

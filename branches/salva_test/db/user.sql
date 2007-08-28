@@ -31,6 +31,9 @@ CREATE TABLE users (
     pkcs7 text NULL,
     token text NULL,
     token_expiry timestamp DEFAULT CURRENT_TIMESTAMP,
+    user_incharge_id int4 NULL
+        REFERENCES users(id)
+        DEFERRABLE,
     moduser_id int4 NULL
         REFERENCES users(id)
         ON UPDATE CASCADE
