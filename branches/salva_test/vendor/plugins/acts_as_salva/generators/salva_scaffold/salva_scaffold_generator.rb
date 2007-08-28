@@ -3,10 +3,10 @@ class ScaffoldingSandbox
   def sandbox_binding
     binding
   end
-  
+
   def set_label(column, required=nil)
-    if required then 
-      "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %> <span class=\"required\">*</span></label> \n"      
+    if required then
+      "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %> <span class=\"required\">*</span></label> \n"
     else
       "<label for=\"#{column}\" class=\"label\"><%= get_label('#{column}') %></label> \n"
     end
@@ -14,49 +14,49 @@ class ScaffoldingSandbox
 
   def set_textfield(column, tabindex, required=nil)
     if required then
-      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"
     else
-      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"  
+      "<%= text_field 'edit', '#{column}', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> #{tabindex}, 'id' => '#{column}' %>\n"
     end
   end
 
 
   def set_radiobutton(column, tabindex, required=nil)
     radio = "<div class=\"radio\"> \n"
-    radio << "No <%= radio_button('edit', '#{column}', 'false') %>\n" 
+    radio << "No <%= radio_button('edit', '#{column}', 'false') %>\n"
     radio << "Sí <%= radio_button('edit', '#{column}', 'true') %> \n"
     radio << "</div>\n"
   end
-  
+
   def set_textarea(column, tabindex, required=nil)
     if required then
-      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>\n"  
+      "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>\n"
     else
       "<%= text_area 'edit', '#{column}', 'rows' => 4, 'cols' => 40, 'tabindex' => #{tabindex}, 'id' => '#{column}' %>"
     end
   end
-  
+
   def set_select(column, model, tabindex, required=nil, prefix=nil)
     options = tabindex.to_i.to_s
     options << ", '#{prefix}'" if prefix
-    select = "<div id=\"#{column}\">\n" 
-    select << "<%= simple_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n" 
+    select = "<div id=\"#{column}\">\n"
+    select << "<%= simple_select('edit', #{Inflector.camelize(model)}, #{options}) %>\n"
     select << "</div>\n"
   end
-  
+
   def set_month(column, tabindex, required=nil)
     required ? req = 1 : req = 0
     "<%= month_select('edit', '#{column}', {:tabindex => #{tabindex}, :required => #{req} }) %> \n"
   end
-  
+
   def set_year(column, tabindex, required=nil)
     if required != nil
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
+      "<%= auto_complete_year(:#{column}, #{tabindex}) %><br/>\n"
     else
-      "<%= text_field_with_auto_complete :edit, :#{column}, {:size =>4, :maxlength =>4, :tabindex => #{tabindex}}, :skip_style => true %><br/>"
+      "<%= auto_complete_year(:#{column}, #{tabindex}, true) %><br/>\n"
     end
   end
-  
+
   def get_tableattr(model_instance, singular_name)
     table_name =  Inflector.tableize(model_instance.class.name)
     attrs = model_instance.connection.columns(table_name)
@@ -68,7 +68,7 @@ class ScaffoldingSandbox
     hidden = %w( id moduser_id user_id dbtime updated_on created_on)
     html = ""
     tabindex = 1
-    attrs.each { | attr | 
+    attrs.each { | attr |
       column = attr.name
       next if hidden.include? column
       html << "<div class=\"row\"> \n"
@@ -77,8 +77,8 @@ class ScaffoldingSandbox
 
       if column =~ /_id$/ then
         prefix = nil
-        model = column.sub(/_id/,'') 
-        (prefix, model) = model.split('_') if model =~ /^\w+_/ 
+        model = column.sub(/_id/,'')
+        (prefix, model) = model.split('_') if model =~ /^\w+_/
         html << set_select(column, model, tabindex, required, prefix)
       elsif model_instance.column_for_attribute(column).type.to_s == 'boolean' then
         html << set_radiobutton(column, tabindex, required)
@@ -102,19 +102,19 @@ class ScaffoldingSandbox
     required = []
     numeric = []
     belongs_to = []
-    
-    attrs.each { | attr | 
+
+    attrs.each { | attr |
       column = attr.name
       next if hidden.include? column
       if column =~ /_id$/ then
         numeric << column
         if !model_instance.column_for_attribute(column).null
-          required << column 
+          required << column
         end
-        refmodel = column.sub(/_id/,'') 
+        refmodel = column.sub(/_id/,'')
         if refmodel =~ /^\w+_/ then
           (prefix, model) = refmodel.split('_')
-          belongs_to << [ refmodel, Inflector.camelize(model), column ] 
+          belongs_to << [ refmodel, Inflector.camelize(model), column ]
         else
           belongs_to << refmodel
         end
@@ -126,7 +126,7 @@ class ScaffoldingSandbox
     }
     [required, numeric, belongs_to]
   end
-  
+
   def set_attrmodel(attrs)
     attrs.map{ |attr| ':'+ attr}.join(', ') + "\n"
   end
@@ -136,7 +136,7 @@ class ScaffoldingSandbox
     if required.length > 0
       classmodel = "validates_presence_of " + set_attrmodel(required)
     end
-    
+
     if numeric.length > 0
       classmodel += "validates_numericality_of " + set_attrmodel(numeric)
     end
@@ -144,7 +144,7 @@ class ScaffoldingSandbox
       if params.is_a? Array then
         classmodel += "belongs_to :" + params[0].to_s + ", :class_name => '"\
         + params[1].to_s + "', :foreign_key => '" + params[2].to_s + "'\n"
-      else 
+      else
         classmodel += "belongs_to :" + params + "\n"
       end
     }
@@ -156,7 +156,7 @@ class ScaffoldingSandbox
     (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
     set_classmodel(required, numeric, belongs_to)
   end
-  
+
   def view_list (model_instance, singular_name)
     (table_name, attrs) = get_tableattr(model_instance, singular_name)
     (required, numeric, belongs_to) = set_attrs(model_instance, attrs)
@@ -167,12 +167,12 @@ class ScaffoldingSandbox
     (table_name, attrs) = get_tableattr(model_instance, singular_name)
     moduser_attrs = %w(moduser_id updated_on created_on)
     columns = []
-    attrs.each { | attr | 
+    attrs.each { | attr |
       columns << attr.name if moduser_attrs.include? attr.name
     }
     columns
   end
-end  
+end
 
 class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   attr_reader   :controller_name,
@@ -185,14 +185,14 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                 :controller_plural_name
   alias_method  :controller_file_name,  :controller_singular_name
   alias_method  :controller_table_name, :controller_plural_name
-  
+
   def initialize(runtime_args, runtime_options = {})
     super
 
     # Take controller name from the next argument.  Default to the pluralized model name.
     @controller_name = args.shift
-    @controller_name ||= @name #ActiveRecord::Base.pluralize_table_names ? @name.pluralize : 
-    
+    @controller_name ||= @name #ActiveRecord::Base.pluralize_table_names ? @name.pluralize :
+
     base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(@controller_name)
     @controller_class_name_without_nesting, @controller_singular_name, @controller_plural_name = inflect_names(base_name)
 
@@ -206,8 +206,8 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   def manifest
     record do |m|
       # Check for class naming collisions.
-      m.class_collisions controller_class_path, "#{controller_class_name}Controller", 
-                                                #"#{controller_class_name}ControllerTest", 
+      m.class_collisions controller_class_path, "#{controller_class_name}Controller",
+                                                #"#{controller_class_name}ControllerTest",
                                                 "#{controller_class_name}Helper"
       m.class_collisions class_path,            "#{class_name}"
                                                 #"#{class_name}Test"
@@ -215,7 +215,7 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
       # Controller, views, and test directories.
       m.directory File.join('app/models', class_path)
       m.directory File.join('app/controllers', controller_class_path)
-      m.directory File.join('app/views', controller_class_path, 
+      m.directory File.join('app/views', controller_class_path,
                             controller_file_name)
       m.directory File.join('test/functional', controller_class_path)
       m.directory File.join('test/unit', class_path)
@@ -235,6 +235,8 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
                             controller_class_path,
                             "#{controller_file_name}_controller.rb")
 
+      print "="*80, "\n"
+      puts m.class.name
       m.template 'functional_test.rb',
                   File.join('test/functional',
                             controller_class_path,
@@ -296,28 +298,28 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
   def clean_model
     modelfh = "app/models/#{file_name}.rb"
     print "Cleaning dirty comments in: #{modelfh} ...\n"
-    File.open(modelfh, 'r+') do |f|   
+    File.open(modelfh, 'r+') do |f|
       out = ""
       f.each do |line|
         out << line if line !~ /salva_model/ and line.length > 1
       end
-      f.pos = 0                     
+      f.pos = 0
       f.print out
-      f.truncate(f.pos)             
+      f.truncate(f.pos)
     end
     print "OK\n"
   end
-                        
+
   protected
     # Override with your own usage banner.
     def banner
       "Usage: #{$0} salva_scaffold ModelName [ControllerName]"
     end
-    
+
     def model_name
       class_name.demodulize
     end
-    
+
     def unscaffolded_actions
       args - scaffold_actions
     end
@@ -330,12 +332,12 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
       sandbox = ScaffoldingSandbox.new
       sandbox.singular_name = singular_name
       sandbox.model_instance = model_instance
-      sandbox.instance_variable_set("@#{singular_name}", 
+      sandbox.instance_variable_set("@#{singular_name}",
                                     sandbox.model_instance)
       sandbox.suffix = suffix
       sandbox
     end
-    
+
     def model_instance
       base = class_nesting.split('::').inject(Object) do |base, nested|
         break base.const_get(nested) if base.const_defined?(nested)
@@ -343,13 +345,13 @@ class SalvaScaffoldGenerator < Rails::Generator::NamedBase
         base.const_set(nested, Module.new)
       end
       unless base.const_defined?(@class_name_without_nesting)
-        base.const_set(@class_name_without_nesting, 
+        base.const_set(@class_name_without_nesting,
                        Class.new(ActiveRecord::Base))
       end
-      class_name.constantize.new 
+      class_name.constantize.new
     end
-    
+
   end
 
 
- 
+
