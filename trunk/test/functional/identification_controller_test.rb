@@ -4,7 +4,7 @@ require 'identification_controller'
 class IdentificationController; def rescue_action(e) raise e end; end
 
 class  IdentificationControllerTest < SalvaControllerTest
-  fixtures  :countries, :idtypes, :identifications
+  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes,:institutions, :countries, :idtypes, :identifications
 
   def initialize(*args)
    super
