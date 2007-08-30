@@ -1,19 +1,17 @@
----
-van_gogh_had_turbulence_down_to_a_fine_art:
-  techproductstatus_id: 2
+--- 
+van_gogh_had_turbulence_down_to_a_fine_art: 
   techproducttype_id: 2
   descr: Estudia la síntesis y caracterización de partículas esféricas con el fin de construir cristales fotécnicos.
   title: Van Gogh had turbulence down to a fine art
   id: 2
-  institution_id: 1
+  institution_id: 4420
   authors: José Luis Aragón
-  other:
-van_gogh_painted_perfect_turbulence:
-  techproductstatus_id: 2
+  other: 
+van_gogh_painted_perfect_turbulence: 
   techproducttype_id: 1
-  descr:
+  descr: 
   title: Van Gogh painted perfect turbulence
   id: 1
   institution_id: 1
   authors: José Luis Aragón
-  other:
+  other: 
