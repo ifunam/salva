@@ -1,0 +1,12 @@
+linea_investigacion_salva: 
+  id: 1
+  project_id: 1
+  researchline_id: 1
+linea_investigacion_issste:
+  id: 2
+  project_id: 2
+  researchline_id: 2
+linea_investigacion_seguridad_publica:
+  id: 3
+  project_id: 3
+  researchline_id: 1
