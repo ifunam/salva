@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
 
   has_many :user_articles
   has_many :users, :through => :user_articles
+  has_many :projectarticles
 
   def as_text
     [authors, title, journal.name, journal_issue, pages].join(', ')
