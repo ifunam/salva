@@ -8,4 +8,6 @@ class Chapterinbook < ActiveRecord::Base
 
   belongs_to :bookedition
   belongs_to :bookchaptertype
+
+  has_many :projectchapterinbooks
 end
