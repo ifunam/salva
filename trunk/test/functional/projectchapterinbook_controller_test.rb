@@ -12,5 +12,6 @@ fixtures  :editionstatuses, :editions, :mediatypes, :projecttypes,:projectstatus
    @myfixtures = {:project_id => 2, :chapterinbook_id =>2}
    @mybadfixtures = {  :project_id => nil, :chapterinbook_id =>nil }
    @model = Projectchapterinbook
+   @quickposts = ['chapterinbook']
   end
 end
