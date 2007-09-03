@@ -15,4 +15,5 @@ class Book < ActiveRecord::Base
   :foreign_key => 'trans_language_id'
 
   has_many :bookedition
+  has_many :projectbooks
 end
