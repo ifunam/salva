@@ -9,4 +9,5 @@ class UserCourse < ActiveRecord::Base
   belongs_to :course
   belongs_to :coursegroup
   belongs_to :roleincourse
+  belongs_to :user
 end
