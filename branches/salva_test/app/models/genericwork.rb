@@ -1,6 +1,7 @@
 class Genericwork < ActiveRecord::Base
   has_many :user_genericworks
   has_many :users, :through => :user_genericworks
+  has_many :projectgenericworks
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :genericworktype_id, :genericworkstatus_id
