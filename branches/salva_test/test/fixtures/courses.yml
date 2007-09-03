@@ -13,3 +13,11 @@ matematicas:
   courseduration_id: 2
   modality_id: 3
   startyear: 2007
+
+ruby_on_rails:
+  id: 3
+  name: Ruby and Rails
+  country_id: 484
+  courseduration_id: 2
+  modality_id: 1
+  startyear: 2007
