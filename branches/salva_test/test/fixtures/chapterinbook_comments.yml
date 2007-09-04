@@ -1,6 +1,8 @@
-juana:
-user_id: 1
-chapterinbook_id: 14
-panchito:
-user_id: 2
-chapterinbook_id: 3
+tema_para_licenciatura:
+  id: 1
+  user_id: 1
+  chapterinbook_id: 1
+tema_para_maestria:
+  id: 2
+  user_id: 2
+  chapterinbook_id: 2
