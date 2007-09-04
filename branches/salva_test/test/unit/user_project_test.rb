@@ -33,7 +33,7 @@ class UserProjectTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_user_id
+  def test_updating_user_id
     @user_projects.each { |user_project|
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       assert_equal user_projects(user_project.to_sym).user_id, @user_project.user_id
@@ -43,7 +43,7 @@ class UserProjectTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_roleinproject_id
+  def test_updating_roleinproject_id
     @user_projects.each { |user_project|
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       assert_equal user_projects(user_project.to_sym).roleinproject_id, @user_project.roleinproject_id
@@ -53,7 +53,7 @@ class UserProjectTest < Test::Unit::TestCase
     }
   end
 
-   def test_deleting_user_project
+  def test_deleting_user_project
     @user_projects.each { |user_project|
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       @user_project.destroy
@@ -68,17 +68,17 @@ class UserProjectTest < Test::Unit::TestCase
     assert !@user_project.save
   end
 
-     def test_creating_duplicated
-     @user_project = UserProject.new({:user_id => 1, :project_id => 1, :roleinproject_id => 3 })
-     assert !@user_project.save
-   end
+  def test_creating_duplicated
+    @user_project = UserProject.new({:user_id => 1, :project_id => 1, :roleinproject_id => 3 })
+    assert !@user_project.save
+  end
 
-   # Boundary
-    def test_bad_values_for_id
-     @myuser_project.id = 1.6
-     assert !@myuser_project.valid?
-     @myuser_project.id = 'mi_id'
-     assert !@myuser_project.valid?
+  # Boundary
+  def test_bad_values_for_id
+    @myuser_project.id = 1.6
+    assert !@myuser_project.valid?
+    @myuser_project.id = 'mi_id'
+    assert !@myuser_project.valid?
   end
 
   def test_bad_values_for_user_id
@@ -130,7 +130,7 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project.user_id = 5
       begin
         return true if @user_project.update
-           rescue StandardError => x
+      rescue StandardError => x
         return false
       end
     }
@@ -160,13 +160,13 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project.project_id = 1000000
       begin
         return true if @user_project.update
-           rescue StandardError => x
+      rescue StandardError => x
         return false
       end
     }
   end
 
-    #cross-Checking test for roleinproject
+  #cross-Checking test for roleinproject
   def test_cross_checking_for_project_id
     @user_projects.each { | user_project|
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
@@ -190,7 +190,7 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project.roleinproject_id = 1000000
       begin
         return true if @user_project.update
-           rescue StandardError => x
+      rescue StandardError => x
         return false
       end
     }
