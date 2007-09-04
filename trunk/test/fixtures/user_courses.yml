@@ -1,0 +1,10 @@
+linux:
+  id: 1
+  user_id: 2
+  course_id: 1
+  roleincourse_id: 2
+matematicas:
+  id: 2
+  user_id: 3
+  course_id: 2
+  roleincourse_id: 3
