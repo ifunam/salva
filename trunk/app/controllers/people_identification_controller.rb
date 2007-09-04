@@ -1,4 +1,6 @@
 class PeopleIdentificationController < SalvaController
+  before_filter :check_for_requirements
+
   def initialize
     super
     @model = PeopleIdentification
@@ -9,13 +11,11 @@ class PeopleIdentificationController < SalvaController
     @order_by = 'id'
   end
 
-  def index
+  def check_for_requirements
     @citizen = Citizen.find(:first, :conditions => [ 'user_id = ?', session[:user]])
-    if @citizen
-      list
-    else
+    if !@citizen
       flash[:notice] = 'Por favor registre su nacionalidad antes de ingresar alguna de sus identificaciones (RFC, CURP, etc)...'
-      model_into_stack(controller_name, 'new', nil, PeopleIdentification.new, 'citizen_id') 
+      model_into_stack(controller_name, 'new', nil, PeopleIdentification.new, 'citizen_id')
       redirect_to :controller => 'citizen', :action => 'new'
     end
   end
