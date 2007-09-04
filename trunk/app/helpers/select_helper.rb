@@ -9,9 +9,17 @@ module SelectHelper
   def selectize_id(object, field, selected=nil, filter={})
     # Default value from filter has priority over defined state_id or selected option
     if filter.is_a? Hash and filter.has_key?(field) and !filter[field].nil?
-      filter[field]
+      if filter[field].is_a? String
+         filter[field] if !filter[field].strip.empty?
+       else
+         filter[field]
+       end
     elsif !object.nil? and object.respond_to? field and !object.send(field).nil?
-      object.send(field)
+      if object.send(field).is_a? String
+        object.send(field).to_i if !object.send(field).strip.empty?
+      else
+        object.send(field)
+      end
     elsif !selected.nil?
       selected
     end
