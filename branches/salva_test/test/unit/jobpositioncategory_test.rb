@@ -5,7 +5,7 @@ require 'jobpositiontype'
 require 'jobpositioncategory'
 
 class JobpositioncategoryTest < Test::Unit::TestCase
-  fixtures  :roleinjobpositions, :jobpositiontypes, :jobpositioncategories
+  fixtures  :jobpositionlevels, :roleinjobpositions, :jobpositiontypes, :jobpositioncategories
 
   def setup
     @jobpositioncategories = %w(tecnico_academico_tc investigador_tc secretario_academico)

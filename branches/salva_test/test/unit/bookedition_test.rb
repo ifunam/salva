@@ -1,16 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'mediatype'
-require 'publisher'
 require 'editionstatus'
 require 'edition'
 require 'book'
 require 'bookedition'
 
 class BookeditionTest < Test::Unit::TestCase
-  fixtures :countries, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions
-    def setup
+  fixtures :countries, :booktypes, :books, :editions, :mediatypes, :editionstatuses, :bookeditions
+
+  def setup
     @bookeditions = %w(sismologia earthquakes spacephysics)
-      @mybookedition = Bookedition.new({:book_id => 4, :edition_id => 2, :pages => 300, :publisher_id => 1, :editionstatus_id => 2, :mediatype_id => 1, :month => 3, :year => 2005})
+    @mybookedition = Bookedition.new({:book_id => 4, :edition_id => 2, :pages => 300,  :editionstatus_id => 2, :mediatype_id => 1, :month => 3, :year => 2005})
   end
 
   # Right - CRUD
@@ -22,7 +22,6 @@ class BookeditionTest < Test::Unit::TestCase
       assert_equal bookeditions(bookedition.to_sym).book_id, @bookedition.book_id
       assert_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
       assert_equal bookeditions(bookedition.to_sym).pages, @bookedition.pages
-      assert_equal bookeditions(bookedition.to_sym).publisher_id, @bookedition.publisher_id
       assert_equal bookeditions(bookedition.to_sym).mediatype_id, @bookedition.mediatype_id
       assert_equal bookeditions(bookedition.to_sym).editionstatus_id, @bookedition.editionstatus_id
       assert_equal bookeditions(bookedition.to_sym).month, @bookedition.month
@@ -57,16 +56,6 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition.pages = 10
       assert @bookedition.update
       assert_not_equal bookeditions(bookedition.to_sym).pages, @bookedition.pages
-    }
-  end
-
-      def test_updating_publisher_id
-    @bookeditions.each { |bookedition|
-      @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_equal bookeditions(bookedition.to_sym).publisher_id, @bookedition.publisher_id
-      @bookedition.publisher_id = 3
-      assert @bookedition.update
-      assert_not_equal bookeditions(bookedition.to_sym).publisher_id, @bookedition.publisher_id
     }
   end
 
@@ -130,7 +119,7 @@ class BookeditionTest < Test::Unit::TestCase
   end
 
    def test_creating_duplicated
-     @bookedition = Bookedition.new({:book_id => 1, :edition_id => 3, :pages => 300, :publisher_id => 1, :editionstatus_id => 1, :mediatype_id => 1, :month => 3, :year => 200})
+     @bookedition = Bookedition.new({:book_id => 1, :edition_id => 3, :pages => 300, :editionstatus_id => 1, :mediatype_id => 1, :month => 3, :year => 200})
      assert !@bookedition.save
    end
 
@@ -155,15 +144,6 @@ class BookeditionTest < Test::Unit::TestCase
     @mybookedition.edition_id = 1.6
     assert !@mybookedition.valid?
     @mybookedition.edition_id = 'mi_id_texto'
-    assert !@mybookedition.valid?
-  end
-
-  def test_bad_values_for_publisher_id
-    @mybookedition.publisher_id = nil
-    assert !@mybookedition.valid?
-    @mybookedition.publisher_id = 1.6
-    assert !@mybookedition.valid?
-    @mybookedition.publisher_id = 'my_year'
     assert !@mybookedition.valid?
   end
 
@@ -243,34 +223,12 @@ class BookeditionTest < Test::Unit::TestCase
     }
   end
 
-  #cross check for publisher
-  def test_cross_checking_for_publisher_id
-    @bookeditions.each { | bookedition|
-      @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_kind_of Bookedition, @bookedition
-      assert_equal @bookedition.publisher_id, Publisher.find(@bookedition.publisher_id).id
-    }
-  end
-
   def catch_exception_when_update_invalid_key(record)
     begin
       return true if record.update
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
-  end
-
-  def test_cross_checking_with_bad_values_for_publisher_id
-    @bookeditions.each { |bookedition|
-      @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_kind_of Bookedition, @bookedition
-      @bookedition.publisher_id = 30
-      begin
-        return true if @bookedition.update
-       rescue StandardError => x
-        return false
-      end
-    }
   end
 
   #cross check for edition

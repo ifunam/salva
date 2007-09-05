@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+ require File.dirname(__FILE__) + '/../test_helper'
 require 'country'
 require 'idtype'
 require 'identification'
@@ -7,7 +7,7 @@ class IdentificationTest < Test::Unit::TestCase
   fixtures :countries, :idtypes, :identifications
 
   def setup
-    @identifications = %w(curp_mexicana credencial_de_elector_mexicana pasaporte_mexicana)
+    @identifications = %w(curp_mexicana credencial_de_elector_mexicana pasaporte_ucraniano)
     @myidentification = Identification.new({:idtype_id => 4, :citizen_country_id => 484})
   end
 
