@@ -49,7 +49,7 @@ CREATE TABLE user_seminaries (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    moduser_id int4 NOT NULL                 -- Use it only to know who has
+    moduser_id int4                          -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted  
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
