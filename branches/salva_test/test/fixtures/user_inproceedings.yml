@@ -1,0 +1,8 @@
+coautor:
+  id: 1
+  inproceeding_id: 1
+  ismainauthor: false
+autor:
+  id: 2
+  inproceeding_id: 2
+  ismainauthor: true
