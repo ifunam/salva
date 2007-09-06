@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
 
   has_many :user_courses
 
+  has_many :userconferences
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password
