@@ -1,0 +1,8 @@
+american_geophisycs_union:
+  id: 1
+  user_id: 2
+  roleinconferencetalk_id: 1
+unio_geofisica_mexicana:
+  id: 2
+  user_id: 3
+  roleinconferencetalk_id: 2
