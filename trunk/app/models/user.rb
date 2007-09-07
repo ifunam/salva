@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of     :login, :email, :passwd
   validates_uniqueness_of   :login, :email
-  validates_length_of       :login, :within => 3..20
+  validates_length_of       :login, :within => 3..30
   validates_length_of       :email, :within => 7..100
   validates_length_of       :passwd,:within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
@@ -15,8 +15,12 @@ class User < ActiveRecord::Base
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
 
   has_one :person
-
   has_many :addresses
+
+  has_many :citizens
+  has_many :people_identifications
+  has_many :identifications, :through => :people_identifications
+
   has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
   has_many :user_articles
