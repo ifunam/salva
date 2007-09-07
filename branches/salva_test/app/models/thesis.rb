@@ -5,4 +5,6 @@ class Thesis < ActiveRecord::Base
   belongs_to :thesisstatus
   belongs_to :thesismodality
   belongs_to :institutioncareer
+
+  has_many :projecttheses
 end

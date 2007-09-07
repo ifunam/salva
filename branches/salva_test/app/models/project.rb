@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :projectconferencetalks
   has_many :projectacadvisits
   has_many :projectgenericworks
+  has_many :projecttheses
 
   validates_numericality_of :projecttype_id,:allow_nil => true, :only_integer => true
   validates_numericality_of :projectstatus_id,:allow_nil => true, :only_integer => true

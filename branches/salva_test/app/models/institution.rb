@@ -6,6 +6,7 @@ class Institution < ActiveRecord::Base
   has_many :schoolarships
   has_many :memberships
   has_many :projectfinancingsources
+  has_many :jobpositions
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontitle_id, :allow_nil => true, :only_integer => true

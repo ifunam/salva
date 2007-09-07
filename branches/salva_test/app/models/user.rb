@@ -39,8 +39,8 @@ class User < ActiveRecord::Base
   has_many :stimuluses, :through => :user_stimuluses
 
   has_many :user_courses
-
   has_many :userconferences
+  has_many :jobpositions
 
   # Callbacks
   before_create :prepare_new_record
