@@ -110,4 +110,13 @@ class UserController < ApplicationController
   def logout
     reset_session
   end
+
+  def about
+    pages = [ 'about.html', 'history.html', 'goals.html', 
+      'credits.html', 'support.html' ]
+    
+    page = (params['id'] != nil) ? params['id'].to_i: 0
+    @file = pages[page]
+  end
+
 end
