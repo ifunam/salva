@@ -8,4 +8,6 @@ class Identification < ActiveRecord::Base
 
   belongs_to :idtype
   belongs_to :country, :class_name => 'Country', :foreign_key => 'citizen_country_id'
+
+  has_many :people_identifications
 end
