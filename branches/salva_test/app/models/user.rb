@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   has_many :userconferences
   has_many :jobpositions
   has_many :bookedition_comments
+  has_many :bookedition_roleinbooks
+  has_many :chapterinbook_comments
 
   # Callbacks
   before_create :prepare_new_record

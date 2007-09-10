@@ -10,4 +10,5 @@ class Chapterinbook < ActiveRecord::Base
   belongs_to :bookchaptertype
 
   has_many :projectchapterinbooks
+  has_many :chapterinbook_comments
 end
