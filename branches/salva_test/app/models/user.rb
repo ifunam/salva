@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   has_many :bookedition_roleinbooks
   has_many :chapterinbook_comments
   has_many :people_identifications
+  has_many :instadvices
 
   # Callbacks
   before_create :prepare_new_record

@@ -1,12 +1,16 @@
 proyecto_instituciones_salva: 
   id: 1
   project_id: 1
-  institution_id: 1
+  institution_id: 5588
 proyecto_instituciones_issste:
   id: 2
   project_id: 2
-  institution_id: 2
+  institution_id: 57
 proyecto_instituciones_seguridad_publica:
   id: 3
   project_id: 3
   institution_id: 1
+proyecto_instituciones_seguridad_publica:
+  id: 4
+  project_id: 2
+  institution_id: 96

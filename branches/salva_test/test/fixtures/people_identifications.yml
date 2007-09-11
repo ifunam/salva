@@ -1,0 +1,15 @@
+juana_curp_mexicana:
+  id: 1
+  user_id: 2
+  identification_id: 1
+  descr: Curp Mexicana
+panchito_credencial_de_elector_mexicana:
+  id: 2
+  user_id: 3
+  identification_id: 2
+  descr: Credencial de Elector Mexicana
+admin_pasaporte_ucraniano:
+  id: 3
+  user_id: 1
+  identification_id: 3
+  descr: Pasaporte Ucraniano
