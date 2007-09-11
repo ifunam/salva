@@ -1,4 +1,5 @@
-estudios_sobre_formacion_de_barrancos_en_marte:
+---
+prueba001:
   id: 1
   title: Estudios sobre formacion de barrancos en Marte
   authors: Imelda Martinez, Gerardo Hessman
@@ -6,7 +7,7 @@ estudios_sobre_formacion_de_barrancos_en_marte:
   talktype_id: 2
   talkacceptance_id: 1
   modality_id: 1
-estudios_sobre_formacion_de_suelos_volcanicos: 
+prueba002:
   id: 2
   title: Estudios sobre formacion de suelos volcanicos
   authors: Rosendo Jimenez, Ron Fenske
