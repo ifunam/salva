@@ -1,27 +1,6 @@
-<h1>Listing persons</h1>
+<!--[list:person]-->
+<%= table_array(@collection, { :header => "People", :columns =>
+['lastname1', 'lastname2', 'firstname', 'dateofbirth', ['country', 'name'] ] }
+) %> 
+<!--[eoflist:person]-->
 
-<table>
-  <tr>
-  <% for column in Person.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for person in @persons %>
-  <tr>
-  <% for column in Person.content_columns %>
-    <td><%=h person.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => person %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => person %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => person }, :confirm => 'Are you sure?' %></td>
-  </tr>
-<% end %>
-</table>
-
-<%= link_to 'Previous page', { :page => @person_pages.current.previous } if @person_pages.current.previous %>
-<%= link_to 'Next page', { :page => @person_pages.current.next } if @person_pages.current.next %> 
-
-<br />
-
-<%= link_to 'New person', :action => 'new' %>

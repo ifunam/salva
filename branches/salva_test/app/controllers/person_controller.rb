@@ -23,7 +23,11 @@ class PersonController < ApplicationController
   end
 
   def show
-     get_person
+    if params[:id].nil?
+      get_person
+    else
+      @edit = Person.find(params[:id])
+    end 
   end
 
   def new
@@ -35,7 +39,7 @@ class PersonController < ApplicationController
   end
 
   def list
-     @person_pages, @persons = paginate :person, :per_page => 10
+     @pages, @collection = paginate :person, :per_page => 10
   end
 
   def photo
