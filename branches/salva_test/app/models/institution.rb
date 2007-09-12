@@ -10,6 +10,7 @@ class Institution < ActiveRecord::Base
   has_many :projectinstitutions
   has_many :instadvices
   has_many :institutional_activities
+  has_many :conference_institutions
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :institutiontitle_id, :allow_nil => true, :only_integer => true
