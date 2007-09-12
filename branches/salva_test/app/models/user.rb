@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :chapterinbook_comments
   has_many :people_identifications
   has_many :instadvices
+  has_many :institutional_activities
 
   # Callbacks
   before_create :prepare_new_record
