@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   has_many :people_identifications
   has_many :instadvices
   has_many :institutional_activities
+  has_many :user_researchlines
 
   # Callbacks
   before_create :prepare_new_record

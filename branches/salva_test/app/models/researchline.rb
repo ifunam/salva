@@ -7,4 +7,5 @@ class Researchline < ActiveRecord::Base
 
   belongs_to :researcharea
   has_many :projectresearchlines
+  has_many :user_researchlines
 end
