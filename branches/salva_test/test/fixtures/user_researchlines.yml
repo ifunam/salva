@@ -1,0 +1,12 @@
+fisica_espacial:
+   id: 1
+   user_id: 2
+   researchline_id: 3
+sismologia:
+   id: 2
+   user_id: 3
+   researchline_id: 2
+vulcanologia:
+   id: 3
+   user_id: 2
+   researchline_id: 1
