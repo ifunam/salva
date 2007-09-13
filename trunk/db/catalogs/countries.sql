@@ -73,7 +73,7 @@ INSERT INTO countries VALUES (703, 'Eslovaquia', 'Eslovaka', 'SK');
 INSERT INTO countries VALUES (705, 'Eslovenia', 'Eslovena', 'SI');
 INSERT INTO countries VALUES (724, 'España', 'Español', 'ES');
 INSERT INTO countries VALUES (581, 'Islas Ultramarinas de Estados Unidos', 'De las Islas Ultramarinas de Estados Unidos', 'UM');
-INSERT INTO countries VALUES (840, 'Estados Unidos', 'Estadounidense', 'US');
+INSERT INTO countries VALUES (840, 'Estados Unidos de América', 'Estadounidense', 'US');
 INSERT INTO countries VALUES (233, 'Estonia', 'Estona', 'EE');
 INSERT INTO countries VALUES (231, 'Etiopía', 'Etíope', 'ET');
 INSERT INTO countries VALUES (234, 'Islas Feroe', 'Feroésa', 'FO');
