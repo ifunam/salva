@@ -8,8 +8,14 @@ japan:
   name: Japón
   citizen: Japonesa
   code: JP
-ukrania: 
+ukrania:
   id: 804
   name: Ucrania
   citizen: Ucraniana
   code: UA
+
+americana:
+ id: 666
+ name: Estados Unidos
+ citizen: Norteamericano
+ code: EU
