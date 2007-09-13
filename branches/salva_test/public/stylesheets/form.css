@@ -695,3 +695,26 @@ select
   float: left;
 }
 
+input.quickpost {
+  border: 1px solid #FFFFFF;
+  border: 0px;
+  color: #FFFFFF;
+  background: #FFFFFF;
+  background-image: url("/images/add.gif"); background-repeat: no-repeat;
+  width: 16px;
+  padding-top: 16px;
+  height: 0px !important;
+  height /**/: 16px;
+}
+
+input.quickpost-select {
+  border: 1px solid #FFFFFF;
+  border: 0px;
+  color: #FFFFFF;
+  background: #FFFFFF;
+  background-image: url("/images/select.gif"); background-repeat: no-repeat;
+  width: 16px;
+  padding-top: 16px;
+  height: 0px !important;
+  height /**/: 16px;
+}
