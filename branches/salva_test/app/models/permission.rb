@@ -1,8 +1,17 @@
 class Permission < ModelComposedKeys
-  set_table_name "permissions"
-  set_primary_keys :roleingroup_id, :controller_id
+   set_table_name "permissions"
+   set_primary_keys :roleingroup_id, :controller_id
 
-  validates_numericality_of :roleingroup_id, :controller_id
+  validates_presence_of :action_id, :roleingroup_id, :controller_id
+
+  validates_numericality_of :id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :action_id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :roleingroup_id, :allow_nil => true, :only_integer => true
+  validates_numericality_of :controller_id, :allow_nil => true, :only_integer => true
+
+  validates_uniqueness_of :roleingroup_id, :scope => [:controller_id, :action_id]
+
+  belongs_to  :action
   belongs_to  :roleingroup
-  belongs_to :controller
+  belongs_to  :controller
 end
