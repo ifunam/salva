@@ -1,5 +1,5 @@
 <!--[list:user_techproduct]-->
-<%= table_array(@collection, { :header => "Título", :columns => [
-['techproduct_id', 'title', 'techproducttype_id'], 'year', 'userrole_id'] }) %> 
+<%= table_list(@collection, { :header => "Título", :columns => %w( techproduct_id year ) }) %>
+
 <!--[eoflist:user_techproduct]-->
 

@@ -1,3 +1,3 @@
-<%= render :partial => 'search' %>
-<%= table_list(@collection, { :header => "Título", :columns => %w( institution_id degree_id career_id ) }) %> 
+<%= render :partial => 'filter' %>
+<%= table_array(@collection, { :header => "Título", :columns => [ ['institution', 'name'], ['career', 'name', ['degree', 'name']] ]  }) %>
 

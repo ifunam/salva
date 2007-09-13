@@ -1,6 +1,5 @@
 class PeopleIdentification < ActiveRecord::Base
-  validates_presence_of :identification_id, :descr
-  validates_presence_of :user_id, :message => "Proporcione el user_id"
+  validates_presence_of :identification_id, :descr, :user_id
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :user_id, :allow_nil => true, :only_integer => true
