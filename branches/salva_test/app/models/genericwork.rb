@@ -4,11 +4,10 @@ class Genericwork < ActiveRecord::Base
   has_many :projectgenericworks
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_numericality_of :genericworktype_id, :genericworkstatus_id
+  validates_numericality_of :year, :genericworktype_id, :genericworkstatus_id, :only_integer => true
 
-  validates_presence_of :name, :authors, :title, :genericworktype_id, :genericworkstatus_id, :year
-  validates_uniqueness_of :name
-
+  validates_presence_of  :authors, :title, :genericworktype_id, :genericworkstatus_id, :year
+  validates_uniqueness_of :title
   belongs_to :genericworktype
   belongs_to :genericworkstatus
   belongs_to :institution
