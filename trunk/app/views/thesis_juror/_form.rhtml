@@ -4,7 +4,7 @@
 <div class="row">
 <label for="thesis_id" class="label"><%= get_label('thesis_id') %> <span class="required">*</span></label>
 <div id="thesis_id">
-<%= select_conditions('edit', Thesis, 1, {:attributes =>%w( title year)}) %>
+<%= select_conditions('edit', Thesis, 1, {:attributes =>%w( title startyear)}) %>
 <%= quickpost('thesis') %>
 </div>
 </div>
