@@ -4,7 +4,7 @@ require 'modality'
 require 'regularcourse'
 
 class RegularcourseTest < Test::Unit::TestCase
-  fixtures :academicprogramtypes, :academicprograms, :modalities, :regularcourses
+  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :degrees, :careers, :institutioncareers, :academicprogramtypes, :academicprograms, :modalities, :regularcourses
 
   def setup
     @regularcourses = %w(fisica_general algebra_superior)
