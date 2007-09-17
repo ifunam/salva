@@ -10,3 +10,9 @@ consejo_computo:
   descr: "Estudio de requerimentos de equipo de computo en departamentos del Instituto, planeacion de compras de equipos, etc"
   institution_id: 57
   startyear: 2003
+consejo_directivo:
+  id: 3 
+  user_id: 1 
+  descr: "Autorización permisos sabáticos, otorgar becas, etc"
+  institution_id: 5588
+  startyear: 2007

@@ -8,3 +8,8 @@ matematicas:
   user_id: 3
   course_id: 2
   roleincourse_id: 3
+ruby_on_rails:
+  id: 3
+  user_id: 1
+  course_id: 3
+  roleincourse_id: 3

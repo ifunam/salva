@@ -3,16 +3,13 @@ user_adscription_01:
   jobposition_id: 1
   adscription_id: 1
   startyear: 2000
-  user_id: 2
 user_adscription_02:
   id: 2
   jobposition_id: 2
   adscription_id: 2
   startyear: 2003
-  user_id: 2
 user_adscription_03:
   id: 3
   jobposition_id: 3
   adscription_id: 2
   startyear: 2007
-  user_id: 2

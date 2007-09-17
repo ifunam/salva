@@ -8,3 +8,8 @@ salva:
  id: 2
  has_group_right: false
  descr:
+jefe:
+ name: Jefe
+ id: 4
+ has_group_right: true
+ descr:

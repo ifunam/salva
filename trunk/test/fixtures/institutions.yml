@@ -1,3 +1,20 @@
+cele:
+  name: Centro de Enseñanza de Lenguas Extranjeras
+  abbrev:
+  administrative_key: 61201
+  zipcode:
+  country_id: 484
+  url:
+  id: 71
+  institution_id: 1
+  fax: 
+  phone: 
+  city_id: 1
+  institutiontitle_id: 8
+  institutiontype_id: 1
+  other: 
+  state_id: 9
+  addr:
 personal_academico:
   name: Dirección General de Asuntos del Personal Académico
   abbrev:
@@ -15,7 +32,6 @@ personal_academico:
   other: 
   state_id: 9
   addr: 
-
 programa_Universitario_de_Estudios_de_Genero: 
   name: Programa Universitario de Estudios de Género
   abbrev: ""

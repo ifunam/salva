@@ -8,3 +8,6 @@ comer_galletitas:
 ir_al_trono: 
   name: para ir al trono
   id: 2
+negociacion:
+  name: para negociar
+  id: 4

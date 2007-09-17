@@ -8,3 +8,8 @@ algebra_superior:
   title: Algebra Superior
   academicprogram_id: 1
   modality_id: 2
+rails:
+  id: 3
+  title: Rails basico
+  academicprogram_id: 1
+  modality_id: 2
