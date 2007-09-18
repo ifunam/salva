@@ -6,7 +6,7 @@ login: &login
   encoding: UTF-8 
 
 development:
-  database: salva
+  database: salva_dev
   <<: *login
 
 test: 
