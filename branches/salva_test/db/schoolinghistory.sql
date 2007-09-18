@@ -92,7 +92,7 @@ CREATE TABLE schoolings (
     studentid text NULL,
     credits int4 NULL
 		CHECK (credits >= 0 AND credits <= 100),
-    average int4 NULL,
+    average float NULL,
 		CHECK (average >= 6 AND average <= 10),
     is_studying_this bool DEFAULT 'f' NOT NULL,
     is_titleholder bool DEFAULT 'f' NOT NULL,
@@ -108,8 +108,7 @@ CREATE TABLE schoolings (
     CONSTRAINT is_studying_or_is_finished_degree 
 	CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
 	(is_studying_this = 'f' AND is_titleholder IS NOT NULL)), 
-	CONSTRAINT choose_credits_or_year CHECK 
-		(endyear IS NOT NULL AND credits IS NULL OR credits = 100),
+		-- (endyear IS NOT NULL AND credits IS NULL OR credits = 100),
 	CONSTRAINT valid_period CHECK (startyear < endyear)
 
 );
