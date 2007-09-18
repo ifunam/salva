@@ -45,6 +45,10 @@ CREATE TABLE user_documents (
                 REFERENCES documents(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
+        user_incharge_id int4  NULL
+                REFERENCES users(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE,
         status boolean NOT NULL default 'f', -- True = Approved OR False = Pending
         file  bytea NOT NULL,
         filename text NOT NULL,
