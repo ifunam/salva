@@ -9,6 +9,7 @@ class Country < ActiveRecord::Base
   has_many :acadvisits
   has_many :courses
   has_many :identifications
+  has_many :people
 
   before_validation_on_create  :set_id
 

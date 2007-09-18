@@ -4,5 +4,7 @@ class City < ActiveRecord::Base
 
   validates_presence_of :state_id, :name
   validates_uniqueness_of :name, :scope => [:state_id]
+
   belongs_to :state
+  has_many :people
 end
