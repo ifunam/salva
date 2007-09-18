@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_length_of       :passwd,:within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
+  validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
