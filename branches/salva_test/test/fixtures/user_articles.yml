@@ -8,8 +8,3 @@ cedillo_barrancos_en_marte:
   user_id: 3
   article_id: 2 
   ismainauthor: 't' 
-durand_barrancos_en_marte: 
-  id: 3
-  user_id: 3
-  article_id: 2 
-  ismainauthor: 'f' 
