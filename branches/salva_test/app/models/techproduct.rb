@@ -8,4 +8,5 @@ class Techproduct < ActiveRecord::Base
   belongs_to :techproducttype
   belongs_to :techproductstatus
   belongs_to :institution
+  has_many :user_techproducts 
 end
