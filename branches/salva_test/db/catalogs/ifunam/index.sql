@@ -5,3 +5,4 @@
 \i techproducttypes.sql
 \i roleinprojects.sql
 \i probatorydoctypes.sql
+\i documenttypes.sql

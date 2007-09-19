@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_length_of       :passwd,:within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
+  validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
@@ -41,16 +42,6 @@ class User < ActiveRecord::Base
 
   has_many :user_stimuluses
   has_many :stimuluses, :through => :user_stimuluses
-
-  has_many :user_courses
-  has_many :userconferences
-  has_many :jobpositions
-  has_many :bookedition_comments
-  has_many :bookedition_roleinbooks
-  has_many :chapterinbook_comments
-  has_many :instadvices
-  has_many :institutional_activities
-  has_many :user_researchlines
 
   # Callbacks
   before_create :prepare_new_record

@@ -5,29 +5,17 @@ class PersonController < ApplicationController
   include Magick
   include Stackcontroller
   include Sql
-  # Usaremos las siguientes dos líneas cuando actionpack-imagemagick-0.4.gem y
-  # UploadProgress se declaren oficialmente como código estable, referencias:
-  # http://vantulder.net/rails/magick/
-  # http://api.rubyonrails.org/classes/ActionController/UploadProgress.html
-  #
-  # imagemagick_for RAILS_ROOT + "/public/images"
-  # upload_status_for :create, :update
 
   def index
-    get_person
-    if @edit then
-     redirect_to :action => 'show'
+    if has_data? then
+      redirect_to :action => 'show'
     else
-     redirect_to :action => 'new'
+     redirect_to :action  => 'new'
     end
   end
 
   def show
-    if params[:id].nil?
-      get_person
-    else
-      @edit = Person.find(params[:id])
-    end 
+    @edit =  (params[:id].nil?)  ? get_person : get_record(params[:id])
   end
 
   def new
@@ -35,7 +23,7 @@ class PersonController < ApplicationController
   end
 
   def edit
-    get_person
+    @edit =  (params[:id].nil?)  ? get_person : get_record(params[:id])
   end
 
   def list
@@ -43,13 +31,11 @@ class PersonController < ApplicationController
   end
 
   def photo
-    get_person
+    @edit = get_person
     @headers['Pragma'] = 'no-cache'
     @headers['Cache-Control'] = 'no-cache, must-revalidate'
     if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'png' then
-      send_data(@edit.photo, :filename => @edit.photo_filename,
-                :type => "image/"+@edit.photo_content_type.to_s,
-                :disposition => "inline")
+      send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       redirect_to "/images/comodin.png"
     end
@@ -57,7 +43,7 @@ class PersonController < ApplicationController
 
   def create
     @edit = Person.new(params[:edit])
-    @edit.id = session[:user_id]
+    @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('new')
       save_photo if @edit.photo.size > 0
@@ -74,7 +60,7 @@ class PersonController < ApplicationController
 
   def update
     @edit = Person.new(params[:edit])
-    @edit.id = session[:user_id]
+    @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('edit')
       save_photo if @edit.photo.size > 0
@@ -117,8 +103,17 @@ class PersonController < ApplicationController
     photo.to_blob
   end
 
+  def has_data?
+    get_record(session[:user]) == nil ? false : true
+  end
+
   def get_person
-    @edit = model_from_stack ||  Person.find(:first, :conditions => [ "user_id=?", session[:user_id]])
+    model_from_stack || get_record(session[:user])
+  end
+
+  def get_record(id)
+    # To avoid performance problems avoid use the photo attributes  (photo_*)
+    Person.find(:first, :conditions => [ "user_id=?",  id])
   end
 
   def clean_photo_attributes

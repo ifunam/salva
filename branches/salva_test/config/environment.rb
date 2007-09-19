@@ -81,3 +81,4 @@ if RAILS_ENV != 'test'
     ActionMailer::Base.delivery_method = :sendmail
   end
 end
+#ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS[:default]='%d/%m/%Y'

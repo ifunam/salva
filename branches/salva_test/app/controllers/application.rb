@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   include Sessions
   include Rbac
   include NavigatorTree
-  before_filter :configure_datestyle
   before_filter :login_required
   before_filter :change_userid
   before_filter :set_user_id
@@ -41,12 +40,6 @@ class ApplicationController < ActionController::Base
 
   def update_remote_partial
     render :partial => 'salva/'+params[:partial]
-  end
-
-  def configure_datestyle
-    suppress(ActiveRecord::StatementInvalid) do
-      ActiveRecord::Base.connection.execute  "SET datestyle TO 'SQL, DMY';"
-    end
   end
 
   def change_userid
@@ -83,6 +76,7 @@ class ApplicationController < ActionController::Base
     max = Date.today.year
     auto_complete_responder_for_years params[:edit][:year], min, max
   end
+
   private
   def auto_complete_responder_for_years(value,min=1,max=90)
     list = [ ]

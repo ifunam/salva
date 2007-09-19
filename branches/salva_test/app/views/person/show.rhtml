@@ -1,8 +1,8 @@
-<img src="<%= url_for(:action => "photo") %>"/> 
+<img src="<%= url_for(:action => "photo") %>"/>
 <br/>
 <%= table_show(Person.columns, { :hidden => %w(photo photo_filename photo_content_type)}) %>
 <%= render :partial =>"salva/moduser" %>
 <div id="operations">
- <%= link_to get_label('edit'), :action => 'edit', :id => @person %> 
+ <%= link_to get_label('edit'), :action => 'edit', :id => @edit%>
 </div>
 
