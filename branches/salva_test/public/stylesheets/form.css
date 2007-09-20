@@ -267,6 +267,7 @@ body {
 
 .row {
     display: table-row;
+    width: 100%;
     float: none;
     vertical-align: top;
 }
