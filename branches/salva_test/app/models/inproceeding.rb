@@ -6,5 +6,5 @@ class Inproceeding < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => [:proceeding_id]
 
   belongs_to :proceeding
-  has_many :user_inproceeding
+  has_many :user_inproceedings
 end
