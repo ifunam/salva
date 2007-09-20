@@ -13,29 +13,35 @@ class UserDocumentController < ApplicationController
   end
 
   def send_document
+    @user = User.find(session[:user])
     record = UserDocument.new
     record.ip_address = request.env['REMOTE_ADDR']
     record.document_id = @document
     record.file = StringIO.new(@file).read
-    record.filename = @filename
+    record.filename  = @filename
     record.content_type = @content_type
-    record.moduser_id = session[:user]
-    record.user_id = session[:user]
-    # Look for conditional to  publish  the document
-    record.is_published = 't'
+    record.moduser_id = @user.id
+    record.user_id = @user.id
+    record.status = 't'  unless @user.has_user_incharge?
     if record.save
-      mail_options=  {
-        :recipients => User.find(session[:user]).email,
-        :subject =>   @notification_subject,
+      mail =  {
         :body => { :institution => get_myinstitution.name },
-        :attachment => { :file => record.file, :content_type => record.content_type }
+        :attachment => { :file => record.file,  :content_type => record.content_type }
       }
-      @notifier.deliver_notification_of_delivery(mail_options)
+      if @user.has_user_incharge?
+        mail[:recipients] = [@user.email,  @user.user_incharge.email]
+        mail[:subject] = @request_for_approval_subject
+        @notifier.deliver_request_for_approval(mail)
+      else
+        mail[:recipients] = @user.email
+        mail[:subject] = @notification_subject
+        @notifier.deliver_notification_of_delivery(mail)
+      end
       flash[:notice] = @sent_msg
       redirect_to :action => 'list'
     else
       flash[:notice] = @nosent_msg
-      redirect_to :action => 'list'
+      redirect_to :action => 'list' # Redirect to another action
     end
   end
 

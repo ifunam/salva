@@ -1,0 +1,31 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_document]-->
+<div class="row">
+<label for="document_id" class="label"><%= get_label('document_id') %> <span class="required">*</span></label>
+<div id="document_id">
+  <%= select_conditions('edit', Document, 1, {:attributes => ['documenttype', 'title']}) %>
+</div>
+</div>
+
+<div class="row">
+<label for="is_published" class="label"><%= get_label('is_published') %> <span class="required">*</span></label>
+<div class="radio">
+No <%= radio_button('edit', 'is_published', false, 'tabindex' => 4) %>
+Sí <%= radio_button('edit', 'is_published', true, 'tabindex' => 4) %>
+</div>
+</div>
+
+<div class="row">
+<label for="ip_address" class="label"><%= get_label('ip_address') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'ip_address', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'ip_address' %>
+</div>
+
+<hr/>
+<div class="row">
+<label for="file" class="label"><%= get_label('file') %></label>
+<%= file_field 'edit', 'file', 'tabindex' => 10 %>
+<br/>
+</div>
+<!--[eoform:user_document]-->
+
