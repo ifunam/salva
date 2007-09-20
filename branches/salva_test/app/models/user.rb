@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :user_stimuluses
   has_many :stimuluses, :through => :user_stimuluses
 
+  has_many :user_journals
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password
