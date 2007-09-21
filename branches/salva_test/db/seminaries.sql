@@ -1,18 +1,18 @@
-CREATE TABLE seminaries ( 
+CREATE TABLE seminaries (
     id SERIAL,
     title text NOT NULL,
     isseminary BOOLEAN NOT NULL default 't',
     url text NULL,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
     year  int4 NOT NULL,
-    institution_id int4 NOT NULL 
-            REFERENCES institutions(id)      
+    institution_id int4 NOT NULL
+            REFERENCES institutions(id)
             ON UPDATE CASCADE
-            ON DELETE CASCADE   
+            ON DELETE CASCADE
             DEFERRABLE,
     location text NULL,
-    moduser_id int4 NULL 	             -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
+    moduser_id int4  NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -21,36 +21,36 @@ CREATE TABLE seminaries (
     UNIQUE (title, year, institution_id)
 );
 COMMENT ON TABLE seminaries IS
-	'Seminarios y conferencias';
+        'Seminarios y conferencias';
 COMMENT ON COLUMN conferences.location IS
-	'Lugar donde se impartio el seminario o conferencia';
+        'Lugar donde se impartio el seminario o conferencia';
 
-CREATE TABLE roleinseminaries ( 
+CREATE TABLE roleinseminaries (
         id SERIAL,
-        name text NOT NULL, 
+        name text NOT NULL,
         PRIMARY KEY(id),
-	UNIQUE (name)
+        UNIQUE (name)
 );
 
-CREATE TABLE user_seminaries ( 
+CREATE TABLE user_seminaries (
     id SERIAL,
-    seminary_id int4 NOT NULL 
-            REFERENCES seminaries(id)      
+    seminary_id int4 NOT NULL
+            REFERENCES seminaries(id)
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    user_id int4 NOT NULL 
-            REFERENCES users(id)      
+    user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE
-            ON DELETE CASCADE   
+            ON DELETE CASCADE
             DEFERRABLE,
-    roleinseminary_id int4 NOT NULL 
-            REFERENCES roleinseminaries(id)      
+    roleinseminary_id int4 NOT NULL
+            REFERENCES roleinseminaries(id)
             ON UPDATE CASCADE
-            ON DELETE CASCADE   
+            ON DELETE CASCADE
             DEFERRABLE,
-    moduser_id int4                          -- Use it only to know who has
-            REFERENCES users(id)             -- inserted, updated or deleted  
+    moduser_id int4  NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted
             ON UPDATE CASCADE                -- data into or from this table.
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -59,4 +59,4 @@ CREATE TABLE user_seminaries (
     PRIMARY KEY (id)
 );
 COMMENT ON TABLE user_seminaries IS
-	'Usuarios que asistieron a un seminario o conferencia';
+        'Usuarios que asistieron a un seminario o conferencia';
