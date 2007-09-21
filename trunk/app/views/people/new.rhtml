@@ -1,0 +1,8 @@
+<%= render :partial => 'salva/form_notes' %>
+<% form_tag('create', :multipart => true) do -%>
+  <%= render :partial => 'form' %>
+  <div id="operations">
+  <%= submit_tag get_label('save') %>
+  </div>
+<% end -%>
+
