@@ -1,4 +1,4 @@
 <!--[list:user_roleingroup]-->
-<%= table_list(@collection, { :header => "Título", :columns => %w(user_id roleingroup_id) }) %> 
+<%= table_array(@collection, { :header => "Usuarios", :columns => [['user', 'login', 'email'],  ['roleingroup', ['group', 'name'], ['role', 'name']]] }) %>
 <!--[eoflist:user_roleingroup]-->
 
