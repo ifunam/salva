@@ -191,7 +191,7 @@ CREATE TABLE user_projects (
             REFERENCES projects(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_id integer
+   user_id integer NOT NULL
              REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,

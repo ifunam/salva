@@ -90,7 +90,7 @@ CREATE TABLE user_theses (
             REFERENCES theses(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_id integer
+   user_id integer NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -165,7 +165,7 @@ COMMENT ON TABLE roleinjuries IS
 
 CREATE TABLE thesis_jurors (
    id SERIAL,
-   user_id integer NULL
+   user_id integer NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,

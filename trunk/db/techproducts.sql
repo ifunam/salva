@@ -59,7 +59,7 @@ COMMENT ON COLUMN techproducts.institution_id IS
 
 CREATE TABLE user_techproducts (
         id SERIAL,
-        user_id integer
+        user_id integer NOT NULL
                 REFERENCES users(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
