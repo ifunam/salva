@@ -448,4 +448,6 @@ document: Documentos
 techproductstatus: Estado del producto
 techproductstatus_id: Estado del producto
 inproceeding_refereed: Artículos en Memorias Arbitradas
-
+user_roleingroup: Rol en el grupo
+roleingroup_id: Rol en el grupo
+roleingroup: Rol en el grupo
