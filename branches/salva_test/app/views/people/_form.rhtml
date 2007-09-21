@@ -1,0 +1,56 @@
+<%= error_messages_for 'edit' %>
+<!--[form:edit]-->
+<div class="row">
+<label for="firstname" class="label"><%= get_label('firstname') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'firstname', 'tabindex' => 1 %>
+</div>
+
+<div class="row">
+<label for="lastname1" class="label"><%= get_label('lastname1') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'lastname1', 'tabindex' => 2 %>
+</div>
+
+<div class="row">
+<label for="lastname2" class="label"><%= get_label('lastname2') %></label>
+<%= text_field 'edit', 'lastname2', 'tabindex' => 3 %>
+</div>
+
+<div class="row">
+<label for="gender" class="label"><%= get_label('gender') %> <span class="required">*</span></label>
+<div class="radio">
+Femenino <%= radio_button('edit', 'gender', false, 'tabindex' => 4) %>
+Masculino <%= radio_button('edit', 'gender', true, 'tabindex' => 4) %>
+</div>
+</div>
+
+<div class="row">
+<label for="maritalstatus_id" class="label"><%= get_label('maritalstatus_id') %></label>
+<%= simple_select('edit', Maritalstatus, 5) %>
+</div>
+<hr/>
+<div class="row">
+<p><b>Fecha y lugar de nacimiento</b></p>
+</div>
+<div class="row">
+<label for="dateofbirth" class="label"><%= get_label('dateofbirth')%> <span class="required">*</span></label>
+<%= date_for_select('edit', 'dateofbirth', 6) %>
+</div>
+<br/>
+
+<br/>
+
+<%= render :partial => 'salva/select_country_state_city' %>
+
+<hr/>
+<div class="row">
+<label for="photo" class="label"><%= get_label('photo') %></label>
+<%= file_field 'edit', 'photo', 'tabindex' => 10 %>
+<br/>
+</div>
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
+<%= text_area 'edit', 'other', 'rows' => 4, 'tabindex' => 11 %>
+</div>
+
+<!--[eoform:edit]-->
+
