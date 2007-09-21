@@ -85,7 +85,7 @@ CREATE TABLE usersstatuses_comments (
                 ON UPDATE CASCADE
                 DEFERRABLE,
         comments text NOT NULL,
-        moduser_id int4 NOT NULL
+        moduser_id int4 NULL
                 REFERENCES users(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
