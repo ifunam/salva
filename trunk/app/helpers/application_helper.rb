@@ -22,7 +22,7 @@ module ApplicationHelper
   def text_link(text, id, controller=nil)
     link_options = { :action => 'show', :id => id}
     link_options[:controller] = controller if  controller != nil
-    link_to (text, link_options)
+    link_to(text, link_options)
   end
 
   def show_link(id,controller=nil)
