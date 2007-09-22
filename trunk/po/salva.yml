@@ -451,3 +451,8 @@ inproceeding_refereed: Artículos en Memorias Arbitradas
 user_roleingroup: Rol en el grupo
 roleingroup_id: Rol en el grupo
 roleingroup: Rol en el grupo
+controller: Controlador
+controller_id: Controlador
+action_id: Acción
+action: Acción
+permission: Permisos
