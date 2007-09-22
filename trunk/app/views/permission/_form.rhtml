@@ -4,7 +4,7 @@
 <div class="row">
 <label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label>
 <div id="roleingroup_id">
- <%= select_conditions('edit', Roleingroup, 1, {:attributes => %w(group role)}) %>
+<%= select_conditions('edit', Roleingroup, 1, :attributes =>[ 'group', 'role' ] ) %>
 </div>
 </div>
 
@@ -12,13 +12,13 @@
 <label for="controller_id" class="label"><%= get_label('controller_id') %> <span class="required">*</span></label>
 <div id="controller_id">
 <%= simple_select('edit', Controller, 2) %>
-<%= quickpost('controller') %>
-</div></div>
+</div>
+</div>
 
 <div class="row">
 <label for="action_id" class="label"><%= get_label('action_id') %> <span class="required">*</span></label>
 <div id="action_id">
-<%= checkbox_list('edit', Action, @edit.attributes_before_type_cast['action_id']) %> </p>
+<%= simple_select('edit', Action, 3) %>
 </div>
 </div>
 
