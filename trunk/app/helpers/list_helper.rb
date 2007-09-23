@@ -3,7 +3,7 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content(row, columns).join(', ').to_s+'.'
-      id = row.attributes_before_type_cast['id'] =~ /:/ ?  row.attributes_before_type_cast['id'] : row.id
+      id = row.id
       list.push([text, id])
     }
     return sorted_list(list)
@@ -13,7 +13,7 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content_array(row, columns).join(', ').to_s+'.'
-      id = row.attributes_before_type_cast['id'] =~ /:/ ?  row.attributes_before_type_cast['id'] : row.id
+      id = row.id
       list.push([text, id])
     }
     return sorted_list(list)

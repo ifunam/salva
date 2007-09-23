@@ -719,3 +719,10 @@ input.quickpost-select {
   height: 0px !important;
   height /**/: 16px;
 }
+
+
+#userrole_id {
+   float:right;
+   display: inline;
+   vertical-align: top;
+}
