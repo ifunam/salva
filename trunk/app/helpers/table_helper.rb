@@ -31,36 +31,31 @@ module TableHelper
     s
   end
 
-  # ...
-  def table_show(row, options = {})
-    hidden = hidden_attributes(options[:hidden])
+  def table_show(record, hidden_opt=[])
+    hidden_attributes  = default_hidden(hidden_opt)
     body = []
-    row.each { |column|
-      attribute = column.name
-      next if @edit.send(attribute) == nil or hidden.include?(attribute)
-      text = attribute
-      if is_id?(attribute) then
-        model = get_model_from_idattribute(attribute)
-        if @edit.class.reflect_on_association(model.to_sym) and (Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on)).size > 0   and !%w(state country city).include?(model)
-          logger.info  "Columnas "+(Inflector.camelize(model).constantize.column_names - %w(id name moduser_id created_on updated_on )).flatten.to_s
-          if @edit.class.reflect_on_association(model.to_sym).macro.to_s == 'belongs_to'
-            text =  link_to(attributeid_to_text(@edit, attribute), :controller => model, :action => 'show', :id => @edit.send(attribute))
-          end
+    (record.class.column_names - hidden_attributes).each do |attribute|
+      next if !record.respond_to? attribute or record.send(attribute) == nil?
+      if attribute =~/_id$/ then
+        model = modelize(attribute)
+        if record.respond_to? model and (Inflector.camelize(model).constantize.column_names - (hidden_attributes << 'name')).size > 0 and !%w(state country city).include?(model)
+          body << [attribute, link_to(attributeid_to_text(record, attribute), :controller => model, :action => 'show', :id => record.send(attribute).id)]
         else
-          text = attributeid_to_text(@edit, attribute)
+          body << [ attribute, attributeid_to_text(record, attribute)]
         end
       else
-        text = attribute_to_text(@edit, attribute)
+        body << [attribute, attribute_to_text(record, attribute)]
       end
-      body << [ attribute, text ]
-    }
-    render(:partial => '/salva/show',  :locals => { :body => body })
+    end
+    render(:partial => '/salva/table_show',  :locals => { :body => body })
   end
 
-  def hidden_attributes(attrs=nil)
+  def default_hidden(attributes=[])
     default = %w(id dbtime moduser_id user_id created_on updated_on moduser)
-    attrs = [ attrs ] unless attrs.is_a?Array
-    attrs.each { |attr| default << attr } if attrs != nil
-    return default
+    default +=  attributes
+  end
+
+  def modelize(attribute)
+    attribute.sub(/_id$/,'').sub(/^\w+_/,'')
   end
 end

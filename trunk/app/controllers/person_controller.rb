@@ -31,7 +31,7 @@ class PersonController < ApplicationController
   end
 
   def photo
-    @edit = get_person
+    @edit =  get_record(session[:user], true)
     @headers['Pragma'] = 'no-cache'
     @headers['Cache-Control'] = 'no-cache, must-revalidate'
     if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'png' then
@@ -111,9 +111,11 @@ class PersonController < ApplicationController
     model_from_stack || get_record(session[:user])
   end
 
-  def get_record(id)
+  def get_record(id,photo=false)
     # To avoid performance problems avoid use the photo attributes  (photo_*)
-    Person.find(:first, :conditions => [ "user_id=?",  id])
+    columns = Person.column_names
+    columns -=  ["photo_filename", "photo_content_type", "photo"] if photo == false
+    Person.find(:first, :select => columns.join(', '), :conditions => [ "user_id=?",  id])
   end
 
   def clean_photo_attributes
