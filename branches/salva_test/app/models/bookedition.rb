@@ -18,4 +18,5 @@ class Bookedition < ActiveRecord::Base
   has_many :bookedition_comments
   has_many :chapterinbooks
   has_many :bookedition_publishers
+  has_many :bookedition_roleinbooks
 end

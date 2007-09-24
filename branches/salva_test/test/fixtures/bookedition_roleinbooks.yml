@@ -1,12 +1,15 @@
-sismologia:
-user_id: 1
-bookedition_id: 1
-roleinbook_id: 1
-earthquakes:
-user_id: 2
-bookedition_id: 2
-roleinbook_id: 2
-spacephysics:
-user_id: 3
-bookedition_id: 3
-roleinbook_id: 3
+sismologia_autor_administrador:
+  id: 1
+  user_id: 1
+  bookedition_id: 1
+  roleinbook_id: 1
+earthquakes_coautor_juana:
+  id: 2
+  user_id: 2
+  bookedition_id: 2
+  roleinbook_id: 2
+spacephysics_revisor_panchito:
+  id: 3
+  user_id: 3
+  bookedition_id: 3
+  roleinbook_id: 3
