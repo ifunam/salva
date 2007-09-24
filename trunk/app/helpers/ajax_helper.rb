@@ -1,6 +1,6 @@
 module AjaxHelper
   def observe_select(object, field, select, tabindex)
-    observe_field("#{object}_#{field}", :frequency => 0.25, :url => { :action => 'update_select', :partial => select, :tabindex => tabindex}, :update=> select,  :with => "'id='+value", :on => 'click')
+    observe_field("#{object}_#{field}",  :url => { :action => 'update_select', :partial => select, :tabindex => tabindex}, :update=> select,  :with => "'id='+value", :on => 'onchange')
   end
 
   def stop_observer(object, field)
