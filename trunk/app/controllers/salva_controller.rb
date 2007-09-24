@@ -18,9 +18,11 @@ class SalvaController < ApplicationController
   end
 
   def list
+    select = '*'
     if @model.column_names.include?('user_id')
       if @list.has_key?(:joins)
         @list[:joins] += " AND #{@model.table_name}.user_id = #{session[:user]}"
+        select = Inflector.tableize(@model)+".*"
       elsif @list.has_key?(:conditions)
         @list[:conditions] += " AND #{@model.table_name}.user_id = #{session[:user]}"
       else
@@ -33,7 +35,7 @@ class SalvaController < ApplicationController
 
     @pages, @collection = paginate Inflector.pluralize(@model),
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
-    :per_page => per_page || @per_pages
+    :select => select, :per_page => per_page || @per_pages
 
     @parent_controller = 'algo' if has_model_in_stack?
     render :action => 'list'
