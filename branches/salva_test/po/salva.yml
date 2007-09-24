@@ -248,6 +248,7 @@ researchline: Líneas de investigación
 researchline_id: Línea de investigación
 user_researchline: Líneas de investigación
 bookedition_roleinbook: Participación en libros
+idtype: Tipo de identificación
 idtype_id: Tipo de identificación
 identification: Identificación
 stimulustype_id: Tipo de estímulo
@@ -357,7 +358,7 @@ projectresearchline: Líneas de investigación
 user_specialcourse: Cursos especiales
 technicalconference: Congresos
 user_technicalconferencetalk: Trabajos en congresos
-conferences_and_seminaries: Trabajos en congresos, seminarios y conferencias
+conferences_and_seminaries: Congresos, seminarios y conferencias
 isseminary: Tipo
 seminary: Seminarios y conferencias
 roleinseminary_id: Rol
@@ -370,7 +371,7 @@ activity: Otras actividades
 activity_id: Actividad
 tutorial_committee: Comités tutorales
 roleinconference_id: Rol
-userconference_committee: Participación en comités de eventos académicos
+userconference_committee: Participación en organización de eventos académicos
 inproceeding_unrefereed: Trabajos presentados en memorias in extenso
 techreport: Reporte técnico
 other_activities_or_products: Otras actividades o productos
@@ -447,4 +448,11 @@ document: Documentos
 techproductstatus: Estado del producto
 techproductstatus_id: Estado del producto
 inproceeding_refereed: Artículos en Memorias Arbitradas
-
+user_roleingroup: Rol en el grupo
+roleingroup_id: Rol en el grupo
+roleingroup: Rol en el grupo
+controller: Controlador
+controller_id: Controlador
+action_id: Acción
+action: Acción
+permission: Permisos

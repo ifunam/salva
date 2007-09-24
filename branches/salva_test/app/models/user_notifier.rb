@@ -18,7 +18,7 @@ class UserNotifier < ActionMailer::Base
 
   def activation(user,url,institution)
     setup_email(user.email)
-    @subject    += 'Su cuenta ha sido activada!'
+    @subject    += 'Su cuenta está activada'
     @body[:user] = user
     @body[:url]  = url
     @body[:institution]  = institution

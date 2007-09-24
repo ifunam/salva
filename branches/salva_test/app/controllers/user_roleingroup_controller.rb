@@ -8,8 +8,9 @@ class UserRoleingroupController < SalvaController
     @per_pages = 10
     @order_by = 'id'
   end
-  
+
   def set_userid
+    @edit.user_id = params[:edit][:user_id]
     @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
   end
 end

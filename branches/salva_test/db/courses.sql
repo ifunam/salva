@@ -120,7 +120,7 @@ CREATE TABLE user_courses (
             ON UPDATE CASCADE
             ON DELETE CASCADE   
             DEFERRABLE,
-    course_id int4 NULL 
+    course_id int4 NOT NULL 
             REFERENCES courses(id)
             ON UPDATE CASCADE
             DEFERRABLE,

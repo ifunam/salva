@@ -4,5 +4,4 @@ class UserRoleingroup < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => [:roleingroup_id]
   belongs_to :user
   belongs_to :roleingroup
-
 end

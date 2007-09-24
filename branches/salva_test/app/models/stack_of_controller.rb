@@ -63,7 +63,7 @@ class StackOfController
       m = model
       t = attribute
       unless m == nil or t == nil
-        if  (m.class.superclass  ==   ActiveRecord::Base  ||  ModelComposedKeys)  ||  Inflector.constantize(m.class.name) == ModelSequence
+        if  (m.class.superclass  ==   ActiveRecord::Base)  ||  Inflector.constantize(m.class.name) == ModelSequence
           m = model.get_model if Inflector.constantize(m.class.name) == ModelSequence
           m.[]=(t, value)
         elsif m.class == Hash
