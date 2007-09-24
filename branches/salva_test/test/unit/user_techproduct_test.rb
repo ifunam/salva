@@ -2,11 +2,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'techproduct'
 
 class UserTechproductTest < Test::Unit::TestCase
-  fixtures :degrees, :careers, :userstatuses, :techproducttypes, :countries, :states, :cities, :institutiontypes, :institutiontitles, :institutions, :institutioncareers, :users, :techproductstatuses, :techproducts, :user_techproducts
+  fixtures :degrees, :careers, :userstatuses, :users, :techproducttypes, :countries, :states, :cities, :institutiontypes, :institutiontitles, :institutions, :institutioncareers, :users, :techproductstatuses, :techproducts, :user_techproducts
 
   def setup
     @user_techproducts = %w(user_techproduct_van_gogh_had_turbulence_down_to_a_fine_art user_techproduct_van_gogh_painted_perfect_turbulence)
-    @myuser_techproduct = UserTechproduct.new({:techproduct_id => 2, :year => 2006})
+    @myuser_techproduct = UserTechproduct.new({:techproduct_id => 2, :user_id => 2, :year => 2006})
   end
 
   # Right - CRUD
@@ -16,6 +16,7 @@ class UserTechproductTest < Test::Unit::TestCase
       assert_kind_of UserTechproduct, @user_techproduct
       assert_equal user_techproducts(user_techproduct.to_sym).id, @user_techproduct.id
       assert_equal user_techproducts(user_techproduct.to_sym).techproduct_id, @user_techproduct.techproduct_id
+      assert_equal user_techproducts(user_techproduct.to_sym).user_id, @user_techproduct.user_id
       assert_equal user_techproducts(user_techproduct.to_sym).year, @user_techproduct.year
     }
   end
@@ -36,7 +37,7 @@ class UserTechproductTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_user_techproduct
-    @user_techproduct = UserTechproduct.new({:techproduct_id => 1, :year => 1996})
+    @user_techproduct = UserTechproduct.new({:techproduct_id => 1, :user_id => 2, :year => 1996})
     assert !@user_techproduct.save
   end
 
@@ -57,6 +58,17 @@ class UserTechproductTest < Test::Unit::TestCase
     assert !@myuser_techproduct.valid?
 
     @myuser_techproduct.techproduct_id = 'mi_id'
+    assert !@myuser_techproduct.valid?
+  end
+
+  def test_bad_values_for_user_id
+    @myuser_techproduct.user_id = nil
+    assert !@myuser_techproduct.valid?
+
+    @myuser_techproduct.user_id= 1.6
+    assert !@myuser_techproduct.valid?
+
+    @myuser_techproduct.user_id = 'mi_id'
     assert !@myuser_techproduct.valid?
   end
 
@@ -102,5 +114,36 @@ class UserTechproductTest < Test::Unit::TestCase
       end
     }
   end
+
+
+  def test_cross_checking_for_user_id
+    @user_techproducts.each { | user_techproduct|
+      @user_techproduct = UserTechproduct.find(user_techproducts(user_techproduct.to_sym).id)
+      assert_kind_of UserTechproduct, @user_techproduct
+      assert_equal @user_techproduct.user_id, Techproduct.find(@user_techproduct.user_id).id
+    }
+  end
+
+  def catch_exception_when_update_invalid_key(record)
+    begin
+      return true if record.update
+    rescue ActiveRecord::StatementInvalid => bang
+      return false
+    end
+  end
+
+  def test_cross_checking_with_bad_values_for_user_id
+    @user_techproducts.each { | user_techproduct|
+      @user_techproduct = UserTechproduct.find(user_techproducts(user_techproduct.to_sym).id)
+      assert_kind_of UserTechproduct, @user_techproduct
+      @user_techproduct.user_id = 100000
+      begin
+        return true if @user_techproduct.update
+      rescue StandardError => x
+        return false
+      end
+    }
+  end
+
 
 end
