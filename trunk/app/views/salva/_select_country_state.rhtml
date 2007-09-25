@@ -1,5 +1,6 @@
 <% if id.to_i > 0 %>
   <%= select_conditions('edit', State, tabindex, :conditions => "country_id = #{id}") %>
+ <%= downloading_list_indicator('country', 'state') %>
   <%= stop_observer('edit', 'state_id') %>
   <%= observe_select('edit', 'state_id', 'select_state_city', 9) %>
 <% end %>

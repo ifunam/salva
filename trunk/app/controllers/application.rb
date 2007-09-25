@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     render(:partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] })
   end
 
+  def update_simple_observable_select
+    render(:partial => 'salva/update_simple_observable_select', :locals => { :id => params[:id], :tabindex => params[:tabindex], :partial => params[:partial] })
+  end
+
   def update_select_from_selects
     @params = params
     partial = params[:partial]

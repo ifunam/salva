@@ -32,5 +32,4 @@ class PersonControllerTest < Test::Unit::TestCase
     assert_response  :success
     assert_template 'edit'
   end
-
 end

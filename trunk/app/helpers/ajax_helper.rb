@@ -1,11 +1,19 @@
 module AjaxHelper
   def observe_select(object, field, select, tabindex)
-    observe_field("#{object}_#{field}",  :url => { :action => 'update_select', :partial => select, :tabindex => tabindex}, :update=> select,  :with => "'id='+value", :on => 'onchange')
+    observe_field("#{object}_#{field}",  :url => { :action => 'update_select', :partial => select, :tabindex => tabindex},
+                  :update=> select,  :with => "'id='+value", :on => 'onchange',
+                  :loading => "$('#{object}_#{field}').visualEffect('highlight'); $('downloading_list_indicator_for_#{ select}').show();",
+                  :loaded =>"$('downloading_list_indicator_for_#{select}').hide()"
+                  )
+  end
+
+  def  downloading_list_indicator(src, dst)
+    render :partial => 'salva/downloading_list_indicator',  :locals => {:src => src, :dst => dst}
   end
 
   def stop_observer(object, field)
     javascript_tag " $('#{object}_#{field}').stopObserving('click', String.blank);"
-    #http://www.prototypejs.org/api/event/stopObserving  (Using Strin.blank instead nil o nothing)
+    #http://www.prototypejs.org/api/event/stopObserving  (Using String.blank instead nil o nothing)
   end
 
   def links_to_filters(model, buttons = [])

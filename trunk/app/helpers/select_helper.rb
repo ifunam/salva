@@ -58,4 +58,10 @@ module SelectHelper
   def observable_select(partial, id, tabindex)
     render :partial => "salva/#{partial}", :locals => { :id => id, :tabindex => tabindex }
   end
+
+  def simple_observable_select(partial, id, tabindex)
+    model = Inflector.camelize(partial.split('_').last).constantize
+    column = foreignize(partial.split('_')[1])
+    render :partial => "salva/simple_observable_select", :locals => { :id => id, :tabindex => tabindex, :model => model, :column => column}
+  end
 end
