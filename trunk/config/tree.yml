@@ -7,9 +7,9 @@
     - people_identification
   - user_schooling
   - - doctor_schooling
-    - master_shooling
-    - bachelor_shooling
-    - other_shooling
+    - master_schooling
+    - bachelor_schooling
+    - other_schooling
   - jobposition
   - - jobposition_internal
     - - jobposition_at_institution
