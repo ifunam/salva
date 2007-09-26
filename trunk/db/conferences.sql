@@ -1,6 +1,6 @@
-----------------------------------------
--- Conferences Information            --
-----------------------------------------
+-----------------------------------------
+-- Conferences Information --
+-----------------------------------------
 CREATE TABLE conferencetypes (
         id SERIAL,
         name text NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE user_proceedings (
             REFERENCES proceedings(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_id integer
+   user_id integer NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,
@@ -319,7 +319,7 @@ CREATE TABLE user_inproceedings (
             REFERENCES inproceedings(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-   user_id integer
+   user_id integer NOT NULL
             REFERENCES users(id)
             ON UPDATE CASCADE
             DEFERRABLE,
