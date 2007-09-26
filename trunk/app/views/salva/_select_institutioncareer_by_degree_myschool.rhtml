@@ -1,3 +1,3 @@
 <% unless id.to_i < 1 %>
-   <%= render :partial => 'salva/select_institutioncareer_by_degree_institution', :locals => {:id => id, :tabindex => tabindex, :institution_id => get_myschool.id} %>
+   <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => [ ['career', 'degree', 'name'], ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.career_id = careers.id AND careers.degree_id = #{id} AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484 AND institutions.id = #{get_myschool.id}", :include => [:institution, :career], :order => 'careers.name ASC')%>
 <% end %>
