@@ -16,17 +16,17 @@ module AjaxHelper
     #http://www.prototypejs.org/api/event/stopObserving  (Using String.blank instead nil o nothing)
   end
 
-  def links_to_filters(links=[], tabindex=1)
+  def links_to_filters(links=[], tabindex=1, doomid='partial')
     links.collect { |label,partial,id|
-      link_to_update_remote_partial(label, partial, tabindex, id)
+      link_to_update_remote_partial(label, partial, tabindex, id, doomid)
     }.join(' | ')
   end
 
-  def link_to_update_remote_partial(label, partial, tabindex, id=nil)
+  def link_to_update_remote_partial(label, partial, tabindex, id=nil, doomid="partial")
     options ="'partial=#{partial}&tabindex=#{tabindex}"
     options += "&id=#{id}" if id !=nil
     options += "'"
-    link_to_remote(label, :update => "partial", :url => { :action => :update_select},
+    link_to_remote(label, :update => doomid, :url => { :action => :update_select},
                    :with => options)
   end
 end
