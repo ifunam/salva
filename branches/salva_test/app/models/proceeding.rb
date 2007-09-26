@@ -9,4 +9,5 @@ class Proceeding < ActiveRecord::Base
   belongs_to :conference
   belongs_to :publisher
   has_many :inproceeding
+  has_many :user_proceedings
 end
