@@ -92,7 +92,7 @@ address: Domicilio(s)
 people_identification: Identificaciones
 peopleidentification: Identificaciones
 citizen: Nacionalidad
-schooling: Escolaridad
+user_schooling: Escolaridad
 studentid: No. de cuenta
 titleholder: Titulado
 degree: Grado
@@ -138,7 +138,7 @@ professionalid: Cédula profesional
 year: Año
 years: Años
 thesistitle: Título de tesis
-schoolings: Escolaridad
+user_schoolings: Escolaridad
 professionaltitles: Título profesional
 schooling_id: Escolaridad
 bookedition_roleinbooks: Rol en edición
@@ -456,3 +456,7 @@ controller_id: Controlador
 action_id: Acción
 action: Acción
 permission: Permisos
+doctor_schooling: Doctorado
+master_schooling: Maestr�a
+bachelor_schooling: Licenciatura
+other_schooling: Otro
