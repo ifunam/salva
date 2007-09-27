@@ -74,7 +74,6 @@ class DocumentTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_documents
-    p 'mmm   ',@mydocument
     @mydocument.startdate = nil
     assert !@mydocument.valid?
     @mydocument.enddate = nil

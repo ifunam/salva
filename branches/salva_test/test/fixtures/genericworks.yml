@@ -5,7 +5,7 @@ comunicaciones_tecnicas:
   genericworktype_id: 5
   genericworkstatus_id: 3
   year: 2007
-reportes_tecnicos: 
+reportes_tecnicos:
   id: 2
   title: Reportes Tecnicos
   authors: Alejandro Silva, Ines Hernandez, Gilberto Casillas

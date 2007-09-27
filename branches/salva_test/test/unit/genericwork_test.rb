@@ -91,8 +91,11 @@ class GenericworkTest < Test::Unit::TestCase
   end
 
    def test_creating_duplicated
-     @genericwork = Genericwork.new({ :title => 'Comunicaciones_tecnicas', :authors => ' Andres Silva, Imelda Hernandez, Roberto Martinez', :genericworktype_id => 5, :genericworkstatus_id => 3, :year =>  2007 })
-      assert !@genericwork.save
+     @genericwork = Genericwork.new({:title => 'Comunicaciones_tecnicas', :authors => ' Andres Silva, Imelda Hernandez, Roberto Martinez', :genericworktype_id => 5, :genericworkstatus_id => 3, :year =>  2007 })
+     assert @genericwork.save
+     @genericwork_dup = Genericwork.new({:title => 'Comunicaciones_tecnicas', :authors => ' Andres Silva, Imelda Hernandez, Roberto Martinez', :genericworktype_id => 5, :genericworkstatus_id => 3, :year =>  2007 })
+
+     assert !@genericwork_dup.save
     end
 
    # Boundary
