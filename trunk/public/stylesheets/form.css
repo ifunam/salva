@@ -708,6 +708,10 @@ input.quickpost {
   font-size: 1px;
 }
 
+input.quickpost:hover {
+  border: 1px solid #f48f35;
+}
+
 input.quickpost-select {
   border: 0px;
   background-image: url("/images/select.gif"); background-repeat: no-repeat;
@@ -720,6 +724,10 @@ input.quickpost-select {
   cursor: hand; 
   color: #ffffff;
   font-size: 1px;
+}
+
+input.quickpost-select:hover {
+  border: 1px solid #229c2e;
 }
 
 #userrole_id {
