@@ -122,27 +122,21 @@ COMMENT ON TABLE user_theses IS
         tesis';
 
 
-CREATE TABLE thesislog (
+CREATE TABLE theses_logs (
     id SERIAL,
-    thesis_id integer NOT NULL
-            REFERENCES theses(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    old_thesisstatuses_id integer  NOT NULL
-            REFERENCES thesisstatuses(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
-    year int4 NOT NULL,
-    month int4 NULL CHECK (month >= 1 AND month <= 12),
-    moduser_id integer NULL      -- It will be used only to know who has
-            REFERENCES users(id) -- inserted, updated or deleted
-            ON UPDATE CASCADE    -- data into or from this table.
-            DEFERRABLE,
+    thesis_id integer NOT NULL,
+    old_thesisstatus_id integer  NOT NULL,
+    startyear int4 NOT NULL,
+    startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
+    endyear int4  NULL,
+    endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
+    moduser_id integer NULL,      -- It will be used only to know who has
+
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-COMMENT ON TABLE thesislog IS
+COMMENT ON TABLE theses_logs IS
         'Bitácora de cambios de estado en la tesis';
 
 
@@ -203,11 +197,25 @@ BEGIN
         IF OLD.thesisstatus_id = NEW.thesisstatus_id THEN
                 RETURN NEW;
         END IF;
-        INSERT INTO thesislog (thesis_id, old_thesisstatus_id, moduser_id)
-                VALUES (OLD.id, OLD.thesisstatus_id, OLD.moduser_id);
+        INSERT INTO theses_logs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
         RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER thesis_update BEFORE DELETE ON theses
+
+CREATE OR REPLACE FUNCTION thesis_delete() RETURNS TRIGGER
+SECURITY DEFINER AS '
+DECLARE
+BEGIN
+        INSERT INTO theses_logs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
+                RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER thesis_delete AFTER DELETE ON theses
+        FOR EACH ROW EXECUTE PROCEDURE thesis_delete();
+
+CREATE TRIGGER thesis_update BEFORE UPDATE ON theses
         FOR EACH ROW EXECUTE PROCEDURE thesis_update();
