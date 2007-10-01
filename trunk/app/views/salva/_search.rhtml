@@ -1,6 +1,6 @@
 <div id="search">
 <div id="search_note" style="display: none"><%= get_label('advancedsearchdialog') %></div>
-<%= start_form_tag :action => 'list' %>
+<% form_tag ('list') do -%>
 <div class="row"> 
 <label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label> 
 <%= text_field_with_auto_complete Inflector.underscore(@model.name).to_sym, :name, :limit => 50, :order => 'name DESC', :size => 40  %>
@@ -9,5 +9,5 @@
   <%= submit_tag get_label('search') %>  |
   <%= link_to_searchdialog(get_label('advancedsearch'),'advancedsearch') %>
 </div>
-<%= end_form_tag %>
+<% end -%>
 </div>

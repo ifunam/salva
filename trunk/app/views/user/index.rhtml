@@ -1,8 +1,8 @@
-<div class="title"> 
-Inicio de sesi&oacute;n en el SALVA <a href="/help/user/" target="_new">Ayuda</a> 
+<div class="title">
+Inicio de sesi&oacute;n en el SALVA <a href="/help/user/" target="_new">Ayuda</a>
 </div>
 
-<div class="loginform"> 
+<div class="loginform">
 <% form_for :user, :url => { :action => 'signup'} do |f| %>
   <div class="row">
     <label for="user_login" class="label"><%= get_label('login') %></label>
@@ -20,19 +20,18 @@ Inicio de sesi&oacute;n en el SALVA <a href="/help/user/" target="_new">Ayuda</a
   </div>
 <% end %>
 
-<%= end_form_tag %>
 <hr/>
-<div class="row"> 
+<div class="row">
 ¿No tiene una cuenta en el SALVA?
 </div>
-<div class="row"> 
-<%= link_to 'Obtenga una ahora', :action =>'new' %> 
+<div class="row">
+<%= link_to 'Obtenga una ahora', :action =>'new' %>
 </div>
-<hr/> 
-<div class="row"> 
+<hr/>
+<div class="row">
 ¿Ha olvidado  su contraseña?
 </div>
-<div class="row"> 
-<%= link_to 'Obtenga una nueva', :action => 'forgotten_password_recovery' %> 
+<div class="row">
+<%= link_to 'Obtenga una nueva', :action => 'forgotten_password_recovery' %>
 </div>
 </div>

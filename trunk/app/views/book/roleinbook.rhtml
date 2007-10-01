@@ -1,9 +1,9 @@
 
 <p><label for="book_title">Título</label><br/>
 <%= @book.title %></p>
-<%= start_form_tag :action => 'create' %>
+<% form_tag ('create') do -%>
 <label for="roleinbook_id">Tipo de participaci&oacute;n</label>
 <%= simple_select('edit', Roleinbook, 1) %>
   <%= submit_tag "Guadar"%>
-<%= end_form_tag %>
+<% end -%>
 <%= link_to 'Back', :action => 'list' %>

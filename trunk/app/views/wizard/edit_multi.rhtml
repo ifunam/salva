@@ -1,5 +1,4 @@
-
-<%= start_form_tag :action => 'update' %>
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
   <%= render :partial => 'form_multi' %>
   <br/>
 <div id="operations"> 
@@ -7,6 +6,6 @@
   <%= link_to get_label('cancel'), :action => 'cancel' %> |
   <%= link_to get_label('back'), :action => 'show' %>
 </div>
-<%= end_form_tag %>
+<% end -%>
 
 <%= render :partial => 'navbar' %>

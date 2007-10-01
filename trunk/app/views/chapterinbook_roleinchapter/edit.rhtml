@@ -1,10 +1,10 @@
 <div class="required_legend"><%= get_label('required_legend') %>.</div>
-<%= start_form_tag ({:action => 'update', :id => @edit.attributes_before_type_cast['id']}) %>
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
   <%= render :partial => 'form' %>
   <div id="operations">
   <%= submit_tag get_label('update') %> | 
   <%= link_to get_label('cancel'), :action => 'cancel' %>
   </div>
-<%= end_form_tag %>
+<% end -%>
 
 

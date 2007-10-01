@@ -1,9 +1,9 @@
 <h1>Editando City</h1>
 
-<%= start_form_tag :action => 'update', :id => @edit %>
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end -%>
 
 <%= link_to 'Mostrar', :action => 'show', :id => @edit %> |
 <%= link_to 'Regresar', :action => 'list' %>

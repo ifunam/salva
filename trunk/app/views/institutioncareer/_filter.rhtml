@@ -1,7 +1,7 @@
 <b>Filtrar listado por carrera </b><br/>
 <div id="search">
 <div id="search_note" style="display: none"><%= get_label('searchdialog') %></div>
-<%= start_form_tag :action => 'list' %>
+<% form_tag ('list') do -%>
 
 <div class="row">
 <label for="degree_id" class="label"><%= get_label('degree_id') %></label>
@@ -18,9 +18,8 @@
  </div>
 </div>
 
-
  <div id="operations">
   <%= submit_tag get_label('search') %>
   </div>
-<%= end_form_tag %>
+<% end -%>
 </div>

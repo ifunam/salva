@@ -1,4 +1,4 @@
-<%= start_form_tag(:action => @parent_controller ? 'select' : 'purge_selected' ) %>
+<% form_tag(@parent_controller ? 'select' : 'purge_selected') do -%>
 
 <table class="list">
   <tr>
@@ -18,6 +18,6 @@
   </tr>
 <% end %>
 </table>
-<%= end_form_tag %>
+<% end -%>
 
 
