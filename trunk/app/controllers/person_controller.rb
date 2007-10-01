@@ -32,12 +32,12 @@ class PersonController < ApplicationController
 
   def photo
     @edit =  get_record(session[:user], true)
-    @headers['Pragma'] = 'no-cache'
-    @headers['Cache-Control'] = 'no-cache, must-revalidate'
-    if  @edit.photo and  @edit.photo_filename != nil and @edit.photo_content_type.to_s == 'png' then
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Cache-Control'] = 'no-cache, must-revalidate'
+    unless @edit.respond_to? 'photo'
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
-      redirect_to "/images/comodin.png"
+      send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
     end
   end
 
@@ -65,7 +65,7 @@ class PersonController < ApplicationController
     unless redirect_if_stack('edit')
       save_photo if @edit.photo.size > 0
 
-      if @edit.update
+      if @edit.valid?
         flash[:notice] = 'Sus datos personales han sido actualizados'
         render :action => 'show'
       else

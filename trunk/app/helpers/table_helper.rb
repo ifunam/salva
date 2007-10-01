@@ -36,7 +36,7 @@ module TableHelper
     body = []
     (record.class.column_names - hidden_attributes).each do |attribute|
       next if !record.respond_to? attribute or record.send(attribute) == nil?
-      if attribute =~/_id$/ then
+      if attribute =~/_id$/ and !record.send(attribute).nil? then
         model = modelize(attribute)
         if record.respond_to? model and (Inflector.camelize(model).constantize.column_names - (hidden_attributes << 'name')).size > 0 and !%w(state country city).include?(model)
           body << [attribute, link_to(attributeid_to_text(record, attribute), :controller => model, :action => 'show', :id => record.send(attribute).id)]

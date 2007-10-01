@@ -1,6 +1,6 @@
 <img src="<%= url_for(:action => "photo") %>"/>
 <br/>
-<%= table_show(@edit) %>
+<%= table_show(@edit, %w(photo_filename photo_content_type photo)) %>
  <%= render :partial =>"salva/moduser" %>
 <div id="operations">
  <%= link_to get_label('edit'), :action => 'edit', :id => @edit%>
