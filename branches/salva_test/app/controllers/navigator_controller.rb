@@ -14,7 +14,7 @@ class NavigatorController < ApplicationController
     stack_clear
     tree = get_tree
     #This will help us to avoid a wrong tree when the user makes reload.
-    if @request.env['HTTP_CACHE_CONTROL'].nil?
+    if request.env['HTTP_CACHE_CONTROL'].nil?
       if !params[:item].nil? then
         index = params[:item].to_i
         tree = tree.children[index] if tree.children.size > index

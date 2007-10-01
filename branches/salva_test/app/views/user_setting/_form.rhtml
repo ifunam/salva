@@ -2,7 +2,7 @@
 
 <!--[form:users]-->
 <div class="row"> 
-<label for="email" class="label"><%= get_label('email') %></label> 
+<label for="email" class="label"><%= get_label('email') %> <span class="required">*</span></label> 
 <%= text_field 'edit', 'email', 'size' => 30, 'maxsize'=> 40, 'tabindex'=> 5, 'id' => 'email' %>
 </div>
 

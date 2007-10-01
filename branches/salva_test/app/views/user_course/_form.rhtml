@@ -1,22 +1,22 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:user_course]-->
-<div class="row"> 
-<label for="course_id" class="label"><%= get_label('course_id') %></label> 
+<div class="row">
+<label for="course_id" class="label"><%= get_label('course_id') %> <span class="required">*</span></label>
 <div id="course_id">
-<%= select_as_tree('edit', Course, %w(name startyear), 1) %>
+<%= select_conditions('edit', Course, 1, {:attributes =>%w(name startyear)}) %>
 </div>
  <%= quickpost('course') %>
 </div>
 
-<div class="row"> 
-<label for="roleincourse_id" class="label"><%=get_label('roleincourse_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="roleincourse_id" class="label"><%=get_label('roleincourse_id') %> <span class="required">*</span></label>
 Asistente
 <%= hidden_field('edit', 'roleincourse_id', :value => Roleincourse.find_by_name('Asistente').id) %>
 </div>
 
-<div class="row"> 
-<label for="other" class="label"><%= get_label('other') %></label> 
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
 <%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'other' %></div>
 
 

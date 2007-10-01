@@ -5,7 +5,11 @@
     - address
     - citizen
     - people_identification
-  - schooling
+  - user_schooling
+  - - doctor_schooling
+    - master_schooling
+    - bachelor_schooling
+    - other_schooling
   - jobposition
   - - jobposition_internal
     - - jobposition_at_institution
@@ -30,6 +34,7 @@
 - conferences_and_seminaries
 - - user_conferencetalk
   - user_seminary
+  - userconference_committee
 - publications
 - - books
   - - bookedition_roleinbook
@@ -67,8 +72,7 @@
 - - user_techproduct
   - techactivity
 - other_activities_or_products
-- - userconference_committee
-  - activity
+- - activity
   - user_genericwork
 - user_reports
 - - resume

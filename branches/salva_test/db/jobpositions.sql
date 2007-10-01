@@ -294,12 +294,27 @@ BEGIN
         IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
                 RETURN NEW;
         END IF;
-        INSERT INTO stimuluslogs (stimulus_id, old_stimulusstatus_id,
-                moduser_id)
-                VALUES (OLD.id, OLD.stimulusstatus_id, OLD.moduser_id);
+        INSERT INTO stimuluslogs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
         RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER stimulus_update BEFORE DELETE ON user_stimulus
-        FOR EACH ROW EXECUTE PROCEDURE stimulus_update();
+CREATE OR REPLACE FUNCTION thesis_delete() RETURNS TRIGGER
+SECURITY DEFINER AS '
+DECLARE
+BEGIN
+        INSERT INTO stimulus_logs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
+                RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER thesis_delete AFTER DELETE ON user_stimulus
+        FOR EACH ROW EXECUTE PROCEDURE user_stimulus_delete();
+
+CREATE TRIGGER thesis_update BEFORE UPDATE ON user_stimulus
+        FOR EACH ROW EXECUTE PROCEDURE user_stimulus_update();
+
+
+

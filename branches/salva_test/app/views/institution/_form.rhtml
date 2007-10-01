@@ -46,7 +46,6 @@
  <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
  <%= simple_select('edit', Country, 4, {:selected => @edit.country_id || 484 }) %>
  </div>
-<br/>
 
 <%= observe_select('edit', 'country_id', 'select_country_state', 8) %>
 

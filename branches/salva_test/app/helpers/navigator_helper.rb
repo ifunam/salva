@@ -13,13 +13,18 @@ module NavigatorHelper
   def navtab_links(tree)
     limit  = 4
     i = 1
-    html = ''
+    html = []
+    links = []
     tree.children.each do |child|
-      html << "<br/> \n" and limit += 4  if i > limit
-      html <<   "<span class=\"navtab_item\"> #{link_to_child(child)}</span>"
+      links << "<span class=\"navtab_item\"> #{link_to_child(child)}</span>"
+      if i >= limit or i == tree.children.size
+        limit += 4
+        html << links
+        links = []
+      end
       i += 1
     end
-    html
+    html.collect { | links| "<div class=\"navtab_row\">\n"+ links.join("\n") + "\n</div>\n" }
   end
 
   def link_to_child(child)

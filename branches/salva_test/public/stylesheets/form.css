@@ -130,20 +130,26 @@ body {
        font-weight: bold;
        text-align: right;
 }
+
 .navtab {
+        display: table;
         width: 99.5%;
         text-align: left;
         padding: 2px;
         font: 12px Arial, Helvetica, sans-serif;
 }
 
+.navtab_row {
+        display: table-row;
+        margin: 5px;
+}
+
 .navtab_item {
         display: table-cell;
-        width: 185px;
+        width: 250px;
         padding: 10px;
-        margin: 15px;
-        margin-top: 30px;
-        margin-bottom: 20px;
+        margin-left: 30px;
+        float: left;
 }
 
 .navtab_item img {
@@ -154,7 +160,7 @@ body {
 
 .navtab_item a {
         color: #0F4180;
-        text-decoration: none;
+         text-decoration: none;
 }
 
 .navtab_item a:visited {
@@ -257,7 +263,6 @@ body {
     color: #0866B7;
 }
 
-
 .filters {
   display: table-cell;
   border: 1px dotted green;
@@ -266,10 +271,10 @@ body {
 }
 
 .row {
-    display: table-row;
-    width: 100%;
-    float: none;
-    vertical-align: top;
+     width: 100%;
+     vertical-align: top;
+     display: table-row;
+     float: left;
 }
 
 .row .required {
@@ -290,6 +295,7 @@ body {
      color: green;
      text-decoration: none;
 }
+
 .box .options {
     background: transparent;
 }
@@ -399,7 +405,7 @@ a:hover.purge {
   font: 12px Arial, Helvetica, sans-serif;
 }
 
-.box .top_options input[type="button"], input[type="submit"]  {
+.box .top_options inptu[type="button"], input[type="submit"]  {
   color: #034168;
   background-color: #D6E7EF;
   border: 1px solid #999;
@@ -473,17 +479,7 @@ input {
   margin-bottom: 10px;
 }
 
-input, select {
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
 
-/* Textarea, texfield, and password field style */
-textarea {
-  width: inherit;
-  margin-bottom: 10px;
-  font: 12px Arial, Helvetica, sans-serif;
-}
 
 input[type="text"], input[type="password"], textarea {
   background-color: #fafafa;
@@ -573,9 +569,6 @@ table.list td.link .show {
   height: 17px;
   float: left;
 }
-
-
-
 
 table.list td.link .show:hover {
   display: block;
@@ -688,41 +681,53 @@ div.auto_complete ul strong.highlight {
  padding:0;
 }
 
+input, select {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 select
 {
   font-style:none;
-  max-width: 450px;
+  max-width: 400px;
   overflow:scroll;
   float: left;
 }
 
 input.quickpost {
-  border: 1px solid #FFFFFF;
   border: 0px;
-  color: #FFFFFF;
-  background: #FFFFFF;
   background-image: url("/images/add.gif"); background-repeat: no-repeat;
-  width: 16px;
-  padding-top: 16px;
-  height: 0px !important;
-  height /**/: 16px;
+  width: 46px;
+  height: 20px;
+  padding-top: 19px;
+  text-indent: -100em;
+  overflow: hidden;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; 
+  color: #ffffff;
+  font-size: 1px;
+}
+
+input.quickpost:hover {
+  border: 1px solid #f48f35;
 }
 
 input.quickpost-select {
-  border: 1px solid #FFFFFF;
   border: 0px;
-  color: #FFFFFF;
-  background: #FFFFFF;
   background-image: url("/images/select.gif"); background-repeat: no-repeat;
-  width: 16px;
-  padding-top: 16px;
-  height: 0px !important;
-  height /**/: 16px;
+  width: 46px;
+  height: 20px;
+  padding-top: 19px;
+  text-indent: -100em;
+  overflow: hidden;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; 
+  color: #ffffff;
+  font-size: 1px;
+}
+
+input.quickpost-select:hover {
+  border: 1px solid #229c2e;
 }
 
 
-#userrole_id {
-   float:right;
-   display: inline;
-   vertical-align: top;
-}

@@ -2,13 +2,12 @@
 
 <!--[form:indivadvice]-->
 <div class="row">
-<label for="indivname" class="label">Nombre del estudiante</label>
+<label for="indivname" class="label">Nombre del estudiante <span class="required">*</span></label>
 <%= text_area 'edit', 'indivname', 'rows' => 3, 'cols'=> 40, 'tabindex'=> 1, 'id' => 'indivname' %>
 </div>
 
 <div class="row">
- <% @edit.institution_id ||= get_myschool.id %>
- <%= render :partial => 'salva/filter_institutions' %>
+ <%= render :partial => 'salva/filter_institution_schools' %>
 </div>
 
 <div class="row">

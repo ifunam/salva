@@ -1,5 +1,9 @@
 <label for="institution_id" class="label"><%=get_label('institution_id') %><span class="required">*</span></label>
-  <%= links_to_filters(Institution, [ [ 'UNAM', 'select_institution_unam'], ['Nacional', 'select_filters_institution_national'], ['Internacional', 'select_filters_institution_international'] ] ) %>
+  <%= links_to_filters([
+                        [ 'UNAM', 'select_institution_unam'],
+                        ['Nacional', 'select_filters_institution_national'],
+                        ['Internacional', 'select_filters_institution_international']
+                       ] ) %>
   <div id="partial">
    <%= render :partial => 'salva/select_institution_unam' %>
   </div>
