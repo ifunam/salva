@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   include Sessions
   include Rbac
   include NavigatorTree
+
   before_filter :login_required
   #before_filter :rbac_required
   before_filter :setup_navtree
@@ -22,7 +23,11 @@ class ApplicationController < ActionController::Base
   session :session_key => '_salva_session_id'
 
   def update_select
-    render(:partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] })
+    render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }
+  end
+
+  def update_simple_observable_select
+    render :partial => 'salva/update_simple_observable_select', :locals => { :id => params[:id], :tabindex => params[:tabindex], :partial => params[:partial] }
   end
 
   def update_select_from_selects

@@ -8,7 +8,7 @@ firstname: Nombre
 lastname1: Apellido paterno
 lastname2: Apellido materno
 gender: Género
-dateofbirth: Fecha
+dateofbirth: Fecha de nacimiento
 birth_country_id: País
 birth_city_id: Ciudad
 birth_state_id: Estado
@@ -92,7 +92,7 @@ address: Domicilio(s)
 people_identification: Identificaciones
 peopleidentification: Identificaciones
 citizen: Nacionalidad
-schooling: Escolaridad
+user_schooling: Escolaridad
 studentid: No. de cuenta
 titleholder: Titulado
 degree: Grado
@@ -138,7 +138,7 @@ professionalid: Cédula profesional
 year: Año
 years: Años
 thesistitle: Título de tesis
-schoolings: Escolaridad
+user_schoolings: Escolaridad
 professionaltitles: Título profesional
 schooling_id: Escolaridad
 bookedition_roleinbooks: Rol en edición
@@ -209,14 +209,14 @@ modality_id: Modalidad
 courses_id: Curso
 month: Mes
 acadprogram: Programa académico
-location: Ubicación
+location: Ubicación o dirección
 coursegroup_id: Certificación o diplomado al que pertenece el curso
 roleincourse_id: Rol en curso
 course_id: Curso
 prize: Premio
 prize_id: Premio
 prizetype_id: Tipo de premio
-user_prize: Premios
+user_prize: Premios recibidos
 roleinconferencetalk: Roles en congresos
 roleinconferencetalk_id: Rol
 conferencetype: Tipo de evento académico
@@ -456,3 +456,7 @@ controller_id: Controlador
 action_id: Acción
 action: Acción
 permission: Permisos
+doctor_schooling: Doctorado
+master_schooling: Maestría
+bachelor_schooling: Licenciatura
+other_schooling: Otro

@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
   has_many :user_articles
+  has_many :user_newspaperarticles
   has_many :articles, :through => :user_articles
 
   has_many :user_genericworks

@@ -33,9 +33,9 @@ class SalvaController < ApplicationController
 
     per_page = set_per_page
 
-    @pages, @collection = paginate Inflector.pluralize(@model),
+    @collection = @model.paginate :page => 1, :per_page => @per_pages,
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
-    :select => select, :per_page => per_page || @per_pages
+    :select => select
 
     @parent_controller = 'algo' if has_model_in_stack?
     render :action => 'list'

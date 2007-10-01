@@ -1,6 +1,6 @@
-<% body.each { |attr, value | %>
-<div class="row">
-<label for="<%= h(attr) %>" class="label"><%= get_label(attr) %></label> 
-<%= value %> 
+<%= table_show(@edit) %>
+<%= render :partial =>"salva/moduser" %>
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id => @edit.id %> |
+ <%= link_to get_label('back'), :action => 'back' %>
 </div>
-<% } %>
