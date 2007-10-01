@@ -8,10 +8,6 @@
 
 <div class="row">
 <%= render :partial => 'salva/filter_institution_schools' %>
-<div id="partial">
-  <%= render :partial => 'salva/select_schools_unam' %>
- </div>
-<%= quickpost('institution') %>
 </div>
 
 <%= hidden_field('edit', 'indivadvicetarget_id', :value => Indivadvicetarget.find_by_name('Profesor').id ) %>
