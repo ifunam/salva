@@ -1,103 +1,81 @@
-#Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], 
-#           :all, :conditions => ['user_id = ?', 1])
+#Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'],  :all, :conditions => 'user_articles.user_id = 1')
 require 'labels'
 class Finder
   include Labels
+  attr_accessor :sql
   attr_accessor :model
-  attr_accessor :columns
-  attr_accessor :records
-  
+
   def initialize(model, columns, *options)
     @model = model
-    @columns = columns
-    @records = (options[1].has_key? :sql) ? model.find_by_sql(options[1][:sql]): 
-      model.find(*options)
-  end
-  
-  def record_content(record, columns)
-    return '' if record.nil?
-    content = []
-    columns.each { |column|
-      if column.is_a? Array then
-        content << record_content_array(record, column)
-      elsif ! record.class.reflect_on_association(column.to_sym).nil?
-        content << record_content_from_belongs_to(record.send(column))
-      elsif record.column_for_attribute(column).type.to_s == 'boolean'
-        content << label_for_boolean(column,record.send(column))
-      else
-        content << record.send(column)
-      end
-    } 
-    content.join(', ')
+    args = [model,  columns]
+    args.freeze
+    opts = options.size > 1 ? options[1]  : {}
+    @sql = "SELECT #{tableize(model)}.id AS id, #{columns_for_select(*args)} FROM #{get_tables(*args).join(', ')}  WHERE #{set_conditions(*args).join(' AND ')}"
+    @sql += " AND #{opts[:conditions]}" if opts[:conditions]
+    @sql += " ORDER BY #{opts[:order]}" if opts[:order]
+    @sql += " LIMIT 1" if opts[:first]
   end
 
-  def record_content_from_belongs_to(record)
-    if record.nil?
-      '----'
-    elsif record.attribute_names.include? 'name' 
-      record.send('name')  
-    elsif record.attribute_names.include? 'title' 
-      record.send('title')  
-    else
-      record_content(record, get_attributes(record)) 
-    end
-  end
-  
-  def record_content_hash(record, columns)
-    content = Hash.new
-    columns.each { |column|
-      if column.is_a? Array then
-        content[column.first] = record_content_array(record, column)
-      elsif !record.class.reflect_on_association(column.to_sym).nil?
-        content[column] = record_content_from_belongs_to(record.send(column))
-      elsif record.column_for_attribute(column).type.to_s == 'boolean'
-        content[column] = label_for_boolean(column,record.send(column))
-      else
-        content[column] = record.send(column) 
-      end
-    } 
-    content
+  def tableize(column)
+    Inflector.tableize(column).pluralize
   end
 
-  def get_attributes(record)
-    attributes = []
-    record.attribute_names.each { |name|
-      next if %w(moduser_id created_on updated_on user_id).include? name 
-      attributes << name if name !~/\w+_id$/ 
+  def columns_for_select(*columns)
+    table = tableize(columns.first)
+    columns.shift
+    columns.collect { |column|
+      if column.is_a?Array
+        columns_for_select(*column)
+      else
+        "#{table}.#{column} AS #{table}_#{column}"
+      end
+    }.join(', ')
+  end
+
+  def get_tables(*columns)
+    tables= [ tableize(columns.first) ]
+    columns.shift
+    columns.collect { |c|
+      if c.is_a?Array
+        tables += get_tables(*c)
+      end
     }
-    return attributes
+    tables
   end
 
-  def record_content_array(record, columns)
-    model = columns.first
-    if model != nil
-      myrecord = record.send(model.to_sym)
-      record_content(myrecord, columns - [model])
-    end
+  def set_conditions(*columns)
+    table = tableize(columns.first)
+    columns.shift
+    conditions = []
+    columns.collect { |column|
+      if column.is_a?Array
+        conditions << "#{table}.#{Inflector.classify(column.first).foreign_key} = #{tableize(column.first)}.id "
+        conditions += set_conditions(*column)
+      end
+    }
+    conditions
   end
-  
+
+  def find_collection
+     @model.find_by_sql(@sql)
+  end
+
   def as_text
-    if @records.is_a? Array then
-      @records.collect { |record|  record_content(record, @columns)} 
-    else
-      [ record_content(@records, @columns) ]
-    end
-  end 
+    find_collection.collect { |record|
+      record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', ')
+    }
+  end
 
   def as_pair
-    if @records.is_a? Array then
-      @records.collect { |record|  [ record_content(record, @columns), record.id ] }
-    else
-      [ [record_content(@records, @columns), @records.id ]]
-    end
+    find_collection.collect { |record|
+      [record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', '), record.id]
+    }
   end
 
   def as_hash
-    if @records.is_a? Array then
-      [ @model.name.downcase,  @records.collect { |record|  record_content_hash(record, @columns) }  ]
-    else
-      [ @model.name.downcase, record_content_hash(@records, @columns) ]
-    end
-  end 
+    find_collection.collect { |record|
+      [ Inflector.underscore(@model), record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', ') ]
+    }
+  end
 end
 
