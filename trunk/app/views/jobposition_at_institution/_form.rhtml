@@ -3,7 +3,7 @@
 <!--[form:jobposition]-->
 
 <div class="row">
-<label for="jobpositiontype_id" class="label"><%= get_label('jobpositiontype_id') %></label>
+<label for="jobpositiontype_id" class="label"><%= get_label('jobpositiontype_id') %><span class="required">*</span></label>
  <%= select_conditions('filt', Jobpositiontype, 1, :conditions => "id < 3") %>
 </div>
 

@@ -209,14 +209,14 @@ modality_id: Modalidad
 courses_id: Curso
 month: Mes
 acadprogram: Programa académico
-location: Ubicación
+location: Ubicación o dirección
 coursegroup_id: Certificación o diplomado al que pertenece el curso
 roleincourse_id: Rol en curso
 course_id: Curso
 prize: Premio
 prize_id: Premio
 prizetype_id: Tipo de premio
-user_prize: Premios
+user_prize: Premios recibidos
 roleinconferencetalk: Roles en congresos
 roleinconferencetalk_id: Rol
 conferencetype: Tipo de evento académico
