@@ -730,8 +730,4 @@ input.quickpost-select:hover {
   border: 1px solid #229c2e;
 }
 
-#userrole_id {
-   float:right;
-   display: inline;
-   vertical-align: top;
-}
+

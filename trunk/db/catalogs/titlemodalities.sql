@@ -8,7 +8,7 @@ INSERT INTO titlemodalities (name) VALUES ('Actividad de apoyo a la investigaci�
 INSERT INTO titlemodalities (name) VALUES ('Seminario de titulación');
 INSERT INTO titlemodalities (name) VALUES ('Alto rendimiento académico');
 INSERT INTO titlemodalities (name) VALUES ('Actividad de apoyo a la docencia');
-INSERT INTO titlemodalities (name) VALUES ('Informe de pŕactica profesional (trabajo profesional)');
+INSERT INTO titlemodalities (name) VALUES ('Informe de práctica profesional (trabajo profesional)');
 INSERT INTO titlemodalities (name) VALUES ('Estudios de Posgrado');
 INSERT INTO titlemodalities (name) VALUES ('Ampliación y profundización de conocimiento');
 INSERT INTO titlemodalities (name) VALUES ('Informe de servicio Social');
