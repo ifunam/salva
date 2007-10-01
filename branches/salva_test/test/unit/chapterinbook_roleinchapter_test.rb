@@ -88,7 +88,7 @@ fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, 
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -100,7 +100,7 @@ fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, 
       assert_kind_of ChapterinbookRoleinchapter, @chapterinbookroleinchapter
       @chapterinbookroleinchapter.chapterinbook_id = 1000000
       begin
-        return true if @chapterinbookroleinchapter.update
+        return true if @chapterinbookroleinchapter.save
       rescue StandardError => x
         return false
       end
@@ -118,7 +118,7 @@ fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, 
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -130,7 +130,7 @@ fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, 
       assert_kind_of ChapterinbookRoleinchapter, @chapterinbookroleinchapter
       @chapterinbookroleinchapter.roleinchapter_id = 100000
       begin
-        return true if @chapterinbookroleinchapter.update
+        return true if @chapterinbookroleinchapter.save
       rescue StandardError => x
         return false
       end

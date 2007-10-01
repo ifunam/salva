@@ -31,7 +31,7 @@ class InstadviceTest < Test::Unit::TestCase
       @instadvice = Instadvice.find(instadvices(instadvice.to_sym).id)
       assert_equal instadvices(instadvice.to_sym).title, @instadvice.title
       @instadvice.title = @instadvice.title.chars.reverse
-      assert @instadvice.update
+      assert @instadvice.save
       assert_not_equal instadvices(instadvice.to_sym).title, @instadvice.title
     }
   end
@@ -98,7 +98,7 @@ class InstadviceTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -110,7 +110,7 @@ class InstadviceTest < Test::Unit::TestCase
       assert_kind_of Instadvice, @instadvice
       @instadvice.institution_id = 1000000
       begin
-        return true if @instadvice.update
+        return true if @instadvice.save
       rescue StandardError => x
         return false
       end
@@ -128,7 +128,7 @@ class InstadviceTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -140,7 +140,7 @@ class InstadviceTest < Test::Unit::TestCase
       assert_kind_of Instadvice, @instadvice
       @instadvice.instadvicetarget_id = 100000
       begin
-        return true if @instadvice.update
+        return true if @instadvice.save
       rescue StandardError => x
         return false
       end

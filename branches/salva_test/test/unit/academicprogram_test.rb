@@ -85,7 +85,7 @@ class AcademicprogramTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -97,7 +97,7 @@ class AcademicprogramTest < Test::Unit::TestCase
       assert_kind_of Academicprogram, @academicprogram
       @academicprogram.institutioncareer_id = 1000000
       begin
-        return true if @academicprogram.update
+        return true if @academicprogram.save
       rescue StandardError => x
         return false
       end
@@ -115,7 +115,7 @@ class AcademicprogramTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -127,7 +127,7 @@ class AcademicprogramTest < Test::Unit::TestCase
       assert_kind_of Academicprogram, @academicprogram
       @academicprogram.academicprogramtype_id = 100000
       begin
-        return true if @academicprogram.update
+        return true if @academicprogram.save
       rescue StandardError => x
         return false
       end

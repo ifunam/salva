@@ -29,7 +29,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       @user_seminary = UserSeminary.find(user_seminaries(user_seminary.to_sym).id)
       assert_equal user_seminaries(user_seminary.to_sym).seminary_id, @user_seminary.seminary_id
       @user_seminary.seminary_id = 4
-      assert @user_seminary.update
+      assert @user_seminary.save
       assert_not_equal user_seminaries(user_seminary.to_sym).seminary_id, @user_seminary.seminary_id
     }
   end
@@ -39,7 +39,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       @user_seminary = UserSeminary.find(user_seminaries(user_seminary.to_sym).id)
       assert_equal user_seminaries(user_seminary.to_sym).user_id, @user_seminary.user_id
       @user_seminary.user_id = 1
-      assert @user_seminary.update
+      assert @user_seminary.save
       assert_not_equal user_seminaries(user_seminary.to_sym).user_id, @user_seminary.user_id
     }
   end
@@ -49,7 +49,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       @user_seminary = UserSeminary.find(user_seminaries(user_seminary.to_sym).id)
       assert_equal user_seminaries(user_seminary.to_sym).roleinseminary_id, @user_seminary.roleinseminary_id
       @user_seminary.roleinseminary_id = 3
-      assert @user_seminary.update
+      assert @user_seminary.save
       assert_not_equal user_seminaries(user_seminary.to_sym).roleinseminary_id, @user_seminary.roleinseminary_id
     }
   end
@@ -118,7 +118,7 @@ class UserSeminaryTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -130,7 +130,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       assert_kind_of UserSeminary, @user_seminary
       @user_seminary.user_id = 5
       begin
-        return true if @user_seminary.update
+        return true if @user_seminary.save
       rescue StandardError => x
         return false
       end
@@ -148,7 +148,7 @@ class UserSeminaryTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -160,7 +160,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       assert_kind_of UserSeminary, @user_seminary
       @user_seminary.seminary_id = 100000
       begin
-        return true if @user_seminary.update
+        return true if @user_seminary.save
       rescue StandardError => x
         return false
       end
@@ -178,7 +178,7 @@ class UserSeminaryTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -190,7 +190,7 @@ class UserSeminaryTest < Test::Unit::TestCase
       assert_kind_of UserSeminary, @user_seminary
       @user_seminary.roleinseminary_id = 100000
       begin
-        return true if @user_seminary.update
+        return true if @user_seminary.save
       rescue StandardError => x
         return false
       end

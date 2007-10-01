@@ -28,7 +28,7 @@ def test_updating_inproceedings_title
       @inproceeding = Inproceeding.find(inproceedings(inproceeding.to_sym).id)
       assert_equal inproceedings(inproceeding.to_sym).title, @inproceeding.title
       @inproceeding.title = @inproceeding.title.chars.reverse
-      assert @inproceeding.update
+      assert @inproceeding.save
       assert_not_equal inproceedings(inproceeding.to_sym).title, @inproceeding.title
     }
   end
@@ -38,7 +38,7 @@ def test_updating_inproceedings_title
       @inproceeding = Inproceeding.find(inproceedings(inproceeding.to_sym).id)
       assert_equal inproceedings(inproceeding.to_sym).authors, @inproceeding.authors
       @inproceeding.authors = @inproceeding.authors.chars.reverse
-      assert @inproceeding.update
+      assert @inproceeding.save
       assert_not_equal inproceedings(inproceeding.to_sym).authors, @inproceeding.authors
     }
   end
@@ -95,7 +95,7 @@ def test_updating_inproceedings_title
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -107,7 +107,7 @@ def test_updating_inproceedings_title
       assert_kind_of Inproceeding, @inproceeding
       @inproceeding.proceeding_id = 100000
       begin
-        return true if @inproceeding.update
+        return true if @inproceeding.save
       rescue StandardError => x
         return false
       end

@@ -30,7 +30,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).id, @book.id
       @book.id = 4
-      assert @book.update
+      assert @book.save
       assert_not_equal books(book.to_sym).id, @book.id
     }
   end
@@ -40,7 +40,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).country_id, @book.country_id
       @book.country_id = 804
-      assert @book.update
+      assert @book.save
       assert_not_equal books(book.to_sym).country_id, @book.country_id
     }
   end
@@ -50,7 +50,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).title, @book.title
       @book.title = 10
-      assert @book.update
+      assert @book.save
       assert_not_equal books(book.to_sym).title, @book.title
     }
   end
@@ -60,7 +60,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).booktype_id, @book.booktype_id
       @book.booktype_id = 1
-       assert @book.update
+       assert @book.save
       assert_not_equal books(book.to_sym).booktype_id, @book.booktype_id
     }
   end
@@ -70,7 +70,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).author, @book.author
       @book.author = 3
-      assert @book.update
+      assert @book.save
       assert_not_equal books(book.to_sym).author, @book.author
     }
   end
@@ -130,7 +130,7 @@ class BookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -142,7 +142,7 @@ class BookTest < Test::Unit::TestCase
       assert_kind_of Book, @book
       @book.booktype_id = 5
           begin
-        return true if @book.update
+        return true if @book.save
            rescue StandardError => x
         return false
       end
@@ -160,7 +160,7 @@ class BookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -172,7 +172,7 @@ class BookTest < Test::Unit::TestCase
       assert_kind_of Book, @book
       @book.country_id = 10
        begin
-        return true if @book.update
+        return true if @book.save
        rescue StandardError => x
         return false
       end
@@ -181,7 +181,7 @@ class BookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end

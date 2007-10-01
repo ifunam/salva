@@ -34,7 +34,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).book_id, @bookedition.book_id
       @bookedition.book_id = 4
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).book_id, @bookedition.book_id
     }
   end
@@ -44,7 +44,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
       @bookedition.edition_id = 4
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
     }
   end
@@ -54,7 +54,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).pages, @bookedition.pages
       @bookedition.pages = 10
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).pages, @bookedition.pages
     }
   end
@@ -64,7 +64,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).mediatype_id, @bookedition.mediatype_id
       @bookedition.mediatype_id = 3
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).mediatype_id, @bookedition.mediatype_id
     }
   end
@@ -74,7 +74,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).editionstatus_id, @bookedition.editionstatus_id
       @bookedition.editionstatus_id = 3
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).editionstatus_id, @bookedition.editionstatus_id
     }
   end
@@ -84,7 +84,7 @@ class BookeditionTest < Test::Unit::TestCase
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).year, @bookedition.year
       @bookedition.year = @bookedition.year - 2
-      assert @bookedition.update
+      assert @bookedition.save
       assert_not_equal bookeditions(bookedition.to_sym).year, @bookedition.year
     }
   end
@@ -98,7 +98,7 @@ class BookeditionTest < Test::Unit::TestCase
           else
           @bookedition.month = 3
           end
-    assert @bookedition.update
+    assert @bookedition.save
     assert_not_equal bookeditions(bookedition.to_sym).month, @bookedition.month
     }
   end
@@ -174,7 +174,7 @@ class BookeditionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -186,7 +186,7 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       @bookedition.book_id = 5
           begin
-        return true if @bookedition.update
+        return true if @bookedition.save
            rescue StandardError => x
         return false
       end
@@ -204,7 +204,7 @@ class BookeditionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -216,7 +216,7 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       @bookedition.edition_id = 10
        begin
-        return true if @bookedition.update
+        return true if @bookedition.save
        rescue StandardError => x
         return false
       end
@@ -225,7 +225,7 @@ class BookeditionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -242,7 +242,7 @@ class BookeditionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -254,7 +254,7 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       @bookedition.mediatype_id = 100
       begin
-        return true if @bookedition.update
+        return true if @bookedition.save
        rescue StandardError => x
         return false
       end
@@ -272,7 +272,7 @@ class BookeditionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -284,7 +284,7 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       @bookedition.editionstatus_id = 1
        begin
-        return true if @bookedition.update
+        return true if @bookedition.save
        rescue StandardError => x
         return false
       end

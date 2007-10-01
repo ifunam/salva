@@ -30,7 +30,7 @@ class GenericworkTest < Test::Unit::TestCase
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).id, @genericwork.id
       @genericwork.id = 4
-      assert @genericwork.update
+      assert @genericwork.save
       assert_not_equal genericworks(genericwork.to_sym).id, @genericwork.id
     }
   end
@@ -40,7 +40,7 @@ class GenericworkTest < Test::Unit::TestCase
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).genericworkstatus_id, @genericwork.genericworkstatus_id
       @genericwork.genericworkstatus_id = 1
-      assert @genericwork.update
+      assert @genericwork.save
       assert_not_equal genericworks(genericwork.to_sym).genericworkstatus_id, @genericwork.genericworkstatus_id
     }
   end
@@ -50,7 +50,7 @@ class GenericworkTest < Test::Unit::TestCase
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).title, @genericwork.title
       @genericwork.title = 'prueba'
-      assert @genericwork.update
+      assert @genericwork.save
       assert_not_equal genericworks(genericwork.to_sym).title, @genericwork.title
     }
   end
@@ -60,7 +60,7 @@ class GenericworkTest < Test::Unit::TestCase
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).genericworktype_id, @genericwork.genericworktype_id
       @genericwork.genericworktype_id = 2
-       assert @genericwork.update
+       assert @genericwork.save
       assert_not_equal genericworks(genericwork.to_sym).genericworktype_id, @genericwork.genericworktype_id
     }
   end
@@ -70,7 +70,7 @@ class GenericworkTest < Test::Unit::TestCase
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).authors, @genericwork.authors
       @genericwork.authors = 'lopez'
-      assert @genericwork.update
+      assert @genericwork.save
       assert_not_equal genericworks(genericwork.to_sym).authors, @genericwork.authors
     }
   end
@@ -143,7 +143,7 @@ class GenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -155,7 +155,7 @@ class GenericworkTest < Test::Unit::TestCase
       assert_kind_of Genericwork, @genericwork
       @genericwork.genericworktype_id = 5
           begin
-        return true if @genericwork.update
+        return true if @genericwork.save
            rescue StandardError => x
         return false
       end
@@ -173,7 +173,7 @@ class GenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -185,7 +185,7 @@ class GenericworkTest < Test::Unit::TestCase
       assert_kind_of Genericwork, @genericwork
       @genericwork.genericworkstatus_id = 10
        begin
-        return true if @genericwork.update
+        return true if @genericwork.save
        rescue StandardError => x
         return false
       end
@@ -194,7 +194,7 @@ class GenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end

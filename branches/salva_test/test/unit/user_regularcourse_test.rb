@@ -31,7 +31,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).regularcourse_id, @user_regularcourse.regularcourse_id
       @user_regularcourse.regularcourse_id = 3
-      assert @user_regularcourse.update
+      assert @user_regularcourse.save
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).regularcourse_id, @user_regularcourse.regularcourse_id
     }
   end
@@ -41,7 +41,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).user_id, @user_regularcourse.user_id
       @user_regularcourse.user_id = 1
-      assert @user_regularcourse.update
+      assert @user_regularcourse.save
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).user_id, @user_regularcourse.user_id
     }
   end
@@ -51,7 +51,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).period_id, @user_regularcourse.period_id
       @user_regularcourse.period_id = 3
-      assert @user_regularcourse.update
+      assert @user_regularcourse.save
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).period_id, @user_regularcourse.period_id
     }
   end
@@ -61,7 +61,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).roleinregularcourse_id, @user_regularcourse.roleinregularcourse_id
       @user_regularcourse.roleinregularcourse_id = 2
-      assert @user_regularcourse.update
+      assert @user_regularcourse.save
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).roleinregularcourse_id, @user_regularcourse.roleinregularcourse_id
     }
   end
@@ -146,7 +146,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -158,7 +158,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       assert_kind_of UserRegularcourse, @user_regularcourse
       @user_regularcourse.user_id = 5
       begin
-        return true if @user_regularcourse.update
+        return true if @user_regularcourse.save
            rescue StandardError => x
         return false
       end
@@ -176,7 +176,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -188,7 +188,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       assert_kind_of UserRegularcourse, @user_regularcourse
       @user_regularcourse.regularcourse_id = 100000
       begin
-        return true if @user_regularcourse.update
+        return true if @user_regularcourse.save
            rescue StandardError => x
         return false
       end
@@ -206,7 +206,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -218,7 +218,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       assert_kind_of UserRegularcourse, @user_regularcourse
       @user_regularcourse.period_id = 100000
       begin
-        return true if @user_regularcourse.update
+        return true if @user_regularcourse.save
            rescue StandardError => x
         return false
       end
@@ -236,7 +236,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -248,7 +248,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
       assert_kind_of UserRegularcourse, @user_regularcourse
       @user_regularcourse.roleinregularcourse_id = 2000
        begin
-        return true if @user_regularcourse.update
+        return true if @user_regularcourse.save
        rescue StandardError => x
         return false
       end

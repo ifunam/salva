@@ -30,7 +30,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       @user_adscription = UserAdscription.find(user_adscriptions(user_adscription.to_sym).id)
       assert_equal user_adscriptions(user_adscription.to_sym).adscription_id, @user_adscription.adscription_id
       @user_adscription.adscription_id = 3
-      assert @user_adscription.update
+      assert @user_adscription.save
       assert_not_equal user_adscriptions(user_adscription.to_sym).adscription_id, @user_adscription.adscription_id
     }
   end
@@ -40,7 +40,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       @user_adscription = UserAdscription.find(user_adscriptions(user_adscription.to_sym).id)
       assert_equal user_adscriptions(user_adscription.to_sym).user_id, @user_adscription.user_id
       @user_adscription.user_id = 3
-      assert @user_adscription.update
+      assert @user_adscription.save
       assert_not_equal user_adscriptions(user_adscription.to_sym).user_id, @user_adscription.user_id
     }
   end
@@ -50,7 +50,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       @user_adscription = UserAdscription.find(user_adscriptions(user_adscription.to_sym).id)
       assert_equal user_adscriptions(user_adscription.to_sym).jobposition_id, @user_adscription.jobposition_id
       @user_adscription.jobposition_id = 3
-      assert @user_adscription.update
+      assert @user_adscription.save
       assert_not_equal user_adscriptions(user_adscription.to_sym).jobposition_id, @user_adscription.jobposition_id
     }
   end
@@ -60,7 +60,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       @user_adscription = UserAdscription.find(user_adscriptions(user_adscription.to_sym).id)
       assert_equal user_adscriptions(user_adscription.to_sym).startyear, @user_adscription.startyear
       @user_adscription.startyear = @user_adscription.startyear - 2
-      assert @user_adscription.update
+      assert @user_adscription.save
       assert_not_equal user_adscriptions(user_adscription.to_sym).startyear, @user_adscription.startyear
     }
   end
@@ -124,7 +124,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -136,7 +136,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       assert_kind_of UserAdscription, @user_adscription
       @user_adscription.user_id = 5
       begin
-        return true if @user_adscription.update
+        return true if @user_adscription.save
            rescue StandardError => x
         return false
       end
@@ -154,7 +154,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -166,7 +166,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       assert_kind_of UserAdscription, @user_adscription
       @user_adscription.adscription_id = 100000
       begin
-        return true if @user_adscription.update
+        return true if @user_adscription.save
            rescue StandardError => x
         return false
       end
@@ -184,7 +184,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -196,7 +196,7 @@ class UserAdscriptionTest < Test::Unit::TestCase
       assert_kind_of UserAdscription, @user_adscription
       @user_adscription.jobposition_id = 2000
        begin
-        return true if @user_adscription.update
+        return true if @user_adscription.save
        rescue StandardError => x
         return false
       end

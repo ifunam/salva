@@ -84,7 +84,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
       assert_kind_of Projectgenericwork, @projectgenericwork
       @projectgenericwork.project_id = 1000000
       begin
-        return true if @projectgenericwork.update
+        return true if @projectgenericwork.save
       rescue StandardError => x
         return false
       end
@@ -114,7 +114,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -126,7 +126,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
       assert_kind_of Projectgenericwork, @projectgenericwork
       @projectgenericwork.genericwork_id = 100000
       begin
-        return true if @projectgenericwork.update
+        return true if @projectgenericwork.save
       rescue StandardError => x
         return false
       end

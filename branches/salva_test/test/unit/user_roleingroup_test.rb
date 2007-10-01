@@ -27,7 +27,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
       @user_roleingroup = UserRoleingroup.find(user_roleingroups(user_roleingroup.to_sym).id)
       assert_equal user_roleingroups(user_roleingroup.to_sym).roleingroup_id, @user_roleingroup.roleingroup_id
       @user_roleingroup.roleingroup_id = 3
-      assert @user_roleingroup.update
+      assert @user_roleingroup.save
       assert_not_equal user_roleingroups(user_roleingroup.to_sym).roleingroup_id, @user_roleingroup.roleingroup_id
     }
   end
@@ -37,7 +37,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
       @user_roleingroup = UserRoleingroup.find(user_roleingroups(user_roleingroup.to_sym).id)
       assert_equal user_roleingroups(user_roleingroup.to_sym).user_id, @user_roleingroup.user_id
       @user_roleingroup.user_id = 1
-      assert @user_roleingroup.update
+      assert @user_roleingroup.save
       assert_not_equal user_roleingroups(user_roleingroup.to_sym).user_id, @user_roleingroup.user_id
     }
   end
@@ -97,7 +97,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -109,7 +109,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
       assert_kind_of UserRoleingroup, @user_roleingroup
       @user_roleingroup.user_id = 5
       begin
-        return true if @user_roleingroup.update
+        return true if @user_roleingroup.save
            rescue StandardError => x
         return false
       end
@@ -127,7 +127,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -139,7 +139,7 @@ class UserRoleingroupTest < Test::Unit::TestCase
       assert_kind_of UserRoleingroup, @user_roleingroup
       @user_roleingroup.roleingroup_id = 100000
       begin
-        return true if @user_roleingroup.update
+        return true if @user_roleingroup.save
            rescue StandardError => x
         return false
       end

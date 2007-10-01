@@ -26,7 +26,7 @@ class ActivityTest < Test::Unit::TestCase
       @activity = Activity.find(activities(activity.to_sym).id)
       assert_equal activities(activity.to_sym).name, @activity.name
       @activity.name = @activity.name.chars.reverse
-      assert @activity.update
+      assert @activity.save
       assert_not_equal activities(activity.to_sym).name, @activity.name
     }
   end
@@ -104,7 +104,7 @@ class ActivityTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -116,7 +116,7 @@ class ActivityTest < Test::Unit::TestCase
       assert_kind_of Activity, @activity
       @activity.user_id = 10
       begin
-        return true if @activity.update
+        return true if @activity.save
       rescue StandardError => x
         return false
       end
@@ -133,7 +133,7 @@ class ActivityTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -145,7 +145,7 @@ class ActivityTest < Test::Unit::TestCase
       assert_kind_of Activity, @activity
       @activity.activitytype_id = 10
       begin
-        return true if @activity.update
+        return true if @activity.save
       rescue StandardError => x
         return false
       end

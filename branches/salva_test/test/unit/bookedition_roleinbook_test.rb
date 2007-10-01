@@ -97,7 +97,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -109,7 +109,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
       assert_kind_of BookeditionRoleinbook, @bookedition_roleinbook
       @bookedition_roleinbook.user_id = 1000000
       begin
-        return true if @bookedition_roleinbook.update
+        return true if @bookedition_roleinbook.save
       rescue StandardError => x
         return false
       end
@@ -127,7 +127,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -139,7 +139,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
       assert_kind_of BookeditionRoleinbook, @bookedition_roleinbook
       @bookedition_roleinbook.roleinbook_id = 1000000
       begin
-        return true if @bookedition_roleinbook.update
+        return true if @bookedition_roleinbook.save
       rescue StandardError => x
         return false
       end
@@ -158,7 +158,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -170,7 +170,7 @@ class BookeditionRoleinbookTest < Test::Unit::TestCase
       assert_kind_of BookeditionRoleinbook, @bookedition_roleinbook
       @bookedition_roleinbook.bookedition_id = 100000
       begin
-        return true if @bookedition_roleinbook.update
+        return true if @bookedition_roleinbook.save
       rescue StandardError => x
         return false
       end

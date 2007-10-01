@@ -24,11 +24,11 @@ class ExternaluserTest < Test::Unit::TestCase
       @externaluser = Externaluser.find(externalusers(externaluser.to_sym).id)
       assert_equal externalusers(externaluser.to_sym).firstname, @externaluser.firstname
       @externaluser.firstname = @externaluser.firstname.chars.reverse
-      assert @externaluser.update
+      assert @externaluser.save
       assert_not_equal externalusers(externaluser.to_sym).firstname, @externaluser.firstname
 
       @externaluser.lastname1 = @externaluser.lastname1.chars.reverse
-      assert @externaluser.update
+      assert @externaluser.save
       assert_not_equal externalusers(externaluser.to_sym).lastname1, @externaluser.lastname1
     }
   end

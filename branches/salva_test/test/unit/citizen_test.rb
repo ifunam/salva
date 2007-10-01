@@ -32,7 +32,7 @@ class ConferenceTest < Test::Unit::TestCase
       @citizen = Citizen.find(citizens(citizen.to_sym).id)
       assert_equal citizens(citizen.to_sym).citizen_country_id, @citizen.citizen_country_id
       @citizen.citizen_country_id = 666
-      assert @citizen.update
+      assert @citizen.save
       assert_not_equal citizens(citizen.to_sym).citizen_country_id, @citizen.citizen_country_id
     }
   end
@@ -130,7 +130,7 @@ class ConferenceTest < Test::Unit::TestCase
  end
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -142,7 +142,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_kind_of Citizen, @citizen
       @citizen.migratorystatus_id = 50
       begin
-        return true if @citizen.update
+        return true if @citizen.save
       rescue StandardError => x
         return false
       end
@@ -159,7 +159,7 @@ class ConferenceTest < Test::Unit::TestCase
  end
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -171,7 +171,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_kind_of Citizen, @citizen
       @citizen.citizenmodality_id = 50
       begin
-        return true if @citizen.update
+        return true if @citizen.save
       rescue StandardError => x
         return false
       end

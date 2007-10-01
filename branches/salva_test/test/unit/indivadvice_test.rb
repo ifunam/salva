@@ -29,7 +29,7 @@ class IndivadviceTest < Test::Unit::TestCase
       @indivadvice = Indivadvice.find(indivadvices(indivadvice.to_sym).id)
       assert_equal indivadvices(indivadvice.to_sym).indivname, @indivadvice.indivname
       @indivadvice.indivname = @indivadvice.indivname.chars.reverse
-      assert @indivadvice.update
+      assert @indivadvice.save
       assert_not_equal indivadvices(indivadvice.to_sym).indivname, @indivadvice.indivname
     }
   end
@@ -146,7 +146,7 @@ def test_bad_values_for_indivname
  end
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -158,7 +158,7 @@ def test_bad_values_for_indivname
       assert_kind_of Indivadvice, @indivadvice
       @indivadvice.indivadvicetarget_id = 50
       begin
-        return true if @indivadvice.update
+        return true if @indivadvice.save
       rescue StandardError => x
         return false
       end
@@ -176,7 +176,7 @@ def test_bad_values_for_indivname
 
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -188,7 +188,7 @@ def test_bad_values_for_indivname
       assert_kind_of Indivadvice, @indivadvice
       @indivadvice.user_id = 50
       begin
-        return true if @indivadvice.update
+        return true if @indivadvice.save
       rescue StandardError => x
         return false
       end

@@ -28,7 +28,7 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       assert_equal user_projects(user_project.to_sym).project_id, @user_project.project_id
       @user_project.project_id = 3
-      assert @user_project.update
+      assert @user_project.save
       assert_not_equal user_projects(user_project.to_sym).project_id, @user_project.project_id
     }
   end
@@ -38,7 +38,7 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       assert_equal user_projects(user_project.to_sym).user_id, @user_project.user_id
       @user_project.user_id = 3
-      assert @user_project.update
+      assert @user_project.save
       assert_not_equal user_projects(user_project.to_sym).user_id, @user_project.user_id
     }
   end
@@ -48,7 +48,7 @@ class UserProjectTest < Test::Unit::TestCase
       @user_project = UserProject.find(user_projects(user_project.to_sym).id)
       assert_equal user_projects(user_project.to_sym).roleinproject_id, @user_project.roleinproject_id
       @user_project.roleinproject_id = 2
-      assert @user_project.update
+      assert @user_project.save
       assert_not_equal user_projects(user_project.to_sym).roleinproject_id, @user_project.roleinproject_id
     }
   end
@@ -117,7 +117,7 @@ class UserProjectTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -129,7 +129,7 @@ class UserProjectTest < Test::Unit::TestCase
       assert_kind_of UserProject, @user_project
       @user_project.user_id = 5
       begin
-        return true if @user_project.update
+        return true if @user_project.save
       rescue StandardError => x
         return false
       end
@@ -147,7 +147,7 @@ class UserProjectTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -159,7 +159,7 @@ class UserProjectTest < Test::Unit::TestCase
       assert_kind_of UserProject, @user_project
       @user_project.project_id = 1000000
       begin
-        return true if @user_project.update
+        return true if @user_project.save
       rescue StandardError => x
         return false
       end
@@ -177,7 +177,7 @@ class UserProjectTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -189,7 +189,7 @@ class UserProjectTest < Test::Unit::TestCase
       assert_kind_of UserProject, @user_project
       @user_project.roleinproject_id = 1000000
       begin
-        return true if @user_project.update
+        return true if @user_project.save
       rescue StandardError => x
         return false
       end

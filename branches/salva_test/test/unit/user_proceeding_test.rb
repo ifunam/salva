@@ -95,7 +95,7 @@ class UserProceedingTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -107,7 +107,7 @@ class UserProceedingTest < Test::Unit::TestCase
       assert_kind_of UserProceeding, @user_proceeding
       @user_proceeding.proceeding_id = 1000000
       begin
-        return true if @user_proceeding.update
+        return true if @user_proceeding.save
       rescue StandardError => x
         return false
       end
@@ -125,7 +125,7 @@ class UserProceedingTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -137,7 +137,7 @@ class UserProceedingTest < Test::Unit::TestCase
       assert_kind_of UserProceeding, @user_proceeding
       @user_proceeding.roleproceeding_id = 100000
       begin
-        return true if @user_proceeding.update
+        return true if @user_proceeding.save
       rescue StandardError => x
         return false
       end
@@ -154,7 +154,7 @@ class UserProceedingTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -166,7 +166,7 @@ class UserProceedingTest < Test::Unit::TestCase
       assert_kind_of UserProceeding, @user_proceeding
       @user_proceeding.user_id = 1000000
       begin
-        return true if @user_proceeding.update
+        return true if @user_proceeding.save
       rescue StandardError => x
         return false
       end

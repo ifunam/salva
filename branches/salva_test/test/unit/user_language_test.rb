@@ -32,7 +32,7 @@ class UserLanguageTest < Test::Unit::TestCase
       @user_language = UserLanguage.find(user_languages(user_language.to_sym).id)
       assert_equal user_languages(user_language.to_sym).language_id, @user_language.language_id
       @user_language.language_id = 5
-      assert @user_language.update
+      assert @user_language.save
       assert_not_equal user_languages(user_language.to_sym).language_id, @user_language.language_id
     }
   end
@@ -42,7 +42,7 @@ class UserLanguageTest < Test::Unit::TestCase
       @user_language = UserLanguage.find(user_languages(user_language.to_sym).id)
       assert_equal user_languages(user_language.to_sym).user_id, @user_language.user_id
       @user_language.user_id = 1
-      assert @user_language.update
+      assert @user_language.save
       assert_not_equal user_languages(user_language.to_sym).user_id, @user_language.user_id
     }
   end
@@ -52,7 +52,7 @@ class UserLanguageTest < Test::Unit::TestCase
       @user_language = UserLanguage.find(user_languages(user_language.to_sym).id)
       assert_equal user_languages(user_language.to_sym).spoken_languagelevel_id, @user_language.spoken_languagelevel_id
       @user_language.spoken_languagelevel_id = 2
-      assert @user_language.update
+      assert @user_language.save
       assert_not_equal user_languages(user_language.to_sym).spoken_languagelevel_id, @user_language.spoken_languagelevel_id
     }
   end
@@ -62,7 +62,7 @@ class UserLanguageTest < Test::Unit::TestCase
       @user_language = UserLanguage.find(user_languages(user_language.to_sym).id)
       assert_equal user_languages(user_language.to_sym).written_languagelevel_id, @user_language.written_languagelevel_id
       @user_language.written_languagelevel_id = 1
-      assert @user_language.update
+      assert @user_language.save
       assert_not_equal user_languages(user_language.to_sym).written_languagelevel_id, @user_language.written_languagelevel_id
     }
   end
@@ -72,7 +72,7 @@ class UserLanguageTest < Test::Unit::TestCase
       @user_language = UserLanguage.find(user_languages(user_language.to_sym).id)
       assert_equal user_languages(user_language.to_sym).institution_id, @user_language.institution_id
       @user_language.institution_id = 5588
-      assert @user_language.update
+      assert @user_language.save
       assert_not_equal user_languages(user_language.to_sym).institution_id, @user_language.institution_id
     }
   end
@@ -150,7 +150,7 @@ class UserLanguageTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -162,7 +162,7 @@ class UserLanguageTest < Test::Unit::TestCase
       assert_kind_of UserLanguage, @user_language
       @user_language.user_id = 5
       begin
-        return true if @user_language.update
+        return true if @user_language.save
            rescue StandardError => x
         return false
       end
@@ -180,7 +180,7 @@ class UserLanguageTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -192,7 +192,7 @@ class UserLanguageTest < Test::Unit::TestCase
       assert_kind_of UserLanguage, @user_language
       @user_language.language_id = 100000
       begin
-        return true if @user_language.update
+        return true if @user_language.save
            rescue StandardError => x
         return false
       end
@@ -210,7 +210,7 @@ class UserLanguageTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -222,7 +222,7 @@ class UserLanguageTest < Test::Unit::TestCase
       assert_kind_of UserLanguage, @user_language
       @user_language.spoken_languagelevel_id = 100000
       begin
-        return true if @user_language.update
+        return true if @user_language.save
            rescue StandardError => x
         return false
       end
@@ -240,7 +240,7 @@ class UserLanguageTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -252,7 +252,7 @@ class UserLanguageTest < Test::Unit::TestCase
       assert_kind_of UserLanguage, @user_language
       @user_language.written_languagelevel_id = 100000
       begin
-        return true if @user_language.update
+        return true if @user_language.save
            rescue StandardError => x
         return false
       end
@@ -270,7 +270,7 @@ class UserLanguageTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -282,7 +282,7 @@ class UserLanguageTest < Test::Unit::TestCase
       assert_kind_of UserLanguage, @user_language
       @user_language.institution_id = 2000
        begin
-        return true if @user_language.update
+        return true if @user_language.save
        rescue StandardError => x
         return false
       end

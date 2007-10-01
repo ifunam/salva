@@ -26,7 +26,7 @@ class NewspaperTest < Test::Unit::TestCase
       @newspaper = Newspaper.find(newspapers(newspaper.to_sym).id)
       assert_equal newspapers(newspaper.to_sym).name, @newspaper.name
       @newspaper.name = @newspaper.name.chars.reverse
-      assert @newspaper.update
+      assert @newspaper.save
       assert_not_equal newspapers(newspaper.to_sym).name, @newspaper.name
     }
   end
@@ -93,7 +93,7 @@ class NewspaperTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -105,7 +105,7 @@ class NewspaperTest < Test::Unit::TestCase
       assert_kind_of Newspaper, @newspaper
       @newspaper.country_id = 2000
       begin
-        return true if @newspaper.update
+        return true if @newspaper.save
       rescue StandardError => x
         return false
       end

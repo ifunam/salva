@@ -26,7 +26,7 @@ class ResearchlineTest < Test::Unit::TestCase
       @researchline = Researchline.find(researchlines(researchline.to_sym).id)
       assert_equal researchlines(researchline.to_sym).name, @researchline.name
       @researchline.name = @researchline.name.chars.reverse
-      assert @researchline.update
+      assert @researchline.save
       assert_not_equal researchlines(researchline.to_sym).name, @researchline.name
     }
   end
@@ -83,7 +83,7 @@ class ResearchlineTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -95,7 +95,7 @@ class ResearchlineTest < Test::Unit::TestCase
       assert_kind_of Researchline, @myresearchline
       @myresearchline.id = 100
       begin
-        return true if @myresearchline.update
+        return true if @myresearchline.save
       rescue StandardError => x
         return false
       end

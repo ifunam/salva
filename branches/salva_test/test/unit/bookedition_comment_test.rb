@@ -84,7 +84,7 @@ class BookeditionCommentTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ class BookeditionCommentTest < Test::Unit::TestCase
       assert_kind_of BookeditionComment, @bookedition_comment
       @bookedition_comment.user_id = 1000000
       begin
-        return true if @bookedition_comment.update
+        return true if @bookedition_comment.save
       rescue StandardError => x
         return false
       end
@@ -114,7 +114,7 @@ class BookeditionCommentTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -126,7 +126,7 @@ class BookeditionCommentTest < Test::Unit::TestCase
       assert_kind_of BookeditionComment, @bookedition_comment
       @bookedition_comment.bookedition_id = 100000
       begin
-        return true if @bookedition_comment.update
+        return true if @bookedition_comment.save
       rescue StandardError => x
         return false
       end

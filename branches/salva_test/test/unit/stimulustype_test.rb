@@ -25,7 +25,7 @@ class StimulustypeTest < Test::Unit::TestCase
       @stimulustype = Stimulustype.find(stimulustypes(stimulustype.to_sym).id)
       assert_equal stimulustypes(stimulustype.to_sym).name, @stimulustype.name
       @stimulustype.name = @stimulustype.name.chars.reverse
-      assert @stimulustype.update
+      assert @stimulustype.save
       assert_not_equal stimulustypes(stimulustype.to_sym).name, @stimulustype.name
     }
   end
@@ -92,7 +92,7 @@ class StimulustypeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -104,7 +104,7 @@ class StimulustypeTest < Test::Unit::TestCase
       assert_kind_of Stimulustype, @stimulustype
       @stimulustype.institution_id =78581
       begin
-        return true if @stimulustype.update
+        return true if @stimulustype.save
       rescue StandardError => x
         return false
       end

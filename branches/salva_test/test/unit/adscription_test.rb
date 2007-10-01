@@ -26,7 +26,7 @@ class AdscriptionTest < Test::Unit::TestCase
       @adscription = Adscription.find(adscriptions(adscription.to_sym).id)
       assert_equal adscriptions(adscription.to_sym).name, @adscription.name
       @adscription.name = @adscription.name.chars.reverse
-      assert @adscription.update
+      assert @adscription.save
       assert_not_equal adscriptions(adscription.to_sym).name, @adscription.name
     }
   end
@@ -86,7 +86,7 @@ class AdscriptionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -98,7 +98,7 @@ class AdscriptionTest < Test::Unit::TestCase
       assert_kind_of Adscription, @adscription
       @adscription.institution_id = 999999999
       begin
-        return true if @adscription.update
+        return true if @adscription.save
       rescue StandardError => x
         return false
       end

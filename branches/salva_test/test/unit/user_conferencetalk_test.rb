@@ -82,7 +82,7 @@ class UserConferencetalkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -94,7 +94,7 @@ class UserConferencetalkTest < Test::Unit::TestCase
       assert_kind_of UserConferencetalk, @userconferencetalk
       @userconferencetalk.roleinconferencetalk_id = 50
       begin
-        return true if @userconferencetalk.update
+        return true if @userconferencetalk.save
       rescue StandardError => x
         return false
       end
@@ -112,7 +112,7 @@ class UserConferencetalkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -124,7 +124,7 @@ class UserConferencetalkTest < Test::Unit::TestCase
       assert_kind_of UserConferencetalk, @userconferencetalk
       @userconferencetalk.user_id = 20
       begin
-        return true if @userconferencetalk.update
+        return true if @userconferencetalk.save
       rescue StandardError => x
         return false
       end
@@ -141,7 +141,7 @@ class UserConferencetalkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end

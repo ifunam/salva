@@ -86,7 +86,7 @@ fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -98,7 +98,7 @@ fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals
       assert_kind_of UserArticle, @user_article
       @user_article.article_id = 1000000
       begin
-        return true if @user_article.update
+        return true if @user_article.save
       rescue StandardError => x
         return false
       end
@@ -115,7 +115,7 @@ fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -127,7 +127,7 @@ fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals
       assert_kind_of UserArticle, @user_article
       @user_article.user_id = 100000
       begin
-        return true if @user_article.update
+        return true if @user_article.save
       rescue StandardError => x
         return false
       end

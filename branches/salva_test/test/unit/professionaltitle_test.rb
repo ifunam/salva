@@ -83,7 +83,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -95,7 +95,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
       assert_kind_of Professionaltitle, @professionaltitle
       @professionaltitle.schooling_id = 1000000
       begin
-        return true if @professionaltitle.update
+        return true if @professionaltitle.save
       rescue StandardError => x
         return false
       end
@@ -113,7 +113,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -125,7 +125,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
       assert_kind_of Professionaltitle, @professionaltitle
       @professionaltitle.titlemodality_id = 100000
       begin
-        return true if @professionaltitle.update
+        return true if @professionaltitle.save
       rescue StandardError => x
         return false
       end

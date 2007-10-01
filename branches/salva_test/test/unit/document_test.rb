@@ -28,7 +28,7 @@ class DocumentTest < Test::Unit::TestCase
       @document = Document.find(documents(document.to_sym).id)
       assert_equal documents(document.to_sym).title, @document.title
       @document.title = @document.title.chars.reverse
-      assert @document.update
+      assert @document.save
       assert_not_equal documents(document.to_sym).title, @document.title
     }
   end
@@ -98,7 +98,7 @@ class DocumentTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -110,7 +110,7 @@ class DocumentTest < Test::Unit::TestCase
       assert_kind_of Document, @document
       @document.documenttype_id = 100000
       begin
-        return true if @document.update
+        return true if @document.save
       rescue StandardError => x
         return false
       end

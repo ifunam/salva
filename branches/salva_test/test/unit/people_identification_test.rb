@@ -27,7 +27,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
       @people_identification = PeopleIdentification.find(people_identifications(people_identification.to_sym).id)
       assert_equal people_identifications(people_identification.to_sym).descr, @people_identification.descr
       @people_identification.descr = @people_identification.descr.chars.reverse 
-      assert @people_identification.update
+      assert @people_identification.save
       assert_not_equal people_identifications(people_identification.to_sym).descr, @people_identification.descr
     }
   end  
@@ -93,7 +93,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -105,7 +105,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
       assert_kind_of PeopleIdentification, @people_identification
       @people_identification.user_id = 1000000
       begin
-        return true if @people_identification.update
+        return true if @people_identification.save
       rescue StandardError => x
         return false
       end
@@ -123,7 +123,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -135,7 +135,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
       assert_kind_of PeopleIdentification, @people_identification
       @people_identification.identification_id = 100000
       begin
-        return true if @people_identification.update
+        return true if @people_identification.save
       rescue StandardError => x
         return false
       end

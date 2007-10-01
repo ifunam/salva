@@ -26,7 +26,7 @@ class CareerTest < Test::Unit::TestCase
       @career = Career.find(careers(career.to_sym).id)
       assert_equal careers(career.to_sym).name, @career.name
       @career.name = @career.name.chars.reverse
-      assert @career.update
+      assert @career.save
       assert_not_equal careers(career.to_sym).name, @career.name
     }
   end
@@ -86,7 +86,7 @@ class CareerTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -98,7 +98,7 @@ class CareerTest < Test::Unit::TestCase
       assert_kind_of Career, @career
       @career.degree_id = 10
       begin
-        return true if @career.update
+        return true if @career.save
       rescue StandardError => x
         return false
       end

@@ -96,7 +96,7 @@ class UserTechproductTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -108,7 +108,7 @@ class UserTechproductTest < Test::Unit::TestCase
       assert_kind_of UserTechproduct, @user_techproduct
       @user_techproduct.techproduct_id = 100000
       begin
-        return true if @user_techproduct.update
+        return true if @user_techproduct.save
       rescue StandardError => x
         return false
       end
@@ -126,7 +126,7 @@ class UserTechproductTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -138,7 +138,7 @@ class UserTechproductTest < Test::Unit::TestCase
       assert_kind_of UserTechproduct, @user_techproduct
       @user_techproduct.user_id = 100000
       begin
-        return true if @user_techproduct.update
+        return true if @user_techproduct.save
       rescue StandardError => x
         return false
       end

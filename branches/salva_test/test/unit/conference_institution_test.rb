@@ -84,7 +84,7 @@ fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :
       assert_kind_of ConferenceInstitution, @conference_institution
       @conference_institution.institution_id = 1000000
       begin
-        return true if @conference_institution.update
+        return true if @conference_institution.save
       rescue StandardError => x
         return false
       end
@@ -113,7 +113,7 @@ fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -125,7 +125,7 @@ fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :
       assert_kind_of ConferenceInstitution, @conference_institution
       @conference_institution.conference_id = 100000
       begin
-        return true if @conference_institution.update
+        return true if @conference_institution.save
       rescue StandardError => x
         return false
       end

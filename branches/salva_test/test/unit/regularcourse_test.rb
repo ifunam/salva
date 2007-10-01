@@ -27,7 +27,7 @@ class RegularcourseTest < Test::Unit::TestCase
       @regularcourse = Regularcourse.find(regularcourses(regularcourse.to_sym).id)
       assert_equal regularcourses(regularcourse.to_sym).title, @regularcourse.title
       @regularcourse.title = "Java con Base de Datos"
-      assert @regularcourse.update
+      assert @regularcourse.save
       assert_not_equal regularcourses(regularcourse.to_sym).title, @regularcourse.title
     }
   end
@@ -37,7 +37,7 @@ class RegularcourseTest < Test::Unit::TestCase
       @regularcourse = Regularcourse.find(regularcourses(regularcourse.to_sym).id)
       assert_equal regularcourses(regularcourse.to_sym).modality_id, @regularcourse.modality_id
       @regularcourse.modality_id = 3
-      assert @regularcourse.update
+      assert @regularcourse.save
       assert_not_equal regularcourses(regularcourse.to_sym).modality_id, @regularcourse.modality_id
     }
   end
@@ -47,7 +47,7 @@ class RegularcourseTest < Test::Unit::TestCase
       @regularcourse = Regularcourse.find(regularcourses(regularcourse.to_sym).id)
       assert_equal regularcourses(regularcourse.to_sym).semester, @regularcourse.semester
       @regularcourse.semester = 10
-      assert @regularcourse.update
+      assert @regularcourse.save
       assert_not_equal regularcourses(regularcourse.to_sym).semester, @regularcourse.semester
     }
   end
@@ -57,7 +57,7 @@ class RegularcourseTest < Test::Unit::TestCase
       @regularcourse = Regularcourse.find(regularcourses(regularcourse.to_sym).id)
       assert_equal regularcourses(regularcourse.to_sym).credits, @regularcourse.credits
       @regularcourse.credits = 100
-      assert @regularcourse.update
+      assert @regularcourse.save
       assert_not_equal regularcourses(regularcourse.to_sym).credits, @regularcourse.credits
     }
   end
@@ -117,7 +117,7 @@ class RegularcourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -129,7 +129,7 @@ class RegularcourseTest < Test::Unit::TestCase
       assert_kind_of Regularcourse, @regularcourse
       @regularcourse.modality_id = 50
       begin
-        return true if @regularcourse.update
+        return true if @regularcourse.save
       rescue StandardError => x
         return false
       end

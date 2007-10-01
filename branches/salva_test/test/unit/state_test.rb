@@ -25,7 +25,7 @@ class StateTest < Test::Unit::TestCase
       @state = State.find(states(state.to_sym).id)
       assert_equal states(state.to_sym).name, @state.name
       @state.name = @state.name.chars.reverse
-      assert @state.update
+      assert @state.save
       assert_not_equal states(state.to_sym).name, @state.name
     }
   end
@@ -90,7 +90,7 @@ class StateTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -103,7 +103,7 @@ class StateTest < Test::Unit::TestCase
       @state.country_id = 20
 
       begin
-        return true if @state.update
+        return true if @state.save
       rescue StandardError => x
         return false
       end

@@ -28,7 +28,7 @@ class SeminaryTest < Test::Unit::TestCase
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).title, @seminary.title
       @seminary.title = "Sistemas de Bases de Datos"
-      assert @seminary.update
+      assert @seminary.save
       assert_not_equal seminaries(seminary.to_sym).title, @seminary.title
     }
   end
@@ -38,7 +38,7 @@ class SeminaryTest < Test::Unit::TestCase
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).isseminary, @seminary.isseminary
       @seminary.isseminary = "f"
-      assert @seminary.update
+      assert @seminary.save
       assert_not_equal seminaries(seminary.to_sym).isseminary, @seminary.isseminary
     }
   end
@@ -48,7 +48,7 @@ class SeminaryTest < Test::Unit::TestCase
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).year, @seminary.year
       @seminary.year = @seminary.year - 2
-      assert @seminary.update
+      assert @seminary.save
       assert_not_equal seminaries(seminary.to_sym).year, @seminary.year
     }
   end
@@ -58,7 +58,7 @@ class SeminaryTest < Test::Unit::TestCase
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).institution_id, @seminary.institution_id
       @seminary.institution_id = 71
-      assert @seminary.update
+      assert @seminary.save
       assert_not_equal seminaries(seminary.to_sym).institution_id, @seminary.institution_id
     }
   end
@@ -138,7 +138,7 @@ class SeminaryTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -150,7 +150,7 @@ class SeminaryTest < Test::Unit::TestCase
       assert_kind_of Seminary, @seminary
       @seminary.institution_id = 500000
       begin
-        return true if @seminary.update
+        return true if @seminary.save
       rescue StandardError => x
         return false
       end

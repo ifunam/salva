@@ -27,7 +27,7 @@ class RoleingroupTest < Test::Unit::TestCase
       @roleingroup = Roleingroup.find(roleingroups(roleingroup.to_sym).id)
       assert_equal roleingroups(roleingroup.to_sym).role_id, @roleingroup.role_id
       @roleingroup.role_id = 4
-      assert @roleingroup.update
+      assert @roleingroup.save
       assert_not_equal roleingroups(roleingroup.to_sym).role_id, @roleingroup.role_id
     }
   end
@@ -37,7 +37,7 @@ class RoleingroupTest < Test::Unit::TestCase
       @roleingroup = Roleingroup.find(roleingroups(roleingroup.to_sym).id)
       assert_equal roleingroups(roleingroup.to_sym).group_id, @roleingroup.group_id
       @roleingroup.group_id = 2
-      assert @roleingroup.update
+      assert @roleingroup.save
       assert_not_equal roleingroups(roleingroup.to_sym).group_id, @roleingroup.group_id
     }
   end
@@ -97,7 +97,7 @@ class RoleingroupTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -109,7 +109,7 @@ class RoleingroupTest < Test::Unit::TestCase
       assert_kind_of Roleingroup, @roleingroup
       @roleingroup.role_id = 5000
       begin
-        return true if @roleingroup.update
+        return true if @roleingroup.save
            rescue StandardError => x
         return false
       end
@@ -127,7 +127,7 @@ class RoleingroupTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -139,7 +139,7 @@ class RoleingroupTest < Test::Unit::TestCase
       assert_kind_of Roleingroup, @roleingroup
       @roleingroup.group_id = 100000
       begin
-        return true if @roleingroup.update
+        return true if @roleingroup.save
            rescue StandardError => x
         return false
       end

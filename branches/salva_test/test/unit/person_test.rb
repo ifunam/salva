@@ -30,7 +30,7 @@ class PersonTest < Test::Unit::TestCase
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).firstname, @person.firstname
       @person.firstname = @person.firstname.chars.reverse
-      assert @person.update
+      assert @person.save
       assert_not_equal people(person.to_sym).firstname, @person.firstname
     }
   end
@@ -40,7 +40,7 @@ class PersonTest < Test::Unit::TestCase
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).lastname1, @person.lastname1
       @person.lastname1 = @person.lastname1.chars.reverse
-      assert @person.update
+      assert @person.save
       assert_not_equal people(person.to_sym).lastname1, @person.lastname1
     }
   end
@@ -97,7 +97,7 @@ class PersonTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -109,7 +109,7 @@ class PersonTest < Test::Unit::TestCase
       assert_kind_of Person, @person
       @person.user_id = 1000000
       begin
-        return true if @person.update
+        return true if @person.save
       rescue StandardError => x
         return false
       end
@@ -126,7 +126,7 @@ class PersonTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -138,7 +138,7 @@ class PersonTest < Test::Unit::TestCase
       assert_kind_of Person, @person
       @person.country_id = 100000
       begin
-        return true if @person.update
+        return true if @person.save
       rescue StandardError => x
         return false
       end

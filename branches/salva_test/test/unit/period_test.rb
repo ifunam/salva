@@ -25,7 +25,7 @@ class PeriodTest < Test::Unit::TestCase
       @period = Period.find(periods(period.to_sym).id)
       assert_equal periods(period.to_sym).title, @period.title
       @period.title = @period.title.chars.reverse
-      assert @period.update
+      assert @period.save
       assert_not_equal periods(period.to_sym).title, @period.title
     }
   end

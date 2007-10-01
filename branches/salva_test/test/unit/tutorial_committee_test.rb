@@ -31,7 +31,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee = TutorialCommittee.find(tutorial_committees(tutorial_committee.to_sym).id)
       assert_equal tutorial_committees(tutorial_committee.to_sym).user_id, @tutorial_committee.user_id
       @tutorial_committee.user_id = 2
-      assert @tutorial_committee.update
+      assert @tutorial_committee.save
       assert_not_equal tutorial_committees(tutorial_committee.to_sym).user_id, @tutorial_committee.user_id
     }
   end
@@ -41,7 +41,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee = TutorialCommittee.find(tutorial_committees(tutorial_committee.to_sym).id)
       assert_equal tutorial_committees(tutorial_committee.to_sym).degree_id, @tutorial_committee.degree_id
       @tutorial_committee.degree_id = 4
-      assert @tutorial_committee.update
+      assert @tutorial_committee.save
       assert_not_equal tutorial_committees(tutorial_committee.to_sym).degree_id, @tutorial_committee.degree_id
     }
   end
@@ -50,7 +50,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee = TutorialCommittee.find(tutorial_committees(tutorial_committee.to_sym).id)
       assert_equal tutorial_committees(tutorial_committee.to_sym).year, @tutorial_committee.year
       @tutorial_committee.year = @tutorial_committee.year - 2
-      assert @tutorial_committee.update
+      assert @tutorial_committee.save
       assert_not_equal tutorial_committees(tutorial_committee.to_sym).year, @tutorial_committee.year
     }
   end
@@ -60,7 +60,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee = TutorialCommittee.find(tutorial_committees(tutorial_committee.to_sym).id)
       assert_equal tutorial_committees(tutorial_committee.to_sym).studentname, @tutorial_committee.studentname
       @tutorial_committee.studentname = 'Joaquin Simone'
-      assert @tutorial_committee.update
+      assert @tutorial_committee.save
       assert_not_equal tutorial_committees(tutorial_committee.to_sym).studentname, @tutorial_committee.studentname
     }
   end
@@ -70,7 +70,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee = TutorialCommittee.find(tutorial_committees(tutorial_committee.to_sym).id)
       assert_equal tutorial_committees(tutorial_committee.to_sym).institutioncareer_id, @tutorial_committee.institutioncareer_id
       @tutorial_committee.institutioncareer_id == 1 ? @tutorial_committee.institutioncareer_id = @tutorial_committee.institutioncareer_id  + 1 : @tutorial_committee.institutioncareer_id = @tutorial_committee.institutioncareer_id - 1
-      assert @tutorial_committee.update
+      assert @tutorial_committee.save
       assert_not_equal tutorial_committees(tutorial_committee.to_sym).institutioncareer_id, @tutorial_committee.institutioncareer_id
     }
   end
@@ -143,7 +143,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -155,7 +155,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       assert_kind_of TutorialCommittee, @tutorial_committee
       @tutorial_committee.user_id = 5
       begin
-        return true if @tutorial_committee.update
+        return true if @tutorial_committee.save
       rescue StandardError => x
         return false
       end
@@ -173,7 +173,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -186,7 +186,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee.institutioncareer_id = 100000
       assert @tutorial_committee.valid?
       begin
-        return true if @tutorial_committee.update
+        return true if @tutorial_committee.save
       rescue StandardError => x
         return false
       end
@@ -204,7 +204,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -217,7 +217,7 @@ class TutorialCommitteeTest < Test::Unit::TestCase
       @tutorial_committee.degree_id = 100000
       assert @tutorial_committee.valid?
       begin
-        return true if @tutorial_committee.update
+        return true if @tutorial_committee.save
       rescue StandardError => x
         return false
       end

@@ -84,7 +84,7 @@ class InstitutioncareerTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ class InstitutioncareerTest < Test::Unit::TestCase
       assert_kind_of Institutioncareer, @institutioncareer
       @institutioncareer.institution_id = 10
       begin
-        return true if @institutioncareer.update
+        return true if @institutioncareer.save
       rescue StandardError => x
         return false
       end
@@ -113,7 +113,7 @@ class InstitutioncareerTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -125,7 +125,7 @@ class InstitutioncareerTest < Test::Unit::TestCase
       assert_kind_of Institutioncareer, @institutioncareer
       @institutioncareer.career_id = 100000
       begin
-        return true if @institutioncareer.update
+        return true if @institutioncareer.save
       rescue StandardError => x
         return false
       end

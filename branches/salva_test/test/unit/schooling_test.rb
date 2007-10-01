@@ -26,7 +26,7 @@ class SchoolingTest < Test::Unit::TestCase
       @schooling = Schooling.find(schoolings(schooling.to_sym).id)
       assert_equal schoolings(schooling.to_sym).startyear, @schooling.startyear
       @schooling.startyear = 2005
-      assert @schooling.update
+      assert @schooling.save
       assert_not_equal schoolings(schooling.to_sym).startyear, @schooling.startyear
     }
   end
@@ -96,7 +96,7 @@ class SchoolingTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -108,7 +108,7 @@ class SchoolingTest < Test::Unit::TestCase
       assert_kind_of Schooling, @schooling
       @schooling.user_id = 2000
       begin
-        return true if @schooling.update
+        return true if @schooling.save
       rescue StandardError => x
         return false
       end
@@ -124,7 +124,7 @@ class SchoolingTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -136,7 +136,7 @@ class SchoolingTest < Test::Unit::TestCase
       assert_kind_of Schooling, @schooling
       @schooling.institutioncareer_id = 2000
       begin
-        return true if @schooling.update
+        return true if @schooling.save
       rescue StandardError => x
         return false
       end

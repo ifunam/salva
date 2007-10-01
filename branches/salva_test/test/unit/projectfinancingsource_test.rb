@@ -84,7 +84,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
       assert_kind_of Projectfinancingsource, @projectfinancingsource
       @projectfinancingsource.project_id = 1000000
       begin
-        return true if @projectfinancingsource.update
+        return true if @projectfinancingsource.save
       rescue StandardError => x
         return false
       end
@@ -114,7 +114,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -126,7 +126,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
       assert_kind_of Projectfinancingsource, @projectfinancingsource
       @projectfinancingsource.institution_id = 100000
       begin
-        return true if @projectfinancingsource.update
+        return true if @projectfinancingsource.save
       rescue StandardError => x
         return false
       end

@@ -84,7 +84,7 @@ class ProjectchapterinbookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -96,7 +96,7 @@ class ProjectchapterinbookTest < Test::Unit::TestCase
       assert_kind_of Projectchapterinbook, @projectchapterinbook
       @projectchapterinbook.project_id = 1000000
       begin
-        return true if @projectchapterinbook.update
+        return true if @projectchapterinbook.save
       rescue StandardError => x
         return false
       end
@@ -114,7 +114,7 @@ class ProjectchapterinbookTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -126,7 +126,7 @@ class ProjectchapterinbookTest < Test::Unit::TestCase
       assert_kind_of Projectchapterinbook, @projectchapterinbook
       @projectchapterinbook.chapterinbook_id = 100000
       begin
-        return true if @projectchapterinbook.update
+        return true if @projectchapterinbook.save
       rescue StandardError => x
         return false
       end

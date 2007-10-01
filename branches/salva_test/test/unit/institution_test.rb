@@ -33,7 +33,7 @@ class InstitutionTest < Test::Unit::TestCase
       @institution = Institution.find(institutions(institution.to_sym).id)
       assert_equal institutions(institution.to_sym).name, @institution.name
       @institution.name = @institution.name.chars.reverse
-      assert @institution.update
+      assert @institution.save
       assert_not_equal institutions(institution.to_sym).name, @institution.name
     }
   end
@@ -111,7 +111,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -123,7 +123,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.institutiontitle_id = 50
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end
@@ -141,7 +141,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -153,7 +153,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.institutiontype_id = 20
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end
@@ -171,7 +171,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -183,7 +183,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.country_id = 20
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end
@@ -201,7 +201,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -213,7 +213,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.institution_id = 0
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end
@@ -231,7 +231,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -243,7 +243,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.state_id = 500000
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end
@@ -261,7 +261,7 @@ class InstitutionTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -273,7 +273,7 @@ class InstitutionTest < Test::Unit::TestCase
       assert_kind_of Institution, @institution
       @institution.city_id = 500000
       begin
-        return true if @institution.update
+        return true if @institution.save
       rescue StandardError => x
         return false
       end

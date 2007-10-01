@@ -27,7 +27,7 @@ class UserSkillTest < Test::Unit::TestCase
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).skilltype_id, @user_skill.skilltype_id
       @user_skill.skilltype_id = 4
-      assert @user_skill.update
+      assert @user_skill.save
       assert_not_equal user_skills(user_skill.to_sym).skilltype_id, @user_skill.skilltype_id
     }
   end
@@ -37,7 +37,7 @@ class UserSkillTest < Test::Unit::TestCase
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).user_id, @user_skill.user_id
       @user_skill.user_id = 1
-      assert @user_skill.update
+      assert @user_skill.save
       assert_not_equal user_skills(user_skill.to_sym).user_id, @user_skill.user_id
     }
   end
@@ -47,7 +47,7 @@ class UserSkillTest < Test::Unit::TestCase
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).descr, @user_skill.descr
       @user_skill.descr = "nueva descripcion"
-      assert @user_skill.update
+      assert @user_skill.save
       assert_not_equal user_skills(user_skill.to_sym).descr, @user_skill.descr
     }
   end
@@ -109,7 +109,7 @@ class UserSkillTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -121,7 +121,7 @@ class UserSkillTest < Test::Unit::TestCase
       assert_kind_of UserSkill, @user_skill
       @user_skill.user_id = 5000
       begin
-        return true if @user_skill.update
+        return true if @user_skill.save
            rescue StandardError => x
         return false
       end
@@ -139,7 +139,7 @@ class UserSkillTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -151,7 +151,7 @@ class UserSkillTest < Test::Unit::TestCase
       assert_kind_of UserSkill, @user_skill
       @user_skill.skilltype_id = 100000
       begin
-        return true if @user_skill.update
+        return true if @user_skill.save
            rescue StandardError => x
         return false
       end

@@ -29,7 +29,7 @@ class UserCourseTest < Test::Unit::TestCase
       @user_course = UserCourse.find(user_courses(user_course.to_sym).id)
       assert_equal user_courses(user_course.to_sym).course_id, @user_course.course_id
       @user_course.course_id = 3
-      assert @user_course.update
+      assert @user_course.save
       assert_not_equal user_courses(user_course.to_sym).course_id, @user_course.course_id
     }
   end
@@ -39,7 +39,7 @@ class UserCourseTest < Test::Unit::TestCase
       @user_course = UserCourse.find(user_courses(user_course.to_sym).id)
       assert_equal user_courses(user_course.to_sym).roleincourse_id, @user_course.roleincourse_id
       @user_course.roleincourse_id = 1
-      assert @user_course.update
+      assert @user_course.save
       assert_not_equal user_courses(user_course.to_sym).roleincourse_id, @user_course.roleincourse_id
     }
   end
@@ -110,7 +110,7 @@ class UserCourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -122,7 +122,7 @@ class UserCourseTest < Test::Unit::TestCase
       assert_kind_of UserCourse, @user_course
       @user_course.user_id = 500000
       begin
-        return true if @user_pcourse.update
+        return true if @user_pcourse.save
       rescue StandardError => x
         return false
       end
@@ -140,7 +140,7 @@ class UserCourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -153,7 +153,7 @@ class UserCourseTest < Test::Unit::TestCase
       @user_course.course_id = 80000
       assert @user_course.valid?
       begin
-        return true if @user_course.update
+        return true if @user_course.save
       rescue StandardError => x
         return false
       end
@@ -171,7 +171,7 @@ class UserCourseTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -184,7 +184,7 @@ class UserCourseTest < Test::Unit::TestCase
       @user_course.roleincourse_id = 80000
       assert @user_course.valid?
       begin
-        return true if @user_course.update
+        return true if @user_course.save
       rescue StandardError => x
         return false
       end

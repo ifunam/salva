@@ -29,7 +29,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       @user_genericwork = UserGenericwork.find(user_genericworks(user_genericwork.to_sym).id)
       assert_equal user_genericworks(user_genericwork.to_sym).genericwork_id, @user_genericwork.genericwork_id
       @user_genericwork.genericwork_id == 1? @user_genericwork.genericwork_id = @user_genericwork.genericwork_id + 1 : @user_genericwork.genericwork_id = @user_genericwork.genericwork_id - 1
-      assert @user_genericwork.update
+      assert @user_genericwork.save
       assert_not_equal user_genericworks(user_genericwork.to_sym).genericwork_id, @user_genericwork.genericwork_id
     }
   end
@@ -39,7 +39,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       @user_genericwork = UserGenericwork.find(user_genericworks(user_genericwork.to_sym).id)
       assert_equal user_genericworks(user_genericwork.to_sym).user_id, @user_genericwork.user_id
       @user_genericwork.user_id =  3
-      assert @user_genericwork.update
+      assert @user_genericwork.save
       assert_not_equal user_genericworks(user_genericwork.to_sym).user_id, @user_genericwork.user_id
     }
   end
@@ -49,7 +49,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       @user_genericwork = UserGenericwork.find(user_genericworks(user_genericwork.to_sym).id)
       assert_equal user_genericworks(user_genericwork.to_sym).userrole_id, @user_genericwork.userrole_id
       @user_genericwork.userrole_id =  1
-      assert @user_genericwork.update
+      assert @user_genericwork.save
       assert_not_equal user_genericworks(user_genericwork.to_sym).userrole_id, @user_genericwork.userrole_id
     }
   end
@@ -120,7 +120,7 @@ class UserGenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -132,7 +132,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       assert_kind_of UserGenericwork, @user_genericwork
       @user_genericwork.user_id = 5
       begin
-        return true if @user_genericwork.update
+        return true if @user_genericwork.save
       rescue StandardError => x
         return false
       end
@@ -150,7 +150,7 @@ class UserGenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -162,7 +162,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       assert_kind_of UserGenericwork, @user_genericwork
       @user_genericwork.userrole_id = 500
       begin
-        return true if @user_genericwork.update
+        return true if @user_genericwork.save
       rescue StandardError => x
         return false
       end
@@ -180,7 +180,7 @@ class UserGenericworkTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -193,7 +193,7 @@ class UserGenericworkTest < Test::Unit::TestCase
       @user_genericwork.genericwork_id = 1000
       assert @user_genericwork.valid?
       begin
-        return true if @user_genericwork.update
+        return true if @user_genericwork.save
       rescue StandardError => x
         return false
       end

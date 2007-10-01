@@ -29,7 +29,7 @@ class ProjectTest < Test::Unit::TestCase
       @project = Project.find(projects(project.to_sym).id)
       assert_equal projects(project.to_sym).name, @project.name
       @project.name = @project.name.chars.reverse
-      assert @project.update
+      assert @project.save
       assert_not_equal projects(project.to_sym).name, @project.name
     }
   end
@@ -124,7 +124,7 @@ class ProjectTest < Test::Unit::TestCase
       assert_kind_of Project, @project
       @project.projecttype_id = 108
       begin
-        return true if @project.update
+        return true if @project.save
       rescue StandardError => x
         return false
       end
@@ -146,7 +146,7 @@ class ProjectTest < Test::Unit::TestCase
       assert_kind_of Project, @project
       @project.projectstatus_id = 108
       begin
-        return true if @project.update
+        return true if @project.save
       rescue StandardError => x
         return false
       end

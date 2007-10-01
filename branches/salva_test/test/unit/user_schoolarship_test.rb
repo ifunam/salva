@@ -29,7 +29,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       @user_schoolarship = UserSchoolarship.find(user_schoolarships(user_schoolarship.to_sym).id)
       assert_equal user_schoolarships(user_schoolarship.to_sym).id, @user_schoolarship.id
       @user_schoolarship.id = 4
-      assert @user_schoolarship.update
+      assert @user_schoolarship.save
       assert_not_equal user_schoolarships(user_schoolarship.to_sym).id, @user_schoolarship.id
     }
   end
@@ -39,7 +39,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       @user_schoolarship = UserSchoolarship.find(user_schoolarships(user_schoolarship.to_sym).id)
       assert_equal user_schoolarships(user_schoolarship.to_sym).user_id, @user_schoolarship.user_id
       @user_schoolarship.user_id = 1
-      assert @user_schoolarship.update
+      assert @user_schoolarship.save
       assert_not_equal user_schoolarships(user_schoolarship.to_sym).user_id, @user_schoolarship.user_id
     }
   end
@@ -49,7 +49,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       @user_schoolarship = UserSchoolarship.find(user_schoolarships(user_schoolarship.to_sym).id)
       assert_equal user_schoolarships(user_schoolarship.to_sym).schoolarship_id, @user_schoolarship.schoolarship_id
       @user_schoolarship.schoolarship_id = 1
-       assert @user_schoolarship.update
+       assert @user_schoolarship.save
       assert_not_equal user_schoolarships(user_schoolarship.to_sym).schoolarship_id, @user_schoolarship.schoolarship_id
     }
   end
@@ -59,7 +59,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       @user_schoolarship = UserSchoolarship.find(user_schoolarships(user_schoolarship.to_sym).id)
       assert_equal user_schoolarships(user_schoolarship.to_sym).startyear, @user_schoolarship.startyear
       @user_schoolarship.startyear = 2000
-      assert @user_schoolarship.update
+      assert @user_schoolarship.save
       assert_not_equal user_schoolarships(user_schoolarship.to_sym).startyear, @user_schoolarship.startyear
     }
   end
@@ -119,7 +119,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -131,7 +131,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       assert_kind_of UserSchoolarship, @user_schoolarship
       @user_schoolarship.schoolarship_id = 5
           begin
-        return true if @user_schoolarship.update
+        return true if @user_schoolarship.save
            rescue StandardError => x
         return false
       end
@@ -149,7 +149,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -161,7 +161,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
       assert_kind_of UserSchoolarship, @user_schoolarship
       @user_schoolarship.user_id = 10
        begin
-        return true if @user_schoolarship.update
+        return true if @user_schoolarship.save
        rescue StandardError => x
         return false
       end
@@ -170,7 +170,7 @@ class UserSchoolarshipTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end

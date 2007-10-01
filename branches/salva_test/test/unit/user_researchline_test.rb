@@ -85,7 +85,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -97,7 +97,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
       assert_kind_of UserResearchline, @user_researchline
       @user_researchline.researchline_id = 1000000
       begin
-        return true if @user_researchline.update
+        return true if @user_researchline.save
       rescue StandardError => x
         return false
       end
@@ -114,7 +114,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -126,7 +126,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
       assert_kind_of UserResearchline, @user_researchline
       @user_researchline.user_id = 100000
       begin
-        return true if @user_researchline.update
+        return true if @user_researchline.save
       rescue StandardError => x
         return false
       end

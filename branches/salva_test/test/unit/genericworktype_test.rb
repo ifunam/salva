@@ -26,7 +26,7 @@ class GenericworktypeTest < Test::Unit::TestCase
       @genericworktype = Genericworktype.find(genericworktypes(genericworktype.to_sym).id)
       assert_equal genericworktypes(genericworktype.to_sym).name, @genericworktype.name
       @genericworktype.name = @genericworktype.name.chars.reverse
-      assert @genericworktype.update
+      assert @genericworktype.save
       assert_not_equal genericworktypes(genericworktype.to_sym).name, @genericworktype.name
     }
   end
@@ -89,7 +89,7 @@ class GenericworktypeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -101,7 +101,7 @@ class GenericworktypeTest < Test::Unit::TestCase
       assert_kind_of Genericworktype, @genericworktype
       @genericworktype.genericworkgroup_id = 10
       begin
-        return true if @genericworktype.update
+        return true if @genericworktype.save
       rescue StandardError => x
         return false
       end

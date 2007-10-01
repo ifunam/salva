@@ -30,7 +30,7 @@ class ConferenceTest < Test::Unit::TestCase
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_equal conferences(conference.to_sym).name, @conference.name
       @conference.name = @conference.name.chars.reverse
-      assert @conference.update
+      assert @conference.save
       assert_not_equal conferences(conference.to_sym).name, @conference.name
     }
   end
@@ -138,7 +138,7 @@ class ConferenceTest < Test::Unit::TestCase
  end
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -150,7 +150,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_kind_of Conference, @conference
       @conference.conferencetype_id = 50
       begin
-        return true if @conference.update
+        return true if @conference.save
       rescue StandardError => x
         return false
       end
@@ -168,7 +168,7 @@ class ConferenceTest < Test::Unit::TestCase
 
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -180,7 +180,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_kind_of Conference, @conference
       @conference.country_id = 50
       begin
-        return true if @conference.update
+        return true if @conference.save
       rescue StandardError => x
         return false
       end
@@ -196,7 +196,7 @@ class ConferenceTest < Test::Unit::TestCase
  end
  def catch_exception_when_update_invalid_key(record)
    begin
-     return true if record.update
+     return true if record.save
    rescue ActiveRecord::StatementInvalid => bang
      return false
    end
@@ -208,7 +208,7 @@ class ConferenceTest < Test::Unit::TestCase
       assert_kind_of Conference, @conference
       @conference.conferencescope_id = 50
       begin
-        return true if @conference.update
+        return true if @conference.save
       rescue StandardError => x
         return false
       end

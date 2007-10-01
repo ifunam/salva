@@ -29,7 +29,7 @@ class InstitutionalActivityTest < Test::Unit::TestCase
       @institutional_activity = InstitutionalActivity.find(institutional_activities(institutional_activity.to_sym).id)
       assert_equal institutional_activities(institutional_activity.to_sym).descr, @institutional_activity.descr
       @institutional_activity.descr = @institutional_activity.descr.chars.reverse
-      assert @institutional_activity.update
+      assert @institutional_activity.save
       assert_not_equal institutional_activities(institutional_activity.to_sym).descr, @institutional_activity.descr
     }
   end
@@ -96,7 +96,7 @@ class InstitutionalActivityTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -108,7 +108,7 @@ class InstitutionalActivityTest < Test::Unit::TestCase
       assert_kind_of InstitutionalActivity, @institutional_activity
       @institutional_activity.institution_id = 1000000
       begin
-        return true if @institutional_activity.update
+        return true if @institutional_activity.save
       rescue StandardError => x
         return false
       end
@@ -126,7 +126,7 @@ class InstitutionalActivityTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -138,7 +138,7 @@ class InstitutionalActivityTest < Test::Unit::TestCase
       assert_kind_of InstitutionalActivity, @institutional_activity
       @institutional_activity.user_id = 100000
       begin
-        return true if @institutional_activity.update
+        return true if @institutional_activity.save
       rescue StandardError => x
         return false
       end

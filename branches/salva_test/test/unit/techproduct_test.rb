@@ -30,7 +30,7 @@ class TechproductTest < Test::Unit::TestCase
       @techproduct = Techproduct.find(techproducts(techproduct.to_sym).id)
       assert_equal techproducts(techproduct.to_sym).title, @techproduct.title
       @techproduct.title = 'Presencia de las TI en las empresas'
-      assert @techproduct.update
+      assert @techproduct.save
       assert_not_equal techproducts(techproduct.to_sym).title, @techproduct.title
     }
   end
@@ -40,7 +40,7 @@ class TechproductTest < Test::Unit::TestCase
       @techproduct = Techproduct.find(techproducts(techproduct.to_sym).id)
       assert_equal techproducts(techproduct.to_sym).techproducttype_id, @techproduct.techproducttype_id
       @techproduct.techproducttype_id = 4
-      assert @techproduct.update
+      assert @techproduct.save
       assert_not_equal techproducts(techproduct.to_sym).techproducttype_id, @techproduct.techproducttype_id
     }
   end
@@ -50,7 +50,7 @@ class TechproductTest < Test::Unit::TestCase
       @techproduct = Techproduct.find(techproducts(techproduct.to_sym).id)
       assert_equal techproducts(techproduct.to_sym).authors, @techproduct.authors
       @techproduct.authors = 'Jose Luis Linares'
-      assert @techproduct.update
+      assert @techproduct.save
       assert_not_equal techproducts(techproduct.to_sym).authors, @techproduct.authors
     }
   end
@@ -60,7 +60,7 @@ class TechproductTest < Test::Unit::TestCase
       @techproduct = Techproduct.find(techproducts(techproduct.to_sym).id)
       assert_equal techproducts(techproduct.to_sym).techproductstatus_id, @techproduct.techproductstatus_id
       @techproduct.techproductstatus_id = 3
-      assert @techproduct.update
+      assert @techproduct.save
       assert_not_equal techproducts(techproduct.to_sym).techproductstatus_id, @techproduct.techproductstatus_id
     }
   end
@@ -130,7 +130,7 @@ class TechproductTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -142,7 +142,7 @@ class TechproductTest < Test::Unit::TestCase
       assert_kind_of Techproduct, @techproduct
       @techproduct.techproducttype_id = 500
       begin
-        return true if @techproduct.update
+        return true if @techproduct.save
       rescue StandardError => x
         return false
       end
@@ -160,7 +160,7 @@ class TechproductTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -172,7 +172,7 @@ class TechproductTest < Test::Unit::TestCase
       assert_kind_of Techproduct, @techproduct
       @techproduct.techproductstatus_id = 500
       begin
-        return true if @techproduct.update
+        return true if @techproduct.save
       rescue StandardError => x
         return false
       end

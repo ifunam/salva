@@ -30,7 +30,7 @@ class UserJournalTest < Test::Unit::TestCase
       @user_journal = UserJournal.find(user_journals(user_journal.to_sym).id)
       assert_equal user_journals(user_journal.to_sym).startyear, @user_journal.startyear
       @user_journal.startyear = @user_journal.startyear - 1
-      assert @user_journal.update
+      assert @user_journal.save
       assert_not_equal user_journals(user_journal.to_sym).startyear, @user_journal.startyear
     }
   end
@@ -108,7 +108,7 @@ class UserJournalTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -120,7 +120,7 @@ class UserJournalTest < Test::Unit::TestCase
       assert_kind_of UserJournal, @user_journal
       @user_journal.user_id = 1000000
       begin
-        return true if @user_journal.update
+        return true if @user_journal.save
       rescue StandardError => x
         return false
       end
@@ -137,7 +137,7 @@ class UserJournalTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -149,7 +149,7 @@ class UserJournalTest < Test::Unit::TestCase
       assert_kind_of UserJournal, @user_journal
       @user_journal.journal_id = 1000000
       begin
-        return true if @user_journal.update
+        return true if @user_journal.save
       rescue StandardError => x
         return false
       end
@@ -167,7 +167,7 @@ class UserJournalTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -179,7 +179,7 @@ class UserJournalTest < Test::Unit::TestCase
       assert_kind_of UserJournal, @user_journal
       @user_journal.roleinjournal_id = 100000
       begin
-        return true if @user_journal.update
+        return true if @user_journal.save
       rescue StandardError => x
         return false
       end

@@ -25,7 +25,7 @@ class CityTest < Test::Unit::TestCase
       @city = City.find(cities(city.to_sym).id)
       assert_equal cities(city.to_sym).name, @city.name
       @city.name = @city.name.chars.reverse
-      assert @city.update
+      assert @city.save
       assert_not_equal cities(city.to_sym).name, @city.name
     }
   end
@@ -89,7 +89,7 @@ class CityTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -102,7 +102,7 @@ class CityTest < Test::Unit::TestCase
       @city.state_id = 20
 
       begin
-        return true if @state.update
+        return true if @state.save
       rescue StandardError => x
         return false
       end

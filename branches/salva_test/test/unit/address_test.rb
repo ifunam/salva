@@ -37,7 +37,7 @@ class AddressTest < Test::Unit::TestCase
        @address = Address.find(addresses(address.to_sym).id)
        assert_equal addresses(address.to_sym).location, @address.location
        @address.location = @address.location.chars.reverse
-       assert @address.update
+       assert @address.save
        assert_not_equal addresses(address.to_sym).location, @address.location
      }
    end
@@ -135,7 +135,7 @@ def test_bad_values_for_country_id
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -147,7 +147,7 @@ def test_bad_values_for_country_id
       assert_kind_of Address, @address
       @address.user_id = 50
       begin
-        return true if @address.update
+        return true if @address.save
       rescue StandardError => x
         return false
       end
@@ -165,7 +165,7 @@ def test_bad_values_for_country_id
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -177,7 +177,7 @@ def test_bad_values_for_country_id
       assert_kind_of Address, @address
       @address.addresstype_id = 20
       begin
-        return true if @address.update
+        return true if @address.save
       rescue StandardError => x
         return false
       end
@@ -195,7 +195,7 @@ def test_bad_values_for_country_id
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -207,7 +207,7 @@ def test_bad_values_for_country_id
       assert_kind_of Address, @address
       @address.country_id = 20
       begin
-        return true if @address.update
+        return true if @address.save
       rescue StandardError => x
         return false
       end
@@ -225,7 +225,7 @@ def test_bad_values_for_country_id
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -237,7 +237,7 @@ def test_bad_values_for_country_id
       assert_kind_of Address, @address
       @address.state_id = 500000
       begin
-        return true if @address.update
+        return true if @address.save
       rescue StandardError => x
         return false
       end
@@ -255,7 +255,7 @@ def test_bad_values_for_country_id
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -267,7 +267,7 @@ def test_bad_values_for_country_id
       assert_kind_of Address, @address
       @address.city_id = 500000
       begin
-        return true if @address.update
+        return true if @address.save
       rescue StandardError => x
         return false
       end

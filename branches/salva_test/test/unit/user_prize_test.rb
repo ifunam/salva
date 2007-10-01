@@ -29,7 +29,7 @@ class UserPrizeTest < Test::Unit::TestCase
       @user_prize = UserPrize.find(user_prizes(user_prize.to_sym).id)
       assert_equal user_prizes(user_prize.to_sym).prize_id, @user_prize.prize_id
       @user_prize.prize_id = 3
-      assert @user_prize.update
+      assert @user_prize.save
       assert_not_equal user_prizes(user_prize.to_sym).prize_id, @user_prize.prize_id
     }
   end
@@ -39,7 +39,7 @@ class UserPrizeTest < Test::Unit::TestCase
       @user_prize = UserPrize.find(user_prizes(user_prize.to_sym).id)
       assert_equal user_prizes(user_prize.to_sym).year, @user_prize.year
       @user_prize.year = @user_prize.year - 2
-      assert @user_prize.update
+      assert @user_prize.save
       assert_not_equal user_prizes(user_prize.to_sym).year, @user_prize.year
     }
   end
@@ -53,7 +53,7 @@ class UserPrizeTest < Test::Unit::TestCase
           else
           @user_prize.month = 3
           end
-    assert @user_prize.update
+    assert @user_prize.save
     assert_not_equal user_prizes(user_prize.to_sym).month, @user_prize.month
     }
   end
@@ -124,7 +124,7 @@ class UserPrizeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -136,7 +136,7 @@ class UserPrizeTest < Test::Unit::TestCase
 #       assert_kind_of UserPrize, @user_prize
 #       @user_prize.user_id = 5
 #       begin
-#         return true if @user_prize.update
+#         return true if @user_prize.save
 #            rescue StandardError => x
 #         return false
 #       end
@@ -154,7 +154,7 @@ class UserPrizeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -167,7 +167,7 @@ class UserPrizeTest < Test::Unit::TestCase
 #       @user_prize.prize_id = 1
 #       assert user_prize.valid?
 #       begin
-#         return true if @user_prize.update
+#         return true if @user_prize.save
 #        rescue StandardError => x
 #         return false
 #       end

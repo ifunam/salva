@@ -31,7 +31,7 @@ class ArticleTest < Test::Unit::TestCase
       @article = Article.find(articles(article.to_sym).id)
       assert_equal articles(article.to_sym).title, @article.title
       @article.title = @article.title.chars.reverse 
-      assert @article.update
+      assert @article.save
       assert_not_equal articles(article.to_sym).title, @article.title
     }
   end
@@ -41,7 +41,7 @@ class ArticleTest < Test::Unit::TestCase
       @article = Article.find(articles(article.to_sym).id)
       assert_equal articles(article.to_sym).authors, @article.authors
       @article.authors = @article.authors.chars.reverse 
-      assert @article.update
+      assert @article.save
       assert_not_equal articles(article.to_sym).authors, @article.authors
     }
   end  
@@ -108,7 +108,7 @@ class ArticleTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -120,7 +120,7 @@ class ArticleTest < Test::Unit::TestCase
       assert_kind_of Article, @article
       @article.articlestatus_id = 1000000
       begin
-        return true if @article.update
+        return true if @article.save
       rescue StandardError => x
         return false
       end
@@ -138,7 +138,7 @@ class ArticleTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -150,7 +150,7 @@ class ArticleTest < Test::Unit::TestCase
       assert_kind_of Article, @article
       @article.journal_id = 100000
       begin
-        return true if @article.update
+        return true if @article.save
       rescue StandardError => x
         return false
       end

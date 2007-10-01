@@ -29,7 +29,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
       @sponsor_acadvisit.acadvisit_id == 1 ? @sponsor_acadvisit.acadvisit_id = @sponsor_acadvisit.acadvisit_id + 1 :@sponsor_acadvisit.acadvisit_id =  @sponsor_acadvisit.acadvisit_id - 1
-      assert @sponsor_acadvisit.update
+      assert @sponsor_acadvisit.save
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
     }
   end
@@ -39,7 +39,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
       @sponsor_acadvisit.institution_id = 71
-      assert @sponsor_acadvisit.update
+      assert @sponsor_acadvisit.save
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
     }
   end
@@ -49,7 +49,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
       @sponsor_acadvisit.amount = 1000000
-      assert @sponsor_acadvisit.update
+      assert @sponsor_acadvisit.save
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
     }
   end
@@ -113,7 +113,7 @@ def test_bad_values_for_amount
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -125,7 +125,7 @@ def test_bad_values_for_amount
       assert_kind_of SponsorAcadvisit, @sponsor_acadvisit
       @sponsor_acadvisit.acadvisit_id = 5000
       begin
-        return true if @sponsor_acadvisit.update
+        return true if @sponsor_acadvisit.save
            rescue StandardError => x
         return false
       end
@@ -143,7 +143,7 @@ def test_bad_values_for_amount
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -155,7 +155,7 @@ def test_bad_values_for_amount
       assert_kind_of SponsorAcadvisit, @sponsor_acadvisit
       @sponsor_acadvisit.institution_id = 100000
       begin
-        return true if @sponsor_acadvisit.update
+        return true if @sponsor_acadvisit.save
            rescue StandardError => x
         return false
       end
