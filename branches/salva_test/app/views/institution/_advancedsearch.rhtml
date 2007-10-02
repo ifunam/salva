@@ -1,6 +1,6 @@
 <div id="search">
 <div id="search_note" style="display: none"><%= get_label('searchdialog') %></div>
-<%= start_form_tag :action => 'list' %>
+<% form_tag ('list') do -%>
 <div class="row">
 <label for="institutiontitle_id" class="label"><%= get_label('institutiontitle_id') %> <span class="required">*</span></label>
 <div id="institutiontitle_id">
@@ -19,5 +19,5 @@
   <%= submit_tag get_label('search') %> |
   <%= link_to_searchdialog(get_label('simplesearch'),'search') %>
   </div>
-<%= end_form_tag %>
+<% end -%>
 </div>

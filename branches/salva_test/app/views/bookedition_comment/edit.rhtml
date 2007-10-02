@@ -1,9 +1,11 @@
 <h1>Editando BookeditionComment</h1>
 
-<%= start_form_tag :action => 'update', :id => @edit %>
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end -%>
 
-<%= link_to 'Mostrar', :action => 'show', :id => @edit %> |
-<%= link_to 'Regresar', :action => 'list' %>
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id =>  @edit %> |
+ <%= link_to get_label('back'), :action => 'back' %>
+</div>

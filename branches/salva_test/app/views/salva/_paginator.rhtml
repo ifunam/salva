@@ -1,8 +1,1 @@
-<% if @pages.page_count > 1 %>
-<br/>
-<%= get_label('results_page') %>:
-<%= link_to get_label('prev'), { :page => @pages.current.previous } if @pages.current.previous %> 
-<%= pagination_links(@pages, :window_size => 10, :always_show_anchors => false) %> 
-<%= link_to get_label('next'), { :page => @pages.current.next } if @pages.current.next %>
-<br/>
-<% end %>
+<%= will_paginate @collection %>

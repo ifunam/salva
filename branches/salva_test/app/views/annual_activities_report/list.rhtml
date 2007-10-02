@@ -1,7 +1,9 @@
+<% form_tag(@parent_controller ? 'select' : 'purge_selected') do -%>
+
 <table class="list">
   <tr>
     <th>*</th>
-    <th>Reportes</th>
+    <th>Lista de informes </th>
     <th>Acciones</th>
   </tr>
 <% rowcolor = 1 %>
@@ -16,4 +18,6 @@
   </tr>
 <% end %>
 </table>
-<%= render :partial => '/salva/paginator' %>
+<% end -%>
+
+

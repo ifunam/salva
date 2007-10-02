@@ -1,6 +1,6 @@
 <h1>Listing books</h1>
 
-<%= start_form_tag :action => 'list_selected' %>
+<% form_tag ('list_selected') do -%>
 <table>
   <tr>
     <th>Seleccione su libro</th>
@@ -24,4 +24,4 @@
 <% end %>
 </table>
  <%= submit_tag "Seleccionar" %>
-<%= end_form_tag %>
+<% end -%>

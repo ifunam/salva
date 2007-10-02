@@ -7,9 +7,9 @@
 <fieldset>
 <legend>Informaci&oacute;n del usuario</legend>
 
-<%= start_form_tag :action => 'create' %>
+<% form_tag ('create') do -%>
   <%= render :partial => 'form' %>
   <%= submit_tag "Guardar" %>
-<%= end_form_tag %>
+<% end -%>
 </fieldset>
 <%= link_to 'Regresar', :action => 'show' %>
