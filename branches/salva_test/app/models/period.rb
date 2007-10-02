@@ -1,9 +1,3 @@
 class Period < ActiveRecord::Base
-  validates_presence_of :title, :startdate, :enddate
-  validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_uniqueness_of :title, :scope => [:startdate, :enddate]
-   
-  def validate
-      errors.add(:startdate, "La fecha de inicio no debe ser posterior")  || enddate < startdate
-  end
+validates_presence_of :title, :startdate, :enddate
 end

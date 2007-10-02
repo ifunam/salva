@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
 
   has_many :user_articles
-  has_many :user_newspaperarticles
   has_many :articles, :through => :user_articles
 
   has_many :user_genericworks
@@ -44,9 +43,6 @@ class User < ActiveRecord::Base
   has_many :user_stimuluses
   has_many :stimuluses, :through => :user_stimuluses
 
-  has_many :user_journals
-  has_many :user_techproducts
-  has_many :bookedition_roleinbooks
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password

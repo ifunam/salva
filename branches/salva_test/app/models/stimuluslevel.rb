@@ -6,5 +6,4 @@ class Stimuluslevel < ActiveRecord::Base
 
   belongs_to :stimulustype
 
-  validates_associated :stimulustype, :on => :update
 end

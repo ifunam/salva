@@ -6,6 +6,4 @@ class Stimulustype < ActiveRecord::Base
   validates_uniqueness_of :name
 
   belongs_to :institution
-
-  validates_associated :institutions, :on => :update
 end

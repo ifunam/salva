@@ -6,6 +6,4 @@ class Adscription < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:institution_id]
 
   belongs_to :institution
-
-  validates_associated :institution, :on => :update
 end

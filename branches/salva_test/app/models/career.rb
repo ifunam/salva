@@ -6,5 +6,4 @@ class Career < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:degree_id]
 
   belongs_to :degree
-  validates_associated :degree, :on => :update
 end

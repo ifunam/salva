@@ -9,7 +9,4 @@ class Conference < ActiveRecord::Base
 
   has_many :conference_institutions
   has_many :institutions, :through => :conference_institutions
-  has_many :proceedings
-  has_many :userconferences
-  has_many :conference_institutions
 end
