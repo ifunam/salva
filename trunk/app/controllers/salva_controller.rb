@@ -7,7 +7,6 @@ class SalvaController < ApplicationController
   include Stackcontroller
 
   def initialize
-    @sequence = nil
 
     # Default variables for the list method
     @list = {}
@@ -45,23 +44,13 @@ class SalvaController < ApplicationController
   verify :method => :post, :only => [ :create, :update ]
 
   def edit
-    if @sequence != nil
-      edit_sequence
-    else
       @edit = model_from_stack || @model.find(params[:id])
       @filter = model_from_stack(:filter)
-      render :action => 'edit'
-    end
   end
 
   def new
-    if @sequence != nil
-      new_sequence
-    else
       @edit = model_from_stack || @model.new
       @filter = model_from_stack(:filter)
-      render :action => 'new'
-    end
   end
 
   def create
@@ -109,15 +98,7 @@ class SalvaController < ApplicationController
   end
 
   def purge
-    if @sequence
-      sequence = ModelSequence.new(@sequence)
-      sequence.moduser_id = session[:user]
-      sequence.user_id = session[:user]
-      sequence.fill(params[:id])
-      logger.info "Sequencedel "+sequence.delete.to_s
-    else
-      @model.find(params[:id]).destroy
-    end
+    @model.find(params[:id]).destroy
     flash[:notice] = @purge_msg
     redirect_to :action => 'list'
   end
@@ -143,17 +124,8 @@ class SalvaController < ApplicationController
   end
 
   def show
-    if @sequence
-      sequence = ModelSequence.new(@sequence)
-      sequence.moduser_id = session[:user]
-      sequence.user_id = session[:user]
-      sequence.fill(params[:id])
-      session[:sequence] = sequence
-      redirect_to :controller => 'wizard', :action => 'show'
-    else
       @edit = @model.find(params[:id])
       model_into_stack(controller_name,  'show', @edit.id)
-    end
   end
 
   def cancel
@@ -165,34 +137,10 @@ class SalvaController < ApplicationController
   end
 
   private
-  def new_sequence
-    sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = session[:user]
-    sequence.user_id = session[:user]
-    session[:sequence] = sequence
-    redirect_to :controller => 'wizard', :action => 'new'
-  end
-
-  def edit_sequence
-    sequence = ModelSequence.new(@sequence)
-    sequence.moduser_id = session[:user]
-    sequence.user_id = session[:user]
-    sequence.fill(params[:id])
-    session[:sequence] = sequence
-    redirect_to :controller => 'wizard', :action => 'edit'
-  end
 
   def set_userid
     @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
     @edit.user_id = session[:user] if @edit.has_attribute?('user_id')
   end
-
-#   def new_else
-#     model_other = params[:model]
-#     lider =  @model.find(params[:lider])
-#     logger.info "New else Lider "+lider.to_s if lider != nil
-#     redirect_to :controller => model_other, :action => 'new',
-#     :lider_id => lider, :lider_name => Inflector.undescore(@model.name)
-#   end
 
 end

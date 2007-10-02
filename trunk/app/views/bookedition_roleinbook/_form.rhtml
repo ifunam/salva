@@ -14,14 +14,13 @@
   <%= quickpost('bookedition:book_id') %>
 </div>
 
-<p><label for="bookedition_roleinbook">Indique la actividad que
-realizó en esta edición</label><br/>
+<div class="row">
+  <label for="bookedition_roleinbook">Indique la actividad que
+realizó en esta edición</label>
+<div id="roleinbook_id">
+<%= simple_select('edit', Roleinbook, 2) %>
+</div>
 
-<% if @edit.id ==nil || @edit == 0 %>
-  <%= render :partial => 'bookedition_roleinbook/form_new' %>
-<% else %>
-  <%= render :partial => 'bookedition_roleinbook/form_edit' %>
-<% end %>
-</p>
+</div>
 <!--[eoform:bookedition_roleinbook]-->
 

@@ -3,9 +3,17 @@
 <!--[form:bookedition]-->
 
 <div class="row">
-<label for="edition_id" class="label"><%= get_label('book') %> <span class="required">*</span></label>
+<label for="edition_id" class="label"><%= get_label('book') %> <span
+class="required">*</span></label>
+<% if params[:id]  %>
 <%= Book.find(params[:id]).title %>
 <%= hidden_field('edit', 'book_id', :value => params[:id]) %>
+<% else %>
+<div id="book_id">
+<%= simple_select('edit', Book, 1) %>
+<%= quickpost('book') %>
+</div>
+<% end %>
 </div>
 
 <div class="row">
