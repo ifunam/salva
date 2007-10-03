@@ -65,7 +65,8 @@ CREATE TABLE activities (
             DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (activitytype_id, name, year, month)
 );
 COMMENT ON TABLE activities IS
         'Otras actividades académicas en las que participan los usuarios';
