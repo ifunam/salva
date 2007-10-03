@@ -4,6 +4,7 @@ class UserController < ApplicationController
   helper :user, :theme
   skip_before_filter :login_required
   skip_before_filter :rbac_required
+  skip_before_filter :verify_authenticity_token
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :signup, :create, :password_recovery]
@@ -112,9 +113,9 @@ class UserController < ApplicationController
   end
 
   def about
-    pages = [ 'about.html', 'history.html', 'goals.html', 
+    pages = [ 'about.html', 'history.html', 'goals.html',
       'credits.html', 'support.html' ]
-    
+
     page = (params['id'] != nil) ? params['id'].to_i: 0
     @file = pages[page]
   end
