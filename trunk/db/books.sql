@@ -164,6 +164,12 @@ CREATE TABLE bookedition_roleinbooks (
             REFERENCES roleinbooks(id)
             ON UPDATE CASCADE
             DEFERRABLE,
+    moduser_id int4 NULL                    -- Use it to known who
+            REFERENCES users(id)            -- has inserted, updated or deleted
+            ON UPDATE CASCADE               -- data into or  from this table.
+            DEFERRABLE,
+    created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     UNIQUE (user_id, bookedition_id, roleinbook_id)
 );

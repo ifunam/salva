@@ -273,6 +273,7 @@ dateupdate: Fecha de actualización del factor de impacto
 totalcites: Total de citas
 pacsnum: Número de PACS
 chapterinbook_roleinchapter: Capítulos en libros
+roleinchapter_id: Rol en capítulo
 refereedpubs: Publicaciones arbitradas
 chapter: Capítulo
 chapterinbook_id: Capítulo
