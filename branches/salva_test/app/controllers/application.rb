@@ -7,7 +7,6 @@ require 'sessions'
 require 'rbac'
 require 'navigator_tree'
 class ApplicationController < ActionController::Base
-#  include ExceptionNotifiable
   include Authentication
   include Sessions
   include Rbac
@@ -21,6 +20,7 @@ class ApplicationController < ActionController::Base
   helper :table, :theme, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
 
   session :session_key => '_salva_session_id'
+  protect_from_forgery :secret => 'my-little-salva_cookie'
 
   def update_select
     render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }
