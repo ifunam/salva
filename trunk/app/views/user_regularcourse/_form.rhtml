@@ -6,7 +6,6 @@
 <div id="academicprogram_id">
 <%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
 </div>
-  <%= quickpost('academicprogram') %>
 </div>
 <%= observe_select('filt', 'academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
 
