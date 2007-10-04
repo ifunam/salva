@@ -22,6 +22,7 @@ class ExternaluserTest < Test::Unit::TestCase
   def test_updating_name
     @externalusers.each { |externaluser|
       @externaluser = Externaluser.find(externalusers(externaluser.to_sym).id)
+      p 'ssss   ',  externalusers(externaluser.to_sym).firstname, @externaluser.firstname
       assert_equal externalusers(externaluser.to_sym).firstname, @externaluser.firstname
       @externaluser.firstname = @externaluser.firstname.chars.reverse
       assert @externaluser.save
