@@ -19,7 +19,7 @@ class NavigatorController < ApplicationController
         index = params[:item].to_i
         tree = tree.children[index] if tree.children.size > index and !tree.children[index].nil?
       elsif !params[:depth].nil? then
-        tree = tree.get_tree_from_parent(params[:depth].to_i) unless tree.get_tree_from_parent(params[:depth].to_i).nil?
+        tree = tree.get_tree_from_parent(params[:depth].to_i) if tree.has_parent? and !tree.get_tree_from_parent(params[:depth].to_i).nil?
       end
     end
     @tree = session[:navtree] = tree
@@ -54,3 +54,4 @@ class NavigatorController < ApplicationController
     render :action => "navcontrol", :layout  => false
   end
 end
+
