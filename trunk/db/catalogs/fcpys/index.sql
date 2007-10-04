@@ -10,3 +10,4 @@
 \i techproducttypes.sql
 \i publishers.sql
 \i roleintheses.sql
+\i thesismodalities.sql
