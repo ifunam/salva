@@ -17,9 +17,9 @@ class NavigatorController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       if !params[:item].nil? then
         index = params[:item].to_i
-        tree = tree.children[index] if tree.children.size > index
+        tree = tree.children[index] if tree.children.size > index and !tree.children[index].nil?
       elsif !params[:depth].nil? then
-        tree = tree.get_tree_from_parent(params[:depth].to_i)
+        tree = tree.get_tree_from_parent(params[:depth].to_i) unless tree.get_tree_from_parent(params[:depth].to_i).nil?
       end
     end
     @tree = session[:navtree] = tree
