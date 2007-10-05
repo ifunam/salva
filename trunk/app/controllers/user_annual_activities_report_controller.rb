@@ -1,4 +1,4 @@
-class  UserAnnualActivitiesReportController < UserDocumentController
+ class  UserAnnualActivitiesReportController < UserDocumentController
   def initialize
     @document_id = 1
     @document = 'Informe anual de actividades - 2007'

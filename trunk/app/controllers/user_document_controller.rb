@@ -54,7 +54,7 @@ class UserDocumentController < ApplicationController
     record = UserDocument.find(params[:id])
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
     if  record.file and  !record.filename.nil? and !record.content_type.nil? then
-      send_data(record.file, :filename => record.filename, :type => "application/"+record.content_type.to_s, :disposition => "inline")
+      send_data(record.file, :filename => record.filename, :type => record.content_type, :disposition => "inline")
     else
       redirect_to "/images/comodin.png"
     end
