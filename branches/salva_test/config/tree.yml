@@ -75,6 +75,4 @@
 - - activity
   - user_genericwork
 - user_reports
-- - resume
-  - annual_activities_report
-  - annual_activities_plan
+- - user_annual_activities_report

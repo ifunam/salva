@@ -442,7 +442,7 @@ isspecialized: � Es especializado ?
 sponsor_acadvisit: Patrocinador
 fullname: Nombre
 user_reports: Trámites y reportes
-annual_activities_report: Informe anual
+user_annual_activities_report: Informe anual
 annual_activities_plan: Plan anual de actividades
 documenttype_id: Tipo
 document: Documentos
@@ -461,3 +461,4 @@ doctor_schooling: Doctorado
 master_schooling: Maestría
 bachelor_schooling: Licenciatura
 other_schooling: Otro
+user_document_handling: Administración de documentos

@@ -1,0 +1,22 @@
+<table class="list">
+  <tr>
+    <th>Informes anuales</th>
+    <th>Acciones</th>
+  </tr>
+<% rowcolor = 1 %>
+<% for item in @collection %>
+  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
+  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
+    <td><%= h(item.document.documenttype.name+' - '+item.document.title.to_s) %></td>
+    <td class="link"><%= show_link(item.id) %> </td>
+  </tr>
+<% end %>
+</table>
+<br/>
+
+<div id="operations">
+ <%= link_to 'Enviar informe anual de actividades 2007', :action => 'preview' %>
+</div>
+
+
+
