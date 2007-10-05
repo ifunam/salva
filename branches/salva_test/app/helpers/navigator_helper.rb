@@ -73,15 +73,15 @@ module NavigatorHelper
 
   def navcontrol_links(nodes)
     links = []
-    links << link_to_node(nodes[:left], nodes[:parent].is_leaf?) unless nodes[:left].nil?
+    links << link_to_node(nodes[:left], nodes[:left].has_children?) unless nodes[:left].nil?
     links << link_to_parent(nodes[:parent])  unless nodes[:parent].nil?
-    links << link_to_node(nodes[:right], nodes[:parent].is_leaf?) unless nodes[:right].nil?
+    links << link_to_node(nodes[:right], nodes[:right].has_children?) unless nodes[:right].nil?
     links.join(' ')
   end
 
   def link_to_node(node, parent_is_leaf)
     if node.is_leaf?
-      link_to(get_label(node.data), { :controller => node.data,  :parent => true})
+      link_to(get_label(node.data), { :controller => node.data})
     else
       link_to(get_label(node.data), { :controller => 'navigator', :item => node.index_for_node, :parent => parent_is_leaf})
     end

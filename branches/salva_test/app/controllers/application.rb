@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   include NavigatorTree
 
   before_filter :login_required
-  #before_filter :rbac_required
   before_filter :setup_navtree
 
 
@@ -21,6 +20,9 @@ class ApplicationController < ActionController::Base
 
   session :session_key => '_salva_session_id'
   protect_from_forgery :secret => 'my-little-salva_cookie'
+
+  skip_before_filter :verify_authenticity_token,  :only => [:update_select,  :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
+  verify :method => :post, :only => [:update_select,  :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
 
   def update_select
     render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }
@@ -77,8 +79,10 @@ class ApplicationController < ActionController::Base
   end
 
   def  setup_navtree
-    if params[:parent] == 'true' and !session[:navtree].nil? and @request.env['HTTP_CACHE_CONTROL'].nil?
-      session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
+    if controller_name == 'navigator'
+      if params[:parent] == 'true' and !session[:navtree].nil? and request.env['HTTP_CACHE_CONTROL'].nil?
+        session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
+      end
     end
   end
 #  alias :rescue_action_locally :rescue_action_in_public

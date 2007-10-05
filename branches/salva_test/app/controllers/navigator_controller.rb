@@ -5,7 +5,7 @@ class NavigatorController < ApplicationController
   include Stackcontroller
 
   skip_before_filter :rbac_required
-
+  skip_before_filter :verify_authenticity_token
   def index
     navtab
   end
@@ -17,9 +17,9 @@ class NavigatorController < ApplicationController
     if request.env['HTTP_CACHE_CONTROL'].nil?
       if !params[:item].nil? then
         index = params[:item].to_i
-        tree = tree.children[index] if tree.children.size > index
+        tree = tree.children[index] if tree.children.size > index and !tree.children[index].nil?
       elsif !params[:depth].nil? then
-        tree = tree.get_tree_from_parent(params[:depth].to_i)
+        tree = tree.get_tree_from_parent(params[:depth].to_i) if tree.has_parent? and !tree.get_tree_from_parent(params[:depth].to_i).nil?
       end
     end
     @tree = session[:navtree] = tree
@@ -43,14 +43,21 @@ class NavigatorController < ApplicationController
     tree = get_tree
     @nodes = { }
     if controller == 'navigator'
-      @nodes = { :left => tree.left_node, :parent => tree.parent,  :right => tree.right_node}
+      @nodes = { :left => tree.left_node, :parent => tree.parent,  :right => tree.right_node} if tree.has_parent?
     else
-      if tree.has_children?
-        tree = tree.parent  if tree.children_data.index(controller) == nil  and tree.has_parent?
+      index = tree.children_data.index(controller)
+      if !index.nil?
+        @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  }
+        session[:navtree] = tree.children[index] if !tree.children[index].nil?
+      else
+        tree = tree.parent
+        #        @parent = tree.children_data.join(', ')
         index = tree.children_data.index(controller)
-        @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  }  unless index.nil?
+        @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  } if !index.nil?
       end
+
     end
     render :action => "navcontrol", :layout  => false
   end
 end
+

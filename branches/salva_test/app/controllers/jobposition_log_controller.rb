@@ -10,11 +10,11 @@ class JobpositionLogController < SalvaController
   end
 
   def list
-    @jobposition_log = JobpositionLog.find_first([ 'user_id = ?', session[:user]])
-    if @jobposition_log == nil
-      new
+    @jobposition_log = JobpositionLog.find(:first, :conditions => [ 'user_id = ?', session[:user]])
+    if @jobposition_log.nil?
+     render :action => 'new'
     else
       redirect_to  :action => 'show', :id => @jobposition_log.id
-    end  
+    end
   end
 end
