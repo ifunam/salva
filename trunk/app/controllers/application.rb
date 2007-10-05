@@ -79,8 +79,10 @@ class ApplicationController < ActionController::Base
   end
 
   def  setup_navtree
-    if params[:parent] == 'true' and !session[:navtree].nil? and request.env['HTTP_CACHE_CONTROL'].nil?
-      session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
+    if controller_name == 'navigator'
+      if params[:parent] == 'true' and !session[:navtree].nil? and request.env['HTTP_CACHE_CONTROL'].nil?
+        session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
+      end
     end
   end
 #  alias :rescue_action_locally :rescue_action_in_public
