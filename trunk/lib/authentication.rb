@@ -21,7 +21,7 @@ module Authentication
 
   private
   def login_exists?(login)
-    re turn true unless User.find_by_login(login).nil?
+    return true unless User.find_by_login(login).nil?
     return false
   end
 end
