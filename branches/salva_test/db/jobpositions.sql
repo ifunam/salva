@@ -284,37 +284,57 @@ COMMENT ON COLUMN jobposition_logs.worker_key IS
 COMMENT ON COLUMN jobposition_logs.years IS
         'Número de años trabajando en UNAM (Se calculará el número a partir de la información de la tabla jobpositions';
 
+
+CREATE TABLE jobpositionlog (
+        id SERIAL,
+        user_id int4 NOT NULL,
+        old_jobpositioncategory_id smallint NULL,
+        old_contracttype_id integer NULL,
+       institution_id int4 NOT NULL,
+       startyear int4 NOT NULL,
+       startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
+       endyear int4  NULL,
+       endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
+       old_descr text NULL,
+      moduser_id integer NULL,      -- It will be used only to know who has
+       created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+       updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+       PRIMARY KEY (id)
+);
+COMMENT ON TABLE jobpositionlog IS
+        'Bitacora de cambio de posicion laboral';
+
 ------
 -- Update stimuluslogs if there was a status change
 ------
-CREATE OR REPLACE FUNCTION stimulus_update() RETURNS TRIGGER
+CREATE OR REPLACE FUNCTION jobposition_update() RETURNS TRIGGER
 SECURITY DEFINER AS '
 DECLARE
 BEGIN
-        IF OLD.stimulusstatus_id = NEW.stimulusstatus_id THEN
+        IF (OLD.jobpositioncategory_id = NEW.jobpositioncategory_id) AND (OLD.contracttype_id = NEW.contracttype_id)  THEN
                 RETURN NEW;
         END IF;
-        INSERT INTO stimuluslogs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
-                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
+        INSERT INTO jobpositionlog (user_id, old_jobpositioncategory_id, old_contracttype_id, institution_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+                VALUES (OLD.user_id, OLD.jobpositioncategory_id, OLD.contracttype_id, OLD.institution_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
         RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE OR REPLACE FUNCTION thesis_delete() RETURNS TRIGGER
+CREATE OR REPLACE FUNCTION jobposition_delete() RETURNS TRIGGER
 SECURITY DEFINER AS '
 DECLARE
 BEGIN
-        INSERT INTO stimulus_logs (thesis_id, old_thesisstatus_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
-                VALUES (OLD.id, OLD.thesisstatus_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
-                RETURN NULL;
+  INSERT INTO jobpositionlog (user_id, old_jobpositioncategory_id, old_contracttype_id, institution_id, startyear, startmonth, endyear, endmonth,  moduser_id  )
+            VALUES (OLD.user_id, OLD.jobpositioncategory_id, OLD.contracttype_id, OLD.institution_id, OLD.startyear, OLD.startmonth, OLD.endyear, OLD.endmonth,  OLD.moduser_id);
+  RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER thesis_delete AFTER DELETE ON user_stimulus
-        FOR EACH ROW EXECUTE PROCEDURE user_stimulus_delete();
+CREATE TRIGGER jobposition_delete AFTER DELETE ON jobpositions
+        FOR EACH ROW EXECUTE PROCEDURE jobposition_delete();
 
-CREATE TRIGGER thesis_update BEFORE UPDATE ON user_stimulus
-        FOR EACH ROW EXECUTE PROCEDURE user_stimulus_update();
+CREATE TRIGGER jobposition_update BEFORE UPDATE ON jobpositions
+        FOR EACH ROW EXECUTE PROCEDURE jobposition_update();
 
 
 
