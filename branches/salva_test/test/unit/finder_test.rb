@@ -4,7 +4,7 @@ class FinderTest < Test::Unit::TestCase
   fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
 
   def setup
-    @f  = Finder.new(UserArticle, ['article', 'title', ['journal', 'name']], :all)
+    @f  = Finder.new(UserArticle, :attributes => ['article', 'title', ['journal', 'name']])
   end
 
   def test_tableize
