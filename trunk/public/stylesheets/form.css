@@ -643,7 +643,7 @@ div.progressBar div.background {
 }
 
 .moduser {
-        background: #ffffcc;
+        background-color: #ffffcc;
         text-align: left;
         border: 1px solid silver;
         padding: 5px;
@@ -651,7 +651,6 @@ div.progressBar div.background {
 
 .moduser .label {
  float:none;
-
 }
 
 div.auto_complete {
