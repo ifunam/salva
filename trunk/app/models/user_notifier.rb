@@ -9,7 +9,7 @@ class UserNotifier < ActionMailer::Base
     @subject = "[SALVA] "
     @subject << options[:subject] unless options[:subject].nil?
     @body = options[:body] || {}
-    @sent_on     = Time.now
+    @sent_on  = Time.now
   end
 
   public
