@@ -26,7 +26,7 @@
    <%= get_label('login') %>: <span class="logged_user"><%= logged_user%> </span> |
    <%= link_to('Ayuda', { :controller => 'help' })%> |
    <%= link_to('Salir', { :controller => 'user', :action => 'logout'}) %> |
-   <a href="/trac/newticket" target="_new"> Soporte técnico </a>
+   <a href="/user/about/4" target="_new"> Soporte técnico </a>
    </div> <!-- /toplinks -->
    <div class="title">
      <%=  render_component :controller => "navigator", :action => "trail_of_controllers" %><%= controller_title %>
