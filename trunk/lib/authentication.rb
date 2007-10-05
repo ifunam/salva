@@ -1,8 +1,6 @@
 require 'mydigest'
-require 'ssh'
 module Authentication
   include Mydigest
-  include Ssh
 
   def authenticate?(login,passwd)
     if login_exists?(login)
@@ -21,16 +19,9 @@ module Authentication
     return false
   end
 
-  def authenticate_by_ssh?(login, passwd)
-    if user_exists?(login)
-      return true if ssh_auth('fenix.fisica.unam.mx',login,passwd)
-    end
-    return false
-  end
-
   private
   def login_exists?(login)
-    return true unless User.find_by_login(login).nil?
+    re turn true unless User.find_by_login(login).nil?
     return false
   end
 end
