@@ -1,9 +1,10 @@
 class  UserAnnualActivitiesReportController < UserDocumentController
   def initialize
+    @document_id = 1
     @document = 'Informe anual de actividades - 2007'
-    @request_for_approval_subject = 'Solicitud de aprobación de #{document}'
+    @request_for_approval_subject = 'Solicitud de aprobación de #{@document}'
     @notification_subject = @document
-    @sent_msg = "Su #{document} ha sido enviado!"
+    @sent_msg = "Su #{@document} ha sido enviado!"
     @nosent_msg = "Su #{@document} NO ha sido enviado!"
   end
 

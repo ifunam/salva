@@ -7,8 +7,8 @@ class UserDocumentController < ApplicationController
   end
 
   def list
-    @pages, @collection = UserDocument.paginate :page => 1, :per_page => 10,
-    :conditions => "user_id = #{session[:user]} AND document_id = #{@document}"
+    @collection = UserDocument.paginate :page => 1, :per_page => 10,
+    :conditions => "user_id = #{session[:user]} AND document_id = #{@document_id}"
     render :action => 'list'
   end
 
@@ -16,7 +16,7 @@ class UserDocumentController < ApplicationController
     @user = User.find(session[:user])
     record = UserDocument.new
     record.ip_address = request.env['REMOTE_ADDR']
-    record.document_id = @document
+    record.document_id = @document_id
     record.file = StringIO.new(@file).read
     record.filename  = @filename
     record.content_type = @content_type
@@ -26,11 +26,11 @@ class UserDocumentController < ApplicationController
     if record.save
       mail =  {
         :body => { :institution => get_myinstitution.name },
+        :attachment => { :file => record.file,  :content_type => record.content_type, :filename => @filename }
       }
       if @user.has_user_incharge?
         mail[:recipients] = [@user.email]
         mail[:subject] = @request_for_approval_subject
-        mail[:attachment] = { :file => record.file,  :content_type => record.content_type, :filename => @filename }
         UserDocumentNotifier.deliver_request_for_approval(mail)
 
         mail[:recipients] = [@user.user_incharge.email]
