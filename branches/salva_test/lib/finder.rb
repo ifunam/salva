@@ -1,56 +1,52 @@
-#Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'],  :all, :conditions => 'user_articles.user_id = 1')
+# Finder.new(UserArticle, [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'],  :all, :conditions => 'user_articles.user_id = 1')
 require 'labels'
 class Finder
   include Labels
   attr_accessor :sql
   attr_accessor :model
 
-  def initialize(model, columns, *options)
+  def initialize(model, attributes, *options)
     @model = model
-    args = [model,  columns]
-    args.freeze
+    @sql = build_sql(attributes, options)
+  end
+
+  def build_sql(attributes, options)
+    columns = [ @model, attributes ]
+    columns.freeze
     opts = options.size > 1 ? options[1]  : {}
-    @sql = "SELECT #{tableize(model)}.id AS id, #{columns_for_select(*args)} FROM #{get_tables(*args).join(', ')}  WHERE #{set_conditions(*args).join(' AND ')}"
-    @sql += " AND #{opts[:conditions]}" if opts[:conditions]
-    @sql += " ORDER BY #{opts[:order]}" if opts[:order]
-    @sql += " LIMIT 1" if opts[:first]
+    sql =  <<-end_sql
+    SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}
+    FROM #{set_tables(*columns).join(', ')}
+    WHERE #{build_conditions(*columns).join(' AND ')}
+    end_sql
+    sql += " AND #{opts[:conditions]}" if opts[:conditions]
+    sql += " ORDER BY #{opts[:order]}" if opts[:order]
+    sql += " LIMIT 1" if opts[:first]
+    sql
   end
 
   def tableize(column)
     Inflector.tableize(column).pluralize
   end
 
-  def columns_for_select(*columns)
-    table = tableize(columns.first)
-    columns.shift
-    columns.collect { |column|
-      if column.is_a?Array
-        columns_for_select(*column)
-      else
-        "#{table}.#{column} AS #{table}_#{column}"
-      end
-    }.join(', ')
+  def build_select(*columns)
+    table = tableize(columns.shift)
+    columns.collect { |column|  (column.is_a?Array) ?  build_select(*column) : "#{table}.#{column} AS #{table}_#{column}" }.join(', ')
   end
 
-  def get_tables(*columns)
-    tables= [ tableize(columns.first) ]
-    columns.shift
-    columns.collect { |c|
-      if c.is_a?Array
-        tables += get_tables(*c)
-      end
-    }
+  def set_tables(*columns)
+    tables= [ tableize(columns.shift) ]
+    columns.collect { |c|  tables += set_tables(*c) if c.is_a?Array  }
     tables
   end
 
-  def set_conditions(*columns)
-    table = tableize(columns.first)
-    columns.shift
+  def build_conditions(*columns)
+    table = tableize(columns.shift)
     conditions = []
     columns.collect { |column|
       if column.is_a?Array
         conditions << "#{table}.#{Inflector.classify(column.first).foreign_key} = #{tableize(column.first)}.id "
-        conditions += set_conditions(*column)
+        conditions +=build_conditions(*column)
       end
     }
     conditions
