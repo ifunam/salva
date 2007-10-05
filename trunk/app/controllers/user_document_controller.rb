@@ -56,7 +56,7 @@ class UserDocumentController < ApplicationController
     if  record.file and  !record.filename.nil? and !record.content_type.nil? then
       send_data(record.file, :filename => record.filename, :type => record.content_type, :disposition => "inline")
     else
-      redirect_to "/images/comodin.png"
+      send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
     end
   end
 
