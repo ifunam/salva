@@ -1,6 +1,5 @@
 require 'yaml'
 class UserDocumentNotifier < ActionMailer::Base
-
   def setup(options)
     smtp = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
     domain = smtp['settings'][:domain].to_s

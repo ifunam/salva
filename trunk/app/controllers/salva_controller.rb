@@ -32,7 +32,7 @@ class SalvaController < ApplicationController
 
     per_page = set_per_page
 
-    @collection = @model.paginate :page => 1, :per_page => @per_pages,
+    @collection = @model.paginate :page => params[:page] || 1, :per_page => per_page,
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
     :select => select
 
