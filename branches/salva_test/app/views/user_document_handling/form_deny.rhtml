@@ -1,4 +1,4 @@
-<%= start_form_tag :action => 'deny', :id =>@record.id %>
+<% form_tag({:action => 'deny', :id => @record.id}) do -%>
 <h2><%= @record.document.documenttype.name+' '+@record.document.title %></h2>
 <b>Para:</b> <%= @record.user.person.fullname %><br/>
 <b>Comentarios:</b><br/>
@@ -8,4 +8,4 @@
   <div id="operations">
   <%= submit_tag 'No aprobar y enviar comentarios' %> | <%= link_to get_label('back'), :action => 'list' %>
  </div>
-<%= end_form_tag %>
+<% end -%>
