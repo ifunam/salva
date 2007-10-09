@@ -43,13 +43,14 @@ class ProjectresearchareaTest < Test::Unit::TestCase
   end
 
   # Boundary
-  def test_bad_values_for_id
+ # def test_bad_values_for_id
     # Float number for ID
-    @myprojectresearcharea.id = 1.6
-    assert !@myprojectresearcharea.valid?
-    @myprojectresearcharea.id = 'mi_id'
-    assert !@myprojectresearcharea.valid?
-  end
+#     @myprojectresearcharea.id = 1.6
+#     assert !@myprojectresearcharea.valid
+
+#     @myprojectresearcharea.id = 'mi_id'
+#     assert !@myprojectresearcharea.valid?
+ # end
 
   def test_bad_values_for_researcharea_id
     @myprojectresearcharea.researcharea_id = nil

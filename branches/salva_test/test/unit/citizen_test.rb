@@ -65,8 +65,9 @@ class ConferenceTest < Test::Unit::TestCase
      @mycitizen.id = 1.6
      assert !@mycitizen.valid?
 
-    # Negative numbers
-     @mycitizen.id = -1
+
+    # Nil
+     @mycitizen.id = nil
      assert !@mycitizen.valid?
    end
 
@@ -91,7 +92,7 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@mycitizen.valid?
 
     # Negative numbers
-     @mycitizen.citizen_country_id = -1
+     @mycitizen.citizen_country_id = nil
      assert !@mycitizen.valid?
    end
 
@@ -103,8 +104,8 @@ class ConferenceTest < Test::Unit::TestCase
      @mycitizen.citizenmodality_id = 3.1416
      assert !@mycitizen.valid?
 
-     # Negative numbers
-     @mycitizen.citizenmodality_id = -1
+     # Nil
+     @mycitizen.citizenmodality_id = nil
      assert !@mycitizen.valid?
    end
 
@@ -116,7 +117,7 @@ class ConferenceTest < Test::Unit::TestCase
      # Float number for ID
      @mycitizen.migratorystatus_id  = 3.1416
      assert !@mycitizen.valid?
-    @mycitizen.migratorystatus_id  = 3.1416
+    @mycitizen.migratorystatus_id  = nil
      assert !@mycitizen.valid?
    end
 
