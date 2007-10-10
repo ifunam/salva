@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'select_helper'
 class SelectHelperTest < Test::Unit::TestCase
   include SelectHelper
-  fixtures :userstatuses, :users, :maritalstatuses, :countries, :states, :cities, :people, :languages, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
+  fixtures :userstatuses, :users, :maritalstatuses, :countries, :states, :cities, :people, :languages, :languagelevels, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
     
   def test_should_selectize_id_from_object
     record = Person.find_by_firstname('Juana')
@@ -39,6 +39,14 @@ class SelectHelperTest < Test::Unit::TestCase
 
   def test_simple_select
     @edit  = UserLanguage.new
-    #puts simple_select('edit', Language, 1)
+    assert_equal "<select id=\"edit_language_id\" name=\"edit[language_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"5\">Alemán</option>\n<option value=\"1\">Español</option>\n<option value=\"2\">Inglés</option>\n<option value=\"3\">Portugués</option></select>", simple_select('edit', Language, 1)
+    assert_equal "<select id=\"edit_language_id\" name=\"edit[language_id]\" tabindex=\"1\"><option value=\"5\">Alemán</option>\n<option value=\"1\" selected=\"selected\">Español</option>\n<option value=\"2\">Inglés</option>\n<option value=\"3\">Portugués</option></select>", simple_select('edit', Language, 1, :selected => 1)
+    assert_equal "<select id=\"edit_spoken_languagelevel_id\" name=\"edit[spoken_languagelevel_id]\" tabindex=\"2\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"3\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 2, :prefix => 'spoken')
+    assert_equal "<select id=\"edit_spoken_languagelevel_id\" name=\"edit[spoken_languagelevel_id]\" tabindex=\"2\"><option value=\"3\" selected=\"selected\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 2, :prefix => 'spoken', :selected => 3)
+    assert_equal "<select id=\"edit_written_languagelevel_id\" name=\"edit[written_languagelevel_id]\" tabindex=\"3\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"3\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 3, :prefix => 'written')
+    assert_equal "<select id=\"edit_written_languagelevel_id\" name=\"edit[written_languagelevel_id]\" tabindex=\"3\"><option value=\"3\" selected=\"selected\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 3, :prefix => 'written', :selected => 3)
+    @edit = Citizen.new
+    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"392\">Japonesa</option>\n<option value=\"484\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :attribute => 'citizen')
+    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"392\">Japonesa</option>\n<option value=\"484\" selected=\"selected\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :attribute => 'citizen', :selected => 484)
   end
 end

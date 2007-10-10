@@ -37,14 +37,13 @@ module SelectHelper
     Finder.new(model, :first, options).as_pair
   end
 
-  def simple_select(object, model, tabindex, options={}, html_options={})
-    column = options[:attribute] 
+  def simple_select(object, model, tabindex, options={})
+    options[:column] = options[:attribute] if options[:attribute]
     field = foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
-    @list = Finder.new(model).as_pair
-    @list = @list + finder_id(model, [ column ], selected) if !selected.nil? && @list.rassoc(selected).nil?
-    html_options[:tabindex] = tabindex
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected},html_options)
+    @list = Finder.new(model, options).as_pair
+    @list = @list + finder_id(model, selected, options[:column]) if !selected.nil? && @list.rassoc(selected).nil?
+    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
   def select_conditions(object, model, tabindex, options={}, html_options={})
