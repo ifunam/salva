@@ -47,7 +47,11 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
     # Float number for ID
     @myprojectfinancingsource.id = 1.6
     assert !@myprojectfinancingsource.valid?
+
     @myprojectfinancingsource.id = 'mi_id'
+    assert !@myprojectfinancingsource.valid?
+
+    @myprojectfinancingsource.id = -1.0
     assert !@myprojectfinancingsource.valid?
   end
 
@@ -60,6 +64,9 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
 
     @myprojectfinancingsource.institution_id = 'mi_id'
     assert !@myprojectfinancingsource.valid?
+
+    @myprojectfinancingsource.institution_id = -1.0
+    assert !@myprojectfinancingsource.valid?
   end
 
   def test_bad_values_for_project_id
@@ -68,7 +75,11 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
 
     @myprojectfinancingsource.project_id = 3.1416
     assert !@myprojectfinancingsource.valid?
+
     @myprojectfinancingsource.project_id = 'mi_id'
+    assert !@myprojectfinancingsource.valid?
+
+    @myprojectfinancingsource.project_id = -1.0
     assert !@myprojectfinancingsource.valid?
   end
 

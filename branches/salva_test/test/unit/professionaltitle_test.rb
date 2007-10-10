@@ -38,7 +38,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_professionaltitle
-    @professionaltitle = Professionaltitle.new({:schooling_id => 2, :titlemodality_id => 2})
+    @professionaltitle = Professionaltitle.new({:schooling_id => 2})
     assert !@professionaltitle.save
   end
 
@@ -48,6 +48,8 @@ class ProfessionaltitleTest < Test::Unit::TestCase
     @myprofessionaltitle.id = 1.6
     assert !@myprofessionaltitle.valid?
     @myprofessionaltitle.id = 'mi_id'
+    assert !@myprofessionaltitle.valid?
+    @myprofessionaltitle.id = -1.0
     assert !@myprofessionaltitle.valid?
   end
 
@@ -60,6 +62,9 @@ class ProfessionaltitleTest < Test::Unit::TestCase
 
     @myprofessionaltitle.titlemodality_id = 'mi_id'
     assert !@myprofessionaltitle.valid?
+
+    @myprofessionaltitle.titlemodality_id= -1.0
+    assert !@myprofessionaltitle.valid?
   end
 
   def test_bad_values_for_schooling_id
@@ -68,7 +73,11 @@ class ProfessionaltitleTest < Test::Unit::TestCase
 
     @myprofessionaltitle.schooling_id = 3.1416
     assert !@myprofessionaltitle.valid?
+
     @myprofessionaltitle.schooling_id = 'mi_id'
+    assert !@myprofessionaltitle.valid?
+
+    @myprofessionaltitle.schooling_id = -3.0
     assert !@myprofessionaltitle.valid?
   end
   #Cross-Checking test

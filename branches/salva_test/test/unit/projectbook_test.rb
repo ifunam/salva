@@ -49,6 +49,9 @@ class ProjectbookTest < Test::Unit::TestCase
     assert !@myprojectbook.valid?
     @myprojectbook.id = 'mi_id'
     assert !@myprojectbook.valid?
+
+    @myprojectbook.id = -1.0
+    assert !@myprojectbook.valid?
   end
 
   def test_bad_values_for_book_id
@@ -60,6 +63,9 @@ class ProjectbookTest < Test::Unit::TestCase
 
     @myprojectbook.book_id = 'mi_id'
     assert !@myprojectbook.valid?
+
+    @myprojectbook.book_id = -1.0
+    assert !@myprojectbook.valid?
   end
 
   def test_bad_values_for_project_id
@@ -68,7 +74,11 @@ class ProjectbookTest < Test::Unit::TestCase
 
     @myprojectbook.project_id = 3.1416
     assert !@myprojectbook.valid?
+
     @myprojectbook.project_id = 'mi_id'
+    assert !@myprojectbook.valid?
+
+    @myprojectbook.project_id = -1.0
     assert !@myprojectbook.valid?
   end
 

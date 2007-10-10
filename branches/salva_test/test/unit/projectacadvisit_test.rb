@@ -60,6 +60,9 @@ class ProjectacadvisitTest < Test::Unit::TestCase
 
     @myprojectacadvisit.acadvisit_id = 'mi_id'
     assert !@myprojectacadvisit.valid?
+
+    @myprojectacadvisit.acadvisit_id= -1.0
+    assert !@myprojectacadvisit.valid?
   end
 
   def test_bad_values_for_project_id
@@ -69,6 +72,8 @@ class ProjectacadvisitTest < Test::Unit::TestCase
     @myprojectacadvisit.project_id = 3.1416
     assert !@myprojectacadvisit.valid?
     @myprojectacadvisit.project_id = 'mi_id'
+    assert !@myprojectacadvisit.valid?
+    @myprojectacadvisit.project_id = -3.0
     assert !@myprojectacadvisit.valid?
   end
   #Cross-Checking test

@@ -62,8 +62,8 @@ class ActivityTest < Test::Unit::TestCase
     assert !@myactivity.valid?
     @myactivity.id = 'xx'
     assert !@myactivity.valid?
-    #@myactivity.id = -1
-    #assert !@myactivity.valid?
+    @myactivity.id = -1
+    assert !@myactivity.valid?
   end
 
   def test_bad_values_for_name
@@ -78,8 +78,8 @@ class ActivityTest < Test::Unit::TestCase
     assert !@myactivity.valid?
     @myactivity.activitytype_id = 'xx'
     assert !@myactivity.valid?
-    #@myactivity.activitytype_id = -1
-    #assert !@myactivity.valid?
+   @myactivity.activitytype_id = -3.0
+    assert !@myactivity.valid?
   end
 
   def test_bad_values_for_user_id
@@ -89,8 +89,8 @@ class ActivityTest < Test::Unit::TestCase
     assert !@myactivity.valid?
     @myactivity.user_id = 'xx'
     assert !@myactivity.valid?
-    #@myactivity.user_id = -1
-    #assert !@myactivity.valid?
+    @myactivity.user_id = -1
+    assert !@myactivity.valid?
   end
 
   #Cross-Checking test

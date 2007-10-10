@@ -22,7 +22,7 @@ class UserSkillTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_skilltype_id
+  def test_updating_skilltype_id
     @user_skills.each { |user_skill|
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).skilltype_id, @user_skill.skilltype_id
@@ -32,7 +32,7 @@ class UserSkillTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_user_id
+  def test_updating_user_id
     @user_skills.each { |user_skill|
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).user_id, @user_skill.user_id
@@ -42,7 +42,7 @@ class UserSkillTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_descr
+  def test_updating_descr
     @user_skills.each { |user_skill|
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
       assert_equal user_skills(user_skill.to_sym).descr, @user_skill.descr
@@ -67,19 +67,22 @@ class UserSkillTest < Test::Unit::TestCase
     assert !@user_skill.save
   end
 
-     def test_creating_without_required_attributes
-     @user_skill = UserSkill.new({:skilltype_id => 1 })
-     assert !@user_skill.save
-     @user_skill = UserSkill.new({:user_id => 4 })
-     assert !@user_skill.save
-   end
+  def test_creating_without_required_attributes
+    @user_skill = UserSkill.new({:skilltype_id => 1 })
+    assert !@user_skill.save
+    @user_skill = UserSkill.new({:user_id => 4 })
+    assert !@user_skill.save
+  end
 
-   # Boundary
-    def test_bad_values_for_id
-     @myuser_skill.id = 1.6
-     assert !@myuser_skill.valid?
-     @myuser_skill.id = 'mi_id'
-     assert !@myuser_skill.valid?
+  # Boundary
+  def test_bad_values_for_id
+    @myuser_skill.id = 1.6
+    assert !@myuser_skill.valid?
+    @myuser_skill.id = 'mi_id'
+    assert !@myuser_skill.valid?
+
+    @myuser_skill.id = -1.0
+    assert !@myuser_skill.valid?
   end
 
   def test_bad_values_for_user_id
@@ -87,10 +90,14 @@ class UserSkillTest < Test::Unit::TestCase
     assert !@myuser_skill.valid?
     @myuser_skill.user_id = 'mi_id_texto'
     assert !@myuser_skill.valid?
+    @myuser_skill.user_id= -1.0
+    assert !@myuser_skill.valid?
   end
 
   def test_bad_values_for_skilltype_id
     @myuser_skill.skilltype_id = nil
+    assert !@myuser_skill.valid?
+    @myuser_skill.skilltype_id = -1.0
     assert !@myuser_skill.valid?
     @myuser_skill.skilltype_id = 1.6
     assert !@myuser_skill.valid?
@@ -122,13 +129,13 @@ class UserSkillTest < Test::Unit::TestCase
       @user_skill.user_id = 5000
       begin
         return true if @user_skill.save
-           rescue StandardError => x
+      rescue StandardError => x
         return false
       end
     }
   end
 
-    #cross-Checking test for skill
+  #cross-Checking test for skill
   def test_cross_checking_for_skilltype_id
     @user_skills.each { | user_skill|
       @user_skill = UserSkill.find(user_skills(user_skill.to_sym).id)
@@ -152,7 +159,7 @@ class UserSkillTest < Test::Unit::TestCase
       @user_skill.skilltype_id = 100000
       begin
         return true if @user_skill.save
-           rescue StandardError => x
+      rescue StandardError => x
         return false
       end
     }

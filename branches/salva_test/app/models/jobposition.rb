@@ -3,7 +3,9 @@ class Jobposition < ActiveRecord::Base
 
   validates_presence_of :institution_id, :startyear
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_numericality_of :institution_id, :jobpositioncategory_id, :contracttype_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
+
+  validates_numericality_of :jobpositioncategory_id, :contracttype_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
   validates_numericality_of :user_id, :startyear, :greater_than => 0, :only_integer => true
 

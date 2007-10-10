@@ -13,18 +13,18 @@ class InstitutiontitleTest < Test::Unit::TestCase
   # Right - CRUD
 
   def test_crud
-     crud_test(@institutiontitles,Institutiontitle)
-   end
+    crud_test(@institutiontitles,Institutiontitle)
+  end
 
-   def test_validation
-     validate_test(@institutiontitles, Institutiontitle)
-   end
+  def test_validation
+    validate_test(@institutiontitles, Institutiontitle)
+  end
 
-   def test_collision
-     collision_test(@institutiontitles, Institutiontitle)
-   end
+  def test_collision
+    collision_test(@institutiontitles, Institutiontitle)
+  end
 
-   def test_uniqueness
+  def test_uniqueness
     @institutiontitle = Institutiontitle.new({:name => 'Escuela'})
     assert !@institutiontitle.save
   end
@@ -34,15 +34,17 @@ class InstitutiontitleTest < Test::Unit::TestCase
     assert !@institutiontitle.save
   end
 
-   # Boundaries
-   def test_bad_values_for_id
+  # Boundaries
+  def test_bad_values_for_id
     @myinstitutiontitle.id = 'xx'
     assert !@myinstitutiontitle.valid?
 
-     # Float number ID
+    # Float number ID
     @myinstitutiontitle.id = 1.3
-     assert !@myinstitutiontitle.valid?
-   end
+    assert !@myinstitutiontitle.valid?
+    @myinstitutiontitle.id = -1.0
+    assert !@myinstitutiontitle.valid?
+  end
 
   def test_bad_values_for_name
     # Checking constraints for name

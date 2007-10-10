@@ -22,7 +22,6 @@ class ExternaluserTest < Test::Unit::TestCase
   def test_updating_name
     @externalusers.each { |externaluser|
       @externaluser = Externaluser.find(externalusers(externaluser.to_sym).id)
-      p 'ssss   ',  externalusers(externaluser.to_sym).firstname, @externaluser.firstname
       assert_equal externalusers(externaluser.to_sym).firstname, @externaluser.firstname
       @externaluser.firstname = @externaluser.firstname.chars.reverse
       assert @externaluser.save
@@ -44,11 +43,6 @@ class ExternaluserTest < Test::Unit::TestCase
     }
   end
 
-  def test_uniqueness
-    @externaluser = Externaluser.new({:firstname => 'Israel', :lastname1 => 'Gomez'})
-    assert !@externaluser.save
-  end
-
   def test_empty_object
     @externaluser = Externaluser.new()
     assert !@externaluser.save
@@ -60,19 +54,63 @@ class ExternaluserTest < Test::Unit::TestCase
     assert !@myexternaluser.valid?
 
     # Negative number ID
-    #@myexternaluser.id = -1
-    #assert !@myexternaluser.valid?
+    @myexternaluser.id = -1.0
+    assert !@myexternaluser.valid?
 
     # Float number ID
     @myexternaluser.id = 1.3
     assert !@myexternaluser.valid?
   end
 
+  def test_bad_values_for_institution_id
+    @myexternaluser.institution_id = 'xx'
+    assert !@myexternaluser.valid?
+
+    # Negative number
+    @myexternaluser.institution_id = -1.0
+    assert !@myexternaluser.valid?
+
+    # Float number
+    @myexternaluser.institution_id = 1.3
+    assert !@myexternaluser.valid?
+  end
+
+  def test_bad_values_for_externaluserlevel_id
+    @myexternaluser.externaluserlevel_id = 'xx'
+    assert !@myexternaluser.valid?
+
+    # Negative number
+    @myexternaluser.externaluserlevel_id = -1.0
+    assert !@myexternaluser.valid?
+
+    # Float number
+    @myexternaluser.externaluserlevel_id = 1.3
+    assert !@myexternaluser.valid?
+
+    @myexternaluser.externaluserlevel_id = nil
+    assert @myexternaluser.valid?
+  end
+
+  def test_bad_values_for_degree_id
+    @myexternaluser.degree_id = 'xx'
+    assert !@myexternaluser.valid?
+
+    # Negative number
+    @myexternaluser.degree_id = -1.0
+    assert !@myexternaluser.valid?
+
+    # Float number
+    @myexternaluser.degree_id = 1.3
+    assert !@myexternaluser.valid?
+
+    @myexternaluser.degree_id = nil
+    assert @myexternaluser.valid?
+  end
+
   def test_bad_values_for_firstname
     # Checking constraints for firstname
     # Nil firstname
 
-    @myexternaluser
     @myexternaluser.firstname = nil
     assert !@myexternaluser.valid?
 

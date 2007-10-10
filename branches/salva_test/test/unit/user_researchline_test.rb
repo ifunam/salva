@@ -50,6 +50,8 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     assert !@myuser_researchline.valid?
     @myuser_researchline.id = 'mi_id'
     assert !@myuser_researchline.valid?
+    @myuser_researchline.id = -1.0
+    assert !@myuser_researchline.valid?
   end
 
   def test_bad_values_for_user_id
@@ -61,6 +63,9 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
 
     @myuser_researchline.user_id = 'mi_id'
     assert !@myuser_researchline.valid?
+
+    @myuser_researchline.user_id= -1.0
+    assert !@myuser_researchline.valid?
   end
 
   def test_bad_values_for_researchline_id
@@ -70,6 +75,9 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     @myuser_researchline.researchline_id = 3.1416
     assert !@myuser_researchline.valid?
     @myuser_researchline.researchline_id = 'mi_id'
+    assert !@myuser_researchline.valid?
+
+    @myuser_researchline.researchline_id = -3.0
     assert !@myuser_researchline.valid?
   end
   #Cross-Checking test

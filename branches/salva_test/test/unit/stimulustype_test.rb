@@ -59,8 +59,9 @@ class StimulustypeTest < Test::Unit::TestCase
     # Float number for ID
     @mystimulustype.id = 1.6
     assert !@mystimulustype.valid?
-    #@mystimulustype.id = -1
-    #assert !@mystimulustype.valid?
+
+    @mystimulustype.id = -1.0
+    assert !@mystimulustype.valid?
   end
 
   def test_bad_values_for_name
@@ -78,6 +79,9 @@ class StimulustypeTest < Test::Unit::TestCase
     assert !@mystimulustype.valid?
 
     @mystimulustype.institution_id = 3.1416
+    assert !@mystimulustype.valid?
+
+    @mystimulustype.institution_id = -1.0
     assert !@mystimulustype.valid?
   end
   #Cross-Checking test

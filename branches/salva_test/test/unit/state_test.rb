@@ -59,6 +59,10 @@ class StateTest < Test::Unit::TestCase
     assert !@mystate.valid?
     @mystate.id = 'mi_id'
     assert !@mystate.valid?
+
+    @mystate.id = -1.0
+    assert !@mystate.valid?
+
   end
 
   def test_bad_values_for_name
@@ -67,16 +71,20 @@ class StateTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_country_id
-     @mystate.country_id = nil
+    @mystate.country_id = nil
     assert !@mystate.valid?
     @mystate.country_id= 1.6
-    assert !@mystate.valid?
+    #assert !@mystate.valid?
     @mystate.country_id = 'mi_id'
     assert !@mystate.valid?
 
-    # Negative number ID
-    #@mystate.country_id =  -1
-    #assert !@mystate.valid?
+    #Negative number ID
+
+    @mystate.country_id =  -1.0
+    assert !@mystate.valid?
+
+    @mystate.country_id =  1
+    assert @mystate.valid?
   end
 
   #cross check for country

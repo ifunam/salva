@@ -40,8 +40,8 @@ class RoleincourseTest < Test::Unit::TestCase
     assert !@myroleincourse.valid?
 
     # Negative number ID
-    #@myroleincourse.id = -1
-    #assert !@myroleincourse.valid?
+    @myroleincourse.id = -1.0
+    assert !@myroleincourse.valid?
 
     # Float number ID
     @myroleincourse.id = 1.3

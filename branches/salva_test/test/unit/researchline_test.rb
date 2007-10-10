@@ -69,6 +69,8 @@ class ResearchlineTest < Test::Unit::TestCase
 
     @myresearchline.id = 'xx'
     assert !@myresearchline.valid?
+    @myresearchline.id = -3.0
+    assert !@myresearchline.valid?
   end
 
   #Cross-Checking test

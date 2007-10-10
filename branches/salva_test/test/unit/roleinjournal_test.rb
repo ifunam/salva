@@ -38,9 +38,8 @@ class RoleinjournalTest < Test::Unit::TestCase
     assert !@myroleinjournal.valid?
 
     # Negative number ID
-    #@myroleinjournal.id = -1
-    #assert !@myroleinjournal.valid?
-
+    @myroleinjournal.id = -1.0
+    assert !@myroleinjournal.valid?
     # Float number ID
     @myroleinjournal.id = 1.3
     assert !@myroleinjournal.valid?

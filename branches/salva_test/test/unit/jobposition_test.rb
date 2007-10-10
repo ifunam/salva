@@ -48,7 +48,11 @@ class JobpositionTest < Test::Unit::TestCase
     # Float number for ID
     @myjobposition.id = 1.6
     assert !@myjobposition.valid?
+
     @myjobposition.id = 'mi_id'
+    assert !@myjobposition.valid?
+
+    @myjobposition.id = -1.0
     assert !@myjobposition.valid?
   end
 
@@ -61,6 +65,9 @@ class JobpositionTest < Test::Unit::TestCase
 
     @myjobposition.user_id = 'mi_id'
     assert !@myjobposition.valid?
+
+    @myjobposition.user_id = -1.0
+    assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_institution_id
@@ -69,9 +76,26 @@ class JobpositionTest < Test::Unit::TestCase
 
     @myjobposition.institution_id = 3.1416
     assert !@myjobposition.valid?
+
     @myjobposition.institution_id = 'mi_id'
     assert !@myjobposition.valid?
+
+    @myjobposition.institution_id = -1.0
+    assert !@myjobposition.valid?
   end
+
+  def test_bad_values_for_jobpositioncategory_id
+    @myjobposition.jobpositioncategory_id  = 3.1416
+    assert !@myjobposition.valid?
+
+    @myjobposition.jobpositioncategory_id  = 'mi_id'
+    assert !@myjobposition.valid?
+
+    @myjobposition.jobpositioncategory_id  = -1.0
+    assert !@myjobposition.valid?
+  end
+
+
   #Cross-Checking test
 
   def test_cross_checking_for_institution_id

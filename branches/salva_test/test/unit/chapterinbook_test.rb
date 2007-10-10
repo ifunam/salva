@@ -4,7 +4,7 @@ require 'bookchaptertype'
 require 'chapterinbook'
 
 class ChapterinbookTest < Test::Unit::TestCase
- fixtures  :countries, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks
+  fixtures  :countries, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks
 
   def setup
     @chapterinbooks = %w(fuerzas_sobre_la_atmosfera_de_Venus fuerzas_sobre_la_superficie_de_la_tierra)
@@ -26,6 +26,7 @@ class ChapterinbookTest < Test::Unit::TestCase
   def test_deleting_chapterinbooks
     @chapterinbooks.each { |chapterinbook|
       @chapterinbook = Chapterinbook.find(chapterinbooks(chapterinbook.to_sym).id)
+
       @chapterinbook.destroy
       assert_raise (ActiveRecord::RecordNotFound) {
         Chapterinbook.find(chapterinbooks(chapterinbook.to_sym).id)
@@ -50,6 +51,8 @@ class ChapterinbookTest < Test::Unit::TestCase
     assert !@mychapterinbook.valid?
     @mychapterinbook.id = 'mi_id'
     assert !@mychapterinbook.valid?
+    @mychapterinbook.id = -1.0
+    assert !@mychapterinbook.valid?
   end
 
   def test_bad_values_for_bookchaptertype_id
@@ -61,6 +64,8 @@ class ChapterinbookTest < Test::Unit::TestCase
 
     @mychapterinbook.bookchaptertype_id = 'mi_id'
     assert !@mychapterinbook.valid?
+    @mychapterinbook.bookchaptertype_id= -1.0
+    assert !@mychapterinbook.valid?
   end
 
   def test_bad_values_for_bookedition_id
@@ -70,6 +75,8 @@ class ChapterinbookTest < Test::Unit::TestCase
     @mychapterinbook.bookedition_id = 3.1416
     assert !@mychapterinbook.valid?
     @mychapterinbook.bookedition_id = 'mi_id'
+    assert !@mychapterinbook.valid?
+    @mychapterinbook.bookedition_id = -3.0
     assert !@mychapterinbook.valid?
   end
   #Cross-Checking test

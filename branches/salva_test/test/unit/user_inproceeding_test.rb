@@ -48,6 +48,8 @@ class UserInproceedingTest < Test::Unit::TestCase
     assert !@myuser_inproceeding.valid?
     @myuser_inproceeding.id = 'mi_id'
     assert !@myuser_inproceeding.valid?
+    @myuser_inproceeding.id = -1.0
+    assert !@myuser_inproceeding.valid?
   end
 
   def test_bad_values_for_inproceeding_id
@@ -58,6 +60,9 @@ class UserInproceedingTest < Test::Unit::TestCase
     assert !@myuser_inproceeding.valid?
 
     @myuser_inproceeding.inproceeding_id = 'mi_id'
+    assert !@myuser_inproceeding.valid?
+
+    @myuser_inproceeding.inproceeding_id= -1.0
     assert !@myuser_inproceeding.valid?
   end
 

@@ -12,4 +12,5 @@ belongs_to :institution
 belongs_to :country
 belongs_to :acadvisittype
 
+  has_many :projectacadvisits
 end

@@ -83,6 +83,8 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.id = 'mi_id'
     assert !@myregularcourse.valid?
+    @myregularcourse.id = -1.0
+    assert !@myregularcourse.valid?
   end
 
   def test_bad_values_for_title
@@ -97,12 +99,25 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.modality_id = 'mi_id_texto'
     assert !@myregularcourse.valid?
+    @myregularcourse.modality_id = -1.0
+    assert !@myregularcourse.valid?
+  end
+
+  def test_bad_values_for_academicprogram_id
+    @myregularcourse.academicprogram_id = 1.6
+    assert !@myregularcourse.valid?
+    @myregularcourse.academicprogram_id = 'mi_id_texto'
+    assert !@myregularcourse.valid?
+    @myregularcourse.academicprogram_id = -1.0
+    assert !@myregularcourse.valid?
   end
 
   def test_bad_values_for_semester
     @myregularcourse.semester = 1.6
     assert !@myregularcourse.valid?
     @myregularcourse.semester = 'my_semester'
+    assert !@myregularcourse.valid?
+    @myregularcourse.semester = -1.0
     assert !@myregularcourse.valid?
   end
 

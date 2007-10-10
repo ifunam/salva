@@ -52,7 +52,6 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@coursegroup.save
   end
 
-
   # Boundary
   def test_bad_values_for_id
     # Float number for ID
@@ -62,11 +61,10 @@ class CoursegroupTest < Test::Unit::TestCase
     @mycoursegroup.id = 1.6
     assert !@mycoursegroup.valid?
 
-    # Negative numbers
-    # @mycoursegroup.id = -1
-    # assert !@mycoursegroup.valid?
+    #Negative numbers
+    @mycoursegroup.id = -1.0
+    assert !@mycoursegroup.valid?
   end
-
 
   def test_bad_values_for_name
     @mycoursegroup.name = nil
@@ -76,6 +74,7 @@ class CoursegroupTest < Test::Unit::TestCase
   def test_bad_values_for_coursegrouptype_id
     @mycoursegroup.coursegrouptype_id = 'xx'
     assert !@mycoursegroup.valid?
+
     @mycoursegroup.coursegrouptype_id = nil
     assert !@mycoursegroup.valid?
 
@@ -84,8 +83,8 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@mycoursegroup.valid?
 
     # Negative numbers
-    # @mycoursegroup.coursegrouptype_id = -1
-    # assert !@mycoursegroup.valid?
+    @mycoursegroup.coursegrouptype_id = -1.0
+    assert !@mycoursegroup.valid?
   end
 
   #Cross-Checking test
