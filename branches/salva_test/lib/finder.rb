@@ -1,4 +1,7 @@
-# Finder.new(UserArticle, :attributes => [['article_id', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
+# Finder.new(UserArticle, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
+# Finder.new(Article)
+# Finder.new(Country)
+# Finder.new(Journal)
 require 'labels'
 class Finder
   include Labels
@@ -8,8 +11,7 @@ class Finder
   def initialize(model, *options)
     @model = model
     opts = options[0] || {}
-    attributes = (opts.has_key? :attributes)  ? opts[:attributes] : set_attributes
-    @sql = build_sql(attributes, opts)
+    @sql = (opts.has_key? :attributes) ? build_sql(opts[:attributes], opts) :  @sql = build_simple_sql(set_attributes, opts)
   end
 
   def build_sql(attributes, options)
@@ -20,9 +22,19 @@ class Finder
     FROM #{set_tables(*columns).join(', ')}
     WHERE #{build_conditions(*columns).join(' AND ')}
     end_sql
-    sql += " AND #{opts[:conditions]}" if options[:conditions]
-    sql += " ORDER BY #{opts[:order]}" if options[:order]
-    sql += " LIMIT 1" if options[:first]
+    sql += " AND #{options[:conditions]}" if options[:conditions]
+    sql += " ORDER BY #{options[:order]}" if options[:order]
+    limit = options[:first] ? 1 : options[:limit]
+    sql += " LIMIT #{limit}" if limit.to_i > 0
+    sql
+  end
+
+  def build_simple_sql(attributes, options)
+    sql =  "SELECT id, #{attributes}  FROM #{tableize(@model)}"
+    sql += " WHERE #{options[:conditions]}" if options[:conditions]
+    sql += (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
+    limit = options[:first] ? 1 : options[:limit]
+    sql += " LIMIT #{limit}" if limit.to_i > 0
     sql
   end
 
@@ -53,14 +65,16 @@ class Finder
     conditions
   end
 
-  def  set_attributes
-    if @model.respond_to? 'name'
-      'name'
-    elsif @model.respond_to? 'title'
-      'title'
+  def set_attributes
+    attributes = [ ]
+    if @model.column_names.include? 'name'
+      attributes << 'name'
+    elsif @model.column_names.include? 'title'
+      attributes << 'title'
     else
-      '*' # ToDo: Recursive optional, because this finder help us to avoid recursive  queries.
+      attributes += @model.column_names  - %w(id moduser_id created_on updated_on user_id)
     end
+    attributes.join(', ')
   end
 
   def find_collection
@@ -69,20 +83,24 @@ class Finder
 
   def as_text
     find_collection.collect { |record|
-      record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', ')
+      record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
     }
   end
 
   def as_pair
     find_collection.collect { |record|
-      [record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', '), record.id]
+      [record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id]
     }
   end
 
   def as_hash
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), record.attributes.keys.reverse.collect { |column| record.send(column) if column != 'id' }.compact.join(', ') ]
+      [ Inflector.underscore(@model), record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
     }
+  end
+
+  def set_string(record, column)
+    record.send(column) == (true || false) ? label_for_boolean(column.sub(/^([a-z0-9]_)/,''), record.send(column)) : record.send(column)
   end
 end
 
