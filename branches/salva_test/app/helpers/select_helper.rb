@@ -25,20 +25,23 @@ module SelectHelper
     end
   end
 
-  def finder_id(model, attributes, id)
-    if id.nil?
-      conditions = {}
-    else
-      conditions = { :conditions => "id = #{id}" }
+  def finder_id(model, id, attributes=[])
+    options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
+    unless attributes.empty?
+      if attributes.is_a? Array
+        options[:attributes] = attributes
+      else
+        options[:column] = attributes
+      end
     end
-    Finder.new(model, attributes, :first, conditions).as_pair
+    Finder.new(model, :first, options).as_pair
   end
 
   def simple_select(object, model, tabindex, options={}, html_options={})
-    column = options[:attribute] || ((model.column_names.include? 'title') ? 'title' : 'name')
+    column = options[:attribute] 
     field = foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
-    @list = Finder.new(model, [ column ], :all, :order => "#{column} ASC").as_pair
+    @list = Finder.new(model).as_pair
     @list = @list + finder_id(model, [ column ], selected) if !selected.nil? && @list.rassoc(selected).nil?
     html_options[:tabindex] = tabindex
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected},html_options)

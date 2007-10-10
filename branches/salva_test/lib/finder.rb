@@ -1,7 +1,14 @@
 # Finder.new(UserArticle, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
-# Finder.new(Article)
-# Finder.new(Country)
+# OR
+# Finder.new(UserArticle, :all, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
+# 
+# Finder.new(UserArticle, :first, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
+#
+# Finder.new(Article) == Finder.new(Article, :all)
+# Finder.new(Country) == Finder.new(Country, :all)
+# Finder.new(Country, :first)
 # Finder.new(Journal)
+
 require 'labels'
 class Finder
   include Labels
@@ -9,11 +16,12 @@ class Finder
   attr_accessor :model
 
   def initialize(model, *options)
+    opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
+    opts[:first] = true if options[0] == :first
     @model = model
-    opts = options[0] || {}
-    @sql = (opts.has_key? :attributes) ? build_sql(opts[:attributes], opts) :  @sql = build_simple_sql(set_attributes, opts)
+    @sql = (opts.has_key? :attributes) ? build_sql(opts[:attributes], opts) : @sql = build_simple_sql(set_attributes, opts)
   end
-
+  
   def build_sql(attributes, options)
     columns = [ @model, attributes ]
     columns.freeze
@@ -30,6 +38,7 @@ class Finder
   end
 
   def build_simple_sql(attributes, options)
+    attributes = options[:column] if options.has_key? :column
     sql =  "SELECT id, #{attributes}  FROM #{tableize(@model)}"
     sql += " WHERE #{options[:conditions]}" if options[:conditions]
     sql += (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
