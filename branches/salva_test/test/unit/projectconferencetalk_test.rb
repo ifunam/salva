@@ -52,8 +52,8 @@ class ProjectconferencetalkTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_conferencetalk_id
-    @myprojectconferencetalk.conferencetalk_id = nil
-    assert !@myprojectconferencetalk.valid?
+#     @myprojectconferencetalk.conferencetalk_id = nil
+#     assert !@myprojectconferencetalk.valid?
 
     @myprojectconferencetalk.conferencetalk_id= 1.6
     assert !@myprojectconferencetalk.valid?
