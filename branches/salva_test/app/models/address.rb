@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
-  validates_presence_of :country_id, :location, :addresstype_id, is_postaddress
+  validates_presence_of :country_id, :state_id, :city_id, :location, :addresstype_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_numericality_of :user_id, :addresstype_id, :country_id, :greater_than => 0, :only_integer => true
+  validates_numericality_of :user_id, :addresstype_id, :country_id, :state_id, :city_id, :greater_than => 0, :only_integer => true
   validates_uniqueness_of :user_id, :scope => [:addresstype_id]
   validates_inclusion_of :is_postaddress, :in=> [true, false]
 

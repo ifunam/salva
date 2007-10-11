@@ -8,3 +8,5 @@ juana_en_fisica:
   state_id: 9
   city_id: 64
   addresstype_id: 2
+  is_postaddress: t
+ 

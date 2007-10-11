@@ -94,4 +94,9 @@ class FinderTest < Test::Unit::TestCase
     assert_equal [["article", "Estudio de barrancos en Marte"], ["article", "Operacion del Radiotelescopio de Centelleo Interplanetario"]], @article_finder.as_hash
     assert_equal [["user_article", "1, Autor principal"], ["user_article", "2, Autor principal"]], @user_article_simple.as_hash
   end
+  
+  def test_complex_conditions
+    @f = Finder.new(Addresstype, :conditions => "addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2)")
+    assert_equal 'SELECT id, name  FROM addresstypes WHERE addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2) ORDER BY name ASC', @f.sql
+  end
 end

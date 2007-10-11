@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'select_helper'
 class SelectHelperTest < Test::Unit::TestCase
   include SelectHelper
-  fixtures :userstatuses, :users, :maritalstatuses, :countries, :states, :cities, :people, :languages, :languagelevels, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
+  fixtures :userstatuses, :users, :maritalstatuses, :countries, :states, :cities, :people, :addresstypes, :addresses, :languages, :languagelevels, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
     
   def test_should_selectize_id_from_object
     record = Person.find_by_firstname('Juana')
@@ -46,7 +46,12 @@ class SelectHelperTest < Test::Unit::TestCase
     assert_equal "<select id=\"edit_written_languagelevel_id\" name=\"edit[written_languagelevel_id]\" tabindex=\"3\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"3\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 3, :prefix => 'written')
     assert_equal "<select id=\"edit_written_languagelevel_id\" name=\"edit[written_languagelevel_id]\" tabindex=\"3\"><option value=\"3\" selected=\"selected\">Avanzado</option>\n<option value=\"1\">Basico</option>\n<option value=\"2\">Intermedio</option></select>", simple_select('edit', Languagelevel, 3, :prefix => 'written', :selected => 3)
     @edit = Citizen.new
-    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"392\">Japonesa</option>\n<option value=\"484\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :attribute => 'citizen')
-    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"392\">Japonesa</option>\n<option value=\"484\" selected=\"selected\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :attribute => 'citizen', :selected => 484)
+    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"392\">Japonesa</option>\n<option value=\"484\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :column => 'citizen')
+    assert_equal "<select id=\"edit_citizen_country_id\" name=\"edit[citizen_country_id]\" tabindex=\"2\"><option value=\"392\">Japonesa</option>\n<option value=\"484\" selected=\"selected\">Mexicana</option>\n<option value=\"666\">Norteamericano</option>\n<option value=\"804\">Ucraniana</option></select>", simple_select('edit', Country, 2, :prefix => 'citizen', :column => 'citizen', :selected => 484)
+  end
+  
+  def test_select_conditions
+    @edit = Address.new
+    assert_equal "<select id=\"edit_addresstype_id\" name=\"edit[addresstype_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Domicilio profesional</option>\n<option value=\"3\">Domicilio temporal</option></select>", select_conditions('edit', Addresstype,  1, :conditions => "addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2)")
   end
 end

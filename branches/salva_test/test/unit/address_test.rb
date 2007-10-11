@@ -4,10 +4,10 @@ require 'state'
 require 'city'
 require 'addresstype'
 require 'user'
-
+require 'address'
 
 class AddressTest < Test::Unit::TestCase
-  fixtures [:userstatuses,:users,:countries, :states, :cities, :addresstypes, :addresses]
+  fixtures :userstatuses,:users,:countries, :states, :cities, :addresstypes, :addresses
 
   def setup
     @addresses = %w(juana_en_fisica)
@@ -58,9 +58,13 @@ class AddressTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_address
-    @address = Address.new({:user_id => 2, :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez",
-      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true, :id => 1})
-    assert !@address.save
+    @address = Address.new({:user_id => 2, :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez", 
+      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true})
+    assert @address.save
+    @address_dup = Address.new({:user_id => 2, :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez",
+      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true})
+   
+   assert !@address_dup.save
   end
 
   # Boundary
@@ -115,7 +119,7 @@ def test_bad_values_for_state_id
     assert !@myaddress.valid?
   end
 
-def test_bad_values_for_country_id
+  def test_bad_values_for_country_id
     @myaddress.city_id = nil
     assert !@myaddress.valid?
     @myaddress.city_id= 1.6

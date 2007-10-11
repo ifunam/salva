@@ -38,8 +38,8 @@ class AddresstypeTest < Test::Unit::TestCase
     assert !@myaddresstype.valid?
 
     # Negative number ID
-    #@myaddresstype.id = -1
-    #assert !@myaddresstype.valid?
+    @myaddresstype.id = -1
+    assert !@myaddresstype.valid?
 
     # Float number ID
     @myaddresstype.id = 1.3
