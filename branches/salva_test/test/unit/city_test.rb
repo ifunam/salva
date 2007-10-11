@@ -58,6 +58,8 @@ class CityTest < Test::Unit::TestCase
     assert !@mycity.valid?
     @mycity.id = 'mi_id'
     assert !@mycity.valid?
+    @mycity.id = -1.0
+    assert !@mycity.valid?
   end
 
   def test_bad_values_for_name
@@ -71,6 +73,8 @@ class CityTest < Test::Unit::TestCase
     @mycity.state_id= 1.6
     assert !@mycity.valid?
     @mycity.state_id = 'mi_id'
+    assert !@mycity.valid?
+    @mycity.state_id= -1.0
     assert !@mycity.valid?
 
     # Negative number ID

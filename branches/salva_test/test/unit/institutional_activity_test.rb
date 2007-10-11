@@ -61,6 +61,8 @@ class InstitutionalActivityTest < Test::Unit::TestCase
     assert !@myinstitutional_activity.valid?
     @myinstitutional_activity.id = 'mi_id'
     assert !@myinstitutional_activity.valid?
+    @myinstitutional_activity.id = -1.0
+    assert !@myinstitutional_activity.valid?
   end
 
   def test_bad_values_for_user_id
@@ -68,6 +70,9 @@ class InstitutionalActivityTest < Test::Unit::TestCase
     assert !@myinstitutional_activity.valid?
 
     @myinstitutional_activity.user_id= 1.6
+    assert !@myinstitutional_activity.valid?
+
+    @myinstitutional_activity.user_id= -1.0
     assert !@myinstitutional_activity.valid?
 
     @myinstitutional_activity.user_id = 'mi_id'
@@ -80,7 +85,11 @@ class InstitutionalActivityTest < Test::Unit::TestCase
 
     @myinstitutional_activity.institution_id = 3.1416
     assert !@myinstitutional_activity.valid?
+
     @myinstitutional_activity.institution_id = 'mi_id'
+    assert !@myinstitutional_activity.valid?
+
+    @myinstitutional_activity.institution_id = -3.0
     assert !@myinstitutional_activity.valid?
   end
   #Cross-Checking test

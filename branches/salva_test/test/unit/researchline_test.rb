@@ -56,6 +56,9 @@ class ResearchlineTest < Test::Unit::TestCase
     # Float number for ID
     @myresearchline.id = 1.6
     assert !@myresearchline.valid?
+
+    @myresearchline.id = -1.0
+    assert !@myresearchline.valid?
   end
 
   def test_bad_values_for_name

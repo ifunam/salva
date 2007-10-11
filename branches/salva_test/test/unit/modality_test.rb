@@ -40,8 +40,8 @@ class RmodalityTest < Test::Unit::TestCase
     assert !@mymodality.valid?
 
     # Negative number ID
-    #@mymodality.id = -1
-    #assert !@mymodality.valid?
+    @mymodality.id = -1.0
+    assert !@mymodality.valid?
 
     # Float number ID
     @mymodality.id = 1.3

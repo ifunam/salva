@@ -49,6 +49,8 @@ class ProjectgenericworkTest < Test::Unit::TestCase
     assert !@myprojectgenericwork.valid?
     @myprojectgenericwork.id = 'mi_id'
     assert !@myprojectgenericwork.valid?
+    @myprojectgenericwork.id = -1.0
+    assert !@myprojectgenericwork.valid?
   end
 
   def test_bad_values_for_genericwork_id
@@ -60,6 +62,9 @@ class ProjectgenericworkTest < Test::Unit::TestCase
 
     @myprojectgenericwork.genericwork_id = 'mi_id'
     assert !@myprojectgenericwork.valid?
+
+    @myprojectgenericwork.genericwork_id= -1.0
+    assert !@myprojectgenericwork.valid?
   end
 
   def test_bad_values_for_project_id
@@ -68,7 +73,11 @@ class ProjectgenericworkTest < Test::Unit::TestCase
 
     @myprojectgenericwork.project_id = 3.1416
     assert !@myprojectgenericwork.valid?
+
     @myprojectgenericwork.project_id = 'mi_id'
+    assert !@myprojectgenericwork.valid?
+
+    @myprojectgenericwork.project_id = -3.0
     assert !@myprojectgenericwork.valid?
   end
 

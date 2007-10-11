@@ -1,64 +1,69 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'role'
+ require File.dirname(__FILE__) + '/../test_helper'
+ require 'role'
 
-class RoleTest < Test::Unit::TestCase
-  fixtures :roles
-  include UnitSimple
+ class RoleTest < Test::Unit::TestCase
+   fixtures :roles
 
-  def setup
-    @roles = %w(administrador salva)
-    @myrole = Role.new({:name => 'Jefe'})
-  end
+   def setup
+     @roles = %w(administrador salva)
+     @myrole = Role.new({:name => 'Otro', :has_group_right => true })
+   end
 
-  # Right - CRUD
-  def test_crud
-    crud_test(@roles, Role)
-  end
+   # Right - CRUD
+   def test_creating_roles_from_yaml
+     @roles.each { | role|
+       @role = Role.find(roles(role.to_sym).id)
+       assert_kind_of Role, @role
+       assert_equal roles(role.to_sym).id, @role.id
+       assert_equal roles(role.to_sym).name, @role.name
+     }
+   end
 
-  def test_validation
-    validate_test(@roles, Role)
-  end
+   def test_updating_roles_name
+     @roles.each { |role|
+       @role = Role.find(roles(role.to_sym).id)
+       assert_equal roles(role.to_sym).name, @role.name
+       @role.name = @role.name.chars.reverse
+       assert @role.save
+       assert_not_equal roles(role.to_sym).name, @role.name
+     }
+   end
 
-  def test_collision
-    collision_test(@roles, Role)
-  end
+   def test_deleting_roles
+     @roles.each { |role|
+       @role = Role.find(roles(role.to_sym).id)
+       @role.destroy
+       assert_raise (ActiveRecord::RecordNotFound) {
+         Role.find(roles(role.to_sym).id)
+       }
+     }
+   end
 
-  def test_create_with_empty_attributes
-    @myrole = Role.new
-    assert !@myrole.save
-  end
+   def test_creating_with_empty_attributes
+     @role = Role.new
+     assert !@role.save
+   end
 
-  def test_check_uniqueness
-    @myrole = Role.new({:name => 'Salva'})
-    assert !@myrole.save
-  end
+   #def test_creating_duplicated_role
+    # @role = Role.new({:name => 'Admnistrador', :has_group_right => true })
+     #assert !@role.save
+   #end
 
-  # Boundaries
-  def test_bad_values_for_id
-    @myrole = Role.new
-    @myrole.id = 'xx'
-    assert !@myrole.valid?
+   # Boundary
+   def test_bad_values_for_id
+     # Float number for ID
+     @myrole.id = 1.6
+     assert !@myrole.valid?
+     @myrole.id = 'mi_id'
+     assert !@myrole.valid?
+     @myrole.id = -1.0
+     assert !@myrole.valid?
+   end
 
-    # Negative number ID
-    #@myrole.id = -1
-    #assert !@myrole.valid?
-
-    # Float number ID
-    @myrole.id = 1.3
-    assert !@myrole.valid?
-  end
-
-  def test_bad_values_for_name
-    # Checking constraints for name
-    # Nil name
-    @myrole = Role.new
-    @myrole.name = nil
-    assert !@myrole.valid?
-  end
-
-  def test_bad_values_for_has_group_right
-    @myrole = Role.new
-    @myrole.has_group_right = "texto"
-    assert !@myrole.valid?
-  end
-end
+   def test_bad_values_for_name
+     # Float number for ID
+     @myrole.name = nil
+     assert !@myrole.valid?
+   end
+   
+ end
