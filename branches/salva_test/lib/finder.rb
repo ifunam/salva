@@ -19,17 +19,19 @@ class Finder
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
     opts[:first] = true if options[0] == :first
     @model = model
-    @sql = (opts.has_key? :attributes) ? build_sql(opts[:attributes], opts) : @sql = build_simple_sql(set_attributes, opts)
+    @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes, opts)
   end
   
-  def build_sql(attributes, options)
-    columns = [ @model, attributes ]
-    columns.freeze
+  def build_sql(options)
+    attributes = options[:attributes]
+    select = attributes.unshift(@model)
+
     sql =  <<-end_sql
-    SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}
-    FROM #{set_tables(*columns).join(', ')}
-    WHERE #{build_conditions(*columns).join(' AND ')}
+    SELECT #{tableize(@model)}.id AS id, #{build_select(*select)}
+    FROM #{set_tables([ [ select] ]).join(', ')}
+    WHERE #{build_conditions(*select).join(' AND ')}
     end_sql
+    
     sql += " AND #{options[:conditions]}" if options[:conditions]
     sql += " ORDER BY #{options[:order]}" if options[:order]
     limit = options[:first] ? 1 : options[:limit]
@@ -50,28 +52,36 @@ class Finder
   def tableize(column)
     Inflector.tableize(column).pluralize
   end
-
+  
+  def build_select_array(*columns)
+    columns.collect { |column|  
+    }.join(',')
+  end
+  
   def build_select(*columns)
     table = tableize(columns.shift)
-     columns.collect { |column|  (column.is_a?Array) ?  build_select(*column) : "#{table}.#{column} AS #{table}_#{column}" }.join(', ')
+    columns.collect { |c| (c.is_a?Array) ? build_select(*c) : "#{table}.#{c} AS #{table}_#{c}" }.compact.join(', ')
+  end
+  
+  def set_table_array(*columns)
+    if columns.first.is_a? Array
+        set_tables(*columns).flatten
+    else
+      [tableize(columns.shift)]  + set_tables(*columns) 
+    end
   end
 
   def set_tables(*columns)
-    tables = [ tableize(columns.shift) ]
-    columns.collect { |c| tables += set_tables(*c) if c.is_a?Array  }
-    tables
+    columns.collect { |c| set_table_array(*c).flatten if c.is_a? Array}.compact.flatten
   end
 
   def build_conditions(*columns)
     table = tableize(columns.shift)
-    conditions = []
-    columns.collect { |column|
-      if column.is_a?Array
-        conditions << "#{table}.#{Inflector.classify(column.first).foreign_key} = #{tableize(column.first)}.id "
-        conditions += build_conditions(*column)
+    columns.collect { |c| 
+      if c.is_a? Array
+        ["#{table}.#{Inflector.classify(c.first).foreign_key} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten
       end
-    }
-    conditions
+    }.compact.flatten
   end
 
   def set_attributes
@@ -98,7 +108,7 @@ class Finder
 
   def as_pair
     find_collection.collect { |record|
-      [record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id]
+     [ record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
     }
   end
 
@@ -109,7 +119,7 @@ class Finder
   end
 
   def set_string(record, column)
-    record.send(column) == (true || false) ? label_for_boolean(column.sub(/^([a-z0-9]_)/,''), record.send(column)) : record.send(column)
+    ( ['t', 'f', true, false].include? record.send(column) ) ? label_for_boolean(column.sub(/^([a-z0-9]_)/,''), record.send(column)) : record.send(column)
   end
 end
 

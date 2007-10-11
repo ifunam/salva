@@ -4,7 +4,7 @@ class FinderTest < Test::Unit::TestCase
   fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals, :articlestatuses, :articles, :user_articles
 
   def setup
-    @user_article_finder  = Finder.new(UserArticle, :attributes => ['article', 'title', ['journal', 'name']])
+    @user_article_finder  = Finder.new(UserArticle, :all, :attributes => ['ismainauthor', ['article', 'title', ['journal', 'name']] ])
     @country_finder  = Finder.new(Country)
     @article_finder  = Finder.new(Article)
     @user_article_simple  = Finder.new(UserArticle)
@@ -12,8 +12,8 @@ class FinderTest < Test::Unit::TestCase
   end
   
   def test_initialize
-    assert_instance_of Finder, Finder.new(UserArticle, :attributes => ['article', 'title', ['journal', 'name']])
-    assert_instance_of Finder, Finder.new(UserArticle, :all, :attributes => ['article', 'title', ['journal', 'name']])
+    assert_instance_of Finder, Finder.new(UserArticle, :attributes => [['article', 'title', ['journal', 'name']]])
+    assert_instance_of Finder, Finder.new(UserArticle, :all, :attributes => [['article', 'title', ['journal', 'name']]])
     assert_instance_of Finder, Finder.new(Country)
     assert_instance_of Finder, Finder.new(Article)
     assert_instance_of Finder, Finder.new(UserArticle)
@@ -25,42 +25,53 @@ class FinderTest < Test::Unit::TestCase
     assert_equal 'articles',  @user_article_finder.tableize('article')
     assert_equal 'journals',  @user_article_finder.tableize('journal')
   end
-
+  
   def test_build_select
-    args = [UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor', ['city', 'name']]
-    assert_equal 'articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, user_articles.ismainauthor AS user_articles_ismainauthor, cities.name AS cities_name', @user_article_finder.build_select(*args)
+    args = ['article', 'title', 'year', 'month']
+    assert_equal "articles.title AS articles_title, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
+    args = ['article', 'title', ['journal', 'name', ['country', 'name']], 'year', 'month']
+    assert_equal "articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
     args = [UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor']
-    assert_equal 'articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, user_articles.ismainauthor AS user_articles_ismainauthor', @user_article_finder.build_select(*args)
+    assert_equal "articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, user_articles.ismainauthor AS user_articles_ismainauthor", @user_article_finder.build_select(*args)
   end
-
+  
   def test_set_tables
-    args = [UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor']
-    assert_equal 'user_articles, articles, journals, countries', @user_article_finder.set_tables(*args).join(', ')
-    args = [UserArticle, ['article', 'title', ['journal', 'name']], 'ismainauthor']
-    assert_equal 'user_articles, articles, journals', @user_article_finder.set_tables(*args).join(', ')
-    args = [UserArticle, 'ismainauthor']
-    assert_equal 'user_articles', @user_article_finder.set_tables(*args).join(', ')
+    args = [[UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor' ]]
+    assert_equal ["user_articles", "articles", "journals", "countries"], @user_article_finder.set_tables(*args)
+    args = [[UserArticle, [['article', 'title', ['journal', 'name']], 'ismainauthor']]]
+    assert_equal ['user_articles', 'articles', 'journals'], @user_article_finder.set_tables(*args)
+    args = [[UserArticle, 'ismainauthor']]
+    assert_equal ['user_articles'], @user_article_finder.set_tables(*args)
   end
 
+  def test_set_table_array
+    args = [['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor' ] 
+    assert_equal ["articles", "journals", "countries"], @user_article_finder.set_table_array(*args)
+    args = [['article', 'title', ['journal', 'name']], 'ismainauthor']
+    assert_equal ["articles", "journals"], @user_article_finder.set_tables(*args)
+    args = ['ismainauthor']
+    assert_equal [], @user_article_finder.set_tables(*args)
+  end
+  
   def  test_build_conditions
-    args =[UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor']
+    args = [UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor']
     assert_equal 'user_articles.article_id = articles.id  AND articles.journal_id = journals.id  AND journals.country_id = countries.id ', @user_article_finder.build_conditions(*args).join(' AND ')
   end
 
   def test_sql
-    assert_equal "    SELECT user_articles.id AS id, articles.title AS articles_title, journals.name AS journals_name\n    FROM user_articles, articles, journals\n    WHERE user_articles.article_id = articles.id  AND articles.journal_id = journals.id \n", @user_article_finder.sql
+    assert_equal "    SELECT user_articles.id AS id, user_articles.ismainauthor AS user_articles_ismainauthor, articles.title AS articles_title, journals.name AS journals_name\n    FROM user_articles, articles, journals\n    WHERE user_articles.article_id = articles.id  AND articles.journal_id = journals.id \n", @user_article_finder.sql
   end
 
   def test_as_text
-    assert_equal ['Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS', 'Estudio de barrancos en Marte, QUO'],  @user_article_finder.as_text
+    assert_equal ["Autor principal, Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS", "Autor principal, Estudio de barrancos en Marte, QUO"],  @user_article_finder.as_text
   end
 
   def test_as_pair
-    assert_equal [['Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS', 1],  ['Estudio de barrancos en Marte, QUO', 2]],  @user_article_finder.as_pair
+    assert_equal [["Autor principal, Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS", 1], ["Autor principal, Estudio de barrancos en Marte, QUO", 2]],  @user_article_finder.as_pair
   end
 
   def test_as_hash
-    assert_equal [ ['user_article', 'Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS'], ['user_article','Estudio de barrancos en Marte, QUO']],  @user_article_finder.as_hash
+    assert_equal [["user_article", "Autor principal, Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS"], ["user_article", "Autor principal, Estudio de barrancos en Marte, QUO"]],  @user_article_finder.as_hash
   end
 
   def test_set_attributes

@@ -34,7 +34,7 @@ class SelectHelperTest < Test::Unit::TestCase
     assert_equal [['México', 484]], finder_id(Country, 484)
     assert_equal [['Sinaloa', 25]], finder_id(State, 25)
     assert_equal [['Mexicana', 484]], finder_id(Country, 484, 'citizen')
-    assert_equal [["Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS",1]], finder_id(UserArticle, 1, ['article', 'title', ['journal', 'name']])
+    assert_equal [["Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS",1]], finder_id(UserArticle, 1, [['article', 'title', ['journal', 'name']]])
   end
 
   def test_simple_select
