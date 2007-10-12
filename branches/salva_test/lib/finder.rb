@@ -33,10 +33,12 @@ class Finder
 
     sql +=  ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
     sql += '    WHERE '  if build_conditions(*select).size > 0 or options[:conditions]
+
     if build_conditions(*select).size > 0
       sql +=  build_conditions(*select).join(' AND ')
       sql += " AND " if options[:conditions]
     end
+
     sql += options[:conditions]   if options[:conditions]
     sql += " ORDER BY #{options[:order]} \n" if options[:order]
     limit = options[:first] ? 1 : options[:limit]
