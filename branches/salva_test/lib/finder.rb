@@ -1,7 +1,7 @@
 # Finder.new(UserArticle, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
 # OR
 # Finder.new(UserArticle, :all, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
-# 
+#
 # Finder.new(UserArticle, :first, :attributes => [['article', 'title', 'authors', 'volume', 'pages', 'year',], 'ismainauthor'], :conditions => 'user_articles.user_id = 1')
 #
 # Finder.new(Article) == Finder.new(Article, :all)
@@ -21,7 +21,7 @@ class Finder
     @model = model
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes, opts)
   end
-  
+
   def build_sql(options)
     attributes = options[:attributes]
     select = attributes.unshift(@model)
@@ -29,11 +29,16 @@ class Finder
     sql =  <<-end_sql
     SELECT #{tableize(@model)}.id AS id, #{build_select(*select)}
     FROM #{set_tables([ [ select] ]).join(', ')}
-    WHERE #{build_conditions(*select).join(' AND ')}
     end_sql
-    
-    sql += " AND #{options[:conditions]}" if options[:conditions]
-    sql += " ORDER BY #{options[:order]}" if options[:order]
+
+    sql +=  ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
+    sql += '    WHERE '  if build_conditions(*select).size > 0 or options[:conditions]
+    if build_conditions(*select).size > 0
+      sql +=  build_conditions(*select).join(' AND ')
+      sql += " AND " if options[:conditions]
+    end
+    sql += options[:conditions]   if options[:conditions]
+    sql += " ORDER BY #{options[:order]} \n" if options[:order]
     limit = options[:first] ? 1 : options[:limit]
     sql += " LIMIT #{limit}" if limit.to_i > 0
     sql
@@ -52,36 +57,32 @@ class Finder
   def tableize(column)
     Inflector.tableize(column).pluralize
   end
-  
+
   def build_select_array(*columns)
-    columns.collect { |column|  
+    columns.collect { |column|
     }.join(',')
   end
-  
+
   def build_select(*columns)
     table = tableize(columns.shift)
     columns.collect { |c| (c.is_a?Array) ? build_select(*c) : "#{table}.#{c} AS #{table}_#{c}" }.compact.join(', ')
   end
-  
+
   def set_table_array(*columns)
     if columns.first.is_a? Array
         set_tables(*columns).flatten
     else
-      [tableize(columns.shift)]  + set_tables(*columns) 
+      [tableize(columns.shift)]  + set_tables(*columns)
     end
   end
 
   def set_tables(*columns)
-    columns.collect { |c| set_table_array(*c).flatten if c.is_a? Array}.compact.flatten
+    columns.collect { |c| set_table_array(*c).flatten if c.is_a? Array }.compact.flatten
   end
 
   def build_conditions(*columns)
     table = tableize(columns.shift)
-    columns.collect { |c| 
-      if c.is_a? Array
-        ["#{table}.#{Inflector.classify(c.first).foreign_key} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten
-      end
-    }.compact.flatten
+    columns.collect { |c|   ["#{table}.#{Inflector.classify(c.first).foreign_key} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten if c.is_a? Array }.compact.flatten
   end
 
   def set_attributes
