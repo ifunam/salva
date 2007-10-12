@@ -25,35 +25,51 @@ class Finder
   def build_sql(options)
     attributes = options[:attributes]
     columns = attributes.unshift(@model)
-
-    sql =  <<-end_sql
-    SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}
-    FROM #{set_tables([ [ columns] ]).join(', ')}
-    end_sql
-
-    sql +=  ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
-    sql += '    WHERE '  if build_conditions(*columns).size > 0 or options[:conditions]
-
-    if build_conditions(*columns).size > 0
-      sql +=  build_conditions(*columns).join(' AND ')
-      sql += " AND " if options[:conditions]
-    end
-
-    sql += options[:conditions]   if options[:conditions]
-    sql += " ORDER BY #{options[:order]} \n" if options[:order]
-    limit = options[:first] ? 1 : options[:limit]
-    sql += " LIMIT #{limit}" if limit.to_i > 0
-    sql.gsub(/\n/, '').gsub(/(\s)+/, " ").strip
+    sql = "SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}  FROM #{set_tables([ [ columns] ]).join(', ')}"
+    add_tables!(sql, options)
+    add_conditions!(sql, options, columns)
+    add_limit!(sql, options)
+    clean_sql!(sql)
   end
 
   def build_simple_sql(attributes, options)
     attributes = options[:column] if options.has_key? :column
     sql =  "SELECT id, #{attributes}  FROM #{tableize(@model)}"
-    sql += " WHERE #{options[:conditions]}" if options[:conditions]
-    sql += (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
+    add_conditions!(sql, options)
+    add_order!(sql, options, attributes)
+    add_limit!(sql, options)
+    clean_sql!(sql)
+  end
+
+  def add_tables!(sql, options)
+        sql << ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
+  end
+
+  def add_conditions!(sql, options, columns=[])
+    sql << ' WHERE '  if build_conditions(*columns).size > 0 or options[:conditions]
+    if build_conditions(*columns).size > 0
+      sql << build_conditions(*columns).join(' AND ')
+      sql << " AND " if options[:conditions]
+    end
+    sql << options[:conditions]   if options[:conditions]
+  end
+
+  def add_order!(sql, options, attributes=nil)
+    if !attributes.nil?
+      order = (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
+      sql << order
+    else
+      sql << " ORDER BY #{options[:order]} " if options[:order]
+    end
+  end
+
+  def add_limit!(sql, options)
     limit = options[:first] ? 1 : options[:limit]
-    sql += " LIMIT #{limit}" if limit.to_i > 0
-    sql
+    sql << " LIMIT #{limit}" if limit.to_i > 0
+  end
+
+  def clean_sql!(sql)
+    sql.gsub(/\n/, '').gsub(/(\s)+/, " ").strip
   end
 
   def tableize(column)

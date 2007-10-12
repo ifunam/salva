@@ -87,10 +87,10 @@ class FinderTest < Test::Unit::TestCase
   end
 
   def test_simple_sql
-    assert_equal "SELECT id, name  FROM countries ORDER BY name ASC",  @country_finder.sql
-    assert_equal "SELECT id, title  FROM articles ORDER BY title ASC", @article_finder.sql
-    assert_equal "SELECT id, article_id, ismainauthor, other  FROM user_articles ORDER BY article_id, ismainauthor, other ASC", @user_article_simple.sql
-    assert_equal "SELECT id, name  FROM countries ORDER BY name ASC LIMIT 1",  @country_finder_first.sql
+    assert_equal "SELECT id, name FROM countries ORDER BY name ASC",  @country_finder.sql
+    assert_equal "SELECT id, title FROM articles ORDER BY title ASC", @article_finder.sql
+    assert_equal "SELECT id, article_id, ismainauthor, other FROM user_articles ORDER BY article_id, ismainauthor, other ASC", @user_article_simple.sql
+    assert_equal "SELECT id, name FROM countries ORDER BY name ASC LIMIT 1",  @country_finder_first.sql
   end
 
   def test_as_text_simple_sql
@@ -113,7 +113,7 @@ class FinderTest < Test::Unit::TestCase
 
   def test_sql_with_complex_conditions
     @f = Finder.new(Addresstype, :conditions => "addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2)")
-    assert_equal "SELECT id, name  FROM addresstypes WHERE addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2) ORDER BY name ASC",  @f.sql
+    assert_equal "SELECT id, name FROM addresstypes WHERE addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2) ORDER BY name ASC", @f.sql
     @f = Finder.new(Proceeding,  :attributes => %w(title year), :conditions => "isrefereed = 't'" )
     assert_equal "SELECT proceedings.id AS id, proceedings.title AS proceedings_title, proceedings.year AS proceedings_year FROM proceedings WHERE isrefereed = 't'", @f.sql
     @f = Finder.new(Roleinthesis, :attributes => %w(name),  :conditions => "name = 'Director' OR name = 'Asesor' OR name = 'Lector'")
