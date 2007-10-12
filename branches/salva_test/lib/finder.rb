@@ -43,7 +43,7 @@ class Finder
     sql += " ORDER BY #{options[:order]} \n" if options[:order]
     limit = options[:first] ? 1 : options[:limit]
     sql += " LIMIT #{limit}" if limit.to_i > 0
-    sql
+    sql.gsub(/\n/, '').gsub(/(\s)+/, " ").strip
   end
 
   def build_simple_sql(attributes, options)
