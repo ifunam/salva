@@ -44,8 +44,8 @@ class AcadvisittypeTest < Test::Unit::TestCase
     @myacadvisittype.id = 'xx'
     assert !@myacadvisittype.valid?
 
-    #@myacadvisittype.id = -1
-    #assert !@myacadvisittype.valid?
+    @myacadvisittype.id = -3.0
+    assert !@myacadvisittype.valid?
 
     @myacadvisittype.id = 3.1416
     assert !@myacadvisittype.valid?

@@ -48,8 +48,8 @@ class BookchaptertypeTest < Test::Unit::TestCase
     @mybookchaptertype.id = 3.1416
     assert !@mybookchaptertype.valid?
 
-    #     @mybookchaptertype.id = -7
-    #     assert !@mybookchaptertype.valid?
+    @mybookchaptertype.id = -3.0
+    assert !@mybookchaptertype.valid?
   end
 
 end
