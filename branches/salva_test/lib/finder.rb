@@ -8,7 +8,6 @@
 # Finder.new(Country) == Finder.new(Country, :all)
 # Finder.new(Country, :first)
 # Finder.new(Journal)
-
 require 'labels'
 class Finder
   include Labels
@@ -25,7 +24,7 @@ class Finder
   def build_sql(options)
     attributes = options[:attributes]
     columns = attributes.unshift(@model)
-    sql = "SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}  FROM #{set_tables([ [ columns] ]).join(', ')}"
+    sql = "SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).join(', ')}"
     add_tables!(sql, options)
     add_conditions!(sql, options, columns)
     add_limit!(sql, options)
@@ -34,7 +33,7 @@ class Finder
 
   def build_simple_sql(attributes, options)
     attributes = options[:column] if options.has_key? :column
-    sql =  "SELECT id, #{attributes}  FROM #{tableize(@model)}"
+    sql =  "SELECT id, #{attributes} FROM #{tableize(@model)}"
     add_conditions!(sql, options)
     add_order!(sql, options, attributes)
     add_limit!(sql, options)
@@ -83,7 +82,7 @@ class Finder
 
   def set_table_array(*columns)
     if columns.first.is_a? Array
-        set_tables(*columns).flatten
+      set_tables(*columns).flatten
     else
       [tableize(columns.shift)]  + set_tables(*columns)
     end
@@ -111,7 +110,7 @@ class Finder
   end
 
   def find_collection
-     @model.find_by_sql(@sql)
+    @model.find_by_sql(@sql)
   end
 
   def as_text
@@ -122,7 +121,7 @@ class Finder
 
   def as_pair
     find_collection.collect { |record|
-     [ record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
+      [ record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
     }
   end
 
