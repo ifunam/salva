@@ -24,18 +24,18 @@ class Finder
 
   def build_sql(options)
     attributes = options[:attributes]
-    select = attributes.unshift(@model)
+    columns = attributes.unshift(@model)
 
     sql =  <<-end_sql
-    SELECT #{tableize(@model)}.id AS id, #{build_select(*select)}
-    FROM #{set_tables([ [ select] ]).join(', ')}
+    SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)}
+    FROM #{set_tables([ [ columns] ]).join(', ')}
     end_sql
 
     sql +=  ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
-    sql += '    WHERE '  if build_conditions(*select).size > 0 or options[:conditions]
+    sql += '    WHERE '  if build_conditions(*columns).size > 0 or options[:conditions]
 
-    if build_conditions(*select).size > 0
-      sql +=  build_conditions(*select).join(' AND ')
+    if build_conditions(*columns).size > 0
+      sql +=  build_conditions(*columns).join(' AND ')
       sql += " AND " if options[:conditions]
     end
 
