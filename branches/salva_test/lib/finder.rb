@@ -42,7 +42,7 @@ class Finder
   end
 
   def add_tables!(sql, options)
-        sql << ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
+    sql << ', ' + options[:include].map{ |t| Inflector.tableize(t) }.join(', ')  if options[:include]
   end
 
   def add_conditions!(sql, options, columns=[])
@@ -74,11 +74,6 @@ class Finder
 
   def tableize(column)
     Inflector.tableize(column).pluralize
-  end
-
-  def build_select_array(*columns)
-    columns.collect { |column|
-    }.join(',')
   end
 
   def build_select(*columns)
