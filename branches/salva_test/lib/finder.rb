@@ -87,12 +87,7 @@ class Finder
   end
 
   def tablename(t)
-    (table_exists? t) ? t : "#{t.sub(/^\w+\_/, '')} AS #{t}"
-  end
-
-  def table_exists?(t)
-    # Replace this chunk with code like ModelClass.exists?
-    @model.find_by_sql("SELECT tablename AS id FROM pg_tables WHERE schemaname = 'public' AND tablename = '#{t}'").size == 1 ? true : false
+    (ActiveRecord::Base.connection.tables.include?(t)) ? t : "#{t.sub(/^\w+\_/, '')} AS #{t}"
   end
 
   def build_conditions(*columns)
