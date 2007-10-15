@@ -5,6 +5,7 @@ class Genericworktype < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:genericworkgroup_id]
 
   belongs_to :genericworkgroup
-
   validates_associated :genericworkgroup
+
+  has_many :genericworks
 end
