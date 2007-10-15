@@ -23,6 +23,11 @@ class LanguagelevelTest < Test::Unit::TestCase
     collision_test(@languagelevels, Languagelevel)
   end
 
+  def test_uniqueness
+    @languagelevel = Languagelevel.new({:name => 'Avanzado'})
+    assert !@languagelevel.save
+  end
+
   def test_creating_languagelevel_with_empty_attributes
     @languagelevel = Languagelevel.new
     assert !@languagelevel.save
@@ -35,6 +40,8 @@ class LanguagelevelTest < Test::Unit::TestCase
 
     #Float number ID
     @mylanguagelevel.id= 1.8
+    assert !@mylanguagelevel.valid?
+    @mylanguagelevel.id= 'xx'
     assert !@mylanguagelevel.valid?
   end
 

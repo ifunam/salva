@@ -52,8 +52,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.id = 'mi_id'
     assert !@myjobposition.valid?
 
-    @myjobposition.id = -1.0
-    assert !@myjobposition.valid?
+    #@myjobposition.id = -1.0
+    #assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_user_id
@@ -66,8 +66,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.user_id = 'mi_id'
     assert !@myjobposition.valid?
 
-    @myjobposition.user_id = -1.0
-    assert !@myjobposition.valid?
+    #@myjobposition.user_id = -1.0
+    #assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_institution_id
@@ -80,8 +80,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.institution_id = 'mi_id'
     assert !@myjobposition.valid?
 
-    @myjobposition.institution_id = -1.0
-    assert !@myjobposition.valid?
+    #@myjobposition.institution_id = -1.0
+    #assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_jobpositioncategory_id
@@ -91,10 +91,20 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.jobpositioncategory_id  = 'mi_id'
     assert !@myjobposition.valid?
 
-    @myjobposition.jobpositioncategory_id  = -1.0
-    assert !@myjobposition.valid?
+    #@myjobposition.jobpositioncategory_id  = -1.0
+    #assert !@myjobposition.valid?
   end
 
+  def test_bad_values_for_contracttype_id
+    @myjobposition.contracttype_id  = 3.1416
+    assert !@myjobposition.valid?
+
+    @myjobposition.contracttype_id  = 'mi_id'
+    assert !@myjobposition.valid?
+
+    #@myjobposition.contracttype_id  = -1.0
+    #assert !@myjobposition.valid?
+  end
 
   #Cross-Checking test
 
