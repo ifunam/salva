@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'finder'
 class FinderTest < Test::Unit::TestCase
   fixtures  :userstatuses, :users, :countries, :mediatypes, :publishers, :journals,  :articlestatuses, :articles, :user_articles,
-  :conferencetypes, :conferencescopes, :conferences, :proceedings
+  :conferencetypes, :conferencescopes, :conferences, :proceedings, :migratorystatuses, :citizenmodalities, :citizens, :idtypes, :identifications
 
   def setup
     @user_article_finder  = Finder.new(UserArticle, :all, :attributes => ['ismainauthor', ['article', 'title', ['journal', 'name']] ])
@@ -10,7 +10,7 @@ class FinderTest < Test::Unit::TestCase
     @article_finder  = Finder.new(Article)
     @user_article_simple  = Finder.new(UserArticle)
     @country_finder_first = Finder.new(Country, :first)
-  end
+   end
 
   def test_initialize
     assert_instance_of Finder, Finder.new(UserArticle, :attributes => [['article', 'title', ['journal', 'name']]])
@@ -43,6 +43,7 @@ class FinderTest < Test::Unit::TestCase
     assert_equal ['user_articles', 'articles', 'journals'], @user_article_finder.set_tables(*args)
     args = [[UserArticle, 'ismainauthor']]
     assert_equal ['user_articles'], @user_article_finder.set_tables(*args)
+    args=  [[Citizen, ['idtype', 'citizen_country', 'citizenmodality', 'migratorystatus']]]
   end
 
   def test_set_table_array
@@ -62,7 +63,7 @@ class FinderTest < Test::Unit::TestCase
   def test_sql
     assert_equal "SELECT user_articles.id AS id, user_articles.ismainauthor AS user_articles_ismainauthor, articles.title AS articles_title, journals.name AS journals_name FROM user_articles, articles, journals WHERE user_articles.article_id = articles.id AND articles.journal_id = journals.id", @user_article_finder.sql
     @f = Finder.new(Roleingroup, :attributes =>[ 'group', 'role' ] )
-    assert_equal  "SELECT roleingroups.id AS id, roleingroups.group AS roleingroups_group, roleingroups.role AS roleingroups_role FROM roleingroups", @f.sql
+    assert_equal "SELECT roleingroups.id AS id, groups.name AS groups_name, roles.name AS roles_name FROM roleingroups, groups, roles WHERE roleingroups.group_id = groups.id AND roleingroups.role_id = roles.id", @f.sql
     @f = Finder.new(Seminary, :attributes =>%w(title year isseminary))
     assert_equal "SELECT seminaries.id AS id, seminaries.title AS seminaries_title, seminaries.year AS seminaries_year, seminaries.isseminary AS seminaries_isseminary FROM seminaries", @f.sql
   end
@@ -80,10 +81,11 @@ class FinderTest < Test::Unit::TestCase
   end
 
   def test_set_attributes
-    assert_equal 'name', @country_finder.set_attributes
-    assert_equal 'title', @article_finder.set_attributes
-    assert_equal 'article_id, ismainauthor, other',  @user_article_simple.set_attributes
-    assert_equal 'name', @country_finder_first.set_attributes
+    assert_equal ['name'], @country_finder.set_attributes(Country)
+    assert_equal ['title'], @article_finder.set_attributes(Article)
+    assert_equal ["article_id", "ismainauthor", "other"],  @user_article_simple.set_attributes(UserArticle)
+    assert_equal [["article", "title"], "ismainauthor", "other"],  @user_article_simple.set_attributes(UserArticle, true)
+    assert_equal ['name'], @country_finder_first.set_attributes(Country)
   end
 
   def test_simple_sql
@@ -114,11 +116,27 @@ class FinderTest < Test::Unit::TestCase
   def test_sql_with_complex_conditions
     @f = Finder.new(Addresstype, :conditions => "addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2)")
     assert_equal "SELECT id, name FROM addresstypes WHERE addresstypes.id NOT IN (SELECT addresstypes.id FROM addresstypes, addresses WHERE addresses.addresstype_id = addresstypes.id AND addresses.user_id = 2) ORDER BY name ASC", @f.sql
+
     @f = Finder.new(Proceeding,  :attributes => %w(title year), :conditions => "isrefereed = 't'" )
     assert_equal "SELECT proceedings.id AS id, proceedings.title AS proceedings_title, proceedings.year AS proceedings_year FROM proceedings WHERE isrefereed = 't'", @f.sql
+
     @f = Finder.new(Roleinthesis, :attributes => %w(name),  :conditions => "name = 'Director' OR name = 'Asesor' OR name = 'Lector'")
     assert_equal "SELECT roleintheses.id AS id, roleintheses.name AS roleintheses_name FROM roleintheses WHERE name = 'Director' OR name = 'Asesor' OR name = 'Lector'", @f.sql
+
+    @f = Finder.new(Jobposition,  :attributes => ['jobpositioncategory'], :conditions => "institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", :include => [:institutions])
+    assert_equal "SELECT jobpositions.id AS id, jobpositiontypes.name AS jobpositiontypes_name, roleinjobpositions.name AS roleinjobpositions_name, jobpositionlevels.name AS jobpositionlevels_name, jobpositioncategories.administrative_key AS jobpositioncategories_administrative_key FROM jobpositions, jobpositioncategories, jobpositiontypes, roleinjobpositions, jobpositionlevels, institutions WHERE jobpositions.jobpositioncategory_id = jobpositioncategories.id AND jobpositioncategories.jobpositiontype_id = jobpositiontypes.id AND jobpositioncategories.roleinjobposition_id = roleinjobpositions.id AND jobpositioncategories.jobpositionlevel_id = jobpositionlevels.id AND institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", @f.sql
+
     @f = Finder.new(Jobposition,  :attributes => [['jobpositioncategory', ['jobpositiontype', 'name'], ['roleinjobposition', 'name'], ['jobpositionlevel', 'name']] ], :conditions => "institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", :include => [:institutions])
     assert_equal "SELECT jobpositions.id AS id, jobpositiontypes.name AS jobpositiontypes_name, roleinjobpositions.name AS roleinjobpositions_name, jobpositionlevels.name AS jobpositionlevels_name FROM jobpositions, jobpositioncategories, jobpositiontypes, roleinjobpositions, jobpositionlevels, institutions WHERE jobpositions.jobpositioncategory_id = jobpositioncategories.id AND jobpositioncategories.jobpositiontype_id = jobpositiontypes.id AND jobpositioncategories.roleinjobposition_id = roleinjobpositions.id AND jobpositioncategories.jobpositionlevel_id = jobpositionlevels.id AND institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", @f.sql
+
+    @f = Finder.new(Jobposition,  :attributes => [['jobpositioncategory', 'jobpositiontype',  'roleinjobposition',  'jobpositionlevel'] ], :conditions => "institutions.instit
+ution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", :include => [:institutions])
+    assert_equal "SELECT jobpositions.id AS id, jobpositiontypes.name AS jobpositiontypes_name, roleinjobpositions.name AS roleinjobpositions_name, jobpositionlevels.name AS jobpositionlevels_name FROM jobpositions, jobpositioncategories, jobpositiontypes, roleinjobpositions, jobpositionlevels, institutions WHERE jobpositions.jobpositioncategory_id = jobpositioncategories.id AND jobpositioncategories.jobpositiontype_id = jobpositiontypes.id AND jobpositioncategories.roleinjobposition_id = roleinjobpositions.id AND jobpositioncategories.jobpositionlevel_id = jobpositionlevels.id AND institutions.institution_id = 1 AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = 2", @f.sql
+
+     @f = Finder.new(Institution, :attributes => ['name', ['institution', 'abbrev']], :conditions => "institutions.institution_id = 1")
+     assert_equal "SELECT institutions.id AS id, institutions.name AS institutions_name, institutions.abbrev AS institutions_abbrev FROM institutions WHERE institutions.institution_id = 1", @f.sql
+
+    @f = Finder.new( Identification, :attributes =>['idtype',  ['citizen_country', 'citizen']],  :conditions => "identifications.id IN (SELECT identifications.id FROM identifications, citizens WHERE citizens.citizen_country_id = identifications.citizen_country_id AND citizens.user_id = 2 AND identifications.id NOT IN (SELECT identifications.id FROM identifications, people_identifications WHERE people_identifications.user_id = 2 AND people_identifications.identification_id = identifications.id))" )
+    assert_equal "SELECT identifications.id AS id, idtypes.name AS idtypes_name, citizen_countries.citizen AS citizen_countries_citizen FROM identifications, idtypes, countries AS citizen_countries WHERE identifications.idtype_id = idtypes.id AND identifications.citizen_country_id = citizen_countries.id AND identifications.id IN (SELECT identifications.id FROM identifications, citizens WHERE citizens.citizen_country_id = identifications.citizen_country_id AND citizens.user_id = 2 AND identifications.id NOT IN (SELECT identifications.id FROM identifications, people_identifications WHERE people_identifications.user_id = 2 AND people_identifications.identification_id = identifications.id))", @f.sql
   end
 end
