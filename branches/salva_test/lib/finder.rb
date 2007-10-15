@@ -91,7 +91,8 @@ class Finder
   end
 
   def table_exists?(t)
-    @model. find_by_sql("SELECT tablename AS id FROM pg_tables WHERE schemaname = 'public' AND tablename = '#{t}'").size == 1 ? true : false
+    # Replace this code for something: ModelClass.exists?
+    @model.find_by_sql("SELECT tablename AS id FROM pg_tables WHERE schemaname = 'public' AND tablename = '#{t}'").size == 1 ? true : false
   end
 
   def build_conditions(*columns)
