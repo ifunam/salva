@@ -65,7 +65,7 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.id = -1
+     @myconference.id = -1.0
      assert !@myconference.valid?
    end
 
@@ -91,7 +91,7 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.conferencetype_id = -1
+     @myconference.conferencetype_id = -1.0
      assert !@myconference.valid?
    end
 
@@ -107,7 +107,7 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.conferencescope_id = -1
+     @myconference.conferencescope_id = -1.0
      assert !@myconference.valid?
    end
 
@@ -122,7 +122,7 @@ class ConferenceTest < Test::Unit::TestCase
      assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.country_id = -1
+     @myconference.country_id = -1.0
      assert !@myconference.valid?
    end
 

@@ -33,15 +33,7 @@ class SeminaryTest < Test::Unit::TestCase
     }
   end
 
-  def test_updating_isseminary
-    @seminaries.each { |seminary|
-      @seminary = Seminary.find(seminaries(seminary.to_sym).id)
-      assert_equal seminaries(seminary.to_sym).isseminary, @seminary.isseminary
-      @seminary.isseminary = "f"
-      assert @seminary.save
-      assert_not_equal seminaries(seminary.to_sym).isseminary, @seminary.isseminary
-    }
-  end
+
 
   def test_updating_year
     @seminaries.each { |seminary|
@@ -119,9 +111,9 @@ class SeminaryTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_month
-    @myseminary.month = nil
+    @myseminary.month = -1.0
     assert !@myseminary.valid?
-    @myseminary.month = 25
+    @myseminary.month = 25.32
     assert !@myseminary.valid?
     @myseminary.month = 'my_month'
     assert !@myseminary.valid?
