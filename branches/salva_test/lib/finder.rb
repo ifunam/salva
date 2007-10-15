@@ -91,7 +91,7 @@ class Finder
   end
 
   def table_exists?(t)
-    # Replace this code for something: ModelClass.exists?
+    # Replace this chunk with code like ModelClass.exists?
     @model.find_by_sql("SELECT tablename AS id FROM pg_tables WHERE schemaname = 'public' AND tablename = '#{t}'").size == 1 ? true : false
   end
 
