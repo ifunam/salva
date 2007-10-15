@@ -68,8 +68,6 @@ class SchoolarshipTest < Test::Unit::TestCase
 
   # Checking constraints for institution_id
   def test_bad_values_for_institution_id
-    @myschoolarship.institution_id = nil
-    assert !@myschoolarship.valid?
     @myschoolarship.institution_id = 3.1416
     assert !@myschoolarship.valid?
     @myschoolarship.institution_id = 'mi_id_texto'
