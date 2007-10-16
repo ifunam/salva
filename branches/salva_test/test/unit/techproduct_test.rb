@@ -9,7 +9,7 @@ class TechproductTest < Test::Unit::TestCase
 
   def setup
     @techproducts = %w(van_gogh_had_turbulence_down_to_a_fine_art van_gogh_painted_perfect_turbulence)
-    @mytechproduct = Techproduct.new({:title => 'Contact Centers', :techproducttype_id => 3, :authors => 'John Lecon, Peter Smith', :techproductstatus_id => 3})
+    @mytechproduct = Techproduct.new({:title => 'Contact Centers', :techproducttype_id => 3, :authors => 'John Lecon, Peter Smith', :techproductstatus_id => 3, :institution_id => 5588})
   end
 
   # Right - CRUD
@@ -29,8 +29,7 @@ class TechproductTest < Test::Unit::TestCase
     @techproducts.each { |techproduct|
       @techproduct = Techproduct.find(techproducts(techproduct.to_sym).id)
       assert_equal techproducts(techproduct.to_sym).title, @techproduct.title
-      @techproduct.title = 'Presencia de las TI en las empresas'
-      assert @techproduct.save
+      assert @techproduct.update_attribute('title','Presencia de las TI en las empresas')
       assert_not_equal techproducts(techproduct.to_sym).title, @techproduct.title
     }
   end

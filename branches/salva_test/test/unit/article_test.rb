@@ -64,6 +64,7 @@ class ArticleTest < Test::Unit::TestCase
   def test_creating_duplicated_article
     @article = Article.new({:title => 'Operacion del Radiotelescopio de Centelleo Interplanetario', :journal_id => 2, :articlestatus_id => 1,  :year => 2006, :authors  => 'J. A. Hernandez, Cinthya Bell'})
     assert !@article.save
+
   end
 
   # Boundary

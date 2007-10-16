@@ -25,8 +25,9 @@ class CourseTest < Test::Unit::TestCase
     @courses.each { |course|
       @course = Course.find(courses(course.to_sym).id)
       assert_equal courses(course.to_sym).name, @course.name
-      @course.name = @course.name.chars.reverse
-      assert @course.save
+#      @course.name = @course.name.chars.reverse
+#      assert @course.save
+      assert @course.update_attribute('name',@course.name.chars.reverse)
       assert_not_equal courses(course.to_sym).name, @course.name
     }
   end
