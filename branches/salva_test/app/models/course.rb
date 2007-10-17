@@ -8,4 +8,7 @@ class Course < ActiveRecord::Base
   belongs_to :coursegroups
   belongs_to :courseduration
   belongs_to :modality
+
+
+  has_many :user_courses
 end

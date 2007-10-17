@@ -5,6 +5,8 @@ class Coursegroup < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:coursegrouptype_id, :startyear, :startmonth, :endyear, :endmonth]
 
   belongs_to :coursegrouptype
-  has_many :courses
   validates_associated :coursegrouptype
+
+  has_many :courses
+  has_many :user_courses
 end

@@ -8,46 +8,46 @@ class StudentroleTest < Test::Unit::TestCase
   def setup
     @studentroles = %w(becario servicio tesista)
   end
-  
-  # Right - CRUD  
 
-   def test_crud 
-     crud_test(@studentroles, Studentrole)
-   end
+  # Right - CRUD
 
-   def test_validation
-     validate_test(@studentroles, Studentrole)
-   end
+  def test_crud
+    crud_test(@studentroles, Studentrole)
+  end
 
-   def test_collision
-     collision_test(@studentroles, Studentrole)
-   end
+  def test_validation
+    validate_test(@studentroles, Studentrole)
+  end
 
-   def test_create_with_empty_attributes
-     @mystudentrole = Studentrole.new
-     assert !@mystudentrole.save
-   end
+  def test_collision
+    collision_test(@studentroles, Studentrole)
+  end
 
-   def test_check_uniqueness
-     @mystudentrole2 = Studentrole.new({:name => 'Tesista'})
-     assert !@mystudentrole2.save
-   end
+  def test_create_with_empty_attributes
+    @mystudentrole = Studentrole.new
+    assert !@mystudentrole.save
+  end
 
-   # Boundaries
-   def test_bad_values_for_id
+  def test_check_uniqueness
+    @mystudentrole2 = Studentrole.new({:name => 'Tesista'})
+    assert !@mystudentrole2.save
+  end
+
+  # Boundaries
+  def test_bad_values_for_id
     @mystudentrole = Studentrole.new
     @mystudentrole.id = 'xx'
     assert !@mystudentrole.valid?
 
-    # Negative number ID 
+    # Negative number ID
     #@mystudentrole.id = -1
     #assert !@mystudentrole.valid?
 
-    # Float number ID 
+    # Float number ID
     @mystudentrole.id = 1.3
     assert !@mystudentrole.valid?
 
-    # Nil number ID 
+    # Nil number ID
     @mystudentrole.id = nil
     assert !@mystudentrole.valid?
   end
