@@ -3,7 +3,7 @@ class UserRegularcourse < ActiveRecord::Base
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :user_id, :regularcourse_id, :period_id, :roleinregularcourse_id,  :greater_than =>0, :only_integer => true
-  validates_numericality_of :hoursxweek,:greater_than =>0 , :only_integer => true
+  validates_numericality_of :hoursxweek, :allow_nil => true, :greater_than =>0 , :only_integer => true
 
   validates_inclusion_of :hoursxweek, :in => 1..40, :allow_nil => true
 
