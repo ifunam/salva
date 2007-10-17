@@ -1,0 +1,16 @@
+<div id="search">
+<div id="search_note" style="display: none"><%= get_label('searchdialog') %></div>
+<% form_tag ('list') do -%>
+<div class="row"> 
+<label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label> 
+<div id="researcharea_id">
+<%= simple_select('researchline', Researcharea, 1) %>
+</div>
+</div>
+
+ <div id="operations">
+  <%= submit_tag get_label('search') %> | 
+  <%= link_to_searchdialog(get_label('simplesearch'),'salva/search') %>
+  </div>
+<% end -%>
+</div>

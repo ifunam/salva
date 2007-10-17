@@ -1,0 +1,33 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:inproceeding]-->
+<div class="row">
+<label for="proceeding_id" class="label"><%= get_label('proceeding_id') %> <span class="required">*</span></label>
+<div id="proceeding_id">
+  <%= select_conditions('edit', Proceeding, 1, {:attributes => %w(title year), :conditions=>" isrefereed = 'f' "}) %>
+</div>
+<%= quickpost('proceeding_unrefereed,proceeding_id') %>
+</div>
+
+<div class="row">
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'title' %>
+</div>
+
+<div class="row">
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'authors', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'authors' %>
+</div>
+
+<div class="row">
+<label for="pages" class="label"><%= get_label('pages') %></label>
+<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'pages' %>
+</div>
+
+<div class="row">
+<label for="comment" class="label"><%= get_label('comment') %></label>
+<%= text_area 'edit', 'comment', 'rows' => 4, 'cols' => 40, 'tabindex' => 5, 'id' => 'comment' %></div>
+
+
+<!--[eoform:inproceeding]-->
+

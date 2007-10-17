@@ -1,0 +1,12 @@
+introduccion_al_estudio_de_planetas: 
+  id: 1
+  project_id: 2
+  book_id: 3
+Fundamentos_sobre_estudios_de_la_tierra:
+  id: 2
+  project_id: 3
+  book_id: 4
+Fundamentos_sobre_movimientos_tectonicos_de_la_tierra:
+  id: 3
+  project_id: 2
+  book_id: 2

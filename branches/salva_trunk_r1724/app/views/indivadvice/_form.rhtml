@@ -1,0 +1,54 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:indivadvice]-->
+<div class="row">
+<label for="indivname" class="label"><%= get_label('indivname') %></label>
+<%= text_area 'edit', 'indivname', 'rows' => 3, 'cols'=> 40, 'tabindex'=> 1, 'id' => 'indivname' %>
+</div>
+
+<div class="row">
+ <%= render :partial => 'salva/filter_institutions' %>
+</div>
+
+<div class="row">
+<label for="indivadvicetarget_id" class="label"><%= get_label('indivadvicetarget_id') %> <span class="required">*</span></label>
+<div id="indivadvicetarget_id">
+<%= simple_select('edit', Indivadvicetarget, 4) %>
+</div>
+</div>
+
+<div class="row">
+<label for="indivadviceprogram_id" class="label"><%= get_label('indivadviceprogram_id') %></label>
+<div id="indivadviceprogram_id">
+<%= simple_select('edit', Indivadviceprogram, 5) %>
+</div>
+</div>
+
+<div class="row">
+<label for="degree_id" class="label"><%= get_label('degree_id') %></label>
+<div id="degree_id">
+<%= simple_select('edit', Degree, 6) %>
+</div>
+</div>
+
+<div class="row">
+<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
+<%= auto_complete_year(:year, 7) %><br/></div>
+
+<div class="row">
+<label for="month" class="label"><%= get_label('month') %></label>
+<%= month_select('edit', 'month', {:tabindex => 8, :required => 0 }) %>
+</div>
+
+<div class="row">
+<label for="hours" class="label"><%= get_label('hours') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'hours', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 9, 'id' => 'hours' %>
+</div>
+
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %></div>
+
+
+<!--[eoform:indivadvice]-->
+

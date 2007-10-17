@@ -1,0 +1,2 @@
+<%= Finder.new(Bookedition, ['edition', 'year'], :first, :conditions => ['id = ?', params[:id]] ).as_text %>
+<%= hidden_field('edit', 'bookedition_id', :value => params[:id] ) %>

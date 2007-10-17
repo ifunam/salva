@@ -1,0 +1,102 @@
+cele:
+  name: Centro de Enseñanza de Lenguas Extranjeras
+  abbrev:
+  administrative_key: 61201
+  zipcode:
+  country_id: 484
+  url:
+  id: 71
+  institution_id: 1
+  fax: 
+  phone: 
+  city_id: 1
+  institutiontitle_id: 8
+  institutiontype_id: 1
+  other: 
+  state_id: 9
+  addr:
+personal_academico:
+  name: Dirección General de Asuntos del Personal Académico
+  abbrev:
+  administrative_key: 55101
+  zipcode:
+  country_id: 484
+  url:
+  id: 96
+  institution_id: 
+  fax: 
+  phone: 
+  city_id: 1
+  institutiontitle_id: 14
+  institutiontype_id: 1
+  other: 
+  state_id: 9
+  addr: 
+programa_Universitario_de_Estudios_de_Genero: 
+  name: Programa Universitario de Estudios de Género
+  abbrev: ""
+  administrative_key: 21109
+  zipcode: ""
+  country_id: 484
+  url: ""
+  id: 3
+  institution_id: 1
+  fax: ""
+  phone: ""
+  city_id: 1
+  institutiontitle_id: 14
+  institutiontype_id: 1
+  other: ""
+  state_id: 9
+  addr: ""
+unam: 
+  name: Universidad Nacional Autónoma de México
+  abbrev: UNAM
+  administrative_key: 
+  zipcode: 4510
+  country_id: 484
+  url: http://www.unam.mx
+  id: 1
+  institution_id: 1
+  fax: ""
+  phone: ""
+  city_id: 1
+  institutiontitle_id: 1
+  institutiontype_id: 1
+  other: ""
+  state_id: 9
+  addr: Ciudad Universitaria, Delegación
+sep: 
+  name: Secretaría de Educación Pública
+  abbrev: SEP
+  administrative_key: 
+  zipcode:
+  country_id: 484
+  url:
+  id: 5588
+  institution_id:
+  fax: ""
+  phone: ""
+  city_id:
+  institutiontitle_id: 6
+  institutiontype_id: 1
+  other: ""
+  state_id:
+  addr:
+centro_de_ciencias:
+  name: Centro de Ciencias de la Atmósfera
+  abbrev:
+  administrative_key: 31102
+  zipcode:
+  country_id: 484
+  url:
+  id: 57
+  institution_id:
+  fax:
+  phone:
+  city_id: 1
+  institutiontitle_id: 8
+  institutiontype_id: 1
+  other:
+  state_id: 9
+  addr:

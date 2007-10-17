@@ -1,0 +1,42 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_regularcourse]-->
+<div class="row">
+<label for="academicprogram_id" class="label"><%=get_label('academicprogram_id') %> </label>
+<div id="academicprogram_id">
+<%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
+</div>
+</div>
+<%= observe_select('filt', 'academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
+
+<div class="row">
+<label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %> <span class="required">*</span></label>
+<div id="select_academicprogram_regularcourse">
+ <%= observable_select('select_academicprogram_regularcourse', nil, 2) %>
+</div>
+  <%= quickpost('regularcourse') %>
+</div>
+
+<div class="row">
+<label for="period_id" class="label"><%= get_label('period_id') %><span class="required">*</span></label>
+<div id="period_id">
+<%= select_conditions('edit', Period, 2, :attributes => ['title']) %>
+</div>
+  <%= quickpost('period') %>
+</div>
+
+<div class="row">
+<label for="roleinregularcourse_id" class="label"><%= get_label('roleinregularcourse_id') %> <span class="required">*</span></label>
+<div id="roleinregularcourse_id">
+<%= simple_select('edit', Roleinregularcourse, 3) %>
+</div>
+</div>
+
+<div class="row">
+<label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label>
+<%= text_field 'edit', 'hoursxweek', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'hoursxweek' %>
+</div>
+
+
+<!--[eoform:user_regularcourse]-->
+

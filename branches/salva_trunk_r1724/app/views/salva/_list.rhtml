@@ -1,0 +1,36 @@
+<% form_tag(@parent_controller ? 'select' : 'purge_selected' ) do -%>
+<table class="list">
+  <tr>
+    <th>*</th>
+    <th><%= header %></th>
+    <th>Acciones</th>
+  </tr>
+<% rowcolor = 1 %>
+<% for item in list %>
+  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
+  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
+    <td class="item">
+    <%= @parent_controllerx ? radio_button('edit', 'id', item[1]) : check_box_tag("item[]", item[1], checked=false)%>
+    </td>
+    <td><%= '<span class="row">'+text_link(h(item[0]), item[1])+'</span>' %></td>
+    <td class="link"><%= show_link(item[1]) %> <%= edit_link(item[1]) %> <%= purge_link(item[1], 'Desea borrar este elemento?') %></td>
+  </tr>
+<% end %>
+</table>
+<% if list.length > 0 %>
+<%= @parent_controller ? submit_tag('Seleccionar') : (submit_tag "Borrar elementos seleccionados", { :onclick =>"return confirm('¿Desea borrar los elementos seleccionados?');"}) %>
+<% end %>
+<%= render :partial => '/salva/paginator' %>
+<% end  -%>
+
+<% if nolinks.nil? %>
+<br/>
+<div id="operations">
+<%= link_to get_label('add'), :action => 'new' %> |
+<% if @parent_controller == nil %>
+<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0}  %>
+<% else %>
+<%= link_to get_label('back'), :action => 'cancel' %>
+<% end %>
+</div>
+<% end %>

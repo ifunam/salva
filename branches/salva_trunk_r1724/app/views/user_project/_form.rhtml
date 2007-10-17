@@ -1,0 +1,21 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_project]-->
+<div class="row"> 
+<label for="project_id" class="label"><%= get_label('project_id') %> <span class="required">*</span></label> 
+<div id="project_id">
+<%= simple_select('edit', Project, 1) %>
+</div>
+<%= quickpost('project') %>
+</div>
+
+<div class="row"> 
+<label for="roleinproject_id" class="label"><%= get_label('roleinproject_id') %> <span class="required">*</span></label> 
+<div id="roleinproject_id">
+<%= select_conditions('edit', Roleinproject, 2, {:attributes => ['name'], :conditions => 'id < 5'}) %>
+</div>
+</div>
+
+
+<!--[eoform:user_project]-->
+

@@ -1,0 +1,10 @@
+--- 
+servicio: 
+  name: Servicio
+  id: 1
+becario: 
+  name: Becario
+  id: 2
+tesista: 
+  name: Tesista
+  id: 3

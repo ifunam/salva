@@ -1,0 +1,21 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:identification]-->
+<div class="row">
+<label for="idtype_id" class="label"><%= get_label('idtype_id') %> <span class="required">*</span></label>
+<div id="idtype_id">
+<%= simple_select('edit', Idtype, 1) %>
+<%= quickpost('idtype') %>
+</div>
+</div>
+
+<div class="row">
+<label for="citizen_country_id" class="label"><%= get_label('citizen_country_id') %> <span class="required">*</span></label>
+<div id="citizen_country_id">
+<%=  simple_select('edit', Country, 2, { :prefix => 'citizen', :attribute => 'citizen'}) %>
+</div>
+</div>
+
+
+<!--[eoform:identification]-->
+

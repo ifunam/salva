@@ -1,0 +1,10 @@
+--- 
+otro: 
+  name: Otro
+  id: 3
+entregado: 
+  name: Entregado
+  id: 2
+en_desarrollo: 
+  name: En desarrollo
+  id: 1

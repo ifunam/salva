@@ -1,0 +1,7 @@
+<h1>Edit <%= @edit.class.name %></h1>
+
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
+  <%= render :partial => Inflector.underscore(@edit.class.name)+'/form' %>
+  <%= submit_tag 'Edit' %>
+<% end -%>
+

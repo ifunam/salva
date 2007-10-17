@@ -1,0 +1,22 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_seminary]-->
+<div class="row">
+<label for="seminary_id" class="label"><%= get_label('seminary_id') %> <span class="required">*</span></label>
+<div id="seminary_id">
+<%= select_conditions('edit', Seminary, 1, {:attributes =>%w(title year isseminary)}) %>
+</div>
+<%= quickpost('seminary') %>
+</div>
+
+<div class="row">
+<label for="roleinseminary_id" class="label"><%= get_label('roleinseminary_id') %> <span class="required">*</span></label>
+<div id="roleinseminary_id">
+Ponente
+<%= hidden_field('edit', 'roleinseminary_id', :value => Roleinseminary.find_by_name('Ponente').id) %>
+</div>
+</div>
+
+
+<!--[eoform:user_seminary]-->
+

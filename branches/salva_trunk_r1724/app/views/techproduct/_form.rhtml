@@ -1,0 +1,43 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:techproduct]-->
+<div class="row">
+<label for="techproducttype_id" class="label"><%= get_label('techproducttype_id') %></label>
+<div id="techproducttype_id">
+<%= simple_select('edit', Techproducttype, 1) %>
+</div>
+  <%= quickpost('techproducttype') %>
+</div>
+
+<div class="row">
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'title' %>
+</div>
+
+<div class="row">
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'authors', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'authors' %>
+</div>
+
+<div class="row">
+<label for="descr" class="label"><%= get_label('descr') %></label>
+<%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'descr' %></div>
+
+<div class="row">
+ <%= render :partial => 'salva/filter_institutions' %>
+</div>
+
+<div class="row">
+<label for="techproductstatus_id" class="label"><%= get_label('techproductstatus_id') %><span class="required">*</span></label>
+<div id="techproductstatus_id">
+<%= simple_select('edit', Techproductstatus, 6) %>
+</div>
+</div>
+
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 7, 'id' => 'other' %></div>
+
+
+<!--[eoform:techproduct]-->
+

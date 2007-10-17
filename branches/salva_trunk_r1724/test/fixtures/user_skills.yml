@@ -1,0 +1,12 @@
+musicales:   
+  id: 1
+  user_id: 3
+  skilltype_id: 3
+gastronomicas:
+  id: 2
+  user_id: 2
+  skilltype_id: 1
+domesticas: 
+  id: 3
+  user_id: 2
+  skilltype_id: 2

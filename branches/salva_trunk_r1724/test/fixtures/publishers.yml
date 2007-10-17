@@ -1,0 +1,16 @@
+--- 
+balkema: 
+  name: A.A. Balkema Publishers
+  descr: specializes in the publication of academic books and journals in engineering, earth science, and life science.
+  url: http://balkema.ima.nl/
+  id: 2
+adasi: 
+  name: ADASI Publishing Company
+  descr: self-education books for those interested in science.
+  url: http://www.adasi.com/
+  id: 3
+ak_peters: 
+  name: A K Peters Ltd.
+  descr: specialized publishing for the oil and gas industry. scientific technical publisher whose publishing program focuses on computer science (graphics, geometric design, robotics, CHI) and mathematics.
+  url: http://www.akpeters.com/
+  id: 1

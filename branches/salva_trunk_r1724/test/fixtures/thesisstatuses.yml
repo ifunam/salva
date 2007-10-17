@@ -1,0 +1,10 @@
+--- 
+aprobada: 
+  name: Aprobada
+  id: 1
+publicada: 
+  name: Publicada
+  id: 3
+en_proceso: 
+  name: En proceso
+  id: 2

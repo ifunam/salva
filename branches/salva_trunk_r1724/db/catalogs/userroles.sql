@@ -1,0 +1,10 @@
+INSERT INTO userroles (name) VALUES ('Autor');
+INSERT INTO userroles (name) VALUES ('Coautor');
+INSERT INTO userroles (name) VALUES ('Revisor');
+INSERT INTO userroles (name) VALUES ('Traductor');
+INSERT INTO userroles (name) VALUES ('Editor');
+INSERT INTO userroles (name) VALUES ('Entrevistado');
+INSERT INTO userroles (name) VALUES ('Entrevistador');
+INSERT INTO userroles (name) VALUES ('Compilador');
+INSERT INTO userroles (name) VALUES ('Coordinador');
+INSERT INTO userroles (name) VALUES ('Otro');

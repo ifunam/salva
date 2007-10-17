@@ -1,0 +1,9 @@
+--- 
+beca_unam: 
+  name: Beca UNAM
+  id: 1
+  institution_id: 1
+beca_sep: 
+  name: Beca SEP
+  id: 2
+  institution_id: 5588

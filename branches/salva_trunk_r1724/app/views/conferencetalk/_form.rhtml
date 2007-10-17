@@ -1,0 +1,50 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:conferencetalk]-->
+<div class="row">
+<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
+</div>
+
+<div class="row">
+<label for="authors" class="label"><%= get_label('authors') %> <span class="required">*</span></label>
+<%= text_area 'edit', 'authors', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'authors' %>
+</div>
+
+<div class="row">
+<label for="abstract" class="label"><%= get_label('abstract') %></label>
+<%= text_area 'edit', 'abstract', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'abstract' %>
+</div>
+
+<div class="row">
+<label for="conference_id" class="label"><%= get_label('conference_id') %> <span class="required">*</span></label>
+<div id="conference_id">
+<%= select_conditions('edit', Conference, 4, { :attributes =>%w(name year conferencetype)}) %>
+</div>
+<%= quickpost('conference') %>
+</div>
+
+<div class="row">
+<label for="talktype_id" class="label"><%= get_label('talktype_id') %> <span class="required">*</span></label>
+<div id="talktype_id">
+<%= simple_select('edit', Talktype, 5) %>
+</div>
+</div>
+
+<div class="row">
+<label for="talkacceptance_id" class="label"><%= get_label('talkacceptance_id') %> <span class="required">*</span></label>
+<div id="talkacceptance_id">
+<%= simple_select('edit', Talkacceptance, 6) %>
+</div>
+</div>
+
+<div class="row">
+<label for="modality_id" class="label"><%= get_label('modality_id') %> <span class="required">*</span></label>
+<div id="modality_id">
+<%= simple_select('edit', Modality, 7) %>
+</div>
+</div>
+
+
+<!--[eoform:conferencetalk]-->
+

@@ -1,0 +1,24 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:genericworktype]-->
+<div class="row">
+<label for="genericworkgroup_id" class="label"><%= get_label('genericworkgroup_id') %> <span class="required">*</span></label>
+<div id="genericworkgroup_id">
+<% @edit.genericworkgroup_id ||= params[:id] %>
+<%= simple_select('edit', Genericworkgroup, 3) %>
+</div>
+</div>
+
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %> <span class="required">*</span></label>
+<%= text_field 'edit', 'name', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
+</div>
+
+<div class="row">
+<label for="abbrev" class="label"><%= get_label('abbrev') %></label>
+<%= text_field 'edit', 'abbrev', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 2, 'id' => 'abbrev' %>
+</div>
+
+
+<!--[eoform:genericworktype]-->
+

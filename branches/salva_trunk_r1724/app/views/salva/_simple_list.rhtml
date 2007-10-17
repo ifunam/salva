@@ -1,0 +1,15 @@
+<table class="list">
+  <tr>
+    <th><%= header %></th>
+    <th>Acciones</th>
+  </tr>
+<% rowcolor = 1 %>  
+<% for item in list %>
+  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
+  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
+    <td><%= h(item[0]) %></td>
+    <td class="link"><%= show_link(item[1], controller) %> <%= edit_link(item[1], controller) %> <%= purge_link(item[1], 'Desea  borrar este elemento?', controller) %></td>
+  </tr>
+<% end %>
+</table>
+

@@ -1,0 +1,10 @@
+---
+concluido:
+  name: Concluído
+  id: 3
+inicio:
+  name: Inicio
+  id: 1
+en_proceso:
+  name: En proceso
+  id: 2

@@ -1,0 +1,4 @@
+<% if id.to_i > 0 %>
+   <%= select_conditions('edit', City, tabindex, :conditions => "state_id = #{id}") %>
+   <%= downloading_list_indicator('state', 'city') %>
+<% end %>

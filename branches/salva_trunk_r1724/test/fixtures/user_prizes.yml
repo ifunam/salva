@@ -1,0 +1,12 @@
+ciencia_mexico:
+  user_id: 1
+  prize_id: 1
+  year: 2007
+  month:
+  id: 1
+mejor_estudio_de_genero:
+  user_id: 2
+  prize_id: 2
+  year: 2006
+  month: 12
+  id: 2

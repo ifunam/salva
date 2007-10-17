@@ -1,0 +1,19 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_roleingroup]-->
+
+<div class="row">
+<label for="roleingroup_id" class="label"><%= get_label('login') %> <span class="required">*</span></label>
+<div id="user_id">
+<%= select_conditions('edit', User, 1, :attributes => %w(login email), :order => 'login, email ASC') %>
+</div>
+</div>
+
+<div class="row">
+<label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label>
+<div id="roleingroup_id">
+<%= select_conditions('edit', Roleingroup, 2, :attributes =>[ 'group', 'role' ] ) %>
+</div>
+</div>
+<!--[eoform:user_roleingroup]-->
+

@@ -1,0 +1,29 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:users]-->
+<div class="row"> 
+<label for="passwd" class="label"><%= get_label('current_passwd') %> <span class="required">*</span></label> 
+<%= password_field 'edit', 'current_passwd', 'size' => 15, 'maxsize'=> 30,'tabindex' => 2, 'id' => 'edit_passwd' 
+ %>
+</div>
+
+<hr/>
+<div class="row"> 
+<label for="passwd" class="label"><%= get_label('new_passwd') %> <span class="required">*</span></label> 
+<%= password_field 'edit', 'passwd', 'size' => 15, 'maxsize'=>
+ 30,'tabindex' => 2, 'id' => 'edit_passwd', 'z:required' => 'true',
+ 'z:message' => 'Este campo es requerido' 
+ %>
+</div>
+
+<div class="row"> 
+<label for="passwd" class="label"><%= get_label('confirm_passwd') %> <span class="required">*</span></label> 
+<%= password_field 'edit', 'passwd_confirmation', 'size' => 15,
+'maxsize'=>  30,'tabindex' => 2, 'id' => 'edit_passwdconfirmation',
+'z:required' => 'true',  'z:message' => 'Este campo es requerido' 
+ %>
+</div>
+</div>
+
+<!--[eoform:users]-->
+

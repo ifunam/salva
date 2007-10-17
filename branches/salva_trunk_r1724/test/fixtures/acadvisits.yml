@@ -1,0 +1,21 @@
+---
+chavez:
+ id: 1
+ descr: Estancia de investigación en los alpes
+ user_id: 1
+ acadvisittype_id: 1
+ institution_id: 1
+ country_id: 392
+ startyear: 2007
+
+pipo:
+ id: 2
+ descr: Estancia de trabajo experimental en las islas marías
+ user_id: 3
+ acadvisittype_id: 2
+ institution_id: 1
+ country_id: 392
+ startyear: 2006
+
+
+

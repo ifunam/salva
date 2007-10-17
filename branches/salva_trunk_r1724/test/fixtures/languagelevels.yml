@@ -1,0 +1,10 @@
+--- 
+basico: 
+  name: Basico
+  id: 1
+intermedio: 
+  name: Intermedio
+  id: 2
+avanzado: 
+  name: Avanzado
+  id: 3

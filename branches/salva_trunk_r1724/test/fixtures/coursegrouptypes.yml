@@ -1,0 +1,10 @@
+--- 
+actualizacion: 
+  name: Actualización
+  id: 1
+diplomado: 
+  name: Diplomado
+  id: 3
+certificacion: 
+  name: Certificación
+  id: 2

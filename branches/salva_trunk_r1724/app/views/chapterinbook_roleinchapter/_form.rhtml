@@ -1,0 +1,34 @@
+<%= error_messages_for 'edit' %>
+
+<div class="row">
+ <label for="book_id" class="label"><%= get_label('book_id') %> <span class="required">*</span></label>
+ <%= simple_select('filt', Book, 1)%>
+ <%= quickpost('book') %>
+</div>
+<%= observe_select('filt', 'book_id', 'filter_book_bookedition', 1) %>
+
+<div class="row">
+  <label for="bookedition_id" class="label"><%= get_label('bookedition_id') %><span class="required">*</span></label>
+  <div id="filter_book_bookedition">
+    <%= observable_select('filter_book_bookedition', 0, 2) %>
+  </div>
+  <%= quickpost('bookedition:book_id') %>
+</div>
+
+<%= observe_select('filt', 'bookedition_id', 'select_bookedition_chapterinbook', 1) %>
+
+<div class="row">
+<label for="chapterinbook_id" class="label"><%= get_label('chapterinbook_id') %> <span class="required">*</span></label>
+  <div id="select_bookedition_chapterinbook">
+    <%= observable_select('select_bookedition_chapterinbook', 0, 2) %>
+  </div>
+  <%= quickpost('chapterinbook:bookedition_id') %>
+</div>
+
+<div class="row"><label for="bookedition_roleinchapter">Indique la
+actividad que realizó en este captítulo</label>
+<%= simple_select('edit', Roleinchapter, 2) %>
+</div>
+
+<!--[eoform:chapterinbook_roleinchapter]-->
+
