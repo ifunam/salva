@@ -38,10 +38,6 @@ class JobpositioncategoryTest < Test::Unit::TestCase
     assert !@jobpositioncategory.save
   end
 
-  def test_creating_duplicated_jobpositioncategory
-    @jobpositioncategory = Jobpositioncategory.new({:jobpositiontype_id => 1, :roleinjobposition_id => 2})
-    assert !@jobpositioncategory.save
-  end
 
   # Boundary
   def test_bad_values_for_id
