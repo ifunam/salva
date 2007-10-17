@@ -13,6 +13,7 @@ class Finder
   include Labels
   attr_accessor :sql
   attr_accessor :model
+  attr_accessor :debug_array
 
   def initialize(model, *options)
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
@@ -23,6 +24,7 @@ class Finder
 
   def build_sql(options)
     columns = extract_attributes_from_array(@model, options[:attributes])
+    @debug_array = columns
     columns.unshift(Inflector.tableize(@model).classify)
 
     sql = "SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
@@ -35,7 +37,7 @@ class Finder
 
   def build_simple_sql(attributes, options)
     attributes = options[:column] if options.has_key? :column
-    sql =  "SELECT id, #{attributes} FROM #{tableize(@model)}"
+    sql = "SELECT id, #{attributes} FROM #{tableize(@model)}"
     add_conditions!(sql, options)
     add_order!(sql, options, attributes)
     add_limit!(sql, options)
@@ -93,7 +95,7 @@ class Finder
   def build_conditions(*columns)
     table = tableize(columns.shift)
     columns.collect { |c|
-      ["#{table}.#{Inflector.foreign_key(c.first)} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten if c.is_a? Array  and  table !=  tableize(c.first)
+      ["#{table}.#{Inflector.foreign_key(c.first.sub(/^prefix_for_parent_/,''))} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten if c.is_a? Array  and  table !=  tableize(c.first)
     }.compact.flatten
   end
 
@@ -105,7 +107,7 @@ class Finder
     elsif column_names(model).include? 'title'
       attributes = ['title']
     else
-      attributes = (recursive == true) ?  expand_attributes(model) :  column_names(model)
+      attributes = (recursive == true) ? expand_attributes(model) : column_names(model)
     end
     attributes
   end
@@ -124,26 +126,22 @@ class Finder
   def extract_attributes_from_array(model, attributes)
     attributes.collect { |a|
       next if a.class == Class
-      (a.is_a? Array) ? extract_array_attributes(model, a) :   extract_simple_attributes(model, a)
+      (a.is_a? Array) ? extract_array_attributes(model, a) : extract_simple_attributes(model, a)
     }.compact
   end
 
   def extract_array_attributes(model, attribute)
     if attribute.size == 1
-      model_and_attributes(clean_model(attribute.first))
-    elsif modelize(clean_model!(attribute.first)) == model
-      clean_model!(attribute)
+      model_and_attributes(clean_model!(attribute.first))
     else
-      extract_attributes_from_array(clean_model!(attribute.first), attribute)
+      columns = extract_attributes_from_array(clean_model!(attribute.first), attribute)
+      columns[0] = 'prefix_for_parent_' + columns[0] if clean_model!(attribute.first) == model
+      columns
     end
   end
 
   def extract_simple_attributes(model, attribute)
-    if column_names(model).include? "#{attribute}_id"
-      model_and_attributes(clean_model!(attribute))
-    else
-     attribute
-    end
+    (column_names(model).include? "#{attribute}_id") ? model_and_attributes(clean_model!(attribute)) : attribute
   end
 
   def clean_model!(model)
@@ -159,7 +157,9 @@ class Finder
   end
 
   def column_names(m)
-    modelize(m).column_names  - %w(id moduser_id created_on updated_on user_id)
+    reserved_attributes = %w(id moduser_id created_on updated_on user_id parent_id)
+    reserved_attributes << Inflector.foreign_key(m) # Avoiding recursion problems for tables with himself references
+    modelize(m).column_names - reserved_attributes
   end
 
   def model_and_attributes(model)
