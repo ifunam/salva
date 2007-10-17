@@ -26,7 +26,7 @@ class GroupTest < Test::Unit::TestCase
       @group = Group.find(groups(group.to_sym).id)
       assert_equal groups(group.to_sym).name, @group.name
       @group.name = @group.name.chars.reverse 
-      assert @group.update
+      assert @group.save
       assert_not_equal groups(group.to_sym).name, @group.name
     }
   end
@@ -66,7 +66,7 @@ class GroupTest < Test::Unit::TestCase
 #     assert_equal groups(:sa).name, @group.name
 #     
 #     @group.id = 4
-#     assert @group.update
+#     assert @group.save
 #     
 #     @group = Group.find(4)
 #     @group.children.each do |child|
@@ -77,7 +77,7 @@ class GroupTest < Test::Unit::TestCase
 #   def test_updating_parent_id_with_invalid_parent
 #     @group = Group.find(groups(:geneticos).id)
 #     @group.parent_id = 10
-#     assert @group.update
+#     assert @group.save
 #   end
 
    def test_check_uniqueness

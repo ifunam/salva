@@ -1,0 +1,15 @@
+juana_analisis_de_onda_P:
+  id: 1
+  seminary_id: 2
+  user_id: 2
+  roleinseminary_id: 1
+panchito_analisis_de_onda_P:
+  id: 2
+  seminary_id: 2
+  user_id: 3
+  roleinseminary_id: 2
+admin_proceso_ruptura_en_sumatra:
+  id: 3
+  seminary_id: 3
+  user_id: 1
+  roleinseminary_id: 1

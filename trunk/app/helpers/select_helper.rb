@@ -25,34 +25,32 @@ module SelectHelper
     end
   end
 
-  def finder_id(model, attributes, id)
-    if id.nil?
-      conditions = {}
-    else
-      conditions = { :conditions => "id = #{id}" }
+  def finder_id(model, id, attributes=[])
+    options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
+    unless attributes.empty?
+      if attributes.is_a? Array
+        options[:attributes] = attributes
+      else
+        options[:column] = attributes
+      end
     end
-    Finder.new(model, attributes, :first, conditions).as_pair
+    Finder.new(model, :first, options).as_pair
   end
 
-  def simple_select(object, model, tabindex, options={}, html_options={})
-    column = options[:attribute] || ((model.column_names.include? 'title') ? 'title' : 'name')
-    field = foreignize(model,options[:prefix])
-    selected = selectize_id(@edit, field, options[:selected], @filter)
-    @list = Finder.new(model, [ column ], :all, :order => "#{column} ASC").as_pair
-    @list = @list + finder_id(model, [ column ], selected) if !selected.nil? && @list.rassoc(selected).nil?
-    html_options[:tabindex] = tabindex
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected},html_options)
-  end
-
-  def select_conditions(object, model, tabindex, options={}, html_options={})
+  def simple_select(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
-    attributes = options[:attributes] || %w(name)
     selected = selectize_id(@edit, field, options[:selected], @filter)
-    [:attributes, :selected, :field].each { |key| options.delete(key) }
-    @list = Finder.new(model, attributes, :all, options).as_pair
-    @list = @list + finder_id(model, attributes, selected) if !selected.nil? && @list.rassoc(selected).nil?
-    html_options[:tabindex] = tabindex
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, html_options)
+    @list = Finder.new(model, options).as_pair
+    @list = @list + finder_id(model, selected, options[:column]) if !selected.nil? && @list.rassoc(selected).nil?
+    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+  end
+
+  def select_conditions(object, model, tabindex, options={})
+    field = options[:field] || foreignize(model,options[:prefix])
+    selected = selectize_id(@edit, field, options[:selected], @filter)
+    @list = Finder.new(model, :all, options).as_pair
+    @list = @list + finder_id(model, selected, options[:attributes]) if !selected.nil? && @list.rassoc(selected).nil?
+    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
   def observable_select(partial, id, tabindex)

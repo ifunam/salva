@@ -27,7 +27,7 @@ class PrizeTest < Test::Unit::TestCase
       @prize = Prize.find(prizes(prize.to_sym).id)
       assert_equal prizes(prize.to_sym).name, @prize.name
       @prize.name = @prize.name.chars.reverse
-      assert @prize.update
+      assert @prize.save
       assert_not_equal prizes(prize.to_sym).name, @prize.name
     }
   end
@@ -97,7 +97,7 @@ class PrizeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -109,7 +109,7 @@ class PrizeTest < Test::Unit::TestCase
       assert_kind_of Prize, @prize
       @prize.institution_id = 500000
       begin
-        return true if @prize.update
+        return true if @prize.save
       rescue StandardError => x
         return false
       end
@@ -127,7 +127,7 @@ class PrizeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -139,7 +139,7 @@ class PrizeTest < Test::Unit::TestCase
       assert_kind_of Prize, @prize
       @prize.prizetype_id = 1000
       begin
-        return true if @prize.update
+        return true if @prize.save
       rescue StandardError => x
         return false
       end

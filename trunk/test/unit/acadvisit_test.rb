@@ -28,7 +28,7 @@ class AcadvisitTest < Test::Unit::TestCase
       @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
       assert_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
       @acadvisit.descr = @acadvisit.descr.chars.reverse
-      assert @acadvisit.update
+      assert @acadvisit.save
       assert_not_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
     }
   end
@@ -147,7 +147,7 @@ class AcadvisitTest < Test::Unit::TestCase
       assert_kind_of Acadvisit, @acadvisit
       @acadvisit.acadvisittype_id = 108
       begin
-        return true if @acadvisit.update
+        return true if @acadvisit.save
       rescue StandardError => x
         return false
       end
@@ -168,7 +168,7 @@ class AcadvisitTest < Test::Unit::TestCase
       assert_kind_of Acadvisit, @acadvisit
       @acadvisit.country_id = 108
       begin
-        return true if @acadvisit.update
+        return true if @acadvisit.save
       rescue StandardError => x
         return false
       end
@@ -190,7 +190,7 @@ class AcadvisitTest < Test::Unit::TestCase
       assert_kind_of Acadvisit, @acadvisit
       @acadvisit.institution_id = 108
       begin
-        return true if @acadvisit.update
+        return true if @acadvisit.save
       rescue StandardError => x
         return false
       end
@@ -211,7 +211,7 @@ class AcadvisitTest < Test::Unit::TestCase
       assert_kind_of Acadvisit, @acadvisit
       @acadvisit.user_id = 108
       begin
-        return true if @acadvisit.update
+        return true if @acadvisit.save
       rescue StandardError => x
         return false
       end

@@ -7,7 +7,7 @@ module Stackcontroller
   end
 
   def options_from_params
-    stack_params = params[:stack] || params[:stacklist]
+    stack_params = params[:stack]
     if stack_params =~ /:/
       [ stack_params.split(':')[0], stack_params.split(':')[0]+'_id',   params[:edit][stack_params.split(':')[1].to_sym]  ||  params[:filt][stack_params.split(':')[1].to_sym] ]
     elsif stack_params =~ /\,/

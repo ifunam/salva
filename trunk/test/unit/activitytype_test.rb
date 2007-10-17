@@ -26,7 +26,7 @@ class ActivitytypeTest < Test::Unit::TestCase
       @activitytype = Activitytype.find(activitytypes(activitytype.to_sym).id)
       assert_equal activitytypes(activitytype.to_sym).name, @activitytype.name
       @activitytype.name = @activitytype.name.chars.reverse
-      assert @activitytype.update
+      assert @activitytype.save
       assert_not_equal activitytypes(activitytype.to_sym).name, @activitytype.name
     }
   end
@@ -56,8 +56,8 @@ class ActivitytypeTest < Test::Unit::TestCase
     # Float number for ID
     @myactivitytype.id = 1.6
     assert !@myactivitytype.valid?
-    #@myactivitytype.id = -1
-    #assert !@myactivitytype.valid?
+    @myactivitytype.id = -1.0
+    assert !@myactivitytype.valid?
     @myactivitytype.id = 'xx'
     assert !@myactivitytype.valid?
 
@@ -72,8 +72,8 @@ class ActivitytypeTest < Test::Unit::TestCase
     @myactivitytype.activitygroup_id = 'xx'
     assert !@myactivitytype.valid?
 
-    #@myactivitytype.activitygroup_id = -1
-    #assert !@myactivitytype.valid?
+    @myactivitytype.activitygroup_id = -1.0
+    assert !@myactivitytype.valid?
 
     @myactivitytype.activitygroup_id = 3.1416
     assert !@myactivitytype.valid?
@@ -91,7 +91,7 @@ class ActivitytypeTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -103,7 +103,7 @@ class ActivitytypeTest < Test::Unit::TestCase
       assert_kind_of Activitytype, @activitytype
       @activitytype.activitygroup_id = 10
       begin
-        return true if @activitytype.update
+        return true if @activitytype.save
       rescue StandardError => x
         return false
       end
@@ -111,4 +111,3 @@ class ActivitytypeTest < Test::Unit::TestCase
   end
 
 end
-

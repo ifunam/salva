@@ -1,7 +1,6 @@
 require 'navigator_tree'
 require 'labels'
 require 'transformer'
-require 'activerecord_extensions'
 class Resume
   include NavigatorTree
   include Labels
@@ -54,10 +53,14 @@ class Resume
 
   def get_collection(collection)
     collection.collect { |record|
-      unless record.respond_to? 'as_text'
-        record.instance_eval{ extend ActiveRecordExtensions}
+      if record.respond_to? 'as_text'
+        record.as_text
+      elsif record.respond_to? 'name'
+        record.name
+      elsif record.respond_to? 'title'
+        record.title
+      else
       end
-      record.as_text
     }
   end
 

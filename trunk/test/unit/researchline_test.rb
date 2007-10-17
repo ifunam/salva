@@ -26,7 +26,7 @@ class ResearchlineTest < Test::Unit::TestCase
       @researchline = Researchline.find(researchlines(researchline.to_sym).id)
       assert_equal researchlines(researchline.to_sym).name, @researchline.name
       @researchline.name = @researchline.name.chars.reverse
-      assert @researchline.update
+      assert @researchline.save
       assert_not_equal researchlines(researchline.to_sym).name, @researchline.name
     }
   end
@@ -56,6 +56,9 @@ class ResearchlineTest < Test::Unit::TestCase
     # Float number for ID
     @myresearchline.id = 1.6
     assert !@myresearchline.valid?
+
+    @myresearchline.id = -1.0
+    assert !@myresearchline.valid?
   end
 
   def test_bad_values_for_name
@@ -68,6 +71,8 @@ class ResearchlineTest < Test::Unit::TestCase
     assert !@myresearchline.valid?
 
     @myresearchline.id = 'xx'
+    assert !@myresearchline.valid?
+    @myresearchline.id = -3.0
     assert !@myresearchline.valid?
   end
 
@@ -83,7 +88,7 @@ class ResearchlineTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -95,7 +100,7 @@ class ResearchlineTest < Test::Unit::TestCase
       assert_kind_of Researchline, @myresearchline
       @myresearchline.id = 100
       begin
-        return true if @myresearchline.update
+        return true if @myresearchline.save
       rescue StandardError => x
         return false
       end

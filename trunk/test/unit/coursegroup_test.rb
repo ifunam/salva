@@ -26,7 +26,7 @@ class CoursegroupTest < Test::Unit::TestCase
       @coursegroup = Coursegroup.find(coursegroups(coursegroup.to_sym).id)
       assert_equal coursegroups(coursegroup.to_sym).name, @coursegroup.name
       @coursegroup.name = @coursegroup.name.chars.reverse * 2
-      assert @coursegroup.update
+      assert @coursegroup.save
       assert_not_equal coursegroups(coursegroup.to_sym).name, @coursegroup.name
     }
   end
@@ -52,7 +52,6 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@coursegroup.save
   end
 
-
   # Boundary
   def test_bad_values_for_id
     # Float number for ID
@@ -62,11 +61,10 @@ class CoursegroupTest < Test::Unit::TestCase
     @mycoursegroup.id = 1.6
     assert !@mycoursegroup.valid?
 
-    # Negative numbers
-    # @mycoursegroup.id = -1
-    # assert !@mycoursegroup.valid?
+    #Negative numbers
+    @mycoursegroup.id = -1.0
+    assert !@mycoursegroup.valid?
   end
-
 
   def test_bad_values_for_name
     @mycoursegroup.name = nil
@@ -76,6 +74,7 @@ class CoursegroupTest < Test::Unit::TestCase
   def test_bad_values_for_coursegrouptype_id
     @mycoursegroup.coursegrouptype_id = 'xx'
     assert !@mycoursegroup.valid?
+
     @mycoursegroup.coursegrouptype_id = nil
     assert !@mycoursegroup.valid?
 
@@ -84,8 +83,8 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@mycoursegroup.valid?
 
     # Negative numbers
-    # @mycoursegroup.coursegrouptype_id = -1
-    # assert !@mycoursegroup.valid?
+    @mycoursegroup.coursegrouptype_id = -1.0
+    assert !@mycoursegroup.valid?
   end
 
   #Cross-Checking test
@@ -104,7 +103,7 @@ class CoursegroupTest < Test::Unit::TestCase
       assert_kind_of Coursegroup, @coursegroup
       @coursegroup.coursegrouptype_id = 108
       begin
-        return true if @coursegroup.update
+        return true if @coursegroup.save
       rescue StandardError => x
         return false
       end

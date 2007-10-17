@@ -25,8 +25,9 @@ class CourseTest < Test::Unit::TestCase
     @courses.each { |course|
       @course = Course.find(courses(course.to_sym).id)
       assert_equal courses(course.to_sym).name, @course.name
-      @course.name = @course.name.chars.reverse
-      assert @course.update
+#      @course.name = @course.name.chars.reverse
+#      assert @course.save
+      assert @course.update_attribute('name',@course.name.chars.reverse)
       assert_not_equal courses(course.to_sym).name, @course.name
     }
   end
@@ -130,7 +131,7 @@ class CourseTest < Test::Unit::TestCase
       assert_kind_of Course, @course
       @course.courseduration_id = 108
       begin
-        return true if @course.update
+        return true if @course.save
       rescue StandardError => x
         return false
       end
@@ -151,7 +152,7 @@ class CourseTest < Test::Unit::TestCase
       assert_kind_of Course, @course
       @course.country_id = 108
       begin
-        return true if @course.update
+        return true if @course.save
       rescue StandardError => x
         return false
       end
@@ -172,7 +173,7 @@ class CourseTest < Test::Unit::TestCase
       assert_kind_of Course, @course
       @course.modality_id = 108
       begin
-        return true if @course.update
+        return true if @course.save
       rescue StandardError => x
         return false
       end

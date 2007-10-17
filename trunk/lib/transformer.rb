@@ -49,6 +49,6 @@ class Transformer
         pdf.text("\n") if item.size  > 0
       end
     }
-     pdf.render
+    pdf.render
   end
 end

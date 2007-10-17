@@ -1,0 +1,10 @@
+sismologia_en_mexico:
+ id: 1
+ genericwork_id: 1
+ user_id: 1
+ userrole_id: 3
+erosiones_en_el_golfo_de_mexico:
+ id: 2
+ genericwork_id: 2
+ user_id: 2
+ userrole_id: 2

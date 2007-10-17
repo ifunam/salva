@@ -26,7 +26,7 @@ class StimuluslevelTest < Test::Unit::TestCase
       @stimuluslevel = Stimuluslevel.find(stimuluslevels(stimuluslevel.to_sym).id)
       assert_equal stimuluslevels(stimuluslevel.to_sym).name, @stimuluslevel.name
       @stimuluslevel.name = @stimuluslevel.name.chars.reverse * 2
-      assert @stimuluslevel.update
+      assert @stimuluslevel.save
       assert_not_equal stimuluslevels(stimuluslevel.to_sym).name, @stimuluslevel.name
     }
   end
@@ -86,7 +86,7 @@ class StimuluslevelTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -98,7 +98,7 @@ class StimuluslevelTest < Test::Unit::TestCase
       assert_kind_of Stimuluslevel, @stimuluslevel
       @stimuluslevel.stimulustype_id =7858
       begin
-        return true if @stimuluslevel.update
+        return true if @stimuluslevel.save
       rescue StandardError => x
         return false
       end

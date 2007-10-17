@@ -1,4 +1,9 @@
 class Roleinbook < ActiveRecord::Base
   validates_presence_of :name
-  has_and_belongs_to_many :bookedition
+  validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_uniqueness_of :name
+
+  has_many :bookedition_roleinbooks
+
+  validates_associated :bookedition_roleinbooks
 end

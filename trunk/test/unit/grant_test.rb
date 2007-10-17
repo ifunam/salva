@@ -25,7 +25,7 @@ class GrantTest < Test::Unit::TestCase
       @grant = Grant.find(grants(grant.to_sym).id)
       assert_equal grants(grant.to_sym).name, @grant.name
       @grant.name = @grant.name.chars.reverse
-      assert @grant.update
+      assert @grant.save
       assert_not_equal grants(grant.to_sym).name, @grant.name
     }
   end
@@ -88,7 +88,7 @@ class GrantTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -100,7 +100,7 @@ class GrantTest < Test::Unit::TestCase
       assert_kind_of Grant, @grant
       @grant.institution_id = 999999999
       begin
-        return true if @grant.update
+        return true if @grant.save
       rescue StandardError => x
         return false
       end

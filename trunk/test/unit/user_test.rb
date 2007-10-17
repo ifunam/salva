@@ -78,7 +78,7 @@ class UserTest < Test::Unit::TestCase
       @user = User.find_by_login(login)
       @user.current_passwd = encrypt('maltiempo', users(login.to_sym).salt)
       @user.passwd = encrypt('Wr0n3ncryp710n', salted)
-      assert @user.update
+      assert @user.save
     end
   end  
 
@@ -95,7 +95,7 @@ class UserTest < Test::Unit::TestCase
     for login in (@default_users)
       @user = User.find_by_login(login)
       @user.email = login+"@lachingada.com"
-      assert @user.update
+      assert @user.save
       # Check for invalid email
       @user.email = login+".una.pinche.direccion.sin.@"
       assert !@user.valid?

@@ -29,7 +29,7 @@ class JournalTest < Test::Unit::TestCase
       @journal = Journal.find(journals(journal.to_sym).id)
       assert_equal journals(journal.to_sym).name, @journal.name
       @journal.name = @journal.name.chars.reverse
-      assert @journal.update
+      assert @journal.save
       assert_not_equal journals(journal.to_sym).name, @journal.name
     }
   end
@@ -90,7 +90,7 @@ class JournalTest < Test::Unit::TestCase
 
    def catch_exception_when_update_invalid_key(record)
     begin
-       return true if record.update
+       return true if record.save
      rescue ActiveRecord::StatementInvalid => bang
        return false
      end
@@ -102,7 +102,7 @@ class JournalTest < Test::Unit::TestCase
      assert_kind_of Journal, @journal
      @journal.mediatype_id = 10
      begin
-            return true if @journal.update
+            return true if @journal.save
      rescue StandardError => x
             return false
      end
@@ -118,7 +118,7 @@ class JournalTest < Test::Unit::TestCase
 
    def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -130,7 +130,7 @@ class JournalTest < Test::Unit::TestCase
      assert_kind_of Journal, @journal
      @journal.country_id = 1000
      begin
-            return true if @journal.update
+            return true if @journal.save
      rescue StandardError => x
             return false
      end
@@ -163,7 +163,7 @@ class JournalTest < Test::Unit::TestCase
 
    def catch_exception_when_update_invalid_key(record)
      begin
-       return true if record.update
+       return true if record.save
      rescue ActiveRecord::StatementInvalid => bang
        return false
      end
@@ -175,7 +175,7 @@ class JournalTest < Test::Unit::TestCase
       assert_kind_of Journal, @journal
       @journal.publisher_id = 10
       begin
-            return true if @journal.update
+            return true if @journal.save
       rescue StandardError => x
             return false
       end

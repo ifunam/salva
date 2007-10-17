@@ -25,7 +25,7 @@ class CoursedurationTest < Test::Unit::TestCase
       @courseduration = Courseduration.find(coursedurations(courseduration.to_sym).id)
       assert_equal coursedurations(courseduration.to_sym).name, @courseduration.name
       @courseduration.name = @courseduration.name.chars.reverse
-      assert @courseduration.update
+      assert @courseduration.save
       assert_not_equal coursedurations(courseduration.to_sym).name, @courseduration.name
     }
   end

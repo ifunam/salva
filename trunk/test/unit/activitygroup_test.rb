@@ -52,7 +52,7 @@ class ActivitygroupTest < Test::Unit::TestCase
     @myactivitygroup.id = 3.1416
     assert !@myactivitygroup.valid?
 
-    # @myactivitygroup.id = -1
-    # assert !@myactivitygroup.valid?
+    @myactivitygroup.id = -3.0
+    assert !@myactivitygroup.valid?
   end
 end

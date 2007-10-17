@@ -24,7 +24,7 @@ class CountryTest < Test::Unit::TestCase
       @country = Country.find(countries(country.to_sym).id)
       assert_equal countries(country.to_sym).name, @country.name
       @country.name = @country.name.chars.reverse
-      assert @country.update
+      assert @country.save
       assert_not_equal countries(country.to_sym).name, @country.name
     }
   end

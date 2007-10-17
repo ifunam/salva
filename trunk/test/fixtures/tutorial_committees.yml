@@ -1,7 +1,6 @@
 tutor:
   id: 1
   user_id: 3 
-  name: "Tutor"
   studentname: "Alejandro Silva"
   degree_id: 3
   institutioncareer_id: 2 
@@ -9,7 +8,6 @@ tutor:
 jurado:
   id: 2
   user_id: 3
-  name: "Jurado"
   studentname: "Ines Fernandez"
   degree_id: 3
   institutioncareer_id: 1

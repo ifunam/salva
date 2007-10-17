@@ -25,7 +25,7 @@ class IndivadviceprogramTest < Test::Unit::TestCase
       @indivadviceprogram = Indivadviceprogram.find(indivadviceprograms(indivadviceprogram.to_sym).id)
       assert_equal indivadviceprograms(indivadviceprogram.to_sym).name, @indivadviceprogram.name
       @indivadviceprogram.name = @indivadviceprogram.name.chars.reverse
-      assert @indivadviceprogram.update
+      assert @indivadviceprogram.save
       assert_not_equal indivadviceprograms(indivadviceprogram.to_sym).name, @indivadviceprogram.name
     }
   end
@@ -90,7 +90,7 @@ class IndivadviceprogramTest < Test::Unit::TestCase
 
   def catch_exception_when_update_invalid_key(record)
     begin
-      return true if record.update
+      return true if record.save
     rescue ActiveRecord::StatementInvalid => bang
       return false
     end
@@ -103,7 +103,7 @@ class IndivadviceprogramTest < Test::Unit::TestCase
       assert_kind_of Indivadviceprogram, @indivadviceprogram
       @indivadviceprogram.institution_id = 500000
       begin
-        return true if @indivadviceprogram.update
+        return true if @indivadviceprogram.save
       rescue StandardError => x
         return false
       end

@@ -1,0 +1,16 @@
+financiamiento_salva: 
+  id: 1
+  project_id: 1
+  institution_id: 1
+  amount: 90000
+financiamiento_issste: 
+  id: 2
+  project_id: 2
+  institution_id: 96
+  amount: 150000
+financiamiento_seguridad_publica: 
+  id: 3
+  project_id: 3
+  institution_id: 57
+  amount: 65700
+
