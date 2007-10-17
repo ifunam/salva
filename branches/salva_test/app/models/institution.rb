@@ -30,6 +30,7 @@ class Institution < ActiveRecord::Base
   has_many :instadvices
   has_many :institutional_activities
   has_many :conference_institutions
+  has_many :genericworks
 
   def as_text
     values = [name, abbrev]
