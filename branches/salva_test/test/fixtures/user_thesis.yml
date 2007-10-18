@@ -1,6 +1,11 @@
-juana: 
-thesis_id: 1
-roleinthesis_id: 3
-juana: 
-thesis_id: 1
-roleinthesis_id: 2
+user_thesis_01: 
+ id: 1
+ thesis_id: 1
+ user_id: 1
+ roleinthesis_id: 1
+
+user_thesis_02: 
+ id: 2
+ thesis_id: 2
+ user_id: 2
+ roleinthesis_id: 2

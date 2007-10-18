@@ -25,17 +25,17 @@ class GenericworkTest < Test::Unit::TestCase
     }
   end
 
-  def test_updating_genericwork_id
+  def test_updating_genericworks_title
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
-      assert_equal genericworks(genericwork.to_sym).id, @genericwork.id
-      @genericwork.id = 4
+      assert_equal genericworks(genericwork.to_sym).title, @genericwork.title
+      @genericwork.title = @genericwork.title.chars.reverse
       assert @genericwork.save
-      assert_not_equal genericworks(genericwork.to_sym).id, @genericwork.id
+      assert_not_equal genericworks(genericwork.to_sym).title, @genericwork.title
     }
   end
 
-    def test_updating_genericworkstatus_id
+  def test_updating_genericworkstatus_id
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).genericworkstatus_id, @genericwork.genericworkstatus_id
