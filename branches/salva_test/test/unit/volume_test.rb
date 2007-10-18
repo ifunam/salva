@@ -40,8 +40,8 @@ class VolumeTest < Test::Unit::TestCase
     assert !@myvolume.valid?
 
     # Negative number ID
-    #@myvolume.id = -1
-    #assert !@myvolume.valid?
+    @myvolume.id = -1
+    assert !@myvolume.valid?
 
     # Float number ID
     @myvolume.id = 1.3

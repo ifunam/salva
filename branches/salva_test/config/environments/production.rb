@@ -14,5 +14,8 @@ config.action_controller.perform_caching             = true
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
-# Disable delivery errors if you bad email addresses should just be ignored
+# Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+# Disable raising errors when mass-assigning to a protected attribute
+config.active_record.whiny_protected_attributes = false
