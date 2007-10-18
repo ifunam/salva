@@ -17,7 +17,7 @@ class SalvaController < ApplicationController
   end
 
   def list
-    select = '*'
+    select = nil
     if @model.column_names.include?('user_id')
       if @list.has_key?(:joins)
         @list[:joins] += " AND #{@model.table_name}.user_id = #{session[:user]}"

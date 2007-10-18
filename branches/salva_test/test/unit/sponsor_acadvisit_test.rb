@@ -49,7 +49,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
       @sponsor_acadvisit.amount = 1000000
-      assert @sponsor_acadvisit.save
+      assert @sponsor_acadvisit.save!
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
     }
   end

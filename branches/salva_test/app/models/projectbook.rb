@@ -8,5 +8,5 @@ class Projectbook < ActiveRecord::Base
   belongs_to :book
 
   validates_associated :project
-  validates_associated :book
+#  validates_associated :book
 end
