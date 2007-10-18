@@ -7,6 +7,6 @@ class Projectarticle < ActiveRecord::Base
   belongs_to :project
   belongs_to :article
 
-  validates_associated :project
-  validates_associated :article
+#  validates_associated :project
+#  validates_associated :article
 end

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :setup_navtree
 
 
-  helper :table, :theme, :user, :navigator, :date, :select, :checkbox, :paginator, :ajax, :quickpost
+  helper :table, :theme, :user, :navigator, :date, :select, :paginator, :ajax, :quickpost
 
   session :session_key => '_salva_session_id'
   protect_from_forgery :secret => 'my-little-salva_cookie'

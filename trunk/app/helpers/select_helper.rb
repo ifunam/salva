@@ -27,7 +27,7 @@ module SelectHelper
 
   def finder_id(model, id, attributes=[])
     options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
-    unless attributes.empty?
+    unless attributes.nil? or attributes.empty?
       if attributes.is_a? Array
         options[:attributes] = attributes
       else
@@ -49,7 +49,7 @@ module SelectHelper
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
     @list = Finder.new(model, :all, options).as_pair
-    @list = @list + finder_id(model, selected, options[:attributes]) if !selected.nil? && @list.rassoc(selected).nil?
+    @list = @list + finder_id(model, selected, options[:attributes]) if !selected.nil? && @list.rassoc(selected).nil? && options.has_key?(:attributes)
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 

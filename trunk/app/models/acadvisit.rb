@@ -22,7 +22,7 @@ class Acadvisit < ActiveRecord::Base
 
   has_many :projectacadvisits
 
-  def validate
-      errors.add(:startyear, "La fecha de inicio no debe ser posterior")  || endyear < staryear
-  end
+#  def validate
+#      errors.add(:startyear, "La fecha de inicio no debe ser posterior")  || endyear < staryear
+#  end
 end
