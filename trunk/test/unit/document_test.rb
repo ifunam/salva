@@ -27,8 +27,8 @@ class DocumentTest < Test::Unit::TestCase
     @documents.each { |document|
       @document = Document.find(documents(document.to_sym).id)
       assert_equal documents(document.to_sym).title, @document.title
-      @document.title = @document.title.chars.reverse
-      assert @document.save
+
+      @document.update_attribute('title', @document.title.chars.reverse)
       assert_not_equal documents(document.to_sym).title, @document.title
     }
   end

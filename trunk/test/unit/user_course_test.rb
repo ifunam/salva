@@ -122,7 +122,7 @@ class UserCourseTest < Test::Unit::TestCase
       assert_kind_of UserCourse, @user_course
       @user_course.user_id = 500000
       begin
-        return true if @user_pcourse.save
+        return true if @user_course.save
       rescue StandardError => x
         return false
       end
@@ -182,7 +182,7 @@ class UserCourseTest < Test::Unit::TestCase
       @user_course = UserCourse.find(user_courses(user_course.to_sym).id)
       assert_kind_of UserCourse, @user_course
       @user_course.roleincourse_id = 80000
-      assert @user_course.valid?
+      assert !@user_course.save
       begin
         return true if @user_course.save
       rescue StandardError => x

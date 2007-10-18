@@ -7,7 +7,7 @@ class ConferencetypeTest < Test::Unit::TestCase
 
   def setup
     @conferencetypes = %w(congreso coloquio)
-    @myconferencetype = Conferencetype.new({:name => 'Otro', :id => 10})
+    @myconferencetype = Conferencetype.new({:name => 'Otro'})
   end
 
   # Right - CRUD

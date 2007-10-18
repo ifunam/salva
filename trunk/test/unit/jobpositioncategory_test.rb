@@ -40,7 +40,9 @@ class JobpositioncategoryTest < Test::Unit::TestCase
 
   def test_creating_duplicated_jobpositioncategory
     @jobpositioncategory = Jobpositioncategory.new({:jobpositiontype_id => 1, :roleinjobposition_id => 2})
-    assert !@jobpositioncategory.save
+    assert @jobpositioncategory.save
+    @jobpositioncategory_dup = Jobpositioncategory.new({:jobpositiontype_id => 1, :roleinjobposition_id => 2})
+    assert !@jobpositioncategory_dup.save
   end
 
   # Boundary
