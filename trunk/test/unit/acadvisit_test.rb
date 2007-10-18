@@ -27,8 +27,7 @@ class AcadvisitTest < Test::Unit::TestCase
     @acadvisits.each { |acadvisit|
       @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
       assert_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
-      @acadvisit.descr = @acadvisit.descr.chars.reverse
-      assert @acadvisit.save
+      @acadvisit.update_attribute('descr', @acadvisit.descr.chars.reverse)
       assert_not_equal acadvisits(acadvisit.to_sym).descr, @acadvisit.descr
     }
   end
@@ -61,7 +60,8 @@ class AcadvisitTest < Test::Unit::TestCase
     assert !@myacadvisit.valid?
 
     # Negative numbers
-    # @myacadvisit.id = -1
+    @myacadvisit.id = -1
+    puts 'ID', @mycadvisit.id.class.name
     #assert !@myacadvisit.valid?
   end
 
@@ -73,8 +73,8 @@ class AcadvisitTest < Test::Unit::TestCase
   def test_bad_values_for_country_id
     # Checking constraints for descr
     # Nil descr
-    @myacadvisit.country_id = nil
-    assert !@myacadvisit.valid?
+    #@myacadvisit.country_id = nil
+    #assert !@myacadvisit.valid?
 
     # Float number for ID
     @myacadvisit.country_id = 3.1416
