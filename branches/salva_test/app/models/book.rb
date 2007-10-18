@@ -10,10 +10,8 @@ class Book < ActiveRecord::Base
   belongs_to :orig_language, :class_name => 'Language', :foreign_key => 'orig_language_id'
   belongs_to :trans_language, :class_name => 'Language', :foreign_key => 'trans_language_id'
 
-  validates_associated :country
-  validates_associated :booktype
-  validates_associated :volume
-  validates_associated :language
+  validates_associated :country, :booktype, :volume, :orig_language, :trans_language
 
   has_many :bookeditions
+  validates_associated :bookeditions
 end

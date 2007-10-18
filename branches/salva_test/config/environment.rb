@@ -60,25 +60,25 @@ Rails::Initializer.run do |config|
 end
 
 ActiveRecord::Errors.default_error_messages = {
-    :not_a_number=>"no es un numero", 
+    :not_a_number=>"no es un número", 
     :odd=>"debe ser impar", 
     :blank=>"no puede estar en blanco", 
     :greater_than=>"debe ser mayor a  %d",
-    :inclusion=>"no esta incluido en la lista",
+    :inclusion=>"no esta incluído en la lista",
     :even=>"debe se mayor",
-    :too_long=>"es muy grande (debe tener un maximo de %d caracteres )",
+    :too_long=>"es muy grande (debe tener un máximo de %d caracteres )",
     :greater_than_or_equal_to=>"debe ser mayor o igual a %d",
     :empty=>"no puede estar vacio",
     :exclusion=>"esta reservado", 
-    :too_short=>"es muy corto (debe tener un minimo de %d caracteres)", 
+    :too_short=>"es muy corto (debe tener un minímo de %d caracteres)", 
     :equal_to=>"debe ser igual a %d",
-    :invalid=>"es invalido",
+    :invalid=>"es inválido",
     :wrong_length=>"es incorrecto la longitud (debe ser de %d caracteres)", 
     :less_than=>"debe ser menor a %d",
-    :confirmation=>"la confirmacion no coincide",
+    :confirmation=>"la confirmación no coincide",
     :taken=>"ya ha sido escogido", 
     :less_than_or_equal_to=>"debe ser menor o igual a %d",
-    :accepted=>"deberá ser aceptado"
+    :accepted=>"debe aceptarse"
 }
 # ActionMailer configuration:
 # http://api.rubyonrails.com/classes/ActionMailer/Base.html

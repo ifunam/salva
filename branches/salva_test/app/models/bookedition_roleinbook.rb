@@ -8,7 +8,7 @@ class BookeditionRoleinbook < ActiveRecord::Base
    belongs_to :roleinbook
    belongs_to :user
 
-#  validates_associated :bookedition
-  validates_associated :roleinbook
-  validates_associated :user
+ validates_associated  :user
+
+
 end

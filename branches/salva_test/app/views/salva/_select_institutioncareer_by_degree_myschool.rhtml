@@ -1,4 +1,4 @@
 <% unless id.to_i < 1 %>
-       <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => [ ['career', 'degree', 'name'], ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.institution_id = #{get_myschool.id} AND career_id IN (SELECT id FROM careers WHERE degree_id = #{id}) AND institutioncareers.career_id = careers.id",  :include => [:career], :order => 'careers.name ASC')%>
+       <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => [ ['career', 'degree', 'name'], ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.institution_id = #{get_myschool.id} AND career_id IN (SELECT id FROM careers WHERE degree_id = #{id}) AND institutioncareers.career_id = careers.id", :order => 'careers.name ASC')%>
 
 <% end %>

@@ -6,7 +6,7 @@ require 'chapterinbook_roleinchapter'
 
 class ChapterinbookRoleinchapterTest < Test::Unit::TestCase
 
-fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, :editionstatuses, :mediatypes, :editions, :countries, :books, :bookeditions, :chapterinbooks, :chapterinbook_roleinchapters 
+fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, :editionstatuses, :mediatypes, :editions, :countries, :books, :bookeditions, :chapterinbooks, :chapterinbook_roleinchapters
 
 
   def setup
@@ -42,7 +42,7 @@ fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, 
   end
 
   def test_creating_duplicated_chapterinbookroleinchapter
-    @chapterinbookroleinchapter = ChapterinbookRoleinchapter.new({:user_id =>1, :chapterinbook_id => 12, :roleinchapter_id => 3})
+    @chapterinbookroleinchapter = ChapterinbookRoleinchapter.new({:user_id =>1, :chapterinbook_id => 1, :roleinchapter_id => 3})
     assert !@chapterinbookroleinchapter.save
   end
 

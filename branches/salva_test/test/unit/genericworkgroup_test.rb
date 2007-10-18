@@ -7,7 +7,7 @@ class GenericworkgroupTest < Test::Unit::TestCase
 
   def setup
     @genericworkgroups = %w(publicaciones productos_de_divulgacion)
-    @mygenericworkgroup = Genericworkgroup.new({:name => 'Otro', :id => 5})
+    @mygenericworkgroup = Genericworkgroup.new({:name => 'Otro' })
   end
 
   # Right - CRUD
