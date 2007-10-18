@@ -24,8 +24,8 @@ class PeriodTest < Test::Unit::TestCase
     @periods.each { |period|
       @period = Period.find(periods(period.to_sym).id)
       assert_equal periods(period.to_sym).title, @period.title
-      @period.title = @period.title.chars.reverse
-      assert @period.save
+
+      @period.update_attribute('title', @period.title.chars.reverse)
       assert_not_equal periods(period.to_sym).title, @period.title
     }
   end
@@ -70,7 +70,7 @@ class PeriodTest < Test::Unit::TestCase
     assert !@myperiod.valid?
   end
 
-   def test_bad_values_for_periods
+  def test_bad_values_for_periods
     @myperiod.startdate = nil
     assert !@myperiod.valid?
     @myperiod.enddate = nil

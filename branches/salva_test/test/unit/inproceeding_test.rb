@@ -27,8 +27,7 @@ def test_updating_inproceedings_title
     @inproceedings.each { |inproceeding|
       @inproceeding = Inproceeding.find(inproceedings(inproceeding.to_sym).id)
       assert_equal inproceedings(inproceeding.to_sym).title, @inproceeding.title
-      @inproceeding.title = @inproceeding.title.chars.reverse
-      assert @inproceeding.save
+      @inproceeding.update_attribute('title', @inproceeding.title.chars.reverse) 
       assert_not_equal inproceedings(inproceeding.to_sym).title, @inproceeding.title
     }
   end
@@ -37,8 +36,7 @@ def test_updating_inproceedings_title
     @inproceedings.each { |inproceeding|
       @inproceeding = Inproceeding.find(inproceedings(inproceeding.to_sym).id)
       assert_equal inproceedings(inproceeding.to_sym).authors, @inproceeding.authors
-      @inproceeding.authors = @inproceeding.authors.chars.reverse
-      assert @inproceeding.save
+      @inproceeding.update_attribute('authors', @inproceeding.authors.chars.reverse) 
       assert_not_equal inproceedings(inproceeding.to_sym).authors, @inproceeding.authors
     }
   end
