@@ -26,10 +26,11 @@ class PeopleIdentificationTest < Test::Unit::TestCase
     @people_identifications.each { |people_identification|
       @people_identification = PeopleIdentification.find(people_identifications(people_identification.to_sym).id)
       assert_equal people_identifications(people_identification.to_sym).descr, @people_identification.descr
-      @people_identification.update_attribute('descr', @people_identification.descr.chars.reverse) 
+
+      @people_identification.update_attribute('descr', @people_identification.descr.chars.reverse)
       assert_not_equal people_identifications(people_identification.to_sym).descr, @people_identification.descr
     }
-  end  
+  end
   def test_deleting_people_identifications
     @people_identifications.each { |people_identification|
       @people_identification = PeopleIdentification.find(people_identifications(people_identification.to_sym).id)

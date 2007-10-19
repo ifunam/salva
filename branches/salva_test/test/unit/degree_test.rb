@@ -6,7 +6,7 @@ class DegreeTest < Test::Unit::TestCase
   include UnitSimple
   def setup
     @degrees = %w(maestria licenciatura)
-    @mydegree = Degree.new({:name => 'PHD', :id => 6})
+    @mydegree = Degree.new({:name => 'PHD'})
   end
 
   # Right - CRUD

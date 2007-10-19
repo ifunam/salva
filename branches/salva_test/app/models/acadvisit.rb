@@ -1,7 +1,7 @@
 class Acadvisit < ActiveRecord::Base
   validates_presence_of :institution_id, :country_id, :acadvisittype_id, :descr, :startyear
 
-  # validates_numericality_of :id, :externaluser_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+   validates_numericality_of :id, :externaluser_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :id, :externaluser_id, :allow_nil => true, :only_integer => true
   validates_numericality_of :user_id, :institution_id, :country_id, :acadvisittype_id, :startyear, :greater_than => 0, :only_integer => true
   validates_numericality_of :endyear, :startmonth, :endmonth, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -23,7 +23,8 @@ class Acadvisit < ActiveRecord::Base
 
   has_many :projectacadvisits
 
-#  def validate
+
+# def validate
 #      errors.add(:startyear, "La fecha de inicio no debe ser posterior")  || endyear < staryear
 #  end
 end

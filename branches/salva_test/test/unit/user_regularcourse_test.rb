@@ -30,9 +30,8 @@ class UserRegularcourseTest < Test::Unit::TestCase
     @user_regularcourses.each { |user_regularcourse|
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).regularcourse_id, @user_regularcourse.regularcourse_id
-      @user_regularcourse.regularcourse_id = 3
-      assert @user_regularcourse.save
-      assert_not_equal user_regularcourses(user_regularcourse.to_sym).regularcourse_id, @user_regularcourse.regularcourse_id
+     @user_regularcourse.update_attribute('regularcourse_id', 3)
+     assert_not_equal user_regularcourses(user_regularcourse.to_sym).regularcourse_id, @user_regularcourse.regularcourse_id
     }
   end
 
@@ -40,8 +39,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
     @user_regularcourses.each { |user_regularcourse|
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).user_id, @user_regularcourse.user_id
-      @user_regularcourse.user_id = 1
-      assert @user_regularcourse.save
+      @user_regularcourse.update_attribute('user_id', 1)
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).user_id, @user_regularcourse.user_id
     }
   end
@@ -50,8 +48,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
     @user_regularcourses.each { |user_regularcourse|
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).period_id, @user_regularcourse.period_id
-      @user_regularcourse.period_id = 3
-      assert @user_regularcourse.save
+      @user_regularcourse.update_attribute('period_id', 3)
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).period_id, @user_regularcourse.period_id
     }
   end
@@ -60,8 +57,7 @@ class UserRegularcourseTest < Test::Unit::TestCase
     @user_regularcourses.each { |user_regularcourse|
       @user_regularcourse = UserRegularcourse.find(user_regularcourses(user_regularcourse.to_sym).id)
       assert_equal user_regularcourses(user_regularcourse.to_sym).roleinregularcourse_id, @user_regularcourse.roleinregularcourse_id
-      @user_regularcourse.roleinregularcourse_id = 2
-      assert @user_regularcourse.save
+      @user_regularcourse.update_attribute('roleinregularcourse_id', 3)
       assert_not_equal user_regularcourses(user_regularcourse.to_sym).roleinregularcourse_id, @user_regularcourse.roleinregularcourse_id
     }
   end

@@ -25,17 +25,7 @@ class GenericworkTest < Test::Unit::TestCase
     }
   end
 
-  def test_updating_genericworks_title
-    @genericworks.each { |genericwork|
-      @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
-      assert_equal genericworks(genericwork.to_sym).title, @genericwork.title
-      @genericwork.title = @genericwork.title.chars.reverse
-      assert @genericwork.save
-      assert_not_equal genericworks(genericwork.to_sym).title, @genericwork.title
-    }
-  end
-
-  def test_updating_genericworkstatus_id
+    def test_updating_genericworkstatus_id
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).genericworkstatus_id, @genericwork.genericworkstatus_id
@@ -49,8 +39,7 @@ class GenericworkTest < Test::Unit::TestCase
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).title, @genericwork.title
-      @genericwork.title = 'prueba'
-      assert @genericwork.save
+      @genericwork.update_attribute('title', @genericwork.title.chars.reverse)
       assert_not_equal genericworks(genericwork.to_sym).title, @genericwork.title
     }
   end
@@ -59,8 +48,7 @@ class GenericworkTest < Test::Unit::TestCase
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).genericworktype_id, @genericwork.genericworktype_id
-      @genericwork.genericworktype_id = 2
-       assert @genericwork.save
+      @genericwork.update_attribute('genericworktype_id', 2)
       assert_not_equal genericworks(genericwork.to_sym).genericworktype_id, @genericwork.genericworktype_id
     }
   end
@@ -69,8 +57,8 @@ class GenericworkTest < Test::Unit::TestCase
     @genericworks.each { |genericwork|
       @genericwork = Genericwork.find(genericworks(genericwork.to_sym).id)
       assert_equal genericworks(genericwork.to_sym).authors, @genericwork.authors
-      @genericwork.authors = 'lopez'
-      assert @genericwork.save
+      @genericwork.update_attribute('authors', @genericwork.authors.chars.reverse)
+
       assert_not_equal genericworks(genericwork.to_sym).authors, @genericwork.authors
     }
   end

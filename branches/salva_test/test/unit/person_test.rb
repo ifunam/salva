@@ -29,8 +29,7 @@ class PersonTest < Test::Unit::TestCase
     @people.each { |person|
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).firstname, @person.firstname
-      @person.firstname = @person.firstname.chars.reverse
-      assert @person.save
+      @person.update_attribute('firstname', @person.firstname.chars.reverse)
       assert_not_equal people(person.to_sym).firstname, @person.firstname
     }
   end
@@ -39,8 +38,7 @@ class PersonTest < Test::Unit::TestCase
     @people.each { |person|
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).lastname1, @person.lastname1
-      @person.lastname1 = @person.lastname1.chars.reverse
-      assert @person.save
+      @person.update_attribute('lastname1', @person.lastname1.chars.reverse)
       assert_not_equal people(person.to_sym).lastname1, @person.lastname1
     }
   end

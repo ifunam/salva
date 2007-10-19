@@ -7,7 +7,7 @@ class PrizetypeTest < Test::Unit::TestCase
 
   def setup
     @prizetypes = %w(medalla diploma premio)
-    @myprizetype = Prizetype.new({:name => 'Otro', :id => 5})
+    @myprizetype = Prizetype.new({:name => 'Otro'})
   end
 
   # Right - CRUD

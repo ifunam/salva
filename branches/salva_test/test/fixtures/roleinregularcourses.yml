@@ -5,3 +5,6 @@ titular:
 ayudante:
   name: Ayudante
   id: 2
+coayudante:
+  name: coayudante
+  id: 3

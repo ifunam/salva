@@ -27,8 +27,7 @@ class SeminaryTest < Test::Unit::TestCase
     @seminaries.each { |seminary|
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).title, @seminary.title
-      @seminary.title = "Sistemas de Bases de Datos"
-      assert @seminary.save
+      @seminary.update_attribute('title', @seminary.title.chars.reverse)
       assert_not_equal seminaries(seminary.to_sym).title, @seminary.title
     }
   end
@@ -39,8 +38,7 @@ class SeminaryTest < Test::Unit::TestCase
     @seminaries.each { |seminary|
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).year, @seminary.year
-      @seminary.year = @seminary.year - 2
-      assert @seminary.save
+      @seminary.update_attribute('year', 2000)
       assert_not_equal seminaries(seminary.to_sym).year, @seminary.year
     }
   end
@@ -49,8 +47,7 @@ class SeminaryTest < Test::Unit::TestCase
     @seminaries.each { |seminary|
       @seminary = Seminary.find(seminaries(seminary.to_sym).id)
       assert_equal seminaries(seminary.to_sym).institution_id, @seminary.institution_id
-      @seminary.institution_id = 71
-      assert @seminary.save
+      @seminary.update_attribute('institution_id', 71)
       assert_not_equal seminaries(seminary.to_sym).institution_id, @seminary.institution_id
     }
   end

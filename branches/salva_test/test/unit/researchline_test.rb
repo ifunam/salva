@@ -47,8 +47,10 @@ class ResearchlineTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_researchline
-    @researchline = Researchline.new({:name => 'Fuente sísmica', :id => 1})
-    assert !@researchline.save
+    @researchline = Researchline.new({:name => 'Fuente sísmica', :researcharea_id => 1})
+    @researchline_1 = Researchline.new({:name => 'Fuente sísmica', :researcharea_id => 1})
+    @researchline.save
+    assert !@researchline_1.save
   end
 
   # Boundary
