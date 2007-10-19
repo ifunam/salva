@@ -135,7 +135,7 @@ class Finder
       model_and_attributes(clean_model!(attribute.first))
     else
       columns = extract_attributes_from_array(clean_model!(attribute.first), attribute)
-      columns[0] = 'prefix_for_parent_' + columns[0] if clean_model!(attribute.first) == model
+      columns[0] = 'prefix_for_parent_' + columns[0] if modelize(clean_model!(attribute.first)) == modelize(model)
       columns
     end
   end
