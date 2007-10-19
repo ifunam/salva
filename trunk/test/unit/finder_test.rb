@@ -161,4 +161,10 @@ class FinderTest < Test::Unit::TestCase
     @f = Finder.new(Institutioncareer, :attributes => [ ['career', 'degree', 'name'], ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.career_id = careers.id AND careers.degree_id = 3 AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484 AND institutions.institution_id != 1", :order => 'careers.name ASC' )
     assert_equal 'SELECT institutioncareers.id AS id, degrees.name AS degrees_name, careers.name AS careers_name, institutions.name AS institutions_name, prefix_for_parent_institutions.abbrev AS prefix_for_parent_institutions_abbrev FROM institutioncareers, careers, degrees, institutions, institutions AS prefix_for_parent_institutions WHERE institutioncareers.career_id = careers.id AND careers.degree_id = degrees.id AND institutioncareers.institution_id = institutions.id AND institutions.institution_id = prefix_for_parent_institutions.id AND institutioncareers.career_id = careers.id AND careers.degree_id = 3 AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484 AND institutions.institution_id != 1', @f.sql
   end
+  
+  def test_as_collection
+    @country_finder.as_collection.collect { |record|
+      assert_instance_of Country, record
+    }
+  end
 end
