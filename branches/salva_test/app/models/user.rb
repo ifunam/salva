@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   has_many :user_articles
   has_many :articles, :through => :user_articles
+  has_many :user_newspaperarticles
 
   has_many :user_genericworks
   has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id'

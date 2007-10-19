@@ -7,6 +7,7 @@ class Newspaperarticle < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => [:newspaper_id, :newsdate]
 
   belongs_to :newspaper
-
   validates_associated :newspaper
+
+  has_many :user_newspaperarticles
 end
