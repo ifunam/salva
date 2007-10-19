@@ -13,6 +13,7 @@ class Finder
   include Labels
   attr_accessor :sql
   attr_accessor :model
+  attr_accessor :columns
   attr_accessor :debug_array
 
   def initialize(model, *options)
@@ -171,21 +172,33 @@ class Finder
   end
 
   def as_text
+    set_columns_position
     find_collection.collect { |record|
-      record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
+      @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
     }
   end
 
   def as_pair
+    set_columns_position
     find_collection.collect { |record|
-      [ record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
+      [ @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
     }
   end
 
   def as_hash
+    set_columns_position
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
+      [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
     }
+  end
+  
+  def set_columns_position
+    collection = find_collection
+    if collection.size > 0
+      columns = collection.first.attribute_names
+      column_position = columns.inject({}) { |h,col| h[col] = @sql.index(col); h }
+      @columns = columns.sort { |x,y| column_position[x] <=> column_position[y] }
+    end
   end
 
   def set_string(record, column)
