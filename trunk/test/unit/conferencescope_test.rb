@@ -7,11 +7,11 @@ class ConferencescopeTest < Test::Unit::TestCase
 
   def setup
     @conferencescopes = %w(nacional internacional)
-    @myconferencescope = Conferencescope.new({:name => 'Otro', :id => 10})
+    @myconferencescope = Conferencescope.new({:name => 'Otro'})
   end
 
   # Right - CRUD
-   def test_crud 
+   def test_crud
      crud_test(@conferencescopes, Conferencescope)
    end
 
@@ -29,11 +29,11 @@ class ConferencescopeTest < Test::Unit::TestCase
    end
 
    ######################
-   # Boundary 
+   # Boundary
    #
    ######################
    def test_bad_values_for_id
-     # Float number for ID 
+     # Float number for ID
      @myconferencescope.id = 1.6
      assert !@myconferencescope.valid?
    end

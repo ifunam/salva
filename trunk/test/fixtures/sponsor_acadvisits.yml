@@ -5,6 +5,6 @@ instituto_de_geofisica:
   amount: 96000
 centro_de_ciencias_de_la_atmosfera:
   id: 2
-  acadvisit_id: 2
+  acadvisit_id: 1
   institution_id: 57
   amount: 180000

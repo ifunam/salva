@@ -23,8 +23,7 @@
      @roles.each { |role|
        @role = Role.find(roles(role.to_sym).id)
        assert_equal roles(role.to_sym).name, @role.name
-       @role.name = @role.name.chars.reverse
-       assert @role.save
+       @role.update_attribute('name', @role.name.chars.reverse)
        assert_not_equal roles(role.to_sym).name, @role.name
      }
    end
@@ -45,8 +44,8 @@
    end
 
    #def test_creating_duplicated_role
-    # @role = Role.new({:name => 'Admnistrador', :has_group_right => true })
-     #assert !@role.save
+   # @role = Role.new({:name => 'Admnistrador', :has_group_right => true })
+   #assert !@role.save
    #end
 
    # Boundary
@@ -65,5 +64,5 @@
      @myrole.name = nil
      assert !@myrole.valid?
    end
-   
+
  end

@@ -7,7 +7,7 @@ class ResearchgroupTest < Test::Unit::TestCase
 
   def setup
     @researchgroups = %w(propiedades_opticas_de_defectos_en_solidos biocomplejidad_y_redes)
-    @myresearchgroup = Researchgroup.new({:name => 'Otro', :id => 5})
+    @myresearchgroup = Researchgroup.new({:name => 'Otro'})
   end
 
   # Right - CRUD

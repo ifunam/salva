@@ -29,8 +29,9 @@ class GenericworkgroupTest < Test::Unit::TestCase
   end
 
   def test_uniqueness
-    @genericworkgroup = Genericworkgroup.new({:name => 'Publicaciones', :id => 3})
-    @genericworkgroup.id = 3
+    @genericworkgroup_1 = Genericworkgroup.new({:name => 'Publicaciones'})
+    @genericworkgroup_1.save
+     @genericworkgroup = Genericworkgroup.new({:name => 'Publicaciones'})
     assert !@genericworkgroup.save
   end
 

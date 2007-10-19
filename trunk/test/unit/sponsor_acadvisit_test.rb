@@ -18,8 +18,8 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_kind_of SponsorAcadvisit, @sponsor_acadvisit
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).id, @sponsor_acadvisit.id
-      assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
+      assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
     }
   end
@@ -28,8 +28,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
     @sponsor_acadvisits.each { |sponsor_acadvisit|
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
-      @sponsor_acadvisit.acadvisit_id == 1 ? @sponsor_acadvisit.acadvisit_id = @sponsor_acadvisit.acadvisit_id + 1 :@sponsor_acadvisit.acadvisit_id =  @sponsor_acadvisit.acadvisit_id - 1
-      assert @sponsor_acadvisit.save
+      @sponsor_acadvisit.update_attribute('acadvisit_id', 2)
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).acadvisit_id, @sponsor_acadvisit.acadvisit_id
     }
   end
@@ -38,9 +37,8 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
     @sponsor_acadvisits.each { |sponsor_acadvisit|
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
-      @sponsor_acadvisit.institution_id = 71
-      assert @sponsor_acadvisit.save
-      assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
+     @sponsor_acadvisit.update_attribute('institution_id', 3)
+     assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).institution_id, @sponsor_acadvisit.institution_id
     }
   end
 
@@ -48,8 +46,7 @@ class SponsorAcadvisitTest < Test::Unit::TestCase
     @sponsor_acadvisits.each { |sponsor_acadvisit|
       @sponsor_acadvisit = SponsorAcadvisit.find(sponsor_acadvisits(sponsor_acadvisit.to_sym).id)
       assert_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
-      @sponsor_acadvisit.amount = 1000000
-      assert @sponsor_acadvisit.save
+      @sponsor_acadvisit.update_attribute('amount', 145)
       assert_not_equal sponsor_acadvisits(sponsor_acadvisit.to_sym).amount, @sponsor_acadvisit.amount
     }
   end

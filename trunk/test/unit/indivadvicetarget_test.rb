@@ -7,7 +7,7 @@ class IndivadvicetargetTest < Test::Unit::TestCase
 
   def setup
     @indivadvicetargets = %w(estudiante_asociado servicio_social becario)
-    @myindivadvicetarget = Indivadvicetarget.new({:name => 'Otro', :id => 5})
+    @myindivadvicetarget = Indivadvicetarget.new({:name => 'Otro'})
   end
 
   # Right - CRUD

@@ -28,8 +28,7 @@ class UserCourseTest < Test::Unit::TestCase
     @user_courses.each { |user_course|
       @user_course = UserCourse.find(user_courses(user_course.to_sym).id)
       assert_equal user_courses(user_course.to_sym).course_id, @user_course.course_id
-      @user_course.course_id = 3
-      assert @user_course.save
+      @user_course.update_attribute('course_id', 3)
       assert_not_equal user_courses(user_course.to_sym).course_id, @user_course.course_id
     }
   end
@@ -38,8 +37,7 @@ class UserCourseTest < Test::Unit::TestCase
     @user_courses.each { |user_course|
       @user_course = UserCourse.find(user_courses(user_course.to_sym).id)
       assert_equal user_courses(user_course.to_sym).roleincourse_id, @user_course.roleincourse_id
-      @user_course.roleincourse_id = 1
-      assert @user_course.save
+      @user_course.update_attribute('roleincourse_id', 1)
       assert_not_equal user_courses(user_course.to_sym).roleincourse_id, @user_course.roleincourse_id
     }
   end

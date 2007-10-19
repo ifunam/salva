@@ -61,8 +61,8 @@ class AcadvisitTest < Test::Unit::TestCase
 
     # Negative numbers
     @myacadvisit.id = -1
-    puts 'ID', @mycadvisit.id.class.name
-    #assert !@myacadvisit.valid?
+
+    assert !@myacadvisit.valid?
   end
 
   def test_bad_values_for_descr
@@ -70,19 +70,13 @@ class AcadvisitTest < Test::Unit::TestCase
     assert !@myacadvisit.valid?
   end
 
-  def test_bad_values_for_country_id
-    # Checking constraints for descr
-    # Nil descr
-    #@myacadvisit.country_id = nil
-    #assert !@myacadvisit.valid?
-
     # Float number for ID
     @myacadvisit.country_id = 3.1416
     assert !@myacadvisit.valid?
 
     # Negative numbers
-    # @myacadvisit.country_id = -1
-    #assert !@myacadvisit.valid?
+     @myacadvisit.country_id = -1
+    assert !@myacadvisit.valid?
   end
 
 
