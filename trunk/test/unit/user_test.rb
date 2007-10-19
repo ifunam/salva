@@ -76,9 +76,14 @@ class UserTest < Test::Unit::TestCase
   def test_change_password
     for login in (@default_users)
       @user = User.find_by_login(login)
-      @user.current_passwd = encrypt('maltiempo', users(login.to_sym).salt)
-      @user.passwd = encrypt('Wr0n3ncryp710n', salted)
-      assert @user.save
+      old_salt = @user.salt
+      old_passwd = @user.passwd
+      new_passwd = token_string(4).downcase # Plain text password 
+      @user.passwd = new_passwd # Plain text password 
+      @user.save
+      assert_not_equal old_salt, @user.salt
+      assert_not_equal old_passwd, @user.passwd
+      assert_equal encrypt(new_passwd, @user.salt), @user.passwd
     end
   end  
 

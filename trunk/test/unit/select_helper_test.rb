@@ -72,7 +72,7 @@ class SelectHelperTest < Test::Unit::TestCase
     assert_equal "<select id=\"edit_jobpositioncategory_id\" name=\"edit[jobpositioncategory_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Asoc. A  M.T., Técnico académico</option></select>", select_conditions('edit', Jobpositioncategory, 1, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositiontype_id = 2")
 
     @edit = Institutioncareer.new
-    assert_equal "<select id=\"edit_institution_id\" name=\"edit[institution_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"96\">Dirección General de Asuntos del Personal Académico</option>\n<option value=\"57\">Centro de Ciencias de la Atmósfera</option>\n<option value=\"1\">UNAM, Universidad Nacional Autónoma de México</option>\n<option value=\"71\">Centro de Enseñanza de Lenguas Extranjeras</option>\n<option value=\"5588\">SEP, Secretaría de Educación Pública</option>\n<option value=\"3\">, Programa Universitario de Estudios de Género</option></select>", select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']]) 
+    assert_equal "<select id=\"edit_institution_id\" name=\"edit[institution_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">UNAM, Universidad Nacional Autónoma de México</option>\n<option value=\"3\">UNAM, Programa Universitario de Estudios de Género</option></select>", select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']]) 
     # assert_equal '',  select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']],:conditions => "institutions.institution_id = 1)
   end
 end
