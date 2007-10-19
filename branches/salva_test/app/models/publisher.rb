@@ -6,4 +6,5 @@ class Publisher < ActiveRecord::Base
 
   has_many :journals
   has_many :genericworks
+  has_many :bookedition_publishers
 end

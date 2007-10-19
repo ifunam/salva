@@ -1,0 +1,12 @@
+sismologia_balkema:
+  id: 1
+  bookedition_id: 1
+  publisher_id: 2
+earthquakes_adasi:
+  id: 2
+  bookedition_id: 2
+  publisher_id: 3
+spacephysics_ak_peters:
+  id: 3
+  bookedition_id: 3
+  publisher_id: 1
