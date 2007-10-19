@@ -3,6 +3,8 @@ class UserThesis < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :thesis_id, :user_id, :roleinthesis_id, :greater_than => 0, :only_integer => true
 
+  validates_uniqueness_of :user_id, :scope => [:thesis_id, :roleinthesis_id]
+
   belongs_to :user
   belongs_to :thesis
   belongs_to :roleinthesis

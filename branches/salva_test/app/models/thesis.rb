@@ -11,4 +11,6 @@ class Thesis < ActiveRecord::Base
   validates_associated :thesisstatus
   validates_associated :thesismodality
   validates_associated :institutioncareer
+
+  has_many :user_theses
 end
