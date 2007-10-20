@@ -30,6 +30,7 @@
   - - change_password
     - user_setting
 - user_project
+- user_cite
 - user_researchline
 - conferences_and_seminaries
 - - user_conferencetalk
