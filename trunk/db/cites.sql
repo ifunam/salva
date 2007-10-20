@@ -15,7 +15,7 @@ CREATE TABLE user_cites (
     		DEFERRABLE,
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-
+    PRIMARY KEY(id),
     UNIQUE (user_id)
 );
 
@@ -41,8 +41,8 @@ BEGIN
         IF (date_part(''year'',OLD.updated_on::date) < date_part(''year'',CURRENT_TIMESTAMP::date))  THEN
 		old_year = date_part(''year'',CURRENT_TIMESTAMP::date);
         INSERT INTO user_cites_logs (user_id, total, year, moduser_id) VALUES (OLD.user_id, OLD.total, old_year,  OLD.moduser_id);
-		END IF;
-		RETURN NEW;
+	END IF;
+	RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 
