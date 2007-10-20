@@ -32,7 +32,6 @@ is_postaddress: Dirección postal
 title: Título
 author: Autor(es)
 authors: Autor(es)
-coauthor: Coautor(es)
 booklink: Página web
 country_id: País
 booktype_id: Tipo de libro
@@ -410,7 +409,7 @@ mainauthor: Autor principal
 coauthor: Coautor
 seminary: Seminario
 talk: Conferencia
-yes: S
+yes: S�
 no: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
@@ -462,5 +461,4 @@ master_schooling: Maestría
 bachelor_schooling: Licenciatura
 other_schooling: Otro
 user_document_handling: Administración de documentos
-user_cite: Citas
-total: Total
+myseminary: Seminario
