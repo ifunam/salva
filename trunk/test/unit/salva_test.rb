@@ -5,23 +5,24 @@ class TestSalva < Test::Unit::TestCase
   include Salva
   fixtures [:countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions]
 
-  def test_get_cfg
+  def test_get_conf
     # Error Arguments
-    assert_raises (ArgumentError) { get_cfg}
-    assert_raises (ArgumentError) { get_cfg('a','b') }
+    assert_raises (ArgumentError) { get_conf}
+    assert_raises (ArgumentError) { get_conf('a','b') }
 
-    #Right
-    assert_equal 'Instituto de Física - UNAM', get_cfg('institution')
-    assert_equal 'http://www.fisica.unam.mx', get_cfg('institution_url')
-    #assert_equal 314, get_cfg('administrative_key')
-    assert_equal 'default', get_cfg('theme')
-    assert_equal 14, get_cfg('most_common_school')
+    # Right
+    assert_equal 'Instituto de Física - UNAM', get_conf('institution')
+    assert_equal 'http://www.fisica.unam.mx', get_conf('institution_url')
 
-    #Undefined conf
-    assert_equal "unexistent no esta definido en #{RAILS_ROOT}/config/site.yml", get_cfg('unexistent')
+    # assert_equal 314, get_conf('administrative_key')
+    assert_equal 'default', get_conf('theme')
+    assert_equal 14, get_conf('most_common_school')
 
-    #Bad Values
-    if (get_cfg('administrative_key')-5000) < 0 then
+    # Undefined conf
+    assert_equal "unexistent no esta definido en #{RAILS_ROOT}/config/site.yml", get_conf('unexistent')
+
+    # Bad Values
+    if (get_conf('administrative_key')-5000) < 0 then
       x = true
     else
       x = false
@@ -35,7 +36,6 @@ class TestSalva < Test::Unit::TestCase
 
     #Right
     assert_instance_of Institution, get_myinstitution
-    assert_kind_of Institution, get_myinstitution
     assert_equal '314', get_myinstitution.administrative_key
     assert_equal 'Instituto de Fisica', get_myinstitution.name
     assert_not_nil get_myinstitution
@@ -43,9 +43,9 @@ class TestSalva < Test::Unit::TestCase
     #Error Klass
     assert_not_equal User, get_myinstitution
 
-    #Bad Values
+    # Bad Values
     assert_not_equal '200', get_myinstitution.administrative_key
-    assert_not_equal 'Intituto de Geologia', get_myinstitution.name
+    assert_not_equal 'Instituto de Geologia', get_myinstitution.name
   end
 
   def test_get_myschool
@@ -54,17 +54,16 @@ class TestSalva < Test::Unit::TestCase
 
     # Right
     assert_instance_of Institution, get_myschool
-    assert_kind_of Institution, get_myschool
     assert_equal 14, get_myschool.id
     assert_equal 'Facultad de Ciencias', get_myschool.name
     assert_not_nil get_myschool
 
-    #Error Klass
+    # Error Klass
     assert_not_equal User, get_myinstitution
 
-    #Bad Values
+    # Bad Values
     assert_not_equal '200', get_myschool.administrative_key
-    assert_not_equal 'Intituto de Geologia', get_myschool.name
+    assert_not_equal 'Instituto de Geologia', get_myschool.name
     assert_not_equal 40, get_myschool.id
   end
 end

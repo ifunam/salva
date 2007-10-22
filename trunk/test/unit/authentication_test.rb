@@ -9,52 +9,52 @@ class TestAuthentication < Test::Unit::TestCase
     @default_users = %w( admin juana panchito )
   end
 
-  def test_authenticate_by_token_eh
- #right
-    for user in (@default_users)
-      busc= User.find_by_login(user)
-      assert_equal true, authenticate_by_token?(busc,busc.token)
-      busc= User.find_by_login(user)
-      assert_equal nil, busc.token
-    end
-
-# Testing arguments
+  def test_authenticate_by_token
+    # Testing arguments
     assert_raises (ArgumentError) { authenticate_by_token?() }
     assert_raises (ArgumentError) { authenticate_by_token?('token1') }
     assert_raises (ArgumentError) { authenticate_by_token?('juana') }
 
-#bad_values
-     assert !authenticate_by_token?(nil,nil)
-#  assert !authenticate_by_token?(2,nil)
-     assert !authenticate_by_token?(nil,'wkbg')
-  end
-  def test_authenticate_eh
-    #right
-    for user in (@default_users)
-      assert_equal true,  authenticate?(user, 'maltiempo')
+    # Right behaviour
+    for login in (@default_users)
+      @user = User.find_by_login(login)
+      assert_equal true, authenticate_by_token?(@user.id,@user.token)
+      assert_equal nil, @user.token
     end
 
-    #testing arguments
-    assert_raises (ArgumentError) { authenticate?( ) }
-    assert_raises (ArgumentError) { authenticate?(user ) }
-    assert_raises (ArgumentError) { authenticate?( 'maltiempo') }
+    # Bad values
+    assert !authenticate_by_token?(nil,nil)
+    assert !authenticate_by_token?(nil,'wkbg')
+    #  assert !authenticate_by_token?(2,nil)
+  end
+  
+  def test_authenticate
+    # Testing arguments
+    assert_raises (ArgumentError) { authenticate?() }
+    assert_raises (ArgumentError) { authenticate?('juana') }
+    assert_raises (ArgumentError) { authenticate?('maltiempo') }
+    
+    # Right behaviour
+    for login in (@default_users)
+      assert_equal true,  authenticate?(login, 'maltiempo')
+    end
 
-     #bad values
+     # Bad values
      assert !authenticate?(nil,nil)
      assert !authenticate?(2,nil)
      assert !authenticate?(nil,'wkbg')
-
-    end
+  end
 
   def test_authenticate_login_exist
-   #Right
-    for user in (@default_users)
-      assert_equal true, (self.send :login_exists?, user)
+    # Right behaviour
+    for login in (@default_users)
+      assert_equal true, (self.send :login_exists?, login)
     end
-    #arguments
+    
+    # Testing with bad arguments
     assert_equal false, (self.send :login_exists?, nil)
-    assert_equal false, (self.send :login_exists?,  'chente_fox')
-    assert_equal false, (self.send :login_exists?,  5)
+    assert_equal false, (self.send :login_exists?, 'elpinche_chente_fox')
+    assert_equal false, (self.send :login_exists?, 5)
   end
 end
 

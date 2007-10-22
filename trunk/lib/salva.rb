@@ -1,26 +1,18 @@
 require 'yaml'
 module Salva
-  def get_cfg(name)
+  def get_conf(name)
     ymlfile =  File.join(RAILS_ROOT, 'config', 'site.yml')
-    site = YAML::parse( File.open(ymlfile) )
-    cfg = site.transform    
-    cfg[name] ? cfg[name] : "#{name} no esta definido en #{ymlfile}"
+    conf = YAML::parse(File.open(ymlfile)).transform
+    conf[name] ? conf[name] : "#{name} no esta definido en #{ymlfile}"
   end
   
   def get_myinstitution
-    administrative_key = get_cfg('administrative_key')
-    if administrative_key.is_a? Integer
-      @institution = Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key])
-      @institution unless @institution.nil?
-    end
+    administrative_key = get_conf('administrative_key')
+    Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key]) if administrative_key.is_a? Integer
   end
 
   def get_myschool
-    myschool = get_cfg('most_common_school')
-    if myschool.is_a? Integer
-      @institution = Institution.find(:first, :conditions => ['id = ?',  myschool])
-      @institution unless @institution.nil?
-    end
+    myschool = get_conf('most_common_school')
+    Institution.find(:first, :conditions => ['id = ?',  myschool]) if myschool.is_a? Integer
   end
-
 end
