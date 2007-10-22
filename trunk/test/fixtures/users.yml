@@ -7,6 +7,7 @@ admin:
   passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
   salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
   userstatus_id: 2
+  token: asdf
 juana:
   id: 2
   email: alex@fisica.unam.mx
@@ -14,6 +15,7 @@ juana:
   passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
   salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
   userstatus_id: 2
+  token: asdf
 panchito:
   id: 3
   email: alexjr85@gmail.com
@@ -21,4 +23,5 @@ panchito:
   passwd: cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c83844fd809317bb597eb71af303981a048aa2ca280ca6424864598f82ae3
   salt: RhKfxHddtln1XPWw1bIwVefodA2p9MROequn/oEG
   userstatus_id: 2
+  token: asdf
 

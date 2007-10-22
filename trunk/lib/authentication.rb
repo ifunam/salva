@@ -5,12 +5,16 @@ module Authentication
   def authenticate?(login,passwd)
     if login_exists?(login)
       @user = User.find_by_login(login)
+
       return true if @user.passwd == encrypt(passwd, @user.salt) and @user.is_activated?
     end
     return false
   end
 
   def authenticate_by_token?(id,token)
+#     if token.nil?
+#       return false
+#     end
     @user = User.find_by_id_and_token(id,token)
     unless @user.nil?
       @user.destroy_token
