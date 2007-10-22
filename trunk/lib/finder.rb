@@ -32,6 +32,7 @@ class Finder
 
     add_tables!(sql, options)
     add_conditions!(sql, options, columns)
+    add_order!(sql, options)
     add_limit!(sql, options)
     clean_sql!(sql)
   end
@@ -60,7 +61,7 @@ class Finder
 
   def add_order!(sql, options, attributes=nil)
     if !attributes.nil?
-      order = (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
+      order = (options.has_key? :order ) ? " ORDER BY #{options[:order]}" : " ORDER BY #{attributes} ASC"
       sql << order
     else
       sql << " ORDER BY #{options[:order]} " if options[:order]
@@ -194,11 +195,11 @@ class Finder
       [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
     }
   end
-  
+
   def as_collection
     find_collection
   end
-  
+
   def set_string(record, column)
     ( ['t', 'f', true, false].include? record.send(column) ) ? label_for_boolean(column.sub(/^([a-z0-9]_)/,''), record.send(column)) : record.send(column)
   end

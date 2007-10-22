@@ -10,11 +10,11 @@ class UserCiteController < SalvaController
   end
 
   def list
-    cite = UserCite.find(:first, :conditions => [ 'user_id = ?', session[:user]])
-    if cite.nil?
+    @cite = UserCite.find(:first, :conditions => [ 'user_id = ?', session[:user]])
+    if @cite.nil?
       render :action => 'new'
     else
-      redirect_to  :action => 'show', :id => cite.id
+      redirect_to  :action => 'show', :id => @cite.id
     end
   end
 
