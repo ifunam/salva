@@ -12,6 +12,7 @@
 \i languages.sql
 
 \i articles.sql
+\i cites.sql
 \i researcharea.sql
 \i conferences.sql
 \i seminaries.sql

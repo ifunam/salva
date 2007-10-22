@@ -69,10 +69,10 @@ class SelectHelperTest < Test::Unit::TestCase
     assert_equal "<select id=\"edit_proceeding_id\" name=\"edit[proceeding_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"2\">Coloquio de Artes Manuales y otras habilidades</option>\n<option value=\"1\">Characterización of position-sensitive photomultiplier tubesfor microPET, detection modules</option></select>", select_conditions('edit', Proceeding,  1, :attributes => %w(title year), :conditions => "isrefereed = 'f'")
     
     @edit = Jobposition.new
-    assert_equal "<select id=\"edit_jobpositioncategory_id\" name=\"edit[jobpositioncategory_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Asoc. A  M.T., Técnico académico</option></select>", select_conditions('edit', Jobpositioncategory, 1, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositiontype_id = 2")
+    assert_equal "<select id=\"edit_jobpositioncategory_id\" name=\"edit[jobpositioncategory_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Técnico académico, Asoc. A  M.T.</option></select>", select_conditions('edit', Jobpositioncategory, 1, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositiontype_id = 2")
 
     @edit = Institutioncareer.new
-    assert_equal "<select id=\"edit_institution_id\" name=\"edit[institution_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">UNAM, Universidad Nacional Autónoma de México</option>\n<option value=\"3\">UNAM, Programa Universitario de Estudios de Género</option></select>", select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']]) 
+    assert_equal "<select id=\"edit_institution_id\" name=\"edit[institution_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Universidad Nacional Autónoma de México, UNAM</option>\n<option value=\"3\">Programa Universitario de Estudios de Género, UNAM</option></select>", select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']]) 
     # assert_equal '',  select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']],:conditions => "institutions.institution_id = 1)
   end
 end

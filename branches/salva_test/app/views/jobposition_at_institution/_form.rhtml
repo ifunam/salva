@@ -25,7 +25,7 @@
 <div class="row">
 <label for="institution_id" class="label"><%= get_label('institution_id') %> <span class="required">*</span></label>
 <div id="institution_id">
-<%= select_conditions('edit', Institution, 4, :attributes => ['name', ['institution', 'abbrev']], :conditions => "institution_id = 1", :selected => get_myinstitution.id ) %>
+<%= select_conditions('edit', Institution, 4, :attributes => ['name', ['institution', 'abbrev']], :conditions => "institutions.institution_id = 1", :selected => get_myinstitution.id ) %>
 </div>
 </div>
 

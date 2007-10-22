@@ -13,6 +13,7 @@ class Finder
   include Labels
   attr_accessor :sql
   attr_accessor :model
+  attr_accessor :columns
   attr_accessor :debug_array
 
   def initialize(model, *options)
@@ -31,6 +32,7 @@ class Finder
 
     add_tables!(sql, options)
     add_conditions!(sql, options, columns)
+    add_order!(sql, options)
     add_limit!(sql, options)
     clean_sql!(sql)
   end
@@ -59,7 +61,7 @@ class Finder
 
   def add_order!(sql, options, attributes=nil)
     if !attributes.nil?
-      order = (options.has_key? :order ) ? " ORDER BY options[:order]" : " ORDER BY #{attributes} ASC"
+      order = (options.has_key? :order ) ? " ORDER BY #{options[:order]}" : " ORDER BY #{attributes} ASC"
       sql << order
     else
       sql << " ORDER BY #{options[:order]} " if options[:order]
@@ -167,25 +169,35 @@ class Finder
   end
 
   def find_collection
-    @model.find_by_sql(@sql)
+    collection = @model.find_by_sql(@sql)
+    if collection.size > 0
+        columns = collection.first.attribute_names
+        column_position = columns.inject({}) { |h,col| h[col] = @sql.index(col); h }
+        @columns = columns.sort { |x,y| column_position[x] <=> column_position[y] }
+    end
+    collection
   end
 
   def as_text
     find_collection.collect { |record|
-      record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
+      @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
     }
   end
 
   def as_pair
     find_collection.collect { |record|
-      [ record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
+      [ @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
     }
   end
 
   def as_hash
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), record.attributes.keys.reverse.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
+      [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
     }
+  end
+
+  def as_collection
+    find_collection
   end
 
   def set_string(record, column)
