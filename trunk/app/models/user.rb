@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   has_many :user_articles
   has_many :articles, :through => :user_articles
+  has_many :user_newspaperarticles
 
   has_many :user_genericworks
   has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id'
@@ -45,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :user_courses
   has_many :user_journals
+  has_many :user_theses
+  has_many :user_cites
 
   # Callbacks
   before_create :prepare_new_record
