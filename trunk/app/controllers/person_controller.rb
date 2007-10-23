@@ -30,7 +30,7 @@ class PersonController < ApplicationController
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
     @edit = get_record(session[:user], true)
-    unless @edit.respond_to? 'photo'
+    if @edit.respond_to? 'photo'
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
@@ -131,3 +131,4 @@ class PersonController < ApplicationController
     return false
   end
 end
+
