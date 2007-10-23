@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   has_many :user_courses
   has_many :user_journals
   has_many :user_theses
+  has_many :user_cites
 
   # Callbacks
   before_create :prepare_new_record

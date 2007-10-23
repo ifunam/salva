@@ -41,7 +41,7 @@ DECLARE
                 old_year integer;
 BEGIN
         IF (date_part(''year'',OLD.updated_on::date) < date_part(''year'',CURRENT_TIMESTAMP::date))  THEN
-                old_year = date_part(''year'',CURRENT_TIMESTAMP::date);
+                old_year = date_part(''year'',OLD.updated_on::date);
                 INSERT INTO user_cites_logs (user_id, total, year, moduser_id) VALUES (OLD.user_id, OLD.total, old_year,  OLD.moduser_id);
         END IF;
         RETURN NEW;

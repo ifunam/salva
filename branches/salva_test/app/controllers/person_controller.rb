@@ -15,7 +15,7 @@ class PersonController < ApplicationController
   end
 
   def show
-    @edit =  (params[:id].nil?)  ? get_person : get_record(params[:id])
+    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
   end
 
   def new
@@ -23,18 +23,14 @@ class PersonController < ApplicationController
   end
 
   def edit
-    @edit =  (params[:id].nil?)  ? get_person : get_record(params[:id])
-  end
-
-  def list
-     @pages, @collection = paginate :person, :per_page => 10
+    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
   end
 
   def photo
-    @edit =  get_record(session[:user], true)
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
-    unless @edit.respond_to? 'photo'
+    @edit = get_record(session[:user], true)
+    if @edit.respond_to? 'photo'
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
@@ -47,7 +43,6 @@ class PersonController < ApplicationController
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('new')
       save_photo if @edit.photo.size > 0
-
       if @edit.save
         flash[:notice] = 'Sus datos personales han sido guardados'
         render :action => 'show'
@@ -113,9 +108,12 @@ class PersonController < ApplicationController
 
   def get_record(id,photo=false)
     # To avoid performance problems avoid use the photo attributes  (photo_*)
-    columns = Person.column_names
-    columns -=  ["photo_filename", "photo_content_type", "photo"] if photo == false
-    Person.find(:first, :select => columns.join(', '), :conditions => [ "user_id=?",  id])
+    if photo == true
+      Person.find(id)
+    else
+      columns = Person.column_names - ["photo_filename", "photo_content_type", "photo"]
+      Person.find(:first, :select => columns.join(', '), :conditions => [ "user_id = ?",  id])
+    end
   end
 
   def clean_photo_attributes
@@ -133,3 +131,4 @@ class PersonController < ApplicationController
     return false
   end
 end
+
