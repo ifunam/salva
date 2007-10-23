@@ -1,13 +1,16 @@
---- 
-admin_cites: 
- id: 1 
+---
+admin_cites:
+ id: 1
  user_id: 1
+ author_name: 'Alba Andrade Fernando'
  total: 1
-juana_cites: 
- id: 2 
+juana_cites:
+ id: 2
  user_id: 2
+ author_name: 'Salazar Esther'
  total: 1
-panchito_cites: 
+panchito_cites:
  id: 3
  user_id: 3
- total: 0
+ author_name: 'Flores Valdés Jorge Andrés'
+ total: 1

@@ -7,7 +7,7 @@ class UserCiteTest < Test::Unit::TestCase
 
   def setup
     @user_cites = %w(admin_cites juana_cites)
-    @myuser_cite = UserCite.new({:user_id => 3, :total => 1 })
+    @myuser_cite = UserCite.new({:user_id => 3, :author_name => 'Flores Valdés Jorge Andrés', :total => 1 })
   end
 
   # Right - CRUD
@@ -18,6 +18,16 @@ class UserCiteTest < Test::Unit::TestCase
       assert_equal user_cites(user_cite.to_sym).id, @user_cite.id
       assert_equal user_cites(user_cite.to_sym).user_id, @user_cite.user_id
       assert_equal user_cites(user_cite.to_sym).total, @user_cite.total
+      assert_equal user_cites(user_cite.to_sym).author_name, @user_cite.author_name
+    }
+  end
+
+  def test_updating_author_name
+    @user_cites.each { |user_cite|
+      @user_cite = UserCite.find(user_cites(user_cite.to_sym).id)
+      assert_equal user_cites(user_cite.to_sym).author_name, @user_cite.author_name
+      @user_cite.update_attribute('author_name', @user_cite.author_name.reverse)
+      assert_not_equal user_cites(user_cite.to_sym).author_name, @user_cite.author_name
     }
   end
 
@@ -46,7 +56,7 @@ class UserCiteTest < Test::Unit::TestCase
   end
 
   def test_uniqueness
-    @user_cite = UserCite.new({:user_id => 3, :total => 1})
+    @user_cite = UserCite.new({:user_id => 2, :author_name => 'Ortíz y Salazar María Esther' , :total => 1})
     assert !@user_cite.save
   end
 
@@ -88,7 +98,7 @@ class UserCiteTest < Test::Unit::TestCase
 
   #Cross-Checking test
 
-  def test_cross_checking_for_activity_group_id
+  def test_cross_checking_for_user_id
     @user_cites.each { | user_cite|
       @user_cite = UserCite.find(user_cites(user_cite.to_sym).id)
       assert_kind_of UserCite, @user_cite
