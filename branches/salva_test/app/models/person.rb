@@ -3,8 +3,8 @@ class Person < ActiveRecord::Base
 
   validates_numericality_of  :country_id, :greater_than =>0, :only_integer => true
   validates_numericality_of :maritalstatus_id, :city_id, :state_id, :allow_nil => true, :greater_than =>0, :only_integer => true
-
-  validates_presence_of :firstname,  :lastname1, :dateofbirth, :country_id, :gender
+  validates_presence_of :firstname,  :lastname1, :dateofbirth, :country_id
+  validates_inclusion_of :gender, :in=> [true, false]
 
   belongs_to :user
   belongs_to :maritalstatus
@@ -21,5 +21,4 @@ class Person < ActiveRecord::Base
   def fullname
     [self.lastname1, self.lastname2, self.firstname].join(' ')
   end
-
 end

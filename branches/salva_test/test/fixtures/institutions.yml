@@ -16,7 +16,6 @@ cele:
   other:
   state_id: 9
   addr:
-
 unam:
   name: Universidad Nacional Autónoma de México
   abbrev: UNAM
@@ -34,7 +33,6 @@ unam:
   other: ""
   state_id: 9
   addr: Ciudad Universitaria, Delegación
-
 personal_academico:
   name: Dirección General de Asuntos del Personal Académico
   abbrev:
@@ -99,6 +97,40 @@ centro_de_ciencias:
   phone:
   city_id: 1
   institutiontitle_id: 8
+  institutiontype_id: 1
+  other:
+  state_id: 9
+  addr:
+Instituto_de_fisica:
+  name: Instituto de Fisica
+  abbrev:
+  administrative_key: 314
+  zipcode:
+  country_id: 484
+  url:
+  id: 30
+  institution_id: 1
+  fax:
+  phone:
+  city_id: 64
+  institutiontitle_id: 4
+  institutiontype_id: 1
+  other:
+  state_id: 9
+  addr:
+facultad_de_ciencias:
+  name: Facultad de Ciencias
+  abbrev:
+  administrative_key: 411
+  zipcode:
+  country_id: 484
+  url:
+  id: 14
+  institution_id: 1
+  fax:
+  phone:
+  city_id: 64
+  institutiontitle_id: 3
   institutiontype_id: 1
   other:
   state_id: 9

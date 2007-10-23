@@ -17,7 +17,7 @@
 <body>
 
 <div id="head">
-<a href="<%= get_cfg('institution_url') %>" target="_new"> <%= get_cfg('institution') %></a>
+<a href="<%= get_conf('institution_url') %>" target="_new"> <%= get_conf('institution') %></a>
 </div>
 
 <div id="container"> 
@@ -45,15 +45,8 @@
        <li id="active"> <a href="http://www.salva.unam.mx"
        id="current" target="_new">S A L V A</a></li>
        <li class="simple"><a href="/user/">Inicio de  sesi&oacute;n</a></li>
-       <li class="simple"><a href="/user/new/">Obtener una cuenta</a></li>
        <li> <a href="http://www.unam.mx" target="_new">UNAM</a></li>
-       <li class="simple"> <a href="http://www.aries.unam.mx/" target="_new">ARIES</a></li>
-       <li class="simple"> <a href="http://dgapa.unam.mx/servicios_general.htm" target="_new">DGAPA</a></li>
-       <li class="simple"> <a href="http://http://132.248.76.18/" target="_new">SAI</a></li>
-       <li class="simple"> <a href="http://www.estadistica.unam.mx/" target="_new">SIDEU</a></li>
        <li><a href="http://www.scienti.net/html/es/home.html" target="_new">ScienTI</a></li>
-       <li class="simple"><a href="http://www.scienti.net/xml2html/xmlRoot.php?xml=xml/es/bvs.xml&amp;xsl=xsl/level2.xsl&amp;lang=es&amp;tab=collection&amp;item=91&amp;graphic=yes" target="_new">Grupos de investigaci&oacute;n</a></li>
-       <li><a href="http://www.presidencia.gob.mx"target="_new">M&eacute;xico</a></li>
       </ul>
 	<div id="login">
 		<% if flash[:notice] %>  <p style="color: yellow"> <%= flash[:notice] %></p> <% end %>

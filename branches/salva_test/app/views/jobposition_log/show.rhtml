@@ -1,1 +1,5 @@
-<%= render :partial => "salva/show" %>
+<%= render :partial => "salva/show", :locals => { :operation_links => false } %>
+<div id="operations">
+ <%= link_to get_label('edit'), :action => 'edit', :id => @edit.id %> |
+ <%= link_to get_label('back'), {:controller => 'navigator', :depth => 1}  %>
+</div>
