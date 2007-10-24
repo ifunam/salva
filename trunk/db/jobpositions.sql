@@ -277,8 +277,8 @@ CREATE TABLE jobposition_logs (
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
         UNIQUE(user_id),
-		UNIQUE(worker_key),
-		CONSTRAINT no_empty_academic_and_administrative_years CHECK (academic_years IS NOT NULL OR administrative_years IS NOT NULL)
+	UNIQUE(worker_key),
+	CONSTRAINT no_empty_academic_and_administrative_years CHECK (academic_years IS NOT NULL OR administrative_years IS NOT NULL)
 );
 COMMENT ON TABLE jobposition_logs IS
         'Antiguedad del usuario en la UNAM';
