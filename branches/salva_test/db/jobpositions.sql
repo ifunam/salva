@@ -175,8 +175,8 @@ CREATE TABLE user_stimulus (
         endyear  int4 NULL,
         endmonth int4 NULL CHECK (endmonth<=12 AND endmonth>=1),
         PRIMARY KEY (id)
---      CONSTRAINT valid_duration CHECK (endyear IS NULL OR
---             (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+		--      CONSTRAINT valid_duration CHECK (endyear IS NULL OR
+		--             (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
 COMMENT ON TABLE user_stimulus IS
         'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha
@@ -267,36 +267,42 @@ CREATE TABLE jobposition_logs (
             ON DELETE CASCADE
             DEFERRABLE,
         worker_key text NOT NULL,
-        years integer NOT NULL CHECK (years >=1 OR years <= 80),
-        moduser_id integer NULL      -- It will be used only to know who has
+        academic_years integer NULL CHECK (academic_years >=1 OR academic_years <= 90),
+        administrative_years integer NULL CHECK (administrative_years >=1 OR administrative_years <= 90),
+        moduser_id integer NULL  -- It will be used only to know who has
             REFERENCES users(id) -- inserted, updated or deleted
             ON UPDATE CASCADE    -- data into or from this table.
             DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(id),
-        UNIQUE(user_id, worker_key)
+        UNIQUE(user_id),
+	UNIQUE(worker_key),
+	CONSTRAINT no_empty_academic_and_administrative_years CHECK (academic_years IS NOT NULL OR administrative_years IS NOT NULL)
 );
 COMMENT ON TABLE jobposition_logs IS
         'Antiguedad del usuario en la UNAM';
 COMMENT ON COLUMN jobposition_logs.worker_key IS
         'Número de trabajador en la UNAM (es único)';
-COMMENT ON COLUMN jobposition_logs.years IS
-        'Número de años trabajando en UNAM (Se calculará el número a partir de la información de la tabla jobpositions';
+COMMENT ON COLUMN jobposition_logs.academic_years IS
+        'Número de años trabajando como personal académico/investigación en la UNAM';
+COMMENT ON COLUMN jobposition_logs.administrative_years IS
+        'Número de años trabajando como personal administrativo en la UNAM';
+	
 
 
 CREATE TABLE jobpositionlog (
-        id SERIAL,
-        user_id int4 NOT NULL,
-        old_jobpositioncategory_id smallint NULL,
-        old_contracttype_id integer NULL,
+       id SERIAL,
+       user_id int4 NOT NULL,
+       old_jobpositioncategory_id smallint NULL,
+       old_contracttype_id integer NULL,
        institution_id int4 NOT NULL,
        startyear int4 NOT NULL,
        startmonth int4 NULL CHECK (startmonth >= 1 AND startmonth <= 12),
        endyear int4  NULL,
        endmonth int4 NULL CHECK (endmonth >= 1 AND endmonth <= 12),
        old_descr text NULL,
-      moduser_id integer NULL,      -- It will be used only to know who has
+       moduser_id integer NULL,      -- It will be used only to know who has
        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
        PRIMARY KEY (id)
