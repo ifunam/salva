@@ -44,6 +44,16 @@ class JobpositionLogTest < Test::Unit::TestCase
     }
   end
 
+  def test_creating_jobposition_only_with_academic_years
+    @myjobposition_log = JobpositionLog.new({ :user_id => 1, :worker_key => 6788345290, :academic_years => 20 })
+    assert @myjobposition_log.save
+  end
+
+  def test_creating_jobposition_only_with_administrative_years
+    @myjobposition_log = JobpositionLog.new({ :user_id => 1, :worker_key => 6788345290, :administrative_years => 10 })
+    assert @myjobposition_log.save
+  end
+  
   def test_uniqueness
      @myjobposition_log = JobpositionLog.new({:user_id => 1, :worker_key => 6788345290, :academic_years => 20, :administrative_years => 10})
      assert @myjobposition_log.save
@@ -79,6 +89,21 @@ class JobpositionLogTest < Test::Unit::TestCase
      assert !@myjobposition_log.valid?
    end
 
+   def test_bad_values_for_user_id
+     # Float number for ID
+     @myjobposition_log.user_id = 1.6
+     assert !@myjobposition_log.valid?
+
+     @myjobposition_log.user_id = 'xx'
+     assert !@myjobposition_log.valid?
+
+     @myjobposition_log.user_id = -1
+     assert !@myjobposition_log.valid?
+     
+     @myjobposition_log.user_id = nil
+     assert !@myjobposition_log.valid?
+   end
+   
    def test_bad_values_for_worker_key
      @myjobposition_log.worker_key = nil
      assert !@myjobposition_log.valid?
