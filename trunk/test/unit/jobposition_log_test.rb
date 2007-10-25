@@ -44,12 +44,12 @@ class JobpositionLogTest < Test::Unit::TestCase
     }
   end
 
-  def test_creationg_jobposition_only_with_academic_years
+  def test_creating_jobposition_only_with_academic_years
     @myjobposition_log = JobpositionLog.new({ :user_id => 1, :worker_key => 6788345290, :academic_years => 20 })
     assert @myjobposition_log.save
   end
 
-  def test_creationg_jobposition_only_with_administrative_years
+  def test_creating_jobposition_only_with_administrative_years
     @myjobposition_log = JobpositionLog.new({ :user_id => 1, :worker_key => 6788345290, :administrative_years => 10 })
     assert @myjobposition_log.save
   end
