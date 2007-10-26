@@ -4,10 +4,11 @@ require 'user'
 require 'jobposition'
 
 class JobpositionTest < Test::Unit::TestCase
-  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :userstatuses, :users, :jobpositions
+  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :userstatuses, :users, 
+    :jobpositionlevels, :roleinjobpositions, :jobpositiontypes, :jobpositioncategories,:jobpositions
 
   def setup
-    @jobpositions = %w(tecnico_academico investigador secretario_academico)
+    @jobpositions = %w(juana_como_tecnico_academico juana_como_investigador panchito_como_investigador panchito_como_secretario_academico)
     @myjobposition = Jobposition.new({:institution_id => 57, :user_id => 2, :startyear => 2007})
   end
 
