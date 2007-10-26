@@ -1,13 +1,13 @@
 ---
-curp_mexicana:
+curp:
   id: 1
-  idtype_id: 1
+  idtype_id: 3
   citizen_country_id: 484
-credencial_de_elector_mexicana:
+rfc:
   id: 2
   idtype_id: 2
   citizen_country_id: 484
 pasaporte_ucraniano:
   id: 3
-  idtype_id: 3
+  idtype_id: 1
   citizen_country_id: 804

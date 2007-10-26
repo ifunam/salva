@@ -4,16 +4,16 @@ require 'country'
 require 'person'
 
 class PersonTest < Test::Unit::TestCase
-  fixtures   :countries, :states, :cities, :maritalstatuses, :userstatuses, :users, :people
+  fixtures :countries, :states, :cities, :maritalstatuses, :userstatuses, :users, :people
 
   def setup
     @people = %w(juana panchito)
-    @myperson = Person.new({:user_id => 4, :country_id => 392, :firstname  => 'Elena', :lastname1  => 'de Oteiza', :dateofbirth => 1970, :gender => false})
+    @myperson = Person.new({ :user_id => 1, :country_id => 392, :firstname  => 'Elena', :lastname1  => 'de Oteiza', :dateofbirth => 1970, :gender => false })
   end
 
   # Right - CRUD
   def test_creating_people_from_yaml
-    @people.each { | person|
+    @people.each { | person |
       @person = Person.find(people(person.to_sym).user_id)
       assert_kind_of Person, @person
       assert_equal people(person.to_sym).user_id, @person.user_id
@@ -26,7 +26,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_updating_people_firstname
-    @people.each { |person|
+    @people.each { |person |
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).firstname, @person.firstname
       @person.update_attribute('firstname', @person.firstname.chars.reverse)
@@ -35,7 +35,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_updating_people_lastname1
-    @people.each { |person|
+    @people.each { |person |
       @person = Person.find(people(person.to_sym).id)
       assert_equal people(person.to_sym).lastname1, @person.lastname1
       @person.update_attribute('lastname1', @person.lastname1.chars.reverse)
@@ -44,7 +44,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_deleting_people
-    @people.each { |person|
+    @people.each { |person |
       @person = Person.find(people(person.to_sym).id)
       @person.destroy
       assert_raise (ActiveRecord::RecordNotFound) {
@@ -59,17 +59,17 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated_person
-    @person = Person.new({:user_id => 3, :country_id => 484, :dateofbirth => '07/02/1986', :firstname  => 'Francisco', :lastname1  => 'Buentiempo', :gender => false})
-     @person_user_id = 3
+    @person = Person.new({ :user_id => 1, :country_id => 484, :dateofbirth => '07/02/1986', :firstname  => 'Francisco', :lastname1  => 'Buentiempo', :gender => false })
+    @person.user_id = 3
     assert !@person.save
   end
 
   # Boundary
   def test_bad_values_for_country_id
-   # @myperson.country_id = nil
-   # assert !@myperson.valid?
+    @myperson.country_id = nil
+    assert !@myperson.valid?
 
-    @myperson.country_id= 1.6
+    @myperson.country_id = 1.6
     assert !@myperson.valid?
 
     @myperson.country_id = 'mi_id'
@@ -77,16 +77,16 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_user_id
-    @myperson_user_id = 3.1416
+    @myperson.user_id = 3.1416
     assert !@myperson.valid?
 
-    @myperson_user_id = 'mi_id'
-    assert !@myperson.valid?
+    @myperson.user_id = 'mi_id'
+    #assert !@myperson.valid?
   end
-  #Cross-Checking test
 
+  # Cross-Checking test
   def test_cross_checking_for_user_id
-    @people.each { | person|
+    @people.each { |person |
       @person = Person.find(people(person.to_sym).id)
       assert_kind_of Person, @person
       assert_equal @person.user_id, User.find(@person.user_id).id
@@ -102,7 +102,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_cross_checking_with_bad_values_for_user_id
-    @people.each { | person|
+    @people.each { | person |
       @person = Person.find(people(person.to_sym).id)
       assert_kind_of Person, @person
       @person.user_id = 1000000
@@ -115,7 +115,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_cross_checking_for_country_id
-    @people.each { | person|
+    @people.each { | person |
       @person = Person.find(people(person.to_sym).id)
       assert_kind_of Person, @person
       assert_equal @person.country_id, Country.find(@person.country_id).id
@@ -131,7 +131,7 @@ class PersonTest < Test::Unit::TestCase
   end
 
   def test_cross_checking_with_bad_values_for_country_id
-    @people.each { | person|
+    @people.each { | person |
       @person = Person.find(people(person.to_sym).id)
       assert_kind_of Person, @person
       @person.country_id = 100000
@@ -142,5 +142,4 @@ class PersonTest < Test::Unit::TestCase
       end
     }
   end
-
 end

@@ -32,7 +32,7 @@ class AddressTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_addresss_name
+   def test_updating_addresss
      @addresses.each { |address|
        @address = Address.find(addresses(address.to_sym).id)
        assert_equal addresses(address.to_sym).location, @address.location
@@ -59,10 +59,10 @@ class AddressTest < Test::Unit::TestCase
 
   def test_creating_duplicated_address
     @address = Address.new({:user_id => 2, :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez", 
-      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true})
+      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  2, :is_postaddress=> true})
     assert @address.save
     @address_dup = Address.new({:user_id => 2, :location => "Tajín No. 634, Int 1, Col. Letrán Valle, Delegación Benito Juárez",
-      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  1, :is_postaddress=> true})
+      :zipcode => 03650,  :country_id => 484,  :state_id => 9,  :city_id => 64,  :addresstype_id =>  2, :is_postaddress=> true})
    
    assert !@address_dup.save
   end
