@@ -7,7 +7,7 @@ class IdentificationTest < Test::Unit::TestCase
   fixtures :countries, :idtypes, :identifications
 
   def setup
-    @identifications = %w(curp_mexicana credencial_de_elector_mexicana pasaporte_ucraniano)
+    @identifications = %w(curp rfc pasaporte_ucraniano)
     @myidentification = Identification.new({:idtype_id => 4, :citizen_country_id => 484})
   end
 

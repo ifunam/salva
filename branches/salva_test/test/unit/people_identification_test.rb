@@ -7,7 +7,7 @@ class PeopleIdentificationTest < Test::Unit::TestCase
   fixtures :userstatuses, :users, :countries, :idtypes, :identifications, :people_identifications
 
   def setup
-    @people_identifications = %w(juana_curp_mexicana panchito_credencial_de_elector_mexicana admin_pasaporte_ucraniano)
+    @people_identifications = %w(juana_curp panchito_rfc admin_pasaporte_ucraniano)
     @mypeople_identification = PeopleIdentification.new({:user_id => 2, :identification_id => 2, :descr => 'Credencial de elector' })
   end
 

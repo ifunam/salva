@@ -7,10 +7,10 @@ admin_cites:
 juana_cites:
  id: 2
  user_id: 2
- author_name: 'Salazar Esther'
- total: 1
+ author_name: 'Maltiempo J.'
+ total: 100
 panchito_cites:
  id: 3
  user_id: 3
- author_name: 'Flores Valdés Jorge Andrés'
- total: 1
+ author_name: 'Buentiempo F.'
+ total: 250
