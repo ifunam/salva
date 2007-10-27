@@ -1,0 +1,9 @@
+- profile 
+- - user_schooling: Finder.new(Schooling, :all, :attributes => ['institutioncareer']).as_text
+  - jobposition 
+  - - jobposition_internal
+    - - jobposition_at_institution: Finder.new(Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id " ).as_text
+      - user_adscription: Finder.new(UserAdscription, :all, :attributes => %w( jobposition adscription startyear )).as_text
+      - jobposition_log: Finder.new(JobpositionLog, :first, :attributes => %w( worker_key academic_years administrative_years), :conditions => 'user_id =2').as_text
+    - jobposition_external: Finder.new(Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ").as_text
+    
