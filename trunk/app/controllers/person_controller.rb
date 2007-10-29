@@ -15,7 +15,7 @@ class PersonController < ApplicationController
   end
 
   def show
-    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
+    @edit = get_person 
   end
 
   def new
@@ -23,7 +23,7 @@ class PersonController < ApplicationController
   end
 
   def edit
-    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
+    @edit = model_from_stack || get_person
   end
 
   def photo
@@ -42,7 +42,7 @@ class PersonController < ApplicationController
     @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('new')
-      save_photo if @edit.photo.size > 0
+      save_photo if !@edit.photo.nil? and @edit.photo.size > 0
       if @edit.save
         flash[:notice] = 'Sus datos personales han sido guardados'
         render :action => 'show'
@@ -58,7 +58,7 @@ class PersonController < ApplicationController
     @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('edit')
-      save_photo if @edit.photo.size > 0
+      save_photo if !@edit.photo.nil? and @edit.photo.size > 0
 
       if @edit.valid?
         flash[:notice] = 'Sus datos personales han sido actualizados'
