@@ -12,3 +12,10 @@ reportes_tecnicos:
   genericworktype_id: 1
   genericworkstatus_id: 2
   year: 2005
+cosmos:
+  id: 3
+  title: El origen del cosmos, los agujeros negros, y la historia del huevo y la gallina
+  authors: Master yoda, Luke Skywalker and Pedro PicaPica
+  genericworktype_id: 3
+  genericworkstatus_id: 1
+  year: 2005
