@@ -51,11 +51,11 @@ class NavigatorController < ApplicationController
         session[:navtree] = tree.children[index] if !tree.children[index].nil?
       else
         tree = tree.parent
-        #        @parent = tree.children_data.join(', ')
-        index = tree.children_data.index(controller)
-        @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  } if !index.nil?
+        if !tree.nil? and tree.has_children?
+          index = tree.children_data.index(controller)
+          @nodes = { :left => tree.children[index].left_node, :parent =>  tree.children[index].parent,  :right  => tree.children[index].right_node  } if !index.nil?
+        end
       end
-
     end
     render :action => "navcontrol", :layout  => false
   end
