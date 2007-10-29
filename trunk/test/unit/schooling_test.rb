@@ -26,7 +26,7 @@ class SchoolingTest < Test::Unit::TestCase
       @schooling = Schooling.find(schoolings(schooling.to_sym).id)
       assert_equal schoolings(schooling.to_sym).startyear, @schooling.startyear
       @schooling.startyear = 2005
-      assert @schooling.save
+      @schooling.save
       assert_not_equal schoolings(schooling.to_sym).startyear, @schooling.startyear
     }
   end
