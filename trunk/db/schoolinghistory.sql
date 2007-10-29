@@ -105,10 +105,10 @@ CREATE TABLE schoolings (
     	updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE (user_id,  institutioncareer_id),
-    CONSTRAINT is_studying_or_is_finished_degree 
-	CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
-	(is_studying_this = 'f' AND is_titleholder IS NOT NULL)), 
-		-- (endyear IS NOT NULL AND credits IS NULL OR credits = 100),
+--    CONSTRAINT is_studying_or_is_finished_degree 
+--	CHECK ( (is_studying_this = 't' AND is_titleholder = 'f') OR
+--	(is_studying_this = 'f' AND is_titleholder IS NOT NULL)), 
+	-- (endyear IS NOT NULL AND credits IS NULL OR credits = 100),
 	CONSTRAINT valid_period CHECK (startyear < endyear)
 
 );
