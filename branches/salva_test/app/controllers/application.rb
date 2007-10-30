@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
   session :session_key => '_salva_session_id'
   protect_from_forgery :secret => 'my-little-salva_cookie'
 
-  skip_before_filter :verify_authenticity_token,  :only => [:update_select,  :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
-  verify :method => :post, :only => [:update_select,  :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
+  skip_before_filter :verify_authenticity_token, :only => [:update_select, :auto_complete_for_edit_year,:auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
+  verify :method => :post, :only => [:update_select, :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
 
   def update_select
     render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }

@@ -9,7 +9,7 @@ fixtures :jobpositiontypes, :roleinjobpositions, :jobpositionlevels, :jobpositio
   def initialize(*args)
    super
    @mycontroller =  JobpositioncategoryController.new
-   @myfixtures = {  :jobpositiontype_id => 2, :roleinjobposition_id => 3,  :jobpositionlevel_id => 1}
+   @myfixtures = {  :jobpositiontype_id => 2, :roleinjobposition_id => 2,  :jobpositionlevel_id => 1}
    @mybadfixtures = {  :jobpositiontype_id => nil, :roleinjobposition_id => 3,  :jobpositionlevel_id => nil  }
    @model = Jobpositioncategory
    @quickposts = ['jobpositiontype', 'roleinjobposition', 'jobpositionlevel']

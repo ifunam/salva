@@ -2,7 +2,7 @@
 <% form_tag({:action => 'update', :id => @edit.id}) do -%>
   <%= render :partial => 'form' %>
   <div id="operations">
-    <%= submit_tag get_label('update'), :onclick=>"this.disabled=true;$('progressbar').show();" %><span id="progressbar" style="display:none;"><img src="/images/progress-bar.gif"></span> |
+    <%= submit_tag get_label('update') %><span id="progressbar" style="display:none;"><img src="/images/progress-bar.gif"></span> |
   <%= link_to get_label('cancel'), :action => 'cancel' %>
   </div>
 <% end -%>

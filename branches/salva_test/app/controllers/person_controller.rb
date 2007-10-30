@@ -15,7 +15,7 @@ class PersonController < ApplicationController
   end
 
   def show
-    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
+    @edit = get_person 
   end
 
   def new
@@ -23,14 +23,16 @@ class PersonController < ApplicationController
   end
 
   def edit
-    @edit = (params[:id].nil?) ? get_person : get_record(params[:id])
+    @edit = model_from_stack || get_person
   end
 
   def photo
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
     @edit = get_record(session[:user], true)
-    if @edit.respond_to? 'photo'
+    if @edit.photo != nil and !@edit.photo.blank?
+      #response.headers['Content-Description'] = @edit.photo_filename
+      #response.headers['Last-Modified'] = @edit.updated_on.httpdate
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
@@ -42,7 +44,7 @@ class PersonController < ApplicationController
     @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('new')
-      save_photo if @edit.photo.size > 0
+      save_photo if !@edit.photo.nil? and @edit.photo.size > 0
       if @edit.save
         flash[:notice] = 'Sus datos personales han sido guardados'
         render :action => 'show'
@@ -58,7 +60,7 @@ class PersonController < ApplicationController
     @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('edit')
-      save_photo if @edit.photo.size > 0
+      save_photo if !@edit.photo.nil? and @edit.photo.size > 0
 
       if @edit.valid?
         flash[:notice] = 'Sus datos personales han sido actualizados'
@@ -76,7 +78,7 @@ class PersonController < ApplicationController
     @edit.photo_filename = base_part_of(params[:edit]['photo'].original_filename)
     @edit.photo_content_type = base_part_of(params[:edit]['photo'].content_type.chomp)
     @edit.photo = transform_photo(params[:edit]['photo'])
-    @edit.photo_content_type = 'png'
+    @edit.photo_content_type = @edit.photo_filename.split('.').last.downcase
   end
 
   def base_part_of(file_name)
@@ -94,7 +96,6 @@ class PersonController < ApplicationController
     imgratio = imgwidth.to_f / imgheight.to_f
     imgratio > aspectratio ? scaleratio = maxwidth.to_f / imgwidth : scaleratio = maxheight.to_f / imgheight
     photo.resize!(scaleratio)
-    photo.format = 'PNG'
     photo.to_blob
   end
 

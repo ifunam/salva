@@ -1,4 +1,5 @@
-class BachelorSchoolingController < SalvaController
+ class BachelorSchoolingController < SalvaController
+  
   def initialize
     super
     @model = Schooling

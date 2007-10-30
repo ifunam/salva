@@ -10,3 +10,8 @@ impresos:
   name: Impresos
   id: 5
   genericworkgroup_id: 2
+trabajos_divulgacion: 
+  name: Trabajos de divulgación
+  id: 3
+  genericworkgroup_id: 1
+  

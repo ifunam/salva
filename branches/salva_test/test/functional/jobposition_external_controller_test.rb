@@ -4,7 +4,7 @@ require 'jobposition_external_controller'
 class JobpositionExternalController; def rescue_action(e) raise e end; end
 
 class  JobpositionExternalControllerTest < SalvaControllerTest
-   fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :jobpositions
+   fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :jobpositionlevels, :roleinjobpositions, :jobpositiontypes, :jobpositioncategories,:jobpositions
 
   def initialize(*args)
    super
