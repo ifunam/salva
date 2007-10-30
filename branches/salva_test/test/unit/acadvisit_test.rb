@@ -69,7 +69,8 @@ class AcadvisitTest < Test::Unit::TestCase
     @myacadvisit.descr = nil
     assert !@myacadvisit.valid?
   end
-
+  
+  def test_bad_values_for_country_id
     # Float number for ID
     @myacadvisit.country_id = 3.1416
     assert !@myacadvisit.valid?
@@ -91,8 +92,8 @@ class AcadvisitTest < Test::Unit::TestCase
     assert !@myacadvisit.valid?
 
     # Negative numbers
-    #@myacadvisit.institution_id = -1
-    #assert !@myacadvisit.valid?
+    @myacadvisit.institution_id = -1
+    assert !@myacadvisit.valid?
   end
 
 
@@ -200,17 +201,17 @@ class AcadvisitTest < Test::Unit::TestCase
   end
 
   def test_cross_checking_with_bad_values_for_User_id
-    @acadvisits.each { | acadvisit|
-      @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
-      assert_kind_of Acadvisit, @acadvisit
-      @acadvisit.user_id = 108
-      begin
-        return true if @acadvisit.save
-      rescue StandardError => x
-        return false
-      end
-    }
-  end
-
+     @acadvisits.each { | acadvisit|
+       @acadvisit = Acadvisit.find(acadvisits(acadvisit.to_sym).id)
+       assert_kind_of Acadvisit, @acadvisit
+       @acadvisit.user_id = 108
+       begin
+         return true if @acadvisit.save
+       rescue StandardError => x
+         return false
+       end
+     }
+   end
+ 
 end
 

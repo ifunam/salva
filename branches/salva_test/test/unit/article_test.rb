@@ -93,6 +93,7 @@ class ArticleTest < Test::Unit::TestCase
 
     @myarticle.articlestatus_id = 3.1416
     assert !@myarticle.valid?
+
     @myarticle.articlestatus_id = 'mi_id'
     assert !@myarticle.valid?
   end
