@@ -49,7 +49,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
     assert !@myprojectgenericwork.valid?
     @myprojectgenericwork.id = 'mi_id'
     assert !@myprojectgenericwork.valid?
-    @myprojectgenericwork.id = -1.0
+    @myprojectgenericwork.id = -1
     assert !@myprojectgenericwork.valid?
   end
 
@@ -63,7 +63,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
     @myprojectgenericwork.genericwork_id = 'mi_id'
     assert !@myprojectgenericwork.valid?
 
-    @myprojectgenericwork.genericwork_id= -1.0
+    @myprojectgenericwork.genericwork_id= -1
     assert !@myprojectgenericwork.valid?
   end
 
@@ -77,7 +77,7 @@ class ProjectgenericworkTest < Test::Unit::TestCase
     @myprojectgenericwork.project_id = 'mi_id'
     assert !@myprojectgenericwork.valid?
 
-    @myprojectgenericwork.project_id = -3.0
+    @myprojectgenericwork.project_id = -1
     assert !@myprojectgenericwork.valid?
   end
 
@@ -89,7 +89,6 @@ class ProjectgenericworkTest < Test::Unit::TestCase
       assert_equal @projectgenericwork.project_id, Project.find(@projectgenericwork.project_id).id
     }
   end
-
 
   def catch_exception_when_update_invalid_key(record)
     begin

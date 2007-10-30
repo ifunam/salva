@@ -24,7 +24,6 @@
        assert_equal institutions(institution.to_sym).institutiontitle_id, @institution.institutiontitle_id
        assert_equal institutions(institution.to_sym).institutiontype_id, @institution.institutiontype_id
        assert_equal institutions(institution.to_sym).country_id, @institution.country_id
-
      }
    end
 
@@ -65,7 +64,7 @@
      assert !@myinstitution.valid?
      @myinstitution.id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.id = -1.0
+     @myinstitution.id = -1
      assert !@myinstitution.valid?
    end
 
@@ -82,7 +81,7 @@
      assert !@myinstitution.valid?
      @myinstitution.institutiontitle_id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.institutiontitle_id= -1.0
+     @myinstitution.institutiontitle_id= -1
      assert !@myinstitution.valid?
    end
 
@@ -93,7 +92,7 @@
      assert !@myinstitution.valid?
      @myinstitution.institutiontype_id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.institutiontype_id= -1.0
+     @myinstitution.institutiontype_id= -1
      assert !@myinstitution.valid?
    end
 
@@ -104,7 +103,7 @@
      assert !@myinstitution.valid?
      @myinstitution.country_id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.country_id= -1.0
+     @myinstitution.country_id= -1
      assert !@myinstitution.valid?
    end
 
@@ -113,7 +112,7 @@
      assert !@myinstitution.valid?
      @myinstitution.state_id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.state_id= -1.0
+     @myinstitution.state_id= -1
      assert !@myinstitution.valid?
    end
 
@@ -122,7 +121,7 @@
      assert !@myinstitution.valid?
      @myinstitution.city_id = 'mi_id'
      assert !@myinstitution.valid?
-     @myinstitution.city_id= -1.0
+     @myinstitution.city_id= -1
      assert !@myinstitution.valid?
    end
 

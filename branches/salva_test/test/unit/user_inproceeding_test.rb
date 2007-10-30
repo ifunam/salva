@@ -48,7 +48,7 @@ class UserInproceedingTest < Test::Unit::TestCase
     assert !@myuser_inproceeding.valid?
     @myuser_inproceeding.id = 'mi_id'
     assert !@myuser_inproceeding.valid?
-    @myuser_inproceeding.id = -1.0
+    @myuser_inproceeding.id = -1
     assert !@myuser_inproceeding.valid?
   end
 
@@ -62,7 +62,7 @@ class UserInproceedingTest < Test::Unit::TestCase
     @myuser_inproceeding.inproceeding_id = 'mi_id'
     assert !@myuser_inproceeding.valid?
 
-    @myuser_inproceeding.inproceeding_id= -1.0
+    @myuser_inproceeding.inproceeding_id= -1
     assert !@myuser_inproceeding.valid?
   end
 
@@ -72,6 +72,8 @@ class UserInproceedingTest < Test::Unit::TestCase
     @myuser_inproceeding.ismainauthor = 1.6
     assert !@myuser_inproceeding.valid?
     @myuser_inproceeding.ismainauthor = 'my_ismainauthor'
+    assert !@myuser_inproceeding.valid?
+    @myuser_inproceeding.ismainauthor = -1
     assert !@myuser_inproceeding.valid?
   end
 

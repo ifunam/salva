@@ -79,7 +79,7 @@ class UserThesisTest < Test::Unit::TestCase
     assert !@myuser_thesis.valid?
     @myuser_thesis.id = 'mi_id'
     assert !@myuser_thesis.valid?
-    @myuser_thesis.id = -1.0
+    @myuser_thesis.id = -1
     assert !@myuser_thesis.valid?
   end
 
@@ -88,7 +88,7 @@ class UserThesisTest < Test::Unit::TestCase
     assert !@myuser_thesis.valid?
     @myuser_thesis.user_id = 'mi_id_texto'
     assert !@myuser_thesis.valid?
-    @myuser_thesis.user_id = -1.0
+    @myuser_thesis.user_id = -1
     assert !@myuser_thesis.valid?
   end
 
@@ -99,7 +99,7 @@ class UserThesisTest < Test::Unit::TestCase
     assert !@myuser_thesis.valid?
     @myuser_thesis.thesis_id = 'mi_id_texto'
     assert !@myuser_thesis.valid?
-    @myuser_thesis.thesis_id = -1.0
+    @myuser_thesis.thesis_id = -1
     assert !@myuser_thesis.valid?
   end
 
@@ -110,7 +110,7 @@ class UserThesisTest < Test::Unit::TestCase
     assert !@myuser_thesis.valid?
     @myuser_thesis.roleinthesis_id = 'mi_id_texto'
     assert !@myuser_thesis.valid?
-    @myuser_thesis.roleinthesis_id = -1.0
+    @myuser_thesis.roleinthesis_id = -1
     assert !@myuser_thesis.valid?
   end
 

@@ -51,7 +51,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
     @myprojectfinancingsource.id = 'mi_id'
     assert !@myprojectfinancingsource.valid?
 
-    @myprojectfinancingsource.id = -1.0
+    @myprojectfinancingsource.id = -1
     assert !@myprojectfinancingsource.valid?
   end
 
@@ -65,7 +65,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
     @myprojectfinancingsource.institution_id = 'mi_id'
     assert !@myprojectfinancingsource.valid?
 
-    @myprojectfinancingsource.institution_id = -1.0
+    @myprojectfinancingsource.institution_id = -1
     assert !@myprojectfinancingsource.valid?
   end
 
@@ -79,7 +79,7 @@ class ProjectfinancingsourceTest < Test::Unit::TestCase
     @myprojectfinancingsource.project_id = 'mi_id'
     assert !@myprojectfinancingsource.valid?
 
-    @myprojectfinancingsource.project_id = -1.0
+    @myprojectfinancingsource.project_id = -1
     assert !@myprojectfinancingsource.valid?
   end
 

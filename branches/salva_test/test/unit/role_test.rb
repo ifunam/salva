@@ -55,7 +55,7 @@
      assert !@myrole.valid?
      @myrole.id = 'mi_id'
      assert !@myrole.valid?
-     @myrole.id = -1.0
+     @myrole.id = -1
      assert !@myrole.valid?
    end
 

@@ -83,7 +83,7 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.id = 'mi_id'
     assert !@myregularcourse.valid?
-    @myregularcourse.id = -1.0
+    @myregularcourse.id = -1
     assert !@myregularcourse.valid?
   end
 
@@ -99,7 +99,7 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.modality_id = 'mi_id_texto'
     assert !@myregularcourse.valid?
-    @myregularcourse.modality_id = -1.0
+    @myregularcourse.modality_id = -1
     assert !@myregularcourse.valid?
   end
 
@@ -108,7 +108,7 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.academicprogram_id = 'mi_id_texto'
     assert !@myregularcourse.valid?
-    @myregularcourse.academicprogram_id = -1.0
+    @myregularcourse.academicprogram_id = -1
     assert !@myregularcourse.valid?
   end
 
@@ -117,7 +117,7 @@ class RegularcourseTest < Test::Unit::TestCase
     assert !@myregularcourse.valid?
     @myregularcourse.semester = 'my_semester'
     assert !@myregularcourse.valid?
-    @myregularcourse.semester = -1.0
+    @myregularcourse.semester = -1
     assert !@myregularcourse.valid?
   end
 

@@ -40,7 +40,7 @@ class RoleinchapterTest < Test::Unit::TestCase
     assert !@myroleinchapter.valid?
 
     # Negative number ID
-    @myroleinchapter.id = -1.0
+    @myroleinchapter.id = -1
     assert !@myroleinchapter.valid?
 
     # Float number ID

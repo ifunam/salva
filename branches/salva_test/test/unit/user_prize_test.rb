@@ -84,7 +84,7 @@ class UserPrizeTest < Test::Unit::TestCase
     assert !@myuser_prize.valid?
     @myuser_prize.id = 'mi_id'
     assert !@myuser_prize.valid?
-    @myuser_prize.id = -1.0
+    @myuser_prize.id = -1
     assert !@myuser_prize.valid?
   end
 
@@ -95,7 +95,7 @@ class UserPrizeTest < Test::Unit::TestCase
     assert !@myuser_prize.valid?
     @myuser_prize.user_id = 'mi_id_texto'
     assert !@myuser_prize.valid?
-    @myuser_prize.user_id= -1.0
+    @myuser_prize.user_id= -1
     assert !@myuser_prize.valid?
   end
 
@@ -106,7 +106,7 @@ class UserPrizeTest < Test::Unit::TestCase
     assert !@myuser_prize.valid?
     @myuser_prize.prize_id = 'mi_id_texto'
     assert !@myuser_prize.valid?
-    @myuser_prize.prize_id = -1.0
+    @myuser_prize.prize_id = -1
     assert !@myuser_prize.valid?
   end
 
@@ -116,6 +116,8 @@ class UserPrizeTest < Test::Unit::TestCase
     @myuser_prize.year = 1.6
     assert !@myuser_prize.valid?
     @myuser_prize.year = 'my_year'
+    assert !@myuser_prize.valid?
+    @myuser_prize.year = -1
     assert !@myuser_prize.valid?
   end
 

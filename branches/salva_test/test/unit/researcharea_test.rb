@@ -49,7 +49,7 @@ class ResearchareaTest < Test::Unit::TestCase
     @myresearcharea.id = 3.1416
     assert !@myresearcharea.valid?
 
-    @myresearcharea.id = -1.0
+    @myresearcharea.id = -1
     assert !@myresearcharea.valid?
   end
 end

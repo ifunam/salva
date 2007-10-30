@@ -40,7 +40,7 @@ class BooktypeTest < Test::Unit::TestCase
     assert !@mybooktype.valid?
 
     # Negative number ID
-    @mybooktype.id = -1.0
+    @mybooktype.id = -1
     assert !@mybooktype.valid?
 
     # Float number ID

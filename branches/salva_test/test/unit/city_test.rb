@@ -58,7 +58,7 @@ class CityTest < Test::Unit::TestCase
     assert !@mycity.valid?
     @mycity.id = 'mi_id'
     assert !@mycity.valid?
-    @mycity.id = -1.0
+    @mycity.id = -1
     assert !@mycity.valid?
   end
 
@@ -74,12 +74,8 @@ class CityTest < Test::Unit::TestCase
     assert !@mycity.valid?
     @mycity.state_id = 'mi_id'
     assert !@mycity.valid?
-    @mycity.state_id= -1.0
+    @mycity.state_id= -1
     assert !@mycity.valid?
-
-    # Negative number ID
-    #@city.state_id = -1
-    #assert !@city.valid?
   end
 
   #cross check for state

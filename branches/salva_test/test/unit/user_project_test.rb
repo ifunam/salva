@@ -79,7 +79,7 @@ class UserProjectTest < Test::Unit::TestCase
     assert !@myuser_project.valid?
     @myuser_project.id = 'mi_id'
     assert !@myuser_project.valid?
-    @myuser_project.id = -1.0
+    @myuser_project.id = -1
     assert !@myuser_project.valid?
   end
 
@@ -88,7 +88,7 @@ class UserProjectTest < Test::Unit::TestCase
     assert !@myuser_project.valid?
     @myuser_project.user_id = 'mi_id_texto'
     assert !@myuser_project.valid?
-    @myuser_project.user_id = -1.0
+    @myuser_project.user_id = -1
     assert !@myuser_project.valid?
   end
 
@@ -99,7 +99,7 @@ class UserProjectTest < Test::Unit::TestCase
     assert !@myuser_project.valid?
     @myuser_project.project_id = 'mi_id_texto'
     assert !@myuser_project.valid?
-    @myuser_project.project_id = -1.0
+    @myuser_project.project_id = -1
     assert !@myuser_project.valid?
   end
 
@@ -110,7 +110,7 @@ class UserProjectTest < Test::Unit::TestCase
     assert !@myuser_project.valid?
     @myuser_project.roleinproject_id = 'mi_id_texto'
     assert !@myuser_project.valid?
-    @myuser_project.roleinproject_id = -1.0
+    @myuser_project.roleinproject_id = -1
     assert !@myuser_project.valid?
   end
 

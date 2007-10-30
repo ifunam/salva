@@ -37,8 +37,8 @@ class ConferencetypeTest < Test::Unit::TestCase
     @myconferencetype.id = 'xx'
     assert !@myconferencetype.valid?
 
-    #@myconferencetype.id = -1.0
-    #assert !@myconferencetype.valid?
+    @myconferencetype.id = -1
+    assert !@myconferencetype.valid?
   end
 
   def test_bad_values_for_name
@@ -46,4 +46,3 @@ class ConferencetypeTest < Test::Unit::TestCase
     assert !@myconferencetype.valid?
   end
 end
-

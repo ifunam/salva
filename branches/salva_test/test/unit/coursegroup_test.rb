@@ -62,7 +62,7 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@mycoursegroup.valid?
 
     #Negative numbers
-    @mycoursegroup.id = -1.0
+    @mycoursegroup.id = -1
     assert !@mycoursegroup.valid?
   end
 
@@ -83,7 +83,7 @@ class CoursegroupTest < Test::Unit::TestCase
     assert !@mycoursegroup.valid?
 
     # Negative numbers
-    @mycoursegroup.coursegrouptype_id = -1.0
+    @mycoursegroup.coursegrouptype_id = -1
     assert !@mycoursegroup.valid?
   end
 

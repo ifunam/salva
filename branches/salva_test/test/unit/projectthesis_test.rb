@@ -58,7 +58,7 @@ class ProjectthesisTest < Test::Unit::TestCase
     assert !@myprojectthesis.valid?
     @myprojectthesis.id = 'mi_id'
     assert !@myprojectthesis.valid?
-    @myprojectthesis.id = -1.0
+    @myprojectthesis.id = -1
     assert !@myprojectthesis.valid?
   end
 
@@ -69,7 +69,7 @@ class ProjectthesisTest < Test::Unit::TestCase
     assert !@myprojectthesis.valid?
     @myprojectthesis.project_id = 'mi_id_texto'
     assert !@myprojectthesis.valid?
-    @myprojectthesis.project_id= -1.0
+    @myprojectthesis.project_id= -1
     assert !@myprojectthesis.valid?
   end
 
@@ -80,7 +80,7 @@ class ProjectthesisTest < Test::Unit::TestCase
     assert !@myprojectthesis.valid?
     @myprojectthesis.thesis_id = 'mi_id_texto'
     assert !@myprojectthesis.valid?
-    @myprojectthesis.thesis_id = -1.0
+    @myprojectthesis.thesis_id = -1
     assert !@myprojectthesis.valid?
   end
 

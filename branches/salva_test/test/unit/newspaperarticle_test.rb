@@ -58,7 +58,7 @@ class NewspaperarticleTest < Test::Unit::TestCase
     assert !@mynewspaperarticle.valid?
 
     # Negative numbers
-    @mynewspaperarticle.id = -1.0
+    @mynewspaperarticle.id = -1
     assert !@mynewspaperarticle.valid?
   end
 
@@ -78,7 +78,7 @@ class NewspaperarticleTest < Test::Unit::TestCase
     assert !@mynewspaperarticle.valid?
 
     # Negative numbers
-    @mynewspaperarticle.newspaper_id = -1.0
+    @mynewspaperarticle.newspaper_id = -1
     assert !@mynewspaperarticle.valid?
   end
 

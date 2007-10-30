@@ -39,7 +39,7 @@ class JobpositionlevelTest < Test::Unit::TestCase
     @myjobpositionlevel.id = 'xx'
     assert !@myjobpositionlevel.valid?
 
-    @myjobpositionlevel.id = -1.0
+    @myjobpositionlevel.id = -1
     assert !@myjobpositionlevel.valid?
 
     # Float number ID

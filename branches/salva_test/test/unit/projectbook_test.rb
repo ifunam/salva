@@ -50,7 +50,7 @@ class ProjectbookTest < Test::Unit::TestCase
     @myprojectbook.id = 'mi_id'
     assert !@myprojectbook.valid?
 
-    @myprojectbook.id = -1.0
+    @myprojectbook.id = -1
     assert !@myprojectbook.valid?
   end
 
@@ -64,7 +64,7 @@ class ProjectbookTest < Test::Unit::TestCase
     @myprojectbook.book_id = 'mi_id'
     assert !@myprojectbook.valid?
 
-    @myprojectbook.book_id = -1.0
+    @myprojectbook.book_id = -1
     assert !@myprojectbook.valid?
   end
 
@@ -78,7 +78,7 @@ class ProjectbookTest < Test::Unit::TestCase
     @myprojectbook.project_id = 'mi_id'
     assert !@myprojectbook.valid?
 
-    @myprojectbook.project_id = -1.0
+    @myprojectbook.project_id = -1
     assert !@myprojectbook.valid?
   end
 

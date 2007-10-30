@@ -38,7 +38,7 @@ class CitizenmodalityTest < Test::Unit::TestCase
     assert !@mycitizenmodality.valid?
 
     # Negative number ID
-    @mycitizenmodality.id = -1.0
+    @mycitizenmodality.id = -1
     assert !@mycitizenmodality.valid?
 
     # Float number ID

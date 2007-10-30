@@ -4,8 +4,8 @@ require 'user'
 require 'jobposition'
 
 class JobpositionTest < Test::Unit::TestCase
-  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :userstatuses, :users, 
-    :jobpositionlevels, :roleinjobpositions, :jobpositiontypes, :jobpositioncategories,:jobpositions
+  fixtures  :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions, :userstatuses, :users,
+  :jobpositionlevels, :roleinjobpositions, :jobpositiontypes, :jobpositioncategories,:jobpositions
 
   def setup
     @jobpositions = %w(juana_como_tecnico_academico juana_como_investigador panchito_como_investigador panchito_como_secretario_academico)
@@ -53,8 +53,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.id = 'mi_id'
     assert !@myjobposition.valid?
 
-    #@myjobposition.id = -1.0
-    #assert !@myjobposition.valid?
+    @myjobposition.id = -1
+    assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_user_id
@@ -67,8 +67,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.user_id = 'mi_id'
     assert !@myjobposition.valid?
 
-    #@myjobposition.user_id = -1.0
-    #assert !@myjobposition.valid?
+    @myjobposition.user_id = -1
+    assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_institution_id
@@ -81,8 +81,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.institution_id = 'mi_id'
     assert !@myjobposition.valid?
 
-    #@myjobposition.institution_id = -1.0
-    #assert !@myjobposition.valid?
+    @myjobposition.institution_id = -1
+    assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_jobpositioncategory_id
@@ -92,8 +92,8 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.jobpositioncategory_id  = 'mi_id'
     assert !@myjobposition.valid?
 
-    #@myjobposition.jobpositioncategory_id  = -1.0
-    #assert !@myjobposition.valid?
+    @myjobposition.jobpositioncategory_id  = -1
+    assert !@myjobposition.valid?
   end
 
   def test_bad_values_for_contracttype_id
@@ -103,12 +103,11 @@ class JobpositionTest < Test::Unit::TestCase
     @myjobposition.contracttype_id  = 'mi_id'
     assert !@myjobposition.valid?
 
-    #@myjobposition.contracttype_id  = -1.0
-    #assert !@myjobposition.valid?
+    @myjobposition.contracttype_id  = -1
+    assert !@myjobposition.valid?
   end
 
   #Cross-Checking test
-
   def test_cross_checking_for_institution_id
     @jobpositions.each { | jobposition|
       @jobposition = Jobposition.find(jobpositions(jobposition.to_sym).id)
@@ -116,7 +115,6 @@ class JobpositionTest < Test::Unit::TestCase
       assert_equal @jobposition.institution_id, Institution.find(@jobposition.institution_id).id
     }
   end
-
 
   def catch_exception_when_update_invalid_key(record)
     begin

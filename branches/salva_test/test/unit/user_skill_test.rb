@@ -81,7 +81,7 @@ class UserSkillTest < Test::Unit::TestCase
     @myuser_skill.id = 'mi_id'
     assert !@myuser_skill.valid?
 
-    @myuser_skill.id = -1.0
+    @myuser_skill.id = -1
     assert !@myuser_skill.valid?
   end
 
@@ -90,14 +90,14 @@ class UserSkillTest < Test::Unit::TestCase
     assert !@myuser_skill.valid?
     @myuser_skill.user_id = 'mi_id_texto'
     assert !@myuser_skill.valid?
-    @myuser_skill.user_id= -1.0
+    @myuser_skill.user_id= -1
     assert !@myuser_skill.valid?
   end
 
   def test_bad_values_for_skilltype_id
     @myuser_skill.skilltype_id = nil
     assert !@myuser_skill.valid?
-    @myuser_skill.skilltype_id = -1.0
+    @myuser_skill.skilltype_id = -1
     assert !@myuser_skill.valid?
     @myuser_skill.skilltype_id = 1.6
     assert !@myuser_skill.valid?

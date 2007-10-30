@@ -42,7 +42,7 @@ class InstitutiontitleTest < Test::Unit::TestCase
     # Float number ID
     @myinstitutiontitle.id = 1.3
     assert !@myinstitutiontitle.valid?
-    @myinstitutiontitle.id = -1.0
+    @myinstitutiontitle.id = -1
     assert !@myinstitutiontitle.valid?
   end
 

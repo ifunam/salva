@@ -40,7 +40,7 @@ class RcontrollerTest < Test::Unit::TestCase
 
     #Negative number ID
     @mycontroller = Controller.new
-    @mycontroller.id = -1.0
+    @mycontroller.id = -1
     assert !@mycontroller.valid?
 
     # Float number ID

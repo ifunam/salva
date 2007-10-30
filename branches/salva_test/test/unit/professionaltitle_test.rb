@@ -49,7 +49,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
     assert !@myprofessionaltitle.valid?
     @myprofessionaltitle.id = 'mi_id'
     assert !@myprofessionaltitle.valid?
-    @myprofessionaltitle.id = -1.0
+    @myprofessionaltitle.id = -1
     assert !@myprofessionaltitle.valid?
   end
 
@@ -63,7 +63,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
     @myprofessionaltitle.titlemodality_id = 'mi_id'
     assert !@myprofessionaltitle.valid?
 
-    @myprofessionaltitle.titlemodality_id= -1.0
+    @myprofessionaltitle.titlemodality_id= -1
     assert !@myprofessionaltitle.valid?
   end
 
@@ -77,7 +77,7 @@ class ProfessionaltitleTest < Test::Unit::TestCase
     @myprofessionaltitle.schooling_id = 'mi_id'
     assert !@myprofessionaltitle.valid?
 
-    @myprofessionaltitle.schooling_id = -3.0
+    @myprofessionaltitle.schooling_id = -1
     assert !@myprofessionaltitle.valid?
   end
   #Cross-Checking test

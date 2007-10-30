@@ -54,7 +54,7 @@ class ExternaluserTest < Test::Unit::TestCase
     assert !@myexternaluser.valid?
 
     # Negative number ID
-    @myexternaluser.id = -1.0
+    @myexternaluser.id = -1
     assert !@myexternaluser.valid?
 
     # Float number ID
@@ -67,7 +67,7 @@ class ExternaluserTest < Test::Unit::TestCase
     assert !@myexternaluser.valid?
 
     # Negative number
-    @myexternaluser.institution_id = -1.0
+    @myexternaluser.institution_id = -1
     assert !@myexternaluser.valid?
 
     # Float number
@@ -80,7 +80,7 @@ class ExternaluserTest < Test::Unit::TestCase
     assert !@myexternaluser.valid?
 
     # Negative number
-    @myexternaluser.externaluserlevel_id = -1.0
+    @myexternaluser.externaluserlevel_id = -1
     assert !@myexternaluser.valid?
 
     # Float number
@@ -96,7 +96,7 @@ class ExternaluserTest < Test::Unit::TestCase
     assert !@myexternaluser.valid?
 
     # Negative number
-    @myexternaluser.degree_id = -1.0
+    @myexternaluser.degree_id = -1
     assert !@myexternaluser.valid?
 
     # Float number

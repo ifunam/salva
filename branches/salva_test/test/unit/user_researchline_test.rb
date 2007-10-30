@@ -4,8 +4,8 @@ require 'researchline'
 require 'user_researchline'
 
 class UserResearchlineTest < Test::Unit::TestCase
-fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchlines
- 
+  fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchlines
+
   def setup
     @user_researchlines = %w(fisica_espacial sismologia vulcanologia)
     @myuser_researchline = UserResearchline.new({:user_id => 3, :researchline_id => 1})
@@ -38,9 +38,9 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
   end
 
   def test_creating_duplicated_user_researchline
-   @user_researchline = UserResearchline.new({:user_id => 3, :researchline_id => 2})
-   @user_researchline.id=2
-   assert !@user_researchline.save
+    @user_researchline = UserResearchline.new({:user_id => 3, :researchline_id => 2})
+    @user_researchline.id=2
+    assert !@user_researchline.save
   end
 
   # Boundary
@@ -50,7 +50,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     assert !@myuser_researchline.valid?
     @myuser_researchline.id = 'mi_id'
     assert !@myuser_researchline.valid?
-    @myuser_researchline.id = -1.0
+    @myuser_researchline.id = -1
     assert !@myuser_researchline.valid?
   end
 
@@ -64,7 +64,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     @myuser_researchline.user_id = 'mi_id'
     assert !@myuser_researchline.valid?
 
-    @myuser_researchline.user_id= -1.0
+    @myuser_researchline.user_id= -1
     assert !@myuser_researchline.valid?
   end
 
@@ -77,7 +77,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     @myuser_researchline.researchline_id = 'mi_id'
     assert !@myuser_researchline.valid?
 
-    @myuser_researchline.researchline_id = -3.0
+    @myuser_researchline.researchline_id = -1
     assert !@myuser_researchline.valid?
   end
   #Cross-Checking test
@@ -103,7 +103,7 @@ fixtures  :userstatuses, :users, :researchareas, :researchlines, :user_researchl
     @user_researchlines.each { | user_researchline|
       @user_researchline = UserResearchline.find(user_researchlines(user_researchline.to_sym).id)
       assert_kind_of UserResearchline, @user_researchline
-      @user_researchline.researchline_id = 1000000
+      @user_researchline.researchline_id = 100
       begin
         return true if @user_researchline.save
       rescue StandardError => x

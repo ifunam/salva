@@ -60,7 +60,7 @@ class StateTest < Test::Unit::TestCase
     @mystate.id = 'mi_id'
     assert !@mystate.valid?
 
-    @mystate.id = -1.0
+    @mystate.id = -1
     assert !@mystate.valid?
 
   end
@@ -80,7 +80,7 @@ class StateTest < Test::Unit::TestCase
 
     #Negative number ID
 
-    @mystate.country_id =  -1.0
+    @mystate.country_id =  -1
     assert !@mystate.valid?
 
     @mystate.country_id =  1

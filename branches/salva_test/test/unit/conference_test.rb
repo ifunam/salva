@@ -35,8 +35,6 @@ class ConferenceTest < Test::Unit::TestCase
     }
   end
 
-
-
   def test_deleting_conferences
     @conferences.each { |conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
@@ -47,102 +45,95 @@ class ConferenceTest < Test::Unit::TestCase
     }
   end
 
-   def test_creating_with_empty_attributes
-     @conference = Conference.new
-     assert !@conference.save
-   end
+  def test_creating_with_empty_attributes
+    @conference = Conference.new
+    assert !@conference.save
+  end
 
-   def test_creating_duplicated_conference
-     @conference = Conference.new({:name => 'Congreso', :conferencetype_id => 1})
-     @conference.id = 1
-     assert !@conference.save
-   end
+  def test_creating_duplicated_conference
+    @conference = Conference.new({:name => 'Congreso', :conferencetype_id => 1})
+    @conference.id = 1
+    assert !@conference.save
+  end
 
-     # Boundary
-   def test_bad_values_for_id
-     # Float number for ID
-     @myconference.id = 1.6
-     assert !@myconference.valid?
-
-    # Negative numbers
-     @myconference.id = -1.0
-     assert !@myconference.valid?
-   end
-
-   def test_bad_values_for_name
-     @myconference.name = nil
-     assert !@myconference.valid?
-
-     @myconference.name = 'AB'
-     assert !@myconference.valid?
-
-     @myconference.name = 'AB' * 800
-     assert !@myconference.valid?
-   end
-
-   def test_bad_values_for_conferencetype_id
-     # Checking constraints for name
-     # Nil name
-     @myconference.conferencetype_id = nil
-     assert !@myconference.valid?
-
-     # Float number for ID
-     @myconference.conferencetype_id = 3.1416
-     assert !@myconference.valid?
+  # Boundary
+  def test_bad_values_for_id
+    @myconference.id = 'xx'
+    assert !@myconference.valid?
+    # Float number for ID
+    @myconference.id = 1.6
+    assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.conferencetype_id = -1.0
-     assert !@myconference.valid?
-   end
+    @myconference.id = -1
+    assert !@myconference.valid?
+  end
 
+  def test_bad_values_for_name
+    @myconference.name = nil
+    assert !@myconference.valid?
+  end
 
-   def test_bad_values_for_conferencescope_id
-     # Checking constraints for name
-     # Nil name
-     @myconference.conferencescope_id = nil
-     assert !@myconference.valid?
+  def test_bad_values_for_conferencetype_id
+    # Checking constraints for name
+    # Nil name
+    @myconference.conferencetype_id = nil
+    assert !@myconference.valid?
 
-     # Float number for ID
-     @myconference.conferencescope_id = 3.1416
-     assert !@myconference.valid?
-
-    # Negative numbers
-     @myconference.conferencescope_id = -1.0
-     assert !@myconference.valid?
-   end
-
-   def test_bad_values_for_country_id
-     # Checking constraints for name
-     # Nil name
-     @myconference.country_id = nil
-     assert !@myconference.valid?
-
-     # Float number for ID
-     @myconference.country_id = 3.1416
-     assert !@myconference.valid?
+    # Float number for ID
+    @myconference.conferencetype_id = 3.1416
+    assert !@myconference.valid?
 
     # Negative numbers
-     @myconference.country_id = -1.0
-     assert !@myconference.valid?
-   end
+    @myconference.conferencetype_id = -1
+    assert !@myconference.valid?
+  end
 
+  def test_bad_values_for_conferencescope_id
+    # Checking constraints for name
+    # Nil name
+    @myconference.conferencescope_id = nil
+    assert !@myconference.valid?
 
-   #Cross-Checking test
+    # Float number for ID
+    @myconference.conferencescope_id = 3.1416
+    assert !@myconference.valid?
 
- def test_cross_checking_for_conferencetype_id
-   @conferences.each { | conference|
+    # Negative numbers
+    @myconference.conferencescope_id = -1
+    assert !@myconference.valid?
+  end
+
+  def test_bad_values_for_country_id
+    # Checking constraints for name
+    # Nil name
+    @myconference.country_id = nil
+    assert !@myconference.valid?
+
+    # Float number for ID
+    @myconference.country_id = 3.1416
+    assert !@myconference.valid?
+
+    # Negative numbers
+    @myconference.country_id = -1
+    assert !@myconference.valid?
+  end
+
+  #Cross-Checking test
+  def test_cross_checking_for_conferencetype_id
+    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
       assert_equal @conference.conferencetype_id, Conferencetype.find(@conference.conferencetype_id).id
     }
- end
- def catch_exception_when_update_invalid_key(record)
-   begin
-     return true if record.save
-   rescue ActiveRecord::StatementInvalid => bang
-     return false
-   end
- end
+  end
+  def catch_exception_when_update_invalid_key(record)
+    begin
+      return true if record.save
+    rescue ActiveRecord::StatementInvalid => bang
+      return false
+    end
+  end
 
   def test_cross_checking_with_bad_values_for_conferencetype_id
     @conferences.each { | conference|
@@ -157,22 +148,21 @@ class ConferenceTest < Test::Unit::TestCase
     }
   end
 
-
- def test_cross_checking_for_country_id
-   @conferences.each { | conference|
+  def test_cross_checking_for_country_id
+    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
       assert_equal @conference.country_id, Country.find(@conference.country_id).id
     }
- end
+  end
 
- def catch_exception_when_update_invalid_key(record)
-   begin
-     return true if record.save
-   rescue ActiveRecord::StatementInvalid => bang
-     return false
-   end
- end
+  def catch_exception_when_update_invalid_key(record)
+    begin
+      return true if record.save
+    rescue ActiveRecord::StatementInvalid => bang
+      return false
+    end
+  end
 
   def test_cross_checking_with_bad_values_for_conferencecountry_id
     @conferences.each { | conference|
@@ -187,20 +177,20 @@ class ConferenceTest < Test::Unit::TestCase
     }
   end
 
- def test_cross_checking_for_country_id
-   @conferences.each { | conference|
+  def test_cross_checking_for_country_id
+    @conferences.each { | conference|
       @conference = Conference.find(conferences(conference.to_sym).id)
       assert_kind_of Conference, @conference
       assert_equal @conference.conferencescope_id, Conferencescope.find(@conference.conferencescope_id).id
     }
- end
- def catch_exception_when_update_invalid_key(record)
-   begin
-     return true if record.save
-   rescue ActiveRecord::StatementInvalid => bang
-     return false
-   end
- end
+  end
+  def catch_exception_when_update_invalid_key(record)
+    begin
+      return true if record.save
+    rescue ActiveRecord::StatementInvalid => bang
+      return false
+    end
+  end
 
   def test_cross_checking_with_bad_values_for_conferencetype_id
     @conferences.each { | conference|
@@ -216,4 +206,3 @@ class ConferenceTest < Test::Unit::TestCase
   end
 
 end
-

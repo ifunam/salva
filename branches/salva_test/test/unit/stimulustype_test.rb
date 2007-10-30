@@ -60,7 +60,7 @@ class StimulustypeTest < Test::Unit::TestCase
     @mystimulustype.id = 1.6
     assert !@mystimulustype.valid?
 
-    @mystimulustype.id = -1.0
+    @mystimulustype.id = -1
     assert !@mystimulustype.valid?
   end
 
@@ -81,7 +81,7 @@ class StimulustypeTest < Test::Unit::TestCase
     @mystimulustype.institution_id = 3.1416
     assert !@mystimulustype.valid?
 
-    @mystimulustype.institution_id = -1.0
+    @mystimulustype.institution_id = -1
     assert !@mystimulustype.valid?
   end
   #Cross-Checking test

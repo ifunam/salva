@@ -56,10 +56,14 @@ class ResearchlineTest < Test::Unit::TestCase
   # Boundary
   def test_bad_values_for_id
     # Float number for ID
+
+    @myresearchline.id = 'xx'
+    assert !@myresearchline.valid?
+
     @myresearchline.id = 1.6
     assert !@myresearchline.valid?
 
-    @myresearchline.id = -1.0
+    @myresearchline.id = -1
     assert !@myresearchline.valid?
   end
 

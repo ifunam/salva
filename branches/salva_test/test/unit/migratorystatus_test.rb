@@ -38,7 +38,7 @@ class MigratorystatusTest < Test::Unit::TestCase
     assert !@mymigratorystatus.valid?
 
     # Negative number ID
-    @mymigratorystatus.id = -1.0
+    @mymigratorystatus.id = -1
     assert !@mymigratorystatus.valid?
 
     # Float number ID

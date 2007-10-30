@@ -51,7 +51,7 @@ class ChapterinbookTest < Test::Unit::TestCase
     assert !@mychapterinbook.valid?
     @mychapterinbook.id = 'mi_id'
     assert !@mychapterinbook.valid?
-    @mychapterinbook.id = -1.0
+    @mychapterinbook.id = -1
     assert !@mychapterinbook.valid?
   end
 
@@ -64,7 +64,7 @@ class ChapterinbookTest < Test::Unit::TestCase
 
     @mychapterinbook.bookchaptertype_id = 'mi_id'
     assert !@mychapterinbook.valid?
-    @mychapterinbook.bookchaptertype_id= -1.0
+    @mychapterinbook.bookchaptertype_id= -1
     assert !@mychapterinbook.valid?
   end
 
@@ -76,7 +76,7 @@ class ChapterinbookTest < Test::Unit::TestCase
     assert !@mychapterinbook.valid?
     @mychapterinbook.bookedition_id = 'mi_id'
     assert !@mychapterinbook.valid?
-    @mychapterinbook.bookedition_id = -3.0
+    @mychapterinbook.bookedition_id = -1
     assert !@mychapterinbook.valid?
   end
   #Cross-Checking test

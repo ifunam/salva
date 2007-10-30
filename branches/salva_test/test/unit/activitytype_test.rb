@@ -56,7 +56,7 @@ class ActivitytypeTest < Test::Unit::TestCase
     # Float number for ID
     @myactivitytype.id = 1.6
     assert !@myactivitytype.valid?
-    @myactivitytype.id = -1.0
+    @myactivitytype.id = -1
     assert !@myactivitytype.valid?
     @myactivitytype.id = 'xx'
     assert !@myactivitytype.valid?
@@ -72,7 +72,7 @@ class ActivitytypeTest < Test::Unit::TestCase
     @myactivitytype.activitygroup_id = 'xx'
     assert !@myactivitytype.valid?
 
-    @myactivitytype.activitygroup_id = -1.0
+    @myactivitytype.activitygroup_id = -1
     assert !@myactivitytype.valid?
 
     @myactivitytype.activitygroup_id = 3.1416
