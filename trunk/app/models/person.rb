@@ -3,9 +3,9 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :firstname, :lastname1, :dateofbirth, :country_id
   validates_numericality_of :country_id, :greater_than => 0, :only_integer => true
-  validates_numericality_of :maritalstatus_id, :city_id, :state_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_numericality_of :maritalstatus_id, :city_id, :state_id, :user_id,   :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_inclusion_of :gender, :in => [true, false]
-  #validates_uniqueness_of :user_id
+  validates_uniqueness_of :user_id
   
   belongs_to :user
   belongs_to :maritalstatus

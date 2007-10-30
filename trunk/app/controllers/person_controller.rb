@@ -56,13 +56,13 @@ class PersonController < ApplicationController
   end
 
   def update
-    @edit = Person.new(params[:edit])
+    @edit = Person.find(params[:id])
     @edit.id = session[:user]
     @edit.moduser_id = session[:user] if session[:user]
     unless redirect_if_stack('edit')
-      save_photo if !@edit.photo.nil? and @edit.photo.size > 0
-
-      if @edit.valid?
+      if @edit.update_attributes(params[:edit])
+        save_photo if !@edit.photo.nil? and @edit.photo.size > 0
+        @edit.save
         flash[:notice] = 'Sus datos personales han sido actualizados'
         render :action => 'show'
       else
