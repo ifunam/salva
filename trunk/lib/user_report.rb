@@ -27,14 +27,15 @@ class UserReport
       if child.is_leaf?
         k = child.data.keys.first
         result = eval child.data.values.first
-        section << { :title => k, :data =>  result, :level => child.path.size } if !result.nil? and result.is_a? Array and result.size > 0
+        section << { :title => k, :data => result, :level => child.path.size } if !result.nil? and result.is_a? Array and result.size > 0
        else
         section += build_section(child)
       end
     end
+    section.unshift({ :title => tree.data, :level => tree.path.size }) if section.size > 0 and tree.path.size > 0
     section
   end
-  
+
   #  private
   def load_yml(file)
     file_yml = @report_path + file
