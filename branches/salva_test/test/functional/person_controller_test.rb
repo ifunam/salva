@@ -46,7 +46,7 @@ class PersonControllerTest < Test::Unit::TestCase
   def test_post_update
     post :update, :edit => { 'firstname' => 'Roberto', 'lastname1' => 'Mendizabal', 'lastname2' => 'Cantú', 'maritalstatus_id' => 2, 
                               "dateofbirth(1i)"=>"1977", "dateofbirth(2i)"=>"10", "gender"=>"true", "dateofbirth(3i)"=>"29",
-                              'country_id' => 484, 'state_id' => 9, 'city_id' => 64, 'photo' => nil }
+                              'country_id' => 484, 'state_id' => 9, 'city_id' => 64, 'photo' => nil }, :id => 2
     assert_response  :success
     assert_template 'show'
   end
