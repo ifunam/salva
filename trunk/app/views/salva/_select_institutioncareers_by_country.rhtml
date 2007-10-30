@@ -1,3 +1,3 @@
 <% if id.to_i > 0 %>  
- <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutions.country_id = #{id} AND institutioncareers.institution_id = institutions.id", :include => [:institution])%>
+ <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => ['career', ['institution', 'name']], :conditions => "institutions.country_id = #{id} AND institutioncareers.institution_id = institutions.id")%>
 <% end %>
