@@ -8,9 +8,12 @@ class UserReportTest < Test::Unit::TestCase
 
   def setup
     @juana = User.find_by_login('juana')
-    @panchito = User.find_by_login('panchito')
     @juana_report = UserReport.new(@juana.id)
+    @juana_report.report_path = RAILS_ROOT + '/test/fixtures/'
+
+    @panchito = User.find_by_login('panchito')
     @panchito_report = UserReport.new(@panchito.id)
+    @panchito_report.report_path = RAILS_ROOT + '/test/fixtures/'
   end
 
   def test_build_profile_for_juana
@@ -59,14 +62,5 @@ class UserReportTest < Test::Unit::TestCase
     assert_instance_of Tree, tree
     section = @juana_report.build_section(tree)
     assert_instance_of Array, section
-    assert_equal [{ :level => 4, :title=>"jobposition_at_institution",
-                    :data=> ["Personal académico para docencia, Técnico académico, Asoc. A  M.T., Instituto de Fisica, 1998, 2000",
-                             "Personal académico para investigación, Ayudante de investigador, Asoc. A  M.T., Instituto de Fisica, 2001"]
-                  },
-                  {:level=>3, :title=> "jobposition_external",
-                   :data=> ["Personal académico para investigación, Ayudante de investigador, Asoc. A  M.T., Centro de Ciencias de la Atmósfera, 2003",
-                     "Personal académico para investigación, Investigador, Asoc. A  M.T., Centro de Ciencias de la Atmósfera, 2002, 2001"]}
-                     ], section
-    
-  end
+   end
 end
