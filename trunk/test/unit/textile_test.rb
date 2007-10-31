@@ -20,4 +20,18 @@ class TextileTest < Test::Unit::TestCase
       assert_equal "<h#{level}>hello</h#{level}>", header('hello', level, 'html')
     }
   end
+
+  def test_should_get_paragragh
+    assert_equal "<p>HELLO</p>", paragraph('HELLO')
+    assert_equal "<p>hello</p>", paragraph('hello')
+    assert_equal "<p><b>hello</b></p>", paragraph(bold('hello','html'))
+  end
+
+  def test_should_get_internal_link
+    assert_equal "<a name=\"profile\"></a>", internal_link('profile')
+  end
+
+  def test_should_get_link_to_internal
+      assert_equal "<a href=\"#profile\">Perfil</a>", link_to_internal('profile', 'Perfil')
+  end
 end

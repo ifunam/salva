@@ -5,8 +5,8 @@ class UserReport
   attr_accessor :report_path
   attr_accessor :report
 
-  def initialize(id,report='user_annual_report.yml')
-    @user = User.find(id)
+  def initialize(user_id,report='user_annual_report.yml')
+    @user = User.find(user_id)
     @report_path = RAILS_ROOT + '/config/'
     @report = report
 #    @transformer = UserReportTransformer.new
@@ -56,3 +56,4 @@ class UserReport
     YAML::load_file(file_yml) if File.exists?(file_yml)
   end
 end
+
