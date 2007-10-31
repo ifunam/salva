@@ -13,7 +13,10 @@ table.toc td {
 		width: 150px;
 		text-align: left;
         vertical-align: top;
-        padding: 5px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
         border: 1px solid #336699;
 }
 
@@ -44,7 +47,6 @@ table.toc ul {
 
 .section h1 {
 	font-size: 18px;
-	text-decoration: underline;
 	margin-bottom: 3px;
 	margin-top: 3px;
 	
