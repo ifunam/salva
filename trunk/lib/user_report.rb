@@ -1,26 +1,26 @@
 require 'yaml'
 require 'tree'
 require 'finder'
-
 class UserReport
   attr_accessor :report_path
-  
-  def initialize(id)
+  attr_accessor :report
+
+  def initialize(id,report='user_annual_report.yml')
     @user = User.find(id)
     @report_path = RAILS_ROOT + '/config/'
+    @report = report
+#    @transformer = UserReportTransformer.new
   end
 
   def build_profile(file='user_profile.yml')
-    profile = load_yml(file)
-    profile.keys.inject({}) { |h,k| h[k] = eval profile[k]; h } if profile.is_a? Hash
+    load_yml(file).collect { |h| [h.keys.first, (eval h.values.first)] }
   end
-  
-  def build_report(file='user_annual_report.yml')
-    tree = Tree.new(load_yml(file))
-    tree.data = file.sub(/\.yml$/,'')
+
+  def build_report
+    tree = Tree.new(load_yml(@report))
     build_section(tree)
   end
-  
+
   def build_section(tree)
     section = [ ]
     tree.children.each do | child |
@@ -36,7 +36,21 @@ class UserReport
     section
   end
 
-  #  private
+  def as_html
+    @data = [{ :title => 'general', :data => build_profile, :level => 1 }] + build_report
+#    @transformer.as_html(@data)
+    @data
+  end
+
+#  def as_text
+#    @transformer.as_text(@data)
+#  end
+
+#  def as_pdf
+#    @transformer.as_pdf(@data)
+#  end
+
+  # private
   def load_yml(file)
     file_yml = @report_path + file
     YAML::load_file(file_yml) if File.exists?(file_yml)
