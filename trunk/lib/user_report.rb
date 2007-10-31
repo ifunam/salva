@@ -1,6 +1,7 @@
 require 'yaml'
 require 'tree'
 require 'finder'
+require 'user_report_html_transformer'
 class UserReport
   attr_accessor :report_path
   attr_accessor :report
@@ -9,7 +10,6 @@ class UserReport
     @user = User.find(user_id)
     @report_path = RAILS_ROOT + '/config/'
     @report = report
-    @transformer = UserReportTransformer.new
   end
 
   def build_profile(file='user_profile.yml')
@@ -37,6 +37,7 @@ class UserReport
   end
 
   def as_html
+    @transformer = UserReportHtmlTransformer.new
     @transformer.as_html([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
   end
 

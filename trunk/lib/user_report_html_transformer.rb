@@ -1,9 +1,7 @@
 require 'rubygems'
-require 'pdf/writer'
-require 'pdfwriter_extensions'
 require 'textile'
 require 'labels'
-class UserReportTransformer
+class UserReportHtmlTransformer
   include Textile
   include Labels
 
@@ -31,7 +29,7 @@ class UserReportTransformer
   def html_paragraph(data)
     paragraph(data.collect { |text| 
       if text.is_a?Array  
-        bold(get_label(text[0]) + ":", 'html') + text[1].to_s + '<br/>' if !text[1].nil? and !text[1].blan?
+        bold(get_label(text[0]) + ":", 'html') + text[1].to_s + '<br/>' if !text[1].nil? and !text[1].blank?
       else  
         ('# ' + text)
       end
