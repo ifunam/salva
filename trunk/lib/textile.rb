@@ -28,8 +28,11 @@ module Textile
     "<a name=\"#{string}\"></a>"
   end
 
-  def link_to_internal(link,string)
-    "<a href=\"##{link}\">#{string}</a>"
+  def link_to_internal(link,string,img=nil)
+    img == nil ? RedCloth.new("\"#{string}\":##{link}", [:lite_mode, :no_span_caps]).to_html : RedCloth.new("!/images/#{img}!:##{link}", [:lite_mode, :no_span_caps]).to_html
   end
 
+  def table(t)
+    RedCloth.new(t).to_html
+  end
 end
