@@ -4,8 +4,8 @@
 - dateofbirth: Person.find(@user.id).dateofbirth.to_s
 - placeofbirth: Person.find(@user.id).placeofbirth
 # Cites information
-- author_name: UserCite.find(@user.id).author_name
-- total_cites: UserCite.find(@user.id).total
+- author_name: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).author_name
+- total_cites: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).total
 # Address and contact information
 - address: Finder.new(Address,:first, :attributes => ['addresstype', 'location', 'zipcode', 'city', 'state', 'country'], :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').as_text.first
 - phone: Address.find(:first, :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').phone

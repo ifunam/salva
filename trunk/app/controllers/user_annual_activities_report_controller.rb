@@ -1,4 +1,5 @@
  class  UserAnnualActivitiesReportController < UserDocumentController
+  layout 'user_document_handling'
   def initialize
     @document_id = 1
     @document = 'Informe anual de actividades - 2007'
@@ -9,8 +10,8 @@
   end
 
   def preview
-    @resume = Resume.new(session[:user])
-    @html =  @resume.as_html
+    @report = UserReport.new(session[:user])
+    @html =  @report.as_html
     render :action => 'preview'
   end
 

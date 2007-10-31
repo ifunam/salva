@@ -29,7 +29,7 @@ module Textile
   end
 
   def link_to_internal(link,string,img=nil)
-    img == nil ? RedCloth.new("\"#{string}\":##{link}", [:lite_mode, :no_span_caps]).to_html : RedCloth.new("!/images/#{img}!:##{link}", [:lite_mode, :no_span_caps]).to_html
+    img == nil ? RedCloth.new("\"#{string}\":##{link}", [:lite_mode, :no_span_caps]).to_html : RedCloth.new("!/images/#{img}!:##{link}", [:lite_mode, :no_span_caps]).to_html + RedCloth.new("\"#{string}\":##{link}", [:lite_mode, :no_span_caps]).to_html
   end
 
   def table(t)

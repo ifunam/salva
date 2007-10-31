@@ -25,21 +25,21 @@ class UserReportTransformer
       if data[index].nil? or data[index][:level] == 1
         toc.push(section)
         section = [ ]
-        output << "</div>\n"
+        output << '<span class="back">' + link_to_internal('toc', get_label('back'), "back_top.gif") + "</span>\n"
+        output << "\n</div>\n"
       end
     end
-     internal_link('toc') + html_toc(toc) + output
+    html_toc(toc) + output
   end
 
   def html_toc(toc) 
-   table("table{border:0px}.\n" + '|' + toc.collect { |section| paragraph(html_toc_section(section)) }.join("|") + '|')
+   n = 0
+   internal_link('toc') + "\n" + table("table(toc).\n" + '|' + toc.collect { |section| html_toc_section(section, n+=1) }.join("|") + '|') + "\n"
   end
 
-  def html_toc_section(section)
-    n = 0
+  def html_toc_section(section, n)
     section.collect {|item|
       if item[:level] == 1
-       n <= 5 ? (n += 1) : (n = 1)
        link_to_internal(item[:title], get_label(item[:title]), "section#{n}.gif")
       else
         '*' * item[:level] + ' ' + link_to_internal(item[:title], get_label(item[:title]))

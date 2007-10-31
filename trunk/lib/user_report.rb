@@ -9,7 +9,7 @@ class UserReport
     @user = User.find(user_id)
     @report_path = RAILS_ROOT + '/config/'
     @report = report
-#    @transformer = UserReportTransformer.new
+    @transformer = UserReportTransformer.new
   end
 
   def build_profile(file='user_profile.yml')
@@ -37,9 +37,7 @@ class UserReport
   end
 
   def as_html
-    @data = [{ :title => 'general', :data => build_profile, :level => 1 }] + build_report
-#    @transformer.as_html(@data)
-    @data
+    @transformer.as_html([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
   end
 
 #  def as_text

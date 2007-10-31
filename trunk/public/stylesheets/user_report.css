@@ -1,0 +1,87 @@
+table.toc {
+        background: transparent;
+       	margin-bottom: 10px;
+        border-spacing: 3px;
+		margin: 10px;
+}
+
+table.toc tr {
+        background: transparent;
+}
+
+table.toc td {
+		width: 150px;
+		text-align: left;
+        vertical-align: top;
+        padding: 5px;
+        border: 1px solid #336699;
+}
+
+table.toc a {
+		font-size: 12px;
+		color: blue;
+		padding-right: 3pt;
+}
+
+table.toc a:hover {
+		font-size: 12px;
+		color: green;
+		padding-right: 3pt;
+}
+
+table.toc ul {
+    	margin-left: 3px;
+		margin-top: 5px;
+		padding-left: 15px;
+    	text-decoration: none;
+}
+
+.section {
+        border: 1px solid #336699;
+		margin: 10px;
+		padding: 10px;
+}
+
+.section h1 {
+	font-size: 18px;
+	text-decoration: underline;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	
+}
+
+.section h2 {
+	font-size: 16px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+.section h3 {
+	font-size: 15px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	
+}
+
+.section h4 {
+	font-size: 14px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+
+.section a {
+		font-size: 12px;
+		color: blue;
+		padding-right: 3pt;
+}
+
+.section a:hover {
+		font-size: 12px;
+		color: green;
+		padding-right: 3pt;
+}
+
+#back {
+	text-align: right;
+}
