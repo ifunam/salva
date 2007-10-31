@@ -29,7 +29,13 @@ class UserReportTransformer
   end
   
   def html_paragraph(data)
-    paragraph(data.collect { |text|   (text.is_a?Array ) ? bold(get_label(text[0]) + ":", 'html') + text[1].to_s + '<br/>': ('# ' + text) }.join("\n"))
+    paragraph(data.collect { |text| 
+      if text.is_a?Array  
+        bold(get_label(text[0]) + ":", 'html') + text[1].to_s + '<br/>' if !text[1].nil? and !text[1].blan?
+      else  
+        ('# ' + text)
+      end
+    }.compact.join("\n"))
   end
 
   def html_table_of_content(toc) 
