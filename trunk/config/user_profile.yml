@@ -1,6 +1,6 @@
 # Personal Information
 - fullname: Person.find(@user.id).fullname
-# gender: Finder.new(Person, :first, :attributes => ['gender'], :conditions => 'people.user_id =' + @user.id.to_s).as_text.first # Fix Person and People in Finder Pluralization
+- gender: Finder.new(Person, :first, :attributes => ['gender'], :conditions => 'people.user_id =' + @user.id.to_s).as_text.first
 - dateofbirth: Person.find(@user.id).dateofbirth.to_s
 - placeofbirth: Person.find(@user.id).placeofbirth
 # Cites information

@@ -13,7 +13,7 @@ class UserReport
   end
 
   def build_profile(file='user_profile.yml')
-    load_yml(file).collect { |h| [h.keys.first, (eval h.values.first)] }
+    load_yml(file).collect { |h| [h.keys.first, eval_query(h.values.first)] }
   end
 
   def build_report
@@ -26,7 +26,7 @@ class UserReport
     tree.children.each do | child |
       if child.is_leaf?
         k = child.data.keys.first
-        result = eval child.data.values.first
+        result = eval_query child.data.values.first
         section << { :title => k, :data => result, :level => child.path.size } if !result.nil? and result.is_a? Array and result.size > 0
        else
         section += build_section(child)
@@ -54,5 +54,14 @@ class UserReport
     file_yml = @report_path + file
     YAML::load_file(file_yml) if File.exists?(file_yml)
   end
+  
+  def eval_query(query)
+    begin
+      return eval(query)
+    rescue StandardError => bang
+      return nil
+    end
+  end 
+
 end
 
