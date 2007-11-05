@@ -26,7 +26,7 @@ class UserReport
     tree.children.each do | child |
       if child.is_leaf?
         k = child.data.keys.first
-        result = eval_query child.data.values.first
+        result = eval_query "Finder.new(#{child.data.values.first}).as_text"
         section << { :title => k, :data => result, :level => child.path.size } if !result.nil? and result.is_a? Array and result.size > 0
        else
         section += build_section(child)

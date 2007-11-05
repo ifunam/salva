@@ -86,20 +86,7 @@ class UserReportTest < Test::Unit::TestCase
     assert_instance_of Tree, tree
     section = @juana_report.build_section(tree)
     assert_instance_of Array, section
-    assert_equal [{:title=>"profile", :level=>1},
-                  {:title=>"jobposition", :level=>2},
-                  {:title=>"jobposition_internal", :level=>3},
-                  {:title=>"jobposition_at_institution",
-                    :data=>
-                    ["Personal académico para docencia, Técnico académico, Asoc. A  M.T., Instituto de Fisica, 1998, 2000",
-                     "Personal académico para investigación, Ayudante de investigador, Asoc. A  M.T., Instituto de Fisica, 2001"],
-                    :level=>4},
-                  {:title=>"jobposition_external",
-                    :data=>
-                    ["Personal académico para investigación, Investigador, Asoc. A  M.T., Centro de Ciencias de la Atmósfera, 2002, 2001",
-                     "Personal académico para investigación, Ayudante de investigador, Asoc. A  M.T., Centro de Ciencias de la Atmósfera, 2003"],
-                    :level=>3}], section
-
+  
   end
 
   def test_build_report
