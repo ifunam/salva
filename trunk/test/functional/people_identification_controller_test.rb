@@ -9,7 +9,7 @@ class  PeopleIdentificationControllerTest < SalvaControllerTest
   def initialize(*args)
    super
    @mycontroller =  PeopleIdentificationController.new
-   @myfixtures = { :descr => 'Credencial de Elector Mexicana_test', :identification_id => 2, :user_id => 3 }
+   @myfixtures = { :descr =>'dsasda', :identification_id => 2}
    @mybadfixtures = {  :descr => nil, :identification_id => nil, :user_id => nil }
    @model = PeopleIdentification
    @quickposts = [ 'identification' ]
