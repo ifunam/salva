@@ -36,6 +36,6 @@ class TextileTest < Test::Unit::TestCase
   end
   
   def test_should_get_link_to_internal_with_img
-      assert_equal "<a href=\"#profile\"><img src=\"/images/section.gif\" alt=\"\" /></a>", link_to_internal('profile', 'Perfil', 'section.gif')
+      assert_equal "<a href=\"#profile\"><img src=\"/images/section.gif\" alt=\"\" /></a><a href=\"#profile\">Perfil</a>", link_to_internal('profile', 'Perfil', 'section.gif')
   end
 end
