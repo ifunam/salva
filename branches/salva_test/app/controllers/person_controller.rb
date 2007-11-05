@@ -56,19 +56,24 @@ class PersonController < ApplicationController
   end
 
   def update
-    @edit = Person.find(params[:id])
-    @edit.id = session[:user]
-    @edit.moduser_id = session[:user] if session[:user]
-    unless redirect_if_stack('edit')
-      if @edit.update_attributes(params[:edit])
-        save_photo if !@edit.photo.nil? and @edit.photo.size > 0
-        @edit.save
-        flash[:notice] = 'Sus datos personales han sido actualizados'
-        render :action => 'show'
-      else
-        flash[:notice] = 'Hay errores al actualizar esta información'
-        render :action => 'edit'
+    if params[:id].to_i == session[:user].to_i
+      @edit = Person.find(params[:id])
+      @edit.id = session[:user]
+      @edit.moduser_id = session[:user] if session[:user]
+      unless redirect_if_stack('edit')
+        if @edit.update_attributes(params[:edit]) 
+          save_photo if !@edit.photo.nil? and @edit.photo.size > 0
+          @edit.save
+          flash[:notice] = 'Sus datos personales han sido actualizados'
+          render :action => 'show'
+        else
+          flash[:notice] = 'Hay errores al actualizar esta información'
+          render :action => 'edit'
+        end
       end
+    else
+      flash[:notice] = 'Usted no puede modificar la información de otro usuario'
+      redirect_to :action => 'index'
     end
   end
 

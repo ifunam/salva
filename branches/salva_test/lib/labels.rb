@@ -1,6 +1,7 @@
 require 'yaml'
 module Labels
   def label_for_boolean(column,condition)
+    condition = (condition == 't' ? true : false) if condition.is_a? String
     case column
     when /gender/
       condition ? get_label('male') : get_label('female')

@@ -3,7 +3,7 @@ require 'documenttype_controller'
 
 class DocumenttypeController; def rescue_action(e) raise e end; end
 
-class  DocumenttypeControllerTest < SalvaControllerTestx
+class  DocumenttypeControllerTest < SalvaControllerTest
   fixtures :documenttypes
 
   def initialize(*args)

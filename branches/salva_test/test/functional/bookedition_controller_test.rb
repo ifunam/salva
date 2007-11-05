@@ -12,6 +12,6 @@ class  BookeditionControllerTest < SalvaControllerTest
    @myfixtures = { :month => 12, :mediatype_id => 2, :edition_id => 2, :year => 2006, :pages => 340, :editionstatus_id => 1, :book_id => 3 }
    @mybadfixtures = {  :month => nil, :mediatype_id => nil, :edition_id => nil, :year => nil, :pages => nil, :editionstatus_id => nil, :book_id => nil }
    @model = Bookedition
-   @quickposts = [ 'edition' ]
+   @quickposts = [ 'edition' , 'book', 'mediatype']
   end
 end

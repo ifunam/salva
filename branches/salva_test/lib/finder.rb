@@ -20,6 +20,7 @@ class Finder
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
     opts[:first] = true if options[0] == :first
     @model = model
+    @primary_key = opts[:primary_key] || 'id' 
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes(@model).join(', '), opts)
   end
 
@@ -28,7 +29,7 @@ class Finder
     @debug_array = columns
     columns.unshift(Inflector.tableize(@model).classify)
 
-    sql = "SELECT #{tableize(@model)}.id AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
+    sql = "SELECT #{tableize(@model)}.#{@primary_key} AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
 
     add_tables!(sql, options)
     add_conditions!(sql, options, columns)
@@ -39,7 +40,7 @@ class Finder
 
   def build_simple_sql(attributes, options)
     attributes = options[:column] if options.has_key? :column
-    sql = "SELECT id, #{attributes} FROM #{tableize(@model)}"
+    sql = "SELECT #{@primary_key}, #{attributes} FROM #{tableize(@model)}"
     add_conditions!(sql, options)
     add_order!(sql, options, attributes)
     add_limit!(sql, options)
@@ -151,7 +152,7 @@ class Finder
   end
 
   def tableize(column)
-    Inflector.tableize(column).pluralize
+    Inflector.tableize(column)
   end
 
   def modelize(m)

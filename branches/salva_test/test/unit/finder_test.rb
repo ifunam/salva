@@ -73,8 +73,10 @@ class FinderTest < Test::Unit::TestCase
     assert_equal "SELECT seminaries.id AS id, seminaries.title AS seminaries_title, seminaries.year AS seminaries_year, seminaries.isseminary AS seminaries_isseminary FROM seminaries", @f.sql
   end
 
-  def test_as_text
+  def test_as_text_simple_sql
     assert_equal ["Autor principal, Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS", "Autor principal, Estudio de barrancos en Marte, QUO"],  @user_article_finder.as_text
+    assert_equal ['Masculino'], Finder.new(Person, :first, :primary_key => 'user_id', :attributes => ['gender'], :conditions => 'people.user_id = 3').as_text
+    assert_equal ['Femenino'], Finder.new(Person, :first, :primary_key => 'user_id', :attributes => ['gender'], :conditions => 'people.user_id = 2').as_text
   end
 
   def test_as_pair

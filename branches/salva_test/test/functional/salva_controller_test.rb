@@ -150,19 +150,19 @@ class SalvaControllerTest < Test::Unit::TestCase
     end
   end
 
-  def  test_should_add_an_item_using_quickpost_from_new_action
-    catch :abort  do
-      throw :abort if @controller.nil? or @quickposts.nil?
-      get :new
-      assert_template 'new'
-      @quickposts.each do |qp|
-        # post :create, :edit => @myfixtures , :stack => qp
-        controller = qp
-        controller = qp.split(':').first if qp =~ /:/
-        controller = qp.split(',').first if qp =~ /,/
-        #assert_redirected_to :controller => controller, :action => 'new'
-      end
-    end
-  end
+  # def  test_should_add_an_item_using_quickpost_from_new_action
+#     catch :abort  do
+#       throw :abort if @controller.nil? or @quickposts.nil?
+#       get :new
+#       assert_template 'new'
+#       @quickposts.each do |qp|
+#         # post :create, :edit => @myfixtures , :stack => qp
+#         controller = qp
+#         controller = qp.split(':').first if qp =~ /:/
+#         controller = qp.split(',').first if qp =~ /,/
+#         #assert_redirected_to :controller => controller, :action => 'new'
+#       end
+#     end
+#   end
 
 end
