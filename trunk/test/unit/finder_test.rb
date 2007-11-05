@@ -75,6 +75,7 @@ class FinderTest < Test::Unit::TestCase
 
   def test_as_text
     assert_equal ["Autor principal, Operacion del Radiotelescopio de Centelleo Interplanetario, CONOZCA MAS", "Autor principal, Estudio de barrancos en Marte, QUO"],  @user_article_finder.as_text
+    assert_equal ['Masculino'], Finder.new(Person, :first, :primary_key => 'user_id', :attributes => ['gender'], :conditions => 'people.user_id = 2').as_text
   end
 
   def test_as_pair
