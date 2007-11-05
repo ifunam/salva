@@ -62,6 +62,5 @@ class UserReport
       return nil
     end
   end 
-
 end
 

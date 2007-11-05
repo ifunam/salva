@@ -181,19 +181,19 @@ class Finder
 
   def as_text
     find_collection.collect { |record|
-      @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ')
+      @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', ')
     }
   end
 
   def as_pair
     find_collection.collect { |record|
-      [ @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', '), record.id ]
+      [ @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', '), record.send(@primary_key) ]
     }
   end
 
   def as_hash
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != 'id' }.compact.join(', ') ]
+      [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', ') ]
     }
   end
 
