@@ -2,7 +2,7 @@ juana:
   user_id: 2
   firstname: Juana
   lastname1: Maltiempo
-  gender: f
+  gender: false
   maritalstatus_id: 1
   dateofbirth: 1977-03-17
   country_id: 484

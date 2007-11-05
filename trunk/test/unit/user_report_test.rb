@@ -19,6 +19,7 @@ class UserReportTest < Test::Unit::TestCase
   def test_build_profile_for_juana
     assert_instance_of Array, @juana_report.build_profile
     assert_equal [["fullname", "Maltiempo Juana"],
+                  ["gender", "Femenino"],
                   ["dateofbirth", "17/03/1977"],
                   ["placeofbirth", "Culiacán, Sinaloa, México"],
                   ["author_name", "Maltiempo J."],
@@ -36,6 +37,7 @@ class UserReportTest < Test::Unit::TestCase
   def test_build_profile_for_panchito
     assert_instance_of Array, @panchito_report.build_profile
     assert_equal [["fullname", "Buentiempo Francisco"],
+                  ["gender", "Masculino"],
                   ["dateofbirth", "07/02/1986"],
                   ["placeofbirth", "Monterrey, Nuevo León, México"],
                   ["author_name", "Buentiempo F."],
