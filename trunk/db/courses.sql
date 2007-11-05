@@ -38,7 +38,7 @@ CREATE TABLE coursegroups (
         PRIMARY KEY (id),
         UNIQUE (name, coursegrouptype_id, startyear, startmonth, endyear, endmonth),
         CONSTRAINT valid_duration CHECK (endyear IS NULL OR
-                  (startyear * 12 + coalesce(startmonth,0)) > (endyear * 12 + coalesce(endmonth,0)))
+                  (startyear * 12 + coalesce(endmonth,0)) >= (endyear * 12 + coalesce(startmonth,0)))
 );
 COMMENT ON TABLE coursegroups IS
         'Datos de un supercurso/agrupador de cursos';
