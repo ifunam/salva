@@ -72,7 +72,7 @@ class PersonController < ApplicationController
         end
       end
     else
-      flash[:notice] = 'Usted no puede modificar la información de otro usuario'
+      flash[:notice] = 'Usted no puede modificar la información de otro usuario, pinche transa'
       redirect_to :action => 'index'
     end
   end

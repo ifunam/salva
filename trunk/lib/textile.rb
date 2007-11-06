@@ -16,7 +16,9 @@ module Textile
     when 'text'
       string.chars.upcase
     when 'html'
-      RedCloth.new("h" + level.to_s + ". " + string, [:no_span_caps]).to_html
+      RedCloth.new("h" + level.to_s + ". " + string, [:no_span_caps]).to_html 
+    when 'textile'
+      "h" + level.to_s + '"' + string + '"'
     end
   end
 

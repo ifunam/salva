@@ -6,4 +6,7 @@
     - - jobposition_at_institution: Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND (jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND jobpositions.user_id = " + @user.id.to_s, :order => 'jobpositions.startyear, jobpositions.endyear DESC'
       - user_adscription: UserAdscription, :all, :attributes => %w( adscription startyear endyear), :conditions => '(jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND jobpositions.user_adscriptions.user_id '
     - jobposition_external: Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id (jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND obpositions.user_id = " + @user.id.to_s, :order => 'jobpositions.startyear, jobpositions.endyear DESC'
-    
+- publications
+- - books
+  - - bookedition_roleinbook:
+    - chapterinbook_roleinchapter:    

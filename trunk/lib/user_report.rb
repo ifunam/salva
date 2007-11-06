@@ -2,6 +2,7 @@ require 'yaml'
 require 'tree'
 require 'finder'
 require 'user_report_html_transformer'
+require 'user_report_pdf_transformer'
 class UserReport
   attr_accessor :report_path
   attr_accessor :report
@@ -45,9 +46,10 @@ class UserReport
 #    @transformer.as_text(@data)
 #  end
 
-#  def as_pdf
-#    @transformer.as_pdf(@data)
-#  end
+  def as_pdf
+    @transformer = UserReportPdfTransformer.new
+    @transformer.as_pdf([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
+  end
 
   # private
   def load_yml(file)
