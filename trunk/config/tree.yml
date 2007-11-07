@@ -37,12 +37,10 @@
   - user_seminary
   - userconference_committee
 - publications
-- - books
-  - - bookedition_roleinbook
-    - chapterinbook_roleinchapter
-  - refereedpubs
-  - - user_article
-    - user_inproceeding_refereed
+- - bookedition_roleinbook
+  - chapterinbook_roleinchapter
+  - user_article
+  - user_inproceeding_refereed
   - user_techreport
   - user_inproceeding_unrefereed
   - student_thesis
