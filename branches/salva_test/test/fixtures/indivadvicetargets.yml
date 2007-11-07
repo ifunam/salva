@@ -1,4 +1,10 @@
 --- 
+profesor:
+  name: Profesor
+  id: 5
+rendimiento_escolar:
+  name: Rendimiento escolar
+  id: 4
 estudiante_asociado: 
   name: Estudiante asociado
   id: 3
@@ -8,3 +14,6 @@ servicio_social:
 becario: 
   name: Becario
   id: 2
+profesor:
+  name: Profesor
+  id: 5

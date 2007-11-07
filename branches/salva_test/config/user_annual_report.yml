@@ -1,63 +1,60 @@
 ---
 - profile
-- - user_schooling
+- - user_schooling: Schooling, :all, :attributes => [['institutioncareer', ['career', 'degree', 'name'], ['institution', 'name']], 'startyear', 'endyear'], :conditions => "schoolings.user_id = " + @user.id.to_s+ " AND (schoolings.startyear =  2007 OR schoolings.endyear >= 2007 OR schoolings.is_studying_this = 't')", :order => 'schoolings.startyear, schoolings.endyear DESC'
   - jobposition
   - - jobposition_internal
-    - - jobposition_at_institution
-      - user_adscription
-      - jobposition_log
-    - jobposition_external
-  - user_stimulus
+    - - jobposition_at_institution: Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND (jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND jobpositions.user_id = " + @user.id.to_s, :order => 'jobpositions.startyear, jobpositions.endyear DESC'
+      - user_adscription: UserAdscription, :all, :attributes => %w( adscription startyear endyear), :conditions => '(jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND jobpositions.user_adscriptions.user_id '
+    - jobposition_external: Jobposition, :all, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => "(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id (jobpositions.startyear = 2007 OR jobpositions.endyear >= 2007) AND obpositions.user_id = " + @user.id.to_s, :order => 'jobpositions.startyear, jobpositions.endyear DESC'
+  - user_stimulus: UserStimulus, :all, :attributes => ['stimuluslevel', 'name', ['stymulustype', 'name'], 'startyear', 'endyear'], :conditions => 'user_stimulus.user_id  = ' + @user.id.to_s, :order => 'user_stimulus.startyear, user_stimulus.endyear DESC'
   - updating_current_skills
-  - - user_course
-    - userconference
-    - acadvisit
-  - user_schoolarship
-  - membership
-  - user_prize
-  - user_language
-- user_project
-- user_researchline
+  - - user_course: UserCourse, :all, :attributes => [['course', 'name', 'startyear', 'endyear']], :conditions => "roleincourses.name = 'Asistente' AND user_courses.roleincourse_id = roleincourses.id AND (courses.startyear = 2007 OR courses.endyear >= 2007) AND user_courses.user_id = " + @user.id.to_s, :order => 'courses.name, courses.startyear, courses.endyear ASC', :include => [:roleincourse]
+    - userconference: Userconference, :all, :attributes => [['conference', 'name', 'conferencetype', 'conferencescope', 'month', 'year']], :conditions => "roleinconferences.name = 'Asistente'  AND userconferences.roleinconference_id = roleinconferences.id AND conferences.year = 2007 AND userconfe|rences.user_id = " + @user.id_to_s, :order => 'conferences.name, conferences.month ASC'
+    - acadvisit: Acadvisit, :all, :attributes => ['acadvisittype', 'institution', 'country', 'startmonth', 'startyear', 'endmonth', 'endyear'], :conditions => '(acadvisits.startyear = 2007 OR acadvisits.endyear >= 2007) AND acadvisitis.user_id = '+ @user.id.to_s, :order => 'acadvisittype.name, acadvisits.startyear, acadvisits.startmonth ASC'
+  - user_schoolarship: UserSchoolarship, :all, :attributes => [['schoolarship', 'name', 'institution'], 'startmonth', 'startyear', 'endmonth', 'endyear'], :conditions => '(user_schoolarships.startyear = 2007 OR user_schoolarships.endyear = 2007) AND user_schoolarships.user_id = ' + @user.id.to_s, :order => 'schoolarships.name, user_schoolarships.startyear, user_schoolarships.endyear ASC'
+  - membership: Membership, :all, :attributes => ['institution', 'startyear', 'endyear'], :conditions => '(memberships.startyear = 2007 OR memberships.endyear >= 2007) AND memberships.user_id = '+@user.id.to_s, :order => 'institutions.name, memberships.startyear, memberships.endyear ASC'
+  - user_prize: UserPrize, :all, :attributes => [['prize', 'prizetype', 'name', 'institution'], 'month', 'year'], :conditions => 'user_prizes.year = 2007 AND user_prizes.user_id = ' + @user.id.to_s, :order => 'prizetypes.name, prizes.name, user_prizes.month ASC'
+- user_project: UserProject, :all, :attributes => [['project', 'projecttype', 'name', 'projectstatus', 'startmonth', 'startyear', 'endmonth', 'endyear' ], 'roleinproject'], :conditions => '(projects.startyear = 2007 OR projects.endyear >= 2007) AND user_projects.user_id = '+@user.id.to_s, :order => 'projects.name, projects.startmonth, projects.endmonth ASC'
+- user_researchline: UserResearchline, :all, :attributes => ['researchline'], :conditions => 'user_researchlines.user_id = '+@user.id.to_s, :order => 'researchlines.name ASC'
 - conferences_and_seminaries
-- - user_conferencetalk
-  - user_seminary
-  - userconference_committee
+- - user_conferencetalk: UserConferencetalk, :all, :attributes => [['conferencetalk', 'authors', 'title', 'talktype',  ['conference', 'name', 'month', 'year'], 'talkacceptance', 'modality'], 'roleinconferencetalk'], :conditions => 'conferences.year = 2007 AND user_conferencetalks.user_id = '+@user.id.to_s, :order => 'conferences.month, conferences.year, conferencetalks.authors, conferencetalks.title ASC'
+  - user_seminary: UserSeminary, :all, :attributes => [['seminary', 'isseminary', 'title', 'institution', 'location', 'month', 'year'], 'roleinseminary'], :conditions => 'seminaries.year = 2007 AND user_seminaries.roleinseminary_id != 1 AND user_seminaries.user_id = ' + @user.id.to_s, :order => 'seminaries.isseminary, seminaries.month, seminaries.title ASC'
+  - userconference_committee: Userconference, :all, :attributes => [['conference', 'name', 'conferencetype', 'conferencescope', 'month', 'year'], 'roleinconference'], :conditions => "roleinconferences.name != 'Asistente' AND userconferences.roleinconference_id = roleinconferences.id AND conferences.year = 2007 AND userconferences.user_id = " + @user.id_to_s, :order => 'conferences.name, conferences.month ASC'
 - publications
-- - books
-  - - bookedition_roleinbook
-    - chapterinbook_roleinchapter
-  - refereedpubs
-  - - user_article
-    - user_inproceeding_refereed
-  - user_techreport
-  - user_inproceeding_unrefereed
-  - student_thesis
+- - bookedition_roleinbook: BookeditionRoleinbook, :all, :attributes => [['bookedition', ['book', 'title', 'authors', 'booktype', 'volume'], 'edition', 'pages', 'isbn', 'year'], 'roleinbook'], :conditions => 'bookeditions.year = 2007 AND bookedition_roleinbooks.user_id = ' + @user.id.to_s, :order => 'books.title, roleinbooks.name ASC'
+  - chapterinbook_roleinchapter: ChapterinbookRoleinchapter, :all, :attributes =>[['chapterinbook', 'title', 'bookchaptertype', ['bookedition', ['book', 'title', 'authors', 'booktype', 'volume'], 'edition', 'pages', 'isbn', 'year'] ], 'roleinchapter'], :conditions => 'bookeditions.year = 2007 AND chapterinbook_roleinchapters.user_id = ' + @user.id.to_s, :order => 'chapterinbooks.title, roleinchapters.name ASC'
+  - published_user_article: UserArticle, :all, :attributes => [['article', 'authors', 'title', 'journal', 'pages', 'vol', 'num', 'month', 'year']], :conditions => 'articles.articlestatus_id = 5 AND articles.year = 2007 AND user_articles.user_id = ' + @user.id.to_s, :order => 'articles.month, articles.title DESC'
+  - sent_user_article: UserArticle, :all, :attributes => [['article', 'authors', 'title', 'journal', 'articlestatus', 'pages', 'vol', 'num', 'month', 'year']], :conditions => 'articles.articlestatus_id != 5 AND articles.year = 2007 AND user_articles.user_id = ' + @user.id.to_s, :order => 'articlestatuses.name, articles.month, articles.title ASC'
+  - user_inproceeding_refereed: UserInproceeding, :all, :attributes => [['inproceeding', 'authors', 'title', ['proceeding', 'title', 'year', 'volume'], 'pages']], :conditions => "proceedings.isrefereed = 't' AND proceedings.year = 2007 AND user_inproceedings.user_id = " + @user.id.to_s, :order => 'inproceedings.authors, inproceedings.title ASC'
+  - user_inproceeding_unrefereed: UserInproceeding, :all, :attributes => [['inproceeding', 'authors', 'title', ['proceeding', 'title', 'year', 'volume'], 'pages']], :conditions => "proceedings.isrefereed = 'f' AND proceedings.year = 2007 AND user_inproceedings.user_id = " + @user.id.to_s, :order => 'inproceedings.authors, inproceedings.title ASC'
+  - student_thesis: UserThesis, :all, :attributes => [['thesis', 'authors', 'title', ['institutioncareer', ['career', 'degree', 'name'], ['institution', 'name']], 'thesisstatus', 'thesismodality', 'startmonth', 'startyear', 'endmonth', 'endyear']], :conditions => "(theses.startyear = 2007 OR theses.endyear >= 2007) AND user_theses.roleinthesis_id = 1  AND user_theses.user_id = " + @user.id.to_s, :order => 'theses.title, theses.startyear ASC'
 - colaboration_on_publications
-- - user_journal
-  - user_proceeding_refereed
+- - user_journal: UserJournal, :all, :attributes => [['journal', 'roleinjournal', 'startmonth', 'startyear', 'endmonth', 'endyear'], 'roleinjournal'], :conditions => '(user_journals.startyear = 2007 OR user_journals.endyear >= 2007) AND user_journals.user_id = ' +@user.id.to_s, :order => 'journals.name ASC'
+  - user_proceeding_refereed: UserProceeding, :all, :attributes => [['proceeding', 'title', 'year', 'volume'], 'roleinproceeding'], :conditions => "proceedings.year = 2007 AND proceedings.isrefereed = 't' AND user_proceedings.user_id = "+@user.id.to_s, :order => 'proceedings.month, proceedings.title ASC'
 - popular_science
-- - user_newspaperarticle
-  - user_popularsciencework
-- diffusion
+- - user_newspaperarticle: UserNewspaperarticle, :all, :attributes => [['newspaperarticle', 'title', 'authors', 'newspaper', 'pages', 'date']], :conditions => "date_part('year',newspaperarticles.date::date) = 2007 AND user_newspaperarticles.user_id = "+ @user.id_to_s, :order => 'newspaperarticles.date DESC'
+  - user_popularsciencework: UserGenericwork, :all, :attributes => [['genericwork', 'authors', 'title', 'genericworktype', 'genericworkstatus', 'vol', 'reference', 'pages', 'isbn_issn', 'month', 'year']], :conditions => "genericworkgroups.name = 'Productos de divulgación' AND generiworktypes.genericworkgroup_id = generiworkgroups.id AND genericworks.year = 2007 AND user_generiworks.user_id = " +@user.id.to_s, :include => ['generiworkgroups'], :order => "genericworks.month, genericworks.title ASC"
+- diffusion: Activity, :all, :attributes => [['activity', 'name', 'activitytype','month', 'year']], :conditions => "activities.year = 2007 AND  activitygroups.name = 'Actividades de extensión y difusión' AND activitytypes.activitygroup_id = activitygroups.id AND activities.user_id = " + @user.id.to_s, :include => ['activitygroups'], :order => 'activities.month DESC'
 - human_resources_formation_and_teaching
 - - teaching
-  - - user_regularcourse
-    - user_specialcourse
-    - teaching_activity
-    - user_teaching_product
+  - - user_regularcourse: UserRegularcouse, :all, :attributes => [['regularcourse', 'title', 'academicprogram'], 'roleinregularcourse', 'hoursxweek', 'period'], :conditions => "(date_part('year',periods.startdate::date) = 2007 OR date_part('year',periods.enddate::date) >= 2007) AND user_regularcourses.user_id = "+@user.id.to_s, :order => 'regularcourses.title ASC'
+    - user_specialcourse: UserCourse, :all, :attributes => [['course', 'name', 'startyear', 'endyear'], 'roleincourse'], :conditions => "roleincourses.name != 'Asistente' AND user_courses.roleincourse_id = roleincourses.id AND (courses.startyear = 2007 OR courses.endyear >= 2007) AND user_courses.user_id = " + @user.id.to_s, :order => 'courses.name, courses.startyear, courses.endyear ASC'
+    - teaching_activity: Activity, :all, :attributes => [['activity', 'name', 'activitytype','month', 'year']], :conditions => "activities.year = 2007 AND  activitygroups.name = 'Actividades de extensión y difusión' AND activitytypes.activitygroup_id = activitygroups.id AND activities.user_id = " + @user.id.to_s, :include => ['activitygroups'], :order => 'activities.month DESC'
+    - user_teaching_product: UserGenericwork, :all, :attributes => [['genericwork', 'authors', 'title', 'genericworktype', 'genericworkstatus', 'vol', 'reference', 'pages', 'isbn_issn', 'month', 'year']], :conditions => "genericworkgroups.name = 'Productos de docencia' AND generiworktypes.genericworkgroup_id = generiworkgroups.id AND genericworks.year = 2007 AND user_generiworks.user_id = " + @user.id.to_s, :include => ['generiworkgroups'], :order => "genericworks.month, genericworks.title ASC"
   - human_resources_formation
-  - - user_thesis
-    - thesis_juror
-    - tutorial_committee
-    - student_advice
+  - - user_thesis:  UserThesis, :all, :attributes => [['thesis', 'authors', 'title', ['institutioncareer', ['career', 'degree', 'name'], ['institution', 'name']], 'thesisstatus', 'thesismodality', 'startmonth', 'startyear', 'endmonth', 'endyear'], 'roleinthesis'], :conditions => "(theses.startyear = 2007 OR theses.endyear >= 2007) AND (roleintheses.name = 'Director' OR roleintheses.name = 'Asesor') AND user_theses.user_id = " + @user.id.to_s, :order => 'theses.title, theses.startyear ASC'
+    - thesis_juror: ThesisJuror, :all, :attributes => [['thesis', 'authors', 'title', ['institutioncareer', ['career', 'degree', 'name'], ['institution', 'name']], 'thesisstatus', 'thesismodality'], 'roleinjury', 'month', 'year'], :conditions => "thesis_jurors.year = 2007 AND thesis_jurors.user_id = " + @user.id.to_s, :order => 'theses.title, thesis_jurors.month ASC'
+    - tutorial_committee: TutorialCommittee, :all, :attributes => ['studentname', ['institutioncareer', ['career', 'degree', 'name'], ['institution', 'name']], 'year'], :conditions => "tutorial_committees.year = 2007 AND tutorial_committees.user_id = " + @user.id.to_s, :order => 'tutorial_committees.studentname ASC'
+    - student_advice: Indivadvice, :all, :attributes => %w( indivname indivadvicetarget startyear startyear endmonth endyear hours), :conditions => "(indivadvices.startyear = 2007 OR indivadvices.endyear >= 2007) AND indivadvices.indivadvicetarget_id < 4 AND indivadvices.user_id = " + @user.id.to_s, :order => 'indivadvices.indivname ASC'
 - outreach
-- - professor_advice
-  - instadvice
-  - user_outreachwork
-- institutional_activity
+- - professor_advice: Indivadvice, :all, :attributes => %w( indivname indivadvicetarget startyear startyear endmonth endyear hours), :conditions => "(indivadvices.startyear = 2007 OR indivadvices.endyear >= 2007) AND indivadvices.indivadvicetarget_id = 5 AND indivadvices.user_id = " + @user.id.to_s, :order => 'indivadvices.indivname ASC'
+  - instadvice: Instadvice, :all, :attributes => %w( title institution instadvicetarget month year ), :conditions => "instadvices.year = 2007 AND instadvices.user_id = " + @user.id.to_s, :order => 'instadvices.title, instadvices.month'
+  - user_outreachwork: UserGenericwork, :all, :attributes => [['genericwork', 'authors', 'title', 'genericworktype', 'genericworkstatus', 'vol', 'reference', 'pages', 'isbn_issn', 'month', 'year']], :conditions => "genericworkgroups.name = 'Trabajos de vinculación' AND generiworktypes.genericworkgroup_id = generiworkgroups.id AND genericworks.year = 2007 AND user_generiworks.user_id = " + @user.id.to_s, :include => ['generiworkgroups'], :order => "genericworks.month, genericworks.title ASC"
 - technical_activity
-- - user_techproduct
-  - techactivity
+- - user_techproduct: UserTechproduct, :all, :attributes => [['techproduct', 'title', 'authors', 'techproducttype', 'techproductstatus'], 'userrole'], :conditions => "user_techproducts.year = 2007 user_techproducts.user_id = " + @user.id.to_s, :order => 'techproducts.title ASC'
+  - techactivity: Activity, :all, Activity, :all, :attributes => [['activity', 'name', 'activitytype','month', 'year']], :conditions => "activities.year = 2007 AND  activitygroups.name = 'Actividades técnicas' AND activitytypes.activitygroup_id = activitygroups.id AND activities.user_id = " + @user.id.to_s, :include => ['activitygroups'], :order => 'activities.month DESC'
+- institutional_activity: InstitutionalActivity, :all, :attributes => %w(institution descr  startyear startyear endmonth endyear),:conditions => "(institutional_activities.startyear = 2007 OR institutional_activities.endyear >= 2007) AND institutional_activities.user_id = " + @user.id.to_s, :order => 'institutions.name, institutional_activities.year ASC'
 - other_activities_or_products
-- - activity
-  - user_genericwork
+- - activity: Activity, :all, :attributes => [['activity', 'name', 'activitytype','month', 'year']], :conditions => "activities.year = 2007 AND  activitygroups.name = 'Otras actividades' AND activitytypes.activitygroup_id = activitygroups.id AND activities.user_id = " + @user.id.to_s, :include => ['activitygroups'], :order => 'activities.month DESC'
+  - user_genericwork: UserGenericwork, :all, :attributes => [['genericwork', 'authors', 'title', 'genericworktype', 'genericworkstatus', 'vol', 'reference', 'pages', 'isbn_issn', 'month', 'year']], :conditions => "genericworkgroups.name = 'Otro' AND generiworktypes.genericworkgroup_id = generiworkgroups.id AND genericworks.year = 2007 AND user_generiworks.user_id = " + @user.id.to_s, :include => ['generiworkgroups'], :order => "genericworks.month, genericworks.title ASC"
+

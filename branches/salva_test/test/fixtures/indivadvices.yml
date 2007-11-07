@@ -13,3 +13,10 @@ prueba002:
   startyear: 2007
   hours: 120
   indivname: Juan
+prueba003:
+  id: 3
+  user_id: 3
+  indivadvicetarget_id: 5
+  startyear: 2007
+  hours: 120
+  indivname: Octavio

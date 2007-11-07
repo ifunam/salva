@@ -74,6 +74,6 @@ class PersonControllerTest < Test::Unit::TestCase
                               'country_id' => 484, 'state_id' => 9, 'city_id' => 64, 'photo' => nil }, :id => 3
     assert_response :redirect
     assert_redirected_to :action => :index
-    assert_equal 'Usted no puede modificar la información de otro usuario', flash[:notice]
+    assert_equal 'Usted no puede modificar la información de otro usuario, pinche transa', flash[:notice]
   end
 end

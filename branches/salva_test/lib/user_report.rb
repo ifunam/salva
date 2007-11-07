@@ -2,6 +2,7 @@ require 'yaml'
 require 'tree'
 require 'finder'
 require 'user_report_html_transformer'
+require 'user_report_pdf_transformer'
 class UserReport
   attr_accessor :report_path
   attr_accessor :report
@@ -26,7 +27,7 @@ class UserReport
     tree.children.each do | child |
       if child.is_leaf?
         k = child.data.keys.first
-        result = eval_query child.data.values.first
+        result = eval_query "Finder.new(#{child.data.values.first}).as_text"
         section << { :title => k, :data => result, :level => child.path.size } if !result.nil? and result.is_a? Array and result.size > 0
        else
         section += build_section(child)
@@ -45,9 +46,10 @@ class UserReport
 #    @transformer.as_text(@data)
 #  end
 
-#  def as_pdf
-#    @transformer.as_pdf(@data)
-#  end
+  def as_pdf
+    @transformer = UserReportPdfTransformer.new
+    @transformer.as_pdf([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
+  end
 
   # private
   def load_yml(file)
@@ -62,6 +64,5 @@ class UserReport
       return nil
     end
   end 
-
 end
 
