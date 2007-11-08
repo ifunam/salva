@@ -36,7 +36,7 @@ class UserReportPdfTransformer
       if text.is_a?Array
         label = '<b>'+get_label(text[0])+': </b>' 
         width = pdf.text_line_width(label) if pdf.text_line_width(label) > width
-        d << [ label, text[1].to_s ] unless text[1].nil?
+        d << [ label, text[1].to_s ] unless text[1].nil? or text[1].blank?
       else  
         d << { 'key' => ' ', 'value' => 'text' }
       end

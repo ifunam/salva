@@ -15,9 +15,14 @@
     render :action => 'preview'
   end
 
+  def preview_pdf
+    @report = UserReport.new(session[:user])
+    send_data @report.as_pdf, :type => "application/pdf", :filename => 'informe_anual2007.pdf'
+  end
+
   def send_document
-    @resume = Resume.new(session[:user])
-    @file = Resume.new(session[:user]).as_pdf
+    @resume = UserReport.new(session[:user])
+    @file = UserReport.new(session[:user]).as_pdf
     @filename =  'informe_anual_de_actividades_2007.pdf'
     @content_type = 'application/pdf'
     super
