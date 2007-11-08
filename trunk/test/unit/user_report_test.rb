@@ -4,7 +4,8 @@ class UserReportTest < Test::Unit::TestCase
   fixtures :userstatuses, :users, :countries, :states, :cities, :maritalstatuses, :people,
       :user_cites,:addresstypes, :addresses, :idtypes, :identifications, :people_identifications,
       :institutiontitles, :institutiontypes, :institutions, :jobpositionlevels, :roleinjobpositions,
-      :jobpositiontypes, :jobpositioncategories, :jobpositions, :adscriptions, :user_adscriptions
+      :jobpositiontypes, :jobpositioncategories, :jobpositions, :adscriptions, :user_adscriptions,
+   :indivadvicetargets, :indivadvices, :userroles, :genericworkstatuses, :genericworkgroups, :genericworktypes, :genericworks, :user_genericworks
 
   def setup
     @juana = User.find_by_login('juana')

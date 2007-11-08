@@ -14,6 +14,3 @@ servicio_social:
 becario: 
   name: Becario
   id: 2
-profesor:
-  name: Profesor
-  id: 5
