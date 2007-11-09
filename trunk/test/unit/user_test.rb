@@ -91,9 +91,9 @@ class UserTest < Test::Unit::TestCase
   def test_change_bad_password
     for login in (@default_users)
       @user = User.find_by_login(login)
-      @user.current_passwd = encrypt('maltiempo', users(login.to_sym).salt)
+      @user.current_passwd = 'maltiempo2'
       @user.passwd = "caca"
-      assert !@user.valid?
+      assert !@user.valid? 
     end
   end
   

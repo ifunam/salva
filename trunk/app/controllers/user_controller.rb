@@ -35,7 +35,7 @@ class UserController < ApplicationController
     if authenticate_by_token?(params[:id], params[:token])
         session[:user] = params[:id]
         flash[:notice] = "Bienvenido(a), por favor cambie su contraseña..."
-        format.html { redirect_back_or_default :controller => 'change_password' }
+        format.html { redirect_back_or_default :controller => 'change_password', :action => 'edit_simple' }
       else
         flash[:notice] = "La información del token es inválida!"
         format.html { render :action => "index" }

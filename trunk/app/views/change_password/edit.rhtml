@@ -1,8 +1,14 @@
 <div class="required_legend"><%= get_label('required_legend') %>.</div>
 <% form_tag({:action => 'update', :id => @edit.id}) do -%>
-  <%= render :partial => 'form' %>
-  <div id="operations">
+<div class="row"> 
+ <label for="passwd" class="label"><%= get_label('current_passwd') %> <span class="required">*</span></label> 
+ <%= password_field 'edit', 'current_passwd', 'size' => 15, 'maxsize'=> 30,'tabindex' => 2, 'id' => 'edit_passwd'  %>
+</div>
+<hr/>
+<%= render :partial => 'form' %>
+
+<div id="operations">
   <%= submit_tag get_label('update') %> | <%= link_to get_label('back'), {:controller => 'navigator', :depth => 0} %>
-  </div>
+</div>
 <% end -%>
 

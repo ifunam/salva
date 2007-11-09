@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..30
   validates_length_of       :email, :within => 7..100
-  validates_length_of       :passwd,:within => 5..200, :allow_nil => true
+  validates_length_of       :passwd, :within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
@@ -118,16 +118,15 @@ class User < ActiveRecord::Base
       self.passwd_confirmation = nil
     end
   end
-
+  
   def verify_current_password
-    if self.current_passwd != nil
-      if User.find(:first, :conditions => ["id = ?", self.id]).passwd == encrypt(self.current_passwd, self.salt)
-        encrypt_password
-      else
+    if !self.current_passwd.nil?
+      if User.find(:first, :conditions => ["id = ?", self.id]).passwd != encrypt(self.current_passwd, self.salt)
         errors.add("current_passwd", "is not valid")
         return false
       end
     end
+    encrypt_password
   end
 
   def change_userstatus(myattributes)
