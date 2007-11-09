@@ -79,6 +79,7 @@ class UserTest < Test::Unit::TestCase
       old_salt = @user.salt
       old_passwd = @user.passwd
       new_passwd = token_string(4).downcase # Plain text password 
+      @user.current_passwd = 'maltiempo' # Plain text password 
       @user.passwd = new_passwd # Plain text password 
       @user.save
       assert_not_equal old_salt, @user.salt

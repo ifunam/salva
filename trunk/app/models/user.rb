@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   # Callbacks
   before_create :prepare_new_record
-  after_validation :encrypt_password
+  after_validation_on_create :encrypt_password
   before_validation_on_update :verify_current_password
 
   # UserStatus handling
