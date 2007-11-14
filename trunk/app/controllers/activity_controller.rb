@@ -7,5 +7,6 @@ class ActivityController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
+    @list = { :include => [:activitytype], :conditions => "activitytypes.name = 'Otras actividades' AND activities.activitytype_id = activitytypes.id" }
   end
 end

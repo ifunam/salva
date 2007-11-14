@@ -28,8 +28,6 @@ INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Asesorías profesion
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Servicios internos', 5);
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Servicios a otras dependencias', 5);
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Servicios a instituciones externas', 5);
---- Otras actividades
-INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Otras actividades', 6);
 -- Actividades técnicas
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Apoyo en programas de servicio social, de becarios y otros', 7);
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Revisión, elaboración, registro y clasificación de proyectos de tesis', 7);
