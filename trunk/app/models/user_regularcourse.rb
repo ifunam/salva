@@ -2,8 +2,8 @@ class UserRegularcourse < ActiveRecord::Base
   validates_presence_of :regularcourse_id, :roleinregularcourse_id, :period_id
 
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_numericality_of :user_id, :regularcourse_id, :period_id, :roleinregularcourse_id,  :greater_than =>0, :only_integer => true
-  validates_numericality_of :hoursxweek, :allow_nil => true, :greater_than =>0 , :only_integer => true
+  validates_numericality_of :user_id, :regularcourse_id, :period_id, :roleinregularcourse_id, :greater_than => 0, :only_integer => true
+  validates_numericality_of :hoursxweek, :allow_nil => true, :greater_than => 0 , :only_integer => true
 
   validates_inclusion_of :hoursxweek, :in => 1..40, :allow_nil => true
 
@@ -16,7 +16,5 @@ class UserRegularcourse < ActiveRecord::Base
 
   validates_associated :user
   validates_associated :regularcourse
-  validates_associated :period
   validates_associated :roleinregularcourse
-
 end
