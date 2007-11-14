@@ -31,7 +31,7 @@ COMMENT ON TABLE booktypes IS
 CREATE TABLE books (
     id SERIAL,
     title   text NOT NULL,
-    author text NOT NULL,
+    authors text NOT NULL,
     booklink text  NULL,
     country_id int4 NOT NULL
                  REFERENCES countries(id)
@@ -41,29 +41,23 @@ CREATE TABLE books (
             REFERENCES booktypes(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    volume_id int4 NULL
-                REFERENCES volumes(id)
-                ON UPDATE CASCADE
-                DEFERRABLE,
-    orig_language_id  int4 NULL
+    volume text NULL,
+    language_id  int4 NULL
                 REFERENCES languages(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,
-    trans_language_id int4 NULL
-                REFERENCES languages(id)
-                ON UPDATE CASCADE
-                DEFERRABLE,
-    moduser_id int4 NULL                    -- Use it to known who
+ 	 moduser_id int4 NULL                    -- Use it to known who
             REFERENCES users(id)            -- has inserted, updated or deleted
             ON UPDATE CASCADE               -- data into or  from this table.
             DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+	UNIQUE(title,authors,country_id,booktype_id,language_id)
 );
 COMMENT ON TABLE books IS
         'Los libros que maneje el sistema';
-COMMENT ON COLUMN books.author IS 'Nombre de los autores del libro
+COMMENT ON COLUMN books.authors IS 'Nombre de los autores del libro
         (no es referencia, muchas veces no será usuario del sistema. Ver
         tabla userbooks)';
 

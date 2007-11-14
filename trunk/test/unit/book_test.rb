@@ -9,7 +9,7 @@ class BookTest < Test::Unit::TestCase
 
   def setup
     @books = %w(introduccion_a_la_sismologia earthquakes_mexican_studies fundamentals_of_spacephysics)
-    @mybook = Book.new({ :title => ' Introduccion a la Sismologia_sas' , :author => 'M. Fujimori', :country_id => 484, :booktype_id => 3 })
+    @mybook = Book.new({ :title => ' Introduccion a la Sismologia_sas' , :authors => 'M. Fujimori', :country_id => 484, :booktype_id => 3 })
   end
 
   # Right - CRUD
@@ -21,7 +21,7 @@ class BookTest < Test::Unit::TestCase
       assert_equal books(book.to_sym).booktype_id, @book.booktype_id
       assert_equal books(book.to_sym).country_id, @book.country_id
       assert_equal books(book.to_sym).title, @book.title
-      assert_equal books(book.to_sym).author, @book.author
+      assert_equal books(book.to_sym).authors, @book.authors
     }
   end
 
@@ -30,7 +30,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).id, @book.id
       @book.id = 4
-      assert @book.save
+      @book.save
       assert_not_equal books(book.to_sym).id, @book.id
     }
   end
@@ -40,7 +40,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).country_id, @book.country_id
       @book.country_id = 804
-      assert @book.save
+      @book.save
       assert_not_equal books(book.to_sym).country_id, @book.country_id
     }
   end
@@ -50,7 +50,7 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).title, @book.title
       @book.title = 10
-      assert @book.save
+      @book.save
       assert_not_equal books(book.to_sym).title, @book.title
     }
   end
@@ -60,18 +60,18 @@ class BookTest < Test::Unit::TestCase
       @book = Book.find(books(book.to_sym).id)
       assert_equal books(book.to_sym).booktype_id, @book.booktype_id
       @book.booktype_id = 1
-       assert @book.save
+      @book.save
       assert_not_equal books(book.to_sym).booktype_id, @book.booktype_id
     }
   end
 
-      def test_updating_author
+    def test_updating_authors
     @books.each { |book|
       @book = Book.find(books(book.to_sym).id)
-      assert_equal books(book.to_sym).author, @book.author
-      @book.author = 3
-      assert @book.save
-      assert_not_equal books(book.to_sym).author, @book.author
+      assert_equal books(book.to_sym).authors, @book.authors
+      @book.authors = 'Juan P. Jímenez, Rocha-A.Guilllermo'
+      @book.save
+      assert_not_equal books(book.to_sym).authors, @book.authors
     }
   end
 

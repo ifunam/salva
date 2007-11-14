@@ -7,8 +7,8 @@
 </div>
 
 <div class="row"> 
-<label for="author" class="label"><%= get_label('author') %> <span class="required">*</span></label> 
-<%= text_area 'edit', 'author', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 2, 'id' => 'author' %>
+<label for="authors" class="label"><%= get_label('author') %> <span class="required">*</span></label> 
+<%= text_area 'edit', 'authors', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 2, 'id' => 'author' %>
 </div>
 
 <div class="row"> 
@@ -31,27 +31,17 @@
 </div>
 
 <div class="row"> 
-<label for="volume_id" class="label"><%= get_label('volume_id') %></label> 
-<div id="volume_id">
-<%= simple_select('edit', Volume, 6) %>
-</div>
-<%= quickpost('volume') %>
+<label for="volume" class="label"><%= get_label('volume') %></label> 
+<%= text_field 'edit', 'volume', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'booklink' %>
 </div>
 
-<div class="row"> 
-<label for="orig_language_id" class="label"><%= get_label('orig_language_id') %></label> 
-<div id="orig_language_id">
-<%= simple_select('edit', Language, 7, :prefix => 'orig') %>
-</div>
-<%= quickpost('language,orig_language_id') %>
-</div>
 
 <div class="row"> 
-<label for="trans_language_id" class="label"><%= get_label('trans_language_id') %></label> 
-<div id="trans_language_id">
-<%= simple_select('edit', Language, 8, :prefix => 'trans') %>
+<label for="language_id" class="label"><%= get_label('language_id') %> <span class="required">*</span></label>
+<div id="language_id">
+<%= simple_select('edit', Language, 7 ) %>
 </div>
-<%= quickpost('language,trans_language_id') %>
+<%= quickpost('language') %>
 </div>
 
 
