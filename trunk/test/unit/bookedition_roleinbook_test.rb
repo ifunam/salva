@@ -5,7 +5,7 @@ require 'roleinbook'
 require 'bookedition_roleinbook'
 
 class BookeditionRoleinbookTest < Test::Unit::TestCase
-  fixtures :countries, :booktypes, :books, :editions, :mediatypes, :editionstatuses, :bookeditions, :userstatuses, :users, :roleinbooks, :bookedition_roleinbooks
+  fixtures :countries, :booktypes, :books, :mediatypes, :editionstatuses, :bookeditions, :userstatuses, :users, :roleinbooks, :bookedition_roleinbooks
 
   def setup
     @bookedition_roleinbooks = %w(sismologia_autor_administrador earthquakes_coautor_juana spacephysics_revisor_panchito)

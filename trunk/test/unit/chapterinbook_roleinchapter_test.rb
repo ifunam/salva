@@ -6,7 +6,7 @@ require 'chapterinbook_roleinchapter'
 
 class ChapterinbookRoleinchapterTest < Test::Unit::TestCase
 
-fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, :editionstatuses, :mediatypes, :editions, :countries, :books, :bookeditions, :chapterinbooks, :chapterinbook_roleinchapters
+fixtures :roleinchapters, :userstatuses, :users, :booktypes, :bookchaptertypes, :editionstatuses, :mediatypes, :countries, :books, :bookeditions, :chapterinbooks, :chapterinbook_roleinchapters
 
 
   def setup

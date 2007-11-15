@@ -4,7 +4,7 @@ require 'bookchaptertype'
 require 'chapterinbook'
 
 class ChapterinbookTest < Test::Unit::TestCase
-  fixtures  :countries, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks
+  fixtures  :countries, :booktypes, :books, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks
 
   def setup
     @chapterinbooks = %w(fuerzas_sobre_la_atmosfera_de_Venus fuerzas_sobre_la_superficie_de_la_tierra)

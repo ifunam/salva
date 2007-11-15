@@ -4,7 +4,7 @@ require 'bookedition'
 require 'bookedition_comment'
 
 class BookeditionCommentTest < Test::Unit::TestCase
-  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions , :userstatuses, :users, :countries, :booktypes, :books, :editions, :mediatypes, :editionstatuses, :bookeditions, :bookedition_comments
+  fixtures :countries, :states, :cities, :institutiontitles, :institutiontypes, :institutions , :userstatuses, :users, :countries, :booktypes, :books, :mediatypes, :editionstatuses, :bookeditions, :bookedition_comments
 
   def setup
     @bookedition_comments = %w(administrador_sismologia juana_earthquakes)

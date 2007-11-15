@@ -1,7 +1,7 @@
 sismologia:
   id: 1
   book_id: 1
-  edition_id: 3
+  edition: Tercera
   mediatype_id: 1
   year: 2004
   month: 3
@@ -10,7 +10,7 @@ sismologia:
 earthquakes:
   id: 2
   book_id: 2
-  edition_id: 1
+  edition: Second edition
   mediatype_id: 1
   year: 1999
   month: 7
@@ -19,7 +19,7 @@ earthquakes:
 spacephysics:
   id: 3
   book_id: 3
-  edition_id: 2
+  edition: First
   mediatype_id: 2
   pages: 340
   year: 2006

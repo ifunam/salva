@@ -4,7 +4,7 @@ require 'chapterinbook'
 require 'chapterinbook_comment'
 
 class ChapterinbookCommentTest < Test::Unit::TestCase
-  fixtures :userstatuses, :users, :countries, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks, :chapterinbook_comments
+  fixtures :userstatuses, :users, :countries, :booktypes, :books, :publishers, :mediatypes, :editionstatuses, :bookeditions, :bookchaptertypes, :chapterinbooks, :chapterinbook_comments
 
   def setup
     @chapterinbook_comments = %w(tema_para_licenciatura tema_para_maestria)

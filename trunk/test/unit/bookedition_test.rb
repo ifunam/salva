@@ -6,11 +6,11 @@ require 'book'
 require 'bookedition'
 
 class BookeditionTest < Test::Unit::TestCase
-  fixtures :countries, :booktypes, :books, :editions, :mediatypes, :editionstatuses, :bookeditions
+  fixtures :countries, :booktypes, :books, :mediatypes, :editionstatuses, :bookeditions
 
   def setup
     @bookeditions = %w(sismologia earthquakes spacephysics)
-    @mybookedition = Bookedition.new({:book_id => 4, :edition_id => 2, :pages => 300,  :editionstatus_id => 2, :mediatype_id => 1, :month => 3, :year => 2005})
+    @mybookedition = Bookedition.new({:book_id => 4, :edition => 'Third edition', :pages => 300,  :editionstatus_id => 2, :mediatype_id => 1, :month => 3, :year => 2005})
   end
 
   # Right - CRUD
@@ -20,7 +20,7 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       assert_equal bookeditions(bookedition.to_sym).id, @bookedition.id
       assert_equal bookeditions(bookedition.to_sym).book_id, @bookedition.book_id
-      assert_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
+      assert_equal bookeditions(bookedition.to_sym).edition, @bookedition.edition
       assert_equal bookeditions(bookedition.to_sym).pages, @bookedition.pages
       assert_equal bookeditions(bookedition.to_sym).mediatype_id, @bookedition.mediatype_id
       assert_equal bookeditions(bookedition.to_sym).editionstatus_id, @bookedition.editionstatus_id
@@ -39,13 +39,13 @@ class BookeditionTest < Test::Unit::TestCase
     }
   end
 
-    def test_updating_edition_id
+    def test_updating_edition
     @bookeditions.each { |bookedition|
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
-      @bookedition.edition_id = 4
+      assert_equal bookeditions(bookedition.to_sym).edition, @bookedition.edition
+      @bookedition.edition = 'Cuarta'
       assert @bookedition.save
-      assert_not_equal bookeditions(bookedition.to_sym).edition_id, @bookedition.edition_id
+      assert_not_equal bookeditions(bookedition.to_sym).edition, @bookedition.edition
     }
   end
 
@@ -59,7 +59,7 @@ class BookeditionTest < Test::Unit::TestCase
     }
   end
 
-   def test_updating_mediatype_id
+  def test_updating_mediatype_id
     @bookeditions.each { |bookedition|
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).mediatype_id, @bookedition.mediatype_id
@@ -69,7 +69,7 @@ class BookeditionTest < Test::Unit::TestCase
     }
   end
 
-      def test_updating_editionstatus_id
+  def test_updating_editionstatus_id
     @bookeditions.each { |bookedition|
       @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
       assert_equal bookeditions(bookedition.to_sym).editionstatus_id, @bookedition.editionstatus_id
@@ -119,7 +119,7 @@ class BookeditionTest < Test::Unit::TestCase
   end
 
    def test_creating_duplicated
-     @bookedition = Bookedition.new({:book_id => 1, :edition_id => 3, :pages => 300, :editionstatus_id => 1, :mediatype_id => 1, :month => 3, :year => 200})
+     @bookedition = Bookedition.new({:book_id => 1, :edition => 'Tercera', :pages => 300, :editionstatus_id => 1, :mediatype_id => 1, :month => 3, :year => 200})
      assert !@bookedition.save
    end
 
@@ -138,12 +138,8 @@ class BookeditionTest < Test::Unit::TestCase
     assert !@mybookedition.valid?
   end
 
-  def test_bad_values_for_edition_id
-    @mybookedition.edition_id = nil
-    assert !@mybookedition.valid?
-    @mybookedition.edition_id = 1.6
-    assert !@mybookedition.valid?
-    @mybookedition.edition_id = 'mi_id_texto'
+  def test_bad_values_for_edition
+    @mybookedition.edition = nil
     assert !@mybookedition.valid?
   end
 
@@ -193,36 +189,6 @@ class BookeditionTest < Test::Unit::TestCase
     }
   end
 
-  #cross check for edition
-  def test_cross_checking_for_edition_id
-    @bookeditions.each { | bookedition|
-      @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_kind_of Bookedition, @bookedition
-      assert_equal @bookedition.edition_id, Edition.find(@bookedition.edition_id).id
-    }
-  end
-
-  def catch_exception_when_update_invalid_key(record)
-    begin
-      return true if record.save
-    rescue ActiveRecord::StatementInvalid => bang
-      return false
-    end
-  end
-
-  def test_cross_checking_with_bad_values_for_edition_id
-    @bookeditions.each { | bookedition|
-      @bookedition = Bookedition.find(bookeditions(bookedition.to_sym).id)
-      assert_kind_of Bookedition, @bookedition
-      @bookedition.edition_id = 10
-       begin
-        return true if @bookedition.save
-       rescue StandardError => x
-        return false
-      end
-    }
-  end
-
   def catch_exception_when_update_invalid_key(record)
     begin
       return true if record.save
@@ -238,14 +204,6 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       assert_equal @bookedition.mediatype_id, Mediatype.find(@bookedition.mediatype_id).id
     }
-  end
-
-  def catch_exception_when_update_invalid_key(record)
-    begin
-      return true if record.save
-    rescue ActiveRecord::StatementInvalid => bang
-      return false
-    end
   end
 
   def test_cross_checking_with_bad_values_for_mediatype_id
@@ -268,14 +226,6 @@ class BookeditionTest < Test::Unit::TestCase
       assert_kind_of Bookedition, @bookedition
       assert_equal @bookedition.editionstatus_id, Editionstatus.find(@bookedition.editionstatus_id).id
     }
-  end
-
-  def catch_exception_when_update_invalid_key(record)
-    begin
-      return true if record.save
-    rescue ActiveRecord::StatementInvalid => bang
-      return false
-    end
   end
 
   def test_cross_checking_with_bad_values_for_editstatus_id

@@ -61,22 +61,6 @@ COMMENT ON COLUMN books.authors IS 'Nombre de los autores del libro
         (no es referencia, muchas veces no será usuario del sistema. Ver
         tabla userbooks)';
 
-CREATE TABLE editions (
-        id SERIAL,
-        name text NOT NULL,
-        moduser_id int4 NULL                        -- Use it to known who
-            REFERENCES users(id)            -- has inserted, updated or deleted
-            ON UPDATE CASCADE               -- data into or  from this table.
-            DEFERRABLE,
-        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY(id),
-        UNIQUE(name)
-);
-COMMENT ON TABLE editions IS
-        'Ediciones (normalmente numeradas) de libros:
-        Primera, segunda, tercera, especial, ...';
-
 CREATE TABLE editionstatuses (
         id SERIAL,
         name text NOT NULL,
@@ -93,10 +77,7 @@ CREATE TABLE bookeditions ( --
             REFERENCES books(id)
             ON UPDATE CASCADE
             DEFERRABLE,
-    edition_id int4 NOT NULL
-            REFERENCES editions(id)
-            ON UPDATE CASCADE
-            DEFERRABLE,
+    edition text NOT NULL,
     pages int4 NULL,     -- Number of pages
     isbn  text NULL,     -- ISBN
     mediatype_id int4 NOT NULL
@@ -117,7 +98,7 @@ CREATE TABLE bookeditions ( --
     created_on timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE (book_id, edition_id)
+    UNIQUE (book_id, edition)
 );
 COMMENT ON TABLE bookeditions IS
         'Historial de las ediciones de un libro - En qué edición va? Cuándo

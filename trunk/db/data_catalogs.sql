@@ -18,7 +18,6 @@
 \i catalogs/volumes.sql
 \i catalogs/mediatypes.sql
 \i catalogs/publishers.sql
-\i catalogs/editions.sql
 \i catalogs/editionstatuses.sql
 \i catalogs/roleinbooks.sql
 \i catalogs/institutiontypes.sql

@@ -235,7 +235,7 @@ abstract: Resumen
 conference_institution: Instituciones que organizan el congreso
 userconference: Asistencia a eventos académicos
 userconference_id: Evento académico
-edition_id: Edición
+edition: Edición
 pages: Páginas
 isbn: ISBN
 mediatype_id: Medio

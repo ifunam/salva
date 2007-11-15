@@ -4,7 +4,7 @@ require 'chapterinbook'
 require 'projectchapterinbook'
 
 class ProjectchapterinbookTest < Test::Unit::TestCase
-  fixtures :projecttypes,:projectstatuses, :projects, :countries, :bookchaptertypes, :booktypes, :books, :editions, :publishers, :mediatypes, :editionstatuses, :bookeditions,:chapterinbooks, :projectchapterinbooks
+  fixtures :projecttypes,:projectstatuses, :projects, :countries, :bookchaptertypes, :booktypes, :books, :publishers, :mediatypes, :editionstatuses, :bookeditions,:chapterinbooks, :projectchapterinbooks
 
   def setup
     @projectchapterinbooks = %w(la_atmosfera_de_Venus la_superficie_de_la_tierra)
