@@ -71,3 +71,4 @@
 \i catalogs/roleproceedings.sql
 \i catalogs/advice.sql
 \i catalogs/techproductstatuses.sql
+\i catalogs/seminarytypes.sql
