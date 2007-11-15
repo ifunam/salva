@@ -1,7 +1,18 @@
+CREATE TABLE seminarytypes (
+    id SERIAL,
+    name text NOT NULL,
+    PRIMARY KEY(id),
+    UNIQUE (name)
+);
+
 CREATE TABLE seminaries (
     id SERIAL,
     title text NOT NULL,
-    isseminary BOOLEAN NOT NULL default 't',
+    seminarytype_id int4 NOT NULL
+            REFERENCES seminarytypes(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+            DEFERRABLE,
     url text NULL,
     month int4 NULL CHECK (month >= 1 AND month <= 12),
     year  int4 NOT NULL,
@@ -10,7 +21,7 @@ CREATE TABLE seminaries (
             ON UPDATE CASCADE
             ON DELETE CASCADE
             DEFERRABLE,
-    location text NULL,
+    auditorium text NULL,
     moduser_id int4  NULL                 -- Use it only to know who has
             REFERENCES users(id)             -- inserted, updated or deleted
             ON UPDATE CASCADE                -- data into or from this table.

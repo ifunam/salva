@@ -7,7 +7,7 @@ class SeminaryTest < Test::Unit::TestCase
 
   def setup
     @seminaries = %w(analisis_de_onda_P proceso_ruptura_en_sumatra)
-    @myseminary = Seminary.new({ :title => "Base de datos", :isseminary => "t", :year => 2007, :institution_id => 1})
+    @myseminary = Seminary.new({ :title => "Base de datos", :seminarytype_id => 1, :year => 2007, :institution_id => 1})
   end
 
   # Right - CRUD
@@ -17,7 +17,7 @@ class SeminaryTest < Test::Unit::TestCase
       assert_kind_of Seminary, @seminary
       assert_equal seminaries(seminary.to_sym).id, @seminary.id
       assert_equal seminaries(seminary.to_sym).title, @seminary.title
-      assert_equal seminaries(seminary.to_sym).isseminary, @seminary.isseminary
+      assert_equal seminaries(seminary.to_sym).seminarytype_id, @seminary.seminarytype_id
       assert_equal seminaries(seminary.to_sym).year, @seminary.year
       assert_equal seminaries(seminary.to_sym).institution_id, @seminary.institution_id
     }
@@ -68,7 +68,7 @@ class SeminaryTest < Test::Unit::TestCase
   end
 
   def test_creating_duplicated
-    @seminary = Seminary.new({:title => 'Analisis de Onda P',:isseminary => "t", :year => 2004, :institution_id => 1})
+    @seminary = Seminary.new({:title => 'Analisis de Onda P',:seminarytype_id => "t", :year => 2004, :institution_id => 1})
     assert !@seminary.save
   end
 
@@ -98,12 +98,10 @@ class SeminaryTest < Test::Unit::TestCase
     assert !@myseminary.valid?
   end
 
-  def test_bad_values_for_isseminary
-    @myseminary.isseminary = nil
+  def test_bad_values_for_seminarytype_id
+    @myseminary.seminarytype_id = nil
     assert !@myseminary.valid?
-    @myseminary.isseminary = 1.6
-    assert !@myseminary.valid?
-    @myseminary.isseminary = 'my_isseminary'
+    @myseminary.seminarytype_id = 0
     assert !@myseminary.valid?
   end
 
