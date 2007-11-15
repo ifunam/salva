@@ -1,0 +1,10 @@
+--- 
+seminario: 
+  name: Seminario
+  id: 1
+coloquio: 
+  name: Coloquio
+  id: 3
+conferencia: 
+  name: Conferencia
+  id: 2
