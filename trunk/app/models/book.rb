@@ -7,7 +7,7 @@ class Book < ActiveRecord::Base
   belongs_to :country
   belongs_to :booktype
   belongs_to :language
-  validates_associated :country, :booktype, :volume, :language
+  validates_associated :country, :booktype, :language
 
   has_many :bookeditions
   validates_associated :bookeditions
