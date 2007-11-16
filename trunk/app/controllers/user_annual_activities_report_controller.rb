@@ -19,7 +19,7 @@
     @report = UserReport.new(session[:user])
 
     # Codigo unico de emision del reporte anual
-    report_code = 'salva '+request.remote_ip+' '+Date.today.to_s
+    report_code = 'salva - plat. inf. curric. '+request.remote_ip+' '+Time.now.ctime
 
     send_data @report.as_pdf(report_code), :type => "application/pdf", :filename => 'informe_anual2007.pdf'
   end

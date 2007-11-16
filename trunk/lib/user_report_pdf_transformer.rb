@@ -26,9 +26,9 @@ class UserReportPdfTransformer
     pdf.info.subject = @report_code
 
 
-    pdf.add_text(pdf.page_width-pdf.text_line_width(@report_code), pdf.page_height-20, @report_code, 8)
+#    pdf.add_text(pdf.page_width-pdf.text_line_width(@report_code), pdf.page_height-20, @report_code, 8)
 
-    pdf.start_page_numbering(pdf.page_width/2, 10, 8, :center)
+    pdf.start_page_numbering(pdf.page_width/2, 10, 8, :left, "<PAGENUM> / <TOTALPAGENUM>  - - - - - -  #{@report_code}")
 
     pdf.add_image_from_file "public/images/unam_escudo.png", 25, 660, 100
 
