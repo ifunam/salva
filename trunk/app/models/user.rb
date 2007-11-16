@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
   end
 
   def encrypt_password
-    if self.passwd != nil
+    if self.passwd != nil 
       self.salt = salted
       self.passwd = encrypt(self.passwd, self.salt)
       self.passwd_confirmation = nil
@@ -125,8 +125,8 @@ class User < ActiveRecord::Base
         errors.add("current_passwd", "is not valid")
         return false
       end
+      encrypt_password
     end
-    encrypt_password
   end
 
   def change_userstatus(myattributes)
