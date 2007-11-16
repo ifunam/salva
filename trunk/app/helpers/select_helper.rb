@@ -20,9 +20,7 @@ module SelectHelper
       else
         object.send(field)
       end
-    elsif selected == :first
-      1
-    else !selected.nil?
+    elsif !selected.nil?
       selected
     end
   end
