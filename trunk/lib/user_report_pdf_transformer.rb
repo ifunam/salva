@@ -9,16 +9,35 @@ class UserReportPdfTransformer
   include Labels
   SIZES = [18, 16, 14, 12, 12, 12]
 
+  attr_accessor :report_code
+
+  def initialize(report_code)
+    @report_code = report_code
+  end
+
   def as_pdf(data)
+
     pdf =  PDF::Writer.new  	  
     pdf.select_font "Times-Roman"
+
+    pdf.info.creator = 'Salva'
+    pdf.info.title = "Reporte anual 2007"
+    # pdf.info.author = username
+    pdf.info.subject = @report_code
+
+
+    pdf.add_text(pdf.page_width-pdf.text_line_width(@report_code), pdf.page_height-20, @report_code, 8)
+
+    pdf.start_page_numbering(pdf.page_width/2, 10, 8, :center)
+
+    pdf.add_image_from_file "public/images/unam_escudo.png", 25, 660, 100
 
     pdf.text("Informe de Actividades 2007", :font_size => SIZES[0], :justification => :center)
     myinstitution =  get_conf('institution')
     pdf.move_pointer(4)
     pdf.text(myinstitution, :font_size => SIZES[1], :justification => :center)
 
-    pdf.text("\n\n")
+    pdf.move_pointer(100)
 
     data.each do |hash|
       pdf.text(get_label(hash[:title])+"\n", :font_size => SIZES[hash[:level]]) if hash.has_key?(:title)

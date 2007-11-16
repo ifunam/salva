@@ -17,7 +17,11 @@
 
   def preview_pdf
     @report = UserReport.new(session[:user])
-    send_data @report.as_pdf, :type => "application/pdf", :filename => 'informe_anual2007.pdf'
+
+    # Codigo unico de emision del reporte anual
+    report_code = 'salva '+request.remote_ip+' '+Date.today.to_s
+
+    send_data @report.as_pdf(report_code), :type => "application/pdf", :filename => 'informe_anual2007.pdf'
   end
 
   def send_document
