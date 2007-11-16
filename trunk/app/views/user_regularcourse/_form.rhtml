@@ -21,7 +21,8 @@
 <div class="row">
 <label for="period_id" class="label"><%= get_label('period_id') %><span class="required">*</span></label>
 <div id="period_id">
-<%= select_conditions('edit', Period, 2, :attributes => ['title']) %>
+<%= select_conditions('edit', Period, 2, :attributes => ['title'],
+:order => 'periods.title DESC', :selected => :last) %>
 </div>
   <%= quickpost('period') %>
 </div>

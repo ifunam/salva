@@ -13,6 +13,7 @@ INSERT INTO coursegrouptypes (name) VALUES ('Especialización');
 INSERT INTO roleincourses (name) VALUES ('Autor');
 INSERT INTO roleincourses (name) VALUES ('Asistente');
 INSERT INTO roleincourses (name) VALUES ('Instructor');
+INSERT INTO roleincourses (name) VALUES ('Diseñador gráfico');
 
 INSERT INTO academicprogramtypes (name) VALUES ('Escolarizado');
 INSERT INTO academicprogramtypes (name) VALUES ('Universidad Abierta');

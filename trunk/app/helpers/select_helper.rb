@@ -20,13 +20,20 @@ module SelectHelper
       else
         object.send(field)
       end
-    elsif !selected.nil?
+    elsif selected == :first
+      1
+    else !selected.nil?
       selected
     end
   end
 
   def finder_id(model, id, attributes=[])
-    options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
+    if id == :first || id == :last
+      options = { }
+    else
+      options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" } 
+    end
+
     unless attributes.nil? or attributes.empty?
       if attributes.is_a? Array
         options[:attributes] = attributes
@@ -41,6 +48,8 @@ module SelectHelper
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
     @list = Finder.new(model, options).as_pair
+    selected = @list.first[0] if selected == :first
+    selected = @list.last[0] if selected == :last
     @list = @list + finder_id(model, selected, options[:column]) if !selected.nil? && @list.rassoc(selected).nil?
     select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end

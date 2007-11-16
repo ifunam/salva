@@ -33,8 +33,7 @@ class UserReportPdfTransformer
 
   def paragraph_data(pdf, data)
     width = 198.324
-    item_width = pdf.text_line_width('20.')
-
+    
     num = 1
     data.each do |text| 
       if text.is_a?Array
@@ -49,7 +48,8 @@ class UserReportPdfTransformer
       else
         y = pdf.y
         pdf.text(num.to_s + '. ', :font_size => SIZES[5])  
-          pdf.y = y       
+        item_width = pdf.text_line_width(num.to_s + '. ')
+        pdf.y = y       
         pdf.text(text, :font_size => SIZES[5], :justification => :full, :left => item_width) 
         num += 1
       end
