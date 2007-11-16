@@ -23,32 +23,33 @@ class UserReportPdfTransformer
     data.each do |hash|
       pdf.text(get_label(hash[:title])+"\n", :font_size => SIZES[hash[:level]]) if hash.has_key?(:title)
       pdf.move_pointer(10)
-      paragraph_data(pdf, hash[:data]) if hash.has_key?(:data)
+      if hash.has_key?(:data)
+        paragraph_data(pdf, hash[:data])
+        pdf.move_pointer(5)
+      end
     end
     pdf.render
   end
 
   def paragraph_data(pdf, data)
-
-    d = []
-    width = 40
+    width = 198.324
+    num = 1
     data.each do |text| 
       if text.is_a?Array
-        label = '<b>'+get_label(text[0])+': </b>' 
-        width = pdf.text_line_width(label) if pdf.text_line_width(label) > width
-        d << [ label, text[1].to_s ] unless text[1].nil? or text[1].blank?
+        if !text[1].nil? and !text[1].blank?
+          label = '<b>'+get_label(text[0])+': </b>' 
+          mywidth = pdf.text_line_width(label) > width ? pdf.text_line_width(label) : width
+          y = pdf.y
+          pdf.text(label, :font_size => SIZES[5])
+          pdf.y = y
+          pdf.text(text[1].to_s, :font_size => SIZES[5], :left => mywidth) 
+        end
       else  
-        d << { 'key' => ' ', 'value' => 'text' }
+        pdf.text(num.to_s + '. '+ text, :font_size => SIZES[5], :justification => :full) 
+        num += 1
       end
+      pdf.move_pointer(2)
     end
-
-    d.each { |row|
-      y = pdf.y
-      pdf.text(row[0], :font_size => SIZES[5])
-      pdf.y = y
-      pdf.text(row[1], :font_size => SIZES[5], :left => width) 
-      pdf.move_pointer(2)     
-    }
   end
   
 end
