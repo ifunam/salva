@@ -110,13 +110,23 @@ class BookTest < Test::Unit::TestCase
     assert !@mybook.valid?
   end
 
-    def test_bad_values_for_country_id
+  def test_bad_values_for_country_id
     @mybook.country_id = nil
     assert !@mybook.valid?
     @mybook.country_id = 1.6
     assert !@mybook.valid?
     @mybook.country_id = 'my_year'
     assert !@mybook.valid?
+  end
+
+  def test_bad_values_for_language_id
+    @mybook.language_id = 1.6
+    assert !@mybook.valid?
+    @mybook.language_id = 'my_year'
+    assert !@mybook.valid?
+    @mybook.language_id = nil
+    # An optional field must be valid as nil
+    assert @mybook.valid?
   end
 
   #cross-Checking test for book
