@@ -1,63 +1,76 @@
-require 'salva'
+require RAILS_ROOT + '/lib/salva'
+require RAILS_ROOT + '/lib/finder'
 class UserDocumentController < ApplicationController
   include Salva
+  layout 'user_document_handling'
+  before_filter :document_requirements
+  
+  def initialize
+    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
+  end
 
   def index
      list
   end
 
   def list
-    @collection = UserDocument.paginate :page => 1, :per_page => 10,
-    :conditions => "user_id = #{session[:user]} AND document_id = #{@document_id}"
+    @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
+    :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
     render :action => 'list'
   end
 
   def send_document
-    @user = User.find(session[:user])
     record = UserDocument.new
-    record.ip_address = request.env['REMOTE_ADDR']
-    record.document_id = @document_id
+    record.ip_address = request.remote_ip
+    record.document_id = @document.id
     record.file = StringIO.new(@file).read
     record.filename  = @filename
-    record.content_type = @content_type
+    record.content_type = 'application/pdf'
     record.moduser_id = @user.id
     record.user_id = @user.id
-    record.user_incharge_id = @user.user_incharge_id if @user.has_user_incharge?
+    record.status = true
+    record.user_incharge_id = @user.user_incharge_id and record.status = false if @user.has_user_incharge?
     if record.save
-      mail =  {
-        :body => { :institution => get_myinstitution.name },
-        :attachment => { :file => record.file,  :content_type => record.content_type, :filename => @filename }
-      }
       if @user.has_user_incharge?
-        mail[:recipients] = [@user.email]
-        mail[:subject] = @request_for_approval_subject
-        UserDocumentNotifier.deliver_request_for_approval(mail)
-
-        mail[:recipients] = [@user.user_incharge.email]
-        mail[:subject] = @request_for_approval_subject
-        mail.delete(:attachment)
-        UserDocumentNotifier.deliver_request_for_approval_notification(mail)
+        send_email(@user.email, "Solicitud de aprobación (#{@document_title})", :deliver_request_for_approval, { :file => record.file,  :content_type => record.content_type, :filename => @filename })
+        send_email(@user.user_incharge.email, "Solicitud de aprobación del #{@document_title}", :deliver_request_for_approval_notification)
       else
-        mail[:recipients] = @user.email
-        mail[:subject] = @notification_subject
-        UserDocumentNotifier.deliver_notification_of_delivery(mail)
+        send_email(@user.email, "#{@document_title}", :deliver_notification_of_delivery, { :file => record.file,  :content_type => record.content_type, :filename => @filename })
       end
-      flash[:notice] = @sent_msg
-      redirect_to :action => 'list'
+      flash[:notice] = "Su #{@document_title} ha sido enviado!"
     else
-      flash[:notice] = @nosent_msg
-      redirect_to :action => 'list' # Redirect to another action
+      flash[:notice] = "Su #{@document_title} NO ha sido enviado!"
     end
+    redirect_to :action => 'list'
   end
 
   def show
-    record = UserDocument.find(params[:id])
-    response.headers['Cache-Control'] = 'no-cache, must-revalidate'
-    if  record.file and  !record.filename.nil? and !record.content_type.nil? then
-      send_data(record.file, :filename => record.filename, :type => record.content_type, :disposition => "inline")
+    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', @user.id,  params[:id]])
+    if !@record.nil?
+      response.headers['Pragma'] = 'no-cache'
+      response.headers['Cache-Control'] = 'no-cache, must-revalidate'
+      send_data(@record.file, :filename => @record.filename, :type => @record.content_type, :disposition => "inline")
     else
-      send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
+      flash[:notice] = 'Documento no encontrado'
+      redirect_to :action => 'list' 
     end
   end
 
+  private
+  def document_requirements
+    if !@document.nil?
+      @user = User.find(session[:user])
+      if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @document.id, @user.id]).nil? and @document.enddate <= Date.today
+        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'], 
+                                                   :conditions => "documents.documenttype_id = #{@documenttype.id}",
+                                                   :order => 'documents.startdate DESC').as_pair.first
+      end
+    end
+  end 
+
+  def send_email(recipients, subject, method, attachment=nil)
+    options =  { :recipients => recipients, :subject => subject, :body => { :institution => get_myinstitution.name } }
+    options[:attachment] = attachment unless attachment.nil? 
+    UserDocumentNotifier.send(method, options)
+  end
 end

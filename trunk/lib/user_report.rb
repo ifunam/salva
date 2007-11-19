@@ -42,10 +42,6 @@ class UserReport
     @transformer.as_html([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
   end
 
-#  def as_text
-#    @transformer.as_text(@data)
-#  end
-
   def as_pdf(report_code)
     @transformer = UserReportPdfTransformer.new(report_code)
     @transformer.as_pdf([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
