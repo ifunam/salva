@@ -8,6 +8,6 @@ class BookController < SalvaController
     @per_pages = 10
     @order_by = 'id'
 
-    @children = { 'bookedition' => %w(edition_id year) }
+    @children = { 'bookedition' => %w(edition year) }
   end
 end

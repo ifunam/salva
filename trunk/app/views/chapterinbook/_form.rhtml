@@ -5,7 +5,7 @@
 <label for="edition_id" class="label"><%= get_label('bookedition_id') %> 
 <span class="required">*</span></label>
 <% if params[:id]  %>
-<%= attributeid_to_text(Bookedition.find(params[:id]), 'edition') %>
+<%= Bookedition.find(params[:id]).edition %>
 <%= hidden_field('edit', 'bookedition_id', :value => params[:id]) %>
 <% else %>
 <div id="bookedition_id">
