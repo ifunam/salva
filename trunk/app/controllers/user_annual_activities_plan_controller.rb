@@ -1,7 +1,7 @@
 class  UserAnnualActivitiesPlanController < UserDocumentController
   def initialize
-    document_name = 'Plan anual de actividades'
-    @documenttype = Documenttype.find_by_name(document_name)
+    @document_name = 'Plan anual de actividades'
+    @documenttype = Documenttype.find_by_name(@document_name)
     super if !@documenttype.nil? # This will initialize the variables: @document, @document_title and @document_id, see initialize method at user_document_controller.
   end
 

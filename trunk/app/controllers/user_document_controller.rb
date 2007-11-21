@@ -6,7 +6,7 @@ class UserDocumentController < ApplicationController
   before_filter :document_requirements
   
   def initialize
-    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
+    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') unless @documenttype.nil?
   end
 
   def index
@@ -14,8 +14,13 @@ class UserDocumentController < ApplicationController
   end
 
   def list
-    @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
-    :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
+    if !@documenttype.nil?
+      @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
+      :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
+    else
+      @collection = []
+      flash[:notice] = "Debe activar el #{@document_name}"
+    end
     render :action => 'list'
   end
 
