@@ -33,8 +33,10 @@ class NavigatorController < ApplicationController
       if controller == 'navigator'
         @list = get_tree.parent.path.reverse if get_tree.has_parent?
       else
-        index = get_tree.parent.children_data.index(controller)
-        @list = get_tree.parent.children[index].path.reverse if !index.nil?
+        if get_tree.has_children? and get_tree.has_parent?
+          index = get_tree.parent.children_data.index(controller)
+          @list = get_tree.parent.children[index].path.reverse if !index.nil?
+        end
       end
       @list << controller
     end
