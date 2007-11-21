@@ -29,7 +29,7 @@
      <%=  render_component :controller => "navigator", :action => "trail_of_controllers" %><%= controller_title %>
    </div> <!-- title -->
    <div class="navbar">
-    <b>Men&uacute; de navegaci&oacute;n:</b> <%=  render_component :controller => "navigator", :action => "navbar" %>
+    <b>Men&uacute; de navegaci&oacute;n:</b> <%=  render_component :controller => "navigator", :action => "navbar", :params => { :controller_name => controller_name } %>
    </div> <!-- /navbar -->
    <div class="formbox">
    <% if flash[:notice] %>
