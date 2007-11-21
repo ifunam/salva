@@ -110,6 +110,12 @@ class UserReportTest < Test::Unit::TestCase
   #  assert_instance_of Array, @juana_report.as_html
    # assert_equal [], @juana_report.as_html
   #end
+  def test_report_as_array
+    assert_instance_of Array, @juana_report.as_array
+    puts "HELLO"
+    assert_equal [], @juana_report.as_array
+  end
+
   def test_profile_as_html
     assert_instance_of Array, @juana_report.profile_as_html
    assert_equal [], @juana_report.profile_as_html

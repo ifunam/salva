@@ -37,19 +37,17 @@ class UserReport
     section
   end
 
-  def as_html
-    @transformer = UserReportHtmlTransformer.new
-    @transformer.as_html([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
+  def profile_as_array
+    [{ :title => 'general', :data => build_profile, :level => 1 }]
   end
-  
-  def profile_as_html
-    @transformer = UserReportHtmlTransformer.new
-    @transformer.as_html([{ :title => 'general', :data => build_profile, :level => 1 }])
+
+  def as_array
+    profile_as_array + build_report
   end
 
   def as_pdf(report_code)
     @transformer = UserReportPdfTransformer.new(report_code)
-    @transformer.as_pdf([{ :title => 'general', :data => build_profile, :level => 1 }] + build_report)
+    @transformer.as_pdf(as_array)
   end
 
   # private
