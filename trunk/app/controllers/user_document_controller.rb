@@ -4,10 +4,10 @@ class UserDocumentController < ApplicationController
   include Salva
   layout 'user_document_handling'
   before_filter :document_requirements
-  
+
   def initialize
     @documenttype = Documenttype.find(:first, :conditions => ["name = ?", @document_name])
-    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') 
+    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') if !@documenttype.nil?
   end
 
   def index
@@ -58,7 +58,7 @@ class UserDocumentController < ApplicationController
       send_data(@record.file, :filename => @record.filename, :type => @record.content_type, :disposition => "inline")
     else
       flash[:notice] = 'Documento no encontrado'
-      redirect_to :action => 'list' 
+      redirect_to :action => 'list'
     end
   end
 
@@ -67,16 +67,20 @@ class UserDocumentController < ApplicationController
     if !@documenttype.nil? and !@document.nil?
       @user = User.find(session[:user])
       if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @document.id, @user.id]).nil? and @document.enddate <= Date.today
-        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'], 
+        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
                                                    :conditions => "documents.documenttype_id = #{@documenttype.id}",
                                                    :order => 'documents.startdate DESC').as_pair.first
       end
     end
-  end 
+  end
 
   def send_email(recipients, subject, method, attachment=nil)
     options =  { :recipients => recipients, :subject => subject, :body => { :institution => get_myinstitution.name } }
-    options[:attachment] = attachment unless attachment.nil? 
+    options[:attachment] = attachment unless attachment.nil?
     UserDocumentNotifier.send(method, options)
+  end
+
+  def filename(ext='pdf')
+    @document_title.downcase.gsub(/,/,'').gsub(/\s/,'_') + '.' + ext
   end
 end

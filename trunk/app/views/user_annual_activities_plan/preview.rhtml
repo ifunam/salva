@@ -1,5 +1,9 @@
-<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<h2> <%= @document_title %></h2>
 <%= render :partial => 'profile' %>
+<div class="section">
+<%= @html_plan %>
+</div>
+<hr/>
 <% form_tag({:action => 'create'}) do -%>
   <%= render :partial => 'form' %>
   <%= render :partial => 'operations' %>
