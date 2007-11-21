@@ -1,7 +1,6 @@
 require 'yaml'
 require 'tree'
 require 'finder'
-require 'user_report_html_transformer'
 require 'user_report_pdf_transformer'
 class UserReport
   attr_accessor :report_path
@@ -37,12 +36,12 @@ class UserReport
     section
   end
 
-  def profile_as_array
-    [{ :title => 'general', :data => build_profile, :level => 1 }]
+  def profile_as_hash
+    { :title => 'general', :data => build_profile, :level => 1 }
   end
 
   def as_array
-    profile_as_array + build_report
+    [ profile_as_hash ] + build_report
   end
 
   def as_pdf(report_code)

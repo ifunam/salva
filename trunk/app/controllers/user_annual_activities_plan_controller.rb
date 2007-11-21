@@ -1,5 +1,6 @@
 require 'redcloth'
 class UserAnnualActivitiesPlanController < UserDocumentController
+  helper :textile
   def initialize
     @document_name = 'Plan anual de actividades'
     super
@@ -7,7 +8,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
 
   def new
     @report = UserReport.new(session[:user])
-    @profile_html = @report.profile_as_html
+    @profile = @report.profile_as_hash
     if File.exists?(user_filename)
       redirect_to :action => 'preview'
     else
@@ -38,7 +39,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       textile = file.read
       file.close
       @report = UserReport.new(session[:user])
-      @profile_html = @report.profile_as_html
+      @profile = @report.profile_as_hash
       @html_plan = RedCloth.new(textile).to_html(:textile)
       @plan = textile
       render :action => 'preview'
