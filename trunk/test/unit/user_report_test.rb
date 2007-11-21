@@ -110,6 +110,10 @@ class UserReportTest < Test::Unit::TestCase
   #  assert_instance_of Array, @juana_report.as_html
    # assert_equal [], @juana_report.as_html
   #end
+  def test_profile_as_html
+    assert_instance_of Array, @juana_report.profile_as_html
+   assert_equal [], @juana_report.profile_as_html
+  end
   
     def test_as_pdf
       file_content = File.new File.join(RAILS_ROOT, 'test/fixtures', 'transformer_output.pdf'), 'w'

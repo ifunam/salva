@@ -444,7 +444,7 @@ sponsor_acadvisit: Patrocinador
 fullname: Nombre
 user_reports: Trámites y reportes
 user_annual_activities_report: Informe anual de actividades
-annual_activities_plan: Plan anual de actividades
+user_annual_activities_plan: Plan anual de actividades
 documenttype_id: Tipo
 document: Documentos
 techproductstatus: Estado del producto
@@ -476,4 +476,5 @@ most_recent_jobposition_at_institution: Categoría
 most_recent_user_adscription: Adscripción
 top: Regresar 
 sent_user_article: Artículos arbitrados
-
+preview: Vista previa
+send: Enviar
