@@ -6,7 +6,8 @@ class UserDocumentController < ApplicationController
   before_filter :document_requirements
   
   def initialize
-    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') unless @documenttype.nil?
+    @documenttype = Documenttype.find(:first, :conditions => ["name = ?", @document_name])
+    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') 
   end
 
   def index
@@ -14,7 +15,7 @@ class UserDocumentController < ApplicationController
   end
 
   def list
-    if !@documenttype.nil?
+    if @documenttype.nil?
       @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
       :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
     else
@@ -63,7 +64,7 @@ class UserDocumentController < ApplicationController
 
   private
   def document_requirements
-    if !@document.nil?
+    if !@documenttype.nil? and !@document.nil?
       @user = User.find(session[:user])
       if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @document.id, @user.id]).nil? and @document.enddate <= Date.today
         @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'], 
