@@ -15,7 +15,7 @@ class PersonController < ApplicationController
   end
 
   def show
-    @edit = get_person 
+    @edit = get_person
   end
 
   def new
@@ -27,12 +27,10 @@ class PersonController < ApplicationController
   end
 
   def photo
+    @edit = get_record(session[:user], true)
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
-    @edit = get_record(session[:user], true)
-    if @edit.photo != nil and !@edit.photo.blank?
-      #response.headers['Content-Description'] = @edit.photo_filename
-      #response.headers['Last-Modified'] = @edit.updated_on.httpdate
+    if !@edit.nil? and !@edit.photo.nil?
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
@@ -61,7 +59,7 @@ class PersonController < ApplicationController
       @edit.id = session[:user]
       @edit.moduser_id = session[:user] if session[:user]
       unless redirect_if_stack('edit')
-        if @edit.update_attributes(params[:edit]) 
+        if @edit.update_attributes(params[:edit])
           save_photo if !@edit.photo.nil? and @edit.photo.size > 0
           @edit.save
           flash[:notice] = 'Sus datos personales han sido actualizados'
@@ -115,7 +113,7 @@ class PersonController < ApplicationController
   def get_record(id,photo=false)
     # To avoid performance problems avoid use the photo attributes  (photo_*)
     if photo == true
-      Person.find(id)
+      Person.find(:first, :conditions => [ "user_id = ?",  id])
     else
       columns = Person.column_names - ["photo_filename", "photo_content_type", "photo"]
       Person.find(:first, :select => columns.join(', '), :conditions => [ "user_id = ?",  id])

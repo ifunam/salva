@@ -27,14 +27,22 @@ class NavigatorController < ApplicationController
   end
 
   def navbar
+    controller = params[:controller_name]
     @list = get_tree.path.reverse
+    if request.env['HTTP_CACHE_CONTROL'].nil?
+      if controller == 'navigator'
+        @list = get_tree.parent.path.reverse if get_tree.has_parent?
+      else
+        index = get_tree.parent.children_data.index(controller)
+        @list = get_tree.parent.children[index].path.reverse if !index.nil?
+      end
+      @list << controller
+    end
     render :action => "navbar", :layout => false
   end
 
   def trail_of_controllers # Trail of breadcrumb
-    controllers =  get_tree.path
-    controllers.delete_at(0)
-    @list = controllers.reverse
+    @list = (get_tree.has_parent?) ? get_tree.parent.path.reverse : get_tree.path.reverse
     render :action => "trail_of_controllers", :layout => false
   end
 

@@ -6,7 +6,9 @@ module NavigatorHelper
   include Salva
 
   def navbar_links(list)
+    list.uniq!
     i = list.size
+    list.pop
     list.collect { |label| link_to(get_label(label), { :controller => 'navigator', :depth => i -= 1}) }.join(' | ')
   end
 
