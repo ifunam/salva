@@ -45,7 +45,7 @@ class UserDocumentController < ApplicationController
       end
       flash[:notice] = "Su #{@document_title} ha sido enviado!"
     else
-      flash[:notice] = "Su #{@document_title} NO ha sido enviado!"
+      flash[:notice] = "Su #{@document_title} NO ha sido enviado!" + record.errors.full_messages.join(', ')
     end
     redirect_to :action => 'list'
   end

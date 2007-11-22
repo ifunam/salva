@@ -6,7 +6,8 @@ login: &login
   encoding: UTF-8 
 
 development:
-  database: salva_dev
+  database: salva
+  host: salva.fisica.unam.mx
   <<: *login
 
 test: 

@@ -78,7 +78,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     @pdf = UserReportPdfTransformer.new(@document_title)
     @pdf.report_code report_code
     @pdf.add_data [@report.profile_as_hash]
-    @pdf.add_text textile
+    @pdf.add_text RedCloth.new(textile).to_html(:no_span)
     @pdf.render
  end
 end
