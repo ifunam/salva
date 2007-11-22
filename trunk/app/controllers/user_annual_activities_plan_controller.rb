@@ -22,11 +22,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       file.write params[:edit][:plan]
       file.write "\n"
       file.close
-      if params[:commit] == 'Vista previa' or params[:commit] == 'Guardar'
-        redirect_to :action => :preview
-      else
-        redirect_to :action => :send_document
-      end
+      redirect_to :action => :preview if params[:commit] == 'Vista previa' or params[:commit] == 'Guardar'
     else
       flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
       redirect_to :action => 'new'
@@ -48,12 +44,19 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       redirect_to :action => 'new'
     end
   end
+  
+    def preview_pdf
+      if File.exists?(user_filename)
+        send_data generate_pdf, :type => "application/pdf", :filename => filename
+      else
+        flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
+        redirect_to :action => 'new'
+      end
+    end
 
   def send_document
-    report_code = 'salva - plat. inf. curric. '+request.remote_ip+' '+Time.now.ctime
     if File.exists?(user_filename)
-      textile = File.new(user_filename, "r")
-      @file = UserReport.new(@user.id).as_pdf(report_code)
+      @file = generate_pdf
       @filename = filename
       super
     else
@@ -66,4 +69,16 @@ class UserAnnualActivitiesPlanController < UserDocumentController
   def user_filename
     RAILS_ROOT + '/tmp/' + session[:user].to_s + '_' + filename('textile')
   end
+
+  def generate_pdf
+    file = File.new(user_filename, "r")
+    textile = file.read
+    file.close
+    @report = UserReport.new(session[:user])
+    @pdf = UserReportPdfTransformer.new(@document_title)
+    @pdf.report_code report_code
+    @pdf.add_data [@report.profile_as_hash]
+    @pdf.add_text textile
+    @pdf.render
+ end
 end

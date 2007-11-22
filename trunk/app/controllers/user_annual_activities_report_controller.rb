@@ -1,3 +1,4 @@
+require 'user_report_pdf_transformer'
 class  UserAnnualActivitiesReportController < UserDocumentController
   helper :textile
   def initialize
@@ -13,14 +14,18 @@ class  UserAnnualActivitiesReportController < UserDocumentController
 
   def preview_pdf
     @report = UserReport.new(@user.id)
-    # Codigo unico de emision del reporte anual
-    report_code = 'salva - plat. inf. curric. '+request.remote_ip+' '+Time.now.ctime
-    send_data @report.as_pdf(report_code), :type => "application/pdf", :filename => filename
+    @pdf = UserReportPdfTransformer.new(@document_title)
+    @pdf.report_code report_code
+    @pdf.add_data @report.as_array
+    send_data @pdf.render, :type => "application/pdf", :filename => filename
   end
 
   def send_document
-    report_code = 'salva - plat. inf. curric. '+request.remote_ip+' '+Time.now.ctime
-    @file = UserReport.new(@user.id).as_pdf(report_code)
+    @report = UserReport.new(@user.id)
+    @pdf = UserReportPdfTransformer.new(@document_title)
+    @pdf.report_code report_code
+    @pdf.add_data @report.as_array
+    @file = @pdf.render
     @filename = filename
     super
   end

@@ -1,26 +1,8 @@
-<table class="list">
-  <tr>
-    <th>Informes anuales</th>
-    <th>Acciones</th>
-  </tr>
-<% rowcolor = 1 %>
-<% for item in @collection %>
-  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
-  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
-    <td><%= h(item.document.documenttype.name+' - '+item.document.title.to_s) %></td>
-    <td class="link"><%= show_link(item.id) %> </td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'user_document/list', :locals => { 'title' => 'Informes anuales'} %>
+<% unless @document_title.nil? %>
 <br/>
-
 <div id="operations">
- <%= link_to 'Prevista del informe anual en HTML', :action => 'preview' %> 
- &nbsp; | &nbsp;
- <%= link_to 'Prevista del informe anual en PDF', :action => 'preview_pdf' %> 
- &nbsp; | &nbsp;
- <%= link_to 'Enviar informe anual de actividades 2007', :action => 'send_document' %>
+ <%= link_to @document_title, :action => 'preview' %>
 </div>
 
-
-
+<% end %>

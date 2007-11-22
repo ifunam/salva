@@ -15,7 +15,7 @@ class UserDocumentController < ApplicationController
   end
 
   def list
-    if @documenttype.nil?
+    unless @documenttype.nil?
       @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
       :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
     else
@@ -62,6 +62,16 @@ class UserDocumentController < ApplicationController
     end
   end
 
+  def purge
+    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', @user.id,  params[:id]])
+    if !@record.nil?
+        @record.destroy
+    else
+        flash[:notice] = 'Documento no encontrado'
+        redirect_to :action => 'list'
+    end
+  end
+  
   private
   def document_requirements
     if !@documenttype.nil? and !@document.nil?
@@ -70,6 +80,7 @@ class UserDocumentController < ApplicationController
         @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
                                                    :conditions => "documents.documenttype_id = #{@documenttype.id}",
                                                    :order => 'documents.startdate DESC').as_pair.first
+        @document_title.gsub!(/,/,'')                               
       end
     end
   end
@@ -81,6 +92,10 @@ class UserDocumentController < ApplicationController
   end
 
   def filename(ext='pdf')
-    @document_title.downcase.gsub(/,/,'').gsub(/\s/,'_') + '.' + ext
+      @document_title.downcase.gsub(/,+/,'').gsub(/\s+/,'_') + '.' + ext
+  end
+
+  def report_code
+    'SALVA - Plat. Inf. Curric. ' + request.remote_ip + ' ' + Time.now.ctime
   end
 end

@@ -1,5 +1,10 @@
-<img src="<%= url_for(:controller => 'person', :action => "photo") %>", style="vertical-align: middle; float:left; padding-top: 15px; padding-left: 10px;"/>
 
+<div id="operations">
+ <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %> 
+ &nbsp; | &nbsp;
+ <%= link_to get_label('send_annual_report'), :action => 'send_document' %>
+</div>
+<hr/>
 <%= render :partial => 'table_of_content' %>
 <br/>
 

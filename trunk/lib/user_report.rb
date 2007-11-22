@@ -1,7 +1,6 @@
 require 'yaml'
 require 'tree'
 require 'finder'
-require 'user_report_pdf_transformer'
 class UserReport
   attr_accessor :report_path
   attr_accessor :report
@@ -42,11 +41,6 @@ class UserReport
 
   def as_array
     [ profile_as_hash ] + build_report
-  end
-
-  def as_pdf(report_code)
-    @transformer = UserReportPdfTransformer.new(report_code)
-    @transformer.as_pdf(as_array)
   end
 
   # private

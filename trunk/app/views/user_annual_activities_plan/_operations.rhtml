@@ -1,3 +1,4 @@
 <div id="operations">
-    <%= submit_tag get_label('save') %>| <%= submit_tag get_label('preview') %> | <%= submit_tag get_label('send') %> | <%= link_to get_label('cancel'), :action => 'list' %>
+    <%= submit_tag get_label('save') %>| <%= submit_tag get_label('preview') %> | <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %> | 
+    <%= link_to get_label('send_annual_plan'), :action => 'send_document' %> | <%= link_to get_label('cancel'), :action => 'list' %>
 </div>
