@@ -8,7 +8,7 @@
  <%= simple_select('filt', Book, 1)%>
  <%= quickpost('book') %>
 </div>
-<%= observe_select('filt', 'book_id', 'filter_book_bookedition', 1) %>
+<%= observe_select('filt', 'book_id', 'select_book_bookedition', 1) %>
 <% end %>
 
 <div class="row">
@@ -19,11 +19,11 @@
 
 %>
 <%="#{bookedition.book.title}, #{bookedition.edition}" %>
-<%= hidden_field('edit', 'bookedition_id', :value => params[:id]) %>
+<%= hidden_field('edit', 'bookedition_id', :value => bookedition.id ) %>
 <% else %>
 <div id="bookedition_id">
-  <div id="filter_book_bookedition">
-    <%= observable_select('filter_book_bookedition', 0, 2) %>
+  <div id="select_book_bookedition">
+    <%= observable_select('select_book_bookedition', 0, 2) %>
   </div>
 <%= quickpost('bookedition:book_id') %>
 </div>
