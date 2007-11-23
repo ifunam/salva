@@ -14,14 +14,18 @@ class NavigatorController < ApplicationController
     stack_clear
     tree = get_tree
     #This will help us to avoid a wrong tree when the user makes reload.
+    session[:navtab_token] = 'unapinchicadenita' if session[:navtab_token].nil?
     if request.env['HTTP_CACHE_CONTROL'].nil?
-      if !params[:item].nil? then
-        index = params[:item].to_i
-        tree = tree.children[index] if tree.children.size > index and !tree.children[index].nil?
-      elsif !params[:depth].nil? then
-        tree = tree.get_tree_from_parent(params[:depth].to_i) if tree.has_parent? and !tree.get_tree_from_parent(params[:depth].to_i).nil?
-      end
+        if params[:token] != session[:navtab_token]
+          if !params[:item].nil? then
+            index = params[:item].to_i
+            tree = tree.children[index] if tree.children.size > index and !tree.children[index].nil?
+          elsif !params[:depth].nil? then
+            tree = tree.get_tree_from_parent(params[:depth].to_i) if tree.has_parent? and !tree.get_tree_from_parent(params[:depth].to_i).nil?
+          end
+        end
     end
+    session[:navtab_token] = params[:token] unless params[:token].nil?
     @tree = session[:navtree] = tree
     render :action => 'navtab'
   end
@@ -36,6 +40,8 @@ class NavigatorController < ApplicationController
         if get_tree.has_children? and get_tree.has_parent?
           index = get_tree.parent.children_data.index(controller)
           @list = get_tree.parent.children[index].path.reverse if !index.nil?
+        elsif get_tree.has_parent?
+          @list.pop
         end
       end
       @list << controller

@@ -1,15 +1,17 @@
 require 'labels'
 require 'salva'
+require 'mydigest'
 module NavigatorHelper
   include NavigatorTree
   include Labels
   include Salva
-
+  include Mydigest
+  
   def navbar_links(list)
     list.uniq!
     i = list.size
     list.pop
-    list.collect { |label| link_to(get_label(label), { :controller => 'navigator', :depth => i -= 1}) }.join(' | ')
+    list.collect { |label| link_to(get_label(label), { :controller => 'navigator', :depth => i -= 1, :token => token_string(32)}) }.join(' | ')
   end
 
   def navtab_links(tree)
@@ -33,8 +35,8 @@ module NavigatorHelper
     if child.is_leaf?
       link_to(img_tag(child.data), {:controller => child.data }) +  link_to(get_label(child.data), { :controller => child.data })
     else
-      link_to(img_tag(child.data), { :controller => 'navigator', :item => child.index_for_node }) +
-        link_to(get_label(child.data), { :controller => 'navigator', :item => child.index_for_node})
+      link_to(img_tag(child.data), { :controller => 'navigator', :item => child.index_for_node, :token => token_string(32) }) +
+        link_to(get_label(child.data), { :controller => 'navigator', :item => child.index_for_node, :token => token_string(32) })
     end
   end
 
@@ -43,7 +45,7 @@ module NavigatorHelper
     size =   28 - ((n - 1) * 4)
     links = []
     list.collect do |item|
-      links << link_to(img_tag(item, size+= 4),  {:controller => 'navigator', :depth => n})
+      links << link_to(img_tag(item, size+= 4),  {:controller => 'navigator', :depth => n, :token => token_string(32) })
       n -= 1
     end
     links.join(' ')
@@ -85,13 +87,13 @@ module NavigatorHelper
     if node.is_leaf?
       link_to(get_label(node.data), { :controller => node.data})
     else
-      link_to(get_label(node.data), { :controller => 'navigator', :item => node.index_for_node, :parent => parent_is_leaf})
+      link_to(get_label(node.data), { :controller => 'navigator', :item => node.index_for_node, :parent => parent_is_leaf, :token => token_string(32)})
     end
   end
 
   def link_to_parent(node)
     num = (node.has_parent?) ? (node.path.size - node.parent.path.size) :  node.path.size
     num -= 1  if (node.data == get_tree.root.data and node.data == get_tree.data)  or node.data ==  get_tree.data
-    link_to(get_label(node.data), { :controller => 'navigator', :depth => num})
+    link_to(get_label(node.data), { :controller => 'navigator', :depth => num, :token => token_string(32)})
   end
 end

@@ -40,6 +40,7 @@
    <% end %>
      <%= yield %>
    </div> <!-- /formbox -->
+   <%=  render_component :controller => "navigator", :action => "navcontrol", :params => { :controller_name => controller_name } %>
 </div> <!-- /container_border -->
 </div> <!-- /container -->
 <%= render :partial => 'salva/ajax_unit_test' if params[:debug_ajax].to_i == 1%>
