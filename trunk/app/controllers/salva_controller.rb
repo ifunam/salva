@@ -62,7 +62,7 @@ class SalvaController < ApplicationController
       redirect_to options_for_next_controller(@edit, controller_name, 'new', 'list')
     else
       if @edit.save
-        if @children != nil
+        if @children != nil and !has_model_in_stack?
           redirect_to :action => 'show', :id => @edit.id
         else
           flash[:notice] = @create_msg
@@ -84,7 +84,7 @@ class SalvaController < ApplicationController
       redirect_to options_for_next_controller(@edit, controller_name, 'edit', 'list')
     else
       if @edit.update_attributes(params[:edit])
-        if @children != nil
+        if @children != nil and !has_model_in_stack?
           redirect_to :action => 'show', :id => @edit.id
         else
           flash[:notice] = @update_msg

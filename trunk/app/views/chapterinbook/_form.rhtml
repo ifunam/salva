@@ -1,18 +1,31 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:chapterinbook]-->
+
+<% unless params[:id] %>
+<div class="row">
+ <label for="book_id" class="label"><%= get_label('book_id') %> <span class="required">*</span></label>
+ <%= simple_select('filt', Book, 1)%>
+ <%= quickpost('book') %>
+</div>
+<%= observe_select('filt', 'book_id', 'filter_book_bookedition', 1) %>
+<% end %>
+
 <div class="row">
 <label for="edition_id" class="label"><%= get_label('bookedition_id') %> 
 <span class="required">*</span></label>
-<% if params[:id]  
-     bookedition = Bookedition.find(params[:id])
+<% if params[:id] or !@edit.bookedition_id.nil?
+     bookedition = @edit.bookedition_id.nil? ? Bookedition.find(params[:id]): @edit.bookedition
+
 %>
 <%="#{bookedition.book.title}, #{bookedition.edition}" %>
 <%= hidden_field('edit', 'bookedition_id', :value => params[:id]) %>
 <% else %>
 <div id="bookedition_id">
-<%= simple_select('edit', Bookedition, 1, :attribute => 'edition_id') %>
-<%= quickpost('bookedition') %>
+  <div id="filter_book_bookedition">
+    <%= observable_select('filter_book_bookedition', 0, 2) %>
+  </div>
+<%= quickpost('bookedition:book_id') %>
 </div>
 <% end %>
 </div>
@@ -20,7 +33,7 @@
 <div class="row"> 
 <label for="bookchaptertype_id" class="label"><%= get_label('bookchaptertype_id') %> <span class="required">*</span></label> 
 <div id="bookchaptertype_id">
-<%= simple_select('edit', Bookchaptertype, 1, :selected => 4) %>
+<%= simple_select('edit', Bookchaptertype, 3, :selected => 4) %>
  <%= quickpost('bookchaptertype') %>
 </div>
 </div>
