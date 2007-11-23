@@ -8,4 +8,10 @@ coloquio_de_artes_manuales_y_otras_habilidades:
   id: 2
   conference_id: 2
   title: Coloquio de Artes Manuales y otras habilidades
+  isrefereed: true
+
+coloquio_de_artes_manuales_y_otras_habilidades:
+  id: 3
+  conference_id: 2
+  title: Memorias de Artes Manuales no arbitradas
   isrefereed: false 
