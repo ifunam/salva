@@ -98,7 +98,7 @@ class UserController < ApplicationController
  respond_to do |format|
       if !@user.nil?
         @user.new_token
-        UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token))
+        UserNotifier.deliver_password_recovery(@user, url_for(:action => 'signup_by_token', :id => @user.id, :token => @user.token), get_myinstitution.name)
         format.html { render :action => 'password_recovery'}
         format.xml  { head :ok }
       else
