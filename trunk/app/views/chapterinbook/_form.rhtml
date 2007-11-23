@@ -4,8 +4,10 @@
 <div class="row">
 <label for="edition_id" class="label"><%= get_label('bookedition_id') %> 
 <span class="required">*</span></label>
-<% if params[:id]  %>
-<%= Bookedition.find(params[:id]).edition %>
+<% if params[:id]  
+     bookedition = Bookedition.find(params[:id])
+%>
+<%="#{bookedition.book.title}, #{bookedition.edition}" %>
 <%= hidden_field('edit', 'bookedition_id', :value => params[:id]) %>
 <% else %>
 <div id="bookedition_id">
