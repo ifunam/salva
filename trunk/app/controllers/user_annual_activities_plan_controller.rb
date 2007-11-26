@@ -1,9 +1,9 @@
 require 'redcloth'
 class UserAnnualActivitiesPlanController < UserDocumentController
   helper :textile
+
   def initialize
     @document_name = 'Plan anual de actividades'
-    @document_title = 'Plan anual de actividades 2008'
     super
   end
 
