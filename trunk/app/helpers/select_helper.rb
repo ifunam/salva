@@ -9,20 +9,14 @@ module SelectHelper
   def selectize_id(object, field, selected=nil, filter={})
     # Default value from filter has priority over defined state_id or selected option
     if filter.is_a? Hash and filter.has_key?(field) and !filter[field].nil?
-      if filter[field].is_a? String
-         filter[field] if !filter[field].strip.empty?
-       else
-         filter[field]
-       end
+      selected_id = filter[field]
     elsif !object.nil? and object.respond_to? field and !object.send(field).nil?
-      if object.send(field).is_a? String
-        object.send(field).to_i if !object.send(field).strip.empty?
-      else
-        object.send(field)
-      end
+      selected_id = object.send(field)
     elsif !selected.nil?
-      selected
+      selected_id = selected.to_i
     end
+    selected_id = selected_id.to_i if selected_id.is_a? String and !selected_id.strip.empty?
+    selected_id if !selected_id.nil? and selected_id > 0
   end
 
   def finder_id(model, id, attributes=[])
@@ -42,22 +36,26 @@ module SelectHelper
     Finder.new(model, :first, options).as_pair
   end
 
+  def add_selected_record!(list, model, selected, attributes)
+    list += finder_id(model, selected, attributes) if !selected.nil? && list.rassoc(selected.to_i).nil?
+  end
+
   def simple_select(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
-    @list = Finder.new(model, options).as_pair
-    selected = @list.first[0] if selected == :first
-    selected = @list.last[0] if selected == :last
-    @list = @list + finder_id(model, selected, options[:column]) if !selected.nil? && @list.rassoc(selected).nil?
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+    list = Finder.new(model, options).as_pair
+    selected = list.first[0] if selected == :first
+    selected = list.last[0] if selected == :last
+    add_selected_record!(list, model, selected, options[:attributes])
+    select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
-
+  
   def select_conditions(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
-    @list = Finder.new(model, :all, options).as_pair
-    @list = @list + finder_id(model, selected, options[:attributes]) if !selected.nil? && @list.rassoc(selected).nil? && options.has_key?(:attributes)
-    select(object, field, @list, {:prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+    list = Finder.new(model, :all, options).as_pair
+    add_selected_record!(list, model, selected, options[:attributes])
+    select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 
   def observable_select(partial, id, tabindex)
