@@ -3,6 +3,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
   helper :textile
   def initialize
     @document_name = 'Plan anual de actividades'
+    @document_title = 'Plan anual de actividades 2008'
     super
   end
 
@@ -24,7 +25,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       file.close
       redirect_to :action => :preview if params[:commit] == 'Vista previa' or params[:commit] == 'Guardar'
     else
-      flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
+      flash[:notice] = "Por favor capture los datos de su #{@document_title}"
       redirect_to :action => 'new'
     end
   end
@@ -40,7 +41,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       @plan = textile
       render :action => 'preview'
     else
-      flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
+      flash[:notice] = "Por favor capture los datos de su #{@document_title}"
       redirect_to :action => 'new'
     end
   end
@@ -49,7 +50,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       if File.exists?(user_filename)
         send_data generate_pdf, :type => "application/pdf", :filename => filename
       else
-        flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
+        flash[:notice] = "Por favor capture los datos de su #{@document_title}"
         redirect_to :action => 'new'
       end
     end
@@ -60,7 +61,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
       @filename = filename
       super
     else
-      flash[:notice] = "Por favor capture los datos de su #{@documenttitle}"
+      flash[:notice] = "Por favor capture los datos de su #{@document_title}"
       redirect_to :action => 'new'
     end
   end
@@ -78,7 +79,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     @pdf = UserReportPdfTransformer.new(@document_title)
     @pdf.report_code report_code
     @pdf.add_data [@report.profile_as_hash]
-    @pdf.add_text RedCloth.new(textile).to_html(:no_span)
+    @pdf.add_textile textile
     @pdf.render
  end
 end

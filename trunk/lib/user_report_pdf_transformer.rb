@@ -78,4 +78,61 @@ class UserReportPdfTransformer
   def add_text(text)
     @pdf.text(text, :font_size => SIZES[5], :justification => :full) 
   end
+
+  def add_textile(text)
+    lines = text.split("\n")
+
+    num = [ 1, 1, 1, 1 ]
+
+    lines.each { |line|
+
+      if line =~ /^h(\d). (.+)$/
+        n = $~[1]
+        t = preprocess_textile($~[2])
+        @pdf.text("<b>#{t}</b>", :font_size => SIZES[n.to_i], :justification => :full)
+         num[0] = 1
+      elsif line =~ /^(\*+) (.+)$/
+        n = $~[1]
+        t = '<C:bullet/> '+ preprocess_textile($~[2])
+        item_width = 10*n.size
+        @pdf.text(t, :font_size => SIZES[5], :justification => :full, :left => item_width) 
+         num[0] = 1
+       elsif line =~ /^(#+) (.+)$/
+        n = $~[1].size - 1
+        t = preprocess_textile($~[2])
+        item_width = @pdf.text_line_width(num[n].to_s + '. ')
+
+        y = @pdf.y
+        @pdf.text(num[n].to_s + '. ', :font_size => SIZES[5], :left => item_width*n)  
+        @pdf.y = y  
+        @pdf.text(t, :font_size => SIZES[5], :justification => :full, :left => item_width*(n+1)) 
+        num[n] += 1
+        num[n+1] = 1 if n < num.size
+      else        
+        @pdf.text(preprocess_textile(line), :font_size => SIZES[5], :justification => :full) 
+         num[0] = 1
+      end
+    }
+  end
+
+  private
+
+  def preprocess_textile(line)
+    while line =~ /\*(.+)\*/
+      line.sub!(/\*/, '<b>')
+      line.sub!(/\*/, '</b>')
+    end
+
+    while line =~ /\_(.+)\_/
+      line.sub!(/_/, '<i>')
+      line.sub!(/_/, '</i>')
+    end
+
+    while line =~ /\+(.+)\+/
+      line.sub!(/\+/, '<i>')
+      line.sub!(/\+/, '</i>')
+    end
+    line
+  end
+
 end
