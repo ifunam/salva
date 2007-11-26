@@ -3,26 +3,33 @@ require RAILS_ROOT + '/lib/finder'
 class UserDocumentController < ApplicationController
   include Salva
   layout 'user_document_handling'
-  before_filter :document_requirements
-
+  before_filter :set_document_title
+  skip_before_filter :set_document_title, :only => [:index, :list]
+  
   def initialize
-    @documenttype = Documenttype.find(:first, :conditions => ["name = ?", @document_name])
-    @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC') if !@documenttype.nil?
+     @documenttype = Documenttype.find(:first, :conditions => ["name = ?", @document_name])
+     @document = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')  unless @documenttype.nil?
   end
-
+  
   def index
      list
   end
 
   def list
-    unless @documenttype.nil?
-      @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
-      :conditions => "user_id = #{@user.id} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
-    else
-      @collection = []
-      flash[:notice] = "Debe activar el #{@document_name}"
-    end
-    render :action => 'list'
+   @collection = []
+   if !@documenttype.nil? 
+      if !@document.nil?
+       @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
+       :conditions => "user_id = #{session[:user]} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
+       set_document_title
+     else
+       flash[:notice] = "Defina el documento y su periodo en el controlador document"
+     end
+   else
+     flash[:notice] = "Defina el tipo de documento '#{@document_name.downcase}' en el controlador documenttype"
+   end
+  
+   render :action => 'list'
   end
 
   def send_document
@@ -32,9 +39,10 @@ class UserDocumentController < ApplicationController
     record.file = StringIO.new(@file).read
     record.filename  = @filename
     record.content_type = 'application/pdf'
-    record.moduser_id = @user.id
-    record.user_id = @user.id
+    record.moduser_id = session[:user]
+    record.user_id = session[:user]
     record.status = true
+    @user = User.find(session[:user])
     record.user_incharge_id = @user.user_incharge_id and record.status = false if @user.has_user_incharge?
     if record.save
       if @user.has_user_incharge?
@@ -51,7 +59,7 @@ class UserDocumentController < ApplicationController
   end
 
   def show
-    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', @user.id,  params[:id]])
+    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', session[:user],  params[:id]])
     if !@record.nil?
       response.headers['Pragma'] = 'no-cache'
       response.headers['Cache-Control'] = 'no-cache, must-revalidate'
@@ -63,7 +71,7 @@ class UserDocumentController < ApplicationController
   end
 
   def purge
-    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', @user.id,  params[:id]])
+    @record = UserDocument.find(:first, :conditions => ['user_id = ? AND id = ?', session[:user],  params[:id]])
     if !@record.nil?
         @record.destroy
     else
@@ -71,20 +79,17 @@ class UserDocumentController < ApplicationController
         redirect_to :action => 'list'
     end
   end
-  
-  private
-  def document_requirements
-    if !@documenttype.nil? and !@document.nil?
-      @user = User.find(session[:user])
-      if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @document.id, @user.id]).nil? and @document.enddate <= Date.today
-        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
-                                                   :conditions => "documents.documenttype_id = #{@documenttype.id}",
-                                                   :order => 'documents.startdate DESC').as_pair.first
-        @document_title.gsub!(/,/,'')                               
-      end
-    end
-  end
 
+  private
+  def set_document_title
+      if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? and @document.enddate <= Date.today
+        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
+                                                            :conditions => "documents.documenttype_id = #{@documenttype.id}",
+                                                            :order => 'documents.startdate DESC').as_pair.first
+        return true
+      end
+  end
+                                                           
   def send_email(recipients, subject, method, attachment=nil)
     options =  { :recipients => recipients, :subject => subject, :body => { :institution => get_myinstitution.name } }
     options[:attachment] = attachment unless attachment.nil?
