@@ -7,6 +7,7 @@ login: &login
 
 development:
   database: salva_dev
+#  host: salva.fisica.unam.mx
   <<: *login
 
 test: 

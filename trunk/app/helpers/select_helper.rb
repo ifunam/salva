@@ -36,17 +36,13 @@ module SelectHelper
     Finder.new(model, :first, options).as_pair
   end
 
-  def add_selected_record!(list, model, selected, attributes)
-    list += finder_id(model, selected, attributes) if !selected.nil? && list.rassoc(selected.to_i).nil?
-  end
-
   def simple_select(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
     list = Finder.new(model, options).as_pair
     selected = list.first[0] if selected == :first
     selected = list.last[0] if selected == :last
-    add_selected_record!(list, model, selected, options[:attributes])
+    list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
     select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
   
@@ -54,7 +50,7 @@ module SelectHelper
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(@edit, field, options[:selected], @filter)
     list = Finder.new(model, :all, options).as_pair
-    add_selected_record!(list, model, selected, options[:attributes])
+    list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
     select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
 

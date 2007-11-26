@@ -4,3 +4,6 @@ licenciatura:
 maestria:
   id: 4
   name: Maestría
+doctorado:
+  id: 2
+  name: Doctorado

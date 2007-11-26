@@ -8,7 +8,7 @@ class SelectHelperTest < Test::Unit::TestCase
     :conferencetypes, :conferencescopes, :conferences, :proceedings, :migratorystatuses,
     :citizenmodalities, :citizens, :idtypes, :identifications, :jobpositionlevels, 
     :roleinjobpositions, :jobpositiontypes, :jobpositioncategories, :institutiontitles, 
-    :institutiontypes, :institutions
+    :institutiontypes, :institutions, :degrees, :careers, :institutioncareers
     
   def test_should_selectize_id_from_object
     record = Person.find_by_firstname('Juana')
@@ -66,7 +66,7 @@ class SelectHelperTest < Test::Unit::TestCase
     assert_equal "<select id=\"edit_roleinthesis_id\" name=\"edit[roleinthesis_id]\" tabindex=\"2\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"2\">Director</option>\n<option value=\"3\">Asesor</option></select>", select_conditions('edit', Roleinthesis, 2, :attributes => %w(name),  :conditions => "name = 'Director' OR name = 'Asesor' OR name = 'Lector'")
     
     @edit = UserProceeding.new
-    assert_equal "<select id=\"edit_proceeding_id\" name=\"edit[proceeding_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"2\">Coloquio de Artes Manuales y otras habilidades</option>\n<option value=\"1\">Characterización of position-sensitive photomultiplier tubesfor microPET, detection modules</option></select>", select_conditions('edit', Proceeding,  1, :attributes => %w(title year), :conditions => "isrefereed = 'f'")
+    assert_equal "<select id=\"edit_proceeding_id\" name=\"edit[proceeding_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"3\">Memorias de Artes Manuales no arbitradas</option>\n<option value=\"1\">Characterización of position-sensitive photomultiplier tubesfor microPET, detection modules</option></select>", select_conditions('edit', Proceeding,  1, :attributes => %w(title year), :conditions => "proceedings.isrefereed = 'f'")
     
     @edit = Jobposition.new
     assert_equal "<select id=\"edit_jobpositioncategory_id\" name=\"edit[jobpositioncategory_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Técnico académico, Asoc. A  M.T.</option></select>", select_conditions('edit', Jobpositioncategory, 1, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositiontype_id = 2")
@@ -74,5 +74,9 @@ class SelectHelperTest < Test::Unit::TestCase
     @edit = Institutioncareer.new
     assert_equal "<select id=\"edit_institution_id\" name=\"edit[institution_id]\" tabindex=\"1\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"1\">Universidad Nacional Autónoma de México, UNAM</option>\n<option value=\"14\">Facultad de Ciencias, UNAM</option>\n<option value=\"3\">Programa Universitario de Estudios de Género, UNAM</option>\n<option value=\"30\">Instituto de Fisica, UNAM</option></select>", select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']]) 
     # assert_equal '',  select_conditions('edit', Institution, 1, :attributes => ['name', ['institution', 'abbrev']],:conditions => "institutions.institution_id = 1)
+    @edit = Institutioncareer.new
+    @filt = { 'degree_id' => 4}
+    assert_equal "<select id=\"edit_career_id\" name=\"edit[career_id]\" tabindex=\"3\"><option value=\"\">-- Seleccionar --</option>\n<option value=\"3\">Matematicas</option>\n<option value=\"1\">Actuaria</option></select>", select_conditions('edit', Career, 3, {:attributes => ['name'], :conditions => "degree_id = 3"})
+    assert_equal "<select id=\"edit_career_id\" name=\"edit[career_id]\" tabindex=\"3\"><option value=\"3\">Matematicas</option>\n<option value=\"1\">Actuaria</option>\n<option value=\"2\" selected=\"selected\">Administración</option></select>", select_conditions('edit', Career, 3, {:attributes => ['name'], :conditions => "degree_id = 3", :selected => 2})
   end
 end
