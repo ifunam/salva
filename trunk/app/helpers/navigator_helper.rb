@@ -14,14 +14,14 @@ module NavigatorHelper
     list.collect { |label| link_to(get_label(label), { :controller => 'navigator', :depth => i -= 1, :token => token_string(32)}) }.join(' | ')
   end
 
-  def navtab_links(tree)
+  def navtab_links(children)
     limit  = 4
     i = 1
     html = []
     links = []
-    tree.children.each do |child|
+    children.each do |child|
       links << "<span class=\"navtab_item\"> #{link_to_child(child)}</span>"
-      if i >= limit or i == tree.children.size
+      if i >= limit or i == children.size
         limit += 4
         html << links
         links = []
@@ -96,4 +96,35 @@ module NavigatorHelper
     num -= 1  if (node.data == get_tree.root.data and node.data == get_tree.data)  or node.data ==  get_tree.data
     link_to(get_label(node.data), { :controller => 'navigator', :depth => num, :token => token_string(32)})
   end
+
+
+  def navigation_table(children)
+    limit  = 4
+    i = 1
+    html = []
+    links = []
+    children.each do |child|
+      links << "<span class=\"navtab_item\"> #{link_to_navigation_child(child)}</span>"
+      if i >= limit or i == children.size
+        limit += 4
+        html << links
+        links = []
+      end
+      i += 1
+    end
+    html.collect { | links| "<div class=\"navtab_row\">\n"+ links.join("\n") + "\n</div>\n" }
+  end
+
+  def link_to_navigation_child(child)
+    label = child[0]
+    id = child[1]
+    if id.is_a? Fixnum
+      link_to(img_tag(label), { :id => id, :token => token_string(32) }) +
+        link_to(get_label(label), { :id => id, :token => token_string(32) })
+    else
+      link_to(img_tag(label), {:controller => label }) +  link_to(get_label(label), { :controller => label })      
+    end
+  end
+
+
 end
