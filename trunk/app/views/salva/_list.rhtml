@@ -1,6 +1,6 @@
 <%= render :partial => '/salva/perpage' %>
 
-<% form_tag(@parent_controller ? 'select' : 'purge_selected' ) do -%>
+<% form_tag({:action => @parent_controller ? 'select' : 'purge_selected'} ) do -%>
 <table class="list">
   <tr>
     <th>*</th>
