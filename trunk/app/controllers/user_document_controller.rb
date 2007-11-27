@@ -5,6 +5,7 @@ class UserDocumentController < ApplicationController
   layout 'user_document_handling'
   before_filter :set_document_title
   skip_before_filter :set_document_title, :only => [:index, :list]
+
   
   def initialize
      @documenttype = Documenttype.find(:first, :conditions => ["name = ?", @document_name])
@@ -82,11 +83,13 @@ class UserDocumentController < ApplicationController
 
   private
   def set_document_title
-      if UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? and @document.enddate <= Date.today
+      if !@document.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? and @document.enddate <= Date.today
         @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
                                                             :conditions => "documents.documenttype_id = #{@documenttype.id}",
                                                             :order => 'documents.startdate DESC').as_pair.first
         return true
+      else 
+        return false
       end
   end
                                                            

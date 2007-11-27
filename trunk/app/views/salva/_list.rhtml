@@ -26,11 +26,9 @@
 <% if nolinks.nil? %>
 <br/>
 <div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> |
-<% if @parent_controller == nil %>
-<%= link_to get_label('back'), {:controller => 'navigator', :depth => 0}  %>
-<% else %>
-<%= link_to get_label('back'), :action => 'cancel' %>
+<%= link_to get_label('add'), :action => 'new' %> 
+<% unless @parent_controller == nil %>
+ | <%= link_to get_label('back'), :action => 'cancel' %>
 <% end %>
 </div>
 <% end %>

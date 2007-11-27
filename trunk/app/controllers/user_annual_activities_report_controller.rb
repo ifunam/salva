@@ -7,13 +7,13 @@ class  UserAnnualActivitiesReportController < UserDocumentController
   end
 
   def preview
-    @report = UserReport.new(@user.id)
+    @report = UserReport.new(session[:user])
     @data =  @report.as_array
     render :action => 'preview'
   end
 
   def preview_pdf
-    @report = UserReport.new(@user.id)
+    @report = UserReport.new(session[:user])
     @pdf = UserReportPdfTransformer.new(@document_title)
     @pdf.report_code report_code
     @pdf.add_data @report.as_array
@@ -21,7 +21,7 @@ class  UserAnnualActivitiesReportController < UserDocumentController
   end
 
   def send_document
-    @report = UserReport.new(@user.id)
+    @report = UserReport.new(session[:user])
     @pdf = UserReportPdfTransformer.new(@document_title)
     @pdf.report_code report_code
     @pdf.add_data @report.as_array
