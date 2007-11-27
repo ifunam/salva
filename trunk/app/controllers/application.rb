@@ -19,11 +19,12 @@ class ApplicationController < ActionController::Base
   helper :table, :theme, :user, :navigator, :date, :select, :paginator, :ajax, :quickpost
 
   session :session_key => '_salva_session_id'
-  protect_from_forgery :secret => 'my-little-salva_cookie'
+#  protect_from_forgery :secret => 'my-little-salva_cookie', :only => [:create, :update]
+#  skip_before_filter :verify_authenticity_token, :only => [:update_select, :update_search, :auto_complete_for_edit_year,:auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
+#  verify :method => :post, :only => [:create, :update, :list, :update_select, :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
 
-  skip_before_filter :verify_authenticity_token, :only => [:update_select, :auto_complete_for_edit_year,:auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
-  verify :method => :post, :only => [:update_select, :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
-
+  self.allow_forgery_protection = false
+  
   def update_select
     render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }
   end

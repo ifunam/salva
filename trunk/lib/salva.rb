@@ -15,4 +15,9 @@ module Salva
     myschool = get_conf('most_common_school')
     Institution.find(:first, :conditions => ['id = ?',  myschool]) if myschool.is_a? Integer
   end
+  
+  def get_educational_institutiontitles
+    get_conf('educational_institutiontitles').split(',').collect { |title| "institutiontitles.name = '#{title.strip}'" }.join(' OR ')
+  end
+  
 end

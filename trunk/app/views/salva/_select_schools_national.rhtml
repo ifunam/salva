@@ -1,5 +1,5 @@
 <%= select_conditions('edit', Institution,  1,
 :attributes => [ 'name', [ 'state', 'name']],
 :include => [:institutiontitle],
-:conditions => "institutions.institutiontitle_id = institutiontitles.id AND (institutiontitles.name = 'Escuela' OR institutiontitles.name = 'Facultad') AND (institutions.institution_id IS NULL OR institutions.institution_id > 1) AND institutions.country_id = 484"
+:conditions => "institutions.institutiontitle_id = institutiontitles.id AND (#{get_educational_institutiontitles}) AND (institutions.institution_id IS NULL OR institutions.institution_id > 1) AND institutions.country_id = 484 AND institutions.id <> 1"
 ) %>

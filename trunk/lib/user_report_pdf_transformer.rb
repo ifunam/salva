@@ -91,13 +91,13 @@ class UserReportPdfTransformer
         t = preprocess_textile($~[2])
         @pdf.text("<b>#{t}</b>", :font_size => SIZES[n.to_i], :justification => :full)
          num[0] = 1
-      elsif line =~ /^(\*+) (.+)$/
+      elsif line =~ /^\s*(\*+) (.+)$/
         n = $~[1]
         t = '<C:bullet/> '+ preprocess_textile($~[2])
         item_width = 10*n.size
         @pdf.text(t, :font_size => SIZES[5], :justification => :full, :left => item_width) 
          num[0] = 1
-       elsif line =~ /^(#+) (.+)$/
+       elsif line =~ /^\s*(#+) (.+)$/
         n = $~[1].size - 1
         t = preprocess_textile($~[2])
         item_width = @pdf.text_line_width(num[n].to_s + '. ')
