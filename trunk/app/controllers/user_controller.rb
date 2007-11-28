@@ -22,7 +22,7 @@ class UserController < ApplicationController
      if authenticate?(params[:user][:login],params[:user][:passwd])
         set_session_for_user(params[:user][:login])
         flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SALVA!"
-        format.html { redirect_back_or_default :controller => 'navigator' }
+        format.html { redirect_back_or_default :controller => 'navigation' }
       else
         flash[:notice] = "El login o el password es incorrecto!"
         format.html { render :action => "index" }

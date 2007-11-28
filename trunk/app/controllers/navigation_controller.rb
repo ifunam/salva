@@ -9,13 +9,17 @@ class NavigationController < ApplicationController
 
   def index
     stack_clear
-    navigation = get_navigation[params[:id].to_i || 0]
+    id = params[:id].to_i || 0
+    navigation = get_navigation[id]
     @children = navigation['children']
     @breadcrumb = navigation['breadcrumb']
-    @navcontrol = navigation['navcontrol']
+    @neighborlinks = navigation['neighborlinks']
     @controller_name = navigation['label']
-  end
 
+    session[:navigation_item] = id
+    redirect_to :controller => @controller_name if @children.nil? and id > 0
+  end
+  
 private
   
   def get_navigation

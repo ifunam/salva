@@ -111,7 +111,7 @@ module NavigatorHelper
         links = []
       end
       i += 1
-    end
+    end unless children.nil?
     html.collect { | links| "<div class=\"navtab_row\">\n"+ links.join("\n") + "\n</div>\n" }
   end
 
@@ -121,8 +121,68 @@ module NavigatorHelper
     if id.is_a? Fixnum
       link_to(img_tag(label), { :id => id, :token => token_string(32) }) +
         link_to(get_label(label), { :id => id, :token => token_string(32) })
-    else
-      link_to(img_tag(label), {:controller => label }) +  link_to(get_label(label), { :controller => label })      
+    end
+  end
+
+  def breadcrumb_images(list)
+    navigation_array = session[:navigation]
+
+    if list.nil?
+      item = session[:navigation_item]
+      list = navigation_array[item]['breadcrumb'] if !item.nil? and item >= 0
+    end
+ 
+    unless list.nil?
+      size =   28 - ((list.size - 1) * 4) 
+      links = []
+      list.collect do |item|
+        hash = navigation_array[item]
+        label = hash['label']
+        id = item
+        links << link_to(img_tag(label, size+= 4),  {:controller => 'navigation', :id => id, :token => token_string(32) })
+      end
+      links.join(' ')
+    end
+  end
+
+  def breadcrumb_links(list)
+    navigation_array = session[:navigation]
+
+    if list.nil?
+      item = session[:navigation_item]
+      list = navigation_array[item]['breadcrumb'] if !item.nil? and item >= 0
+    end
+ 
+    unless list.nil?
+      links = []
+      list.collect do |item|
+        hash = navigation_array[item]
+        label = hash['label']
+        id = item
+        links << link_to(get_label(label), { :controller => 'navigation', :id => id, :token => token_string(32) })
+      end
+      links.join(' ')
+    end
+  end
+
+  def neighborlinks(list)
+    navigation_array = session[:navigation]
+
+    if list.nil?
+      item = session[:navigation_item]
+      list = navigation_array[item]['neighborlinks'] if !item.nil? and item >= 0
+    end
+
+    unless list.nil?
+      links = []
+      list.collect do |item|
+        next if item.nil?
+        hash = navigation_array[item]
+        label = hash['label']
+        id = item
+        links << link_to(get_label(label), { :controller => 'navigation', :id => id, :token => token_string(32) })
+      end
+      links.join(' ')
     end
   end
 

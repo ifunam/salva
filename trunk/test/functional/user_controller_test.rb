@@ -27,7 +27,7 @@ class UserControllerTest < Test::Unit::TestCase
       assert_not_nil session[:user]
       assert_equal User.find(:first, :conditions => "login = '#{user}'").id, session[:user]
       assert_response :redirect
-      assert_redirected_to :controller => 'navigator'
+      assert_redirected_to :controller => 'navigation'
     }
   end
 
