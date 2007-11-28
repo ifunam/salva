@@ -5,7 +5,7 @@ class UserNotifier < ActionMailer::Base
     smtp = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
     domain = smtp['settings'][:domain].to_s
     @recipients = options[:recipients] || "noreply@#{domain}"
-    @from = options[:from] || "noreply@#{domain}"
+    @from = options[:from] || "alex@#{domain}"
     @subject = "[SALVA] "
     @subject << options[:subject] unless options[:subject].nil?
     @body = options[:body] || {}
