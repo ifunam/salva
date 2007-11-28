@@ -3,3 +3,11 @@ institution_url: http://www.politicas.unam.mx
 administrative_key: 412
 theme: default 
 most_common_school: 15
+educational_institutiontitles: Academia, Centro, Colegio, Departamento, Escuela, Facultad, Instituto, Museo, Observatorio, Plantel, Progr
+ama, Universidad, Otro
+initial_group: default
+permissions:
+ default: *
+ researcher: *
+ academic_technician: *
+ admin: *

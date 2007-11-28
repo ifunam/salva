@@ -1,0 +1,15 @@
+---
+- user_administration
+- - admin_user
+  - group
+  - permission
+  - controllers
+  - actions
+- catalogs_administration 
+- - country
+  - city
+  - states
+  - institution
+  - institutiontitle
+  - institution
+- configuration_site

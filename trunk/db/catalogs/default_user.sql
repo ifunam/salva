@@ -18,17 +18,22 @@ panchito	cd5062247553186a8f03c8aa9ed9c07630570b7c0058bb0b08f712487cc9b878c78c838
 \.
 --
 -- Data for Name: user_roleingroups; Type: TABLE DATA; Schema: public; Owner: salva
--- Administrador
-COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FROM stdin;
+-- Admin
+COPY user_groups (id, user_id, group_id, created_on, updated_on) FROM stdin;
 1	1	1	2005-11-29 16:29:50	2005-11-29 16:29:50
 \.
--- Jefe del Departamento
-COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FROM stdin;
+-- Default
+COPY user_groups (id, user_id, group_id, created_on, updated_on) FROM stdin;
 2	2	3	2005-11-29 16:29:50	2005-11-29 16:29:50
 \.
--- Miembro del Departamento
-COPY user_roleingroups (id, user_id, roleingroup_id, created_on, updated_on) FROM stdin;
+-- Reasearcher
+COPY user_groups (id, user_id, group_id, created_on, updated_on) FROM stdin;
 3	3	2	2005-11-29 16:29:50	2005-11-29 16:29:50
+\.
+
+-- Admin
+COPY user_groups (id, user_id, group_id, created_on, updated_on) FROM stdin;
+4	3	1	2005-11-29 16:29:50	2005-11-29 16:29:50
 \.
 
 UPDATE users SET user_incharge_id = 2 WHERE login = 'panchito';

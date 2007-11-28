@@ -75,6 +75,11 @@ class UserController < ApplicationController
       if !@user.nil?
         reset_session # Reset old sessions if exists
         @user.activate
+        @group = Group.find_by_name(get_initial_group)
+        unless @group.nil?
+          @user_group = UserGroup.new({:user_id => @user.id, :group_id => @group.id})
+          @user_group.save
+        end
         UserNotifier.deliver_activation(@user, url_for(:action => 'index'), get_myinstitution.name)
         format.html { render :action => "activated" }
         format.xml  { head :ok }

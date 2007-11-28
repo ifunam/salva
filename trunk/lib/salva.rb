@@ -19,5 +19,16 @@ module Salva
   def get_educational_institutiontitles
     get_conf('educational_institutiontitles').split(',').collect { |title| "institutiontitles.name = '#{title.strip}'" }.join(' OR ')
   end
+
+  def get_permissions(group='default')
+    permissions = get_conf('permissions')[group]
+    if permissions != nil
+      permissions.gsub!(/\s+/,'')
+      permissions != '*' ? permissions.split(',') : permissions
+    end
+  end
   
+  def get_initial_group
+    get_conf('initial_group')
+  end
 end

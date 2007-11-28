@@ -1,6 +1,5 @@
-INSERT INTO groups (name) VALUES ('ADMIN');
-INSERT INTO groups (name) VALUES ('Secretaría académica');
-INSERT INTO groups (name, parent_id) VALUES ('Departamento', 2);
-INSERT INTO groups (name, parent_id) VALUES ('Grupo de trabajo', 3);
-INSERT INTO groups (name) VALUES ('Secretaría administrativa');
-INSERT INTO groups (name, parent_id) VALUES ('Departamento de inventarios', 5);
+-- Each group requires a list of controllers defined inside on RAILS_ROOT/config/tree
+INSERT INTO groups (name, descr) VALUES ('admin', 'Administración de salva');
+INSERT INTO groups (name, descr) VALUES ('default', 'Grupo predefinido');
+INSERT INTO groups (name, descr) VALUES ('researcher', 'Investigadores');
+INSERT INTO groups (name, descr) VALUES ('academic_technician', 'Técnicos académicos');

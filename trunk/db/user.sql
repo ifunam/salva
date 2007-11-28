@@ -114,6 +114,23 @@ COMMENT ON TABLE groups IS
         'Grupos (tipos) de usuario del sistema:
          Admin,SALVA, Secretaría académica, Nombre de los deptos';
 
+CREATE TABLE user_groups (
+     id serial,
+     user_id int4 NOT NULL
+     	REFERENCES users(id)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+		DEFERRABLE,
+	  group_id int4 NOT NULL
+	          REFERENCES groups(id)
+		      ON UPDATE CASCADE
+              DEFERRABLE,
+      created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+      updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (id),
+      UNIQUE (user_id, group_id)
+);
+
 CREATE TABLE roles (
     id serial,
     name text NOT NULL,

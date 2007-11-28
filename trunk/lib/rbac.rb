@@ -1,4 +1,6 @@
+require RAILS_ROOT + '/lib/salva'
 module Rbac
+  include Salva
   def rbac_required
     flash[:warning] = 'Por favor defina un rol para el usuario en sesión...' unless has_role_defined? 
     

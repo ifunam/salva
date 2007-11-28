@@ -1,14 +1,25 @@
 require 'yaml'
 module NavigatorTree
-  def tree_from_yml
-    ymlfile =  File.join(RAILS_ROOT, 'config', 'tree.yml')
-    tree = YAML::parse(File.open(ymlfile))
-    tree.transform
+  def tree_from_yml(filename='default.yml')
+    file =  RAILS_ROOT + '/config/tree/' + filename
+    YAML::load_file(file)
   end
 
   def tree_loader(root='home')
-    navtree = Tree.new(tree_from_yml)
+    navtree = Tree.new()
     navtree.data = root
+    i = 1
+    UserGroup.find(:all, :conditions => ['user_id =?', session[:user]], :order => 'group_id ASC').collect do |record|
+      file = record.group.name + '.yml'
+      if i == 1
+        navtree.addChildren(tree_from_yml(file))
+      else
+        tree = Tree.new(tree_from_yml(file))
+        tree.data = record.group.name
+        navtree.addChild(tree)
+      end
+      i += 1
+    end
     navtree
   end
 

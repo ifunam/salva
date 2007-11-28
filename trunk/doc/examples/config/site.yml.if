@@ -3,3 +3,11 @@ institution_url: http://www.fisica.unam.mx
 administrative_key: 314
 theme: if 
 most_common_school: 14
+educational_institutiontitles: Academia, Centro, Colegio, Departamento, Escuela, Facultad, Instituto, Museo, Observatorio, Plantel, Progr
+ama, Universidad, Otro
+initial_group: default
+permissions:
+ default: *
+ researcher: *
+ academic_technician: *
+ admin: *
