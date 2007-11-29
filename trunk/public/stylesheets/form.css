@@ -191,25 +191,14 @@ body {
      border-width: 1px;
      border-style: solid;
      border-color: #5268a0 #6377a9 #112153 #09143a;
-     padding: 0.15em 0.25em 0.15em 0.75em;
-     width: 11em;
+     padding: 2px;
+     padding-left: 4px;
+     padding-right: 4px;
 }
 
 .navcontrol a#current {
   border-color: #5268a0 #6377a9 #112153 #CCFF00;
   color: #CCFF00;
-}
-
-.navcontrol a {
-  width: 99%;
-  /* only necessary for Internet Explorer */
-}
-
-.navcontrol a {
-  voice-family: "\"}\"";
-  voice-family: inherit;
-  width: 6.6em;
-  /* Tantek-hack should only used if Internet-Explorer 6 is in standards-compliant mode */
 }
 
 .navcontrol a:hover, .navcontrol a#current:hover {
@@ -273,8 +262,7 @@ body {
 .row {
      width: 100%;
      vertical-align: top;
-     display: table-row;
-     float: left;
+     display:table-row;
 }
 
 .row .required {
@@ -683,17 +671,18 @@ div.auto_complete ul strong.highlight {
 input, select {
   margin-top: 5px;
   margin-bottom: 10px;
+  color: #000000;
 }
 
 select
 {
   font-style:none;
-  max-width: 400px;
-  overflow:scroll;
+  max-width: 350px;
   float: left;
 }
 
 input.quickpost {
+  position: absolute;
   border: 0px;
   background-image: url("/images/add.gif"); background-repeat: no-repeat;
   width: 46px;
@@ -708,6 +697,7 @@ input.quickpost {
 }
 
 input.quickpost:hover {
+
   border: 1px solid #f48f35;
 }
 
