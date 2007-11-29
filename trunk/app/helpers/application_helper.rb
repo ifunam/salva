@@ -59,6 +59,10 @@ module ApplicationHelper
                      )
   end
 
+  def hidden_tag(model, name, field=nil)
+    hidden_field('edit', foreignize(model), :value => model.find_by_name(name).id)
+  end
+  
   def foreignize(model, prefix=nil)
     (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
   end

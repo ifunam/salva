@@ -38,7 +38,8 @@
 - publications
 - - bookedition_roleinbook
   - chapterinbook_roleinchapter
-  - user_article
+  - user_published_article
+  - user_unpublished_article
   - user_inproceeding_refereed
   - user_techreport
   - user_inproceeding_unrefereed

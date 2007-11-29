@@ -475,12 +475,12 @@ citizens_and_identifications: Nacionalidad e identificaciones
 most_recent_jobposition_at_institution: Categoría
 most_recent_user_adscription: Adscripción
 top: Regresar 
-sent_user_article: Artículos arbitrados
+user_unpublished_article: Artículos enviados o aceptados
+unpublished_article: Artículos enviados o aceptados
+user_published_article: Artículos publicados
+published_article: Artículos publicados
 preview: Vista previa
 send: Enviar
 preview_pdf: Vista previa en PDF
 send_annual_plan: Enviar plan anual
 send_annual_report: Enviar informe anual
-published_user_article: Artículos publicados
-sent_user_article: Artículos enviados o aceptados
-
