@@ -6,7 +6,7 @@ module ListHelper
       id = row.id
       list.push([text, id])
     }
-    return sorted_list(list)
+    return list
   end
   
   def list_collection_array(collection, columns)
@@ -16,7 +16,7 @@ module ListHelper
       id = row.id
       list.push([text, id])
     }
-    return sorted_list(list)
+    return list
   end
 
   def list_collection_text(collection, columns)
@@ -236,7 +236,7 @@ module ListHelper
     when /has_group_right/
       condition ? 'Con privilegios de grupo' : 'Sin privilegios'
     when /ismainauthor/
-      condition ? 'Autor principal' : 'Coautor'
+      condition ? 'Autor' : 'Coautor'
     when /isseminary/
       condition ? 'Seminario' : 'Conferencia'
     else

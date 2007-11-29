@@ -17,7 +17,6 @@ class SalvaController < ApplicationController
   end
 
   def list
-    select = nil
     if @model.column_names.include?('user_id')
       if @list.has_key?(:joins)
         @list[:joins] += " AND #{@model.table_name}.user_id = #{session[:user]}"
@@ -34,7 +33,7 @@ class SalvaController < ApplicationController
 
     @collection = @model.paginate :page => params[:page] || 1, :per_page => per_page,
     :conditions => @list[:conditions], :include => @list[:include], :joins => @list[:joins],
-    :select => select
+    :select => @list[:select], :order => @list[:order]
 
     @parent_controller = 'algo' if has_model_in_stack?
     render :action => 'list'
