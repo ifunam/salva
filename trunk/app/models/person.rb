@@ -13,7 +13,6 @@ class Person < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
 
-  validates_associated :user
   validates_associated :maritalstatus
   validates_associated :country
   validates_associated :state

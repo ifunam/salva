@@ -30,7 +30,7 @@ class PersonController < ApplicationController
     @edit = get_record(session[:user], true)
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
-    if !@edit.nil? and !@edit.photo.nil?
+    if !@edit.nil? and !@edit.photo.nil? and !@edit.photo_content_type.nil?
       send_data(@edit.photo, :filename => @edit.photo_filename, :type => "image/"+@edit.photo_content_type.to_s, :disposition => "inline")
     else
       send_file RAILS_ROOT + "/public/images/comodin.png", :type => 'image/png', :disposition => 'inline'
