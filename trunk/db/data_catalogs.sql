@@ -72,3 +72,4 @@
 \i catalogs/advice.sql
 \i catalogs/techproductstatuses.sql
 \i catalogs/seminarytypes.sql
+\i catalogs/credittypes.sql

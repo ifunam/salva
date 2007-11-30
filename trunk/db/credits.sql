@@ -1,112 +1,120 @@
-CREATE TABLE usercredits (
-   id SERIAL,
-   user_id integer 
-       REFERENCES users(id)            
-       ON UPDATE CASCADE               
-           DEFERRABLE,
-   internalusergive_id integer 
-             REFERENCES users(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   externalusergive_id integer 
-            REFERENCES externalusers(id)            
-            ON UPDATE CASCADE               
-            DEFERRABLE,
-   usergive_is_internal bool,
-   other text NULL,
-   year  int4 NOT NULL,
-   month  smallint NULL,
-   PRIMARY KEY (id),
-   -- Sanity checks: If this is a full system user, require the user
-   -- to be filled in. Likewise for an external one.
-   CHECK (usergive_is_internal = 't' OR
-	(internalusergive_id IS NOT NULL AND externalusergive_id IS NULL)),
-   CHECK (usergive_is_internal = 'f' OR
-	(externalusergive_id IS NOT NULL AND internalusergive_id IS NULL))
-);
-COMMENT ON TABLE usercredits IS 
-	'Agradecimientos, créditos y reconocimientos por apoyo técnico';
-COMMENT ON COLUMN usercredits.usergive_is_internal IS
-	'Quien otorga el agradecimiento es usuario interno o externo? 
-	Exige (NOT NULL) el tipo de usuario adecuado: externalusergive_id o
-	internalusergive_id';
-
-CREATE TABLE usercreditsarticles (
+CREATE TABLE user_creditsarticles (
 	id SERIAL,
-	usercredits_id int4 NOT NULL
-            REFERENCES usercredits(id)
+	user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	articles_id int4 NOT NULL
+	article_id int4 NOT NULL
             REFERENCES articles(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
+    other text NULL,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, articles_id)
+	UNIQUE (user_id, article_id)
 );
-COMMENT ON TABLE usercreditsarticles IS
+COMMENT ON TABLE user_creditsarticles IS
 	'Artículos producto del trabajo que se está agradeciendo';
 
-CREATE TABLE usercreditsbooks (
+CREATE TABLE user_creditsbookeditions (
 	id SERIAL,
-	usercredits_id int4 NOT NULL
-            REFERENCES usercredits(id)
+	user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	books_id int4 NOT NULL
-            REFERENCES articles(id)
+	bookedition_id int4 NOT NULL
+            REFERENCES bookeditions(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
+    other text NULL,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, books_id)
+	UNIQUE (user_id, bookedition_id)
 );
-COMMENT ON TABLE usercreditsbooks IS
+COMMENT ON TABLE user_creditsbookeditions IS
 	'Libros producto del trabajo que se está agradeciendo';
 
-CREATE TABLE usercreditschapterinbooks (
+CREATE TABLE user_creditschapterinbooks (
 	id SERIAL,
-	usercredits_id int4 NOT NULL
-            REFERENCES usercredits(id)
+	user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	chapterinbooks_id int4 NOT NULL
+	chapterinbook_id int4 NOT NULL
             REFERENCES chapterinbooks(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
+    other text NULL,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, chapterinbooks_id)
+	UNIQUE (user_id, chapterinbook_id)
 );
-COMMENT ON TABLE usercreditschapterinbooks IS
+COMMENT ON TABLE user_creditschapterinbooks IS
 	'Capítulos en libro producto del trabajo que se está agradeciendo';
 
-CREATE TABLE usercreditsconferencetalks (
+CREATE TABLE user_creditsconferencetalks (
 	id SERIAL,
-	usercredits_id int4 NOT NULL
-            REFERENCES usercredits(id)
+	user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	conferencetalks_id int4 NOT NULL
-            REFERENCES articles(id)
+	conferencetalk_id int4 NOT NULL
+            REFERENCES conferencetalks(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
+    other text NULL,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, conferencetalks_id)
+	UNIQUE (user_id, conferencetalk_id)
 );
-COMMENT ON TABLE usercreditsconferencetalks IS
+COMMENT ON TABLE user_creditsconferencetalks IS
 	'Conferencias producto del trabajo que se está agradeciendo';
 
-CREATE TABLE usercreditsgenericworks (
+CREATE TABLE user_creditsgenericworks (
 	id SERIAL,
-	usercredits_id int4 NOT NULL
-            REFERENCES usercredits(id)
+	user_id int4 NOT NULL
+            REFERENCES users(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
-	genericworks_id int4 NOT NULL
-            REFERENCES articles(id)
+	genericwork_id int4 NOT NULL
+            REFERENCES genericworks(id)
             ON UPDATE CASCADE               
             DEFERRABLE,
+    other text NULL,
 	PRIMARY KEY (id),
-	UNIQUE (usercredits_id, genericworks_id)
+	UNIQUE (user_id, genericwork_id)
 );
-COMMENT ON TABLE usercreditsgenericworks IS
+COMMENT ON TABLE user_creditsgenericworks IS
 	'Trabajos genéricos producto del trabajo que se está agradeciendo';
+	
+CREATE TABLE credittypes (
+        id SERIAL NOT NULL,
+        name text NOT NULL,
+        moduser_id int4 NULL                 -- Use it only to know who has
+            REFERENCES users(id)             -- inserted, updated or deleted
+            ON UPDATE CASCADE                -- data into or from this table.
+            DEFERRABLE,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE (name)
+);
+COMMENT ON TABLE credittypes IS
+		'Agradecimientos por carta, Créditos y reconocimientos por apoyo técnico, Otro';
+
+CREATE TABLE user_credits (
+	   id SERIAL,
+	   user_id integer 
+	       REFERENCES users(id)            
+	       ON UPDATE CASCADE               
+           DEFERRABLE,
+  	   credittype_id int4 NOT NULL
+            REFERENCES credittypes(id)
+            ON UPDATE CASCADE               
+            DEFERRABLE,
+	   descr text NOT NULL,
+	   other text NULL,
+	   year  int4 NOT NULL,
+	   month  smallint NULL,
+	   PRIMARY KEY (id),
+       UNIQUE (user_id, credittype_id, descr, year)
+);
+COMMENT ON TABLE user_credits IS 
+		'Agradecimientos que son diferentes a agradecimientos en artículos, libros, conferencias,etc';
+
