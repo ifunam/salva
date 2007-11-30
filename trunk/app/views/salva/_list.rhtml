@@ -28,7 +28,7 @@
 <% if nolinks.nil? %>
 <br/>
 <div id="operations">
-<%= link_to get_label('add'), :action => 'new' %> 
+<%= link_to get_label('add'), :action => 'new' %> | <%= breadcrumb_back %>
 <% unless @parent_controller == nil %>
  | <%= link_to get_label('back'), :action => 'cancel' %>
 <% end %>

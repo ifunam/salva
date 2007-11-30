@@ -164,6 +164,15 @@ module NavigatorHelper
     end
   end
 
+  def breadcrumb_back
+    navigation_array = session[:navigation]
+    item = session[:navigation_item]
+    unless item.nil?
+      list = navigation_array[item]['breadcrumb'] if !item.nil? and item >= 0
+      link_to(get_label('back'), { :controller => 'navigation', :id => list.last.to_i }) unless list.nil?
+    end
+  end  
+
   def neighborlinks(list)
     navigation_array = session[:navigation]
 
