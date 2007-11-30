@@ -7,6 +7,6 @@ class UserThesisController < SalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :include => [:roleinthesis], :conditions => "(roleintheses.name = 'Director' OR roleintheses.name = 'Asesor')  AND user_theses.roleinthesis_id = roleintheses.id" }  
+    @list = { :include => [:roleinthesis], :conditions => "(roleintheses.name = 'Director' OR roleintheses.name = 'Asesor' OR roleintheses.name = 'Lector')  AND user_theses.roleinthesis_id = roleintheses.id" }  
   end
 end
