@@ -386,7 +386,7 @@ publisher: Editorial
 indivadvice: Asesoría a individuos
 socialservice_advice: Asesoría a estudiantes de servicio social
 student_advice: Asesoría a estudiantes
-professor_advice: Asesoría a profesores
+professor_advice: Asesoría de personal académico
 indivadviceprogram: Programas
 indivadviceprogram_id: Programa
 indivname: Nombre del asesorado
@@ -411,7 +411,7 @@ mainauthor: Autor
 coauthor: Coautor
 seminary: Seminario
 talk: Conferencia
-yes: S�
+yes: S
 no: No
 institutional_activity: Participación institucional
 teaching_product: Otros productos de docencia
@@ -474,7 +474,7 @@ total_cites: Total de citas
 citizens_and_identifications: Nacionalidad e identificaciones
 most_recent_jobposition_at_institution: Categoría
 most_recent_user_adscription: Adscripción
-top: Regresar 
+top: Regresar
 user_unpublished_article: Artículos enviados o aceptados
 unpublished_article: Artículos enviados o aceptados
 user_published_article: Artículos publicados
