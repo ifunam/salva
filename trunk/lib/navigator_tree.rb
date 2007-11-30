@@ -48,7 +48,7 @@ module NavigatorTree
       tree.children.each do |child|
         id = nil
         id = walk_tree(child)
-        puts "label #{child.data}  id #{id}" if  item_no == 0
+        #puts "label #{child.data}  id #{id}" if  item_no == 0
         children << [ child.data, id ]
       end
 
