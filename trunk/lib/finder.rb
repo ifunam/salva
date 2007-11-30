@@ -180,20 +180,16 @@ class Finder
   end
 
   def as_text
-    find_collection.collect { |record|
-      @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', ')
-    }
+    find_collection.collect { |record|  get_text(record) }
   end
 
   def as_pair
-    find_collection.collect { |record|
-      [ @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', '), record.send(@primary_key) ]
-    }
+    find_collection.collect { |record|  [ get_text(record), record.send(@primary_key) ]   }
   end
 
   def as_hash
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), @columns.collect { |column| set_string(record, column) if column != @primary_key }.compact.join(', ') ]
+      [ Inflector.underscore(@model), get_text(record) ]
     }
   end
 
@@ -201,8 +197,21 @@ class Finder
     find_collection
   end
 
-  def set_string(record, column)
-    ( ['t', 'f', true, false].include? record.send(column) ) ? label_for_boolean(column.sub(/^([a-z0-9]_)/,''), record.send(column)) : record.send(column)
+  def get_text(record)
+      @columns.collect { |column| get_string(record, column) if column != @primary_key }.compact.join(', ').sub(/\.,+/,',').sub(/,,+/,',') 
+  end
+
+  def get_string(record, column)
+    unless record.send(column).nil? or record.send(column).to_s.strip.blank? or record.send(column).to_s == 'nil'
+      value = record.send(column)
+      if ['t', 'f', true, false].include? value
+          label_for_boolean(column.sub(/^([a-z0-9]_)/,''), value)
+      elsif column =~/month/
+          label_for_month(value)
+      else
+          value
+      end
+    end
   end
 end
 
