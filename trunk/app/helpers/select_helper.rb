@@ -7,6 +7,7 @@ module SelectHelper
   include ActionView::Helpers::FormOptionsHelper
 
   def selectize_id(object, field, selected=nil, filter={})
+    selected_id = nil
     # Default value from filter has priority over defined state_id or selected option
     if filter.is_a? Hash and filter.has_key?(field) and !filter[field].nil?
       selected_id = filter[field]
@@ -16,7 +17,7 @@ module SelectHelper
       selected_id = selected.to_i
     end
     selected_id = selected_id.to_i if selected_id.is_a? String and !selected_id.strip.empty?
-    selected_id if !selected_id.nil? and selected_id > 0
+    selected_id.to_i if !selected_id.nil? and selected_id.to_i > 0
   end
 
   def finder_id(model, id, attributes=[])
