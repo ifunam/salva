@@ -71,6 +71,8 @@
 - technical_activity
 - - user_techproduct
   - techactivity
+- credits
+- - user_credits
 - other_activities_or_products
 - - activity
   - user_genericwork
