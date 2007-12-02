@@ -1,5 +1,4 @@
 require RAILS_ROOT + '/lib/salva'
-require RAILS_ROOT + '/lib/finder'
 class UserDocumentController < ApplicationController
   include Salva
   layout 'user_document_handling'
@@ -83,10 +82,10 @@ class UserDocumentController < ApplicationController
 
   private
   def set_document_title
-      if !@document.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? and @document.enddate <= Date.today
-        @document_title, @document_id = Finder.new(Document, :first, :attributes => [['documenttype', 'name'], 'title'],
-                                                            :conditions => "documents.documenttype_id = #{@documenttype.id}",
-                                                            :order => 'documents.startdate DESC').as_pair.first
+      if !@document.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? #and Date.today <= @document.enddate
+        @doc = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
+        @document_title = @doc.documenttype.name + ' '+ @doc.title
+        @document_id = @doc.id
         return true
       else 
         return false
