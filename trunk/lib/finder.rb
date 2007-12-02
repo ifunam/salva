@@ -8,6 +8,8 @@
 # Finder.new(Country) == Finder.new(Country, :all)
 # Finder.new(Country, :first)
 # Finder.new(Journal)
+
+
 require 'labels'
 class Finder
   include Labels
@@ -20,7 +22,7 @@ class Finder
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
     opts[:first] = true if options[0] == :first
     @model = model
-    @primary_key = opts[:primary_key] || 'id' 
+    @primary_key = opts[:primary_key] || 'id'
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes(@model).join(', '), opts)
   end
 
@@ -29,7 +31,7 @@ class Finder
     @debug_array = columns
     columns.unshift(Inflector.tableize(@model).classify)
 
-    sql = "SELECT #{tableize(@model)}.#{@primary_key} AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
+    sql = "SELECT DISTINCT (#{tableize(@model)}.#{@primary_key}) AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
 
     add_tables!(sql, options)
     add_conditions!(sql, options, columns)
@@ -62,10 +64,15 @@ class Finder
 
   def add_order!(sql, options, attributes=nil)
     if !attributes.nil?
-      order = (options.has_key? :order ) ? " ORDER BY #{options[:order]}" : " ORDER BY #{attributes} ASC"
+      order = (options.has_key? :order ) ? " ORDER BY #{options[:order]}" : " ORDER BY #{attributes.collect{ |a| a + ' ASC' }.join(', ')}"
       sql << order
     else
-      sql << " ORDER BY #{options[:order]} " if options[:order]
+      order = []
+      if options[:order]
+        sql << " ORDER BY #{options[:order].gsub(/\./,'_')}, #{tableize(@model)}.#{@primary_key} ASC "
+      else
+        sql << " ORDER BY #{tableize(@model)}.#{@primary_key} ASC "
+       end
     end
   end
 
@@ -80,7 +87,26 @@ class Finder
 
   def build_select(*columns)
     table = tableize(columns.shift)
-    columns.collect { |c| (c.is_a?Array) ? build_select(*c) : "#{table}.#{c} AS #{table}_#{c}" }.compact.join(', ')
+    sql = columns.collect { |c|
+      if c.is_a?Array
+        build_complex_select(table, *c)
+      else
+        "#{table}.#{c} AS #{table}_#{c}"
+      end
+      }.compact.join(', ')
+  end
+
+  def build_complex_select(table, *columns)
+    mytable = tableize(columns.shift)
+    columns.collect { |c|
+      if tableize(c) != mytable
+        if c.is_a?Array
+          build_complex_select(mytable, *c)
+        else
+            "(SELECT #{mytable}.#{c} WHERE #{table}.#{foreignize(mytable)} IS NOT NULL) AS #{mytable}_#{c}"
+        end
+     end
+    }.compact.join(', ')
   end
 
   def set_tables(*columns)
@@ -98,7 +124,7 @@ class Finder
   def build_conditions(*columns)
     table = tableize(columns.shift)
     columns.collect { |c|
-      ["#{table}.#{Inflector.foreign_key(c.first.sub(/^prefix_for_parent_/,''))} = #{tableize(c.first)}.id "] + build_conditions(*c).flatten if c.is_a? Array  and  table !=  tableize(c.first)
+      ["(#{table}.#{foreignize(c.first)} IS NULL OR #{table}.#{foreignize(c.first)} = #{tableize(c.first)}.id )"] + build_conditions(*c).flatten if c.is_a? Array  and  table !=  tableize(c.first)
     }.compact.flatten
   end
 
@@ -159,6 +185,10 @@ class Finder
     Inflector.tableize(m).classify.constantize
   end
 
+  def foreignize(k)
+    Inflector.singularize(k).foreign_key.sub(/^prefix_for_parent_/,'')
+  end
+
   def column_names(m)
     reserved_attributes = %w(id moduser_id created_on updated_on user_id parent_id)
     reserved_attributes << Inflector.foreign_key(m) # Avoiding recursion problems for tables with himself references
@@ -198,7 +228,7 @@ class Finder
   end
 
   def get_text(record)
-      @columns.collect { |column| get_string(record, column) if column != @primary_key }.compact.join(', ').sub(/\.,+/,',').sub(/,,+/,',') 
+      @columns.collect { |column| get_string(record, column) if column != @primary_key }.compact.join(', ').sub(/\.,+/,',').sub(/,,+/,',')
   end
 
   def get_string(record, column)
