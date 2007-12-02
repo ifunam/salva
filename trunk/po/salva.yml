@@ -99,7 +99,7 @@ credits: Créditos
 career: Carrera
 jobpositioncategory_id: Categoría
 contracttype_id: Tipo de contrato
-jobposition: Experiencia laboral
+jobposition: Experiencia profesional
 jobposition_id: Empleo
 user_stimulus: Estímulos
 userstimulus: Estímulos
@@ -170,8 +170,8 @@ jobpositionlog: Antigüedad
 worker_key: Número de trabajador
 jobposition_internal: UNAM
 jobposition_at_institution: Categorías
-jobposition_external: Experiencia laboral externa
-jobpositionexternal: Experiencia laboral externa
+jobposition_external: Experiencia profesional externa
+jobpositionexternal: Experiencia profesional externa
 updating_current_skills: Actualización profesional
 user_course: Cursos recibidos
 user_conference: Asistencia a eventos académicos
@@ -485,6 +485,6 @@ preview_pdf: Vista previa en PDF
 send_annual_plan: Enviar plan anual
 send_annual_report: Enviar informe anual
 credittype: Tipo de agradecimiento
-credittype_id: Tipo de agradecimiento 
-user_credit: Agradecimientos y otros créditos 
+credittype_id: Tipo de agradecimiento
+user_credit: Agradecimientos y otros créditos
 credits: Agradecimientos, cr�ditos y reconocimientos
