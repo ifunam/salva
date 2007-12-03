@@ -6,6 +6,7 @@ class UserUnpublishedArticleController < SalvaController
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
-    @list =  { :select => 'user_articles.*,  articles.*', :joins => "INNER JOIN articlestatuses ON articlestatuses.name != 'Publicado'  INNER JOIN articles ON articles.articlestatus_id = articlestatuses.id AND user_articles.article_id = articles.id", :order => 'articles.year DESC' }
+    articlestatus_id = Articlestatus.find_by_name('Publicado').id
+    @list =  { :select => 'user_articles.*,  articles.*', :conditions => " articles.articlestatus_id != #{articlestatus_id} AND user_articles.article_id = articles.id", :include => [:article], :order => 'articles.year DESC, articles.month DESC, articles.title ASC' }
   end
 end
