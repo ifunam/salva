@@ -7,7 +7,7 @@
 - author_name: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).author_name
 - total_cites: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).total
 # Address and contact information
-- address: Finder.new(Address,:first, :attributes => ['addresstype', 'location', 'zipcode', 'city', 'state', 'country'], :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').as_text.first
+- address: Finder.new(Address,:first, :attributes => ['addresstype', 'location', 'zipcode', 'city', 'state', 'country'], :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresstypes.name ASC').as_text.first
 - phone: Address.find(:first, :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').phone
 - fax: Address.find(:first, :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').fax
 - email: User.find(@user.id).email
@@ -20,4 +20,4 @@
 # Most recent job at institution and most recent adscription
 # most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => '(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = ' +@user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
 - most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => 'jobpositions.user_id = ' + @user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
-- most_recent_user_adscription: Finder.new(UserAdscription, :first, :attributes => %w(adscription), :conditions => 'user_adscriptions.user_id = ' + @user.id.to_s, :order => 'user_adscriptions.startyear DESC').as_text.first
+- most_recent_user_adscription: Finder.new(UserAdscription, :first, :attributes => ['adscription', 'startyear'], :conditions => 'user_adscriptions.user_id = ' + @user.id.to_s, :order => 'user_adscriptions.startyear DESC').as_text.first
