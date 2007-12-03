@@ -186,7 +186,7 @@ class Finder
   end
 
   def foreignize(k)
-    Inflector.singularize(k).foreign_key.sub(/^prefix_for_parent_/,'')
+    Inflector.pluralize(k).singularize.foreign_key.sub(/^prefix_for_parent_/,'')
   end
 
   def column_names(m)

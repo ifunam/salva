@@ -32,6 +32,19 @@ class FinderTest < Test::Unit::TestCase
     assert_equal 'journals',  @user_article_finder.tableize('journal')
   end
 
+  def test_extract_attributes_from_array
+    assert_equal [['article', 'title']], @user_article_finder.extract_attributes_from_array(UserArticle, [['article']])
+    assert_equal [["article", "title", "year", "month"]], @user_article_finder.extract_attributes_from_array(UserArticle, [['article', 'title', 'year', 'month']])
+  end
+
+  def test_complex_build_select
+    args = ['article', 'title', 'year', 'month']
+    assert_equal  "articles.title AS articles_title, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
+    args = ['article', 'title', ['journal', 'name', ['country', 'name'], 'abbrev'], 'year', 'month', ]
+    assert_equal "articles.title AS articles_title, (SELECT journals.name WHERE articles.journal_id IS NOT NULL) AS journals_name, (SELECT countries.name WHERE journals.country_id IS NOT NULL) AS countries_name, (SELECT journals.abbrev WHERE articles.journal_id IS NOT NULL) AS journals_abbrev, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
+    assert_equal '', @user_article_finder.sql
+  end
+
   def test_build_select
     args = ['article', 'title', 'year', 'month']
     assert_equal "articles.title AS articles_title, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
@@ -39,6 +52,10 @@ class FinderTest < Test::Unit::TestCase
     assert_equal "articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, articles.year AS articles_year, articles.month AS articles_month", @user_article_finder.build_select(*args)
     args = [UserArticle, ['article', 'title', ['journal', 'name', ['country', 'name']]], 'ismainauthor']
     assert_equal "articles.title AS articles_title, journals.name AS journals_name, countries.name AS countries_name, user_articles.ismainauthor AS user_articles_ismainauthor", @user_article_finder.build_select(*args)
+    args = [Jobposition,  [['jobpositioncategory', ['jobpositiontype', 'name'], ['roleinjobposition', 'name'], ['jobpositionlevel', 'name']]]]
+    args = [Jobposition, ['jobpositioncategory']]
+    args = [Jobpostion, [['jobpositioncategory', 'jobpositiontype',  'roleinjobposition',  'jobpositionlevel'] ]]
+    args = [Jobpostioncategory,  ['jobpositiontype',  'roleinjobposition',  'jobpositionlevel'] ]
   end
 
   def test_set_tables
@@ -163,7 +180,7 @@ class FinderTest < Test::Unit::TestCase
     @f = Finder.new(Institutioncareer, :attributes => [ ['career', 'degree', 'name'], ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.career_id = careers.id AND careers.degree_id = 3 AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484 AND institutions.institution_id != 1", :order => 'careers.name ASC' )
     assert_equal "SELECT institutioncareers.id AS id, degrees.name AS degrees_name, careers.name AS careers_name, institutions.name AS institutions_name, prefix_for_parent_institutions.abbrev AS prefix_for_parent_institutions_abbrev FROM institutioncareers, careers, degrees, institutions, institutions AS prefix_for_parent_institutions WHERE institutioncareers.career_id = careers.id AND careers.degree_id = degrees.id AND institutioncareers.institution_id = institutions.id AND institutions.institution_id = prefix_for_parent_institutions.id AND institutioncareers.career_id = careers.id AND careers.degree_id = 3 AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484 AND institutions.institution_id != 1 ORDER BY careers.name ASC", @f.sql
   end
-  
+
   def test_as_collection
     @country_finder.as_collection.collect { |record|
       assert_instance_of Country, record
