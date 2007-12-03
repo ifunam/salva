@@ -488,3 +488,5 @@ credittype: Tipo de agradecimiento
 credittype_id: Tipo de agradecimiento
 user_credit: Agradecimientos y otros créditos
 credits: Agradecimientos, créditos y reconocimientos
+user_published_thesis: Tesis publicadas
+user_unpublished_thesis: Tesis en proceso
