@@ -1,10 +1,12 @@
-
 <div id="operations">
- <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %> 
+ <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %>
  &nbsp; | &nbsp;
  <%= link_to get_label('send_annual_report'), :action => 'send_document' %>
+ &nbsp; | &nbsp;
+ <%= link_to get_label('cancel'), :action => 'list' %>
 </div>
 <hr/>
+<img src="<%= url_for(:controller => 'person', :action => "photo") %>"/>
 <%= render :partial => 'table_of_content' %>
 <br/>
 
@@ -12,13 +14,13 @@
 <% index = 0 %>
 <% for hash in @data %>
 <% if hash[:level] == 1 %>
-<div class="section"> 
+<div class="section">
 <% end %>
 <%= internal_link(hash[:title]) %> <%= header(get_label(hash[:title]), hash[:level], 'html') %>
 <%= paragraph_data(hash[:data]) if hash.has_key?(:data) %>
 <% index +=1 %>
 <% if @data[index].nil? or @data[index][:level] == 1%>
-<span class="back"> <%= link_to_internal('toc', get_label('top'), "back_top.gif") %>  </span>
+<span class="back"> <%= link_to_internal('toc', 'Índice', "back_top.gif") %>  </span>
 </div>
 <% end %>
 <% end -%>

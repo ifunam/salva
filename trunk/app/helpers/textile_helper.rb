@@ -22,24 +22,24 @@ module TextileHelper
 
   def toc_section(section, n)
    section.collect {|item|
-      if item[:level] == 1 
-          link_to_internal(item[:title], get_label(item[:title]), "section#{n}.gif") 
+      if item[:level] == 1
+          link_to_internal(item[:title], get_label(item[:title]), "section#{n}.gif")
       else
          '*' * item[:level] + ' ' + link_to_internal(item[:title], get_label(item[:title]))
       end
     }.join("\n")
   end
-  
+
   def paragraph_data(data)
-    paragraph(data.collect { |text| 
-      if text.is_a?Array  
+    paragraph(data.collect { |text|
+      if text.is_a?Array
         bold(get_label(text[0]) + ":", 'html') + text[1].to_s + '<br/>' if !text[1].nil? and !text[1].blank?
-      else  
+      else
         ('# ' + text)
       end
     }.compact.join("\n"))
   end
-  
+
   def bold(string,format='text')
     case  format
       when 'text'
@@ -54,7 +54,7 @@ module TextileHelper
     when 'text'
       string.chars.upcase
     when 'html'
-      RedCloth.new("h" + level.to_s + ". " + string, [:no_span_caps]).to_html 
+      RedCloth.new("h" + level.to_s + ". " + string, [:no_span_caps]).to_html
     end
   end
 
