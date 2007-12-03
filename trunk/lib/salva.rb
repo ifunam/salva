@@ -31,4 +31,10 @@ module Salva
   def get_initial_group
     get_conf('initial_group')
   end
+  
+  def get_most_common_finnancingsources
+     institution_names = get_conf('most_common_finnancingsources').split(',')
+     institution_names.push(get_myinstitution.name)
+     institution_names.collect {|name| "institutions.name = '#{name.strip}'" }.join(' OR ')
+  end
 end

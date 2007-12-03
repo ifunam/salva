@@ -8,7 +8,7 @@ module QuickpostHelper
   end
 
   def submit_for_stack_list(controller)
-    ('&nbsp;' * 5) + (tag :input, { "type" => "submit", "class" => "quickpost-select", "name" => 'stacklist', "value" => controller })
+    ('&nbsp;' * 15) + (tag :input, { "type" => "submit", "class" => "quickpost-select", "name" => 'stacklist', "value" => controller })
   end
 
 end
