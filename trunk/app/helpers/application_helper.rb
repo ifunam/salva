@@ -60,7 +60,11 @@ module ApplicationHelper
   end
 
   def hidden_tag(model, name, field=nil)
-    hidden_field('edit', foreignize(model), :value => model.find_by_name(name).id)
+    hidden_field('edit', foreignize(model), :value => modelid(model, name))
+  end
+
+  def modelid(model, name)
+    model.find_by_name(name).id
   end
   
   def foreignize(model, prefix=nil)

@@ -21,6 +21,7 @@
   - - user_course
     - userconference
     - acadvisit
+    - student_thesis
   - user_schoolarship
   - membership
   - user_prize
@@ -44,7 +45,6 @@
   - user_inproceeding_refereed
   - user_techreport
   - user_inproceeding_unrefereed
-  - student_thesis
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed

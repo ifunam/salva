@@ -10,5 +10,4 @@ class UserGenericwork  < ActiveRecord::Base
 
   validates_associated :genericwork
   validates_associated :userrole
-  validates_associated :user
 end
