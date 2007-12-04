@@ -6,7 +6,7 @@ class TechreportController < SalvaController
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
-    @order_by = 'id'
-    @list = { :conditions => "genericworktype_id = 9" }
+    genericworktype_id = Genericworktype.find_by_name('Reportes técnicos').id
+    @list = { :conditions => "genericworktype_id = #{genericworktype_id}" }
   end
 end
