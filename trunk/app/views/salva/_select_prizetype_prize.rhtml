@@ -1,0 +1,3 @@
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Prize, tabindex, :conditions => "prizetype_id = #{id}") %>
+<% end %>
