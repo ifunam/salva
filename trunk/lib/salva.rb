@@ -8,7 +8,7 @@ module Salva
   
   def get_myinstitution
     administrative_key = get_conf('administrative_key')
-    Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key]) if admiunistrative_key.is_a? Integer
+    Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key]) if administrative_key.is_a? Integer
   end
 
   def get_myschool
