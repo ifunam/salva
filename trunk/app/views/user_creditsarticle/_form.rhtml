@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_creditsarticle]-->
+<div class="row"> 
+<label for="article_id" class="label"><%= get_label('article_id') %> <span class="required">*</span></label> 
+<div id="article_id">
+<%= simple_select('edit', Article, 1) %>
+</div>
+<%= quickpost('article') %>
+&nbsp;
+<%= submit_for_stack_list('article') %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'other' %></div>
+
+
+<!--[eoform:user_creditsarticle]-->
+

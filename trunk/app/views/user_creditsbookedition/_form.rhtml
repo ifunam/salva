@@ -1,0 +1,7 @@
+<%= error_messages_for 'edit' %>
+
+<%= render :partial => 'salva/filter_bookedition' %>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'other' %></div>
