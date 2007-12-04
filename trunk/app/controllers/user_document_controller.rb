@@ -82,14 +82,18 @@ class UserDocumentController < ApplicationController
 
   private
   def set_document_title
-      if !@document.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  != ?', @document.id, session[:user]]).nil? #and Date.today <= @document.enddate
-        @doc = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
-        @document_title = @doc.documenttype.name + ' '+ @doc.title
-        @document_id = @doc.id
-        return true
-      else 
-        return false
+    @doc = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
+    if Date.today <= @doc.enddate
+      if !@doc.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @doc.id, session[:user]]).nil? 
+          @document_title = @doc.documenttype.name + ' '+ @doc.title
+          @document_id = @doc.id
+          return true
+      else
+          return false
       end
+    else
+      flash[:notice] = "El periodo para el envío del #{@doc.documenttype.name} #{@doc.title} ha finalizado!"
+    end
   end
                                                            
   def send_email(recipients, subject, method, attachment=nil)
