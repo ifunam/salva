@@ -4,7 +4,7 @@
 <div class="row">
 <label for="conferencetalk_id" class="label"><%= get_label('conferencetalk_id') %></label>
 <div id="conferencetalk_id">
-<%= select_conditions('edit', Conferencetalk, 1, {:attributes => %w(title talktype)}) %>
+<%= select_conditions('edit', Conferencetalk, 1, :attributes => %w(title talktype), :order => 'conferencetalks.title ASC') %>
 </div>
 <%= quickpost('conferencetalk') %>
 </div>
