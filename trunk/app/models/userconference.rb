@@ -13,7 +13,6 @@ class Userconference < ActiveRecord::Base
   belongs_to :roleinconference
   belongs_to :user
 
-  validates_associated :user
   validates_associated :conference
   validates_associated :roleinconference
 end

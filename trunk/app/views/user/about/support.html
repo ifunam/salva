@@ -1,16 +1,11 @@
 <a name="support"></a>
 <h2>Soporte t&eacute;cnico</h2>
-<p>
-Favor de comunicarse a los siguientes tel&eacute;fonos:
-</p>
+<p><%= get_technical_support('unit') %></p>
+<p><%= get_technical_support('person') %></p>
 
-<ul>
-<li>Secretaría de Personal Académico... Tel: 56229470 ext. 1042
-<li>Secretaría de Planeación Y Evaluación... Tel: 56229470 ext. 1038
-</ul>
+<p>Favor de comunicarse a los siguientes tel&eacute;fonos: <%= get_technical_support('phone') %></p>
 
-<p>
-O escriba a la direcci&oacute;n de correo electr&oacute;nico 
-<a href="mailto:soporte-salva@politicas.unam.mx">salva@politicas.unam.mx</a>.
-
+<p>O escriba a la direcci&oacute;n de correo electr&oacute;nico <a href="mailto:<%= get_technical_support('email') %>"><%= get_technical_support('email') %></a>.
+<p>Información adicional: </p>
+<%= get_technical_support('other_info') %>
 

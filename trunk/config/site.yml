@@ -1,13 +1,27 @@
+# General configuration for salva 
 institution: Instituto de Física - UNAM
 institution_url: http://www.fisica.unam.mx
 administrative_key: 314
-theme: default 
+theme: default
+ 
+# Customizations for your institute, school, et.al
 most_common_school: 14
 educational_institutiontitles: Academia, Centro, Colegio, Departamento, Escuela, Facultad, Instituto, Museo, Observatorio, Plantel, Programa, Universidad, Unidad
+most_common_finnancingsources: Dirección General de Asuntos del Personal Académico, Consejo Nacional de Ciencia y Tecnología
+
+# Groups and permissions
 initial_group: default
 permissions:
  default: *
  researcher: *
  academic_technician: *
  admin: *
-most_common_finnancingsources: Dirección General de Asuntos del Personal Académico, Consejo Nacional de Ciencia y Tecnología
+
+# Technical support information
+technical_support:
+ unit: Name for your support unit
+ person: Support Engineer's name
+ address: Salva Support Building, Room 000
+ phone: 55 55 55 55 ext 000
+ email: support@salva.unam.mx
+ other_info: .

@@ -8,7 +8,7 @@ module Salva
   
   def get_myinstitution
     administrative_key = get_conf('administrative_key')
-    Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key]) if administrative_key.is_a? Integer
+    Institution.find(:first, :conditions => ['administrative_key = ?',  administrative_key]) if admiunistrative_key.is_a? Integer
   end
 
   def get_myschool
@@ -36,5 +36,9 @@ module Salva
      institution_names = get_conf('most_common_finnancingsources').split(',')
      institution_names.push(get_myinstitution.name)
      institution_names.collect {|name| "institutions.name = '#{name.strip}'" }.join(' OR ')
+  end
+  
+  def get_technical_support(key)
+    get_conf('technical_support')[key]
   end
 end
