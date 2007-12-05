@@ -97,7 +97,7 @@ class UserDocumentController < ApplicationController
   end
                                                            
   def send_email(recipients, subject, method, attachment=nil)
-    options =  { :recipients => recipients, :subject => subject, :body => { :institution => get_myinstitution.name } }
+    options =  { :recipients => recipients, :subject => subject, :body => { :institution => get_myinstitution.name, :url =>  url_for(:controller => 'user_document_handling', :action => 'list') } }
     options[:attachment] = attachment unless attachment.nil?
     UserDocumentNotifier.send(method, options)
   end

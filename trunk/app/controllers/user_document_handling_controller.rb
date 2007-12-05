@@ -1,4 +1,4 @@
- require 'salva'
+require 'salva'
 class UserDocumentHandlingController < ApplicationController
   include Salva
   def index
@@ -7,11 +7,11 @@ class UserDocumentHandlingController < ApplicationController
 
   def list
     @collection  = []
-    Document.find(:all, :conditions => "title LIKE '%200%'").each do |doc|
-      @collection << {
-        :title => doc.documenttype.name+'  '+ doc.title,
-        :records => UserDocument.find(:all,   :conditions =>"document_id = #{doc.id} AND user_incharge_id = #{session[:user] }")
-      }
+    Document.find(:all, :conditions => ["enddate >= ?", Date.today.to_s]).each do |document|
+        @collection << {
+          :title => document.documenttype.name+'  '+ document.title,
+          :records => UserDocument.find(:all,   :conditions =>"document_id = #{document.id} AND user_incharge_id = #{session[:user] }")
+        }
     end
     render :action => "list"
   end
@@ -30,8 +30,8 @@ class UserDocumentHandlingController < ApplicationController
     UserDocumentNotifier.deliver_approval_notification({
                                                          :recipients => [ @record.user.email, User.find(session[:user]).email ],
                                                          :subject => 'Notificación de aprobación',
-                                                         :body => { :institution => get_myinstitution.name, :document => @record.document.documenttype.name + ' ' + @record.document.title.strip },
-                                                         :attachment => { :file => @record.file,  :content_type => @record.content_type }
+                                                         :body => { :institution => get_myinstitution.name, :document => document_title},
+                                                         :attachment => { :file => @record.file,  :content_type => @record.content_type, :filename => filename }
                                                        })
     flash[:notice] = 'El documento ha sido aprobado'
     redirect_to :action => 'list'
@@ -54,13 +54,22 @@ class UserDocumentHandlingController < ApplicationController
                                                      :subject => 'Documento no aprobado',
                                                      :body => {
                                                        :institution => get_myinstitution.name,
-                                                       :document => @record.document.documenttype.name + ' ' + @record.document.title.strip,
+                                                       :document => document_title,
                                                        :message => params[:edit][:message]
                                                      },
-                                                     :attachment => { :file => @record.file,  :content_type => @record.content_type }
+                                                     :attachment => { :file => @record.file,  :content_type => @record.content_type, :filename => filename }
                                                    })
     @record.destroy
     flash[:notice] = 'El documento no ha sido aprobado'
     redirect_to :action => 'list'
+  end
+  
+  private 
+  def filename(ext='pdf')
+      document_title.downcase.gsub(/,+/,'').gsub(/\s+/,'_') + '.' + ext
+  end
+
+  def document_title
+      @record.document.documenttype.name + ' ' + @record.document.title.strip 
   end
 end
