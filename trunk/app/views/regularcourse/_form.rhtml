@@ -9,7 +9,7 @@
 <div class="row"> 
 <label for="academicprogram_id" class="label"><%= get_label('academicprogram_id') %> <span class="required">*</span></label> 
 <div id="academicprogram_id">
-<%= select_conditions('edit', Academicprogram, 2, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
+<%= select_conditions('edit', Academicprogram, 2, :attributes => [['institutioncareer', 'career', ['institution', ['institution','abbrev']]], 'year', 'academicprogramtype'], :selected => params[:id])  %>
 </div>
   <%= quickpost('academicprogram') %>
 </div>
@@ -17,7 +17,7 @@
 <div class="row"> 
 <label for="modality_id" class="label"><%= get_label('modality_id') %> <span class="required">*</span></label> 
 <div id="modality_id">
-<%= simple_select('edit', Modality, 3) %>
+<%= simple_select('edit', Modality, 3, :selected => 1) %>
 </div>
 </div>
 

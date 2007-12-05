@@ -18,4 +18,14 @@ class UserCiteController < SalvaController
     end
   end
 
+  # Cancel lleva a list, lo que no funciona en este caso
+  def cancel
+    @cite = UserCite.find(:first, :conditions => [ 'user_id = ?', session[:user]])
+    if @cite.nil?
+      redirect_to :controller => 'navigation' 
+    else
+      super
+    end
+  end
+
 end
