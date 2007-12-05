@@ -2,8 +2,8 @@ require RAILS_ROOT + '/lib/salva'
 class UserDocumentController < ApplicationController
   include Salva
   layout 'user_document_handling'
-  before_filter :set_document_title
-  skip_before_filter :set_document_title, :only => [:index, :list]
+  before_filter :check_document_requirements
+  skip_before_filter :check_document_requirements, :only => [:index, :list, :show]
 
   
   def initialize
@@ -21,7 +21,7 @@ class UserDocumentController < ApplicationController
       if !@document.nil?
        @collection = UserDocument.paginate :page => 1, :per_page => 10, :include => [:document], :order => 'documents.startdate DESC',
        :conditions => "user_id = #{session[:user]} AND user_documents.document_id = documents.id AND documents.documenttype_id = #{@documenttype.id}"
-       set_document_title
+       check_document_requirements
      else
        flash[:notice] = "Defina el documento y su periodo en el controlador document"
      end
@@ -81,7 +81,7 @@ class UserDocumentController < ApplicationController
   end
 
   private
-  def set_document_title
+  def check_document_requirements
     @doc = Document.find(:first, :conditions => "documents.documenttype_id = #{@documenttype.id}", :order => 'documents.startdate DESC')
     if Date.today <= @doc.enddate
       if !@doc.nil? and UserDocument.find(:first, :conditions => ['document_id = ? AND user_id  = ?', @doc.id, session[:user]]).nil? 
