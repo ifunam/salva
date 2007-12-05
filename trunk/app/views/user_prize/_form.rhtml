@@ -4,13 +4,8 @@
 
 <div class="row">
  <label for="prizetype_id" class="label"><%= get_label('prizetype_id') %></label>
-	<% if params[:id].nil?  %>
- 	<%= simple_select('filt', Prizetype, 1) %>
- 	<%= quickpost('prizetype') %>
-	<% else %>
-	<%= prizetype.find(params[:id]).name %>
-	<%= hidden_field('filt', 'prizetype_id', :value => params[:id]) %>
-	<% end %>
+  <%= simple_select('filt', Prizetype, 1) %>
+  <%= quickpost('prizetype') %>
 </div>
 <%= observe_select('filt', 'prizetype_id', 'select_prizetype_prize', 1) %>
 
