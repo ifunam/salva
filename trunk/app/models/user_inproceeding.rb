@@ -9,5 +9,4 @@ class UserInproceeding < ActiveRecord::Base
   belongs_to :user
 
   validates_associated :inproceeding
-  validates_associated :user
 end

@@ -14,5 +14,4 @@ class UserSeminary < ActiveRecord::Base
 
   validates_associated :seminary
   validates_associated :roleinseminary
- validates_associated :user
 end

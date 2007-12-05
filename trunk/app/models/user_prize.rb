@@ -9,5 +9,4 @@ class UserPrize < ActiveRecord::Base
   belongs_to :user
 
   validates_associated :prize
-  validates_associated :user
 end

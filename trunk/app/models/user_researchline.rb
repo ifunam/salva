@@ -9,6 +9,5 @@ class UserResearchline < ActiveRecord::Base
   belongs_to :user
 
   validates_associated :researchline
-  validates_associated :user
 end
 

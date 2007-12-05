@@ -9,7 +9,6 @@ class UserProceeding < ActiveRecord::Base
   belongs_to :proceeding
   belongs_to :roleproceeding
 
-  validates_associated :user
   validates_associated :proceeding
   validates_associated :roleproceeding
 end

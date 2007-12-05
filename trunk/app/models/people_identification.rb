@@ -10,5 +10,4 @@ class PeopleIdentification < ActiveRecord::Base
   belongs_to :identification
   belongs_to :user
 
-  validates_associated :user
 end

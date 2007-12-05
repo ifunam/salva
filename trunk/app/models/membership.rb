@@ -6,7 +6,5 @@ class Membership < ActiveRecord::Base
   belongs_to :institution
   belongs_to :user
 
-  validates_associated :user
-  validates_associated :user
 
 end

@@ -9,7 +9,6 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
   belongs_to :roleinchapter
   has_many :bookeditions
 
-  validates_associated :user
   validates_associated :chapterinbook
   validates_associated :roleinchapter
 end

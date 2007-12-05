@@ -10,7 +10,6 @@ class UserJournal < ActiveRecord::Base
   belongs_to :journal
   belongs_to :roleinjournal
 
-  validates_associated :user
   validates_associated :journal
   validates_associated :roleinjournal
 end

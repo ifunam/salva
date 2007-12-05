@@ -7,7 +7,6 @@ class UserThesis < ActiveRecord::Base
   belongs_to :thesis
   belongs_to :roleinthesis
 
-  validates_associated :user
   validates_associated :thesis
   validates_associated :roleinthesis
 end

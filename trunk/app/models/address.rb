@@ -15,7 +15,6 @@ class Address < ActiveRecord::Base
   validates_associated :addresstype
   validates_associated :city
   validates_associated :state
-  validates_associated :user
 
   def as_text
     info = [ 'Ubicación: ' + self.location ]

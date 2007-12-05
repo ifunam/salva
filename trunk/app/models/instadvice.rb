@@ -10,5 +10,4 @@ class Instadvice < ActiveRecord::Base
 
   validates_associated :institution
   validates_associated :instadvicetarget
-  validates_associated :user
 end

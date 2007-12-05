@@ -8,5 +8,4 @@ class InstitutionalActivity < ActiveRecord::Base
   belongs_to :institution
   belongs_to :user
   validates_associated :institution
-  validates_associated :user
 end

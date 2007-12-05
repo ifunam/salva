@@ -10,7 +10,6 @@ class UserRoleingroup < ActiveRecord::Base
   belongs_to :user
   belongs_to :roleingroup
 
-  validates_associated :user
   validates_associated :roleingroup
 
 end

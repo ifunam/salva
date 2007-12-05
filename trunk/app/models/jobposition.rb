@@ -22,5 +22,4 @@ class Jobposition < ActiveRecord::Base
   validates_associated :jobpositioncategory
   validates_associated :contracttype
   validates_associated :institution
-  validates_associated :user
 end

@@ -14,7 +14,6 @@ class UserRegularcourse < ActiveRecord::Base
   belongs_to :roleinregularcourse
   belongs_to :user
 
-  validates_associated :user
   validates_associated :regularcourse
   validates_associated :roleinregularcourse
 end

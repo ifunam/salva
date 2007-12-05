@@ -15,7 +15,6 @@ class UserConferencetalk < ActiveRecord::Base
 
   validates_associated :conferencetalk
   validates_associated :roleinconferencetalk
-  validates_associated :user
 
 
 end

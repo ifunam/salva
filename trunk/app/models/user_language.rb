@@ -12,6 +12,5 @@ class UserLanguage < ActiveRecord::Base
 
   validates_associated :institution
   validates_associated :spoken_languagelevel,:written_languagelevel
-  validates_associated :user
 
   end

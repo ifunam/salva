@@ -11,7 +11,6 @@ class ChapterinbookComment < ActiveRecord::Base
   belongs_to :chapterinbook
   belongs_to :user
 
-  validates_associated :user
   validates_associated :chapterinbook
 
 end

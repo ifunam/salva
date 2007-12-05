@@ -9,7 +9,6 @@ class UserTechproduct < ActiveRecord::Base
   belongs_to :techproduct
   belongs_to :userrole
 
-  validates_associated :user
   validates_associated :techproduct
   validates_associated :userrole
 end

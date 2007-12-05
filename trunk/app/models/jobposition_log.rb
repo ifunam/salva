@@ -8,5 +8,4 @@ class JobpositionLog < ActiveRecord::Base
   validates_uniqueness_of :user_id, :worker_key
 
   belongs_to :user
-  validates_associated :user
 end

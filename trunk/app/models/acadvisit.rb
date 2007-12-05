@@ -19,7 +19,6 @@ class Acadvisit < ActiveRecord::Base
   validates_associated :country
   validates_associated :acadvisittype
   validates_associated :externaluser
-  validates_associated :user
 
   has_many :projectacadvisits
 

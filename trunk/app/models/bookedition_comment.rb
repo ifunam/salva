@@ -8,5 +8,4 @@ class BookeditionComment < ActiveRecord::Base
   belongs_to :user
 
   validates_associated :bookedition
-  validates_associated :user
 end

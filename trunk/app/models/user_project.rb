@@ -8,7 +8,6 @@ class UserProject < ActiveRecord::Base
   belongs_to :project
   belongs_to :roleinproject
 
-  validates_associated :user
   validates_associated :project
   validates_associated :roleinproject
 end

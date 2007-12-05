@@ -9,5 +9,4 @@ class TutorialCommittee < ActiveRecord::Base
 
   validates_associated :degree
   validates_associated :institutioncareer
-  validates_associated :user
 end
