@@ -45,6 +45,7 @@ class SalvaController < ApplicationController
   end
 
   def new
+#    logger.info "quickselect "+session[:stack].model.article_id.to_s if has_model_in_stack?
       @edit = model_from_stack || @model.new
       @filter = model_from_stack(:filter)
   end

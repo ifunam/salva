@@ -7,6 +7,8 @@
 <%= select_conditions('edit', Article, 1, {:attributes => %w( authors title journal year), :conditions => 'articles.articlestatus_id != ' + Articlestatus.find_by_name('Publicado').id.to_s  }) %>
 </div>
 <%= quickpost('unpublished_article,article_id') %>
+&nbsp;
+<%= quickpost_select('unpublished_article,article_id') %>
 </div>
 
 <div class="row">

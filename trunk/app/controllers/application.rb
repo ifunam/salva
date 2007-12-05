@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
   include NavigatorTree
 
   before_filter :login_required
-  before_filter :setup_navtree
-
 
   helper :table, :theme, :user, :navigator, :date, :select, :paginator, :ajax, :quickpost
 
@@ -79,12 +77,5 @@ class ApplicationController < ActionController::Base
     render :partial => 'salva/autocomplete_list', :locals => {:list => list}
   end
 
-  def  setup_navtree
-    if controller_name == 'navigator'
-      if params[:parent] == 'true' and !session[:navtree].nil? and request.env['HTTP_CACHE_CONTROL'].nil?
-        session[:navtree] = get_tree.parent if get_tree.has_parent? and get_tree.children_data.index(controller_name).nil?
-      end
-    end
-  end
 #  alias :rescue_action_locally :rescue_action_in_public
 end
