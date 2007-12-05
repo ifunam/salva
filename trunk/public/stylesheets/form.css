@@ -682,7 +682,7 @@ select
 }
 
 input.quickpost {
-  position: absolute;
+  position: static;
   border: 0px;
   background-image: url("/images/add.gif"); background-repeat: no-repeat;
   width: 46px;
@@ -702,6 +702,7 @@ input.quickpost:hover {
 }
 
 input.quickpost-select {
+  position: static;
   border: 0px;
   background-image: url("/images/select.gif"); background-repeat: no-repeat;
   width: 46px;
