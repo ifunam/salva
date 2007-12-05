@@ -21,15 +21,14 @@
    </div> <!-- /topbar -->
    <div class="toplinks">
    <%= get_label('login') %>: <span class="logged_user"><%= logged_user%> </span> |
-   <%= link_to('Ayuda', { :controller => 'help' })%> |
    <%= link_to('Salir', { :controller => 'user', :action => 'logout'}) %> |
    <a href="/user/about/4" target="_new"> Soporte técnico </a>
    </div> <!-- /toplinks -->
    <div class="title">
- 	<%=  render :partial => "navigation/breadcrumb_images" %><%= controller_title %>
+   	<%=  render :partial => "navigation/breadcrumb_images" %><%= controller_title %>
    </div> <!-- title -->
    <div class="navbar">
-    <b>Men&uacute; de navegaci&oacute;n:</b > <%= render :partial => "navigation/breadcrumb" %>
+    <b>Men&uacute; de navegaci&oacute;n:</b> <%= render :partial => "navigation/breadcrumb" %>
    </div> <!-- /navbar -->
    <div class="formbox">
    <% if flash[:notice] %>
@@ -37,8 +36,8 @@
    <% end %>
      <%= yield %>
    </div> <!-- /formbox -->
-   <%=  render :partial => "navigation/neighborlinks" %>
 </div> <!-- /container_border -->
+   <%=  render :partial => "navigation/neighborlinks" %>
 </div> <!-- /container -->
 </body>
 </html>

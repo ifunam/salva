@@ -77,6 +77,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     file.close
     @report = UserReport.new(session[:user])
     @pdf = UserReportPdfTransformer.new(@document_title)
+    @pdf.add_received_stamp
     @pdf.report_code report_code
     @pdf.add_data [@report.profile_as_hash]
     @pdf.add_textile textile

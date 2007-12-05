@@ -11,7 +11,7 @@ class UserReportPdfTransformer
 
   attr_accessor :pdf
 
-  def initialize(title)
+  def initialize(title, received_stamp=false)
     @pdf =  PDF::Writer.new  	  
     @pdf.select_font "Times-Roman"
     @pdf.info.creator = 'Salva Plataforma de Información Curricular'
@@ -19,14 +19,19 @@ class UserReportPdfTransformer
     # @pdf.info.author = username
     @pdf.start_page_numbering(@pdf.page_width - 20, 10, 8, :right, " <PAGENUM>") 
     
-    @pdf.add_image_from_file RAILS_ROOT + "/public/images/unam_escudo.png", 25, 660, 100
-
+    @pdf.add_image_from_file RAILS_ROOT + "/public/images/unam_escudo.jpg", 25, 660, 100
+  
     @pdf.text(title, :font_size => SIZES[0], :justification => :center)
     myinstitution =  get_conf('institution')
     @pdf.move_pointer(4)
     @pdf.text(myinstitution, :font_size => SIZES[1], :justification => :center)
 
     @pdf.move_pointer(100)
+  end
+
+  def add_received_stamp
+    received_stamp = RAILS_ROOT + "/themes/#{get_conf('theme')}/images/received_stamp.jpg"    
+    @pdf.add_image_from_file received_stamp, 480, 680, 100 if File.exists?(received_stamp) 
   end
   
   def report_code(report_code)

@@ -21,7 +21,23 @@
 </div>
 
 <div id="container"> 
-
+<div id="maintopbar"> <!-- topbar: background for the options and -->
+<!-- tools bars -->
+<div class="toolbar"> <!-- toolbar:  containing the tools and options -->
+<!-- bars -->
+  <!-- Bar for another websites: conacyt, scienti, etc -->
+  <div class="left_toolbar"></div>
+  <div class="center_toolbar">
+     <div id="scienti">
+     <a href="http://www.scienti.net/" target="_new"> 
+     <img src="/images/invisible_16x16.png" border="0"  alt="ScienTI" />  
+     </a>
+    </div>
+  </div>
+  <div class="right_toolbar"></div>
+  <!-- End of this section-->
+</div> <!-- End for toolbar -->
+</div><!-- End of topbar -->
 
 <div class="bgcolor"> <!-- form: used for the form or content of this -->
 <!-- page -->
@@ -29,11 +45,8 @@
        <li id="active"> <a href="http://www.salva.unam.mx"
        id="current" target="_new">S A L V A</a></li>
        <li class="simple"><a href="/user/">Inicio de  sesi&oacute;n</a></li>
-       <li class="simple"><a href="/user/new/">Obtener una cuenta</a></li>
        <li> <a href="http://www.unam.mx" target="_new">UNAM</a></li>
-       <li class="simple"> <a href="http://www.aries.unam.mx/" target="_new">ARIES</a></li>
-       <li class="simple"> <a href="http://dgapa.unam.mx/servicios_general.htm" target="_new">DGAPA</a></li>
-       <li class="simple"> <a href="http://www.estadistica.unam.mx/" target="_new">SIDEU</a></li>
+       <li><a href="http://www.scienti.net/" target="_new">ScienTI</a></li>
       </ul>
 	<div id="login">
 		<% if flash[:notice] %>  <p style="color: yellow"> <%= flash[:notice] %></p> <% end %>
