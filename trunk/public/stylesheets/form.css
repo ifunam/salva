@@ -678,10 +678,13 @@ select
 {
   font-style:none;
   max-width: 350px;
+  width: expression(document.body.clientWidth < 742? "400px" : document.body.clientWidth > 1202? "700px" : "auto");
+  overflow:scroll; 
   float: left;
 }
 
 input.quickpost {
+  display: block; 
   position: static;
   border: 0px;
   background-image: url("/images/add.gif"); background-repeat: no-repeat;
@@ -694,14 +697,15 @@ input.quickpost {
   cursor: hand; 
   color: #ffffff;
   font-size: 1px;
+  float:left;
 }
 
 input.quickpost:hover {
-
   border: 1px solid #f48f35;
 }
 
 input.quickpost-select {
+  display: block;
   position: static;
   border: 0px;
   background-image: url("/images/select.gif"); background-repeat: no-repeat;
