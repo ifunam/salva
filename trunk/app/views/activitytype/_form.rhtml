@@ -9,8 +9,12 @@
 <div class="row">
 <label for="activitygroup_id" class="label"><%= get_label('activitygroup_id') %> <span class="required">*</span></label>
 <div id="activitygroup_id">
-<% @edit.activitygroup_id ||= params[:id] %>
+<% if !params[:id].nil? and @edit.activitygroup_id.nil? %>
+<%= hidden_field(:edit, 'activitygroup_id', :value => params[:id]) %>
+<%= Activitygroup.find(params[:id]).name %>
+<% else %>
 <%= simple_select('edit', Activitygroup, 2) %>
+<% end %>
 </div>
 </div>
 
