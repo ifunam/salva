@@ -21,3 +21,4 @@
 # most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => '(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = ' +@user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
 - most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => 'jobpositions.user_id = ' + @user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
 - most_recent_user_adscription: Finder.new(UserAdscription, :first, :attributes => ['adscription', 'startyear'], :conditions => 'user_adscriptions.user_id = ' + @user.id.to_s, :order => 'user_adscriptions.startyear DESC').as_text.first
+- user_incharge: @user.user_incharge.person.fullname
