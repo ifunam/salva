@@ -1,4 +1,4 @@
-class BookeditionRoleinbookController < SalvaController
+class UserBookController < SalvaController
   def initialize
     super
     @model = BookeditionRoleinbook
@@ -7,6 +7,6 @@ class BookeditionRoleinbookController < SalvaController
     @purge_msg = 'La edición ha sido borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :conditions=> "roleinbook_id < 3" }
+    @list = { :conditions=> "roleinbook_id > 2" }
   end
 end

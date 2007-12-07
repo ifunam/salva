@@ -246,7 +246,8 @@ researcharea_id: Area de investigación
 researchline: Líneas de investigación
 researchline_id: Línea de investigación
 user_researchline: Líneas de investigación
-bookedition_roleinbook: Participación en libros
+bookedition_roleinbook: Autoría de libros
+user_book: Colaboración en libros
 idtype: Tipo de identificación
 idtype_id: Tipo de identificación
 identification: Identificación
@@ -323,7 +324,7 @@ human_resources_formation: Formación de recursos humanos
 proceeding_id: Memoria
 roleproceeding_id: Rol
 arbitration: Arbitraje
-colaboration_on_publications: Arbitraje y colaboración en publicaciones
+colaboration_on_publications: Arbitraje y colaboración editorial
 thesis_juror: Jurado de tesis
 roleinjury_id: Tipo de participación
 teaching: Docencia

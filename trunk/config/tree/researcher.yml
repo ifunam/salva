@@ -47,6 +47,7 @@
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed
+  - user_book
 - popular_science
 - - user_newspaperarticle
   - user_popularsciencework
