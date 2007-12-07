@@ -59,6 +59,7 @@ class UserReportPdfTransformer
     
     num = 1
     data.each do |text| 
+      @pdf.start_new_page if @pdf.y.to_i < 75
       if text.is_a?Array
         if !text[1].nil? and !text[1].blank?
           label = '<b>'+get_label(text[0])+': </b>' 
