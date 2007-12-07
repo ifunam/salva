@@ -1,6 +1,6 @@
 login: Usuario
 passwd: Contraseña
-passwd_confirmation: Contraseña
+passwd_confirmation: Confirmar contraseña
 userstatus_id: Estado del usuario
 email: Correo electrónico
 kcs7: Certificado para firma digital
