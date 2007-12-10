@@ -58,7 +58,6 @@ class UserController < ApplicationController
         UserNotifier.deliver_new_notification(@user, url_for(:action => 'activate', :id => @user.id, :token => @user.token), get_myinstitution.name)
         format.html { render :action => 'created' }
         format.xml  { head :created, :location => users_url(@user) }
-        @user.activate     # Solucion provisional
       else
         @user.passwd = nil
         @user.passwd_confirmation = nil
