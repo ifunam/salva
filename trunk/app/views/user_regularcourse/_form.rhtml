@@ -4,7 +4,7 @@
 <div class="row">
 <label for="academicprogram_id" class="label"><%=get_label('academicprogram_id') %> </label>
 <div id="academicprogram_id">
-<%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', ['institution', 'abbrev']]], 'year', 'academicprogramtype'])  %>
+<%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', 'name', ['institution', 'abbrev']]], 'year', 'academicprogramtype'], :order => 'careers.name ASC, institutions.name ASC, prefix_for_parent_institutions.abbrev ASC, academicprograms.year')  %>
 </div>
 <%= quickpost('academicprogram') %>
 </div>

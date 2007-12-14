@@ -5,6 +5,7 @@
  ) %>
 <% else %>
 <%= select_conditions('edit', Regularcourse, 1, :order => 'regularcourses.title ASC',
-:attributes => ['title', ['academicprogram', [ 'institutioncareer', 'career' ] ] ]
+:attributes => ['title', ['academicprogram', [ 'institutioncareer', 'career' ] ] ],
+:order => 'regularcourses.title ASC'
 ) %>
 <% end %>
