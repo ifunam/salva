@@ -18,6 +18,7 @@ class ProjectController < SalvaController
       'projectacadvisit' => %w(acadvisit_id),
       'projectgenericwork' => %w(genericwork_id),
       'projectarticle' => %w( article_id ),
+      'projectthesis' => %w( thesis_id ),
     }
   end
 end
