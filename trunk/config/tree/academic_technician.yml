@@ -45,6 +45,7 @@
   - user_inproceeding_refereed
   - user_techreport
   - user_inproceeding_unrefereed
+  - review
 - colaboration_on_publications
 - - user_journal
   - user_proceeding_refereed
