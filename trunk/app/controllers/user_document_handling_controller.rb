@@ -7,9 +7,9 @@ class UserDocumentHandlingController < ApplicationController
 
   def list
     @collection  = []
-    Document.find(:all, :conditions => ["enddate >= ?", Date.today.to_s]).each do |document|
+    Document.find(:all, :conditions => ["enddate >= ?", Date.today]).each do |document|
         @collection << {
-          :title => document.documenttype.name+'  '+ document.title,
+          :title => document.documenttype.name + '  ' + document.title,
           :records => UserDocument.find(:all,   :conditions =>"document_id = #{document.id} AND user_incharge_id = #{session[:user] }")
         }
     end
