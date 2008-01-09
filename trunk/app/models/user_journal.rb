@@ -4,7 +4,6 @@ class UserJournal < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :journal_id, :roleinjournal_id, :startyear, :greater_than => 0, :only_integer => true
   validates_numericality_of :startmonth, :endyear, :endmonth, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_uniqueness_of :user_id, :scope =>[:journal_id, :roleinjournal_id]
 
   belongs_to :user
   belongs_to :journal
