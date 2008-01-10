@@ -118,8 +118,8 @@ CREATE TABLE user_journals (
             DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        UNIQUE(user_id, journal_id, roleinjournal_id)
+        PRIMARY KEY (id)
+--        UNIQUE(user_id, journal_id, roleinjournal_id)
 --      CONSTRAINT valid_duration CHECK (endyear IS NULL OR
 --             (startyear * 12 + coalesce(startmonth,   0)) > (endyear * 12 + coalesce(endmonth,0)))
 );
