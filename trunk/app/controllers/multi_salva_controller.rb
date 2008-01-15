@@ -41,14 +41,14 @@ class MultiSalvaController < ApplicationController
 
   def edit
       @record = ModelSerialize.new(@models, params[:id])
+      instance_models
       @filter = model_from_stack(:filter)
-      @institution = @edit.institution if @edit.has_attribute? 'institution_id'
+      render :template => 'multi_salva/edit'
   end
 
   def new
     @record = session[:composite] || ModelSerialize.new(@models)
-    @record.records.keys.each { |k| eval "@#{k} = @record.records[k]"  }
-    session[:composite]  = @record
+    instance_models
     @filter = model_from_stack(:filter)
     render :template => 'multi_salva/new'
   end
@@ -68,7 +68,8 @@ class MultiSalvaController < ApplicationController
         redirect_to stack_return(@record.id)
       else
         flash[:notice] = 'Hay errores al guardar esta información'
-        render :action => 'new'
+        instance_models
+        render :template => 'multi_salva/new'
       end
     end
   end
@@ -80,7 +81,10 @@ class MultiSalvaController < ApplicationController
       redirect_to options_for_next_controller(@record, controller_name, 'edit')
     elsif params[:stacklist] != nil
       redirect_to options_for_next_controller(@record, controller_name, 'edit', 'list')
-      if @record.fill(params[:edit])
+    else
+      @record.fill(params)
+      if @record.valid?
+        @record.update_models
         if @children != nil and !has_model_in_stack?
           redirect_to :action => 'show', :id => @record.id
         else
@@ -89,7 +93,8 @@ class MultiSalvaController < ApplicationController
         end
       else
         flash[:notice] = 'Hay errores al guardar esta información'
-        render :action => 'edit'
+        instance_models
+        render :template => 'multi_salva/edit'
       end
     end
   end
@@ -123,6 +128,7 @@ class MultiSalvaController < ApplicationController
   def show
       @record = ModelSerialize.new(@model, params[:id])
       model_into_stack(controller_name,  'show', @record.id)
+      render :template => 'multi_salva/show'
   end
 
   def cancel
@@ -140,4 +146,7 @@ class MultiSalvaController < ApplicationController
     @record.user_id = session[:user]
   end
 
+  def instance_models
+    @record.records.keys.each { |k| eval "@#{k} = @record.records[k]" }
+  end
 end

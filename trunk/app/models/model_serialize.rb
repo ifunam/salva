@@ -41,6 +41,12 @@ class ModelSerialize
   def save
     @model.save if @model.valid?
   end
+  
+  def update_models
+    @records.values.each do |record|
+      record.save if record.valid?
+    end
+  end
 
   def id
     @model.id
