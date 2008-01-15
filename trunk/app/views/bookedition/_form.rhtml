@@ -1,70 +1,52 @@
-<%= error_messages_for 'edit' %>
+<%= error_messages_for 'bookedition' %>
 
-<!--[form:bookedition]-->
+<!--[form:bookbookeditionion]-->
 
-<div class="row">
-<label for="edition_id" class="label"><%= get_label('book') %> <span
-class="required">*</span></label>
-<% if !params[:id].nil?  %>
-<%= Book.find(params[:id]).title %>
-<%= hidden_field('edit', 'book_id', :value => params[:id]) %>
-<% else %>
-<div id="book_id">
-<%= simple_select('edit', Book, 1) %>
-<%= quickpost('book') %>
-</div>
-<% end %>
-</div>
+
 
 <div class="row">
-<label for="edition" class="label"><%= get_label('edition') %> <span class="required">*</span></label>
-<div id="edition">
-<%= text_field 'edit', 'edition', 'size' => 30, 'maxlength'=> 200, 'tabindex'=> 3, 'id' => 'edition' %>
+<label for="bookedition" class="label"><%= get_label('edition') %> <span class="required">*</span></label>
+<div id="bookedition">
+<%= text_field 'bookedition', 'edition', 'size' => 30, 'maxlength'=> 200, 'tabindex'=> 3, 'id' => 'edition' %>
 </div>
 
 </div>
 
 <div class="row">
 <label for="pages" class="label"><%= get_label('pages') %></label>
-<%= text_field 'edit', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
+<%= text_field 'bookedition', 'pages', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 3, 'id' => 'pages' %>
 </div>
 
 <div class="row">
 <label for="isbn" class="label"><%= get_label('isbn') %></label>
-<%= text_field 'edit', 'isbn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
+<%= text_field 'bookedition', 'isbn', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 4, 'id' => 'isbn' %>
 </div>
 
 
 <div class="row">
 <label for="mediatype_id" class="label"><%= get_label('mediatype_id') %> <span class="required">*</span></label>
 <div id="mediatype_id">
-<%= simple_select('edit', Mediatype, 6) %>
-<%= quickpost('mediatype') %>
+<%= simple_select('bookedition', Mediatype, 6) %>
 </div>
 </div>
 
 <div class="row">
-<label for="editionstatus_id" class="label"><%= get_label('editionstatus_id') %></label>
-<div id="editionstatus_id">
-<%= simple_select('edit', Editionstatus, 7) %>
-<%= quickpost('editionstatus') %>
+<label for="bookeditionionstatus_id" class="label"><%= get_label('editionstatus_id') %></label>
+<div id="bookeditionionstatus_id">
+<%= simple_select('bookedition', Editionstatus, 7) %>
 </div>
 </div>
 
 <div class="row">
 <label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
-<%= auto_complete_year(:edit, :year, 8) %><br/>
+<%= auto_complete_year(:bookedition, :year, 8) %><br/>
 </div>
 
 <div class="row">
 <label for="month" class="label"><%= get_label('month') %></label>
-<%= month_select('edit', 'month', {:tabindex => 10, :required => 0 }) %>
+<%= month_select('bookedition', 'month', {:tabindex => 10, :required => 0 }) %>
 </div>
 
-<div class="row">
-<label for="other" class="label"><%= get_label('other') %></label>
-<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %></div>
 
-
-<!--[eoform:bookedition]-->
+<!--[eoform:bookbookeditionion]-->
 
