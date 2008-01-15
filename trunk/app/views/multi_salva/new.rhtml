@@ -1,0 +1,8 @@
+<% form_tag ('create') do -%>
+  <%= render :partial => 'multi_salva/form_multi' %>
+  <br/> 
+<div id="operations"> 
+  <%= submit_tag get_label('save') %> |
+  <%= link_to get_label('cancel'), :action => 'cancel' %>
+</div>
+<% end -%>

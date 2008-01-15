@@ -1,9 +1,7 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:membership]-->
-<div class="row">
-  <%= render :partial => 'salva/filter_institutions' %>
-</div>
+ <%= render :partial => 'salva/filter_institutions' %>
 
 <div class="row">
 <label for="descr" class="label">Tipo de participación</label>
@@ -12,11 +10,11 @@
 
 <div class="row">
 <label for="startyear" class="label"><%= get_label('startyear') %></label>
-<%= auto_complete_year(:startyear, 3) %><br/></div>
+<%= auto_complete_year(:edit, :edit, :startyear, 3) %><br/></div>
 
 <div class="row">
 <label for="endyear" class="label"><%= get_label('endyear') %></label>
-<%= auto_complete_year(:endyear, 4, true) %><br/></div>
+<%= auto_complete_year(:edit, :edit, :endyear, 4, true) %><br/></div>
 
 
 <!--[eoform:membership]-->

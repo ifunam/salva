@@ -11,7 +11,6 @@
 <div class="row">
 <label for="researcharea_id" class="label"><%= get_label('researcharea_id') %></label>
 <div id="researcharea_id">
-<% @edit.researcharea_id = params[:id] if params[:id] %>
 <%= simple_select('edit', Researcharea, 3) %>
 <%= quickpost('researcharea') %>
 </div>

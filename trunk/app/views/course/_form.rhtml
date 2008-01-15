@@ -6,15 +6,12 @@
 <%= text_area 'edit', 'name', 'rows' => 4, 'cols'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row">
- <%= render :partial => 'salva/filter_institution_schools' %>
-</div>
+<%= render :partial => 'salva/filter_institutions' %>
 
 <div class="row">
  <label for="country_id" class="label"><%= get_label('country_id') %> donde se impartió <span class="required">*</span></label>
  <%= simple_select('edit', Country, 2, {:selected => @edit.country_id || 484 }) %>
 </div>
-
 
 <div class="row">
 <label for="coursegroup_id" class="label">
@@ -43,7 +40,7 @@
 
 <div class="row">
 <label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
-<%= auto_complete_year(:startyear, 9) %><br/></div>
+<%= auto_complete_year(:edit, :edit, :startyear, 9) %><br/></div>
 
 <div class="row">
 <label for="startmonth" class="label"><%= get_label('startmonth') %></label>
@@ -52,7 +49,7 @@
 
 <div class="row">
 <label for="endyear" class="label"><%= get_label('endyear') %></label>
-<%= auto_complete_year(:endyear, 11, true) %><br/></div>
+<%= auto_complete_year(:edit, :edit, :endyear, 11, true) %><br/></div>
 
 <div class="row">
 <label for="endmonth" class="label"><%= get_label('endmonth') %></label>
@@ -66,7 +63,7 @@
 
 <div class="row">
 <label for="location" class="label"><%= get_label('location') %></label>
-<%= text_field 'edit', 'location', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 14, 'id' => 'location' %>
+<%= text_area'edit', 'location', 'size' => '40x4', 'tabindex'=> 14, 'id' => 'location' %>
 </div>
 
 <div class="row">

@@ -1,13 +1,7 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:userconference]-->
-<div class="row">
-<label for="conference_id" class="label"><%= get_label('conference_id') %> <span class="required">*</span></label>
-<div id="conference_id">
-<%= select_conditions('edit', Conference, 1, :attributes =>%w(name conferencetype year), :order => 'conferences.name ASC') %>
-</div>
-<%= quickpost('conference,conference_id') %>
-</div>
+<%= render :partial => 'conference/form'%>
 
 <div class="row">
 <label for="roleinconference_id" class="label"><%= get_label('roleinconference_id') %> <span class="required">*</span></label>

@@ -1,10 +1,4 @@
-<div id="operations">
- <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %>
- &nbsp; | &nbsp;
- <%= link_to get_label('send_annual_report'), :action => 'send_document' %>
- &nbsp; | &nbsp;
- <%= link_to get_label('cancel'), :action => 'list' %>
-</div>
+<%= render :partial => 'operations' %>
 <hr/>
 <img src="<%= url_for(:controller => 'person', :action => "photo") %>"/>
 <%= render :partial => 'table_of_content' %>
@@ -24,4 +18,5 @@
 </div>
 <% end %>
 <% end -%>
+<%= render :partial => 'operations' %>
 <!-- end for body -->

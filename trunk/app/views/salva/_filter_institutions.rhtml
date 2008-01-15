@@ -1,21 +1,6 @@
-<label for="institution_id"
-class="label"><%=get_label('institution_id') %><% 
-unless defined?(notrequired) and !notrequired.nil? and notrequired %>
-<span class="required">*</span><%
-end %>
-</label>
-  <%= links_to_filters([
-                        [ 'UNAM', 'select_institution_unam'],
-                        ['Nacional', 'select_filters_institution_national'],
-                        ['Internacional', 'select_filters_institution_international']
-                       ] ) %>
-  <div id="partial">
-<% selected = nil unless defined? selected %>
-   <%= render :partial => 'salva/select_institution_unam', :locals => { 'selected' => selected } %>
-  </div>
-<%= quickpost('institution') %>
-&nbsp;
-<%= quickpost_select('institution') %>
-
+<div class="row">
+<label for="descr" class="label"><%= get_label('institution') %> <span class="required">*</span></label>
+<%= text_area 'institution', 'name', 'rows' => 4, 'cols' => 40, 'id' => 'institution_name' %>
+</div>
 
 

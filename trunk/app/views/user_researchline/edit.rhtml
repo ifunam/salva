@@ -1,15 +1,7 @@
 <div class="required_legend"><%= get_label('required_legend') %>.</div>
 <% form_tag({:action => 'update', :id => @edit.id}) do -%>
 
-<%= error_messages_for 'edit' %>
-<div class="row">
-<label for="researchline_id" class="label"><%= get_label('researchline_id') %> <span class="required">*</span></label>
-   <div id="select_researcharea_researchline">
-     <%= observable_select('select_researcharea_researchline', 1, 2) %>
-   </div>
-<%= quickpost('researchline:researcharea_id') %>
-</div>
-
+<%= render :partial => 'researchline/form'%>
   <div id="operations">
     <%= submit_tag get_label('update') %><span id="progressbar" style="display:none;"><img src="/images/progress-bar.gif"></span> |
   <%= link_to get_label('cancel'), :action => 'cancel' %>
