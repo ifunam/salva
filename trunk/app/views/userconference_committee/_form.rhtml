@@ -1,12 +1,12 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:userconference]-->
-<%= render :partial => 'conference/form'%>
+
 
 <div class="row">
 <label for="roleinconference_id" class="label"><%= get_label('roleinconference_id') %> <span class="required">*</span></label>
 <div id="roleinconference_id">
-<%= select_conditions('edit', Roleinconference, 2, {:attributes => %w(name),  :conditions => "name != 'Asistente'"}) %>
+<%= select_conditions('userconference', Roleinconference, 2, {:attributes => %w(name),  :conditions => "name != 'Asistente'"}) %>
 </div>
 </div>
 
