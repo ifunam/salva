@@ -12,4 +12,6 @@ ALTER TABLE bookeditions DROP CONSTRAINT bookeditions_book_id_key;
 ALTER TABLE books DROP CONSTRAINT books_title_key;
 ALTER TABLE chapterinbooks DROP CONSTRAINT chapterinbooks_bookedition_id_key;
 ALTER TABLE chapterinbook_roleinchapters DROP CONSTRAINT chapterinbook_roleinchapters_user_id_key;
-
+ALTER TABLE user_inproceedings DROP CONSTRAINT user_inproceedings_inproceeding_id_key;
+ALTER TABLE inproceedings DROP CONSTRAINT inproceedings_proceeding_id_key;
+ALTER TABLE proceedings DROP CONSTRAINT proceedings_conference_id_key;
