@@ -1,7 +1,9 @@
-class PrizeController < SalvaController
+class PrizeController < MultiSalvaController
   def initialize
     super
     @model = Prize
+    @views = [:prizetype, :prize, :institution]
+    @models = [ Prize, Institution, Prizetype]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
