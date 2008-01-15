@@ -126,7 +126,8 @@ class MultiSalvaController < ApplicationController
   end
 
   def show
-      @record = ModelSerialize.new(@model, params[:id])
+      @record = ModelSerialize.new(@models, params[:id])
+      instance_models
       model_into_stack(controller_name,  'show', @record.id)
       render :template => 'multi_salva/show'
   end
