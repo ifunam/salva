@@ -20,13 +20,16 @@
          PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR
    </div> <!-- /topbar -->
    <div class="toplinks">
-	<center> <img src="<%= url_for(:controller => 'person', :action => "photo") %>" width="32" height="48" align="middle" border="1"/> <%= Person.find(:first, :conditions => ['user_id = ?', session[:user]]).fullname %> </center>
+	<center><%= Person.find(:first, :conditions => ['user_id = ?', session[:user]]).fullname %> </center>
    <%= get_label('login') %>: <span class="logged_user"><%= logged_user%> </span> |
    <%= link_to('Salir', { :controller => 'user', :action => 'logout'}) %> |
    <a href="/user/about/4" target="_new"> Soporte técnico </a>
    </div> <!-- /toplinks -->
    <div class="title">
-   	<%=  render :partial => "navigation/breadcrumb_images" %><%= controller_title %>
+   	<%=  render :partial => "navigation/breadcrumb_images" %><%= controller_title %> 
+	<div class="toplinks">
+   	 <%= link_to 'Ir al módulo del informe anual de actividades', {:controller => 'user_annual_activities_report', :action => 'preview'}, {:style => 'color: green; text-decoration: blink;'} %>
+	</div>
    </div> <!-- title -->
    <div class="navbar">
     <b>Men&uacute; de navegaci&oacute;n:</b> <%= render :partial => "navigation/breadcrumb" %>

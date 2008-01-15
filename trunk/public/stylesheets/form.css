@@ -77,6 +77,32 @@ body {
         color: blue;
 }
 
+.toplinks2 {
+        width: 100%;
+        height: 13px;
+        background: #D6E7EF;
+        color: green;
+        margin-top: 2px;
+        vertical-align: bottom;
+        font: 12px Arial, Helvetica, san-serif;
+        text-align: right;
+}
+
+.toplinks2 a {
+        color: #0F4180;
+        text-decoration: underline;
+        font: 12px Arial, Helvetica, san-serif;
+        padding-right: 10px;
+}
+
+.toplinks2 a:visited {
+        color: green;
+}
+
+.toplinks2 a:hover {
+        color: blue;
+}
+
 .toplinks .logged_user {
         color: green;
         font-weight: bold;
