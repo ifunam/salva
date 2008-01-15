@@ -2,12 +2,12 @@
 require 'iconv'
 require 'list'
 require 'stackcontroller'
-class SalvaController < ApplicationController
+require 'model_serialize'
+class MultiSalvaController < ApplicationController
   include List
   include Stackcontroller
 
   def initialize
-
     # Default variables for the list method
     @list = {}
   end
@@ -40,35 +40,32 @@ class SalvaController < ApplicationController
   end
 
   def edit
-      @edit = model_from_stack || @model.find(params[:id])
+      @record = ModelSerialize.new(@models, params[:id])
       @filter = model_from_stack(:filter)
       @institution = @edit.institution if @edit.has_attribute? 'institution_id'
   end
 
   def new
-    # logger.info "quickselect "+session[:stack].model.article_id.to_s if has_model_in_stack?
-      @edit = model_from_stack || @model.new
-      @filter = model_from_stack(:filter)
+    @record = session[:composite] || ModelSerialize.new(@models)
+    @record.records.keys.each { |k| eval "@#{k} = @record.records[k]"  }
+    session[:composite]  = @record
+    @filter = model_from_stack(:filter)
+    render :template => 'multi_salva/new'
   end
 
   def create
-    @edit = @model.new(params[:edit])
-    set_userid
     if params[:stack] != nil
       redirect_to options_for_next_controller(@edit, controller_name, 'new')
     elsif params[:stacklist] != nil
       redirect_to options_for_next_controller(@edit, controller_name, 'new', 'list')
     else
-      if params[:institution]
-        @edit.institution = Institution.create({:name => params[:institution][:name], :institutiontype_id => 1, :institutiontitle_id => 1, :country_id => 484, :moduser_id => session[:user]})
-      end
-      if @edit.save
-        if @children != nil and !has_model_in_stack?
-          redirect_to :action => 'show', :id => @edit.id
-        else
-          flash[:notice] = @create_msg
-          redirect_to stack_return(@edit.id)
-        end
+      @record= ModelSerialize.new(@models)
+      set_userid
+      @record.fill(params)
+      if @record.valid?
+        @record.save
+        flash[:notice] = @created_msg
+        redirect_to stack_return(@record.id)
       else
         flash[:notice] = 'Hay errores al guardar esta información'
         render :action => 'new'
@@ -77,22 +74,18 @@ class SalvaController < ApplicationController
   end
 
   def update
-    @edit = @model.find(params[:id])
+    @record = ModelSerialize.new(@models, params[:id])
     set_userid
     if params[:stack] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'edit')
+      redirect_to options_for_next_controller(@record, controller_name, 'edit')
     elsif params[:stacklist] != nil
-      redirect_to options_for_next_controller(@edit, controller_name, 'edit', 'list')
-    else
-      if params[:institution]
-        @edit.institution = Institution.create({:name => params[:institution][:name], :institutiontype_id => 1, :institutiontitle_id => 1, :country_id => 484, :moduser_id => session[:user]})
-      end
-      if @edit.update_attributes(params[:edit])
+      redirect_to options_for_next_controller(@record, controller_name, 'edit', 'list')
+      if @record.fill(params[:edit])
         if @children != nil and !has_model_in_stack?
-          redirect_to :action => 'show', :id => @edit.id
+          redirect_to :action => 'show', :id => @record.id
         else
           flash[:notice] = @update_msg
-          redirect_to stack_return(@edit.id)
+          redirect_to stack_return(@record.id)
         end
       else
         flash[:notice] = 'Hay errores al guardar esta información'
@@ -128,8 +121,8 @@ class SalvaController < ApplicationController
   end
 
   def show
-      @edit = @model.find(params[:id])
-      model_into_stack(controller_name,  'show', @edit.id)
+      @record = ModelSerialize.new(@model, params[:id])
+      model_into_stack(controller_name,  'show', @record.id)
   end
 
   def cancel
@@ -143,8 +136,8 @@ class SalvaController < ApplicationController
   private
 
   def set_userid
-    @edit.moduser_id = session[:user] if @edit.has_attribute?('moduser_id')
-    @edit.user_id = session[:user] if @edit.has_attribute?('user_id')
+    @record.moduser_id = session[:user]
+    @record.user_id = session[:user]
   end
 
 end

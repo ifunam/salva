@@ -1,6 +1,7 @@
 require 'user_report_pdf_transformer'
 class  UserAnnualActivitiesReportController < UserDocumentController
   helper :textile
+  include Stackcontroller
   def initialize
     @document_name = 'Informe anual de actividades'
     super
