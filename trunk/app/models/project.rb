@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  attr_accessor :roleinproject_id
+  
   has_many :projectinstitutions
   has_many :projectfinancingsources
   has_many :projectresearchlines
@@ -15,7 +17,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of :projectstatus_id, :projectstatus_id, :startyear,:projecttype_id, :greater_than => 0, :only_integer => true
 
   validates_presence_of :name, :responsible, :descr, :projecttype_id, :projectstatus_id, :startyear
-  validates_uniqueness_of :name, :scope => [:startyear, :responsible]
+  #validates_uniqueness_of :name, :scope => [:startyear, :responsible]
 
   belongs_to :projecttype
   belongs_to :projectstatus
