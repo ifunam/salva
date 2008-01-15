@@ -1,4 +1,4 @@
-class StimulustypeController < SalvaController
+class StimulustypeController < MultiSalvaController
   def initialize
     super
     @model = Stimulustype

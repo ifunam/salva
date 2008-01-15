@@ -1,7 +1,9 @@
-class StimuluslevelController < SalvaController
+class StimuluslevelController < MultiSalvaController
   def initialize
     super
     @model = Stimuluslevel
+    @views = [ :stimulustype, :stimuluslevel, :institution ]
+    @models = [ Stimuluslevel, [Stimulustype, Institution]]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
