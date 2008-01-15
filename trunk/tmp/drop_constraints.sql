@@ -15,3 +15,4 @@ ALTER TABLE chapterinbook_roleinchapters DROP CONSTRAINT chapterinbook_roleincha
 ALTER TABLE user_inproceedings DROP CONSTRAINT user_inproceedings_inproceeding_id_key;
 ALTER TABLE inproceedings DROP CONSTRAINT inproceedings_proceeding_id_key;
 ALTER TABLE proceedings DROP CONSTRAINT proceedings_conference_id_key;
+ALTER TABLE user_genericworks DROP CONSTRAINT user_genericworks_genericwork_id_key;
