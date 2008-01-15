@@ -6,10 +6,10 @@
 <%= text_area 'prize', 'name', 'size' => '40x4', 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row">
-<label for="other" class="label"><%= get_label('other') %></label>
-<%= text_area 'prize', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'other' %></div>
-
+<div class="row"> 
+<label for="prizetype_id" class="label"><%= get_label('prizetype_id') %> <span class="required">*</span></label> 
+<%= simple_select('prize', Prizetype, 2) %> 
+</div>
 
 <!--[eoform:prize]-->
 

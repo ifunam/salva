@@ -2,21 +2,14 @@
 
 <!--[form:user_prize]-->
 
-<div class="row">
-<label for="prize_id" class="label"><%= get_label('prize_id') %> <span class="required">*</span></label>
-<div id="prize_id">
-<%= select_conditions('edit', Prize, 1, {:attributes => %w(prizetype name) }) %>
-</div>
-<%= quickpost('prize') %>
-</div>
 
 <div class="row"> 
 <label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
-<%= auto_complete_year(:edit, :year, 2) %><br/></div>
+<%= auto_complete_year(:user_prize, :year, 2) %><br/></div>
 
 <div class="row"> 
 <label for="month" class="label"><%= get_label('month') %></label> 
-<%= month_select('edit', 'month', {:tabindex => 3, :required => 0 }) %> 
+<%= month_select('user_prize', 'month', {:tabindex => 3, :required => 0 }) %> 
 </div>
 
 
