@@ -26,7 +26,7 @@
 
 <div class="row">
 <label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
-<%= auto_complete_year(:edit, :edit, :startyear, 7) %><br/>
+<%= auto_complete_year(:edit, :startyear, 7) %><br/>
 </div>
 
 <div class="row">
@@ -36,7 +36,7 @@
 
 <div class="row">
 <label for="endyear" class="label"><%= get_label('endyear') %></label>
-<%= auto_complete_year(:edit, :edit, :endyear, 9, true) %><br/>
+<%= auto_complete_year(:edit, :endyear, 9, true) %><br/>
 </div>
 
 <div class="row">
