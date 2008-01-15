@@ -3,7 +3,11 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content(row, columns).join(', ').to_s+'.'
-      id = row.id
+      unless @primary_key.nil?
+        id = row.send(@primary_key).to_i
+      else
+        id = row.id
+      end
       list.push([text, id])
     }
     return list
@@ -13,7 +17,11 @@ module ListHelper
     list = []
     collection.each { |row|
       text = columns_content_array(row, columns).join(', ').to_s+'.'
-      id = row.id
+      unless @primary_key.nil?
+        id = row.send(@primary_key).to_i
+      else
+        id = row.id
+      end
       list.push([text, id])
     }
     return list
