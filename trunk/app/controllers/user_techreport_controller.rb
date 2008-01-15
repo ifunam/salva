@@ -1,7 +1,9 @@
-class UserTechreportController < SalvaController
+class UserTechreportController < MultiSalvaController
   def initialize
     super
     @model = UserGenericwork
+    @views = [:techreport, :user_techreport]
+    @models = [ UserGenericwork, Genericwork ]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

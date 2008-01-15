@@ -6,7 +6,7 @@
 <%= text_area 'edit', 'name', 'size' => '40x4','tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<%= hidden_tag(Mediatype, 'Impreso')%>
+<%= hidden_tag(:edit, Mediatype, 'Impreso')%>
 
 <div class="row"> 
 <label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 

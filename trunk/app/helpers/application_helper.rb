@@ -59,8 +59,8 @@ module ApplicationHelper
                      )
   end
 
-  def hidden_tag(model, name, field=nil)
-    hidden_field('edit', foreignize(model), :value => modelid(model, name))
+  def hidden_tag(object, model, name, field=nil)
+    hidden_field(object, foreignize(model), :value => modelid(model, name))
   end
 
   def modelid(model, name)

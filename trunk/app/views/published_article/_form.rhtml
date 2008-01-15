@@ -19,7 +19,7 @@
 <%= quickpost('journal') %>
 </div>
 
-<%= hidden_tag(Articlestatus, 'Publicado') %>
+<%= hidden_tag(:edit, Articlestatus, 'Publicado') %>
 
 <div class="row"> 
 <label for="pages" class="label"><%= get_label('pages') %><span class="required">*</span></label> 

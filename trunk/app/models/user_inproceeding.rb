@@ -5,6 +5,4 @@ class UserInproceeding < ActiveRecord::Base
 
   belongs_to :inproceeding
   belongs_to :user
-
-
 end
