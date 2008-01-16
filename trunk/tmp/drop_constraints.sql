@@ -20,3 +20,4 @@ ALTER TABLE user_regularcourses DROP CONSTRAINT user_regularcourses_user_id_key;
 ALTER TABLE regularcourses DROP CONSTRAINT regularcourses_academicprogram_id_fkey;
 ALTER TABLE academicprograms DROP CONSTRAINT academicprograms_institutioncareer_id_key;
 ALTER TABLE careers DROP CONSTRAINT careers_name_key;
+ALTER TABLE courses DROP CONSTRAINT courses_name_key;
