@@ -1,7 +1,9 @@
-class UserTeachingProductController < SalvaController
+class UserTeachingProductController < MultiSalvaController
   def initialize
     super
     @model = UserGenericwork
+    @views = [ :teaching_product, :user_teaching_product, :institution ]
+    @models = [ UserGenericwork, [Genericwork, Institution] ]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
