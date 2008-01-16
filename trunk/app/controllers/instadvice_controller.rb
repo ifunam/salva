@@ -1,7 +1,9 @@
-class InstadviceController < SalvaController
+class InstadviceController < MultiSalvaController
   def initialize
     super
     @model = Instadvice
+    @views = [ :instadvice, :institution]
+    @models = [ Instadvice, Institution ]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
@@ -9,3 +11,5 @@ class InstadviceController < SalvaController
     @order_by = 'id'
   end
 end
+
+

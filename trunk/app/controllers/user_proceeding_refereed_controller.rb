@@ -1,7 +1,9 @@
- class UserProceedingRefereedController < SalvaController
+ class UserProceedingRefereedController < MultiSalvaController
   def initialize
     super
     @model = UserProceeding
+    @views = [ :proceeding_refereed, :conference, :user_proceeding_refereed]
+    @models = [ UserProceeding, [Proceeding,  Conference]]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

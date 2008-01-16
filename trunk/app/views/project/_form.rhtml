@@ -1,56 +1,56 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:project]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %>  del proyecto <span class="required">*</span></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %>  del proyecto <span class="required">*</span></label>
 <%= text_area 'edit', 'name', 'rows' => 4, 'cols'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row"> 
+<div class="row">
 <label for="responsible" class="label"><%= get_label('responsible') %>
-<span class="required">*</span></label> 
+<span class="required">*</span></label>
 <%= text_area 'edit', 'responsible', 'rows' => 3, 'cols'=> 40, 'tabindex'=> 2, 'id' => 'responsible' %>
 </div>
 
-<div class="row"> 
-<label for="descr" class="label"><%= get_label('descr') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="descr" class="label"><%= get_label('abstract') %> <span class="required">*</span></label>
 <%= text_area 'edit', 'descr', 'rows' => 4, 'cols' => 40, 'tabindex' => 3, 'id' => 'descr' %>
 </div>
 
-<div class="row"> 
-<label for="projecttype_id" class="label"><%= get_label('projecttype_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="projecttype_id" class="label"><%= get_label('projecttype_id') %> <span class="required">*</span></label>
 <div id="projecttype_id">
 <%= simple_select('edit', Projecttype, 4, { :selected => 1}) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="projectstatus_id" class="label"><%= get_label('projectstatus_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="projectstatus_id" class="label"><%= get_label('projectstatus_id') %> <span class="required">*</span></label>
 <div id="projectstatus_id">
 <%= simple_select('edit', Projectstatus, 5) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
 <%= auto_complete_year(:edit, :startyear, 9) %><br/></div>
 
-<div class="row"> 
-<label for="startmonth" class="label"><%= get_label('startmonth') %></label> 
-<%= month_select('edit', 'startmonth', {:tabindex => 10, :required => 0 }) %> 
+<div class="row">
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label>
+<%= month_select('edit', 'startmonth', {:tabindex => 10, :required => 0 }) %>
 </div>
 
-<div class="row"> 
-<label for="endyear" class="label"><%= get_label('endyear') %></label> 
+<div class="row">
+<label for="endyear" class="label"><%= get_label('endyear') %></label>
 <%= auto_complete_year(:edit, :endyear, 11, true) %><br/></div>
 
-<div class="row"> 
-<label for="endmonth" class="label"><%= get_label('endmonth') %></label> 
-<%= month_select('edit', 'endmonth', {:tabindex => 12, :required => 0 }) %> 
+<div class="row">
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label>
+<%= month_select('edit', 'endmonth', {:tabindex => 12, :required => 0 }) %>
 </div>
 
-<div class="row"> 
-<label for="other" class="label"><%= get_label('projectfinancingsource') %></label> 
+<div class="row">
+<label for="other" class="label"><%= get_label('projectfinancingsource') %></label>
 <%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 14, 'id' => 'other' %></div>
 
 

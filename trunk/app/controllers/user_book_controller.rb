@@ -1,7 +1,9 @@
-class UserBookController < SalvaController
+class UserBookController < MultiSalvaController
   def initialize
     super
     @model = BookeditionRoleinbook
+    @views = [ :book, :bookedition, :user_book]
+    @models = [ BookeditionRoleinbook, [ Bookedition, Book ] ]
     @create_msg = 'La edición  ha sido agregada'
     @update_msg = 'La edición ha sido actualizada'
     @purge_msg = 'La edición ha sido borrado'

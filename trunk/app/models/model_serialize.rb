@@ -11,9 +11,10 @@ class ModelSerialize
     if id.nil?
       @records = klasses.flatten.inject({}) { |h, model| h[attribute_name(model)] = model.new;  h }
     else
-      @model = @klasses.shift.find(id)
+      @model = klasses.shift.find(id)
       @records = { attribute_name(@model.class.name)  => @model }
-      fill_from_record(@model, *@klasses)
+
+      fill_from_record(@model, *klasses)
     end
   end
 
@@ -25,7 +26,7 @@ class ModelSerialize
   end
 
   def set_attributes(model, attributes)
-    attributes.keys.each { |k| model.[]=(k, attributes[k]) } if attributes.is_a? Hash
+    model.attributes=(attributes)  if attributes.is_a? Hash
     model.user_id = self.user_id  if model.has_attribute? 'user_id' and !self.user_id.nil?
     model.moduser_id = self.moduser_id if model.has_attribute? 'moduser_id' and !self.moduser_id.nil?
   end
@@ -41,7 +42,7 @@ class ModelSerialize
   def save
     @model.save if @model.valid?
   end
-  
+
   def update_models
     @records.values.each do |record|
       record.save if record.valid?
@@ -73,7 +74,7 @@ class ModelSerialize
     end
     m
   end
-  
+
   def fill_from_record(record, *models)
       models.each do |model|
        if model.is_a? Array
@@ -91,5 +92,5 @@ class ModelSerialize
     Inflector.underscore(m).pluralize.singularize.to_sym
   end
 end
-    
-    
+
+

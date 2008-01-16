@@ -5,7 +5,7 @@ class Newspaper < ActiveRecord::Base
   validates_uniqueness_of :name
 
   belongs_to :country
-  validates_associated :country
+  #validates_associated :country
 
   has_many :newspaperarticles
 end

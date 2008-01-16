@@ -1,45 +1,45 @@
 <%= error_messages_for 'conference' %>
 
 <!--[form:conference]-->
-<div class="row"> 
-<label for="name" class="label"><%= get_label('name') %> del congreso <span class="required">*</span></label> 
+<div class="row">
+<label for="name" class="label"><%= get_label('name') %> del evento académico <span class="required">*</span></label>
 <%= text_area 'conference', 'name', 'rows' => 4, 'cols'=> 40, 'tabindex'=> 1, 'id' => 'name' %>
 </div>
 
-<div class="row"> 
-<label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="year" class="label"><%= get_label('year') %> del evento académico<span class="required">  *</span></label>
 <%= text_field_with_auto_complete('conference', :year, {:size => 4, :maxlength => 4, :tabindex => 2, :value => 2007}, :skip_style => true) %>
 </div>
 
-<div class="row"> 
-<label for="month" class="label"><%= get_label('month') %></label> 
-<%= month_select('conference', 'month', {:tabindex => 4, :required => 0 }) %> 
+<div class="row">
+<label for="month" class="label"><%= get_label('month') %></label>
+<%= month_select('conference', 'month', {:tabindex => 4, :required => 0 }) %>
 </div>
 
 
-<div class="row"> 
-<label for="conferencetype_id" class="label"><%= get_label('conferencetype_id') %> de evento académico<span class="required">*</span></label> 
+<div class="row">
+<label for="conferencetype_id" class="label"><%= get_label('conferencetype_id') %> de evento académico<span class="required">*</span></label>
 <div id="conferencetype_id">
 <%= simple_select('conference', Conferencetype, 5, {:selected => 1 }) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label>
 <div id="country_id">
 <%= simple_select('conference', Country, 6, {:selected =>  484 }) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="conferencescope_id" class="label"><%= get_label('conferencescope_id') %> <span class="required">*</span></label> 
+<div class="row">
+<label for="conferencescope_id" class="label"><%= get_label('conferencescope_id') %> <span class="required">*</span></label>
 <div id="conferencescope_id">
 <%= simple_select('conference', Conferencescope, 7) %>
 </div>
 </div>
 
-<div class="row"> 
-<label for="location" class="label"><%= get_label('location') %></label> 
+<div class="row">
+<label for="location" class="label"><%= get_label('location') %></label>
 <%= text_area 'conference', 'location', 'size' => '40x4', 'tabindex'=> 8, 'id' => 'location' %>
 </div>
 

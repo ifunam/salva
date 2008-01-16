@@ -1,7 +1,9 @@
-class UserOutreachworkController < SalvaController
+class UserOutreachworkController < MultiSalvaController
   def initialize
     super
     @model = UserGenericwork
+    @views = [ :outreachwork, :user_outreachwork, :institution ]
+    @models = [ UserGenericwork, [Genericwork, Institution] ]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

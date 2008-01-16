@@ -1,34 +1,26 @@
-<%= error_messages_for 'edit' %>
+<%= error_messages_for 'instadvice' %>
 
 <!--[form:instadvice]-->
 <div class="row">
-<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label>
-<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
-</div>
-
-<div class="row">
- <%= render :partial => 'salva/filter_institutions' %>
+<label for="title" class="label"><%= get_label('title') %> de la asesoría <span class="required">*</span></label>
+<%= text_area 'instadvice', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
 </div>
 
 <div class="row">
 <label for="instadvicetarget_id" class="label"><%= get_label('instadvicetarget_id') %> <span class="required">*</span></label>
 <div id="instadvicetarget_id">
-<%= simple_select('edit', Instadvicetarget, 3) %>
+<%= simple_select('instadvice', Instadvicetarget, 3) %>
 </div>
 <%= quickpost('instadvicetarget') %>
 </div>
 
 <div class="row">
-<label for="other" class="label"><%= get_label('other') %></label>
-<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 4, 'id' => 'other' %></div>
-
-<div class="row">
 <label for="year" class="label"><%= get_label('year') %> <span class="required">*</span></label>
-<%= auto_complete_year(:edit, :year, 5) %><br/></div>
+<%= auto_complete_year(:instadvice, :year, 5) %><br/></div>
 
 <div class="row">
 <label for="month" class="label"><%= get_label('month') %></label>
-<%= month_select('edit', 'month', {:tabindex => 6, :required => 0 }) %>
+<%= month_select('instadvice', 'month', {:tabindex => 6, :required => 0 }) %>
 </div>
 
 
