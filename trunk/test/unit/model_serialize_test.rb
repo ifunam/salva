@@ -51,7 +51,7 @@ class ModelSerializeTest < Test::Unit::TestCase
         @record.fill(@myparams)
         assert @record.valid?
         assert @record.save
-          
+
         @record = ModelSerialize.new([ UserConferencetalk, [Conferencetalk, [Conference, Conferencescope] ]], 3)
         assert_instance_of UserConferencetalk, @record.records[:user_conferencetalk]
         assert_instance_of Conferencetalk, @record.records[:conferencetalk]
@@ -100,31 +100,49 @@ class ModelSerializeTest < Test::Unit::TestCase
         puts @record.records[:conferencetalk].title
         @record = ModelSerialize.new([ UserConferencetalk, [Conferencetalk, [Conference, Conferencescope] ]], 3)
         puts @record.records[:conferencetalk].title
-        
-      end
-      def test_fill_complex_models
-        params ={ 
-         :regularcourse=>{"title"=>"saasaassasa",
-         "semester"=>"2",
-         "modality_id"=>"1"},
-         "commit"=>"Guardar",
-         :institution=>{"name"=>"22222",
-         "country_id"=>"484",
-         "institutiontitle_id"=>"1",
-         "institutiontype_id"=>"1"},
-         :user_regularcourse=>{"period_id"=>"11",
-         "hoursxweek"=>"2",
-         "roleinregularcourse_id"=>"1"},
-         :academicprogram=>{"academicprogramtype_id"=>"1",
-         "year"=>"2007"},
-         :career=>{"name"=>"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-         "degree_id"=>"6" }
-       }
-       @record = ModelSerialize.new([ UserRegularcourse, [ Regularcourse, [Academicprogram, [Institutioncareer, Institution, Career]]]])
-       @record.fill(params)
-       assert @record.valid?
-       assert @record.save
 
+      end
+
+   def test_fill_complex_models
+#         params ={
+#          :regularcourse=>{"title"=>"saasaassasa",
+#          "semester"=>"2",
+#          "modality_id"=>"1"},
+#          "commit"=>"Guardar",
+#          :institution=>{"name"=>"22222",
+#          "country_id"=>"484",
+#          "institutiontitle_id"=>"1",
+#          "institutiontype_id"=>"1"},
+#          :user_regularcourse=>{"period_id"=>"11",
+#          "hoursxweek"=>"2",
+#          "roleinregularcourse_id"=>"1"},
+#          :academicprogram=>{"academicprogramtype_id"=>"1",
+#          "year"=>"2007"},
+#          :career=>{"name"=>"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+#          "degree_id"=>"6" }
+#        }
+#        @record = ModelSerialize.new([ UserRegularcourse, [ Regularcourse, [Academicprogram, [Institutioncareer, Institution, Career]]]])
+#        @record.fill(params)
+#        assert @record.valid?
+#       assert @record.save
+
+     params = {
+       :newspaperarticle =>{
+         "newspaper_id"=>"2",
+         "title"=>"asaasas",
+         "url"=>"saassa",
+         "authors"=>"sasasasa",
+         "pages"=>"sasasa",
+         "newsdate"=>"2008/01/13"},
+       :user_newspaperarticle=>{"ismainauthor"=>"true"}
+     }
+     @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle ])
+     @record.user_id = 1
+     @record.fill(params)
+     assert @record.model.newspaperarticle.valid?
+     assert @record.save
+     puts @record.id
+     @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle], 8)
        #puts @record.records.keys.join(', ')
    end
 end

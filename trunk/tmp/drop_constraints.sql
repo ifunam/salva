@@ -25,3 +25,6 @@ ALTER TABLE user_theses DROP CONSTRAINT user_theses_thesis_id_key;
 ALTER TABLE theses DROP CONSTRAINT theses_title_key;
 ALTER TABLE thesis_jurors DROP CONSTRAINT thesis_jurors_user_id_key;
 ALTER TABLE tutorial_committees DROP CONSTRAINT tutorial_committees_degree_id_fkey;
+ALTER TABLE newspaperarticles DROP CONSTRAINT newspaperarticles_title_key;
+ALTER TABLE user_proceedings DROP CONSTRAINT user_proceedings_proceeding_id_key;
+ALTER TABLE user_techproducts DROP CONSTRAINT user_techproducts_techproduct_id_key;

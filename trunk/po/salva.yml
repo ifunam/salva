@@ -359,8 +359,8 @@ user_specialcourse: Cursos especiales
 technicalconference: Congresos
 user_technicalconferencetalk: Trabajos en congresos
 conferences_and_seminaries: Congresos, seminarios y conferencias
-seminarytype: Tipo de pl�tica
-seminarytype_id: Tipo de seminario
+seminarytype: Tipo de plática
+seminarytype_id: Tipo de plática
 seminary: Seminarios y conferencias
 auditorium: Aula o auditorio
 roleinseminary_id: Rol
@@ -428,7 +428,7 @@ techproduct_id: Producto técnico
 techproducttype: Tipos de productos técnicos
 techproducttype_id: Tipo de producto técnico
 user_techproduct: Productos técnicos
-technical_activity: Actividades técnico-académicas
+technical_activity: Productos y actividades  técnico-académicas
 techactivity: Actividades técnicas
 projectresearcharea: Áreas de investigación
 projectconferencetalk: Participación en congresos
