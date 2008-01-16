@@ -16,3 +16,7 @@ ALTER TABLE user_inproceedings DROP CONSTRAINT user_inproceedings_inproceeding_i
 ALTER TABLE inproceedings DROP CONSTRAINT inproceedings_proceeding_id_key;
 ALTER TABLE proceedings DROP CONSTRAINT proceedings_conference_id_key;
 ALTER TABLE user_genericworks DROP CONSTRAINT user_genericworks_genericwork_id_key;
+ALTER TABLE user_regularcourses DROP CONSTRAINT user_regularcourses_user_id_key;
+ALTER TABLE regularcourses DROP CONSTRAINT regularcourses_academicprogram_id_fkey;
+ALTER TABLE academicprograms DROP CONSTRAINT academicprograms_institutioncareer_id_key;
+ALTER TABLE careers DROP CONSTRAINT careers_name_key;
