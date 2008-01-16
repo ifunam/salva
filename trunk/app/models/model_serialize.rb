@@ -88,7 +88,7 @@ class ModelSerialize
   end
 
   def attribute_name(m)
-    Inflector.underscore(m).singularize.to_sym
+    Inflector.underscore(m).pluralize.singularize.to_sym
   end
 end
     
