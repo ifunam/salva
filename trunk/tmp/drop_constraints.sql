@@ -24,3 +24,4 @@ ALTER TABLE courses DROP CONSTRAINT courses_name_key;
 ALTER TABLE user_theses DROP CONSTRAINT user_theses_thesis_id_key;
 ALTER TABLE theses DROP CONSTRAINT theses_title_key;
 ALTER TABLE thesis_jurors DROP CONSTRAINT thesis_jurors_user_id_key;
+ALTER TABLE tutorial_committees DROP CONSTRAINT tutorial_committees_degree_id_fkey;

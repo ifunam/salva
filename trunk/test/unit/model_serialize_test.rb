@@ -96,9 +96,35 @@ class ModelSerializeTest < Test::Unit::TestCase
         }
         @record.fill(params)
         assert @record.valid?
-        assert @record.update
+        assert @record.update_models
         puts @record.records[:conferencetalk].title
         @record = ModelSerialize.new([ UserConferencetalk, [Conferencetalk, [Conference, Conferencescope] ]], 3)
         puts @record.records[:conferencetalk].title
+        
+      end
+      def test_fill_complex_models
+        params ={ 
+         :regularcourse=>{"title"=>"saasaassasa",
+         "semester"=>"2",
+         "modality_id"=>"1"},
+         "commit"=>"Guardar",
+         :institution=>{"name"=>"22222",
+         "country_id"=>"484",
+         "institutiontitle_id"=>"1",
+         "institutiontype_id"=>"1"},
+         :user_regularcourse=>{"period_id"=>"11",
+         "hoursxweek"=>"2",
+         "roleinregularcourse_id"=>"1"},
+         :academicprogram=>{"academicprogramtype_id"=>"1",
+         "year"=>"2007"},
+         :career=>{"name"=>"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+         "degree_id"=>"6" }
+       }
+       @record = ModelSerialize.new([ UserRegularcourse, [ Regularcourse, [Academicprogram, [Institutioncareer, Institution, Career]]]])
+       @record.fill(params)
+       assert @record.valid?
+       assert @record.save
+
+       #puts @record.records.keys.join(', ')
    end
 end
