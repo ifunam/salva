@@ -1,44 +1,21 @@
-<%= error_messages_for 'edit' %>
+<%= error_messages_for 'regularcourse' %>
 
 <!--[form:regularcourse]-->
 <div class="row"> 
-<label for="title" class="label"><%= get_label('title') %> <span class="required">*</span></label> 
-<%= text_area 'edit', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
+<label for="title" class="label"><%= get_label('title') %> del curso <span class="required">*</span></label> 
+<%= text_area 'regularcourse', 'title', 'rows' => 4, 'cols' => 40, 'tabindex' => 1, 'id' => 'title' %>
 </div>
-
-<div class="row"> 
-<label for="academicprogram_id" class="label"><%= get_label('academicprogram_id') %> <span class="required">*</span></label> 
-<div id="academicprogram_id">
-<%= select_conditions('edit', Academicprogram, 2, :attributes => [['institutioncareer', 'career', ['institution', ['institution','abbrev']]], 'year', 'academicprogramtype'], :selected => params[:id])  %>
-</div>
-  <%= quickpost('academicprogram') %>
-</div>
-
 <div class="row"> 
 <label for="modality_id" class="label"><%= get_label('modality_id') %> <span class="required">*</span></label> 
 <div id="modality_id">
-<%= simple_select('edit', Modality, 3, :selected => 1) %>
+<%= simple_select('regularcourse', Modality, 3, :selected => 1) %>
 </div>
 </div>
 
 <div class="row"> 
 <label for="semester" class="label"><%= get_label('semester') %></label> 
-<%= text_field 'edit', 'semester', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'semester' %>
+<%= text_field 'regularcourse', 'semester', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'semester' %>
 </div>
-
-<div class="row"> 
-<label for="credits" class="label"><%= get_label('credits') %></label> 
-<%= text_field 'edit', 'credits', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 5, 'id' => 'credits' %>
-</div>
-
-<div class="row"> 
-<label for="administrative_key" class="label"><%= get_label('administrative_key') %></label> 
-<%= text_field 'edit', 'administrative_key', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'administrative_key' %>
-</div>
-
-<div class="row"> 
-<label for="other" class="label"><%= get_label('other') %></label> 
-<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 7, 'id' => 'other' %></div>
 
 
 <!--[eoform:regularcourse]-->

@@ -9,7 +9,7 @@ class ModelSerialize
   def initialize(klasses, id=nil)
     @klasses = klasses
     if id.nil?
-      @records =  klasses.flatten.inject({}) { |h, model| h[attribute_name(model)] = model.new;  h }
+      @records = klasses.flatten.inject({}) { |h, model| h[attribute_name(model)] = model.new;  h }
     else
       @model = @klasses.shift.find(id)
       @records = { attribute_name(@model.class.name)  => @model }
@@ -25,7 +25,7 @@ class ModelSerialize
   end
 
   def set_attributes(model, attributes)
-    attributes.keys.each { |k| model.[]=(k, attributes[k]) }
+    attributes.keys.each { |k| model.[]=(k, attributes[k]) } if attributes.is_a? Hash
     model.user_id = self.user_id  if model.has_attribute? 'user_id' and !self.user_id.nil?
     model.moduser_id = self.moduser_id if model.has_attribute? 'moduser_id' and !self.moduser_id.nil?
   end
@@ -56,9 +56,9 @@ class ModelSerialize
     myklasses = *@klasses
     record_array = walk_array(myklasses)
     record_array.reverse.each do |model, index|
-      record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
+       record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
     end
-    record_array[0].first
+     record_array[0].first
   end
 
   def walk_array(models, index=nil)

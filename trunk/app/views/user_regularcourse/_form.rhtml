@@ -1,42 +1,24 @@
-<%= error_messages_for 'edit' %>
+<%= error_messages_for 'user_regularcourse' %>
 
 <!--[form:user_regularcourse]-->
 <div class="row">
-<label for="academicprogram_id" class="label"><%=get_label('academicprogram_id') %> </label>
-<div id="academicprogram_id">
-<%= select_conditions('filt', Academicprogram, 1, :attributes => [['institutioncareer', 'career', ['institution', 'name', ['institution', 'abbrev']]], 'year', 'academicprogramtype'], :order => 'careers.name ASC, institutions.name ASC, prefix_for_parent_institutions.abbrev ASC, academicprograms.year')  %>
-</div>
-<%= quickpost('academicprogram') %>
-</div>
-<%= observe_select('filt', 'academicprogram_id', 'select_academicprogram_regularcourse', 2) %>
-
-<div class="row">
-<label for="regularcourse_id" class="label"><%= get_label('regularcourse_id') %> <span class="required">*</span></label>
-<div id="select_academicprogram_regularcourse">
- <%= observable_select('select_academicprogram_regularcourse', nil, 2) %>
-</div>
-  <%= quickpost('regularcourse:academicprogram_id') %>
-</div>
-
-<div class="row">
 <label for="period_id" class="label"><%= get_label('period_id') %><span class="required">*</span></label>
 <div id="period_id">
-<%= select_conditions('edit', Period, 2, :attributes => ['title'],
-:order => 'periods.title DESC', :selected => :last) %>
-</div>
+<%= select_conditions('user_regularcourse', Period, 2, :attributes => ['title'], :order => 'periods.title DESC', :selected => :last) %>
   <%= quickpost('period') %>
+</div>
 </div>
 
 <div class="row">
 <label for="roleinregularcourse_id" class="label"><%= get_label('roleinregularcourse_id') %> <span class="required">*</span></label>
 <div id="roleinregularcourse_id">
-<%= simple_select('edit', Roleinregularcourse, 3, { :selected => @edit.roleinregularcourse_id || 1}) %>
+<%= simple_select('user_regularcourse', Roleinregularcourse, 3, { :selected => @user_regularcourse.roleinregularcourse_id || 1}) %>
 </div>
 </div>
 
 <div class="row">
 <label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label>
-<%= text_field 'edit', 'hoursxweek', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'hoursxweek' %>
+<%= text_field 'user_regularcourse', 'hoursxweek', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'hoursxweek' %>
 </div>
 
 

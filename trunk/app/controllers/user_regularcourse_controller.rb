@@ -1,7 +1,9 @@
-class UserRegularcourseController < SalvaController
+class UserRegularcourseController < MultiSalvaController
   def initialize
     super
     @model = UserRegularcourse
+    @views = [ :regularcourse, :user_regularcourse, :career, :institution, :academicprogram ]
+    @models = [ UserRegularcourse, [ Regularcourse, [ Academicprogram, [ Institutioncareer, Institution, Career] ] ] ]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'
