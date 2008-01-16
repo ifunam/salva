@@ -4,17 +4,19 @@ class ModelSerialize
   attr_accessor :model
   attr_accessor :user_id
   attr_accessor :moduser_id
-  attr_accessor :parent
 
   def initialize(klasses, id=nil)
     @klasses = klasses
+    @klasses.freeze
     if id.nil?
       @records = klasses.flatten.inject({}) { |h, model| h[attribute_name(model)] = model.new;  h }
     else
-      myklasses = Array.new(@klasses)
-      @model = myklasses.shift.find(id)
-      @records = { attribute_name(@model.class.name)  => @model }
-      fill_from_record(@model, *myklasses)
+      myklasses = @klasses.dup
+      record = myklasses.shift.find(id)
+      @records = { attribute_name(record.class.name) => record } 
+      fill_from_record(record, myklasses)
+      @model = record
+      @records
     end
   end
 
@@ -54,12 +56,12 @@ class ModelSerialize
   end
 
   def prepare_record
-    myklasses = Array.new(@klasses)
+    myklasses = @klasses.dup
     record_array = walk_array(myklasses)
     record_array.reverse.each do |model, index|
-       record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
+      record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
     end
-     record_array[0].first
+    record_array[0].first
   end
 
   def walk_array(models, index=nil)
@@ -75,17 +77,18 @@ class ModelSerialize
     m
   end
 
-  def fill_from_record(record, *models)
-      models.each do |model|
-       if model.is_a? Array
-         myrecord = record.send(attribute_name(model.shift))
-         @records[attribute_name(myrecord.class.name)] = myrecord
-         fill_from_record(myrecord, *model)
-       else
-         m = attribute_name(model)
-         @records[m] = record.send(m.to_s)
-       end
-     end
+  def fill_from_record(r, models)
+    models.each { |model|
+      if model.is_a? Array
+        myrecord = r.send(attribute_name(model.first))
+        s = (model.size  - 1)
+        fill_from_record(myrecord, model[1..s])
+        @records[attribute_name(myrecord.class.name)] = myrecord
+      else
+        m = attribute_name(model)
+        @records[m] = r.send(m.to_s)
+      end
+    }
   end
 
   def attribute_name(m)
