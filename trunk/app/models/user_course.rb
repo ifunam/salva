@@ -1,7 +1,7 @@
 class UserCourse < ActiveRecord::Base
-  validates_presence_of :course_id, :roleincourse_id
-  validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_numericality_of :user_id, :course_id, :roleincourse_id, :greater_than => 0, :only_integer => true
+  validates_presence_of :roleincourse_id
+  validates_numericality_of :id, :course_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_numericality_of :user_id, :roleincourse_id, :greater_than => 0, :only_integer => true
 
   belongs_to :user
   belongs_to :course
