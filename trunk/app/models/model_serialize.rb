@@ -11,10 +11,10 @@ class ModelSerialize
     if id.nil?
       @records = klasses.flatten.inject({}) { |h, model| h[attribute_name(model)] = model.new;  h }
     else
-      @model = klasses.shift.find(id)
+      myklasses = Array.new(@klasses)
+      @model = myklasses.shift.find(id)
       @records = { attribute_name(@model.class.name)  => @model }
-
-      fill_from_record(@model, *klasses)
+      fill_from_record(@model, *myklasses)
     end
   end
 
@@ -54,7 +54,7 @@ class ModelSerialize
   end
 
   def prepare_record
-    myklasses = *@klasses
+    myklasses = Array.new(@klasses)
     record_array = walk_array(myklasses)
     record_array.reverse.each do |model, index|
        record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
