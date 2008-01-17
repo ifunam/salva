@@ -703,9 +703,9 @@ input, select {
 select
 {
   font-style:none;
+  width: expression(document.body.clientWidth < 742? "300px" : document.body.clientWidth > 1202? "300px" : "auto");
   max-width: 350px;
-  width: expression(document.body.clientWidth < 742? "400px" : document.body.clientWidth > 1202? "700px" : "auto");
-  overflow:scroll; 
+  overflow: visible; 
   float: left;
 }
 
