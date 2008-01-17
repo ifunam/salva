@@ -2,11 +2,11 @@
 institution: Instituto de Física - UNAM
 institution_url: http://www.fisica.unam.mx
 administrative_key: 314
-theme: default
+theme: fisica 
  
 # Customizations for your institute, school, et.al
 most_common_school: 14
-educational_institutiontitles: Academia, Centro, Colegio, Departamento, Escuela, Facultad, Instituto, Museo, Observatorio, Plantel, Programa, Universidad, Unidad
+educational_institutiontitles: Academia, Centro, Colegio, Departamento, Escuela, Facultad, Instituto, Museo, Observatorio, Plantel, Programa, Universidad, Unidad, Dirección
 most_common_finnancingsources: Dirección General de Asuntos del Personal Académico, Consejo Nacional de Ciencia y Tecnología
 
 # Groups and permissions
@@ -19,9 +19,9 @@ permissions:
 
 # Technical support information
 technical_support:
- unit: Name for your support unit
- person: Support Engineer's name
- address: Salva Support Building, Room 000
- phone: 55 55 55 55 ext 000
- email: support@salva.unam.mx
+ unit: Secretaría Técnica de Cómputo
+ person: Alejandro Juarez Robles
+ address: Cub. 254, Edificio Principal del Instituto de Fisica -UNAM
+ phone: 56 22 50 01 ext 289
+ email: alex@fisica.unam.mx
  other_info: .

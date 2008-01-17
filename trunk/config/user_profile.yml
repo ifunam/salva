@@ -1,24 +1,16 @@
 # Personal Information
 - fullname: Person.find(@user.id).fullname
-- gender: Finder.new(Person, :first, :attributes => ['gender'], :conditions => 'people.user_id =' + @user.id.to_s).as_text.first
-- dateofbirth: Person.find(@user.id).dateofbirth.to_s
-- placeofbirth: Person.find(@user.id).placeofbirth
 # Cites information
 - author_name: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).author_name
 - total_cites: UserCite.find(:first, :conditions => 'user_id = ' + @user.id.to_s).total
 # Address and contact information
-- address: Finder.new(Address,:first, :attributes => ['addresstype', 'location', 'zipcode', 'city', 'state', 'country'], :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresstypes.name ASC').as_text.first
-- phone: Address.find(:first, :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').phone
-- fax: Address.find(:first, :conditions => "addresses.user_id = " + @user.id.to_s, :order => 'addresses.addresstype_id ASC').fax
 - email: User.find(@user.id).email
-# Citizens and its associated IDs
-- citizens_and_identifications: Finder.new(PeopleIdentification, :all, :attributes => [ ['identification', ['citizen_country', 'citizen'], 'idtype'], 'descr'], :conditions => 'people_identifications.user_id = ' + @user.id.to_s).as_text.join("\n")
 # Jobposition at institution log
 - worker_key: Finder.new(JobpositionLog, :first, :attributes => %w(worker_key), :conditions => 'user_id = ' + @user.id.to_s).as_text.first
 - academic_years: Finder.new(JobpositionLog, :first, :attributes => %w(academic_years), :conditions => 'user_id = ' + @user.id.to_s).as_text.first
 - administrative_years: Finder.new(JobpositionLog, :first, :attributes => %w(administrative_years), :conditions => 'user_id = ' + @user.id.to_s).as_text.first
 # Most recent job at institution and most recent adscription
 # most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => '(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = ' +@user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
-- most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => %w(jobpositioncategory institution startyear endyear), :conditions => 'jobpositions.user_id = ' + @user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
-- most_recent_user_adscription: Finder.new(UserAdscription, :first, :attributes => ['adscription', 'startyear'], :conditions => 'user_adscriptions.user_id = ' + @user.id.to_s, :order => 'user_adscriptions.startyear DESC').as_text.first
+- most_recent_jobposition_at_institution: Finder.new(Jobposition, :first, :attributes => [['jobpositioncategory', 'roleinjobposition', 'jobpositionlevel'], 'institution', 'startyear'], :conditions => 'jobpositions.user_id = ' + @user.id.to_s, :order => 'jobpositions.startyear DESC' ).as_text.first
+- most_recent_user_adscription: Finder.new(UserAdscription, :first, :attributes => ['adscription'], :conditions => 'user_adscriptions.user_id = ' + @user.id.to_s, :order => 'user_adscriptions.startyear DESC').as_text.first
 - user_incharge: @user.user_incharge.person.fullname

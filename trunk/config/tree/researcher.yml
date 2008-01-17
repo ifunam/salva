@@ -25,9 +25,6 @@
   - membership
   - user_prize
   - user_language
-  - user_settings
-  - - change_password
-    - user_setting
 - user_project
 - user_cite
 - user_researchline
