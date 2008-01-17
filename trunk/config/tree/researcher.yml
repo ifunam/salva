@@ -20,7 +20,6 @@
   - updating_current_skills
   - - user_course
     - userconference
-    - acadvisit
     - student_thesis
   - user_schoolarship
   - membership
@@ -64,11 +63,15 @@
     - thesis_juror
     - tutorial_committee
     - student_advice
+- acadvisit
 - outreach
 - - professor_advice
   - instadvice
   - user_outreachwork
 - institutional_activity
+- technical_activity
+- - user_techproduct
+  - techactivity
 - other_activities_or_products
 - - activity
   - user_genericwork

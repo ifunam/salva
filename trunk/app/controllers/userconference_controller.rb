@@ -1,7 +1,9 @@
-class UserconferenceController < SalvaController
+class UserconferenceController < MultiSalvaController
   def initialize
     super
     @model = Userconference
+    @views = [ :conference, :userconference]
+    @models = [Userconference, Conference]
     @create_msg = 'La información se ha guardado'
     @update_msg = 'La información ha sido actualizada'
     @purge_msg = 'La información se ha borrado'

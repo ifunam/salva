@@ -6,7 +6,7 @@ class BookeditionRoleinbookController < MultiSalvaController
     @models = [ BookeditionRoleinbook, [ Bookedition, Book ] ]
     @create_msg = 'La edición  ha sido agregada'
     @update_msg = 'La edición ha sido actualizada'
-    @purge_msg = 'La edición ha sido borrado'
+    @purge_msg = 'La edición ha sido borrada'
     @per_pages = 10
     @order_by = 'id'
     @list = { :conditions=> "roleinbook_id < 3" }

@@ -28,3 +28,4 @@ ALTER TABLE tutorial_committees DROP CONSTRAINT tutorial_committees_degree_id_fk
 ALTER TABLE newspaperarticles DROP CONSTRAINT newspaperarticles_title_key;
 ALTER TABLE user_proceedings DROP CONSTRAINT user_proceedings_proceeding_id_key;
 ALTER TABLE user_techproducts DROP CONSTRAINT user_techproducts_techproduct_id_key;
+ALTER TABLE userconferences DROP CONSTRAINT userconferences_user_id_key;

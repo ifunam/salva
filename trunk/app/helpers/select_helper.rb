@@ -24,7 +24,7 @@ module SelectHelper
     if id == :first || id == :last
       options = { }
     else
-      options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" } 
+      options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
     end
 
     unless attributes.nil? or attributes.empty?
@@ -39,17 +39,17 @@ module SelectHelper
 
   def simple_select(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
-    selected = selectize_id(@edit, field, options[:selected], @filter)
+    selected = selectize_id((eval "@#{object}"), field, options[:selected], @filter)
     list = Finder.new(model, options).as_pair
     selected = list.first[0] if selected == :first
     selected = list.last[0] if selected == :last
     list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
     select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
   end
-  
+
   def select_conditions(object, model, tabindex, options={})
     field = options[:field] || foreignize(model,options[:prefix])
-    selected = selectize_id(@edit, field, options[:selected], @filter)
+    selected = selectize_id((eval"@#{object}"), field, options[:selected], @filter)
     list = Finder.new(model, :all, options).as_pair
     list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
     select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
