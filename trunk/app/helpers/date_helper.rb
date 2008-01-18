@@ -34,9 +34,7 @@ module DateHelper
   end
 
   def auto_complete_year(object, attribute, tabindex, skip_default_year=false)
-    
-    default_year = 2007
-    #skip_default_year ? (object.send(attribute) || nil) : (object.send(attribute) || (Date.today.year.to_i - 1))
+    default_year = skip_default_year ? (eval("@#{object}.send(attribute)") || nil) : (eval("@#{object}.send(attribute)") || (Date.today.year.to_i - 1))
     text_field_with_auto_complete(object, attribute, {:size => 4, :maxlength => 4, :tabindex => tabindex, :value => default_year}, :skip_style => true)
   end
 end
