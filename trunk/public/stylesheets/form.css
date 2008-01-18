@@ -703,7 +703,7 @@ input, select {
 select
 {
   font-style:none;
-  width: expression(document.body.clientWidth < 742? "300px" : document.body.clientWidth > 1202? "300px" : "auto");
+  width: expression(document.body.clientWidth < 742? "400px" : document.body.clientWidth > 1202? "600px" : "auto");
   max-width: 350px;
   overflow: visible; 
   float: left;
