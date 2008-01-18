@@ -29,3 +29,5 @@ ALTER TABLE newspaperarticles DROP CONSTRAINT newspaperarticles_title_key;
 ALTER TABLE user_proceedings DROP CONSTRAINT user_proceedings_proceeding_id_key;
 ALTER TABLE user_techproducts DROP CONSTRAINT user_techproducts_techproduct_id_key;
 ALTER TABLE userconferences DROP CONSTRAINT userconferences_user_id_key;
+ALTER TABLE user_researchlines DROP CONSTRAINT user_researchlines_moduser_id_fkey;
+ALTER TABLE researchlines DROP CONSTRAINT researchlines_name_key;
