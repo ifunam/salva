@@ -40,30 +40,32 @@ class MultiSalvaController < ApplicationController
   end
 
   def edit
-      @record = ModelSerialize.new(@models, params[:id])
+      @record = session[:model_serialize] || ModelSerialize.new(@models, params[:id])
       instance_models
       @filter = model_from_stack(:filter)
       render :template => 'multi_salva/edit'
   end
 
   def new
-    @record = session[:composite] || ModelSerialize.new(@models)
+    @record = session[:model_serialize] || ModelSerialize.new(@models)
     instance_models
     @filter = model_from_stack(:filter)
     render :template => 'multi_salva/new'
   end
 
   def create
+    @record = ModelSerialize.new(@models)
+    set_userid
+    @record.fill(params)
     if params[:stack] != nil
+      session[:model_serialize] = @record
       redirect_to options_for_next_controller(@edit, controller_name, 'new')
     elsif params[:stacklist] != nil
       redirect_to options_for_next_controller(@edit, controller_name, 'new', 'list')
     else
-      @record= ModelSerialize.new(@models)
-      set_userid
-      @record.fill(params)
       if @record.valid?
         @record.save
+        session[:model_serialize] = nil
         flash[:notice] = @created_msg
         redirect_to stack_return(@record.id)
       else
@@ -77,14 +79,16 @@ class MultiSalvaController < ApplicationController
   def update
     @record = ModelSerialize.new(@models, params[:id])
     set_userid
+    @record.fill(params)
     if params[:stack] != nil
+      session[:model_serialize] = @record
       redirect_to options_for_next_controller(@record, controller_name, 'edit')
     elsif params[:stacklist] != nil
       redirect_to options_for_next_controller(@record, controller_name, 'edit', 'list')
     else
-      @record.fill(params)
       if @record.valid?
         @record.update_models
+        session[:model_serialize] = nil
         if @children != nil and !has_model_in_stack?
           redirect_to :action => 'show', :id => @record.id
         else
