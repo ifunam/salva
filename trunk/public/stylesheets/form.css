@@ -709,6 +709,10 @@ select
   float: left;
 }
 
+option {
+  max-width: 500px;
+}
+
 input.quickpost {
   display: block; 
   position: static;
