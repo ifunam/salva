@@ -11,7 +11,7 @@
 <%= text_area 'genericwork', 'authors', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'authors' %>
 </div>
 
-<%= hidden_field('genericwork', 'genericworktype_id', :value => Genericworktype.find_by_name('Otro').id ) %>
+<%= hidden_field('genericwork', 'genericworktype_id', :value => Genericworktype.find(:first, :conditions => "genericworktypes.name = 'Otro' AND genericworkgroups.name = 'Otro' AND genericworktypes.genericworkgroup_id = genericworkgroups.id", :include => [:genericworkgroup] ).id ) %>
 
 <%= hidden_field('genericwork', 'genericworkstatus_id', :value => Genericworkstatus.find_by_name('Aceptado').id ) %>
 
