@@ -62,23 +62,17 @@ class ModelSerializeTest < Test::Unit::TestCase
    end
 
    def test_update
-        models = *@models
         @record = ModelSerialize.new(@models)
         @record.fill(@myparams)
         assert @record.valid?
         assert @record.save
 
         @record = ModelSerialize.new([ UserConferencetalk, [Conferencetalk, [Conference, Conferencescope] ]], 3)
-        assert_instance_of UserConferencetalk, @record.records[:user_conferencetalk]
-        assert_instance_of Conferencetalk, @record.records[:conferencetalk]
-        assert_equal 'Estudios sobre formacion de barrancos en la Luna', @record.records[:conferencetalk].title
-        assert_instance_of Conference, @record.records[:conference]
-        assert_equal 'Congreso Anual de Ciencias Oscuras y Magia Negra', @record.records[:conference].name
-        assert_instance_of Conferencescope, @record.records[:conferencescope]
+        puts @record.klasses.last
         params = {
           :conferencetalk =>  {
             :title =>  'Estudios sobre formacion de barrancos en la Luna'.reverse,
-            :authors =>  'José Arcadio Buendía y Melquiades (alias el gitano)'.reverse,
+            :authors =>  'Jose Arcadio Buendia y Melquiades (alias el gitano)'.reverse,
             :conference_id => 1,
             :talktype_id  => 2,
             :talkacceptance_id => 1,
@@ -91,16 +85,14 @@ class ModelSerializeTest < Test::Unit::TestCase
             :country_id => 484,
            :conferencetype_id => 1
           },
-          :conferencescope => { :name => 'Intergálactico'},
+          :conferencescope => { :name => 'Intergalactico'},
           :user_conferencetalk =>  { :roleinconferencetalk_id => 1, :user_id => 1}
         }
         @record.fill(params)
         assert @record.valid?
         assert @record.update_models
-        puts @record.records[:conferencetalk].title
         @record = ModelSerialize.new([ UserConferencetalk, [Conferencetalk, [Conference, Conferencescope] ]], 3)
         puts @record.records[:conferencetalk].title
-
       end
 
    def test_fill_complex_models
@@ -126,23 +118,61 @@ class ModelSerializeTest < Test::Unit::TestCase
 #        assert @record.valid?
 #       assert @record.save
 
+     # params = {
+     #   :newspaperarticle =>{
+     #     "newspaper_id"=>"2",
+     #     "title"=>"asaasas",
+     #     "url"=>"saassa",
+     #     "authors"=>"sasasasa",
+     #     "pages"=>"sasasa",
+     #     "newsdate"=>"2008/01/13"},
+     #   :user_newspaperarticle=>{"ismainauthor"=>"true"}
+     # }
+     # @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle ])
+     # @record.user_id = 1
+     # @record.fill(params)
+     # assert @record.model.newspaperarticle.valid?
+     # assert @record.save
+     # puts @record.id
+     # @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle], 8)
+     
      params = {
-       :newspaperarticle =>{
-         "newspaper_id"=>"2",
-         "title"=>"asaasas",
-         "url"=>"saassa",
-         "authors"=>"sasasasa",
-         "pages"=>"sasasa",
-         "newsdate"=>"2008/01/13"},
-       :user_newspaperarticle=>{"ismainauthor"=>"true"}
-     }
-     @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle ])
-     @record.user_id = 1
-     @record.fill(params)
-     assert @record.model.newspaperarticle.valid?
-     assert @record.save
-     puts @record.id
-     @record = ModelSerialize.new([UserNewspaperarticle, Newspaperarticle], 8)
-       #puts @record.records.keys.join(', ')
+       :genericwork=>{"genericworkstatus_id"=>"3",
+      "reference"=>"",
+      "month"=>"12",
+      "genericworktype_id"=>"7",
+      "title"=>"The Qweak experiment: A Search for New Physics at the TeV Scale via a Measurement of the Proton's Weak Charge",
+      "year"=>"2007",
+      "authors"=>"D.S. Armstrong et al."},
+      "commit"=>"Guardar",
+      "id"=>"37",
+      :user_genericwork=>{"userrole_id"=>"1"}
+    }
+    
+      @record = ModelSerialize.new([ UserGenericwork, Genericwork ])
+      @record.user_id = 1
+      @record.fill(params)
+      assert @record.model.genericwork.valid?
+      assert @record.save
+      @record = ModelSerialize.new([ UserGenericwork, Genericwork], @record.id)
+      assert @record.model.genericwork.valid?
+      params = {
+         :genericwork=>{"genericworkstatus_id"=>"3",
+        "reference"=>"",
+        "month"=>"12",
+        "genericworktype_id"=>"7",
+        "title"=>"XXXX",
+        "year"=>"2007",
+        "authors"=>"D.S. Armstrong et al."},
+        "commit"=>"Guardar",
+        "id"=>"37",
+        :user_genericwork=>{"userrole_id"=>"1"}
+      }
+      @record.fill(params)
+      puts @record.model.genericwork.title
+      @record.update_models
+      @record = ModelSerialize.new([ UserGenericwork, Genericwork], @record.id)
+      puts @record.model.genericwork.title
+    
    end
 end

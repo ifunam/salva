@@ -36,18 +36,20 @@ class MultiSalvaController < ApplicationController
     :select => @list[:select], :order => @list[:order]
 
     @parent_controller = 'algo' if has_model_in_stack?
+    session[:model_serialize] = nil
     render :action => 'list'
   end
 
   def edit
-      @record = session[:model_serialize] || ModelSerialize.new(@models, params[:id])
+      session[:model_serialize] = nil unless params[:id].nil?
+      @record = (session[:model_serialize].nil?) ? ModelSerialize.new(@models, params[:id]) : session[:model_serialize] 
       instance_models
       @filter = model_from_stack(:filter)
       render :template => 'multi_salva/edit'
   end
 
   def new
-    @record = session[:model_serialize] || ModelSerialize.new(@models)
+    @record = (session[:model_serialize].nil?) ? ModelSerialize.new(@models) : session[:model_serialize] 
     instance_models
     @filter = model_from_stack(:filter)
     render :template => 'multi_salva/new'
@@ -82,9 +84,9 @@ class MultiSalvaController < ApplicationController
     @record.fill(params)
     if params[:stack] != nil
       session[:model_serialize] = @record
-      redirect_to options_for_next_controller(@record, controller_name, 'edit')
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit')
     elsif params[:stacklist] != nil
-      redirect_to options_for_next_controller(@record, controller_name, 'edit', 'list')
+      redirect_to options_for_next_controller(@edit, controller_name, 'edit', 'list')
     else
       if @record.valid?
         @record.update_models
@@ -137,7 +139,7 @@ class MultiSalvaController < ApplicationController
   end
 
   def cancel
-    redirect_to (stack_cancel)
+    redirect_to :action => 'list'
   end
 
   def back
