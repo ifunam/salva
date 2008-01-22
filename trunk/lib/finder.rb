@@ -17,11 +17,13 @@ class Finder
   attr_accessor :model
   attr_accessor :columns
   attr_accessor :debug_array
-
+  attr_accessor :hidden_attributes
+  
   def initialize(model, *options)
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
     opts[:first] = true if options[0] == :first
     @model = model
+    @hidden_attributes = opts[:hidden_attributes] || []
     @primary_key = opts[:primary_key] || 'id'
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes(@model).join(', '), opts)
   end
@@ -202,7 +204,8 @@ class Finder
   def find_collection
     collection = @model.find_by_sql(@sql)
     if collection.size > 0
-        columns = collection.first.attribute_names
+        columns = (collection.first.attribute_names - @hidden_attributes)
+        puts "ATRIBUTOS" + columns.join(',') + 'COLUMNS SIZE' + columns.size.to_s
         column_position = columns.inject({}) { |h,col| h[col] = @sql.index(col); h }
         @columns = columns.sort { |x,y| column_position[x] <=> column_position[y] }
     end
