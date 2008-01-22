@@ -9,6 +9,6 @@ class UserSeminaryController < MultiSalvaController
     @purge_msg = 'La información se ha borrado'
     @per_pages = 10
     @order_by = 'id'
-    @list = { :include => [:roleinseminary], :conditions => "roleinseminaries.name = 'Ponente' AND user_seminaries.roleinseminary_id = roleinseminaries.id " }
+    @list = { :include => [:roleinseminary], :conditions => "(roleinseminaries.name = 'Ponente' OR roleinseminaries.name = 'Organizador') AND user_seminaries.roleinseminary_id = roleinseminaries.id " }
   end
 end
