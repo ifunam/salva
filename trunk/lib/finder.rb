@@ -205,7 +205,6 @@ class Finder
     collection = @model.find_by_sql(@sql)
     if collection.size > 0
         columns = (collection.first.attribute_names - @hidden_attributes)
-        puts "ATRIBUTOS" + columns.join(',') + 'COLUMNS SIZE' + columns.size.to_s
         column_position = columns.inject({}) { |h,col| h[col] = @sql.index(col); h }
         @columns = columns.sort { |x,y| column_position[x] <=> column_position[y] }
     end
