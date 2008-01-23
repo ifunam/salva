@@ -175,7 +175,7 @@ jobpositionexternal: Experiencia profesional externa
 updating_current_skills: Actualización profesional
 user_course: Cursos recibidos
 user_conference: Asistencia a eventos académicos
-acadvisit: Intercambio académico 
+acadvisit: Intercambio académico
 acadvisit_id: Estancia
 acadvisittype_id: Tipo de estancia
 place: Lugar
@@ -500,3 +500,4 @@ review: Reseñas
 published_on: Publicada en
 reviewed_work_title: Título del trabajo reseñado
 reviewed_work_publication: Publicación del trabajo reseñado
+schooling: Escolaridad

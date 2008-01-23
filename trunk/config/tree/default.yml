@@ -5,11 +5,7 @@
     - address
     - citizen
     - people_identification
-  - user_schooling
-  - - doctor_schooling
-    - master_schooling
-    - bachelor_schooling
-    - other_schooling
+  - schooling
   - jobposition
   - - jobposition_internal
     - - jobposition_at_institution
