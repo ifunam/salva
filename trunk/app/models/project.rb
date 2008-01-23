@@ -1,6 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessor :roleinproject_id
-  
   has_many :projectinstitutions
   has_many :projectfinancingsources
   has_many :projectresearchlines

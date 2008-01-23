@@ -1,12 +1,11 @@
-<%= error_messages_for 'edit' %>
+<%= error_messages_for 'user_project' %>
 
 <!--[form:user_project]-->
-<%= render :partial => 'project/form'%>
 
 <div class="row"> 
 <label for="roleinproject_id" class="label"><%= get_label('roleinproject_id') %> <span class="required">*</span></label> 
 <div id="roleinproject_id">
-<%= select_conditions('edit', Roleinproject, 2, {:attributes => ['name'], :conditions => 'id < 5 OR id = 8', :order => 'roleinprojects.name ASC'}) %>
+<%= select_conditions('user_project', Roleinproject, 2, {:attributes => ['name'], :conditions => 'id < 5 OR id = 8', :order => 'roleinprojects.name ASC'}) %>
 </div>
 </div>
 
