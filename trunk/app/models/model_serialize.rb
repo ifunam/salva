@@ -24,7 +24,7 @@ class ModelSerialize
     @records.keys.each  do |k|
       set_attributes(@records[k],  params[k])
     end
-    @model = prepare_record
+    prepare_record
   end
 
   def set_attributes(model, attributes)
@@ -34,7 +34,7 @@ class ModelSerialize
   end
 
   def valid?
-    @model.valid?
+    @model.errors.count.to_i == 0 and @model.valid?
   end
 
   def errors
@@ -59,9 +59,12 @@ class ModelSerialize
     myklasses = @klasses.dup
     record_array = walk_array(myklasses)
     record_array.reverse.each do |model, index|
-      record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) unless index.nil?
+      unless index.nil?
+          record_array[index].first.errors.add_to_base(model.errors.full_messages.join(', ')) unless model.valid?
+          record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) 
+      end
     end
-    record_array[0].first
+    @model = record_array[0].first
   end
 
   def walk_array(models, index=nil)
