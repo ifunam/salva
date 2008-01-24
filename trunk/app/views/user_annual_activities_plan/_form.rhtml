@@ -1,7 +1,7 @@
 <%= error_messages_for 'edit' %>
 
 <!--[form:activitytype]-->
-
+<% @plan = (render :file => @tmpl , :layout => false, :use_full_path => false) unless @tmpl.nil? %>
 <br/>
 <%= textile_editor 'edit', 'plan', :size => '80x10', :value => @plan -%>
 <br/>

@@ -37,6 +37,7 @@ class Public::DocumentsController < ActionController::Base
 
   def show
     @record = UserDocument.find(params[:id])
-    send_data(@record.file, :filename => @record.filename, :type => "application/"+@record.content_type.to_s, :disposition => "attachment")
+    filename = @record.user.login + '_' + @record.filename.downcase
+    send_data(@record.file, :filename => filename, :type => "application/"+@record.content_type.to_s, :disposition => "attachment")
   end
 end

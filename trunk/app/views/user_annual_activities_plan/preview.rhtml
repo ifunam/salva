@@ -4,11 +4,11 @@
 <%= @html_plan %>
 </div>
 <hr/>
+<div class="required_legend">Debe guardar antes de enviar sus documentos.</div>
 <% form_tag({:action => 'create'}) do -%>
   <%= render :partial => 'form' %>
 <div id="operations">
-    <%= submit_tag get_label('save') %>| <%= submit_tag get_label('preview') %> | <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %> | 
-    <%= link_to get_label('send_annual_plan'), :action => 'send_document' %> | <%= link_to get_label('cancel'), :action => 'list' %>
+    <%= submit_tag get_label('save') %>| <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %> |  <%= link_to get_label('send_annual_plan'), :action => 'send_document' %> | <%= link_to get_label('cancel'), :action => 'list' %>
 </div>
 <% end -%>
 <%= textile_editor_initialize -%>

@@ -13,6 +13,9 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     if File.exists?(user_filename)
       redirect_to :action => 'preview'
     else
+      record = UserGroup.find(:first, :conditions => ['user_id =?', session[:user]], :order => 'group_id ASC')
+      tmpl = RAILS_ROOT + "/themes/#{get_conf('theme')}/templates/annual_plan/#{record.group.name}.rhtml"
+      @tmpl = tmpl if File.exists?(tmpl)
       render :action => 'new'
     end
   end
@@ -57,7 +60,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
 
   def send_document
     if File.exists?(user_filename)
-      @file = generate_pdf
+      @file = generate_pdf(true)
       @filename = filename
       super
     else
@@ -71,13 +74,13 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     RAILS_ROOT + '/tmp/' + session[:user].to_s + '_' + filename('textile')
   end
 
-  def generate_pdf
+  def generate_pdf(stamped=false)
     file = File.new(user_filename, "r")
     textile = file.read
     file.close
     @report = UserReport.new(session[:user])
     @pdf = UserReportPdfTransformer.new(@document_title)
-    @pdf.add_received_stamp
+    @pdf.add_received_stamp if stamped == true
     @pdf.report_code report_code
     @pdf.add_data [@report.profile_as_hash]
     @pdf.add_textile textile
