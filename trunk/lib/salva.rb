@@ -41,4 +41,8 @@ module Salva
   def get_technical_support(key)
     get_conf('technical_support')[key]
   end
+  
+  def get_documents(key)
+    get_conf('documents')[key]
+  end
 end
