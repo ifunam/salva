@@ -10,7 +10,11 @@ module Stackcontroller
     stack_params = params[:stacklist].nil? ? params[:stack]: params[:stacklist]
     if stack_params =~ /:/
       params_array = stack_params.split(':')
-      [ params_array[0], params_array[0]+'_id',   params[:edit][params_array[1].to_sym]  ||  params[:filt][params_array[1].to_sym] ]
+      a = [ params_array[0], params_array[0]+'_id' ]
+      params.keys.each do |k|
+           a << params[k][params_array[1].to_sym] if params[k].is_a? Hash and params[k].has_key? params_array[1].to_sym
+      end
+      a
     elsif stack_params =~ /\,/
       [ stack_params.split(',')[0], stack_params.split(',')[1] ]
     else
