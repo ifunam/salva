@@ -5,7 +5,7 @@
   </tr>
 	<% for d in h[:docs] %>
    <tr class="even">
-    <td class="item" style="text-align: center;" ><%= link_to d.title, :action => :user_list, :id => d.id %></td>
+    <td class="item" style="text-align: center;" ><%= link_to d.title, :action => :list, :id => d.id %></td>
    </tr>
  <% end %>
 </table>
