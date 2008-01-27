@@ -1,10 +1,8 @@
-<h2> <%= @document_title %></h2>
 <%= render :partial => 'profile' %>
-<div class="section">
+<h1> <%= @document_title %></h1>
 <%= @html_plan %>
-</div>
 <hr/>
-<div class="required_legend">Debe guardar antes de enviar sus documentos.</div>
+<div class="required_legend">Debe guardar sus cambios antes de enviar su documentos.</div>
 <% form_tag({:action => 'create'}) do -%>
   <%= render :partial => 'form' %>
 <div id="operations">
