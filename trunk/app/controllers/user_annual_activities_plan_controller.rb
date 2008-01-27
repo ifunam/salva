@@ -82,7 +82,7 @@ class UserAnnualActivitiesPlanController < UserDocumentController
     @pdf = UserReportPdfTransformer.new(@document_title)
     @pdf.add_received_stamp if stamped == true
     @pdf.report_code report_code
-    @pdf.add_data [@report.profile_as_hash]
+    @pdf.add_data [@report.profile_as_hash, {:title => 'user_annual_activities_plan', :level => 1}]
     @pdf.add_textile textile
     @pdf.render
  end

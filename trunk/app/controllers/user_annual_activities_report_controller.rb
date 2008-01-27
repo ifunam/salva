@@ -8,9 +8,13 @@ class  UserAnnualActivitiesReportController < UserDocumentController
   end
 
   def preview
-    @report = UserReport.new(session[:user])
-    @data =  @report.as_array
-    render :action => 'preview'
+    unless @document_title.nil?
+     @report = UserReport.new(session[:user])
+     @data =  @report.as_array
+     render :action => 'preview'
+    else
+     redirect_to :action => 'list'
+    end
   end
 
   def preview_pdf
