@@ -13,7 +13,7 @@ class ModelSerialize
     else
       myklasses = @klasses.dup
       record = myklasses.shift.find(id)
-      @records = { attribute_name(record.class.name) => record } 
+      @records = { attribute_name(record.class.name) => record }
       fill_from_record(record, myklasses)
       @model = record
       @records
@@ -60,8 +60,8 @@ class ModelSerialize
     record_array = walk_array(myklasses)
     record_array.reverse.each do |model, index|
       unless index.nil?
-          record_array[index].first.errors.add_to_base(model.errors.full_messages.join(', ')) unless model.valid?
-          record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model) 
+          record_array[0].first.errors.add_to_base(model.errors.full_messages.join(', ')) unless model.valid?
+          record_array[index].first.send(attribute_name(model.class.name).to_s + '=', model)
       end
     end
     @model = record_array[0].first
