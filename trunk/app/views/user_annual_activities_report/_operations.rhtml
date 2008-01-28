@@ -1,10 +1,8 @@
 <div id="operations">
-<% if @document_title.nil? %>
  <%= link_to get_label('preview_pdf'), :action => 'preview_pdf' %>
  &nbsp; | &nbsp;
  <%= link_to get_label('send_annual_report'), :action => 'send_document' %>
  &nbsp; | &nbsp;
-<% end %>
  <%= link_to get_label('cancel'), :action => 'list' %>
 &nbsp; | &nbsp;
  <%= link_to 'Regresar a inicio', :controller => 'navigation' %>
