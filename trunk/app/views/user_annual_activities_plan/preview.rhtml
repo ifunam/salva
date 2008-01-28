@@ -2,7 +2,9 @@
 <h1> <%= @document_title %></h1>
 <%= @html_plan %>
 <hr/>
-<div class="required_legend">Debe guardar sus cambios antes de enviar su documentos.</div>
+<blink>
+<div class="required_legend">Debe guardar sus cambios antes de enviar su documento.</div>
+</blink>
 <% form_tag({:action => 'create'}) do -%>
   <%= render :partial => 'form' %>
 <div id="operations">
