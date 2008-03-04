@@ -1,0 +1,10 @@
+user_newspaperarticles_01: 
+  id: 1
+  user_id: 2
+  newspaperarticle_id: 1
+  ismainauthor: true
+user_newspaperarticles_02: 
+  id: 2
+  user_id: 3
+  newspaperarticle_id: 2
+  ismainauthor: false

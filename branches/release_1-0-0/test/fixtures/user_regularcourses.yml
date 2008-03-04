@@ -1,0 +1,12 @@
+juana_fisica_general:
+  id: 1
+  user_id: 2
+  regularcourse_id: 1 
+  period_id: 2
+  roleinregularcourse_id: 1
+panchito_algebra_superior:
+  id: 2
+  user_id: 3
+  regularcourse_id: 2
+  period_id: 1
+  roleinregularcourse_id: 1

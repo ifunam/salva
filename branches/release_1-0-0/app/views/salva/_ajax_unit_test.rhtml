@@ -1,0 +1,25 @@
+<div class="test">
+<h1>Unit testing for script.aculo.us in SALVA</h1>
+<p> Tests the effects </p>
+<!-- Log output -->
+<div id="testlog"> </div>
+
+<!-- here go any elements you do the testing on -->
+<!-- Tests -->
+<script type="text/javascript" language="javascript">
+// <![CDATA[
+  new Test.Unit.Runner({
+
+  // test cases follow, each method which starts
+  // with "test" is considered a test case
+  testObservableField: function() { with(this) {
+        assertRaise('ElementDoesNotExistError',
+        function(){new Effect.Opacity('nothing-to-see-here')});
+
+  }},
+
+  });
+
+// ]]>
+</script>
+</div>

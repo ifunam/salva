@@ -1,0 +1,10 @@
+--- 
+rfc: 
+  name: RFC
+  id: 2
+curp: 
+  name: CURP
+  id: 3
+pasaporte: 
+  name: Pasaporte
+  id: 1

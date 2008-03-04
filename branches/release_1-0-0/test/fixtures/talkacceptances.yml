@@ -1,0 +1,10 @@
+--- 
+arbitrado: 
+  name: Arbitrado
+  id: 3
+invitacion: 
+  name: Invitación
+  id: 2
+inscripcion: 
+  name: Inscripción
+  id: 1

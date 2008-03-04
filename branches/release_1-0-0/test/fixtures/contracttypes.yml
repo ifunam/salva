@@ -1,0 +1,10 @@
+--- 
+plaza_definitiva: 
+  name: Plaza definitiva
+  id: 1
+por_honorarios: 
+  name: Por honorarios
+  id: 3
+por_obra_determinada: 
+  name: Por obra determinada
+  id: 2

@@ -1,0 +1,27 @@
+juana_como_tecnico_academico:
+  id: 1
+  user_id: 2 
+  institution_id: 30
+  jobpositioncategory_id: 1
+  startyear: 1998
+  endyear: 2000
+juana_como_investigador:
+  id: 2
+  user_id: 2 
+  institution_id: 30
+  jobpositioncategory_id: 2
+  startyear: 2001
+panchito_como_investigador:  
+  id: 3
+  user_id: 3
+  institution_id: 57
+  jobpositioncategory_id: 2
+  startyear: 2003
+panchito_como_secretario_academico:
+  id: 4
+  user_id: 3
+  institution_id: 57
+  jobpositioncategory_id: 3
+  startyear: 2002
+  endyear: 2001
+  

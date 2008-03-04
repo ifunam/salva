@@ -1,0 +1,29 @@
+sismologia:
+  id: 1
+  book_id: 1
+  edition: Tercera
+  mediatype_id: 1
+  year: 2004
+  month: 3
+  pages: 300
+  editionstatus_id: 1
+earthquakes:
+  id: 2
+  book_id: 2
+  edition: Second edition
+  mediatype_id: 1
+  year: 1999
+  month: 7
+  pages: 200
+  editionstatus_id: 2
+spacephysics:
+  id: 3
+  book_id: 3
+  edition: First
+  mediatype_id: 2
+  pages: 340
+  year: 2006
+  month: 12
+  editionstatus_id: 1
+
+

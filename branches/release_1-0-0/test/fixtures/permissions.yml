@@ -1,0 +1,10 @@
+administrador_salva_address_index:
+  id: 1
+  roleingroup_id: 1
+  controller_id: 2
+  action_id: 1
+secretaria_academica_citizen_new:
+  id: 2
+  roleingroup_id: 2
+  controller_id: 3
+  action_id: 3

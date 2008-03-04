@@ -1,0 +1,10 @@
+--- 
+coordinador_general: 
+  name: Coordinador general
+  id: 3
+asistente: 
+  name: Asistente
+  id: 1
+organizador: 
+  name: Organizador
+  id: 2

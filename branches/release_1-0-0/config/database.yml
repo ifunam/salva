@@ -1,0 +1,19 @@
+login: &login
+  adapter: postgresql
+  host: localhost
+  username: salva
+  password:
+  encoding: UTF-8 
+
+development:
+  database: salva
+  <<: *login
+
+test: 
+  database: salva_test
+  <<: *login
+
+production: 
+  database: salva
+  <<: *login
+  

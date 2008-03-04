@@ -1,0 +1,32 @@
+aerosoles_atmosfericos:
+  name: Aerosoles atmosféricos
+  descr:
+  abbrev:
+  administrative_key:
+  id: 1
+  institution_id: 57
+  moduser_id:
+  created_on:
+  updated_on:
+
+citogenetica_ambiental:
+  name: Citogenética ambiental
+  descr:
+  abbrev:
+  administrative_key:
+  id: 2
+  institution_id: 57
+  moduser_id:
+  created_on:
+  updated_on:
+  
+contaminacion_ambiental: 
+  name: Contaminación ambiental
+  descr:
+  abbrev:
+  administrative_key:
+  id: 3
+  institution_id: 57
+  moduser_id:
+  created_on:
+  updated_on:

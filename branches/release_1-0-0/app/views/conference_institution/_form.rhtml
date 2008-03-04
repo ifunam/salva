@@ -1,0 +1,17 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:conference_institution]-->
+<div class="row">
+<label for="conference_id" class="label"><%= get_label('conference_id') %> <span class="required">*</span></label>
+<div id="conference_id">
+<%= simple_select('edit', Conference, 1) %>
+<%= quickpost('conference') %>
+</div>
+</div>
+
+<div class="row">
+ <%= render :partial => 'salva/filter_institutions' %>
+</div>
+
+<!--[eoform:conference_institution]-->
+

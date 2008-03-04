@@ -1,0 +1,10 @@
+--- 
+participante: 
+  name: Participante
+  id: 3
+responsable: 
+  name: Responsable
+  id: 1
+corresponsable: 
+  name: Corresponsable
+  id: 2

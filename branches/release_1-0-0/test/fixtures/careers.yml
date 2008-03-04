@@ -1,0 +1,13 @@
+actuaria:
+  id: 1
+  name: Actuaria
+  degree_id: 3
+administracion:
+  id: 2
+  name: Administración
+  degree_id: 4
+matematicas:
+  id: 3
+  name: Matematicas
+  degree_id: 3
+

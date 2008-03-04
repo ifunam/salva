@@ -1,0 +1,21 @@
+opiniones:
+  name: Opiniones
+  id: 1
+  activitytype_id: 1
+  user_id: 1
+  year: 1984
+  month: 04
+conferencias:
+  name: Conferencias
+  id: 2
+  activitytype_id: 2
+  user_id: 1
+  year: 1984
+  month: 04
+programas_de_estudios: 
+  name: Programas de estudios
+  id: 3
+  activitytype_id: 3
+  user_id: 1
+  year: 1984
+  month: 04

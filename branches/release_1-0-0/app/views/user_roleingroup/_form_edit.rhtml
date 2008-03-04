@@ -1,0 +1,23 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_roleingroup]-->
+
+<div class="row"> 
+<label for="roleingroup_id" class="label"><%= get_label('login') %> <span class="required">*</span></label> 
+<div id="user_id">
+<%= get_user(@edit.user_id) %>
+<%= hidden_field('edit', 'user_id', :value => @edit.user_id) %>
+</div>
+</div>
+
+
+<div class="row"> 
+<label for="roleingroup_id" class="label"><%= get_label('roleingroup_id') %> <span class="required">*</span></label> 
+<div id="roleingroup_id">
+<%= select_conditions('edit', Roleingroup, 2, :attributes =>[ 'group', 'role' ] ) %>
+</div>
+</div>
+
+
+<!--[eoform:user_roleingroup]-->
+

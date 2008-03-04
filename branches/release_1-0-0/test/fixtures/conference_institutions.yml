@@ -1,0 +1,8 @@
+secretaria_de_educacion_publica:
+  id: 1
+  conference_id: 1
+  institution_id: 5588
+centro_de_ciencias_de_la_atmosfera:
+  id: 2
+  conference_id: 2
+  institution_id: 57

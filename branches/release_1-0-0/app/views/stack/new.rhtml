@@ -1,0 +1,7 @@
+<h1>New <%= @edit.class.name %></h1>
+
+  <% form_tag({:action => 'create'}) do -%>
+  <%= render :partial => Inflector.underscore(@edit.class.name).downcase+'/form' %>
+  <%= submit_tag "Create" %>
+<% end -%>
+

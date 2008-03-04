@@ -1,0 +1,39 @@
+<%= error_messages_for 'schooling' %>
+
+<!--[form:schooling]-->
+<br/>
+
+<div class="row">
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
+<%= auto_complete_year(:schooling, :startyear, 7) %><br/>
+</div>
+
+<div class="row">
+<label for="endyear" class="label"><%= get_label('endyear') %></label>
+<%= auto_complete_year(:schooling, :endyear, 8, true) %><br/></div>
+
+<div class="row">
+<label for="is_studying_this" class="label"><%= get_label('is_studying_this') %> <span class="required">*</span></label>
+<div class="radio">
+No <%= radio_button('schooling', 'is_studying_this', 'false', {:onclick => "new Effect.BlindDown('is_titleholder'); return true;", :tabindex => 6} ) %>
+Sí <%= radio_button('schooling', 'is_studying_this', 'true', {:onclick =>"new Effect.BlindUp('is_titleholder'); return true;", :tabindex => 6,
+:checked => 'true' }
+) %>
+</div>
+</div>
+
+<div class="row" id="is_titleholder">
+<label for="is_titleholder" class="label"><%= get_label('is_titleholder') %> <span class="required">*</span></label>
+<div class="radio">
+No <%= radio_button('schooling', 'is_titleholder', 'false', {:tabindex =>9, :checked => 'true'} ) %>
+Sí <%= radio_button('schooling', 'is_titleholder', 'true', {:tabindex => 9} ) %>
+</div>
+</div>
+
+<div class="row">
+<label for="other" class="label"><%= get_label('other') %></label>
+<%= text_area 'schooling', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 10, 'id' => 'other' %>
+</div>
+
+<!--[eoform:schooling]-->
+

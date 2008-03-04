@@ -1,0 +1,26 @@
+<%= error_messages_for 'user_regularcourse' %>
+
+<!--[form:user_regularcourse]-->
+<div class="row">
+<label for="period_id" class="label"><%= get_label('period_id') %><span class="required">*</span></label>
+<div id="period_id">
+<%= select_conditions('user_regularcourse', Period, 2, :attributes => ['title'], :order => 'periods.title DESC', :selected => :last) %>
+  <%= quickpost('period') %>
+</div>
+</div>
+
+<div class="row">
+<label for="roleinregularcourse_id" class="label"><%= get_label('roleinregularcourse_id') %> <span class="required">*</span></label>
+<div id="roleinregularcourse_id">
+<%= simple_select('user_regularcourse', Roleinregularcourse, 3, { :selected => @user_regularcourse.roleinregularcourse_id || 1}) %>
+</div>
+</div>
+
+<div class="row">
+<label for="hoursxweek" class="label"><%= get_label('hoursxweek') %></label>
+<%= text_field 'user_regularcourse', 'hoursxweek', 'size' => 2, 'maxlength'=> 2, 'tabindex'=> 4, 'id' => 'hoursxweek' %>
+</div>
+
+
+<!--[eoform:user_regularcourse]-->
+

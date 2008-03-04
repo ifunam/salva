@@ -1,0 +1,21 @@
+comunicaciones_tecnicas:
+  id: 1
+  title: Comunicaciones_tecnicas
+  authors: Andres Silva, Imelda Hernandez, Roberto Martinez
+  genericworktype_id: 5
+  genericworkstatus_id: 3
+  year: 2007
+reportes_tecnicos:
+  id: 2
+  title: Reportes Tecnicos
+  authors: Alejandro Silva, Ines Hernandez, Gilberto Casillas
+  genericworktype_id: 1
+  genericworkstatus_id: 2
+  year: 2007
+cosmos:
+  id: 3
+  title: El origen del cosmos, los agujeros negros, y la historia del huevo y la gallina
+  authors: Master yoda, Luke Skywalker and Pedro PicaPica
+  genericworktype_id: 3
+  genericworkstatus_id: 1
+  year: 2007

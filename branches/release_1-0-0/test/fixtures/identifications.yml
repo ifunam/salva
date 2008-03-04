@@ -1,0 +1,13 @@
+---
+curp:
+  id: 1
+  idtype_id: 3
+  citizen_country_id: 484
+rfc:
+  id: 2
+  idtype_id: 2
+  citizen_country_id: 484
+pasaporte_ucraniano:
+  id: 3
+  idtype_id: 1
+  citizen_country_id: 804

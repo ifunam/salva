@@ -1,0 +1,13 @@
+--- 
+plan_anual_de_actividades: 
+  name: Plan anual de actividades
+  descr: Lo que se ha determinado hacer durante el periodo
+  id: 2
+curriculum: 
+  name: Curriculum
+  descr: Historial
+  id: 3
+informe_anual_de_actividades: 
+  name: Informe anual de actividades
+  descr: Todo lo que se ha realizado a lo largo del periodo
+  id: 1

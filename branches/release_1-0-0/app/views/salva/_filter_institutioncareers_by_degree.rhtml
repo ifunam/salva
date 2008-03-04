@@ -1,0 +1,12 @@
+<%   degree = Degree.find(id).name  if degree.nil? %>
+<%=
+links_to_filters(
+[
+["#{degree} en #{get_myschool.name}", 'select_institutioncareer_by_degree_myschool', id],
+["#{degree} en la UNAM", 'select_institutioncareer_by_degree_unam', id],
+["#{degree} en instituciones nacionales", 'select_institutioncareer_by_degree_national', id],
+["#{degree} en instituciones en el extranjero", 'select_institutioncareer_by_degree_international', id]
+], tabindex
+) %> &nbsp;
+<%= quickpost('institutioncareer') %> &nbsp;
+<%= quickpost_select('institutioncareer') %>

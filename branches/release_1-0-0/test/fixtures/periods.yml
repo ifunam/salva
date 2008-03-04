@@ -1,0 +1,15 @@
+ordinario:
+  id: 1
+  title: Ordinario
+  startdate: 2006-06-01
+  enddate: 2006-12-10
+extraordiniario:
+  id: 2
+  title: Extraordinario
+  startdate: 2006-12-11
+  enddate: 2006-12-20
+otro:
+  id: 3
+  title: Otro
+  startdate: 2006-12-13
+  enddate: 2006-12-22

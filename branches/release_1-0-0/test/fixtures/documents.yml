@@ -1,0 +1,13 @@
+--- 
+annual_report: 
+  enddate: 2007-12-31
+  title: Reporte Anual 2007
+  documenttype_id: 1
+  id: 1
+  startdate: 2007-01-01
+annual_plan: 
+  enddate: 2008-01-01
+  title: Plan Anual de Actividades 2008
+  documenttype_id: 2
+  id: 2
+  startdate: 2007-11-01

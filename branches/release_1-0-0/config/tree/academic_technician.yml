@@ -1,0 +1,78 @@
+---
+- profile
+- - general
+  - - person
+    - address
+    - citizen
+    - people_identification
+  - schooling
+  - jobposition
+  - - jobposition_internal
+    - - jobposition_at_institution
+      - user_adscription
+      - jobposition_log
+    - jobposition_external
+  - user_stimulus
+  - updating_current_skills
+  - - user_course
+    - userconference
+    - student_thesis
+  - user_schoolarship
+  - membership
+  - user_prize
+  - user_language
+  - user_skill
+  - user_settings
+  - - change_password
+    - user_setting
+- user_project
+- user_cite
+- user_researchline
+- conferences_and_seminaries
+- - user_conferencetalk
+  - user_seminary
+  - userconference_committee
+- publications
+- - bookedition_roleinbook
+  - chapterinbook_roleinchapter
+  - user_published_article
+  - user_unpublished_article
+  - user_inproceeding_refereed
+  - user_techreport
+  - user_inproceeding_unrefereed
+  - review
+- colaboration_on_publications
+- - user_journal
+  - user_proceeding_refereed
+  - user_book
+- popular_science
+- - user_newspaperarticle
+  - user_popularsciencework
+- diffusion
+- human_resources_formation_and_teaching
+- - teaching
+  - - user_regularcourse
+    - user_specialcourse
+    - teaching_activity
+    - user_teaching_product
+  - human_resources_formation
+  - - user_thesis
+    - thesis_juror
+    - tutorial_committee
+    - student_advice
+- acadvisit
+- outreach
+- - professor_advice
+  - instadvice
+  - user_outreachwork
+- institutional_activity
+- technical_activity
+- - user_techproduct
+  - techactivity
+- user_credit
+- other_activities_or_products
+- - activity
+  - user_genericwork
+- user_reports
+- - user_annual_activities_report
+  - user_annual_activities_plan

@@ -1,0 +1,5 @@
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Genericworktype, tabindex, :conditions => "genericworkgroup_id = #{id}") %>
+<% end %>
+
+

@@ -1,0 +1,8 @@
+<%= render :partial => 'salva/form_notes' %>
+ <% form_tag({:action => 'update', :id =>@edit.id}, :multipart => true) do -%>
+<%= render :partial => 'form' %>
+  <div id="operations">
+  <%= submit_tag get_label('update') %> |  <%= link_to get_label('cancel'), :action => 'show' %>
+  </div>
+<% end -%>
+

@@ -1,0 +1,20 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_creditsconferencetalk]-->
+<div class="row"> 
+<label for="conferencetalk_id" class="label"><%= get_label('conferencetalk_id') %> <span class="required">*</span></label> 
+<div id="conferencetalk_id">
+<%= simple_select('edit', Conferencetalk, 1) %>
+</div>
+<%= quickpost('conferencetalk') %>
+&nbsp;
+<%= quickpost_select('conferencetalk') %>
+</div>
+
+<div class="row"> 
+<label for="other" class="label"><%= get_label('other') %></label> 
+<%= text_area 'edit', 'other', 'rows' => 4, 'cols' => 40, 'tabindex' => 2, 'id' => 'other' %></div>
+
+
+<!--[eoform:user_creditsconferencetalk]-->
+

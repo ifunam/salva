@@ -1,0 +1,13 @@
+--- 
+administrador_admin: 
+  id: 1
+  group_id: 1
+  role_id: 1
+estudiante_secretaria: 
+  id: 2
+  group_id: 3
+  role_id: 2
+estudiante_departamento: 
+  id: 3
+  group_id: 1
+  role_id: 2

@@ -1,0 +1,6 @@
+<% body.each do |attr, value | %>
+<div class="row">
+<label for="<%= h(attr) %>" class="label"><%= get_label(attr) %></label>
+<%= value %>
+</div>
+<% end %>

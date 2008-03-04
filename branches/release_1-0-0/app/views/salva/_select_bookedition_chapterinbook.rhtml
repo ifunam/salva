@@ -1,0 +1,3 @@
+<% if id.to_i > 0 %>
+  <%= select_conditions('edit', Chapterinbook, tabindex, :attributes => ['bookchaptertype', 'title'], :conditions => "bookedition_id = #{id}") %>
+<% end %>

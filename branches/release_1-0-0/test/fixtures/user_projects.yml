@@ -1,0 +1,15 @@
+proyecto_salva: 
+  id: 1
+  project_id: 1
+  roleinproject_id: 3
+  user_id: 1
+proyecto_issste: 
+  id: 2
+  project_id: 2
+  roleinproject_id: 1
+  user_id: 2
+proyecto_seguridad_publica: 
+  id: 3
+  project_id: 3
+  roleinproject_id: 2
+  user_id: 3

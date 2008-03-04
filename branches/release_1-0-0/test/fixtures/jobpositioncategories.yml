@@ -1,0 +1,15 @@
+tecnico_academico_tc:
+  id: 1
+  jobpositiontype_id: 2
+  roleinjobposition_id: 3
+  jobpositionlevel_id: 1
+investigador_tc:
+  id: 2
+  jobpositiontype_id: 1
+  roleinjobposition_id: 2
+  jobpositionlevel_id: 1
+secretario_academico:
+  id: 3
+  jobpositiontype_id: 1
+  roleinjobposition_id: 1
+  jobpositionlevel_id: 1

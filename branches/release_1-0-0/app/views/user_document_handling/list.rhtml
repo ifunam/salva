@@ -1,0 +1,24 @@
+<% for doc in @collection %>
+<h2><%= doc[:title] %></h2>
+<table class="list">
+  <tr>
+    <th>*</th>
+    <th>Acciones</th>
+  </tr>
+<% rowcolor = 1 %>
+<% for record in doc[:records] %>
+  <tr class="<%= rowcolor == 1 ? 'odd' : 'even' %>" >
+  <% rowcolor == 1 ? rowcolor = 0 : rowcolor = 1 %>
+    <td><%= record.user.person.fullname %></td>
+    <td>
+      <%= link_to 'Consultar', :action => 'show', :id => record.id %>
+      <% if record.status == false %>
+      | <%= link_to 'Aprobar', :action => 'approve', :id => record.id %>
+      | <%= link_to ('No aprobar', :action => 'form_deny', :id => record.id) %>
+      | <%= link_to ('Indicar modificaciones', :action => 'comments', :id => record.id) %>
+     <% end %>
+  </tr>
+<% end %>
+</table>
+<% end %>
+

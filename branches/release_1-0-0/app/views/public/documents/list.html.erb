@@ -1,0 +1,22 @@
+<center> <h3> <%= @document_title %></h3></center>
+<br />
+
+<% for h in @collection %>
+<table class="list">
+  <tr>
+    <th><%= h[:adscription] %></th>
+    <th>*</th>
+  </tr>
+   <% for record in h[:docs] %>
+  <tr class="even">
+    <td class="item" style="width: 50%;"><%= link_to record.user.person.fullname, :action => :show, :id => record.id %></td>
+    <td class="item" style="width: 40%;">
+      <%= Finder.new(Jobposition, :first, :attributes => [['jobpositioncategory', 'roleinjobposition', 'jobpositionlevel'], 'startyear'], :hidden_attributes => %w(jobpositions_startyear), :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositions.user_id = #{record.user.id.to_i}", :order => 'jobpositions.startyear DESC', :include => ['institutions']).as_text.first %>
+   </td>
+    <td class="link"><%= show_link(record.id) %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<% end %>
+<b>Total de documentos:</b> <%= @total_docs %></b>

@@ -1,0 +1,10 @@
+---
+titular:
+  name: Titular
+  id: 1
+ayudante:
+  name: Ayudante
+  id: 2
+coayudante:
+  name: coayudante
+  id: 3

@@ -1,0 +1,10 @@
+programa_academico_licenciatura:
+  id: 1
+  institutioncareer_id: 1
+  academicprogramtype_id: 2
+  year: 2007
+programa_academico_maestria:
+  id: 2
+  institutioncareer_id: 2
+  academicprogramtype_id: 1
+  year: 2006

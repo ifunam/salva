@@ -1,0 +1,10 @@
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<% form_tag({:action => 'update', :id => @edit.id}) do -%>
+
+<%= render :partial => 'researchline/form'%>
+  <div id="operations">
+    <%= submit_tag get_label('update') %><span id="progressbar" style="display:none;"><img src="/images/progress-bar.gif"></span> |
+  <%= link_to get_label('cancel'), :action => 'cancel' %>
+  </div>
+<% end -%>
+

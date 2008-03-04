@@ -1,0 +1,10 @@
+--- 
+estudiante: 
+  name: Estudiante
+  id: 1
+tecnico_academico: 
+  name: Técnico Académico
+  id: 3
+investigador: 
+  name: Investigador
+  id: 2

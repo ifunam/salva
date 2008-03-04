@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+printed:
+  id: 1
+  name: Impreso
+electronic:
+  id: 2
+  name: Electrónico
+other:
+  id: 3
+  name: Otro

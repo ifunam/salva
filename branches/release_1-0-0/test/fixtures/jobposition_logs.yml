@@ -1,0 +1,12 @@
+juana:
+  id: 1
+  user_id: 2 
+  worker_key: 123789456
+  academic_years: 10
+  administrative_years: 
+panchito:
+  id: 2
+  user_id: 3
+  worker_key: 4567890123
+  academic_years: 
+  administrative_years: 20

@@ -1,0 +1,32 @@
+<%= error_messages_for 'edit' %>
+
+<!--[form:user_stimulus]-->
+<div class="row">
+<label for="stimuluslevel_id" class="label"><%= get_label('stimuluslevel_id') %> <span class="required">*</span></label>
+<div id="stimuluslevel_id">
+<%= select_conditions('edit', Stimuluslevel, 1, {:attributes => %w(stimulustype name) }) %>
+</div>
+<%= quickpost('stimuluslevel') %>
+</div>
+
+<div class="row">
+<label for="startyear" class="label"><%= get_label('startyear') %> <span class="required">*</span></label>
+<%= auto_complete_year(:edit, :startyear, 2) %><br/></div>
+
+<div class="row">
+<label for="startmonth" class="label"><%= get_label('startmonth') %></label>
+<%= month_select('edit', 'startmonth', {:tabindex => 3, :required => 0 }) %>
+</div>
+
+<div class="row">
+<label for="endyear" class="label"><%= get_label('endyear') %></label>
+<%= auto_complete_year(:edit, :endyear, 4, true) %><br/></div>
+
+<div class="row">
+<label for="endmonth" class="label"><%= get_label('endmonth') %></label>
+<%= month_select('edit', 'endmonth', {:tabindex => 5, :required => 0 }) %>
+</div>
+
+
+<!--[eoform:user_stimulus]-->
+

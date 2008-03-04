@@ -1,0 +1,10 @@
+--- 
+citizen: 
+  name: citizen
+  id: 3
+address: 
+  name: address
+  id: 2
+person: 
+  name: person
+  id: 1

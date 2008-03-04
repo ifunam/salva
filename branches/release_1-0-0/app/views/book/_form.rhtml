@@ -1,0 +1,42 @@
+<%= error_messages_for 'book' %>
+
+<!--[form:book]-->
+<div class="row"> 
+<label for="title" class="label"><%= get_label('title') %> del libro<span class="required">*</span></label> 
+<%= text_area 'book', 'title', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 1, 'id' => 'title' %>
+</div>
+
+<div class="row"> 
+<label for="authors" class="label"><%= get_label('author') %> <span class="required">*</span></label> 
+<%= text_area 'book', 'authors', 'cols' => 40, 'rows'=> 4, 'tabindex'=> 2, 'id' => 'author' %>
+</div>
+
+<div class="row"> 
+<label for="country_id" class="label"><%= get_label('country_id') %> <span class="required">*</span></label> 
+<div id="country_id">
+<%= simple_select('book', Country, 4, :selected => @book.country_id || 484) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="booktype_id" class="label"><%= get_label('booktype_id') %> <span class="required">*</span></label> 
+<div id="booktype_id">
+<%= simple_select('book', Booktype, 5) %>
+</div>
+</div>
+
+<div class="row"> 
+<label for="volume" class="label"><%= get_label('volume') %> </label>
+<%= text_field 'book', 'volume', 'size' => 30, 'maxlength'=> 40, 'tabindex'=> 6, 'id' => 'volume' %>
+</div>
+
+<div class="row"> 
+<label for="language_id" class="label"><%= get_label('language_id') %> <span class="required">*</span></label>
+<div id="language_id">
+<%= simple_select('book', Language, 7, :selected => @book.language_id || 1 ) %>
+</div>
+</div>
+
+
+<!--[eoform:book]-->
+

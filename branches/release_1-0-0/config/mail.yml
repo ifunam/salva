@@ -1,0 +1,8 @@
+settings:
+  :address: fenix.fisica.unam.mx
+  :port:    25
+  :domain:  fisica.unam.mx
+
+method: sendmail  
+
+charset: utf-8

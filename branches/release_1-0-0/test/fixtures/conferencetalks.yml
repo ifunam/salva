@@ -1,0 +1,17 @@
+---
+prueba001:
+  id: 1
+  title: Estudios sobre formacion de barrancos en Marte
+  authors: Imelda Martinez, Gerardo Hessman
+  conference_id: 1
+  talktype_id: 2
+  talkacceptance_id: 1
+  modality_id: 1
+prueba002:
+  id: 2
+  title: Estudios sobre formacion de suelos volcanicos
+  authors: Rosendo Jimenez, Ron Fenske
+  conference_id: 1
+  talktype_id: 1
+  talkacceptance_id: 2
+  modality_id: 2

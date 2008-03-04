@@ -1,0 +1,10 @@
+juana: 
+  id: 1
+  user_id: 1
+  chapterinbook_id: 1
+  roleinchapter_id: 3
+panchito: 
+  id: 2
+  user_id: 2
+  chapterinbook_id: 2
+  roleinchapter_id: 1

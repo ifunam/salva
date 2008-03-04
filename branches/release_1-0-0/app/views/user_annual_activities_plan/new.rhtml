@@ -1,0 +1,9 @@
+<div class="required_legend"><%= get_label('required_legend') %>.</div>
+<%= render :partial => 'profile' %>
+<% form_tag({:action => 'create'}) do -%>
+  <%= render :partial => 'form' %>
+<div id="operations">
+    <%= submit_tag get_label('save') %>| <%= link_to get_label('cancel'), :action => 'list' %>
+</div>
+<% end -%>
+<%= textile_editor_initialize -%>
