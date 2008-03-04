@@ -36,25 +36,32 @@ module SelectHelper
     end
     Finder.new(model, :first, options).as_pair
   end
-
-  def simple_select(object, model, tabindex, options={})
+ 
+  def simple_select(model, options)
+    model = Inflector.tableize(model).classify.constantize
     field = options[:field] || foreignize(model,options[:prefix])
-    selected = selectize_id((eval "@#{object}"), field, options[:selected], @filter)
+    selected = selectize_id(eval("@#{object_name}"), field, options[:default].to_i, @filter)  unless @object_name.nil?
+    selected = selectize_id(@object, field, options[:default].to_i, @filter) if selected.nil?
     list = Finder.new(model, options).as_pair
     selected = list.first[0] if selected == :first
     selected = list.last[0] if selected == :last
     list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
-    select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+    object_name = @object_name.nil? ? options[:object_name] : @object_name
+    @template.select(object_name, field, list, { :prompt => '-- Seleccionar --', :selected => selected})
   end
 
-  def select_conditions(object, model, tabindex, options={})
+  def select_conditions(model, options)
+    model = Inflector.tableize(model).classify.constantize
     field = options[:field] || foreignize(model,options[:prefix])
-    selected = selectize_id((eval"@#{object}"), field, options[:selected], @filter)
+    object_name = @object_name.nil? ? options[:object_name] : @object_name
+    selected = selectize_id(eval("@#{object_name}"), field, options[:default], @filter) unless @object_name.nil?
+    selected = selectize_id(@object, field, options[:default], @filter) if selected.nil?
     list = Finder.new(model, :all, options).as_pair
     list += finder_id(model, selected, options[:attributes])  if !selected.nil? && list.rassoc(selected.to_i).nil?
-    select(object, field, list, { :prompt => '-- Seleccionar --', :selected => selected}, {:tabindex => tabindex})
+    object_name = @object_name.nil? ? options[:object_name] : @object_name
+    @template.select(object_name, field, list, { :prompt => '-- Seleccionar --', :selected => selected})
   end
-
+  
   def observable_select(partial, id, tabindex)
     render :partial => "salva/#{partial}", :locals => { :id => id, :tabindex => tabindex }
   end
