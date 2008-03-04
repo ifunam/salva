@@ -70,4 +70,10 @@ module ApplicationHelper
   def foreignize(model, prefix=nil)
     (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
   end
+  
+  def radio_buttons(attribute ,options)
+     options[:values].collect { |v|
+       label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+     }.join(' ')
+  end
 end
