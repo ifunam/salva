@@ -2,7 +2,7 @@ require 'finder'
 require 'select_helper'
 require 'application_helper'
 require 'labels'
-class LabelFormBuilder < ActionView::Helpers::FormBuilder
+class LabellingFormBuilder < ActionView::Helpers::FormBuilder
   helpers = field_helpers +  %w(date_select datetime_select time_select simple_select select_conditions radio_buttons) -   %w(hidden_field label fields_for)
   include SelectHelper
   include ApplicationHelper
@@ -19,5 +19,5 @@ class LabelFormBuilder < ActionView::Helpers::FormBuilder
       @template.content_tag(:p, label(field, label_field, {:escape => false}) + super(field, options))
     end
   end
-  
+
 end
