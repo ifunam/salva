@@ -15,13 +15,11 @@ birth_state_id: Estado
 maritalstatus_id: Estado civil
 photo: Fotografía
 other: Información adicional
-addresstype_id: Tipo de dirección
+addresstype: Tipo de dirección
 addr: Dirección
 street: Calle y numero
-country_id: País
-state_id: Estado
+country: País
 state: Estado
-city_id: Ciudad
 city: Ciudad
 pobox: Apartado postal
 zipcode: Código postal
@@ -87,7 +85,7 @@ navigator: Inicio
 profile: Perfil
 general: Información general
 person: Datos personales
-address: Domicilio(s)
+addresses: Domicilio(s)
 people_identification: Identificaciones
 peopleidentification: Identificaciones
 citizen: Nacionalidad

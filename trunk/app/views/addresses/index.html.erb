@@ -1,0 +1,30 @@
+<h1>Listing addresses</h1>
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Pobox</th>
+    <th>Phone</th>
+    <th>Fax</th>
+    <th>Movil</th>
+    <th>Is postaddress</th>
+  </tr>
+
+<% for address in @addresses %>
+  <tr>
+    <td><%=h address.location %></td>
+    <td><%=h address.pobox %></td>
+    <td><%=h address.phone %></td>
+    <td><%=h address.fax %></td>
+    <td><%=h address.movil %></td>
+    <td><%=h address.is_postaddress %></td>
+    <td><%= link_to 'Show', address %></td>
+    <td><%= link_to 'Edit', edit_address_path(address) %></td>
+    <td><%= link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New address', new_address_path %>

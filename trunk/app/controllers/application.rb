@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 #  verify :method => :post, :only => [:create, :update, :list, :update_select, :auto_complete_for_edit_year, :auto_complete_for_edit_years, :auto_complete_for_edit_endyear, :auto_complete_for_edit_startyear]
 
   self.allow_forgery_protection = false
-  
+
   def update_select
     render :partial => 'salva/'+params[:partial], :locals => { :id => params[:id], :tabindex => params[:tabindex] }
   end
@@ -77,5 +77,10 @@ class ApplicationController < ActionController::Base
     render :partial => 'salva/autocomplete_list', :locals => {:list => list}
   end
 
+  protected
+  def set_user(model)
+    model.user_id = session[:user] if model.has_attribute?(:user_id)
+    model.moduser_id = session[:user] if model.has_attribute?(:moduser_id)
+  end
 #  alias :rescue_action_locally :rescue_action_in_public
 end

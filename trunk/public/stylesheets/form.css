@@ -251,6 +251,12 @@ body {
     text-align: left;
 }
 
+.formbox  p{
+    display: inline-block;
+    border-bottom: 1px solid silver;
+    text-align: left;
+   }
+
 .formbox .partial {
     z-index: 3;
     background-color: #ffffdb;
@@ -705,7 +711,7 @@ select
   font-style:none;
   width: expression(document.body.clientWidth < 742? "400px" : document.body.clientWidth > 1202? "600px" : "auto");
   max-width: 350px;
-  overflow: visible; 
+  overflow: visible;
   float: left;
 }
 
@@ -714,7 +720,7 @@ option {
 }
 
 input.quickpost {
-  display: block; 
+  display: block;
   position: static;
   border: 0px;
   background-image: url("/images/add.gif"); background-repeat: no-repeat;
@@ -724,7 +730,7 @@ input.quickpost {
   text-indent: -100em;
   overflow: hidden;
   cursor: pointer; /* hand-shaped cursor */
-  cursor: hand; 
+  cursor: hand;
   color: #ffffff;
   font-size: 1px;
   float:left;
@@ -745,7 +751,7 @@ input.quickpost-select {
   text-indent: -100em;
   overflow: hidden;
   cursor: pointer; /* hand-shaped cursor */
-  cursor: hand; 
+  cursor: hand;
   color: #ffffff;
   font-size: 1px;
 }
