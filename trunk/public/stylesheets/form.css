@@ -1,6 +1,6 @@
 /* body */
 body {
-  background-color: #0866B7;
+  background-color: #FFFFFF;
   margin-top: 20px;
   margin-left: 5%;
   margin-right: 5%;
@@ -9,10 +9,11 @@ body {
 }
 
 .site a {
-        color: #CDCD9E;
+        color: #000066;
         text-decoration: none;
         font-weight: bold;
-        font: 16px Arial, Helvetica, sans-serif;
+        font: 18px Arial, Helvetica, sans-serif;
+        font-weight: bold
 }
 
 .site a:visited {
@@ -20,7 +21,7 @@ body {
 }
 
 .site a:hover {
-        color: #EAF01C;
+        color: #FFCC00;
 }
 
 .container {
@@ -252,7 +253,7 @@ body {
 }
 
 .formbox  p{
-    display: inline-block;
+    display: table-row-group;
     border-bottom: 1px solid silver;
     text-align: left;
    }
@@ -377,7 +378,7 @@ a:hover.edit {
   height: 16px;
 }
 
-a.purge {
+a.destroy {
   display: block;
   background: url(/images/destroy_off_16x16.gif) no-repeat;
   text-decoration: none;
@@ -385,7 +386,7 @@ a.purge {
   height: 17px;
 }
 
-a:hover.purge {
+a:hover.destroy {
   display: block;
   background: url(/images/destroy_on_16x16.gif) no-repeat;
   text-decoration: none;
@@ -479,9 +480,9 @@ p {
    font:  12px Arial,  sans-serif;
 }
 
-.label {
+label {
         float: left;
-        width: 160px;
+        width: 200px;
         min-height: 25px;
         text-align: left;
         margin-right: 10px;
@@ -617,7 +618,7 @@ table.list td.link .edit:hover {
   float: left;
 }
 
-table.list td.link .purge {
+table.list td.link .destroy {
   display: block;
   background: url(/images/destroy_off_16x16.gif) no-repeat;
   text-decoration: none;
@@ -626,7 +627,7 @@ table.list td.link .purge {
   float: left;
 }
 
-table.list td.link .purge:hover {
+table.list td.link .destroy:hover {
   display: block;
   background: url(/images/destroy_on_16x16.gif) no-repeat;
   text-decoration: none;

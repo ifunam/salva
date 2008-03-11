@@ -1,6 +1,6 @@
 <%= render :partial => 'errors' %>
 
-<% form_for(@address, :builder => LabellingFormBuilder ) do |f| %>
+<% form_for(@record, :builder => LabellingFormBuilder ) do |f| %>
    <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

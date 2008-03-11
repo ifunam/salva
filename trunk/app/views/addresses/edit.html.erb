@@ -1,42 +1,7 @@
-<h1>Editing address</h1>
+<%= render :partial => 'errors' %>
 
-<%= error_messages_for :address %>
-
-<% form_for(@address) do |f| %>
-  <p>
-    <b>Location</b><br />
-    <%= f.text_field :location %>
-  </p>
-
-  <p>
-    <b>Pobox</b><br />
-    <%= f.text_field :pobox %>
-  </p>
-
-  <p>
-    <b>Phone</b><br />
-    <%= f.text_field :phone %>
-  </p>
-
-  <p>
-    <b>Fax</b><br />
-    <%= f.text_field :fax %>
-  </p>
-
-  <p>
-    <b>Movil</b><br />
-    <%= f.text_field :movil %>
-  </p>
-
-  <p>
-    <b>Is postaddress</b><br />
-    <%= f.check_box :is_postaddress %>
-  </p>
-
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<% form_for(@record, :builder => LabellingFormBuilder ) do |f| %>
+   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', @address %> |
-<%= link_to 'Back', addresses_path %>
+

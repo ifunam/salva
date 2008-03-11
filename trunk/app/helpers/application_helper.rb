@@ -13,7 +13,10 @@ module ApplicationHelper
     link_options[:controller] = controller if  controller != nil
     html_options = { :class => action, :onmouseover => miceover,
                      :onmouseout => miceout }
-    html_options[:confirm] = question if  question != nil
+    if  question != nil
+      html_options[:confirm] = question
+      html_options[:method] = :delete
+    end
 
     link_to(image_tag(image, :size => '16x16', :border => 0, :alt => alt),
             link_options, html_options )
@@ -34,7 +37,7 @@ module ApplicationHelper
   end
 
   def purge_link(id,question,controller=nil)
-    action_link('purge', id, 'Borrar', question, controller)
+    action_link('destroy', id, 'Borrar', question, controller)
   end
 
   def controller_link(child_controller,parent_controller,parent_action,key,id)
@@ -66,11 +69,11 @@ module ApplicationHelper
   def modelid(model, name)
     model.find_by_name(name).id
   end
-  
+
   def foreignize(model, prefix=nil)
     (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
   end
-  
+
   def radio_buttons(attribute ,options)
      options[:values].collect { |v|
        label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)

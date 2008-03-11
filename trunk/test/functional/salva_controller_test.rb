@@ -7,7 +7,7 @@ class SalvaControllerTest < Test::Unit::TestCase
     @request     = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login_as('juana','maltiempo')
-    @controller = @mycontroller
+   @controller = @mycontroller
   end
 
   def test_should_get_index

@@ -16,11 +16,14 @@ maritalstatus_id: Estado civil
 photo: Fotografía
 other: Información adicional
 addresstype: Tipo de dirección
+addresstype_id: Tipo de dirección
 addr: Dirección
 street: Calle y numero
 country: País
 state: Estado
+state_id: Estado
 city: Ciudad
+city_id: Ciudad
 pobox: Apartado postal
 zipcode: Código postal
 phone: Teléfono(s)
