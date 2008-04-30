@@ -1,4 +1,4 @@
-class AddressesController < ApplicationController
+ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.xml
   def initialize
@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
     @collection = @model.paginate(:conditions => ['user_id = ?', session[:user]], :order => "addresstype_id ASC", :page => 1)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @collection }
+     format.xml  { render :xml => @collection }
     end
   end
 
@@ -32,7 +32,7 @@ class AddressesController < ApplicationController
     @record = @model.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :action => 'new', :layout => false }
       format.xml  { render :xml => @record }
     end
   end
@@ -50,10 +50,10 @@ class AddressesController < ApplicationController
     respond_to do |format|
       if @record.save
         flash[:notice] = @created_msg
-        format.html { redirect_to(@record) }
+        format.js { render :action => 'create.rjs'}
         format.xml  { render :xml => @record, :status => :created, :location => @record }
       else
-        format.html { render :action => "new" }
+        format.js { render :action => "errors.rjs" }
         format.xml  { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end

@@ -1,0 +1,38 @@
+== Dashed DOM_ID
+
+Inspired by 
+http://codefluency.com/articles/2006/05/30/rails-views-active-record-dom-ids/
+
+== Introduction
+
+The naming convention adopted is to split by - (dashes)
+<classname>-<new or id>-<attribute>
+
+i.e. 
+     person.dom_id                  # gives 'person-3'
+     person.dom_id('name')          # gives 'person-3-name'
+     person.dom_id('name', 'dummy') # gives 'dummy-3-name'
+
+This allows splitting by - to obtain 3 logical portions:
+    person.dom_id('name').split(/-/) # ['person', '3', 'name']
+
+== Related
+
+The other convention is split by _ (underscores)
+http://topfunky.net/svn/plugins/dom_id/
+
+My POV is that _ could potentially conflict with long names, e.g. 
+    senior_employee.dom_id('created_at') # senior_employee_45_created_at
+
+With the _ convention, there is no convenient way to split that id into usable parts.
+
+== License
+
+dashed_dom_id plugin is released under the MIT license.
+
+== Author
+
+Chew Choon Keat <choonkeat at gmail>
+http://blog.yanime.org/
+
+12 June 2006

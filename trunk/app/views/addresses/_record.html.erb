@@ -1,0 +1,10 @@
+<div class="row" id="<%= record.dom_id %>">
+<span class="td_id"> <%= record.id %> </span>
+<span class="td_content">
+<%= %w(location pobox phone fax).collect { |column| record.send(column) }.join(',') %>
+</span>
+<span class="td_actions">
+Modificar | Mostrar | Borrar
+</span>
+</div>
+

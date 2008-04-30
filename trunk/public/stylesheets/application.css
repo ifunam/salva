@@ -1,0 +1,58 @@
+#collection {
+    display: table;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid grey;
+}
+
+.row {
+     display: table-row;
+     width: 100%;
+/* padding: 3px; */
+/* border-bottom: 1px solid silver; */
+}
+
+.th_id {
+  display: table-cell;
+  font-weight: bold;
+  width: 10%;
+  border-bottom: 1px solid silver;
+}
+
+.th_content{
+  display: table-cell;
+  font-weight: bold;
+  width: 70%;
+  border-bottom: 1px solid silver;
+}
+
+.th_actions {
+  display: table-cell;
+  font-weight: bold;
+  width: 20%;
+  border-bottom: 1px solid silver;
+}
+
+.td_id {
+  display: table-cell;
+  width: 10%;
+  border-bottom: 1px solid silver;
+}
+
+.td_content{
+  display: table-cell;
+  widtd: 70%;
+  border-bottom: 1px solid silver;
+}
+
+.td_actions {
+  display: table-cell;
+  width: 20%;
+  border-bottom: 1px solid silver;
+}
+
+.super_special_row {
+   display: table-row;
+  width: 100%;
+  font-weight: bold;
+}

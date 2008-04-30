@@ -5,7 +5,7 @@
   <meta name="description"  content="Plataforma de informaci&oacute;n curricular SALVA" />
   <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" />
   <link rel="icon" href="/images/favicon.ico" />
-  <%= stylesheet_link_tag 'form', 'administration', 'lightbox', 'ajax_scaffold', 'test', :cache => true %>
+  <%= stylesheet_link_tag 'form', 'administration', 'lightbox', 'ajax_scaffold', 'test', 'application', :cache => true %>
   <%= javascript_include_tag 'prototype', 'scriptaculous', 'application', 'unittest', :cache => true %>
   <%= javascript_include_tag 'overlib', :cache => true %>
   <!--i [if lt IE 7] -->
@@ -29,9 +29,9 @@
    </div> <!-- /toplinks -->
    <div class="title">
      <%=  render :partial => "navigation/breadcrumb_images" %><%= controller_title %>
-	<div class="toplinks2">
-   	 <%= link_to 'Informe anual de actividades', {:controller => 'user_annual_activities_report', :action => 'list'} %>
-	</div>
+        <div class="toplinks2">
+         <%= link_to 'Informe anual de actividades', {:controller => 'user_annual_activities_report', :action => 'list'} %>
+        </div>
    </div> <!-- title -->
 
 

@@ -41,6 +41,10 @@ class ApplicationController < ActionController::Base
     partial = params[:partial]
     render(:partial => partial)
   end
+  
+  def update_partial
+    render :partial => params[:partial]
+  end
 
   def update_remote_partial
     render :partial => 'salva/'+params[:partial]

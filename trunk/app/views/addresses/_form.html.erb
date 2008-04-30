@@ -9,7 +9,7 @@
     <%= f.simple_select :city %>
     <%= f.radio_buttons :is_postaddress, :values => [true, false], :required => true %>
   <p>
-    <%= f.submit "Create" %> | <%= link_to 'Back', addresses_path %>
-  </p>
+<%= f.submit get_label("save") %> | <%= link_to_function(get_label('cancel')) do |page|  page.replace_html 'form', :partial => 'add' end %>
+</p>
 
 

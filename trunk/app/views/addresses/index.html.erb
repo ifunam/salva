@@ -1,8 +1,28 @@
-<%= table_list(@collection, { :header => "Domicilio(s)", :columns => %w(addresstype_id location pobox phone fax), :nolinks => true}) %>
-<br/>
-<% if Address.find(:all, :conditions => "user_id = #{session[:user]}").size < Addresstype.find(:all).size  %>
-<div id="operations">
-<%= link_to get_label('add'), :action => 'new' %>
-</div>
+<% if @collection.size == 0 %>
+<p> Registre al menos un domicilio. </p> <br />
+<% else %>
+<div id="required_note" style="display:none;"> </div>
 <% end %>
+
+<div id="loading" style="display: none">
+Actualizando...
+</div>
+
+<!-- TODO: This chunk of code should be moved to another partial (include support for title and attributes to be displayed) -->
+<!-- render :partial => 'salva/list', :locals => { :title => 'Domicilio(s), :attributes => %w() }-->
+<div id="collection">
+<div class="row">
+<span class="th_id"> Seleccionar</span>
+<span class="th_content">Domicilio(s)</span>
+<span class="th_actions">Acciones</span>
+</div>
+
+   <%= render :partial => 'record', :collection => @collection %>
+</div>
+<!-- /TODO -->
+
+<div id="form">
+        <%= render :partial => 'add' %>
+</div>
+
 
