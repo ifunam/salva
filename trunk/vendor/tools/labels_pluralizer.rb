@@ -18,16 +18,18 @@ def tree_label_pluralizer(tree)
       if File.exists? file_label
        # s/orig/new
        ###puts "#{orig}, -- #{new}"
-      `perl  -p  -e 's/#{orig + ":"}/#{new + ":"}/g'  #{file_label}`
+      `perl  -p -i.bak -e 's/#{orig + ":"}/#{new + ":"}/g'  #{file_label}`
       # `ruby -pe 'gsub(/#{orig}/, "#{new}")' < #{file_label} >../../po/salva_new.yml`
       end
    end
     }
 end
 
-filename = 'default'
-file  = "#{RAILS_ROOT}/config/tree/#{filename}.yml"
-if File.exists? file
-  tree = YAML::load_file(file)
-  tree_label_pluralizer([filename, tree])
+%w(academic_technician  admin  default  researcher).each do |filename|
+
+  file  = "#{RAILS_ROOT}/config/tree/#{filename}.yml"
+  if File.exists? file
+    tree = YAML::load_file(file)
+    tree_label_pluralizer([filename, tree])
+  end
 end
