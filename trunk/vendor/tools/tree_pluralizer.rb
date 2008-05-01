@@ -17,9 +17,9 @@ def tree_loader(tree)
     }
 end
 
-filename = 'researcher'
+filename = 'academic_technician'
 file  = "#{RAILS_ROOT}/config/tree/#{filename}.yml"
 if File.exists? file
   tree = YAML::load_file(file)
-  tree_loader([filename, tree])[1].to_yaml
+  puts tree_loader([filename, tree])[1].to_yaml
 end

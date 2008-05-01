@@ -1,15 +1,15 @@
----
+--- 
 - user_administration
-- - admin_user
-  - group
-  - permission
+- - admin_users
+  - groups
+  - permissions
   - controllers
   - actions
-- catalogs_administration 
-- - country
-  - city
+- catalogs_administrations
+- - countries
+  - cities
   - states
-  - institution
-  - institutiontitle
-  - institution
-- configuration_site
+  - institutions
+  - institutiontitles
+  - institutions
+- configuration_sites

@@ -1,76 +1,76 @@
----
+--- 
 - profile
 - - general
-  - - person
-    - address
-    - citizen
-    - people_identification
-  - schooling
-  - jobposition
+  - - people
+    - addresses
+    - citizens
+    - people_identifications
+  - schoolings
+  - jobpositions
   - - jobposition_internal
-    - - jobposition_at_institution
-      - user_adscription
-      - jobposition_log
-    - jobposition_external
+    - - jobposition_at_institutions
+      - user_adscriptions
+      - jobposition_logs
+    - jobposition_externals
   - user_stimulus
   - updating_current_skills
-  - - user_course
-    - userconference
-    - student_thesis
-  - user_schoolarship
-  - membership
-  - user_prize
-  - user_language
-  - user_skill
+  - - user_courses
+    - userconferences
+    - student_theses
+  - user_schoolarships
+  - memberships
+  - user_prizes
+  - user_languages
+  - user_skills
   - user_settings
-  - - change_password
-    - user_setting
-- user_project
-- user_cite
-- user_researchline
+  - - change_passwords
+    - user_settings
+- user_projects
+- user_cites
+- user_researchlines
 - conferences_and_seminaries
-- - user_conferencetalk
-  - user_seminary
-  - userconference_committee
+- - user_conferencetalks
+  - user_seminaries
+  - userconference_committees
 - publications
-- - bookedition_roleinbook
-  - chapterinbook_roleinchapter
-  - user_published_article
-  - user_unpublished_article
-  - user_inproceeding_refereed
-  - user_techreport
-  - user_inproceeding_unrefereed
+- - bookedition_roleinbooks
+  - chapterinbook_roleinchapters
+  - user_published_articles
+  - user_unpublished_articles
+  - user_inproceeding_refereeds
+  - user_techreports
+  - user_inproceeding_unrefereeds
 - colaboration_on_publications
-- - user_journal
-  - user_proceeding_refereed
-  - user_book
-- popular_science
-- - user_newspaperarticle
-  - user_popularsciencework
-- diffusion
-- human_resources_formation_and_teaching
+- - user_journals
+  - user_proceeding_refereeds
+  - user_books
+- popular_sciences
+- - user_newspaperarticles
+  - user_popularscienceworks
+- diffusions
+- human_resources_formation_and_teachings
 - - teaching
-  - - user_regularcourse
-    - user_specialcourse
-    - teaching_activity
-    - user_teaching_product
-  - human_resources_formation
-  - - user_thesis
-    - thesis_juror
-    - tutorial_committee
-    - student_advice
-- acadvisit
-- outreach
-- - professor_advice
-  - instadvice
-  - user_outreachwork
-- institutional_activity
-- technical_activity
-- - user_techproduct
-  - techactivity
+  - - user_regularcourses
+    - user_specialcourses
+    - teaching_activities
+    - user_teaching_products
+  - human_resources_formations
+  - - user_theses
+    - thesis_jurors
+    - tutorial_committees
+    - student_advices
+- acadvisits
+- outreaches
+- - professor_advices
+  - instadvices
+  - user_outreachworks
+- institutional_activities
+- technical_activities
+- - user_techproducts
+  - techactivities
 - other_activities_or_products
-- - activity
-  - user_genericwork
+- - activities
+  - user_genericworks
 - user_reports
-- - user_annual_activities_report
-  - user_annual_activities_plan
+- - user_annual_activities_reports
+  - user_annual_activities_plans
