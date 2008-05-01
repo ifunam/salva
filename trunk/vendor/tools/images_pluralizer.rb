@@ -1,3 +1,4 @@
+
 RAILS_ENV = 'development'
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'yaml'
@@ -12,12 +13,14 @@ def tree_image_pluralizer(tree)
         tree_image_pluralizer(child)
       end
     else
-      orig = RAILS_ROOT + '/public/images/' + child + '.png'
-      new = RAILS_ROOT + '/public/images/' + Inflector.pluralize(child)   + '.png'
-      File.rename(orig, new) if File.exists? orig
-#      puts orig, new if File.exists? orig
+      orig_image = child + '.png'
+      orig = RAILS_ROOT + '/public/images/' + orig_image
+      new_image = Inflector.pluralize(child)   + '.png'
+      new = RAILS_ROOT + '/public/images/' +  new_image
+      `cd #{RAILS_ROOT + '/public/images/'} && git mv #{orig_image} #{new_image}` if File.exists? orig and !File.exists? new
     end
     }
+
 end
 
 filename = 'researcher'
