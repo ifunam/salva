@@ -1,0 +1,5 @@
+config/database.yml
+config/site.yml
+config/mail.yml
+tmp/*
+log/*
