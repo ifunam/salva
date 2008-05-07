@@ -10,8 +10,8 @@ lastname2: Apellido materno
 gender: Género
 dateofbirth: Fecha de nacimiento
 birth_country_id: País
-birth_city_id: Ciudad
-birth_state_id: Estado
+city: Ciudad
+state: Estado
 maritalstatus_id: Estado civil
 photo: Fotografía
 other: Información adicional
@@ -29,12 +29,12 @@ zipcode: Código postal
 phone: Teléfono(s)
 fax: Fax
 movil: Celular o radio
-is_postaddresses: Dirección postal
+is_postaddress: Dirección postal
 title: Título
 author: Autor(es)
 authors: Autor(es)
 booklink: Página web
-country_id: País
+country: País
 booktype_id: Tipo de libro
 booktype: Tipo de libro
 volume_id: Volúmen
@@ -47,7 +47,7 @@ name: Nombre
 moduser_id: Identificador de usuario
 migratorystatus_id: Estado migratorio
 citizenmodality_id: Modalidad de la nacionalidad
-citizen_country_id: Nacionalidad
+citizen_country: Nacionalidad
 personalidtype_id: Identificación
 identification_id: Identificación
 descr: Descripción
@@ -65,6 +65,7 @@ jobpositiontype_id: Tipo de plaza
 roleinjobposition_id: Categoría
 jobpositionlevel_id: Nivel
 required_legend: Los elementos marcados con asterisco(*) son obligatorios
+show: Mostrar
 prev: Anterior
 back: Regresar
 next: Siguiente

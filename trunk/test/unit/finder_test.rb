@@ -14,7 +14,7 @@ class FinderTest < Test::Unit::TestCase
     @country_finder  = Finder.new(Country)
     @article_finder  = Finder.new(Article)
     @user_article_simple  = Finder.new(UserArticle)
-    @country_finder_first = Finder.new(Country, :first)
+    @country_finder_first= Finder.new(Country, :first)
    end
 
   def test_initialize
@@ -185,5 +185,11 @@ class FinderTest < Test::Unit::TestCase
     @country_finder.as_collection.collect { |record|
       assert_instance_of Country, record
     }
+  end
+
+  def test_record_as_pair
+    @f =  Finder.new(Person, :first, :primary_key => 'user_id', :attributes => ['gender'], :conditions => 'people.user_id = 3')
+    puts @f.hidden_attributes.join(', '), 'caca'
+    assert_equal '', @f.record_as_pair
   end
 end

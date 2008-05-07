@@ -18,7 +18,7 @@ class Finder
   attr_accessor :columns
   attr_accessor :debug_array
   attr_accessor :hidden_attributes
-  
+
   def initialize(model, *options)
     opts = (options[0].is_a? Hash) ? options[0] : (options[1] || {})
     opts[:first] = true if options[0] == :first
@@ -227,6 +227,19 @@ class Finder
 
   def as_collection
     find_collection
+  end
+
+  def record_as_pair
+    record = find_collection.first # This method just works with one record.
+    unless record.nil?
+      @columns.collect { |column|
+        if column != @primary_key and column != 'id' and !record.send(column).nil? and !record.send(column).to_s.strip.empty?
+          table_prefix = Inflector.tableize(record.class.name)  + '_'
+          c =  column !~ /^#{table_prefix}/ ? Inflector.singularize(column.sub(/(_.+)$/,'')) : column.sub(/^#{table_prefix}/,'')
+          [c, get_string(record, column)]
+        end
+      }.compact
+     end
   end
 
   def get_text(record)
