@@ -1,5 +1,4 @@
 <div id ="myerror_messages"></div>
-
-<% remote_form_for(@record, :builder => LabellingFormBuilder, :method => :update) do |f| %>
+<% remote_form_for(@record, :builder => LabellingFormBuilder, :method => :put) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f} %>
 <% end %>

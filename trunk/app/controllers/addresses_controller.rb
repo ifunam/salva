@@ -19,6 +19,7 @@ class AddressesController < ApplicationController
 
   def show
     @finder = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id =  #{params[:id]}")
+    @record = @finder.as_record
     respond_to do |format|
       format.html { render :action => 'show', :layout => false}
     end
@@ -35,7 +36,6 @@ class AddressesController < ApplicationController
   def edit
     @record = @model.find(params[:id])
     respond_to do |format|
-      format.html { render :action => 'edit', :layout => false }
       format.js { render :action => 'edit.rjs'}
      end
   end
@@ -59,17 +59,18 @@ class AddressesController < ApplicationController
     @record = @model.find(params[:id])
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
-        format.js { render :action => 'edit.rjs'}
+        format.js { render :action => 'update.rjs'}
         format.xml { head :ok }
       else
         format.js { render :action => "errors.rjs" }
-        format.xml { render :xml => @citizen.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end
  end
 
   def destroy
-    @model.find(params[:id]).destroy
+    @record =   @model.find(params[:id])
+    @record.destroy
     respond_to do |format|
       format.html { redirect_to(addresses_url) }
       format.js { render :action => 'destroy.rjs' }

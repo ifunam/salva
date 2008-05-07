@@ -1,2 +1,2 @@
 page.replace_html 'form', :partial => 'edit'
-g
+

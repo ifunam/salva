@@ -229,8 +229,12 @@ class Finder
     find_collection
   end
 
+  def as_record
+    find_collection.first # This method just works with one record.
+  end
+
   def record_as_pair
-    record = find_collection.first # This method just works with one record.
+    record = self.as_record
     unless record.nil?
       @columns.collect { |column|
         if column != @primary_key and column != 'id' and !record.send(column).nil? and !record.send(column).to_s.strip.empty?
