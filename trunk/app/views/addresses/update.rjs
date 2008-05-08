@@ -1,4 +1,0 @@
-page.replace @record.dom_id, :partial => 'record', :locals => { :record => @record}
-page.visual_effect  :highlight, @record.dom_id
-page.call "set_class_name", @record.dom_id, 'super_special_row'
-page.replace_html 'form', :partial => 'add'

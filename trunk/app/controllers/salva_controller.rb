@@ -23,14 +23,14 @@ class SalvaController < ApplicationController
     @finder = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id =  #{params[:id]}")
     @record = @finder.as_record
     respond_to do |format|
-      format.html { render :action => 'show', :layout => false}
+      format.html { render :partial => 'shared/show', :layout => false}
     end
   end
 
   def new
     @record = @model.new
     respond_to do |format|
-      format.html { render :action => 'new', :layout => false }
+      format.html { render :partial => 'shared/new', :layout => false }
       format.xml  { render :xml => @record }
     end
   end
@@ -38,7 +38,7 @@ class SalvaController < ApplicationController
   def edit
     @record = @model.find(params[:id])
     respond_to do |format|
-      format.js { render :action => 'edit.rjs'}
+      format.js { render :partial => 'shared/edit.rjs'}
      end
   end
 
@@ -47,10 +47,10 @@ class SalvaController < ApplicationController
     self.set_user(@record)
     respond_to do |format|
       if @record.save
-        format.js { render :action => 'create.rjs'}
+        format.js { render :partial => 'shared/create.rjs'}
         format.xml  { render :xml => @record, :status => :created, :location => @record }
       else
-        format.js { render :action => "errors.rjs" }
+        format.js { render :partial => "shared/errors.rjs" }
         format.xml  { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end
@@ -60,21 +60,21 @@ class SalvaController < ApplicationController
     @record = @model.find(params[:id])
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
-        format.js { render :action => 'update.rjs'}
+        format.js { render :partial => 'shared/update.rjs'}
         format.xml { head :ok }
       else
-        format.js { render :action => "errors.rjs" }
+        format.js { render :partial => "shared/errors.rjs" }
         format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end
  end
 
   def destroy
-    @record =   @model.find(params[:id])
+    @record = @model.find(params[:id])
     @record.destroy
     respond_to do |format|
       if request.xhr?
-        format.js { render :action => 'destroy.rjs' }
+        format.js { render :partial => 'shared/destroy.rjs' }
       else
         format.html { redirect_to  :action => :index }
        end

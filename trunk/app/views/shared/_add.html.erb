@@ -1,0 +1,1 @@
+<%= link_to_remote get_label('add'), :update => "form", :url  => method("new_#{Inflector.singularize(controller_name)}_path").call %>

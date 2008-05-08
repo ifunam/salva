@@ -1,0 +1,15 @@
+<div class="row" id="<%= record.dom_id %>">
+<span class="td_id"> <%= record.id %> </span>
+<span class="td_content">
+<!-- TODO: Change display to use as_text method output from finder -->
+<%= @columns.collect { |column| record.send(column) }.join(',') %>
+<!-- /TODO -->
+</span>
+<span class="td_actions">
+<span class="td_action"><%= link_to_remote get_label('show'), :update => "form", :url =>  method("#{Inflector.singularize(controller_name)}_path").call(record), :method => :get  %></span>
+<span class="td_action"><%= link_to_remote get_label('edit'), :url => method("edit_#{Inflector.singularize(controller_name)}_path").call(record), :method => :get  %></span>
+<span class="td_action"><%= link_to_remote get_label("del"), :url => method("#{Inflector.singularize(controller_name)}_url").call(:id => record.id), :method => :delete, :confirm =>
+  "Desea borrar este registro" %> </span>
+</span>
+</div>
+
