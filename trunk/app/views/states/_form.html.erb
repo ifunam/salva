@@ -1,0 +1,5 @@
+    <%= f.text_field :name %>
+    <%= f.simple_select :country, :default => 484, :required => true %>
+  <p>
+    <%= f.submit get_label("save") %> | <%= link_to_function(get_label('cancel')) do |page|  page.replace_html 'form', :partial => 'shared/add' end %>
+  </p>
