@@ -25,6 +25,7 @@ class Finder
     @model = model
     @hidden_attributes = opts[:hidden_attributes] || []
     @primary_key = opts[:primary_key] || 'id'
+    opts[:attributes] = opts[:attributes].collect { |a| (a.to_s =~ /_id$/) ? a.sub(/_id$/,'') : a } if opts.has_key? :attributes
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes(@model).join(', '), opts)
   end
 
