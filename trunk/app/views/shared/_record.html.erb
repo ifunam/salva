@@ -1,5 +1,5 @@
 <div class="row" id="<%= record.dom_id %>">
-<span class="td_id"> <%= record.id %> </span>
+         <span class="td_id"> <%= check_box_tag("id[]", record.id, checked=false) %> </span>
 <span class="td_content">
 <!-- TODO: Change display to use as_text method output from finder -->
 <%= @columns.collect { |column| record.send(column) }.join(',') %>

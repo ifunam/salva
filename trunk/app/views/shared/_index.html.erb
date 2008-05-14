@@ -1,13 +1,17 @@
 <div id="loading" style="display: none"> Actualizando... </div>
 
+<% remote_form_for(controller_name, :url => {:action => :destroy_all}, :html => {:id => "list_form"}) do |f| %>
 <div id="collection">
  <div class="row">
- <span class="th_id"> Seleccionar</span>
+   <span class="th_id" id="check_ids"><%= link_to_function( "Todas", "check_ids_from_list('list_form')") %> | <%= link_to_function("Ninguna", "uncheck_ids_from_list('list_form')") %>
+</span>
  <span class="th_content"><%= title.nil? ? 'Registros' : title %></span>
  <span class="th_actions">Acciones</span>
  </div>
            <%= render :partial => 'shared/record', :collection => @collection %>
 </div>
+<%= f.submit "Borrar elementos seleccionados" %>
+<% end %>
 
 <div id="form">
         <%= render :partial => 'shared/add' %>

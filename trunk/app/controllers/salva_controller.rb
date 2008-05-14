@@ -81,6 +81,14 @@ class SalvaController < ApplicationController
     end
   end
 
+  def destroy_all
+    @collection = params[:id].collect { |id| @model.find(id) }
+    respond_to do |format|
+      format.js { render :partial => 'shared/destroy_id.rjs',  :collection => @collection }
+    end
+    @model.delete(@collection.collect {|record| record.id })
+   end
+
   protected
   def set_user_condition
     user_condition = @model.table_name + '.user_id =  ' + session[:user].to_s
