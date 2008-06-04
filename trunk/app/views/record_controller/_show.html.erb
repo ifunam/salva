@@ -1,0 +1,10 @@
+<div id="controller_form">
+<div id="form">
+<% Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id = #{@record.id}").record_as_pair.each do |c| %>
+<p>
+<label><%= get_label(c[0]) %>: </label><%= c[1] %>
+</p>
+<% end %>
+<%= link_to_remote 'edit', :url => method("edit_#{Inflector.camelize(@model).underscore}_path").call, :method => :get, :update => 'form' %>
+</div>
+</div>

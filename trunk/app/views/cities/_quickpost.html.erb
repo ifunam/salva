@@ -1,0 +1,5 @@
+<p><label>Ciudad<span class="required">*</span></label>
+   <%= hidden_field  'quickposts[city]', :state_id, :value => (@record.nil? ? id : @record.state_id)  %>
+   <% city = @record.nil? ? nil : @record.city.name %>
+   <%= text_field 'quickposts[city]',:name, :size => 30, :maxlength => 255, :value => city %>
+</p>

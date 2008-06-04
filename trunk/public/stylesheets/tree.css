@@ -1,0 +1,43 @@
+body { font-family: sans-serif; font-size: small; }
+h1 { color: navy; font-size: x-large; font-weight: normal; }
+h2 {
+  color: green; font-size: larger;
+  border-bottom: 1px solid green; margin: 0 0 0.5em;
+}
+img { border: 0; }
+
+#tree {
+  width: 15em; height: 30em; overflow: auto; float: left;
+  border: 1px solid #444; background: #fff; padding: 0.5em;
+  margin-right: 10px;
+  cursor: default;
+}
+
+#props {
+  width: 25em; height: 10em; margin-left: 27em;
+  border: 1px solid #444; background: #fff; padding: 0.5em;
+}
+
+#tree ul {
+  list-style-type: none;
+  margin: 0; padding: 0;
+}
+#tree ul ul { padding-left: 1.3em; } /* <label id="code.dom.style.dynamic1"/> */
+#tree li { padding-left: 0.1em; margin: 0.4em 0; }
+#tree span { padding: 5px; }
+
+span.group { font-weight: bold; }
+
+#tree span.person { font-weight: normal; margin-left: 16px; }
+
+#tree span.selected {
+  border: 1px solid #004; padding: 4px; background: #ddf;
+  color: navy;
+} /* <label id="code.dom.style.dynamic2"/> */
+
+#editor p { position: relative; height: 1.3em; }
+#edtName, #chkIsGroup { position: absolute; left: 4em; margin-left: 0; }
+#edtName { padding: 0 0.1em; right: 0; }
+#edtName:focus, #edtName:active { border: 2px solid black;
+  background: #ffd; }
+#lblIsGroup { position: absolute; left: 6.3em; }

@@ -1,0 +1,5 @@
+<% if css == 'composite' %>
+<li id="<%= dom_id %>" class="<% css %>"> <%= get_label(controller)%> </li>
+<% else %>
+<li><%= link_to_remote (get_label(controller),  :url => {:controller => controller}, :method => :get, :update => 'controller_form') %> </li>
+<% end %>

@@ -1,0 +1,7 @@
+<ul id="<%= tree.data %>" class="<%= css %>">
+<% tree.children.each do |child| %>
+        <% c = child.leaves_count > 1 ? 'composite' : 'leaf' %>
+        <%= render :partial => 'shared/tree_li', :locals => { :controller => child.data, :dom_id => 'controller',  :css => c } %>
+        <%= render :partial => 'shared/tree', :locals => { :tree => child, :css => c} if child.leaves_count > 1 %>
+<% end %>
+</ul>
