@@ -13,7 +13,7 @@ class InitialSchema < ActiveRecord::Migration
       t.timestamps
     end
     add_index :academicprogramtypes, [:name], :name => :academicprogramtypes_name_key, :unique => true
-    
+
     create_table :acadvisits, :force => true do |t|
       t.references :user, :institution, :country, :acadvisittype, :null => false
       t.references :externaluser
@@ -119,8 +119,8 @@ class InitialSchema < ActiveRecord::Migration
       t.timestamps
     end
     add_index :articlesfiles, [:articles_id, :filename], :name => :articlesfiles_articles_id_key, :unique => true
-    add_index :articlesfiles, [:articles_id], :name => :articlesfiles_articles_idx 
-    add_index :articlesfiles, [:filename], :name => :articlesfiles_filename_idx 
+    add_index :articlesfiles, [:articles_id], :name => :articlesfiles_articles_idx
+    add_index :articlesfiles, [:filename], :name => :articlesfiles_filename_idx
 
     create_table :articleslog, :force => true do |t|
       t.references :article, :null => false
@@ -221,7 +221,7 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :chapterinbooks, [:title], :name => :chapterinbooks_title_idx 
+    add_index :chapterinbooks, [:title], :name => :chapterinbooks_title_idx
 
     create_table :cities, :force => true do |t|
       t.references :state, :null => false
@@ -290,8 +290,8 @@ class InitialSchema < ActiveRecord::Migration
       t.timestamps
     end
     add_index :conferencetalksfiles, [:conferencetalks_id, :filename], :name => :conferencetalksfiles_conferencetalks_id_key, :unique => true
-    add_index :conferencetalksfiles, [:conferencetalks_id], :name => :conferencetalksfiles_conferencetalks_idx 
-    add_index :conferencetalksfiles, [:filename], :name => :conferencetalksfiles_filename_idx 
+    add_index :conferencetalksfiles, [:conferencetalks_id], :name => :conferencetalksfiles_conferencetalks_idx
+    add_index :conferencetalksfiles, [:filename], :name => :conferencetalksfiles_filename_idx
 
     create_table :conferencetypes, :force => true do |t|
       t.text :name, :null => false
@@ -464,9 +464,9 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :genericworksfiles, [:filename], :name => :genericworksfiles_filename_idx 
+    add_index :genericworksfiles, [:filename], :name => :genericworksfiles_filename_idx
     add_index :genericworksfiles, [:filename, :genericworks_id], :name => :genericworksfiles_genericworks_id_key, :unique => true
-    add_index :genericworksfiles, [:genericworks_id], :name => :genericworksfiles_genericworks_idx 
+    add_index :genericworksfiles, [:genericworks_id], :name => :genericworksfiles_genericworks_idx
 
     create_table :genericworkslog, :force => true do |t|
       t.references :genericwork, :null => false
@@ -657,7 +657,7 @@ class InitialSchema < ActiveRecord::Migration
 
     create_table :jobpositionlog, :force => true do |t|
       t.references :user, :institution, :null => false
-      t.references :old_jobpositioncategory, :class_name => 'Jobpositioncategory', :foreign_key => 'old_jobpositioncategory_id' 
+      t.references :old_jobpositioncategory, :class_name => 'Jobpositioncategory', :foreign_key => 'old_jobpositioncategory_id'
       t.references :old_contracttype, :class_name => 'Contracttype', :foreing_key => 'old_contracttype_id'
       t.integer :startyear, :null => false
       t.integer :startmonth, :endyear, :endmonth
@@ -779,9 +779,9 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :people, [:firstname], :name => :people_firstname_idx 
-    add_index :people, [:lastname1], :name => :people_lastname1_idx 
-    add_index :people, [:lastname2], :name => :people_lastname2_idx 
+    add_index :people, [:firstname], :name => :people_firstname_idx
+    add_index :people, [:lastname1], :name => :people_lastname1_idx
+    add_index :people, [:lastname2], :name => :people_lastname2_idx
 
     create_table :people_identifications, :force => true do |t|
       t.references :user, :identification, :null => false
@@ -951,8 +951,8 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :projects, [:descr], :name => :projects_descr_idx 
-    add_index :projects, [:name], :name => :projects_name_idx 
+    add_index :projects, [:descr], :name => :projects_descr_idx
+    add_index :projects, [:name], :name => :projects_name_idx
 
     create_table :projectstatuses, :force => true do |t|
       t.text :name, :null => false
@@ -1241,7 +1241,7 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :sessions, [:session_id], :name => :sessions_session_id_index 
+    add_index :sessions, [:session_id], :name => :sessions_session_id_index
 
     create_table :skilltypes, :force => true do |t|
       t.text :name, :null => false
@@ -1748,8 +1748,8 @@ class InitialSchema < ActiveRecord::Migration
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id'
       t.timestamps
     end
-    add_index :users, [:id], :name => :users_id_idx 
-    add_index :users, [:login], :name => :users_login_idx 
+    add_index :users, [:id], :name => :users_id_idx
+    add_index :users, [:login], :name => :users_login_idx
     add_index :users, [:login], :name => :users_login_key, :unique => true
 
     create_table :users_logs, :force => true do |t|
@@ -1780,7 +1780,7 @@ class InitialSchema < ActiveRecord::Migration
     end
     add_index :volumes, [:name], :name => :volumes_name_key, :unique => true
   end
-  
+
   def self.down
     drop_table :academicprograms, :academicprogramtypes, :acadvisits, :acadvisittypes, :actions, :activities, :activitygroups
     drop_table :activitytypes, :addresses, :addresstypes, :adscriptions, :adviceactivities, :articles, :articlesfiles, :articleslog
@@ -1794,7 +1794,7 @@ class InitialSchema < ActiveRecord::Migration
     drop_table :indivadviceprograms, :indivadvices, :indivadvicetargets, :inproceedings, :instadviceactivities, :instadvices
     drop_table :instadvicetargets, :institutional_activities, :institutioncareers, :institutions, :institutiontitles, :institutiontypes
     drop_table :jobposition_logs, :jobpositioncategories, :jobpositionlevels, :jobpositionlog, :jobpositions, :jobpositiontypes
-    drop_table :journal_publicationcategories, :journals, :languagelevels, :languages, :maritalstatuses, :mediatypes, :memberships 
+    drop_table :journal_publicationcategories, :journals, :languagelevels, :languages, :maritalstatuses, :mediatypes, :memberships
     drop_table :migratorystatuses, :modalities, :newspaperarticles, :newspapers, :people, :people_identifications, :periods
     drop_table :permissions, :plan, :prizes, :prizetypes, :probatory_documents, :probatorydoctypes, :proceedings, :professionaltitles
     drop_table :projectacadvisits, :projectarticles, :projectconferencetalks, :projectfiles, :projectfinancingsources
@@ -1809,7 +1809,7 @@ class InitialSchema < ActiveRecord::Migration
     drop_table :techproducttypes, :theses, :theses_logs, :thesis_jurors, :thesismodalities, :thesisstatuses, :titlemodalities
     drop_table :trashes, :tutorial_committees, :user_adscriptions, :user_articles, :user_cites, :user_cites_logs
     drop_table :user_conferencetalks, :user_courses, :user_credits, :user_creditsarticles, :user_creditsbookeditions
-    drop_table :user_creditschapterinbooks, :user_creditsconferencetalks, :user_creditsgenericworks, :user_document_logs 
+    drop_table :user_creditschapterinbooks, :user_creditsconferencetalks, :user_creditsgenericworks, :user_document_logs
     drop_table :user_documents, :user_genericworks, :user_grants, :user_groups, :user_inproceedings, :user_journals, :user_languages
     drop_table :user_newspaperarticles, :user_prizes, :user_proceedings, :user_projects, :user_regularcourses, :user_researchlines
     drop_table :user_roleingroups, :user_schoolarships, :user_seminaries, :user_skills, :user_stimulus, :user_techproducts

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Be sure to restart your server when you modify this file.
 
 # Uncomment below to force Rails into production mode when
@@ -37,7 +38,7 @@ Rails::Initializer.run do |config|
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with 'rake db:sessions:create')
-  config.action_controller.session_store = :active_record_store
+  # config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -47,7 +48,7 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :user_observer
-  
+
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
   config.active_record.default_timezone = :local
@@ -60,23 +61,23 @@ Rails::Initializer.run do |config|
 end
 
 ActiveRecord::Errors.default_error_messages = {
-    :not_a_number=>"no es un número", 
-    :odd=>"debe ser impar", 
-    :blank=>"no puede estar en blanco", 
+    :not_a_number=>"no es un número",
+    :odd=>"debe ser impar",
+    :blank=>"no puede estar en blanco",
     :greater_than=>"debe ser mayor a  %d",
     :inclusion=>"no esta incluído en la lista",
     :even=>"debe ser mayor",
     :too_long=>"es muy grande (debe tener un máximo de %d caracteres )",
     :greater_than_or_equal_to=>"debe ser mayor o igual a %d",
     :empty=>"no puede estar vacío",
-    :exclusion=>"esta reservado", 
-    :too_short=>"es muy corto (debe tener un minímo de %d caracteres)", 
+    :exclusion=>"esta reservado",
+    :too_short=>"es muy corto (debe tener un minímo de %d caracteres)",
     :equal_to=>"debe ser igual a %d",
     :invalid=>"es inválido",
-    :wrong_length=>"es incorrecto la longitud (debe ser de %d caracteres)", 
+    :wrong_length=>"es incorrecto la longitud (debe ser de %d caracteres)",
     :less_than=>"debe ser menor a %d",
     :confirmation=>"la confirmación no coincide",
-    :taken=>"ya ha sido seleccionado", 
+    :taken=>"ya ha sido seleccionado",
     :less_than_or_equal_to=>"debe ser menor o igual a %d",
     :accepted=>"debe aceptarse"
 }

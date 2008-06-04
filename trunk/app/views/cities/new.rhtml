@@ -1,7 +1,0 @@
-<% form_tag({:action => 'create'}) do -%>
-  <%= render :partial => 'form' %>
-  <div id="operations">
-  <%= submit_tag get_label('save') %> | <%= link_to get_label('cancel'), :action => 'cancel' %>
-  </div>
-<% end -%>
-

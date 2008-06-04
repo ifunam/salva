@@ -11,8 +11,8 @@ module AjaxHelper
     render :partial => 'salva/downloading_list_indicator',  :locals => {:src => src, :dst => dst}
   end
 
-  def stop_observer(object, field)
-    javascript_tag " $('#{object}_#{field}').stopObserving('click', String.blank);"
+  def stop_observer(dom_id)
+    javascript_tag " $('#{dom_id.to_s}').stopObserving('click', String.blank);"
     #http://www.prototypejs.org/api/event/stopObserving  (Using String.blank instead nil o nothing)
   end
 

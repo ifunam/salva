@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resource  :person
   map.resources :addresses
   map.resources :genericworktypes
   map.resources :userconferences

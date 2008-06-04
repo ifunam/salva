@@ -1,0 +1,3 @@
+[submodule "trunk/vendor/plugins/calendar_date_select"]
+	path = trunk/vendor/plugins/calendar_date_select
+	url = git://github.com/timcharper/calendar_date_select.git
