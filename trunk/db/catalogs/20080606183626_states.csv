@@ -1,0 +1,83 @@
+id, name, code, country_id
+1, Aguascalientes, 484
+2, Baja California Norte, 484
+3, Baja California Sur, 484
+4, Campeche, 484
+5, Chiapas, 484
+6, Chihuahua, 484
+7, Coahuila, 484
+8, Colima, 484
+9, Distrito Federal, 484
+10, Durango, 484
+11, Estado de México, 484
+12, Guanajuato, 484
+13, Guerrero, 484
+14, Hidalgo, 484
+15, Jalisco, 484
+16, Michoacan, 484
+17, Morelos, 484
+18, Nayarit, 484
+19, Nuevo León, 484
+20, Oaxaca, 484
+21, Puebla, 484
+22, Queretaro, 484
+23, Quintana Roo, 484
+24, San Luis Potosí, 484
+25, Sinaloa, 484
+26, Sonora, 484
+27, Tabasco, 484
+28, Tamaulipas, 484
+29, Tlaxcala, 484
+30, Veracruz, 484
+31, Yucatán, 484
+32, Zacatecas, 484
+33, Alabama, AL, 840
+34, Alaska, AK, 840
+35, Arizona, AZ, 840
+36, Arkansas, AR, 840
+37, California, CA, 840
+38, Colorado, CO, 840
+39, Connecticut, CT, 840
+40, Delaware, DE, 840
+41, Florida, FL, 840
+42, Georgia, GA, 840
+43, Hawaii, HI, 840
+44, Idaho, ID, 840
+45, Illinois, IL, 840
+46, Indiana, IN, 840
+47, Iowa, IA, 840
+48, Kansas, KS, 840
+49, Kentucky, KY, 840
+50, Louisiana, LA, 840
+51, Maine, ME, 840
+52, Maryland, MD, 840
+53, Massachusetts, MA, 840
+54, Michigan, MI, 840
+55, Minnesota, MN, 840
+56, Mississippi, MS, 840
+57, Missouri, MO, 840
+58, Montana, MT, 840
+59, Nebraska, NE, 840
+60, Nevada, NV, 840
+61, New Hampshire, NH, 840
+62, New Jersey, NJ, 840
+63, New Mexico, NM, 840
+64, New York, NY, 840
+65, North Carolina, NC, 840
+66, North Dakota, ND, 840
+67, Ohio, OH, 840
+68, Oklahoma, OK, 840
+69, Oregon, OR, 840
+70, Pennsylvania, PA, 840
+71, Rhode Island, RI, 840
+72, South Carolina, SC, 840
+73, South Dakota, SD, 840
+74, Tennessee, TN, 840
+75, Texas, TX, 840
+76, Utah, UT, 840
+77, Vermont, VT, 840
+78, Virginia, VA, 840
+79, Washington, WA, 840
+80, West Virginia, WV, 840
+81, Wisconsin, WI, 840
+82, Wyoming, WY, 840

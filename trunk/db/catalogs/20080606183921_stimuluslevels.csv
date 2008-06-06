@@ -1,0 +1,19 @@
+id, name, stimulustype_id
+1, A, 1
+2, B, 1
+3, C, 1
+4, D, 1
+5, 0, 2
+6, A, 2
+7, B, 2
+8, C, 2
+9, D, 2
+10, Candidato a investigador, 3
+11, I, 3
+12, II, 3
+13, III, 3
+14, Emérito, 3
+15, Estudios de posgrado, 4
+16, Estancia sabática, 4
+17, Estancia de investigación, 4
+18, 2, 2

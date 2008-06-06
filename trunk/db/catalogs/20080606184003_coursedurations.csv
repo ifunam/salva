@@ -1,0 +1,7 @@
+id, name, days
+1, Semanal, 5
+2, Mensual, 30
+3, Trimestral, 90
+4, Semestral, 180
+5, Anual, 365
+6, Otro, 0

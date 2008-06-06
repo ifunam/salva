@@ -1,0 +1,5 @@
+id, name, descr, parent_id
+1, admin, Administración de salva
+2, default, Grupo predefinido
+3, researcher, Investigadores
+4, academic_technician, Técnicos académicos

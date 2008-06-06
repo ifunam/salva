@@ -1,7 +1,3 @@
--- Se tomaron algunas referencias de los documentos de educación
--- superior y media de la UNESCO y de la SEP. Además, se incluyen
--- las excepciones como Sr., pasante, etc.
--- http://www.unesco.org/iau/onlinedatabases/systems_data/mx.rtf
 INSERT INTO credentials (name,abbrev) VALUES ('Señor','Sr.');
 INSERT INTO credentials (name,abbrev) VALUES ('Técnico','Tec.');
 INSERT INTO credentials (name,abbrev) VALUES ('Pasante','Pasante');

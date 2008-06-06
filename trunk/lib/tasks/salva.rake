@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'iconv'
 namespace :salva do
 
@@ -21,50 +22,47 @@ namespace :salva do
 
   desc "Dump an existing table in development environment to create YAML test fixtures. Use the parameter table=tablename"
   task :table_to_fixtures => :environment do
-    path  = ENV['DEST'] || "#{RAILS_ROOT}/test/fixtures"
+    path  = ENV['DEST'] || "#{RAILS_ROOT}/db/catalogs"
     db    = ENV['DB']   || 'development'
     table = ENV['table']
-    limit = ENV['limit'] || 3
-    sql   = "SELECT * FROM #{table} LIMIT #{limit}"
+    limit = ENV['limit']
+    sql   = "SELECT * FROM #{Inflector.tableize(table)} ORDER BY id"
+    utc_prefix = Time.now.utc.strftime("%Y%m%d%H%M%S")
 
     ActiveRecord::Base.establish_connection(db)
     print "Extracting records from #{table}: "
-    i = '000'
-     File.open("#{path}/#{table}.yml", 'wb') do |file|
-       file.write ActiveRecord::Base.connection.select_all(sql).inject({}) { |hash, record|
-         key = set_keyname(record,i,table)
-         %w(moduser_id created_on updated_on).each { |k| record.delete(k) if record.has_key?(k)}
-         record.keys.each {|k|
-	   next if record[k].nil?
-           if k =~ /(_)*id$/ then
-             record[k] = record[k].to_i
-           else
-             record[k] = record[k].chars.strip.to_s
-           end
+    i = 0
+    File.open("#{path}/#{utc_prefix}_#{table}.csv", 'wb') do |file|
+      ActiveRecord::Base.connection.select_all(sql).inject({}) { |hash, record|
+        %w(moduser_id created_at updated_at).each { |k|
+          record.delete(k) if record.has_key?(k)
         }
-        print "."
-        hash[key] = record
-        hash # Aún existe un bug con UTF8
-       }.to_yaml(:Encoding => :Utf8, :Emiter => 'Salva fixtures generator')
-
+        keys = (record.keys - ['id'])
+        keys.unshift('id')
+        file.write keys.join(', ') + "\n" if i == 0
+        file.write keys.collect {|k|
+          next if record[k].nil?
+          if k =~ /(_)*id$/ then
+            record[k].to_i
+          else
+            s = record[k].chars.strip.to_s
+            s =~ /,/ ? "\"#{s}\"" : s
+          end
+        }.compact.join(', ') + "\n"
+        i = i + 1
+      }
     end
     print "\n"
   end
 
-  def set_keyname(record,i,table)
-    if record.has_key?('abbrev') then
-      keyname(record, 'abbrev')
-    elsif record.has_key?('name') then
-      keyname(record, 'name')
-    elsif record.has_key?('title') then
-      keyname(record, 'title')
-    else
-      "#{table}_#{i.succ!}"
+  desc "...."
+  task :db_catalogs_load do
+    catalogs_path = "#{RAILS_ROOT}/db/catalogs"
+    files = Dir["#{catalogs_path}/[0-9]*_*.csv"]
+    catalogs = files.inject([]) do |klasses, file|
+      version, name = file.scan(/([0-9]+)_([_a-z0-9]*).csv/).first
+      puts file
     end
-  end
-
-  def keyname(record,attribute)
-    Inflector.underscore(record[attribute].chars.downcase.strip.normalize.gsub(/\s/,'_'))
   end
 
 end

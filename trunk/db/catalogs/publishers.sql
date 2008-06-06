@@ -1,11 +1,3 @@
--- This publishers list os based on the Academic, Education and Science and Technical sections of the Yahoo Directory
--- http://dir.yahoo.com/Business_and_Economy/Shopping_and_Services/Publishers/
-
--- We need get the next lists:
--- http://www.matthewsbooks.com/publisherlist.aspx
--- http://www.socialpsychology.org/acadpub.htm
--- http://www.latindex.org/busquedas/directorioeditorial.html
-
 INSERT INTO publishers (name, url, descr) VALUES ('A K Peters Ltd.', 'http://www.akpeters.com/', 'specialized publishing for the oil and gas industry. scientific technical publisher whose publishing program focuses on computer science (graphics, geometric design, robotics, CHI) and mathematics.'); 
 INSERT INTO publishers (name, url, descr) VALUES ('A.A. Balkema Publishers', 'http://balkema.ima.nl/', 'specializes in the publication of academic books and journals in engineering, earth science, and life science.'); 
 INSERT INTO publishers (name, url, descr) VALUES ('ADASI Publishing Company', 'http://www.adasi.com/', 'self-education books for those interested in science.'); 

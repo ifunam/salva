@@ -6,5 +6,4 @@ INSERT INTO activitygroups (name) VALUES ('Servicios de apoyo');
 INSERT INTO activitygroups (name) VALUES ('Otras actividades');
 INSERT INTO activitygroups (name) VALUES ('Actividades técnicas');
 
---- Otras actividades
 INSERT INTO activitytypes (name, activitygroup_id) VALUES ('Otras actividades', 6);
