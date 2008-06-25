@@ -1,3 +1,15 @@
 [submodule "trunk/vendor/plugins/calendar_date_select"]
 	path = trunk/vendor/plugins/calendar_date_select
 	url = git://github.com/timcharper/calendar_date_select.git
+[submodule "trunk/vendor/plugins/acts_as_tree"]
+	path = trunk/vendor/plugins/acts_as_tree
+	url = git://github.com/richpoirier/acts_as_tree.git
+[submodule "trunk/vendor/plugins/betternestedset"]
+	path = trunk/vendor/plugins/betternestedset
+	url = git://github.com/tekin/betternestedset-patched.git
+[submodule "trunk/vendor/plugins/shoulda"]
+	path = trunk/vendor/plugins/shoulda
+	url = git://github.com/thoughtbot/shoulda.git
+[submodule "trunk/vendor/plugins/will_paginate"]
+	path = trunk/vendor/plugins/will_paginate
+	url = git://github.com/mislav/will_paginate.git
