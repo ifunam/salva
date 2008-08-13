@@ -1,7 +1,0 @@
-<%= table(@collection, { :header => "Chingaderas", :columns => %w(author title booktype_id volume_id) }) %>
-
-<br />
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
-
-<%= link_to 'Agregar libro', :action => 'new' %>

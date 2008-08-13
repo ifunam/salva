@@ -1,9 +1,0 @@
-#mid,label,orders,level,iconopen,iconclosed,action,target,expanded
-1:Datos generales:0:1:::/General/:none:1
-1:Datos personales:1:2:::/Personal/:post:0
-1:Domicilios:2:2:::/Addresses/:post:0
-1:Domicilio particular:3:3:::/Addresses/Residential/:post:0
-1:Domicilio profesional:4:3:::/Addresses/Professional/:post:0
-1:Domicilio temporal:5:3:::/Addresses/Temporal/:post:0
-1:Formación académica:6:1:::/AcadPlan/:none:0
-1:Salir:13:1:::/Exit/:none:0

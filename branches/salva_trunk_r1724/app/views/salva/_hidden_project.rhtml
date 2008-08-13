@@ -1,2 +1,0 @@
-<%= Finder.new(Project, ['name', 'projecttype', 'projectstatus', 'startyear'], :first, :conditions => ['id = ?', params[:id]] ).as_text %>
-<%= hidden_field('edit', 'project_id', :value => params[:id] ) %>

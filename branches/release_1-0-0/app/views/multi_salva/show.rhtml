@@ -1,9 +1,0 @@
-<% for record in @views %>
-	<%= table_show(eval"@#{record}") %>
-  <hr/> 
-<% end %>
-<div id="operations"> 
-  <%= link_to get_label('edit'), :action => 'edit', :id => @record.id %> |
-  <%= link_to get_label('back'), :action => 'back' %>
-  
-</div>

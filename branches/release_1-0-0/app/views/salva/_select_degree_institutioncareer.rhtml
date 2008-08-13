@@ -1,7 +1,0 @@
-<% unless id.to_i < 1 %> 
-        <%= select_conditions('edit', Institutioncareer, tabindex, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => "institutioncareers.career_id = careers.id AND careers.degree_id = #{id} AND institutioncareers.institution_id = institutions.id AND institutions.country_id = 484")%>
-<% else %>
-	<%= select_conditions('edit', Institutioncareer, 2, :attributes => ['career', ['institution', 'name', ['institution', 'abbrev']]], :conditions => 'institutioncareers.institution_id = institutions.id  AND institutions.institutiontitle_id <= 3')%>
-
-
-<% end %>

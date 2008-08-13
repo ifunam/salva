@@ -1,7 +1,0 @@
-id, name, descr, has_group_right
-1, Administrador, t
-2, Salva, f
-3, Estudiante Asociado, f
-4, Jefe, t
-5, Secretaria, t
-6, Responsable, t

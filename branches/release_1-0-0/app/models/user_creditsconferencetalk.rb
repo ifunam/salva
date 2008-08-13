@@ -1,5 +1,0 @@
-class UserCreditsconferencetalk < ActiveRecord::Base
-validates_presence_of :conferencetalk_id
-validates_numericality_of :conferencetalk_id
-belongs_to :conferencetalk
-end

@@ -1,9 +1,0 @@
-arbitro:
-  name: Arbitro
-  id: 1
-editor:
-  name: Editor
-  id: 2
-compilador:
-  name: Compilador
-  id: 3

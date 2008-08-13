@@ -1,2 +1,0 @@
-class AnnualActivitiesReportNotifier < UserDocumentNotifier
-end

@@ -1,8 +1,0 @@
-<%= render :partial => 'user_document/list', :locals => { 'title' => 'Informes anuales'} %>
-<% unless @document_title.nil? %>
-<br/>
-<div id="operations">
- <%= link_to @document_title, :action => 'preview' %>
-</div>
-
-<% end %>

@@ -1,3 +1,0 @@
-<% if id.to_i > 0  %>
-<%= select_conditions('edit', Institution, 2, :attributes => ['name', ['institution', 'abbrev']], :conditions => "country_id = #{id}") %>
-<% end %>

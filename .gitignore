@@ -1,0 +1,14 @@
+config/database.yml
+config/site.yml
+config/mail.yml
+db/*
+!db/migrate
+tmp/*
+log/*
+*~
+semantic.cache
+.#*
+.svn
+.svn/*
+\#*
+coverage

@@ -1,5 +1,0 @@
-<% if id.to_i > 0 %>
-   <%= select_conditions('edit', model, tabindex, :conditions => ["#{column} = ?", id]) %>
-   <%= stop_observer('edit', foreignize(model)) %>
-   <%= render :partial =>  "salva/downloading_list_indicator", :locals => { :src => column.sub(/\_id$/,''), :dst => Inflector.underscore(model).singularize} %>
-<% end %>

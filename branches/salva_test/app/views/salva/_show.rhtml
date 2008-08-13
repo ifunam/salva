@@ -1,9 +1,0 @@
-<%= table_show(@edit) %>
-<%= render :partial =>"salva/moduser" if @edit.has_attribute?('moduser_id') %>
-<% if !defined?(operation_links); operation_links = true; end %>
-<% if operation_links == true %>
-<div id="operations">
- <%= link_to get_label('edit'), :action => 'edit', :id => @edit.id %> |
- <%= link_to get_label('back'), :action => 'back' %>
-</div>
-<% end %>
