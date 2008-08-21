@@ -1,1 +1,0 @@
- <%= select_conditions('edit', Institution, 2, :attributes => ['name'], :conditions => "#{get_most_common_finnancingsources}", :order => 'institutions.name ASC',:selected => get_myinstitution.id)%>

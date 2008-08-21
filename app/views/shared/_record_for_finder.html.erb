@@ -1,1 +1,0 @@
- <%= render :partial => 'shared/record', :collection => Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id = #{@record.id}").as_pair %>

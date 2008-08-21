@@ -1,7 +1,0 @@
-<% unless id.to_i < 1 %>
-<%= select_conditions('edit', Jobpositioncategory, 2, :attributes => [ 'roleinjobposition', 'jobpositionlevel'] , :conditions => "jobpositioncategories.jobpositiontype_id = #{id}", :order => 'roleinjobpositions.name, jobpositionlevels.name ASC')
-%>
-<% end %>
-
-
-

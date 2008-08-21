@@ -1,8 +1,0 @@
-<% @finder.record_as_pair.each do |data| %>
-<p>
-<label><%= get_label(data[0]) %>: </label><%= data[1] %>
-</p>
-<% end %>
-<%= link_to_remote get_label('edit'), :url => method("edit_#{Inflector.singularize(controller_name)}_path").call(:id => params[:id]), :method => :get  %> |
-<%= link_to_function(get_label('back')) do |page|  page.replace_html 'form', :partial => 'shared/add' end %>
-

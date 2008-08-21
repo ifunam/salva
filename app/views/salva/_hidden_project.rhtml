@@ -1,6 +1,0 @@
-<% if !params[:id].nil?  %>
-<%= Finder.new(Project, :first, :attributes => %w(name projecttype projectstatus startyear), :conditions => 'projects.id = '+params[:id] ).as_text %>
-<%= hidden_field('edit', 'project_id', :value => params[:id] ) %>
-<% else %>
-<%= simple_select('edit', Project, 1)  %>
-<% end %>

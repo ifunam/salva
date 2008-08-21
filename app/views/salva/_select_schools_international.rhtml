@@ -1,7 +1,0 @@
-<% if id.to_i > 0 %> 
-<%= select_conditions('edit', Institution,  1,
-:attributes => [ 'name'],
-:include => [:institutiontitle],
-:conditions => "institutions.institutiontitle_id = institutiontitles.id AND (#{get_educational_institutiontitles}) AND institutions.country_id = #{id}"
-) %>
-<% end %>

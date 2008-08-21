@@ -1,9 +1,0 @@
-<%= error_messages_for 'user_course' %>
-<div class="row">
-<label for="roleincourse_id" class="label"><%= get_label('roleincourse_id') %> <span class="required">*</span></label>
-<div id="roleincourse_id">
-<%= select_conditions('user_course', Roleincourse,2, {:attributes => %w(name), :conditions => "name != 'Asistente'", :selected => @user_course.roleincourse_id || 3 }) %>
-</div>
-</div>
-<!--[eoform:user_course]-->
-

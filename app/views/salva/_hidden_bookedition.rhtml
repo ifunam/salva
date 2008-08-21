@@ -1,7 +1,0 @@
-<% if !params[:id].nil?  %>
-<%= Finder.new(Bookedition, :first, :attributes => %w(edition year book),
-:conditions => 'bookeditions.id = '+params[:id] ).as_text %>
-<%= hidden_field('edit', 'bookedition_id', :value => params[:id] ) %>
-<% else %>
-<%= simple_select('edit', Bookedition, 1, :attributes => %w(edition year book))  %>
-<% end %>
