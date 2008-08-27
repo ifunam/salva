@@ -1,8 +1,11 @@
+# spec/factory.rb
+require 'active_record'
+require 'active_record/fixtures'
 module Factory
   def self.included(base)
     base.extend(self)
   end
-  
+
   def build_valid(params = {})
     unless self.respond_to?("builder_#{self.name.underscore}")
       raise "There are no default params for #{self.name}"

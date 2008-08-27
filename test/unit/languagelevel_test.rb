@@ -1,53 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'languagelevel'
 
-class LanguagelevelTest < Test::Unit::TestCase
-  fixtures :languagelevels
-  include UnitSimple
+class LanguagelevelTest < ActiveSupport::TestCase
+    fixtures :languagelevels
 
-  def setup
-    @languagelevels = %w(basico intermedio avanzado)
-    @mylanguagelevel = Languagelevel.new({:name => 'superavanzado'})
+    should_require_attributes :name
+    should_only_allow_numeric_values_for :id
+    should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
+   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+    should_not_allow_float_number_for :id
   end
-
-  # Right - CRUD
-  def test_crud
-    crud_test(@languagelevels, Languagelevel)
-  end
-
-  def test_validation
-    validate_test(@languagelevels, Languagelevel)
-  end
-
-  def test_collision
-    collision_test(@languagelevels, Languagelevel)
-  end
-
-  def test_uniqueness
-    @languagelevel = Languagelevel.new({:name => 'Avanzado'})
-    assert !@languagelevel.save
-  end
-
-  def test_creating_languagelevel_with_empty_attributes
-    @languagelevel = Languagelevel.new
-    assert !@languagelevel.save
-  end
-
-  def test_bad_values_for_id
-    #Negative number
-    #@mylanguagelevel.id = -5
-    #assert !@mylanguagelevel.valid?
-
-    #Float number ID
-    @mylanguagelevel.id= 1.8
-    assert !@mylanguagelevel.valid?
-    @mylanguagelevel.id= 'xx'
-    assert !@mylanguagelevel.valid?
-  end
-
-  def test_bad_values_for_name
-    @mylanguagelevel.name = nil
-    assert !@mylanguagelevel.valid?
-  end
-end
-

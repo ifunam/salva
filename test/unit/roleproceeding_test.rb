@@ -1,56 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'roleproceeding'
 
-class RoleproceedingTest < Test::Unit::TestCase
-  fixtures :roleproceedings
-  include UnitSimple
+class RoleproceedingTest < ActiveSupport::TestCase
+    fixtures :roleproceedings
 
-  def setup
-    @roleproceedings = %w(arbitro editor compilador)
-    @myroleproceeding = Roleproceeding.new({:name => 'Arbitro'})
+    should_require_attributes :name
+    should_only_allow_numeric_values_for :id
+    should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
+   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+    should_not_allow_float_number_for :id
   end
-
-  # Right - CRUD
-  def test_crud
-    crud_test(@roleproceedings, Roleproceeding)
-  end
-
-  def test_validation
-    validate_test(@roleproceedings, Roleproceeding)
-  end
-
-  def test_collision
-    collision_test(@roleproceedings, Roleproceeding)
-  end
-
-  def test_create_with_empty_attributes
-    @myroleproceeding = Roleproceeding.new
-    assert !@myroleproceeding.save
-  end
-
-  def test_uniqueness
-    @roleproceeding = Roleproceeding.new({:name => 'Editor'})
-    assert !@roleproceeding.save
-  end
-
-  # Boundaries
-  def test_bad_values_for_id
-    @myroleproceeding.id = 'xx'
-    assert !@myroleproceeding.valid?
-
-    # Negative number ID
-    #@mycredential.id = -1
-    #assert !@mycredential.valid?
-
-    # Float number ID
-    @myroleproceeding.id = 1.3
-    assert !@myroleproceeding.valid?
-  end
-
-  def test_bad_values_for_name
-    # Checking constraints for name
-    @myroleproceeding.name = nil
-    assert !@myroleproceeding.valid?
-  end
-
-end

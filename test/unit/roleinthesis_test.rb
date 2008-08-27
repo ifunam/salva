@@ -1,66 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'roleinthesis'
 
-class RoleinthesisTest < Test::Unit::TestCase
-  fixtures :roleintheses
-  include UnitSimple
+class RoleinthesisTest < ActiveSupport::TestCase
+    fixtures :acadvisittypes
 
-  def setup
-    @roleintheses = %w(autor director asesor)
+    should_require_attributes :name
+    should_only_allow_numeric_values_for :id
+    should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
+   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+    should_not_allow_float_number_for :id
   end
-
-  # Right - CRUD
-  def test_crud
-    crud_test(@roleintheses, Roleinthesis)
-  end
-
-  def test_validation
-    validate_test(@roleintheses, Roleinthesis)
-  end
-
-  def test_collision
-    collision_test(@roleintheses, Roleinthesis)
-  end
-
-  def test_create_with_empty_attributes
-    @myroleinthesis = Roleinthesis.new
-    assert !@myroleinthesis.save
-  end
-
-  def test_check_uniqueness
-    @myroleinthesis2 = Roleinthesis.new({:name => 'Autor'})
-    assert !@myroleinthesis2.save
-  end
-
-  # Boundaries
-  def test_bad_values_for_id
-    @myroleinthesis = Roleinthesis.new
-    @myroleinthesis.id = 'xx'
-    assert !@myroleinthesis.valid?
-
-    # Negative number ID
-    #@myroleinthesis.id = -1
-    #assert !@myroleinthesis.valid?
-
-    # Float number ID
-    @myroleinthesis.id = 1.3
-    assert !@myroleinthesis.valid?
-
-    # Very large number for ID
-    @myroleinthesis.id = 10000
-    assert !@myroleinthesis.valid?
-
-    # Nil number ID
-    @myroleinthesis.id = nil
-    assert !@myroleinthesis.valid?
-  end
-
-  def test_bad_values_for_name
-    # Checking constraints for name
-    # Nil name
-    @myroleinthesis = Roleinthesis.new
-    @myroleinthesis.name = nil
-    assert !@myroleinthesis.valid?
-  end
-
-end

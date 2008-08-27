@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require File.expand_path(File.dirname(__FILE__) + "/../test/factory")
 require 'test_help'
+require File.dirname(__FILE__) + "/factory"
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -12,7 +13,7 @@ class Test::Unit::TestCase
   # Read Mike Clark's excellent walkthrough at
   #   http://clarkware.com/cgi/blosxom/2005/10/24#Rails10FastTesting
   #
-  # Every Active Record database supports transactions except MyISAM tables
+  # Every Active object database supports transactions except MyISAM tables
   # in MySQL.  Turn off transactional fixtures in this case; however, if you
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
@@ -34,7 +35,7 @@ class Test::Unit::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   #fixtures :all
-  
+
   def deny(condition, message)
     assert !condition, message
   end
@@ -106,4 +107,5 @@ class Test::Unit::TestCase
   end
   include Shoulda::Extensions
   extend Shoulda::Extensions
+
 end
