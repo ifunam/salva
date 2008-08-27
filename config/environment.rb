@@ -59,7 +59,7 @@ Rails::Initializer.run do |config|
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded
 end
-
+if RAILS_ENV != 'test'
 ActiveRecord::Errors.default_error_messages = {
     :not_a_number=>"no es un número",
     :odd=>"debe ser impar",
@@ -81,6 +81,7 @@ ActiveRecord::Errors.default_error_messages = {
     :less_than_or_equal_to=>"debe ser menor o igual a %d",
     :accepted=>"debe aceptarse"
 }
+end	
 # ActionMailer configuration:
 # http://api.rubyonrails.com/classes/ActionMailer/Base.html
 if RAILS_ENV != 'test'

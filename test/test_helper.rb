@@ -1,9 +1,9 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require File.dirname(__FILE__) + "/factory"
 
 class Test::Unit::TestCase
-
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded
@@ -12,11 +12,15 @@ class Test::Unit::TestCase
   # Read Mike Clark's excellent walkthrough at
   #   http://clarkware.com/cgi/blosxom/2005/10/24#Rails10FastTesting
   #
-  # Every Active Record database supports transactions except MyISAM tables
+  # Every Active object database supports transactions except MyISAM tables
   # in MySQL.  Turn off transactional fixtures in this case; however, if you
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
-  self.use_transactional_fixtures = false
+  #
+  # The only drawback to using transactional fixtures is when you actually
+  # need to test transactions.  Since your test is bracketed by a transaction,
+  # any transactions started in your code will be automatically rolled back.
+  self.use_transactional_fixtures = true
 
   # Instantiated fixtures are slow, but give you @david where otherwise you
   # would need people(:david).  If you don't want to migrate your existing
@@ -25,97 +29,81 @@ class Test::Unit::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
-  # Add more helper methods to be used by all tests here...
+  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  #
+  # Note: You'll currently still have to declare fixtures explicitly in integration tests
+  # -- they do not yet inherit this setting
+  # fixtures :all
   def deny(condition, message)
     assert !condition, message
   end
-
-
-  # Simple CRUD (Create-Read, Update and Delete) testing methods
-  module UnitSimple
-    # Create and Read test
-    def create(keys,model)
-      #print "Running *Create and Read*\n"
-      fixture = method(Inflector.pluralize(model.name).downcase)
-      keys.each { | item |
-        @model = model.find(fixture.call(item.to_sym).id)
-        assert_kind_of model, @model
-        assert_equal fixture.call(item.to_sym).id, @model.id
-        assert_equal fixture.call(item.to_sym).name, @model.name
-      }
-    end
-
-    def update(keys,model)
-      fixture = method(Inflector.pluralize(model.name).downcase)
-      keys.each { | item |
-        @model = model.find(fixture.call(item.to_sym).id)
-        assert_equal fixture.call(item.to_sym).name, @model.name
-        name = @model.name.chars.reverse
-        @model.name = name
-        assert @model.save, @model.errors.full_messages.join("; ")
-        @model.reload
-        assert_equal name, @model.name
-      }
-    end
-
-    def delete(keys,model)
-      fixture = method(Inflector.pluralize(model.name).downcase)
-      keys.each { | item |
-        @model = model.find(fixture.call(item.to_sym).id)
-        @model.destroy
-        assert_raise (ActiveRecord::RecordNotFound) {
-          model.find(fixture.call(item.to_sym).id)
-        }
-      }
-    end
-
-    def crud_test(keys,model)
-      create(keys,model)
-      update(keys,model)
-      delete(keys,model)
-     end
-
-    def validate_test(keys,model)
-      fixture = method(Inflector.pluralize(model.name).downcase)
-      keys.each { | item |
-        @model = model.find(fixture.call(item.to_sym).id)
-        assert_equal fixture.call(item.to_sym).id, @model.id
-        assert_equal fixture.call(item.to_sym).name, @model.name
-        @model.name = nil
-        assert !@model.save
-        assert_not_nil @model.errors.count
-      }
-    end
-
-    def collision_test(values,model)
-      fixture = method(Inflector.pluralize(model.name).downcase)
-      values.each { | item |
-        @model = model.find(fixture.call(item.to_sym).id)
-        @newmodel = model.new
-        @newmodel.name = @model.name
-        assert_not_nil @newmodel.errors.count
-      }
-    end
+  
+  def login_as(login)
+      user = User.find_by_login(login.to_s)
+      @request.session[:user_id] = user.id ? user.id : nil
+      user
   end
 
-  module Session
-    def login_as (user, password)
-      @controller = UserController.new
-      post :signup, :user => { :login => user, :passwd => 'maltiempo'}
-      #session[:user]
-    end
-  end
+  module Shoulda # :nodoc: all
+    module Extensions
+        include Test::Unit::Assertions
+        def should_allow_nil_value_for(*attributes)
+          @record = make_model
+          attributes.each do |attribute|
+            @record.send("#{attribute}=", nil)
+            @record.valid?
+            assert !@record.errors.on(attribute), @record.errors.full_messages.join("\n")
+          end
+        end
 
-  def teardown
-    self.class.fixture_table_names.reverse.each do |table_name|
-      klass_name = Inflector.classify(table_name.to_s)
-      if Object.const_defined?(klass_name)
-        klass = Object.const_get(klass_name)
-        klass.connection.delete("DELETE FROM #{table_name}", 'Fixture Delete')
-      else
-        flunk("Cannot find class for table '#{table_name}' to delete fixtures")
-      end
+        def should_not_allow_nil_value_for(*attributes)
+          @record = make_model
+          attributes.each do |attribute|
+              @record.send("#{attribute}=", nil)
+              assert_validation_with_message(/is not a number/, attribute)
+          end
+        end
+
+        def should_not_allow_float_number_for(*attributes)
+          @record = make_model
+          attributes.each do |attribute|
+            @record.send("#{attribute}=", 1.01)
+            assert_validation_with_message(/is not a number/, attribute)
+          end
+        end
+
+        def should_not_allow_zero_or_negative_number_for(*attributes)
+          attributes.each do |attribute|
+            should_not_allow_values_for attribute, -1,  :message => /must be greater than 0/
+            should_not_allow_values_for attribute, 0,  :message => /must be greater than 0/
+          end
+        end
+        
+        def should_allow_only_boolean_for(*attributes)
+            attributes.each do |attribute|
+              should_allow_values_for attribute, [false, true]
+              should_not_allow_values_for attribute, nil, :message =>  /is not included in the list/
+            end
+        end
+        
+        def assert_validation_with_message(pattern, attribute)
+          model_name = @record.class
+          @record.valid?
+          assert @record.errors.on(attribute), "Expected #{model_name} to have an error on #{attribute}, but it did not."
+          actual_error = @record.errors.on(attribute).to_s
+          assert_match(pattern, actual_error, "Expected #{model_name} to have the error #{pattern}\n Real message was: #{actual_error}")
+        end
+
+        # private
+        def make_model
+            model =  model_class
+            options = model.valid_options
+            yield options if block_given?
+            model.new(options)
+        end
     end
   end
+  include Shoulda::Extensions
+  extend Shoulda::Extensions
+
 end
-

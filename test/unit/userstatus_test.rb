@@ -1,23 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'userstatus'
 
-class UserstatusTest < Test::Unit::TestCase
-  fixtures :userstatuses
-  include UnitSimple
+class UserstatusTest < ActiveSupport::TestCase
+    fixtures :userstatuses
 
-  def setup
-    @user_status = %w(new activated locked xfiles)
+    should_require_attributes :name
+    should_only_allow_numeric_values_for :id
+    should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
+   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+    should_not_allow_float_number_for :id
   end
-
-  def test_crud 
-    crud_test(@user_status, Userstatus)
-  end
-
-  def test_validation
-    validate_test(@user_status, Userstatus)
-  end
-
-  def test_collision
-    collision_test(@user_status, Userstatus)
-  end
-end
