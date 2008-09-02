@@ -1,0 +1,12 @@
+<h2><%= get_controller_name %></h2>
+<div id="collection">
+ <div class="row">
+   <span class="th_id" id="check_ids">
+     *
+   </span>
+   <span class="th_content"><%= title.nil? ? 'Registros' : title %></span>
+   <span class="th_actions">Acciones</span>
+ </div>
+ <%= render :partial => 'shared/record', :collection => @collection %>
+</div>
+<div id="form"> <%= link_to_function('Ocultar') do |page|  page.replace_html 'form', :partial => 'shared/add' end %></div>

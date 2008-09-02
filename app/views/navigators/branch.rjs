@@ -1,0 +1,3 @@
+page.hide 'selected_item'
+page.replace_html 'selected_item', :partial=>"navigators/item", :object => @item 
+page.visual_effect 'toggle_appear', "selected_item"

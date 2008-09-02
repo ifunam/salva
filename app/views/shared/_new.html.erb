@@ -1,0 +1,6 @@
+<div id ="myerror_messages"></div>
+<% form_for(@record, :url => method("formatted_#{controller_name}_path").call(:format => 'js'), :html => { :multipart => true, :target => 'upload_frame'}, :builder => FormBuilder) do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f} %>
+ <%= f.submit get_label("save") %> | <%= link_to_function(get_label('cancel')) do |page|  page.replace_html 'form', :partial => 'shared/add' end %>
+<% end %>
+<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>

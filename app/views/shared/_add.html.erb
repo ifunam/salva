@@ -1,0 +1,4 @@
+<%= link_to_remote get_label('add'), 
+{:url  => method("new_#{ActiveSupport::Inflector.singularize(controller_name)}_path").call},
+{:title => "Para agregar un elemento presione esta liga"}
+ %> 

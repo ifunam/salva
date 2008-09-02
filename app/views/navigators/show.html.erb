@@ -1,0 +1,12 @@
+<div id="tree">
+
+<div id="ajaxtree" style="width:40%;float:left;">
+ <%= render :partial=>"navigators/ajax_tree", :object=>[@item,@items] %>
+</div>
+</div>
+
+<div class="form_container">
+<div id="selected_item">
+ <%= render :partial=>"navigators/item", :object=>@item %>
+</div>
+</div>
