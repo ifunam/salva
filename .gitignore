@@ -12,3 +12,4 @@ semantic.cache
 .svn/*
 \#*
 coverage
+.DS_Store

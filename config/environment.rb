@@ -6,7 +6,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-# RAILS_GEM_VERSION = '1.2.5' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '1.2.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -60,27 +60,6 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded
 end
 
-ActiveRecord::Errors.default_error_messages = {
-    :not_a_number=>"no es un número",
-    :odd=>"debe ser impar",
-    :blank=>"no puede estar en blanco",
-    :greater_than=>"debe ser mayor a  %d",
-    :inclusion=>"no esta incluído en la lista",
-    :even=>"debe ser mayor",
-    :too_long=>"es muy grande (debe tener un máximo de %d caracteres )",
-    :greater_than_or_equal_to=>"debe ser mayor o igual a %d",
-    :empty=>"no puede estar vacío",
-    :exclusion=>"esta reservado",
-    :too_short=>"es muy corto (debe tener un minímo de %d caracteres)",
-    :equal_to=>"debe ser igual a %d",
-    :invalid=>"es inválido",
-    :wrong_length=>"es incorrecto la longitud (debe ser de %d caracteres)",
-    :less_than=>"debe ser menor a %d",
-    :confirmation=>"la confirmación no coincide",
-    :taken=>"ya ha sido seleccionado",
-    :less_than_or_equal_to=>"debe ser menor o igual a %d",
-    :accepted=>"debe aceptarse"
-}
 # ActionMailer configuration:
 # http://api.rubyonrails.com/classes/ActionMailer/Base.html
 if RAILS_ENV != 'test'

@@ -7,7 +7,7 @@ h2 {
 img { border: 0; }
 
 #tree {
-  width: 15em; height: 30em; overflow: auto; float: left;
+  width: 20em; height: 60em; overflow: auto; float: left;
   border: 1px solid #444; background: #fff; padding: 0.5em;
   margin-right: 10px;
   cursor: default;
