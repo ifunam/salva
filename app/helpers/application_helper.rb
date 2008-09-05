@@ -16,9 +16,7 @@ module ApplicationHelper
           ret += "<img id='#{node.id.to_s}expanded' src='/images/expanded.gif' onclick='javascript: return toggleMyTree(\"#{node.id}\"); ' style='display:#{display_expanded}; cursor:pointer;'  />  "
           ret += "<img style='display:#{display_collapsed}; cursor:pointer;'  id='#{node.id.to_s}collapsed' src='/images/collapsed.gif' onclick='javascript: return toggleMyTree(\"#{node.id.to_s}\"); '  />  "
         end
-
      
-
         ret += "<span id='#{node.id}_tree_item'>"
         ret +=  yield node
         ret += "</span>"
@@ -31,12 +29,8 @@ module ApplicationHelper
     ret += "</div>"
     return ret
   end
-  
-  
-  
-  
-  
-  ##########
+
+# This section is for the handling of tree
   def get_controller_name
      get_label(controller_name)
    end

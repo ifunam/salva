@@ -1,27 +1,3 @@
-
-
-<style>
-
-.mytree{padding:0 0 0 0px;}
-
-.mytree li {padding:2 0 0 3px;}
-
-.outer_tree_element{margin:0 0 0 5px;}
-
-.inner_tree_element{margin:5px 0 0 10px;}
-
-.mytree a{text-decoration:none; font-size:13px; color:black;}
-
-.mytree a:hover{background-color:lightblue;}
-
-.mytree label{font-weight:normal;}
-
-.highlighted{background-color:lightblue;}
-
-.normal{background-color:white;}
-
-</style>
-
 <div id="mytree" class="mytree">
 
   <% @ancestors = @item.ancestors.collect{|parent| parent.id} if @parent %>
@@ -30,50 +6,10 @@
 
   <%= get_tree_data(@items, 0){|n|
       link_to_remote(n.name,
-      :url=>{:controller=>'navigators', :action=>'display_clicked_branch', :id=>n.id},
-      :method => :get, 
-  :loading=>"Element.show('tree_indicator')",
-  :complete=>"Element.hide('tree_indicator')"
-  )}
+      :url=>{:controller=>n.name, :action => 'index'},
+	  :method => :get )}
   %>
-
-
 </div>
-
-
-
-<script type="text/javascript">
-
-  var selected_el = document.getElementById('<%=@item.id%>_tree_item');
-  selected_el.className='highlighted';
-
- function toggleMyTree(id)
-  {
-  Element.toggle(id+'collapsed');
-  Element.toggle(id+'expanded');
-  Element.toggle(id+'children');
-  return false;
-  }
-	
-  function toggleBackground(el)
-  {
-  // using collection proxies to change the background
-  var highlighted_el = $$("span.highlighted");
-  highlighted_el.all(function(value,index){return value.className='normal'});
-
-  el.className='highlighted';
-  selected_el = el;
-  return false;
-  }
-  function openMyTree(id)
-  {
-  Element.hide(id+'collapsed');
-  Element.show(id+'expanded');
-  Element.show(id+'children');
-  return false;
-  }
-
-</script>
 
 
 

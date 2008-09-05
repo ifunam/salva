@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resource :navigator
   map.resources :prizetypes
+  map.resources :addresses
 
   # The priority is based upon order of creation: first created -> highest priority.
 

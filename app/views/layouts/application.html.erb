@@ -23,11 +23,10 @@
 </div> <!-- /toplinks -->
 
 <div id ="body">
-                <div id= "controller_form">
+                <div id="controller_form">
                            <p style="color: green"><%= flash[:notice] %></p>
                 <%= yield  %>
-        </div>
-
+        		</div>
 
   <div class="title">
 <%= controller_title %></div>
@@ -36,6 +35,7 @@
    <% end %>
 
 </div>
+
 
 </body>
 </html>

@@ -42,3 +42,34 @@ function uncheck_ids_from_list(form) {
          ids[i].checked = false;
  }
 }
+
+//This section is for the handling of tree
+
+var selected_el = document.getElementById('<%=@item.id%>_tree_item');
+ selected_el.className='highlighted';
+
+function toggleMyTree(id)
+ {
+ Element.toggle(id+'collapsed');
+ Element.toggle(id+'expanded');
+ Element.toggle(id+'children');
+ return false;
+ }
+	
+ function toggleBackground(el)
+ {
+ // using collection proxies to change the background
+ var highlighted_el = $$("span.highlighted");
+ highlighted_el.all(function(value,index){return value.className='normal'});
+
+ el.className='highlighted';
+ selected_el = el;
+ return false;
+ }
+ function openMyTree(id)
+ {
+ Element.hide(id+'collapsed');
+ Element.show(id+'expanded');
+ Element.show(id+'children');
+ return false;
+ }

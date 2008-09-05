@@ -13,7 +13,7 @@ class SuperScaffoldController < ApplicationController
     respond_to do |format|
       format.js { render :action => 'index.rjs' }
       format.html { render :action => 'index' }
-      format.xml { render :xml => @collection }
+    #  format.xml { render :xml => @collection }
     end
   end
 

@@ -56,3 +56,41 @@
   width: 100%;
   font-weight: bold;
 }
+/* This section is for the handling of tree */
+.mytree {
+	padding:0 0 0 0px;
+}
+
+.mytree li {
+	padding:2 0 0 3px;
+}
+
+.outer_tree_element { 
+	margin:0 0 0 5px;
+}
+
+.inner_tree_element {
+	margin:5px 0 0 10px;
+}
+
+.mytree a {
+	text-decoration:none; 
+	font-size:13px; 
+	color:black;
+}
+
+.mytree a:hover {
+	background-color:lightblue;
+}
+
+.mytree label {
+	font-weight:normal;
+}
+
+.highlighted {
+	background-color:lightblue;
+}
+
+.normal {
+	background-color:white;
+}

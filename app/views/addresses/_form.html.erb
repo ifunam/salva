@@ -1,9 +1,0 @@
-   <%= f.hidden_field :addresstype_id, :value => 1 %>
-   <%= f.text_area :location, :size => '40x4', :required => true %>
-   <%= f.text_field :pobox, :size => 20, :maxlength => 30 %>
-   <%= f.simple_select :country, :default => 484, :required => true %>
-   <%= render :partial => 'states/select', :locals => {:id => (@record.country.nil? ? 484 : @record.country_id), :object => :address} %>
-   <%= f.text_field :zipcode, :size => 5, :maxlength => 10 %>
-   <%= f.text_field :phone, :size => 20, :maxlength => 30 %>
-   <%= f.text_field :fax, :size => 20, :maxlength => 30 %>
-   <%= f.hidden_field :is_postaddress, :values => true %>

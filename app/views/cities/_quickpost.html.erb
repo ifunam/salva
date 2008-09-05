@@ -1,9 +1,0 @@
-<% if params['state_id'].to_i != 0 %>
-  <%= hidden_field  'quickposts[city]', :state_id, :value => params['state_id'] %>
-<% else %>
-   <%= hidden_field  'quickposts[city]', :state_id, :value => (@record.nil? ? 83 : (@record.state_id.nil? ? 83 : @record.state_id ) )  %>
-<% end %>
-<p><label>Ciudad<span class="required">*</span></label>
-   <% city = @record.nil? ? nil : @record.city.name %>
-   <%= text_field 'quickposts[city]',:name, :size => 30, :maxlength => 255, :value => city %>
-</p>

@@ -1,5 +1,5 @@
 class NavigatorsController < ApplicationController
-
+layout 'navigator'
   def show
     @items = Tree.find(:all)
     @item = Tree.find(:first)
