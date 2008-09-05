@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title> <!-- % head_title % --> Titulo</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description"  content="Plataforma de informaci&oacute;n curricular SALVA" />
+  <meta name="copyright" content="Universidad Nacional Aut&oacute;noma de M&eacute;xico" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <%= stylesheet_link_tag 'application', 'form', 'tree' %>
+  <%= javascript_include_tag :defaults, 'trees' %>
+  <%= calendar_date_select_includes "red" %>
+  </head>
+<body>
+<div class="topbar">
+   <%= image_tag("logo_salva.png", :border => "0", :alt => 'SALVA', :style => "vertical-align: middle;float: left;" ) %>
+   <div class="site">
+   <div class="name"> PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR</div>
+   <div class="site_link"> <a href="<%= get_conf('institution_url') %>" target="_new"> <%= get_conf('institution') %></a> </div>
+
+   </div>
+</div> <!--  /topbar -->
+<div class="toplinks"> >
+ <a href="/user/about/4" target="_new"> Soporte técnico </a>
+</div> <!-- /toplinks -->
+
+<div id ="body">
+     
+                <%= yield  %>
+           		<div id="controller_form">
+                 <p style="color: green"><%= flash[:notice] %></p>
+        		</div>
+
+  <div class="title">
+<%= controller_title %></div>
+   <% if flash[:notice] %>
+   <p style="color: green"> <%= flash[:notice] %></p>
+   <% end %>
+
+</div>
+
+
+</body>
+</html>
+

@@ -1779,6 +1779,18 @@ class InitialSchema < ActiveRecord::Migration
       t.timestamps
     end
     add_index :volumes, [:name], :name => :volumes_name_key, :unique => true
+    
+    create_table :trees, :force => true do |t|
+      t.integer :parent_id, :null => false
+      t.integer :pos, :null => false
+      t.integer :lft, :null => false
+      t.integer :rgt, :null => false
+      t.integer :root_id, :null => false
+      t.integer :mod_user_id, :null => false
+      t.text :name, :null => false  
+      t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id' 
+      t.timestamps
+    end
   end
 
   def self.down
@@ -1816,5 +1828,6 @@ class InitialSchema < ActiveRecord::Migration
     drop_table :user_theses, :userconferences, :usercredits, :usercreditsarticles, :usercreditsbooks, :usercreditsconferencetalks
     drop_table :usercreditsgenericworks, :userrefereedpubs, :userresearchgroups, :userroles, :users, :users_logs
     drop_table :usersstatuses_comments, :userstatuses, :volumes
+    drop_table :trees
   end
 end

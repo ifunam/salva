@@ -31,7 +31,7 @@ namespace :db do
         tree_loader(child, prev_id)
       else
         require 'menu'
-        @t = Menu.new({:data => child})
+        @t = Menu.new({:name => child})
         @t.save
         @t.move_to_child_of parent_id if parent_id != nil
         prev_id = @t.id
