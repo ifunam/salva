@@ -1781,12 +1781,8 @@ class InitialSchema < ActiveRecord::Migration
     add_index :volumes, [:name], :name => :volumes_name_key, :unique => true
     
     create_table :trees, :force => true do |t|
-      t.integer :parent_id, :null => true
-      t.integer :pos, :null => true
-      t.integer :lft, :null => true
-      t.integer :rgt, :null => true
-      t.integer :root_id, :null => true
-      t.text :name, :null => false  
+      t.integer :parent_id, :pos, :lft, :rgt, :root_id
+      t.text :name, :null => false
       t.references :moduser, :class_name => 'User', :foreign_key => 'moduser_id' 
       t.timestamps
     end

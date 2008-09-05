@@ -13,5 +13,5 @@ acts_as_tree
     self.ancestors.size
   end
 
-#  acts_as_nested_set
+  acts_as_nested_set
 end
