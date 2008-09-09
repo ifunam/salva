@@ -4,7 +4,7 @@
 <div id="collection">
  <div class="row">
    <span class="th_id" id="check_ids">
-   Seleccionar: <%= link_to_function( "Todas", "check_ids_from_list('list_form')", {:title => "Seleccionar todas"}) %> | <%= link_to_function("Ninguna", "uncheck_ids_from_list('list_form')", {:title => "Seleccionar ninguna"}) %>
+   Seleccionar: <br /><%= link_to_function( "Todas", "check_ids_from_list('list_form')", {:title => "Seleccionar todas"}) %> | <%= link_to_function("Ninguna", "uncheck_ids_from_list('list_form')", {:title => "Seleccionar ninguna"}) %>
    </span>
    <span class="th_content"><%= title.nil? ? 'Registros' : title %></span>
    <span class="th_actions">Acciones</span>
