@@ -19,9 +19,9 @@ module Factory
   end
 
   def builder_prizetype(params)
-    { :name => 'Trozofeo'
-    }.merge(params)
-  end
+     { :name => 'Medalla'
+     }.merge(params)
+   end
 
 end
 
