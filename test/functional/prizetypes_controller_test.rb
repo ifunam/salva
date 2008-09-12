@@ -3,15 +3,17 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PrizetypesControllerTest < ActionController::TestCase
 
   fixtures :prizetypes
+
   def setup
     @model = Prizetype
   end
-  
+
   test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:collection)
   end
+
 
   test "should get index rjs" do
     xhr :get, :index
@@ -24,87 +26,87 @@ class PrizetypesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create prizetype" do
-    assert_difference('Prizetype.count') do
-      post :create, :prizetype => @model.valid_hash
+  test "should create #{@model}" do
+    assert_difference("#{@model}.count") do
+      post :create, hash_name => @model.valid_hash
     end
     assert_redirected_to index_path
   end
 
-  test "should not create existent prizetype" do
-    assert_difference('Prizetype.count') do
-      post :create, :prizetype => Prizetype.build_valid.attributes
+  test "should not create existent #{@model}" do
+    assert_difference("#{@model}.count") do
+      post :create, hash_name => @model.build_valid.attributes
     end
     assert_redirected_to new_path
   end
 
-  test "should create prizetype based on rjs" do
-    assert_difference('Prizetype.count') do
-      xhr :post, :create, :prizetype => Prizetype.valid_hash
+  test "should create #{@model} based on rjs" do
+    assert_difference("#{@model}.count") do
+      xhr :post, :create, hash_name => @model.valid_hash
     end
     assert_response :success
   end
 
-  test "should not create existent prizetype based on rjs" do
-    assert_difference('Prizetype.count') do
-      xhr :post, :create, :prizetype => Prizetype.build_valid.attributes
+  test "should not create existent #{@model} based on rjs" do
+    assert_difference("#{@model}.count") do
+      xhr :post, :create, hash_name => @model.build_valid.attributes
     end
     assert_response :success
   end
 
-  test "should show prizetype" do
-    get :show, :id => Prizetype.first.id
+  test "should show #{@model}" do
+    get :show, :id => @model.first.id
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, :id => Prizetype.first.id
+  test "should get edit #{@model}" do
+    get :edit, :id => @model.first.id
     assert_response :success
   end
 
-  test "should update prizetype" do
-    put :update, :id => Prizetype.first.id, :prizetype => Prizetype.valid_hash
+  test "should update #{@model}" do
+    put :update, :id => @model.first.id, hash_name => @model.valid_hash
     assert_redirected_to index_path
   end
 
-  test "should not update prizetype" do
-    put :update, :id => Prizetype.first.id, :prizetype => Prizetype.invalid_hash
-    assert_redirected_to edit_path(Prizetype.first)
+  test "should not update #{@model}" do
+    put :update, :id => @model.first.id, hash_name => @model.invalid_hash
+    assert_redirected_to edit_path(@model.first)
   end
 
-  test "should update prizetype based on rjs" do
-    xhr :post, :update, :id => Prizetype.first.id, :prizetype => Prizetype.valid_hash
+  test "should update #{@model} based on rjs" do
+    xhr :post, :update, :id => @model.first.id, hash_name => @model.valid_hash
     assert_response :success
   end
 
-  test "should not update prizetype based on rjs" do
-    xhr :post, :update, :id => Prizetype.first.id, :prizetype => Prizetype.invalid_hash
+  test "should not update #{@model} based on rjs" do
+    xhr :post, :update, :id => @model.first.id, hash_name => @model.invalid_hash
     assert_response :success
   end
 
-  test "should destroy prizetype" do
-    assert_difference('Prizetype.count', -1) do
-      delete :destroy, :id => Prizetype.first.id
+  test "should destroy #{@model}" do
+    assert_difference("#{@model}.count", -1) do
+      delete :destroy, :id => @model.first.id
     end
     assert_redirected_to index_path
   end
 
-  test "should destroy prizetype based on rjs" do
-    assert_difference('Prizetype.count', -1) do
-      xhr :post, :destroy, :id => Prizetype.first.id
+  test "should destroy #{@model} based on rjs" do
+    assert_difference("#{@model}.count", -1) do
+      xhr :post, :destroy, :id => @model.first.id
     end
     assert_response :success
   end
 
-  test "should destroy_all ID's prizetype" do
-    assert_difference('Prizetype.count', -Prizetype.all.size) do
-      post :destroy_all, :id => Prizetype.all.collect {|record| record.id }
+  test "should destroy_all ID's #{@model}" do
+    assert_difference("#{@model}.count", -@model.all.size) do
+      post :destroy_all, :id => @model.all.collect { |record| record.id }
     end
     assert_response :success
   end
 
   private
-  
+
   def controller_name
     self.class.name.sub(/ControllerTest$/, '').downcase
   end
@@ -112,12 +114,17 @@ class PrizetypesControllerTest < ActionController::TestCase
   def index_path
     self.send(controller_name + '_path')
   end
-  
+
   def new_path
     self.send('new_' + ActiveSupport::Inflector.singularize(controller_name) + '_path')
   end
-  
+
   def edit_path(record)
     self.send('edit_' + ActiveSupport::Inflector.singularize(controller_name) + '_path', record)
   end
+
+  def hash_name
+    ActiveSupport::Inflector.tableize(@model).singularize.to_sym
+  end
 end
+
