@@ -1,0 +1,10 @@
+<h2><%= get_controller_name %></h2>
+<div id="myerror_messages"></div>
+<%= render :partial => 'shared/required_note' %>
+<% remote_form_for Inflector.camelize(@record.class.name).underscore.to_sym, @record, :builder =>  LabelFormBuilder, :url => {:action => :update}, :method => :put do |f| %>
+  <%= render :partial =>'form', :locals => { :f => f } %>
+  <p>
+    <%= f.submit get_label("save") %> |
+    <%= link_to_remote get_label('cancel'), :url => method("#{Inflector.camelize(@model).underscore}_path").call, :method => :get %>
+  </p>
+<% end %>
