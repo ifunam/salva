@@ -3,7 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PrizetypesControllerTest < ActionController::TestCase
 
   fixtures :prizetypes
-
+  def setup
+    @model = Prizetype
+  end
+  
   test "should get index" do
     get :index
     assert_response :success
@@ -23,7 +26,7 @@ class PrizetypesControllerTest < ActionController::TestCase
 
   test "should create prizetype" do
     assert_difference('Prizetype.count') do
-      post :create, :prizetype => Prizetype.valid_hash
+      post :create, :prizetype => @model.valid_hash
     end
     assert_redirected_to index_path
   end
