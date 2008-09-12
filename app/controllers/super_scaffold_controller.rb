@@ -46,12 +46,12 @@ class SuperScaffoldController < ApplicationController
     @record = @model.new(params[@hash_name])
     respond_to do |format|
       if @record.save
-        format.js { responds_to_parent { render :action => 'create.rjs'} }
         format.html { redirect_to :action => :index }
+        format.js { responds_to_parent { render :action => 'create.rjs'} }
         format.xml  { render :xml => @record, :status => :created, :location => @record }
       else
-        format.js { responds_to_parent { render :action => 'errors.rjs' } }
         format.html { redirect_to :action => :new }
+        format.js { responds_to_parent { render :action => 'errors.rjs' } }
         format.xml  { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,12 +61,12 @@ class SuperScaffoldController < ApplicationController
     @record = @model.find(params[:id])
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
-        format.js { responds_to_parent { render :action => 'update.rjs' } }
         format.html { redirect_to :action => :index }
+        format.js { responds_to_parent { render :action => 'update.rjs' } }
         format.xml { head :ok }
       else
-        format.js { responds_to_parent { render :action => 'errors.rjs' } }
         format.html { redirect_to :action => :edit }
+        format.js { responds_to_parent { render :action => 'errors.rjs' } }
         format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end

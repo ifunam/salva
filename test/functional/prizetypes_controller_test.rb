@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class PrizetypesControllerTest < ActionController::TestCase
 
-  fixtures :prizetypes
+   fixtures :prizetypes
 
   test "should get index" do
     get :index
@@ -20,20 +20,34 @@ class PrizetypesControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
-
+  
   test "should create prizetype" do
+    assert_difference('Prizetype.count') do
+      post :create, :prizetype => Prizetype.build_valid_hash
+    end
+    assert_redirected_to prizetypes_path
+  end
+  
+  test "should not create existent prizetype" do
     assert_difference('Prizetype.count') do
       post :create, :prizetype => Prizetype.build_valid.attributes
     end
-    assert_response :success
+    assert_redirected_to new_prizetype_path
   end
 
-  test "should create prizetype rjs" do
+  test "should create prizetype based on rjs" do
+    assert_difference('Prizetype.count') do
+      xhr :post, :create, :prizetype => Prizetype.build_valid_hash
+     end
+     assert_response :success
+  end
+  
+  test "should not create existent prizetype based on rjs" do
     assert_difference('Prizetype.count') do
       xhr :post, :create, :prizetype => Prizetype.build_valid.attributes
-    end
-    assert_response :success
-  end
+     end
+     assert_response :success
+   end
 
   test "should show prizetype" do
     get :show, :id => prizetypes('diploma').id
@@ -46,12 +60,25 @@ class PrizetypesControllerTest < ActionController::TestCase
   end
 
   test "should update prizetype" do
-    put :update, :id => prizetypes('diploma').id, :prizetype => Prizetype.build_valid.attributes
-
-    assert_response :success
-    # assert_redirected_to admin_prizetype_path(assigns(:prizetype))
+    put :update, :id => prizetypes('diploma').id, :prizetype => Prizetype.build_valid_hash
+    assert_redirected_to prizetypes_path
   end
-
+  
+   test "should not update prizetype" do
+     put :update, :id => prizetypes('diploma').id, :prizetype => { :name => nil }
+     assert_redirected_to edit_prizetype_path(prizetypes('diploma'))
+   end
+  
+  test "should update prizetype based on rjs" do
+    xhr :post, :update, :id => prizetypes('diploma').id, :prizetype => Prizetype.build_valid_hash
+    assert_response :success
+  end
+  
+   test "should not update prizetype based on rjs" do
+     xhr :post, :update, :id => prizetypes('diploma').id, :prizetype => { :name => nil}
+     assert_response :success
+   end
+  
   test "should destroy prizetype" do
     assert_difference('Prizetype.count', -1) do
       delete :destroy, :id => prizetypes('diploma').id
@@ -67,4 +94,4 @@ class PrizetypesControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-end
+ end

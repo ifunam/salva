@@ -18,10 +18,14 @@ module Factory
     obj
   end
 
+  def build_valid_hash(params = {})
+    self.send("builder_#{self.name.underscore}", params)
+  end
+  
   def builder_prizetype(params)
-     { :name => 'Medalla'
-     }.merge(params)
-   end
+    { :name => 'Reconocimiento'
+    }.merge(params)
+  end
 
 end
 
