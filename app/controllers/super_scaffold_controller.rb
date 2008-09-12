@@ -76,8 +76,8 @@ class SuperScaffoldController < ApplicationController
     @record = @model.find(params[:id])
     @record.destroy
     respond_to do |format|
-      format.js { render :action => 'destroy.rjs' }
       format.html { redirect_to  :action => :index }
+      format.js { render :action => 'destroy.rjs' }
     end
   end
 
