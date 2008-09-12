@@ -25,14 +25,14 @@ class PrizetypesControllerTest < ActionController::TestCase
     assert_difference('Prizetype.count') do
       post :create, :prizetype => Prizetype.valid_hash
     end
-    assert_redirected_to prizetypes_path
+    assert_redirected_to index_path
   end
 
   test "should not create existent prizetype" do
     assert_difference('Prizetype.count') do
       post :create, :prizetype => Prizetype.build_valid.attributes
     end
-    assert_redirected_to new_prizetype_path
+    assert_redirected_to new_path
   end
 
   test "should create prizetype based on rjs" do
@@ -61,12 +61,12 @@ class PrizetypesControllerTest < ActionController::TestCase
 
   test "should update prizetype" do
     put :update, :id => Prizetype.first.id, :prizetype => Prizetype.valid_hash
-    assert_redirected_to prizetypes_path
+    assert_redirected_to index_path
   end
 
   test "should not update prizetype" do
     put :update, :id => Prizetype.first.id, :prizetype => Prizetype.invalid_hash
-    assert_redirected_to edit_prizetype_path(Prizetype.first)
+    assert_redirected_to edit_path(Prizetype.first)
   end
 
   test "should update prizetype based on rjs" do
@@ -83,7 +83,7 @@ class PrizetypesControllerTest < ActionController::TestCase
     assert_difference('Prizetype.count', -1) do
       delete :destroy, :id => Prizetype.first.id
     end
-    assert_redirected_to prizetypes_path
+    assert_redirected_to index_path
   end
 
   test "should destroy prizetype based on rjs" do
@@ -100,4 +100,21 @@ class PrizetypesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  private
+  
+  def controller_name
+    self.class.name.sub(/ControllerTest$/, '').downcase
+  end
+
+  def index_path
+    self.send(controller_name + '_path')
+  end
+  
+  def new_path
+    self.send('new_' + ActiveSupport::Inflector.singularize(controller_name) + '_path')
+  end
+  
+  def edit_path(record)
+    self.send('edit_' + ActiveSupport::Inflector.singularize(controller_name) + '_path', record)
+  end
 end
