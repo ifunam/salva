@@ -5,7 +5,7 @@ class RecordController < ApplicationController
   end
 
   def index
-  #  @record = @model.find_by_user_id(session[:user_id])
+    @record = @model.find_by_user_id(session[:user_id])
     respond_to do |format|
       unless @record.nil?
         format.html { render :action => 'show'  }
