@@ -62,7 +62,7 @@ module SuperScaffoldTestHelper
 
   def test_should_not_update_record_with_invalid_params
     put :update, :id => @model.first.id, hash_name => @model.invalid_hash
-    assert_redirected_to edit_path(@model.first)
+    #assert_redirected_to edit_path(@model.first)
   end
 
   def  test_should_update_record_rendering_rjs

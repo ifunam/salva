@@ -1,8 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 require 'labels'
 require 'finder'
+require 'salva'
 module ApplicationHelper
     include Labels
+    include Salva
 
   def get_tree_data(tree, parent_id)
     ret = "<div class='outer_tree_element'>"
