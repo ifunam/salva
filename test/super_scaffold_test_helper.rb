@@ -45,7 +45,7 @@ module SuperScaffoldTestHelper
     assert_response :success
   end
 
-  def tes_should_show_record
+  def test_should_show_record
     get :show, :id => @model.first.id
     assert_response :success
   end
