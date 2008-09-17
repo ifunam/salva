@@ -34,7 +34,7 @@ module Factory
     }.merge(params)
   end
 
-end
+nd
 
 ActiveRecord::Base.class_eval do
   include Factory

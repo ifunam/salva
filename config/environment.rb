@@ -59,6 +59,7 @@ Rails::Initializer.run do |config|
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded
 end
+
 # ActionMailer configuration:
 # http://api.rubyonrails.com/classes/ActionMailer/Base.html
 if RAILS_ENV != 'test'
