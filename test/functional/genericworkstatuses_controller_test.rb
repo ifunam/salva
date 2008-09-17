@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../super_scaffold_test_helper')
-class  AcadvisittypesControllerTest < ActionController::TestCase
+class  GenericworkstatusesControllerTest < ActionController::TestCase
    include SuperScaffoldTestHelper
-   fixtures :acadvisittypes
+   fixtures :genericworkstatuses
 
    def setup
-      @model = Acadvisittype
+      @model = Genericworkstatus
    end
 end
