@@ -1,91 +1,73 @@
+require 'digest/sha2'
+require 'resolv'
 class User < ActiveRecord::Base
-  include Mydigest
-
   attr_accessor :current_passwd
-
   validates_presence_of     :login, :email, :passwd
-  validates_uniqueness_of   :login, :email
   validates_length_of       :login, :within => 3..30
   validates_length_of       :email, :within => 7..100
   validates_length_of       :passwd, :within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
+  #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
-  validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
+  validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
+  #validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_uniqueness_of   :login
+  validates_uniqueness_of   :email
+  validates_uniqueness_of   :login, :scope => [:email]
+
+  named_scope :unactivated, :conditions => { :userstatus_id => 1 }
+  named_scope :activated, :conditions => { :userstatus_id => 2 }
+  named_scope :locked, :conditions => { :userstatus_id => 3 }
+  named_scope :in_history_file, :conditions => { :userstatus_id => 4 }
+  named_scope :with_user_incharge, :conditions => 'user_incharge_id IS NOT NULL'
 
   belongs_to :userstatus
-  belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
+  belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
 
   has_one :person
-  has_many :addresses
-
-  has_many :citizens
-  has_many :people_identifications
-  has_many :identifications, :through => :people_identifications
-
-  has_many :schoolings, :order => 'schoolings.startyear, schoolings.endyear ASC'
-
-  has_many :user_articles
-  has_many :articles, :through => :user_articles
-  has_many :user_newspaperarticles
-
-  has_many :user_genericworks
-  has_many :teachingproducts, :through => :user_genericworks #,  :include => [:genericwork], :source => :user, :conditions => 'genericworks.genericworkgroup_id = 4 AND genericworks.genericworktype_id = genericworktypes.id'
-
-  has_many :user_proceedings
-  has_many :proceedings, :through => :user_proceedings
-
-  has_many :user_inproceedings
-  has_many :inproceedings, :through => :user_inproceedings
-
-
-  has_many :user_documents
-  has_many :documents, :through => :user_documents
-
-  has_many :user_stimuluses
-  has_many :stimuluses, :through => :user_stimuluses
-  has_many :activities
-  has_many :user_courses
-  has_many :user_journals
-  has_many :user_theses
-  has_many :user_cites
+  has_one :photo
 
   # Callbacks
   before_create :prepare_new_record
-  after_validation_on_create :encrypt_password
+  after_validation_on_create  :encrypt_password
   before_validation_on_update :verify_current_password
+  
+  # Static or class methods
+  def self.authenticate?(login,password)
+    @user = User.find_by_login(login)
+    !@user.nil? and !@user.salt.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
+  end
 
-  # UserStatus handling
+  def self.authenticate_by_token?(login,token)
+    User.find_by_login_and_token(login,token).nil? ? false : true 
+  end
 
+  def self.find_by_valid_token(id,token) 
+    User.find_by_id_and_token(id, token, :conditions => [ 'token_expiry >= ?', Date.today])
+  end
+  
+  def self.change_password(login, current_pw, new_pw)
+    record = User.find_by_login(login)
+    record.current_passwd = current_pw
+    record.passwd = new_pw
+    record.save if record.valid?
+  end
+
+  def self.encrypt(password, mysalt)
+    Digest::SHA512.hexdigest(password + mysalt)
+  end
+
+  # Instance methods
   def activate
-    change_userstatus({ :userstatus_id => 2 , :token => nil})
+    change_userstatus(2)
   end
 
-  def locked
-    change_userstatus({ :userstatus_id => 3 })
+  def lock
+    change_userstatus(3)
   end
 
-  def reject
-    change_userstatus({ :userstatus_id => 4 })
-  end
-
-  def is_activated?
-    self.userstatus_id == 2 # Look for approved or activated status in the userstatuses catalog.
-  end
-
-  def is_locked?
-    self.userstatus_id == 3 # Look for locked or inactivated status in the userstatuses catalog.
-  end
-
-  def is_rejected?
-    self.userstatus_id == 4 # Look for rejected status in the userstatuses catalog.
-  end
-
-  def is_in_history_file?
-    self.userstatus_id == 5 # Look for history file or 'Archivo muerto' status in the userstatuses catalog.
-  end
-
-  def has_user_incharge?
-    !self.user_incharge_id.nil?
+  def send_to_history_file
+    change_userstatus(4)
   end
 
   def new_token
@@ -100,37 +82,61 @@ class User < ActiveRecord::Base
     save(true)
   end
 
-  private
-  def prepare_new_record
-    # New userstatus and preparing the tokens for the account activation process
-    # The salt is used to add a random factor to the plaintext. This might
-    # make some cryptographic attacks more difficult.
-    self.userstatus_id = 1
+  def is_unactivated?
+    self.userstatus_id == 1
+  end
 
+  def is_activated?
+    self.userstatus_id == 2
+  end
+
+  def is_locked?
+    self.userstatus_id == 3
+  end
+
+  def is_in_history_file?
+    self.userstatus_id == 4
+  end
+
+  protected
+  def prepare_new_record
+    self.userstatus_id = 1
     self.token = token_string(10)
     self.token_expiry = 7.days.from_now
   end
 
   def encrypt_password
-    if self.passwd != nil 
-      self.salt = salted
-      self.passwd = encrypt(self.passwd, self.salt)
+    if self.passwd != nil
+      self.salt = token_string(40)
+      plaintext = passwd
+      self.passwd = User.encrypt(plaintext, self.salt)
       self.passwd_confirmation = nil
     end
   end
-  
+
   def verify_current_password
-    if !self.current_passwd.nil?
-      if User.find(:first, :conditions => ["id = ?", self.id]).passwd != encrypt(self.current_passwd, self.salt)
-        errors.add("current_passwd", "is not valid")
+    if !self.current_passwd.nil? and User.find(self.id).passwd != User.encrypt(self.current_passwd, self.salt)
+        errors.add("passwd", "is not valid")
         return false
-      end
-      encrypt_password
     end
+    if !self.passwd_confirmation.nil? and self.passwd != self.passwd_confirmation
+        errors.add("passwd", "doesn't match confirmation")
+        return false
+    end
+    encrypt_password if passwd_changed?
   end
 
-  def change_userstatus(myattributes)
-    self.attributes = myattributes
+  def change_userstatus(status)
+    self.userstatus_id = status
     save(true)
+  end
+
+  def token_string(n)
+    if n.to_i > 1
+      s = ""
+      char64 = (('a'..'z').collect + ('A'..'Z').collect + ('0'..'9').collect + ['.','/']).freeze
+      n.times { s << char64[(Time.now.tv_usec * rand) % 64] }
+      s
+    end
   end
 end

@@ -1,2 +1,0 @@
-page.remove @record.dom_id
-page.replace_html 'form', :partial => 'shared/add'
