@@ -192,7 +192,10 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :chapterinbook_comments
    map.resources :theses
    map.resources :adscriptions
-
+   map.resources :academicprogramtypes
+   map.resources :activitygroups
+   map.resources :articlestatuses
+   
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
