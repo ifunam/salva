@@ -5,5 +5,6 @@ class  RoleinjuriesControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinjury
+      super
    end
 end

@@ -5,5 +5,6 @@ class  SeminarytypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Seminarytype
+      super
    end
 end

@@ -5,5 +5,6 @@ class  RoleproceedingsControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleproceeding
+      super
    end
 end

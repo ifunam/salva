@@ -5,5 +5,6 @@ class  CoursegrouptypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Coursegrouptype
+      super
    end
 end

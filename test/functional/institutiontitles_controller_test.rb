@@ -5,5 +5,6 @@ class  InstitutiontitlesControllerTest < ActionController::TestCase
 
    def setup
       @model = Institutiontitle
+      super
    end
 end

@@ -5,5 +5,6 @@ class  ExternaluserlevelsControllerTest < ActionController::TestCase
 
    def setup
       @model = Externaluserlevel
+      super
    end
 end

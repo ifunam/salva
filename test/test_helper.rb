@@ -41,10 +41,8 @@ class Test::Unit::TestCase
     assert !condition, message
   end
   
-  def login_as(login)
-    user = User.find_by_login(login.to_s)
-    @request.session[:user_id] = user.id ? user.id : nil
-    user
+  def login_as(login, password)
+    @request.session[:user_id] = User.authenticate?(login, password) ? User.find_by_login(login.to_s).id : nil
   end
 
   module Shoulda # :nodoc: all

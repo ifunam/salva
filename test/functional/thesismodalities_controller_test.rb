@@ -5,5 +5,6 @@ class  ThesismodalitiesControllerTest < ActionController::TestCase
 
    def setup
       @model = Thesismodality
+      super
    end
 end

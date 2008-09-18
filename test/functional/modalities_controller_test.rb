@@ -5,5 +5,6 @@ class  ModalitiesControllerTest < ActionController::TestCase
 
    def setup
       @model = Modality
+      super
    end
 end

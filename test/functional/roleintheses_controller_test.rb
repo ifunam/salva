@@ -5,5 +5,6 @@ class  RoleinthesesControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinthesis
+      super
    end
 end

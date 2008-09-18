@@ -5,5 +5,6 @@ class  TalktypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Talktype
+      super
    end
 end

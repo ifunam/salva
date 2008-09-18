@@ -5,5 +5,6 @@ class  InstadvicetargetsControllerTest < ActionController::TestCase
 
    def setup
       @model = Instadvicetarget
+      super
    end
 end

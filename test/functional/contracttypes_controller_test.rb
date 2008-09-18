@@ -5,5 +5,6 @@ class  ContracttypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Contracttype
+      super
    end
 end

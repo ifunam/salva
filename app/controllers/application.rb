@@ -4,8 +4,8 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-#  before_filter :login_required
-#  before_filter :navigator
+  before_filter :login_required
+  #before_filter :navigator
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -23,6 +23,15 @@ class ApplicationController < ActionController::Base
       render :partial => params[:partial], :locals => { :id => params[:id], :object => params[:object], :default => params[:default] }
   end
 
+  def login_required
+    store_location
+    (!session[:user_id].nil? and !User.find(session[:user_id]).nil?) ? (return true) : (redirect_to :controller=> :sessions and return false)
+  end
+
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+  
   def set_user(model)
     unless session[:user_id].nil?
       model.user_id = session[:user_id] if model.has_attribute? 'user_id'
@@ -38,14 +47,5 @@ class ApplicationController < ActionController::Base
       model.filename = file.original_filename.chomp
     end
   end
-
-  def login_required
-    store_location
-    (!session[:user_id].nil? and !User.find(session[:user_id]).nil?) ? (return true) : (redirect_to :controller=> :sessions and return false)
-  end
-
-  def store_location
-    session[:return_to] = request.request_uri
-  end
-
+  
 end

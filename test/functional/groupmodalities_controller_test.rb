@@ -5,5 +5,6 @@ class  GroupmodalitiesControllerTest < ActionController::TestCase
 
    def setup
       @model = Groupmodality
+      super
    end
 end

@@ -5,5 +5,6 @@ class  UserstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Userstatus
+      super
    end
 end

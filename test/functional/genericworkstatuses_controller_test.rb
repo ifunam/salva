@@ -5,5 +5,6 @@ class  GenericworkstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Genericworkstatus
+      super
    end
 end

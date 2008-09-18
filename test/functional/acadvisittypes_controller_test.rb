@@ -5,5 +5,6 @@ class  AcadvisittypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Acadvisittype
+      super
    end
 end

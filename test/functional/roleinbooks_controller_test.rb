@@ -5,5 +5,6 @@ class  RoleinbooksControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinbook
+      super
    end
 end

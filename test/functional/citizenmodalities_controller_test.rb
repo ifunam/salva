@@ -5,5 +5,6 @@ class  CitizenmodalitiesControllerTest < ActionController::TestCase
 
    def setup
       @model = Citizenmodality
+      super
    end
 end

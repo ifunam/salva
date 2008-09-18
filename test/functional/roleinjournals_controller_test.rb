@@ -5,5 +5,6 @@ class  RoleinjournalsControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinjournal
+      super
    end
 end

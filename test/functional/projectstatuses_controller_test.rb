@@ -5,5 +5,6 @@ class  ProjectstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Projectstatus
+      super
    end
 end

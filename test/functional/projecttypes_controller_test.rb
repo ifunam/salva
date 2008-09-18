@@ -5,5 +5,6 @@ class  ProjecttypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Projecttype
+      super
    end
 end

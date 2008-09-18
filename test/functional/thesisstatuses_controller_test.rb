@@ -5,5 +5,6 @@ class  ThesisstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Thesisstatus
+      super
    end
 end

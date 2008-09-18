@@ -5,5 +5,6 @@ class  TitlemodalitiesControllerTest < ActionController::TestCase
 
    def setup
       @model = Titlemodality
+      super
    end
 end

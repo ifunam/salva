@@ -5,5 +5,6 @@ class  InstitutiontypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Institutiontype
+      super
    end
 end

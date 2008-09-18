@@ -5,5 +5,6 @@ class  MediatypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Mediatype
+      super
    end
 end

@@ -5,5 +5,6 @@ class  ConferencescopesControllerTest < ActionController::TestCase
 
    def setup
       @model = Conferencescope
+      super
    end
 end

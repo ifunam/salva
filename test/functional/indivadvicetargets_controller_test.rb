@@ -5,5 +5,6 @@ class  IndivadvicetargetsControllerTest < ActionController::TestCase
 
    def setup
       @model = Indivadvicetarget
+      super
    end
 end

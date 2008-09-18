@@ -5,5 +5,6 @@ class  StudentrolesControllerTest < ActionController::TestCase
 
    def setup
       @model = Studentrole
+      super
    end
 end

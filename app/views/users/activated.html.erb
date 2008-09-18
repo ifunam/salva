@@ -1,0 +1,9 @@
+<p style="color: green"><%= flash[:notice] %></p>
+<div class="box"> <!-- box -->
+<div id="form"> <!-- form -->
+<p style="color: green"><%= flash[:notice] %></p>
+<p>Su cuenta <span style="color:green;"><%= @user.login %></span> ha sido activada!</p>
+<p>Gracias por usar el SALVA!</p>
+<%= link_to_remote "Regresar a inicio de sesión", :url => session_url, :method => :get %>
+</div> <!-- end of form-->
+</div> <!-- end of box -->

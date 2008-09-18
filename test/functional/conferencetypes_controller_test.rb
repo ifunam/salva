@@ -5,5 +5,6 @@ class  ConferencetypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Conferencetype
+      super
    end
 end

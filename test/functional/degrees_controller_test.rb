@@ -5,5 +5,6 @@ class  DegreesControllerTest < ActionController::TestCase
 
    def setup
       @model = Degree
+      super
    end
 end

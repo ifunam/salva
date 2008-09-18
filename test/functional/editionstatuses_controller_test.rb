@@ -5,5 +5,6 @@ class  EditionstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Editionstatus
+      super
    end
 end

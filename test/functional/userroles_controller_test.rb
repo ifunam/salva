@@ -5,5 +5,6 @@ class  UserrolesControllerTest < ActionController::TestCase
 
    def setup
       @model = Userrole
+      super
    end
 end

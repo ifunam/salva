@@ -5,5 +5,6 @@ class  RoleinseminariesControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinseminary
+      super
    end
 end

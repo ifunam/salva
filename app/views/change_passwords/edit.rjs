@@ -1,0 +1,1 @@
+page.replace_html 'controller_form', :partial => 'edit'

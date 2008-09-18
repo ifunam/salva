@@ -5,5 +5,6 @@ class  RoleinchaptersControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinchapter
+      super
    end
 end

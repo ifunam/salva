@@ -5,5 +5,6 @@ class  RoleinjobpositionsControllerTest < ActionController::TestCase
 
    def setup
       @model = Roleinjobposition
+      super
    end
 end

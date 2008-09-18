@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resource :navigator
+  map.root :controller => 'sessions'
+  map.resource  :session
+  map.resources :user, :collection => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
+  map.resource  :change_password
+  map.resource  :navigator
   map.resource  :person
   map.resources :addresses
   map.resources :academicprogramtypes

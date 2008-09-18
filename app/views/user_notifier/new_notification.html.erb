@@ -1,0 +1,23 @@
+********************************************************************
+*                      Este es un reporte automático               *
+*                            NO HAGA REPLY                         *
+********************************************************************
+
+Su cuenta en el SALVA ha sido <<creada>>:
+
+  Login: <%= @user.login %>
+  Contraseña: ***********
+
+Para entrar al sistema es necesario que confirme la activación de
+su cuenta usando el siguiente enlace en el navegador de su
+preferencia:
+
+<%= url_for(:controller=> :users, :action => :confirm, 
+            :id => @user.id, :token => @user.token, 
+            :only_path => false, :escape => false) %>
+
+Gracias por usar el SALVA.
+
+Instituto de Física
+Universidad Nacional Autónoma de México
+====================================================================

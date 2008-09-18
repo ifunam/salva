@@ -1,11 +1,10 @@
-require File.expand_path(File.dirname(__FILE__) + "/../super_scaffold_test_helper")
-class BooktypesControllerTest < ActionController::TestCase
-  include SuperScaffoldTestHelper
-  fixtures :booktypes
+require File.expand_path(File.dirname(__FILE__) + '/../super_scaffold_test_helper')
+class  BooktypesControllerTest < ActionController::TestCase
+   include SuperScaffoldTestHelper
+   fixtures :booktypes
 
-  def setup
-    @model = Booktype
-  end
-
+   def setup
+      @model = Booktype
+      super
+   end
 end
-

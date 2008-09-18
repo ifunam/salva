@@ -5,5 +5,6 @@ class  MigratorystatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Migratorystatus
+      super
    end
 end

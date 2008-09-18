@@ -5,5 +5,6 @@ class  LanguagesControllerTest < ActionController::TestCase
 
    def setup
       @model = Language
+      super
    end
 end

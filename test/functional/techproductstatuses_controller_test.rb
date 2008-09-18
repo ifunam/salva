@@ -5,5 +5,6 @@ class  TechproductstatusesControllerTest < ActionController::TestCase
 
    def setup
       @model = Techproductstatus
+      super
    end
 end

@@ -5,5 +5,6 @@ class  SkilltypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Skilltype
+      super
    end
 end

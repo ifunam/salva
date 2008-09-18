@@ -5,5 +5,6 @@ class  IdtypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Idtype
+      super
    end
 end

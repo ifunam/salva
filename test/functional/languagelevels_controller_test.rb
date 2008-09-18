@@ -5,5 +5,6 @@ class  LanguagelevelsControllerTest < ActionController::TestCase
 
    def setup
       @model = Languagelevel
+      super
    end
 end

@@ -1,0 +1,22 @@
+<div class="box"> <!-- box -->
+<div id="form"> <!-- form -->
+<p style="color: green"><%= flash[:notice] %></p>
+<p>
+El mensaje con las instrucciones para activar su cuenta
+<%= @user.login %> se ha enviado a la siguiente dirección de
+ correo electrónico: <span style="color:blue;"><%= @user.email %> </span>
+</p>
+
+<p>El tiempo de entrega del mensaje dependerá o del tráfico de la red
+y de la carga del servidor de correos destino.
+</p>
+
+<p style="color: green;">
+Si el correo no aparece en su buzón electrónico revise en la carpeta del <b>spam o junk</b>.
+</p>
+
+<p>Gracias por usar el sistema del Posgrado en Ciencias (Física)!</p>
+<%= link_to_remote "Regresar a inicio de sesión", :url => session_url, :method => :get %>
+</div> <!-- end of form-->
+</div> <!-- end of box -->
+

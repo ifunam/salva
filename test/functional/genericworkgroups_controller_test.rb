@@ -5,5 +5,6 @@ class  GenericworkgroupsControllerTest < ActionController::TestCase
 
    def setup
       @model = Genericworkgroup
+      super
    end
 end

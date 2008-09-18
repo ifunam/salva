@@ -1,6 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 module SuperScaffoldTestHelper
-  def test_should_get_index
+  
+   def setup
+     login_as('alex', 'maltiempo')
+   end
+   
+   def test_should_get_index
     get :index
     assert_response :success
     assert_not_nil assigns(:collection)
@@ -117,4 +122,8 @@ module SuperScaffoldTestHelper
   def hash_name
     ActiveSupport::Inflector.tableize(@model).singularize.to_sym
   end
+end
+
+class Test::Unit::TestCase
+  fixtures :userstatuses, :users
 end

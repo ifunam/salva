@@ -5,5 +5,6 @@ class  TalkacceptancesControllerTest < ActionController::TestCase
 
    def setup
       @model = Talkacceptance
+      super
    end
 end

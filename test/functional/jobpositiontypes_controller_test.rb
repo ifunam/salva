@@ -5,5 +5,6 @@ class  JobpositiontypesControllerTest < ActionController::TestCase
 
    def setup
       @model = Jobpositiontype
+      super
    end
 end
