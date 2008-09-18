@@ -1,5 +1,4 @@
 require 'digest/sha2'
-require 'resolv'
 class User < ActiveRecord::Base
   attr_accessor :current_passwd
   validates_presence_of     :login, :email, :passwd
@@ -10,7 +9,7 @@ class User < ActiveRecord::Base
   #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
-  #validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+#  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login
   validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
@@ -32,10 +31,10 @@ class User < ActiveRecord::Base
   after_validation_on_create  :encrypt_password
   before_validation_on_update :verify_current_password
   
-  # Static or class methods
-  def self.authenticate?(login,password)
-    @user = User.find_by_login(login)
-    !@user.nil? and !@user.salt.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
+  
+  def self.authenticate?(login,pw)
+    record = User.find_by_login(login)
+    !record.nil? and !record.salt.nil? and record.passwd == User.encrypt(pw + record.salt) and record.is_activated?  ? true : false
   end
 
   def self.authenticate_by_token?(login,token)
@@ -53,8 +52,8 @@ class User < ActiveRecord::Base
     record.save if record.valid?
   end
 
-  def self.encrypt(password, mysalt)
-    Digest::SHA512.hexdigest(password + mysalt)
+  def self.encrypt(string)
+    Digest::SHA512.hexdigest(string)
   end
 
   # Instance methods
@@ -109,13 +108,13 @@ class User < ActiveRecord::Base
     if self.passwd != nil
       self.salt = token_string(40)
       plaintext = passwd
-      self.passwd = User.encrypt(plaintext, self.salt)
+      self.passwd = User.encrypt(plaintext+self.salt)
       self.passwd_confirmation = nil
     end
   end
 
   def verify_current_password
-    if !self.current_passwd.nil? and User.find(self.id).passwd != User.encrypt(self.current_passwd, self.salt)
+    if !self.current_passwd.nil? and User.find(self.id).passwd != User.encrypt(self.current_passwd+self.salt)
         errors.add("passwd", "is not valid")
         return false
     end
@@ -132,11 +131,6 @@ class User < ActiveRecord::Base
   end
 
   def token_string(n)
-    if n.to_i > 1
-      s = ""
-      char64 = (('a'..'z').collect + ('A'..'Z').collect + ('0'..'9').collect + ['.','/']).freeze
-      n.times { s << char64[(Time.now.tv_usec * rand) % 64] }
-      s
-    end
+    User.encrypt(Time.now.to_s).slice(0..n)
   end
 end
