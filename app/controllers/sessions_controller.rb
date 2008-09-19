@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   
   def login
     respond_to do |format|
-      if User.authenticate?(params[:user][:login],params[:user][:passwd])
+      if User.authenticate?(params[:user][:login],params[:user][:passwd]) 
         session[:user_id] = User.find_by_login(params[:user][:login]).id
         flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
         format.html { redirect_to(prizetypes_path) }

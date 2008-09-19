@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'sessions'
   map.resource  :session
-  map.resources :user, :collection => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
+  map.resources :users, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
+  map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :change_password
   map.resource  :navigator
   map.resource  :person

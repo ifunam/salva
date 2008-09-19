@@ -4,14 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Instituto de Física - UNAM, <%= controller.controller_name %>: <%= controller.action_name %></title>
+  <title><%= get_conf('institution') %>, <%= controller.controller_name %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'application', 'users'%>
   <%= javascript_include_tag :defaults %>
 </head>
 <body>
 
 <div id="header">
-	<a href="http://www.fisica.unam.mx" target="_new">Instituto de Física - UNAM</a>
+  <div class="site_link"> <a href="<%= get_conf('institution_url') %>" target="_new"> <%= get_conf('institution') %> </a> </div>
 </div>
 <div id="container">
 	<div id="left">
@@ -20,7 +20,6 @@
 		<%= yield  %>
 	</div>
 </div>
-
 <div id="footer">
 </div>
 </body>
