@@ -1,0 +1,10 @@
+   <%= f.text_field :firstname, :required => true %>
+   <%= f.text_field :lastname1, :required => true %>
+   <%= f.text_field :lastname2 %>
+   <%= f.radio_buttons :gender, :values => [true, false], :required => true %>
+   <h3>Fecha y lugar de nacimiento</h3>
+   <p><label>Fecha<span class="required">*</span></label>
+   <%= f.text_field :dateofbirth %>
+   </p>
+   <%= f.simple_select :country, :default => 484, :required => true %>
+   <%= render :partial => 'states/select', :locals => {:id => (@record.country.nil? ? 484 : @record.country_id), :object => :person} %>
