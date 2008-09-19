@@ -23,14 +23,14 @@
 </div> <!-- /toplinks -->
 
 <div id ="body">
-     
+
                 <%= yield  %>
-           		<div id="controller_form">
+                        <div id="controller_form">
                  <p style="color: green"><%= flash[:notice] %></p>
-        		</div>
+                        </div>
 
   <div class="title">
-<%= controller_title %></div>
+<%=  :controller_title %></div>
    <% if flash[:notice] %>
    <p style="color: green"> <%= flash[:notice] %></p>
    <% end %>
