@@ -85,4 +85,4 @@ if RAILS_ENV != 'test'
 end
 
 # i18n support (internacionalization)
-I18n.default_locale = 'en-US'
+#I18n.default_locale = 'en-US'

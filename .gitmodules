@@ -16,6 +16,6 @@
 [submodule "vendor/rails"]
         path = vendor/rails
         url = git://github.com/rails/rails.git
-[submodule "vendor/rails_locales"]
-	path = vendor/rails_locales
-	url = git://github.com/svenfuchs/rails-i18n.git
+[submodule "vendor/plugins/localized_dates"]
+	path = vendor/plugins/localized_dates
+	url = git://github.com/clemens/localized_dates.git

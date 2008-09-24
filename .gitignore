@@ -13,5 +13,3 @@ semantic.cache
 \#*
 coverage
 .DS_Store
-vendor/plugins/*
-vendor/rails
