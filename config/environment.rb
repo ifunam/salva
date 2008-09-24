@@ -84,5 +84,5 @@ if RAILS_ENV != 'test'
   end
 end
 
-# Configuration for date displaying
-ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS[:default]='%d/%m/%Y'
+# i18n support (internacionalization)
+I18n.default_locale = 'en-US'
