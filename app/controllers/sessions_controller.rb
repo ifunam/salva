@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if User.authenticate?(params[:user][:login],params[:user][:passwd]) 
         session[:user_id] = User.find_by_login(params[:user][:login]).id
         flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SALVA!"
-        format.html { redirect_to(prizetypes_path) }
+        format.html { redirect_to(navigator_path) }
       else
         flash[:notice] = "El login o el password es incorrecto!"
         format.html { render :action => "index" }

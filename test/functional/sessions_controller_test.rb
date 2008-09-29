@@ -16,7 +16,7 @@ class SessionsControllerTest < ActionController::TestCase
         post :login, :user => { :login => 'alex', :passwd => 'maltiempo' }
       end
    
-      should_redirect_to "prizetypes_path"
+      should_redirect_to "navigator_path"
       should "set user id in session" do
         assert_equal User.find_by_login('alex').id, session[:user_id]
         assert_equal "Bienvenido(a), ha iniciado una sesión en el SALVA!", flash[:notice]

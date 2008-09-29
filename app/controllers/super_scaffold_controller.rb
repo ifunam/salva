@@ -44,6 +44,7 @@ class SuperScaffoldController < ApplicationController
 
   def create
     @record = @model.new(params[@hash_name])
+    self.set_user(@record)
     respond_to do |format|
       if @record.save
         format.html { redirect_to :action => :index }
@@ -59,6 +60,7 @@ class SuperScaffoldController < ApplicationController
 
   def update
     @record = @model.find(params[:id])
+    self.set_user(@record)
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
         format.html { redirect_to :action => :index }

@@ -5,7 +5,7 @@
   <% @items = Tree.find(:all) %>
 
   <%= get_tree_data(@items, 0){|n|
-      link_to_remote(get_label(n.name),
+      link_to_remote(n.name,
       :url=>{:controller=>n.name, :action => 'index'},
           :method => :get )}
   %>

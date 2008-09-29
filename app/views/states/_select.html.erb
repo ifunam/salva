@@ -2,7 +2,6 @@
 <%= observe_field("#{object}_country_id", :update => "select_#{object}_state_id", 
                   :url => { :action => :update_select, :params => { :object => object, :partial => 'states/select' }}, 
                   :with => "'id='+value", :on => 'click') %>
-
 <div id="select_<%= object %>_state_id">
 <% if !id.nil? and id.to_i == 484 %>
  <p><label>Estado<span class="required">*</span></label>

@@ -34,8 +34,9 @@ module ApplicationHelper
 
 # This section is for the handling of tree
   def get_controller_name
-     get_label(controller_name)
-   end
+    # get_label(controller_name)
+    controller_name
+  end
 
    def controller_name
      @controller.controller_class_name.sub(/Controller$/, '').underscore

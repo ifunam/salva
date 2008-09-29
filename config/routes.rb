@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :navigator
   map.resource  :person
   map.resources :addresses
+
+  # Put them under admin namespace
   map.resources :academicprogramtypes
   map.resources :activitygroups
   map.resources :articlestatuses
