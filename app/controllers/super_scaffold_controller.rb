@@ -1,13 +1,14 @@
 class SuperScaffoldController < ApplicationController
   def initialize
     @hash_name    = ActiveSupport::Inflector.tableize(@model).singularize.to_sym
-    @columns      = @model.column_names - %w(user_id created_at updated_at moduser_id)
-    @find_options = { }
+    @columns         = @model.column_names - %w(user_id created_at updated_at moduser_id)
+    @find_options  = { }
   end
 
   def index
     @columns << 'id'
-    @collection = @model.paginate({ :select => @columns.compact.join(','), 
+    @find_options[:conditions] = ['user_id = ?', session[:user_id]] if @user_session == true
+    @collection = @model.paginate({ :select => @columns.compact.join(','),
                                     :page => params[:page] || 1,:per_page => 5
                                    }.merge(@find_options))
     respond_to do |format|

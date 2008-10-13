@@ -1,5 +1,5 @@
 body { font-family: sans-serif; font-size: small; }
-h1 { color: navy; font-size: x-large; font-weight: normal; }
+h1 { color: navy; font-size: x-medium; font-weight: small; }
 h2 {
   color: green; font-size: larger;
   border-bottom: 1px solid green; margin: 0 0 0.5em;
@@ -7,14 +7,14 @@ h2 {
 img { border: 0; }
 
 #tree {
-  width: 20em; height: 60em; overflow: auto; float: left;
+  width: 25%; height: 300%; overflow: auto; float: left;
   border: 1px solid #444; background: #fff; padding: 0.5em;
   margin-right: 10px;
   cursor: default;
 }
 
 #props {
-  width: 25em; height: 10em; margin-left: 27em;
+  width: 25em; height: 10em; margin-left: 16px;
   border: 1px solid #444; background: #fff; padding: 0.5em;
 }
 
@@ -41,3 +41,8 @@ span.group { font-weight: bold; }
 #edtName:focus, #edtName:active { border: 2px solid black;
   background: #ffd; }
 #lblIsGroup { position: absolute; left: 6.3em; }
+
+#ajaxtree {
+ style=width:100%;
+ float:left;
+}

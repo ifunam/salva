@@ -32,7 +32,7 @@ class Finder
   def build_sql(options)
     columns = extract_attributes_from_array(@model, options[:attributes])
     @debug_array = columns
-    columns.unshift(Inflector.tableize(@model).classify)
+    columns.unshift(ActiveSupport::Inflector.tableize(@model).classify)
 
     sql = "SELECT DISTINCT (#{tableize(@model)}.#{@primary_key}) AS id, #{build_select(*columns)} FROM #{set_tables([ [ columns] ]).uniq.join(', ')}"
 
@@ -181,20 +181,20 @@ class Finder
   end
 
   def tableize(column)
-    Inflector.tableize(column)
+    ActiveSupport::Inflector.tableize(column)
   end
 
   def modelize(m)
-    Inflector.tableize(m).classify.constantize
+    ActiveSupport::Inflector.tableize(m).classify.constantize
   end
 
   def foreignize(k)
-    Inflector.pluralize(k).singularize.foreign_key.sub(/^prefix_for_parent_/,'')
+    ActiveSupport::Inflector.pluralize(k).singularize.foreign_key.sub(/^prefix_for_parent_/,'')
   end
 
   def column_names(m)
     reserved_attributes = %w(id moduser_id created_on updated_on user_id parent_id)
-    reserved_attributes << Inflector.foreign_key(m) # Avoiding recursion problems for tables with himself references
+    reserved_attributes << ActiveSupport::Inflector.foreign_key(m) # Avoiding recursion problems for tables with himself references
     modelize(m).column_names - reserved_attributes
   end
 
@@ -222,7 +222,7 @@ class Finder
 
   def as_hash
     find_collection.collect { |record|
-      [ Inflector.underscore(@model), get_text(record) ]
+      [ ActiveSupport::Inflector.underscore(@model), get_text(record) ]
     }
   end
 
@@ -239,8 +239,8 @@ class Finder
     unless record.nil?
       @columns.collect { |column|
         if column != @primary_key and column != 'id' and !record.send(column).nil? and !record.send(column).to_s.strip.empty?
-          table_prefix = Inflector.tableize(record.class.name)  + '_'
-          c =  column !~ /^#{table_prefix}/ ? Inflector.singularize(column.sub(/(_.+)$/,'')) : column.sub(/^#{table_prefix}/,'')
+          table_prefix = ActiveSupport::Inflector.tableize(record.class.name)  + '_'
+          c =  column !~ /^#{table_prefix}/ ? ActiveSupport::Inflector.singularize(column.sub(/(_.+)$/,'')) : column.sub(/^#{table_prefix}/,'')
           [c, get_string(record, column)]
         end
       }.compact

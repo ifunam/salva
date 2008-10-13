@@ -47,7 +47,9 @@ name: Nombre
 moduser_id: Identificador de usuario
 migratorystatus_id: Estado migratorio
 citizenmodality_id: Modalidad de la nacionalidad
+citizenmodality: Modalidad de la nacionalidad
 citizen_country: Nacionalidad
+citizen_country_id: Nacionalidad
 personalidtype_id: Identificación
 identification_id: Identificación
 descr: Descripción
@@ -90,7 +92,7 @@ profile: Perfil
 general: Información general
 people: Datos personales
 addresses: Domicilio(s)
-people_identifications: Identificaciones
+person_identifications: Identificaciones
 peopleidentification: Identificaciones
 citizens: Nacionalidad
 user_schoolings: Escolaridad
@@ -203,7 +205,6 @@ user_settings: Información de mi cuenta
 homepage: Página personal
 blog: Bitácora
 calendar: Calendario
-user_settings: Correo electrónico
 hoursxweek: Horas por semana
 courseduration_id: Duración
 modality_id: Modalidad

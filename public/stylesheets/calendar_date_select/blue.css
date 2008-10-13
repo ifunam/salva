@@ -1,5 +1,5 @@
 .calendar_date_select {
-  color:white;
+  color:69f;
   border:#777 1px solid;
   display:block;
   width:195px;
@@ -13,7 +13,7 @@ iframe.ie6_blocker {
 
 .calendar_date_select  thead th {
   font-weight:bold;
-  background-color: #000;
+  background-color: #69f;
   border-top:1px solid #777;
   border-bottom:2px solid #334;
   color: white !important;
@@ -22,11 +22,11 @@ iframe.ie6_blocker {
 .calendar_date_select .cds_buttons {
   text-align:center;
   padding:5px 0px;
-  background-color: #000055;
+  background-color: #69f;
 }
 
 .calendar_date_select .cds_footer {
-  background-color: black;
+  background-color: #69f;
   padding:3px;
   font-size:12px;
   text-align:center;
@@ -39,28 +39,28 @@ iframe.ie6_blocker {
 
 
 .calendar_date_select .cds_header {
-  background-color: #ccc;
+  background-color: #69f;
   border-bottom: 2px solid #aaa;
   text-align:center;
 }
 
 .calendar_date_select .cds_header span {
   font-size:15px;
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
 .calendar_date_select select { font-size:11px;}
 
 .calendar_date_select .cds_header a:hover {
-  color: white;
+  color: 69f;
 }
 .calendar_date_select .cds_header a {
   width:22px;
   height:20px;
   text-decoration: none;
   font-size:14px;
-  color:black !important;
+  color:#69f !important;
 }
 
 .calendar_date_select .cds_header a.prev {
@@ -91,7 +91,7 @@ iframe.ie6_blocker {
 }
 
 .calendar_date_select td {
-  background-color: #000066;
+  background-color: white;
   font-size:12px;
   width: 24px;
   height: 21px;
@@ -99,7 +99,7 @@ iframe.ie6_blocker {
   vertical-align: middle;
 }
 .calendar_date_select td.weekend {
-  background-color: #00005a;
+  background-color: #F5F5F5;
 }
 
 .calendar_date_select td div.other {

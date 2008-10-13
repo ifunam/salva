@@ -1,7 +1,7 @@
 class RecordController < ApplicationController
   def initialize
-    @hash_name  = Inflector.tableize(@model).singularize.to_sym
-    @columns = @model.column_names - %w(id user_id created_at updated_at moduser_id)
+    @hash_name  = ActiveSupport::Inflector.tableize(@model).singularize.to_sym
+    @columns = @model.column_names - %w(id user_id created_on updated_on moduser_on)
   end
 
   def index
@@ -17,7 +17,7 @@ class RecordController < ApplicationController
       end
     end
   end
-  alias_method :show, :index 
+  alias_method :show, :index
 
   def new
     @record = @model.new

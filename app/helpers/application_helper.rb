@@ -14,11 +14,14 @@ module ApplicationHelper
         display_expanded = (@ancestors and @ancestors.include?(node.id))? 'inline' : 'none'
         display_collapsed = (@ancestors and @ancestors.include?(node.id))? 'none' : 'inline'
         ret += "<div class='inner_tree_element' id='#{node.id}_tree_div'>"
-        if node.children
+
+        if node.children?
           ret += "<img id='#{node.id.to_s}expanded' src='/images/expanded.gif' onclick='javascript: return toggleMyTree(\"#{node.id}\"); ' style='display:#{display_expanded}; cursor:pointer;'  />  "
           ret += "<img style='display:#{display_collapsed}; cursor:pointer;'  id='#{node.id.to_s}collapsed' src='/images/collapsed.gif' onclick='javascript: return toggleMyTree(\"#{node.id.to_s}\"); '  />  "
+        else
+          ret += "<img id='#{node.id.to_s}expanded' src='/images/leaf.gif' cursor:pointer;'  />  "
         end
-     
+
         ret += "<span id='#{node.id}_tree_item'>"
         ret +=  yield node
         ret += "</span>"
@@ -34,9 +37,8 @@ module ApplicationHelper
 
 # This section is for the handling of tree
   def get_controller_name
-    # get_label(controller_name)
-    controller_name
-  end
+     get_label(controller_name)
+   end
 
    def controller_name
      @controller.controller_class_name.sub(/Controller$/, '').underscore
@@ -64,5 +66,5 @@ module ApplicationHelper
    def logged_user
      session[:user_id].nil? ? '<login>' : User.find(session[:user_id]).login
    end
-  
+
 end

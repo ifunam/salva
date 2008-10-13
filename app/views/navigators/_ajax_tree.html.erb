@@ -4,10 +4,15 @@
 
   <% @items = Tree.find(:all) %>
 
-  <%= get_tree_data(@items, 0){|n|
-      link_to_remote(n.name,
-      :url=>{:controller=>n.name, :action => 'index'},
-          :method => :get )}
+  <%= get_tree_data(@items, nil){|n|
+	 unless n.children?
+      link_to_remote(get_label(n.name),
+      :url=>{:controller=> method("user_#{n.name}_path").call(session[:user_id]), :action => :index},
+          :method => :get )
+     else
+		link_to_remote get_label(n.name), :url => {:controller => 'default', :action => :index}, :method => :get 
+     end
+      }
   %>
 </div>
 

@@ -2,11 +2,10 @@ require 'application_helper'
 require 'select_helper'
 require 'labels'
 class FormBuilder < ActionView::Helpers::FormBuilder
-  helpers = field_helpers + %w( date_select datetime_select time_select simple_select select_conditions text_field_for_date radio_buttons ) - %w(hidden_field label fields_for)
+  helpers = field_helpers + %w( date_select datetime_select time_select simple_select select_conditions text_field_for_date radio_buttons) - %w(hidden_field label fields_for)
   include ApplicationHelper
   include SelectHelper
   include Labels
-  include CalendarDateSelect::FormHelper
 
   helpers.each do |name|
     define_method(name) do |field, *args|
@@ -21,5 +20,5 @@ class FormBuilder < ActionView::Helpers::FormBuilder
       @template.content_tag(:p, label(field, label_field, {:escape => false}) + super(field, options))
     end
   end
-  
+
 end

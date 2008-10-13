@@ -1,7 +1,9 @@
 class AddressesController < SuperScaffoldController
-   def initialize 
+   def initialize
      @model = Address
      super
-     @find_options = { :order => 'addresstype_id DESC' }
+     @user_session = true
+     @find_options = { :order => 'addresstype_id DESC'}
    end
 end
+

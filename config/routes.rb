@@ -3,73 +3,89 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :session
   map.resources :users, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
-  map.resource  :change_password
   map.resource  :navigator
-  map.resource  :person
-  map.resources :addresses
-
-  # Put them under admin namespace
-  map.resources :academicprogramtypes
-  map.resources :activitygroups
-  map.resources :articlestatuses
-  map.resources :bookchaptertypes
-  map.resources :booktypes
-  map.resources :userstatuses
-  map.resources :userroles
-  map.resources :titlemodalities
-  map.resources :thesisstatuses
-  map.resources :thesismodalities
-  map.resources :techproducttypes
-  map.resources :techproductstatuses
-  map.resources :talktypes
-  map.resources :talkacceptances
-  map.resources :superscaffolds
-  map.resources :studentroles
-  map.resources :skilltypes
-  map.resources :seminarytypes
-  map.resources :roleproceedings
-  map.resources :roleintheses
-  map.resources :roleinseminaries
-  map.resources :roleinregularcourses
-  map.resources :roleinprojects
-  map.resources :roleinjuries
-  map.resources :roleinjournals
-  map.resources :roleinjobpositions
-  map.resources :roleincourses
-  map.resources :roleinconferencetalks
-  map.resources :roleinconferences
-  map.resources :roleinchapters
-  map.resources :roleinbooks
-  map.resources :records
-  map.resources :prizetypes
-  map.resources :projecttypes
-  map.resources :projectstatuses
-  map.resources :modalities
-  map.resources :migratorystatuses
-  map.resources :mediatypes
-  map.resources :languages
-  map.resources :languagelevels
-  map.resources :jobpositiontypes
-  map.resources :jobpositionlevels
-  map.resources :institutiontypes
-  map.resources :institutiontitles
-  map.resources :instadvicetargets
-  map.resources :indivadvicetargets
-  map.resources :idtypes
-  map.resources :groupmodalities
-  map.resources :genericworkstatuses
-  map.resources :genericworkgroups
-  map.resources :externaluserlevels
-  map.resources :editionstatuses
-  map.resources :degrees
-  map.resources :coursegrouptypes
-  map.resources :contracttypes
-  map.resources :conferencetypes
-  map.resources :conferencescopes
-  map.resources :citizenmodalities
-  map.resources :acadvisittypes
-  map.resources :volumes
   
+  map.resources :users, :shallow => true do |user|
+    # RecordController
+    user.resource :person
+        
+    user.resource  :change_password
+    
+    # SupperScaffoldController
+    user.resources :addresses
+    user.resources :citizens
+    user.resources :person_identifications
+    user.resources :user_languages
+  
+    # ModelDependentMapperController
+    user.resources :user_articles   
+  end
+  
+  map.resources :admin do |admin|
+    # Put them under admin namespace (SupperScaffoldController)
+    admin.resources :academicprogramtypes
+    admin.resources :activitygroups
+    admin.resources :articlestatuses
+    admin.resources :bookchaptertypes
+    admin.resources :booktypes
+    admin.resources :userstatuses
+    admin.resources :userroles
+    admin.resources :titlemodalities
+    admin.resources :thesisstatuses
+    admin.resources :thesismodalities
+    admin.resources :techproducttypes
+    admin.resources :techproductstatuses
+    admin.resources :talktypes
+    admin.resources :talkacceptances
+    admin.resources :superscaffolds
+    admin.resources :studentroles
+    admin.resources :skilltypes
+    admin.resources :seminarytypes
+    admin.resources :roleproceedings
+    admin.resources :roleintheses
+    admin.resources :roleinseminaries
+    admin.resources :roleinregularcourses
+    admin.resources :roleinprojects
+    admin.resources :roleinjuries
+    admin.resources :roleinjournals
+    admin.resources :roleinjobpositions
+    admin.resources :roleincourses
+    admin.resources :roleinconferencetalks
+    admin.resources :roleinconferences
+    admin.resources :roleinchapters
+    admin.resources :roleinbooks
+    admin.resources :records
+    admin.resources :prizetypes
+    admin.resources :projecttypes
+    admin.resources :projectstatuses
+    admin.resources :modalities
+    admin.resources :migratorystatuses
+    admin.resources :mediatypes
+    admin.resources :languages
+    admin.resources :languagelevels
+    admin.resources :jobpositiontypes
+    admin.resources :jobpositionlevels
+    admin.resources :institutiontypes
+    admin.resources :institutiontitles
+    admin.resources :instadvicetargets
+    admin.resources :indivadvicetargets
+    admin.resources :idtypes
+    admin.resources :groupmodalities
+    admin.resources :genericworkstatuses
+    admin.resources :genericworkgroups
+    admin.resources :externaluserlevels
+    admin.resources :editionstatuses
+    admin.resources :degrees
+    admin.resources :coursegrouptypes
+    admin.resources :contracttypes
+    admin.resources :conferencetypes
+    admin.resources :conferencescopes
+    admin.resources :citizenmodalities
+    admin.resources :acadvisittypes
+    admin.resources :volumes
+  end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
 

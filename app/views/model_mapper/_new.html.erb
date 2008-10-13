@@ -1,0 +1,13 @@
+<% form_for :user_article, :url => {:action => :create }, :builder => FormBuilder do |f| %>
+ <% @views_sequence.each do |view|
+		hash_name = myview = view
+	 	myview, hash_name = view if view.is_a? Array
+		form_hash_name = ActiveSupport::Inflector.singularize(hash_name)
+   	 %>
+
+	<% fields_for form_hash_name, :builder => FormBuilder do |g|  %>
+		<%= render :partial => myview.to_s + '/form', :locals => { :f => g} %>
+	<% end %>
+ <% end %>
+ <%= f.submit get_label("save") %>
+<% end %>

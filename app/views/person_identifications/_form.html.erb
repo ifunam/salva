@@ -1,0 +1,4 @@
+<%= f.select_conditions(:identification, :attributes =>['idtype', ['citizen_country', 'citizen']],  :conditions => " identifications.id IN (SELECT identifications.id FROM identifications, citizens WHERE citizens.citizen_country_id = identifications.citizen_country_id AND citizens.user_id = #{session[:user_id]} AND identifications.id NOT IN (SELECT identifications.id FROM identifications, people_identifications WHERE people_identifications.user_id = #{session[:user_id]} AND people_identifications.identification_id = identifications.id))") %>
+
+<%= f.text_field :descr %>
+

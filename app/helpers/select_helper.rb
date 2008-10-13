@@ -19,7 +19,7 @@ module SelectHelper
     if id == :first || id == :last
       options = { }
     else
-      options = { :conditions => "#{Inflector.tableize(model).pluralize}.id = #{id}" }
+      options = { :conditions => "#{ActiveSupport::Inflector.tableize(model).pluralize}.id = #{id}" }
     end
 
     unless attributes.nil? or attributes.empty?
@@ -33,11 +33,11 @@ module SelectHelper
   end
 
   def foreignize(model, prefix=nil)
-    (prefix != nil) ? prefix + '_' +  Inflector.foreign_key(model) : Inflector.foreign_key(model)
+    (prefix != nil) ? prefix + '_' +  ActiveSupport::Inflector.foreign_key(model) : ActiveSupport::Inflector.foreign_key(model)
   end
 
   def simple_select(model, options)
-    model = Inflector.tableize(model).classify.constantize
+    model = ActiveSupport::Inflector.tableize(model).classify.constantize
     field = options[:field] || foreignize(model,options[:prefix])
     selected = selectize_id(eval("@#{object_name}"), field, options[:default].to_i, @filter)  unless @object_name.nil?
     selected = selectize_id(@object, field, options[:default].to_i, @filter) if selected.nil?
@@ -51,7 +51,7 @@ module SelectHelper
 
 
   def select_conditions(model, options)
-    model = Inflector.tableize(model).classify.constantize
+    model = ActiveSupport::Inflector.tableize(model).classify.constantize
     field = options[:field] || foreignize(model,options[:prefix])
     object_name = @object_name.nil? ? options[:object_name] : @object_name
     selected = selectize_id(eval("@#{object_name}"), field, options[:default], @filter) unless @object_name.nil?
