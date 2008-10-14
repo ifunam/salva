@@ -1,9 +1,9 @@
 class ModelMapperController < ApplicationController
-  
+
   def initialize
-    @model_mapper = ModelDependentMapper.new([])
+#    @model_mapper = ModelDependentMapper.new([])
   end
-  
+
   def index
     @collection = UserArticle.paginate(:all, :conditions => ['user_id = ?', session[:user_id]])
     respond_to do |format|
@@ -15,7 +15,7 @@ class ModelMapperController < ApplicationController
   def new
     respond_to do |format|
       format.html { render :partial => 'model_mapper/new'}
-      format.js   { render :action => 'index.rjs'}
+   #   format.js   { render :action => 'index.rjs'}
     end
   end
 

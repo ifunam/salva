@@ -67,4 +67,14 @@ module ApplicationHelper
      session[:user_id].nil? ? '<login>' : User.find(session[:user_id]).login
    end
 
+   def get_views(views_sequence)
+     views_sequence.collect do |view|
+       hash_name = myview = view
+       myview, hash_name = view if view.is_a? Array
+       [ActiveSupport::Inflector.singularize(hash_name), myview]
+     end
+   end
+
+
+
 end

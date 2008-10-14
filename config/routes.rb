@@ -4,23 +4,25 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :navigator
-  
+
   map.resources :users, :shallow => true do |user|
     # RecordController
     user.resource :person
-    
+
     user.resource :user_settings
-    
+
     # SupperScaffoldController
     user.resources :addresses
     user.resources :citizens
     user.resources :person_identifications
     user.resources :user_languages
-  
-    # ModelDependentMapperController
-    user.resources :user_articles   
+
   end
-  
+
+  # ModelDependentMapperController
+  map.resources :user_articles
+
+
   map.resources :admin do |admin|
     # Put them under admin namespace (SupperScaffoldController)
     admin.resources :academicprogramtypes
