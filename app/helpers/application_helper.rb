@@ -71,7 +71,7 @@ module ApplicationHelper
      views_sequence.collect do |view|
        hash_name = myview = view
        myview, hash_name = view if view.is_a? Array
-       [ActiveSupport::Inflector.singularize(hash_name), myview]
+       [ActiveSupport::Inflector.singularize(hash_name).to_s, myview.to_s]
      end
    end
 
