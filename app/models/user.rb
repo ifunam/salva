@@ -26,25 +26,33 @@ class User < ActiveRecord::Base
   has_one :person
   has_one :photo
 
+  has_many :addresses
+  has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
+
+  has_many :jobpositions
+  has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
+                  :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
+                  :order => "jobpositions.startyear DESC, jobpositions.startmonth DESC"
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create  :encrypt_password
   before_validation_on_update :verify_current_password
-  
-  
+
+
   def self.authenticate?(login,pw)
     record = User.find_by_login(login)
     !record.nil? and !record.salt.nil? and record.passwd == User.encrypt(pw + record.salt) and record.is_activated?  ? true : false
   end
 
   def self.authenticate_by_token?(login,token)
-    User.find_by_login_and_token(login,token).nil? ? false : true 
+    User.find_by_login_and_token(login,token).nil? ? false : true
   end
 
-  def self.find_by_valid_token(id,token) 
+  def self.find_by_valid_token(id,token)
     User.find_by_id_and_token(id, token, :conditions => [ 'token_expiry >= ?', Date.today])
   end
-  
+
   def self.change_password(login, current_pw, new_pw)
     record = User.find_by_login(login)
     record.current_passwd = current_pw

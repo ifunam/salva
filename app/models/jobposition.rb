@@ -22,4 +22,10 @@ class Jobposition < ActiveRecord::Base
   validates_associated :jobpositioncategory
   validates_associated :contracttype
   validates_associated :institution
+
+  def category_name
+    s = [ jobpositioncategory.roleinjobposition.name]
+    s << jobpositioncategory.jobpositionlevel.name unless jobpositioncategory.jobpositionlevel.nil?
+    s.join(", ")
+  end
 end

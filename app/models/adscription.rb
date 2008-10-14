@@ -6,5 +6,9 @@ class Adscription < ActiveRecord::Base
 
   belongs_to :institution
 
+  has_many :user_adscriptions
+  has_many :users, :through => :user_adscriptions, :source => :user
+  has_many :activated_users, :through => :user_adscriptions, :source => :user, :conditions => 'users.userstatus_id = 2'
+
   validates_associated :institution
 end

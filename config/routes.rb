@@ -16,12 +16,10 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :citizens
     user.resources :person_identifications
     user.resources :user_languages
-
   end
 
   # ModelDependentMapperController
   map.resources :user_articles
-
 
   map.resources :admin do |admin|
     # Put them under admin namespace (SupperScaffoldController)
@@ -87,7 +85,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :volumes
   end
 
-
+  map.namespace :public do |public|
+        public.resources :our_people
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
 

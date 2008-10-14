@@ -1,0 +1,11 @@
+<div class="academic">
+<img src="<%= url_for(:action => :show, :id => user.id) %>"/>
+<br/>
+<%= user.person.fullname %>
+<br/>
+<%= user.most_recent_jobposition.category_name %>
+<br/>
+<%= user.email %>
+<br/>
+<%= user.professional_address.phone unless user.professional_address.nil? %>
+</div>
