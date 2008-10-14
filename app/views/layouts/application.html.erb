@@ -10,28 +10,33 @@
 	<%= calendar_date_select_includes "red" %>
 </head>
 <body>
-  <div class="topbar">
-	<%= image_tag("logo_salva.png", :border => "0", :alt => 'SALVA', :style => "vertical-align: middle;float: left;" ) %>
-	<div class="site">
-	  <div class="name"> PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR </div>
-	  <div class="site_link"> <a href="<%= get_conf('institution_url') %>" target="_new"> <%= get_conf('institution') %></a> </div>
+	<div class="topbar">
+		<%= image_tag("logo_salva.png", :border => "0", :alt => 'SALVA', :style => "vertical-align: middle;float: left;" ) %>
+		<div class="site">
+			<div class="name"> PLATAFORMA DE INFORMACI&Oacute;N CURRICULAR</div>
+			<div class="site_link"> <a href="<%= get_conf('institution_url') %>" target="_new"> <%= get_conf('institution') %></a> </div>
 
+		</div>
+	</div> <!--  /topbar -->
+	<div class="toplinks"> >
+		<span class="logged_user"><%= logged_user %></span> |
+		<a href="/user/about/4" target="_new"> Soporte técnico </a>|
+		<%=  link_to_remote("Mi cuenta",
+		:url=>{:controller=>'change_passwords', :action => 'index'},
+		:method => :get ) %>|
+		<%= link_to('Salir', session_path, :method => :delete ) %>
+	</div> <!-- /toplinks -->
+	
+	<div id ="body">
+		<div class="title">
+			<% if flash[:notice] %>
+			<p style="color: green"> <%= flash[:notice] %></p>
+			<% end %>
+		</div>
+		<div id="controller_form">
+			<%= yield  %>
+		</div>
 	</div>
-  </div> <!--  /topbar -->
-  <div class="toplinks"> >
-	<a href="/user/about/4" target="_new"> Soporte técnico </a>
-  </div> <!-- /toplinks -->
-
-  <div id ="body">
-	<div class="title">
-	<% if flash[:notice] %>
-		<p style="color: green"> <%= flash[:notice] %></p>
-	<% end %>
-	</div>
-        <div id="controller_form">
-	  <%= yield  %>
-	</div>
-  </div>
 </body>
 </html>
 

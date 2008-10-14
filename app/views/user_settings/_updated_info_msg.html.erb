@@ -1,0 +1,4 @@
+<p> Para recuperación de contraseñas debe usar esta información: </p>
+<% %w(email homepage blog calendar).each do |col| %>
+<p><b><%= col %>:</b> <%= @record.send(col) %> </p>
+<% end %>

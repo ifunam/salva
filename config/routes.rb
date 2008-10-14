@@ -8,8 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :shallow => true do |user|
     # RecordController
     user.resource :person
-        
-    user.resource  :change_password
+    
+    user.resource :user_settings
     
     # SupperScaffoldController
     user.resources :addresses

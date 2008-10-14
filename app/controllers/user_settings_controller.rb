@@ -1,4 +1,4 @@
-class ChangePasswordsController < ApplicationController
+class UserSettingsController < ApplicationController
   def index
     @record = User.find(session[:user_id])
     @record.passwd = nil
@@ -13,7 +13,7 @@ class ChangePasswordsController < ApplicationController
     @record = User.find(session[:user_id])
     @record.passwd = nil
     respond_to do |format|
-       if request.xhr?
+        if request.xhr?
           format.js { render :action => 'edit.rjs' }
         else
           format.html { render :action => 'edit' }
@@ -25,6 +25,7 @@ class ChangePasswordsController < ApplicationController
     @record = User.find(session[:user_id])
     respond_to do |format|
       if @record.update_attributes(params[:user])
+        @msg = params[:remote_msg][:name]
         format.js { render :action => 'update.rjs' }
         format.xml  { head :ok }
       else
