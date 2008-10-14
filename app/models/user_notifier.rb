@@ -1,5 +1,9 @@
 require 'yaml'
+require 'salva'
 class UserNotifier < ActionMailer::Base
+  layout 'user_notifier'
+  include Salva
+
   private
   def setup(options)
     smtp = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
@@ -9,6 +13,7 @@ class UserNotifier < ActionMailer::Base
     @subject = "[SALVA] "
     @subject << options[:subject] unless options[:subject].nil?
     @body = options[:body] || {}
+    @body = @body.merge(:institution_name => get_conf('institution'))
     @headers = options[:headers] || {}
     @sent_on  = Time.now
   end
