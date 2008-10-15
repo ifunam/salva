@@ -7,7 +7,7 @@
   <%= get_tree_data(@items, nil){|n|
 	 unless n.children?
       link_to_remote(get_label(n.name),
-      :url=>{:controller=> method("user_#{n.name}_path").call(session[:user_id]), :action => :index},
+      :url=>{:controller=> n.name, :action => :index},
           :method => :get )
      else
 		link_to_remote get_label(n.name), :url => {:controller => 'default', :action => :index}, :method => :get 

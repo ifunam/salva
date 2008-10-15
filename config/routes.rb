@@ -5,17 +5,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :navigator
 
-  map.resources :users, :shallow => true do |user|
+  map.resources :user, :shallow => true do |u|
     # RecordController
-    user.resource :person
-
-    user.resource :user_settings
-
+    u.resource :person
+    u.resource :user_settings
     # SupperScaffoldController
-    user.resources :addresses
-    user.resources :citizens
-    user.resources :person_identifications
-    user.resources :user_languages
+    u.resources :addresses
+    u.resources :citizens
+    u.resources :person_identifications
+    u.resources :user_languages
   end
 
   # ModelDependentMapperController

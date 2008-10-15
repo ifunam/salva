@@ -5,6 +5,6 @@
   <%= render :partial =>'form', :locals => { :f => f } %>
   <p>
     <%= f.submit get_label("save") %> |
-    <%= link_to_remote get_label('cancel'), :url => method("user_#{ActiveSupport::Inflector.camelize(@model).underscore}_path").call, :method => :get %>
+    <%= link_to_remote get_label('cancel'), :url => { :action => :show, :id => @record.id, :format => 'js'}, :method => :get %>
   </p>
 <% end %>
