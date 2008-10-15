@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ModelDependentMapperTest < ActiveSupport::TestCase
-    fixtures :users
+    fixtures :users, :journals, :publishers
     
     def setup
       @user_article = ModelDependentMapper.new([UserArticle,[Article, [Journal, Publisher]]])
@@ -78,13 +78,14 @@ class ModelDependentMapperTest < ActiveSupport::TestCase
               :name => 'Addison',
             },
             :user_article =>{
-              :ismainauthor => true
+                :ismainauthor => true
             }
           )
           @user_article.set_user(2)
           @user_article.save
           @user_article = UserArticle.first
           puts @user_article.article.journal.publisher.name
+          
     end
     # 
     # def test_find

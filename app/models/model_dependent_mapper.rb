@@ -8,8 +8,8 @@ class ModelDependentMapper
   
   def set_attributes(params)
     [@owner_klass, @sequence].flatten.each do |klass|
-      key = ActiveSupport::Inflector.underscore(klass).to_sym
-      @records[key] = record_loader(klass, params[key]) if params.has_key? key
+      key = ActiveSupport::Inflector.underscore(klass).to_s
+      @records[key] = record_loader(klass, params[key]) unless params[key].nil? 
       @owner = @records[key] if klass == @owner_klass 
     end
   end
@@ -62,9 +62,12 @@ class ModelDependentMapper
        if model.is_a? Array
          dependent_mapper(model, parent)
        else
-         k = ActiveSupport::Inflector.underscore(model).to_sym
-         parent.send("#{k.to_s}=", @records[k])
-         parent = @records[k]
+         k = ActiveSupport::Inflector.underscore(model).to_s
+         unless @records[k].nil?
+           parent.send("#{k.to_s}=", @records[k]) 
+           parent = @records[k]
+       end
+        
        end
     end
    end
