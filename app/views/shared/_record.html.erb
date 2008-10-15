@@ -2,9 +2,8 @@
 <span class="td_id"> <%= check_box_tag("id[]", record.id, checked=false) %> </span>
 <span class="td_content"> <%= (@columns - %w(id)).collect { |a| record.send(a) }.compact.join(',') %> </span>
 <span class="td_actions">
-  <%= link_to_remote get_label('show'), 
-   {:url => method("#{ActiveSupport::Inflector.singularize(controller_name)}_path").call(record), :method => :get}, {:title => "Para mostrar presione esta liga"} %>
-  <%= link_to_remote get_label('edit'), {:url => method("edit_#{ActiveSupport::Inflector.singularize(controller_name)}_path").call(record), :method => :get}, {:title => "Para modificar presione esta liga"} %>
-  <%= link_to_remote get_label('del'),{ :url => method("#{ActiveSupport::Inflector.singularize(controller_name)}_url").call(record), :method => :delete, :confirm => "¿ Desea borrar este registro ?"}, {:title => "Para borrar presione esta liga"} %> 
+  <%= link_to_remote get_label('show'), {:url => { :action => :show, :id => record.id, :format => 'js'}, :method => :get}, {:title => "Para mostrar presione esta liga"} %>
+  <%= link_to_remote get_label('edit'), {:url => { :action => :edit, :id => record.id, :format => 'js'}, :method => :get}, {:title => "Para modificar presione esta liga"} %>
+  <%= link_to_remote get_label('del'),{ :url => { :action => :destroy, :id => record.id, :format => 'js'}, :method => :delete, :confirm => "¿ Desea borrar este registro ?"}, {:title => "Para borrar presione esta liga"} %> 
 </span>
 </div>

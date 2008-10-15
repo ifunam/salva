@@ -22,10 +22,8 @@
 <div class="toplinks"> >
 <span class="logged_user"><%= logged_user %></span> |
         <a href="/user/about/4" target="_new"> Soporte técnico </a>|
-     <%=  link_to_remote("Mi cuenta",
-      :url=>{:controller=>'change_passwords', :action => 'index'},
-          :method => :get ) %>|
- <%= link_to('Salir', session_path, :method => :delete ) %>
+     	<%=  link_to "Mi cuenta", :controller=>'user_settings'  %>|
+ 	    <%= link_to('Salir', session_path, :method => :delete ) %>
 </div> <!-- /toplinks -->
 
 <div id ="body">

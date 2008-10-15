@@ -1,4 +1,2 @@
-<%= link_to_remote get_label('add'), 
-{:url  => method("new_user_#{ActiveSupport::Inflector.singularize(controller_name)}_path").call(session[:user_id])},
-{:title => "Para agregar un elemento presione esta liga"}
+<%= link_to_remote get_label('add'), {:url  => {:action => :new, :format => 'js'}}, {:title => "Para agregar un elemento presione esta liga"}
  %> 
