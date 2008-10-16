@@ -1,7 +1,7 @@
-<%= user.person.fullname %>
+<font class=name><%= user.person.fullname %></font>
 <br/>
 <%= user.most_recent_jobposition.category_name %>
 <br/>
 <%= user.email %>
 <br/>
-<%= user.professional_address.phone unless user.professional_address.nil? %>
+phone: <%= user.professional_address.phone unless user.professional_address.nil? %>

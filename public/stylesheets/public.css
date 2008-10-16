@@ -1,0 +1,33 @@
+body {
+ background-color: white;
+}
+
+a {
+        text-decoration:none;
+        color:#6699cc;
+        font-size:12px;
+        font-weight:bold;
+        font-family:"Arial","Verdana","Trebuchet";
+        }
+
+a:hover {
+color: #003366;
+}
+
+.academic {
+        border: 1px solid silver;
+        float: left;
+        text-align: center;
+        width: 240px;
+        height: 240px;
+        font-size:11.0pt;
+        color:#20386F;
+        font-family:"Arial","Verdana","Trebuchet";
+        text-align:center;
+        vertical-align:middle;
+}
+
+.name {
+        font-weight:bold;
+
+}
