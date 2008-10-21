@@ -1,6 +1,6 @@
 <div class="academic">
 <br/>
-<img src="<%= url_for(:action => :show, :id => user.id) %>"/>
+<%= image_tag(url_for(:controller => :home_pages, :action => :show_photo, :id => user.id))%>
 <br/>
 <%= render :partial => 'public/home_pages/profile', :locals => {:user => user} %>
 <br/>

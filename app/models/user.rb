@@ -34,6 +34,23 @@ class User < ActiveRecord::Base
                   :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
                   :order => "jobpositions.startyear DESC, jobpositions.startmonth DESC"
 
+
+  has_many :user_articles
+  has_many :articles, :through => :user_articles
+
+  has_many :recent_published_articles, :class_name => 'UserArticle', :include => :article,
+  :conditions => 'articles.articlestatus_id = 3',
+  :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
+
+  has_many :recent_inprogress_articles, :class_name => 'UserArticle', :include => :article,
+  :conditions => 'articles.articlestatus_id != 3',
+  :order => 'articles.year DESC, articles.month DESC', :limit => 5
+
+  has_many :user_researchlines
+  has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
+
+
+
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create  :encrypt_password

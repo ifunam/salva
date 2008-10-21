@@ -1,7 +1,11 @@
 <div class="academic">
-<img src="<%= url_for(:controller => 'public/our_people', :action => :show, :id => @record.id) %>"/>
+<img src="<%= url_for(:action => :show_photo, :id => @record.id) %>"/>
 <br/>
 <%= render :partial => 'profile', :locals => {:user => @record} %>
 <br/>
 <%= render :partial => 'personal_sites', :locals => {:user => @record} %>
+<br/>
+<%= render :partial => 'researchlines', :locals => {:user => @record} %>
+<br/>
+<%= render :partial => 'recent_published_articles', :locals => {:user => @record} %>
 </div>

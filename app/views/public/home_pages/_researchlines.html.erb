@@ -1,0 +1,7 @@
+<% if user.researchlines.size > 0 %>
+<h2>Research Topics</h2>
+<% n = 0%>
+<% user.researchlines.each do |record|  %>
+<%= (n += 1).to_s + '.' + record.name %><br/>
+<% end %>
+<% end %>
