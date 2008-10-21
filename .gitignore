@@ -16,3 +16,4 @@ semantic.cache
 coverage
 .DS_Store
 ._*
+.autotest*
