@@ -16,7 +16,7 @@ class Article < ActiveRecord::Base
     [authors, title, journal.name, year, journal_issue, pages ].compact.collect { |v|
       s = (v.is_a? String) ? v.strip.gsub(/\n/,'').gsub(/\r/,'').strip.gsub(/\s{1}+/,' ').gsub(/^\"|\"$|^\“|\”$|^\'|\'$/,'').gsub(/ \./,'').sub(/( \,$)+/,'') : v.to_s
       s unless s.strip.empty?
-    }.compact.join(', ').gsub(/( \,)/,',').gsub(/\,+/,',')
+    }.compact.join(', ').gsub(/( \,)/,',').gsub(/\,+/,',').gsub(/\.+/,'.')
   end
   
   private
