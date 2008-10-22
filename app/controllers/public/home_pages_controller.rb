@@ -1,5 +1,5 @@
 class Public::HomePagesController < ActionController::Base
-
+           layout  'public'
   def show
     @record=User.find(params[:id])
     respond_to do |format|
