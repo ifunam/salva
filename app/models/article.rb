@@ -17,11 +17,11 @@ class Article < ActiveRecord::Base
 
   def journal_issue
     if !vol.nil? and !num.nil?
-      "#{vol}(#{num})"
+      "#{vol.to_s.strip}(#{num.to_s.strip})"
     elsif !vol.nil?
-      vol
+      vol.to_s.strip
     elsif !num.nil?
-      "(#{num})"
+      "(#{num.to_s.strip})"
     end
   end
 

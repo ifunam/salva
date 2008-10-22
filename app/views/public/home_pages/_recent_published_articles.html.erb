@@ -1,6 +1,8 @@
 <% if user.recent_published_articles.size > 0 %>
 <h2>Published Articles</h2>
+<% n = 0 %>
 <% user.recent_published_articles.each do |record|  %>
-     <%= (n +=1).to_s + '. ' + record.article.as_text %><br/>
+     <%= (n +=1).to_s + '. ' + record.article.as_text %>
+     <%= link_to('online', record.article.url) unless record.article.url.nil? %> <br/>
 <% end %>
 <% end %>
