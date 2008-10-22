@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
-#  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  #  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login
   validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
@@ -31,20 +31,22 @@ class User < ActiveRecord::Base
 
   has_many :jobpositions
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
-                  :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
-                  :order => "jobpositions.startyear DESC, jobpositions.startmonth DESC"
+  :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
+  :order => "jobpositions.startyear DESC, jobpositions.startmonth DESC"
 
 
-  has_many :user_articles
+  has_many :user_articles, :include => :articles
   has_many :articles, :through => :user_articles
+  has_many :published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+  has_many :recent_published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5 
 
-  has_many :recent_published_articles, :class_name => 'UserArticle', :include => :article,
-  :conditions => 'articles.articlestatus_id = 3',
-  :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
-
-  has_many :recent_inprogress_articles, :class_name => 'UserArticle', :include => :article,
-  :conditions => 'articles.articlestatus_id != 3',
-  :order => 'articles.year DESC, articles.month DESC', :limit => 5
+ has_many :inprogress_articles, :through => :user_articles, :source => :article, 
+          :conditions => 'articles.articlestatus_id != 3',
+          :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
 
   has_many :user_researchlines
   has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
@@ -140,12 +142,12 @@ class User < ActiveRecord::Base
 
   def verify_current_password
     if !self.current_passwd.nil? and User.find(self.id).passwd != User.encrypt(self.current_passwd+self.salt)
-        errors.add("passwd", "is not valid")
-        return false
+      errors.add("passwd", "is not valid")
+      return false
     end
     if !self.passwd_confirmation.nil? and self.passwd != self.passwd_confirmation
-        errors.add("passwd", "doesn't match confirmation")
-        return false
+      errors.add("passwd", "doesn't match confirmation")
+      return false
     end
     encrypt_password if passwd_changed?
   end

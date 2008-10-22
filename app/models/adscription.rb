@@ -8,7 +8,7 @@ class Adscription < ActiveRecord::Base
 
   has_many :user_adscriptions
   has_many :users, :through => :user_adscriptions, :source => :user
-  has_many :activated_users, :through => :user_adscriptions, :source => :user, :conditions => 'users.userstatus_id = 2'
+  has_many :activated_users, :through => :user_adscriptions, :source => :user, :conditions => 'users.userstatus_id = 2', :uniq => true
 
   validates_associated :institution
 end
