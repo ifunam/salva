@@ -12,18 +12,17 @@ class Article < ActiveRecord::Base
   has_many :users, :through => :user_articles
 
   def as_text
-    [authors, title, journal.name, journal_issue, pages].join(', ')
+    [authors, title, journal.name, year, journal_issue, pages ].compact.join(', ').gsub(/\,+/, ',')
   end
 
   def journal_issue
-    info = year.to_s + ";"
-    if vol != nil and num != nil
-      info << "#{vol}(#{num})"
-    elsif vol != nil
-      info << vol
-    elsif num != nil
-      info << "(#{num})"
+    if !vol.nil? and !num.nil?
+      "#{vol}(#{num})"
+    elsif !vol.nil?
+      vol
+    elsif !num.nil?
+      "(#{num})"
     end
-    info
   end
+
 end
