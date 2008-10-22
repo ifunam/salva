@@ -1,8 +1,8 @@
 <% if user.recent_published_articles.size > 0 %>
-<h2>Published Articles</h2>
+<h3>Most Recent Publications:</h3>
 <% n = 0 %>
 <% user.recent_published_articles.each do |article|  %>
      <%= (n +=1).to_s + '. ' + article.as_text %>
-     <%= link_to('online', article.url) unless article.url.nil? %> <br/>
+     <%= link_to('online', article.url) unless article.url.nil? %> <br/><br/>
 <% end %>
 <% end %>
