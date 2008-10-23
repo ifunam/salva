@@ -9,16 +9,17 @@ module ActiveRecord
         def acts_as_dependent_mapper(options = {})
           class_eval do
             include ActiveRecord::Acts::DependentMapper::InstanceMethods
-            cattr_accessor :sequence
+            cattr_accessor :sequence, :foreign_key
+
             self.sequence = options[:sequence]
+            self.foreign_key = options[:foreign_key]
+
+            attr_protected :sequence, :foreign_key
           end
         end
 
         end
         module InstanceMethods
-           def get_sequence
-             self.sequence
-           end
 
           def set_attributes
           end

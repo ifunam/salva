@@ -1,5 +1,5 @@
 class UserArticle < ActiveRecord::Base
-  acts_as_dependent_mapper  :sequence => [ :article, [ :journal, [ :publisher ] ] ]
+  acts_as_dependent_mapper  :sequence => [ :article, [ :journal, [ :publisher ] ] ], :foreign_key => :user_id
 
   validates_numericality_of :id,  :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :article_id, :user_id, :greater_than => 0, :only_integer => true, :allow_nil => true
