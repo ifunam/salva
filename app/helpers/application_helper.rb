@@ -35,46 +35,47 @@ module ApplicationHelper
     return ret
   end
 
-# This section is for the handling of tree
+  # This section is for the handling of tree
   def get_controller_name
-     get_label(controller_name)
-   end
+    get_label(controller_name)
+  end
 
-   def controller_name
-     @controller.controller_class_name.sub(/Controller$/, '').underscore
-   end
+  def controller_name
+    @controller.controller_class_name.sub(/Controller$/, '').underscore
+  end
 
-   def radio_buttons(attribute ,options)
-     s = ''
-     options[:values].each do |v|
-       if @object.send(attribute).nil?
-         s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
-       elsif @object.send(attribute) == v
-         s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => true )
-       else
-         s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
-       end
-     end
-     s
-   end
+  def radio_buttons(attribute ,options)
+    s = ''
+    options[:values].each do |v|
+      if @object.send(attribute).nil?
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+      elsif @object.send(attribute) == v
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => true )
+      else
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+      end
+    end
+    s
+  end
 
-   def stop_observer(dom_id)
-     javascript_tag " $('#{dom_id.to_s}').stopObserving('click', String.blank);"
-     #http://www.prototypejs.org/api/event/stopObserving  (Using String.blank instead nil o nothing)
-   end
+  def stop_observer(dom_id)
+    javascript_tag " $('#{dom_id.to_s}').stopObserving('click', String.blank);"
+    #http://www.prototypejs.org/api/event/stopObserving  (Using String.blank instead nil o nothing)
+  end
 
-   def logged_user
-     session[:user_id].nil? ? '<login>' : User.find(session[:user_id]).login
-   end
+  def logged_user
+    session[:user_id].nil? ? '<login>' : User.find(session[:user_id]).login
+  end
 
-   def get_views(views_sequence)
-     views_sequence.collect do |view|
-       hash_name = myview = view
-       myview, hash_name = view if view.is_a? Array
-       [ActiveSupport::Inflector.singularize(hash_name).to_s, myview.to_s]
-     end
-   end
+  def get_views(views_sequence)
+    views_sequence.collect do |view|
+      hash_name = myview = view
+      myview, hash_name = view if view.is_a? Array
+      [ActiveSupport::Inflector.singularize(hash_name).to_s, myview.to_s]
+    end
+  end
 
-
-
+  def link_to_if_url_exists(record)
+    link_to('online', record.url) if record.has_attribute? :url and !record.url.to_s.strip.empty? and record.url =~ /^http/ 
+  end
 end
