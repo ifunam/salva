@@ -17,3 +17,4 @@ coverage
 .DS_Store
 ._*
 .autotest*
+!vendor/plugins/acts_as_dependent_mapper
