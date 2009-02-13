@@ -1,93 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'sessions'
-  map.resource  :session
-  map.resources :users, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
-  map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
-  map.resource  :navigator
-
-  map.resources :user, :shallow => true do |u|
-    # RecordController
-    u.resource :person
-    u.resource :user_settings
-    # SupperScaffoldController
-    u.resources :addresses
-    u.resources :citizens
-    u.resources :person_identifications
-    u.resources :user_languages
-  end
-
-  # ModelDependentMapperController
-  map.resources :user_articles
-
-  map.resources :admin do |admin|
-    # Put them under admin namespace (SupperScaffoldController)
-    admin.resources :academicprogramtypes
-    admin.resources :activitygroups
-    admin.resources :articlestatuses
-    admin.resources :bookchaptertypes
-    admin.resources :booktypes
-    admin.resources :userstatuses
-    admin.resources :userroles
-    admin.resources :titlemodalities
-    admin.resources :thesisstatuses
-    admin.resources :thesismodalities
-    admin.resources :techproducttypes
-    admin.resources :techproductstatuses
-    admin.resources :talktypes
-    admin.resources :talkacceptances
-    admin.resources :superscaffolds
-    admin.resources :studentroles
-    admin.resources :skilltypes
-    admin.resources :seminarytypes
-    admin.resources :roleproceedings
-    admin.resources :roleintheses
-    admin.resources :roleinseminaries
-    admin.resources :roleinregularcourses
-    admin.resources :roleinprojects
-    admin.resources :roleinjuries
-    admin.resources :roleinjournals
-    admin.resources :roleinjobpositions
-    admin.resources :roleincourses
-    admin.resources :roleinconferencetalks
-    admin.resources :roleinconferences
-    admin.resources :roleinchapters
-    admin.resources :roleinbooks
-    admin.resources :records
-    admin.resources :prizetypes
-    admin.resources :projecttypes
-    admin.resources :projectstatuses
-    admin.resources :modalities
-    admin.resources :migratorystatuses
-    admin.resources :mediatypes
-    admin.resources :languages
-    admin.resources :languagelevels
-    admin.resources :jobpositiontypes
-    admin.resources :jobpositionlevels
-    admin.resources :institutiontypes
-    admin.resources :institutiontitles
-    admin.resources :instadvicetargets
-    admin.resources :indivadvicetargets
-    admin.resources :idtypes
-    admin.resources :groupmodalities
-    admin.resources :genericworkstatuses
-    admin.resources :genericworkgroups
-    admin.resources :externaluserlevels
-    admin.resources :editionstatuses
-    admin.resources :degrees
-    admin.resources :coursegrouptypes
-    admin.resources :contracttypes
-    admin.resources :conferencetypes
-    admin.resources :conferencescopes
-    admin.resources :citizenmodalities
-    admin.resources :acadvisittypes
-    admin.resources :volumes
-  end
-
-  map.namespace :public do |public|
-    public.resources :our_people, :member => { :show_photo => :get }
-    public.resources :home_pages
-  end
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -106,6 +17,12 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
+  
+  # Sample resource route with more complex sub-resources
+  #   map.resources :products do |products|
+  #     products.resources :comments
+  #     products.resources :sales, :collection => { :recent => :get }
+  #   end
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
@@ -119,7 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
+  # Note: These default routes make all actions in every controller accessible via GET requests. You should
+  # consider removing the them or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
-  map.connect '', :controller => 'user', :action => 'index'
 end
