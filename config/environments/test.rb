@@ -4,7 +4,7 @@
 # test suite.  You never need to work with it otherwise.  Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs.  Don't rely on the data there!
-config.cache_classes = true
+config.cache_classes = false
 
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils = true
@@ -29,3 +29,5 @@ config.action_mailer.delivery_method = :test
 config.gem "rspec", :lib => false, :version => ">= 1.1.99.10" 
 config.gem "rspec-rails", :lib => false, :version => ">= 1.1.99.10" 
 config.gem "cucumber"
+config.gem "carlosbrando-remarkable", :lib => "remarkable", :source => "http://gems.github.com"
+

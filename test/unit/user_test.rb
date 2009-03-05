@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UserTest < ActiveSupport::TestCase
   fixtures :userstatuses, :users
 
-  should_require_attributes :login, :email, :passwd
+  should_validate_presence_of :login, :email, :passwd
 
   should_not_allow_values_for :login, 'al', :message => /too short/
   should_not_allow_values_for :login, 's' * 31, :message => /too long/
@@ -16,8 +16,8 @@ class UserTest < ActiveSupport::TestCase
   should_not_allow_values_for :passwd, "abcd", :message => /too short/
   should_not_allow_values_for :passwd, 's' * 201, :message => /too long/
 
-  should_require_unique_attributes :login
-  should_require_unique_attributes :email
+  should_validate_uniqueness_of :login
+  should_validate_uniqueness_of :email
   
 
   def setup
