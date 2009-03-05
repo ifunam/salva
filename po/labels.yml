@@ -396,7 +396,7 @@ indivname: Nombre del asesorado
 indivuser_id: Usuario
 instadvices: Asesor铆a a instituciones
 outreaches: Vinculaci贸n
-indivadvicetarget: Objetivos
+indivadvicetargets: Tipo de Persona Asesorada
 indivadvicetarget_id: Objetivo
 instadvicetarget: Objetivos
 instadvicetarget_id: Objetivo
@@ -505,3 +505,70 @@ reviewed_work_title: T铆tulo del trabajo rese帽ado
 reviewed_work_publication: Publicaci贸n del trabajo rese帽ado
 schoolings: Escolaridad
 default: Estandar
+cites: Ciudad
+states: Estados
+academicprogramtypes: Tipo de programas Academicos
+activitygroups: Actividades de grupos
+articlestatuses: Estatus de Articulo
+bookchaptertypes: Tipo de capitulo
+booktypes: Tip贸 de libro
+userstatuses: Estatus del usuario
+userroles: Rol en el libro
+titlemodalities: Titulo de la actividad
+thesismodalities: Modalidad de la tesis
+thesisstatuses: Estatus de la tesis
+techproducttypes: Tipo de producto tecnico
+techproductstatuses: Estatus del producto t茅cnico
+talktypes: Tipo de platica
+talkacceptances: Tipo de Inscripcion de la conferencia
+studentroles: Rol del estudiante
+skilltypes: Tipo de Habilidades
+seminarytypes: Tipo de Seminario
+roleproceedings: Rol en la edici贸n
+roleinseminaries: Rol en el seminario
+roleinregularcourses: Rol en el curso regular
+roleinprojects: Rol en el proyecto
+roleinjuries: Rol en el Jurado
+roleintheses: Rol en la tesis
+roleinjournals: Rol en la revista
+roleincourses: Rol en el curso
+roleinconferencetalks: Rol en la conferencia
+roleinconferences: Rol en un evento
+roleinchapters: Rol en un capitulo
+roleinbooks: Rol en un libro
+prizetypes: Rol en un premio
+projecttypes: Tipos de Proyectos
+projectstatuses: Estatus del Proyecto
+modalities: Modalidad del curso
+migratorystatuses: Estado Migratorio
+mediatypes: Tipo de formato
+languages: Idiomas
+languagelevels: Nivel del idioma
+jobpositiontypes: Tipo de categoria unam
+jobpositionlevels: Nivel de categoria unam
+institutiontypes: Tipo de Instituci贸n
+instadvicetargets: Material para la Asesoria
+idtypes: Tipo de identificaci贸n
+groupmodalities: Modalidad de grupo
+genericworkstatuses: Estatus del trabajo general
+editionstatuses: estatus de la Edici贸n
+degrees: Grado
+coursegrouptypes: Tipo de curso
+contracttypes: Tipo de contrato
+conferencetypes: Tipo de conferencia
+conferencescopes: Ambito de la conferencia
+citizenmodalities: Modalidades de nacionalidad
+acadvisittypes: Tipos de visitas academicas
+volumes: Volumenes
+configuration_sites: Configuraci贸n del sitio
+catalogs_administrations: Administracion de catalogos
+user_administration: Administrador de Usuarios
+admin: Administrador salva
+externaluserlevels: Nivel de usuario externo
+general_catalogs: Cat噇ogos Generales
+location_catalogs: Cat噇ogos de Paises y Ciudad
+teaching_catalogs: Cat噇ogos de cursos y tesis
+publication_catalogs: Cat噇ogos de articulos  libros
+conference_catalogs: Cat噇ogos de conferencias y seminarios
+technical_activities_catalogs: Cat噇ogos de actividades
+project_catalogs: Cat噇ogos de proyectos

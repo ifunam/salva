@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
-class UserTest < Test::Unit::TestCase
+class UserTest < ActiveSupport::TestCase
   fixtures :userstatuses, :users
 
   should_require_attributes :login, :email, :passwd

@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserNotifierTest < ActionMailer::TestCase
-  tests UserNotifier
   fixtures :userstatuses, :users
   
+  
   def test_new_notification
-    response = UserNotifier.create_new_notification(User.last) 
+    response = UserNotifier.create_new_notification(User.last, :domain => 'somewhere.com') 
     assert_equal("[SALVA] Su cuenta ha sido creada, por favor activela...", response.subject) 
     assert_equal("john.smith@nodomain.com", response.to[0]) 
     assert_match(/creada/, response.body) 
@@ -19,7 +19,7 @@ class UserNotifierTest < ActionMailer::TestCase
   end
   
   def test_password_recovery
-    response = UserNotifier.create_password_recovery(User.first) 
+    response = UserNotifier.create_password_recovery(User.first, :domain => 'somewhere.com') 
     assert_equal("[SALVA] Información para cambiar la contraseña de su cuenta", response.subject) 
     assert_equal("alex@fisica.unam.mx", response.to[0]) 
     assert_match(/login_by_token/, response.body) 

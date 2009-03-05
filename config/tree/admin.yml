@@ -1,4 +1,4 @@
---- 
+---
 - user_administration
 - - admin_users
   - groups
@@ -6,10 +6,72 @@
   - controllers
   - actions
 - catalogs_administrations
-- - countries
-  - cities
-  - states
-  - institutions
-  - institutiontitles
-  - institutions
+- - general_catalogs
+  - - userstatuses
+    - userroles
+    - studentroles
+    - skilltypes
+    - prizetypes
+    - migratorystatuses
+    - mediatypes
+    - languages
+    - languagelevels
+    - jobpositiontypes
+    - jobpositionlevels
+    - institutions
+    - institutiontypes
+    - institutiontitles
+    - idtypes
+    - degrees
+    - citizenmodalities             
+- - location_catalogs
+  - - countries
+    - cites
+    - states
+- - publication_catalogs
+  - - articlestatuses
+    - roleproceedings
+    - roleinjournals
+    - bookchaptertypes
+    - booktypes
+    - roleinchapters
+    - roleinbooks
+    - editionstatuses
+    - volumes
+- - conference_catalogs
+  - - talktypes
+    - talkacceptances
+    - seminarytypes
+    - roleinseminaries  
+    - titlemodalities
+    - roleinconferencetalks
+    - roleinconferences
+    - conferencetypes
+    - conferencescopes 
+- - teaching_catalogs
+  - - academicprogramtypes
+    - roleinregularcourses   
+    - roleincourses
+    - coursegrouptypes
+    - acadvisittypes
+    - modalities
+    - instadvicetargets
+    - indivadvicetargets
+    - thesisstatuses
+    - thesismodalities
+    - roleintheses   
+    - roleinjuries 
+- - technical_activities_catalogs
+  - - techproducttypes
+    - techproductstatuses
+    - activitygroups
+    - groupmodalities
+    - genericworkstatuses
+    - genericworkgroups
+    - externaluserlevels
+    - contracttypes
+- - project_catalogs
+  - - roleinprojects
+    - projecttypes
+    - projectstatuses     
 - configuration_sites

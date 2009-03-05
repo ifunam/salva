@@ -1,47 +1,88 @@
-# Be sure to restart your server when you modify this file
+# -*- coding: utf-8 -*-
+# Be sure to restart your server when you modify this file.
+
+# Uncomment below to force Rails into production mode when
+# you don't control web/app server and can't set it the proper way
+# ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.0' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '1.2.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  # Settings in config/environments/* take precedence over those specified here.
-  # Application configuration should go into files in config/initializers
-  # -- all .rb files in that directory are automatically loaded.
+  # Settings in config/environments/* take precedence over those specified here
 
-  # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # Skip frameworks you're not going to use (only works if using vendor/rails)
+  # config.frameworks -= [ :active_resource, :action_mailer ]
 
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "sqlite3-ruby", :lib => "sqlite3"
-  # config.gem "aws-s3", :lib => "aws/s3"
-
-  # Only load the plugins named here, in the order given (default is alphabetical).
-  # :all can be used as a placeholder for all plugins not explicitly named
+  # Only load the plugins named here, in the order given. By default, all plugins in vendor/plugins are loaded in alphabetical order.
+  # :all can be used as a placeholder for all plugins not explicitly named.
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
-  # Skip frameworks you're not going to use. To use Rails without a database,
-  # you must remove the Active Record framework.
-  # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+  # Add additional load paths for your own custom dirs
+  config.load_paths += %W( #{RAILS_ROOT}/lib )
 
-  # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  # Force all environments to use the same logger level
+  # (by default production uses :info, the others :debug)
+  # config.log_level = :debug
 
-  # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-  # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
-
-  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-  # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = :de
-
+  # Your secret key for verifying cookie session data integrity.
+  # If you change this key, all old sessions will become invalid!
   config.action_controller.session = {
-    :session_key => '_salva_session',
-    :secret      => '96a97bb0c940286324eb5d543ad7a8faff3d40c6967ab2ca69e56d03be2b7789dd932f3d52a504882ffa5d9df9bf4c9e962666cf1c960ee58228857be097e2c4'
+    :session_key => '_test_session',
+    :secret      => '5ce5d03f910eff3c73b65444e6cc84fb'
   }
 
+  # Use the database for sessions instead of the cookie-based default,
+  # which shouldn't be used to store highly confidential information
+  # (create the session table with 'rake db:sessions:create')
+  # config.action_controller.session_store = :active_record_store
+
+  # Use SQL instead of Active Record's schema dumper when creating the test database.
+  # This is necessary if your schema can't be completely dumped by the schema dumper,
+  # like if you have constraints or database-specific column types
+  config.active_record.schema_format = :sql
+
+  # Activate observers that should always be running
+  # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :user_observer
+
+  # Make Active Record use UTC-base instead of local time
+  # config.active_record.default_timezone = :utc
+  config.active_record.default_timezone = :local
+  config.active_record.record_timestamps = true
+
+  # See Rails::Configuration for more options
+
+  # Application configuration should go into files in config/initializers
+  # -- all .rb files in that directory are automatically loaded
+  config.action_mailer.default_url_options = { :host => "politicas.unam.mx" }
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+      :location       => '/usr/sbin/sendmail',
+      :arguments      => '-i -t -f noreply@politicas.unam.mx'
+  }
+
+  
 end
+
+# ActionMailer configuration:
+# http://api.rubyonrails.com/classes/ActionMailer/Base.html
+if RAILS_ENV != 'test'
+  begin
+    mail_settings = YAML.load(File.read("#{RAILS_ROOT}/config/mail.yml"))
+    ActionMailer::Base.delivery_method = mail_settings['method'].to_sym
+    ActionMailer::Base.default_charset = mail_settings['charset']
+    ActionMailer::Base.smtp_settings = mail_settings['settings']
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.raise_delivery_errors = true
+  rescue
+    # Fall back to using sendmail by default
+    ActionMailer::Base.delivery_method = :sendmail
+  end
+end
+
+# i18n support (internacionalization)
+#I18n.default_locale = 'en-US'
