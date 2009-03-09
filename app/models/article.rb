@@ -10,13 +10,14 @@ class Article < ActiveRecord::Base
 
   has_many :user_articles
   has_many :users, :through => :user_articles
+
   named_scope :published_by_year, lambda { |y|  { :conditions => ['year = ?', y], :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC' } }
-  
+  named_scope :recent, :order => 'articles.year DESC, articles.month DESC',  :limit => 50
+  named_scope :published, :conditions => 'articles.articlestatus_id = 3'
+  named_scope :inprogress, :conditions => 'articles.articlestatus_id != 3'
+
   def as_text
-    [authors, title, journal.name, year, journal_issue, pages ].compact.collect { |v|
-      s = (v.is_a? String) ? v.strip.gsub(/\n/,'').gsub(/\r/,'').strip.gsub(/\s{1}+/,' ').gsub(/^\"|\"$|^\“|\”$|^\'|\'$/,'').gsub(/ \./,'').sub(/( \,$)+/,'') : v.to_s
-      s unless s.strip.empty?
-    }.compact.join(', ').gsub(/( \,)/,',').gsub(/\,+/,',').gsub(/\.+/,'.')
+    as_text_line([authors, title, journal.name, year, journal_issue, pages])
   end
   
   private
