@@ -86,6 +86,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :public do |public|
     public.resources :our_people, :member => { :show_photo => :get }
     public.resources :home_pages
+    public.resources :recent_publications
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
