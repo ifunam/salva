@@ -10,6 +10,29 @@ class UserConferencetalk < ActiveRecord::Base
 
   validates_associated :conferencetalk
   validates_associated :roleinconferencetalk
+  
+  
+  options = { :order => 'conferencetalks.authors ASC, conferencetalks.title ASC, conferences.month DESC',
+              :include => [ { :conferencetalk => :conference } ]
+             }
 
-
+  named_scope :local_scope, options.merge(:conditions => 'conferences.conferencescope_id = 1')
+  named_scope :national_scope, options.merge(:conditions => 'conferences.conferencescope_id = 2')
+  named_scope :international_scope, options.merge(:conditions => 'conferences.conferencescope_id = 3')
+  named_scope :find_by_conference_year, lambda { |y| options.merge(:conditions => [ 'conferences.year = ?', y ])  }
+  
+  def as_text
+    as_text_line([conferencetalk.authors, conferencetalk.title, conferencetalk.talktype.name, conferencetalk.conference.name,
+                  conferencetalk.conference.location, conferencetalk.conference.country.name, month_to_s(conferencetalk.conference.month),
+                  conferencetalk.conference.year, conferencetalk.talkacceptance.name, roleinconferencetalk.name
+                  ])
+  end
+  
+  def as_text_with_role
+    as_text_line([conferencetalk.authors, conferencetalk.title, conferencetalk.talktype.name, conferencetalk.conference.name,
+                  conferencetalk.conference.location, conferencetalk.conference.country.name, month_to_s(conferencetalk.conference.month),
+                  conferencetalk.conference.year, conferencetalk.talkacceptance.name, label_for(user.person.fullname, roleinconferencetalk.name)
+                  ])
+  end
+  
 end

@@ -13,8 +13,7 @@ class Conferencetalk < ActiveRecord::Base
 
   has_many :projectconferencetalks
 
- validates_associated :conference
- validates_associated :talktype
- validates_associated :talkacceptance
- validates_associated :modality
+  named_scope :local_scope, :conditions => 'conferences.conferencescope_id = 1', :include => [:conference]
+  named_scope :national_scope, :conditions => 'conferences.conferencescope_id = 2', :include => [:conference]
+  named_scope :international_scope, :conditions => 'conferences.conferencescope_id = 3', :include => [:conference]
 end

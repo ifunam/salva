@@ -17,8 +17,4 @@ class Conference < ActiveRecord::Base
   has_many :conference_institutions
   has_many :institutions, :through => :conference_institutions
 
-  validates_associated :conferencetype
-  validates_associated :country
-  validates_associated :conferencescope
-
 end

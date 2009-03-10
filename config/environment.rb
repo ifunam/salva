@@ -38,8 +38,8 @@ Rails::Initializer.run do |config|
   config.time_zone = 'Mexico City'
   
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-  config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  #  config.i18n.default_locale = :es_mx
+  # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+  # config.i18n.default_locale = :es_mx
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
