@@ -15,4 +15,11 @@ module RecordAsText
   def label_for(value, label)
     value.to_s.empty? ? nil : [label, value].join(': ')
   end
+  
+  def month_to_s(month)
+    # Fix It: We should use Date.parse
+    months = %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre)
+    months[month.to_i - 1]
+  end
+  
 end
