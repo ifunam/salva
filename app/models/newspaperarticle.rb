@@ -7,5 +7,8 @@ class Newspaperarticle < ActiveRecord::Base
   #validates_uniqueness_of :title, :scope => [:newspaper_id, :newsdate]
 
   belongs_to :newspaper
+  named_scope :find_by_newspaperarticle_year, lambda { |y|  {:conditions => [ 'newspaperarticles.newsdate.year = ?', y ], :include => [ { :newspaperarticle => :newspaper } ]}}
+
+
 
 end
