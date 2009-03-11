@@ -11,15 +11,19 @@ class Article < ActiveRecord::Base
   has_many :user_articles
   has_many :users, :through => :user_articles
 
-  named_scope :published_by_year, lambda { |y|  { :conditions => ['year = ?', y], :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC' } }
-  named_scope :recent, :order => 'articles.year DESC, articles.month DESC',  :limit => 50
+  scope_default :order => 'articles.year DESC, articles.month DESC'
+  named_scope :published_by_year, lambda { |y|  { :conditions => ['year = ?', y],
+                                                  :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+                                                }
+                                          }
+  named_scope :recent, :limit => 50
   named_scope :published, :conditions => 'articles.articlestatus_id = 3'
   named_scope :inprogress, :conditions => 'articles.articlestatus_id != 3'
 
   def as_text
     as_text_line([authors, title, journal.name, year, journal_issue, pages])
   end
-  
+
   private
   def journal_issue
     if !vol.to_s.empty? and !num.to_s.empty?
@@ -30,5 +34,4 @@ class Article < ActiveRecord::Base
       "(#{num.to_s.strip})"
     end
   end
-
 end
