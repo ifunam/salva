@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   has_many :user_articles
   has_many :users, :through => :user_articles
 
-  scope_default :order => 'articles.year DESC, articles.month DESC'
+  default_scope :order => 'articles.year DESC, articles.month DESC'
   named_scope :published_by_year, lambda { |y|  { :conditions => ['year = ?', y],
                                                   :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
                                                 }

@@ -9,7 +9,8 @@ class UserAdscription < ActiveRecord::Base
   belongs_to :jobposition
   belongs_to :adscription
   belongs_to :user
-  
+
+
   validates_associated :jobposition
   validates_associated :adscription
 end

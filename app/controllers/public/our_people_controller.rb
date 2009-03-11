@@ -7,6 +7,13 @@ class Public::OurPeopleController < ActionController::Base
     end
   end
   
+  def list
+      @collection = Adscription.find_by_name_and_category(params[:adscription_name], params[:category_name])
+      respond_to do |format|
+        format.html { render :action => :list }
+      end
+  end
+
   def show
     @person = Person.find_by_user_id(params[:id])
      response.headers['Pragma'] = 'no-cache'

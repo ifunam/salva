@@ -84,7 +84,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :public do |public|
-    public.resources :our_people, :member => { :show_photo => :get }
+    public.resources :our_people, :member => { :show_photo => :get }, :collection => { :list => :get }
     public.resources :home_pages
     public.resources :recent_publications
   end
