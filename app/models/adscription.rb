@@ -7,25 +7,15 @@ class Adscription < ActiveRecord::Base
   belongs_to :institution
 
   has_many :user_adscriptions
-  has_many :users, :through => :user_adscriptions, :source => :user
-  
+  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true 
 
-  has_many :activated_users, :through => :user_adscriptions, :source => :user, :conditions => 'users.userstatus_id = 2', :uniq => true
-
-
-  def self.find_by_name_and_category(name, category)
-    case category
-      when 'researcher'
-        conditions = "(jobpositions.jobpositioncategory_id <= 12 OR jobpositions.jobpositioncategory_id = 37)"
-      when 'posdoc'
-        conditions = "jobpositions.jobpositioncategory_id = 38"
-      when 'academic_technician'
-        conditions = "(jobpositions.jobpositioncategory_id BETWEEN 25 AND 36)"
-    end
-    find_by_name(name).user_adscriptions.find(:all, :conditions => conditions, :include => :jobposition).collect { |record|
-       record.user 
-    }
-  end
-
-  validates_associated :institution
+  def self.find_users_by_name_and_category(name, category)
+     record = find_by_name(name)
+     case category
+        when 'researchers' then record.users.researchers.activated
+        when 'posdocs' then record.users.posdocs.activated
+        when 'academic_technicians' then record.users.academic_technicians.activated
+        else record.users.activated
+     end
+   end
 end

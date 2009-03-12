@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   named_scope :in_history_file, :conditions => { :userstatus_id => 4 }
   named_scope :with_user_incharge, :conditions => 'user_incharge_id IS NOT NULL'
 
+
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
 
@@ -29,11 +30,15 @@ class User < ActiveRecord::Base
   has_many :addresses
   has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
 
-  has_many :jobpositions
+  has_many :jobpositions, :uniq => true
+  
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
   :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
   :order => "jobpositions.startyear DESC, jobpositions.startmonth DESC"
 
+  named_scope :researchers, :conditions => "(jobpositions.jobpositioncategory_id <= 12 OR jobpositions.jobpositioncategory_id = 37)", :include => :jobpositions
+  named_scope :posdocs,     :conditions => "jobpositions.jobpositioncategory_id = 38", :include => :jobpositions
+  named_scope :academic_technicians, :conditions => "(jobpositions.jobpositioncategory_id BETWEEN 25 AND 36)", :include => :jobpositions
 
   has_many :user_articles, :include => :articles
   has_many :articles, :through => :user_articles
