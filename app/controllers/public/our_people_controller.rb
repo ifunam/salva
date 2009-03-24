@@ -1,5 +1,6 @@
 class Public::OurPeopleController < ActionController::Base
   layout  'public'
+  helper :application, :i18n
   def index
     @collection = Adscription.find_by_name(params[:adscription_name]).users.activated
     respond_to do |format|

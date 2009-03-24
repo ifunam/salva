@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_one :photo
+  has_one :cite, :class_name => 'UserCite'
 
   has_many :addresses
   has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
@@ -88,7 +89,21 @@ class User < ActiveRecord::Base
     Digest::SHA512.hexdigest(string)
   end
 
-  # Instance methods
+
+
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+#   # Instance methods
   def activate
     change_userstatus(2)
   end

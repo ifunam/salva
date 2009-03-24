@@ -1,8 +1,8 @@
 class Public::HomePagesController < ActionController::Base
   layout  'public'
-  helper :application
+  helper :application, :i18n
   def show
-    @record=User.find(params[:id])
+    @record = User.find(params[:id])
     respond_to do |format|
       format.html { render :action => 'show'}
     end

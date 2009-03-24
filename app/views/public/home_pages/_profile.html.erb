@@ -1,7 +1,9 @@
 <font class=name><%= user.person.fullname %></font>
 <br/>
-<%= user.most_recent_jobposition.category_name %>
+<font class=name><%= user.cite.author_name unless user.cite.nil?  %></font>
+<br/>
+<%= translate_category(user.most_recent_jobposition.category_name) %>
 <br/>
 <%= user.email %>
 <br/>
-phone: <%= user.professional_address.phone unless user.professional_address.nil? %>
+phone: <%= '+52 (55) ' + user.professional_address.phone unless user.professional_address.nil? %>
