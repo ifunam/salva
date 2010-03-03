@@ -9,6 +9,8 @@ gem "pg"
 # Views, css and javascript
 gem "haml-edge", "2.3.155", :require => 'haml'
 gem "compass", "0.10.0.pre8", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
+gem "compass-jquery-plugin"
+gem "compass-colors"
 gem "jquery_helpers", "0.0.0", :git => 'git://github.com/CodeOfficer/jquery-helpers-for-rails3.git', :branch => 'master'
 
 # Authentication
@@ -29,6 +31,8 @@ gem "ssl_requirement"
 gem "paperclip", "2.3.1.1", :git => "git://github.com/thoughtbot/paperclip.git", :branch => 'rails3'
 gem "dom_id", "0.0.0", :git => "git://github.com/nazgum/domid_gum.git", :branch => "master", :require => 'domid_gum'
 gem "will_paginate"
+gem "spreadsheet"
+gem "prawn"
 
 # Motoring
 gem "rackamole"
