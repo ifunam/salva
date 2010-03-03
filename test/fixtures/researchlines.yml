@@ -1,9 +1,0 @@
-fuente_sismica:
-   name: Fuente sísmica
-   id: 1
-sismotectonica:
-   name: Sismotectónica
-   id: 2
-propagacion_de_ondas:
-   name: Propagación de ondas
-   id: 3

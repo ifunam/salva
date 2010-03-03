@@ -1,8 +1,0 @@
-<% form_for controller_name, :url => {:action => :create }, :builder => FormBuilder do |f| %>
- <% get_views(@views_sequence).each do |hash_name, view| %>
-        <% fields_for hash_name, :builder => FormBuilder do |g|  %>
-                <%= render :partial => view.to_s + '/form', :locals => { :f => g} %>
-        <% end %>
- <% end %>
- <%= f.submit get_label("save") %>
-<% end %>

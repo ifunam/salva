@@ -1,1 +1,0 @@
-page.replace_html 'controller_form', :partial => 'shared/index', :locals => { :title => 'Idiomas'}

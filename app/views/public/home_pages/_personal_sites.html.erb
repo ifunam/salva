@@ -1,5 +1,0 @@
-<% %w(homepage blog calendar).each do |column| %>
-  <% unless user.send(column).nil? %>
-   <b><%= column %>:</b> <%= user.send(column) %>
-  <% end %>
-<% end %>

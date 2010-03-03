@@ -1,8 +1,0 @@
-<% (@columns - %w(id)).each do |column|  %>
-<p>
-<label><%= get_label(column) %>: </label><%= @record.send(column) %>
-</p>
-<% end %>
-<%= link_to_remote get_label('edit'), :url => method("edit_#{ActiveSupport::Inflector.singularize(controller_name)}_path").call(@record), :method => :get  %> |
-<%= link_to_function(get_label('back')) do |page|  page.replace_html 'form', :partial => 'shared/add' end %>
-

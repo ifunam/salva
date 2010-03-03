@@ -1,8 +1,0 @@
-<h2><%= get_controller_name %></h2>
-<% Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{ActiveSupport::Inflector.tableize(@model)}.id = #{@record.id}").record_as_pair.each do |c| %>
-<p>
-<label><%= get_label(c[0]) %>: </label><%= c[1] %>
-</p><br/>
-<% end %>
-<%= link_to_remote get_label('edit'), :url => { :action => :edit, :id => @record.id, :format => 'js' }, :method => :get %> |
-<%= link_to_remote get_label('del'), :url => { :action => :destroy, :id => @record.id, :format => 'js'}, :method => :delete %> 

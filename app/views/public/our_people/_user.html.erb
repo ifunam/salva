@@ -1,8 +1,0 @@
-<div class="academic">
-<br/>
-<%= image_tag(url_for(:controller => :home_pages, :action => :show_photo, :id => user.id), :size => '80x113')%>
-<br/>
-<%= render :partial => 'public/home_pages/profile', :locals => {:user => user} %>
-<br/>
-<%= link_to 'more info...',  public_home_page_path(user) %>
-</div>
