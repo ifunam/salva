@@ -34,7 +34,7 @@ gem "will_paginate"
 gem "spreadsheet"
 gem "prawn"
 
-# Motoring
+# Application Auditing
 gem "rackamole"
 
 group :development do
