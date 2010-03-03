@@ -3,15 +3,34 @@ source :gemcutter
 
 gem "rails", "3.0.0.beta"
 
+# Database
 gem "pg"
+
+# Views, css and javascript
 gem "haml-edge", "2.3.155", :require => 'haml'
 gem "compass", "0.10.0.pre8", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
+gem "jquery_helpers", "0.0.0", :git => 'git://github.com/CodeOfficer/jquery-helpers-for-rails3.git', :branch => 'master'
+
+# Authentication
 gem "authlogic", "2.1.3", :git => "git://github.com/binarylogic/authlogic.git", :branch => 'master'
+
+# Authorization
+gem "declarative_authorization"
+
+# Searching and tagging
+gem "libxml-ruby"
+gem "acts_as_sorl_reloaded", "0.0.0", :git => "git://github.com/dcrec1/acts_as_solr_reloaded.git", :branch => 'master'
+gem "acts-as-taggable-on"
+
+# Security
 gem "ssl_requirement"
+
+# Misc
 gem "paperclip", "2.3.1.1", :git => "git://github.com/thoughtbot/paperclip.git", :branch => 'rails3'
 gem "dom_id", "0.0.0", :git => "git://github.com/nazgum/domid_gum.git", :branch => "master", :require => 'domid_gum'
 gem "will_paginate"
-gem "jquery_helpers", "0.0.0", :git => 'git://github.com/CodeOfficer/jquery-helpers-for-rails3.git', :branch => 'master'
+
+# Motoring
 gem "rackamole"
 
 group :development do
