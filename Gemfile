@@ -7,7 +7,7 @@ gem "rails", "3.0.0.beta"
 gem "pg"
 
 # Views, css and javascript
-gem "haml-edge", "2.3.155", :require => 'haml'
+gem "erector"
 gem "compass", "0.10.0.pre8", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
 gem "compass-jquery-plugin"
 gem "compass-colors"
