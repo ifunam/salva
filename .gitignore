@@ -18,3 +18,4 @@ coverage
 ._*
 .autotest*
 !vendor/plugins/acts_as_dependent_mapper
+.bundle
