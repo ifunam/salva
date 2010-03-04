@@ -27,12 +27,19 @@ gem "acts-as-taggable-on"
 # Security
 gem "ssl_requirement"
 
+# Control version
+gem "vestal_versions"
+
+# Acts As something
+gem "acts_as_tree"
+
 # Misc
 gem "paperclip", "2.3.1.1", :git => "git://github.com/thoughtbot/paperclip.git", :branch => 'rails3'
 gem "dom_id", "0.0.0", :git => "git://github.com/nazgum/domid_gum.git", :branch => "master", :require => 'domid_gum'
 gem "will_paginate"
 gem "spreadsheet"
 gem "prawn"
+gem "inherited_resources", "1.1.0"
 
 # Application Auditing
 gem "rackamole"
@@ -46,7 +53,7 @@ end
 
 group :test do
   gem "rspec"
-  gem "rspec-rails", "2.0.0.a10", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master", :require => 'spec/rails'
+  gem "rspec-rails", "2.0.0.beta.2", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master", :require => 'spec/rails'
   gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "webrat"
 end
