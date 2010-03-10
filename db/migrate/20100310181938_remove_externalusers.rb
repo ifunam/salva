@@ -1,6 +1,6 @@
 class RemoveExternalusers < ActiveRecord::Migration
   def self.up
-    if Rails.env == 'production'
+    if Rails.env != 'test'
       remove_index  :student_activities, :student_activities_user_id_key
       remove_index  :student_activities, :student_activities_user_id_key1
       remove_index :userrefereedpubs, :userrefereedpubs_refereedpubs_id_key
