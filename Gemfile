@@ -56,7 +56,7 @@ end
 group :test do
   gem "sqlite3-ruby"
   gem "rspec", :git => "git://github.com/rspec/rspec.git", :branch => "master"
-  gem "rspec-rails", ">= 2.0.0.beta.1", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master", :require => 'spec/rails'
+  gem "rspec-rails", ">= 2.0.0.beta.1", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master", :require => 'rspec/rails'
   gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "capybara"
 end
