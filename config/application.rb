@@ -7,6 +7,8 @@ Bundler.require :default, Rails.env
 
 module Salva
   class Application < Rails::Application
+    config.cookie_secret = '102469a9d5e7a9db8558f825c2784a4225513b75c61f0eb7f88cf3c3c6d4d9e2fd1f17045e388bed735a7ef8a5da051591a67e98ba9217cfa311785389e9c761'
+    config.session_store :cookie_store, :key =>'_salva_session'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
