@@ -4,10 +4,9 @@ source :gemcutter
 gem "rails", "3.0.0.beta1", :git => "git://github.com/rails/rails.git", :branch => "master"
 
 # Views, css and javascript
-gem "erector"
+gem "minimal", :git => "git://github.com/svenfuchs/minimal.git", :branch => "master"
 gem "compass", "0.10.0.rc1", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
 gem "compass-jquery-plugin"
-gem "compass-colors"
 gem "jquery_helpers", "0.0.0", :git => 'git://github.com/alecz/jquery-helpers-for-rails3.git', :branch => 'master'
 
 # Authentication
@@ -51,6 +50,7 @@ group :development do
   gem "bullet" # Gem to identify N+1 queries and unused eager loading 
   gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master" # Gem to identify potential db indexes
   gem "slim_scrooge", "1.0.5" # Gem to heavily optimize your database interactions 
+  gem "rails_metrics"
 end
 
 group :test do
