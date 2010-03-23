@@ -1,7 +1,6 @@
 module Salva
   module SiteConfig
     protected
-
     def method_missing(method, *args, &block)
       if configuration(method).is_a? Hash and configuration(method).has_key? args.first.to_s
         configuration(method)[args.first.to_s]

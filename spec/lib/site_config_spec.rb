@@ -11,7 +11,7 @@ describe Salva::SiteConfig do
       lambda { Salva::SiteConfig.send :load_config, 'unexistent.yml' }.should raise_error
     end
   end
-  
+
   context "Using configuration sections as methods" do
     it "Should return the institution name string" do
       Salva::SiteConfig.institution('name').should == "Instituto de Física - UNAM"
@@ -20,7 +20,7 @@ describe Salva::SiteConfig do
     it "Should return the technical support engineer string" do
       Salva::SiteConfig.technical_support('engineer').should == "Alejandro Juárez Robles"
     end
-    
+
     it "Should return nil for undefined methods (sections)" do
       lambda { Salva::SiteConfig.undefined_section('name') }.should raise_error
     end

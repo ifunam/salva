@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 # Auto-require default libraries and those for the current Rails environment.
-Bundler.require :default, Rails.env
+#Bundler.require :default, Rails.env
 
 module Salva
   class Application < Rails::Application
@@ -14,7 +14,7 @@ module Salva
     # -- all .rb files in that directory are automatically loaded.
 
     # Add additional load paths for your own custom dirs
-    # config.load_paths += %W( #{config.root}/extras )
+    config.load_paths += %W( #{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named
