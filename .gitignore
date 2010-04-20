@@ -21,3 +21,10 @@ coverage
 .bundle
 .idea/*
 .idea*
+nbproject
+.sass-cache
+public/stylesheets/application.css
+public/stylesheets/ie.css
+public/stylesheets/print.css
+public/stylesheets/screen.css
+
