@@ -1,0 +1,7 @@
+%div{:id => 'toplinks', :class => "ui-button-set"}
+  = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-home') + content_tag(:span, 'Inicio', :class => "ui-button-text"), root_url, :class => "ui-button ui-button-text-icon ui-widget ui-state-default ui-corner-left"
+  = link_to content_tag(:span, 'Noticias', :class => "ui-button-text"), root_url, :class => "ui-button ui-button-text-only ui-widget ui-state-default"
+  - if current_user.nil?
+    = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-locked') + content_tag(:span, 'Entrar', :class => "ui-button-text"), new_user_session_path, :class => "ui-button ui-button-text-icon ui-widget ui-state-default ui-corner-right"
+  - else
+    = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-unlocked') + content_tag(:span, 'Entrar', :class => "ui-button-text"), destroy_user_session_path, :class => "ui-button ui-button-text-icon ui-widget ui-state-default ui-corner-right"

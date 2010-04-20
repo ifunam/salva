@@ -1,0 +1,36 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 Cuenta de usuario
+
+  %div{:class=> 'span-8'}
+    = f.label :login
+  %div{:class=> 'span-8'}
+    = f.label :password
+  %div{:class=> 'span-8 last'}
+    = f.label :password_confirmation
+  %div{:class=> 'span-8 '}
+    = f.text_field :login, :size => 12
+  %div{:class=> 'span-8'}
+    = f.password_field :crypted_password, :size => 12
+  %div{:class=> 'span-8 last'}
+    = f.password_field :password_salt, :size => 12
+
+  %div{:class=> 'span-8'}
+    = f.label :email
+  %div{:class=> 'span-8'}
+    = f.label :userstatus_id
+  %div{:class=> 'span-8 last'}
+    = f.label :user_incharge_id
+  %div{:class=> 'span-8'}
+    = f.text_field :email
+  %div{:class=> 'span-8'}
+    = f.collection_select  :userstatus_id, Userstatus.all, :id, :name, {:prompt => true}
+  %div{:class=> 'span-8 last'}
+    = f.collection_select  :user_incharge_id, User.all, :id, :email, {:prompt => true}
+        
+    
+
+
+= f.fields_for :person_attributes, @user.person do |person_form|
+  = render :partial => 'people/form', :locals => { :f => person_form}
+= f.fields_for :address_attributes, @user.address do |address_form|
+  = render :partial => 'addresses/form', :locals => { :f => address_form}

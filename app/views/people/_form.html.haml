@@ -1,0 +1,51 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 Información general
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :user_id
+
+  %div{ :class => 'span-18 last' }
+    %div{:class=> 'span-6'}
+      = f.label :firstname
+    %div{:class=> 'span-6'}
+      = f.label :lastname1
+    %div{:class=> 'span-6 last'}
+      = f.label :lastname2
+    %div{:class=> 'span-6'}
+      = f.text_field :firstname
+    %div{:class=> 'span-6'}
+      = f.text_field :lastname1
+    %div{:class=> 'span-6 last'}
+      = f.text_field :lastname2
+
+  
+  %div{ :class => 'span-12 last' }
+    %div{:class=> 'span-6'}
+      = f.label :gender
+    %div{:class=> 'span-6 last'}
+      = f.label :maritalstatus_id
+    %div{:class=> 'span-6'}
+      = f.radio_button :gender, false
+      Femenino
+      \#{f.radio_button :gender, true} Mascúlino
+    %div{:class=> 'span-6 last'}
+      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true}
+
+  %div{ :class => 'span-24 last' }
+    %h3 Fecha y lugar de nacimiento
+    %div{:class=> 'span-6'}
+      = f.label :birthdate
+    %div{:class=> 'span-6'}
+      = f.label :country_id
+    %div{:class=> 'span-6'}
+      = f.label :state_id
+    %div{:class=> 'span-6 last'}
+      = f.label :city_id
+    %div{:class=> 'span-6'}
+      = f.text_field :dateofbirth
+    %div{:class=> 'span-6'}
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}
+    %div{:class=> 'span-6'}
+      = f.collection_select :state_id, State  .all, :id, :name, {:prompt => true}
+    %div{:class=> 'span-6 last'}
+      = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
