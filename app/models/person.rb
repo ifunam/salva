@@ -11,11 +11,7 @@ class Person < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
 
-  validates_associated :maritalstatus
-  validates_associated :country
-  validates_associated :state
-  validates_associated :city
-
+ 
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
   end
