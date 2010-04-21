@@ -1,7 +1,7 @@
 Factory.define :address do |a|
   a.addresstype { |addresstype| addresstype.association(:addresstype, :name => 'Profesional') }
   a.location    Forgery(:address).street_address
-  a.po_box      Forgery(:address).province_abbrev
+  a.pobox      Forgery(:address).province_abbrev
   a.country     { |country| country.association(:country, :code => 484) }
   a.state       { |state| state.association(:state, :name => 'Chiapas') }
   a.city        { |city| city.association(:city, :name => 'Bochil') }
