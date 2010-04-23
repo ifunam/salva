@@ -1,0 +1,53 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 Domicilio
+
+  %div{ :class => 'span-18 last' }
+    %div{:class=> 'span-6'}
+      Addresstype
+    %div{:class=> 'span-6'}
+      Location
+    %div{:class=> 'span-6 last'}
+      Pobox
+    %div{:class=> 'span-6'}
+      = record.addresstype.name
+    %div{:class=> 'span-6'}
+      = record.location
+    %div{:class=> 'span-6 last'}
+      = record.pobox
+
+
+    %div{ :class => 'span-24 last' }
+      %div{:class=> 'span-6'}
+        Country
+      %div{:class=> 'span-6'}
+        State
+      %div{:class=> 'span-6'}
+        City
+      %div{:class=> 'span-6 last'}
+        Zipcode
+      %div{:class=> 'span-6'}
+        = record.country.name
+      %div{:class=> 'span-6'}
+        = record.state.name
+      %div{:class=> 'span-6'}
+        = record.city.name
+      %div{:class=> 'span-6 last'}
+        = record.zipcode
+
+    %div{ :class => 'span-24 last' }
+      %div{:class=> 'span-6'}
+        Phone
+      %div{:class=> 'span-6'}
+        Fax
+      %div{:class=> 'span-6'}
+        Movil
+      %div{:class=> 'span-6 last'}
+        Is postaddress
+      %div{:class=> 'span-6'}
+        = record.phone
+      %div{:class=> 'span-6'}
+        = record.fax
+      %div{:class=> 'span-6'}
+        = record.movil
+      %div{:class=> 'span-6 last'}
+        = if record.is_postaddress then "SI" else "NO" end

@@ -1,3 +1,9 @@
-%h2 Lista de usuarios
-= render :partial => @users
-= link_to 'Nuevo usuario', new_admin_user_path
+%div{ :class => 'span-24 section_left last' }
+  %h2 Lista de usuarios
+
+%div{:id => "collection", :class => "span-24 last"}
+  = render :partial => @users
+%div{:id => "collection", :class => "span-24 last"}
+  / = render :partial => "paginator"
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to 'Nuevo usuario', new_admin_user_path

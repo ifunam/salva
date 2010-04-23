@@ -1,0 +1,7 @@
+
+%div{:class => "span-24 last"}
+  = render :partial => 'users/record', :object => @user
+  = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
+  = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to content_tag(:span,'Back', :class => "ui-button-text"), admin_users_path, :class => "ui-button ui-button-text-only ui-widget ui-state-default "

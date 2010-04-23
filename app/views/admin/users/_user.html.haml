@@ -1,5 +1,14 @@
-%p
-  = user.login
-  ,
-  \#{user.email},
-  \#{link_to 'Modificar', edit_admin_user_path(user)}
+%div{:id => dom_id(user), :class => "span-24 section_left last"}
+
+  %div{ :class => 'span-24 last' }
+    %div{:class => "span-6"}
+      = user.fullname_or_login
+      <!-- user.person.fullname why doesnt work?-->
+    %div{:class => "span-6"}
+      = user.login
+    %div{:class => "span-6"}
+      = user.email
+    %div{:class => "span-3"}
+      #{link_to 'Modificar', edit_admin_user_path(user)}
+    %div{:class => "span-3 last"}
+      #{link_to 'Ver', admin_user_path(user)}
