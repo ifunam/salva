@@ -29,11 +29,12 @@ gem "vestal_versions"
 gem "awesome_nested_set"
 
 # Misc
-gem "carrierwave", "0.4.5" #:git => "git://github.com/ahaller/carrierwave.git", :branch => 'rails3'
+# gem "carrierwave", "0.4.5" #:git => "git://github.com/ahaller/carrierwave.git", :branch => 'rails3'
 gem "rmagick"
 gem "hpricot", "0.8.2"
 gem "ruby_parser", "2.0.4"
-gem "will_paginate", "3.0.pre"
+# gem "will_paginate", "3.0.pre"
+gem "will_paginate", "2.3.12"
 # gem "spreadsheet"
 # gem "prawn"
 gem "inherited_resources", "1.1.2"
