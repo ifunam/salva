@@ -22,6 +22,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    respond_with(@user = @user.update_attributes(params[:user]), :status => :updated, :location => admin_users_path)
+    @user.update_attributes(params[:user])
+    respond_with(@user, :status => :updated, :location => admin_users_path)
   end
 end

@@ -4,19 +4,24 @@
     = f.hidden_field :id
     = f.hidden_field :user_id
 
-  %div{ :class => 'span-18 last' }
+  %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}
       = f.label :firstname
     %div{:class=> 'span-6'}
       = f.label :lastname1
-    %div{:class=> 'span-6 last'}
+    %div{:class=> 'span-6'}
       = f.label :lastname2
+    %div{:class=> 'span-6 last'}
+      = f.label :title
     %div{:class=> 'span-6'}
       = f.text_field :firstname
     %div{:class=> 'span-6'}
       = f.text_field :lastname1
-    %div{:class=> 'span-6 last'}
+    %div{:class=> 'span-6'}
       = f.text_field :lastname2
+    %div{:class=> 'span-6 last'}
+      = f.text_field :title, :size => 5
+
 
   
   %div{ :class => 'span-12 last' }
@@ -49,3 +54,10 @@
       = f.collection_select :state_id, State  .all, :id, :name, {:prompt => true}
     %div{:class=> 'span-6 last'}
       = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+  %div{ :class => 'span-24 last' }
+    %h3 Fotografia
+    %div{:class=> 'span-6 last'}
+      = f.label :image
+    %div{:class=> 'span-6 last'}
+      - f.fields_for :image_attributes do |image_form|
+        = image_form.file_field :file, :size => 20

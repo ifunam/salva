@@ -10,7 +10,8 @@ class Person < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
   belongs_to :city
-
+  has_one :image, :as => :imageable, :dependent => :destroy
+  accepts_nested_attributes_for :image
  
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')

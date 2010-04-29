@@ -23,5 +23,13 @@ class User < ActiveRecord::Base
     user_incharge.person.fullname if !user_incharge.nil? and !user_incharge.person.nil?
   end
 
+  def avatar(version=:icon)
+    if !person.nil? and !person.image.nil?
+      person.image.file.url(version.to_sym)
+    else
+      "/images/avatar_missing_#{version}.png"
+    end
+  end
+
   accepts_nested_attributes_for :person, :address
 end

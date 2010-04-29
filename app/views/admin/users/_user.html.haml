@@ -1,10 +1,13 @@
 %div{:id => dom_id(user), :class => "span-24 section_left last"}
 
   %div{ :class => 'span-24 last' }
+    %div{:class => "span-2"}
+
+      = image_tag(user.avatar(:icon))
     %div{:class => "span-6"}
       = user.fullname_or_login
       <!-- user.person.fullname why doesnt work?-->
-    %div{:class => "span-6"}
+    %div{:class => "span-4"}
       = user.login
     %div{:class => "span-6"}
       = user.email
