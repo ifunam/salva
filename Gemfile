@@ -4,7 +4,8 @@ source :gemcutter
 gem "rails", "3.0.0.beta3"
 
 # Views, css and javascript
-gem "compass", "0.10.0.rc3", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
+gem "compass", "0.10.0.rc4"
+# :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
 gem "compass-jquery-plugin"
 gem "jquery_helpers", "0.0.0", :git => 'git://github.com/alecz/jquery-helpers-for-rails3.git', :branch => 'master'
 
@@ -29,7 +30,7 @@ gem "vestal_versions"
 gem "awesome_nested_set"
 
 # Misc
-# gem "carrierwave", "0.4.5" #:git => "git://github.com/ahaller/carrierwave.git", :branch => 'rails3'
+gem "carrierwave", "0.4.4", :git => "git://github.com/jnicklas/carrierwave.git", :branch => 'master'
 gem "rmagick"
 gem "hpricot", "0.8.2"
 gem "ruby_parser", "2.0.4"
