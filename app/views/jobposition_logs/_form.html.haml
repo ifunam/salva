@@ -1,0 +1,20 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 No. de trabajador y antiguedad
+
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :user_id
+
+  %div{ :class => 'span-18 last' }
+    %div{:class=> 'span-6'}
+      = f.label :worker_key
+    %div{:class=> 'span-6'}
+      = f.label :academic_years
+    %div{:class=> 'span-6 last'}
+      = f.label :administrative_years
+    %div{:class=> 'span-6'}
+      = f.text_field :worker_key, :size => 10
+    %div{:class=> 'span-6'}
+      = f.text_field :academic_years, :size => 3
+    %div{:class=> 'span-6 last'}
+      = f.text_field :administrative_years, :size => 3

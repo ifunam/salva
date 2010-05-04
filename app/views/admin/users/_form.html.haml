@@ -28,11 +28,10 @@
     = f.collection_select  :userstatus_id, Userstatus.all, :id, :name, {:prompt => true}
   %div{:class=> 'span-8 last'}
     = f.collection_select  :user_incharge_id, User.all, :id, :email, {:prompt => true}
-        
-    
-
 
 = f.fields_for :person_attributes, @user.person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form}
 = f.fields_for :address_attributes, @user.address do |address_form|
   = render :partial => 'addresses/form', :locals => { :f => address_form}
+= f.fields_for :jobposition_log_attributes, @user.jobposition_log do |jobposition_log_form|
+  = render :partial => 'jobposition_logs/form', :locals => { :f => jobposition_log_form}
