@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
   # FIXME: Check for bugs in url method CarrierWave
-  # Dont try it at home!!!
+  # Don't try it at home!!!
   def url(version)
     @versions[version].file.file.sub(/#{Rails.root.to_s}/,'')
   end 

@@ -1,0 +1,6 @@
+- if errors.any?
+  %div{:id => "errorExplanation"}
+    %h2=pluralize(errors.count, "error") + ' prohibited this record from being saved:'
+    %ul
+      - errors.full_messages.each do |msg|
+        %li= msg

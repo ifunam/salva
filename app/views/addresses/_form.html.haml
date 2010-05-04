@@ -5,19 +5,19 @@
     = f.hidden_field :id
     = f.hidden_field :user_id
 
-  %div{ :class => 'span-18 last' }
+  %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}
       = f.label :addresstype_id
-    %div{:class=> 'span-6'}
+    %div{:class=> 'span-12'}
       = f.label :location
     %div{:class=> 'span-6 last'}
       = f.label :pobox
     %div{:class=> 'span-6'}
       = f.collection_select :addresstype_id, Addresstype.all, :id, :name, {:prompt => true}
-    %div{:class=> 'span-6'}
-      = f.text_area :location, :size => '30x4'
+    %div{:class=> 'span-12'}
+      = f.text_area :location, :size => '50x3'
     %div{:class=> 'span-6 last'}
-      = f.text_field :pobox
+      = f.text_field :pobox, :size => 20
 
   %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}
@@ -47,11 +47,11 @@
     %div{:class=> 'span-6 last'}
       = f.label :is_postaddress
     %div{:class=> 'span-6'}
-      = f.text_field :phone
+      = f.text_field :phone, :size => 15
     %div{:class=> 'span-6'}
-      = f.text_field :fax
+      = f.text_field :fax, :size => 15
     %div{:class=> 'span-6'}
-      = f.text_field :movil
+      = f.text_field :movil, :size => 15
     %div{:class=> 'span-6 last'}
       = f.radio_button :is_postaddress, true
       Sí

@@ -14,11 +14,11 @@
     %div{:class=> 'span-6 last'}
       = f.label :title
     %div{:class=> 'span-6'}
-      = f.text_field :firstname
+      = f.text_field :firstname, :size => 15
     %div{:class=> 'span-6'}
-      = f.text_field :lastname1
+      = f.text_field :lastname1, :size => 15
     %div{:class=> 'span-6'}
-      = f.text_field :lastname2
+      = f.text_field :lastname2, :size => 15
     %div{:class=> 'span-6 last'}
       = f.text_field :title, :size => 5
 
@@ -47,7 +47,7 @@
     %div{:class=> 'span-6 last'}
       = f.label :city_id
     %div{:class=> 'span-6'}
-      = f.text_field :dateofbirth
+      = f.text_field :dateofbirth, :size => 10
     %div{:class=> 'span-6'}
       = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}
     %div{:class=> 'span-6'}
@@ -55,7 +55,7 @@
     %div{:class=> 'span-6 last'}
       = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
   %div{ :class => 'span-24 last' }
-    %h3 Fotografia
+    %h3 Fotografía
     %div{:class=> 'span-6 last'}
       = f.label :image
     %div{:class=> 'span-6 last'}

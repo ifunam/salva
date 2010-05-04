@@ -4,7 +4,7 @@
 // To configure blueprint, edit the partials/base.sass file.
 @import "partials/base";
 
-// Import all the default blueprint modules so that we can access their mixins.
+//Import all the default blueprint modules so that we can access their mixins.
 @import "blueprint";
 
 // Import the non-default scaffolding module.
@@ -26,8 +26,7 @@ body.bp {
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
 }
 
-form.bp {
-  @include blueprint-form; }
+ 
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
 body.two-col {
