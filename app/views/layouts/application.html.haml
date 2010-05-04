@@ -4,11 +4,17 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
     %title&= yield(t(:title)) 
 
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
+    = stylesheet_link_tag 'screen', :media => 'screen, projection'
+    = stylesheet_link_tag 'print', :media => 'print'
     /[if lt IE 8]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'application.css', :media => 'screen, projection'
+      = stylesheet_link_tag 'ie', :media => 'screen, projection'
+    = stylesheet_link_tag 'application', :media => 'screen, projection'
+    = stylesheet_link_tag 'jquery.ui/themes/base/jquery.ui.all'
+    = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.1.custom'
+
+    = javascript_include_tag 'jquery-1.4.2'
+    = javascript_include_tag 'jquery.ui/jquery-ui-1.8.1.custom'
+    = javascript_include_tag 'application'
 
   %body
     = render :partial => 'layouts/header'
