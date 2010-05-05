@@ -11,10 +11,13 @@
     = stylesheet_link_tag 'application', :media => 'screen, projection'
     = stylesheet_link_tag 'jquery.ui/themes/base/jquery.ui.all'
     = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.1.custom'
+    = stylesheet_link_tag 'jquery.autocomplete/jquery.autocomplete'
 
     = javascript_include_tag 'jquery-1.4.2'
     = javascript_include_tag 'jquery.ui/jquery-ui-1.8.1.custom'
+    = javascript_include_tag 'jquery.autocomplete/jquery.autocomplete.min'
     = javascript_include_tag 'application'
+
 
   %body
     = render :partial => 'layouts/header'

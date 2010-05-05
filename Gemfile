@@ -17,7 +17,7 @@ gem "jquery_helpers", "0.0.0", :git => 'git://github.com/alecz/jquery-helpers-fo
 
 # Searching and tagging
 gem "libxml-ruby"
-gem "acts_as_sorl_reloaded", "0.0.0", :git => "git://github.com/dcrec1/acts_as_solr_reloaded.git", :branch => 'master'
+# gem "acts_as_sorl_reloaded", "0.0.0", :git => "git://github.com/dcrec1/acts_as_solr_reloaded.git", :branch => 'master'
 gem "acts-as-taggable-on"
 
 # Security

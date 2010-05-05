@@ -32,6 +32,9 @@ class Institution < ActiveRecord::Base
   has_many :conference_institutions
   has_many :genericworks
 
+  acts_as_tagged_search :fields => [:name]
+
+
   def as_text
     values = [name, abbrev]
     values << institution.name unless institution.name.nil?

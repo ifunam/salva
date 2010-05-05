@@ -10,4 +10,22 @@ $(document).ready(function(){
        success: function(data) { $('#jobpositioncategories_select').html(data); }
     });
    });
+
+    $('#autocomplete_institution_name').focus(function(){
+       autocomplete_for_institution_name();
+    });
+
+
 });
+
+function autocomplete_for_institution_name() {
+  $('#autocomplete_institution_name').autocomplete("/institutions/autocomplete_name", { mustMatch: true });
+  $('#autocomplete_institution_name').result(function(event, data, formatted) {
+      var hidden = $('#user_jobposition_attributes_institution_id');
+      hidden.val(data[1]);
+      $.ajax({
+          url: "/institutions/" + data[1],
+          success: function(request) { $("#institution_name").html(request); }
+      });
+  });
+}

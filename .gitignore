@@ -29,3 +29,6 @@ public/stylesheets/print.css
 public/stylesheets/screen.css
 public/uploads
 uploads
+solr/
+vendor/plugins/acts_as_solr_reloaded/
+vendor/plugins/acts_as_tagged_search/

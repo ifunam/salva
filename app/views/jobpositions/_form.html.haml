@@ -21,8 +21,9 @@
     %div{:class=> 'span-6'}
       = f.collection_select :contracttype_id, Contracttype.all, :id, :name, {:prompt => true}
     %div{:class=> 'span-6 last'}
-      = f.collection_select :institution_id, Institution.all, :id, :name, {:prompt => true}
-
+      %div{:id => 'institution_name'}
+        = render :partial => 'institutions/autocomplete_name'
+      = f.hidden_field :institution_id
 
   %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}
