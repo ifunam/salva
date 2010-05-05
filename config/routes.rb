@@ -1,4 +1,6 @@
 Salva::Application.routes.draw do |map|
+  get "jobpositioncategories/filtered_select"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

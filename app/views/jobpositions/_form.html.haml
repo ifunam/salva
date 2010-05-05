@@ -1,0 +1,43 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 Categoría
+
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :user_id
+
+  %div{ :class => 'span-24 last' }
+    %div{:class=> 'span-6'}
+      = f.label :jobpositiontype
+    %div{:class=> 'span-6'}
+      = f.label :jobpositioncategory
+    %div{:class=> 'span-6'}
+      = f.label :contracttype
+    %div{:class=> 'span-6 last'}
+      = f.label :institution
+    %div{:class=> 'span-6'}
+      = render :partial => 'jobpositiontypes/filter_select'
+    %div{:class=> 'span-6', :id => 'jobpositioncategories_select'}
+      = render :partial => 'jobpositioncategories/select'
+    %div{:class=> 'span-6'}
+      = f.collection_select :contracttype_id, Contracttype.all, :id, :name, {:prompt => true}
+    %div{:class=> 'span-6 last'}
+      = f.collection_select :institution_id, Institution.all, :id, :name, {:prompt => true}
+
+
+  %div{ :class => 'span-24 last' }
+    %div{:class=> 'span-6'}
+      = f.label :startmonth
+    %div{:class=> 'span-6'}
+      = f.label :startyear
+    %div{:class=> 'span-6'}
+      = f.label :endmonth
+    %div{:class=> 'span-6 last'}
+      = f.label :endyear
+    %div{:class=> 'span-6'}
+      = f.text_field :startmonth, :size => 2
+    %div{:class=> 'span-6'}
+      = f.text_field :startyear, :size => 2
+    %div{:class=> 'span-6'}
+      = f.text_field :endmonth, :size => 2
+    %div{:class=> 'span-6 last'}
+      = f.text_field :endyear, :size => 2

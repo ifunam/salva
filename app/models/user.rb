@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   has_one :address
   has_one :jobposition
   has_one :jobposition_log
+  has_one :user_adscription
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log
+  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log, :user_adscription
 
   def authorname
     if !author_name.to_s.strip.empty?

@@ -12,4 +12,10 @@ class Jobpositioncategory < ActiveRecord::Base
   validates_associated :jobpositiontype
   validates_associated :roleinjobposition
   validates_associated :jobpositionlevel
+
+
+ # scope :find_by_jobpositiontype_id,  where("jobpositioncategories.jobpositiontype_id = 1").order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
+  def name
+   [roleinjobposition.name, (jobpositionlevel.nil? ? nil : jobpositionlevel.name) ].compact.join(', ')
+  end
 end
