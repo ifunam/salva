@@ -5,5 +5,6 @@
   = render :partial => @users
 %div{:id => "collection", :class => "span-24 last"}
   / = render :partial => "paginator"
+  = will_paginate @users 
 %div{ :class => 'span-24 buttons_left last' }
   = link_to 'Nuevo usuario', new_admin_user_path

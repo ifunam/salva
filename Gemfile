@@ -34,8 +34,7 @@ gem "carrierwave", "0.4.4", :git => "git://github.com/jnicklas/carrierwave.git",
 gem "rmagick"
 gem "hpricot", "0.8.2"
 gem "ruby_parser", "2.0.4"
-# gem "will_paginate", "3.0.pre"
-gem "will_paginate", "2.3.12"
+gem "will_paginate", "3.0.pre", :git => "http://github.com/mislav/will_paginate.git", :branch => 'rails3'
 # gem "spreadsheet"
 # gem "prawn"
 gem "inherited_resources", "1.1.2"
