@@ -29,6 +29,9 @@
   %div{:class=> 'span-8 last'}
     = f.collection_select  :user_incharge_id, User.all, :id, :email, {:prompt => true}
 
+  = f.fields_for :user_group_attributes, @user.user_group do |user_group_form|
+    = render :partial => 'user_groups/form', :locals => { :f => user_group_form}
+
 = f.fields_for :person_attributes, @user.person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form}
 = f.fields_for :address_attributes, @user.address do |address_form|

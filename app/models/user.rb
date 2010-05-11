@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   has_one :address
   has_one :jobposition
   has_one :jobposition_log
-  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log
+  has_one :user_group
+
+  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log, :user_group
 
   def authorname
     if !author_name.to_s.strip.empty?
@@ -36,5 +38,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  
 end
