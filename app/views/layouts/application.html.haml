@@ -16,6 +16,7 @@
     = javascript_include_tag 'jquery-1.4.2'
     = javascript_include_tag 'jquery.ui/jquery-ui-1.8.1.custom'
     = javascript_include_tag 'jquery.autocomplete/jquery.autocomplete.min'
+    = javascript_include_tag 'rails'
     = javascript_include_tag 'application'
 
 
@@ -23,4 +24,5 @@
     = render :partial => 'layouts/header'
     %div{:class =>'container'}
       = yield :layout
+    %div{:id => 'dialog'}
     = render :partial => 'layouts/footer'
