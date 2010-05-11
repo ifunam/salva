@@ -2,6 +2,7 @@ Salva::Application.routes.draw do |map|
   get "jobpositioncategories/filtered_select"
   get "institutions/autocomplete_name"
   resources :institutions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

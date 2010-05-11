@@ -37,5 +37,3 @@
   = render :partial => 'jobposition_logs/form', :locals => { :f => jobposition_log_form}
 = f.fields_for :jobposition_attributes, @user.jobposition do |jobposition_form|
   = render :partial => 'jobpositions/form', :locals => { :f => jobposition_form}
-// = f.fields_for :user_adscription_attributes, @user.user_adscription do |user_adscription_form|
-//  = render :partial => 'user_adscriptions/form', :locals => { :f => user_adscription_form}

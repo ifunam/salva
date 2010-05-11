@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
 
   has_one :person
+
+  # These relationships will be changed to has_many
   has_one :address
   has_one :jobposition
   has_one :jobposition_log
-  has_one :user_adscription
-
-  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log, :user_adscription
+  accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log
 
   def authorname
     if !author_name.to_s.strip.empty?

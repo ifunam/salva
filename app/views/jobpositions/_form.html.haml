@@ -42,3 +42,5 @@
       = f.text_field :endmonth, :size => 2
     %div{:class=> 'span-6 last'}
       = f.text_field :endyear, :size => 2
+    = f.fields_for :user_adscription_attributes do |user_adscription_form|
+      = render :partial => 'user_adscriptions/form', :locals => { :f => user_adscription_form}
