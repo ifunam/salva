@@ -27,7 +27,7 @@
   %div{:class=> 'span-8'}
     = f.collection_select  :userstatus_id, Userstatus.all, :id, :name, {:prompt => true}
   %div{:class=> 'span-8 last'}
-    = f.collection_select  :user_incharge_id, User.all, :id, :email, {:prompt => true}
+    = f.collection_select  :user_incharge_id, User.find_all_by_fullname_asc.activated, :id, :fullname_or_login, {:prompt => true}
 
   = f.fields_for :user_group_attributes, @user.user_group do |user_group_form|
     = render :partial => 'user_groups/form', :locals => { :f => user_group_form}

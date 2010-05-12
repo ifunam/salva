@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
 
   has_one :person
+  
+  scope :activated, where(:userstatus_id => 2)
+  scope :disabled, where('userstatus_id != 2')
+  
+  scope :find_all_by_fullname_asc, includes(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
 
   # These relationships will be changed to has_many
   has_one :address
@@ -26,8 +31,12 @@ class User < ActiveRecord::Base
      person.nil? ? login : person.fullname
   end
 
+  def fullname_or_email
+     person.nil? ? email : person.fullname
+  end
+
   def user_incharge_fullname
-    user_incharge.person.fullname if !user_incharge.nil? and !user_incharge.person.nil?
+    user_incharge.fullname_or_login
   end
 
   def avatar(version=:icon)
