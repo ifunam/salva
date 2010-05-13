@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  
   validates_presence_of :firstname, :lastname1, :dateofbirth, :country_id
   validates_numericality_of :country_id, :greater_than => 0, :only_integer => true
   validates_numericality_of :maritalstatus_id, :city_id, :state_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -24,4 +25,11 @@ class Person < ActiveRecord::Base
   def placeofbirth
     [self.city.name,  self.state.name, self.country.name].compact.join(', ')
   end
+  
+  index 'for_autocomplete', 'pg_catalog.spanish' do
+      firstname
+      lastname1
+      lastname2
+  end
+  
 end

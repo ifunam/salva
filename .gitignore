@@ -32,3 +32,4 @@ uploads
 solr/
 vendor/plugins/acts_as_solr_reloaded/
 vendor/plugins/acts_as_tagged_search/
+index/

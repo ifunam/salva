@@ -32,7 +32,9 @@ class Institution < ActiveRecord::Base
   has_many :conference_institutions
   has_many :genericworks
 
-  acts_as_tagged_search :fields => [:name]
+  index 'for_autocomplete', 'pg_catalog.spanish' do
+    name
+  end
 
   def as_text
     values = [name, abbrev]

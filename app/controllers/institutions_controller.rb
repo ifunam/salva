@@ -3,9 +3,9 @@ class InstitutionsController < InheritedResources::Base
   respond_to :js, :only => [:show, :new]
 
   def autocomplete_name
-    @records = Institution.tagged_search params[:q]
+    @records = Institution.search_for_autocomplete params[:q]
     @items= @records.collect do |record|
-      [record[:name], record[:id]].join('|')
+      [record.name, record.id].join('|')
     end
     render :text => @items.join("\n")
   end
