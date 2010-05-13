@@ -18,6 +18,10 @@ $(document).ready(function(){
 	$('#new_institution').click(function() {
 		new_institution_dialog();
 	});
+
+        $('#autocomplete_user_fullname').focus(function(){
+		autocomplete_for_user_fullname();
+	});
 	
 });
 
@@ -32,6 +36,7 @@ function autocomplete_for_institution_name() {
 		});
 	});
 }
+
 
 function new_institution_dialog() {
 	$("#dialog").dialog({
@@ -54,4 +59,16 @@ function new_institution_dialog() {
 	});
 	return false;
 
+}
+
+function autocomplete_for_user_fullname() {
+	$('#autocomplete_user_fullname').autocomplete("/admin/users/autocomplete_fullname", { mustMatch: true });
+	$('#autocomplete_user_fullname').result(function(event, data, formatted) {
+		var hidden = $('#user_user_incharge_id');
+		hidden.val(data[1]);
+		$.ajax({
+			url: "/admin/users/" + data[1] + ".js",
+			success: function(request) { $("#user_fullname").html(request); }
+		});
+	});
 }
