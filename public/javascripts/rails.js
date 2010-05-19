@@ -23,18 +23,19 @@ jQuery(function ($) {
          */
         callRemote: function () {
             var el      = this,
-                data    = el.is('form') ? el.serializeArray() : [],
                 method  = el.attr('method') || el.attr('data-method') || 'GET',
-                url     = el.attr('action') || el.attr('href');
+                url     = el.attr('action') || el.attr('href'),
+                dataType  = el.attr('data-type')  || 'script';
 
             if (url === undefined) {
               throw "No URL specified for remote call (action or href must be present).";
             } else {
                 if (el.triggerAndReturn('ajax:before')) {
+                    var data = el.is('form') ? el.serializeArray() : [];
                     $.ajax({
                         url: url,
                         data: data,
-                        dataType: 'script',
+                        dataType: dataType,
                         type: method.toUpperCase(),
                         beforeSend: function (xhr) {
                             el.trigger('ajax:loading', xhr);
@@ -116,7 +117,7 @@ jQuery(function ($) {
         });
     });
 
-    $(disable_with_form_selector).live('ajax:after', function () {
+    $(disable_with_form_selector).live('ajax:complete', function () {
         $(this).find(disable_with_input_selector).each(function () {
             var input = $(this);
             input.removeAttr('disabled')
@@ -124,4 +125,3 @@ jQuery(function ($) {
         });
     });
 });
-
