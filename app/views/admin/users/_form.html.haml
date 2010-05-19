@@ -28,7 +28,11 @@
     = f.collection_select  :userstatus_id, Userstatus.all, :id, :name, {:prompt => true}
   %div{:class=> 'span-8 last'}    
     %div{:id => 'user_fullname'}
-      = render :partial => 'admin/users/autocomplete_fullname'
+      - if f.object.new_record?
+        = render :partial => 'admin/users/autocomplete_fullname'
+      - else
+        = render :partial => 'admin/users/record_show', :object => f.object.user_incharge
+      
     = f.hidden_field :user_incharge_id
 
   = f.fields_for :user_group_attributes, @user.user_group do |user_group_form|
@@ -38,7 +42,5 @@
   = render :partial => 'people/form', :locals => { :f => person_form}
 = f.fields_for :address_attributes, @user.address do |address_form|
   = render :partial => 'addresses/form', :locals => { :f => address_form}
-= f.fields_for :jobposition_log_attributes, @user.jobposition_log do |jobposition_log_form|
-  = render :partial => 'jobposition_logs/form', :locals => { :f => jobposition_log_form}
 = f.fields_for :jobposition_attributes, @user.jobposition do |jobposition_form|
   = render :partial => 'jobpositions/form', :locals => { :f => jobposition_form}

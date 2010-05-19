@@ -4,4 +4,5 @@
   = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
   = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 %div{ :class => 'span-24 buttons_left last' }
-  = link_to content_tag(:span,'Back', :class => "ui-button-text"), admin_users_path, :class => "ui-button ui-button-text-only ui-widget ui-state-default "
+  = link_to :edit, edit_admin_user_path(:id => @user.id), :class => "ui-state-default ui-corner-all ui-button"
+  = link_to :back, admin_users_path, :class => "ui-state-default ui-corner-all ui-button"

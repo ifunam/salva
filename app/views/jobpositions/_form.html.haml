@@ -17,12 +17,18 @@
     %div{:class=> 'span-6'}
       = render :partial => 'jobpositiontypes/filter_select'
     %div{:class=> 'span-6', :id => 'jobpositioncategories_select'}
-      = render :partial => 'jobpositioncategories/select'
+      - if f.object.nil? 
+        = render :partial => 'jobpositioncategories/select'
+      - else
+        = f.object.jobpositioncategory.name
     %div{:class=> 'span-6'}
       = f.collection_select :contracttype_id, Contracttype.all, :id, :name, {:prompt => true}
     %div{:class=> 'span-6 last'}
       %div{:id => 'institution_name'}
-        = render :partial => 'institutions/autocomplete_name'
+        - if f.object.nil? 
+          = render :partial => 'institutions/autocomplete_name'
+        - else
+          = render :partial => 'institutions/record_show', :object => f.object.institution
       = f.hidden_field :institution_id
 
   %div{ :class => 'span-24 last' }
@@ -35,12 +41,12 @@
     %div{:class=> 'span-6 last'}
       = f.label :endyear
     %div{:class=> 'span-6'}
-      = f.text_field :startmonth, :size => 2
+      = select_month(Date.today, :field_name => 'startmonth', :prefix => "user[jobposition_attributes]")
     %div{:class=> 'span-6'}
-      = f.text_field :startyear, :size => 2
+      = f.text_field :startyear, :size => 2, :maxlength => 4
     %div{:class=> 'span-6'}
-      = f.text_field :endmonth, :size => 2
+      = select_month(Date.today, :field_name => 'endmonth', :prefix => "user[jobposition_attributes]")
     %div{:class=> 'span-6 last'}
-      = f.text_field :endyear, :size => 2
+      = f.text_field :endyear, :size => 2, :maxlength => 4
     = f.fields_for :user_adscription_attributes do |user_adscription_form|
       = render :partial => 'user_adscriptions/form', :locals => { :f => user_adscription_form}

@@ -25,10 +25,10 @@
     %div{:class=> 'span-6 last'}
       = f.label :endyear
     %div{:class=> 'span-6'}
-      = f.text_field :startmonth, :size => 2
+      = select_month(Date.today, :field_name => 'startmonth', :prefix => "user[jobposition_attributes][user_adscription_attributes]")
     %div{:class=> 'span-6'}
-      = f.text_field :startyear, :size => 4
+      = f.text_field :startyear, :size => 4, :maxlength => 4
     %div{:class=> 'span-6'}
-      = f.text_field :endmonth, :size => 2
+      = select_month(Date.today, :field_name => 'endmonth', :prefix => "user[jobposition_attributes][user_adscription_attributes]")
     %div{:class=> 'span-6 last'}
-      = f.text_field :endyear, :size => 4
+      = f.text_field :endyear, :size => 4, :maxlength => 4

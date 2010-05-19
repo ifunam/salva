@@ -28,9 +28,9 @@
     %div{:class=> 'span-6 last'}
       = f.label :maritalstatus_id
     %div{:class=> 'span-6'}
-      = f.radio_button :gender, false
+      = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
-      \#{f.radio_button :gender, true} Mascúlino
+      \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Mascúlino
     %div{:class=> 'span-6 last'}
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true}
 

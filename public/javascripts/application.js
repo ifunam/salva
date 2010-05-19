@@ -2,7 +2,10 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function(){
-	$('#user_person_attributes_dateofbirth').datepicker({ changeYear: true, changeMonth: true, yearRange: '1910:1995', dateFormat: 'dd-mm-yy' });
+        current_year = new Date().getFullYear();
+        start_year = current_year - 100;
+        end_year = current_year - 15;
+	$('#user_person_attributes_dateofbirth').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
 
 	$('#filter_jobpositiontype_id').change(function(){
 		$.ajax({
@@ -19,7 +22,7 @@ $(document).ready(function(){
 		new_institution_dialog();
 	});
 
-    $('#autocomplete_user_fullname').focus(function(){
+        $('#autocomplete_user_fullname').focus(function(){
 		autocomplete_for_user_fullname();
 	});
 	
