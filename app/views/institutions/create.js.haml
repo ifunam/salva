@@ -1,4 +1,6 @@
-=raw "var hidden = $('#user_jobposition_attributes_institution_id');"
-=raw "hidden.val(#{@institution.id});"
-=raw "$('#institution_name').html('#{@institution.name}');"
-=raw "$('#dialog').dialog('close');"
+- # Fix It: Move this javascript chunk into application.js
+= (                                                                        |
+  "var hidden = $('#user_jobposition_attributes_institution_id');" +       |
+  "hidden.val(#{@institution.id});" +                                      |
+  "$('#institution_name').html('#{@institution.name}');" +                 |
+  "$('#dialog').dialog('close')" )                                         |
