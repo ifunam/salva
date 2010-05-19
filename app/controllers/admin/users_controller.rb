@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   respond_to :html, :except => [:autocomplete_fullname]
-  respond_to :js, :only => [:autocomplete_fullname, :show]
+  respond_to :js, :only => [:autocomplete_fullname, :autocomplete_form, :show]
   def index
     respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 15))
   end
@@ -33,5 +33,9 @@ class Admin::UsersController < ApplicationController
       [record.fullname, record.user_id].join('|')
     end
     render :text => @items.join("\n")
+  end
+  
+  def autocomplete_form
+    render :action => 'autocomplete_form.js'
   end
 end

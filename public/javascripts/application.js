@@ -19,10 +19,17 @@ $(document).ready(function(){
 		new_institution_dialog();
 	});
 
-        $('#autocomplete_user_fullname').focus(function(){
+    $('#autocomplete_user_fullname').focus(function(){
 		autocomplete_for_user_fullname();
 	});
 	
+	$("#institution_autocomplete_form").click(function() {
+	  institution_autocomplete_form(); 
+	});
+	
+	$("#user_autocomplete_form").click(function() {
+	  user_autocomplete_form(); 
+	});
 });
 
 function autocomplete_for_institution_name() {
@@ -37,6 +44,12 @@ function autocomplete_for_institution_name() {
 	});
 }
 
+function institution_autocomplete_form() {
+	$.ajax({
+	 	url: "/institutions/autocomplete_form", 
+		success: function(request) { $("#institution_name").html(request); }
+	 });
+}
 
 function new_institution_dialog() {
 	$("#dialog").dialog({
@@ -58,7 +71,6 @@ function new_institution_dialog() {
 		}
 	});
 	return false;
-
 }
 
 function autocomplete_for_user_fullname() {
@@ -71,4 +83,11 @@ function autocomplete_for_user_fullname() {
 			success: function(request) { $("#user_fullname").html(request); }
 		});
 	});
+}
+
+function user_autocomplete_form() {
+	$.ajax({
+	 	url: "/admin/users/autocomplete_form", 
+		success: function(request) { $("#user_fullname").html(request); }
+	 });
 }
