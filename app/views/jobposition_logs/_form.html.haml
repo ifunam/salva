@@ -5,9 +5,11 @@
     = f.hidden_field :id
     = f.hidden_field :user_id
 
-  %div{ :class => 'span-18 last' }
+  %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}
       = f.label :worker_key
+    %div{:class=> 'span-6'}
+      = f.label :worker_number
     %div{:class=> 'span-6'}
       = f.label :academic_years
     %div{:class=> 'span-6 last'}
@@ -15,6 +17,8 @@
     %div{:class=> 'span-6'}
       = f.text_field :worker_key, :size => 10
     %div{:class=> 'span-6'}
-      = f.text_field :academic_years, :size => 3
+      = f.text_field :worker_number, :size => 10
+    %div{:class=> 'span-6'}
+      = f.text_field :academic_years, :size => 2, :maxlength => 2
     %div{:class=> 'span-6 last'}
-      = f.text_field :administrative_years, :size => 3
+      = f.text_field :administrative_years, :size => 2, :maxlength => 2
