@@ -80,11 +80,14 @@ function autocomplete_for_user_fullname() {
 	$('#autocomplete_user_fullname').autocomplete("/admin/users/autocomplete_fullname", { mustMatch: true });
 	$('#autocomplete_user_fullname').result(function(event, data, formatted) {
 		var hidden = $('#user_user_incharge_id');
-		hidden.val(data[1]);
-		$.ajax({
-			url: "/admin/users/" + data[1] + ".js",
-			success: function(request) { $("#user_fullname").html(request); }
-		});
+		if (data != undefined) {
+			hidden.val(data[1]);
+			$.ajax({
+				url: "/admin/users/" + data[1] + ".js",
+				success: function(request) { $("#user_fullname").html(request); }
+			});
+		}
+		
 	});
 }
 
