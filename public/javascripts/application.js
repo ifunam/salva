@@ -14,7 +14,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#autocomplete_institution_name').focus(function(){
+	$('#autocomplete_institution_name').change(function(){
 		autocomplete_for_institution_name();
 	});
 	
@@ -22,7 +22,7 @@ $(document).ready(function(){
 		new_institution_dialog();
 	});
 
-        $('#autocomplete_user_fullname').focus(function(){
+        $('#autocomplete_user_fullname').change(function(){
 		autocomplete_for_user_fullname();
 	});
 	
