@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created, :location => admin_users_path)
+    respond_with(@user = User.create(params[:user]), :status => :created)
   end
 
   def edit
@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated, :location => admin_users_path)
+    respond_with(@user, :status => :updated)
   end
 
   def autocomplete_fullname

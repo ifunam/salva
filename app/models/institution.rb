@@ -31,10 +31,7 @@ class Institution < ActiveRecord::Base
   has_many :institutional_activities
   has_many :conference_institutions
   has_many :genericworks
-
-  index 'for_autocomplete', 'pg_catalog.spanish' do
-    name
-  end
+  scope_by_soundex_matcher :search_for_autocomplete, :fields => [:name, :abbrev]
 
   def as_text
     values = [name, abbrev]

@@ -25,11 +25,7 @@ class Person < ActiveRecord::Base
   def placeofbirth
     [self.city.name,  self.state.name, self.country.name].compact.join(', ')
   end
-  
-  index 'for_autocomplete', 'pg_catalog.spanish' do
-      firstname
-      lastname1
-      lastname2
-  end
+
+  scope_by_soundex_matcher :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
   
 end

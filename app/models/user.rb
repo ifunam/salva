@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def user_incharge_fullname
-    user_incharge.fullname_or_login
+    user_incharge.nil? ? '' : user_incharge.fullname_or_login
   end
 
   def avatar(version=:icon)
