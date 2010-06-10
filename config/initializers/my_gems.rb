@@ -12,3 +12,4 @@ require 'texticle'
 require 'texticle/full_text_index'
 require 'texticle/parser'
 ActiveRecord::Base.extend(Texticle)
+require 'pg_scope_by_soundex'
