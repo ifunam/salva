@@ -1,25 +1,25 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
-
-gem "rails", "3.0.0.beta3"
+ 
+gem "rails", :git => 'git://github.com/rails/rails.git', :branch => 'master'
 
 # Views, css and javascript
-gem "compass", "0.10.0.rc4"
-# :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
+gem "compass", "0.10.2"
 gem "compass-jquery-plugin"
-gem "jquery_helpers", "0.0.0", :git => 'git://github.com/alecz/jquery-helpers-for-rails3.git', :branch => 'master'
+gem "show_for", :git => "http://github.com/plataformatec/show_for.git", :branch => 'master'
 
 # Authentication
-# gem "authlogic", "2.1.3", :git => "git://github.com/binarylogic/authlogic.git", :branch => 'master'
+gem "devise", :git => 'git://github.com/plataformatec/devise.git', :branch => 'master'
 
 # Authorization
-# gem "declarative_authorization"
+gem "declarative_authorization"
 
 # Searching and tagging
 gem "libxml-ruby"
-# gem "acts_as_sorl_reloaded", "0.0.0", :git => "git://github.com/dcrec1/acts_as_solr_reloaded.git", :branch => 'master'
 gem "acts-as-taggable-on"
 gem "tsearch", :require => 'texticle'
+gem "pg_scope_by_soundex"
+
 # Security
 gem "ssl_requirement"
 
@@ -35,6 +35,8 @@ gem "rmagick"
 gem "hpricot", "0.8.2"
 gem "ruby_parser", "2.0.4"
 gem "will_paginate", "3.0.pre", :git => "http://github.com/mislav/will_paginate.git", :branch => 'rails3'
+gem "attribute_normalizer", :git => "http://github.com/mdeering/attribute_normalizer.git"
+
 # gem "spreadsheet"
 # gem "prawn"
 gem "inherited_resources", "1.1.2"
