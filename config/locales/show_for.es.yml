@@ -1,0 +1,5 @@
+es:
+  show_for:
+    blank: "No especificado"
+    "yes": "Sí"
+    "no": "No"

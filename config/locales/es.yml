@@ -1,0 +1,28 @@
+es:
+  activemodel:
+    models:
+      user: Usuario
+      person: Información personal
+      group: Grupo
+    attributes:
+      user:
+        login: Usuario
+        password: Contraseña
+        password_confirmation: Confirmación de la contraseña
+        userstatus: Estado
+        email: Correo electrónico
+        user_incharge: Responsable académico
+      user_group:
+        group: Grupo
+      person:
+        firstname: Nombre(s)
+        lastname1: Apellido paterno
+        lastname2: Apellido materno
+        title: Título
+        gender: Género
+        maritalstatus: Estado civil
+        birthdate: Fecha de nacimiento
+        country: País
+        state: Estado
+        city: Ciudad
+        

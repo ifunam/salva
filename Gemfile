@@ -12,7 +12,7 @@ gem "show_for", :git => "http://github.com/plataformatec/show_for.git", :branch 
 gem "devise", :git => 'git://github.com/plataformatec/devise.git', :branch => 'master'
 
 # Authorization
-gem "declarative_authorization"
+#gem "declarative_authorization"
 
 # Searching and tagging
 gem "libxml-ruby"

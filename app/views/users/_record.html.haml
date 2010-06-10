@@ -1,19 +1,9 @@
 %div{ :class => 'span-24 section_left last' }
-  %h2 Cuenta de usuario
+  %h2= "Cuenta del usuario"
+  - show_for record do |u|
+    = u.attribute :login
+    = u.attribute :email
+    = u.association :userstatus, :using => :name
+    = u.association :user_incharge, :using => :fullname_or_email
 
-  %div{:class=> 'span-6'}
-    Login
-  %div{:class=> 'span-6'}
-    Email
-  %div{:class=> 'span-6'}
-    Status
-  %div{:class=> 'span-6 last'}
-    User in charge
-  %div{:class=> 'span-6'}
-    = record.login
-  %div{:class=> 'span-6'}
-    = record.email
-  %div{:class=> 'span-6'}
-    = record.userstatus.name
-  %div{:class=> 'span-6 last'}
-    = record.user_incharge_fullname
+ 

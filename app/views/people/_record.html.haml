@@ -1,43 +1,12 @@
 %div{ :class => 'span-24 section_left last' }
   %h2 Información general
-
-  %div{:class=> 'span-5'}
-    Name
-  %div{:class=> 'span-5'}
-    Lastname1
-  %div{:class=> 'span-5'}
-    Lastname2
-  %div{:class=> 'span-5'}
-    Gender
-  %div{:class=> 'span-4 last'}
-    Maritalstatus
-  %div{:class=> 'span-5'}
-    = record.firstname
-  %div{:class=> 'span-5'}
-    = record.lastname1
-  %div{:class=> 'span-5'}
-    = record.lastname2
-  %div{:class=> 'span-5'}
-    = if record.gender then "Masculino" else "Femenino" end
-  %div{:class=> 'span-4 last'}
-    = record.maritalstatus.name
-
-  %div{ :class => 'span-20 last' }
-    %h3 Fecha y lugar de nacimiento
-    %div{:class=> 'span-5'}    
-      Birthdate
-    %div{:class=> 'span-5'}
-      Contry
-    %div{:class=> 'span-5'}
-      State
-    %div{:class=> 'span-5 last'}
-      City
-    %div{:class=> 'span-5'}
-      = record.dateofbirth
-    %div{:class=> 'span-5'}
-      = record.country.name
-    %div{:class=> 'span-5'}
-      = record.state.name
-    %div{:class=> 'span-5 last'}
-      = record.city.name
-    
+  - show_for record do |p|
+    = p.attribute :firstname
+    = p.attribute :lastname1
+    = p.attribute :lastname2
+    = p.attribute :title
+    = p.attribute :gender
+    = p.association :maritalstatus, :using => :name
+    = p.association :country, :using => :name
+    = p.association :state, :using => :name
+    = p.association :city, :using => :name
