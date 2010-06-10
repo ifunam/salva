@@ -6,6 +6,8 @@ class Person < ActiveRecord::Base
   validates_inclusion_of :gender, :in => [true, false]
   validates_uniqueness_of :user_id
 
+  normalize_attributes :firstname, :lastname1, :lastname2
+
   belongs_to :user
   belongs_to :maritalstatus
   belongs_to :country
