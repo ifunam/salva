@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   respond_to :html, :except => [:autocomplete_fullname]
-  respond_to :js, :only => [:autocomplete_fullname, :autocomplete_form, :show]
+  respond_to :js, :only => [:autocomplete_form, :show]
+  respond_to :json, :only => [:autocomplete_fullname]
   def index
     respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 15))
   end
@@ -28,11 +29,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def autocomplete_fullname
-    @records = Person.search_for_autocomplete params[:q]
-    @items= @records.collect do |record|
-      [record.fullname, record.user_id].join('|')
-    end
-    render :text => @items.join("\n")
+    @records = Person.find_by_fullname params[:term]
+    @results = @records.collect { |record| { :id => record.user_id, :value => record.fullname, :label => record.fullname } }
+    render :json => @results
   end
   
   def autocomplete_form
