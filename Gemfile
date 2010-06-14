@@ -51,10 +51,8 @@ end
 group :development do
   # DB performance tools
   gem "pg"
-  gem "bullet" # Gem to identify N+1 queries and unused eager loading 
   gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master" # Gem to identify potential db indexes
   gem "slim_scrooge", "1.0.5" # Gem to heavily optimize your database interactions 
-  # gem "rails_metrics"
 end
 
 group :test do
