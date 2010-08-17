@@ -1,0 +1,10 @@
+%div{ :class => 'span-24 section_left last' }
+  %h2 Lista de usuarios
+
+%div{:id => "collection", :class => "span-24 last"}
+  = render :partial => @users
+%div{:id => "collection", :class => "span-24 last"}
+  / = render :partial => "paginator"
+  = will_paginate @users 
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to 'Nuevo usuario', new_academic_secretary_user_path, :class => "ui-state-default ui-corner-all ui-button"

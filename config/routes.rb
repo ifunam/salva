@@ -49,7 +49,11 @@ Salva::Application.routes.draw do
     resources :users
   end
   
-  root :to => "admin/users#index"
+  namespace :academic_secretary do
+    resources :users
+  end
+  
+  root :to => "academic_secretary/users#index"
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

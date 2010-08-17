@@ -1,0 +1,14 @@
+%div{ :class => 'span-12' }
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :jobposition_id
+
+  %div{ :class => 'span-12 last' }
+    %div{:class=> 'span-6'}
+      = f.label :adscription
+    %div{:class=> 'span-6 last'}
+      = f.label :descr
+    %div{:class=> 'span-6'}
+      = f.collection_select :adscription_id, Adscription.all, :id, :name, { :prompt => true }
+    %div{:class=> 'span-6 last'}
+      = f.text_area :descr, :size => '25x3'

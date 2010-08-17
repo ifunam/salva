@@ -31,22 +31,15 @@
           = render :partial => 'institutions/record_show', :object => f.object.institution
       = f.hidden_field :institution_id
 
-  %div{ :class => 'span-24 last' }
+  = f.fields_for :user_adscription_attributes do |user_adscription_form|
+    = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+
+  %div{ :class => 'span-12 last' }
     %div{:class=> 'span-6'}
-      = f.label :startmonth
-    %div{:class=> 'span-6'}
-      = f.label :startyear
-    %div{:class=> 'span-6'}
-      = f.label :endmonth
+      = f.label :start_date
     %div{:class=> 'span-6 last'}
-      = f.label :endyear
+      = f.label :end_date
     %div{:class=> 'span-6'}
-      = select_month(Date.today, :field_name => 'startmonth', :prefix => "user[jobposition_attributes]")
-    %div{:class=> 'span-6'}
-      = f.text_field :startyear, :size => 2, :maxlength => 4
-    %div{:class=> 'span-6'}
-      = select_month(Date.today, :field_name => 'endmonth', :prefix => "user[jobposition_attributes]")
+      = f.text_field :start_date, :size => 10
     %div{:class=> 'span-6 last'}
-      = f.text_field :endyear, :size => 2, :maxlength => 4
-    = f.fields_for :user_adscription_attributes do |user_adscription_form|
-      = render :partial => 'user_adscriptions/form', :locals => { :f => user_adscription_form}
+      = f.text_field :end_date, :size => 10

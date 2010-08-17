@@ -12,11 +12,14 @@
     = stylesheet_link_tag 'jquery.ui/themes/base/jquery.ui.all'
     = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.1.custom'
 
-    = javascript_include_tag :defaults
+    = javascript_include_tag :jquery
+    = javascript_include_tag 'application'
 
   %body
     = render :partial => 'layouts/header'
     %div{:class =>'container'}
+      %p{:class=>"notice"}= notice unless notice.nil?
+      %p{:class=>"alert"}= alert unless alert.nil?
       = yield :layout
     %div{:id => 'dialog'}
     = render :partial => 'layouts/footer'
