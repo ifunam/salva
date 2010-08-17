@@ -1,0 +1,3 @@
+Image.blueprint do
+
+end
