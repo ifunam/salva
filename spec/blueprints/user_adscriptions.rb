@@ -1,4 +1,5 @@
 UserAdscription.blueprint do
+  start_date  { Date.today }
   startyear { Forgery(:basic).number }
   adscription_id { Adscription.make!.id}
   jobposition_id { Jobposition.make!.id }

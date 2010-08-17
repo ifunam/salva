@@ -1,4 +1,5 @@
 Jobposition.blueprint do 
+    start_date  { Date.today }
     startyear  { Forgery(:basic).number }
     institution_id  { Institution.make!.id }
     jobpositioncategory_id  { Jobpositioncategory.make!.id }

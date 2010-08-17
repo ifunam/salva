@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
            :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :login, :email, :password, :password_confirmation, :remember_me, 
+                  :person_attributes, :address_attributes, :jobposition_attributes, 
+                  :jobposition_log_attributes, :user_group_attributes
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'

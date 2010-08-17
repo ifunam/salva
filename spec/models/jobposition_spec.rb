@@ -6,17 +6,18 @@ describe Jobposition do
   end
   
   it { should validate_presence_of :institution_id }
-  it { should validate_presence_of :startyear }
+  it { should validate_presence_of :start_date }
   
   it { should validate_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true }
   it { should validate_numericality_of :institution_id, :greater_than => 0, :only_integer => true}
-  it { should validate_numericality_of :startyear, :greater_than => 0, :only_integer => true}
+
 
   it { should validate_numericality_of :jobpositioncategory_id, :allow_nil => true, :greater_than => 0, :only_integer => true }
   it { should validate_numericality_of :contracttype_id, :allow_nil => true, :greater_than => 0, :only_integer => true }
   it { should validate_numericality_of :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true }
 
   it { should validate_numericality_of :startmonth, :allow_nil => true, :only_integer => true }
+  it { should validate_numericality_of :startyear, :allow_nil => true, :only_integer => true}
   it { should validate_numericality_of :endmonth, :allow_nil => true, :only_integer => true }
   it { should validate_numericality_of :endyear, :allow_nil => true, :only_integer => true }
 

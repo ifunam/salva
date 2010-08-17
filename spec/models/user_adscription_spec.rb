@@ -5,9 +5,9 @@ describe UserAdscription do
     @user_adscription = UserAdscription.make!
   end
   it { should validate_presence_of :adscription_id }
-  it { should validate_presence_of :startyear }
+  it { should validate_presence_of :start_date }
 
-  [:id, :jobposition_id, :user_id].each do |field_name|
+  [:id, :jobposition_id, :user_id, :startyear].each do |field_name|
     it { should validate_numericality_of field_name.to_sym, :allow_nil => true, :greater_than =>0, :only_integer => true }
   end
   
