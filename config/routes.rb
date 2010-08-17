@@ -1,11 +1,4 @@
-Salva::Application.routes.draw do |map|
-  get "jobpositioncategories/filtered_select"
-  get "institutions/autocomplete_name"
-  get "institutions/autocomplete_form"
-  get "admin/users/autocomplete_fullname"
-  get "admin/users/autocomplete_form"
-  resources :institutions
-
+Salva::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -55,6 +48,9 @@ Salva::Application.routes.draw do |map|
   namespace :admin do
     resources :users
   end
+  
+  root :to => "admin/users#index"
+  
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
