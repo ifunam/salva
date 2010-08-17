@@ -1,24 +1,24 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
  
-gem "rails", :git => 'git://github.com/rails/rails.git', :branch => 'master'
+gem "rails", ">=3.0.0.rc"
 
 # Views, css and javascript
 gem "compass", "0.10.2"
-gem "compass-jquery-plugin"
-gem "show_for", :git => "http://github.com/plataformatec/show_for.git", :branch => 'master'
+
+gem "show_for", "0.2.3"
 
 # Authentication
-gem "devise", :git => 'git://github.com/plataformatec/devise.git', :branch => 'master'
+gem "devise", '>=1.1.1'
 
 # Authorization
-#gem "declarative_authorization"
+gem "cancan"
 
 # Searching and tagging
 gem "libxml-ruby"
 gem "acts-as-taggable-on"
 gem "tsearch", :require => 'texticle'
-gem "pg_scope_by_soundex"
+gem "scope_by_fuzzy", :git => 'git://github.com/monsterlabs/scope_by_fuzzy.git'
 
 # Security
 gem "ssl_requirement"
@@ -30,34 +30,33 @@ gem "vestal_versions"
 gem "awesome_nested_set"
 
 # Misc
-gem "carrierwave", "0.4.4", :git => "git://github.com/jnicklas/carrierwave.git", :branch => 'master'
+gem "carrierwave", "0.5.0.beta2"
 gem "rmagick"
-gem "hpricot", "0.8.2"
-gem "ruby_parser", "2.0.4"
-gem "will_paginate", "3.0.pre", :git => "http://github.com/mislav/will_paginate.git", :branch => 'rails3'
+gem "will_paginate", "3.0.pre"
 gem "attribute_normalizer", :git => "http://github.com/mdeering/attribute_normalizer.git"
-
-# gem "spreadsheet"
-# gem "prawn"
 gem "inherited_resources", "1.1.2"
-
-# Application Auditing
-# gem "rackamole"
+gem "pg"
+#gem "spreadsheet"
+#gem "prawn"
 
 group :production do
-  gem "pg"
+  gem "inploy"
+  gem "rackamole"
 end
 
 group :development do
-  # DB performance tools
-  gem "pg"
-  gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master" # Gem to identify potential db indexes
-  gem "slim_scrooge", "1.0.5" # Gem to heavily optimize your database interactions 
+  gem "rails3-generators", :require => "rails/generators"
+  gem "hpricot"
+  gem "ruby_parser"
+  gem "unicorn"
 end
 
 group :test do
-  gem "sqlite3-ruby"
-  gem "rspec-rails", "2.0.0.beta.7"  
-  gem "factory_girl", "1.2.3", :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
+  gem "rspec-rails", ">= 2.0.0.beta.19"
+  gem 'machinist', ">= 2.0.0.beta2"
   gem "forgery"
+  gem "remarkable", ">= 4.0.0.alpha4"
+  gem "remarkable_activemodel"
+  gem "remarkable_activerecord", ">= 4.0.0.alpha4"
+  #gem "remarkable_rails"
 end
