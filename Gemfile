@@ -5,8 +5,8 @@ gem "rails", ">=3.0.0.rc"
 
 # Views, css and javascript
 gem "compass", "0.10.2"
-
-gem "show_for", "0.2.3"
+gem "show_for", ">= 0.2.3"
+gem "simple_form"
 
 # Authentication
 gem "devise", '>=1.1.1'
@@ -36,6 +36,9 @@ gem "will_paginate", "3.0.pre"
 gem "attribute_normalizer", :git => "http://github.com/mdeering/attribute_normalizer.git"
 gem "inherited_resources", "1.1.2"
 gem "pg"
+gem "meta_search"
+gem "meta_where"
+gem "by_star"
 #gem "spreadsheet"
 #gem "prawn"
 

@@ -50,7 +50,11 @@ Salva::Application.routes.draw do
   end
   
   namespace :academic_secretary do
-    resources :users
+    resources :users  do
+      get :search_by_fullname, :on => :collection
+      get :search_by_username, :on => :collection
+      get :autocomplete_form, :on => :collection
+    end
   end
   
   root :to => "academic_secretary/users#index"

@@ -28,6 +28,6 @@ class Person < ActiveRecord::Base
     [self.city.name,  self.state.name, self.country.name].compact.join(', ')
   end
 
-  #scope_by_soundex_matcher :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
   
 end
