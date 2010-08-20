@@ -6,4 +6,6 @@ class City < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:state_id]
   belongs_to :state
   validates_associated :state
+
+  default_scope :order => 'name ASC'
 end

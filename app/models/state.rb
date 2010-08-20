@@ -9,4 +9,6 @@ class State < ActiveRecord::Base
   has_many :people
 
   validates_associated :country
+
+  default_scope :order => 'name ASC'
 end
