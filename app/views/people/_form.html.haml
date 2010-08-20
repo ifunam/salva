@@ -48,14 +48,13 @@
       = f.text_field :dateofbirth, :size => 10
     %div{:class=> 'span-6'}
       = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}
-    %div{:class=> 'span-6'}
-      = f.collection_select :state_id, State  .all, :id, :name, {:prompt => true}
-    %div{:class=> 'span-6 last'}
-      = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+    %div{:class=> 'span-6', :id => 'state_list'}
+      - # f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true}
+    %div{:class=> 'span-6 last', :id => 'city_list'}
+      - # f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
   %div{ :class => 'span-24 last' }
     %h3 Fotografía
     %div{:class=> 'span-6 last'}
       = f.label :image
     %div{:class=> 'span-6 last'}
-      - f.fields_for :image_attributes do |image_form|
-        = image_form.file_field :file, :size => 20
+      = render :partial => 'images/form', :locals => { :f => f }

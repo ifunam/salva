@@ -45,10 +45,18 @@ Salva::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :states do
+    get :list_by_country, :on => :collection
+  end
+
+  resources :cities do
+    get :list_by_state, :on => :collection
+  end
+  
   namespace :admin do
     resources :users
   end
-  
+
   namespace :academic_secretary do
     resources :users  do
       get :search_by_fullname, :on => :collection

@@ -9,4 +9,6 @@
   has_many :newspapers
   has_many :acadvisits
   has_many :courses
+
+  default_scope :order => 'name ASC'
 end
