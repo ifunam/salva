@@ -1,10 +1,10 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
  
-gem "rails", ">=3.0.0.rc"
+gem "rails", "3.0.0.rc2"
 
 # Views, css and javascript
-gem "compass", "0.10.2"
+gem "compass", "0.10.4"
 gem "show_for", ">= 0.2.3"
 gem "simple_form"
 
@@ -39,6 +39,7 @@ gem "pg"
 gem "meta_search"
 gem "meta_where"
 gem "by_star"
+gem "tzinfo"
 #gem "spreadsheet"
 #gem "prawn"
 
