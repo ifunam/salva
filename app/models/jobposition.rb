@@ -16,6 +16,7 @@ class Jobposition < ActiveRecord::Base
   belongs_to :contracttype
   belongs_to :institution
   belongs_to :user
+  belongs_to :schoolarship
 
   has_many :user_adscriptions
 
@@ -25,4 +26,7 @@ class Jobposition < ActiveRecord::Base
   validates_associated :jobpositioncategory
   validates_associated :contracttype
   validates_associated :institution
+
+  scope :posdoc, :conditions => { :jobpositioncategory_id => 38 }
+  scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
 end

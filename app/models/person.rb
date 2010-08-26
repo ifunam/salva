@@ -17,6 +17,8 @@ class Person < ActiveRecord::Base
   has_one :image, :as => :imageable, :dependent => :destroy
   accepts_nested_attributes_for :image
  
+  default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
+  
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
   end
