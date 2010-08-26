@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   respond_to :js, :only => [:autocomplete_form, :show]
   respond_to :json, :only => [:autocomplete_fullname]
   def index
-    respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 15))
+    respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 10))
   end
 
   def new
@@ -11,7 +11,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created)
+    respond_with(@user = User.create(params[:user]), :status => :created, :location => admin_user_path)
   end
 
   def edit
@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated)
+    respond_with(@user, :status => :updated, :location => admin_user_path)
   end
 
   def autocomplete_fullname
