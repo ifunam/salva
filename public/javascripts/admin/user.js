@@ -1,3 +1,12 @@
+$.validator.setDefaults({
+    highlight: function(input) {
+        $(input).addClass("ui-state-highlight");
+    },
+    unhighlight: function(input) {
+        $(input).removeClass("ui-state-highlight");
+    }
+});
+
 $(document).ready(function() {
 
     $("#dialog").dialog({
@@ -40,8 +49,8 @@ $(document).ready(function() {
         }
     });
 
-    $("#user_person_attributes_state_id").live('change', function() {
-        state_id = $("#user_person_attributes_state_id").val();
+    $("#state_list").live('change', function() {
+        state_id = $("#state_list").val();
         if (state_id >= 1 || state_id <= 83 ) {
             city_list_by_state(state_id);
         }
@@ -53,9 +62,26 @@ $(document).ready(function() {
 
     $('#new_city').live('submit', function() {
         $("#new_city").ajaxComplete(function(event, request, settings){
-            $("#city_list").html(request.responseText);
+            $("#city_list").replaceWith(request.responseText);
             $('#dialog').dialog('close');
         });
+    });
+
+    $('#user_jobposition_attributes_start_date').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
+    $('#user_jobposition_attributes_end_date').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
+
+    $("#new_user").validate({
+        rules: {
+            "user[password]": {required:true},
+            "user[password_confirmation]": {required:true,equalTo:"#user[password]"},
+            "user[userstatus_id]": {required:true}, 
+            "user[person_attributes][maritalstatus_id]": {required:true}, 
+            "user[person_attributes][country_id]": {required:true},
+            "user[person_attributes][gender]": {required:true},
+            "user[person_attributes][city_id]": {required:true}, 
+            "user[jobposition_attributes][schoolarship_id]": {required:true}, 
+            "user[jobposition_attributes][user_adscription_attributes][adscription_id]": {required:true}, 
+        }   
     });
 
 });
@@ -71,6 +97,7 @@ function search_by_username_onchange_observer() {
                 if (json[index].value == $('#user_login').val()) {
                     not_found = false;
                     dialog_for_existent_login(json[index].value);
+                    $('#user_login').val('');
                 }
             });
             if (not_found == true)  {
@@ -126,7 +153,7 @@ function state_list_by_country(id) {
     $.ajax({
         url: '/states/list_by_country',
         data: { country_id: id },
-        success: function(data){ $("#state_list").html(data); }
+        success: function(data){ $("#state_list").replaceWith(data); }
     });
 }
 
@@ -134,7 +161,7 @@ function city_list_by_state(id) {
     $.ajax({
         url: '/cities/list_by_state',
         data: { state_id: id },
-        success: function(data){ $("#city_list").html(data); }
+        success: function(data){ $("#city_list").replaceWith(data); }
     });
 }
 
@@ -142,7 +169,7 @@ function dialog_for_new_city() {
     $('#dialog').dialog({title:'Nueva ciudad', width: 320, height: 180}).dialog('open');
     $.ajax({
         url: "/cities/new.js",
-        data: {state_id: $("#user_person_attributes_state_id").val()},
+        data: {state_id: $("#state_list").val()},
         success: function(request) {
             $("div#dialog").html(request);
         }

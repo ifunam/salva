@@ -1,0 +1,31 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('.jobposition_and_adscription')
+
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :user_id
+
+  %div{ :class => 'span-24 last' }
+    %div{:class=> 'span-6'}
+      = f.label :jobpositiontype
+      = 'Personal académico para investigación'
+      = f.hidden_field :jobpositiontype_id, :value => 1
+    %div{:class=> 'span-6'}
+      = f.label :jobpositioncategory
+      = 'Investigador posdoctoral'
+      = f.hidden_field :jobpositioncategory_id, :value => 38
+      = f.hidden_field :contracttype_id, :value => 5
+    %div{:class=> 'span-6'}
+      = f.label :schoolarship, :required => true
+      = f.select :schoolarship_id, Schoolarship.where("id >= 57 AND id <= 61").all.collect {|record| ["#{record.name} - #{record.institution.abbrev}", record.id ]}, {:prompt => true}
+    %div{:class=> 'span-6 last'}
+      = f.label :institution
+      = 'Instituto de Física'
+      = f.hidden_field :institution_id, :value => 30
+
+  = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
+    = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+
+  %div{ :class => 'span-12 last' }
+    = f.input :start_date, :as => :string, :input_html =>  { :size => 10 }
+    = f.input :end_date, :as => :string, :input_html =>  { :size => 10 }, :wrapper_class => 'span-6 last', :required => false

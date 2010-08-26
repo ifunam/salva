@@ -6,7 +6,7 @@ class AcademicSecretary::UsersController < ApplicationController
   respond_to :js, :only => [:autocomplete_form, :show]
 
   def index
-    respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 10))
+    respond_with(@users = User.posdoc_search(params[:search], params[:page], params[:per_page]))
   end
 
   def new
@@ -14,7 +14,7 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_user_path)
+    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_users_path)
   end
 
   def edit
@@ -28,7 +28,7 @@ class AcademicSecretary::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated, :location => academic_secretary_user_path)
+    respond_with(@user, :status => :updated, :location => academic_secretary_users_path)
   end
 
   def search_by_fullname

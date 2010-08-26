@@ -1,60 +1,39 @@
 %div{ :class => 'span-24 section_left last' }
-  %h2 Información general
+  %h3= t('.title')
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
     = f.hidden_field :user_id
 
-  %div{ :class => 'span-24 last' }
-    %div{:class=> 'span-6'}
-      = f.label :firstname
-    %div{:class=> 'span-6'}
-      = f.label :lastname1
-    %div{:class=> 'span-6'}
-      = f.label :lastname2
-    %div{:class=> 'span-6 last'}
-      = f.label :title
-    %div{:class=> 'span-6'}
-      = f.text_field :firstname, :size => 15
-    %div{:class=> 'span-6'}
-      = f.text_field :lastname1, :size => 15
-    %div{:class=> 'span-6'}
-      = f.text_field :lastname2, :size => 15
-    %div{:class=> 'span-6 last'}
-      = f.text_field :title, :size => 5
+  = f.input :firstname, :as => :string, :input_html => { :size => 15}
+  = f.input :lastname1, :as => :string, :input_html => { :size => 15}
+  = f.input :lastname2, :as => :string, :input_html => { :size => 15}
+  = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-6 last'
   
   %div{ :class => 'span-12 last' }
     %div{:class=> 'span-6'}
       = f.label :gender
-    %div{:class=> 'span-6 last'}
-      = f.label :maritalstatus_id
-    %div{:class=> 'span-6'}
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Mascúlino
     %div{:class=> 'span-6 last'}
+      = f.label :maritalstatus_id
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true}
 
   %div{ :class => 'span-24 last' }
-    %h3 Fecha y lugar de nacimiento
+    = f.input :dateofbirth, :as => :string, :input_html => { :size => 10 }
     %div{:class=> 'span-6'}
-      = f.label :birthdate
-    %div{:class=> 'span-6'}
-      = f.label :country_id
+      = f.label :country_id, :required => true
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}, :selected => 484, :required => true
     %div{:class=> 'span-6'}
       = f.label :state_id
+      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true}, :id => 'state_list'
     %div{:class=> 'span-6 last'}
-      = f.label :city_id
-    %div{:class=> 'span-6'}
-      = f.text_field :dateofbirth, :size => 10
-    %div{:class=> 'span-6'}
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}
-    %div{:class=> 'span-6', :id => 'state_list'}
-      - # f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true}
-    %div{:class=> 'span-6 last', :id => 'city_list'}
-      - # f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+      = f.label :city_id, :required => true
+      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true}, :id => 'city_list', :required => true
+      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
+
   %div{ :class => 'span-24 last' }
-    %h3 Fotografía
+    %h3= t('.photo')
     %div{:class=> 'span-6 last'}
       = f.label :image
-    %div{:class=> 'span-6 last'}
       = render :partial => 'images/form', :locals => { :f => f }

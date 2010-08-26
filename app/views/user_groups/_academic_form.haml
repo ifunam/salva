@@ -1,4 +1,6 @@
+%h3= t('.title')
 %div{:class=> 'span-24'}
   = f.label :group
 %div{:class=> 'span-24 last'}
-  = f.collection_select :group_id, Group.where('id > 3').all, :id, :descr, { :prompt => true}
+  = 'Investigadores posdoctorales'
+  = f.hidden_field :group_id, :value => 4

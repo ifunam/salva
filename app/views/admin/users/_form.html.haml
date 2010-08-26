@@ -1,5 +1,4 @@
 = render :partial => "/shared/errors", :object => f.object.errors
-= f.error_messages
 %div{ :class => 'span-24 section_left last' }
   %h2 Cuenta de usuario
 
@@ -12,9 +11,9 @@
   %div{:class=> 'span-8 '}
     = f.text_field :login, :size => 12
   %div{:class=> 'span-8'}
-    = f.password_field :crypted_password, :size => 12
+    = f.password_field :password, :size => 12
   %div{:class=> 'span-8 last'}
-    = f.password_field :password_salt, :size => 12
+    = f.password_field :password_confirmation, :size => 12
 
   %div{:class=> 'span-8'}
     = f.label :email

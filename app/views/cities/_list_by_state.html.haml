@@ -1,2 +1,1 @@
-= collection_select 'user[person_attributes]', :city_id, @cities, :id, :name, {:prompt => true}
-= link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
+= collection_select 'user[person_attributes]', :city_id, @cities, :id, :name, {:prompt => true}, :id => :city_list 
