@@ -1,7 +1,7 @@
 class CitiesController < InheritedResources::Base
 
   respond_to :html, :only => [:list_by_state]
-  respond_to :js, :only => [:show, :new]
+  respond_to :js, :only => [:show, :new, :remote_form]
   
   def list_by_state
     @cities = City.where(:state_id => params[:state_id]).all

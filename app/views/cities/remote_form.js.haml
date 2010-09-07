@@ -1,0 +1,3 @@
+= fields_for "user[person_attributes][f_attributes]" do |f|
+  = f.text_field :name, :size => 20, :autocomplete =>"off"
+  = f.hidden_field :state_id, :value => 1
