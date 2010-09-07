@@ -1,6 +1,4 @@
 lib/remote_user.rb
-public/images/activated.png
-public/images/locked.png
 config/database.yml
 config/site.yml
 config/mail.yml
