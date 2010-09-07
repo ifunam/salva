@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   belongs_to :city
   
   has_one :image, :as => :imageable, :dependent => :destroy
-  accepts_nested_attributes_for :image
+  accepts_nested_attributes_for :image, :city
  
   default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
   
@@ -32,5 +32,6 @@ class Person < ActiveRecord::Base
   end
 
   scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  search_methods :find_by_fullname
   
 end
