@@ -51,6 +51,7 @@ Salva::Application.routes.draw do
 
   resources :cities do
     get :list_by_state, :on => :collection
+    get :remote_form, :on => :collection
   end
   
   namespace :admin do
@@ -62,6 +63,8 @@ Salva::Application.routes.draw do
       get :search_by_fullname, :on => :collection
       get :search_by_username, :on => :collection
       get :autocomplete_form, :on => :collection
+      get :edit_status, :on => :member
+      get :update_status, :on => :member
     end
   end
   

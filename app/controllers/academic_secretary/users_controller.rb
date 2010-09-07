@@ -3,7 +3,7 @@ class AcademicSecretary::UsersController < ApplicationController
   
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
-  respond_to :js, :only => [:autocomplete_form, :show]
+  respond_to :js, :only => [:autocomplete_form, :show, :index, :edit_status, :update_status]
 
   def index
     respond_with(@users = User.posdoc_search(params[:search], params[:page], params[:per_page]))
@@ -43,5 +43,16 @@ class AcademicSecretary::UsersController < ApplicationController
   
   def autocomplete_form
     render :action => 'autocomplete_form.js'
+  end
+
+  def edit_status
+    @user = User.find params[:id]
+    render :action => 'edit_status.js'
+  end
+
+  def update_status
+    @user = User.find(params[:id])
+    @user.update_attribute(:userstatus_id, params[:userstatus_id])
+    render :action => 'update_status.js'
   end
 end

@@ -21,7 +21,7 @@ $(document).ready(function() {
     start_year = current_year - 100;
     end_year = current_year - 15;
 
-    $('#user_person_attributes_dateofbirth').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
+    date_picker_for('#user_person_attributes_dateofbirth', start_year, end_year);
 
     $('#user_login').live('focus', function(){
         search_by_username_autocomplete();
@@ -43,9 +43,13 @@ $(document).ready(function() {
         country_id = $("#user_person_attributes_country_id").val();
         if ( country_id == "484"  || country_id == 840) {
             state_list_by_country(country_id);
+            $("#city_field").replaceWith('<div id="city_field"> </div>');
         } else {
             $("#state_list").html('');
-            $("#city_list").html('');
+            $("#city_list").replaceWith('');
+            $("#city_new").hide();
+            textfield_for_city();
+            $("#city_new").before('<div id="city_list"> </div>');
         }
     });
 
@@ -53,6 +57,8 @@ $(document).ready(function() {
         state_id = $("#state_list").val();
         if (state_id >= 1 || state_id <= 83 ) {
             city_list_by_state(state_id);
+            $("#city_new").show();
+            $("#city_field").replaceWith('<div id="city_field"> </div>');
         }
     });
 
@@ -66,9 +72,8 @@ $(document).ready(function() {
             $('#dialog').dialog('close');
         });
     });
-
-    $('#user_jobposition_attributes_start_date').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
-    $('#user_jobposition_attributes_end_date').datepicker({ changeYear: true, changeMonth: true, yearRange: start_year+':'+end_year, dateFormat: 'dd-mm-yy', defaultDate: '01-01-'+end_year });
+    date_picker_for('#user_jobposition_attributes_start_date', start_year, end_year);
+    date_picker_for('#user_jobposition_attributes_end_date', start_year, end_year);
 
     $("#new_user").validate({
         rules: {
@@ -83,6 +88,60 @@ $(document).ready(function() {
             "user[jobposition_attributes][user_adscription_attributes][adscription_id]": {required:true}, 
         }   
     });
+
+    $('#collection tr td').hover( function() {
+            var iCol = $('td').index(this) % 5;
+            var nTrs = oTable.fnGetNodes();
+            $('td:nth-child('+(iCol+1)+')', nTrs).addClass( 'highlighted' );
+        }, function() {
+            var nTrs = oTable.fnGetNodes();
+            $('td.highlighted', nTrs).removeClass('highlighted');
+    } );
+
+    $("tr#filter_row select").live('change', function() {
+        remote_user_list('/academic_secretary/users.js', $.param($("form").serializeArray()));
+        return false;
+    });
+
+    $("tr#filter_row input").live('focusout', function() {
+        remote_user_list('/academic_secretary/users.js', $.param($("form").serializeArray()));
+        return false;
+    });
+
+    $("#ajaxed_paginator a").live("click", function() {
+        remote_user_list(this.href);
+        return false;
+     });
+
+    $("#edit_status a").live("click", function() {
+        user_id = this.id;
+        options = {
+            url: this.href,
+            success: function(request) {
+                $("#edit_status_user_" + user_id).remove();
+                $("#userstatus_user_" + user_id).after(request);
+                }
+        }
+        $.ajax(options);
+        return false;
+     });
+
+    $("#update_status a").live("click", function() {
+        user_id = this.id;
+        options = {
+            url: this.href,
+            success: function(request) {
+                    $("#userstatus_indicator_user_" + user_id).html(request);
+                    $("#edit_status_user_" + user_id).remove();
+                }
+        }
+        $.ajax(options);
+        return false;
+     });
+
+    set_button_behaviour();
+    date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
+    date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);
 
 });
 
@@ -173,5 +232,52 @@ function dialog_for_new_city() {
         success: function(request) {
             $("div#dialog").html(request);
         }
+    });
+}
+
+function textfield_for_city() {
+   $.ajax({
+        url: "/cities/remote_form.js",
+        success: function(request) {
+            $("#city_field").html(request);
+        }
+    });
+}
+
+function set_button_behaviour() {
+  $(".ui-state-default").hover(
+    function() { $(this).addClass('ui-state-hover'); },
+    function() { $(this).removeClass('ui-state-hover'); }
+  );
+  $(".ui-state-default").css("cursor", "pointer");
+}
+
+function remote_user_list(href, params) {
+    options = {
+        url: href,
+        complete: function(request){ set_button_behaviour(); },
+        success: function(request) {
+            $('#collection').remove();
+            $('#paginator').remove();
+            $('#filter_header').after(request);
+        },
+        type:'get'
+    }
+    if (params != undefined) {
+        options['data'] = params;
+    }
+    $.ajax(options);
+}
+
+function date_picker_for(dom_id, start_year, end_year) {
+    $(dom_id).datepicker({
+        changeYear: true,
+        changeMonth: true,
+        yearRange: start_year+':'+end_year,
+        dateFormat: 'dd-mm-yy',
+        defaultDate: '01-01-'+end_year,
+        showOn: 'both',
+        buttonImageOnly: true,
+        buttonImage: '/images/calendar.gif'
     });
 }

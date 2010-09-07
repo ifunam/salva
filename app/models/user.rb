@@ -11,26 +11,41 @@ class User < ActiveRecord::Base
                   :person_attributes, :address_attributes, :jobposition_attributes, 
                   :jobposition_log_attributes, :user_group_attributes
 
-  belongs_to :userstatus
-  belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
-
-  has_one :person
-  
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')
-  scope :with_person, includes(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
-  scope :posdoc, includes(:jobposition).where("jobpositions.jobpositioncategory_id = 38")
+  scope :posdoc, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
+  scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
+  scope :fullname_desc, joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC')
+  scope :distinct, select("DISTINCT (users.*)")
 
+  # :userstatus_id_equals => find_all_by_userstatus_id  
+  scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
+  scope :annual_plan_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 2 AND documents.title = ?", year]) }
+  scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :start_date).select('user_id').to_sql}) ") }
+  scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :end_date).select('user_id').to_sql}) ") }
+
+  search_methods :fullname_like, :adscription_id_equals, :annual_report_year_equals, :annual_plan_year_equals, :jobposition_start_date_year_equals, :jobposition_end_date_year_equals
+  
+  belongs_to :userstatus
+  belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
+  has_one :person
+  
   # These relationships will be changed to has_many
   has_one :address
   has_one :jobposition
   has_one :jobposition_log
   has_one :user_group
+  has_many :user_adscriptions
+  has_one  :user_adscription_as_posdoc, :class_name => 'UserAdscription', :foreign_key => 'user_id', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => [:jobposition]
+  has_many :user_documents
+  has_many :documents, :through=> :user_documents
 
   accepts_nested_attributes_for :person, :address, :jobposition, :jobposition_log, :user_group
   
   def self.posdoc_search(search_options={}, page=1, per_page=10)
-    posdoc.with_person.search(search_options).all.paginate(:page => page, :per_page => per_page)
+    posdoc.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => per_page)
   end
 
   def authorname
@@ -60,5 +75,4 @@ class User < ActiveRecord::Base
       "/images/avatar_missing_#{version}.png"
     end
   end
-
 end
