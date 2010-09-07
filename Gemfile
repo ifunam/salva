@@ -1,10 +1,10 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
  
-gem "rails", "3.0.0.rc2"
+gem "rails", "3.0.0"
 
 # Views, css and javascript
-gem "compass", "0.10.4"
+gem "compass", "0.10.5"
 gem "show_for", ">= 0.2.3"
 gem "simple_form"
 
@@ -32,7 +32,7 @@ gem "awesome_nested_set"
 # Misc
 gem "carrierwave", "0.5.0.beta2"
 gem "rmagick"
-gem "will_paginate", "3.0.pre"
+gem "will_paginate", "3.0.pre2"
 gem "attribute_normalizer", :git => "http://github.com/mdeering/attribute_normalizer.git"
 gem "inherited_resources", "1.1.2"
 gem "pg"
@@ -40,6 +40,8 @@ gem "meta_search"
 gem "meta_where"
 gem "by_star"
 gem "tzinfo"
+gem "jquery-rails"
+
 #gem "spreadsheet"
 #gem "prawn"
 
