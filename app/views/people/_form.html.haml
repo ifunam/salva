@@ -31,6 +31,7 @@
       = f.label :city_id, :required => true
       = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true}, :id => 'city_list', :required => true
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
+      %div{:id=>'city_field'}
 
   %div{ :class => 'span-24 last' }
     %h3= t('.photo')

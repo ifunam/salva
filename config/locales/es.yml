@@ -25,4 +25,35 @@ es:
         country: País
         state: Estado
         city: Ciudad
-        
+  academic_secretary:
+    users:
+      form:
+        title: 'Administración de usuarios'
+  user_groups:
+    academic_form:
+        title: 'Grupo'
+  people:
+    form:
+      title: 'Datos personales'
+      photo: 'Fotografía'
+  addresses:
+    academic_form:
+      title: 'Domicilio profesional'
+  jobpositions:
+    academic_form:
+      jobposition_and_adscription: 'Categoría y adscripción'
+      
+  academic_secretary:
+    users:
+      form:
+        title: 'Cuenta de usuario'
+      filter_header: 
+        fullname: 'Nombre'
+        adscription: 'Departamento'
+        start_date_year: 'Año de inicio'
+        end_date_year: 'Año de término'
+        status: 'Estado'
+        anual_report: 'Informe anual'
+        activities_plan: 'Plan de actividades'
+  show_all: 'Mostrar todos'
+      

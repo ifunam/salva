@@ -1,0 +1,6 @@
+%tbody{:id =>'collection'}
+  = render :partial => @users
+%tfoot{:id => 'paginator'}
+  %tr
+    %th{:style => 'width: 100%;'}
+      = will_paginate @users, :id => 'ajaxed_paginator'
