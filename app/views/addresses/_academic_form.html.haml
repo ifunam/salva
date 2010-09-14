@@ -37,9 +37,4 @@
 
   %div{ :class => 'span-24 last' }
     = f.input :phone, :as => :string, :input_html =>{ :size => 15 }
-    = f.input :fax, :as => :string, :input_html =>{ :size => 15 }, :required => false
-    = f.input :movil, :as => :string, :input_html =>{ :size => 15 }, :required => false
-    %div{:class=> 'span-6 last'}
-      = f.label :is_postaddress
-      = 'Sí'
-      = f.hidden_field :is_postaddress, :value => true
+    = f.hidden_field :is_postaddress, :value => true

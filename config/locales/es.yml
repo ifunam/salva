@@ -47,6 +47,7 @@ es:
     users:
       form:
         title: 'Cuenta de usuario'
+        schoolarships: 'Becas'
       filter_header: 
         fullname: 'Nombre'
         adscription: 'Departamento'
@@ -55,5 +56,8 @@ es:
         status: 'Estado'
         anual_report: 'Informe anual'
         activities_plan: 'Plan de actividades'
+  user_identifications:
+    academic_form:
+      identification: 'RFC'
+
   show_all: 'Mostrar todos'
-      

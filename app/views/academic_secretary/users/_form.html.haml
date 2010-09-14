@@ -15,15 +15,24 @@
       - else
         = render :partial => 'academic_secretary/users/record_show', :object => f.object.user_incharge
     = f.hidden_field :user_incharge_id
-
-  = f.simple_fields_for :user_group_attributes, @user.user_group do |user_group_form|
+  = f.simple_fields_for :user_group, @user.user_group do |user_group_form|
     = render :partial => 'user_groups/academic_form', :locals => { :f => user_group_form}
 
-= f.simple_fields_for :person_attributes, @user.person do |person_form|
+= f.simple_fields_for :person, @user.person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form }
 
-= f.simple_fields_for :address_attributes, @user.address do |address_form|
+= f.simple_fields_for :user_identification, @user.user_identification do |identification_form|
+  = render :partial => 'user_identifications/academic_form', :locals => { :f => identification_form }
+
+= f.simple_fields_for :address, @user.address do |address_form|
   = render :partial => 'addresses/academic_form', :locals => { :f => address_form }
 
-= f.simple_fields_for :jobposition_attributes, @user.jobposition do |jobposition_form|
+= f.simple_fields_for :jobposition, @user.jobposition do |jobposition_form|
   = render :partial => 'jobpositions/academic_form', :locals => { :f => jobposition_form }
+
+- @user.user_schoolarships.build if @user.user_schoolarships.size < 1
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('.schoolarships')
+  - @user.user_schoolarships.each do |schoolarship|
+    = f.simple_fields_for :user_schoolarships, schoolarship do |schoolarship_form|
+      = render :partial => 'user_schoolarships/form', :locals => { :f => schoolarship_form }

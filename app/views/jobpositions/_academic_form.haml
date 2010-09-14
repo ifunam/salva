@@ -16,14 +16,13 @@
       = f.hidden_field :jobpositioncategory_id, :value => 38
       = f.hidden_field :contracttype_id, :value => 5
     %div{:class=> 'span-6'}
-      = f.label :schoolarship, :required => true
-      = f.select :schoolarship_id, Schoolarship.where("id >= 57 AND id <= 61").all.collect {|record| ["#{record.name} - #{record.institution.abbrev}", record.id ]}, {:prompt => true}
-    %div{:class=> 'span-6 last'}
       = f.label :institution
       = 'Instituto de Física'
       = f.hidden_field :institution_id, :value => 30
 
-  = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
+    %div{:class=> 'span-6 last'}
+      = ' '
+  = f.simple_fields_for :user_adscription do |user_adscription_form|
     = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
 
   %div{ :class => 'span-12 last' }

@@ -1,6 +1,5 @@
 class AcademicSecretary::UsersController < ApplicationController
   layout 'admin'
-  
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
   respond_to :js, :only => [:autocomplete_form, :show, :index, :edit_status, :update_status]
@@ -32,13 +31,13 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def search_by_fullname
-    @records = Person.find_by_fullname(params[:term]).select('id, user_id, firstname, lastname1, lastname2')
+    @records = Person.search_not_posdoc params[:term]
     render :json => @records.collect { |record| { :id => record.user_id, :value => record.fullname, :label => record.fullname } }
   end
 
   def search_by_username
-    @records = RemoteUser.username_like params[:term]
-    render :json => @records.collect { |record| { :id => record[:username], :value => record[:username], :label =>  record[:friendly_email] } }
+    @records = User.login_likes params[:term]
+    render :json => @records.collect { |record| { :id => record.login, :value => record.login, :label => record.friendly_email } }
   end
   
   def autocomplete_form

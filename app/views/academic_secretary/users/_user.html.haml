@@ -4,9 +4,9 @@
     %br
     = link_to 'Ver', academic_secretary_user_path(user)
 
-  %td= user.user_adscription_as_posdoc.adscription.name unless user.user_adscription_as_posdoc.nil?
-  %td= user.user_adscription_as_posdoc.start_date unless user.user_adscription_as_posdoc.nil?
-  %td= user.user_adscription_as_posdoc.end_date || '-' unless user.user_adscription_as_posdoc.nil?
+  %td= user.user_as_posdoc_adscription.adscription.name
+  %td= user.user_as_posdoc_adscription.start_date
+  %td= user.user_as_posdoc_adscription.end_date 
   %td{:class => 'action'}
     %div{:class => 'ui-widget ui-widget-content ui-corner-all', :style => 'width: 40px; padding: 3px;', :id => 'userstatus_'+ dom_id(user) }
       %span{:style => 'float: left; text-align: right;', :id => 'userstatus_indicator_'+ dom_id(user) }
