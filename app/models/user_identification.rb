@@ -1,4 +1,4 @@
-class PeopleIdentification < ActiveRecord::Base
+class UserIdentification < ActiveRecord::Base
   validates_presence_of :identification_id, :descr
 
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
@@ -9,5 +9,4 @@ class PeopleIdentification < ActiveRecord::Base
 
   belongs_to :identification
   belongs_to :user
-
 end
