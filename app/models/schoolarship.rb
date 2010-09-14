@@ -7,5 +7,9 @@ class Schoolarship < ActiveRecord::Base
 
   belongs_to :institution
   validates_associated :institution
+
+  def name_and_institution_abbrev
+     institution.nil? ? name : [name, institution.abbrev].join(' - ')
+  end
 end
 
