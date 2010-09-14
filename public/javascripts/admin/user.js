@@ -72,13 +72,15 @@ $(document).ready(function() {
             $('#dialog').dialog('close');
         });
     });
-    date_picker_for('#user_jobposition_attributes_start_date', start_year, end_year);
-    date_picker_for('#user_jobposition_attributes_end_date', start_year, end_year);
+    date_picker_for('#user_jobposition_attributes_start_date', start_year, current_year);
+    date_picker_for('#user_jobposition_attributes_end_date', start_year, current_year);
+    date_picker_for('#user_user_schoolarships_attributes_0_start_date', start_year, current_year);
+    date_picker_for('#user_user_schoolarships_attributes_0_end_date', start_year, current_year);
 
     $("#new_user").validate({
         rules: {
-            "user[password]": {required:true},
-            "user[password_confirmation]": {required:true,equalTo:"#user[password]"},
+            "user[password]": {required:true, minlength:3},
+            "user[password_confirmation]": { equalTo: "#user_password"},
             "user[userstatus_id]": {required:true}, 
             "user[person_attributes][maritalstatus_id]": {required:true}, 
             "user[person_attributes][country_id]": {required:true},
@@ -142,13 +144,12 @@ $(document).ready(function() {
     set_button_behaviour();
     date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
     date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);
-
 });
 
 function search_by_username_onchange_observer() {
     $.ajax({
         dataType: 'json',
-        url: "search_by_username",
+        url: "/academic_secretary/users/search_by_username",
         data: { term: $('#user_login').val() }, 
         success: function(json){
             not_found = true;
@@ -159,8 +160,11 @@ function search_by_username_onchange_observer() {
                     $('#user_login').val('');
                 }
             });
-            if (not_found == true)  {
+            login_length = $('#user_login').val().length;
+            if (login_length >= 3 && not_found == true )  {
                 $('#user_email').val($('#user_login').val() + '@fisica.unam.mx') 
+            } else {
+                $('#user_email').val('');
             }
         }
     });
@@ -168,7 +172,7 @@ function search_by_username_onchange_observer() {
 
 function search_by_username_autocomplete() {
     $('#user_login').autocomplete({
-        source: 'search_by_username',
+        source: '/academic_secretary/users/search_by_username',
         minLength: 2,
         select: function(event, ui) {
             dialog_for_existent_login(ui.item.id);
@@ -183,7 +187,7 @@ function dialog_for_existent_login(login) {
 
 function  search_by_fullname_autocomplete() {
     $('#autocomplete_user_fullname').autocomplete({
-        source: 'search_by_fullname',
+        source: '/academic_secretary/users/search_by_fullname',
         minLength: 3,
         select: function(event, ui) {  
             $('#user_user_incharge_id').val(ui.item.id);
@@ -203,7 +207,7 @@ function secretary_users_show(id) {
 
 function search_by_fullname_autocomplete_form() {
     $.ajax({
-        url: "autocomplete_form", 
+        url: "/academic_secretary/users/autocomplete_form", 
         success: function(request) { $("#user_fullname").html(request); }
     });
 }
