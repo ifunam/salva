@@ -18,7 +18,13 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :image, :city
  
   default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
-  
+  scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  search_methods :find_by_fullname
+
+  def self.search_not_posdoc(fullname)
+    self.find_by_fullname(fullname).select('id, user_id, firstname, lastname1, lastname2').includes(:user => [:jobposition, :user_adscriptions]).where("users.id = people.user_id AND jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id")
+  end
+
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
   end
@@ -31,7 +37,4 @@ class Person < ActiveRecord::Base
     [self.city.name,  self.state.name, self.country.name].compact.join(', ')
   end
 
-  scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
-  search_methods :find_by_fullname
-  
 end
