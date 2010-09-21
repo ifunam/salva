@@ -41,7 +41,7 @@ gem "meta_where"
 gem "by_star"
 gem "tzinfo"
 gem "jquery-rails"
-
+gem "net-ldap"
 #gem "spreadsheet"
 #gem "prawn"
 

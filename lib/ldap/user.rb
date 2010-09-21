@@ -1,6 +1,4 @@
 require 'net/ldap'
-require 'digest/md5'
-
 module LDAP
   module Connection
     def ldap_config
@@ -33,7 +31,6 @@ module LDAP
     attr_accessible :login, :group, :fullname, :email, :password
     define_attribute_methods [:login, :group, :fullname, :email, :password]
 
-    # Group Name: fisexp, teorica, computo, etc.
     validates_presence_of :login, :group, :fullname, :email, :password
     validates_confirmation_of :password
 
@@ -57,9 +54,9 @@ module LDAP
     def save
       if valid? 
         if new_record?
-          ldap_create
+          create
         else
-          ldap_update
+          update
         end
       else
         false
@@ -67,7 +64,7 @@ module LDAP
     end
 
     def destroy
-      ldap_connection.delete(:dn => ldap_dn) unless new_record?
+      ldap_connection.delete(:dn => dn) unless new_record?
     end
 
     def new_record?
@@ -76,9 +73,9 @@ module LDAP
 
     private
 
-    def ldap_create
-      unless ldap_uid_exist?(login)
-        ldap_connection.add(:dn => ldap_dn, :attributes => ldap_attributes)
+    def create
+      unless uid_exist?(login)
+        ldap_connection.add(:dn => dn, :attributes => attributes)
         @new_record = false
         true
       else
@@ -86,25 +83,25 @@ module LDAP
       end
     end
 
-    def ldap_update
-      if ldap_uid_exist?(login_was)
-        ldap_connection.modify(:dn => "uid=#{login_was},ou=#{group},#{ldap_config['base']}", :attributes => ldap_attributes)
+    def update
+      if uid_exist?(login_was)
+        ldap_connection.modify(:dn => "uid=#{login_was},ou=#{group},#{ldap_config['base']}", :attributes => attributes)
         true
       else
         false
       end
     end
 
-    def ldap_uid_exist?(uid)
+    def uid_exist?(uid)
       filter = Net::LDAP::Filter.eq( "uid", uid)
       ldap_connection.search(:base => ldap_config['base'], :attributes => { :uid => uid }, :filter => filter, :return_result => true ).size > 0
     end
 
-    def ldap_dn
+    def dn
       "uid=#{login},ou=#{group},#{ldap_config['base']}"
     end
 
-    def ldap_attributes
+    def attributes
       { 
         :objectClass => ["inetOrgPerson", "organizationalPerson", "person", "top"],
         :cn => fullname,
