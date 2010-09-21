@@ -1,0 +1,20 @@
+development: 
+  host: ldap.host.domain.mx
+  port: 389 
+  base: dc=host,dc=domain,dc=mx
+  username: cn=admin,dc=host,dc=domain,dc=mx
+  password: yourpassword
+  
+test: 
+  host: ldap.host.domain.mx
+  port: 389 
+  base: dc=host,dc=domain,dc=mx
+  username: cn=admin,dc=host,dc=domain,dc=mx
+  password: yourpassword
+
+production: 
+  host: ldap.host.domain.mx
+  port: 389 
+  base: dc=host,dc=domain,dc=mx
+  username: cn=admin,dc=host,dc=domain,dc=mx
+  password: yourpassword
