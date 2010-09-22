@@ -48,7 +48,13 @@ class User < ActiveRecord::Base
   end
 
   def self.login_likes(login)
-    where(:login.matches => "%#{login.downcase}%")
+    @users = where(:login.matches => "%#{login.downcase}%")
+    # NOTE: Comment this block if you don't want to interact with your ldap server
+    LDAP::User.all_by_login_likes(login.downcase).each do |ldap_user|
+      @users.push(new(:login => ldap_user.login, :email => ldap_user.email)) if find_by_login(ldap_user.login).nil?
+    end
+
+    @users
   end
 
   def initialize(*args)
@@ -68,11 +74,15 @@ class User < ActiveRecord::Base
   end
 
   def fullname_or_login
-     person.nil? ? login : person.fullname
+     has_person? ? person.fullname : login
   end
 
   def fullname_or_email
-     person.nil? ? email : person.fullname
+     has_person? ? person.fullname : email
+  end
+
+  def has_person?
+    !person.nil? and !person.id.nil?
   end
 
   def friendly_email
