@@ -34,9 +34,15 @@ module LDAP
     validates_presence_of :login, :group, :fullname, :email, :password
     validates_confirmation_of :password
 
-    def self.find_all_by_login(login)
-      filter = Net::LDAP::Filter.eq( "uid", login.downcase)
-      ldap_connection.search(:base => ldap_config['base'], :attributes => { :uid => login.downcase }, :filter => filter, :return_result => true )
+    def self.all_by_login_likes(login)
+      filter = Net::LDAP::Filter.eq( "uid", "*#{login.downcase}*")
+      domain = ldap_config['base'].gsub(/dc\=/,'').gsub(/\,/,'.')
+      ldap_connection.search(:base => ldap_config['base'], :attributes => { :uid => login.downcase }, :filter => filter, :return_result => true ).collect do |entry|
+        user = new
+        user.login = entry.dn.split(',').first.split('=').last # FIX IT: Replace splits with a good RegExp to extract the login
+        user.email = user.login + '@' + domain 
+        user
+      end
     end
 
     def initialize(attributes={})
@@ -93,7 +99,7 @@ module LDAP
     end
 
     def uid_exist?(uid)
-      filter = Net::LDAP::Filter.eq( "uid", uid)
+      filter = Net::LDAP::Filter.eq("uid", uid)
       ldap_connection.search(:base => ldap_config['base'], :attributes => { :uid => uid }, :filter => filter, :return_result => true ).size > 0
     end
 
