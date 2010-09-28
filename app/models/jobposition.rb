@@ -29,4 +29,8 @@ class Jobposition < ActiveRecord::Base
 
   scope :posdoc, :conditions => { :jobpositioncategory_id => 38 }
   scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
+
+  def category_name
+    jobpositioncategory.nil? ? 'Sin definir' : jobpositioncategory.name 
+  end
 end

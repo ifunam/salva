@@ -9,7 +9,7 @@
     %div{:class=> 'span-6'}
       = f.label :jobpositiontype
       = 'Personal académico para investigación'
-      = f.hidden_field :jobpositiontype_id, :value => 1
+      - # f.hidden_field :jobpositiontype_id, :value => 1
     %div{:class=> 'span-6'}
       = f.label :jobpositioncategory
       = 'Investigador posdoctoral'
@@ -22,7 +22,7 @@
 
     %div{:class=> 'span-6 last'}
       = ' '
-  = f.simple_fields_for :user_adscription do |user_adscription_form|
+  = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
     = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
 
   %div{ :class => 'span-12 last' }

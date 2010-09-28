@@ -74,8 +74,8 @@ $(document).ready(function() {
     });
     date_picker_for('#user_jobposition_attributes_start_date', start_year, current_year);
     date_picker_for('#user_jobposition_attributes_end_date', start_year, current_year);
-    date_picker_for('#user_user_schoolarships_attributes_0_start_date', start_year, current_year);
-    date_picker_for('#user_user_schoolarships_attributes_0_end_date', start_year, current_year);
+    date_picker_for('#user_user_schoolarship_attributes_start_date', start_year, current_year);
+    date_picker_for('#user_user_schoolarship_attributes_end_date', start_year, current_year);
 
     $("#new_user").validate({
         rules: {
