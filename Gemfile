@@ -9,7 +9,9 @@ gem "show_for", ">= 0.2.3"
 gem "simple_form"
 
 # Authentication
-gem "devise", '>=1.1.1'
+gem "devise", "1.1.3"
+gem "devise_ldap_authenticatable"
+
 
 # Authorization
 gem "cancan"
