@@ -1,0 +1,26 @@
+********************************************************************
+*                      Este es un reporte automático               *
+*                            NO HAGA REPLY                         *
+********************************************************************
+
+La creación del usuario en la base de datos de LDAP ha presentado
+errores.
+
+La información del usuario del SALVA es:
+
+Nombre del académico: <%= @user.fullname_or_login %>
+Departamento: <%= @user.adscription_name %>
+Categoría: <%= @user.category_name %>
+Correo electrónico: <%= @user.email %>
+Registrado por: <%= @user.fullname_of_registered_by %>
+
+Los errores identificados por el componente de LDAP para el SALVA 
+incluyen los siguientes campos:
+
+<%- @ldap_user.errors.each_pair do |field, value| %>
+   * <%= field %>: <%= value %>
+<% end %>
+   
+Secretaría Académica, Instituto de Física
+Universidad Nacional Autónoma de México
+====================================================================
