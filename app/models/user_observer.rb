@@ -7,7 +7,7 @@ class UserObserver < ActiveRecord::Observer
       @ldap_user.save
       Notifier.new_user_to_admin(@new_user).deliver
     else
-      Notifier.ldap_errors_to_admin(@new_user, @ldap_user).deliver
+      Notifier.ldap_errors_to_admin(@new_user).deliver
     end
   end
   
