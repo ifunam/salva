@@ -5,7 +5,7 @@ class AcademicSecretary::UsersController < ApplicationController
   respond_to :js, :only => [:autocomplete_form, :show, :index, :edit_status, :update_status]
 
   def index
-    respond_with(@users = User.posdoc_search(params[:search], params[:page], params[:per_page]))
+    respond_with(@users = User.postdoctoral_search(params[:search], params[:page], params[:per_page]))
   end
 
   def new
