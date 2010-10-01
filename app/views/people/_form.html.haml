@@ -11,24 +11,24 @@
   
   %div{ :class => 'span-12 last' }
     %div{:class=> 'span-6'}
-      = f.label :gender
+      = f.label :gender, :required => true
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Mascúlino
     %div{:class=> 'span-6 last'}
       = f.label :maritalstatus_id
-      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true}
+      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true
 
   %div{ :class => 'span-24 last' }
     = f.input :dateofbirth, :as => :string, :input_html => { :size => 10 }
     %div{:class=> 'span-6'}
       = f.label :country_id, :required => true
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true}, :selected => 484, :required => true
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}
     %div{:class=> 'span-6'}
       = f.label :state_id
-      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true}, :id => 'state_list'
+      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9, :id => 'state_list'}
     %div{:class=> 'span-6 last'}
       = f.label :city_id, :required => true
-      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true}, :id => 'city_list', :required => true
+      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :id => 'city_list', :required => true}
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
       %div{:id=>'city_field'}

@@ -6,7 +6,9 @@
   = f.input :password_confirmation, :input_html => { :size => 12 }, :required => true, :wrapper_class => 'span-8 last'
 
   = f.input :email, :as => :string, :input_html => { :size => 15 }, :autocomplete => "off", :wrapper_class => 'span-8'
-  = f.association  :userstatus,  :collection => Userstatus.all, :prompt => 'Please select', :wrapper_class => 'span-8'
+  %div{:class=> 'span-8'}
+    = f.label :userstatus_id, :required => true
+    = f.collection_select :userstatus_id, Userstatus.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
   %div{:class=> 'span-8 last'}    
     = f.label :user_incharge
     %div{:id => 'user_fullname'}
@@ -15,8 +17,8 @@
       - else
         = render :partial => 'academic_secretary/users/record_show', :object => f.object.user_incharge
     = f.hidden_field :user_incharge_id
-    = f.simple_fields_for :user_group_attributes, @user.user_group do |user_group_form|
-      = render :partial => 'user_groups/academic_form', :locals => { :f => user_group_form}
+  = f.simple_fields_for :user_group_attributes, @user.user_group do |user_group_form|
+    = render :partial => 'user_groups/academic_form', :locals => { :f => user_group_form}
 
 = f.simple_fields_for :person_attributes, @user.person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form }
