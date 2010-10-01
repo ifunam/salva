@@ -18,7 +18,7 @@ gem "net-ldap"
 
 # Searching and tagging
 gem "tsearch", :require => 'texticle'
-gem "scope_by_fuzzy", :git => 'git://github.com/monsterlabs/scope_by_fuzzy.git'
+gem "scope_by_fuzzy"
  
 # Security
 gem "ssl_requirement"
@@ -54,7 +54,6 @@ gem "resque_mailer"
 
 group :production do
   gem "inploy"
-  gem "rackamole"
 end
  
 group :development do
@@ -72,4 +71,6 @@ group :test do
   gem "remarkable_activemodel"
   gem "remarkable_activerecord", ">= 4.0.0.alpha4"
   gem "remarkable_rails"
+  gem 'steak', '>= 1.0.0.beta.1'
+  gem 'capybara'
 end
