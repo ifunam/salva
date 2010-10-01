@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')
-  scope :posdoc, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
+  scope :postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
   scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :fullname_desc, joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC')
   scope :distinct, select("DISTINCT (users.*)")
@@ -42,13 +42,13 @@ class User < ActiveRecord::Base
   has_many :user_adscriptions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
 
-  has_one  :user_as_posdoc_adscription, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
+  has_one  :user_adscription_as_postdoctoral, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :documents
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
 
-  def self.posdoc_search(search_options={}, page=1, per_page=10)
-    posdoc.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => per_page)
+  def self.postdoctoral_search(search_options={}, page=1, per_page=10)
+    postdoctoral.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => per_page)
   end
 
   def self.login_likes(login)
