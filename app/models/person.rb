@@ -21,14 +21,10 @@ class Person < ActiveRecord::Base
   scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
   search_methods :find_by_fullname
 
-  def self.search_not_posdoc(fullname)
-    self.find_by_fullname(fullname).select('id, user_id, firstname, lastname1, lastname2').includes(:user => [:jobposition, :user_adscriptions]).where("users.id = people.user_id AND jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id")
-  end
-
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
   end
-  
+
   def shortname
     [self.lastname1.strip,  self.firstname].compact.join(' ')
   end
