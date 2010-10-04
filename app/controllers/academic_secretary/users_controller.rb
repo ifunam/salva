@@ -2,7 +2,7 @@ class AcademicSecretary::UsersController < ApplicationController
   layout 'admin'
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
-  respond_to :js, :only => [:autocomplete_form, :show, :index, :edit_status, :update_status]
+  respond_to :js, :only => [:autocomplete_form, :show, :index, :edit_status, :update_status, :add_schoolarshi]
 
   def index
     respond_with(@users = User.postdoctoral_search(params[:search], params[:page], params[:per_page]))
@@ -31,8 +31,8 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def search_by_fullname
-    @records = Person.search_not_posdoc params[:term]
-    render :json => @records.collect { |record| { :id => record.user_id, :value => record.fullname, :label => record.fullname } }
+    @records = User.not_in_postdoctoral.search(:fullname_like => params[:term]).all
+    render :json => @records.collect { |record| { :id => record.id, :value => record.fullname_or_email, :label => record.fullname_or_email } }
   end
 
   def search_by_username
@@ -53,5 +53,9 @@ class AcademicSecretary::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attribute(:userstatus_id, params[:userstatus_id])
     render :action => 'update_status.js'
+  end
+  
+  def add_schoolarship
+    render :action => 'new_schoolarship.js'
   end
 end
