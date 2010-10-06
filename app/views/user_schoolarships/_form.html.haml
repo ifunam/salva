@@ -6,5 +6,12 @@
   %div{:class => 'span-6'}
     = f.label :schoolarship, :required => true
     = f.collection_select :schoolarship_id, Schoolarship.where("id >=62  AND id <= 67").all, :id, :name_and_institution_abbrev, { :prompt => true }
-  = f.input :start_date, :as => :string, :input_html =>  { :size => 10 }, :wrapper_class => 'span-6'
-  = f.input :end_date, :as => :string, :input_html =>  { :size => 10 }, :wrapper_class => 'span-6 last'
+  %div{:class => 'span-6'}
+    = f.label :start_date, :required => true
+    = f.text_field :start_date, :size => 10
+  %div{:class => 'span-6 '}
+    = f.label :start_date, :required => true
+    = f.text_field :end_date, :size => 10
+  - unless defined?(disabled_delete)
+    %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
+      = remove_child_link "remove", f

@@ -29,6 +29,7 @@ es:
     users:
       form:
         title: 'Administración de usuarios'
+        documents: 'Documentos'
   user_groups:
     academic_form:
         title: 'Grupo'

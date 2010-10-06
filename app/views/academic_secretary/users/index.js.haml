@@ -2,5 +2,5 @@
   = render :partial => @users
 %tfoot{:id => 'paginator'}
   %tr
-    %th{:style => 'width: 100%;'}
+    %th
       = will_paginate @users, :id => 'ajaxed_paginator'

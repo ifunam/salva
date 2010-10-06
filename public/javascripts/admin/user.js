@@ -7,6 +7,28 @@ $.validator.setDefaults({
     }
 });
 
+$(function() {
+  $('form a.add_child').click(function() {
+    var assoc   = $(this).attr('data-association');
+    var content = $('#' + assoc + '_fields_template').html();
+    var regexp  = new RegExp('new_' + assoc, 'g');
+    var new_id  = new Date().getTime();
+        
+    $(this).before(content.replace(regexp, new_id));    
+
+    // FIX IT: Move these lines to another method
+    date_picker_for('#user_user_schoolarships_attributes_'+new_id+'_start_date',start_year, current_year);
+    date_picker_for('#user_user_schoolarships_attributes_'+new_id+'_end_date',start_year, current_year);
+
+    return false;
+  });
+  
+  $('form a.remove_child').live('click', function() {
+    $(this).parent().parent().remove();
+    return false;
+  });
+});
+
 $(document).ready(function() {
 
     $("#dialog").dialog({
@@ -76,7 +98,8 @@ $(document).ready(function() {
     date_picker_for('#user_jobposition_attributes_end_date', start_year, current_year);
     date_picker_for('#user_user_schoolarship_attributes_start_date', start_year, current_year);
     date_picker_for('#user_user_schoolarship_attributes_end_date', start_year, current_year);
-
+    date_picker_for('#user_user_schoolarships_attributes_0_start_date',start_year, current_year);
+    date_picker_for('#user_user_schoolarships_attributes_0_end_date',start_year, current_year);
     $("#new_user").validate({
         rules: {
             "user[password]": {required:true, minlength:3},
@@ -89,6 +112,11 @@ $(document).ready(function() {
             "user[jobposition_attributes][schoolarship_id]": {required:true}, 
             "user[jobposition_attributes][user_adscription_attributes][adscription_id]": {required:true}, 
         }   
+    });
+
+    $('#new_user').live('submit', function() {
+        $('#user_schoolarships_fields_template').remove();
+        $('#documents_fields_template').remove();
     });
 
     $('#collection tr td').hover( function() {
@@ -144,6 +172,7 @@ $(document).ready(function() {
     set_button_behaviour();
     date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
     date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);
+
 });
 
 function search_by_username_onchange_observer() {

@@ -1,2 +1,13 @@
-= f.collection_select :document_type_id, DocumentType.all, :id, :name, {:prompt => true}
-= f.file_field :file, :size => 20
+- if !f.object.nil? and !f.object.new_record?
+  = f.hidden_field :id
+  = f.hidden_field :user_id
+%div{ :class => 'span-24 last' }
+  %div{:class => 'span-6'}
+    = f.label :document_type, :required =>  true
+    = f.collection_select :document_type_id, DocumentType.all, :id, :name, {:prompt => true}
+  %div{:class => 'span-8'}
+    = f.label :file, :required =>  true
+    = f.file_field :file, :size => 20
+  - unless defined?(disabled_delete)
+    %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
+      = remove_child_link "remove", f
