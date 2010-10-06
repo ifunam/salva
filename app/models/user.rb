@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
                   :userstatus_id, :user_incharge_id,
                   :person_attributes, :address_attributes, :jobposition_attributes,
-                  :jobposition_log_attributes, :user_group_attributes, :user_schoolarship_attributes
+                  :jobposition_log_attributes, :user_group_attributes,
+                  :user_schoolarships_attributes, :documents_attributes
 
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')
@@ -49,7 +50,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
 
   def self.postdoctoral_search(search_options={}, page=1, per_page=10)
-    postdoctoral.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => per_page)
+    postdoctoral.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => 10)
   end
 
   def self.login_likes(login)
