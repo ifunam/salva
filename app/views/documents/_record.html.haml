@@ -1,0 +1,4 @@
+%div{:class => 'row'}
+  - show_for record do |d|
+    %div{:class => 'span-24 last'}
+      = link_to (d.association :document_type, :using => :name), record.file.url

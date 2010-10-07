@@ -1,0 +1,26 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3 Categoría y adscripción
+  - show_for record do |p|
+    %div{:class => 'row'}
+      %div{ :class => 'span-6'}
+        = content_tag :label, 'Tipo'
+        = 'Personal académico para investigación'
+      %div{ :class => 'span-6'}
+        = content_tag :label, 'Categoría'
+        = 'Investigador posdoctoral'
+      %div{ :class => 'span-12 last'}
+        = content_tag :label, 'Institución'
+        = 'Instituto de Física'
+    %div{:class => 'row'}
+      %div{ :class => 'span-6'}
+        = content_tag :label, 'Adscripción'
+        = record.user_adscription.adscription.name
+      %div{ :class => 'span-6'}
+        = content_tag :label, 'Descripción'
+        = record.user_adscription.descr
+      %div{ :class => 'span-6'}
+        = content_tag :label, 'Fecha de ingreso al Instituto'
+        = record.user_adscription.start_date
+      %div{ :class => 'span-6 last'}
+        = content_tag :label, 'Fecha de conclusión'
+        = record.user_adscription.end_date

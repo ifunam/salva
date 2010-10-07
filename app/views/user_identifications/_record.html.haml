@@ -1,0 +1,5 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3 RFC
+  - show_for record do |id|
+    %div{:class => 'row'}
+      = id.attribute :descr, :wrapper_html => {:class => 'span-24'}

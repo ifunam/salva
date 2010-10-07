@@ -2,6 +2,15 @@
   = render :partial => 'users/record', :object => @user
   = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
   = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
+  = render :partial => 'user_identifications/record', :object => @user.user_identification unless @user.user_identification.nil?
+  = render :partial => 'jobpositions/record', :object => @user.jobposition unless @user.jobposition.nil?
+  %div{ :class => 'span-24 section_left last' }
+    %h3 Becas
+    = render :partial => 'user_schoolarships/record', :collection => @user.user_schoolarships
+  %div{ :class => 'span-24 section_left last' }
+    %h3 Documentos
+    = render :partial => 'documents/record', :collection => @user.documents
+
 %div{ :class => 'span-24 buttons_left last' }
   = link_to :edit, edit_academic_secretary_user_path(:id => @user.id), :class => "ui-state-default ui-corner-all ui-button"
   = link_to :back, academic_secretary_users_path, :class => "ui-state-default ui-corner-all ui-button"

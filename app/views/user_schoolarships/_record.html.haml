@@ -1,0 +1,5 @@
+%div{:class => 'row'}
+  - show_for record do |u|
+    = u.association :schoolarship, :using => :name_and_institution_abbrev, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :start_date, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :start_date, :wrapper_html => {:class => 'span-12 last'}

@@ -49,14 +49,14 @@ es:
       form:
         title: 'Cuenta de usuario'
         schoolarships: 'Becas'
+        documents: 'Documentos'
       filter_header: 
         fullname: 'Nombre'
         adscription: 'Departamento'
-        start_date_year: 'Año de inicio'
-        end_date_year: 'Año de término'
+        start_date_year: 'Año de ingreso al instituto'
+        end_date_year: 'Año de conclusión'
         status: 'Estado'
-        anual_report: 'Informe anual'
-        activities_plan: 'Plan de actividades'
+        schoolarship: 'Tipo de beca'
   user_identifications:
     academic_form:
       identification: 'RFC'

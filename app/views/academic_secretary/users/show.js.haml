@@ -18,17 +18,16 @@
       %br
       %em='Correo electrónico: '
       = @user.email
-
   %div{ :class => 'span-10 last'}
-    %div{ :class => 'span-2'}
+    %div{ :class => 'span-3'}
       %em='Becas: ' 
-    %div{ :class => 'span-8 last'}
-      = @user.postdoctoral_schoolarships.collect { |record| record.schoolarship.name_and_institution_abbrev }.join(', ')
+    %div{ :class => 'span-7 last'}
+      = @user.postdoctoral_schoolarships.collect { |record| content_tag(:li, record.schoolarship.name_and_institution_abbrev) }.join("\n").html_safe
   %div{ :class => 'span-10 last'}
-    %div{ :class => 'span-2'}
+    %div{ :class => 'span-3'}
       %em='Documentos: '
-    %div{ :class => 'span-last 8'}
-      = @user.documents.collect { |record| record.document_type.name }.join(', ')
+    %div{ :class => 'span-7 last '}
+      = @user.documents.collect { |record|  link_to(record.document_type.name,  record.file.url, :style => 'color: blue;') }.join(', ').html_safe
   %div{:class => 'span-10 last', :style => 'margin-top:10px;'}
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-zoomin') , academic_secretary_user_path(@user), :title => 'Ver detalles', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
 

@@ -1,12 +1,16 @@
 %div{ :class => 'span-24 section_left last' }
   %h2 Información general
   - show_for record do |p|
-    = p.attribute :firstname
-    = p.attribute :lastname1
-    = p.attribute :lastname2
-    = p.attribute :title
-    = p.attribute :gender
-    = p.association :maritalstatus, :using => :name
-    = p.association :country, :using => :name
-    = p.association :state, :using => :name
-    = p.association :city, :using => :name
+    %div{:class => 'row'}
+      = p.attribute :firstname, :wrapper_html => {:class => 'span-6'}
+      = p.attribute :lastname1, :wrapper_html => {:class => 'span-6'}
+      = p.attribute :lastname2, :wrapper_html => {:class => 'span-6'}
+      = p.attribute :title, :wrapper_html => {:class => 'span-6 last'}
+    %div{:class => 'row'}
+      = p.attribute :gender, :wrapper_html => {:class => 'span-6'}
+      = p.association :maritalstatus, :using => :name, :wrapper_html => {:class => 'span-6'}
+      = p.attribute :dateofbirth, :wrapper_html => {:class => 'span-12 last'}
+    %div{:class => 'row'}
+      = p.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
+      = p.association :state, :using => :name, :wrapper_html => {:class => 'span-6 '}
+      = p.association :city, :using => :name, :wrapper_html => {:class => 'span-12 last'}

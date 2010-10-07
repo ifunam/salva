@@ -1,53 +1,14 @@
 %div{ :class => 'span-24 section_left last' }
-  %h2 Domicilio
-
-  %div{ :class => 'span-18 last' }
-    %div{:class=> 'span-6'}
-      Addresstype
-    %div{:class=> 'span-6'}
-      Location
-    %div{:class=> 'span-6 last'}
-      Pobox
-    %div{:class=> 'span-6'}
-      = record.addresstype.name
-    %div{:class=> 'span-6'}
-      = record.location
-    %div{:class=> 'span-6 last'}
-      = record.pobox
-
-
-    %div{ :class => 'span-24 last' }
-      %div{:class=> 'span-6'}
-        Country
-      %div{:class=> 'span-6'}
-        State
-      %div{:class=> 'span-6'}
-        City
-      %div{:class=> 'span-6 last'}
-        Zipcode
-      %div{:class=> 'span-6'}
-        = record.country.name
-      %div{:class=> 'span-6'}
-        = record.state.name
-      %div{:class=> 'span-6'}
-        = record.city.name
-      %div{:class=> 'span-6 last'}
-        = record.zipcode
-
-    %div{ :class => 'span-24 last' }
-      %div{:class=> 'span-6'}
-        Phone
-      %div{:class=> 'span-6'}
-        Fax
-      %div{:class=> 'span-6'}
-        Movil
-      %div{:class=> 'span-6 last'}
-        Is postaddress
-      %div{:class=> 'span-6'}
-        = record.phone
-      %div{:class=> 'span-6'}
-        = record.fax
-      %div{:class=> 'span-6'}
-        = record.movil
-      %div{:class=> 'span-6 last'}
-        = if record.is_postaddress then "SI" else "NO" end
+  %h2 Domicilio profesional
+  - show_for record do |a|
+    %div{:class => 'row'}
+      = a.association :addresstype, :using => :name, :wrapper_html => {:class => 'span-6'}
+      = a.attribute :location, :wrapper_html => {:class => 'span-12'}
+      = a.attribute :pobox, :wrapper_html => {:class => 'span-6 last'}
+    %div{:class => 'row'}
+      = a.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
+      = a.association :state, :using => :name, :wrapper_html => {:class => 'span-6 '}
+      = a.association :city, :using => :name, :wrapper_html => {:class => 'span-6'}
+      = a.attribute :zipcode, :wrapper_html => {:class => 'span-6 last'}
+    %div{:class => 'row'}
+      = a.attribute :phone, :wrapper_html => {:class => 'span-24 last'}
