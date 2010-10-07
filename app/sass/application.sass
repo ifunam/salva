@@ -12,30 +12,30 @@ body
   margin-bottom: 0px
 
 #header
-  display: inline-block
-  background: #d5e5f8
-  text-align: left
-  padding-top: 20px
-  border-bottom: 1px solid #009afb
-  height: 60px
+  display: block-inline
+  background: url("/images/header_bg.png") repeat-x scroll left top 
+  text-align: center
+  padding-top: 30px
+  height: 140px
   width: 100%
   #title
     display: inline-block
-    color: black
+    color: white
     font-family: "georgia", "bitstream vera serif", serif
     font-size: 2.8em
     font-weight: normal
     letter-spacing: -1px
     line-height: 1
     margin-bottom: 10px
-    margin-left: 15px
+    padding-left: 80px
     line-height: 1
     float: left
     width: 80%
     a, a:link, a:visited, a:hover
-      color: black
+      text-decoration: none
+      color: white
   #toplinks
-    margin-top: 30px
+    margin-top: 70px
     font-size: 11px
     color: white
     a, a:link, a:visited, a:hover
@@ -173,6 +173,7 @@ label
 
 #filter_row
   th
+    text-valign: top
     text-align: center
     text-align: -moz-center
 
@@ -180,3 +181,36 @@ td.action
   text-align: center
   text-align: -moz-center
 
+.userstatus_menu
+  -moz-border-radius: 5px 0 5px 5px
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3)
+  background: none repeat scroll 0 0 #FFFFFF
+  border: 5px solid #CCCCCC
+  line-height: 16px
+  margin: 0
+  padding: 8px
+  position: absolute
+  right: 0
+  text-align: left
+  width: 180px
+  height: 100px
+  margin-right: 80px
+  z-index: 100
+ 
+
+.show_user_profile
+  -moz-border-radius: 5px 0 5px 5px
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3)
+  background: none repeat scroll 0 0 #FFFFFF
+  border: 5px solid #CCCCCC
+  line-height: 16px
+  margin: 0
+  padding: 8px
+  position: absolute
+  right: 0
+  text-align: left
+  width: 400px
+  height: 150px
+  left: 80px
+  z-index: 100
+  font-size: 9px

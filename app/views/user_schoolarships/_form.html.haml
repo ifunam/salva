@@ -5,7 +5,7 @@
 %div{ :class => 'span-24 last' }
   %div{:class => 'span-6'}
     = f.label :schoolarship, :required => true
-    = f.collection_select :schoolarship_id, Schoolarship.where("id >=62  AND id <= 67").all, :id, :name_and_institution_abbrev, { :prompt => true }
+    = f.collection_select :schoolarship_id, Schoolarship.where("id >=48  AND id <= 53").all, :id, :name_and_institution_abbrev, { :prompt => true }
   %div{:class => 'span-6'}
     = f.label :start_date, :required => true
     = f.text_field :start_date, :size => 10

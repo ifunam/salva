@@ -1,17 +1,17 @@
 %tr{:class => cycle('record-odd', 'record-even') }
   %td= user.login
-  %td
-    = user.fullname_or_login
-    %br
-    = link_to 'Ver', academic_secretary_user_path(user)
+  %td{:id=>'profile'}
+    %div{:id => 'profile_'+ dom_id(user)}
+      = user.fullname_or_login
+      = link_to image_tag('user_profile.png', :style => 'border: 0; float: right;'), '#', :title => 'Ver perfil del usuario', :remote => true, :id => user.id
 
   %td= user.user_adscription_as_postdoctoral.adscription.name
   %td= user.user_adscription_as_postdoctoral.start_date
   %td= user.user_adscription_as_postdoctoral.end_date 
-  %td= 'Scholarship'
+  %td= user.postdoctoral_schoolarships.first.schoolarship.name_and_institution_abbrev if user.postdoctoral_schoolarships.size > 0
   %td{:class => 'action'}
     %div{:class => 'ui-widget ui-widget-content ui-corner-all', :style => 'width: 40px; padding: 3px;', :id => 'userstatus_'+ dom_id(user) }
       %span{:style => 'float: left; text-align: right;', :id => 'userstatus_indicator_'+ dom_id(user) }
         = render :partial => 'userstatus', :locals => { :userstatus => user.userstatus}
       %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;', :id => 'edit_status'}
-        = link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s'}), edit_status_academic_secretary_user_path(:id => user.id, :format => 'js'), :remote => true, :id => user.id
+        = link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s'}), edit_status_academic_secretary_user_path(:id => user.id, :format => 'js'), :remote => true, :id => user.id, :title => 'Cambiar estado'

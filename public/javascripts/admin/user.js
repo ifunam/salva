@@ -156,6 +156,21 @@ $(document).ready(function() {
         return false;
      });
 
+    $("td#profile a").live("click", function() {
+		if ( $(this).attr('data-remote') == 'true' ) {
+            user_id = this.id;
+            options = {
+                url: '/academic_secretary/users/'+user_id+'.js',
+                success: function(request) {
+                    $('#show_profile_user_'+user_id).remove();
+                    $("#profile_user_"+user_id).after(request);
+                    }
+            }
+            $.ajax(options);
+            return false;
+		}
+     });
+
     $("#update_status a").live("click", function() {
         user_id = this.id;
         options = {
@@ -227,7 +242,7 @@ function  search_by_fullname_autocomplete() {
 
 function secretary_users_show(id) {
     $.ajax({
-        url: "/academic_secretary/users/" + id + '.js', 
+        url: "/academic_secretary/users/" + id + '/user_incharge.js',
         success: function(request) { 
             $("#user_fullname").html(request); 
         }
