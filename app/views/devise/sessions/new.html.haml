@@ -1,16 +1,17 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %p
-    = f.label :login
-    %br/
-    = f.text_field :login
-  %p
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %p
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %p= f.submit "Sign in"
-= render :partial => "devise/shared/links"
+%div{:class => 'span-24 last'}
+  %div{ :class => 'span-8 section' }
+    %h3 Inicio de sesión
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      %div{:class =>'span-3'}
+        = f.label :login
+      %div{:class =>'span-5 last'}
+        = f.text_field :login
+      %div{:class =>'span-3'}
+        = f.label :password
+      %div{:class =>'span-5 last'}
+        = f.password_field :password
+      %div{:class =>'span-3 last'}
+        = f.submit "Entrar"
+  %div{ :class => 'span-12 section_left last'}
+    %p= 'Sistema de Administración de Investigadores Posdoctorales.'
+    %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
