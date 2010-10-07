@@ -66,6 +66,7 @@ Salva::Application.routes.draw do
       get :autocomplete_form, :on => :collection
       get :edit_status, :on => :member
       get :update_status, :on => :member
+      get :user_incharge, :on => :member
     end
   end
   
