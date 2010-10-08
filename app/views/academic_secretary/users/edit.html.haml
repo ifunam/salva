@@ -1,4 +1,4 @@
-- form_for @user, :user, :url => academic_secretary_user_path, :html => { :multipart => true } do |f|
+- simple_form_for @user, :user, :url => academic_secretary_user_path, :html => { :multipart => true } do |f|
   = render :partial => 'form', :locals => { :f => f }  
   %div{ :class => 'span-24 buttons_left last' }
     = f.submit  :save

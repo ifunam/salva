@@ -14,13 +14,13 @@
     %div{:class => 'row'}
       %div{ :class => 'span-6'}
         = content_tag :label, 'Adscripción'
-        = record.user_adscription.adscription.name
+        = record.user_adscription.adscription.name unless record.user_adscription.nil?
       %div{ :class => 'span-6'}
         = content_tag :label, 'Descripción'
-        = record.user_adscription.descr
+        = record.user_adscription.descr unless record.user_adscription.nil?
       %div{ :class => 'span-6'}
         = content_tag :label, 'Fecha de ingreso al Instituto'
-        = record.user_adscription.start_date
+        = record.user_adscription.start_date unless record.user_adscription.nil?
       %div{ :class => 'span-6 last'}
         = content_tag :label, 'Fecha de conclusión'
-        = record.user_adscription.end_date
+        = record.user_adscription.end_date unless record.user_adscription.nil?
