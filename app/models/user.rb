@@ -21,14 +21,14 @@ class User < ActiveRecord::Base
   scope :distinct, select("DISTINCT (users.*)")
 
   # :userstatus_id_equals => find_all_by_userstatus_id
-  scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :fullname_likes, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
   scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :start_date).select('user_id').to_sql}) ") }
   scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :end_date).select('user_id').to_sql}) ") }
 
-  search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, :jobposition_start_date_year_equals, :jobposition_end_date_year_equals
+  search_methods :fullname_likes, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :login_likes
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'

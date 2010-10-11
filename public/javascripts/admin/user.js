@@ -156,8 +156,14 @@ $(document).ready(function() {
         return false;
      });
 
+    $("#filter_header_reset_all").live("click", function() {
+        document.forms['filter_form'].reset();
+        remote_user_list('/academic_secretary/users.js');
+        return false;
+    });
+
     $("td#profile a").live("click", function() {
-		if ( $(this).attr('data-remote') == 'true' ) {
+        if ( $(this).attr('data-remote') == 'true' ) {
             user_id = this.id;
             options = {
                 url: '/academic_secretary/users/'+user_id+'.js',
@@ -168,7 +174,7 @@ $(document).ready(function() {
             }
             $.ajax(options);
             return false;
-		}
+        }
      });
 
     $("#update_status a").live("click", function() {

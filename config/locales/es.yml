@@ -50,13 +50,16 @@ es:
         title: 'Cuenta de usuario'
         schoolarships: 'Becas'
         documents: 'Documentos'
-      filter_header: 
+      filter_header:
+        login: 'Usuario' 
         fullname: 'Nombre'
         adscription: 'Departamento'
         start_date_year: 'Año de ingreso al instituto'
         end_date_year: 'Año de conclusión'
         status: 'Estado'
         schoolarship: 'Tipo de beca'
+        list_all: 'Mostrar todos'
+        export_to_xls: 'Exportar a excel'
   user_identifications:
     academic_form:
       identification: 'RFC'

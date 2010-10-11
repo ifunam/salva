@@ -1,23 +1,25 @@
 - column_names = [:fullname, :adscription, :start_date, :end_date, :status, :anual_report, :anual_activities_report]
 %tr{:class => "filter_header", :id => "filter_row"}
   = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
-    %th{:class => 'ui-state-default', :style => 'width: 6%;'}
-      = link_to t(:show_all), academic_secretary_users_path, :style => 'color: yellow;'
-    %th{:class => 'ui-state-default', :style => 'width: 20%;'}
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      = t('.login')
+      %br
+      = f.text_field :login_likes, :size => 6
+    %th{:class => 'ui-state-default', :style => 'width: 25%;'}
       =t('.fullname')
       %br
-      = f.text_field :fullname_like, :size => 20
+      = f.text_field :fullname_likes, :size => 20
       %br
     %th{:class => 'ui-state-default', :style => 'width: 20%;'}
       =t('.adscription')
       %br
       = f.collection_select :adscription_id_equals, Adscription.where("id <=6").all, :id, :name, { :prompt => true }
-    %th{:class => 'ui-state-default', :style => 'width: 12%;'}
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t('.start_date_year')
       %br
       = f.text_field :jobposition_start_date_year_equals, :size => 4
 
-    %th{:class => 'ui-state-default', :style => 'width: 12%;'}
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t('.end_date_year')
       %br
       = f.text_field :jobposition_end_date_year_equals, :size => 4
@@ -31,3 +33,10 @@
       =t('.status')
       %br
       = f.collection_select :userstatus_id_equals, Userstatus.all, :id, :name, { :prompt => true }
+%tr
+  - 5.times do
+    %td{:class => 'ui-state-default'}
+  %td{:class => 'ui-state-default'}
+    = link_to t('.list_all'), '#', :remote => true, :id => 'filter_header_reset_all'
+  %td{:class => 'ui-state-default', :style => 'width: 5%;'}
+    = link_to t('.export_to_xls'), '#', :remote => true, :id => 'export_to_xls'
