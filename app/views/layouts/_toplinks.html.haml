@@ -1,4 +1,4 @@
 %div{:id => 'toplinks', :class => "ui-button-set"}
-  - unless current_user.nil?
+  - unless 'current_user.nil?'
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-home') + content_tag(:span, 'Inicio', :class => "ui-button-text"), root_url, :class => "ui-button ui-button-text-icon ui-widget ui-state-default ui-corner-left"
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-unlocked') + content_tag(:span, 'Salir', :class => "ui-button-text"), destroy_user_session_path, :class => "ui-button ui-button-text-icon ui-widget ui-state-default ui-corner-right"

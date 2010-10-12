@@ -13,7 +13,7 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_users_path)
+    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_user_path(@user))
   end
 
   def edit
@@ -27,7 +27,7 @@ class AcademicSecretary::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated, :location => academic_secretary_users_path)
+    respond_with(@user, :status => :updated, :location => academic_secretary_user_path(@user))
   end
 
   def search_by_fullname

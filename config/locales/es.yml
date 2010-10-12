@@ -60,8 +60,15 @@ es:
         schoolarship: 'Tipo de beca'
         list_all: 'Mostrar todos'
         export_to_xls: 'Exportar a excel'
+      index:
+        new: 'Agregar nuevo usuario'
   user_identifications:
     academic_form:
       identification: 'RFC'
 
   show_all: 'Mostrar todos'
+  save: 'Guardar'
+  cancel: 'Cancelar'
+  update: 'Guardar cambios'
+  edit: 'Modificar'
+  back: 'Regresar'

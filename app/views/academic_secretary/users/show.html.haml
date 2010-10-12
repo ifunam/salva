@@ -12,5 +12,5 @@
     = render :partial => 'documents/record', :collection => @user.documents
 
 %div{ :class => 'span-24 buttons_left last' }
-  = link_to :edit, edit_academic_secretary_user_path(:id => @user.id), :class => "ui-state-default ui-corner-all ui-button"
-  = link_to :back, academic_secretary_users_path, :class => "ui-state-default ui-corner-all ui-button"
+  = link_to t(:edit), edit_academic_secretary_user_path(:id => @user.id), :class => "ui-state-default ui-corner-all button"
+  = link_to t(:back), academic_secretary_users_path, :class => "ui-state-default ui-corner-all button"
