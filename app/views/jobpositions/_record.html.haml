@@ -20,7 +20,7 @@
         = record.user_adscription.descr unless record.user_adscription.nil?
       %div{ :class => 'span-6'}
         = content_tag :label, 'Fecha de ingreso al Instituto'
-        = record.user_adscription.start_date unless record.user_adscription.nil?
+        = record.start_date
       %div{ :class => 'span-6 last'}
         = content_tag :label, 'Fecha de conclusión'
-        = record.user_adscription.end_date unless record.user_adscription.nil?
+        = record.end_date

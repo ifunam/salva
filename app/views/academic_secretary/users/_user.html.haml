@@ -6,8 +6,8 @@
       = link_to image_tag('user_profile.png', :style => 'border: 0; float: right;'), '#', :title => 'Ver perfil del usuario', :remote => true, :id => user.id
 
   %td= user.user_adscription_as_postdoctoral.adscription.name
-  %td= user.user_adscription_as_postdoctoral.start_date
-  %td= user.user_adscription_as_postdoctoral.end_date 
+  %td= user.jobposition_as_postdoctoral.start_date
+  %td= user.jobposition_as_postdoctoral.end_date 
   %td= user.postdoctoral_schoolarships.first.schoolarship.name_and_institution_abbrev if user.postdoctoral_schoolarships.size > 0
   %td{:class => 'action'}
     %div{:class => 'ui-widget ui-widget-content ui-corner-all', :style => 'width: 40px; padding: 3px;', :id => 'userstatus_'+ dom_id(user) }

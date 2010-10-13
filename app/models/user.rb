@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
-  scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :start_date).select('user_id').to_sql}) ") }
-  scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{UserAdscription.by_year(year, :field => :end_date).select('user_id').to_sql}) ") }
+  scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
+  scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
 
   search_methods :fullname_likes, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :login_likes
 
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   has_many :user_adscriptions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
-
+  has_one  :jobposition_as_postdoctoral, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 38', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one  :user_adscription_as_postdoctoral, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :postdoctoral_schoolarships, :class_name => 'UserSchoolarship', :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :conditions => 'schoolarships.id >=48  AND schoolarships.id <= 53', :include => :schoolarship
