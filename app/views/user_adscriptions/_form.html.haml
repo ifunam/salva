@@ -3,6 +3,7 @@
 
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
+    = f.hidden_field :user_id
     = f.hidden_field :jobposition_id
 
   %div{ :class => 'span-24 last' }

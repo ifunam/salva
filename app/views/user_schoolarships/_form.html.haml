@@ -10,8 +10,10 @@
     = f.label :start_date, :required => true
     = f.text_field :start_date, :size => 10
   %div{:class => 'span-6 '}
-    = f.label :start_date, :required => true
+    = f.label :end_date, :required => true
     = f.text_field :end_date, :size => 10
-  - unless defined?(disabled_delete)
-    %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
+  %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
+    - if !defined?(disabled_delete)
       = remove_child_link "remove", f
+    - elsif !f.object.nil? and !f.object.new_record?
+      = remove_remote_child 'remove_user_schoolarship', f

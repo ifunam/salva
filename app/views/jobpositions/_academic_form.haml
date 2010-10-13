@@ -22,8 +22,12 @@
 
     %div{:class=> 'span-6 last'}
       = ' '
-  = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
-    = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+  - if !f.object.nil? and !f.object.new_record?
+    = f.simple_fields_for :user_adscription_attributes, f.object.user_adscription do |user_adscription_form|
+      = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+  - else
+    = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
+      = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
 
   %div{ :class => 'span-12 last' }
     = f.input :start_date, :as => :string, :input_html =>  { :size => 10 }

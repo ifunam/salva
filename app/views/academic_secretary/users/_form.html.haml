@@ -39,7 +39,6 @@
   = f.simple_fields_for :user_schoolarships do |schoolarship_form|
     = render :partial => 'user_schoolarships/form', :locals => { :f => schoolarship_form, :disabled_delete => true }
   = add_child_link :new_schoolarship, :user_schoolarships
-
   = new_child_fields_template(f, :user_schoolarships, :partial => 'user_schoolarships/form')
 
 -  @user.documents.build if @user.documents.size < 1

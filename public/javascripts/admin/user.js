@@ -27,6 +27,35 @@ $(function() {
     $(this).parent().parent().remove();
     return false;
   });
+
+  $('form a.remove_document').live('click', function() {
+    document_id = this.id;
+    $.ajax({
+        url: "/documents/"+document_id,
+        type: 'GET',
+        dataType: 'xml',
+        success: function(request) { 
+
+        }
+    });
+    $(this).parent().parent().remove();
+    return false;
+  });
+
+  $('form a.remove_user_schoolarship').live('click', function() {
+    schoolarship_id = this.id;
+    $.ajax({
+        url: "/user_schoolarships/"+schoolarship_id,
+        type: 'DELETE',
+        dataType: 'xml',
+        success: function(request) { 
+
+        }
+    });
+    $(this).parent().parent().remove();
+    return false;
+  });
+
 });
 
 $(document).ready(function() {
@@ -114,7 +143,7 @@ $(document).ready(function() {
         }   
     });
 
-    $('#new_user').live('submit', function() {
+    $('#save_user').live('submit', function() {
         $('#user_schoolarships_fields_template').remove();
         $('#documents_fields_template').remove();
     });

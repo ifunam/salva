@@ -1,3 +1,7 @@
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to t(:edit), edit_academic_secretary_user_path(:id => @user.id), :class => "ui-state-default ui-corner-all button"
+  = link_to t(:back), academic_secretary_users_path, :class => "ui-state-default ui-corner-all button"
+
 %div{:class => "span-24 last"}
   = render :partial => 'users/record', :object => @user
   = render :partial => 'people/record', :object => @user.person unless @user.person.nil?

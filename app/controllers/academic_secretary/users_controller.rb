@@ -13,7 +13,7 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_user_path(@user))
+    respond_with(@user = User.create(params[:user]), :status => :created, :location => academic_secretary_users_path)
   end
 
   def edit

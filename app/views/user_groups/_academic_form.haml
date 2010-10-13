@@ -2,3 +2,6 @@
   = f.label :group
   = 'Investigadores posdoctorales'
   = f.hidden_field :group_id, :value => 4
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+    = f.hidden_field :user_id
