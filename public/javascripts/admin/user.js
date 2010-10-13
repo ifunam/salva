@@ -32,7 +32,7 @@ $(function() {
     document_id = this.id;
     $.ajax({
         url: "/documents/"+document_id,
-        type: 'GET',
+        type: 'DELETE',
         dataType: 'xml',
         success: function(request) { 
 

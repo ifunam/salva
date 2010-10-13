@@ -55,6 +55,9 @@ Salva::Application.routes.draw do
     get :remote_form, :on => :collection
   end
   
+  resources :documents
+  resources :user_schoolarships
+
   namespace :admin do
     resources :users
   end
