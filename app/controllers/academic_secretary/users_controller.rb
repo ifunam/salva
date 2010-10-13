@@ -26,7 +26,7 @@ class AcademicSecretary::UsersController < ApplicationController
       format.js
       format.html
       format.pdf do
-        send_data PostdoctoralCard.new(@user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
+        send_data PostdoctoralCard.new(:user => @user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
       end
     end
   end
