@@ -8,7 +8,7 @@
   = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
   = render :partial => 'user_identifications/record', :object => @user.user_identification unless @user.user_identification.nil?
   = render :partial => 'jobpositions/record', :object => @user.jobposition unless @user.jobposition.nil?
-  %div{ :class => 'span-24 section_left last' }
+  %div{ :class => 'span-24 section_left append-bottom last' }
     %h3 Becas
     = render :partial => 'user_schoolarships/record', :collection => @user.user_schoolarships
   %div{ :class => 'span-24 section_left last' }
