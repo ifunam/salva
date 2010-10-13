@@ -50,8 +50,8 @@ gem "resque", "1.11.0", :git => 'git://github.com/defunkt/resque.git', :require 
 gem 'resque-status', :require => 'resque/status'
 gem "resque_mailer"
 
-#gem "spreadsheet"
-#gem "prawn"
+gem "prawn", "0.11.1.pre"
+# gem "spreadsheet"
 
 group :production do
   gem "inploy"

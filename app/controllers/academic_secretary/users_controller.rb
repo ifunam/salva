@@ -1,3 +1,4 @@
+require 'lib/document/postdoctoral_card'
 class AcademicSecretary::UsersController < ApplicationController
   layout 'admin'
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
@@ -21,7 +22,13 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def show
-    respond_with(@user = User.find(params[:id]))
+    respond_with(@user = User.find(params[:id])) do |format|
+      format.js
+      format.html
+      format.pdf do
+        send_data PostdoctoralCard.new(@user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
+      end
+    end
   end
 
   def update
