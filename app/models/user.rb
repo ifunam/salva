@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
 
   def self.postdoctoral_search(search_options={})
-    postdoctoral.fullname_asc.search(search_options).all
+    postdoctoral.fullname_asc.search(search_options)
   end
 
   def self.login_likes(login)
