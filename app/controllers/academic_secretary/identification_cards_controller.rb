@@ -1,7 +1,7 @@
 class AcademicSecretary::IdentificationCardsController < ApplicationController
   layout 'admin'
   respond_to :html
-  respond_to :js, :only => [:index]
+  respond_to :js, :only => [:index, :edit]
   def index
     respond_with(@users = User.postdoctoral.fullname_asc.activated.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => 10))
   end
@@ -22,6 +22,10 @@ class AcademicSecretary::IdentificationCardsController < ApplicationController
         send_data IdentificationCard.new(@user).back, :filename => "#{@user.login}_back.jpg", :type => 'image/jpeg', :disposition => 'attachment'  
       end
     end
+  end
+  
+  def edit
+    respond_with(@person = Person.where(:user_id =>params[:id]).first)
   end
 
 end

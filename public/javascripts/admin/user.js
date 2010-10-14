@@ -251,6 +251,10 @@ $(document).ready(function() {
         return false;
     });
 
+   $("td#person_photo' a").live("click", function() {
+		dialog_for_photo(this.id);
+            return false;
+     });
 });
 
 function search_by_username_onchange_observer() {
@@ -412,4 +416,14 @@ function open_dialog_with_progressbar() {
 function close_dialog_with_progressbar() {
        $('#dialog').dialog('close');
        $('#dialog').html('');
+}
+
+function dialog_for_photo(person_id) {
+    $('#dialog').dialog({title:'Fotografía', width: 440, height: 200, bgiframe: true, modal: true}).dialog('open');
+    $.ajax({
+        url: "/academic_secretary/identification_cards/" + person_id + '/edit.js',
+        success: function(request) {
+            $("div#dialog").html(request);
+        }
+    });
 }

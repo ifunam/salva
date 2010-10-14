@@ -1,0 +1,4 @@
+= simple_form_for(@person, :url => academic_secretary_identification_card_path(@person), :html => { :multipart => true}) do |f|
+  = render :partial => 'form', :locals => { :f => f}
+  %div{ :class => 'span-6 buttons_left last' }
+    = f.submit  :save
