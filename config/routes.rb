@@ -22,6 +22,7 @@ Salva::Application.routes.draw do
       get :search_by_fullname, :on => :collection
       get :search_by_username, :on => :collection
       get :autocomplete_form, :on => :collection
+      get :list, :on => :collection
       get :edit_status, :on => :member
       get :update_status, :on => :member
       get :user_incharge, :on => :member

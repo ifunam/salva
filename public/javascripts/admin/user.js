@@ -219,6 +219,11 @@ $(document).ready(function() {
         return false;
      });
 
+    $("#export_to_xls").live("click", function() {
+        $.download('/academic_secretary/users/list.xls', $.param($("form").serializeArray()), 'get');
+        return false;
+    });
+    
     set_button_behaviour();
     date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
     date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);

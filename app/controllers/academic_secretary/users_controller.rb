@@ -1,12 +1,22 @@
-require 'lib/document/postdoctoral_card'
+require 'lib/document/postdoctoral_card_request'
+require 'lib/document/postdoctoral_reporter'
 class AcademicSecretary::UsersController < ApplicationController
   layout 'admin'
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
   respond_to :js, :only => [:autocomplete_form, :show, :user_incharge, :index, :edit_status, :update_status]
+  respond_to :xls, :only => [:list]
 
   def index
-    respond_with(@users = User.postdoctoral_search(params[:search], params[:page], params[:per_page]))
+    respond_with(@users = User.postdoctoral_search(params[:search]).paginate(:page => params[:page] || 1, :per_page =>  params[:per_page] || 10))
+  end
+  
+  def list
+    respond_with(@users = User.postdoctoral_search(params[:search])) do |format|
+      format.xls do 
+        send_data PostdoctoralReporter.new(@users).to_xls, :filename => 'posdoctorales.xls'
+      end
+    end
   end
 
   def new
@@ -23,10 +33,8 @@ class AcademicSecretary::UsersController < ApplicationController
 
   def show
     respond_with(@user = User.find(params[:id])) do |format|
-      format.js
-      format.html
       format.pdf do
-        send_data PostdoctoralCard.new(:user => @user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
+        send_data PostdoctoralCardRequest.new(:user => @user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
       end
     end
   end

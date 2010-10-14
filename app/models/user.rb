@@ -50,8 +50,8 @@ class User < ActiveRecord::Base
   has_many :documents
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
 
-  def self.postdoctoral_search(search_options={}, page=1, per_page=10)
-    postdoctoral.fullname_asc.search(search_options).all.paginate(:page => page, :per_page => 10)
+  def self.postdoctoral_search(search_options={})
+    postdoctoral.fullname_asc.search(search_options).all
   end
 
   def self.login_likes(login)
