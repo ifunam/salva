@@ -52,7 +52,7 @@ class AcademicSecretary::UsersController < ApplicationController
 
   def search_by_username
     @records = User.login_likes params[:term]
-    render :json => @records.collect { |record| { :id => record.login, :value => record.login, :label => record.friendly_email } }
+    render :json => @records.collect { |record| { :id => record.login, :value => record.login, :label => record.login } }
   end
   
   def autocomplete_form

@@ -37,6 +37,6 @@
   - 5.times do
     %td{:class => 'ui-state-default'}
   %td{:class => 'ui-state-default'}
-    = link_to t('.list_all'), '#', :remote => true, :id => 'filter_header_reset_all'
+    = link_to t('.list_all'), '#', :remote => true, :id => 'filter_header_reset_all', :class => "ui-state-default ui-corner-all button"
   %td{:class => 'ui-state-default', :style => 'width: 5%;'}
-    = link_to t('.export_to_xls'), '#', :remote => true, :id => 'export_to_xls'
+    = link_to t('.export_to_xls'), '#', :remote => true, :id => 'export_to_xls', :class => "ui-state-default ui-corner-all button"

@@ -313,7 +313,7 @@ function city_list_by_state(id) {
 }
 
 function dialog_for_new_city() {
-    $('#dialog').dialog({title:'Nueva ciudad', width: 320, height: 180}).dialog('open');
+    $('#dialog').dialog({title:'Nueva ciudad', width: 320, height: 230}).dialog('open');
     $.ajax({
         url: "/cities/new.js",
         data: {state_id: $("#state_list").val()},
