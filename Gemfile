@@ -51,7 +51,7 @@ gem 'resque-status', :require => 'resque/status'
 gem "resque_mailer"
 
 gem "prawn", "0.11.1.pre"
-# gem "spreadsheet"
+gem "spreadsheet"
 
 group :production do
   gem "inploy"
