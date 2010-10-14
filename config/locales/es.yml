@@ -70,7 +70,7 @@ es:
           start_date_year: 'Año de ingreso al instituto'
           end_date_year: 'Año de conclusión'
           front: 'Frente de credencial'
-          back: 'Anverso de credencial'
+          back: 'Código de barras de credencial'
           list_all: 'Mostrar todos'
         
   user_identifications:
