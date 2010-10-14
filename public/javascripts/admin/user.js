@@ -234,6 +234,23 @@ $(document).ready(function() {
     date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
     date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);
 
+	// IdentificationCardsController
+    $("tr#filter_identification_cards select").live('change', function() {
+        remote_user_list('/academic_secretary/identification_cards.js', $.param($("form").serializeArray()));
+        return false;
+    });
+
+    $("tr#filter_identification_cards input").live('focusout', function() {
+        remote_user_list('/academic_secretary/identification_cards.js', $.param($("form").serializeArray()));
+        return false;
+    });
+
+	$("#filter_identification_cards_reset_all").live("click", function() {
+        document.forms['filter_form'].reset();
+        remote_user_list('/academic_secretary/identification_cards.js');
+        return false;
+    });
+
 });
 
 function search_by_username_onchange_observer() {

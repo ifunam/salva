@@ -27,6 +27,8 @@ Salva::Application.routes.draw do
       get :update_status, :on => :member
       get :user_incharge, :on => :member
     end
+    
+    resources :identification_cards
   end
 
   root :to => "academic_secretary/users#index"

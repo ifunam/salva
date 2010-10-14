@@ -1,0 +1,12 @@
+%tr{:class => cycle('record-odd', 'record-even') }
+  %td= user.login
+  %td{:id=>'profile'}
+    %div{:id => 'profile_'}
+      = user.fullname_or_login
+      = link_to image_tag('user_profile.png', :style => 'border: 0; float: right;'), '#', :title => 'Agregar o actualizar fotografía', :remote => true, :id => user.id
+
+  %td= user.user_adscription_as_postdoctoral.adscription.name
+  %td= user.jobposition_as_postdoctoral.start_date
+  %td= user.jobposition_as_postdoctoral.end_date 
+  %td= 'front'
+  %td= 'back'

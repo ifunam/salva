@@ -62,6 +62,17 @@ es:
         export_to_xls: 'Exportar a excel'
       index:
         new: 'Agregar nuevo usuario'
+    identification_cards:
+        filter_header:
+          login: 'Usuario' 
+          fullname: 'Nombre'
+          adscription: 'Departamento'
+          start_date_year: 'Año de ingreso al instituto'
+          end_date_year: 'Año de conclusión'
+          front: 'Frente de credencial'
+          back: 'Anverso de credencial'
+          list_all: 'Mostrar todos'
+        
   user_identifications:
     academic_form:
       identification: 'RFC'
