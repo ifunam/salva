@@ -199,7 +199,13 @@ $(document).ready(function() {
                 success: function(request) {
                     $('#show_profile_user_'+user_id).remove();
                     $("#profile_user_"+user_id).after(request);
-                    }
+                },
+                beforeSend: function(){
+                    open_dialog_with_progressbar();
+                },
+                complete: function(request){ 
+                   close_dialog_with_progressbar();
+                }
             }
             $.ajax(options);
             return false;
