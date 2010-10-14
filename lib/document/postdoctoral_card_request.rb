@@ -1,4 +1,4 @@
-class PostdoctoralCard < Prawn::Document
+class PostdoctoralCardRequest < Prawn::Document
   def initialize(options={},&block)
     options[:template] = Rails.root.to_s + '/app/views/academic_secretary/users/postdoctoral_card_template.pdf'
     if options.has_key? :user
