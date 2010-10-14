@@ -265,7 +265,7 @@ function search_by_username_autocomplete() {
 }
 
 function dialog_for_existent_login(login) {
-    $('#dialog').dialog({title:'Error', width: 270, height: 125}).dialog('open');
+    $('#dialog').dialog({title:'Error', width: 270, height: 125, bgiframe: true, modal: true}).dialog('open');
     $('#dialog').html('<p> <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span> El usuario ' +  login + ' ya existe, asigne un login distinto.</p>');
 }
 
@@ -343,7 +343,13 @@ function set_button_behaviour() {
 function remote_user_list(href, params) {
     options = {
         url: href,
-        complete: function(request){ set_button_behaviour(); },
+		beforeSend: function(){
+ 			open_dialog_with_progressbar();
+		},
+        complete: function(request){ 
+	       set_button_behaviour();
+ 		   close_dialog_with_progressbar();
+	    },
         success: function(request) {
             $('#collection').remove();
             $('#paginator').remove();
@@ -368,4 +374,19 @@ function date_picker_for(dom_id, start_year, end_year) {
         buttonImageOnly: true,
         buttonImage: '/images/calendar.gif'
     });
+}
+
+function open_dialog_with_progressbar() {
+	$('#dialog').dialog({ width: 260, height: 130, bgiframe: true, modal: true, hide: 'slide',
+	                      open: function(event, ui) { 
+							$(this).parent().children('.ui-dialog-titlebar').hide();
+						  }
+	}).dialog('open');
+	$('#dialog').html('<div id="progressbar"></div><p style="font-size:12px">Cargando, por favor espere...</p>');
+	$( "#progressbar" ).progressbar({value: 100});
+}
+
+function close_dialog_with_progressbar() {
+	   $('#dialog').dialog('close');
+	   $('#dialog').html('');
 }
