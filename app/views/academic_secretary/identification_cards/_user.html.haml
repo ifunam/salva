@@ -8,5 +8,5 @@
   %td= user.user_adscription_as_postdoctoral.adscription.name
   %td= user.jobposition_as_postdoctoral.start_date
   %td= user.jobposition_as_postdoctoral.end_date 
-  %td= 'front'
-  %td= 'back'
+  %td= link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-person') , front_academic_secretary_identification_card_path(:id => user.id, :format => :jpg), :title => 'Frente de credencial', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :target => '_new'
+  %td= link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-contact') , back_academic_secretary_identification_card_path(:id => user.id, :format => :jpg), :title => 'Código de barras de credencial', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :target => '_new'

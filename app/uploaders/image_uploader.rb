@@ -29,4 +29,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [256, 256]
   end
 
+  version :card do
+    process :resize_to_fill => [100, 100]
+  end
 end

@@ -52,6 +52,7 @@ gem "resque_mailer"
 
 gem "prawn", "0.11.1.pre"
 gem "spreadsheet"
+gem "barby"
 
 group :production do
   gem "inploy"

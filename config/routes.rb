@@ -28,7 +28,10 @@ Salva::Application.routes.draw do
       get :user_incharge, :on => :member
     end
     
-    resources :identification_cards
+    resources :identification_cards do
+      get :front, :on => :member
+      get :back, :on => :member
+    end
   end
 
   root :to => "academic_secretary/users#index"
