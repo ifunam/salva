@@ -343,13 +343,13 @@ function set_button_behaviour() {
 function remote_user_list(href, params) {
     options = {
         url: href,
-		beforeSend: function(){
- 			open_dialog_with_progressbar();
-		},
+        beforeSend: function(){
+            open_dialog_with_progressbar();
+        },
         complete: function(request){ 
-	       set_button_behaviour();
- 		   close_dialog_with_progressbar();
-	    },
+           set_button_behaviour();
+           close_dialog_with_progressbar();
+        },
         success: function(request) {
             $('#collection').remove();
             $('#paginator').remove();
@@ -377,16 +377,16 @@ function date_picker_for(dom_id, start_year, end_year) {
 }
 
 function open_dialog_with_progressbar() {
-	$('#dialog').dialog({ width: 260, height: 130, bgiframe: true, modal: true, hide: 'slide',
-	                      open: function(event, ui) { 
-							$(this).parent().children('.ui-dialog-titlebar').hide();
-						  }
-	}).dialog('open');
-	$('#dialog').html('<div id="progressbar"></div><p style="font-size:12px">Cargando, por favor espere...</p>');
-	$( "#progressbar" ).progressbar({value: 100});
+    $('#dialog').dialog({ width: 260, height: 130, bgiframe: true, modal: true, hide: 'slide',
+                          open: function(event, ui) { 
+                            $(this).parent().children('.ui-dialog-titlebar').hide();
+                          }
+    }).dialog('open');
+    $('#dialog').html('<div id="progressbar"></div><p style="font-size:12px">Cargando, por favor espere...</p>');
+    $( "#progressbar" ).progressbar({value: 100});
 }
 
 function close_dialog_with_progressbar() {
-	   $('#dialog').dialog('close');
-	   $('#dialog').html('');
+       $('#dialog').dialog('close');
+       $('#dialog').html('');
 }
