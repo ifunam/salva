@@ -5,16 +5,16 @@ class AcademicSecretary::UsersController < ApplicationController
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
   respond_to :js, :only => [:autocomplete_form, :show, :user_incharge, :index, :edit_status, :update_status]
-  respond_to :xls, :only => [:list]
 
   def index
     respond_with(@users = User.postdoctoral_search(params[:search]).paginate(:page => params[:page] || 1, :per_page =>  params[:per_page] || 10))
   end
   
   def list
-    respond_with(@users = User.postdoctoral_search(params[:search])) do |format|
+    @users = User.postdoctoral_search(params[:search])
+    respond_to do |format|
       format.xls do 
-        send_data PostdoctoralReporter.new(@users).to_xls, :filename => 'posdoctorales.xls'
+        send_data PostdoctoralReporter.new(@users).to_xls, :filename => 'posdoctorales_'+ Time.now.strftime("%Y%m%d%H%M%S") + '.xls'
       end
     end
   end

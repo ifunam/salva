@@ -220,7 +220,7 @@ $(document).ready(function() {
      });
 
     $("#export_to_xls").live("click", function() {
-        $.download('/academic_secretary/users/list.xls', $.param($("form").serializeArray()), 'get');
+        $.download('/academic_secretary/users/list.xls', decodeURIComponent($.param($("form").serializeArray())), 'get');
         return false;
     });
     
