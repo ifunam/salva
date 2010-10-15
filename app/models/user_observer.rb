@@ -6,6 +6,7 @@ class UserObserver < ActiveRecord::Observer
     if @ldap_user.valid?
       @ldap_user.save
       Notifier.new_user_to_admin(@new_user.id).deliver
+      Notifier.identification_card_request(@new_user.id).deliver
     else
       Notifier.ldap_errors_to_admin(@new_user.id).deliver
     end
