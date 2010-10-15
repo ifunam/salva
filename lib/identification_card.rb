@@ -8,7 +8,7 @@ class IdentificationCard
   end
 
   def front
-    @image = Magick::Image.read(Rails.root.to_s+"/public/images/cards/front.jpg").first
+    @image = Magick::Image.read(Rails.root.to_s+"/lib/templates/cards/front.jpg").first
     add_fullname_and_email!
     add_category!
     add_department_and_user_incharge!
@@ -16,7 +16,7 @@ class IdentificationCard
   end
 
   def back
-    @image = Magick::Image.read(Rails.root.to_s+"/public/images/cards/back.jpg").first
+    @image = Magick::Image.read(Rails.root.to_s+"/lib/templates/cards/back.jpg").first
     add_text!(Date.today.to_s, 280, 331, 24, BoldWeight)
     add_vigency!
     @image.composite(barcode_image.resize(350,300), 650, 100, Magick::OverCompositeOp).to_blob
