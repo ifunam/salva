@@ -1,6 +1,6 @@
 class PostdoctoralCardRequest < Prawn::Document
   def initialize(options={},&block)
-    options[:template] = Rails.root.to_s + '/app/views/academic_secretary/users/postdoctoral_card_template.pdf'
+    options[:template] = Rails.root.to_s + '/lib/templates/documents/postdoctoral_card_template.pdf'
     if options.has_key? :user
       @user = options[:user]
       options.delete :user

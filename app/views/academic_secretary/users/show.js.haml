@@ -31,4 +31,4 @@
   %div{:class => 'span-10 last', :style => 'margin-top:10px;'}
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-zoomin') , academic_secretary_user_path(@user), :title => 'Ver detalles', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-document') , edit_academic_secretary_user_path(:id => @user.id), :title => 'Modificar', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
-    = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-document-b') , academic_secretary_user_path(@user, :format => 'pdf'), :title => 'Solicitud de Credencial para el CTIC', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :target => '_new'
+    = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-document-b') , academic_secretary_user_path(@user, :format => 'pdf'), :title => 'Solicitud de Credencial para el CTIC', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
