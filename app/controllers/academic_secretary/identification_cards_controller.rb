@@ -25,7 +25,12 @@ class AcademicSecretary::IdentificationCardsController < ApplicationController
   end
   
   def edit
-    respond_with(@person = Person.where(:user_id =>params[:id]).first)
+    respond_with(@person = Person.find(params[:id]))
   end
 
+  def update
+    @person = Person.find(params[:id])
+    @person.update_attributes(params[:person])
+    render :action => 'update', :layout => false
+  end
 end

@@ -4,6 +4,7 @@
     %div{:id => 'person_' + dom_id(user.person)}
       = user.fullname_or_login
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-circle-arrow-n') , '#', :title => 'Guardar o actualizar fotografía', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => user.person.id, :style => 'border: 0; float: right;'
+      = image_tag(user.person.image.file.url(:card)) unless user.person.image.nil?
 
   %td= user.user_adscription_as_postdoctoral.adscription.name
   %td= user.jobposition_as_postdoctoral.start_date

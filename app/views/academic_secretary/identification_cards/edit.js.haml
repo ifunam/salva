@@ -1,4 +1,6 @@
-= simple_form_for(@person, :url => academic_secretary_identification_card_path(@person), :html => { :multipart => true}) do |f|
+= simple_form_for(@person, :url => academic_secretary_identification_card_path(@person), :html => { :multipart => true, :target => "upload_target"}) do |f|
   = render :partial => 'form', :locals => { :f => f}
+  // = f.hidden_field :format, :value => :js
   %div{ :class => 'span-6 buttons_left last' }
     = f.submit  :save
+%iframe{:id => 'upload_target', :name => 'upload_target', :src => '#', :style => "width:0;height:0;border:0px solid #fff;"}

@@ -66,9 +66,12 @@ class IdentificationCard
   
   def user_image
     image_path = Rails.root.to_s + "/public/images/avatar_missing_icon.png"
-    #image_path = @user.person.image.file.path(:card) if !@user.person.nil? and File.exist? @user.person.image.file.path
+    if !@user.person.nil? and !@user.person.image.nil?
+      file_path = Rails.root.to_s + @user.person.image.file.url(:card)
+      image_path = file_path if File.exist? file_path
+    end
     pic = Magick::Image.read(image_path).first
-    pic.resize(220,230).border(1,1,"#000000")
+    pic.resize(220,230).border(1,1,"#000000").quantize(256, Magick::GRAYColorspace)
   end
 
   def barcode_image
