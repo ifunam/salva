@@ -75,6 +75,7 @@ class IdentificationCard
   end
 
   def barcode_image
+    id = @user.user_identification.nil? ? @user.user_identification.descr : @user.login
     Barby::Code39.new(@user.user_identification.descr).to_image
   end
 end
