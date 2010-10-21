@@ -8,6 +8,7 @@ class City < ActiveRecord::Base
   belongs_to :state
   has_many :people
   has_many :addresses
+  has_many :institutions
   #scope_by_soundex :name_likes, :fields => [:name]
   search_methods :name_likes
   

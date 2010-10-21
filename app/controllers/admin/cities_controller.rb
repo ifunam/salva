@@ -6,7 +6,7 @@ class Admin::CitiesController < ApplicationController
     respond_with(@cities = City.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => 10))
   end
 
-  # TODO: Implement new, create and edit actions
+  # TODO: Implement new, create and edit, destroy_all_with_empty_associations actions
   
   def update
     @city = City.find(params[:id])
@@ -23,7 +23,12 @@ class Admin::CitiesController < ApplicationController
     @city.destroy
     respond_with(@city, :status => :deleted, :location => admin_cities_path)
   end
-  
+
+  def destroy_all
+    params[:ids].each { |id| City.find(id).destroy }
+    redirect_to admin_cities_path
+  end
+    
   def transfer_association
     @city = City.find(params[:id])
     association_name = params[:association_name]

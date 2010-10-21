@@ -2,7 +2,7 @@
   %td
     = check_box_tag 'ids[]', city.id, false
   %td
-    = city.name
+    %b= city.name
     %br
     %i=t(:associated_records) + ': '
     = render :partial => 'associations_size', :locals => { :record => city }

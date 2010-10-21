@@ -18,6 +18,7 @@ Salva::Application.routes.draw do
     resources :cities do
       put :transfer_association, :on => :member
       put :transfer_all_associations, :on => :member
+      post :destroy_all, :on => :collection
     end
   end
 

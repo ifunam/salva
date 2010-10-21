@@ -1,2 +1,5 @@
-= record.class.reflect_on_all_associations(:has_many).collect { |association| droppable_link(record, association.name.to_s)  }.compact.join(', ').html_safe
-  
+- total_of_associated_records = 0
+= record.class.reflect_on_all_associations(:has_many).collect { |association| total_of_associated_records += record.send(association.name).size; droppable_link(record, association.name.to_s)  }.compact.join(', ').html_safe
+- if total_of_associated_records.to_i <= 0
+  %span{:class => 'ui-state-highlight'}
+    %span{:class => 'ui-icon ui-icon-info', :style => 'float: right;', :title => '0 registros asociados'} 

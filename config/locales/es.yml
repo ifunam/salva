@@ -80,6 +80,7 @@ es:
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
+    institutions: 'Instituciones'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
@@ -96,3 +97,4 @@ es:
   drop_items: 'Arrastre los registros al elemento donde desea moverlos'
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
+  delete_all_confirm_question: '¿ Desea borrar estos registros ?'
