@@ -9,12 +9,37 @@ class City < ActiveRecord::Base
   has_many :people
   has_many :addresses
   has_many :institutions
-  #scope_by_soundex :name_likes, :fields => [:name]
   search_methods :name_likes
   
   default_scope :order => 'name ASC'
 
   def self.name_likes(name)
     where('LOWER(cities.name) LIKE ?', "%#{name.downcase}%")
+  end
+
+  def self.destroy_all_with_empty_associations
+    all.each do |record|
+      record.destroy_if_associations_are_empty
+    end
+  end
+
+  def destroy_if_associations_are_empty
+    associated_records = 0
+    self.class.reflect_on_all_associations(:has_many).collect do |association|
+      associated_records += self.send(association.name).size
+    end
+    destroy if associated_records == 0
+  end
+  
+  def move_association(association_name, new_city_id)
+    if self.respond_to? association_name
+      self.send(association_name.to_sym).each { |record| record.update_attributes(:city_id => new_city_id) }
+    end
+  end
+  
+  def move_associations(new_city_id)
+    self.class.reflect_on_all_associations(:has_many).collect do |association|
+      move_association(association.name, new_city_id)
+    end
   end
 end

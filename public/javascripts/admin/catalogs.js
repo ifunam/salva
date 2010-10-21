@@ -1,4 +1,4 @@
-$.validator.setDefaults({
+	$.validator.setDefaults({
     highlight: function(input) {
         $(input).addClass("ui-state-highlight");
     },
@@ -10,13 +10,13 @@ $.validator.setDefaults({
 $(document).ready(function() {
     $('a[data-draggable]').live("hover", function() {
         draggable_item(this.id);
-        droppable_items_for_transfer_association(this);
+        droppable_items_for_move_association(this);
         return false;
     });
 
     $('a[data-record-draggable]').live("hover", function() {
         draggable_item(this.id);
-        droppable_items_for_transfer_all_associations(this);
+        droppable_items_for_move_associations(this);
         return false;
      });
 
@@ -53,7 +53,7 @@ function draggable_item(dom_id) {
     return false;
 }
 
-function droppable_items_for_transfer_association(prev_item) {
+function droppable_items_for_move_association(prev_item) {
     $("a[data-draggable]").each(function(index){
         if ((this.id != prev_item.id) && (this.getAttribute('data-association') == prev_item.getAttribute('data-association'))) {
             $('#'+this.id).droppable({
@@ -61,20 +61,21 @@ function droppable_items_for_transfer_association(prev_item) {
                 activeClass: "ui-state-hover",
                 hoverClass: "ui-state-active",
                 drop: function( event, ui ) {
+	                move_association(this, prev_item.getAttribute('data-id'));
                     update_previous_association_size(prev_item.id);
-                    transfer_association(this, prev_item.getAttribute('data-id'));
+
                 }
             }); 
         }
     });
 }
 
-function transfer_association(new_item, prev_record_id) {
+function move_association(new_item, prev_record_id) {
     new_record_id = new_item.getAttribute('data-id');
     controller_name = new_item.getAttribute('data-controller-name');
     association_name = new_item.getAttribute('data-association');
     $.ajax({
-        url: '/admin/' + controller_name + '/' + prev_record_id +'/transfer_association.js',
+        url: '/admin/' + controller_name + '/' + prev_record_id +'/move_association.js',
         data: { new_id: new_record_id,
             association_name: association_name
         },
@@ -93,7 +94,7 @@ function transfer_association(new_item, prev_record_id) {
     });
 }
 
-function droppable_items_for_transfer_all_associations(prev_item) {
+function droppable_items_for_move_associations(prev_item) {
     $("a[data-record-draggable]").each(function(index){
         if (this.id != prev_item.id) {
             $('#'+this.id).droppable({
@@ -101,7 +102,7 @@ function droppable_items_for_transfer_all_associations(prev_item) {
                 activeClass: "ui-state-hover",
                 hoverClass: "ui-state-active",
                 drop: function( event, ui ) {
-                    transfer_all_associations(this, prev_item.getAttribute('data-id'));
+                    move_associations(this, prev_item.getAttribute('data-id'));
                     show_updated_record(prev_item);
                 }
             }); 
@@ -109,11 +110,11 @@ function droppable_items_for_transfer_all_associations(prev_item) {
     });
 }
 
-function transfer_all_associations(new_item, prev_record_id) {
+function move_associations(new_item, prev_record_id) {
     new_record_id = new_item.getAttribute('data-id');
     controller_name = new_item.getAttribute('data-controller-name');
     $.ajax({
-        url: '/admin/' + controller_name + '/' + prev_record_id +'/transfer_all_associations.js',
+        url: '/admin/' + controller_name + '/' + prev_record_id +'/move_associations.js',
         data: { new_id: new_record_id },
         type: 'PUT',
         beforeSend: function(){

@@ -98,3 +98,5 @@ es:
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'
+  delete_all_selected: 'Borrar registros seleccionados'
+  destroy_all_empty_associations: 'Borrar registros sin asociaciones'

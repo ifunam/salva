@@ -3,6 +3,8 @@
 %tfoot{:id => 'paginator'}
   %tr
     %th
-      = submit_tag 'Borrar selección', :confirm => t(:delete_all_confirm_question)
+      = submit_tag t(:delete_all_selected), :confirm => t(:delete_all_confirm_question), :class => "ui-state-default ui-corner-all button"
+    %th
+      = link_to t(:destroy_all_empty_associations), destroy_all_empty_associations_admin_cities_path, :confirm => t(:delete_all_confirm_question), :class => "ui-state-default ui-corner-all button"
     %th
       = will_paginate @cities, :id => 'ajaxed_paginator'

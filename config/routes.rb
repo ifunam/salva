@@ -1,5 +1,5 @@
 Salva::Application.routes.draw do
-  devise_for :users
+  # devise_for :users
 
   resources :states do
     get :list_by_country, :on => :collection
@@ -16,9 +16,10 @@ Salva::Application.routes.draw do
   namespace :admin do
     resources :users
     resources :cities do
-      put :transfer_association, :on => :member
-      put :transfer_all_associations, :on => :member
+      put :move_association, :on => :member
+      put :move_associations, :on => :member
       post :destroy_all, :on => :collection
+      get :destroy_all_empty_associations, :on => :collection
     end
   end
 
