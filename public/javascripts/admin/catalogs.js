@@ -1,4 +1,4 @@
-	$.validator.setDefaults({
+$.validator.setDefaults({
     highlight: function(input) {
         $(input).addClass("ui-state-highlight");
     },
@@ -18,14 +18,14 @@ $(document).ready(function() {
         draggable_item(this.id);
         droppable_items_for_move_associations(this);
         return false;
-     });
+    });
 
-  	$("tr#filter_header input").live('focusout', function() {
+    $("tr#filter_header input").live('focusout', function() {
         remote_collection_list('/admin/cities.js', $.param($("form").serializeArray()));
         return false;
     });
 
-	$("#filter_reset_all").live("click", function() {
+    $("#filter_reset_all").live("click", function() {
         document.forms['filter_form'].reset();
         remote_collection_list('/admin/cities.js');
         return false;
@@ -34,7 +34,7 @@ $(document).ready(function() {
     $('a[data-method]=delete').live("click", function() {
         $('#'+this.getAttribute('data-parent-id')).remove();
         return false;
-     });
+    });
 
     set_button_behaviour();
 });
@@ -61,7 +61,7 @@ function droppable_items_for_move_association(prev_item) {
                 activeClass: "ui-state-hover",
                 hoverClass: "ui-state-active",
                 drop: function( event, ui ) {
-	                move_association(this, prev_item.getAttribute('data-id'));
+                    move_association(this, prev_item.getAttribute('data-id'));
                     update_previous_association_size(prev_item.id);
 
                 }
@@ -153,8 +153,8 @@ function remote_collection_list(href, params) {
             open_dialog_with_progressbar();
         },
         complete: function(request){ 
-           set_button_behaviour();
-           close_dialog_with_progressbar();
+            set_button_behaviour();
+            close_dialog_with_progressbar();
         },
         success: function(request) {
             $('#collection').remove();
