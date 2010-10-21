@@ -1,0 +1,19 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 50%;'}
+      = t('.name')
+      %br
+      = f.text_field :name_likes, :size => 40
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:move)
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:del)
+%tr
+  - 4.times do
+    %td{:class => 'ui-state-default'}
+  %td{:class => 'ui-state-default'}
+    = link_to t(:show_all), '#', :remote => true, :id => 'filter_reset_all', :class => "ui-state-default ui-corner-all button"

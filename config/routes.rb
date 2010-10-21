@@ -15,6 +15,10 @@ Salva::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :cities do
+      put :transfer_association, :on => :member
+      put :transfer_all_associations, :on => :member
+    end
   end
 
   namespace :academic_secretary do

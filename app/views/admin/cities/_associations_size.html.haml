@@ -1,0 +1,2 @@
+= record.class.reflect_on_all_associations(:has_many).collect { |association| droppable_link(record, association.name.to_s)  }.compact.join(', ').html_safe
+  

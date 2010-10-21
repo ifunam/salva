@@ -1,0 +1,6 @@
+%tbody{:id =>'collection'}
+  = render :partial => 'city', :collection => @cities
+%tfoot{:id => 'paginator'}
+  %tr
+    %th
+      = will_paginate @cities, :id => 'ajaxed_paginator'

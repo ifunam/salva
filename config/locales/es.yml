@@ -33,7 +33,7 @@ es:
   user_groups:
     academic_form:
         title: 'Grupo'
-  people:
+  people: 
     form:
       title: 'Datos personales'
       photo: 'Fotografía'
@@ -76,6 +76,10 @@ es:
   user_identifications:
     academic_form:
       identification: 'RFC'
+      
+  admin:
+    people: 'Información personal'
+    addresses: 'Domicilios'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
@@ -83,3 +87,12 @@ es:
   update: 'Guardar cambios'
   edit: 'Modificar'
   back: 'Regresar'
+  show: 'Mostrar'
+  del: 'Borrar'
+  new: 'Agregar nuevo registro'
+  associated_records: 'Registros asociados'
+  move_all: 'Mover todos'
+  move: 'Mover'
+  drop_items: 'Arrastre los registros al elemento donde desea moverlos'
+  id: 'Id'
+  delete_confirm_question: '¿ Desea borrar este registro ?'

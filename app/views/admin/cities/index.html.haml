@@ -1,0 +1,16 @@
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to t(:new), new_admin_city_path, :class => "ui-state-default ui-corner-all button"
+%br
+%br
+%br
+%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
+  %thead{:id => "filter_header"}
+    = render :partial => 'filter_header'
+  %tbody{:id =>'collection'}
+    = render :partial => @cities
+  %tfoot{:id => 'paginator'}
+    %tr
+      %th= will_paginate @cities
+
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to t(:new), new_admin_city_path, :class => "ui-state-default ui-corner-all button"
