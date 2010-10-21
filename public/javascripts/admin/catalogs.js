@@ -21,13 +21,15 @@ $(document).ready(function() {
     });
 
     $("tr#filter_header input").live('focusout', function() {
-        remote_collection_list('/admin/cities.js', $.param($("form").serializeArray()));
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource, $.param($("form").serializeArray()));
         return false;
     });
 
     $("#filter_reset_all").live("click", function() {
         document.forms['filter_form'].reset();
-        remote_collection_list('/admin/cities.js');
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource);
         return false;
     });
 
@@ -35,6 +37,11 @@ $(document).ready(function() {
         $('#'+this.getAttribute('data-parent-id')).remove();
         return false;
     });
+
+    $("#ajaxed_paginator a").live("click", function() {
+        remote_collection_list(this.href);
+        return false;
+     });
 
     set_button_behaviour();
 });

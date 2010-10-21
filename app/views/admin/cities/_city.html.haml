@@ -1,14 +1,13 @@
 %tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(city) }
-  %td{:style => 'width: 5%;'}
+  %td{:style => 'width: 30px;'}
     = check_box_tag 'ids[]', city.id, false
-  %td{:style => 'width: 65%;'}
+  %td{:style => 'width: 630px;'}
     %b= city.name
     %br
-    %i=t(:associated_records) + ': '
     = render :partial => 'associations_size', :locals => { :record => city }
-  %td{:style => 'width: 10%;'}
+  %td{:style => 'width: 90px; text-align: center;'}
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-arrow-4'), '#', :title => t(:move_all), :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all record-draggable", 'data-record-draggable' => true, 'data-id' => city.id, :id => 'draggable_' + dom_id(city), 'data-controller-name' => controller_name, 'data-parent-id' => dom_id(city)
-  %td{:style => 'width: 10%;'}
+  %td{:style => 'width: 90px; text-align: center;'}
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-pencil') , edit_admin_city_path(:id => city.id), :title => t(:edit), :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
-  %td{:style => 'width: 10%;'}
+  %td{:style => 'width: 90px; text-align: center;'}
     = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-trash') , admin_city_path(:id => city.id), :title => t(:del), :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :method => :delete, :confirm => t(:delete_confirm_question), :remote => true, 'data-parent-id' => dom_id(city)

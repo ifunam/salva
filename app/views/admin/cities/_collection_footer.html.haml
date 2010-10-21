@@ -1,0 +1,9 @@
+%tr
+  %td{:class => 'ui-state-default', :style => 'text-align: center;'}
+  %td{:class => 'ui-state-default', :style => 'text-align: center;'}
+    = submit_tag t(:delete_all_selected), :confirm => t(:delete_all_confirm_question), :class => "ui-state-default ui-corner-all dangerous_button"
+    = link_to t(:destroy_all_empty_associations), destroy_all_empty_associations_admin_cities_path, :confirm => t(:delete_all_confirm_question), :class => "ui-state-default ui-corner-all dangerous_button"
+  - 2.times do
+    %td{:class => 'ui-state-default', :style => 'text-align: center;'}
+  %td{:class => 'ui-state-default', :style => 'text-align: center;'}
+    = link_to t(:show_all), '#', :remote => true, :id => 'filter_reset_all', :class => "ui-state-default ui-corner-all green_button"

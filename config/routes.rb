@@ -1,5 +1,5 @@
 Salva::Application.routes.draw do
-  # devise_for :users
+  devise_for :users
 
   resources :states do
     get :list_by_country, :on => :collection
@@ -9,7 +9,7 @@ Salva::Application.routes.draw do
     get :list_by_state, :on => :collection
     get :remote_form, :on => :collection
   end
-  
+
   resources :documents
   resources :user_schoolarships
 
@@ -33,7 +33,7 @@ Salva::Application.routes.draw do
       get :update_status, :on => :member
       get :user_incharge, :on => :member
     end
-    
+
     resources :identification_cards do
       get :front, :on => :member
       get :back, :on => :member

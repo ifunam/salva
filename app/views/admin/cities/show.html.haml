@@ -1,0 +1,8 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('cities.show.title')
+  - show_for @city do |u|
+    = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
+    = u.association :state, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+%div{ :class => 'span-14 buttons_left last' }
+  = link_to t(:edit), edit_admin_city_path(:id => @city.id), :class => "ui-state-default ui-corner-all button"
+  = link_to t(:back), admin_cities_path, :class => "ui-state-default ui-corner-all button"

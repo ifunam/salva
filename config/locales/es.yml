@@ -76,6 +76,16 @@ es:
   user_identifications:
     academic_form:
       identification: 'RFC'
+  cities:
+    show:
+      title: 'Ciudad'
+    index:
+      title: 'Ciudades'
+    new:
+      title: 'Nueva Ciudad'
+    edit:
+      title: 'Modificar Ciudad'
+      
       
   admin:
     people: 'Información personal'
@@ -94,7 +104,7 @@ es:
   associated_records: 'Registros asociados'
   move_all: 'Mover todos'
   move: 'Mover'
-  drop_items: 'Arrastre los registros al elemento donde desea moverlos'
+  drop_items: 'Arrastre los registros al elemento donde desea asociarlos'
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'

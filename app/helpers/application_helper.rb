@@ -26,7 +26,7 @@ module ApplicationHelper
   def droppable_link(record, association_name)
       link_to(t('admin.'+association_name) + " (#{record.send(association_name.to_sym).size})", '#', 
               :id =>  association_name + '_' + dom_id(record), 'data-draggable' => true, 
-              :class => association_name, 'data-association' => association_name, 
+              :class => "ui-state-default ui-corner-all button #{association_name}", 'data-association' => association_name, 
               'data-id' => record.id, 'data-controller-name' => controller_name, :title => t(:drop_items))
   end
   

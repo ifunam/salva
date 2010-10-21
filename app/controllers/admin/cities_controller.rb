@@ -2,20 +2,33 @@ class Admin::CitiesController < ApplicationController
   layout 'catalogs'
   respond_to :html
   respond_to :js, :only => [:move_association, :move_associations, :show, :index]
+
   def index
-    respond_with(@cities = City.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => 10))
+    respond_with(@cities = City.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => params[:per_page] || 10))
   end
 
-  # TODO: Implement new, create and edit, destroy_all_with_empty_associations actions
-  
-  def update
-    @city = City.find(params[:id])
-    @city.update_attributes(params[:city])
-    respond_with(@cities, :status => :updated, :location => admin_city_path) 
+  def new
+    respond_with(@city = City.new)
+  end
+
+  def create
+    respond_with(@city = City.create(params[:city]), :status => :created) do |format|
+      format.html { render :action => 'show' }
+    end 
   end
 
   def show
     respond_with(@city = City.find(params[:id]))
+  end
+
+  def edit
+    respond_with(@city = City.find(params[:id]))
+  end
+
+  def update
+    @city = City.find(params[:id])
+    @city.update_attributes(params[:city])
+    respond_with(@cities, :status => :updated, :location => admin_city_path) 
   end
 
   def destroy
