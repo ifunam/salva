@@ -23,12 +23,8 @@ class City < ActiveRecord::Base
     end
   end
 
-  def destroy_if_associations_are_empty
-    associated_records = 0
-    self.class.reflect_on_all_associations(:has_many).collect do |association|
-      associated_records += self.send(association.name).size
-    end
-    destroy if associated_records == 0
+  def destroy_if_associations_are_empty 
+    destroy unless has_associated_records?
   end
   
   def move_association(association_name, new_city_id)
@@ -41,5 +37,17 @@ class City < ActiveRecord::Base
     self.class.reflect_on_all_associations(:has_many).collect do |association|
       move_association(association.name, new_city_id)
     end
+  end
+  
+  def has_associated_records?
+    associated_records_size > 0
+  end
+  
+  def associated_records_size
+    associated_records = 0
+    self.class.reflect_on_all_associations(:has_many).collect do |association|
+      associated_records += self.send(association.name).size
+    end
+    associated_records
   end
 end

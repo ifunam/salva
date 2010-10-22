@@ -29,6 +29,10 @@ module ApplicationHelper
               :class => "ui-state-default ui-corner-all button #{association_name}", 'data-association' => association_name, 
               'data-id' => record.id, 'data-controller-name' => controller_name, :title => t(:drop_items))
   end
+
+  def dropppable_associations(record)
+    record.class.reflect_on_all_associations(:has_many).collect { |association|  droppable_link(record, association.name.to_s)  }.compact.join(' ').html_safe
+  end
   
   def link_to_action(icon_name, title, url='#', options={})
     html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"}
