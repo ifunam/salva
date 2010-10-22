@@ -30,4 +30,24 @@ module ApplicationHelper
               'data-id' => record.id, 'data-controller-name' => controller_name, :title => t(:drop_items))
   end
   
+  def link_to_action(icon_name, title, url='#', options={})
+    html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"}
+    link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, html_options.merge(options)
+  end
+    
+  def link_to_draggable_action(icon_name, title, record, url='#')
+      link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, :title => title, 
+                          :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all record-draggable", 
+                          'data-record-draggable' => true,  'data-id' => record.id, :id => 'draggable_' + dom_id(record), 
+                          'data-controller-name' => controller_name, 'data-parent-id' => dom_id(record)
+  end
+
+  def link_as_button(title, url, options={})
+    class_button = 'button'
+    if options.has_key? :class_button
+      class_button = options[:class_button]
+      options.delete :class_button
+    end
+    link_to title, url, {:class => "ui-state-default ui-corner-all #{class_button}"}.merge(options)
+  end
 end

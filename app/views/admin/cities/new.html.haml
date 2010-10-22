@@ -4,4 +4,4 @@
     = render :partial => 'form', :locals => { :f => f}
     %div{ :class => 'span-14 buttons_left last' }
       = f.submit  t(:save), :class => "ui-state-default ui-corner-all button"
-      = link_to t(:cancel), admin_cities_path, :class => "ui-state-default ui-corner-all button"
+      = link_as_button t(:cancel), admin_cities_path

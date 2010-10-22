@@ -1,5 +1,5 @@
 %h3= 'Catálogo de ' + t('cities.index.title')
-= link_to t(:new), new_admin_city_path, :class => "ui-state-default ui-corner-all button"
+= link_as_button t(:new), new_admin_city_path
 
 %div{ :class => 'span-24 buttons_left last' }
 - 3.times do
@@ -16,4 +16,4 @@
           = will_paginate @cities
 
 %div{ :class => 'span-24 buttons_left last' }
-  = link_to t(:new), new_admin_city_path, :class => "ui-state-default ui-corner-all button"
+  = link_as_button t(:new), new_admin_city_path
