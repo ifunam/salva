@@ -1,6 +1,6 @@
 %tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(city) }
   %td{:style => 'width: 30px;'}
-    = check_box_tag 'ids[]', city.id, false
+    = check_box_tag 'record_id', city.id, false, 'data-parent-id' => dom_id(city)
   %td{:style => 'width: 630px;'}
     %b= city.name
     %br

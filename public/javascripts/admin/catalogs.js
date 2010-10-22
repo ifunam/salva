@@ -41,8 +41,26 @@ $(document).ready(function() {
     $("#ajaxed_paginator a").live("click", function() {
         remote_collection_list(this.href);
         return false;
-     });
+    });
 
+    $("input[name=record_id]").live("change", function() {
+        if (this.getAttribute('checked')) {
+            this.removeAttribute('checked');
+        }
+        else {
+            this.setAttribute('checked', 'checked');
+        }
+    });
+
+    $("#destroy_selected_records").live("click", function() {
+        ids = new Array();
+        dom_ids = new Array();
+        $("input[name=record_id][checked]").each(function(index, item){
+            ids.push(item.value);
+            dom_ids.push(this.getAttribute('data-parent-id'));
+        });
+        destroy_selected_records(ids, dom_ids);
+    });
     set_button_behaviour();
 });
 
@@ -149,6 +167,25 @@ function show_updated_record(item) {
         success: function(data){  
             $('#'+item.id).parent().parent().replaceWith(data);
             $('#'+item.id).parent().parent().fadeIn(3000);
+        }
+    });
+}
+
+function destroy_selected_records(ids, dom_ids) {
+    $.ajax({
+        url: $('#filter_form').attr('action') + '/destroy_all',
+        data: { 'ids': ids },
+        type: 'POST',
+        beforeSend: function(){
+            open_dialog_with_progressbar();
+        },
+        complete: function(data){ 
+            close_dialog_with_progressbar();
+        },
+        success: function(data){ 
+            $.each(dom_ids, function(index, dom_id){
+                $('#'+dom_id).remove();
+            });
         }
     });
 }
