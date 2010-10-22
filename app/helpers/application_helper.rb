@@ -33,12 +33,12 @@ module ApplicationHelper
   def dropppable_associations(record)
     record.class.reflect_on_all_associations(:has_many).collect { |association|  droppable_link(record, association.name.to_s)  }.compact.join(' ').html_safe
   end
-  
+
   def link_to_action(icon_name, title, url='#', options={})
     html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"}
     link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, html_options.merge(options)
   end
-    
+
   def link_to_draggable_action(icon_name, title, record, url='#')
       link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, :title => title, 
                           :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all record-draggable", 
