@@ -4,6 +4,7 @@
       =t(:id)
     %th{:class => 'ui-state-default', :style => 'width: 65%;'}
       = f.text_field :name_likes, :size => 30
+      = f.collection_select :country_id_equals, Country.all, :id, :name, { :prompt => true }
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t(:move)
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

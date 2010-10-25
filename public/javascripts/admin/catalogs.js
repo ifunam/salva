@@ -26,6 +26,12 @@ $(document).ready(function() {
         return false;
     });
 
+    $("tr#filter_header select").live('change', function() {
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource, $.param($("form").serializeArray()));
+        return false;
+    });
+
     $("#filter_reset_all").live("click", function() {
         document.forms['filter_form'].reset();
         resource = $('#filter_form').attr('action') + '.js';
