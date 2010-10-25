@@ -21,6 +21,13 @@ Salva::Application.routes.draw do
       post :destroy_all, :on => :collection
       get :destroy_all_empty_associations, :on => :collection
     end
+
+    resources :states do
+      put :move_association, :on => :member
+      put :move_associations, :on => :member
+      post :destroy_all, :on => :collection
+      get :destroy_all_empty_associations, :on => :collection
+    end
   end
 
   namespace :academic_secretary do

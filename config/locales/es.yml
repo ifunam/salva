@@ -82,15 +82,25 @@ es:
     index:
       title: 'Ciudades'
     new:
-      title: 'Nueva Ciudad'
+      title: 'Nueva ciudad'
     edit:
-      title: 'Modificar Ciudad'
+      title: 'Modificar ciudad'
       
-      
+  states:
+    show:
+      title: 'Estado'
+    index:
+      title: 'Estados'
+    new:
+      title: 'Nueva estado'
+      edit:
+    title: 'Modificar estado'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'
+    cities: 'Ciudades'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
