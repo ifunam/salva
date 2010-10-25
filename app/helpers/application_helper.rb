@@ -24,14 +24,14 @@ module ApplicationHelper
   end
   
   def droppable_link(record, association_name)
-      link_to(t('admin.'+association_name) + " (#{record.send(association_name.to_sym).size})", '#', 
+      link_to(t('admin.'+association_name) + " (#{record.association_records(association_name).size})", '#', 
               :id =>  association_name + '_' + dom_id(record), 'data-draggable' => true, 
               :class => "ui-state-default ui-corner-all button #{association_name}", 'data-association' => association_name, 
               'data-id' => record.id, 'data-controller-name' => controller_name, :title => t(:drop_items))
   end
 
-  def dropppable_associations(record)
-    record.class.reflect_on_all_associations(:has_many).collect { |association|  droppable_link(record, association.name.to_s)  }.compact.join(' ').html_safe
+  def droppable_associations(record)
+    record.class.associations_to_move.collect { |association|  droppable_link(record, association.name.to_s)  }.compact.join(' ').html_safe
   end
 
   def link_to_action(icon_name, title, url='#', options={})

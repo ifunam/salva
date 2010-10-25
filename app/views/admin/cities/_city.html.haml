@@ -5,7 +5,7 @@
     %td{:style => 'width: 630px;'}
       %b= city.name
       %br
-      =  dropppable_associations(city)
+      = droppable_associations(city)
     %td{:style => 'width: 90px; text-align: center;'}
       = link_to_draggable_action 'ui-icon-arrow-4', t(:move_all), city
     %td{:style => 'width: 90px; text-align: center;'}
@@ -17,7 +17,7 @@
     %td{:style => 'width: 630px;'}
       %b= city.name
       %br
-      =  dropppable_associations(city)
+      =  droppable_associations(city)
       %div{:class => 'ui-state-highlight ui-corner-all', :id => 'zero_associated_records'}
         %span{:class => 'ui-icon ui-icon-info', :style => 'float: right;', :title => '0 registros asociados'}
     %td{:style => 'width: 90px; text-align: center;'}
