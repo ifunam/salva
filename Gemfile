@@ -7,14 +7,16 @@ gem "compass", "0.10.5"
 gem "show_for", ">= 0.2.3"
 gem "simple_form"
 
+# Authorization
+gem "cancan"
+# gem "roles_generic"
+# gem "roles_active_record"
+# gem "cream"
+
 # # Authentication
 gem "devise", "1.1.3"
 gem "devise_ldap_authenticatable"
 gem "net-ldap"
-# 
-# # Authorization
-# gem "cancan"
-
 
 # Searching and tagging
 gem "tsearch", :require => 'texticle'
@@ -39,6 +41,7 @@ gem "inherited_resources", "1.1.2"
 gem "pg"
 gem "meta_search"
 gem "meta_where"
+gem "move_associations"
 gem "by_star"
 gem "tzinfo"
 gem "jquery-rails"
