@@ -33,22 +33,6 @@ module SuperCatalog
            exit
          end
       end
-      # 
-      # 
-       def create_and_copy_haml_views
-         Dir["#{self.class.source_root}/*.erb"].each do |path|
-             puts path.sub(/\.erb$/, "")
-      #       # 
-      #       # if File.directory?(path)
-      #       #   FileUtils.mkdir_p(source_path)
-      #       # else
-      #       #   `html2haml -r #{path} #{source_path}`
-      #       # end
-           end
-      # 
-        directory haml_root, "app/views/#{scope}"
-       
-      end
     end
   end
 end
