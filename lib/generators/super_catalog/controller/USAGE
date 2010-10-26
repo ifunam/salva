@@ -1,0 +1,8 @@
+Description:
+    This generator creates controllers based on Admin::SuperCatalogController class
+
+Example:
+    rails generate super_catalog:controller admin/journals
+
+    This will create:
+       app/controllers/admin/states_controller.rb

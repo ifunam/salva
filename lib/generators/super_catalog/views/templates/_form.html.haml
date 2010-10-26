@@ -1,0 +1,12 @@
+%div{ :class => 'span-8 last' } 
+  = render :partial => "/shared/errors", :object => f.object.errors
+
+<% for attribute in attributes -%>
+<% if attribute.field_type == :collection_select %>
+%div{:class=> 'span-8'}
+  = f.label :<%= attribute.name %>, :required => true 
+  = f.collection_select :<%= attribute.name %>,  <%= attribute.name.tr('_id', '').capitalize %>.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+<% else %>
+= f.input :<%= attribute.name %>, :as => :<%= attribute.field_type %>, :wrapper_class => 'span-8 last' 
+<% end %>
+<% end -%>

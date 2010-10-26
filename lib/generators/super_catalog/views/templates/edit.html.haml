@@ -1,0 +1,7 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('<%= plural_name %>.edit.title') 
+  = simple_form_for(@<%= singular_name %>, :<%= singular_name %>, :url => admin_<%= singular_name %>_path) do |f|
+    = render :partial => 'form', :locals => { :f => f}
+    %div{ :class => 'span-14 buttons_left last' }
+      = f.submit  t(:update), :class => "ui-state-default ui-corner-all button"
+      = link_as_button t(:cancel), admin_<%= plural_name %>_path
