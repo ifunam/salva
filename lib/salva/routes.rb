@@ -1,6 +1,6 @@
 module ActionDispatch::Routing
   class Mapper
-      def super_catalogs_for(*controllers)
+      def super_catalog_for(*controllers)
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
           resources resources_name do
