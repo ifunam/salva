@@ -96,11 +96,23 @@ es:
       edit:
     title: 'Modificar estado'
 
+  journals:
+    show:
+      title: 'Journal'
+    index:
+      title: 'Journals'
+    new:
+      title: 'Nuevo journal'
+    edit:
+      title: 'Modificar journal'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'
     cities: 'Ciudades'
+    user_journals: 'Usuarios'
+    articles: 'Artículos'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'

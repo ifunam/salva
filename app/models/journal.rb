@@ -14,4 +14,5 @@ class Journal < ActiveRecord::Base
   validates_associated :country
 
   has_many :user_journals
+  has_many :articles
 end

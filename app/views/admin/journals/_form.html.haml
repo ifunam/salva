@@ -1,0 +1,18 @@
+%div{ :class => 'span-14 last' } 
+  = render :partial => "/shared/errors", :object => f.object.errors
+
+= f.input :name, :as => :text, :input_html => { :size => '40x2' }, :wrapper_class => 'span-14 last' 
+
+%div{:class=> 'span-14 last'}
+  = f.label :country_id, :required => true 
+  = f.collection_select :country_id,  Country.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+
+%div{:class=> 'span-14 last'}
+  = f.label :mediatype_id, :required => true 
+  = f.collection_select :mediatype_id,  Mediatype.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+
+%div{:class=> 'span-14 last'}
+  = f.label :publisher_id, :required => true 
+  = f.collection_select :publisher_id,  Publisher.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+
+= f.input :issn, :as => :string, :input_html => { :size => 20 }, :wrapper_class => 'span-14 last' 
