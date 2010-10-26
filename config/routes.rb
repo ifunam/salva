@@ -15,7 +15,7 @@ Salva::Application.routes.draw do
 
   namespace :admin do
     resources :users
-    super_catalog_for :cities, :states, :journals
+    super_catalog_for :cities, :states, :journals, :publishers
   end
 
   namespace :academic_secretary do

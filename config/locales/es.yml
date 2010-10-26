@@ -106,6 +106,16 @@ es:
     edit:
       title: 'Modificar journal'
 
+  publishers:
+    show:
+      title: 'Editorial'
+    index:
+      title: 'Editorialess'
+    new:
+      title: 'Nueva editorial'
+    edit:
+      title: 'Modificar editorial'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -113,6 +123,10 @@ es:
     cities: 'Ciudades'
     user_journals: 'Usuarios'
     articles: 'Artículos'
+    journals: 'Journals'
+    generic_works: 'Trabajos divulgación/difusión'
+    bookedition_publishers: 'Ediciones de libros'
+    proceedings: 'Memorias'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
