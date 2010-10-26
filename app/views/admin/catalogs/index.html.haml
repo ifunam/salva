@@ -1,0 +1,23 @@
+%h3='Administración de catálogos'
+
+%div{:id => 'collection'}
+
+  %div{:class => 'span-24 record-odd record-catalog'}
+    %div{:class=> 'span-6'}
+      = link_to t('admin.adscriptions'), admin_adscriptions_path
+    %div{:class=> 'span-6'}
+      = link_to t('admin.researchareas'), admin_researchareas_path
+    %div{:class=> 'span-6'}
+      = link_to t('admin.cities'), admin_cities_path
+    %div{:class=> 'span-6 last'}
+      = link_to t('admin.states'), admin_states_path
+
+  %div{:class => 'span-24 record-even record-catalog'}
+    %div{:class=> 'span-6'}
+      = link_to t('admin.publishers'), admin_publishers_path
+    %div{:class=> 'span-6'}
+      = link_to t('admin.journals'), admin_journals_path
+    %div{:class=> 'span-6'}
+      = 'x'
+    %div{:class=> 'span-6 last'}
+      = 'x'
