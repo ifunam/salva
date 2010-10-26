@@ -15,19 +15,7 @@ Salva::Application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :cities do
-      put :move_association, :on => :member
-      put :move_associations, :on => :member
-      post :destroy_all, :on => :collection
-      get :destroy_all_empty_associations, :on => :collection
-    end
-
-    resources :states do
-      put :move_association, :on => :member
-      put :move_associations, :on => :member
-      post :destroy_all, :on => :collection
-      get :destroy_all_empty_associations, :on => :collection
-    end
+    super_catalogs_for :cities, :states
   end
 
   namespace :academic_secretary do
