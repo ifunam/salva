@@ -2,7 +2,7 @@
   %h3= t('states.show.title')
   - show_for @state do |u|
     = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
-    = u.association :state, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+    = u.association :country, :using => :name, :wrapper_html => {:class => 'span-14 last'}
 %div{ :class => 'span-14 buttons_left last' }
   = link_as_button t(:edit), edit_admin_state_path(:id => @state.id)
   = link_as_button t(:back), admin_states_path

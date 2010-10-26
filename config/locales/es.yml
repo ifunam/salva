@@ -136,6 +136,16 @@ es:
     edit:
       title: 'Modificar área de investigación'
 
+  schoolarships:
+    show:
+      title: 'Beca'
+    index:
+      title: 'Becas'
+    new:
+      title: 'Nueva beca'
+    edit:
+      title: 'Modificar beca'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -143,6 +153,7 @@ es:
     cities: 'Ciudades'
     user_journals: 'Usuarios'
     user_adscriptions: 'Usuarios'
+    user_schoolarships: 'Usuarios'
     articles: 'Artículos'
     journals: 'Journals'
     generic_works: 'Trabajos divulgación/difusión'
@@ -156,7 +167,7 @@ es:
     projectresearchareas: 'Proyectos'
     adscriptions: 'Adscripciones'
     researchareas: 'Áreas de investigación'
-    
+    schoolarships: 'Becas'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
