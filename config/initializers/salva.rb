@@ -1,1 +1,2 @@
-require File.dirname(__FILE__) + '/../../lib/site_config'
+require Rails.root.to_s + '/lib/salva/site_config'
+require Rails.root.to_s + '/lib/salva/routes'
