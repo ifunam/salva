@@ -5,6 +5,13 @@ class Adscription < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:institution_id]
 
   belongs_to :institution
+  has_many :user_adscriptions
+  
+  search_methods :name_likes
+  default_scope :order => 'name ASC'
 
-  validates_associated :institution
+  def self.name_likes(name)
+    where('LOWER(adscriptions.name) LIKE ?', "%#{name.downcase}%")
+  end
+
 end

@@ -1,0 +1,8 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('adscriptions.show.title')
+  - show_for @adscription do |u|
+    = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
+    = u.association :state, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_admin_adscription_path(:id => @adscription.id)
+  = link_as_button t(:back), admin_adscriptions_path

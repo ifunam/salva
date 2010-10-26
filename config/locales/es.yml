@@ -116,17 +116,47 @@ es:
     edit:
       title: 'Modificar editorial'
 
+  adscriptions:
+    show:
+      title: 'Adscripción'
+    index:
+      title: 'Adscripciones'
+    new:
+      title: 'Nueva adscripción'
+    edit:
+      title: 'Modificar adscripción'
+
+  researchareas:
+    show:
+      title: 'Área de investigación'
+    index:
+      title: 'Áreas de investigación'
+    new:
+      title: 'Nueva área de investigación'
+    edit:
+      title: 'Modificar área de investigación'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'
     cities: 'Ciudades'
     user_journals: 'Usuarios'
+    user_adscriptions: 'Usuarios'
     articles: 'Artículos'
     journals: 'Journals'
     generic_works: 'Trabajos divulgación/difusión'
     bookedition_publishers: 'Ediciones de libros'
     proceedings: 'Memorias'
+    states: 'Estados'
+    publishers: 'Editoriales'
+    Journals: 'Journals'
+    catalogs: 'Catálogos'
+    researchlines: 'Líneas de investigación'
+    projectresearchareas: 'Proyectos'
+    adscriptions: 'Adscripciones'
+    researchareas: 'Áreas de investigación'
+    
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
