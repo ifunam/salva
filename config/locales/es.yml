@@ -156,6 +156,15 @@ es:
     edit:
       title: 'Modificar institución' 
 
+  periods:
+    show:
+      title: 'Periódo'
+    index:
+      title: 'Periódos'
+    new:
+      title: 'Nuevo periódo'
+    edit:
+      title: 'Modificar periódo'
 
   admin:
     people: 'Información personal'
@@ -191,6 +200,8 @@ es:
     jobpositions: 'Experiencia laboral'
     genericworks: 'Trabajos de divulgación/difusión'
     projectfinancingsources: 'Fuentes de financiamiento'
+    user_regularcourses: 'Cursos regulares'
+    periods: 'Periódos'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
