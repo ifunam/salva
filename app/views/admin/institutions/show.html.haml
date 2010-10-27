@@ -1,0 +1,19 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('institutions.show.title')
+  - show_for @institution do |u|
+
+    = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.association :institutiontype, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.association :institutiontitle, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.association :country, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_admin_institution_path(:id => @institution.id)
+  = link_as_button t(:back), admin_institutions_path

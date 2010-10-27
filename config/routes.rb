@@ -1,5 +1,5 @@
 Salva::Application.routes.draw do
-  devise_for :users
+  #devise_for :users
 
   resources :states do
     get :list_by_country, :on => :collection
@@ -16,7 +16,7 @@ Salva::Application.routes.draw do
   namespace :admin do
     resources :users
     resources :catalogs
-    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships
+    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships, :institutions
   end
 
   namespace :academic_secretary do
