@@ -38,8 +38,14 @@ class Institution < ActiveRecord::Base
  # end
 
   def as_text
-    values = [name, abbrev]
-    values << institution.name unless institution.name.nil?
-    values.compact.join(', ')
+    [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
+  end
+
+  def name_and_parent_abbrev
+     unless institution.nil?
+       [as_text, institution.abbrev].compact.join(' - ')
+     else
+        as_text
+     end
   end
 end

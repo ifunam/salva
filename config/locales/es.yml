@@ -146,6 +146,46 @@ es:
     edit:
       title: 'Modificar beca'
 
+  institutions:
+    show:
+      title: 'Institución'
+    index:
+      title: 'Instituciones'
+    new:
+      title: 'Nueva institución'
+    edit:
+      title: 'Modificar institución' 
+
+  periods:
+    show:
+      title: 'Periódo'
+    index:
+      title: 'Periódos'
+    new:
+      title: 'Nuevo periódo'
+    edit:
+      title: 'Modificar periódo'
+
+  seminarytypes:
+    show:
+      title: 'Seminario'
+    index:
+      title: 'Seminarios'
+    new:
+      title: 'Nuevo seminario'
+    edit:
+      title: 'Modificar seminario'
+
+  prizetypes:
+    show:
+      title: 'Premio'
+    index:
+      title: 'Premios'
+    new:
+      title: 'Nuevo premio'
+    edit:
+      title: 'Modificar premio'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -168,6 +208,24 @@ es:
     adscriptions: 'Adscripciones'
     researchareas: 'Áreas de investigación'
     schoolarships: 'Becas'
+    prizes: 'Premios'
+    projectinstitutions: 'Proyectos'
+    instadvices: 'Asesorías'
+    courses: 'Cursos especiales'
+    institutional_activities: 'Participación institucional'
+    conference_institutions: 'Eventos académicos'
+    acadvisits: 'Intercambio académico'
+    grants: 'Permisos'
+    memberships: 'Asociaciones académicas'
+    jobpositions: 'Experiencia laboral'
+    genericworks: 'Trabajos de divulgación/difusión'
+    projectfinancingsources: 'Fuentes de financiamiento'
+    user_regularcourses: 'Cursos regulares'
+    periods: 'Periódos'
+    seminaries: 'Seminarios'
+    seminarytypes: 'Tipos de seminarios'
+    prizetypes: 'Tipos de premios'
+    prizes: 'Premios'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'

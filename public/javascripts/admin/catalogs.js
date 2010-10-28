@@ -68,6 +68,7 @@ $(document).ready(function() {
         destroy_selected_records(ids, dom_ids);
     });
     set_button_behaviour();
+    enable_date_picker();
 });
 
 function set_button_behaviour() {
@@ -76,6 +77,26 @@ function set_button_behaviour() {
         function() { $(this).removeClass('ui-state-hover'); }
     );
     $(".ui-state-default").css("cursor", "pointer");
+}
+
+function date_picker_for(dom_id, start_year, end_year) {
+    $(dom_id).datepicker({
+        changeYear: true,
+        changeMonth: true,
+        yearRange: start_year+':'+end_year,
+        dateFormat: 'dd-mm-yy',
+        defaultDate: '01-01-'+end_year,
+        showOn: 'both',
+        buttonImageOnly: true,
+        buttonImage: '/images/calendar.gif'
+    });
+}
+
+function enable_date_picker() {
+    current_year = new Date().getFullYear();
+    start_year = current_year - 100;
+    end_year = current_year - 15;
+    date_picker_for('.date', start_year, end_year);
 }
 
 function draggable_item(dom_id) {
