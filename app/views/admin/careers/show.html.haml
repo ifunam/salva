@@ -1,0 +1,16 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('careers.show.title')
+  - show_for @career do |u|
+
+    = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.attribute :abbrev, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.association :egree, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_admin_career_path(:id => @career.id)
+  = link_as_button t(:back), admin_careers_path

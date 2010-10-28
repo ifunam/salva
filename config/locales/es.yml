@@ -186,6 +186,16 @@ es:
     edit:
       title: 'Modificar premio'
 
+  careers:
+    show:
+      title: 'Carrera'
+    index:
+      title: 'Carreras'
+    new:
+      title: 'Nueva carrera'
+    edit:
+      title: 'Modificar carrera'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -226,6 +236,8 @@ es:
     seminarytypes: 'Tipos de seminarios'
     prizetypes: 'Tipos de premios'
     prizes: 'Premios'
+    careers: 'Carreras'
+    institutioncareers: 'Instituciones'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'

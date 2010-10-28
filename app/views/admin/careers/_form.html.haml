@@ -1,0 +1,13 @@
+%div{ :class => 'span-8 last' } 
+  = render :partial => "/shared/errors", :object => f.object.errors
+
+
+= f.input :name, :as => :string, :wrapper_class => 'span-8 last' 
+
+
+= f.input :abbrev, :as => :string, :wrapper_class => 'span-8 last' 
+
+
+%div{:class=> 'span-8'}
+  = f.label :degree_id, :required => true 
+  = f.collection_select :degree_id,  Degree.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
