@@ -166,6 +166,17 @@ es:
     edit:
       title: 'Modificar periódo'
 
+  seminarytypes:
+    show:
+      title: 'Seminario'
+    index:
+      title: 'Seminarios'
+    new:
+      title: 'Nuevo seminario'
+    edit:
+      title: 'Modificar seminario'
+
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -202,6 +213,8 @@ es:
     projectfinancingsources: 'Fuentes de financiamiento'
     user_regularcourses: 'Cursos regulares'
     periods: 'Periódos'
+    seminaries: 'Seminarios'
+    seminarytypes: 'Tipos de seminarios'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
