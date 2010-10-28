@@ -176,6 +176,15 @@ es:
     edit:
       title: 'Modificar seminario'
 
+  prizetypes:
+    show:
+      title: 'Premio'
+    index:
+      title: 'Premios'
+    new:
+      title: 'Nuevo premio'
+    edit:
+      title: 'Modificar premio'
 
   admin:
     people: 'Información personal'
@@ -215,6 +224,8 @@ es:
     periods: 'Periódos'
     seminaries: 'Seminarios'
     seminarytypes: 'Tipos de seminarios'
+    prizetypes: 'Tipos de premios'
+    prizes: 'Premios'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
