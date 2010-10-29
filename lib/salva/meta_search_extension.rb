@@ -57,22 +57,10 @@ module MetaSearchExtension
          end)
     end
 
-  def define_method_by_prefix(method_name)
-    %Q(define_method_#{method_prefix(method_name)}("#{method_name.to_sym}"))
-  end
-
-  def method_missing(method_name, *args)  
-    #TODO: Refactor this block
-    if method_name_valid? method_name
-      self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-      eval(#{define_method_by_prefix("#{method_name}")}) 
-      METHOD
-      send(method_name, *args)
-    else
-      super
+    def define_method_by_prefix(method_name)
+      %Q(define_method_#{method_prefix(method_name)}("#{method_name.to_sym}"))
     end
   end
-end
 end
 
 ActiveRecord::Base.send :include, MetaSearchExtension
