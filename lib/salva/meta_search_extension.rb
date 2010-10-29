@@ -1,3 +1,5 @@
+# This module extends the MetaSeach plugin to generate methods based 
+# on _like_ignore_case, by_soundex and by_difference prefixes.
 module MetaSearchExtension
   def self.included(base)
     base.extend ClassMethods
@@ -5,52 +7,44 @@ module MetaSearchExtension
 
   module ClassMethods
     def search(opts = {})
+      #TODO: Refactor this block
       opts.keys.each do |key|
-        if key != :search_options and !self.respond_to? key
-          #FIXIT: Remove this class_eval
+        if key != :search_options and !self.respond_to? key and method_name_valid? key
           self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-            search_methods key
-            eval(#{define_method_by_prefix("#{key}")})
+          search_methods key
+          eval(#{define_method_by_prefix("#{key}")})
           METHOD
         end
       end
       super
     end
-    
+
     protected
 
-    def valid_method_prefixes
-      %w(like_ignore_case by_difference by_soundex)
-    end
-
     def method_prefix_valid?(name)
-      valid_method_prefixes.each do |prefix|
-        return true unless name.to_s.match(/\_#{prefix}$/).nil?
-      end
+      !name.to_s.match(/(like_ignore_case|by_difference|by_soundex)$/).nil?
     end
 
     def method_prefix(name)
-      valid_method_prefixes.each do |prefix|
-        return prefix unless name.to_s.match(/\_#{prefix}$/).nil?
-      end
+      name.to_s.match(/(like_ignore_case|by_difference|by_soundex)$/)[1]
     end
 
     def column_name(name)
-      name.to_s.sub(/\_#{method_prefix(name)}$/,'')
+      name.to_s.gsub(/_(like_ignore_case|by_difference|by_soundex)$/,'')
     end
 
     def column_exist?(name)
-      self.column_names.include? column_name(name)
+      self.column_names.include?(name)
     end
 
-    def method_valid?(method_name)
-      method_prefix_valid? method_name and column_exist? method_name
+    def method_name_valid?(method_name)
+      method_prefix_valid? method_name.to_s and column_exist? column_name(method_name)
     end
 
     def define_method_by_difference(method_name)
       %Q(scope_by_difference "#{method_name}", :fields => ["#{column_name(method_name).to_sym}"])
     end
-    
+
     def define_method_by_soundex(method_name)
       %Q(scope_by_soundex "#{method_name}", :fields => ["#{column_name(method_name).to_sym}"])
     end
@@ -58,25 +52,26 @@ module MetaSearchExtension
     def define_method_like_ignore_case(method_name)
       column = column_name(method_name)
       %Q(def self.#{method_name}(#{column})  
-            where("LOWER(#{self.table_name}.#{column}) LIKE ?", "%\#{ #{column}.downcase}%")    
+          where("LOWER(#{table_name}.#{column}) LIKE ?", "%\#{ #{column}.downcase}%")    
          end)
     end
 
-    def define_method_by_prefix(method_name)
-      %Q(define_method_#{method_prefix(method_name)}("#{method_name.to_sym}"))
-    end
-    
-    def method_missing(method_name, *args)  
-      if method_valid? method_name
-        self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-          eval(#{define_method_by_prefix("#{method_name}")}) #FIXIT: Remove this eval
-        METHOD
-        send(method_name, *args)
-      else
-        super
-      end
+  def define_method_by_prefix(method_name)
+    %Q(define_method_#{method_prefix(method_name)}("#{method_name.to_sym}"))
+  end
+
+  def method_missing(method_name, *args)  
+    #TODO: Refactor this block
+    if method_name_valid? method_name
+      self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
+      eval(#{define_method_by_prefix("#{method_name}")}) 
+      METHOD
+      send(method_name, *args)
+    else
+      super
     end
   end
+end
 end
 
 ActiveRecord::Base.send :include, MetaSearchExtension
