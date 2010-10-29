@@ -5,6 +5,8 @@
     %th{:class => 'ui-state-default', :style => 'width: 65%;'}
       = f.text_field :name_like_ignore_case, :size => 30
       = f.collection_select :country_id_equals, Country.all, :id, :name, { :prompt => true }
+      %div{:id => 'alphabet_links'}
+        = alphabet_links(:name) 
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t(:move)
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

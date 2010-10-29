@@ -67,6 +67,18 @@ $(document).ready(function() {
         });
         destroy_selected_records(ids, dom_ids);
     });
+
+    $("#alphabet_links a").live("click", function() {
+        // TODO: Refactor this method
+        key = this.getAttribute('data-param-name');
+        value = this.getAttribute('data-param-value');
+        resource = this.getAttribute('data-controller-name') +'.js';
+        params = { };
+        params[key] = value;
+        remote_collection_list(resource, { search: params });
+        return false;
+    });
+
     set_button_behaviour();
     enable_date_picker();
 });
