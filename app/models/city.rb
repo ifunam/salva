@@ -11,11 +11,5 @@ class City < ActiveRecord::Base
   has_many :addresses
   has_many :institutions
 
-  search_methods :name_likes
-
   default_scope :order => 'name ASC'
-
-  def self.name_likes(name)
-    where('LOWER(cities.name) LIKE ?', "%#{name.downcase}%")
-  end
 end

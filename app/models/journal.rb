@@ -16,11 +16,5 @@ class Journal < ActiveRecord::Base
   has_many :user_journals
   has_many :articles
 
-  search_methods :name_likes
-
   default_scope :order => 'name ASC'
-
-  def self.name_likes(name)
-    where('LOWER(journals.name) LIKE ?', "%#{name.downcase}%")
-  end
 end
