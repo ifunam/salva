@@ -8,6 +8,7 @@ module MetaSearchExtension
   module ClassMethods
     def search(opts = {})
       #TODO: Refactor this block
+      opts ||= {}
       opts.keys.each do |key|
         if key != :search_options and !self.respond_to? key and method_name_valid? key
           self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
