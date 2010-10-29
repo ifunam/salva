@@ -31,6 +31,8 @@ class Institution < ActiveRecord::Base
   has_many :conference_institutions
   has_many :genericworks
 
+  default_scope :order => 'name ASC'
+
   def as_text
     [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
   end
