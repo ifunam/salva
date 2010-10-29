@@ -1,3 +1,3 @@
-require Rails.root.to_s + '/lib/salva/site_config'
-require Rails.root.to_s + '/lib/salva/routes'
-require Rails.root.to_s + '/lib/salva/meta_search_extension'
+%w(site_config routes meta_search_extension).each do |file|
+  require  Rails.root.to_s + '/lib/salva/' + file
+end
