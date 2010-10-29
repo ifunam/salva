@@ -3,7 +3,13 @@
     %th{:class => 'ui-state-default', :style => 'width: 5%;'}
       =t(:id)
     %th{:class => 'ui-state-default', :style => 'width: 65%;'}
-      = f.text_field :name_likes, :size => 30
+<% for attribute in attributes -%>
+  <% unless attribute.name.match(/\_id$/).nil? %>
+      = f.collection_select :<%= attribute.name %>_equals, <%= attribute.name.sub(/_id$/,'').capitalize %>.all, :id, :name
+  <% else %>
+      = f.text_field :<%= attribute.name %>_like_ignore_case, :size => 30
+  <% end %>
+<% end %>
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t(:move)
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

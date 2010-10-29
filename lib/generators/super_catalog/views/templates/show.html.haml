@@ -3,7 +3,7 @@
   - show_for @<%= singular_name %> do |u|
 <% for attribute in attributes -%>
 <% unless attribute.name.match(/\_id$/).nil? %>
-    = u.association :<%= attribute.name.tr('_id', '') %>, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+    = u.association :<%= attribute.name.sub(/_id$/, '') %>, :using => :name, :wrapper_html => {:class => 'span-14 last'}
 <% else %>
     = u.attribute :<%= attribute.name %>, :wrapper_html => {:class => 'span-14 last'}
 <% end %>
