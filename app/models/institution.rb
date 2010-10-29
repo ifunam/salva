@@ -13,7 +13,6 @@ class Institution < ActiveRecord::Base
 
   validates_associated :institutiontitle
   validates_associated :institutiontype
-  # validates_associated :institution, avoid recursion bugs..
   validates_associated :country
   validates_associated :state
   validates_associated :city
@@ -31,11 +30,6 @@ class Institution < ActiveRecord::Base
   has_many :institutional_activities
   has_many :conference_institutions
   has_many :genericworks
-  #scope_by_soundex_matcher :search_for_autocomplete, :fields => [:name, :abbrev]
-
-#  index 'for_autocomplete', 'pg_catalog.spanish' do
-#    name
- # end
 
   def as_text
     [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
