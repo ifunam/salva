@@ -22,7 +22,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def droppable_link(record, association_name)
       link_to(t('admin.'+association_name) + " (#{record.association_records(association_name).size})", '#', 
               :id =>  association_name + '_' + dom_id(record), 'data-draggable' => true, 
@@ -53,5 +53,11 @@ module ApplicationHelper
       options.delete :class_button
     end
     link_to title, url, {:class => "ui-state-default ui-corner-all #{class_button}"}.merge(options)
+  end
+
+  def alphabet_links(attribute_name, url='#')
+    %w(A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z).collect { |char|
+      link_to char, url, 'data-param-name' => attribute_name.to_s + '_starts_with', 'data-param-value' => char, 'data-controller-name' => controller_name
+    }.join(' ').html_safe
   end
 end
