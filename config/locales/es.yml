@@ -166,6 +166,15 @@ es:
     edit:
       title: 'Modificar tipo de institución'
 
+  institutiontitles:
+    show:
+      title: 'Título de institución'
+    index:
+      title: 'Titulos de instituciones'
+    new:
+      title: 'Nuevo título de institución'
+    edit:
+      title: 'Modificar título de institución'
 
   periods:
     show:
@@ -250,6 +259,7 @@ es:
     careers: 'Carreras'
     institutioncareers: 'Instituciones'
     institutiontypes: 'Tipos de instituciones'
+    institutiontitles: 'Titulos de institución'
 
   show_all: 'Mostrar todos'
   save: 'Guardar'
