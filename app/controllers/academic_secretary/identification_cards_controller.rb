@@ -3,7 +3,7 @@ class AcademicSecretary::IdentificationCardsController < ApplicationController
   respond_to :html
   respond_to :js, :only => [:index, :edit]
   def index
-    respond_with(@users = User.postdoctoral.fullname_asc.activated.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => 10))
+    respond_with(@users = User.postdoctoral.fullname_asc.activated.paginated_search(params))
   end
 
   def front

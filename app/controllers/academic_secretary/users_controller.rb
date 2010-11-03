@@ -7,11 +7,11 @@ class AcademicSecretary::UsersController < ApplicationController
   respond_to :js, :only => [:autocomplete_form, :show, :user_incharge, :index, :edit_status, :update_status]
 
   def index
-    respond_with(@users = User.postdoctoral_search(params[:search]).paginate(:page => params[:page] || 1, :per_page =>  params[:per_page] || 10))
+    respond_with(@users = User.postdoctoral.fullname_asc.paginated_search(params)) 
   end
   
   def list
-    @users = User.postdoctoral_search(params[:search])
+    @users = User.postdoctoral.fullname_asc.paginated_search(params)
     respond_to do |format|
       format.xls do 
         send_data PostdoctoralReporter.new(@users.all).to_xls, :filename => 'posdoctorales_'+ Time.now.strftime("%Y%m%d%H%M%S") + '.xls'
