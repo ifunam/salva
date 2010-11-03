@@ -5,9 +5,7 @@
     %th{:class => 'ui-state-default', :style => 'width: 65%;'}
   
       = f.text_field :name_like_ignore_case, :size => 30
-  
-
-      // %div{:id => 'alphabet_links'}= alphabet_links(:your_attribute_name)
+      %div{:id => 'alphabet_links'}= alphabet_links(:name)
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t(:move)
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
