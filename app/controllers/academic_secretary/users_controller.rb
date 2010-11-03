@@ -11,7 +11,7 @@ class AcademicSecretary::UsersController < ApplicationController
   end
   
   def list
-    @users = User.postdoctoral.fullname_asc.paginated_search(params)
+    @users = User.postdoctoral.fullname_asc.search(params[:search])
     respond_to do |format|
       format.xls do 
         send_data PostdoctoralReporter.new(@users.all).to_xls, :filename => 'posdoctorales_'+ Time.now.strftime("%Y%m%d%H%M%S") + '.xls'
