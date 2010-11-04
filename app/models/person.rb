@@ -18,7 +18,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :image, :city
  
   default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
-  scope_by_soundex :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  scope_by_difference :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
   search_methods :find_by_fullname
 
   def fullname
