@@ -3,13 +3,15 @@
   %td{:id=>'profile'}
     %div{:id => 'profile_'+ dom_id(user)}
       = user.fullname_or_login
-      = link_to image_tag('user_profile.png', :style => 'border: 0; float: right;'), '#', :title => 'Ver perfil del usuario', :remote => true, :id => user.id
+    %div{:style => 'margin-top:5px; text-align: right;'}
+      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-zoomin') , admin_user_path(user), :title => 'Ver detalles', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
+      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-document') , edit_admin_user_path(:id => user.id), :title => 'Modificar', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"
 
   %td= user.adscription_name
   - unless user.jobposition.nil?
     %td= user.jobposition.start_date
     %td= user.jobposition.end_date 
-    %td= user.jobposition.jobpositioncategory_id
+    %td= user.jobposition.category_name
   - else
     - 3.times do
       %td

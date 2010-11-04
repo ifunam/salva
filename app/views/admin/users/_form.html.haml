@@ -18,7 +18,7 @@
         = render :partial => 'admin/users/record_show', :object => f.object.user_incharge
     = f.hidden_field :user_incharge_id
   = f.simple_fields_for :user_group_attributes, @user.user_group do |user_group_form|
-    = render :partial => 'user_groups/academic_form', :locals => { :f => user_group_form}
+    = render :partial => 'user_groups/form', :locals => { :f => user_group_form}
 
 = f.simple_fields_for :person_attributes, @user.person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form }

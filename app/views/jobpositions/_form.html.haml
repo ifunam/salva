@@ -20,7 +20,7 @@
       - if f.object.nil? 
         = render :partial => 'jobpositioncategories/select'
       - else
-        = f.object.jobpositioncategory.name
+        = f.object.category_name
     %div{:class=> 'span-6'}
       = f.collection_select :contracttype_id, Contracttype.all, :id, :name, {:prompt => true}
     %div{:class=> 'span-6 last'}

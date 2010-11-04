@@ -12,7 +12,7 @@
     %th{:class => 'ui-state-default', :style => 'width: 20%;'}
       =t('.adscription')
       %br
-      = f.collection_select :adscription_id_equals, Adscription.where("id <=6").all, :id, :name, { :prompt => true }
+      = f.collection_select :adscription_id_equals, Adscription.where("id <=7").all, :id, :name, { :prompt => true }
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       =t('.start_date_year')
       %br
@@ -24,7 +24,7 @@
       = f.text_field :jobposition_end_date_year_equals, :size => 4
 
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
-      =t('.schoolarship')
+      =t('.jobpositioncategory')
       %br
       = f.collection_select :jobpositioncategory_id_equals, Jobpositioncategory.find_all_by_jobpositiontype_id(params[:id] || 1), :id, :name, { :prompt => true }
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

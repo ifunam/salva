@@ -260,6 +260,22 @@ es:
     institutioncareers: 'Instituciones'
     institutiontypes: 'Tipos de instituciones'
     institutiontitles: 'Titulos de institución'
+    users:
+      form:
+        title: 'Cuenta de usuario'
+      filter_header:
+        login: 'Usuario' 
+        fullname: 'Nombre'
+        adscription: 'Departamento'
+        start_date_year: 'Año de ingreso al instituto'
+        end_date_year: 'Año de conclusión'
+        status: 'Estado'
+        jobpositioncategory: 'Categoría'
+        list_all: 'Mostrar todos'
+        export_to_xls: 'Exportar a excel'
+      index:
+        new: 'Agregar nuevo usuario'
+    
 
   show_all: 'Mostrar todos'
   save: 'Guardar'

@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   layout 'admin'
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
   respond_to :json, :only => [:search_by_fullname, :search_by_username]
-  respond_to :js, :only => [:autocomplete_form, :show, :user_incharge, :index, :edit_status, :update_status]
+  respond_to :js, :only => [:autocomplete_form, :user_incharge, :index, :edit_status, :update_status]
 
   def index
     respond_with(@users = User.fullname_asc.paginated_search(params)) 

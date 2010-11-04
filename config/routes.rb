@@ -10,6 +10,9 @@ Salva::Application.routes.draw do
     get :remote_form, :on => :collection
   end
 
+  resources :jobpositioncategories do
+     get :filtered_select, :on => :collection
+  end
   resources :documents
   resources :user_schoolarships
 

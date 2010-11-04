@@ -75,6 +75,12 @@ $(document).ready(function() {
     date_picker_for('#user_jobposition_attributes_start_date', start_year, current_year);
     date_picker_for('#user_jobposition_attributes_end_date', start_year, current_year);
 
+	$('#filter_jobpositiontype_id').change(function(){
+		$.ajax({
+			url: "/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val(),
+			success: function(data) { $('#jobpositioncategories_select').html(data); }
+		});
+	});
     $("#save_user").validate({
         rules: {
             "user[password]": {required:true, minlength:3},

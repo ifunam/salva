@@ -52,9 +52,9 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
+
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
 
-  
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
   end
@@ -111,6 +111,7 @@ class User < ActiveRecord::Base
   def has_adscription?
     !user_adscription.nil?
   end
+
   def category_name
     jobposition.category_name unless jobposition.nil?
   end
