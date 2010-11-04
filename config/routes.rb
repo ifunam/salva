@@ -14,7 +14,14 @@ Salva::Application.routes.draw do
   resources :user_schoolarships
 
   namespace :admin do
-    resources :users
+    resources :users  do
+      get :search_by_fullname, :on => :collection
+      get :search_by_username, :on => :collection
+      get :autocomplete_form, :on => :collection
+      get :edit_status, :on => :member
+      get :update_status, :on => :member
+      get :user_incharge, :on => :member
+    end
     resources :catalogs
     super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, :institutiontypes, :institutiontitles
   end

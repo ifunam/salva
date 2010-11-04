@@ -1,10 +1,16 @@
-%div{ :class => 'span-24 section_left last' }
-  %h2 Lista de usuarios
-
-%div{:id => "collection", :class => "span-24 last"}
-  = render :partial => @users
-%div{:id => "collection", :class => "span-24 last"}
-  / = render :partial => "paginator"
-  = will_paginate @users 
 %div{ :class => 'span-24 buttons_left last' }
-  = link_to 'Nuevo usuario', new_admin_user_path, :class => "ui-state-default ui-corner-all ui-button"
+  = link_to t('.new'), new_admin_user_path, :class => "ui-state-default ui-corner-all button"
+%br
+%br
+%br
+%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
+  %thead{:id => "filter_header"}
+    = render :partial => 'filter_header'
+  %tbody{:id =>'collection'}
+    = render :partial => @users
+  %tfoot{:id => 'paginator'}
+    %tr
+      %th= will_paginate @users
+
+%div{ :class => 'span-24 buttons_left last' }
+  = link_to t('.new'), new_admin_user_path, :class => "ui-state-default ui-corner-all button"

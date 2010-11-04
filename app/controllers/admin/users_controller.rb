@@ -1,17 +1,19 @@
 class Admin::UsersController < ApplicationController
-  respond_to :html, :except => [:autocomplete_fullname]
-  respond_to :js, :only => [:autocomplete_form, :show]
-  respond_to :json, :only => [:autocomplete_fullname]
-  def index
-    respond_with(@users = User.all.paginate(:page => params[:page] || 1, :per_page => 10))
-  end
+  layout 'admin'
+  respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]
+  respond_to :json, :only => [:search_by_fullname, :search_by_username]
+  respond_to :js, :only => [:autocomplete_form, :show, :user_incharge, :index, :edit_status, :update_status]
 
+  def index
+    respond_with(@users = User.fullname_asc.paginated_search(params)) 
+  end
+  
   def new
     respond_with(@user = User.new)
   end
 
   def create
-    respond_with(@user = User.create(params[:user]), :status => :created, :location => admin_user_path)
+    respond_with(@user = User.create(params[:user]), :status => :created, :location => admin_users_path)
   end
 
   def edit
@@ -25,16 +27,41 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated, :location => admin_user_path)
+    respond_with(@user, :status => :updated, :location => admin_user_path(@user))
   end
 
-  def autocomplete_fullname
-    @records = Person.find_by_fullname params[:term]
-    @results = @records.collect { |record| { :id => record.user_id, :value => record.fullname, :label => record.fullname } }
-    render :json => @results
+  def destroy
+    @user = User.find(params[:id])
+    @user.restroy
+    respond_with(@user, :status => :deleted, :location => admin_users_path)
   end
   
+  def search_by_fullname
+    @records = User.not_in_postdoctoral.activated.search(:fullname_likes => params[:term]).all
+    render :json => @records.collect { |record| { :id => record.id, :value => record.fullname_or_email, :label => record.fullname_or_email } }
+  end
+
+  def search_by_username
+    @records = User.login_likes params[:term]
+    render :json => @records.collect { |record| { :id => record.login, :value => record.login, :label => record.login } }
+  end
+
   def autocomplete_form
     render :action => 'autocomplete_form.js'
+  end
+
+  def edit_status
+    @user = User.find params[:id]
+    render :action => 'edit_status.js'
+  end
+
+  def update_status
+    @user = User.find(params[:id])
+    @user.update_attribute(:userstatus_id, params[:userstatus_id])
+    render :action => 'update_status.js'
+  end
+
+  def user_incharge
+    respond_with(@user = User.find(params[:id]))
   end
 end

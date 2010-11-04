@@ -7,57 +7,6 @@ $.validator.setDefaults({
     }
 });
 
-$(function() {
-  $('form a.add_child').click(function() {
-    var assoc   = $(this).attr('data-association');
-    var content = $('#' + assoc + '_fields_template').html();
-    var regexp  = new RegExp('new_' + assoc, 'g');
-    var new_id  = new Date().getTime();
-        
-    $(this).before(content.replace(regexp, new_id));    
-
-    // FIX IT: Move these lines to another method
-    date_picker_for('#user_user_schoolarships_attributes_'+new_id+'_start_date',start_year, current_year);
-    date_picker_for('#user_user_schoolarships_attributes_'+new_id+'_end_date',start_year, current_year);
-
-    return false;
-  });
-  
-  $('form a.remove_child').live('click', function() {
-    $(this).parent().parent().remove();
-    return false;
-  });
-
-  $('form a.remove_document').live('click', function() {
-    document_id = this.id;
-    $.ajax({
-        url: "/documents/"+document_id,
-        type: 'DELETE',
-        dataType: 'xml',
-        success: function(request) { 
-
-        }
-    });
-    $(this).parent().parent().remove();
-    return false;
-  });
-
-  $('form a.remove_user_schoolarship').live('click', function() {
-    schoolarship_id = this.id;
-    $.ajax({
-        url: "/user_schoolarships/"+schoolarship_id,
-        type: 'DELETE',
-        dataType: 'xml',
-        success: function(request) { 
-
-        }
-    });
-    $(this).parent().parent().remove();
-    return false;
-  });
-
-});
-
 $(document).ready(function() {
 
     $("#dialog").dialog({
@@ -125,10 +74,7 @@ $(document).ready(function() {
     });
     date_picker_for('#user_jobposition_attributes_start_date', start_year, current_year);
     date_picker_for('#user_jobposition_attributes_end_date', start_year, current_year);
-    date_picker_for('#user_user_schoolarship_attributes_start_date', start_year, current_year);
-    date_picker_for('#user_user_schoolarship_attributes_end_date', start_year, current_year);
-    date_picker_for('#user_user_schoolarships_attributes_0_start_date',start_year, current_year);
-    date_picker_for('#user_user_schoolarships_attributes_0_end_date',start_year, current_year);
+
     $("#save_user").validate({
         rules: {
             "user[password]": {required:true, minlength:3},
@@ -143,11 +89,6 @@ $(document).ready(function() {
         }   
     });
 
-    $('#save_user').live('submit', function() {
-        $('#user_schoolarships_fields_template').remove();
-        $('#documents_fields_template').remove();
-    });
-
     $('#collection tr td').hover( function() {
             var iCol = $('td').index(this) % 5;
             var nTrs = oTable.fnGetNodes();
@@ -158,12 +99,12 @@ $(document).ready(function() {
     } );
 
     $("tr#filter_row select").live('change', function() {
-        remote_user_list('/academic_secretary/users.js', $.param($("form").serializeArray()));
+        remote_user_list('/admin/users.js', $.param($("form").serializeArray()));
         return false;
     });
 
     $("tr#filter_row input").live('focusout', function() {
-        remote_user_list('/academic_secretary/users.js', $.param($("form").serializeArray()));
+        remote_user_list('/admin/users.js', $.param($("form").serializeArray()));
         return false;
     });
 
@@ -187,7 +128,7 @@ $(document).ready(function() {
 
     $("#filter_header_reset_all").live("click", function() {
         document.forms['filter_form'].reset();
-        remote_user_list('/academic_secretary/users.js');
+        remote_user_list('/admin/users.js');
         return false;
     });
 
@@ -195,7 +136,7 @@ $(document).ready(function() {
         if ( $(this).attr('data-remote') == 'true' ) {
             user_id = this.id;
             options = {
-                url: '/academic_secretary/users/'+user_id+'.js',
+                url: '/admin/users/'+user_id+'.js',
                 success: function(request) {
                     $('#show_profile_user_'+user_id).remove();
                     $("#profile_user_"+user_id).after(request);
@@ -224,43 +165,17 @@ $(document).ready(function() {
         $.ajax(options);
         return false;
      });
-
-    $("#export_to_xls").live("click", function() {
-        $.download('/academic_secretary/users/list.xls', decodeURIComponent($.param($("form").serializeArray())), 'get');
-        return false;
-    });
     
     set_button_behaviour();
     date_picker_for('#search_jobposition_start_date_equals', start_year, end_year);
     date_picker_for('#search_jobposition_end_date_equals', start_year, end_year);
 
-	// IdentificationCardsController
-    $("tr#filter_identification_cards select").live('change', function() {
-        remote_user_list('/academic_secretary/identification_cards.js', $.param($("form").serializeArray()));
-        return false;
-    });
-
-    $("tr#filter_identification_cards input").live('focusout', function() {
-        remote_user_list('/academic_secretary/identification_cards.js', $.param($("form").serializeArray()));
-        return false;
-    });
-
-	$("#filter_identification_cards_reset_all").live("click", function() {
-        document.forms['filter_form'].reset();
-        remote_user_list('/academic_secretary/identification_cards.js');
-        return false;
-    });
-
-   $("td#person_photo' a").live("click", function() {
-		dialog_for_photo(this.id);
-            return false;
-     });
 });
 
 function search_by_username_onchange_observer() {
     $.ajax({
         dataType: 'json',
-        url: "/academic_secretary/users/search_by_username",
+        url: "/admin/users/search_by_username",
         data: { term: $('#user_login').val() }, 
         success: function(json){
             not_found = true;
@@ -283,7 +198,7 @@ function search_by_username_onchange_observer() {
 
 function search_by_username_autocomplete() {
     $('#user_login').autocomplete({
-        source: '/academic_secretary/users/search_by_username',
+        source: '/admin/users/search_by_username',
         minLength: 2,
         select: function(event, ui) {
             dialog_for_existent_login(ui.item.id);
@@ -298,7 +213,7 @@ function dialog_for_existent_login(login) {
 
 function  search_by_fullname_autocomplete() {
     $('#autocomplete_user_fullname').autocomplete({
-        source: '/academic_secretary/users/search_by_fullname',
+        source: '/admin/users/search_by_fullname',
         minLength: 3,
         select: function(event, ui) {  
             $('#user_user_incharge_id').val(ui.item.id);
@@ -309,7 +224,7 @@ function  search_by_fullname_autocomplete() {
 
 function secretary_users_show(id) {
     $.ajax({
-        url: "/academic_secretary/users/" + id + '/user_incharge.js',
+        url: "/admin/users/" + id + '/user_incharge.js',
         success: function(request) { 
             $("#user_fullname").html(request); 
         }
@@ -318,7 +233,7 @@ function secretary_users_show(id) {
 
 function search_by_fullname_autocomplete_form() {
     $.ajax({
-        url: "/academic_secretary/users/autocomplete_form", 
+        url: "/admin/users/autocomplete_form", 
         success: function(request) { $("#user_fullname").html(request); }
     });
 }
@@ -418,12 +333,3 @@ function close_dialog_with_progressbar() {
        $('#dialog').html('');
 }
 
-function dialog_for_photo(person_id) {
-    $('#dialog').dialog({title:'Fotografía', width: 440, height: 200, bgiframe: true, modal: true}).dialog('open');
-    $.ajax({
-        url: "/academic_secretary/identification_cards/" + person_id + '/edit.js',
-        success: function(request) {
-            $("div#dialog").html(request);
-        }
-    });
-}

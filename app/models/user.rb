@@ -27,8 +27,11 @@ class User < ActiveRecord::Base
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
   scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
   scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
-
-  search_methods :fullname_likes, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :login_likes
+  scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  
+  search_methods :fullname_likes, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
+                 :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
+                 :login_likes
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
@@ -37,11 +40,12 @@ class User < ActiveRecord::Base
   has_one :person
   has_one :user_group
   has_one :address
-  has_one :jobposition
+  has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one :user_identification
   has_one :user_schoolarship
 
   has_many :user_adscriptions
+  has_many :jobpositions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
   has_one  :jobposition_as_postdoctoral, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 38', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one  :user_adscription_as_postdoctoral, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'

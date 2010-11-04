@@ -1,15 +1,21 @@
-%div{:id => dom_id(user), :class => "span-24 section_left last"}
-
-  %div{ :class => 'span-24 last' }
-    %div{:class => "span-2"}
-
-      = image_tag(user.avatar(:icon))
-    %div{:class => "span-6"}
+%tr{:class => cycle('record-odd', 'record-even') }
+  %td= user.login
+  %td{:id=>'profile'}
+    %div{:id => 'profile_'+ dom_id(user)}
       = user.fullname_or_login
-      <!-- user.person.fullname why doesnt work?-->
-    %div{:class => "span-4"}
-      = user.login
-    %div{:class => "span-6"}
-      = user.email
-    %div{:class => "span-3 last"}
-      #{link_to 'Ver', admin_user_path(user)}
+      = link_to image_tag('user_profile.png', :style => 'border: 0; float: right;'), '#', :title => 'Ver perfil del usuario', :remote => true, :id => user.id
+
+  %td= user.adscription_name
+  - unless user.jobposition.nil?
+    %td= user.jobposition.start_date
+    %td= user.jobposition.end_date 
+    %td= user.jobposition.jobpositioncategory_id
+  - else
+    - 3.times do
+      %td
+  %td{:class => 'action'}
+    %div{:class => 'ui-widget ui-widget-content ui-corner-all', :style => 'width: 40px; padding: 3px;', :id => 'userstatus_'+ dom_id(user) }
+      %span{:style => 'float: left; text-align: right;', :id => 'userstatus_indicator_'+ dom_id(user) }
+        = render :partial => 'userstatus', :locals => { :userstatus => user.userstatus}
+      %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;', :id => 'edit_status'}
+        = link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s'}), edit_status_admin_user_path(:id => user.id, :format => 'js'), :remote => true, :id => user.id, :title => 'Cambiar estado'
