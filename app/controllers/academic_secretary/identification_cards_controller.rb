@@ -1,5 +1,5 @@
 class AcademicSecretary::IdentificationCardsController < ApplicationController
-  layout 'admin'
+ layout 'academic_secretary'
   respond_to :html
   respond_to :js, :only => [:index, :edit]
   def index
