@@ -9,3 +9,5 @@
   = f.label :institution_id, :required => true 
   = f.collection_select :institution_id,  Institution.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
 
+= f.input :is_enabled, :wrapper_class => 'span-8 last' 
+
