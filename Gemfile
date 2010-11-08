@@ -13,7 +13,7 @@ gem "cancan"
 # gem "roles_active_record"
 # gem "cream"
 
-# # Authentication
+# Authentication
 gem "devise", "1.1.3"
 gem "devise_ldap_authenticatable"
 gem "net-ldap"
@@ -36,7 +36,7 @@ gem "carrierwave", "0.5.0.beta2"
 gem "rmagick"
 gem "mongo"
 gem "will_paginate", "3.0.pre2"
-gem "attribute_normalizer", :git => "http://github.com/mdeering/attribute_normalizer.git"
+gem "attribute_normalizer", :git => 'http://github.com/juarlex/attribute_normalizer.git'
 gem "inherited_resources", "1.1.2"
 gem "pg"
 gem "meta_search"
