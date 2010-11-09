@@ -1,0 +1,16 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 55%;'}
+      = f.text_field :name_title_ignore_case, :size => 20
+      %div{:id => 'alphabet_links'}
+        = alphabet_links(:title) 
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      ='Autores del instituto'
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      ='Asociarse/Quitarse como autor'
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      =t(:del)

@@ -295,3 +295,8 @@ es:
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'
   delete_all_selected: 'Borrar registros seleccionados'
   destroy_all_empty_associations: 'Borrar registros sin asociaciones'
+  add_author: 'Asociarse como autor'
+  del_author: 'Quitarse como autor'
+  associated: Usted ya esta asociado como autor
+  not_associated: Usted no esta asociado como autor
+  author_list: Listar autores

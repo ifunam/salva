@@ -60,4 +60,22 @@ module ApplicationHelper
       link_to char, url, 'data-param-name' => attribute_name.to_s + '_starts_with', 'data-param-value' => char, 'data-controller-name' => controller_name
     }.join(' ').html_safe
   end
+
+  def link_to_delete(record, url)
+    if can_current_user_delete?(record)
+      link_to_action 'ui-icon-trash', t(:del), url, :method => :delete, :confirm => t(:delete_confirm_question), :remote => true, 'data-parent-id' => dom_id(record)
+    end
+  end
+
+  def checkbox_to_delete(record)
+    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record)
+  end
+
+  def can_current_user_delete?(record)
+     record.registered_by_id == current_user.id and record.associated_authors.size > 0
+  end
+
+  def link_to_author_list(record, url)
+    link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s' }), url, :remote => true, :id => dom_id(record), :title =>  t(:author_list)
+  end
 end

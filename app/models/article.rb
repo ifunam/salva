@@ -40,7 +40,7 @@ class Article < ActiveRecord::Base
       year.to_s 
     end
   end
-  
+
   def normalized_vol_and_num
     if !vol.to_s.strip.empty?  and !num.to_s.strip.empty?
       "#{vol}(#{num})"
@@ -50,12 +50,16 @@ class Article < ActiveRecord::Base
       "(#{num})"
     end
   end
-  
+
   def normalized_pages
     pages unless pages.to_s.strip.empty?
   end
-  
+
   def associated_authors
     users
+  end
+
+  def has_user_as_author?(user_id)
+     !user_articles.where(["user_articles.user_id = ?", user_id]).first.nil?
   end
 end

@@ -16,6 +16,12 @@ Salva::Application.routes.draw do
   resources :documents
   resources :user_schoolarships
 
+  resources :articles do
+    get :author_list, :on => :member
+    get :add_author, :on => :member
+    get :del_author, :on => :member
+  end
+
   namespace :admin do
     resources :users  do
       get :search_by_fullname, :on => :collection

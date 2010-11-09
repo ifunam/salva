@@ -1,0 +1,6 @@
+%br
+ = 'Registrado por: ' + ( @article.registered_by.nil? ? 'admin' : @article.registered_by.friendly_email)
+ %br
+ = 'Modificado por: ' + ( @article.modified_by.nil? ? '' : @article.registered_by.friendly_email)
+ %br
+ = 'Fecha de actualización: ' + ( @article.updated_on.to_s (:long))
