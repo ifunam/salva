@@ -32,7 +32,7 @@ Salva::Application.routes.draw do
       get :user_incharge, :on => :member
     end
     resources :catalogs
-    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, :institutiontypes, :institutiontitles
+    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, :institutiontypes, :institutiontitles, :activitytypes
   end
 
   namespace :academic_secretary do
