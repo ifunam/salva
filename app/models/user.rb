@@ -43,7 +43,8 @@ class User < ActiveRecord::Base
   has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one :user_identification
   has_one :user_schoolarship
-
+  has_one :user_cite
+  
   has_many :user_adscriptions
   has_many :jobpositions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
@@ -68,9 +69,9 @@ class User < ActiveRecord::Base
     @users
   end
 
-  def authorname
-    if !author_name.to_s.strip.empty?
-       author_name
+  def author_name
+    if !user_cite.nil? and !user_cite.author_name.to_s.strip.empty?
+      user_cite.author_name
     elsif !person.nil?
       person.shortname
     end
