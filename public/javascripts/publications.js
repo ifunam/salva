@@ -30,5 +30,29 @@ $(document).ready(function() {
 		return false;
 	});
 
+    $("tr#filter_header input").live('focusout', function() {
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource, $.param($("form").serializeArray()));
+        return false;
+    });
+
+    $("tr#filter_header select").live('change', function() {
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource, $.param($("form").serializeArray()));
+        return false;
+    });
+
+    $("#filter_reset_all").live("click", function() {
+        document.forms['filter_form'].reset();
+        resource = $('#filter_form').attr('action') + '.js';
+        remote_collection_list(resource);
+        return false;
+    });
+
+    $("#ajaxed_paginator a").live("click", function() {
+        remote_collection_list(this.href);
+        return false;
+    });
+
 	set_button_behaviour();
 });

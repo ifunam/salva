@@ -3,15 +3,15 @@
     %th{:class => 'ui-state-default', :style => 'width: 5%;'}
       =t(:id)
     %th{:class => 'ui-state-default', :style => 'width: 55%;'}
-      %div{:class => 'span-4'}=t(:title)
       %div{:class => 'span-3'}=t(:authors)
+      %div{:class => 'span-4'}=t(:title)
       %div{:class => 'span-3'}=t(:journal)
       %div{:class => 'span-3 last'}=t(:year)
 
-      %div{:class => 'span-4'}= f.text_field :title_ignore_case, :size => 20
-      %div{:class => 'span-3'}= f.text_field :authors_ignore_case, :size => 15
+      %div{:class => 'span-3'}= f.text_field :authors_like_ignore_case, :size => 15
+      %div{:class => 'span-4'}= f.text_field :title_like_ignore_case, :size => 20
       %div{:class => 'span-3'}
-        = f.text_field :name_journal_ignore_case, :size => 15
+        = text_field_tag 'filter[name_journal_ignore_case]', nil, :size => 15
         = f.hidden_field :journal_id_eq
       %div{:class => 'span-3 last'}= f.text_field :year_eq, :size => 4
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

@@ -21,3 +21,26 @@ function close_dialog_with_progressbar() {
     $('#dialog').dialog('close');
     $('#dialog').html('');
 }
+
+function remote_collection_list(href, params) {
+    options = {
+        url: href,
+        beforeSend: function(){
+            open_dialog_with_progressbar();
+        },
+        complete: function(request){ 
+            set_button_behaviour();
+            close_dialog_with_progressbar();
+        },
+        success: function(request) {
+            $('#collection').remove();
+            $('#paginator').remove();
+            $('#filter_header').after(request);
+        },
+        type:'get'
+    }
+    if (params != undefined) {
+        options['data'] = params;
+    }
+    $.ajax(options);
+}
