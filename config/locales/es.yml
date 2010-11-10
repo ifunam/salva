@@ -226,6 +226,16 @@ es:
     edit:
       title: 'Modificar tipo de actividad'
 
+  academicprogramtypes:
+    show:
+      title: 'Tipo de programa académico'
+    index:
+      title: 'Tipos de programas académicos'
+    new:
+      title: 'Nuevo tipo de programa académico'
+    edit:
+      title: 'Modificar tipo de programa académico'
+
 
   admin:
     people: 'Información personal'
@@ -273,6 +283,9 @@ es:
     institutiontitles: 'Titulos de institución'
     activitytypes: 'Tipos de actividades'
     activities: 'Actividades'
+    academicprogramtypes: 'Tipos de programas académicos'
+    academicprograms: 'Programas académicos'
+
     users:
       form:
         title: 'Cuenta de usuario'
