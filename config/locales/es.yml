@@ -246,6 +246,16 @@ es:
     edit:
       title: 'Modificar grupo de actividad'
 
+  addresstypes:
+    show:
+      title: 'Tipo de dirección'
+    index:
+      title: 'Tipos de direcciones'
+    new:
+      title: 'Nuevo tipo de dirección'
+    edit:
+      title: 'Modificar tipo de dirección'
+
 
   admin:
     people: 'Información personal'
@@ -297,6 +307,8 @@ es:
     academicprograms: 'Programas académicos'
     activitygroups: 'Grupos de actividades'
     activitytypes: 'Tipos de actividades'
+    addresstypes: 'Tipos de direcciones'
+    addresses: 'Direcciones'
 
     users:
       form:
