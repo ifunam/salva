@@ -236,6 +236,16 @@ es:
     edit:
       title: 'Modificar tipo de programa académico'
 
+  activitygroups:
+    show:
+      title: 'Grupo de actividad'
+    index:
+      title: 'Grupos de actividades'
+    new:
+      title: 'Nuevo grupo de actividad'
+    edit:
+      title: 'Modificar grupo de actividad'
+
 
   admin:
     people: 'Información personal'
@@ -285,6 +295,8 @@ es:
     activities: 'Actividades'
     academicprogramtypes: 'Tipos de programas académicos'
     academicprograms: 'Programas académicos'
+    activitygroups: 'Grupos de actividades'
+    activitytypes: 'Tipos de actividades'
 
     users:
       form:
