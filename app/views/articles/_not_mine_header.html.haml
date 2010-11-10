@@ -3,17 +3,19 @@
     %th{:class => 'ui-state-default', :style => 'width: 5%;'}
       =t(:id)
     %th{:class => 'ui-state-default', :style => 'width: 55%;'}
-      %div{:class => 'span-4'}=t(:title)
-      %div{:class => 'span-3'}=t(:authors)
-      %div{:class => 'span-3'}=t(:journal)
-      %div{:class => 'span-3 last'}=t(:year)
+      %div{:class => 'span-2'}=t(:title)
+      %div{:class => 'span-2'}=t(:authors)
+      %div{:class => 'span-2'}=t(:journal)
+      %div{:class => 'span-4'}=t(:adscription)
+      %div{:class => 'span-2 last'}=t(:year)
 
-      %div{:class => 'span-4'}= f.text_field :title_ignore_case, :size => 20
-      %div{:class => 'span-3'}= f.text_field :authors_ignore_case, :size => 15
-      %div{:class => 'span-3'}
-        = f.text_field :name_journal_ignore_case, :size => 15
+      %div{:class => 'span-2'}= f.text_field :title_ignore_case, :size => 8
+      %div{:class => 'span-2'}= f.text_field :authors_ignore_case, :size => 8
+      %div{:class => 'span-2'}
+        = f.text_field :name_journal_ignore_case, :size => 7
         = f.hidden_field :journal_id_eq
-      %div{:class => 'span-3 last'}= f.text_field :year_eq, :size => 4
+      %div{:class => 'span-4'}= f.collection_select :adscription_id_eq, Adscription.enabled, :id, :name, :prompt => true
+      %div{:class => 'span-2 last'}= f.text_field :year_eq, :size => 4
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}
       ='Autores del instituto'
     %th{:class => 'ui-state-default', :style => 'width: 10%;'}

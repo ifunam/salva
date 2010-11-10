@@ -5,7 +5,14 @@ class ArticlesController < ApplicationController
   respond_to :js, :only => [:author_list, :add_author, :del_author]
 
   def index
-    default_search = {:user_id => current_user.id }
+    params[:search] ||= {}
+    params[:search].merge!(:user_id_eq => current_user.id)
+    respond_with(@articles = Article.published.paginated_search(params))
+  end
+
+  def not_mine
+    params[:search] ||= {}
+    params[:search].merge!(:user_id_not_eq => current_user.id)
     respond_with(@articles = Article.published.paginated_search(params))
   end
 

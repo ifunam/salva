@@ -21,12 +21,14 @@ class Article < ActiveRecord::Base
   scope :inprogress, where(:articlestatus_id => 4)
   scope :published, where(:articlestatus_id => 3)
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id| joins(:user_articles).where(["user_articles.user_id != ?", user_id]) }
+  scope :user_id_not_eq, lambda { |user_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql}) AND articles.id  NOT IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id =  ?", user_id]).to_sql})") }
+  scope :adscription_id_eq, lambda { |adscription_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').joins(:user => :user_adscription).where(["user_articles.user_id = user_adscriptions.user_id  AND user_adscriptions.adscription_id != ?", adscription_id]).to_sql})") }
+
 
   search_methods :user_id_eq, :user_id_not_eq
 
   def self.paginated_search(options={})
-    search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
+    search(options[:search]||{}).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
   end
 
   def as_vancouver

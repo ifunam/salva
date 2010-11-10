@@ -20,6 +20,7 @@ Salva::Application.routes.draw do
     get :author_list, :on => :member
     get :add_author, :on => :member
     get :del_author, :on => :member
+    get :not_mine, :on => :collection, :as => :not_my
   end
 
   namespace :admin do
