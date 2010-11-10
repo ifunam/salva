@@ -300,3 +300,9 @@ es:
   associated: Usted ya esta asociado como autor
   not_associated: Usted no esta asociado como autor
   author_list: Listar autores
+  
+  title: 'Título'
+  authors: 'Autor(es)'
+  journal: 'Journal'
+  year: 'Año'
+  adscription: 'Adscripción'
