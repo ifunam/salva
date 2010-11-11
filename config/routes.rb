@@ -23,6 +23,11 @@ Salva::Application.routes.draw do
     get :not_mine, :on => :collection, :as => :not_my
   end
 
+  resources :journals do
+    get :search_by_name, :on => :collection
+    get :autocomplete_form, :on => :collection
+  end
+
   namespace :admin do
     resources :users  do
       get :search_by_fullname, :on => :collection

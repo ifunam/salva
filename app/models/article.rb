@@ -12,8 +12,11 @@ class Article < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
 
   has_many :user_articles
+  has_one  :user_article
   has_many :users, :through => :user_articles
 
+  accepts_nested_attributes_for :user_article
+  
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC, articlestatus_id ASC'
 
   scope :accepted, where(:articlestatus_id => 1)

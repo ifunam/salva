@@ -1,0 +1,27 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+%div{ :class => 'span-24 section_left append-bottom last' }
+  %h3= t('.title')
+  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+  %div{:class => 'span-12'}
+    = f.label :journal, :required => true
+    %div{:id => 'journal'}
+      - if f.object.new_record?
+        = render :partial => 'journals/autocomplete_form'
+      - else
+        = render :partial => 'journals/show', :locals => { :journal => f.object.journal }  
+    = f.hidden_field :journal_id
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+
+  = f.input :num, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6', :required => true
+  = f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6'
+  = f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6', :required => true
+  = f.input :doi, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6 last'
+
+  = f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }, :wrapper_class => 'span-12'
+  = f.input :other, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  = f.hidden_field :articlestatus_id, :value => 3
