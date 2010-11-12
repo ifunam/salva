@@ -4,6 +4,6 @@
   %br
     = 'Registrado por: ' + ( record.registered_by.nil? ? 'admin' : record.registered_by.friendly_email)
   %br
-    = 'Modificado por: ' + ( record.modified_by.nil? ? '' : record.registered_by.friendly_email)
+    = 'Modificado por: ' + ( record.modified_by.nil? ? '' : record.modified_by.friendly_email)
   %br
     = 'Fecha de actualización: ' + ( record.updated_on.to_s (:long))

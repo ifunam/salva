@@ -27,6 +27,16 @@ class PublicationController < InheritedResources::Base
     respond_with set_collection_ivar(self.resource_class.paginated_search(params))
   end
 
+  def create
+    build_resource.registered_by_id = current_user.id
+    super
+  end
+
+  def update
+    resource.modified_by_id = current_user.id
+    super
+  end
+  
   def author_list
     respond_with(resource)
   end
