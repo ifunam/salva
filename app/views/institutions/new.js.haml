@@ -1,4 +1,4 @@
-= form_for(@institution, :remote => true) do |f|
+= simple_form_for(@journal, :remote => true) do |f|
   = render :partial => 'form', :locals => { :f => f}
   %div{ :class => 'span-11 buttons_left last' }
     = f.submit  :save

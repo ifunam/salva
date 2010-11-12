@@ -8,10 +8,6 @@ class JournalsController < InheritedResources::Base
     render :json => @results
   end
   
-  def autocomplete_form
-     render :action => 'autocomplete_form.js'
-  end
-  
   def create
      create! do |format|
        format.js { render :action => 'show.js' }

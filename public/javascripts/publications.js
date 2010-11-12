@@ -59,17 +59,19 @@ $(document).ready(function() {
     });
 
     $('#change_journal').live('click', function() {
-        autocomplete_journal_form();
+      change_journal();
     });
 
     $("#journal_new").live('click', function() {
-        dialog_for_new_journal();
+      dialog_for_new_journal();
     });
 
     $('#new_journal').live('submit', function() {
         $("#new_journal").ajaxComplete(function(event, request, settings){
-            $("#journal").html(request.responseText);
-            $('#dialog').dialog('close');
+          $("#autocomplete_journal_name").val(request.responseText);
+          $('#autocomplete_journal_name').attr("disabled", "disabled");
+          $('#change_journal').show();
+           $('#dialog').dialog('close');
         });
     });
 
@@ -84,7 +86,8 @@ function  search_by_journal_name() {
         delay: 0,
         select: function(event, ui) {  
             $('#article_journal_id').val(ui.item.id);
-            show_record(ui.item.id);
+            $('#autocomplete_journal_name').attr("disabled", "disabled");
+            $('#change_journal').show();
         }
     });
 }
@@ -98,22 +101,6 @@ function show_record(id) {
     });
 }
 
-function autocomplete_journal_form() {
-    $.ajax({
-        url: "/journals/autocomplete_form.js", 
-        success: function(request) { 
-            $("#journal").html(request); 
-        },
-        beforeSend: function(){
-            open_dialog_with_progressbar();
-        },
-        complete: function(request){ 
-            set_button_behaviour();
-            close_dialog_with_progressbar();
-        }
-    });
-}
-
 function dialog_for_new_journal() {
     $('#dialog').dialog({title:'Nuevo Journal', width: 400, height: 320}).dialog('open');
     $.ajax({
@@ -122,4 +109,11 @@ function dialog_for_new_journal() {
             $("div#dialog").html(request);
         }
     });
+}
+
+function change_journal() {
+	$('#article_journal_id').val('');
+    $('#autocomplete_journal_name').removeAttr("disabled");
+    $('#autocomplete_journal_name').val('');
+    $('#change_journal').hide();
 }

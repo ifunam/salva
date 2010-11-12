@@ -1,2 +1,8 @@
-= text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_journal_name
-= link_to_action 'ui-icon-plus', 'Agregar nuevo journal', '#', :id => 'journal_new'
+- if defined? journal
+  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_journal_name, :value => journal.name, :disabled => :disabled
+  = link_to_action 'ui-icon-plus', 'Agregar nuevo journal', '#', :id => 'journal_new'
+  = link_to_action 'ui-icon-document', 'Cambiar journal', '#', :id => 'change_journal'
+- else
+  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_journal_name
+  = link_to_action 'ui-icon-plus', 'Agregar nuevo journal', '#', :id => 'journal_new'
+  = link_to_action 'ui-icon-document', 'Cambiar journal', '#', :id => 'change_journal', :style => 'display: none;'
