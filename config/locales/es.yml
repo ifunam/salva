@@ -276,6 +276,16 @@ es:
     edit:
       title: 'Modificar tipo de capítulo en libro'
 
+  roleinbooks:
+    show:
+      title: 'Rol en edición de libro'
+    index:
+      title: 'Roles en edición de libros'
+    new:
+      title: 'Nuevo rol en edición de libro'
+    edit:
+      title: 'Modificar rol en edición de libro'
+
 
   admin:
     people: 'Información personal'
@@ -334,6 +344,8 @@ es:
     articleslog: 'Bitácora de artículos'
     bookchaptertypes: 'Tipos de capítulos en libros'
     chapterinbooks: 'Capítulos en libros'
+    roleinbooks: 'Roles en edición de libros'
+    bookedition_roleinbooks: 'Rol en edición'
 
     users:
       form:
