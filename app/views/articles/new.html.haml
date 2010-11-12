@@ -1,3 +1,4 @@
+%h3= t('.title')
 = simple_form_for @article, :html => { :multipart => true, :id => 'record'} do |f|
   = render :partial => 'form', :locals => { :f => f }
   %div{ :class => 'span-24 buttons_left last' }

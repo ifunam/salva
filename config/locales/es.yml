@@ -306,6 +306,17 @@ es:
     edit:
       title: 'Modificar rol en capítulo en libro'
 
+  articles:
+    index:
+      title: 'Mis artículos publicados'
+    not_mine:
+      title: 'Artículos publicados registrados por otros usuarios'
+    new:
+      title: 'Nuevo artículo'
+    edit:
+      title: 'Modificar artículo'
+    show:
+      title: 'Artículo publicado'
 
   admin:
     people: 'Información personal'
@@ -389,7 +400,7 @@ es:
         new: 'Agregar nuevo usuario'
     
 
-  show_all: 'Mostrar todos'
+  show_all: 'Todos'
   save: 'Guardar'
   cancel: 'Cancelar'
   update: 'Guardar cambios'
@@ -412,7 +423,6 @@ es:
   associated: Usted ya esta asociado como autor
   not_associated: Usted no esta asociado como autor
   author_list: Listar autores
-  
   title: 'Título'
   authors: 'Autor(es)'
   journal: 'Journal'
