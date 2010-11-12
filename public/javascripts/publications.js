@@ -54,37 +54,39 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#autocomplete_journal_name,').live('focus', function(){
+    $('#autocomplete_journal_name').live('focus', function(){
         search_by_journal_name();
     });
 
+    $('#autocomplete_filter_journal_name').live('focus', function(){
+        filter_by_journal_name();
+    });
+
     $('#change_journal').live('click', function() {
-      change_journal();
+        change_journal();
     });
 
     $("#journal_new").live('click', function() {
-      dialog_for_new_journal();
+        dialog_for_new_journal();
     });
 
     $('#new_journal').live('submit', function() {
         $("#new_journal").ajaxComplete(function(event, request, settings){
-          $("#autocomplete_journal_name").val(request.responseText);
-          $('#autocomplete_journal_name').attr("disabled", "disabled");
-          $('#change_journal').show();
-           $('#dialog').dialog('close');
+            $("#autocomplete_journal_name").val(request.responseText);
+            $('#autocomplete_journal_name').attr("disabled", "disabled");
+            $('#change_journal').show();
+            $('#dialog').dialog('close');
         });
     });
-
     set_button_behaviour();
 });
 
-
-function  search_by_journal_name() {
+function search_by_journal_name() {
     $('#autocomplete_journal_name').autocomplete({
         source: '/journals/search_by_name',
         minLength: 1,
         delay: 0,
-        select: function(event, ui) {  
+        select: function(event, ui) {
             $('#article_journal_id').val(ui.item.id);
             $('#autocomplete_journal_name').attr("disabled", "disabled");
             $('#change_journal').show();
@@ -92,10 +94,22 @@ function  search_by_journal_name() {
     });
 }
 
+
+function filter_by_journal_name() {
+    $('#autocomplete_filter_journal_name').autocomplete({
+        source: '/journals/search_by_name',
+        minLength: 1,
+        delay: 0,
+        select: function(event, ui) { 
+            $('#search_journal_id_eq').val(ui.item.id);
+        }
+    });
+}
+
 function show_record(id) {
     $.ajax({
         url: "/journals/" + id + '.js',
-        success: function(request) { 
+        success: function(request) {
             $("#journal").html(request); 
         },
     });
@@ -112,7 +126,7 @@ function dialog_for_new_journal() {
 }
 
 function change_journal() {
-	$('#article_journal_id').val('');
+    $('#article_journal_id').val('');
     $('#autocomplete_journal_name').removeAttr("disabled");
     $('#autocomplete_journal_name').val('');
     $('#change_journal').hide();

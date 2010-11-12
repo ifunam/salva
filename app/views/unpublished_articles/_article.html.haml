@@ -1,0 +1,4 @@
+- if article.has_user_as_author?(current_user.id)
+  = render :partial => 'associated_article', :locals => { :article => article }
+- else
+  = render :partial => 'not_associated_article', :locals => { :article => article }

@@ -1,0 +1,19 @@
+%h3= t('.title')
+= link_as_button 'Mís artículos', unpublished_articles_path
+= link_as_button 'Todos los artículos', not_my_unpublished_articles_path
+%div{ :class => 'span-24 buttons_left last' }
+- 3.times do
+  %br
+%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
+  %thead{:id => "filter_header"}
+    = render :partial => 'not_mine_header'
+    %tbody{:id =>'collection'}
+      = render :partial => @articles
+      = render :partial => 'collection_footer'
+    %tfoot{:id => 'paginator'}
+      %tr
+        %th
+          = will_paginate @articles
+
+%div{ :class => 'span-24 buttons_left last' }
+  = link_as_button t(:new), new_unpublished_article_path

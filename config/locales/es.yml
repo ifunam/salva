@@ -318,6 +318,18 @@ es:
     show:
       title: 'Artículo publicado'
 
+  unpublished_articles:
+    index:
+      title: 'Mis artículos enviados o aceptados'
+    not_mine:
+      title: 'Artículos enviados o aceptados por otros usuarios'
+    new:
+      title: 'Nuevo artículo'
+    edit:
+      title: 'Modificar artículo'
+    show:
+      title: 'Artículo enviado o aceptado'
+      
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -428,3 +440,4 @@ es:
   journal: 'Journal'
   year: 'Año'
   adscription: 'Adscripción'
+  articlestatus: 'Status'

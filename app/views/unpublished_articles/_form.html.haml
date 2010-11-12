@@ -1,0 +1,39 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+%div{ :class => 'span-24 section_left append-bottom last' }
+  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+  %div{:class => 'span-12'}
+    = f.label :journal, :required => true
+    %div{:id => 'journal'}
+      - if f.object.new_record?
+        = render :partial => 'journals/autocomplete_form'
+      - else
+        = render :partial => 'journals/autocomplete_form', :locals => { :journal => f.object.journal }  
+    = f.hidden_field :journal_id
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+
+  = f.input :num, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6'
+  = f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6'
+  = f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6'
+  = f.input :doi, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6 last'
+
+  = f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }, :wrapper_class => 'span-12'
+  = f.input :other, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  %div{:class => 'span-6 last'}
+    = f.label :articlestatus_id, :required => true
+    = f.collection_select :articlestatus_id, Articlestatus.all, :id, :name, :prompt => true
+
+  - unless UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first.nil? 
+    - @user_articles = UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first
+  - else
+    - @user_articles = @article.user_articles.build
+  = f.simple_fields_for :user_articles, @user_articles do |uf|
+    - if !f.object.new_record?
+      = uf.hidden_field :id
+      = uf.hidden_field :article_id, :value => @article.id
+    = uf.hidden_field :user_id, :value => current_user.id
+    = uf.hidden_field :ismainauthor, :value => true

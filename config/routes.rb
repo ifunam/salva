@@ -23,6 +23,13 @@ Salva::Application.routes.draw do
     get :not_mine, :on => :collection, :as => :not_my
   end
 
+  resources :unpublished_articles do
+    get :author_list, :on => :member
+    get :add_author, :on => :member
+    get :del_author, :on => :member
+    get :not_mine, :on => :collection, :as => :not_my
+  end
+
   resources :journals do
     get :search_by_name, :on => :collection
     get :autocomplete_form, :on => :collection
