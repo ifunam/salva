@@ -1,0 +1,13 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('chapterinbook_roleinchapters.show.title')
+  - show_for @chapterinbook_roleinchapter do |u|
+
+    = u.association :chapterinbook, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+    = u.association :roleinchapter, :using => :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_admin_chapterinbook_roleinchapter_path(:id => @chapterinbook_roleinchapter.id)
+  = link_as_button t(:back), admin_chapterinbook_roleinchapters_path
