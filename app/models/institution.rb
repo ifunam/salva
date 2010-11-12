@@ -30,6 +30,7 @@ class Institution < ActiveRecord::Base
   has_many :institutional_activities
   has_many :conference_institutions
   has_many :genericworks
+  has_many :institutioncareers
 
   default_scope :order => 'name ASC'
 
