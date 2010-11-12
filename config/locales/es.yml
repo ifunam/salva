@@ -266,6 +266,16 @@ es:
     edit:
       title: 'Modificar estado de artículo'
 
+  bookchaptertypes:
+    show:
+      title: 'Tipo de capítulo en libro'
+    index:
+      title: 'Tipos de capítulos en libros'
+    new:
+      title: 'Nuevo tipo de capítulo en libro'
+    edit:
+      title: 'Modificar tipo de capítulo en libro'
+
 
   admin:
     people: 'Información personal'
@@ -322,6 +332,8 @@ es:
     articlestatuses: 'Estados de artículos'
     articles: 'Artículos'
     articleslog: 'Bitácora de artículos'
+    bookchaptertypes: 'Tipos de capítulos en libros'
+    chapterinbooks: 'Capítulos en libros'
 
     users:
       form:
