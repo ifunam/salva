@@ -256,6 +256,16 @@ es:
     edit:
       title: 'Modificar tipo de dirección'
 
+  articlestatuses:
+    show:
+      title: 'Estado de artículo'
+    index:
+      title: 'Estados de artículos'
+    new:
+      title: 'Nuevo estado de artículo'
+    edit:
+      title: 'Modificar estado de artículo'
+
 
   admin:
     people: 'Información personal'
@@ -309,6 +319,9 @@ es:
     activitytypes: 'Tipos de actividades'
     addresstypes: 'Tipos de direcciones'
     addresses: 'Direcciones'
+    articlestatuses: 'Estados de artículos'
+    articles: 'Artículos'
+    articleslog: 'Bitácora de artículos'
 
     users:
       form:
