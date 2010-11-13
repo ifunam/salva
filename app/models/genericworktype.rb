@@ -6,5 +6,8 @@ class Genericworktype < ActiveRecord::Base
 
   belongs_to :genericworkgroup
 
+  default_scope :order => 'name ASC, genericworkgroup_id ASC'
+  scope :popular_science, where(:genericworkgroup_id => 1)
+
   has_many :genericworks
 end

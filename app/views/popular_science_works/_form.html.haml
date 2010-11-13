@@ -1,0 +1,44 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+  %div{:class => 'span-12'}
+    = f.label :publisher, :required => true
+    %div{:id => 'publisher'}
+      - if f.object.new_record?
+        = render :partial => 'publishers/autocomplete_form'
+      - else
+        = render :partial => 'publishers/autocomplete_form', :locals => { :publisher => f.object.publisher }  
+    = f.hidden_field :publisher_id
+  %div{:class => 'span-6'}
+    = f.label :genericworktype, :required => true
+    = f.collection_select :genericworktype_id, Genericworktype.popular_science, :id, :name, :prompt => true
+  %div{:class => 'span-6 last'}
+    = f.label :genericworkstatus, :required => true
+    = f.collection_select :genericworkstatus_id, Genericworkstatus.all, :id, :name, :prompt => true
+
+  %div{ :class => 'span-24  last' }
+    = f.input :reference, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
+    = f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
+    = f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
+    = f.input :isbn_issn, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6 last'
+
+
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6'}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
+  %div{:class => 'span-12 last'}
+    = f.label :institution, :required => true
+  %div{:id => 'institution'}
+    - if f.object.new_record?
+      = render :partial => 'institutions/autocomplete_form'
+    - else
+      = render :partial => 'institutions/autocomplete_form', :locals => { :institution => f.object.institution }  
+    = f.hidden_field :institution_id
+
+  %div{:class => 'span-6 last'}
+    = f.label :role, :required => true
+    = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}

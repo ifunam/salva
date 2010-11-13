@@ -8,7 +8,34 @@ class Genericwork < ActiveRecord::Base
   belongs_to :genericworkstatus
   belongs_to :institution
   belongs_to :publisher
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   has_many :user_genericworks
   has_many :users, :through => :user_genericworks
+  accepts_nested_attributes_for :user_genericworks
+
+  default_scope :order => 'year DESC, month DESC, authors ASC, title ASC'
+
+  scope :popular_science, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 1 })
+  scope :user_id_eq, lambda { |user_id| joins(:user_genericworks).where(:user_genericworks => {:user_id => user_id}) }
+  scope :user_id_not_eq, lambda { |user_id|  where("genericworks.id IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id !=  ?", user_id]).to_sql}) AND genericworks.id  NOT IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id =  ?", user_id]).to_sql})") }
+
+  search_methods :user_id_eq, :user_id_not_eq
+
+  def as_vancouver
+    title
+  end
+  
+  def self.paginated_search(options={})
+    search(options[:search]||{}).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
+  end
+
+  def associated_authors
+    users
+  end
+  
+  def has_user_as_author?(user_id)
+     !user_genericworks.where(["user_genericworks.user_id = ?", user_id]).first.nil?
+  end
 end
