@@ -1,0 +1,8 @@
+- if defined? publisher 
+  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_publisher_name, :value => publisher.name, :disabled => :disabled
+  = link_to_action 'ui-icon-plus', 'Agregar nueva editorial', '#', :id => 'new_record', 'data-controller-name' => 'publishers'
+  = link_to_action 'ui-icon-document', 'Cambiar editorial', '#',  :id => 'change_publisher', :class => 'change_record', 'data-class-name' => 'publisher'
+- else
+  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_publisher_name
+  = link_to_action 'ui-icon-plus', 'Agregar nueva editorial', '#', :id => 'new_record', 'data-controller-name' => 'publishers'
+  = link_to_action 'ui-icon-document', 'Cambiar editorial', '#', :style => 'display: none;', :id => 'change_publisher', :class => 'change_record', 'data-class-name' => 'publisher'
