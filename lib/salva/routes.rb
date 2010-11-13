@@ -24,5 +24,13 @@ module ActionDispatch::Routing
         end
       end
       
+      def catalog_resources_for(*controllers)
+        controllers.map!(&:to_sym)
+        controllers.each do |resources_name|
+          resources resources_name do
+            get :search_by_name, :on => :collection
+          end
+        end
+      end
   end
 end
