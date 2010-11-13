@@ -9,8 +9,8 @@
       - if f.object.new_record?
         = render :partial => 'journals/autocomplete_form'
       - else
-        = render :partial => 'journals/autocomplete_form', :locals => { :journal => f.object.journal }  
-    = f.hidden_field :journal_id
+        = render :partial => 'journals/autocomplete_form', :locals => { :journal => f.object.journal }    
+      = f.hidden_field :journal_id
   = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6 last'}
     = f.label :month, :required => true
