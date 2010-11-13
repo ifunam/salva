@@ -1,4 +1,4 @@
-= simple_form_for(@journal, :remote => true) do |f|
+= simple_form_for(@institution, :remote => true, :html => {:id => 'new_record_form', 'data-class-name' => 'institution'}) do |f|
   = render :partial => 'form', :locals => { :f => f}
-  %div{ :class => 'span-11 buttons_left last' }
-    = f.submit  :save
+  %div{ :class => 'span-6 buttons_left last' }
+    = f.submit t(:save), :class => "ui-state-default ui-corner-all button"
