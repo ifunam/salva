@@ -11,5 +11,18 @@ module ActionDispatch::Routing
           end
         end
       end
+      
+      def publication_resources_for(*controllers)
+        controllers.map!(&:to_sym)
+        controllers.each do |resources_name|
+          resources resources_name do
+             get :author_list, :on => :member
+             get :add_author, :on => :member
+             get :del_author, :on => :member
+             get :not_mine, :on => :collection, :as => :not_my
+          end
+        end
+      end
+      
   end
 end

@@ -16,19 +16,7 @@ Salva::Application.routes.draw do
   resources :documents
   resources :user_schoolarships
 
-  resources :articles do
-    get :author_list, :on => :member
-    get :add_author, :on => :member
-    get :del_author, :on => :member
-    get :not_mine, :on => :collection, :as => :not_my
-  end
-
-  resources :unpublished_articles do
-    get :author_list, :on => :member
-    get :add_author, :on => :member
-    get :del_author, :on => :member
-    get :not_mine, :on => :collection, :as => :not_my
-  end
+  publication_resources_for :articles, :unpublished_articles
 
   resources :journals do
     get :search_by_name, :on => :collection
@@ -44,8 +32,13 @@ Salva::Application.routes.draw do
       get :update_status, :on => :member
       get :user_incharge, :on => :member
     end
+
     resources :catalogs
-    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, :institutiontypes, :institutiontitles, :activitytypes, :academicprogramtypes, :activitygroups, :addresstypes, :articlestatuses, :bookchaptertypes, :roleinbooks, :booktypes, :chapterinbook_roleinchapters
+    super_catalog_for :cities, :states, :journals, :publishers, :adscriptions, :researchareas, 
+                      :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, 
+                      :institutiontypes, :institutiontitles, :activitytypes, :academicprogramtypes, 
+                      :activitygroups, :addresstypes, :articlestatuses, :bookchaptertypes, :roleinbooks, 
+                      :booktypes, :chapterinbook_roleinchapters
   end
 
   namespace :academic_secretary do

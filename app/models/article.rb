@@ -26,7 +26,6 @@ class Article < ActiveRecord::Base
   scope :user_id_not_eq, lambda { |user_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql}) AND articles.id  NOT IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id =  ?", user_id]).to_sql})") }
   scope :adscription_id_eq, lambda { |adscription_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').joins(:user => :user_adscription).where(["user_articles.user_id = user_adscriptions.user_id  AND user_adscriptions.adscription_id != ?", adscription_id]).to_sql})") }
 
-
   search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
 
   def self.paginated_search(options={})
