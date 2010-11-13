@@ -410,7 +410,6 @@ es:
         export_to_xls: 'Exportar a excel'
       index:
         new: 'Agregar nuevo usuario'
-    
 
   show_all: 'Todos'
   save: 'Guardar'
@@ -441,3 +440,5 @@ es:
   year: 'Año'
   adscription: 'Adscripción'
   articlestatus: 'Status'
+  genericworktype: 'Tipo de trabajo'
+  genericworkstatus: 'Status'
