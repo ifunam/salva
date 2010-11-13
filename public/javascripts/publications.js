@@ -62,19 +62,22 @@ $(document).ready(function() {
         filter_by_journal_name();
     });
 
-    $('#change_journal').live('click', function() {
-        change_journal();
+    $('.change_record').live('click', function() {
+        change_record(this.getAttribute('data-class-name'));
     });
 
-    $("#journal_new").live('click', function() {
-        dialog_for_new_journal();
+    $("#new_record").live('click', function() {
+        dialog_for_new_record(this.getAttribute('data-controller-name'));
     });
 
-    $('#new_journal').live('submit', function() {
-        $("#new_journal").ajaxComplete(function(event, request, settings){
-            $("#autocomplete_journal_name").val(request.responseText);
-            $('#autocomplete_journal_name').attr("disabled", "disabled");
-            $('#change_journal').show();
+    $('#new_record_form').live('submit', function() {
+        class_name = this.getAttribute('data-class-name');
+        $("#new_record_form").ajaxComplete(function(event, request, settings){
+            object = jQuery.parseJSON(request.responseText);
+            $("#autocomplete_"+class_name+"_name").val(eval('object.'+class_name+'.name'));
+            $("#"+class_name).find("input[type=hidden]").val(eval('object.'+class_name+'.id'));
+            $("#autocomplete_"+class_name+"_name").attr("disabled", "disabled");
+            $('#change_'+class_name).show();
             $('#dialog').dialog('close');
         });
     });
@@ -115,19 +118,18 @@ function show_record(id) {
     });
 }
 
-function dialog_for_new_journal() {
-    $('#dialog').dialog({title:'Nuevo Journal', width: 400, height: 320}).dialog('open');
+function dialog_for_new_record(controller) {
+    $('#dialog').dialog({title:'Nuevo registro', width: 400, height: 320}).dialog('open');
     $.ajax({
-        url: "/journals/new.js",
+        url: '/' + controller + '/new.js',
         success: function(request) {
             $("div#dialog").html(request);
         }
     });
 }
 
-function change_journal() {
-    $('#article_journal_id').val('');
-    $('#autocomplete_journal_name').removeAttr("disabled");
-    $('#autocomplete_journal_name').val('');
-    $('#change_journal').hide();
+function change_record(class_name) {
+    $('#autocomplete_'+class_name+'_name').removeAttr("disabled");
+    $('#autocomplete_'+class_name+'_name').val('');
+    $('#change_'+class_name).hide();
 }
