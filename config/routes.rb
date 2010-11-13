@@ -16,12 +16,8 @@ Salva::Application.routes.draw do
   resources :documents
   resources :user_schoolarships
 
-  publication_resources_for :articles, :unpublished_articles
-
-  resources :journals do
-    get :search_by_name, :on => :collection
-    get :autocomplete_form, :on => :collection
-  end
+  publication_resources_for :articles, :unpublished_articles, :popular_science_works
+  catalog_resources_for :journals, :publishers, :institutions
 
   namespace :admin do
     resources :users  do
