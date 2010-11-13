@@ -35,7 +35,8 @@ module ApplicationHelper
   end
 
   def link_to_action(icon_name, title, url='#', options={})
-    html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all"}
+    html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all #{options[:class]}"}
+    options.delete :class if options.has_key? :class
     link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, html_options.merge(options)
   end
 
@@ -77,5 +78,15 @@ module ApplicationHelper
 
   def link_to_author_list(record, url)
     link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s' }), url, :remote => true, :id => dom_id(record), :title =>  t(:author_list)
+  end
+
+  def user_role(record, user_role_class, user_id)
+    foreign_key = record.class.to_s.foreign_key
+    role_class = user_role_class.to_s.classify.constantize
+    unless role_class.where(:user_id => user_id, foreign_key => record.id).first.nil? 
+      role_class.where(:user_id => user_id, foreign_key => record.id).first
+    else
+      record.send(user_role_class).build
+    end
   end
 end
