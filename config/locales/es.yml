@@ -380,6 +380,16 @@ es:
     edit:
       title: 'Modificar tipo de agradecimiento'
 
+  degrees:
+    show:
+      title: 'Grado'
+    index:
+      title: 'Grados'
+    new:
+      title: 'Nuevo grado'
+    edit:
+      title: 'Modificar grado'
+
       
   admin:
     people: 'Información personal'
@@ -455,6 +465,11 @@ es:
     genericworks: 'Trabajos generales'
     credittypes: 'Tipos de agradecimientos'
     user_credits: 'Agradecimientos'
+    degrees: 'Grados'
+    careers: 'Carreras'
+    indivadvices: 'Asesoría a individuos'
+    tutorial_committees: 'Comités tutelares'
+    externalusers: 'Usuarios externos'
 
     users:
       form:
