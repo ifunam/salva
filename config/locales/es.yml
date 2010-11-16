@@ -309,8 +309,10 @@ es:
   articles:
     index:
       title: 'Mis artículos publicados'
+      not_my_articles: 'Artículos publicados registrados por otros usuarios'
     not_mine:
       title: 'Artículos publicados registrados por otros usuarios'
+      my_articles: 'Mís artículos'
     new:
       title: 'Nuevo artículo'
     edit:
@@ -321,8 +323,10 @@ es:
   unpublished_articles:
     index:
       title: 'Mis artículos enviados o aceptados'
+      not_my_articles: 'Artículos registrados por otros usuarios'
     not_mine:
       title: 'Artículos enviados o aceptados por otros usuarios'
+      my_articles: 'Mís artículos'
     new:
       title: 'Nuevo artículo'
     edit:
@@ -390,7 +394,20 @@ es:
     edit:
       title: 'Modificar grado'
 
-      
+  popular_science_works:
+    index:
+      title: 'Mis trabajos de divulgación'
+      not_my_works: 'Trabajos registrados por otros usuarios'
+    not_mine:
+      title: 'Trabajos de divulgación registrados por otros usuarios'
+      my_works: 'Mis trabajos'
+    new:
+      title: 'Nuevo trabajo de divulgación'
+    edit:
+      title: 'Modificar trabajo de divulgación'
+    show:
+      title: 'Trabajo de divulgación'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

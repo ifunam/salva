@@ -1,6 +1,5 @@
 %h3= t('.title')
-= link_as_button 'Mís trabajos de divulgación', popular_science_works_path
-= link_as_button 'Todos los trabajos de divulgación', not_my_popular_science_works_path
+= link_as_button t('.my_works'), popular_science_works_path
 %div{ :class => 'span-24 buttons_left last' }
 - 3.times do
   %br
