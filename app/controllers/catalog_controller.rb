@@ -1,10 +1,13 @@
 class CatalogController < InheritedResources::Base
 
-  respond_to :json, :only => [:search_by_name, :create]
+  respond_to :json, :only => [:autocompleted_search, :create]
   respond_to :js, :only => [:new]
 
-  def search_by_name
-    render :json => {:text => 'Override this method' }.to_json
+  def self.autocompleted_search_with(attribute, attribute_key)
+    define_method :autocompleted_search do
+      set_collection_ivar(self.resource_class.search(attribute_key.to_sym => params[:term]).all) 
+      render :json => collection.collect { |record| {:id => record.id, :value => record.send(attribute.to_sym), :label => record.send(attribute.to_sym) } }
+    end
   end
 
   def create
@@ -12,5 +15,4 @@ class CatalogController < InheritedResources::Base
       format.js { render :json => resource.to_json(:only => [:id, :name]) }
     end
   end
-
 end
