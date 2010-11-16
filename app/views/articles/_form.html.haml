@@ -3,14 +3,11 @@
   = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
   = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
 
-  %div{:class => 'span-12'}
+  %div{:class => 'span-12 ui-widget', :id => 'journal', 'data-controller-name'=>'journals' }
     = f.label :journal, :required => true
-    %div{:id => 'journal'}
-      - if f.object.new_record?
-        = render :partial => 'journals/autocomplete_form'
-      - else
-        = render :partial => 'journals/autocomplete_form', :locals => { :journal => f.object.journal }    
-      = f.hidden_field :journal_id
+    = f.select :journal_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record'
+
   = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6 last'}
     = f.label :month, :required => true
