@@ -34,7 +34,7 @@ Salva::Application.routes.draw do
                       :schoolarships, :institutions, :periods, :seminarytypes, :prizetypes, :careers, 
                       :institutiontypes, :institutiontitles, :activitytypes, :academicprogramtypes, 
                       :activitygroups, :addresstypes, :articlestatuses, :bookchaptertypes, :roleinbooks, 
-                      :booktypes, :chapterinbook_roleinchapters
+                      :booktypes, :chapterinbook_roleinchapters, :conferencescopes
   end
 
   namespace :academic_secretary do

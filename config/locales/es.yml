@@ -329,6 +329,17 @@ es:
       title: 'Modificar artículo'
     show:
       title: 'Artículo enviado o aceptado'
+
+  conferencescopes:
+    show:
+      title: 'Ambito de conferencia'
+    index:
+      title: 'Ambitos de conferencias'
+    new:
+      title: 'Nuevo ámbito de conferencia'
+    edit:
+      title: 'Modificar ámbito de conferencia'
+
       
   admin:
     people: 'Información personal'
@@ -394,6 +405,8 @@ es:
     chapterinbook_roleinchapters: 'Roles en capítulos en libros'
     chapertinbooks: 'Capítulos en libros'
     roleinchapters: 'Roles en capitulos'
+    conferencescopes: 'Ambitos de conferencias'
+    conferences: 'Conferencias'
 
     users:
       form:
