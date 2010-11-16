@@ -370,6 +370,16 @@ es:
     edit:
       title: 'Modificar tipo de grupo de curso'
 
+  credittypes:
+    show:
+      title: 'Tipo de agradecimiento'
+    index:
+      title: 'Tipos de agradecimientos'
+    new:
+      title: 'Nuevo tipo de agradecimiento'
+    edit:
+      title: 'Modificar tipo de agradecimiento'
+
       
   admin:
     people: 'Información personal'
@@ -443,6 +453,8 @@ es:
     coursegrouptypes: 'Tipos de grupos de cursos'
     coursegroups: 'Grupos de cursos'
     genericworks: 'Trabajos generales'
+    credittypes: 'Tipos de agradecimientos'
+    user_credits: 'Agradecimientos'
 
     users:
       form:
