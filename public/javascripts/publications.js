@@ -69,7 +69,26 @@ $(document).ready(function() {
             beforeSend: function(){
                 open_dialog_with_progressbar();
             },
-            complete: function(request){ 
+            complete: function(request){
+                set_button_behaviour();
+                close_dialog_with_progressbar();
+            },
+            success: function(request) {
+                $("#"+dom_id).replaceWith(request);
+            }
+        }
+        $.ajax(options);
+        return false;
+    });
+
+    $("ul.add_or_delete_author a").live("click", function() {
+        dom_id = this.getAttribute('data-parent-id');
+        options = {
+            url: this.href,
+            beforeSend: function(){
+                open_dialog_with_progressbar();
+            },
+            complete: function(request){
                 set_button_behaviour();
                 close_dialog_with_progressbar();
             },
