@@ -340,6 +340,16 @@ es:
     edit:
       title: 'Modificar ámbito de conferencia'
 
+  conferencetypes:
+    show:
+      title: 'Tipo de conferencia'
+    index:
+      title: 'Tipos de conferencias'
+    new:
+      title: 'Nuevo tipo de conferencia'
+    edit:
+      title: 'Modificar tipo de conferencia'
+
       
   admin:
     people: 'Información personal'
@@ -407,6 +417,7 @@ es:
     roleinchapters: 'Roles en capitulos'
     conferencescopes: 'Ambitos de conferencias'
     conferences: 'Conferencias'
+    conferencetypes: 'Tipos de conferencias'
 
     users:
       form:
