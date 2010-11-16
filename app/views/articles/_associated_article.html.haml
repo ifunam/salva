@@ -9,9 +9,9 @@
       %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(article) }
         = article.associated_authors.size
       %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'} 
-        = link_to_author_list article, author_list_article_path(:id => article.id, :format => 'js')
+        = link_to_user_list article, user_list_article_path(:id => article.id, :format => 'js')
   %td{:style => 'width: 60px; text-align: center;', :class => 'add_or_delete_author'}
-    = link_to_action 'ui-icon-minus', t(:del_author),  del_author_article_path(:id => article.id,:format => :js), 'data-parent-id' => dom_id(article)
+    = link_to_action 'ui-icon-minus', t(:del_author),  del_user_article_path(:id => article.id,:format => :js), 'data-parent-id' => dom_id(article)
   %td{:style => 'width: 60px; text-align: center;'}
     = link_to_action 'ui-icon-zoomin', t(:show),  article_path(:id => article.id)
   %td{:style => 'width: 60px; text-align: center;'}
