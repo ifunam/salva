@@ -360,6 +360,16 @@ es:
     edit:
       title: 'Modificar tipo de contrato'
 
+  coursegrouptypes:
+    show:
+      title: 'Tipo de grupo de curso'
+    index:
+      title: 'Tipos de grupos de cursos'
+    new:
+      title: 'Nuevo tipo de grupo de curso'
+    edit:
+      title: 'Modificar tipo de grupo de curso'
+
       
   admin:
     people: 'Información personal'
@@ -430,6 +440,9 @@ es:
     conferencetypes: 'Tipos de conferencias'
     contracttypes: 'Tipos de contratos'
     jobpositions: 'Categorías'
+    coursegrouptypes: 'Tipos de grupos de cursos'
+    coursegroups: 'Grupos de cursos'
+    genericworks: 'Trabajos generales'
 
     users:
       form:

@@ -4,5 +4,5 @@ class Coursegrouptype < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :coursegroups
-  has_many :genericworks
+  # has_many :genericworks
 end
