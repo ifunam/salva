@@ -76,7 +76,7 @@ module ApplicationHelper
      record.registered_by_id == current_user.id and record.associated_authors.size > 0
   end
 
-  def link_to_author_list(record, url)
+  def link_to_user_list(record, url)
     link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s' }), url, :remote => true, :id => dom_id(record), :title =>  t(:author_list)
   end
 
