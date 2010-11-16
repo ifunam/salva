@@ -28,7 +28,7 @@ module ActionDispatch::Routing
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
           resources resources_name do
-            get :search_by_name, :on => :collection
+            get :autocompleted_search, :on => :collection
           end
         end
       end
