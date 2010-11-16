@@ -436,6 +436,20 @@ es:
     show:
       title: 'Trabajo'
 
+  teaching_products:
+    index:
+      title: 'Mis productos de docencia'
+      not_my_works: 'Listar productos de docencia registrados por otros usuarios'
+    not_mine:
+      title: 'Productos de docencia registrados por otros usuarios'
+      my_works: 'Listar mis productos de docencia'
+    new:
+      title: 'Nuevo producto de docencia'
+    edit:
+      title: 'Modificar producto de docencia'
+    show:
+      title: 'Producto de docencia'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
