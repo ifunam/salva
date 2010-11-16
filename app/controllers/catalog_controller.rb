@@ -5,7 +5,7 @@ class CatalogController < InheritedResources::Base
 
   def self.autocompleted_search_with(attribute, attribute_key)
     define_method :autocompleted_search do
-      set_collection_ivar(self.resource_class.search(attribute_key.to_sym => params[:term]).all) 
+      set_collection_ivar self.resource_class.search(attribute_key.to_sym => params[:term]).all
       render :json => collection.collect { |record| {:id => record.id, :value => record.send(attribute.to_sym), :label => record.send(attribute.to_sym) } }
     end
   end
