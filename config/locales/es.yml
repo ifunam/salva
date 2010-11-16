@@ -408,6 +408,20 @@ es:
     show:
       title: 'Trabajo de divulgación'
 
+  outreach_works:
+    index:
+      title: 'Mis trabajos de vinculación'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
+    not_mine:
+      title: 'Trabajos de vinculación registrados por otros usuarios'
+      my_works: 'Listar mis trabajos'
+    new:
+      title: 'Nuevo trabajo de vinculación'
+    edit:
+      title: 'Modificar trabajo de vinculación'
+    show:
+      title: 'Trabajo de vinculación'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

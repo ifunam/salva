@@ -1,0 +1,20 @@
+%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(record) }
+  %td{:style => 'width: 30px;'}
+    = checkbox_to_delete(record)
+  %td{:style => 'width: 630px;'}
+    = record.as_vancouver
+    = image_tag('associated_record.png', :border => 0, :style => 'float: right;', :title => t(:associated) )
+  %td{:class => 'action'}
+    %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 32px; height:18px; padding: 2px;', :id => 'associated_authors_' + dom_id(record) }
+      %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(record) }
+        = record.associated_authors.size
+      %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'} 
+        = link_to_user_list record, user_list_outreach_work_path(:id => record.id, :format => 'js')
+  %td{:style => 'width: 60px; text-align: center;', :class => 'add_or_delete_author'}
+    = link_to_action 'ui-icon-minus', t(:del_author), del_user_outreach_work_path(:id => record.id, :format => :js), 'data-parent-id' => dom_id(record)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-zoomin', t(:show),  outreach_work_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-pencil', t(:edit),  edit_outreach_work_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_delete record, outreach_work_path(:id => record.id)
