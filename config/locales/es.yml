@@ -397,10 +397,10 @@ es:
   popular_science_works:
     index:
       title: 'Mis trabajos de divulgación'
-      not_my_works: 'Trabajos registrados por otros usuarios'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
     not_mine:
       title: 'Trabajos de divulgación registrados por otros usuarios'
-      my_works: 'Mis trabajos'
+      my_works: 'Listar mis trabajos'
     new:
       title: 'Nuevo trabajo de divulgación'
     edit:
@@ -516,6 +516,7 @@ es:
   associated_records: 'Registros asociados'
   move_all: 'Mover todos'
   move: 'Mover'
+  select: 'Seleccionar'
   drop_items: 'Arrastre los registros al elemento donde desea asociarlos'
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
