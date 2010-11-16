@@ -422,6 +422,20 @@ es:
     show:
       title: 'Trabajo de vinculación'
 
+  other_works:
+    index:
+      title: 'Mis otros trabajos'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
+    not_mine:
+      title: 'Otros trabajos registrados por otros usuarios'
+      my_works: 'Listar mis trabajos'
+    new:
+      title: 'Nuevo trabajo'
+    edit:
+      title: 'Modificar trabajo'
+    show:
+      title: 'Trabajo'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

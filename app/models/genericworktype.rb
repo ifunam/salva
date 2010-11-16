@@ -9,6 +9,7 @@ class Genericworktype < ActiveRecord::Base
   default_scope :order => 'name ASC, genericworkgroup_id ASC'
   scope :popular_science, where(:genericworkgroup_id => 1)
   scope :outreach_works, where(:genericworkgroup_id => 6)
+  scope :other_works, where(:genericworkgroup_id => 5)
 
   has_many :genericworks
 end

@@ -1,0 +1,26 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 55%;'}
+      %div{:class => 'span-2'}=t(:authors)
+      %div{:class => 'span-2'}=t(:title)
+      %div{:class => 'span-4'}=t(:genericworktype)
+      %div{:class => 'span-4'}=t(:genericworkstatus)
+      %div{:class => 'span-1 last'}=t(:year)
+
+      %div{:class => 'span-2'}= f.text_field :authors_like_ignore_case, :size => 7
+      %div{:class => 'span-2'}= f.text_field :title_like_ignore_case, :size => 7
+      %div{:class => 'span-4'}= f.collection_select :genericworktype_id_eq, Genericworktype.other_works, :id, :name, :prompt => true
+      %div{:class => 'span-4'}= f.collection_select :genericworkstatus_id_eq, Genericworkstatus.all, :id, :name, :prompt => true
+      %div{:class => 'span-1 last'}= f.text_field :year_eq, :size => 4
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      ='Académicos del instituto asociados al trabajo'
+    %th{:class => 'ui-state-default', :style => 'width: 90px;'}
+      ='Quitar asociación al trabajo'
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:del)

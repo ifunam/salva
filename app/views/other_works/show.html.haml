@@ -1,0 +1,19 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('other_works.show.title')
+  - show_for @genericwork do |u|
+    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    %div{:class => 'span-12 last'}
+      = u.association :user_genericworks, :collection_tag => :ol do |record| 
+        %li= record.user.author_name + " (#{record.userrole.name})"
+
+  = render :partial => 'shared/record', :object => @genericwork
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_other_work_path(:id => @genericwork.id)
+  = link_as_button t(:back), other_works_path
+
