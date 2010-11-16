@@ -450,6 +450,20 @@ es:
     show:
       title: 'Producto de docencia'
 
+  technical_reports:
+    index:
+      title: 'Mis reportes técnicos'
+      not_my_works: 'Listar reportes técnicos registrados por otros usuarios'
+    not_mine:
+      title: 'Reportes técnicos registrados por otros usuarios'
+      my_works: 'Listar mis reportes técnicos'
+    new:
+      title: 'Nuevo reporte técnico'
+    edit:
+      title: 'Modificar reporte técnico'
+    show:
+      title: 'Reporte técnico'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

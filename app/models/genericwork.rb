@@ -21,6 +21,7 @@ class Genericwork < ActiveRecord::Base
   scope :outreach_works, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 6 })
   scope :other_works, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 5 })
   scope :teaching_products, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 4 })
+  scope :technical_reports, joins(:genericworktype).where(:genericworktype => { :name => 'Reportes técnicos' })
 
   scope :user_id_eq, lambda { |user_id| joins(:user_genericworks).where(:user_genericworks => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("genericworks.id IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id !=  ?", user_id]).to_sql}) AND genericworks.id  NOT IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id =  ?", user_id]).to_sql})") }

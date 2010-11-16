@@ -1,0 +1,26 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('technical_reports.show.title')
+  - show_for @genericwork do |u|
+    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.attribute :reference, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :vol, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :pages, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :isbn_issn, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+
+    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.association :genericworktype, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.association :genericworkstatus, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+
+    %div{:class => 'span-12 last'}
+      = u.association :user_genericworks, :collection_tag => :ol do |record| 
+        %li= record.user.author_name + " (#{record.userrole.name})"
+
+  = render :partial => 'shared/record', :object => @genericwork
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_technical_report_path(:id => @genericwork.id)
+  = link_as_button t(:back), technical_reports_path
+
