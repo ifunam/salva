@@ -4,10 +4,10 @@ module ActionDispatch::Routing
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
           resources resources_name do
-            put :move_association, :on => :member
-            put :move_associations, :on => :member
-            post :destroy_all, :on => :collection
-            get :destroy_all_empty_associations, :on => :collection
+            put  :move_association,  :on => :member
+            put  :move_associations, :on => :member
+            post :destroy_all,      :on => :collection
+            get  :destroy_all_empty_associations, :on => :collection
           end
         end
       end
@@ -16,10 +16,11 @@ module ActionDispatch::Routing
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
           resources resources_name do
-             get :author_list, :on => :member
-             get :add_author, :on => :member
-             get :del_author, :on => :member
-             get :not_mine, :on => :collection, :as => :not_my
+             get :user_list, :on => :member
+             get :role_list, :on => :member
+             get :add_user,  :on => :member
+             get :del_user,  :on => :member
+             get :not_mine,  :on => :collection, :as => :not_my
           end
         end
       end
