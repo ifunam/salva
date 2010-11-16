@@ -1,8 +1,0 @@
-- if defined? institution 
-  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_institution_name, :value => institution.name, :disabled => :disabled
-  = link_to_action 'ui-icon-plus', 'Agregar nueva institución', '#', :id => 'new_record', 'data-controller-name' => 'institutions'
-  = link_to_action 'ui-icon-document', 'Cambiar institución', '#', :id => 'change_institution', :class => 'change_record', 'data-class-name' => 'institution'
-- else
-  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_institution_name
-  = link_to_action 'ui-icon-plus', 'Agregar nueva institución', '#', :id => 'new_record', 'data-controller-name' => 'institutions'
-  = link_to_action 'ui-icon-document', 'Cambiar institución', '#', :style => 'display: none;', :id => 'change_institution', :class => 'change_record', 'data-class-name' => 'institution'

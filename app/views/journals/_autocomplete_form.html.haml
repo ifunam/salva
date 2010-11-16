@@ -1,8 +1,0 @@
-- if defined? journal 
-  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_journal_name, :value => journal.name, :disabled => :disabled
-  = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record', 'data-controller-name' => 'journals'
-  = link_to_action 'ui-icon-document', 'Cambiar journal', '#',  :id => 'change_journal', :class => 'change_record', 'data-class-name' => 'journal'
-- else
-  = text_field :autocomplete, :name, :size => 50, :autocomplete =>"off", :id => :autocomplete_journal_name
-  = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record', 'data-controller-name' => 'journals'
-  = link_to_action 'ui-icon-document', 'Cambiar journal', '#', :style => 'display: none;', :id => 'change_journal', :class => 'change_record', 'data-class-name' => 'journal'
