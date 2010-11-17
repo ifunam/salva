@@ -474,6 +474,16 @@ es:
     show:
       title: 'Idioma registrado'
 
+  user_skills:
+    index:
+      title: 'Habilidades y técnicas experimentales'
+    new:
+      title: 'Nuevo habilidad o técnica'
+    edit:
+      title: 'Modificar información de habilidad o técnica'
+    show:
+      title: 'Habilidad o técnica registrada'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -603,3 +613,4 @@ es:
   genericworktype: 'Tipo de trabajo'
   genericworkstatus: 'Status'
   language: 'Idioma'
+  skilltype: 'Tipo'

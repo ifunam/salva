@@ -1,0 +1,2 @@
+class UserSkillsController < UserResourcesController
+end

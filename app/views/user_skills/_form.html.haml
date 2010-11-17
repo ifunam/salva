@@ -1,0 +1,13 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+ 
+
+  %div{:class => 'span-6 ui-widget', :id => 'skilltype', 'data-controller-name'=>'skilltypes' }
+    = f.label :skilltype, :required => true
+    = f.collection_select :skilltype_id, Skilltype.all, :id, :name, {:prompt => true}
+    = link_to_action 'ui-icon-plus', 'Agregar elemento a la lista', '#', :id => 'new_record'
+
+  %div{ :class => 'span-24  last' }
+    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+    = f.input :descr_en, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
