@@ -478,11 +478,21 @@ es:
     index:
       title: 'Habilidades y técnicas experimentales'
     new:
-      title: 'Nuevo habilidad o técnica'
+      title: 'Nueva habilidad o técnica'
     edit:
       title: 'Modificar información de habilidad o técnica'
     show:
       title: 'Habilidad o técnica registrada'
+
+  user_schoolarships:
+    index:
+      title: 'Becas'
+    new:
+      title: 'Nueva beca'
+    edit:
+      title: 'Modificar información de beca'
+    show:
+      title: 'Información de la beca'
 
   admin:
     people: 'Información personal'
@@ -614,3 +624,4 @@ es:
   genericworkstatus: 'Status'
   language: 'Idioma'
   skilltype: 'Tipo'
+  schoolarship: 'Tipo de beca'
