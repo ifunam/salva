@@ -13,12 +13,15 @@ Salva::Application.routes.draw do
   resources :jobpositioncategories do
      get :filtered_select, :on => :collection
   end
+
   resources :documents
   resources :user_schoolarships
+  resources :user_languages
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
                             :teaching_products, :technical_reports
-  catalog_resources_for :journals, :publishers, :institutions
+
+  catalog_resources_for :journals, :publishers, :institutions, :languages
 
   namespace :admin do
     resources :users  do

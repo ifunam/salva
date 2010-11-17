@@ -1,0 +1,23 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+ 
+
+  %div{:class => 'span-6 ui-widget', :id => 'language', 'data-controller-name'=>'languages' }
+    = f.label :language, :required => true
+    = f.collection_select :language_id, Language.all, :id, :name, {:prompt => true}
+    = link_to_action 'ui-icon-plus', 'Agregar idioma', '#', :id => 'new_record'
+
+  %div{:class => 'span-24 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
+    = f.label :institution, :required => true
+    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+
+  %div{:class => 'span-6'}
+    = f.label :spoken_languagelevel, :required => true
+    = f.collection_select :spoken_languagelevel_id, Languagelevel.all, :id, :name, {:prompt => true}
+
+  %div{:class => 'span-6 last'}
+    = f.label :written_languagelevel, :required => true
+    = f.collection_select :written_languagelevel_id, Languagelevel.all, :id, :name, {:prompt => true}
+

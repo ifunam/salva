@@ -464,6 +464,16 @@ es:
     show:
       title: 'Reporte técnico'
 
+  user_languages:
+    index:
+      title: 'Idiomas'
+    new:
+      title: 'Nuevo idioma'
+    edit:
+      title: 'Modificar información de idioma'
+    show:
+      title: 'Idioma registrado'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -592,3 +602,4 @@ es:
   articlestatus: 'Status'
   genericworktype: 'Tipo de trabajo'
   genericworkstatus: 'Status'
+  language: 'Idioma'
