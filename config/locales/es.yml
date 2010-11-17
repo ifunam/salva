@@ -534,6 +534,16 @@ es:
     show:
       title: 'Información de actividad de docencia'
 
+  technical_activities:
+    index:
+      title: 'Actividades técnicas'
+    new:
+      title: 'Nueva actividad técnica'
+    edit:
+      title: 'Modificar actividad técnica'
+    show:
+      title: 'Información de actividad técnica'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

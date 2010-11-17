@@ -15,4 +15,5 @@ class Activitytype < ActiveRecord::Base
 
   scope :popular_science, where(:activitygroup_id => 1)
   scope :teaching, where(:activitygroup_id => 3)
+  scope :technical, where(:activitygroup_id => 7)
 end
