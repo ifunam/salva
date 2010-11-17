@@ -7,7 +7,7 @@ class Activitytype < ActiveRecord::Base
   validates_uniqueness_of  :name
 
   belongs_to :activitygroup
-  validates_associated :activitygroup
-
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
   has_many :activities
 end
