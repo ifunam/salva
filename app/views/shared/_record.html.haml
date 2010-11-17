@@ -6,4 +6,4 @@
   %br
     = 'Modificado por: ' + ( record.modified_by.nil? ? '' : record.modified_by.friendly_email)
   %br
-    = 'Fecha de actualización: ' + ( record.updated_on.to_s (:long))
+    = 'Fecha de actualización: ' + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
