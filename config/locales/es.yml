@@ -494,6 +494,16 @@ es:
     show:
       title: 'Información de la beca'
 
+  other_activities:
+    index:
+      title: 'Otras actividades'
+    new:
+      title: 'Nueva actividad'
+    edit:
+      title: 'Modificar información de la actividad'
+    show:
+      title: 'Información de la actividad'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

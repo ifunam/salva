@@ -1,0 +1,17 @@
+%h3= t('.title')
+%div{ :class => 'span-24 buttons_left last' }
+- 3.times do
+  %br
+%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
+  %thead{:id => "filter_header"}
+    = render :partial => 'filter_header'
+    %tbody{:id =>'collection'}
+      = render :partial => 'record', :collection => @activities
+      = render :partial => 'collection_footer'
+    %tfoot{:id => 'paginator'}
+      %tr
+        %th
+          = will_paginate @activities
+
+%div{ :class => 'span-24 buttons_left last' }
+  = link_as_button t(:new), new_other_activity_path

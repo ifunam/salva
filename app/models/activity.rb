@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  attr_accessor :activitygroup_id
+
   validates_presence_of :name, :activitytype_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :activitytype_id, :greater_than => 0, :only_integer => true
@@ -10,6 +10,18 @@ class Activity < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  defaults_scope :order => 'year DESC, month DESC, name ASC'
+  default_scope :order => 'year DESC, month DESC, name ASC'
   scope :other, where(:activitytype_id => 15)
+
+  def as_text
+    [name, "Tipo: #{activitytype.name}", date].compact.join(', ')
+  end
+
+  def date
+    if !year.nil? and !month.nil?
+      "Fecha: #{month}/#{year}"
+    elsif !year.nil?
+      "Año: #{year}"
+    end
+  end
 end

@@ -1,0 +1,15 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('other_activities.show.title')
+  - show_for @activity do |u|
+    = u.attribute :name, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    = u.association :activitytype, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6'}
+
+  = render :partial => 'shared/record', :object => @activity
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_other_activity_path(:id => @activity.id)
+  = link_as_button t(:back), other_activities_path
+
