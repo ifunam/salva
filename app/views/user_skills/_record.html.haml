@@ -2,7 +2,7 @@
   %td{:style => 'width: 30px;'}
     = checkbox_to_del(record)
   %td{:style => 'width: 630px;'}
-    = record.as_vancouver
+    = record.as_text
   %td{:style => 'width: 60px; text-align: center;'}
     = link_to_action 'ui-icon-zoomin', t(:show),  user_skill_path(:id => record.id)
   %td{:style => 'width: 60px; text-align: center;'}

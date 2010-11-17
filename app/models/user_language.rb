@@ -12,7 +12,7 @@ class UserLanguage < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  def as_vancouver
+  def as_text
     text = [language.name]
     text.push('Nivel hablado: ' + spoken_languagelevel.name) unless spoken_languagelevel.nil?
     text.push('Nivel escrito: ' + written_languagelevel.name) unless written_languagelevel.nil?
