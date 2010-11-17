@@ -1,0 +1,15 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+  %div{ :class => 'span-24  last' }
+    = f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+  %div{:class => 'span-6'}
+    = f.label :activitytype, :required => true
+    = f.collection_select :activitytype_id, Activitytype.teaching, :id, :name, :prompt => true
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
+

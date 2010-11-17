@@ -1,0 +1,11 @@
+%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(record) }
+  %td{:style => 'width: 30px;'}
+    = checkbox_to_del(record)
+  %td{:style => 'width: 630px;'}
+    = record.as_text
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-zoomin', t(:show),  other_teaching_activity_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-pencil', t(:edit),  edit_other_teaching_activity_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;', :class => 'delete_record'}
+    = link_to_delete record, other_teaching_activity_path(:id => record.id)

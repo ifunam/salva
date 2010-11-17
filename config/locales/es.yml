@@ -516,13 +516,23 @@ es:
 
   institutional_activities:
     index:
-      title: 'Participación institucional '
+      title: 'Participación institucional'
     new:
-      title: 'Nueva participación institucional '
+      title: 'Nueva participación institucional'
     edit:
       title: 'Modificar participación institucional'
     show:
        title: 'Información de participación institucional'
+
+  other_teaching_activities:
+    index:
+      title: 'Otras actividades de docencia'
+    new:
+      title: 'Nueva actividad de docencia'
+    edit:
+      title: 'Modificar actividad de docencia'
+    show:
+      title: 'Información de actividad de docencia'
 
   admin:
     people: 'Información personal'
