@@ -514,6 +514,16 @@ es:
     show:
       title: 'Información de la actividad'
 
+  institutional_activities:
+    index:
+      title: 'Participación institucional '
+    new:
+      title: 'Nueva participación institucional '
+    edit:
+      title: 'Modificar participación institucional'
+    show:
+       title: 'Información de participación institucional'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -646,3 +656,4 @@ es:
   skilltype: 'Tipo'
   schoolarship: 'Tipo de beca'
   activitytype: 'Tipo de actividad'
+  descr: 'Descripción'

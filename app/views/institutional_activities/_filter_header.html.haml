@@ -1,0 +1,15 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+      %div{:class => 'span-6 '}=t(:descr)
+      %div{:class => 'span-8 last'}=t(:year)
+      %div{:class => 'span-6 '}= f.text_field :descr_like_ignore_case, :size => 20
+      %div{:class => 'span-8 last'}= f.text_field :year_eq, :size => 4
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)

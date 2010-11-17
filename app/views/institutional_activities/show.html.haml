@@ -1,0 +1,17 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('institutional_activities.show.title')
+  - show_for @institutional_activity do |u|
+    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.attribute :startyear, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :startmonth, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :endyear, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :endmonth, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+
+  = render :partial => 'shared/record', :object => @institutional_activity
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_institutional_activity_path(:id => @institutional_activity.id)
+  = link_as_button t(:back), institutional_activities_path
+

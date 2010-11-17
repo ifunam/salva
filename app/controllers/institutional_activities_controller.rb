@@ -1,0 +1,2 @@
+class InstitutionalActivitiesController < UserResourcesController
+end

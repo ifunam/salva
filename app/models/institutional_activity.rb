@@ -9,7 +9,7 @@ class InstitutionalActivity < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
 
   def as_text
-    [descr, institution.name, start_date, end_date].compact.join(', ')
+    [descr, institution.name_and_parent_abbrev, start_date, end_date].compact.join(', ')
   end
 
   def start_date
