@@ -1,0 +1,2 @@
+class LanguagesController < CatalogController 
+end
