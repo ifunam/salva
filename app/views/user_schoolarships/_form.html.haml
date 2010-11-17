@@ -1,19 +1,21 @@
-- if !f.object.nil? and !f.object.new_record?
-  = f.hidden_field :id
-  = f.hidden_field :user_id
+= render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 last' }
-  %div{:class => 'span-6'}
+%div{ :class => 'span-24 section_left append-bottom last' }
+
+  %div{:class => 'span-12 ui-widget', :id => 'schoolarship', 'data-controller-name'=>'schoolarships' }
     = f.label :schoolarship, :required => true
-    = f.collection_select :schoolarship_id, Schoolarship.where("id >=48  AND id <= 53").all, :id, :name_and_institution_abbrev, { :prompt => true }
-  %div{:class => 'span-6'}
-    = f.label :start_date, :required => true
-    = f.text_field :start_date, :size => 10
-  %div{:class => 'span-6 '}
-    = f.label :end_date, :required => true
-    = f.text_field :end_date, :size => 10
-  %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
-    - if !defined?(disabled_delete)
-      = remove_child_link "remove", f
-    - elsif !f.object.nil? and !f.object.new_record?
-      = remove_remote_child 'remove_user_schoolarship', f
+    = f.select :schoolarship_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record' 
+  = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+  = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :startmonth, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+
+  = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :endmonth, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+
+  = f.input :amount, :as => :string, :input_html => { :size => '10', :autocomplete => "off" }, :wrapper_class => 'span-24 last'

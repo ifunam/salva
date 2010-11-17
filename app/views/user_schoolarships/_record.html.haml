@@ -1,5 +1,11 @@
-%div{:class => 'row'}
-  - show_for record do |u|
-    = u.association :schoolarship, :using => :name_and_institution_abbrev, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :start_date, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :start_date, :wrapper_html => {:class => 'span-12 last'}
+%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(record) }
+  %td{:style => 'width: 30px;'}
+    = checkbox_to_del(record)
+  %td{:style => 'width: 630px;'}
+    = record.as_text
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-zoomin', t(:show),  user_schoolarship_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-pencil', t(:edit),  edit_user_schoolarship_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;', :class => 'delete_record'}
+    = link_to_delete record, user_schoolarship_path(:id => record.id)
