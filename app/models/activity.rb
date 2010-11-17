@@ -7,6 +7,9 @@ class Activity < ActiveRecord::Base
 
   belongs_to :activitytype
   belongs_to :user
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
-  validates_associated :activitytype
+  defaults_scope :order => 'year DESC, month DESC, name ASC'
+  scope :other, where(:activitytype_id => 15)
 end
