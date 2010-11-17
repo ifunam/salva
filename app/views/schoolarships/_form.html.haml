@@ -1,3 +1,7 @@
 %div{ :class => 'span-7 section_left last' } 
   %div{:class => 'span-7 last'}
     = f.input :name, :as => :string, :html_input => { :size => '60' }
+
+  %div{:class => 'span-7 last'}
+    = f.label :institution
+    = f.collection_select :institution_id, Institution.schoolarships, :id, :name_and_parent_abbrev, {:class => 'autocompleted_select'}
