@@ -1,10 +1,9 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('user_skills.show.title')
   - show_for @user_skill do |u|
-    = u.association :skill, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :spoken_skilllevel, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :written_skilllevel, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    = u.association :skilltype, :using => :name, :wrapper_html => {:class => 'span-24 last'}
+    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :descr_en, :using => :name, :wrapper_html => {:class => 'span-12 last'}
   = render :partial => 'shared/record', :object => @user_skill
 
 %div{ :class => 'span-14 buttons_left last' }
