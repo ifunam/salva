@@ -11,6 +11,7 @@ class CatalogController < InheritedResources::Base
   end
 
   def create
+    build_resource.registered_by_id = current_user.id
     create! do |format|
       format.js { render :json => resource.to_json(:only => [:id, :name]) }
     end

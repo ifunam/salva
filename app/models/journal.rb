@@ -8,6 +8,8 @@ class Journal < ActiveRecord::Base
   belongs_to :mediatype
   belongs_to :publisher
   belongs_to :country
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   validates_associated :mediatype
   validates_associated :publisher

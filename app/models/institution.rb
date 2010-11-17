@@ -10,6 +10,8 @@ class Institution < ActiveRecord::Base
   belongs_to :country
   belongs_to :city
   belongs_to :state
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   validates_associated :institutiontitle
   validates_associated :institutiontype
