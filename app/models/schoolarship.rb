@@ -6,6 +6,9 @@ class Schoolarship < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:institution_id]
 
   belongs_to :institution
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
+
   validates_associated :institution
 
   default_scope :order => 'name ASC'

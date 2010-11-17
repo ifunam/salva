@@ -20,7 +20,7 @@ Salva::Application.routes.draw do
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
                             :teaching_products, :technical_reports
 
-  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes
+  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships
 
   namespace :admin do
     resources :users  do
