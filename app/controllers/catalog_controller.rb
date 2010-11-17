@@ -3,10 +3,11 @@ class CatalogController < InheritedResources::Base
   respond_to :json, :only => [:autocompleted_search, :create]
   respond_to :js, :only => [:new]
 
-  def self.autocompleted_search_with(attribute, attribute_key)
+  def self.autocompleted_search_with(attribute, attribute_key, method_name=nil)
+    method = method_name.nil? ? attribute.to_sym : method_name.to_sym
     define_method :autocompleted_search do
       set_collection_ivar self.resource_class.search(attribute_key.to_sym => params[:term]).all
-      render :json => collection.collect { |record| {:id => record.id, :value => record.send(attribute.to_sym), :label => record.send(attribute.to_sym) } }
+      render :json => collection.collect { |record| {:id => record.id, :value => record.send(method), :label => record.send(method) } }
     end
   end
 
