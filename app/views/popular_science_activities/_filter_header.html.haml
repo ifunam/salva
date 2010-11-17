@@ -1,0 +1,17 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+      %div{:class => 'span-12 last'}
+        %div{:class => 'span-2 '}=t(:year)
+        %div{:class => 'span-4 last'}=t(:activitytype)
+      %div{:class => 'span-12 last'}
+      %div{:class => 'span-2 '}= f.text_field :year_eq, :size => 4
+      %div{:class => 'span-4 last'}= f.collection_select :activitytype_id_eq, Activitytype.popular_science, :id, :name, :prompt => true
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)

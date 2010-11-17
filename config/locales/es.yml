@@ -504,6 +504,16 @@ es:
     show:
       title: 'Información de la actividad'
 
+  popular_science_activities:
+    index:
+      title: 'Actividades de difusión y/o extensión '
+    new:
+      title: 'Nueva actividad'
+    edit:
+      title: 'Modificar información de la actividad'
+    show:
+      title: 'Información de la actividad'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -635,3 +645,4 @@ es:
   language: 'Idioma'
   skilltype: 'Tipo'
   schoolarship: 'Tipo de beca'
+  activitytype: 'Tipo de actividad'

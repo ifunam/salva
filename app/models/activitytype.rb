@@ -10,4 +10,9 @@ class Activitytype < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
   has_many :activities
+
+  default_scope :order => 'name ASC, activitygroup_id DESC'
+
+  scope :popular_science, where(:activitygroup_id => 1)
+
 end
