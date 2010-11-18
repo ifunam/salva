@@ -35,6 +35,7 @@ es:
       default: "%d/%m/%Y"
       long: "%A, %d de %B de %Y"
       long_without_day: "%d de %B de %Y"
+      month_and_year: "%B de %Y"
   time:
     formats:
       short: "%d de %b a las %H:%M hrs"
