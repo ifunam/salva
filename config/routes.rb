@@ -15,12 +15,12 @@ Salva::Application.routes.draw do
   end
 
   resources :user_languages, :user_skills, :user_schoolarships, :other_activities, :popular_science_activities, 
-            :institutional_activities, :other_teaching_activities, :technical_activities
+            :institutional_activities, :other_teaching_activities, :technical_activities, :user_credits
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
                             :teaching_products, :technical_reports
 
-  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships
+  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships, :credittypes
 
   namespace :admin do
     resources :users  do

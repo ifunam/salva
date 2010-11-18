@@ -544,6 +544,16 @@ es:
     show:
       title: 'Información de actividad técnica'
 
+  user_credits:
+    index:
+      title: 'Agradecimientos y otros créditos'
+    new:
+      title: 'Nueva agradecimiento'
+    edit:
+      title: 'Modificar agradecimiento'
+    show:
+      title: 'Información de agradecimiento'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -677,3 +687,4 @@ es:
   schoolarship: 'Tipo de beca'
   activitytype: 'Tipo de actividad'
   descr: 'Descripción'
+  credittype: 'Tipo de agradecimiento'

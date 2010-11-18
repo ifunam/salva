@@ -1,0 +1,2 @@
+class UserCreditsController < UserResourcesController
+end
