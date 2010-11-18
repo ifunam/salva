@@ -4,6 +4,6 @@ class Credittype < ActiveRecord::Base
 
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
-  
+
   has_many :user_credits
 end

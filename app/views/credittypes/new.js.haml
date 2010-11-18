@@ -1,0 +1,4 @@
+= simple_form_for(@credittype, :remote => true, :html => {:id => 'new_record_form', 'data-class-name' => 'credittype'}) do |f|
+  = render :partial => 'form', :locals => { :f => f}
+  %div{ :class => 'span-6 buttons_left last' }
+    = f.submit t(:save), :class => "ui-state-default ui-corner-all button"
