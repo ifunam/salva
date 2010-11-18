@@ -32,13 +32,13 @@ class PublicationController < InheritedResources::Base
   def index
     params[:search] ||= {}
     params[:search].merge!(:user_id_eq => current_user.id)
-    respond_with set_collection_ivar(scoped_resource_class.paginated_search(params))
+    respond_with paginated_collection
   end
 
   def not_mine
     params[:search] ||= {}
     params[:search].merge!(:user_id_not_eq => current_user.id)
-    respond_with set_collection_ivar(scoped_resource_class.paginated_search(params))
+    respond_with paginated_collection
   end
 
   def create
@@ -84,5 +84,9 @@ class PublicationController < InheritedResources::Base
 
   def role_attributes
     self.role_class.nil? ? { } : { self.role_class.to_s.classify.foreign_key => params[self.role_class.to_s.classify.foreign_key.to_sym] }
+  end
+
+  def paginated_collection
+    set_collection_ivar scoped_resource_class.search(params[:search]).paginate(:page => params[:page] ||1, :per_page => params[:per_page] || 10)
   end
 end
