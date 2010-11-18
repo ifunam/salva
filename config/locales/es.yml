@@ -554,6 +554,26 @@ es:
     show:
       title: 'Información de agradecimiento'
 
+  seminaries:
+    index:
+      title: 'Seminarios y conferencias'
+      my_seminaries: 'Mis seminarios'
+      not_my_seminaries: 'Seminarios registrados por otros académicos'
+    not_mine:
+      title: 'Seminarios y conferencias registrados por otros académica'
+      my_seminaries: 'Mis seminarios'
+      not_my_seminaries: 'Seminarios registrados por otros académicos'
+      
+    new:
+      title: 'Nueva seminario/conferencia'
+      my_seminaries: 'Mis seminarios'
+      not_my_seminaries: 'Seminarios registrados por otros académicos'
+    edit:
+     title: 'Modificar  seminario/conferencia'
+    show:
+     title: 'Información Seminarios y conferencias'
+
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -688,3 +708,4 @@ es:
   activitytype: 'Tipo de actividad'
   descr: 'Descripción'
   credittype: 'Tipo de agradecimiento'
+  seminarytype: 'Tipo de seminario'

@@ -7,7 +7,19 @@ class Seminary < ActiveRecord::Base
   belongs_to :seminarytype
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
-  has_many   :user_seminaries
+  
+  has_many :user_seminaries
+  has_many :users, :through => :user_seminaries
+  
+  accepts_nested_attributes_for :user_seminaries
+
+  default_scope :order => 'year DESC, month DESC, instructors ASC, title ASC'
+  
+  scope :not_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')
+  scope :user_id_eq, lambda { |user_id| joins(:user_seminaries).where(:user_seminaries => {:user_id => user_id}) }
+  scope :user_id_not_eq, lambda { |user_id|  where("seminaries.id IN (#{UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id !=  ?", user_id]).to_sql}) AND seminaries.id  NOT IN (#{UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id =  ?", user_id]).to_sql})") }
+
+  search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
     [instructors, title, 'Tipo: ' + seminarytype.name, organizers, date].compact.join(', ')
@@ -24,5 +36,13 @@ class Seminary < ActiveRecord::Base
     elsif !year.nil?
       year
     end
+  end
+  
+  def has_associated_users?
+     users.size > 0
+  end
+  
+  def has_association_with_user?(user_id)
+     !user_seminaries.where(:user_id => user_id).first.nil?
   end
 end

@@ -1,0 +1,20 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('seminaries.show.title')
+  - show_for @seminary do |u|
+    = u.attribute :instructors, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.association :seminarytype, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-24 last'}
+    %div{:class => 'span-12 last'}
+      = u.association :user_seminaries, :collection_tag => :ol do |record| 
+        %li= record.user.author_name + " (#{record.roleinseminary.name})"
+
+  = render :partial => 'shared/record', :object => @seminary
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_seminary_path(:id => @seminary.id)
+  = link_as_button t(:back), seminaries_path
+

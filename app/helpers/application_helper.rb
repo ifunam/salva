@@ -69,7 +69,7 @@ module ApplicationHelper
   end
 
   def checkbox_to_delete(record)
-    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record) and !has_associated_record?(record)
+    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record) and !record.has_associated_user?(current_user.id)
   end
 
   def checkbox_to_del(record)
@@ -78,10 +78,6 @@ module ApplicationHelper
 
   def can_current_user_delete?(record)
      record.registered_by_id == current_user.id 
-  end
-
-  def has_associated_records?(record)
-     record.associated_authors.size > 0
   end
 
   def link_to_user_list(record, url)
