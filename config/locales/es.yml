@@ -465,10 +465,12 @@ es:
   technical_reports:
     index:
       title: 'Mis reportes técnicos'
+      my_works: 'Listar mis reportes técnicos'
       not_my_works: 'Listar reportes técnicos registrados por otros usuarios'
     not_mine:
       title: 'Reportes técnicos registrados por otros usuarios'
       my_works: 'Listar mis reportes técnicos'
+      not_my_works: 'Listar reportes técnicos registrados por otros usuarios'
     new:
       title: 'Nuevo reporte técnico'
     edit:

@@ -2,12 +2,12 @@
   %td{:style => 'width: 30px;'}
     = checkbox_to_delete(record)
   %td{:style => 'width: 630px;'}
-    = record.as_vancouver
+    = record.as_text
     = image_tag('associated_record.png', :border => 0, :style => 'float: right;', :title => t(:associated) )
   %td{:class => 'action'}
     %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 32px; height:18px; padding: 2px;', :id => 'associated_authors_' + dom_id(record) }
       %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(record) }
-        = record.associated_authors.size
+        = record.users.size
       %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'} 
         = link_to_user_list record, user_list_technical_report_path(:id => record.id, :format => 'js')
   %td{:style => 'width: 60px; text-align: center;', :class => 'add_or_delete_author'}
