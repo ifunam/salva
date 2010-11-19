@@ -620,6 +620,17 @@ es:
     show:
       title: 'Información reseña'
 
+  documenttypes:
+    show:
+      title: 'Tipo de documento'
+    index:
+      title: 'Tipos de documentos'
+    new:
+      title: 'Nuevo tipo de documento'
+    edit:
+      title: 'Modificar tipo de documento'
+
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -699,6 +710,8 @@ es:
     indivadvices: 'Asesoría a individuos'
     tutorial_committees: 'Comités tutelares'
     externalusers: 'Usuarios externos'
+    documenttypes: 'Tipos de documentos'
+    documents: 'Documentos'
 
     users:
       form:
