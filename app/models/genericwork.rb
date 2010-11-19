@@ -29,7 +29,7 @@ class Genericwork < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
-    [authors, title, "Tipo de trabajo: #{genericworktype.name}", "Status: #{genericworkstatus.name}", institution_name, date].compact.join(', ')
+    [authors, title, "Tipo de trabajo: #{genericworktype.name}", "Status: #{genericworkstatus.name}", institution_name, pages, date].compact.join(', ')
   end
   
   def institution_name
