@@ -429,10 +429,12 @@ es:
   other_works:
     index:
       title: 'Mis otros trabajos'
+      my_works: 'Listar mis trabajos'
       not_my_works: 'Listar trabajos registrados por otros usuarios'
     not_mine:
       title: 'Otros trabajos registrados por otros usuarios'
       my_works: 'Listar mis trabajos'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
     new:
       title: 'Nuevo trabajo'
     edit:
