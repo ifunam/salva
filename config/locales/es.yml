@@ -449,10 +449,12 @@ es:
   teaching_products:
     index:
       title: 'Mis productos de docencia'
+      my_works: 'Listar mis productos de docencia'
       not_my_works: 'Listar productos de docencia registrados por otros usuarios'
     not_mine:
       title: 'Productos de docencia registrados por otros usuarios'
       my_works: 'Listar mis productos de docencia'
+      not_my_works: 'Listar productos de docencia registrados por otros usuarios'
     new:
       title: 'Nuevo producto de docencia'
     edit:
