@@ -14,6 +14,7 @@ class Genericwork < ActiveRecord::Base
   has_many :user_genericworks
   has_many :users, :through => :user_genericworks
   accepts_nested_attributes_for :user_genericworks
+  user_association_methods_for :user_genericworks
 
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC'
 
@@ -34,13 +35,5 @@ class Genericwork < ActiveRecord::Base
   
   def institution_name
     institution.name_and_country unless institution.nil?
-  end
-
-  def has_associated_users?
-     users.size > 0
-  end
-
-  def has_association_with_user?(user_id)
-     !user_genericworks.where(:user_id => user_id).first.nil?
   end
 end
