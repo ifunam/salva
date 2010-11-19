@@ -610,6 +610,16 @@ es:
     show:
       title: 'Información de colaboración'
 
+  reviews:
+    index:
+      title: 'Reseñas'
+    new:
+      title: 'Nueva reseña'
+    edit:
+      title: 'Modificar reseña'
+    show:
+      title: 'Información reseña'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -750,3 +760,6 @@ es:
   roleinjournal: 'Rol'
   start_date: 'Fecha de inicio'
   end_date: 'Fecha de conclusión'
+  reviewed_work_title: 'Trabajo reseñado'
+  reviewed_work_publication: 'Publicación donde se publicó el trabajo reseñado'
+  published_on: 'Publicada en'

@@ -1,0 +1,17 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+      %div{:class => 'span-6'}=t(:reviewed_work_title)
+      %div{:class => 'span-6'}=t(:published_on)
+      %div{:class => 'span-2 last'}=t(:year)
+      %div{:class => 'span-6'}= f.text_field :reviewed_work_title_like_ignore_case, :size => 15
+      %div{:class => 'span-6'}= f.text_field :published_on_like_ignore_case, :size => 15
+      %div{:class => 'span-2 last'}= f.text_field :year_eq, :size => 4
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)

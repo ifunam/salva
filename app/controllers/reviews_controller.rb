@@ -1,0 +1,2 @@
+class ReviewsController < UserResourcesController
+end
