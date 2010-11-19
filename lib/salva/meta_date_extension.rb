@@ -30,11 +30,11 @@ module MetaDateExtension
 
   module StartEndDateMethods
     def start_date
-      'Fecha de inicio: ' + localize_date(startyear, startmonth).to_s  if !startyear.nil? or !startmonth.nil?
+       I18n.t(:start_date) + ': ' + localize_date(startyear, startmonth).to_s  if !startyear.nil? or !startmonth.nil?
     end
 
     def end_date
-      'Fecha de conclusión: ' + localize_date(endyear, endmonth).to_s if !endyear.nil? or !endmonth.nil?
+       I18n.t(:end_date) + ': ' + localize_date(endyear, endmonth).to_s if !endyear.nil? or !endmonth.nil?
     end    
   end
 

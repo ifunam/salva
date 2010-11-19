@@ -748,3 +748,5 @@ es:
   startyear: 'Año de inicio'
   endyear: 'Año de conlusión'
   roleinjournal: 'Rol'
+  start_date: 'Fecha de inicio'
+  end_date: 'Fecha de conclusión'
