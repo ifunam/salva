@@ -415,10 +415,12 @@ es:
   outreach_works:
     index:
       title: 'Mis trabajos de vinculación'
+      my_works: 'Listar mis trabajos'
       not_my_works: 'Listar trabajos registrados por otros usuarios'
     not_mine:
       title: 'Trabajos de vinculación registrados por otros usuarios'
       my_works: 'Listar mis trabajos'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
     new:
       title: 'Nuevo trabajo de vinculación'
     edit:
