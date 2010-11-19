@@ -18,9 +18,10 @@ Salva::Application.routes.draw do
             :institutional_activities, :other_teaching_activities, :technical_activities, :user_credits
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
-                            :teaching_products, :technical_reports, :seminaries
+                            :teaching_products, :technical_reports, :seminaries, :newspaper_articles
 
-  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships, :credittypes
+  catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships, :credittypes,
+                        :newspapers
 
   namespace :admin do
     resources :users  do
