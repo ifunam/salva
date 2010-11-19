@@ -574,19 +574,31 @@ es:
       my_seminaries: 'Mis seminarios'
       not_my_seminaries: 'Seminarios registrados por otros académicos'
     not_mine:
-      title: 'Seminarios y conferencias registrados por otros académica'
+      title: 'Seminarios y conferencias registrados por otros académicos'
       my_seminaries: 'Mis seminarios'
-      not_my_seminaries: 'Seminarios registrados por otros académicos'
-      
+      not_my_seminaries: 'Seminarios registrados por otros académicos'      
     new:
-      title: 'Nueva seminario/conferencia'
-      my_seminaries: 'Mis seminarios'
-      not_my_seminaries: 'Seminarios registrados por otros académicos'
+      title: 'Nuevo seminario/conferencia'
     edit:
      title: 'Modificar  seminario/conferencia'
     show:
      title: 'Información Seminarios y conferencias'
 
+  newspaper_articles:
+    index:
+      title: 'Artículos periodísticos '
+      my_articles: 'Mis Artículos periodísticos '
+      not_my_articles: 'Artículos periodísticos registrados por otros académicos'
+    not_mine:
+      title: 'Artículos periodísticos  registrados por otros académicos'
+      my_articles: 'Mis Artículos periodísticos '
+      not_my_articles: 'Artículos periodísticos registrados por otros académicos'
+    new:
+      title: 'Nuevo artículos periodístico'
+    edit:
+      title: 'Modificar artículos periodístico'
+    show:
+      title: 'Información de artículos periodístico'
 
   admin:
     people: 'Información personal'

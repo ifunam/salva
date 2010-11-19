@@ -9,4 +9,8 @@ class Newspaper < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
 
   has_many :newspaperarticles
+
+  def name_and_country
+    !country.nil? ? [name, country.name].join(', ') : name
+  end
 end

@@ -1,0 +1,4 @@
+- if record.has_association_with_user?(current_user.id)
+  = render :partial => 'associated', :locals => { :record => record }
+- else
+  = render :partial => 'not_associated', :locals => { :record => record }
