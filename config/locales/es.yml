@@ -600,6 +600,16 @@ es:
     show:
       title: 'Información de artículos periodístico'
 
+  user_journals:
+    index:
+      title: 'Colaboración en revistas'
+    new:
+      title: 'Nueva colaboración'
+    edit:
+      title: 'Modificar colaboración'
+    show:
+      title: 'Información de colaboración'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -735,3 +745,6 @@ es:
   descr: 'Descripción'
   credittype: 'Tipo de agradecimiento'
   seminarytype: 'Tipo de seminario'
+  startyear: 'Año de inicio'
+  endyear: 'Año de conlusión'
+  roleinjournal: 'Rol'
