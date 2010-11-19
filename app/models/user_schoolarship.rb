@@ -6,24 +6,25 @@ class UserSchoolarship < ActiveRecord::Base
   belongs_to :schoolarship
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
-  
+
   def as_text
     [schoolarship.name_and_institution_abbrev, start_date, end_date].compact.join(', ')
   end
-  
+
+  # TODO IT: Include this methods into ActiveRecord::Base from a module using metaprogramming
   def start_date
-    if !startyear.to_s.strip.empty? and !startmonth.to_s.strip.empty?
-      'Año y mes de inicio:' + [startmonth, startyear].join('/') 
-    elsif !startyear.to_s.strip.empty?
-      "Año de inicio: #{startyear}"
-    end
+    'Fecha de inicio: ' + localize_date(startyear, startmonth).to_s  if !startyear.nil? or !startmonth.nil?
   end
-  
+
   def end_date
-    if !endyear.to_s.strip.empty? and !endmonth.to_s.strip.empty?
-      'Año y mes de término:' + [endmonth, endyear].join('/') 
-    elsif !endyear.to_s.strip.empty?
-      "Año de término: #{endyear}"
+    'Fecha de conclusión: ' + localize_date(endyear, endmonth).to_s if !endyear.nil? or !endmonth.nil?
+  end
+
+  def localize_date(year, month, format=:month_and_year)
+    if !year.nil? and !month.nil?
+      I18n.localize(Date.new(year, month, 1), :format => format).downcase
+    elsif !year.nil?
+      year
     end
   end
 end
