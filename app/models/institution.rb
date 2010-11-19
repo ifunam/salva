@@ -49,4 +49,8 @@ class Institution < ActiveRecord::Base
         as_text
      end
   end
+
+  def name_and_country
+    !country.nil? ? [name, country.name].join(', ') : name
+  end
 end

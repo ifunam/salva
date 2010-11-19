@@ -28,19 +28,27 @@ class Genericwork < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_vancouver
-    title
+  def as_text
+    [authors, title, "Tipo de trabajo: #{genericworktype.name}", "Status: #{genericworkstatus.name}", institution_name, date].compact.join(', ')
   end
   
-  def self.paginated_search(options={})
-    search(options[:search]||{}).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
+  def institution_name
+    institution.name_and_country unless institution.nil?
+  end
+  
+  def date(format=:month_and_year)
+    if !year.nil? and !month.nil?
+      I18n.localize(Date.new(year, month, 1), :format => format).downcase
+    elsif !year.nil?
+      year
+    end
   end
 
-  def associated_authors
-    users
+  def has_associated_users?
+     users.size > 0
   end
-  
-  def has_user_as_author?(user_id)
-     !user_genericworks.where(["user_genericworks.user_id = ?", user_id]).first.nil?
+
+  def has_association_with_user?(user_id)
+     !user_genericworks.where(:user_id => user_id).first.nil?
   end
 end
