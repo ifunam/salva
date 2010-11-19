@@ -28,19 +28,15 @@ class Article < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
 
-  def self.paginated_search(options={})
-    search(options[:search]||{}).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
+  def as_text
+    [authors, title, journal.name, normalized_date, normalized_vol_and_num, normalized_pages].compact.join(', ').sub(/;,/, ';')
   end
 
-  def as_vancouver
-    [authors, title, journal.name, normalized_year, normalized_vol_and_num, normalized_pages].compact.join(', ').sub(/;,/, ';')
-  end
-
-  def normalized_year
+  def normalized_date
     if !vol.to_s.strip.empty? or !num.to_s.strip.empty?
-      year.to_s + ";"
+      date.to_s + ";"
     else
-      year.to_s 
+      date.to_s 
     end
   end
 
@@ -53,16 +49,24 @@ class Article < ActiveRecord::Base
       "(#{num})"
     end
   end
+  
+  def date(format=:month_and_year)
+    if !year.nil? and !month.nil?
+      I18n.localize(Date.new(year, month, 1), :format => format).downcase
+    elsif !year.nil?
+      year
+    end
+  end
 
   def normalized_pages
     pages unless pages.to_s.strip.empty?
   end
 
-  def associated_authors
-    users
+  def has_associated_users?
+     users.size > 0
   end
 
-  def has_user_as_author?(user_id)
-     !user_articles.where(["user_articles.user_id = ?", user_id]).first.nil?
+  def has_association_with_user?(user_id)
+     !user_articles.where(:user_id => user_id).first.nil?
   end
 end

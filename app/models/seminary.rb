@@ -37,11 +37,11 @@ class Seminary < ActiveRecord::Base
       year
     end
   end
-  
+
   def has_associated_users?
      users.size > 0
   end
-  
+
   def has_association_with_user?(user_id)
      !user_seminaries.where(:user_id => user_id).first.nil?
   end
