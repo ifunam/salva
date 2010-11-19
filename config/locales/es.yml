@@ -309,10 +309,12 @@ es:
   articles:
     index:
       title: 'Mis artículos publicados'
+      my_articles: 'Mís artículos'
       not_my_articles: 'Artículos publicados registrados por otros usuarios'
     not_mine:
       title: 'Artículos publicados registrados por otros usuarios'
       my_articles: 'Mís artículos'
+      not_my_articles: 'Artículos publicados registrados por otros usuarios'
     new:
       title: 'Nuevo artículo'
     edit:

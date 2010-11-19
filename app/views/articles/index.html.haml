@@ -1,4 +1,5 @@
 %h3= t('.title')
+= link_as_button t('.my_articles'),articles_path
 = link_as_button t('.not_my_articles'), not_my_articles_path
 %div{ :class => 'span-24 buttons_left last' }
 - 3.times do
