@@ -325,10 +325,12 @@ es:
   unpublished_articles:
     index:
       title: 'Mis artículos enviados o aceptados'
+      my_articles: 'Mís artículos'
       not_my_articles: 'Artículos registrados por otros usuarios'
     not_mine:
       title: 'Artículos enviados o aceptados por otros usuarios'
       my_articles: 'Mís artículos'
+      not_my_articles: 'Artículos registrados por otros usuarios'
     new:
       title: 'Nuevo artículo'
     edit:
