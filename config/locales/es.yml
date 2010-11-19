@@ -402,9 +402,11 @@ es:
     index:
       title: 'Mis trabajos de divulgación'
       not_my_works: 'Listar trabajos registrados por otros usuarios'
+      my_works: 'Listar mis trabajos'
     not_mine:
       title: 'Trabajos de divulgación registrados por otros usuarios'
       my_works: 'Listar mis trabajos'
+      not_my_works: 'Listar trabajos registrados por otros usuarios'
     new:
       title: 'Nuevo trabajo de divulgación'
     edit:
