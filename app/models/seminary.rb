@@ -30,14 +30,6 @@ class Seminary < ActiveRecord::Base
     'Organizador(es): ' + organizers.collect {|record| record.user.author_name }.join(', ') if organizers.size > 0
   end
 
-  def date(format=:month_and_year)
-    if !year.nil? and !month.nil?
-      I18n.localize(Date.new(year, month, 1), :format => format).downcase
-    elsif !year.nil?
-      year
-    end
-  end
-
   def has_associated_users?
      users.size > 0
   end

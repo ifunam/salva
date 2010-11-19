@@ -19,12 +19,4 @@ class Activity < ActiveRecord::Base
   def as_text
     [name, "Tipo: #{activitytype.name}", date].compact.join(', ')
   end
-
-  def date
-    if !year.nil? and !month.nil?
-      "Fecha: #{month}/#{year}"
-    elsif !year.nil?
-      "Año: #{year}"
-    end
-  end
 end

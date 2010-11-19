@@ -35,14 +35,6 @@ class Genericwork < ActiveRecord::Base
   def institution_name
     institution.name_and_country unless institution.nil?
   end
-  
-  def date(format=:month_and_year)
-    if !year.nil? and !month.nil?
-      I18n.localize(Date.new(year, month, 1), :format => format).downcase
-    elsif !year.nil?
-      year
-    end
-  end
 
   def has_associated_users?
      users.size > 0
