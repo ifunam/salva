@@ -69,7 +69,7 @@ module ApplicationHelper
   end
 
   def checkbox_to_delete(record)
-    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record) and !record.has_association_with_user?(current_user.id)
+    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
   end
 
   def checkbox_to_del(record)

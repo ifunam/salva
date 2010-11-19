@@ -14,6 +14,7 @@ class Article < ActiveRecord::Base
   has_many :user_articles
   has_many :users, :through => :user_articles
   accepts_nested_attributes_for :user_articles
+  user_association_methods_for :user_articles
 
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC, articlestatus_id ASC'
 
@@ -49,15 +50,8 @@ class Article < ActiveRecord::Base
       "(#{num})"
     end
   end
+
   def normalized_pages
     pages unless pages.to_s.strip.empty?
-  end
-
-  def has_associated_users?
-     users.size > 0
-  end
-
-  def has_association_with_user?(user_id)
-     !user_articles.where(:user_id => user_id).first.nil?
   end
 end
