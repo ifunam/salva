@@ -24,7 +24,7 @@ AttributeNormalizer.configure do |config|
 
   config.default_normalizers = :text_line, :strip, :blank
 
-  config.default_attributes = :name, :title, :abbrev, :authors
+  config.default_attributes = :name, :title, :abbrev, :authors, :pages, :vol, :num
   config.add_default_attribute :description, :with => :paragraph
   config.add_default_attribute :descr, :with => :paragraph
 end
