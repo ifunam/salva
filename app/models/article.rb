@@ -49,15 +49,6 @@ class Article < ActiveRecord::Base
       "(#{num})"
     end
   end
-  
-  def date(format=:month_and_year)
-    if !year.nil? and !month.nil?
-      I18n.localize(Date.new(year, month, 1), :format => format).downcase
-    elsif !year.nil?
-      year
-    end
-  end
-
   def normalized_pages
     pages unless pages.to_s.strip.empty?
   end
