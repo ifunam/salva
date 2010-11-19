@@ -8,9 +8,9 @@ module MetaDateExtension
   module ClassMethods
     def inherited(subclass)
       super
-      if subclass.column_names.include? 'year' and subclass.attribute_names.include? 'month'
+      if subclass.column_names.include? 'year' and subclass.column_names.include? 'month'
         include MetaDateExtension::DateMethods
-        subclass.send :include, MetaDateExtension::DateMethods
+        subclass.send :include, MetaDateExtension::SimpleDateMethods
       elsif (subclass.column_names & ['startyear', 'startmonth', 'endyear', 'endmonth']).size == 4
         include MetaDateExtension::DateMethods
         subclass.send :include, MetaDateExtension::StartEndDateMethods
@@ -38,7 +38,7 @@ module MetaDateExtension
     end    
   end
 
-  module DateMethods
+  module SimpleDateMethods
     def date
       localize_date(year, month)
     end
