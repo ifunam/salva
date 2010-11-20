@@ -630,6 +630,16 @@ es:
     edit:
       title: 'Modificar tipo de documento'
 
+  genericworkstatuses:
+    show:
+      title: 'Estado de trabajo de divulgación/difusión'
+    index:
+      title: 'Estados de trabajos de divulgación/difusión'
+    new:
+      title: 'Nuevo estado de trabajo de divulgación/difusión'
+    edit:
+      title: 'Modificar estado de trabajo de divulgación/difusión'
+
 
   admin:
     people: 'Información personal'
@@ -712,6 +722,8 @@ es:
     externalusers: 'Usuarios externos'
     documenttypes: 'Tipos de documentos'
     documents: 'Documentos'
+    genericworkstatuses: 'Estados de trabajos de divulgación/difusión'
+    genericworkstatuseslog: 'Bitácora de estados de trabajos de divulgación/difusión'
 
     users:
       form:
