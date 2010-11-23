@@ -660,6 +660,16 @@ es:
     edit:
       title: 'Modificar grupo de usuario'
 
+  groupmodalities:
+    show:
+      title: 'Modalidad de grupo'
+    index:
+      title: 'Modalidades de grupos'
+    new:
+      title: 'Nueva modalidad de grupo'
+    edit:
+      title: 'Modificar modilidad de grupo'
+
 
   admin:
     people: 'Información personal'
@@ -747,6 +757,9 @@ es:
     genericworktypes: 'Tipos de trabajos de divulgación/difusión'
     roleingroups: 'Roles en grupos de usuarios'
     user_groups: 'Grupos de usuarios'
+    groups: 'grupos'
+    groupmodalities: 'Modalidades de grupos'
+    researchgroupmodalities: 'Modalidades de grupos de investigación'
 
     users:
       form:
