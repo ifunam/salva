@@ -690,6 +690,15 @@ es:
     edit:
       title: 'Modificar nivel de idioma'
 
+  languages:
+    show:
+      title: 'Idioma'
+    index:
+      title: 'Idiomas'
+    new:
+      title: 'Nuevo idioma'
+    edit:
+      title: 'Modificar idioma'
 
   admin:
     people: 'Información personal'
@@ -784,6 +793,8 @@ es:
     identifications: 'Identificaciones'
     languagelevels: 'Niveles de idiomas'
     user_languages: 'Idiomas'
+    languages: 'Idiomas'
+    books: 'Libros'
 
     users:
       form:
