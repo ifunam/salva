@@ -680,6 +680,16 @@ es:
     edit:
       title: 'Modificar tipo de identificación'
 
+  languagelevels:
+    show:
+      title: 'Nivel de idioma'
+    index:
+      title: 'Niveles de idioma'
+    new:
+      title: 'Nuevo nivel de idioma'
+    edit:
+      title: 'Modificar nivel de idioma'
+
 
   admin:
     people: 'Información personal'
@@ -772,6 +782,8 @@ es:
     researchgroupmodalities: 'Modalidades de grupos de investigación'
     idtypes: 'Tipos de identificaciones'
     identifications: 'Identificaciones'
+    languagelevels: 'Niveles de idiomas'
+    user_languages: 'Idiomas'
 
     users:
       form:
