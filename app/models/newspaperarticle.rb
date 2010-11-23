@@ -18,6 +18,8 @@ class Newspaperarticle < ActiveRecord::Base
   scope :user_id_eq, lambda { |user_id| joins(:user_newspaperarticles).where(:user_newspaperarticles => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("newspaperarticles.id IN (#{UserNewspaperarticle.select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where(["user_newspaperarticles.user_id !=  ?", user_id]).to_sql}) AND newspaperarticles.id  NOT IN (#{UserNewspaperarticle.select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where(["user_newspaperarticles.user_id =  ?", user_id]).to_sql})") }
   scope :year_eq, lambda {|year| by_year(year, :field => :newsdate) }
+  scope :since, lambda{ |date| where(:newsdate >= date) }
+  scope :until, lambda{ |date| where(:newsdate <= date) }
 
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
 
