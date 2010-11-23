@@ -670,6 +670,16 @@ es:
     edit:
       title: 'Modificar modilidad de grupo'
 
+  idtypes:
+    show:
+      title: 'Tipo de identificación'
+    index:
+      title: 'Tipos de identificaciones'
+    new:
+      title: 'Nuevo tipo de identificación'
+    edit:
+      title: 'Modificar tipo de identificación'
+
 
   admin:
     people: 'Información personal'
@@ -760,6 +770,8 @@ es:
     groups: 'grupos'
     groupmodalities: 'Modalidades de grupos'
     researchgroupmodalities: 'Modalidades de grupos de investigación'
+    idtypes: 'Tipos de identificaciones'
+    identifications: 'Identificaciones'
 
     users:
       form:
