@@ -7,4 +7,5 @@ class Language < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
   
   has_many :user_languages
+  has_many :books
 end

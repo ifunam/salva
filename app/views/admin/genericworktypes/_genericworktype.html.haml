@@ -1,0 +1,28 @@
+%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(genericworktype) }
+  - if genericworktype.has_associated_records?
+    %td{:style => 'width: 30px;'}
+      = check_box_tag 'record_id', genericworktype.id, false, 'data-parent-id' => dom_id(genericworktype), :disabled => true
+    %td{:style => 'width: 630px;'}
+      %b= genericworktype.name
+      %br
+      = droppable_associations(genericworktype)
+    %td{:style => 'width: 90px; text-align: center;'}
+      = link_to_draggable_action 'ui-icon-arrow-4', t(:move_all), genericworktype
+    %td{:style => 'width: 90px; text-align: center;'}
+      = link_to_action 'ui-icon-pencil', t(:edit),  edit_admin_genericworktype_path(:id => genericworktype.id)
+    %td{:style => 'width: 90px; text-align: center;'}
+  - else
+    %td{:style => 'width: 30px;'}
+      = check_box_tag 'record_id', genericworktype.id, false, 'data-parent-id' => dom_id(genericworktype)
+    %td{:style => 'width: 630px;'}
+      %b= genericworktype.name
+      %br
+      =  droppable_associations(genericworktype)
+      %div{:class => 'ui-state-highlight ui-corner-all', :id => 'zero_associated_records'}
+        %span{:class => 'ui-icon ui-icon-info', :style => 'float: right;', :title => '0 registros asociados'}
+    %td{:style => 'width: 90px; text-align: center;'}
+      = link_to_draggable_action 'ui-icon-arrow-4', t(:move_all), genericworktype 
+    %td{:style => 'width: 90px; text-align: center;'}
+      = link_to_action 'ui-icon-pencil', t(:edit),  edit_admin_genericworktype_path(:id => genericworktype.id)
+    %td{:style => 'width: 90px; text-align: center;'}
+      = link_to_action 'ui-icon-trash', t(:del), admin_genericworktype_path(:id => genericworktype.id), :method => :delete, :confirm => t(:delete_confirm_question), :remote => true, 'data-parent-id' => dom_id(genericworktype)

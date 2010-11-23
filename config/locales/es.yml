@@ -620,6 +620,86 @@ es:
     show:
       title: 'Información reseña'
 
+  documenttypes:
+    show:
+      title: 'Tipo de documento'
+    index:
+      title: 'Tipos de documentos'
+    new:
+      title: 'Nuevo tipo de documento'
+    edit:
+      title: 'Modificar tipo de documento'
+
+  genericworkstatuses:
+    show:
+      title: 'Estado de trabajo de divulgación/difusión'
+    index:
+      title: 'Estados de trabajos de divulgación/difusión'
+    new:
+      title: 'Nuevo estado de trabajo de divulgación/difusión'
+    edit:
+      title: 'Modificar estado de trabajo de divulgación/difusión'
+
+  genericworktypes:
+    show:
+      title: 'Tipo de trabajo de divulgación/difusión'
+    index:
+      title: 'Tipos de trabajos de divulgación/difusión'
+    new:
+      title: 'Nuevo tipo de trabajo de divulgación/difusión'
+    edit:
+      title: 'Modificar tipo de trabajo de divulgación/difusión'
+
+  groups:
+    show:
+      title: 'Grupo de usuario'
+    index:
+      title: 'Grupos de usuarios'
+    new:
+      title: 'Nuevo grupo de usuario'
+    edit:
+      title: 'Modificar grupo de usuario'
+
+  groupmodalities:
+    show:
+      title: 'Modalidad de grupo'
+    index:
+      title: 'Modalidades de grupos'
+    new:
+      title: 'Nueva modalidad de grupo'
+    edit:
+      title: 'Modificar modilidad de grupo'
+
+  idtypes:
+    show:
+      title: 'Tipo de identificación'
+    index:
+      title: 'Tipos de identificaciones'
+    new:
+      title: 'Nuevo tipo de identificación'
+    edit:
+      title: 'Modificar tipo de identificación'
+
+  languagelevels:
+    show:
+      title: 'Nivel de idioma'
+    index:
+      title: 'Niveles de idioma'
+    new:
+      title: 'Nuevo nivel de idioma'
+    edit:
+      title: 'Modificar nivel de idioma'
+
+  languages:
+    show:
+      title: 'Idioma'
+    index:
+      title: 'Idiomas'
+    new:
+      title: 'Nuevo idioma'
+    edit:
+      title: 'Modificar idioma'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -699,6 +779,22 @@ es:
     indivadvices: 'Asesoría a individuos'
     tutorial_committees: 'Comités tutelares'
     externalusers: 'Usuarios externos'
+    documenttypes: 'Tipos de documentos'
+    documents: 'Documentos'
+    genericworkstatuses: 'Estados de trabajos de divulgación/difusión'
+    genericworkstatuseslog: 'Bitácora de estados de trabajos de divulgación/difusión'
+    genericworktypes: 'Tipos de trabajos de divulgación/difusión'
+    roleingroups: 'Roles en grupos de usuarios'
+    user_groups: 'Grupos de usuarios'
+    groups: 'grupos'
+    groupmodalities: 'Modalidades de grupos'
+    researchgroupmodalities: 'Modalidades de grupos de investigación'
+    idtypes: 'Tipos de identificaciones'
+    identifications: 'Identificaciones'
+    languagelevels: 'Niveles de idiomas'
+    user_languages: 'Idiomas'
+    languages: 'Idiomas'
+    books: 'Libros'
 
     users:
       form:
@@ -763,3 +859,4 @@ es:
   reviewed_work_title: 'Trabajo reseñado'
   reviewed_work_publication: 'Publicación donde se publicó el trabajo reseñado'
   published_on: 'Publicada en'
+  
