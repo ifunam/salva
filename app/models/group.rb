@@ -5,4 +5,7 @@ class Group < ActiveRecord::Base
   
   default_scope :order => 'descr ASC'
   belongs_to :group, :class_name => 'Group', :foreign_key => 'parent_id'
+
+ has_many :user_groups
+ has_many :roleingroups
 end

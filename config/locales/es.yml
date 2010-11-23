@@ -650,6 +650,16 @@ es:
     edit:
       title: 'Modificar tipo de trabajo de divulgación/difusión'
 
+  groups:
+    show:
+      title: 'Grupo de usuario'
+    index:
+      title: 'Grupos de usuarios'
+    new:
+      title: 'Nuevo grupo de usuario'
+    edit:
+      title: 'Modificar grupo de usuario'
+
 
   admin:
     people: 'Información personal'
@@ -735,6 +745,8 @@ es:
     genericworkstatuses: 'Estados de trabajos de divulgación/difusión'
     genericworkstatuseslog: 'Bitácora de estados de trabajos de divulgación/difusión'
     genericworktypes: 'Tipos de trabajos de divulgación/difusión'
+    roleingroups: 'Roles en grupos de usuarios'
+    user_groups: 'Grupos de usuarios'
 
     users:
       form:
@@ -799,3 +811,4 @@ es:
   reviewed_work_title: 'Trabajo reseñado'
   reviewed_work_publication: 'Publicación donde se publicó el trabajo reseñado'
   published_on: 'Publicada en'
+  
