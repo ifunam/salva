@@ -700,6 +700,16 @@ es:
     edit:
       title: 'Modificar idioma'
 
+  maritalstatuses:
+    show:
+      title: 'Estados civil'
+    index:
+      title: 'Estados civiles'
+    new:
+      title: 'Nuevo estado civil'
+    edit:
+      title: 'Modificar estado civil'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -795,6 +805,8 @@ es:
     user_languages: 'Idiomas'
     languages: 'Idiomas'
     books: 'Libros'
+    maritalstatuses: 'Estados civiles'
+    people: 'Personas'
 
     users:
       form:
