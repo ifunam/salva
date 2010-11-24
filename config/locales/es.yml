@@ -769,6 +769,16 @@ es:
       title: 'Nuevo rol en congreso'
     edit:
       title: 'Modificar rol en congreso'
+
+  roleincourses:
+    show:
+      title: 'Rol en curso'
+    index:
+      title: 'Roles en cursos'
+    new:
+      title: 'Nuevo rol en curso'
+    edit:
+      title: 'Modificar rol en curso'
   
 
   admin:
@@ -883,6 +893,8 @@ es:
     userconferences: 'Conferencias'
     roleinconferencetalks: 'Roles en congreso'
     user_conferencetalks: 'Congresos'
+    roleincourses: 'Roles en curso'
+    user_courses: 'Cursos'
 
 
     users:
