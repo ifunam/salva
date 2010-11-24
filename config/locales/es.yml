@@ -759,6 +759,16 @@ es:
       title: 'Nuevo rol en conferencia'
     edit:
       title: 'Modificar rol en conferencia'
+
+  roleinconferencetalks:
+    show:
+      title: 'Rol en congreso'
+    index:
+      title: 'Roles en congreso'
+    new:
+      title: 'Nuevo rol en congreso'
+    edit:
+      title: 'Modificar rol en congreso'
   
 
   admin:
@@ -871,6 +881,9 @@ es:
     journal_publicationcategories: 'Categorías de revistas publicadas'
     roleinconferences: 'Roles en conferencia'
     userconferences: 'Conferencias'
+    roleinconferencetalks: 'Roles en congreso'
+    user_conferencetalks: 'Congresos'
+
 
     users:
       form:
