@@ -730,6 +730,18 @@ es:
     edit:
       title: 'Modificar estado migratorio'
 
+  modalities:
+    show:
+      title: 'Modalidad'
+    index:
+      title: 'Modalidades (cursos, conferencias)'
+    new:
+      title: 'Nueva modalidad'
+    edit:
+      title: 'Modificar modalidad'
+
+  
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -832,6 +844,9 @@ es:
     bookeditions: 'Libros'
     migratorystatuses: 'Estados migratorios'
     citizens: 'Nacionalidades'
+    modalities: 'Modalidades'
+    regularcourses: 'Cursos regulares'
+    conferencetalks: 'Conferencias'
 
     users:
       form:

@@ -42,7 +42,8 @@ Salva::Application.routes.draw do
                       :booktypes, :chapterinbook_roleinchapters, :conferencescopes, :conferencetypes,
                       :contracttypes, :coursegrouptypes, :credittypes, :degrees, :documenttypes,
                       :genericworkstatuses, :genericworktypes, :groups, :groupmodalities, :idtypes,
-                      :languagelevels, :languages, :maritalstatuses, :mediatypes, :migratorystatuses
+                      :languagelevels, :languages, :maritalstatuses, :mediatypes, :migratorystatuses,
+                      :modalities
   end	
 
   namespace :academic_secretary do
