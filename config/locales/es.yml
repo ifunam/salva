@@ -779,7 +779,16 @@ es:
       title: 'Nuevo rol en curso'
     edit:
       title: 'Modificar rol en curso'
-  
+
+  roles:
+    show:
+      title: 'Rol'
+    index:
+      title: 'Roles'
+    new:
+      title: 'Nuevo rol'
+    edit:
+      title: 'Modificar rol'
 
   admin:
     people: 'Información personal'
@@ -895,6 +904,8 @@ es:
     user_conferencetalks: 'Congresos'
     roleincourses: 'Roles en curso'
     user_courses: 'Cursos'
+    roles: 'Roles'
+    roleingroup: 'Roles de grupo'
 
 
     users:
