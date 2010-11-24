@@ -296,7 +296,7 @@ es:
     edit:
       title: 'Modificar tipo de libro'
 
-  chapterinbook_roleinchapters:
+  roleinchapters:
     show:
       title: 'Rol en capítulo en libro'
     index:
@@ -740,6 +740,15 @@ es:
     edit:
       title: 'Modificar modalidad'
 
+  publicationcategories:
+    show:
+      title: 'Categoría de publicación'
+    index:
+      title: 'Categorías de publicaciones'
+    new:
+      title: 'Nueva categoría de publicaión'
+    edit:
+      title: 'Modificar categoría de publicación'
   
 
   admin:
@@ -804,6 +813,7 @@ es:
     booktypes: 'Tipos de libros'
     books: 'Libros'
     chapterinbook_roleinchapters: 'Roles en capítulos en libros'
+    roleinchapters: 'Roles en capitulos en libros'
     chapertinbooks: 'Capítulos en libros'
     roleinchapters: 'Roles en capitulos'
     conferencescopes: 'Ambitos de conferencias'
@@ -847,6 +857,8 @@ es:
     modalities: 'Modalidades'
     regularcourses: 'Cursos regulares'
     conferencetalks: 'Conferencias'
+    publicationcategories: 'Categorías de publicaciones'
+    journal_publicationcategories: 'Categorías de revistas publicadas'
 
     users:
       form:
