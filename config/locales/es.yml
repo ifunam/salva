@@ -749,6 +749,16 @@ es:
       title: 'Nueva categoría de publicaión'
     edit:
       title: 'Modificar categoría de publicación'
+
+  roleinconferences:
+    show:
+      title: 'Rol en conferencia'
+    index:
+      title: 'Roles en conferencia'
+    new:
+      title: 'Nuevo rol en conferencia'
+    edit:
+      title: 'Modificar rol en conferencia'
   
 
   admin:
@@ -859,6 +869,8 @@ es:
     conferencetalks: 'Conferencias'
     publicationcategories: 'Categorías de publicaciones'
     journal_publicationcategories: 'Categorías de revistas publicadas'
+    roleinconferences: 'Roles en conferencia'
+    userconferences: 'Conferencias'
 
     users:
       form:
