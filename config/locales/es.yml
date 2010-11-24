@@ -720,6 +720,16 @@ es:
     edit:
       title: 'Modificar medio de impresión'
 
+  migratorystatuses:
+    show:
+      title: 'Estado migratorio'
+    index:
+      title: 'Estados Migratorios'
+    new:
+      title: 'Nuevo estado migratorio'
+    edit:
+      title: 'Modificar estado migratorio'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -820,6 +830,8 @@ es:
     mediatypes: 'Medios de impresión'
     journals: 'Revistas'
     bookeditions: 'Libros'
+    migratorystatuses: 'Estados migratorios'
+    citizens: 'Nacionalidades'
 
     users:
       form:
