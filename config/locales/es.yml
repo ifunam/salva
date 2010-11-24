@@ -710,6 +710,16 @@ es:
     edit:
       title: 'Modificar estado civil'
 
+  mediatypes:
+    show:
+      title: 'Medio de impresión'
+    index:
+      title: 'Medios de impresión'
+    new:
+      title: 'Nuevo medio de impresión'
+    edit:
+      title: 'Modificar medio de impresión'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -807,6 +817,9 @@ es:
     books: 'Libros'
     maritalstatuses: 'Estados civiles'
     people: 'Personas'
+    mediatypes: 'Medios de impresión'
+    journals: 'Revistas'
+    bookeditions: 'Libros'
 
     users:
       form:
