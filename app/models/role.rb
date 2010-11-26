@@ -4,6 +4,8 @@ class Role < ActiveRecord::Base
   validates_inclusion_of :has_group_right, :in => [true, false]
   validates_uniqueness_of :name
 
+  has_many :roleingroups
+
   def as_text
     values = [name, abbrev]
     values << role.name unless role.name.nil?

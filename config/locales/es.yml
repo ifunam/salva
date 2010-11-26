@@ -296,7 +296,7 @@ es:
     edit:
       title: 'Modificar tipo de libro'
 
-  chapterinbook_roleinchapters:
+  roleinchapters:
     show:
       title: 'Rol en capítulo en libro'
     index:
@@ -700,6 +700,96 @@ es:
     edit:
       title: 'Modificar idioma'
 
+  maritalstatuses:
+    show:
+      title: 'Estados civil'
+    index:
+      title: 'Estados civiles'
+    new:
+      title: 'Nuevo estado civil'
+    edit:
+      title: 'Modificar estado civil'
+
+  mediatypes:
+    show:
+      title: 'Medio de impresión'
+    index:
+      title: 'Medios de impresión'
+    new:
+      title: 'Nuevo medio de impresión'
+    edit:
+      title: 'Modificar medio de impresión'
+
+  migratorystatuses:
+    show:
+      title: 'Estado migratorio'
+    index:
+      title: 'Estados Migratorios'
+    new:
+      title: 'Nuevo estado migratorio'
+    edit:
+      title: 'Modificar estado migratorio'
+
+  modalities:
+    show:
+      title: 'Modalidad'
+    index:
+      title: 'Modalidades (cursos, conferencias)'
+    new:
+      title: 'Nueva modalidad'
+    edit:
+      title: 'Modificar modalidad'
+
+  publicationcategories:
+    show:
+      title: 'Categoría de publicación'
+    index:
+      title: 'Categorías de publicaciones'
+    new:
+      title: 'Nueva categoría de publicaión'
+    edit:
+      title: 'Modificar categoría de publicación'
+
+  roleinconferences:
+    show:
+      title: 'Rol en conferencia'
+    index:
+      title: 'Roles en conferencia'
+    new:
+      title: 'Nuevo rol en conferencia'
+    edit:
+      title: 'Modificar rol en conferencia'
+
+  roleinconferencetalks:
+    show:
+      title: 'Rol en congreso'
+    index:
+      title: 'Roles en congreso'
+    new:
+      title: 'Nuevo rol en congreso'
+    edit:
+      title: 'Modificar rol en congreso'
+
+  roleincourses:
+    show:
+      title: 'Rol en curso'
+    index:
+      title: 'Roles en cursos'
+    new:
+      title: 'Nuevo rol en curso'
+    edit:
+      title: 'Modificar rol en curso'
+
+  roles:
+    show:
+      title: 'Rol'
+    index:
+      title: 'Roles'
+    new:
+      title: 'Nuevo rol'
+    edit:
+      title: 'Modificar rol'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -762,6 +852,7 @@ es:
     booktypes: 'Tipos de libros'
     books: 'Libros'
     chapterinbook_roleinchapters: 'Roles en capítulos en libros'
+    roleinchapters: 'Roles en capitulos en libros'
     chapertinbooks: 'Capítulos en libros'
     roleinchapters: 'Roles en capitulos'
     conferencescopes: 'Ambitos de conferencias'
@@ -795,6 +886,27 @@ es:
     user_languages: 'Idiomas'
     languages: 'Idiomas'
     books: 'Libros'
+    maritalstatuses: 'Estados civiles'
+    people: 'Personas'
+    mediatypes: 'Medios de impresión'
+    journals: 'Revistas'
+    bookeditions: 'Libros'
+    migratorystatuses: 'Estados migratorios'
+    citizens: 'Nacionalidades'
+    modalities: 'Modalidades'
+    regularcourses: 'Cursos regulares'
+    conferencetalks: 'Conferencias'
+    publicationcategories: 'Categorías de publicaciones'
+    journal_publicationcategories: 'Categorías de revistas publicadas'
+    roleinconferences: 'Roles en conferencia'
+    userconferences: 'Conferencias'
+    roleinconferencetalks: 'Roles en congreso'
+    user_conferencetalks: 'Congresos'
+    roleincourses: 'Roles en curso'
+    user_courses: 'Cursos'
+    roles: 'Roles'
+    roleingroup: 'Roles de grupo'
+
 
     users:
       form:
