@@ -1,5 +1,8 @@
-# This module extends the MetaSeach plugin to generate methods based 
-# on _like_ignore_case, by_soundex and by_difference prefixes.
+# This module extends the models with attributes: year and month, or
+# startyear, startmonth, endyear and endmonth.
+#
+# Class methods: since and until
+# Instance methods: date or start_date and end_date
 module MetaDateExtension
   def self.included(base)
     base.extend ClassMethods
@@ -24,24 +27,13 @@ module MetaDateExtension
     protected
 
     def start_end_date_scopes
-      scope :start_year, lambda { |year| where(:startyear >= year) }
-      scope :start_month, lambda { |month| where(:startmonth >= month) }
-
-      scope :end_year, lambda { |year| where(:endyear <= year) }
-      scope :end_month, lambda { |month| where(:endmonth <= month) }
-
-      scope :since, lambda {|year, month| self.start_year(year).start_month(month)}
-      scope :until, lambda {|year, month| self.end_year(year).end_month(month)}
+      scope :since, lambda { |year, month| where(:startyear >= year, :startmonth >= month) }
+      scope :until, lambda { |year, month| where(:endyear <= year, :endmonth <= month) }
     end
 
     def simple_date_scopes
-      scope :start_year, lambda { |year| where(:year >= year) }
-      scope :start_month, lambda { |month| where(:month >= month) }
-      scope :end_year, lambda { |year| where(:year <= year) }
-      scope :end_month, lambda { |month| where(:month <= month) }
-
-      scope :since, lambda {|year, month| self.start_year(year).start_month(month)}
-      scope :until, lambda {|year, month| self.end_year(year).end_month(month)}
+      scope :since, lambda { |year, month| where(:year >= year, :month >= month) }
+      scope :until, lambda { |year, month| where(:year <= year, :month <= month) }
     end
   end
 
