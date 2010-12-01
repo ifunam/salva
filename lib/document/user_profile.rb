@@ -17,7 +17,7 @@ class UserProfile
 
   def gender
     unless @user.person.nil?
-      @user.person.gender == true ? 'Mascúlino' : 'Femenino'
+      @user.person.gender == true ? 'Masculino' : 'Femenino'
     end
   end
 

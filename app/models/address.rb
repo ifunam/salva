@@ -16,7 +16,7 @@ class Address < ActiveRecord::Base
   end
 
   def normalized_zipcode
-    'C.P. ' + zipcode unless zipcode.to_s.strip.empty?
+    'C.P. ' + zipcode.to_s unless zipcode.to_s.strip.empty?
   end
 
   def normalized_city
