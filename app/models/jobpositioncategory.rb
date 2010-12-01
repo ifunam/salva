@@ -16,6 +16,6 @@ class Jobpositioncategory < ActiveRecord::Base
 
  # scope :find_by_jobpositiontype_id,  where("jobpositioncategories.jobpositiontype_id = 1").order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
   def name
-   [roleinjobposition.name, (jobpositionlevel.nil? ? nil : jobpositionlevel.name) ].compact.join(', ')
+   [roleinjobposition.name, (jobpositionlevel.nil? ? nil : jobpositionlevel.name) ].compact.join(' ')
   end
 end
