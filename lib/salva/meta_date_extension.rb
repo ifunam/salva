@@ -27,14 +27,21 @@ module MetaDateExtension
     protected
 
     def start_end_date_scopes
-      scope :since, lambda { |year, month| where(:startyear >= year, :startmonth >= month) }
-      scope :until, lambda { |year, month| where(:endyear <= year, :endmonth <= month) }
-    end
+       scope :since, lambda { |year, month| where(:startyear >= year, :startmonth >= month) } unless respond_to? :since
+       scope :until, lambda { |year, month| where(:endyear <= year, :endmonth <= month) } unless respond_to? :until
+       date_search_methods
+     end
 
-    def simple_date_scopes
-      scope :since, lambda { |year, month| where(:year >= year, :month >= month) }
-      scope :until, lambda { |year, month| where(:year <= year, :month <= month) }
-    end
+     def simple_date_scopes
+       scope :since, lambda { |year, month| where(:year >= year, :month >= month) } unless respond_to? :since
+       scope :until, lambda { |year, month| where(:year <= year, :month <= month) } unless respond_to? :until
+       date_search_methods
+     end
+
+     def date_search_methods
+       search_methods :since, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
+       search_methods :until, :splat_param => true, :type => [:integer, :integer] if respond_to? :until
+     end
   end
 
   module DateMethods
