@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
   scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
-  
+
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
                  :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
                  :login_like
@@ -44,7 +44,8 @@ class User < ActiveRecord::Base
   has_one :user_identification
   has_one :user_schoolarship
   has_one :user_cite
-  
+  has_one :jobposition_log
+
   has_many :user_adscriptions
   has_many :jobpositions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
