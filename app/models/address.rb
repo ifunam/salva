@@ -10,4 +10,16 @@ class Address < ActiveRecord::Base
   belongs_to :city
   belongs_to :state
   belongs_to :user
+
+  def as_text
+    [location, normalized_zipcode, normalized_city, country.name].compact.join(', ')
+  end
+
+  def normalized_zipcode
+    'C.P. ' + zipcode unless zipcode.to_s.strip.empty?
+  end
+
+  def normalized_city
+    city.name unless city_id.nil?
+  end
 end
