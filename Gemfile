@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
- 
-gem "rails", "3.0.1"
+
+gem "rails", "3.0.3"
 # Views, css and javascript
 gem "compass", "0.10.5"
 gem "show_for", ">= 0.2.3"
@@ -21,7 +21,7 @@ gem "net-ldap"
 # Searching and tagging
 gem "tsearch", :require => 'texticle'
 gem "scope_by_fuzzy"
- 
+
 # Security
 gem "ssl_requirement"
 
@@ -30,17 +30,17 @@ gem "vestal_versions"
 
 # Acts As something
 gem "awesome_nested_set"
- 
+
 # Misc
 gem "carrierwave", "0.5.0.beta2"
 gem "rmagick"
-gem "mongo"
+#gem "mongo"
 gem "will_paginate", "3.0.pre2"
 gem "attribute_normalizer", :git => 'http://github.com/juarlex/attribute_normalizer.git'
 gem "inherited_resources", "1.1.2"
 gem "pg"
-gem "meta_search"
-gem "meta_where"
+gem "meta_search", '0.9.10'
+gem "meta_where", '0.9.9.2'
 gem "move_associations"
 gem "by_star"
 gem "tzinfo"
@@ -60,14 +60,14 @@ gem "barby"
 group :production do
   gem "inploy"
 end
- 
+
 group :development do
   gem "rails3-generators", :require => "rails/generators"
   gem "hpricot"
   gem "ruby_parser"
   gem "unicorn"
 end
- 
+
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.19"
   gem 'machinist', ">= 2.0.0.beta2"
