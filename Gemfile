@@ -36,7 +36,7 @@ gem "carrierwave", "0.5.0.beta2"
 gem "rmagick"
 #gem "mongo"
 gem "will_paginate", "3.0.pre2"
-gem "attribute_normalizer", :git => 'http://github.com/juarlex/attribute_normalizer.git'
+gem "attribute_normalizer", '1.0.0.pre1'
 gem "inherited_resources", "1.1.2"
 gem "pg"
 gem "meta_search", '0.9.10'
