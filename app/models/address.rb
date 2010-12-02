@@ -12,7 +12,7 @@ class Address < ActiveRecord::Base
   belongs_to :user
 
   def as_text
-    [location, normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    [location.gsub(/\n/,''), normalized_zipcode, normalized_city, country.name].compact.join(', ')
   end
 
   def normalized_zipcode
