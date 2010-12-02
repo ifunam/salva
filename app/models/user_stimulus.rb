@@ -1,5 +1,4 @@
 class UserStimulus < ActiveRecord::Base
-  set_table_name "user_stimulus"
 
   validates_presence_of :stimuluslevel_id, :startyear
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
