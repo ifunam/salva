@@ -15,16 +15,25 @@ module UserAnnualReport
     end
 
     def to_pdf
-      @pdf = PDFTransformer.new(@user_id, @year)
-      @pdf.code = code unless code.nil?
-      @pdf.signature = signature unless signature.nil?
-      @pdf.received = true if received
-      @pdf.save "/tmp/anual_report.pdf"
+      build_pdf.render
     end
 
-    def to_html
-      @html = HTMLTransformer.new(user_id, year)
-      @html.render
+    def save_pdf(path)
+      build_pdf.save path
+    end
+
+    def build
+      UserReport.find(@user_id, @year)
+    end
+
+    private
+
+    def build_pdf
+      pdf = PDFTransformer.new(@user_id, @year)
+      pdf.code = code unless code.nil?
+      pdf.signature = signature unless signature.nil?
+      pdf.received = true if received
+      pdf
     end
   end
 
@@ -32,10 +41,8 @@ module UserAnnualReport
     attr_accessor :code, :signature, :received
 
     def initialize(user_id, year)
-      @user_profile = UserProfile.find(user_id) 
+      @report = UserReport.find(user_id, year)
       @year = year
-      @report = Reporter::Base.new(:user_id_eq => user_id, :start_date => "#{year}/01/01",
-                                   :end_date => "#{year}/12/31")
       @pdf = Prawn::Document.new
     end
 
@@ -66,7 +73,7 @@ module UserAnnualReport
       end
 
       @pdf.draw_text "Informe Anual de Actividades #{@year}", :at => [140, 710], :size => 20,  :style => :bold
-      @pdf.draw_text 'Instituto de Física', :at => [180, 690], :size => 18,  :style => :bold
+      @pdf.draw_text 'Instituto de Física', :at => [220, 690], :size => 18,  :style => :bold
       @pdf.move_down(100)
     end
 
@@ -76,51 +83,51 @@ module UserAnnualReport
       @pdf.font 'Helvetica', :size => 12
 
       @pdf.text "Nombre:", :style => :bold
-      @pdf.draw_text @user_profile.fullname, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.fullname, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Género:", :style => :bold
-      @pdf.draw_text @user_profile.gender, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.gender, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Fecha de nacimiento:", :style => :bold
-      @pdf.draw_text @user_profile.birthdate, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.birthdate, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Domicilio profesional:", :style => :bold
-      @pdf.text_box @user_profile.address, :style => :normal, :at => [160, @pdf.cursor], :width => 370
+      @pdf.text_box @report.profile.address, :style => :normal, :at => [160, @pdf.cursor], :width => 370
       @pdf.move_down(50)
 
       @pdf.text "Teléfono:", :style => :bold
-      @pdf.draw_text @user_profile.phone, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.phone, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Fax:", :style => :bold
-      @pdf.draw_text @user_profile.fax, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.fax, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Correo electrónico:", :style => :bold
-      @pdf.draw_text @user_profile.email, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.email, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "RFC o CURP:", :style => :bold
-      @pdf.draw_text @user_profile.person_id, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.person_id, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Categoría:", :style => :bold
-      @pdf.draw_text @user_profile.category_name, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.category_name, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Adscripción:", :style => :bold
-      @pdf.draw_text @user_profile.adscription_name, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.adscription_name, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Número de trabajador:", :style => :bold
-      @pdf.draw_text @user_profile.worker_id, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.worker_id, :style => :normal, :at => [160, @pdf.cursor]
 
       @pdf.text "Total de citas:", :style => :bold
-      @pdf.draw_text @user_profile.total_of_cites.to_s, :style => :normal, :at => [160, @pdf.cursor]
+      @pdf.draw_text @report.profile.total_of_cites.to_s, :style => :normal, :at => [160, @pdf.cursor]
 
-      unless @user_profile.responsible_academic.nil?
+      unless @report.profile.responsible_academic.nil?
         @pdf.text "Responsable académico:", :style => :bold
-        @pdf.draw_text @user_profile.responsible_academic.to_s, :style => :normal, :at => [160, @pdf.cursor]
+        @pdf.draw_text @report.profile.responsible_academic.to_s, :style => :normal, :at => [160, @pdf.cursor]
       end
       @pdf.move_down(20)
     end
 
     def sections
-      @report.build.each do |section|
+      @report.sections.each do |section|
         @pdf.text section[:title].to_s, :size => 16, :style => :bold, :final_gap => true
         @pdf.text "\n"
         section[:subsections].each do |subsection|
@@ -150,7 +157,7 @@ module UserAnnualReport
     end
 
     def code
-      [@user_profile.email, @code].compact.join(', ')
+      [@report.profile.email, @code].compact.join(', ')
     end
 
     def received?
@@ -158,14 +165,26 @@ module UserAnnualReport
     end
   end
 
-  class HTMLTransformer
-    def initialize(user_id, year)
+  class UserReport
+
+    def self.find(user_id, year)
+      new(user_id, year)
     end
 
-    def render
-      # TODO: Implement this method
-      puts 'Rendering user annual report as HTML'
+    def initialize(user_id, year)
+      @user_id = user_id
+      @year = year
+    end
+
+    def profile
+      UserProfile.find(@user_id)
+    end
+
+    def sections
+      @report = Reporter::Base.new(:user_id_eq => @user_id, 
+                                   :start_date => "#{@year}/01/01",
+                                   :end_date => "#{@year}/12/31")
+      @report.build
     end
   end
-
 end
