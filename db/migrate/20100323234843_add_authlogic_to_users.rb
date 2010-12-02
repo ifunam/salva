@@ -1,7 +1,15 @@
 class AddAuthlogicToUsers < ActiveRecord::Migration
   def self.up
-    rename_column :users, :passwd, :crypted_password
-    rename_column :users, :salt, :password_salt
+    if column_exists? :users, :passwd
+      rename_column :users, :passwd, :crypted_password
+    else
+      add_column :users, :crypted_password, :text
+    end
+    if column_exists? :users, :salt
+      rename_column :users, :salt, :password_salt
+    else
+      add_column :users, :password_salt, :salt
+    end
     add_column :users, :persistence_token, :string
     add_column :users, :single_access_token, :string
     add_column :users, :perishable_token, :string

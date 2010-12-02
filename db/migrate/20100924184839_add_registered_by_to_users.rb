@@ -1,6 +1,8 @@
 class AddRegisteredByToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :registered_by_id, :integer
+    unless column_exists? :users, :registered_by_id
+      add_column :users, :registered_by_id, :integer
+    end
   end
 
   def self.down

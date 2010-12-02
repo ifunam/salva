@@ -1,14 +1,19 @@
 class RemoveExternalusers < ActiveRecord::Migration
   def self.up
     
-    remove_column :student_activities, :tutor_externaluser_id
-    remove_column :usercredits, :externalusergive_id
-    remove_column :userrefereedpubs, :externaluser_id
-    remove_column :userresearchgroups, :externaluser_id
-    remove_column :acadvisits, :externaluser_id
     
-    drop_table :externaluserlevels
-    drop_table :externalusers
+    { :student_activities => :tutor_externaluser_id, :usercredits => :externalusergive_id, 
+      :userrefereedpubs => :externaluser_id, :userresearchgroups => :externaluser_id, 
+      :acadvisits => :externaluser_id }.each_pair do |table_name, column_name|
+          if table_exists?(table_name) and column_exists?(table_name, column_name)
+            remove_column table_name, column_name
+          end
+    end
+    [ :externalusers, :externaluserlevels].each do |table_name|
+      if table_exists? table_name
+        drop_table table_name
+      end
+    end
   end
 
   def self.down

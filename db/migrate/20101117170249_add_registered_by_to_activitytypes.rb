@@ -1,6 +1,11 @@
 class AddRegisteredByToActivitytypes < ActiveRecord::Migration
   def self.up
-    rename_column :activitytypes, :moduser_id, :registered_by_id
+    if column_exists? :activitytypes, :moduser_id
+      rename_column :activitytypes, :moduser_id, :registered_by_id
+    else
+      add_column :activitytypes, :registered_by_id, :integer
+    end
+
     add_column :activitytypes, :modified_by_id, :integer
   end
 

@@ -1,6 +1,11 @@
 class AddRegisteredByIdToReviews < ActiveRecord::Migration
   def self.up
-    rename_column :reviews, :moduser_id, :registered_by_id
+    if column_exists?  :reviews, :moduser_id
+      rename_column :reviews, :moduser_id, :registered_by_id
+    else
+      add_column :reviews, :registered_by_id, :integer
+    end
+
     add_column :reviews, :modified_by_id, :integer
   end
 

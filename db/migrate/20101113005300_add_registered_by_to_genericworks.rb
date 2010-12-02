@@ -1,6 +1,11 @@
 class AddRegisteredByToGenericworks < ActiveRecord::Migration
   def self.up
-    rename_column :genericworks, :moduser_id, :registered_by_id
+    if column_exists? :genericworks, :moduser_id
+      rename_column :genericworks, :moduser_id, :registered_by_id
+    else
+      add_column :genericworks, :registered_by_id, :integer
+    end
+
     add_column :genericworks, :modified_by_id, :integer
   end
 

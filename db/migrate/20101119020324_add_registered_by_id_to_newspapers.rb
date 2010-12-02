@@ -1,6 +1,11 @@
 class AddRegisteredByIdToNewspapers < ActiveRecord::Migration
   def self.up
-    rename_column :newspapers, :moduser_id, :registered_by_id
+    if column_exists?  :newspapers, :moduser_id
+      rename_column :newspapers, :moduser_id, :registered_by_id
+    else
+      add_column :newspapers, :registered_by_id, :integer
+    end
+
     add_column :newspapers, :modified_by_id, :integer
   end
 

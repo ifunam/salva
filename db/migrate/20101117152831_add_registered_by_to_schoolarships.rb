@@ -1,6 +1,11 @@
 class AddRegisteredByToSchoolarships < ActiveRecord::Migration
   def self.up
-    rename_column :schoolarships, :moduser_id, :registered_by_id
+    if column_exists?  :schoolarships, :moduser_id
+      rename_column :schoolarships, :moduser_id, :registered_by_id
+    else
+      add_column :schoolarships, :registered_by_id, :integer
+    end
+
     add_column :schoolarships, :modified_by_id, :integer
   end
 

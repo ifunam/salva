@@ -1,6 +1,11 @@
 class AddRegisteredByToCredittypes < ActiveRecord::Migration
   def self.up
-    rename_column :credittypes, :moduser_id, :registered_by_id
+    if column_exists?  :credittypes, :moduser_id
+      rename_column :credittypes, :moduser_id, :registered_by_id
+    else
+      add_column :credittypes, :registered_by_id, :integer
+    end
+
     add_column :credittypes, :modified_by_id, :integer
   end
 
