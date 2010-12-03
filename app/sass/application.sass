@@ -13,29 +13,30 @@ body
 
 #header
   display: block-inline
-  background: url("/images/header_bg.png") repeat-x scroll left top 
-  text-align: center
-  padding-top: 30px
-  height: 140px
+  background: url("/images/header_bg.png") repeat-x scroll left top
+  text-align: left
+  padding-top: 5px
+  height: 50px
   width: 100%
   #title
     display: inline-block
     color: white
     font-family: "georgia", "bitstream vera serif", serif
-    font-size: 2.8em
+    font-size: 1.5em
     font-weight: normal
     letter-spacing: -1px
     line-height: 1
     margin-bottom: 10px
-    padding-left: 80px
+    padding-left: 30px
     line-height: 1
     float: left
-    width: 80%
+    width: 70%
     a, a:link, a:visited, a:hover
       text-decoration: none
       color: white
   #toplinks
-    margin-top: 70px
+    float: left
+    margin-top: 5px
     font-size: 11px
     color: white
     a, a:link, a:visited, a:hover
@@ -71,9 +72,21 @@ body
   padding: 25px 10px 10px 10px
 
 .container
-  padding: 10px 70px 10px 20px
-  .span-24
-    margin-bottom: 1.5em
+  padding: 0px 1px 0px 1px
+  width: 965px
+  h3
+    margin-top: 10px
+    text-align: left
+    margin-left: 10px
+  .nav_links
+    margin-top: 10px
+    text-align: right
+    a, a:visited
+      text-decoration: none
+      margin-right: 10px
+      color: #2e90bd
+    a:hover
+      color: #a5ce54
 
 .section_left
   background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
@@ -168,7 +181,8 @@ label
   display: block
 
 #collection_table
-  width: 1000px
+  margin-top: 30px
+  width: 965px
 
 #collection, tr, td
   font-size: 12px
@@ -258,14 +272,14 @@ td.action
     font-size: 11px
   a:hover
     color: #FFFF00
-tfoot
-  height: 50px
+
+#paginator
+  display: block
+  height: 30px
 
 .pagination
-  margin-left: -10px
-  margin-top: -12px
   position: absolute
-  width: 900px
+  width: 960px
   text-align: center
   z-index: 666
 
