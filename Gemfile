@@ -27,9 +27,7 @@ gem "ssl_requirement"
 
 # Control version
 gem "vestal_versions"
-
-# Acts As something
-gem "awesome_nested_set"
+gem "simple-navigation", "3.0.2"
 
 # Misc
 gem "carrierwave", "0.5.0.beta2"

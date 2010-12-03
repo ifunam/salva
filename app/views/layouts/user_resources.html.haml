@@ -13,6 +13,7 @@
     = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.1.custom'
     = stylesheet_link_tag 'jquery.validate.password'
     = stylesheet_link_tag 'application', :media => 'screen, projection'
+    = stylesheet_link_tag 'navigation', :media => 'screen, projection'
 
     = javascript_include_tag :jquery
     = javascript_include_tag 'jquery.validate/jquery.validate'
@@ -27,7 +28,15 @@
 
   %body
     = render :partial => 'layouts/header'
-    %div{:class =>'container'}
-      = yield :layout
+    #navigation.nav_content
+      #top_navigation= render_navigation(:level => 1)
+      .clear_float
+      .content_wrapper
+        #sub_navigation= render_navigation(:level => 2)
+        .content
+          .breadcrumbs
+            = render_navigation(:renderer => :breadcrumbs, :join_with => ' &raquo; ')
+          %div{:class =>'container'}
+            = yield :layout
     %div{:id => 'dialog'}
     = render :partial => 'layouts/footer'
