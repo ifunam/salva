@@ -1,9 +1,10 @@
-%h3= t('.title')
-= link_as_button t('.my_articles'), newspaper_articles_path
-= link_as_button t('.not_my_articles'), not_my_newspaper_articles_path
-%div{ :class => 'span-24 buttons_left last' }
-- 3.times do
-  %br
+%div{:class => 'span-24 last'}
+  %div{:class => 'span-8'}
+    %h3= t('.title')
+  %div{:class=> 'span-16 nav_links last'}
+    = link_to t('.my_articles'), newspaper_articles_path
+    = link_to t('.not_my_articles'), not_my_newspaper_articles_path
+%br
 %table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
   %thead{:id => "filter_header"}
     = render :partial => 'filter_header'
