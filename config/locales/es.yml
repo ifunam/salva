@@ -971,4 +971,9 @@ es:
   reviewed_work_title: 'Trabajo reseñado'
   reviewed_work_publication: 'Publicación donde se publicó el trabajo reseñado'
   published_on: 'Publicada en'
-  
+
+  reporter:
+    publications: 'Publicaciones'
+    articles: 'Artículos publicados'
+    unpublished_articles: 'Artículos enviados o aceptados'
+    technical_reports: 'Reportes técnicos'
