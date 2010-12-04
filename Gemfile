@@ -37,7 +37,7 @@ gem "will_paginate", "3.0.pre2"
 gem "attribute_normalizer", '1.0.0.pre1'
 gem "inherited_resources", "1.1.2"
 gem "pg"
-gem "meta_search", '0.9.10'
+gem "meta_search", :git => 'https://github.com/ernie/meta_search.git' 
 gem "meta_where", '0.9.9.2'
 gem "move_associations"
 gem "by_star"
