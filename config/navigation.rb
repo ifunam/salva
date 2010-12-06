@@ -76,7 +76,8 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :popular_science_works, 'Trabajos de divulgación', popular_science_works_path
     end
 
-    primary.item :outreach_activities, 'Vinculación', outreach_works_path do |s|
+    primary.item :outreach_activities, 'Vinculación', professor_advices_path do |s|
+      s.item :professor_advices, 'Asesoría de personal académico', professor_advices_path
       s.item :outreach_works, 'Trabajos de vinculación', outreach_works_path
     end
 

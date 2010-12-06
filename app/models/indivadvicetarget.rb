@@ -7,5 +7,5 @@ class Indivadvicetarget < ActiveRecord::Base
 
   default_scope :order => 'name ASC'
   scope :students, where('id <= 3')
-  scope :not_as_students, where('id > 3')
+  scope :professors, where('id > 3')
 end

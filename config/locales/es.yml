@@ -630,6 +630,16 @@ es:
     show:
       title: 'Información de la asesoría'
 
+  professor_advices:
+    index:
+      title: 'Asesoría de personal académico'
+    new:
+      title: 'Nueva asesoría'
+    edit:
+      title: 'Modificar información de la asesoría'
+    show:
+      title: 'Información de la asesoría'
+
   documenttypes:
     show:
       title: 'Tipo de documento'

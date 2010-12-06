@@ -13,7 +13,7 @@ class Indivadvice < ActiveRecord::Base
 
   default_scope :order => 'startyear DESC, startmonth DESC, endyear DESC, endmonth DESC, indivname ASC'
   scope :students, where('indivadvicetarget_id <= 3')
-  scope :not_as_students, where('indivadvicetarget_id > 3')
+  scope :professors, where('indivadvicetarget_id > 3')
 
   def as_text
     [normalized_indivname, indivadvicetarget.name, degree_name, career_name, institution_name, start_date, end_date, normalized_hours].compact.join(', ')
