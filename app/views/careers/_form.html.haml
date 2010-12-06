@@ -1,0 +1,6 @@
+%div{ :class => 'span-7 section_left last' } 
+  %div{:class => 'span-7 last'}
+    = f.input :name, :as => :string, :html_input => { :size => '60' }
+  %div{:class=> 'span-14 last'}
+    = f.label :degree_id, :required => true
+    = f.collection_select :degree_id,  Degree.all, :id, :name, {:prompt => true, :selected => 2, :required => true}

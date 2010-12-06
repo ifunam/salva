@@ -1,0 +1,21 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+      %div{:class => 'span-5'}=t(:degree)
+      %div{:class => 'span-5'}=t(:indiviadvicetarget)
+      %div{:class => 'span-2'}=t(:startyear)
+      %div{:class => 'span-2 last'}=t(:endyear)
+
+      %div{:class => 'span-5'}= f.collection_select :degree_id_eq, Degree.all, :id, :name, :prompt => true
+      %div{:class => 'span-5'}= f.collection_select :indivadvicetarget_id_eq, Indivadvicetarget.students, :id, :name, :prompt => true
+      %div{:class => 'span-2'}= f.text_field :startyear_eq, :size => 4
+      %div{:class => 'span-2 last'}= f.text_field :endyear_eq, :size => 4
+
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)

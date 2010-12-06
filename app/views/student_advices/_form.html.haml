@@ -1,0 +1,32 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+%div{ :class => 'span-24 section_left append-bottom last' }
+
+  = f.input :indivname, :as => :string, :input_html => { :size => '80' }, :wrapper_class => 'span-12'
+  %div{:class => 'span-6'}
+    = f.label :degree, :required => true
+    = f.collection_select :degree_id, Degree.all, :id, :name, {:prompt => true}
+  %div{:class => 'span-6 last'}
+    = f.label :indivadvicetarget, :required => true
+    = f.collection_select :indivadvicetarget_id, Indivadvicetarget.students, :id, :name, {:prompt => true}
+
+  %div{:class => 'span-12 ui-widget', :id => 'career', 'data-controller-name'=>'careers' }
+    = f.label :career, :required => true
+    = f.select :career_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar carrer', '#', :id => 'new_record'
+  %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
+    = f.label :institution, :required => true
+    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+
+  %div{ :class => 'span-24 last' }
+    = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+    %div{:class => 'span-6'}
+      = f.label :startmonth, :required => true
+      = select_month(Date.today, :field_name => 'startmonth', :prefix => 'advice')
+    = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+    %div{:class => 'span-6 last'}
+      = f.label :endmonth, :required => true
+      = select_month(Date.today, :field_name => 'endmonth', :prefix => 'advice')
+
+  = f.input :hours, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :wrapper_class => 'span-6 last', :required => true
+

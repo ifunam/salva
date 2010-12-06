@@ -82,6 +82,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :teaching, 'Docencia', other_teaching_activities_path do |s|
       s.item :other_teaching_activities, 'Actividades de docencia', other_teaching_activities_path
+      s.item :student_advices, 'Asesoría a estudiantes', student_advices_path
       s.item :teaching_products, 'Productos de docencia', teaching_products_path
     end
 

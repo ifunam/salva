@@ -620,6 +620,16 @@ es:
     show:
       title: 'Información reseña'
 
+  student_advices:
+    index:
+      title: 'Asesoría a estudiantes'
+    new:
+      title: 'Nueva asesoría a estudiante'
+    edit:
+      title: 'Modificar información de la asesoría'
+    show:
+      title: 'Información de la asesoría'
+
   documenttypes:
     show:
       title: 'Tipo de documento'
@@ -964,13 +974,15 @@ es:
   credittype: 'Tipo de agradecimiento'
   seminarytype: 'Tipo de seminario'
   startyear: 'Año de inicio'
-  endyear: 'Año de conlusión'
+  endyear: 'Año de conclusión'
   roleinjournal: 'Rol'
   start_date: 'Fecha de inicio'
   end_date: 'Fecha de conclusión'
   reviewed_work_title: 'Trabajo reseñado'
   reviewed_work_publication: 'Publicación donde se publicó el trabajo reseñado'
   published_on: 'Publicada en'
+  indiviadvicetarget: 'Objetivo'
+  degree: 'Grado'
 
   reporter:
     publications: 'Publicaciones'
