@@ -87,9 +87,9 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :teaching_products, 'Productos de docencia', teaching_products_path
     end
 
-    #primary.item :technical_activities, 'Actividades técnico-académicas', articles_path do |s|
-    #  s.item :technical_activities, 'Actividades ténicas', :technical_activities_path
-    #end
+    primary.item :technical_activities, 'Actividades técnico-académicas', technical_activities_path do |s|
+      s.item :technical_activities, 'Actividades técnicas', technical_activities_path
+    end
 
     #primary.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path
 
