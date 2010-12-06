@@ -494,7 +494,6 @@ es:
     show:
       title: 'Producto técnico'
 
-
   user_languages:
     index:
       title: 'Idiomas'
@@ -650,6 +649,16 @@ es:
   professor_advices:
     index:
       title: 'Asesoría de personal académico'
+    new:
+      title: 'Nueva asesoría'
+    edit:
+      title: 'Modificar información de la asesoría'
+    show:
+      title: 'Información de la asesoría'
+
+  institutional_advices:
+    index:
+      title: 'Asesoría a instituciones'
     new:
       title: 'Nueva asesoría'
     edit:
@@ -1010,6 +1019,7 @@ es:
   published_on: 'Publicada en'
   indiviadvicetarget: 'Objetivo'
   degree: 'Grado'
+  instadvicetarget: 'Objetivo'
 
   reporter:
     publications: 'Publicaciones'

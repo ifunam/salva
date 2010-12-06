@@ -7,5 +7,15 @@ class Instadvice < ActiveRecord::Base
   belongs_to :institution
   belongs_to :instadvicetarget
   belongs_to :user
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
+  def as_text
+    [target_and_title, institution.name_and_parent_abbrev, date].compact.join(', ')
+  end
+
+  def target_and_title
+    "#{instadvicetarget.name}: #{title}"
+  end
 end
+

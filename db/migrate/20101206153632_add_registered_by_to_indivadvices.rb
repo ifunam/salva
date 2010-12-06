@@ -10,8 +10,7 @@ class AddRegisteredByToIndivadvices < ActiveRecord::Migration
   end
 
   def self.down
-    rename_column :user_journals, :registered_by_id, :moduser_id
-    remove_column :user_journals, :modified_by_id
+    rename_column :indivadvices, :registered_by_id, :moduser_id
+    remove_column :indivadvices, :modified_by_id
   end
-  
 end
