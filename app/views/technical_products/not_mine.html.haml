@@ -1,0 +1,20 @@
+%div{:class => 'span-24 last'}
+  %div{:class => 'span-10'}
+    %h3= t('.title')
+  %div{:class=> 'span-14 nav_links last'}
+    = link_to t('.my_works'), technical_products_path
+    = link_to t('.not_my_works'), not_my_technical_products_path
+%br
+%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
+  %thead{:id => "filter_header"}
+    = render :partial => 'not_mine_header'
+    %tbody{:id =>'collection'}
+      = render :partial => 'record', :collection => @technical_products
+      = render :partial => 'collection_footer'
+    %tfoot{:id => 'paginator'}
+      %tr
+        %th
+          = will_paginate @technical_products
+
+%div{ :class => 'span-24 buttons_left last' }
+  = link_as_button t(:new), new_technical_product_path

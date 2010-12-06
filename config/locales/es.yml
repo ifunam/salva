@@ -478,6 +478,23 @@ es:
     show:
       title: 'Reporte técnico'
 
+  technical_products:
+    index:
+      title: 'Mis productos técnicos'
+      my_works: 'Listar mis productos técnicos'
+      not_my_works: 'Listar productos técnicos registrados por otros usuarios'
+    not_mine:
+      title: 'Products técnicos registrados por otros usuarios'
+      my_works: 'Listar mis productos técnicos'
+      not_my_works: 'Listar productos técnicos registrados por otros usuarios'
+    new:
+      title: 'Nuevo producto técnico'
+    edit:
+      title: 'Modificar producto técnico'
+    show:
+      title: 'Producto técnico'
+
+
   user_languages:
     index:
       title: 'Idiomas'

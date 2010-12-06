@@ -1,0 +1,22 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('technical_products.show.title')
+  - show_for @technical_product do |u|
+    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.association :techproducttype, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :descr, :wrapper_html => {:class => 'span-12 last'}
+
+    = u.association :techproductstatus, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12 last'}
+
+    %div{:class => 'span-24 last'}
+      = u.association :user_techproducts, :collection_tag => :ol do |record| 
+        %li= record.user.author_name + " (#{record.userrole.name}, #{record.year})"
+
+  = render :partial => 'shared/record', :object => @technical_product
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_technical_product_path(:id => @technical_product.id)
+  = link_as_button t(:back), technical_products_path
+
