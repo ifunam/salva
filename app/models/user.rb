@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  validates_presence_of :login, :userstatus_id, :email, :password
-  validates_confirmation_of :password
-
   devise :ldap_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

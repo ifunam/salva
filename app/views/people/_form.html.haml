@@ -1,4 +1,4 @@
-%div{ :class => 'span-24 section_left last' }
+%div{ :class => 'span-22 section_left push-2 last' }
   %h3= t('.title')
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
@@ -7,20 +7,22 @@
   = f.input :firstname, :as => :string, :input_html => { :size => 15}
   = f.input :lastname1, :as => :string, :input_html => { :size => 15}
   = f.input :lastname2, :as => :string, :input_html => { :size => 15}
-  = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-6 last'
-  
-  %div{ :class => 'span-12 last' }
+  = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-4 last'
+
+  %div{ :class => 'span-18 last' }
     %div{:class=> 'span-6'}
       = f.label :gender, :required => true
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Masculino
-    %div{:class=> 'span-6 last'}
+    %div{:class=> 'span-6'}
       = f.label :maritalstatus_id
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true
-
-  %div{ :class => 'span-24 last' }
-    = f.input :dateofbirth, :as => :string, :input_html => { :size => 10 }
+    %div{:class=> 'span-6 last'}
+      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10 }
+  %div{ :class => 'span-22 last' }
+    %b='Lugar de nacimiento'
+  %div{ :class => 'span-22 last' }
     %div{:class=> 'span-6'}
       = f.label :country_id, :required => true
       = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}

@@ -48,7 +48,8 @@ SimpleNavigation::Configuration.run do |navigation|
       # sub_nav.item :key_2_1, 'name', url, options
     # end
 
-    primary.item :profile, 'Perfil', user_schoolarships_path do |s|
+    primary.item :profile, 'Perfil', user_profile_path do |s|
+      s.item :user_profile, 'Información general', user_profile_path
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path
       s.item :user_schoolarships, 'Becas', user_schoolarships_path
       s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path

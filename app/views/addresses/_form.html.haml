@@ -1,4 +1,5 @@
-%div{ :class => 'span-24 section_left last' }
+%div{ :class => 'span-24 round_section push-2 last' }
+
   %h2 Domicilio
 
   - if !f.object.nil? and !f.object.new_record?
@@ -56,6 +57,3 @@
       = f.radio_button :is_postaddress, true
       Sí
       \#{f.radio_button :is_postaddress, false} No
-  
-
-  

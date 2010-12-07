@@ -1,5 +1,5 @@
-%div{ :class => 'span-24 section_left last' }
-  %h2 Domicilio profesional
+%div{ :class => 'span-22 section_left push-2 last' }
+  %h3 Domicilio profesional
   - show_for record do |a|
     %div{:class => 'row'}
       = a.association :addresstype, :using => :name, :wrapper_html => {:class => 'span-6'}
