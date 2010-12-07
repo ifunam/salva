@@ -1033,7 +1033,15 @@ es:
   stimulus: 'Estímulo'
 
   reporter:
+    profile: 'Perfil'
+    user_schoolarships: 'Becas'
+    user_stimuli: 'Estímulos'
     publications: 'Publicaciones'
     articles: 'Artículos publicados'
     unpublished_articles: 'Artículos enviados o aceptados'
+    seminary_and_conferences: 'Congresos, seminarios y conferencias'
+    seminaries: 'Seminarios y conferencias'
+    popular_science: 'Trabajos de divulgación'
+    newspaper_articles: 'Artículos periodísticos'
     technical_reports: 'Reportes técnicos'
+
