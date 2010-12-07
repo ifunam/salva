@@ -3,20 +3,25 @@ module Reporter
   class Base
     @@body = Section.new
     def self.build_sections
-      create_section :publications do |s|
-        s.collection :articles, :scope => :published
-        s.collection :unpublished_articles, :class_name => 'Article', :scope => :unpublished
-        s.collection :technical_reports, :class_name => 'Genericwork', :scope => :technical_reports
+      create_section :profile do |s|
+        s.collection :user_stimuli
+        s.collection :user_schoolarships
       end
 
-      create_section :seminary_and_conferences do |s|
-        s.collection :seminaries, :scope => :as_not_attendee
-      end
+     create_section :publications do |s|
+       s.collection :articles, :scope => :published
+       s.collection :unpublished_articles, :class_name => 'Article', :scope => :unpublished
+       s.collection :technical_reports, :class_name => 'Genericwork', :scope => :technical_reports
+     end
 
-      create_section :popular_science do |s|
-        s.collection :newspaper_articles, :class_name => 'Newspaperarticle', :date_format => true 
-        s.collection :popular_science_works, :class_name => 'Genericwork', :scope => :popular_science
-      end
+     create_section :seminary_and_conferences do |s|
+       s.collection :seminaries, :scope => :as_not_attendee
+     end
+
+     create_section :popular_science do |s|
+       s.collection :newspaper_articles, :class_name => 'Newspaperarticle', :date_format => true 
+       s.collection :popular_science_works, :class_name => 'Genericwork', :scope => :popular_science
+     end
     end
 
     def self.create_section(title)
@@ -39,8 +44,10 @@ module Reporter
     def build
       sections.collect do |section|
         collections = subsections(section)
-        { :title => I18n.t("reporter.#{section.title}"), :subsections => collections } if collections.size > 0
-      end.compact!
+        if collections.is_a? Array and collections.size > 0
+          { :title => I18n.t("reporter.#{section.title}"), :subsections => collections }
+        end
+      end.compact
     end
 
     private
@@ -52,8 +59,10 @@ module Reporter
     def subsections(section)
       section.sections.collect do |subsection|
         records = collection(subsection)
-        { :title => I18n.t("reporter.#{subsection.title}"), :collection => collection(subsection) } if records.size > 0
-      end.compact!
+        if records.is_a? Array and records.size > 0
+          { :title => I18n.t("reporter.#{subsection.title}"), :collection => records }
+        end
+      end.compact
     end
 
     def collection(subsection)
@@ -68,7 +77,7 @@ module Reporter
     end
 
     def date_options
-      { :between => [start_date, end_date] } 
+      { :between => [start_date, end_date] }
     end
 
     def month_and_year_options

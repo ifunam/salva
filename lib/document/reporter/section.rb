@@ -9,7 +9,7 @@ module Reporter
       @section.title
     end
 
-    def collection(title, options)
+    def collection(title, options={})
       add_child(Leaf.new title, options)
     end
 

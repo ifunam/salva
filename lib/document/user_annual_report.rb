@@ -139,6 +139,7 @@ module UserAnnualReport
             @pdf.text [counter, record].join('. '), :size => 12, :align => :justify
             counter += 1
           end
+          @pdf.text "\n" if counter > 1
         end
       end
     end
@@ -188,3 +189,5 @@ module UserAnnualReport
     end
   end
 end
+# @annual_report = UserAnnualReport::Base.find(167, 2010)
+# @annual_report.save_pdf('/tmp/annual_report.pdf')
