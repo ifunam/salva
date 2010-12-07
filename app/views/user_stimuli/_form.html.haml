@@ -1,0 +1,19 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+
+  %div{:class => 'span-24 ui-widget last', :id => 'stimuluslevel', 'data-controller-name'=>'stimuluslevels' }
+    = f.label :stimuluslevel, :required => true
+    = f.collection_select :stimuluslevel_id, Stimuluslevel.all, :id, :name_and_type, {:prompt => true}
+    = link_to_action 'ui-icon-plus', 'Agregar estímulo', '#', :id => 'new_record'
+
+  = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 '}
+    = f.label :startmonth, :required => true
+    = select_month(Date.today, :field_name => 'startmonth', :prefix => 'user_stimulus')
+  = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 last'}
+    = f.label :endmonth, :required => true
+    = select_month(Date.today, :field_name => 'endmonth', :prefix => 'user_stimulus')
+
+

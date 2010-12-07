@@ -1,0 +1,2 @@
+class UserStimuliController < UserResourcesController
+end

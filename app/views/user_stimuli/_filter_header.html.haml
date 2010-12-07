@@ -1,0 +1,19 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+      %div{:class => 'span-8'}=t(:stimulus)
+      %div{:class => 'span-2'}=t(:startyear)
+      %div{:class => 'span-2 last'}=t(:endyear)
+
+      %div{:class => 'span-8'}= f.collection_select :stimuluslevel_id_eq,  Stimuluslevel.all, :id, :name_and_type, :prompt => true
+      %div{:class => 'span-2'}= f.text_field :startyear_eq, :size => 4
+      %div{:class => 'span-2 last'}= f.text_field :endyear_eq, :size => 4
+
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)

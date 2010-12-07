@@ -6,4 +6,8 @@ class Stimulustype < ActiveRecord::Base
   has_many :stimuluslevels
 
   validates_associated :institution
+
+  def institution_name
+    institution.name_and_parent_abbrev unless institution_id.nil?
+  end
 end

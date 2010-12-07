@@ -16,14 +16,15 @@ Salva::Application.routes.draw do
 
   resources :user_languages, :user_skills, :user_schoolarships, :other_activities, :popular_science_activities, 
             :institutional_activities, :other_teaching_activities, :technical_activities, :user_credits,
-            :user_journals, :reviews, :student_advices, :professor_advices, :institutional_advices
+            :user_journals, :reviews, :student_advices, :professor_advices, :institutional_advices,
+            :user_stimuli
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
                             :teaching_products, :technical_reports, :seminaries, :newspaper_articles,
                             :technical_products
 
   catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships, :credittypes,
-                        :newspapers, :careers, :techproducttypes
+                        :newspapers, :careers, :techproducttypes, :stimuluslevels
 
   namespace :admin do
     resources :users  do

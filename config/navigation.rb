@@ -49,6 +49,7 @@ SimpleNavigation::Configuration.run do |navigation|
     # end
 
     primary.item :profile, 'Perfil', user_schoolarships_path do |s|
+      s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path
       s.item :user_schoolarships, 'Becas', user_schoolarships_path
       s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path
       s.item :institutional_activities, 'Participación institucional', institutional_activities_path

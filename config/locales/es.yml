@@ -666,6 +666,16 @@ es:
     show:
       title: 'Información de la asesoría'
 
+  user_stimuli:
+    index:
+      title: 'Estímulos académicos'
+    new:
+      title: 'Nuevo estímulo'
+    edit:
+      title: 'Modificar información del estímulo'
+    show:
+      title: 'Información del estímulo'
+
   documenttypes:
     show:
       title: 'Tipo de documento'
@@ -1020,6 +1030,7 @@ es:
   indiviadvicetarget: 'Objetivo'
   degree: 'Grado'
   instadvicetarget: 'Objetivo'
+  stimulus: 'Estímulo'
 
   reporter:
     publications: 'Publicaciones'

@@ -1,0 +1,15 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('user_stimuli.show.title')
+  - show_for @user_stimulus do |u|
+    = u.association :stimuluslevel, :using => :name_and_type, :wrapper_html => {:class => 'span-24 last'}
+    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :startmonth, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+
+  = render :partial => 'shared/record', :object => @user_stimulus
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_user_stimulus_path(:id => @user_stimulus.id)
+  = link_as_button t(:back), user_stimuli_path
+
