@@ -886,6 +886,16 @@ es:
     edit:
       title: 'Modificar rol en proyecto'
 
+  roleinregularcourses:
+    show:
+      title: 'Rol en curso regular'
+    index:
+      title: 'Roles en curso regular'
+    new:
+      title: 'Nuevo rol en curso regular'
+    edit:
+      title: 'Modificar rol en curso regular'
+
 
   admin:
     people: 'Información personal'
@@ -1011,6 +1021,8 @@ es:
     thesis_jurors: 'Jurados de tésis'
     roleinprojects: 'Roles en proyecto'
     user_projects: 'Proyectos del usuario'
+    roleinregularcourses: 'Roles en curso regular'
+    user_regularcourses: 'Cursos regulares del usuarios'
 
 
     users:
