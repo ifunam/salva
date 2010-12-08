@@ -876,6 +876,16 @@ es:
     edit:
       title: 'Modificar rol en jurado'
 
+  roleinprojects:
+    show:
+      title: 'Rol en proyecto'
+    index:
+      title: 'Roles en proyecto'
+    new:
+      title: 'Nuevo rol en proyecto'
+    edit:
+      title: 'Modificar rol en proyecto'
+
 
   admin:
     people: 'Información personal'
@@ -999,6 +1009,8 @@ es:
     user_journals: 'Revistas de usuario'
     roleinjuries: 'Roles en jurado'
     thesis_jurors: 'Jurados de tésis'
+    roleinprojects: 'Roles en proyecto'
+    user_projects: 'Proyectos del usuario'
 
 
     users:

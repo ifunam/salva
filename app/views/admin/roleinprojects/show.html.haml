@@ -1,0 +1,10 @@
+%div{ :class => 'span-14 section_left last' }
+  %h3= t('roleinprojects.show.title')
+  - show_for @roleinproject do |u|
+
+    = u.attribute :name, :wrapper_html => {:class => 'span-14 last'}
+
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_admin_roleinproject_path(:id => @roleinproject.id)
+  = link_as_button t(:back), admin_roleinprojects_path

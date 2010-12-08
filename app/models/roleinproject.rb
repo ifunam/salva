@@ -5,4 +5,6 @@ class Roleinproject < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
+  has_many :user_projects
+
 end
