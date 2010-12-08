@@ -1,5 +1,10 @@
-%div{:id => 'footer', :class => "span-24 last"}
-  %p= "2010 Instituto de Física | Circuito de la Investigación Científica Ciudad Universitaria"
-  %p= "CP 04510 México, D.F. Teléfono: +52 (55) 56-22-50-01 ext 289"
-  %p= "Contacto: ".html_safe + mail_to('soporte@fisica.unam.mx')
-  %p= "Hecho en México con software libre | Última actualización: Marzo de 2010"
+%div{:id => 'footer'}
+  ="&copy; Instituto de Física - UNAM 2010 | ".html_safe
+  = "Circuito de la Investigación Científica, Ciudad Universitaria"
+  %br
+  = "CP 04510 México, D.F. Teléfono: +52 (55) 56-22-50-01 ext 289, "
+  = "Contacto: ".html_safe + mail_to('soporte@fisica.unam.mx')
+  %br
+  = "Reporte de problemas: ".html_safe + link_to('http://soporte.fisica.unam.mx', 'http://soporte.fisica.unam.mx', :target => '_new')
+  %br
+  = "Hecho en México con software libre | Última actualización: Diciembre de 2010"

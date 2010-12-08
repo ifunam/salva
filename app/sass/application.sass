@@ -15,14 +15,14 @@ body
   display: block-inline
   background: url("/images/header_bg.png") repeat-x scroll left top
   text-align: left
-  padding-top: 5px
+  padding-top: 10px
   height: 50px
   width: 100%
   #title
     display: inline-block
     color: white
     font-family: "georgia", "bitstream vera serif", serif
-    font-size: 1.5em
+    font-size: 1.8em
     font-weight: normal
     letter-spacing: -1px
     line-height: 1
@@ -31,9 +31,11 @@ body
     line-height: 1
     float: left
     width: 70%
-    a, a:link, a:visited, a:hover
+    a, a:link, a:visited
       text-decoration: none
       color: white
+    a:hover
+      color: yellow
   #toplinks
     float: left
     margin-top: 5px
@@ -59,21 +61,26 @@ body
   letter-spacing: 0.5px
 
 #footer
+  position:absolute
+  float: none
+  display: block-inline
   color: black
   background: url("/images/footer_gradient.png") repeat-x scroll left top #eeeeee
   border-bottom: 1px solid silver
+  padding-top: 15px
   width: 100%
-  font-size: 11pt
+  height: 70px
+  font-size: 11px
   text-align: center
   margin-left: auto
   margin-right: auto
-  line-height: 0.2
-  letter-spacing: 0.5px
-  padding: 25px 10px 10px 10px
+  a, a:visited
+    text-decoration: none
+    color: blue
 
-.container
+.body_container
   padding: 0px 1px 0px 1px
-  width: 965px
+  margin-top: 20px
   h3
     margin-top: 10px
     text-align: left
@@ -92,22 +99,23 @@ body
   background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
   text-align: left
   border: 1px solid silver 
-  -moz-border-radius: 15px
-  border-radius: 15px
-  padding: 30px
-  margin-left: 15px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  padding: 20px
+  margin-left: 5px
 
 .section
   border: 1px solid silver
-  -moz-border-radius: 15px
-  border-radius: 15px
-  padding: 30px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  padding: 20px
 
 .round_section
   border: 1px solid silver
   -moz-border-radius: 5px
   border-radius: 5px
   text-align: left
+  padding: 20px
 
 .buttons_left
   text-align: left
@@ -354,3 +362,16 @@ td.action
   -moz-border-radius: 5px 0 5px 5px
   -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
   background: #FBFBEF
+
+.browser_link
+  display: inline
+  float: none
+  min-height: 40px
+  a
+    text-decoration: none
+    padding: 10px 4px
+    margin: 0px 3px
+    text-align: middle
+
+.example
+  background-color: #fcfcba

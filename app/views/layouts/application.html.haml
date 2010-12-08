@@ -18,8 +18,6 @@
   %body
     = render :partial => 'layouts/header'
     %div{:class =>'container'}
-      // p{:class=>"notice"}= notice unless notice.nil?
-      //%p{:class=>"alert"}= alert unless alert.nil?
       = yield :layout
     %div{:id => 'dialog'}
     = render :partial => 'layouts/footer'
