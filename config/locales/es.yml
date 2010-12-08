@@ -852,9 +852,19 @@ es:
     index:
       title: 'Roles en categoría'
     new:
-      title: 'Nuevo rol eb categoría'
+      title: 'Nuevo rol en categoría'
     edit:
       title: 'Modificar rol en categoría'
+
+  roleinjournals:
+    show:
+      title: 'Rol en revistas'
+    index:
+      title: 'Roles en revista'
+    new:
+      title: 'Nuevo rol en revista'
+    edit:
+      title: 'Modificar rol en revista'
 
   admin:
     people: 'Información personal'
@@ -974,6 +984,8 @@ es:
     roleingroup: 'Roles de grupo'
     roleinjobpositions: 'Rol en categorías'
     jobpositioncategories: 'Categorias'
+    roleinjournals: 'Roles en revista'
+    user_journals: 'Revistas de usuario'
 
 
     users:
