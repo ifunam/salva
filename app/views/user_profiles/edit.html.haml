@@ -1,5 +1,5 @@
-- simple_form_for @user, :as => :user, :url => user_profile_path, :html => { :multipart => true, :id => 'save_user' } do |f|
-  = render :partial => 'form', :locals => { :f => f }
-  %div{ :class => 'span-24 buttons_left last' }
+%div{ :class => 'span-22 last' }
+  - simple_form_for @user, :as => :user, :url => user_profile_path, :html => { :multipart => true, :id => 'save_user' } do |f|
+    = render :partial => 'form', :locals => { :f => f }
     = f.submit  t(:update), :class => "ui-state-default ui-corner-all button", :id => 'save_user'
     = link_to t(:cancel), user_profile_path, :class => "ui-state-default ui-corner-all button"
