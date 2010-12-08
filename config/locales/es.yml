@@ -846,6 +846,16 @@ es:
     edit:
       title: 'Modificar rol'
 
+  roleinjobpositions:
+    show:
+      title: 'Rol en categoría'
+    index:
+      title: 'Roles en categoría'
+    new:
+      title: 'Nuevo rol eb categoría'
+    edit:
+      title: 'Modificar rol en categoría'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -962,6 +972,8 @@ es:
     user_courses: 'Cursos'
     roles: 'Roles'
     roleingroup: 'Roles de grupo'
+    roleinjobpositions: 'Rol en categorías'
+    jobpositioncategories: 'Categorias'
 
 
     users:
