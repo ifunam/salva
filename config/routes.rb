@@ -68,7 +68,7 @@ Salva::Application.routes.draw do
     end
   end
 
-  root :to => "academic_secretary/users#index"
+  root :to => "user_profiles#show"
 
   mount Resque::Server.new, :at => '/admin/resque' if Rails.env.to_s == 'production'
 end
