@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :ldap_authenticatable, :registerable,
+  devise :authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
@@ -81,6 +81,10 @@ class User < ActiveRecord::Base
 
   def fullname_or_email
      has_person? ? person.fullname : email
+  end
+
+  def firstname_and_lastname
+     has_person? ? person.firstname_and_lastname : email
   end
 
   def has_person?
