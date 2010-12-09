@@ -36,8 +36,7 @@
         .content
           .breadcrumbs
             = render_navigation(:renderer => :breadcrumbs, :join_with => ' &raquo; ')
-          %div{:class =>'container'}
-            = yield :layout
+            %div{:class =>'container'}
+              = yield :layout
         .clear_float
     %div{:id => 'dialog'}
-    = render :partial => 'layouts/footer'
