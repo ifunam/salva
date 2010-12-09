@@ -5,17 +5,8 @@
   %div{:class => 'span-12 ui-widget', :id => 'schoolarship', 'data-controller-name'=>'schoolarships' }
     = f.label :schoolarship, :required => true
     = f.select :schoolarship_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record' 
+    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
   = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
-
-  = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :startmonth, :required => true
-    = select_month(Date.today, :field_name => 'startmonth', :prefix => 'user_schoolarship')
-
-  = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :endmonth, :required => true
-    = select_month(Date.today, :field_name => 'endmonth', :prefix => 'user_schoolarship')
-
-  = f.input :amount, :as => :string, :input_html => { :size => '10', :autocomplete => "off" }, :wrapper_class => 'span-24 last'
+  = f.input :start_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date'}, :wrapper_class => 'span-6'
+  = f.input :end_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date' }, :wrapper_class => 'span-6'
+  = f.input :amount, :as => :string, :input_html => { :size => '10' }, :wrapper_class => 'span-12  last'

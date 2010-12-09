@@ -19,7 +19,7 @@
       = f.label :maritalstatus_id
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true
     %div{:class=> 'span-6 last'}
-      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10 }
+      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
   %div{ :class => 'span-22 last' }
     %b='Lugar de nacimiento'
   %div{ :class => 'span-22 last' }
