@@ -4,10 +4,9 @@
     = u.association :schoolarship, :using => :name_and_institution_abbrev, :wrapper_html => {:class => 'span-12'}
     = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12 last'}
 
-    = u.attribute :startyear, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :startmonth, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endmonth, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    = u.attribute :start_date, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :end_date, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :amount, :wrapper_html => {:class => 'span-12 last'}
 
   = render :partial => 'shared/record', :object => @user_schoolarship
 
