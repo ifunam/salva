@@ -28,7 +28,7 @@ module Reporter
       @title = title
       @class_name = options[:class_name] || title
       @scope = options[:scope]
-      @date_format = options[:date_format] || false
+      @date_format = options[:date_format] || :month_and_year
     end
 
     def search(options={})
@@ -37,8 +37,8 @@ module Reporter
       end
     end
 
-    def date_format?
-      @date_format
+    def date_options
+      @date_format if [:date, :month_and_year, :only_year].include? @date_format.to_sym
     end
 
     private

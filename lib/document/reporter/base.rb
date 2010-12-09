@@ -19,7 +19,7 @@ module Reporter
      end
 
      create_section :popular_science do |s|
-       s.collection :newspaper_articles, :class_name => 'Newspaperarticle', :date_format => true 
+       s.collection :newspaper_articles, :class_name => 'Newspaperarticle', :date_format => :date
        s.collection :popular_science_works, :class_name => 'Genericwork', :scope => :popular_science
      end
     end
@@ -66,8 +66,7 @@ module Reporter
     end
 
     def collection(subsection)
-      options = subsection.date_format? ? date_options : month_and_year_options
-      subsection.search(options.merge @attributes)
+      subsection.search(date_options(subsection).merge @attributes)
     end
 
     def extract_options(attributes)
@@ -76,12 +75,20 @@ module Reporter
       attributes
     end
 
-    def date_options
+    def date_options(subsection)
+      self.send subsection.date_options
+    end
+
+    def date
       { :between => [start_date, end_date] }
     end
 
-    def month_and_year_options
+    def month_and_year
        { :since => [ start_date.year, start_date.month ], :until => [ end_date.year, end_date.month ] }
+    end
+
+    def only_year
+      { :between => [start_date.year, end_date.year] }
     end
 
     def start_date
