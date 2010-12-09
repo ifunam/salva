@@ -48,58 +48,57 @@ SimpleNavigation::Configuration.run do |navigation|
       # sub_nav.item :key_2_1, 'name', url, options
     # end
 
-    primary.item :profile, 'Perfil', user_profile_path do |s|
-      s.item :user_profile, 'Información general', user_profile_path
-      s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path
-      s.item :user_schoolarships, 'Becas', user_schoolarships_path
-      s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path
-      s.item :institutional_activities, 'Participación institucional', institutional_activities_path
-      s.item :user_languages, 'Idiomas', user_languages_path
-      s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path
+    primary.item :profile, 'Perfil', user_profile_path, :highlights_on => /^\/$/ do |s|
+      s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
+      s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
+
+      s.item :user_schoolarships, 'Becas', user_schoolarships_path, :highlights_on => /\/user_schoolarships/
+      s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path, :highlights_on => /\/user_credits/
+      s.item :institutional_activities, 'Participación institucional', institutional_activities_path, :highlights_on => /\/institutional_activities/
+      s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
+      s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
     end
 
     primary.item :conferences, 'Congresos', seminaries_path do |s|
-      s.item :seminaries, 'Seminarios y conferencias', seminaries_path
+      s.item :seminaries, 'Seminarios y conferencias', seminaries_path, :highlights_on => /\/seminaries/
     end
 
     primary.item :publications, 'Publicaciones', articles_path do |s|
-      s.item :articles, 'Artículos publicados', articles_path
-      s.item :unpublished_articles, 'Artículos enviados o aceptados', unpublished_articles_path
-      s.item :technical_reports, 'Reportes técnicos', technical_reports_path
-      s.item :reviews, 'Reseñas', reviews_path
+      s.item :articles, 'Artículos publicados', articles_path, :highlights_on => /\/articles/
+      s.item :unpublished_articles, 'Artículos enviados o aceptados', unpublished_articles_path, :highlights_on => /\/unpublished_articles/
+      s.item :technical_reports, 'Reportes técnicos', technical_reports_path, :highlights_on => /\/technical_reports/
+      s.item :reviews, 'Reseñas', reviews_path, :highlights_on => /\/reviews/
     end
 
     primary.item :refereed_colaborations, 'Colaboración en publicaciones', user_journals_path do |s|
-      s.item :user_journals, 'Colaboración en revistas', user_journals_path
+      s.item :user_journals, 'Colaboración en revistas', user_journals_path, :highlights_on => /\/user_journals/
     end
 
     primary.item :popular_science, 'Divulgación', newspaper_articles_path do |s|
-      s.item :newspaper_articles, 'Artículos periodísticos', newspaper_articles_path
-      s.item :popular_science_works, 'Trabajos de divulgación', popular_science_works_path
+      s.item :newspaper_articles, 'Artículos periodísticos', newspaper_articles_path, :highlights_on => /\/newspaper_articles/
+      s.item :popular_science_works, 'Trabajos de divulgación', popular_science_works_path, :highlights_on => /\/popular_science_works/
     end
 
     primary.item :outreach_activities, 'Vinculación', professor_advices_path do |s|
-      s.item :professor_advices, 'Asesoría de personal académico', professor_advices_path
-      s.item :institutional_advices, 'Asesoría a instituciones', institutional_advices_path
-      s.item :outreach_works, 'Trabajos de vinculación', outreach_works_path
+      s.item :professor_advices, 'Asesoría de personal académico', professor_advices_path, :highlights_on => /\/professor_advices/
+      s.item :institutional_advices, 'Asesoría a instituciones', institutional_advices_path, :highlights_on => /\/institutional_advices/
+      s.item :outreach_works, 'Trabajos de vinculación', outreach_works_path, :highlights_on => /\/outreach_works/
     end
 
     primary.item :teaching, 'Docencia', other_teaching_activities_path do |s|
-      s.item :other_teaching_activities, 'Actividades de docencia', other_teaching_activities_path
-      s.item :student_advices, 'Asesoría a estudiantes', student_advices_path
-      s.item :teaching_products, 'Productos de docencia', teaching_products_path
+      s.item :other_teaching_activities, 'Actividades de docencia', other_teaching_activities_path, :highlights_on => /\/other_teaching_activities/
+      s.item :student_advices, 'Asesoría a estudiantes', student_advices_path, :highlights_on => /\/student_advices/
+      s.item :teaching_products, 'Productos de docencia', teaching_products_path, :highlights_on => /\/teaching_products/
     end
 
     primary.item :technical_activities, 'Actividades técnico-académicas', technical_activities_path do |s|
-      s.item :technical_activities, 'Actividades técnicas', technical_activities_path
-      s.item :technical_products, 'Productos técnicos', technical_products_path
+      s.item :technical_activities, 'Actividades técnicas', technical_activities_path, :highlights_on => /\/technical_activities/
+      s.item :technical_products, 'Productos técnicos', technical_products_path, :highlights_on => /\/technical_products/
     end
 
-    #primary.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path
-
     primary.item :others, 'Otros actividades o productos', other_activities_path do |s|
-      s.item :other_activities, 'Otras actividades', other_activities_path
-      s.item :other_works, 'Otros productos', other_works_path
+      s.item :other_activities, 'Otras actividades', other_activities_path, :highlights_on => /\/other_activities/
+      s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
