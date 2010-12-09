@@ -1,10 +1,11 @@
 require 'barby'
 require 'barby/outputter/rmagick_outputter'
+require 'document/user_profile'
 class IdentificationCard
   include Magick
 
-  def initialize(user)
-    @user = user
+  def initialize(user_id)
+    @user_profile = UserProfile.find(user_id)
   end
 
   def front
@@ -35,8 +36,8 @@ class IdentificationCard
   end
 
   def add_fullname_and_email!
-    add_text!(@user.email, 35, 260)
-    add_text!(@user.fullname_or_email, 290, 140, 28, BoldWeight)
+    add_text!(@user_profile.email, 35, 260)
+    add_text!(@user_profile.fullname, 290, 140, 28, BoldWeight)
   end
 
   def add_category!
@@ -45,37 +46,25 @@ class IdentificationCard
 
   def add_department_and_user_incharge!
     add_text!('Departamento: ', 35, 330, 24, BoldWeight)
-    add_text!(@user.adscription_name, 210, 330)
-    unless @user.user_incharge.nil?
+    add_text!(@user_profile.adscription_name, 210, 330)
+    unless @user_profile.responsible_academic.nil?
       add_text!('Responsable académico: ', 35, 360, 24, BoldWeight)
-      add_text!(@user.user_incharge_fullname, 210, 360)
+      add_text!(@user_profile.responsible_academic, 210, 360)
     end
   end
 
   def add_vigency!
     add_text!('Vigencia:', 30, 485, 24, BoldWeight)
-    jobposition_start_date = jobposition_end_date = '-'
-    unless @user.jobposition_as_postdoctoral.nil?
-      jobposition_start_date = I18n.l(@user.jobposition_as_postdoctoral.start_date, :format => :long_without_day)
-      unless @user.jobposition_as_postdoctoral.end_date.nil?
-        jobposition_end_date = I18n.l(@user.jobposition_as_postdoctoral.end_date, :format => :long_without_day)
-      end
-    end
-    add_text! "Del #{jobposition_start_date} al #{jobposition_end_date}", 145, 485, 24
+    add_text! @user_profile.jobposition_period, 145, 485, 24
   end
-  
+
   def user_image
-    image_path = Rails.root.to_s + "/public/images/avatar_missing_icon.png"
-    if !@user.person.nil? and !@user.person.image.nil?
-      file_path = Rails.root.to_s + @user.person.image.file.url(:card)
-      image_path = file_path if File.exist? file_path
-    end
-    pic = Magick::Image.read(image_path).first
+    pic = Magick::Image.read(@user_profile.image_path).first
     pic.resize(220,230).border(1,1,"#000000").quantize(256, Magick::GRAYColorspace)
   end
 
   def barcode_image
-    id = @user.user_identification.nil? ? @user.user_identification.descr : @user.login
-    Barby::Code39.new(@user.user_identification.descr).to_image
+    code = @user_profile.person_id.nil? ? @user_profile.login : @user_profile.person_id
+    Barby::Code39.new(code).to_image
   end
 end

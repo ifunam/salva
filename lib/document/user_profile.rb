@@ -41,6 +41,10 @@ class UserProfile
     @user.email
   end
 
+  def login
+    @user.login
+  end
+
   def person_id
     @user.user_identification.descr.upcase unless @user.user_identification.nil?
   end
@@ -71,5 +75,23 @@ class UserProfile
 
   def responsible_academic
     @user.user_incharge.fullname_or_email unless @user.user_incharge_id.nil?
+  end
+
+  def jobposition_period
+    start_date = end_date = nil
+    unless @user.jobposition.nil?
+      start_date =  @user.jobposition.start_date
+      end_date = @user.jobposition.end_date
+    end
+    [start_date, end_date].compact.join('- ')
+  end
+
+  def image_path
+    image_path = Rails.root.to_s + "/public/images/avatar_missing_icon.png"
+    unless @user.person.nil? or @user.person.image.nil?
+      file_path = Rails.root.to_s + @user.person.image.file.url(:card)
+      image_path = file_path if File.exist? file_path
+    end
+    image_path
   end
 end

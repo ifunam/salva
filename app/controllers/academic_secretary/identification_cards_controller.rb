@@ -10,7 +10,7 @@ class AcademicSecretary::IdentificationCardsController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       format.jpg do
-        send_data IdentificationCard.new(@user).front, :filename => "#{@user.login}_front.jpg", :type => 'image/jpeg', :disposition => 'attachment'  
+        send_data IdentificationCard.new(@user.id).front, :filename => "#{@user.login}_front.jpg", :type => 'image/jpeg', :disposition => 'attachment'
       end
     end
   end
@@ -19,11 +19,11 @@ class AcademicSecretary::IdentificationCardsController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       format.jpg do
-        send_data IdentificationCard.new(@user).back, :filename => "#{@user.login}_back.jpg", :type => 'image/jpeg', :disposition => 'attachment'  
+        send_data IdentificationCard.new(@user.id).back, :filename => "#{@user.login}_back.jpg", :type => 'image/jpeg', :disposition => 'attachment'
       end
     end
   end
-  
+
   def edit
     respond_with(@person = Person.find(params[:id]))
   end
