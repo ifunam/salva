@@ -146,6 +146,9 @@ $(document).ready(function() {
         filter_by_journal_name();
     });
 
+    current_year = new Date().getFullYear();
+    date_picker_for('.date', (current_year -20), current_year);
+
     set_button_behaviour();
 });
 

@@ -99,6 +99,10 @@ $(document).ready(function() {
 
     $( ".autocompleted_select" ).combobox();
 
+    current_year = new Date().getFullYear();
+    date_picker_for('.birthdate', (current_year - 100), (current_year - 15));
+    date_picker_for('.date', (current_year -20), current_year);
+
     set_button_behaviour();
 });
 

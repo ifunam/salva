@@ -44,3 +44,17 @@ function remote_collection_list(href, params) {
     }
     $.ajax(options);
 }
+
+function date_picker_for(dom_id, start_year, end_year) {
+    $(dom_id).datepicker({
+        changeYear: true,
+        changeMonth: true,
+        yearRange: start_year+':'+end_year,
+        dateFormat: 'dd-mm-yy',
+        defaultDate: '01-01-'+end_year,
+        showOn: 'both',
+        buttonImageOnly: true,
+        buttonImage: '/images/calendar.gif'
+    });
+}
+
