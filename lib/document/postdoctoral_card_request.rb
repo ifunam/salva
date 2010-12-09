@@ -4,7 +4,7 @@ class PostdoctoralCardRequest < Prawn::Document
     options[:template] = Rails.root.to_s + '/lib/templates/documents/postdoctoral_card_template.pdf'
     if options.has_key? :user_id
       @user_profile = UserProfile.new(options[:user_id])
-      options.delete :user
+      options.delete :user_id
     end
     super
   end
