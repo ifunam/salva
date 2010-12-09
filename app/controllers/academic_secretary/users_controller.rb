@@ -9,7 +9,7 @@ class AcademicSecretary::UsersController < ApplicationController
   def index
     respond_with(@users = User.postdoctoral.fullname_asc.paginated_search(params)) 
   end
-  
+
   def list
     @users = User.postdoctoral.fullname_asc.search(params[:search])
     respond_to do |format|
@@ -34,7 +34,7 @@ class AcademicSecretary::UsersController < ApplicationController
   def show
     respond_with(@user = User.find(params[:id])) do |format|
       format.pdf do
-        send_data PostdoctoralCardRequest.new(:user => @user).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
+        send_data PostdoctoralCardRequest.new(:user_id => @user.id).to_pdf, :filename => @user.login + '.pdf', :type => 'application/pdf'
       end
     end
   end

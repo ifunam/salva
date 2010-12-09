@@ -11,6 +11,10 @@ class UserProfile
     @user.fullname_or_login
   end
 
+  def firstname_and_lastname
+    @user.firstname_and_lastname
+  end
+
   def author_name
     @user.author_name
   end
@@ -83,7 +87,7 @@ class UserProfile
       start_date =  @user.jobposition.start_date
       end_date = @user.jobposition.end_date
     end
-    [start_date, end_date].compact.join('- ')
+    [start_date, end_date].compact.join(' - ')
   end
 
   def image_path

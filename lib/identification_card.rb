@@ -54,8 +54,7 @@ class IdentificationCard
   end
 
   def add_vigency!
-    add_text!('Vigencia:', 30, 485, 24, BoldWeight)
-    add_text! @user_profile.jobposition_period, 145, 485, 24
+    add_text! @user_profile.jobposition_period, 105, 485, 24
   end
 
   def user_image
