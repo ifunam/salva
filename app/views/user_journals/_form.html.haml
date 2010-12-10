@@ -14,8 +14,8 @@
   = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6 '}
     = f.label :startmonth, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+    = select_month(Date.today, :field_name => 'startmonth', :prefix => 'user_journal')
   = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6 last'}
     = f.label :endmonth, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+    = select_month(Date.today, :field_name => 'endmonth', :prefix => 'user_journal')

@@ -9,5 +9,5 @@
   = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6 last'}
     = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
+    = select_month(Date.today, :field_name => 'month', :prefix => 'activity')
 
