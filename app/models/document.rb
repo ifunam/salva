@@ -3,9 +3,7 @@ class Document < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :documenttype
-  #mount_uploader :file, DocumentUploader
+  belongs_to :approved_by, :class_name => 'User'
 
-  # FIXIT: Remove user_documents and users references
-  has_many :user_documents
-  has_many :users, :through => :user_documents
+  #mount_uploader :file, DocumentUploader
 end
