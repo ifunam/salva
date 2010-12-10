@@ -1,7 +1,8 @@
 class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
   def self.up
     base_path = Rails.root.to_s + '/public/uploads'
-    UserDocument.select('id, document_id, user_id, documenttype_id, created_on, updated_on').all.each do |record|
+    UserDocument.select('id, document_id, user_id, documenttype_id, user_incharge_id, 
+                        created_on, updated_on').all.each do |record|
       path = base_path + "/#{record.user.login}"
       if record.document.documenttype.name == 'Informe anual de actividades'
         path = base_path + '/annual_reports/' + record.document.title.to_s
@@ -21,9 +22,12 @@ class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
         end
       end
       puts "Inserting document: :user_id => #{record.user_id}, :file => #{filename}"
+      signature = Digest::MD5.hexdigest(filename)
       @document = Document.create(:user_id => record.user_id, :documenttype_id => record.documenttype_id,
                                   :registered_by_id => record.user_id, :created_on => record.created_on,
-                                  :updated_on => record.updated_on, :file => filename)
+                                  :updated_on => record.updated_on, :file => filename,
+                                  :approved_by_id => record.user_incharge_id, :approved => true,
+                                  :signature => signature)
     end
   end
 
