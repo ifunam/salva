@@ -28,7 +28,7 @@ module Reporter
       @title = title
       @class_name = options[:class_name] || title
       @scope = options[:scope]
-      @date_format = options[:date_format] || :month_and_year
+      @date_style = options[:date_style] || :month_and_year
     end
 
     def search(options={})
@@ -37,8 +37,15 @@ module Reporter
       end
     end
 
-    def date_options
-      @date_format if [:date, :month_and_year, :only_year].include? @date_format.to_sym
+    def all
+      scoped_class.all.collect do |record|
+        record.respond_to?(:as_text) ? record.as_text : "Define as_text method in #{record.class}"
+      end
+    end
+
+    # date_style: This method is useful to know what search options must be used in the reporter
+    def date_style
+      @date_style if [:date, :date_range, :month_and_year, :only_year, :date_disabled].include? @date_style.to_sym
     end
 
     private
