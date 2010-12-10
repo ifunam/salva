@@ -1,5 +1,5 @@
 %h3= t('.title')
-= simple_form_for @user_journal, :user_journal, :url => other_work_path, :html => { :multipart => true, :id => 'record'} do |f|
+= simple_form_for @user_journal, :user_journal, :url => review_path, :html => { :multipart => true, :id => 'record'} do |f|
   = render :partial => 'form', :locals => { :f => f }
   %div{ :class => 'span-24 buttons_left last' }
     = f.submit  t(:update), :class => "ui-state-default ui-corner-all button"

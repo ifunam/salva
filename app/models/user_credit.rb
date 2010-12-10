@@ -6,6 +6,6 @@ class UserCredit < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
   def as_text
-    [descr, 'Créditos en: ' +credittype.name, 'Año: ' + year.to_s].join(', ')
+    [descr, 'Créditos en: ' +credittype.name, date].join(', ')
   end
 end
