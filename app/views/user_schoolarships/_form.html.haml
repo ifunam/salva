@@ -2,11 +2,11 @@
 
 %div{ :class => 'span-24 section_left append-bottom last' }
 
-  %div{:class => 'span-12 ui-widget', :id => 'schoolarship', 'data-controller-name'=>'schoolarships' }
+  %div{:class => 'span-6 ui-widget', :id => 'schoolarship', 'data-controller-name'=>'schoolarships' }
     = f.label :schoolarship, :required => true
-    = f.select :schoolarship_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
-  = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+    = f.collection_select :schoolarship_id, Schoolarship.all, :id, :name, {:prompt => true}
+    = link_to_action 'ui-icon-plus', 'Agregar beca', '#', :id => 'new_record'
+  = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-18 last'
   = f.input :start_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date'}, :wrapper_class => 'span-6'
   = f.input :end_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date' }, :wrapper_class => 'span-6'
   = f.input :amount, :as => :string, :input_html => { :size => '10' }, :wrapper_class => 'span-12  last'
