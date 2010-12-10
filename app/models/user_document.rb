@@ -8,5 +8,6 @@ class UserDocument < ActiveRecord::Base
   validates_inclusion_of :status, :in => [true, false]
 
   belongs_to :document
+  belongs_to :documenttype
   belongs_to :user
 end
