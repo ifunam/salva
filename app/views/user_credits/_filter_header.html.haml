@@ -3,8 +3,11 @@
     %th{:class => 'ui-state-default', :style => 'width: 5%;'}
       =t(:id)
     %th{:class => 'ui-state-default', :style => 'width: 75%;'}
-      %div{:class => 'span-12 last'}=t(:credittype)
-      %div{:class => 'span-12'}= f.collection_select :credittype_id_eq,  Skilltype.all, :id, :name, :prompt => true
+      %div{:class => 'span-8'}=t(:credittype)
+      %div{:class => 'span-4 last'}=t(:year)
+
+      %div{:class => 'span-8'}= f.collection_select :credittype_id_eq,  Credittype.all, :id, :name, :prompt => true
+      %div{:class => 'span-4 last'}= f.text_field :year_eq, :size => 4
     %th{:class => 'ui-state-default', :style => 'width: 100px;'}
       =t(:show)
     %th{:class => 'ui-state-default', :style => 'width: 100px;'}

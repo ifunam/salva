@@ -6,7 +6,7 @@
 
   %div{:class => 'span-12 ui-widget last', :id => 'credittype', 'data-controller-name'=>'credittypes' }
     = f.label :credittype, :required => true
-    = f.select :credittype_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = f.collection_select :credittype_id, Credittype.all, :id, :name, {:prompt => true}
     = link_to_action 'ui-icon-plus', 'Agregar tipo de agradecimiento', '#', :id => 'new_record'
 
   %div{ :class => 'span-24  last' }
@@ -16,4 +16,4 @@
   = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
   %div{:class => 'span-6'}
     = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
+    = select_month(Date.today, :field_name => 'month', :prefix => 'user_credit')
