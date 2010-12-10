@@ -21,6 +21,15 @@ module MetaDateExtension
         subclass.class_eval do
           start_end_date_scopes
         end
+      elsif subclass.column_names.include? 'start_date' and subclass.column_names.include? 'end_date'
+        subclass.send :include, MetaDateExtension::DateRangeMethods
+        subclass.class_eval do
+          date_range_scopes
+        end
+      elsif subclass.column_names.include? 'year' and !subclass.column_names.include? 'month'
+        subclass.class_eval do
+          only_year_scopes
+        end
       end
     end
 
@@ -30,18 +39,32 @@ module MetaDateExtension
        scope :since, lambda { |year, month| where(:startyear >= year, :startmonth >= month) } unless respond_to? :since
        scope :until, lambda { |year, month| where(:endyear <= year, :endmonth <= month) } unless respond_to? :until
        date_search_methods
-     end
+    end
 
-     def simple_date_scopes
-       scope :since, lambda { |year, month| where(:year >= year, :month >= month) } unless respond_to? :since
-       scope :until, lambda { |year, month| where(:year <= year, :month <= month) } unless respond_to? :until
-       date_search_methods
-     end
+    def simple_date_scopes
+      scope :since, lambda { |year, month| where(:year >= year, :month >= month) } unless respond_to? :since
+      scope :until, lambda { |year, month| where(:year <= year, :month <= month) } unless respond_to? :until
+      date_search_methods
+    end
 
-     def date_search_methods
-       search_methods :since, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
-       search_methods :until, :splat_param => true, :type => [:integer, :integer] if respond_to? :until
-     end
+    def date_range_scopes
+      scope :since, lambda { |date| where(:start_date >= date) } unless respond_to? :since
+      scope :until, lambda { |date| where(:end_date <= date) } unless respond_to? :until
+      search_methods :since, :until
+    end
+
+    def only_year_scopes
+      scope :since, lambda { |year| where(:year >= year ) } unless respond_to? :since
+      scope :until, lambda { |year| where(:year <= year) } unless respond_to? :until
+      scope :between, lambda { |start_year, end_year| since(start_year).until(end_year)}
+      search_methods :since, :until
+      search_methods :between, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
+    end
+
+    def date_search_methods
+      search_methods :since, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
+      search_methods :until, :splat_param => true, :type => [:integer, :integer] if respond_to? :until
+    end
   end
 
   module DateMethods
@@ -72,6 +95,20 @@ module MetaDateExtension
 
     def date
       localize_date(year, month)
+    end
+  end
+
+  module DateRangeMethods
+    def start_date
+      if attributes['start_date'].is_a? Date
+        I18n.t(:start_date) + ': ' +  I18n.localize(attributes['start_date'], :format => :long_without_day)
+      end
+    end
+
+    def end_date
+      if attributes['end_date'].is_a? Date
+        I18n.t(:end_date) + ': ' +  I18n.localize(attributes['end_date'], :format => :long_without_day)
+      end
     end
   end
 end
