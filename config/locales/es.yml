@@ -895,7 +895,9 @@ es:
       title: 'Nuevo rol en curso regular'
     edit:
       title: 'Modificar rol en curso regular'
-
+  user_annual_reports:
+    index:
+      title: 'Informe anual de actividades'
 
   admin:
     people: 'Información personal'
@@ -1055,6 +1057,7 @@ es:
   move: 'Mover'
   select: 'Seleccionar'
   drop_items: 'Arrastre los registros al elemento donde desea asociarlos'
+  download: 'Descargar'
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'
