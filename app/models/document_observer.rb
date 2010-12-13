@@ -16,4 +16,5 @@ class DocumentObserver < ActiveRecord::Observer
       Notifier.rejected_document(document.id).deliver
     end
   end
+
 end
