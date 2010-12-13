@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
-
+  validates_uniqueness_of :documenttype_id, :scope => [:user_id]
   belongs_to :user
   belongs_to :documenttype
   belongs_to :approved_by, :class_name => 'User'
