@@ -51,7 +51,7 @@ class Notifier < ActionMailer::Base
     mail(:to => @document.user.email, :cc => ['salva@fisica.unam.mx', @document.approved_by.email],
          :subject => @document.documenttype.name) do |format|
       format.text
-      attachments[filename] = @document.file if File.exist? @document.file
+      attachments[filename] = File.read(@document.file) if File.exist? @document.file
     end
   end
 
@@ -62,7 +62,7 @@ class Notifier < ActionMailer::Base
     mail(:to => @document.approved_by.email, :cc => 'salva@fisica.unam.mx',
          :subject => @document.documenttype.name) do |format|
       format.text
-      attachments[filename] = @document.file if File.exist? @document.file
+      attachments[filename] = File.read(@document.file) if File.exist? @document.file
     end
   end
   
@@ -72,7 +72,7 @@ class Notifier < ActionMailer::Base
     mail(:to => @document.user.email, :cc => 'salva@fisica.unam.mx',
          :subject => @document.documenttype.name) do |format|
       format.text
-      attachments[filename] = @document.file if File.exist? @document.file
+      attachments[filename] = File.read(@document.file) if File.exist? @document.file
     end
   end
   
