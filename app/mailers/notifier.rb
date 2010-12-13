@@ -82,7 +82,7 @@ class Notifier < ActionMailer::Base
   # FIX IT: Move this method into a new Worker Class
   def build_document(document_id, received=false)
     @document = Document.find(document_id)
-    @report = UserAnnualReport.find(@document.user_id, @document.documenttype.year)
+    @report = UserAnnualReport::Base.find(@document.user_id, @document.documenttype.year)
     @report.code = @document.ip_address
     @report.signature = Digest::MD5.hexdigest(@document.file)
     @report.received = true if @document.approved?
