@@ -95,7 +95,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :technical_products, 'Productos técnicos', technical_products_path, :highlights_on => /\/technical_products/
     end
 
-    primary.item :others, 'Otras actividades o productos', other_activities_path do |s|
+    primary.item :others, 'Otros', other_activities_path do |s|
       s.item :other_activities, 'Otras actividades', other_activities_path, :highlights_on => /\/other_activities/
       s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
