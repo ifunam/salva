@@ -1,4 +1,8 @@
 %tr{:class => cycle('record-odd', 'record-even')}
   %td= record.documenttype.name
   %td
-    = link_to_action 'ui-icon-circle-arrow-s', t(:download), record.url, :target => '_new'
+    - if File.exist? record.file.to_s
+      = link_to_action 'ui-icon-circle-arrow-s', t(:download), record.url, :target => '_new'
+    - else
+      = 'En proceso...'
+ 

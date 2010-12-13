@@ -1,6 +1,6 @@
 %div{:class => 'span-24 last'}
   %div{ :class => 'span-20 push-2  last'}
-    %div{ :class => 'span-8 section' }
+    %div{ :class => 'span-8' }
       %h3 Inicio de sesión
       = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
         %div{:class =>'span-3'}
@@ -22,7 +22,7 @@
         %br
         %b='Contraseña: '
         = '*'*8
-  %div{ :class => 'span-20 round_section push-2 last'}
+  %div{ :class => 'span-18  push-2 last'}
     %p= 'Esta aplicación funciona con las versiones más recientes de los siguientes navegadores:'
     %div{:class => 'browser_link'}
       = link_to image_tag('safari.png'), 'http://www.apple.com/safari/', :title => 'Safari 5.x'

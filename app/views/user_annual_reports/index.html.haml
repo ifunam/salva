@@ -5,4 +5,7 @@
   %tbody{:id =>'collection'}
     = render :partial => 'record', :collection => @documents
 %div{ :class => 'span-24 buttons_left last' }
-  // = link_as_button t(:new), new_review_path
+  - @document_type = Documenttype.annual_reports.active.first
+  - unless @document_type.nil?
+    - if Document.where(:user_id => current_user.id, :documenttype_id => @document_type.id).first.nil?
+      = link_as_button t(:send_annual_report), user_annual_report_path(:id => current_user.id, :year => @document_type.year)

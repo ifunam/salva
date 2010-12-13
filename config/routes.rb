@@ -21,7 +21,9 @@ Salva::Application.routes.draw do
             :user_journals, :reviews, :student_advices, :professor_advices, :institutional_advices,
             :user_stimuli
 
-  resources :user_annual_reports
+  resources :user_annual_reports do
+    get :send_report, :on => :member
+  end
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works, :other_works,
                             :teaching_products, :technical_reports, :seminaries, :newspaper_articles,

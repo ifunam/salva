@@ -1058,6 +1058,8 @@ es:
   select: 'Seleccionar'
   drop_items: 'Arrastre los registros al elemento donde desea asociarlos'
   download: 'Descargar'
+  preview_pdf: 'Vista previa en PDF'
+  send_annual_report: 'Enviar informe anual'
   id: 'Id'
   delete_confirm_question: '¿ Desea borrar este registro ?'
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'
