@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  include Resque::Mailer
+  #include Resque::Mailer
 
   default :from => "salva@fisica.unam.mx"
 
@@ -41,6 +41,58 @@ class Notifier < ActionMailer::Base
          :subject => 'SALVA - Estado de usuario actualizado') do |format|
       format.text
     end
+  end
+  
+  def approved_document(document_id)
+    @document = Document.find(document_id)
+    build_document(document_id, received=false)
+    mail(:to => @document.user.email, :cc => ['salva@fisica.unam.mx', @document.approved_by.email],
+         :subject => @document.documenttype.name) do |format|
+      format.text
+      attachments[filename] = @document.file if File.exist? @document.file
+    end
+  end
+
+  def approval_request_from_user(document_id)
+    @document = Document.find(document_id)
+    build_document(document_id, received=false)
+    mail(:to => @document.approved_by.email, :cc => 'salva@fisica.unam.mx',
+         :subject => @document.documenttype.name) do |format|
+      format.text
+      attachments[filename] = @document.file if File.exist? @document.file
+    end
+  end
+  
+  def approval_request_to_user_incharge(document_id)
+    @document = Document.find(document_id)
+    mail(:to => @document.user.email, :cc => 'salva@fisica.unam.mx',
+         :subject => @document.documenttype.name) do |format|
+      format.text
+      attachments[filename] = @document.file if File.exist? @document.file
+    end
+  end
+  
+  def rejected_document(document_id)
+    @document = Document.find(document_id)
+    mail(:to => @document.user.email, :cc => ['salva@fisica.unam.mx', @document.approved_by.email],
+         :subject => @document.documenttype.name)
+  end
+  
+  private
+  # FIX IT: Move this method into a new Worker Class
+  def build_document(document_id, received=false)
+    document = Document.find(document_id)
+    base_path = Rails.root.to_s + '/public/uploads'
+    path = base_path + '/annual_reports/'
+    system "mkdir -p #{path}" unless File.exist? path
+    filename = path + "/#{document.user.login}.pdf"
+    File.delete filename unless File.exist? filename    
+    year = @documment.docummenttype.year
+    @report = UserAnnualReport.find(@document.user_id, @documment.docummenttype.year)
+    @report.code = @document.ip_address
+    @report.signature = Digest::MD5.hexdigest(filename)
+    @report.received = true if @document.approved?
+    @report.save_pdf(filename)
   end
 
   # TODO: Implement the welcome message for new users
