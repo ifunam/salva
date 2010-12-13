@@ -45,7 +45,7 @@ class Notifier < ActionMailer::Base
   
   def approved_document(document_id)
     @document = Document.find(document_id)
-    build_document(document_id, received=false)
+    build_document(document_id, true)
     mail(:to => @document.user.email, :cc => ['salva@fisica.unam.mx', @document.approved_by.email],
          :subject => @document.documenttype.name) do |format|
       format.text
@@ -55,7 +55,7 @@ class Notifier < ActionMailer::Base
 
   def approval_request_from_user(document_id)
     @document = Document.find(document_id)
-    build_document(document_id, received=false)
+    build_document(document_id)
     mail(:to => @document.approved_by.email, :cc => 'salva@fisica.unam.mx',
          :subject => @document.documenttype.name) do |format|
       format.text
