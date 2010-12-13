@@ -67,6 +67,7 @@ class Notifier < ActionMailer::Base
   
   def approval_request_to_user_incharge(document_id)
     @document = Document.find(document_id)
+    filename = File.basename(@document.file) if File.exist? @document.file
     mail(:to => @document.user.email, :cc => 'salva@fisica.unam.mx',
          :subject => @document.documenttype.name) do |format|
       format.text
