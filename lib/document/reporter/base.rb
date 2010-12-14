@@ -3,8 +3,10 @@ module Reporter
   class Base
     @@body = Section.new
     def self.build_sections
+
       create_section :profile do |s|
         s.collection :user_stimuli
+        s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :user_schoolarships, :date_style => :date_range
         s.collection :user_credits
         s.collection :institutional_activities

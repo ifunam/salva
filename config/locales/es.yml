@@ -895,6 +895,23 @@ es:
       title: 'Nuevo rol en curso regular'
     edit:
       title: 'Modificar rol en curso regular'
+
+  course_attendees:
+    index:
+      title: 'Cursos recibidos'
+      my_courses: 'Listar mis cursos recibidos'
+      not_my_courses: 'Listar cursos recibidos registrados por otros usuarios'
+    not_mine:
+      title: 'Cursos recibidos registrados por otros usuarios'
+      my_courses: 'Listar mis cursos recibidos'
+      not_my_courses: 'Listar cursos recibidos registrados por otros usuarios'
+    new:
+      title: 'Nuevo curso recibido'
+    edit:
+      title: 'Modificar curso recibido'
+    show:
+      title: 'Curso recibido'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
@@ -1061,14 +1078,21 @@ es:
   preview_pdf: 'Vista previa en PDF'
   send_annual_report: 'Enviar informe anual'
   id: 'Id'
+  name: 'Nombre'
+  courseduration: 'Duración'
+  modality: 'Modalidad'
   delete_confirm_question: '¿ Desea borrar este registro ?'
   delete_all_confirm_question: '¿ Desea borrar estos registros ?'
   delete_all_selected: 'Borrar registros seleccionados'
   destroy_all_empty_associations: 'Borrar registros sin asociaciones'
   add_author: 'Asociarse como autor'
   del_author: 'Quitarse como autor'
+  add_attendee: 'Asociarse como asistente'
+  del_attendee: 'Quitarse como asistente'
   associated: Usted ya esta asociado como autor
   not_associated: Usted no esta asociado como autor
+  attendee: 'Usted ya esta asociado como asistente'
+  not_attendee: 'Usted no esta asociado como asistente'
   author_list: Listar autores
   title: 'Título'
   authors: 'Autor(es)'
@@ -1132,3 +1156,4 @@ es:
     others: 'Otras actividades o productos'
     other_activities: 'Otras actividades'
     other_works: 'Otros productos'
+    course_attendees: 'Cursos recibidos'

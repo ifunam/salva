@@ -1,0 +1,8 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+= render :partial => '/courses/form', :locals => { :f => f }
+= f.simple_fields_for :user_courses, @user_courses do |uc|
+  - unless f.object.new_record?
+    = uc.hidden_field :id
+    = uc.hidden_field :course_id, :value => @course.id
+  = uc.hidden_field :user_id, :value => current_user.id
+  = uc.hidden_field :roleincourse_id, :value => 2

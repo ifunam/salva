@@ -66,15 +66,16 @@
     %div{:class => 'span-17 last'}
       = @profile.responsible_academic
 
-- @report.build.sections.each do |section|
-  %h3{:style=>"color: #2e90bd; font-weight:bold;"}= section[:title]
-  - section[:subsections].each do |subsection|
-    %div{:class => 'span-22 prepend-1 last'}
-      %b= subsection[:title]
-      %ol
-        - subsection[:collection].each do |record|
-          %li{:style => 'text-align: justify;'}= record + '.'
-      %br
+%div{:class => 'span-24 last'}
+  - @report.build.sections.each do |section|
+    %h3{:style=>"color: #2e90bd; font-weight:bold;"}= section[:title]
+    - section[:subsections].each do |subsection|
+      %div{:class => 'span-22 prepend-1 last'}
+        %b= subsection[:title]
+        %ol
+          - subsection[:collection].each do |record|
+            %li{:style => 'text-align: justify;'}= record + '.'
+
 %div{:class => 'span-24 pull-1 last'}
   - @document_type = Documenttype.annual_reports.active.first
   - unless @document_type.nil?
