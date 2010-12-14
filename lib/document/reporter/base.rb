@@ -39,6 +39,7 @@ module Reporter
       end
 
       create_section :teaching do |s|
+        s.collection :course_instructors, :class_name => 'Course', :scope => :instructors
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching
         s.collection :student_advices, :class_name => 'Indivadvice', :scope => :students
         s.collection :teaching_products, :class_name => 'Genericwork', :scope => :teaching_products
