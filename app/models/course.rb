@@ -19,6 +19,7 @@ class Course < ActiveRecord::Base
 
   default_scope :order => 'startyear DESC, startmonth DESC, name ASC'
   scope :attendees, joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 })
+  scope :instructors, joins(:user_courses).where('user_courses.roleincourse_id != 2')
 
   scope :user_id_eq, lambda { |user_id| joins(:user_courses).where(:user_courses => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("courses.id IN (#{UserCourse.select('DISTINCT(course_id) as course_id').where(["user_courses.user_id !=  ?", user_id]).to_sql}) AND courses.id  NOT IN (#{UserCourse.select('DISTINCT(course_id) as course_id').where(["user_courses.user_id =  ?", user_id]).to_sql})") }

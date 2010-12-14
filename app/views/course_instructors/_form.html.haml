@@ -7,4 +7,4 @@
       = uc.hidden_field :id
       = uc.hidden_field :course_id, :value => @course.id
     = uc.hidden_field :user_id, :value => current_user.id
-    = uc.hidden_field :roleincourse_id, :value => 2
+    = uc.association :roleincourse, :collection => Roleincourse.instructors.all, :wrapper_class => 'span-6 last'

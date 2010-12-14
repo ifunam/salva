@@ -1,20 +1,19 @@
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12', :required => true
-  = f.association :courseduration, :collection => Courseduration.all, :wrapper_class => 'span-6', :required => true
-  = f.association :modality, :collection => Modality.all, :wrapper_class => 'span-6 last', :required => true
+= f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12', :required => true
+= f.association :courseduration, :collection => Courseduration.all, :wrapper_class => 'span-6', :required => true
+= f.association :modality, :collection => Modality.all, :wrapper_class => 'span-6 last', :required => true
 
-  %div{ :class => 'span-24 last' }
-    = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-    %div{:class => 'span-6 '}
-      = f.label :startmonth, :required => true
-      = select_month(Date.today, :field_name => 'startmonth', :prefix => 'course')
-    = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-    %div{:class => 'span-5 last'}
-      = f.label :endmonth, :required => true
-      = select_month(Date.today, :field_name => 'endmonth', :prefix => 'course')
+%div{ :class => 'span-24 last' }
+  = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 '}
+    = f.label :startmonth, :required => true
+    = select_month(Date.today, :field_name => 'startmonth', :prefix => 'course')
+  = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-5 last'}
+    = f.label :endmonth, :required => true
+    = select_month(Date.today, :field_name => 'endmonth', :prefix => 'course')
 
-  = f.input :hoursxweek, :as => :string, :input_html => { :size => '3', :autocomplete => "off"}, :wrapper_class => 'span-6', :required => true
-  = f.input :totalhours, :as => :string, :input_html => { :size => '3', :autocomplete => "off"}, :wrapper_class => 'span-18 last', :required => true
+= f.input :hoursxweek, :as => :string, :input_html => { :size => '3', :autocomplete => "off"}, :wrapper_class => 'span-6', :required => true
+= f.input :totalhours, :as => :string, :input_html => { :size => '3', :autocomplete => "off"}, :wrapper_class => 'span-18 last', :required => true
 
-  = f.association :country, :collection => Country.all, :wrapper_class => 'span-6', :required => true
-  = f.input :location, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+= f.association :country, :collection => Country.all, :wrapper_class => 'span-6', :required => true
+= f.input :location, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'

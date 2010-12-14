@@ -1,9 +1,9 @@
 %div{ :class => 'span-24 section_left last' }
-  %h3= t('course_attendees.show.title')
+  %h3= t('course_instructors.show.title')
   = render :partial => 'courses/show', :locals => { :course => @course}
   = render :partial => 'shared/record', :object => @course
 
 %div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_course_attendee_path(:id => @course.id)
-  = link_as_button t(:back), course_attendees_path
+  = link_as_button t(:edit), edit_course_instructor_path(:id => @course.id)
+  = link_as_button t(:back), course_instructors_path
 

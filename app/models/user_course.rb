@@ -7,8 +7,4 @@ class UserCourse < ActiveRecord::Base
   belongs_to :course
   belongs_to :coursegroup
   belongs_to :roleincourse
-
-  validates_associated :course
-  validates_associated :coursegroup
-  validates_associated :roleincourse
 end

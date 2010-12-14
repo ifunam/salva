@@ -1,0 +1,21 @@
+- show_for course do |u|
+  = u.attribute :name, :wrapper_html => {:class => 'span-12'}
+  = u.association :courseduration, :using => :name, :wrapper_html => {:class => 'span-6'}
+  = u.association :modality, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+
+  = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :startmonth, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+
+  = u.attribute :hoursxweek, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :totalhours, :wrapper_html => {:class => 'span-18 last'}
+
+  = u.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :location,  :wrapper_html => {:class => 'span-18 last'}
+
+  %div{:class => 'span-12 last'}
+    = u.association :user_courses, :collection_tag => :ol do |record|
+      %li= record.user.author_name + " (#{record.roleincourse.name})"
+
+

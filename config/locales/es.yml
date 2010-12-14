@@ -912,6 +912,22 @@ es:
     show:
       title: 'Curso recibido'
 
+  course_instructors:
+    index:
+      title: 'Mis cursos especiales'
+      my_courses: 'Listar mis cursos especiales'
+      not_my_courses: 'Listar cursos especiales registrados por otros usuarios'
+    not_mine:
+      title: 'Cursos especiales registrados por otros usuarios'
+      my_courses: 'Listar mis cursos especiales'
+      not_my_courses: 'Listar cursos especiales registrados por otros usuarios'
+    new:
+      title: 'Nuevo curso'
+    edit:
+      title: 'Modificar curso'
+    show:
+      title: 'Curso especial'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
@@ -1093,6 +1109,8 @@ es:
   not_associated: Usted no esta asociado como autor
   attendee: 'Usted ya esta asociado como asistente'
   not_attendee: 'Usted no esta asociado como asistente'
+  instructor: 'Usted ya esta asociado como instructor o autor'
+  not_instructor: 'Usted no esta asociado como instructor o autor'
   author_list: Listar autores
   title: 'Título'
   authors: 'Autor(es)'

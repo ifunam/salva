@@ -4,5 +4,6 @@ class Userrole < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :user_genericworks
+
   default_scope :order => 'name ASC'
 end
