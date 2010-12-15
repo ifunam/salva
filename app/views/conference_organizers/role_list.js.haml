@@ -1,0 +1,10 @@
+%div{:class => 'ui-widget ui-widget-content ui-corner-all author_list', :id => 'show_user_roles_'+ dom_id(@conference)}
+  %div
+    %b='Roles'
+    %div{:class => "ui-state-default ui-corner-all", :style => 'width: 16px; margin-left: 11px; float:right;'}
+      = link_to_function content_tag(:span, '', {:class =>'ui-icon ui-icon-close'}), "$('#show_user_roles_#{dom_id(@conference)}').remove();"
+  %br
+  %ul{:style => 'width: 240px;',:class => 'add_or_delete_author'}
+    - Roleinconference.organizers.each do |record|
+      %li{:style => 'margin-left: -30px; color: green;'}
+        = link_to record.name, add_user_conference_organizer_path(:id => @conference.id, :roleinconference_id => record.id, :format => :js), 'data-parent-id' => dom_id(@conference)

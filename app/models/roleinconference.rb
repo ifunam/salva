@@ -5,4 +5,5 @@ class Roleinconference < ActiveRecord::Base
 
   has_many :userconferences
   default_scope :order => 'name ASC'
+  scope :organizers, where('id > 1')
 end

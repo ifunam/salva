@@ -932,16 +932,33 @@ es:
     index:
       title: 'Asistencia a eventos académicos'
       my_conferences: 'Listar mis eventos académicos'
-      not_my_conferences: 'Listar eventos acaémicos registrados por otros usuarios'
+      not_my_conferences: 'Listar eventos académicos registrados por otros usuarios'
     not_mine:
       my_conferences: 'Listar mis eventos académicos'
-      not_my_conferences: 'Listar eventos acaémicos registrados por otros usuarios'
+      not_my_conferences: 'Listar eventos académicos registrados por otros usuarios'
     new:
       title: 'Nuevo evento académico'
     edit:
       title: 'Modificar evento académico'
     show:
       title: 'Evento académico'
+
+  conference_organizers:
+    index:
+      title: 'Comités de congresos'
+      my_conferences: 'Listar mis comités de congresos'
+      not_my_conferences: 'Listar congresos registrados por otros usuarios'
+    not_mine:
+      title: 'Congresos registrados por otros usuarios'
+      my_conferences: 'Listar mis comités de congresos'
+      not_my_conferences: 'Listar congresos registrados por otros usuarios'
+    new:
+      title: 'Nuevo comité de congreso'
+    edit:
+      title: 'Modificar comité de congreso'
+    show:
+      title: 'Comité de congreso'
+
 
   user_annual_reports:
     index:
@@ -1126,6 +1143,8 @@ es:
   not_attendee: 'Usted no esta asociado como asistente'
   instructor: 'Usted ya esta asociado como instructor o autor'
   not_instructor: 'Usted no esta asociado como instructor o autor'
+  organizer: 'Usted ya esta asociado como organizador'
+  not_organizer: 'Usted no esta asociado como organizador'
   author_list: Listar autores
   title: 'Título'
   authors: 'Autor(es)'
@@ -1193,5 +1212,5 @@ es:
     other_works: 'Otros productos'
     course_attendees: 'Cursos recibidos'
     course_instructors: 'Cursos especiales'
-    conference_attendes: 'Asistencia a eventos académicos'
+    conference_attendees: 'Asistencia a eventos académicos'
     conference_organizers: 'Comités de congresos'

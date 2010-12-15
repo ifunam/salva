@@ -7,6 +7,7 @@ module Reporter
       create_section :profile do |s|
         s.collection :user_stimuli
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
+        s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
         s.collection :user_schoolarships, :date_style => :date_range
         s.collection :user_credits
         s.collection :institutional_activities
@@ -14,6 +15,8 @@ module Reporter
 
       create_section :seminary_and_conferences do |s|
         s.collection :seminaries, :scope => :as_not_attendee
+        s.collection :conference_organizers, :class_name => 'Conference', :scope => :organizers
+
       end
 
       create_section :publications do |s|
