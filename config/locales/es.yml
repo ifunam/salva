@@ -928,6 +928,21 @@ es:
     show:
       title: 'Curso especial'
 
+  conference_attendees:
+    index:
+      title: 'Asistencia a eventos académicos'
+      my_conferences: 'Listar mis eventos académicos'
+      not_my_conferences: 'Listar eventos acaémicos registrados por otros usuarios'
+    not_mine:
+      my_conferences: 'Listar mis eventos académicos'
+      not_my_conferences: 'Listar eventos acaémicos registrados por otros usuarios'
+    new:
+      title: 'Nuevo evento académico'
+    edit:
+      title: 'Modificar evento académico'
+    show:
+      title: 'Evento académico'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
@@ -1139,6 +1154,8 @@ es:
   degree: 'Grado'
   instadvicetarget: 'Objetivo'
   stimulus: 'Estímulo'
+  conferencetype: 'Tipo'
+  conferencescope: 'Ámbito'
 
   reporter:
     profile: 'Perfil'
@@ -1176,3 +1193,5 @@ es:
     other_works: 'Otros productos'
     course_attendees: 'Cursos recibidos'
     course_instructors: 'Cursos especiales'
+    conference_attendes: 'Asistencia a eventos académicos'
+    conference_organizers: 'Comités de congresos'

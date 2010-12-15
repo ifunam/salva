@@ -52,6 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
       s.item :course_attendees, 'Cursos recibidos', course_attendees_path, :highlights_on => /\/course_attendees/
+      s.item :conference_attendees, 'Asistencia a eventos académicos', conference_attendees_path, :highlights_on => /\/conference_attendees/
       s.item :user_schoolarships, 'Becas', user_schoolarships_path, :highlights_on => /\/user_schoolarships/
       s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path, :highlights_on => /\/user_credits/
       s.item :institutional_activities, 'Participación institucional', institutional_activities_path, :highlights_on => /\/institutional_activities/

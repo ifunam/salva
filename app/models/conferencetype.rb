@@ -4,4 +4,6 @@ class Conferencetype < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :conferences
+
+  default_scope :order => 'name ASC'
 end

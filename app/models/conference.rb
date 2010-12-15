@@ -25,8 +25,8 @@ class Conference < ActiveRecord::Base
 
   scope :attendees, joins(:userconferences).where(:userconferences => { :roleinconference_id => 1 })
   scope :organizers, joins(:userconferences).where('userconferences.roleinconference_id  != 1')
-  scope :user_id_eq, lambda { |user_id| joins(:userconference).where(:userconference => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id|  where("conferences.id IN (#{Userconference.select('DISTINCT(course_id) as course_id').where(["user_conferences.user_id !=  ?", user_id]).to_sql}) AND conferences.id  NOT IN (#{Userconference.select('DISTINCT(course_id) as course_id').where(["userconferences.user_id =  ?", user_id]).to_sql})") }
+  scope :user_id_eq, lambda { |user_id| joins(:userconferences).where(:userconferences => {:user_id => user_id}) }
+  scope :user_id_not_eq, lambda { |user_id|  where("conferences.id IN (#{Userconference.select('DISTINCT(conference_id) as conference_id').where(["userconferences.user_id !=  ?", user_id]).to_sql}) AND conferences.id  NOT IN (#{Userconference.select('DISTINCT(conference_id) as conference_id').where(["userconferences.user_id =  ?", user_id]).to_sql})") }
 
   search_methods :user_id_eq, :user_id_not_eq
 

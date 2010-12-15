@@ -1,0 +1,9 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('conference_attendees.show.title')
+  = render :partial => 'conferences/show', :locals => { :conference => @conference}
+  = render :partial => 'shared/record', :object => @conference
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_conference_attendee_path(:id => @conference.id)
+  = link_as_button t(:back), conference_attendees_path
+

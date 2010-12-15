@@ -1,0 +1,20 @@
+- show_for conference do |u|
+  = u.attribute :name, :wrapper_html => {:class => 'span-12'}
+  = u.association :conferencetype, :using => :name, :wrapper_html => {:class => 'span-6'}
+  = u.association :conferencescope, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+
+  = u.attribute :year, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :month, :wrapper_html => {:class => 'span-6 last'}
+
+  = u.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
+  = u.attribute :location,  :wrapper_html => {:class => 'span-18 last'}
+
+  %div{:class => 'span-12'}
+    = u.association :userconferences, :collection_tag => :ol do |record|
+      %li= record.user.author_name + " (#{record.roleinconference.name})"
+
+  %div{:class => 'span-12 last'}
+    = u.association :conference_institutions, :collection_tag => :ol do |record|
+      %li= record.institution.name_and_parent_abbrev
+
+

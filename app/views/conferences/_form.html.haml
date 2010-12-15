@@ -1,0 +1,12 @@
+= f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12', :required => true
+= f.association :conferencetype, :collection => Conferencetype.all, :wrapper_class => 'span-6', :required => true
+= f.association :conferencescope, :collection => Conferencescope.all, :wrapper_class => 'span-6i last', :required => true
+
+%div{ :class => 'span-24 last' }
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6 '}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'conference')
+
+= f.association :country, :collection => Country.all, :wrapper_class => 'span-6', :required => true
+= f.input :location, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
