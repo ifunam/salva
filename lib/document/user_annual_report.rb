@@ -18,8 +18,9 @@ module UserAnnualReport
       build_pdf.render
     end
 
-    def save_pdf(path)
-      build_pdf.save path
+    def save_pdf(filename)
+      File.delete filename if File.exist? filename
+      build_pdf.save filename
     end
 
     def build
