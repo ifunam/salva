@@ -54,7 +54,7 @@ Salva::Application.routes.draw do
                       :languagelevels, :languages, :maritalstatuses, :mediatypes, :migratorystatuses,
                       :modalities, :roleinchapters, :roleinconferences, :roleinconferencetalks,
                       :roleincourses, :roles, :roleinjobpositions, :roleinjournals, :roleinjuries,
-                      :roleinprojects, :roleinregularcourses, :roleinseminaries
+                      :roleinprojects, :roleinregularcourses, :roleinseminaries, :roleintheses
   end	
 
   namespace :academic_secretary do

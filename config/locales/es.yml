@@ -969,6 +969,16 @@ es:
     edit:
       title: 'Modificar rol en seminario/conferencia'
 
+  roleintheses:
+    show:
+      title: 'Rol en tesis'
+    index:
+      title: 'Roles en tesis'
+    new:
+      title: 'Nuevo rol en tesis'
+    edit:
+      title: 'Modificar rol en tesis'
+
 
 
   user_annual_reports:
@@ -1103,6 +1113,8 @@ es:
     user_regularcourses: 'Cursos regulares del usuarios'
     roleinseminaries: 'Roles en seminario/conferencia'
     user_seminaries: 'Seminarios de usuario'
+    roleintheses: 'Roles en tesis'
+    user_theses: 'Tesis de usuario'
 
 
     users:
