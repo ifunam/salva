@@ -959,6 +959,17 @@ es:
     show:
       title: 'Comité de congreso'
 
+  roleinseminaries:
+    show:
+      title: 'Rol en seminario/conferencia'
+    index:
+      title: 'Roles en seminario/conferencia'
+    new:
+      title: 'Nuevo rol en seminario/conferencia'
+    edit:
+      title: 'Modificar rol en seminario/conferencia'
+
+
 
   user_annual_reports:
     index:
@@ -1090,6 +1101,8 @@ es:
     user_projects: 'Proyectos del usuario'
     roleinregularcourses: 'Roles en curso regular'
     user_regularcourses: 'Cursos regulares del usuarios'
+    roleinseminaries: 'Roles en seminario/conferencia'
+    user_seminaries: 'Seminarios de usuario'
 
 
     users:
