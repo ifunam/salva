@@ -1019,6 +1019,16 @@ es:
     edit:
       title: 'Modificar rol de estudiante'
 
+  talktypes:
+    show:
+      title: 'Tipo de ponencia'
+    index:
+      title: 'Tipos de ponencia'
+    new:
+      title: 'Nuevo tipo de ponencia'
+    edit:
+      title: 'Modificar tipo de ponencia'
+
 
   user_annual_reports:
     index:
@@ -1161,6 +1171,9 @@ es:
     user_stimulus: 'Estímulos de usuario'
     studentroles: 'Roles de estudiante'
     student_activities: 'Actividades de estudiante'
+    talktypes: 'Tipos de ponencia'
+    conferencetalks: 'Ponencias en congresos'
+
 
     users:
       form:

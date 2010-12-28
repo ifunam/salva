@@ -55,7 +55,7 @@ Salva::Application.routes.draw do
                       :modalities, :roleinchapters, :roleinconferences, :roleinconferencetalks,
                       :roleincourses, :roles, :roleinjobpositions, :roleinjournals, :roleinjuries,
                       :roleinprojects, :roleinregularcourses, :roleinseminaries, :roleintheses,
-                      :roleproceedings, :stimulustypes, :stimuluslevels, :studentroles
+                      :roleproceedings, :stimulustypes, :stimuluslevels, :studentroles, :talktypes
   end	
 
   namespace :academic_secretary do
