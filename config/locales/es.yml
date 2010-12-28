@@ -989,6 +989,16 @@ es:
     edit:
       title: 'Modificar rol en memoria arbitrada'
 
+  stimulustypes:
+    show:
+      title: 'Tipo de estímulo'
+    index:
+      title: 'Tipos de estímulo'
+    new:
+      title: 'Nuevo tipo de estímulo'
+    edit:
+      title: 'Modificar tipo de estímulo'
+
 
   user_annual_reports:
     index:
@@ -1126,7 +1136,10 @@ es:
     user_theses: 'Tesis de usuario'
     roleproceedings: 'Roles en memoria arbitrada'
     user_proceedings: 'Memorias arbitradas de usuario'
-
+    stimulustypes: 'Tipos de estímulo'
+    stimuluslevels: 'Niveles de estimulo'
+    user_stimulus: 'Estímulos de usuario'
+    
 
     users:
       form:
