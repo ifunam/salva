@@ -1029,6 +1029,16 @@ es:
     edit:
       title: 'Modificar tipo de ponencia'
 
+  techproductstatuses:
+    show:
+      title: 'Estado de producto técnico'
+    index:
+      title: 'Estados de producto técnico'
+    new:
+      title: 'Nuevo estado de producto técnico'
+    edit:
+      title: 'Modificar estado de producto técnico'
+
 
   user_annual_reports:
     index:
@@ -1173,7 +1183,8 @@ es:
     student_activities: 'Actividades de estudiante'
     talktypes: 'Tipos de ponencia'
     conferencetalks: 'Ponencias en congresos'
-
+    techproductstatuses: 'Estados de productos técnicos'
+    techproducts: 'Productos técnicos'
 
     users:
       form:
