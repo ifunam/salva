@@ -1039,6 +1039,16 @@ es:
     edit:
       title: 'Modificar estado de producto técnico'
 
+  titlemodalities:
+    show:
+      title: 'Modalidad de titulación'
+    index:
+      title: 'Modalidades de titulación'
+    new:
+      title: 'Nueva modalidad de titulación'
+    edit:
+      title: 'Modificar modalidad de titulación'
+
 
   user_annual_reports:
     index:
@@ -1185,6 +1195,8 @@ es:
     conferencetalks: 'Ponencias en congresos'
     techproductstatuses: 'Estados de productos técnicos'
     techproducts: 'Productos técnicos'
+    titlemodalities: 'Modalidades de titulacion'
+    professionaltitles: 'Títulos profesionales'
 
     users:
       form:
