@@ -979,6 +979,15 @@ es:
     edit:
       title: 'Modificar rol en tesis'
 
+  roleproceedings:
+    show:
+      title: 'Rol en memoria arbitrada'
+    index:
+      title: 'Roles en memoria arbitrada'
+    new:
+      title: 'Nuevo rol en memoria arbitrada'
+    edit:
+      title: 'Modificar rol en memoria arbitrada'
 
 
   user_annual_reports:
@@ -1115,6 +1124,8 @@ es:
     user_seminaries: 'Seminarios de usuario'
     roleintheses: 'Roles en tesis'
     user_theses: 'Tesis de usuario'
+    roleproceedings: 'Roles en memoria arbitrada'
+    user_proceedings: 'Memorias arbitradas de usuario'
 
 
     users:
