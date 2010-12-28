@@ -999,6 +999,16 @@ es:
     edit:
       title: 'Modificar tipo de estímulo'
 
+  stimuluslevels:
+    show:
+      title: 'Nivel de estímulo'
+    index:
+      title: 'Niveles de estímulo'
+    new:
+      title: 'Nuevo nivel de estímulo'
+    edit:
+      title: 'Modificar nivel de estímulo'
+
 
   user_annual_reports:
     index:
