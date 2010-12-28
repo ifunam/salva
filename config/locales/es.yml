@@ -1059,6 +1059,16 @@ es:
     edit:
       title: 'Modificar estado de tesis'
 
+  thesismodalities:
+    show:
+      title: 'Modalidad de tesis'
+    index:
+      title: 'Modalidades de tesis'
+    new:
+      title: 'Nueva modalidad de tesis'
+    edit:
+      title: 'Modificar modalidad de tesis'
+
 
   user_annual_reports:
     index:
@@ -1209,6 +1219,7 @@ es:
     professionaltitles: 'Títulos profesionales'
     thesisstatuses: 'Estados de tesis'
     theses: 'Tesis'
+    thesismodalities: 'Modadlidades de tesis'
 
     users:
       form:
