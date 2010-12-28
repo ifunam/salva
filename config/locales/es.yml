@@ -1009,6 +1009,16 @@ es:
     edit:
       title: 'Modificar nivel de estímulo'
 
+  studentroles:
+    show:
+      title: 'Rol de estudiante'
+    index:
+      title: 'Roles de estudiante'
+    new:
+      title: 'Nuevo rol de estudiante'
+    edit:
+      title: 'Modificar rol de estudiante'
+
 
   user_annual_reports:
     index:
@@ -1149,7 +1159,8 @@ es:
     stimulustypes: 'Tipos de estímulo'
     stimuluslevels: 'Niveles de estimulo'
     user_stimulus: 'Estímulos de usuario'
-    
+    studentroles: 'Roles de estudiante'
+    student_activities: 'Actividades de estudiante'
 
     users:
       form:
