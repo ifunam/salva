@@ -1069,6 +1069,16 @@ es:
     edit:
       title: 'Modificar modalidad de tesis'
 
+  userstatuses:
+    show:
+      title: 'Estado de usuario'
+    index:
+      title: 'Estados de usuario'
+    new:
+      title: 'Nueva estado de usuario'
+    edit:
+      title: 'Modificar estado de usuario'
+
 
   user_annual_reports:
     index:
@@ -1177,7 +1187,7 @@ es:
     bookeditions: 'Libros'
     migratorystatuses: 'Estados migratorios'
     citizens: 'Nacionalidades'
-    modalities: 'Modalidades'
+    modalities: 'Modalidades de cursos y conferencias'
     regularcourses: 'Cursos regulares'
     conferencetalks: 'Conferencias'
     publicationcategories: 'Categorías de publicaciones'
@@ -1220,6 +1230,11 @@ es:
     thesisstatuses: 'Estados de tesis'
     theses: 'Tesis'
     thesismodalities: 'Modadlidades de tesis'
+    users: 'Usuarios'
+    userstatuses: 'Estados de usuario'
+    users_logs: 'Bitacoras de usuario'
+    usersstatuses_comments: 'Comentarios de estados de usuario'
+    
 
     users:
       form:
