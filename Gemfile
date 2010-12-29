@@ -44,7 +44,7 @@ gem "by_star"
 gem "tzinfo"
 gem "jquery-rails"
 
-gem "SystemTimer"
+gem "SystemTimer", :platforms => :ruby_18
 gem 'redis', '2.0.10'
 gem "redis-namespace", '0.8.0'
 gem "resque", "1.11.0", :git => 'git://github.com/defunkt/resque.git', :require => 'resque'

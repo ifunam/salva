@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def remove_child_link(name, f)
     f.hidden_field(:id) + link_to((content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-trash')), "javascript:void(0)", :class => "remove_child ui-button ui-button-icon ui-widget ui-state-default ui-corner-all")
