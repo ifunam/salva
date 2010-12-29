@@ -1,6 +1,6 @@
 = render :partial => "/shared/errors", :object => f.object.errors
 %div{ :class => 'span-24 section_left append-bottom last' }
-  %h3= t('.title')
+  %h3= t('admin.user.form.title')
   = f.input :login, :as => :string, :input_html => { :size => 12, :autocomplete => "off" }, :wrapper_class => 'span-8'
   = f.input :password, :input_html => { :size => 12 }, :wrapper_class => 'span-8'
   = f.input :password_confirmation, :input_html => { :size => 12 }, :required => true, :wrapper_class => 'span-8 last'

@@ -1234,9 +1234,8 @@ es:
     userstatuses: 'Estados de usuario'
     users_logs: 'Bitacoras de usuario'
     usersstatuses_comments: 'Comentarios de estados de usuario'
-    
 
-    users:
+    user:
       form:
         title: 'Cuenta de usuario'
       filter_header:
