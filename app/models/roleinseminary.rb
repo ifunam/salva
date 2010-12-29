@@ -6,4 +6,6 @@ class Roleinseminary < ActiveRecord::Base
   default_scope :order => 'name ASC'
 
   scope :not_attendee, where('id != 1')
+
+  has_many :user_seminaries
 end

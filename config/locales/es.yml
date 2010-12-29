@@ -959,6 +959,116 @@ es:
     show:
       title: 'Comité de congreso'
 
+  roleinseminaries:
+    show:
+      title: 'Rol en seminario/conferencia'
+    index:
+      title: 'Roles en seminario/conferencia'
+    new:
+      title: 'Nuevo rol en seminario/conferencia'
+    edit:
+      title: 'Modificar rol en seminario/conferencia'
+
+  roleintheses:
+    show:
+      title: 'Rol en tesis'
+    index:
+      title: 'Roles en tesis'
+    new:
+      title: 'Nuevo rol en tesis'
+    edit:
+      title: 'Modificar rol en tesis'
+
+  roleproceedings:
+    show:
+      title: 'Rol en memoria arbitrada'
+    index:
+      title: 'Roles en memoria arbitrada'
+    new:
+      title: 'Nuevo rol en memoria arbitrada'
+    edit:
+      title: 'Modificar rol en memoria arbitrada'
+
+  stimulustypes:
+    show:
+      title: 'Tipo de estímulo'
+    index:
+      title: 'Tipos de estímulo'
+    new:
+      title: 'Nuevo tipo de estímulo'
+    edit:
+      title: 'Modificar tipo de estímulo'
+
+  stimuluslevels:
+    show:
+      title: 'Nivel de estímulo'
+    index:
+      title: 'Niveles de estímulo'
+    new:
+      title: 'Nuevo nivel de estímulo'
+    edit:
+      title: 'Modificar nivel de estímulo'
+
+  studentroles:
+    show:
+      title: 'Rol de estudiante'
+    index:
+      title: 'Roles de estudiante'
+    new:
+      title: 'Nuevo rol de estudiante'
+    edit:
+      title: 'Modificar rol de estudiante'
+
+  talktypes:
+    show:
+      title: 'Tipo de ponencia'
+    index:
+      title: 'Tipos de ponencia'
+    new:
+      title: 'Nuevo tipo de ponencia'
+    edit:
+      title: 'Modificar tipo de ponencia'
+
+  techproductstatuses:
+    show:
+      title: 'Estado de producto técnico'
+    index:
+      title: 'Estados de producto técnico'
+    new:
+      title: 'Nuevo estado de producto técnico'
+    edit:
+      title: 'Modificar estado de producto técnico'
+
+  titlemodalities:
+    show:
+      title: 'Modalidad de titulación'
+    index:
+      title: 'Modalidades de titulación'
+    new:
+      title: 'Nueva modalidad de titulación'
+    edit:
+      title: 'Modificar modalidad de titulación'
+
+  thesisstatuses:
+    show:
+      title: 'Estado de tesis'
+    index:
+      title: 'Estados de tesis'
+    new:
+      title: 'Nuevo estado de tesis'
+    edit:
+      title: 'Modificar estado de tesis'
+
+  thesismodalities:
+    show:
+      title: 'Modalidad de tesis'
+    index:
+      title: 'Modalidades de tesis'
+    new:
+      title: 'Nueva modalidad de tesis'
+    edit:
+      title: 'Modificar modalidad de tesis'
+
 
   user_annual_reports:
     index:
@@ -1090,7 +1200,26 @@ es:
     user_projects: 'Proyectos del usuario'
     roleinregularcourses: 'Roles en curso regular'
     user_regularcourses: 'Cursos regulares del usuarios'
-
+    roleinseminaries: 'Roles en seminario/conferencia'
+    user_seminaries: 'Seminarios de usuario'
+    roleintheses: 'Roles en tesis'
+    user_theses: 'Tesis de usuario'
+    roleproceedings: 'Roles en memoria arbitrada'
+    user_proceedings: 'Memorias arbitradas de usuario'
+    stimulustypes: 'Tipos de estímulo'
+    stimuluslevels: 'Niveles de estimulo'
+    user_stimulus: 'Estímulos de usuario'
+    studentroles: 'Roles de estudiante'
+    student_activities: 'Actividades de estudiante'
+    talktypes: 'Tipos de ponencia'
+    conferencetalks: 'Ponencias en congresos'
+    techproductstatuses: 'Estados de productos técnicos'
+    techproducts: 'Productos técnicos'
+    titlemodalities: 'Modalidades de titulacion'
+    professionaltitles: 'Títulos profesionales'
+    thesisstatuses: 'Estados de tesis'
+    theses: 'Tesis'
+    thesismodalities: 'Modadlidades de tesis'
 
     users:
       form:
