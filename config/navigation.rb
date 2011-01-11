@@ -58,6 +58,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :institutional_activities, 'Participación institucional', institutional_activities_path, :highlights_on => /\/institutional_activities/
       s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
       s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
+      s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
     end
 
     primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|

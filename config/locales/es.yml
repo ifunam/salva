@@ -1079,6 +1079,11 @@ es:
     edit:
       title: 'Modificar estado de usuario'
 
+  user_settings:
+    show:
+      title: 'Información de página web'
+    edit:
+      title: 'Modificar información de página web'
 
   user_annual_reports:
     index:

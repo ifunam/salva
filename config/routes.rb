@@ -14,7 +14,7 @@ Salva::Application.routes.draw do
      get :filtered_select, :on => :collection
   end
 
-  resource :user_profile
+  resource :user_profile, :user_settings
 
   resources :user_languages, :user_skills, :user_schoolarships, :other_activities, :popular_science_activities, 
             :institutional_activities, :other_teaching_activities, :technical_activities, :user_credits,
