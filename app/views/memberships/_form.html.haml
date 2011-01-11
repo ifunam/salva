@@ -1,0 +1,11 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+
+  %div{:class => 'span-18 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
+    = f.label :institution, :required => true
+    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+  = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-22 last'
+  = f.input :startyear, :as => :string, :required => true, :input_html => { :size => 4, :class => 'year'}, :wrapper_class => 'span-6'
+  = f.input :endyear, :as => :string, :required => true, :input_html => { :size => 4, :class => 'year' }, :wrapper_class => 'span-6 last'

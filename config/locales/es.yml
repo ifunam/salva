@@ -1085,6 +1085,17 @@ es:
     edit:
       title: 'Modificar información de página web'
 
+  memberships:
+    show:
+      title: 'Membresía en asociación académica'
+    index:
+      title: 'Membresias en asociaciones académicas'
+    new:
+      title: 'Nueva membresía en asociación académica'
+    edit:
+      title: 'Modificar membresía en asociación académica'
+
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'

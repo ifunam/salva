@@ -1,0 +1,11 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 75%;'}
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 100px;'}
+      =t(:del)
