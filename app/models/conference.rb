@@ -14,7 +14,7 @@ class Conference < ActiveRecord::Base
 
   has_many :conference_institutions
   has_many :institutions, :through => :conference_institutions
-  accepts_nested_attributes_for :conference_institutions
+  accepts_nested_attributes_for :conference_institutions, :reject_if => proc { |attrs| attrs['institution_id'] == '0' }
 
   has_many :userconferences
   has_many :users, :through => :userconferences

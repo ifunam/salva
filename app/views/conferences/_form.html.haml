@@ -10,3 +10,17 @@
 
 = f.association :country, :collection => Country.all, :wrapper_class => 'span-6', :required => true
 = f.input :location, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
+
+%div{:class => 'span-11 last has-many-associations', 'data-controller-name' => 'institutions'}
+  %b=t('organized_by')
+  %ul{:id => 'institution', 'data-has-many-association' => 'conference_institutions'}
+    - (@conference.institutions + Institution.for_conferences).uniq.each do |institution|
+      - @conference_institution = f.object.conference_institutions.where(:institution_id => institution.id).first
+      - @conference_institution = f.object.conference_institutions.build if @conference_institution.nil?
+      = f.simple_fields_for :conference_institutions, @conference_institution do |fi|
+        = render :partial => 'conference_institutions/form', :locals => { :f => fi, :institution => institution }
+    = new_child_fields_template(f, :conference_institutions, :partial => 'conference_institutions/form')
+  %br
+  = link_to_action 'ui-icon-plus', 'Agregar otra institución', '#', :id => 'new_checkbox'
+  = link_to 'Agregar otra institución', '#', :id => 'new_checkbox', :style => 'padding-bottom: 25px;'
+

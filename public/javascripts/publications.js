@@ -140,10 +140,35 @@ $(document).ready(function() {
             $('#dialog').dialog('close');
         });
     });
-    $( ".autocompleted_select" ).combobox();
+
+    $(".autocompleted_select").combobox();
 
     $('#autocomplete_filter_journal_name').live('focus', function(){
         filter_by_journal_name();
+    });
+
+    $("#new_checkbox").live('click', function() {
+        dialog_for_new_checkbox(this.parentNode.getAttribute('data-controller-name'));
+    });
+
+    $('#new_checkbox_form').live('submit', function() {
+        class_name = this.getAttribute('data-class-name');
+        $("#new_checkbox_form").ajaxComplete(function(event, request, settings){
+            object = jQuery.parseJSON(request.responseText);
+            label = eval('object.'+class_name+'.name');
+            value = eval('object.'+class_name+'.id');
+            var content = $('#'+class_name).find('[class=fields_template]').first();
+            var assoc_name = content.parent().attr('data-has-many-association');
+            var regexp = new RegExp('new_'+assoc_name, 'g');
+            var new_id  = new Date().getTime();
+            html = content.html().replace('-1', value).replace('template_string', label);
+            $("#"+class_name).append(html.replace(regexp, new_id));
+            $('#dialog').dialog('close');
+        });
+    });
+
+    $('#record').live('submit', function() {
+        $('.fields_template').remove();
     });
 
     current_year = new Date().getFullYear();
@@ -175,6 +200,17 @@ function filter_by_journal_name() {
         delay: 0,
         select: function(event, ui) { 
             $('#search_journal_id_eq').val(ui.item.id);
+        }
+    });
+}
+
+function dialog_for_new_checkbox(controller) {
+    $('#dialog').dialog({title:'Nuevo registro', width: 400, height: 320}).dialog('open');
+    $.ajax({
+        url: '/' + controller + '/new.js',
+        success: function(request) {
+            $("div#dialog").html(request);
+            $('#new_record_form').attr('id', "new_checkbox_form");
         }
     });
 }

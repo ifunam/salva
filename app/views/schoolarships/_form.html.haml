@@ -4,4 +4,4 @@
 
   %div{:class => 'span-7 last'}
     = f.label :institution
-    = f.collection_select :institution_id, Institution.schoolarships, :id, :name_and_parent_abbrev, {:class => 'autocompleted_select'}
+    = f.collection_select :institution_id, Institution.for_schoolarships, :id, :name_and_parent_abbrev, {:class => 'autocompleted_select'}

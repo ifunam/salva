@@ -36,8 +36,9 @@ class Institution < ActiveRecord::Base
 
   default_scope :order => 'name ASC'
   # UNAM, DGAPA, CONACYT, and your institution
-  scope :schoolarships, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
-  
+  scope :for_schoolarships, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
+  scope :for_conferences, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
+
   def as_text
     [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
   end

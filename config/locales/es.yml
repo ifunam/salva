@@ -43,7 +43,7 @@ es:
   jobpositions:
     academic_form:
       jobposition_and_adscription: 'Categoría y adscripción'
-      
+
   academic_secretary:
     users:
       form:
@@ -72,7 +72,7 @@ es:
           front: 'Frente de credencial'
           back: 'Código de barras de credencial'
           list_all: 'Mostrar todos'
-        
+
   user_identifications:
     academic_form:
       identification: 'RFC'
@@ -85,7 +85,7 @@ es:
       title: 'Nueva ciudad'
     edit:
       title: 'Modificar ciudad'
-      
+
   states:
     show:
       title: 'Estado'
@@ -1318,6 +1318,7 @@ es:
   stimulus: 'Estímulo'
   conferencetype: 'Tipo'
   conferencescope: 'Ámbito'
+  organized_by: 'Organizado por'
 
   reporter:
     profile: 'Perfil'
