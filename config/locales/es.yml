@@ -1095,6 +1095,15 @@ es:
     edit:
       title: 'Modificar membresía en asociación académica'
 
+  user_prizes:
+    show:
+      title: 'Premio recibido'
+    index:
+      title: 'Premios recibidos'
+    new:
+      title: 'Nuevo premio recibido'
+    edit:
+      title: 'Modificar premio recibido'
 
   user_annual_reports:
     index:

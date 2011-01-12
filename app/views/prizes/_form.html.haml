@@ -1,0 +1,7 @@
+= f.association :prizetype, :collection => Prizetype.all, :wrapper_class => 'span-6', :required => true
+= f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+
+%div{:class => 'span-12 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
+  = f.label :institution, :required => true
+  = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+  = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'

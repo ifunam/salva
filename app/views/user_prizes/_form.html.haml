@@ -1,0 +1,11 @@
+= render :partial => "/shared/errors", :object => f.object.errors
+
+%div{ :class => 'span-24 section_left append-bottom last' }
+  - @prize = f.object.new_record? ? Prize.new : f.object.prize
+  = f.simple_fields_for :prize, @prize do |prize_form|
+    = render :partial => 'prizes/form', :locals => {:f => prize_form}
+
+  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
+  %div{:class => 'span-6'}
+    = f.label :month, :required => true
+    = select_month(Date.today, :field_name => 'month', :prefix => 'user_prize')
