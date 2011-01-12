@@ -1105,6 +1105,12 @@ es:
     edit:
       title: 'Modificar premio recibido'
 
+  jobposition_logs:
+    show:
+      title: 'Antigüedad en la UNAM'
+    edit:
+      title: 'Modificar información de antigüedad'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
