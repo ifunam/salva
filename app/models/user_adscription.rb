@@ -1,5 +1,6 @@
 class UserAdscription < ActiveRecord::Base
-  validates_presence_of :adscription_id, :start_date
+  validates_presence_of :adscription_id
+  #, :start_date
 
   validates_numericality_of :id, :jobposition_id, :startyear, :user_id, :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_numericality_of :adscription_id, :greater_than => 0, :only_integer => true

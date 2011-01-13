@@ -1111,6 +1111,16 @@ es:
     edit:
       title: 'Modificar información de antigüedad'
 
+  jobpositions:
+    show:
+      title: 'Categoría'
+    index:
+      title: 'Categorías'
+    new:
+      title: 'Nuevo categoría'
+    edit:
+      title: 'Modificar categoría'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'

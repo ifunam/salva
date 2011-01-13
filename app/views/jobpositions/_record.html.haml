@@ -1,26 +1,11 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3 Categoría y adscripción
-  - show_for record do |p|
-    %div{:class => 'row'}
-      %div{ :class => 'span-6'}
-        = content_tag :label, 'Tipo'
-        = 'Personal académico para investigación'
-      %div{ :class => 'span-6'}
-        = content_tag :label, 'Categoría'
-        = 'Investigador posdoctoral'
-      %div{ :class => 'span-12 last'}
-        = content_tag :label, 'Institución'
-        = 'Instituto de Física'
-    %div{:class => 'row'}
-      %div{ :class => 'span-6'}
-        = content_tag :label, 'Adscripción'
-        = record.user_adscription.adscription.name unless record.user_adscription.nil?
-      %div{ :class => 'span-6'}
-        = content_tag :label, 'Descripción'
-        = record.user_adscription.descr unless record.user_adscription.nil?
-      %div{ :class => 'span-6'}
-        = content_tag :label, 'Fecha de ingreso al Instituto'
-        = record.start_date
-      %div{ :class => 'span-6 last'}
-        = content_tag :label, 'Fecha de conclusión'
-        = record.end_date
+%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(record) }
+  %td{:style => 'width: 30px;'}
+    = checkbox_to_del(record)
+  %td{:style => 'width: 630px;'}
+    = record.as_text
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-zoomin', t(:show),  jobposition_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;'}
+    = link_to_action 'ui-icon-pencil', t(:edit),  edit_jobposition_path(:id => record.id)
+  %td{:style => 'width: 60px; text-align: center;', :class => 'delete_record'}
+    = link_to_delete record, jobposition_path(:id => record.id)

@@ -50,6 +50,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :profile, 'Perfil', user_profile_path, :highlights_on => /^\/$/ do |s|
       s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
+      s.item :jobpositions, 'Categorías', jobpositions_path, :highlights_on => /\/jobpositions/
       s.item :jobposition_log, :'Antigüedad en la UNAM', jobposition_log_path, :highlights_on => /\/jobposition_log/
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
       s.item :course_attendees, 'Cursos recibidos', course_attendees_path, :highlights_on => /\/course_attendees/
