@@ -1,0 +1,6 @@
+%div{ :class => 'span-22 last' }
+  %h3= t('user_settings.edit.title')
+  - simple_form_for @user, :as => :user, :url => user_settings_path do |f|
+    = render :partial => 'form', :locals => { :f => f }
+    = f.submit  t(:update), :class => "ui-state-default ui-corner-all button", :id => 'save_user'
+    = link_to t(:cancel), user_settings_path, :class => "ui-state-default ui-corner-all button"

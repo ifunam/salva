@@ -1,0 +1,2 @@
+class UserPrizesController < UserResourcesController
+end

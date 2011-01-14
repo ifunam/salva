@@ -1,0 +1,6 @@
+%h3= t('.title')
+= simple_form_for @jobposition, :jobposition, :url => jobposition_path, :html => { :multipart => true, :id => 'record'} do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  %div{ :class => 'span-24 buttons_left last' }
+    = f.submit  t(:update), :class => "ui-state-default ui-corner-all button"
+    = link_as_button t(:cancel), jobpositions_path

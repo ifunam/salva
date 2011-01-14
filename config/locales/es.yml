@@ -1079,6 +1079,47 @@ es:
     edit:
       title: 'Modificar estado de usuario'
 
+  user_settings:
+    show:
+      title: 'Información de página web'
+    edit:
+      title: 'Modificar información de página web'
+
+  memberships:
+    show:
+      title: 'Membresía en asociación académica'
+    index:
+      title: 'Membresias en asociaciones académicas'
+    new:
+      title: 'Nueva membresía en asociación académica'
+    edit:
+      title: 'Modificar membresía en asociación académica'
+
+  user_prizes:
+    show:
+      title: 'Premio recibido'
+    index:
+      title: 'Premios recibidos'
+    new:
+      title: 'Nuevo premio recibido'
+    edit:
+      title: 'Modificar premio recibido'
+
+  jobposition_logs:
+    show:
+      title: 'Antigüedad en la UNAM'
+    edit:
+      title: 'Modificar información de antigüedad'
+
+  jobpositions:
+    show:
+      title: 'Categoría'
+    index:
+      title: 'Categorías'
+    new:
+      title: 'Nuevo categoría'
+    edit:
+      title: 'Modificar categoría'
 
   user_annual_reports:
     index:

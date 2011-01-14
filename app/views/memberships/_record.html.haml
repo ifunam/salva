@@ -4,8 +4,8 @@
   %td{:style => 'width: 630px;'}
     = record.as_text
   %td{:style => 'width: 60px; text-align: center;'}
-    = link_to_action 'ui-icon-zoomin', t(:show),  jobposition_path(:id => record.id)
+    = link_to_action 'ui-icon-zoomin', t(:show),  membership_path(:id => record.id)
   %td{:style => 'width: 60px; text-align: center;'}
-    = link_to_action 'ui-icon-pencil', t(:edit),  edit_jobposition_path(:id => record.id)
+    = link_to_action 'ui-icon-pencil', t(:edit),  edit_membership_path(:id => record.id)
   %td{:style => 'width: 60px; text-align: center;', :class => 'delete_record'}
-    = link_to_delete record, jobposition_path(:id => record.id)
+    = link_to_delete record, membership_path(:id => record.id)

@@ -1,0 +1,19 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('user_prizes.show.title')
+  - show_for @user_prize do |u|
+    %div{:class=>'span-12'}
+      %label prizetype
+      = @user_prize.prize.prizetype.name
+    = u.association :prize, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    %div{:class=>'span-12'}
+      %label institution 
+      = @user_prize.prize.institution.name
+
+    = u.attribute :year, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :month, :wrapper_html => {:class => 'span-6 last'}
+  = render :partial => 'shared/record', :object => @user_prize
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_user_prize_path(:id => @user_prize.id)
+  = link_as_button t(:back), user_prizes_path
+

@@ -1,7 +1,7 @@
 class Jobposition < ActiveRecord::Base
   set_table_name "jobpositions"
 
-  validates_presence_of :institution_id, :start_date
+  validates_presence_of :institution_id
 
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
@@ -10,13 +10,14 @@ class Jobposition < ActiveRecord::Base
 
   validates_numericality_of :startmonth, :endmonth, :startyear, :endyear, :allow_nil => true, :only_integer => true
 
-  validates_uniqueness_of :user_id, :scope => [:institution_id, :startyear]
 
   belongs_to :jobpositioncategory
   belongs_to :contracttype
   belongs_to :institution
   belongs_to :user
   belongs_to :schoolarship
+  belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
+  belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   has_many :user_adscriptions
 
@@ -31,6 +32,10 @@ class Jobposition < ActiveRecord::Base
   scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
 
   def category_name
-    jobpositioncategory.nil? ? 'Sin definir' : jobpositioncategory.name 
+    jobpositioncategory.nil? ? 'Sin definir' : jobpositioncategory.name
+  end
+
+  def as_text
+    [category_name, start_date, end_date].compact.join(', ')
   end
 end

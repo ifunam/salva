@@ -50,14 +50,19 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :profile, 'Perfil', user_profile_path, :highlights_on => /^\/$/ do |s|
       s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
+      s.item :jobpositions, 'Categorías', jobpositions_path, :highlights_on => /\/jobpositions/
+      s.item :jobposition_log, :'Antigüedad en la UNAM', jobposition_log_path, :highlights_on => /\/jobposition_log/
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
       s.item :course_attendees, 'Cursos recibidos', course_attendees_path, :highlights_on => /\/course_attendees/
       s.item :conference_attendees, 'Asistencia a eventos académicos', conference_attendees_path, :highlights_on => /\/conference_attendees/
       s.item :user_schoolarships, 'Becas', user_schoolarships_path, :highlights_on => /\/user_schoolarships/
+      s.item :memberships, 'Membresias en asociaciones académicas', memberships_path, :highlights_on => /\memberships/
+      s.item :user_prizes, 'Premios recibidos', user_prizes_path, :highlights_on => /\/user_prizes/
       s.item :user_credits, 'Agradecimientos y otros créditos', user_credits_path, :highlights_on => /\/user_credits/
       s.item :institutional_activities, 'Participación institucional', institutional_activities_path, :highlights_on => /\/institutional_activities/
       s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
       s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
+      s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
     end
 
     primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|

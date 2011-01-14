@@ -103,6 +103,13 @@ $(document).ready(function() {
     date_picker_for('.birthdate', (current_year - 100), (current_year - 15));
     date_picker_for('.date', (current_year -20), current_year);
 
+    $('#filter_jobpositiontype_id').change(function(){
+      $.ajax({
+            url: "/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val(),
+            success: function(data) { $('#jobpositioncategories_select').html(data); }
+      });
+    });
+
     set_button_behaviour();
 });
 

@@ -1,0 +1,2 @@
+class JobpositionsController < UserResourcesController
+end
