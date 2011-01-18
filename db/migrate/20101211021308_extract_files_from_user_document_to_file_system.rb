@@ -22,12 +22,12 @@ class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
         end
       end
       puts "Inserting document: :user_id => #{record.user_id}, :file => #{filename}"
-      signature = Digest::MD5.hexdigest(filename)
+      file_signature = Digest::MD5.hexdigest(filename)
       @document = Document.create(:user_id => record.user_id, :documenttype_id => record.documenttype_id,
                                   :registered_by_id => record.user_id, :created_on => record.created_on,
                                   :updated_on => record.updated_on, :file => filename,
                                   :approved_by_id => record.user_incharge_id, :approved => true,
-                                  :signature => signature)
+                                  :signature => file_signature)
     end
   end
 
