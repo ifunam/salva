@@ -10,10 +10,17 @@ class FixOldDbUserStimuliColumns < ActiveRecord::Migration
       remove_column :user_stimuli, :updated_at
     end
 
-    execute "ALTER TABLE user_stimuli ADD CONSTRAINT user_stimulus_endmonth_check CHECK (((endmonth <= 12) AND (endmonth >= 1)));"
-    execute "ALTER TABLE user_stimuli ADD CONSTRAINT user_stimulus_startmonth_check CHECK (((startmonth <= 12) AND (startmonth >= 1)));"
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'user_stimulus_endmonth_check'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE user_stimuli ADD CONSTRAINT user_stimulus_endmonth_check CHECK (((endmonth <= 12) AND (endmonth >= 1)))"
+    end
 
-    execute "COMMENT ON TABLE user_stimuli IS 'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha de inicio/término';"
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'user_stimulus_startmonth_check'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE user_stimuli ADD CONSTRAINT user_stimulus_startmonth_check CHECK (((startmonth <= 12) AND (startmonth >= 1)))"
+    end
+
+    execute "COMMENT ON TABLE user_stimuli IS 'Estímulos con que ha contado un usuario, incluyendo nivel, con fecha de inicio/término'"
   end
 
   def self.down

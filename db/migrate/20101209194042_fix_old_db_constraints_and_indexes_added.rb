@@ -19,12 +19,30 @@ class FixOldDbConstraintsAndIndexesAdded < ActiveRecord::Migration
       execute "ALTER TABLE ONLY userresearchgroups ADD CONSTRAINT userresearchgroups_researchgroup_id_key1 UNIQUE (researchgroup_id, externaluser_id);"
     end
 
-    execute "ALTER TABLE ONLY user_stimuli ADD CONSTRAINT user_stimulus_stimuluslevel_id_fkey FOREIGN KEY (stimuluslevel_id) REFERENCES stimuluslevels(id) ON UPDATE CASCADE DEFERRABLE;"
-    execute "ALTER TABLE ONLY user_stimuli ADD CONSTRAINT user_stimulus_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE;"
-    execute "ALTER TABLE ONLY usercredits ADD CONSTRAINT usercredits_internalusergive_id_fkey FOREIGN KEY (internalusergive_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
-    execute "ALTER TABLE ONLY usercredits ADD CONSTRAINT usercredits_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
-    execute "ALTER TABLE ONLY userrefereedpubs ADD CONSTRAINT userrefereedpubs_internaluser_id_fkey FOREIGN KEY (internaluser_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
-    execute "ALTER TABLE ONLY userresearchgroups ADD CONSTRAINT userresearchgroups_internaluser_id_fkey FOREIGN KEY (internaluser_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'user_stimulus_stimuluslevel_id_fkey'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE ONLY user_stimuli ADD CONSTRAINT user_stimulus_stimuluslevel_id_fkey FOREIGN KEY (stimuluslevel_id) REFERENCES stimuluslevels(id) ON UPDATE CASCADE DEFERRABLE"
+    end
+
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'usercredits_internalusergive_id_fkey'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE ONLY usercredits ADD CONSTRAINT usercredits_internalusergive_id_fkey FOREIGN KEY (internalusergive_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE"
+    end
+
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'usercredits_user_id_fkey'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE ONLY usercredits ADD CONSTRAINT usercredits_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
+    end
+
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'userrefereedpubs_internaluser_id_fkey'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE ONLY userrefereedpubs ADD CONSTRAINT userrefereedpubs_internaluser_id_fkey FOREIGN KEY (internaluser_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
+    end
+
+    pg_result = execute("SELECT conname FROM pg_constraint WHERE conname = 'userresearchgroups_internaluser_id_fkey'")
+    if pg_result.ntuples == 0
+      execute "ALTER TABLE ONLY userresearchgroups ADD CONSTRAINT userresearchgroups_internaluser_id_fkey FOREIGN KEY (internaluser_id) REFERENCES users(id) ON UPDATE CASCADE DEFERRABLE;"
+    end
 
     # CREATE INDEX index_versions_on_created_at ON versions USING btree (created_at);
     unless index_name_exists? :versions, :index_versions_on_created_at, :default
