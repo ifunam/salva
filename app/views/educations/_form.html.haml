@@ -8,5 +8,5 @@
       %b='Periodo y status'
     = f.input :startyear, :as => :string, :required => true, :input_html => { :size => 4 }, :wrapper_class => 'span-4'
     = f.input :endyear, :as => :string, :required => true, :input_html => { :size => 4 }, :wrapper_class => 'span-4'
-    = f.input :is_studying_this, :as => :radio, :wrapper_class => 'span-6'
-    = f.input :is_titleholder, :as => :radio, :wrapper_class => 'span-6 last'
+    = f.input :is_studying_this, :as => :radio, :wrapper_class => 'span-6 radio_set'
+    = f.input :is_titleholder, :as => :radio, :wrapper_class => 'span-6 radio_set last'
