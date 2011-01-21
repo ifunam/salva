@@ -1,0 +1,15 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('educations.show.title')
+  - show_for @education do |u|
+    = u.association :career, :using => :name, :wrapper_html => {:class => 'span-12'}
+    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
+    = u.attribute :is_studying_this, :wrapper_html => {:class => 'span-12 last'}
+    = u.attribute :is_titleholder, :wrapper_html => {:class => 'span-12 last'}
+
+  = render :partial => 'shared/record', :object => @education
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_education_path(:id => @education.id)
+  = link_as_button t(:back), educations_path
+

@@ -5,6 +5,7 @@ class Career < ActiveRecord::Base
 
   belongs_to :degree
   belongs_to :institution
+  accepts_nested_attributes_for :institution
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 

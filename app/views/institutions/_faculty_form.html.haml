@@ -1,0 +1,17 @@
+%div{:class=> 'span-21 section_left push-1 last'}
+  %div{:class=>'span-21 last'}
+    %b='Facultad o escuela'
+
+  %div{:class=>'span-21 last'}
+    = f.input :name, :as => :string, :input_html => { :size => '40' }, :wrapper_class => 'span-6'
+    %div{:class=> 'span-6'}
+      = f.label :institutiontitle_id, :required => true
+      = f.collection_select :institutiontitle_id, Institutiontitle.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :wrapper_class => 'span-7 radio_set last'
+
+  %div{:class=>'span-21 last'}
+    %div{:class => 'span-12 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
+      = f.label :institution, :required => true
+      = f.collection_select :institution_id,  [], {:prompt => true}, {:class => 'autocompleted_select'}
+      = link_to_action 'ui-icon-plus', 'Agregar una institución', '#', :id => 'new_record'
+    = f.association :country, :collection => Country.all, :wrapper_class => 'span-9 last'

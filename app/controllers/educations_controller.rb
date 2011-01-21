@@ -1,0 +1,2 @@
+class EducationsController < UserResourcesController
+end
