@@ -4,5 +4,6 @@ class Institutiontitle < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :institutions
+  default_scope :order => 'name DESC'
 end
 

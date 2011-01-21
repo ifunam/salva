@@ -13,12 +13,6 @@ class Institution < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  validates_associated :institutiontitle
-  validates_associated :institutiontype
-  validates_associated :country
-  validates_associated :state
-  validates_associated :city
-
   has_many :prizes
   has_many :grants
   has_many :acadvisits
