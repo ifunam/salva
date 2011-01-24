@@ -1,4 +1,4 @@
-require 'lib/document/user_annual_report'
+require "#{Rails.root.to_s}/lib/document/user_annual_report"
 class Notifier < ActionMailer::Base
   include Resque::Mailer
 

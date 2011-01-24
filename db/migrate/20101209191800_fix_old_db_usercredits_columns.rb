@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FixOldDbUsercreditsColumns < ActiveRecord::Migration
   def self.up
     unless column_exists? :usercredits, :internalusergive_id

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FixOldDbUserStimuliColumns < ActiveRecord::Migration
   def self.up
     if column_exists? :user_stimuli, :moduser_id
