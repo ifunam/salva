@@ -1,11 +1,33 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('educations.show.title')
   - show_for @education do |u|
-    = u.association :career, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :is_studying_this, :wrapper_html => {:class => 'span-12 last'}
-    = u.attribute :is_titleholder, :wrapper_html => {:class => 'span-12 last'}
+    %div{:class=> 'span-21 section_left push-1 last'}
+      = u.association :career, :using => :name, :wrapper_html => {:class => 'span-12'}
+      %div{:class=> 'span-9 last'}
+        %label Grado
+        = @education.career.degree.name
+    %div{:class=> 'span-21 section_left push-1 last'}
+      %div{:class=> 'span-12'}
+        %label Facultad o Escuela
+        = @education.career.institution.name
+      %div{:class=> 'span-9 last'}
+        %label Institución 
+        = @education.career.institution.institution.name
+      %div{:class=> 'span-12'}
+        %label Tipo
+        = @education.career.institution.institutiontitle.name
+      %div{:class=> 'span-5'}
+        %label Clasificación 
+        = @education.career.institution.institutiontype.name
+      %div{:class=> 'span-4 last'}
+        %label País 
+        = @education.career.institution.country.name
+
+    %div{:class=> 'span-21 section_left push-1 last'}
+      = u.attribute :startyear, :wrapper_html => {:class => 'span-5'}
+      = u.attribute :endyear, :wrapper_html => {:class => 'span-5'}
+      = u.attribute :is_studying_this, :wrapper_html => {:class => 'span-5'}
+      = u.attribute :is_titleholder, :wrapper_html => {:class => 'span-6 last'}
 
   = render :partial => 'shared/record', :object => @education
 
