@@ -12,9 +12,9 @@ class Education < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  belongs_to :institutioncareer # FIX IT: Remove this relationship for next release
-                                # because we need institutioncareers table to support
-                                # migrations of previous versions of salva databases.
+  belongs_to :institutioncareer # FIX IT: Remove this relationship until next release.
+                                # We need institutioncareers table to support
+                                # migrations from previous versions of salva databases.
   default_scope :order => 'endyear DESC, startyear DESC'
 
   def as_text
