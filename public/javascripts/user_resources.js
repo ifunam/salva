@@ -49,6 +49,24 @@
         });
 })( jQuery );
 
+(function( $ ) {
+        $.widget( "ui.autocompleted_text", {
+            _create: function() {
+                var dom_id = this.element.attr('id');
+                var controller_name = this.element.attr('data-controller-name');
+                $('#'+dom_id).autocomplete({
+                        delay: 3,
+                        minLength: 4,
+                        source: '/'+controller_name+'/autocompleted_search',
+                        select: function( event, ui ) {
+                           $('#'+dom_id).val(ui.item.value);
+                        }
+                });
+            }
+        });
+})( jQuery );
+
+
 $(document).ready(function() {
       $("tr#filter_header input").live('focusout', function() {
         resource = $('#filter_form').attr('action') + '.js';
@@ -97,7 +115,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $( ".autocompleted_select" ).combobox();
+    $(".autocompleted_select" ).combobox();
 
     current_year = new Date().getFullYear();
     date_picker_for('.birthdate', (current_year - 100), (current_year - 15));
@@ -110,7 +128,8 @@ $(document).ready(function() {
       });
     });
 
-    set_button_behaviour();
+   $(".autocompleted_text" ).autocompleted_text();
+   set_button_behaviour();
 });
 
 function dialog_for_new_record(controller) {

@@ -1,7 +1,7 @@
 %div{:class=> 'span-21 section_left push-1 last'}
   %div{:class=>'span-21 last'}
     %b='Grado y carrera'
-  = f.input :name, :as => :string, :input_html => { :size => 55 }, :wrapper_class => 'span-8'
+  = f.input :name, :as => :string, :input_html => { :size => 40, :class => 'autocompleted_text', 'data-controller-name' => 'careers'}, :wrapper_class => 'span-8'
   = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'span-13 radio_set last'
 - f.object.institution = Institution.new if f.object.institution.nil?
 = f.simple_fields_for :institution, f.object.institution do |iform|

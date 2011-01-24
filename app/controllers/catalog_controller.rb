@@ -6,7 +6,7 @@ class CatalogController < InheritedResources::Base
   def self.autocompleted_search_with(attribute, attribute_key, method_name=nil)
     method = method_name.nil? ? attribute.to_sym : method_name.to_sym
     define_method :autocompleted_search do
-      set_collection_ivar self.resource_class.search(attribute_key.to_sym => params[:term]).all
+      set_collection_ivar self.resource_class.select("DISTINCT(#{attribute})").search(attribute_key.to_sym => params[:term]).all
       render :json => collection.collect { |record| {:id => record.id, :value => record.send(method), :label => record.send(method) } }
     end
   end

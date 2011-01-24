@@ -3,7 +3,7 @@
     %b='Facultad o escuela'
 
   %div{:class=>'span-21 last'}
-    = f.input :name, :as => :string, :input_html => { :size => '55' }, :wrapper_class => 'span-8'
+    = f.input :name, :as => :string, :input_html => { :size => '40', :class => 'autocompleted_text', 'data-controller-name' => 'institutions' }, :wrapper_class => 'span-8'
     %div{:class => 'span-13 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
       = f.association :institution,  :as => :select, :collection => [Institution.find(1)], :input_html => {:class => 'simple_select' }, :selected => 1, :required => true, :wrapper_class => 'select_and_label'
       = link_to_action 'ui-icon-plus', 'Agregar una institución', '#', :id => 'new_record'
