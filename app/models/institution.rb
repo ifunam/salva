@@ -39,8 +39,17 @@ class Institution < ActiveRecord::Base
   end
 
   def name_and_parent_abbrev
+    name_and_parent(:abbrev)
+  end
+
+  def name_and_parent_name
+    name_and_parent(:name)
+  end
+
+
+  def name_and_parent(attribute=:abbrev)
      unless institution.nil?
-       [as_text, institution.abbrev].compact.join(' - ')
+       [as_text, institution.send(attribute)].compact.join(', ')
      else
         as_text
      end

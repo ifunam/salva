@@ -13,6 +13,6 @@ class Career < ActiveRecord::Base
   has_many :educations
 
   def as_text
-      ["Carrera: #{name}, Grado: #{degree.name}", institution.as_text].join(', ')
+    ["Carrera: #{name}, Grado: #{degree.name}", institution.name_and_parent_name].join(', ')
   end
 end
