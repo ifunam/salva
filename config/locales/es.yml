@@ -1121,6 +1121,16 @@ es:
     edit:
       title: 'Modificar categoría'
 
+  educations:
+    show:
+      title: 'Escolaridad'
+    index:
+      title: 'Escolaridad'
+    new:
+      title: 'Nuevo grado'
+    edit:
+      title: 'Modificar grado'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
