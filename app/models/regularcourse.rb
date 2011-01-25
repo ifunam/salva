@@ -6,6 +6,8 @@ class Regularcourse < ActiveRecord::Base
   belongs_to :academicprogram
   accepts_nested_attributes_for :academicprogram
   belongs_to :modality
+  belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
+  belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   has_many :user_regularcourses
   has_many :users, :through => :user_regularcourses
