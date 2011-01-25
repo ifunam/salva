@@ -2,10 +2,10 @@
   %h3= t('educations.show.title')
   - show_for @education do |u|
     %div{:class=> 'span-21 section_left push-1 last'}
-      = u.association :career, :using => :name, :wrapper_html => {:class => 'span-12'}
-      %div{:class=> 'span-9 last'}
+      %div{:class=> 'span-12 '}
         %label Grado
         = @education.career.degree.name
+      = u.association :career, :using => :name, :wrapper_html => {:class => 'span-9 last'}
     %div{:class=> 'span-21 section_left push-1 last'}
       %div{:class=> 'span-12'}
         %label Facultad o Escuela
