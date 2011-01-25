@@ -4,4 +4,6 @@ class Period < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => [:startdate, :enddate]
 
   has_many :user_regularcourses
+
+  default_scope :order => 'startdate DESC'
 end
