@@ -2,6 +2,7 @@
 source :gemcutter
 
 gem "rails", "3.0.3"
+gem "mail", "~> 2.2.15" 
 # Views, css and javascript
 gem "compass", "0.10.5"
 gem "show_for", ">= 0.2.3"
