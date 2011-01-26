@@ -94,6 +94,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :teaching, 'Docencia', other_teaching_activities_path do |s|
+      s.item :regular_courses, 'Cursos regulares', regular_courses_path, :highlights_on => /\/regular_courses/
       s.item :course_instructors, 'Cursos especiales', course_instructors_path, :highlights_on => /\/course_instructors/
       s.item :other_teaching_activities, 'Actividades de docencia', other_teaching_activities_path, :highlights_on => /\/other_teaching_activities/
       s.item :student_advices, 'Asesoría a estudiantes', student_advices_path, :highlights_on => /\/student_advices/

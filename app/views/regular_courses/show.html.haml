@@ -1,0 +1,39 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('regular_courses.show.title')
+  - show_for @regular_course do |u|
+    %div{:class=> 'span-21 section_left push-1 last'}
+      = u.attribute :title, :wrapper_html => {:class => 'span-10'}
+      = u.association :modality, :using => :name, :wrapper_html => {:class => 'span-11 last'}
+
+    %div{:class=> 'span-21 section_left push-1 last'}
+      %div{:class=> 'span-10'}
+        %label Grado
+        = @regular_course.academicprogram.career.degree.name
+      %div{:class=> 'span-11 last'}
+        %label Carrera 
+        = @regular_course.academicprogram.career.name
+
+    %div{:class=> 'span-21 section_left push-1 last'}
+      %div{:class=> 'span-12'}
+        %label Facultad o Escuela
+        = @regular_course.academicprogram.career.institution.name
+      %div{:class=> 'span-9 last'}
+        %label Institución 
+        = @regular_course.academicprogram.career.institution.institution.name
+      %div{:class=> 'span-12'}
+        %label Tipo
+        = @regular_course.academicprogram.career.institution.institutiontitle.name
+      %div{:class=> 'span-5'}
+        %label Clasificación 
+        = @regular_course.academicprogram.career.institution.institutiontype.name
+      %div{:class=> 'span-4 last'}
+        %label País 
+        = @regular_course.academicprogram.career.institution.country.name
+
+
+  = render :partial => 'shared/record', :object => @regular_course
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_regular_course_path(:id => @regular_course.id)
+  = link_as_button t(:back), regular_courses_path
+

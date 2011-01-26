@@ -1,0 +1,10 @@
+%div{:class => 'ui-widget ui-widget-content ui-corner-all author_list', :id => 'show_associated_authors_'+ dom_id(@regular_course)}
+  %div
+    %b='Autores'
+    %div{:class => "ui-state-default ui-corner-all", :style => 'width: 16px; margin-left: 11px; float:right;'}
+      = link_to_function content_tag(:span, '', {:class =>'ui-icon ui-icon-close'}), "$('#show_associated_authors_#{dom_id(@regular_course)}').remove();"
+  %br
+  %ul{:style => 'width: 240px;'}
+    - @regular_course.user_regularcourses.each do |record|
+      %li{:style => 'margin-left: -30px; color: green;'}
+        = record.user.author_name + " (#{record.roleinregularcourse.name}), #{record.period.title}"

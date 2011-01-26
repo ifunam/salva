@@ -1,0 +1,15 @@
+%tr{:class => "filter_header", :id => "filter_header"}
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    %th{:class => 'ui-state-default', :style => 'width: 5%;'}
+      =t(:id)
+    %th{:class => 'ui-state-default', :style => 'width: 55%;'}
+    %th{:class => 'ui-state-default', :style => 'width: 10%;'}
+      ='Académicos del instituto asociados al curso'
+    %th{:class => 'ui-state-default', :style => 'width: 90px;'}
+      ='Quitar asociación al curso'
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:show)
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:edit)
+    %th{:class => 'ui-state-default', :style => 'width: 60px;'}
+      =t(:del)

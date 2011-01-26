@@ -1,5 +1,7 @@
 %div{:class=> 'span-21 section_left push-1 last'}
   %div{:class=>'span-21 last'}
+    %div{:class=>'span-21 last'}
+      %b='Grado y carrera'
     = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'span-13 radio_set'
     = f.input :name, :as => :string, :input_html => { :size => 40, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}, :wrapper_class => 'span-8 last'
 - f.object.institution = Institution.new if f.object.institution.nil?

@@ -6,4 +6,6 @@ class Academicprogramtype < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :academicprograms
+
+  default_scope :order => 'name ASC'
 end

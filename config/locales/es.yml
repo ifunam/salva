@@ -1131,6 +1131,22 @@ es:
     edit:
       title: 'Modificar grado'
 
+  regular_courses:
+    index:
+      title: 'Cursos regulares'
+      my_regular_courses: 'Listar mis cursos'
+      not_my_regular_courses: 'Listar cursos registrados por otros usuarios'
+    not_mine:
+      title: 'Cursos registrados por otros usuarios'
+      my_regular_courses: 'Listar mis cursos'
+      not_my_regular_courses: 'Listar cursos registrados por otros usuarios'
+    new:
+      title: 'Nuevo curso regular'
+    edit:
+      title: 'Modificar curso regular'
+    show:
+      title: 'Curso regular'
+
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'

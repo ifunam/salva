@@ -1,0 +1,11 @@
+- f.object.career = Career.new if  f.object.career.nil?
+= f.simple_fields_for :career, f.object.career do |career_form|
+  = render :partial => 'careers/form', :locals => { :f => career_form }
+
+%div{:class=> 'span-21 section_left push-1 last'}
+  %div{:class=>'span-21 last'}
+    %b='Programa académico'
+
+  = f.association :academicprogramtype, :as => :radio, :collection => Academicprogramtype.all, :wrapper_class => 'span-12 radio_set last'
+  = f.input :year, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-9 last'
+
