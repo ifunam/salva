@@ -1,54 +1,3 @@
-(function( $ ) {
-        $.widget( "ui.combobox", {
-            _create: function() {
-                var self = this,
-                    select = this.element.hide(),
-                    selected = select.children( ":selected" ),
-                    value = selected.val() ? selected.text() : "";
-                var controller_name = self.element.context.parentNode.getAttribute('data-controller-name');
-                var input = $( "<input size=40>" )
-                    .insertAfter( select )
-                    .val( value )
-                    .autocomplete({
-                        delay: 3,
-                        minLength: 1,
-                        source: '/'+controller_name+'/autocompleted_search',
-                        select: function( event, ui ) {
-                            select.children().remove().end().append('<option selected value="'+ui.item.id+'">'+ui.item.label+'</option>');
-                        },
-                        change: function( event, ui ) {
-                            if ( !ui.item ) {
-                                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
-                                    valid = false;
-                                select.children( "option" ).each(function() {
-                                    if ( this.value.match( matcher ) ) {
-                                        this.selected = valid = true;
-                                        return false;
-                                    }
-                                });
-                                if ( !valid ) {
-                                    // remove invalid value, as it didn't match anything
-                                    $( this ).val( "" );
-                                    select.val( "" );
-                                    return false;
-                                }
-                            }
-                        }
-                    })
-                    .addClass( "ui-widget ui-widget-content ui-corner-left" );
-
-                input.data( "autocomplete" )._renderItem = function( ul, item ) {
-                    return $( "<li></li>" )
-                        .data( "item.autocomplete", item )
-                        .append( "<a>" + item.label + "</a>" )
-                        .appendTo( ul );
-                };
-
-
-            }
-        });
-})( jQuery );
-
 $(document).ready(function() {
     $(".associated_authors a").live("click", function() {
         publication_id = this.id;
@@ -141,7 +90,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".autocompleted_select").combobox();
+    $(".autocompleted_select").autocomplete_select();
 
     $('#autocomplete_filter_journal_name').live('focus', function(){
         filter_by_journal_name();
@@ -173,6 +122,8 @@ $(document).ready(function() {
 
     current_year = new Date().getFullYear();
     date_picker_for('.date', (current_year -20), current_year);
+
+    $(".autocompleted_text" ).autocompleted_text();
 
     set_button_behaviour();
 });

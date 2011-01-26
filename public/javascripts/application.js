@@ -1,6 +1,72 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+(function( $ ) {
+        $.widget( "ui.autocomplete_select", {
+            _create: function() {
+                var self = this,
+                    select = this.element.hide(),
+                    selected = select.children( ":selected" ),
+                    value = selected.val() ? selected.text() : "";
+                var controller_name = self.element.context.parentNode.getAttribute('data-controller-name');
+                var input = $( "<input size=40>" )
+                    .insertAfter( select )
+                    .val( value )
+                    .autocomplete({
+                        delay: 3,
+                        minLength: 1,
+                        source: '/'+controller_name+'/autocompleted_search',
+                        select: function( event, ui ) {
+                            select.children().remove().end().append('<option selected value="'+ui.item.id+'">'+ui.item.label+'</option>');
+                        },
+                        change: function( event, ui ) {
+                            if ( !ui.item ) {
+                                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
+                                    valid = false;
+                                select.children( "option" ).each(function() {
+                                    if ( this.value.match( matcher ) ) {
+                                        this.selected = valid = true;
+                                        return false;
+                                    }
+                                });
+                                if ( !valid ) {
+                                    // remove invalid value, as it didn't match anything
+                                    $( this ).val( "" );
+                                    select.val( "" );
+                                    return false;
+                                }
+                            }
+                        }
+                    })
+                    .addClass( "ui-widget ui-widget-content ui-corner-left" );
+
+                input.data( "autocomplete" )._renderItem = function( ul, item ) {
+                    return $( "<li></li>" )
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + item.label + "</a>" )
+                        .appendTo( ul );
+                };
+
+
+            }
+        });
+  
+        $.widget( "ui.autocompleted_text", {
+            _create: function() {
+                var dom_id = this.element.attr('id');
+                var controller_name = this.element.attr('data-controller-name');
+                $('#'+dom_id).autocomplete({
+                        delay: 3,
+                        minLength: 4,
+                        source: '/'+controller_name+'/autocompleted_search',
+                        select: function( event, ui ) {
+                           $('#'+dom_id).val(ui.item.value);
+                        }
+                });
+            }
+        });
+})( jQuery );
+
 function set_button_behaviour() {
     $(".ui-state-default").hover(
         function() { $(this).addClass('ui-state-hover'); },
