@@ -9,6 +9,8 @@ class UserRegularcourse < ActiveRecord::Base
   belongs_to :period
   belongs_to :roleinregularcourse
   belongs_to :user
+  belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
+  belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   def as_text
     ["#{roleinregularcourse.name}: #{regularcourse.as_text}", "Horas por semana: #{hoursxweek}", "Periodo escolar: #{period.title}"].join(', ')
