@@ -2,6 +2,9 @@ lib/remote_user.rb
 config/database.yml
 config/site.yml
 config/mail.yml
+config/database.yml
+config/ldap.yml
+config/resque.yml
 db/*
 !db/migrate
 !db/catalogs
