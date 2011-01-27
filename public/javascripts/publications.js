@@ -125,6 +125,21 @@ $(document).ready(function() {
 
     $(".autocompleted_text" ).autocompleted_text();
 
+    $("#new_period").live('click', function() {
+       dialog_for_new_period(this.href);
+    });
+
+
+    $('#new_period_form').live('submit', function() {
+        class_name = this.getAttribute('data-collection-id');
+        $("#new_period_form").ajaxComplete(function(event, request, settings) {
+            $("#"+class_name).append(request.responseText);
+            $('#dialog').dialog('close');
+        });
+    });
+    $('.delete_regularcourse_period').live('click', function() {
+      $('#'+this.id).remove();
+    });
     set_button_behaviour();
 });
 
@@ -162,6 +177,16 @@ function dialog_for_new_checkbox(controller) {
         success: function(request) {
             $("div#dialog").html(request);
             $('#new_record_form').attr('id', "new_checkbox_form");
+        }
+    });
+}
+
+function dialog_for_new_period(url) {
+    $('#dialog').dialog({title:'Nuevo periodo', width: 480, height: 420}).dialog('open');
+    $.ajax({
+        url: url,
+        success: function(request) {
+            $("div#dialog").html(request);
         }
     });
 }

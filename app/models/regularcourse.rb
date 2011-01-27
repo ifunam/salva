@@ -24,4 +24,8 @@ class Regularcourse < ActiveRecord::Base
     cred = credits.nil? ? nil : "Créditos: #{credits}"
     [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career].compact.join(', ')
   end
+
+  def short_description
+    [title, academicprogram.as_text_with_career].join(', ')
+  end
 end

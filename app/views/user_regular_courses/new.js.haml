@@ -1,0 +1,17 @@
+%div{:class => 'span-10 section_left push-1 last', :style => 'text-align: justified;'}
+  %b='Curso: '
+  = @regular_course.short_description
+
+= simple_form_for(@user_regular_course, :as => :user_regular_course, :url => user_regular_courses_path(:format => :js),
+                  :remote => true, :html => { :id => 'new_period_form', 
+                                              'data-collection-id' => "regularcourse_#{@user_regular_course.regularcourse_id}_periods" }) do |f|
+  - unless f.object.new_record?
+    = f.hidden_field :id
+  = f.hidden_field :regularcourse_id
+  %div{ :class => 'span-10 section_left last' }
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.association :period, :collection => Period.all, :wrapper_class => 'span-4 last', :input_html => { :style => 'width: 100px;'}
+    = f.association :roleinregularcourse, :as => :radio, :collection => Roleinregularcourse.all, :wrapper_class => 'span-4'
+    = f.input :hoursxweek, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-2 last'
+  %div{ :class => 'span-10 buttons_left last' }
+    = f.submit t(:save), :class => "ui-state-default ui-corner-all button"
