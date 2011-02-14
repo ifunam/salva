@@ -1,8 +1,14 @@
 class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
   def self.up
     base_path = Rails.root.to_s + '/public/uploads'
-    UserDocument.select('id, document_id, user_id, documenttype_id, user_incharge_id, 
-                        created_on, updated_on').all.each do |record|
+
+    timestamp_columns = %w(created_at updated_at)
+    if (column_exists? :user_documents, :created_on) and (column_exists? :user_documents, :updated_at)
+      timestamp_columns = %w(created_on updated_on)
+    end
+    columns = %w(id document_id user_id documenttype_id user_incharge_id) + timestamp_columns
+
+    UserDocument.select(columns.join(', ')).all.each do |record|
       path = base_path + "/#{record.user.login}"
       if record.document.documenttype.name == 'Informe anual de actividades'
         path = base_path + '/annual_reports/' + record.document.title.to_s
