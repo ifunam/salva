@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  devise :ldap_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :ldap_authenticatable
+         # Uncomment the following lines
+         # to enable database authentication
+         # :database_authenticatable, :encryptable,
+         # :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
