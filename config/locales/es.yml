@@ -1151,6 +1151,17 @@ es:
     index:
       title: 'Informe anual de actividades'
 
+  user_refereed_journals:
+    index:
+      title: 'Arbitraje en journals'
+    new:
+      title: 'Nuevo arbitraje en journal'
+    edit:
+      title: 'Modificar arbirtraje en journal'
+    show:
+      title: 'Información de arbitraje en journal'
+
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -1386,6 +1397,7 @@ es:
   conferencetype: 'Tipo'
   conferencescope: 'Ámbito'
   organized_by: 'Organizado por'
+  refereed_criterium: 'Criterio'
 
   reporter:
     profile: 'Perfil'

@@ -1,0 +1,2 @@
+class UserRefereedJournalsController < UserResourcesController
+end
