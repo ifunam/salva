@@ -21,5 +21,15 @@ class Thesis < ActiveRecord::Base
   accepts_nested_attributes_for :user_theses
   user_association_methods_for :user_theses
 
+  def as_text
+    [users_and_roles, title, career.as_text, date, "#{authors} (estudiante)"].compact.join(', ')
+  end
 
+  def users_and_roles
+    user_theses.collect {|record| record.as_text }.join(', ')
+  end
+
+  def date
+    thesisstatus_id == 3 ? end_date : [start_date, end_date].join(', ')
+  end
 end
