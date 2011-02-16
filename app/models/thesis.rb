@@ -6,4 +6,6 @@ class Thesis < ActiveRecord::Base
   belongs_to :thesisstatus
   belongs_to :thesismodality
   belongs_to :institutioncareer
+  belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
+  belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 end
