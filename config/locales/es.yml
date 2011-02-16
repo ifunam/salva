@@ -1161,6 +1161,21 @@ es:
     show:
       title: 'Información de arbitraje en journal'
 
+  theses:
+    index:
+      title: 'Dirección o asesoría de tesis '
+      my_theses: 'Listar mis asesorías de tesis'
+      not_my_theses: 'Listar tesis registradas por otros usuarios'
+    not_mine:
+      title: 'Dirección o asesorías de tesis registradas por otros usuarios'
+      my_theses: 'Listar mis asesorías de tesis'
+      not_my_theses: 'Listar tesis registradas por otros usuarios'
+    new:
+      title: 'Nuevo dirección o asesoría de tesis'
+    edit:
+      title: 'Modificar dirección o asesoría de tesis'
+    show:
+      title: 'Dirección o asesoría de tesis'
 
   admin:
     people: 'Información personal'

@@ -1,0 +1,6 @@
+- unless f.object.new_record?
+  = f.hidden_field :id
+  = f.hidden_field :thesis_id, :value => @thesis.id
+= f.hidden_field :user_id, :value => current_user.id
+= f.association :roleinthesis, :as => :radio, :collection => Roleinthesis.no_author.all, :wrapper_class => 'span-7 radio_set'
+

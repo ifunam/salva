@@ -4,5 +4,6 @@ class Roleinthesis < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :user_theses
+  scope :no_author, where('id > 1')
   default_scope :order => 'name ASC'
 end
