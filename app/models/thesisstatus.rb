@@ -4,4 +4,5 @@ class Thesisstatus < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :theses
+  default_scope :order => 'name ASC'
 end
