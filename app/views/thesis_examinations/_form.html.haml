@@ -1,0 +1,23 @@
+%div{ :class => 'span-22 section_left append-bottom last' }
+  = render :partial => "/shared/errors", :object => f.object.errors
+  %div{:class=> 'span-21 section_left push-1 last'}
+    = f.input :title, :as => :string, :input_html => {:size => 50}, :wrapper_class => 'span-10'
+    = f.input :authors, :as => :string, :input_html => {:size => 50}, :wrapper_class => 'span-10 last'
+
+  - f.object.career = Career.new if f.object.career.nil?
+  = f.simple_fields_for :career, f.object.career do |c|
+    = render :partial => 'careers/form', :locals => { :f => c}
+
+  %div{:class=> 'span-21 section_left push-1 last'}
+    = f.association :thesismodality, :as => :radio, :wrapper_class => 'span-10 radio_set'
+    = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-5', :required => true
+    %div{:class => 'span-5 last'}
+      = f.label :endmonth, :required => true
+      = select_month(Date.today, :field_name => 'endmonth', :prefix => 'thesis_examination')
+    = f.hidden_field :thesisstatus_id, :value  => 3
+
+  %div{ :class => 'span-21 section_left push-1 last' }
+    -  @thesis_juror = user_role(@thesis_examination, :thesis_jurors, current_user.id, :thesis_id)
+    = f.simple_fields_for :thesis_jurors, @thesis_juror do |ut|
+      = render :partial => 'thesis_jurors/form', :locals => { :f => ut }
+

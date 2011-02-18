@@ -25,7 +25,6 @@ class Thesis < ActiveRecord::Base
   scope :user_id_not_eq, lambda { |user_id|  where("theses.id IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]).to_sql}) AND theses.id  NOT IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id =  ?", user_id]).to_sql})") }
   search_methods :user_id_eq, :user_id_not_eq
 
-  
   def as_text
     [users_and_roles, title, career.as_text, date, "#{authors} (estudiante)"].compact.join(', ')
   end

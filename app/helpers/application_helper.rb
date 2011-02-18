@@ -86,8 +86,8 @@ module ApplicationHelper
     link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s' }), url, :remote => true, :id => dom_id(record), :title =>  t(:author_list)
   end
 
-  def user_role(record, user_role_class, user_id)
-    foreign_key = record.class.to_s.foreign_key
+  def user_role(record, user_role_class, user_id, foreign_key=nil)
+    foreign_key ||= record.class.to_s.foreign_key
     role_class = user_role_class.to_s.classify.constantize
     unless role_class.where(:user_id => user_id, foreign_key => record.id).first.nil? 
       role_class.where(:user_id => user_id, foreign_key => record.id).first

@@ -1171,11 +1171,27 @@ es:
       my_theses: 'Listar mis asesorías de tesis'
       not_my_theses: 'Listar tesis registradas por otros usuarios'
     new:
-      title: 'Nuevo dirección o asesoría de tesis'
+      title: 'Nueva dirección o asesoría de tesis'
     edit:
       title: 'Modificar dirección o asesoría de tesis'
     show:
       title: 'Dirección o asesoría de tesis'
+
+  thesis_examinations:
+    index:
+      title: 'Jurado de tesis'
+      my_thesis_examinations: 'Listar mis jurados de tesis'
+      not_my_thesis_examinations: 'Listar tesis registradas por otros usuarios'
+    not_mine:
+      title: 'Tesis registradas por otros usuarios'
+      my_thesis_examinations: 'Listar mis jurados de tesis'
+      not_my_thesis_examinations: 'Listar tesis registradas por otros usuarios'
+    new:
+      title: 'Nuevo jurado de tesis'
+    edit:
+      title: 'Modificar jurado de tesis'
+    show:
+      title: 'Jurado de tesis'
 
   admin:
     people: 'Información personal'

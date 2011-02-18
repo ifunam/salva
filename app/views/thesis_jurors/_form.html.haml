@@ -1,0 +1,11 @@
+- unless f.object.new_record?
+  = f.hidden_field :id
+  = f.hidden_field :thesis_id, :value => @thesis_examination.id
+= f.hidden_field :user_id, :value => current_user.id
+= f.association :roleinjury, :as => :radio, :collection => Roleinjury.all, :wrapper_class => 'span-10 radio_set'
+= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-5', :required => true
+%div{:class => 'span-5 last'}
+  = f.label :month, :required => true
+  = select_month(Date.today, :field_name => 'endmonth', :prefix => 'thesis_examination')
+
+

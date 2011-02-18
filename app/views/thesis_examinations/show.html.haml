@@ -1,0 +1,44 @@
+%div{ :class => 'span-24 section_left last' }
+  %h3= t('thesis_examinations.show.title')
+  - show_for @thesis_examination do |u|
+    %div{:class=> 'span-21 section_left push-1 last'}
+      = u.attribute :title, :wrapper_html => {:class => 'span-10'}
+      = u.attribute :authors, :wrapper_html => {:class => 'span-10i last'}
+
+    %div{:class=> 'span-21 section_left push-1 last'}
+      %div{:class=> 'span-10'}
+        %label Grado
+        = @thesis_examination.career.degree.name
+      %div{:class=> 'span-11 last'}
+        %label Carrera 
+        = @thesis_examination.career.name
+
+    %div{:class=> 'span-21 section_left push-1 last'}
+      %div{:class=> 'span-12'}
+        %label Facultad o Escuela
+        = @thesis_examination.career.institution.name
+      %div{:class=> 'span-9 last'}
+        %label Institución 
+        = @thesis_examination.career.institution.institution.name
+      %div{:class=> 'span-12'}
+        %label Tipo
+        = @thesis_examination.career.institution.institutiontitle.name
+      %div{:class=> 'span-5'}
+        %label Clasificación 
+        = @thesis_examination.career.institution.institutiontype.name
+      %div{:class=> 'span-4 last'}
+        %label País 
+        = @thesis_examination.career.institution.country.name
+    %div{:class=> 'span-21 section_left push-1 last'}
+      = u.association :thesismodality, :using => :name, :wrapper_html => {:class => 'span-10'}
+      = u.association :thesisstatus, :using => :name, :wrapper_html => {:class => 'span-11 last'}
+
+      = u.attribute :endyear, :wrapper_html => {:class => 'span-5'}
+      = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+
+  = render :partial => 'shared/record', :object => @thesis_examination
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_thesis_examination_path(:id => @thesis_examination.id)
+  = link_as_button t(:back), thesis_examinations_path
+
