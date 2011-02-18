@@ -5,10 +5,10 @@ class PublicationController < InheritedResources::Base
   respond_to :js, :only => [:index, :not_mine, :user_list, :add_user, :del_user, :role_list]
 
   # Overwritting defaults method 
-  class_inheritable_accessor :user_role_class, :resource_class_scope, :role_class
+  class_inheritable_accessor :user_role_class, :resource_class_scope, :role_class, :user_role_columns
 
   def self.defaults(options)
-    [:user_role_class, :resource_class_scope, :role_class].each do |k|
+    [:user_role_class, :resource_class_scope, :role_class, :user_role_columns].each do |k|
       self.set_default(options, k)
     end
     self.role_list_method unless self.role_class.nil?
@@ -83,7 +83,11 @@ class PublicationController < InheritedResources::Base
   end
 
   def role_attributes
-    self.role_class.nil? ? { } : { self.role_class.to_s.classify.foreign_key => params[self.role_class.to_s.classify.foreign_key.to_sym] }
+    attributes = self.role_class.nil? ? { } : { self.role_class.to_s.classify.foreign_key => params[self.role_class.to_s.classify.foreign_key.to_sym] }
+    if self.user_role_columns.is_a? Array
+      self.user_role_columns.each { |name| attributes[name] = params[name] }
+    end
+    attributes
   end
 
   def paginated_collection
