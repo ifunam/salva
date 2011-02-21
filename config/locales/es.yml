@@ -1193,6 +1193,16 @@ es:
     show:
       title: 'Jurado de tesis'
 
+  tutorial_committees:
+    index:
+      title: 'Comités tutorales'
+    new:
+      title: 'Nuevo comité tutoral'
+    edit:
+      title: 'Modificar comité tutoral'
+    show:
+      title: 'Información de comité tutoral'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

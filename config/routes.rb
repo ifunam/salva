@@ -16,11 +16,11 @@ Salva::Application.routes.draw do
 
   resource :user_profile, :user_settings, :jobposition_log, :user_curriculum
 
-  resources :user_languages, :user_skills, :user_schoolarships, :other_activities, :popular_science_activities, 
+  resources :user_languages, :user_skills, :user_schoolarships, :other_activities, :popular_science_activities,
             :institutional_activities, :other_teaching_activities, :technical_activities, :user_credits,
             :user_journals, :reviews, :student_advices, :professor_advices, :institutional_advices,
             :user_stimuli, :memberships, :user_prizes, :jobpositions, :educations, :user_regular_courses,
-            :user_refereed_journals
+            :user_refereed_journals, :tutorial_committees
 
   resources :user_annual_reports do
     get :send_report, :on => :member

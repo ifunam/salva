@@ -99,6 +99,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :course_instructors, 'Cursos especiales', course_instructors_path, :highlights_on => /\/course_instructors/
       s.item :theses, 'Dirección de tesis', theses_path, :highlights_on => /\/theses/
       s.item :thesis_examinations, 'Jurado de tesis', thesis_examinations_path, :highlights_on => /\/thesis_examinations/
+      s.item :tutorial_committees, 'Comités tutorales', tutorial_committees_path, :highlights_on => /\/tutorial_committees/
       s.item :other_teaching_activities, 'Actividades de docencia', other_teaching_activities_path, :highlights_on => /\/other_teaching_activities/
       s.item :student_advices, 'Asesoría a estudiantes', student_advices_path, :highlights_on => /\/student_advices/
       s.item :teaching_products, 'Productos de docencia', teaching_products_path, :highlights_on => /\/teaching_products/
