@@ -41,11 +41,11 @@ class Bookedition < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
-    [ book.as_text, edition, publishers, book.country.name,
+    [ book.as_text, edition, publishers_as_text, book.country.name,
      isbn_text, year ].compact.join(', ')
   end
 
-  def publishers_text
+  def publishers_as_text
     publishers.collect { |record| record.name }.compact.join(', ')
   end
 
