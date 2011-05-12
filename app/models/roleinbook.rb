@@ -5,5 +5,5 @@ class Roleinbook < ActiveRecord::Base
 
   has_many :bookedition_roleinbooks
 
-  validates_associated :bookedition_roleinbooks
+  default_scope :order => 'name ASC'
 end
