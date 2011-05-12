@@ -18,19 +18,15 @@ class Bookedition < ActiveRecord::Base
   accepts_nested_attributes_for :bookedition_roleinbooks
   user_association_methods_for :bookedition_roleinbooks
 
-  scope :authors, lambda { |user_id|
-    joins(:bookedition_roleinbooks).
-    where("bookedition_roleinbooks.roleinbook_id = 1 OR bookedition_roleinbooks.roleinbook_id = 2") 
-  }
+  scope :authors, joins(:bookedition_roleinbooks).
+                  where("roleinbook_id = 1 OR roleinbook_id = 2")
 
-  scope :collaborators, lambda { |user_id|
-    joins(:bookedition_roleinbooks).
-    where("bookedition_roleinbooks.roleinbook_id != 1 AND bookedition_roleinbooks.roleinbook_id != 2") 
-  }
+  scope :collaborators, joins(:bookedition_roleinbooks).
+                  where("roleinbook_id != 1 AND roleinbook_id != 2")
 
   scope :user_id_eq, lambda { |user_id|
     joins(:bookedition_roleinbooks).
-    where(:bookedition_roleinbooks => { :user_id => user_id }) 
+    where(:bookedition_roleinbooks => { :user_id => user_id })
   }
 
   scope :user_id_not_eq, lambda { |user_id|
