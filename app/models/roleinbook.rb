@@ -6,4 +6,6 @@ class Roleinbook < ActiveRecord::Base
   has_many :bookedition_roleinbooks
 
   default_scope :order => 'name ASC'
+  scope :authors, where("id = 1 OR id = 2")
+  scope :collaborators, where("id != 1 AND id != 2")
 end

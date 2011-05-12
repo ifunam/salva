@@ -35,8 +35,8 @@ class Bookedition < ActiveRecord::Base
 
   scope :user_id_not_eq, lambda { |user_id|
       where("bookeditions.id IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookedition.id  NOT IN (#{Bookedition.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_jurors.user_id =  ?", user_id]).to_sql})") 
+      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookeditions.id  NOT IN (#{Bookedition.select('DISTINCT(bookedition_id) as bookedition_id').
+      where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql})")
   }
   search_methods :user_id_eq, :user_id_not_eq
 
@@ -51,5 +51,13 @@ class Bookedition < ActiveRecord::Base
 
   def isbn_text
     "ISBN: #{isbn}" unless isbn.to_s.strip.empty?
+  end
+
+  def authors
+    bookedition_roleinbooks.authors
+  end
+
+  def collaborators
+    bookedition_roleinbooks.collaborators
   end
 end
