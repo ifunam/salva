@@ -10,4 +10,5 @@ class Publisher < ActiveRecord::Base
   has_many :genericworks
   has_many :bookedition_publishers
   has_many :proceedings
+  default_scope :order => 'name ASC'
 end
