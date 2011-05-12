@@ -7,4 +7,10 @@ class Book < ActiveRecord::Base
   belongs_to :country
   belongs_to :booktype
   belongs_to :language
+  has_many :bookeditions
+  default_scope :order => 'authors ASC, title ASC'
+
+  def as_text
+    [authors, title, volume].compact.join(', ')
+  end
 end

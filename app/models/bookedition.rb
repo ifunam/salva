@@ -1,5 +1,4 @@
 class Bookedition < ActiveRecord::Base
-
   validates_presence_of :edition, :mediatype_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of  :mediatype_id,  :greater_than => 0, :only_integer => true
@@ -8,6 +7,49 @@ class Bookedition < ActiveRecord::Base
   belongs_to :book
   belongs_to :mediatype
   belongs_to :editionstatus
+  accepts_nested_attributes_for :book
 
+  has_many :bookedition_publishers
+  has_many :publishers, :through => :bookedition_publishers
+  accepts_nested_attributes_for :bookedition_publishers
 
+  has_many :bookedition_roleinbooks
+  has_many :users, :through => :bookedition_roleinbooks
+  accepts_nested_attributes_for :bookedition_roleinbooks
+  user_association_methods_for :bookedition_roleinbooks
+
+  scope :authors, lambda { |user_id|
+    joins(:bookedition_roleinbooks).
+    where("bookedition_roleinbooks.roleinbook_id = 1 OR bookedition_roleinbooks.roleinbook_id = 2") 
+  }
+
+  scope :collaborators, lambda { |user_id|
+    joins(:bookedition_roleinbooks).
+    where("bookedition_roleinbooks.roleinbook_id != 1 AND bookedition_roleinbooks.roleinbook_id != 2") 
+  }
+
+  scope :user_id_eq, lambda { |user_id|
+    joins(:bookedition_roleinbooks).
+    where(:bookedition_roleinbooks => { :user_id => user_id }) 
+  }
+
+  scope :user_id_not_eq, lambda { |user_id|
+      where("bookeditions.id IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
+      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookedition.id  NOT IN (#{Bookedition.select('DISTINCT(bookedition_id) as bookedition_id').
+      where(["bookedition_jurors.user_id =  ?", user_id]).to_sql})") 
+  }
+  search_methods :user_id_eq, :user_id_not_eq
+
+  def as_text
+    [ book.as_text, edition, publishers, book.country.name,
+     isbn_text, year ].compact.join(', ')
+  end
+
+  def publishers_text
+    publishers.collect { |record| record.name }.compact.join(', ')
+  end
+
+  def isbn_text
+    "ISBN: #{isbn}" unless isbn.to_s.strip.empty?
+  end
 end
