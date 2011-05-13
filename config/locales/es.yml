@@ -1203,6 +1203,22 @@ es:
     show:
       title: 'Información de comité tutoral'
 
+  book_authors:
+    index:
+      title: 'Autoría de libros'
+      my_book_authors: 'Listar mis libros'
+      not_my_book_authors: 'Listar libros registrados por otros usuarios'
+    not_mine:
+      title: 'Libros registrados por otros usuarios'
+      my_book_authors: 'Listar mis libros'
+      not_my_book_authors: 'Listar libros registrados por otros usuarios'
+    new:
+      title: 'Nuevo libro'
+    edit:
+      title: 'Modificar libro'
+    show:
+      title: 'Libro'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

@@ -74,6 +74,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :publications, 'Publicaciones', articles_path do |s|
       s.item :articles, 'Artículos publicados', articles_path, :highlights_on => /\/articles/
       s.item :unpublished_articles, 'Artículos enviados o aceptados', unpublished_articles_path, :highlights_on => /\/unpublished_articles/
+      s.item :book_authors, 'Autoría de libros', book_authors_path, :highlights_on => /\/book_authors/
       s.item :technical_reports, 'Reportes técnicos', technical_reports_path, :highlights_on => /\/technical_reports/
       s.item :reviews, 'Reseñas', reviews_path, :highlights_on => /\/reviews/
     end
