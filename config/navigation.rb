@@ -82,6 +82,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :refereed_colaborations, 'Colaboración en publicaciones', user_journals_path do |s|
       s.item :user_journals, 'Colaboración en revistas', user_journals_path, :highlights_on => /\/user_journals/
       s.item :user_refereed_journals, 'Arbitraje en revistas', user_refereed_journals_path, :highlights_on => /\/user_refereed_journals/
+      s.item :book_collaborations, 'Colaboración en libros', book_collaborations_path, :highlights_on => /\/book_collaborations/
     end
 
     primary.item :popular_science, 'Divulgación', newspaper_articles_path do |s|

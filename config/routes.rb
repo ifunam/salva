@@ -30,7 +30,7 @@ Salva::Application.routes.draw do
                             :teaching_products, :technical_reports, :seminaries, :newspaper_articles,
                             :technical_products, :course_attendees, :course_instructors, :conference_attendees,
                             :conference_organizers, :regular_courses, :theses, :thesis_examinations,
-                            :book_authors
+                            :book_authors, :book_collaborations
 
   catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :schoolarships, :credittypes,
                         :newspapers, :careers, :techproducttypes, :stimuluslevels

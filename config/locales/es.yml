@@ -1219,6 +1219,22 @@ es:
     show:
       title: 'Libro'
 
+  book_collaborations:
+    index:
+      title: 'Colaboración en libros'
+      my_book_collaborations: 'Listar mis libros'
+      not_my_book_collaborations: 'Listar libros registrados por otros usuarios'
+    not_mine:
+      title: 'Libros registrados por otros usuarios'
+      my_book_collaborations: 'Listar mis libros'
+      not_my_book_collaborations: 'Listar libros registrados por otros usuarios'
+    new:
+      title: 'Nueva colaboración en libro'
+    edit:
+      title: 'Modificar colaboración en libro'
+    show:
+      title: 'Colaboración Libro'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
