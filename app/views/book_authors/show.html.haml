@@ -1,0 +1,37 @@
+%div{ :class => 'span-23 section_left last' }
+  %h3= t('book_authors.show.title')
+  - show_for @book_author do |be|
+    = be.association :book, :using => :authors, :label => 'Authors', :wrapper_html => { :class => 'span-10 push-1' }
+    = be.association :book, :using => :title, :label => 'Title', :wrapper_html => { :class => 'span-12 last' }
+
+    - show_for @book_author.book do |book|
+      %div{ :class => 'span-23 last' }
+        = be.association :book, :using => :volume, :label => 'Volume', :wrapper_html => { :class => 'span-10 push-1' }
+        = book.association :country, :using => :name, :label => 'Country', :wrapper_html => { :class => 'span-6' }
+        = book.association :language, :using => :name, :label => 'Country', :wrapper_html => { :class => 'span-6 last' }
+
+      %div{ :class => 'span-23 last' }
+        = book.association :booktype, :using => :name, :label => 'Type', :wrapper_html => { :class => 'span-10 push-1' }
+        = be.association :book, :using => :booklink, :label => 'Link', :wrapper_html => { :class => 'span-12 last' }
+
+    = be.attribute :edition, :wrapper_html => { :class => 'span-5 push-1' }
+    = be.attribute :isbn, :wrapper_html => { :class => 'span-5' }
+    = be.attribute :pages, :wrapper_html => { :class => 'span-6 ' }
+    = be.association :mediatype, :using => :name, :label => 'Media type', :wrapper_html => { :class => 'span-6 last' }
+
+    %div{ :class => 'span-23 last' }
+      = be.association :editionstatus, :using => :name, :label => 'Status', :wrapper_html => { :class => 'span-5 push-1'}
+      = be.attribute :month, :wrapper_html => { :class => 'span-5' }
+      = be.attribute :year, :wrapper_html => { :class => 'span-12 last' }
+
+  %div{:class => 'span-23 push-1 last'}
+    %label= 'Académicos asociados'
+    - @book_author.authors.each do |a|
+      %li= a.as_text
+
+  = render :partial => 'shared/record', :object => @book_author
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_book_author_path(:id => @book_author.id)
+  = link_as_button t(:back), book_authors_path
+

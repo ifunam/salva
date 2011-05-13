@@ -1,0 +1,11 @@
+= f.input :authors, :as => :text, :input_html => { :size => '55x1' }, :wrapper_class => 'span-12', :required => true
+= f.input :title, :as => :text, :input_html => { :size => '55x1' }, :wrapper_class => 'span-10 last', :required => true
+
+= f.input :volume, :as => :string, :input_html => { :size => 75 }, :wrapper_class => 'span-12'
+= f.association :country, :collection => Country.all, :wrapper_class => 'span-5', :required => true
+= f.association :language, :collection => Language.all, :wrapper_class => 'span-5 last', :required => true
+
+%div{:class => 'span-22 last'}
+  = f.association :booktype, :as => :radio, :wrapper_class => 'span-12 radio_set'
+  = f.input :booklink, :as => :string, :input_html => { :size => 75 }, :wrapper_class => 'span-10 last'
+

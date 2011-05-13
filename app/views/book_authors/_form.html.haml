@@ -1,0 +1,4 @@
+%div{ :class => 'span-22 section_left append-bottom last' }
+  = render :partial => "/shared/errors", :object => f.object.errors
+  = render :partial => 'book_editions/form', :locals => { :f => f}
+  = render :partial => 'bookedition_authors/form', :locals => {:book_author => @book_author, :f => f}

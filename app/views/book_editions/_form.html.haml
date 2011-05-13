@@ -1,0 +1,15 @@
+- f.object.book = Book.new if f.object.book.nil?
+= f.simple_fields_for :book, f.object.book do |b|
+  = render :partial => 'books/form', :locals => { :f => b}
+
+= f.input :edition, :as => :string, :input_html => { :size => '30'}, :wrapper_class => 'span-6', :required => true
+= f.input :isbn, :as => :string, :input_html => { :size => '30'}, :wrapper_class => 'span-6'
+= f.input :pages, :as => :string, :input_html => { :size => '30'}, :wrapper_class => 'span-6'
+= f.association :mediatype, :as => :radio, :wrapper_class => 'span-4  last'
+
+= f.association :editionstatus, :as => :radio, :wrapper_class => 'span-22 radio_set last'
+
+%div{:class => 'span-6'}
+  = f.label :month, :required => true
+  = select_month(Date.today, :field_name => 'month', :prefix => 'book_edition')
+= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-3', :required => true

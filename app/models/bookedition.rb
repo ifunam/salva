@@ -7,6 +7,8 @@ class Bookedition < ActiveRecord::Base
   belongs_to :book
   belongs_to :mediatype
   belongs_to :editionstatus
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
   accepts_nested_attributes_for :book
 
   has_many :bookedition_publishers
