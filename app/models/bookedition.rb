@@ -33,7 +33,7 @@ class Bookedition < ActiveRecord::Base
 
   scope :user_id_not_eq, lambda { |user_id|
       where("bookeditions.id IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookeditions.id  NOT IN (#{Bookedition.select('DISTINCT(bookedition_id) as bookedition_id').
+      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookeditions.id  NOT IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
       where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql})")
   }
   search_methods :user_id_eq, :user_id_not_eq
