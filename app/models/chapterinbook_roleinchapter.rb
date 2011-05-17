@@ -10,4 +10,9 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
   belongs_to :updated_by, :class_name => 'User'
 
   has_many :bookeditions
+
+  def as_text
+    "#{user.author_name} (#{roleinchapter.name})"
+  end
+  
 end

@@ -1,0 +1,11 @@
+%div{ :class => 'span-23 section_left last' }
+  %h3= t('book_chapters.show.title')
+  - show_for @book_chapter do |bc|
+    = bc.attribute :title
+
+  = render :partial => 'shared/record', :object => @book_chapter
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_book_chapter_path(:id => @book_chapter.id)
+  = link_as_button t(:back), book_chapters_path
+

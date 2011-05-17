@@ -1235,6 +1235,22 @@ es:
     show:
       title: 'Colaboración Libro'
 
+  book_chapters:
+    index:
+      title: 'Capítulos en libros'
+      my_book_chapters: 'Listar mis capítulos en libros'
+      not_my_book_chapters: 'Listar capítulos registrados por otros usuarios'
+    not_mine:
+      title: 'Capítulos registrados por otros usuarios'
+      my_book_chapters: 'Listar mis capítulos en libros'
+      not_my_book_chapters: 'Listar capítulos registrados por otros usuarios'
+    new:
+      title: 'Nuevo capítulo en libro'
+    edit:
+      title: 'Modificar capítulo en libro'
+    show:
+      title: 'Capítulo en libro'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
