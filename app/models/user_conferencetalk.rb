@@ -7,9 +7,6 @@ class UserConferencetalk < ActiveRecord::Base
   belongs_to :conferencetalk
   belongs_to :roleinconferencetalk
   belongs_to :user
-
-  validates_associated :conferencetalk
-  validates_associated :roleinconferencetalk
-
-
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 end
