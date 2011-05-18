@@ -1,0 +1,11 @@
+%div{ :class => 'span-23 section_left last' }
+  %h3= t('conference_talks.show.title')
+  - show_for @conference_talk do |bc|
+    = bc.attribute :title
+
+  = render :partial => 'shared/record', :object => @conference_talk
+
+%div{ :class => 'span-14 buttons_left last' }
+  = link_as_button t(:edit), edit_conference_talk_path(:id => @conference_talk.id)
+  = link_as_button t(:back), conference_talks_path
+

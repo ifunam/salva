@@ -10,6 +10,28 @@ class Conferencetalk < ActiveRecord::Base
   belongs_to :modality
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
+  accepts_nested_attributes_for :conference
 
   has_many :user_conferencetalks
+  has_many :users, :through => :user_conferencetalks
+  accepts_nested_attributes_for :user_conferencetalks
+  user_association_methods_for :user_conferencetalks
+
+  scope :user_id_eq, lambda { |user_id|
+    joins(:user_conferencetalks).
+    where(:user_conferencetalks => { :user_id => user_id })
+  }
+
+  scope :user_id_not_eq, lambda { |user_id|
+      where("conferencetalks.id IN (#{UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').
+      where(["user_conferencetalks.user_id != ?", user_id]).to_sql}) AND conferencetalks.id  NOT IN (#{UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').
+      where(["user_conferencetalks.user_id = ?", user_id]).to_sql})")
+  }
+  search_methods :user_id_eq, :user_id_not_eq
+
+  def as_text
+    [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",
+      conference.as_text
+    ].join(', ')
+  end
 end

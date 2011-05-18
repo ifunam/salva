@@ -1,0 +1,22 @@
+%div{ :class => 'span-23 section_left append-bottom last' }
+  = render :partial => "/shared/errors", :object => f.object.errors
+
+  %div{:class=> 'span-22 section_left push-1 last'}
+    %h3='Información del trabajo presentado'
+
+    = f.input :authors, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-11'
+    = f.input :title, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-11 last'
+    = f.association :talktype, :as => :radio, :wrapper_class => 'span-22 radio_set last'
+
+    = f.association :talkacceptance, :as => :radio, :wrapper_class => 'span-11 radio_set'
+    = f.association :modality, :as => :radio, :wrapper_class => 'span-11 radio_set last'
+
+    = render :partial => 'conference_talk_users/form', :locals => {:conference_talk => @conference_talk, :f => f}
+
+  %div{:class=> 'span-23 section_left push-1 last'}
+    %h3='Información del evento'
+
+    - f.object.conference = Conference.new if f.object.conference.nil?
+    = f.simple_fields_for :conference, f.object.conference do |c|
+      = render :partial => 'conferences/form', :locals => { :f => c }
+

@@ -1251,6 +1251,22 @@ es:
     show:
       title: 'Capítulo en libro'
 
+  conference_talks:
+    index:
+      title: 'Trabajos presentados en congresos'
+      my_conference_talks: 'Listar mis trabajos presentados en congresos'
+      not_my_conference_talks: 'Listar trabajos registrados por otros usuarios'
+    not_mine:
+      title: 'Trabajos en congresos registrados por otros usuarios'
+      my_conference_talks: 'Listar mis trabajos presentados en congresos'
+      not_my_conference_talks: 'Listar trabajos registrados por otros usuarios'
+    new:
+      title: 'Nuevo trabajo presentado en congreso'
+    edit:
+      title: 'Modificar trabajo presentado en congreso'
+    show:
+      title: 'Trabajo presentado en congreso'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

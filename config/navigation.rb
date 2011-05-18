@@ -69,6 +69,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|
       s.item :seminaries, 'Seminarios y conferencias', seminaries_path, :highlights_on => /\/seminaries/
       s.item :conference_organizers, 'Comités de congresos', conference_organizers_path, :highlights_on => /\/conference_organizers/
+      s.item :conference_talks, 'Trabajos presentados en congresos', conference_talks_path, :highlights_on => /\/conference_talks/
     end
 
     primary.item :publications, 'Publicaciones', articles_path do |s|
