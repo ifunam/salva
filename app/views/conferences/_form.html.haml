@@ -14,7 +14,7 @@
 %div{:class => 'span-11 last has-many-associations', 'data-controller-name' => 'institutions'}
   %b=t('organized_by')
   %ul{:id => 'institution', 'data-has-many-association' => 'conference_institutions'}
-    - (@conference.institutions + Institution.for_conferences).uniq.each do |institution|
+    - (f.object.institutions + Institution.for_conferences).uniq.each do |institution|
       - @conference_institution = f.object.conference_institutions.where(:institution_id => institution.id).first
       - @conference_institution = f.object.conference_institutions.build if @conference_institution.nil?
       = f.simple_fields_for :conference_institutions, @conference_institution do |fi|
