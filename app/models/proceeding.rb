@@ -5,6 +5,8 @@ class Proceeding < ActiveRecord::Base
 
   belongs_to :conference
   belongs_to :publisher
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :updated_by, :class_name => 'User'
 
   has_many :inproceeding
   has_many :user_proceedings
