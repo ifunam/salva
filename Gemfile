@@ -55,7 +55,7 @@ gem "barby", "0.4.2"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.2", :require => "rack/ssl-enforcer"
-  gem "inploy", "1.9.2"
+  gem "inploy", "1.9.3"
 end
 
 group :development do
@@ -64,7 +64,7 @@ group :development do
   gem "ruby_parser", "2.0.6"
   gem "unicorn", "3.6.0"
   gem "jquery-rails", "0.2.7"
-  gem "inploy", "1.9.2"
+  gem "inploy", "1.9.3"
 end
 
 group :test do
