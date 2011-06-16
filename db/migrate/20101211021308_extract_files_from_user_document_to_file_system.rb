@@ -3,7 +3,7 @@ class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
     base_path = Rails.root.to_s + '/public/uploads'
 
     timestamp_columns = %w(created_at updated_at)
-    if (column_exists? :user_documents, :created_on) and (column_exists? :user_documents, :updated_at)
+    if (column_exists? :user_documents, :created_on) and (column_exists? :user_documents, :updated_on)
       timestamp_columns = %w(created_on updated_on)
     end
     columns = %w(id document_id user_id documenttype_id user_incharge_id) + timestamp_columns
