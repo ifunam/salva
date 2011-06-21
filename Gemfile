@@ -52,6 +52,7 @@ gem "resque_mailer", "1.0.1"
 gem "prawn", "0.11.1"
 gem "spreadsheet", "0.6.5.4"
 gem "barby", "0.4.2"
+gem "rest-client", "~> 1.6.3"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.2", :require => "rack/ssl-enforcer"
