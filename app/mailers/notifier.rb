@@ -1,6 +1,6 @@
 require "#{Rails.root.to_s}/lib/document/user_annual_report"
 class Notifier < ActionMailer::Base
-  include Resque::Mailer
+  #include Resque::Mailer
 
   default :from => "salva@fisica.unam.mx"
 
@@ -43,7 +43,24 @@ class Notifier < ActionMailer::Base
       format.text
     end
   end
-  
+
+  def notification_card_for_postdoctoral(user_id)
+    @user =  User.find(user_id)
+    mail(:to => @user.email, :cc => 'cuentas@fisica.unam.mx',
+         :subject => 'SALVA - Notificación de credencial actualizada') do |format|
+      format.text
+    end
+  end
+
+  def notification_for_library_admin(user_id)
+    @user =  User.find(user_id)
+    email = YAML.load_file("#{Rails.root.to_s}/config/aleph.yml")['notification_email']
+    mail(:to => email, :cc => 'cuentas@fisica.unam.mx',
+         :subject => 'SALVA - Usuario agregado o actualizado a la BD de ALEPH') do |format|
+      format.text
+    end
+  end
+
   def approved_document(document_id)
     @document = Document.find(document_id)
     build_document(document_id, true)
@@ -65,7 +82,7 @@ class Notifier < ActionMailer::Base
       attachments[filename] = File.read(@document.file) if File.exist? @document.file
     end
   end
-  
+
   def approval_request_to_user_incharge(document_id)
     @document = Document.find(document_id)
     filename = File.basename(@document.file) if File.exist? @document.file
@@ -75,13 +92,13 @@ class Notifier < ActionMailer::Base
       attachments[filename] = File.read(@document.file) if File.exist? @document.file
     end
   end
-  
+
   def rejected_document(document_id)
     @document = Document.find(document_id)
     mail(:to => @document.user.email, :cc => ['salva@fisica.unam.mx', @document.approved_by.email],
          :subject => @document.documenttype.name)
   end
-  
+
   private
   # FIX IT: Move this method into a new Worker Class
   def build_document(document_id, received=false)

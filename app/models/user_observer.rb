@@ -11,15 +11,28 @@ class UserObserver < ActiveRecord::Observer
       Notifier.ldap_errors_to_admin(@new_user.id).deliver
     end
   end
-  
+
   def before_update(user)
-    Notifier.updated_userstatus_to_admin(user.id).deliver if user.userstatus_id_changed?
+    if user.userstatus_id_changed?
+      Notifier.updated_userstatus_to_admin(user.id).deliver 
+    end
+
+    library_and_card_notification(user)
     # TODO: Add LDAP code to update the user status 
   end
-  
+
   def after_destroy(user)
     @ldap_user = LDAP::User.find_by_login(user.login)
     @ldap_user.destroy unless @ldap_user.nil?
     Notifier.deleted_user_to_admin(user.login).deliver
+  end
+
+  def library_and_card_notification(user)
+    if !user.person.nil? and !user.person.image.nil? and user.person.image.changed?
+      if user.category_name == 'Investigador posdoctoral'
+        Notifier.notification_card_for_postdoctoral(user).deliver
+      end
+      Notifier.notification_for_library_admin(user).deliver
+    end
   end
 end

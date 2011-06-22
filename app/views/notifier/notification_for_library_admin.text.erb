@@ -1,0 +1,19 @@
+********************************************************************
+*                      Este es un reporte automático               *
+*                            NO HAGA REPLY                         *
+********************************************************************
+
+En el sistema ALEPH se ha creado o actualizado el usuario
+siguiente:
+
+Nombre del académico: <%= @user.fullname_or_login %>
+Departamento: <%= @user.adscription_name %>
+Categoría: <%= @user.category_name %>
+Correo electrónico: <%= @user.email %>
+Registrado por: <%= @user.fullname_of_registered_by %>
+Clave: <%= @user.user_identification.descr.upcase unless @user.user_identification.nil? %>
+Fecha de expiración: <%= @user.jobposition.end_date %>
+
+Secretaría Académica, Instituto de Física
+Universidad Nacional Autónoma de México
+====================================================================
