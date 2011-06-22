@@ -5,6 +5,7 @@ config/mail.yml
 config/database.yml
 config/ldap.yml
 config/resque.yml
+config/aleph.yml
 db/*
 !db/migrate
 !db/catalogs
