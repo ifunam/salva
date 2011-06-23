@@ -26,7 +26,11 @@ class Person < ActiveRecord::Base
   end
 
   def firstname_and_lastname
-    [self.firstname, self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil)].compact.join(' ')
+    [self.firstname, lastname].compact.join(' ')
+  end
+
+  def lastname
+    [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil)].compact.join(' ')
   end
 
   def shortname

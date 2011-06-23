@@ -15,6 +15,14 @@ class UserProfile
     @user.firstname_and_lastname
   end
 
+  def firstname
+    @user.person.firstname unless @user.person.nil?
+  end
+
+  def lastname
+    @user.person.lastname unless @user.person.nil?
+  end
+
   def author_name
     @user.author_name
   end
@@ -31,6 +39,26 @@ class UserProfile
 
   def address
     @user.address.as_text unless @user.address.nil?
+  end
+
+  def address_location
+    @user.address.location unless @user.address.nil?
+  end
+
+  def address_state_name
+    @user.address.state.name unless @user.address.nil? and @user.address.state.nil?
+  end
+
+  def address_country_name
+    @user.address.country.name unless @user.address.nil? and @user.address.country.nil?
+  end
+
+  def address_city_name
+    @user.address.city.name unless @user.address.nil? and @user.address.city.nil?
+  end
+
+  def address_zipcode
+    @user.address.zipcode
   end
 
   def phone
@@ -62,7 +90,11 @@ class UserProfile
   end
 
   def worker_id
-    @user.jobposition_log.worker_key unless @user.jobposition_log.nil?
+    if @user.category_name == 'Investigador posdoctoral'
+      person_id
+    else
+      @user.jobposition_log.worker_key unless @user.jobposition_log.nil?
+    end
   end
 
   def academic_years
@@ -82,12 +114,21 @@ class UserProfile
   end
 
   def jobposition_period
-    start_date = end_date = nil
+    [jobposition_date_with_format(:start_date, false), jobposition_date_with_format(:end_date, false)].compact.join(' - ')
+  end
+
+  def jobposition_start_date
+    jobposition_date_with_format(:start_date)
+  end
+
+  def jobposition_end_date
+    jobposition_date_with_format(:end_date)
+  end
+
+  def jobposition_date_with_format(attribute_name,date_format=true)
     unless @user.jobposition.nil?
-      start_date =  @user.jobposition.start_date
-      end_date = @user.jobposition.end_date
+      date_format == true ? @user.jobposition.attributes_before_type_cast[attribute_name.to_s] : @user.jobposition.send(attribute_name)
     end
-    [start_date, end_date].compact.join(' - ')
   end
 
   def image_path
