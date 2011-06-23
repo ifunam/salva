@@ -12,7 +12,7 @@ module LDAP
     validates_presence_of :login, :fullname, :email, :password, :group
     validates_confirmation_of :password
 
-    def self.all_by_login_likes(login)
+    def self.all_by_login_like(login)
       filter = Net::LDAP::Filter.eq("uid", "*#{login.downcase}*")
       self.ldap.search(:base => ldap_config['base'], :filter => filter, :return_result => true).collect do |entry|
         entry_to_record(entry)

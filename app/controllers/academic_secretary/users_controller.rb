@@ -46,12 +46,12 @@ class AcademicSecretary::UsersController < ApplicationController
   end
 
   def search_by_fullname
-    @records = User.not_in_postdoctoral.search(:fullname_likes => params[:term]).all
+    @records = User.not_in_postdoctoral.search(:fullname_like => params[:term]).all
     render :json => @records.collect { |record| { :id => record.id, :value => record.fullname_or_email, :label => record.fullname_or_email } }
   end
 
   def search_by_username
-    @records = User.login_likes params[:term]
+    @records = User.login_like params[:term]
     render :json => @records.collect { |record| { :id => record.login, :value => record.login, :label => record.login } }
   end
   

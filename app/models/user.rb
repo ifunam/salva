@@ -64,9 +64,10 @@ class User < ActiveRecord::Base
 
   def self.login_like(login)
     @users = where(:login.matches => "%#{login.downcase}%")
-    # NOTE: Comment this block if you don't want to interact with your ldap server
-    LDAP::User.all_by_login_likes(login.downcase).each do |ldap_user|
-      @users.push(new(:login => ldap_user.login, :email => ldap_user.email)) if find_by_login(ldap_user.login).nil?
+    if File.exist? "#{Rails.root.to_s}/config/ldap.yml"
+      LDAP::User.all_by_login_like(login.downcase).each do |ldap_user|
+        @users.push(new(:login => ldap_user.login, :email => ldap_user.email)) if find_by_login(ldap_user.login).nil?
+      end
     end
     @users
   end
