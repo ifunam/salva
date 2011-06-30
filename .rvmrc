@@ -1,1 +1,4 @@
 rvm use ruby-1.8.7-p334@salva
+if [ -f ~/.irbrc.gems ]; then
+  rvm gemset import ~/.irbrc.gems
+fi
