@@ -2,14 +2,25 @@
 institution: 
   name: Instituto de Física - UNAM
   url: http://www.fisica.unam.mx
-  administrative_key: 314 
+  administrative_key: 314
 
 # Technical support information
 technical_support:
- unit: Secretaría de Técnica de Cómputo y Telecomunicaciones, IFUNAM
- engineer: Alejandro Juárez Robles
- address: Edificio principal, segundo piso, cubículo 254
- phone: 56 22 50 01 ext 269 
- email: soporte@fisica.unam.mx
- other_info: .
+  unit: Secretaría de Técnica de Cómputo y Telecomunicaciones, IFUNAM
+  engineer: Alejandro Juárez Robles
+  address: Edificio principal, segundo piso, cubículo 254
+  phone: 56 22 50 01 ext 269 
+  email: support@fisica.unam.mx
+  other_info: 
 
+system:
+  email: noreply-someemail@fisica.unam.mx
+
+academic_secretary:
+  email: someemail@fisica.unam.mx
+
+teaching_coordination:
+  email: someemail@fisica.unam.mx
+
+accounts_notification:
+  email: someemail@fisica.unam.mx
