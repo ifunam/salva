@@ -3,11 +3,10 @@ $(document).ready(function() {
         publication_id = this.id;
         options = {
             url: this.href,
-            success: function(request) {
-                $("#associated_authors_"+publication_id).after(request);
+            async: false,
             }
-        }
-        $.ajax(options);
+        var html = $.ajax(options).responseText;
+        $("#associated_authors_"+publication_id).after(html);
         return false;
     });
 
@@ -15,6 +14,7 @@ $(document).ready(function() {
         dom_id = this.getAttribute('data-parent-id');
         options = {
             url: this.href,
+            async: false,
             beforeSend: function(){
                 open_dialog_with_progressbar();
             },
@@ -22,11 +22,10 @@ $(document).ready(function() {
                 set_button_behaviour();
                 close_dialog_with_progressbar();
             },
-            success: function(request) {
-                $("#"+dom_id).replaceWith(request);
-            }
         }
-        $.ajax(options);
+        var html = $.ajax(options).responseText;
+        $("#"+dom_id).replaceWith(html);
+
         return false;
     });
 
@@ -41,11 +40,10 @@ $(document).ready(function() {
                 set_button_behaviour();
                 close_dialog_with_progressbar();
             },
-            success: function(request) {
-                $("#"+dom_id).replaceWith(request);
-            }
         }
-        $.ajax(options);
+        var html = $.ajax(options).responseText;
+        $("#"+dom_id).replaceWith(html);
+
         return false;
     });
 
