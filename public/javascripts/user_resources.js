@@ -53,10 +53,8 @@ $(document).ready(function() {
     date_picker_for('.date', (current_year -20), current_year);
 
     $('#filter_jobpositiontype_id').change(function(){
-      $.ajax({
-            url: "/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val(),
-            success: function(data) { $('#jobpositioncategories_select').html(data); }
-      });
+      var responseData = response_from_simple_remote_resource("/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val());
+      $('#jobpositioncategories_select').html(responseData);
     });
 
    $(".autocompleted_text" ).autocompleted_text();
@@ -65,12 +63,9 @@ $(document).ready(function() {
 
 function dialog_for_new_record(controller) {
     $('#dialog').dialog({title:'Nuevo registro', width: 400, height: 320}).dialog('open');
-    $.ajax({
-        url: '/' + controller + '/new.js',
-        success: function(request) {
-            $("div#dialog").html(request);
-        }
-    });
+    var responseData = response_from_simple_remote_resource('/' + controller + '/new.js');
+    $("div#dialog").html(responseData);
+
 }
 
 function change_record(class_name) {
