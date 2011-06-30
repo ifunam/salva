@@ -124,3 +124,21 @@ function date_picker_for(dom_id, start_year, end_year) {
     });
 }
 
+function response_from_simple_remote_resource(resource) {
+  return $.ajax({url: resource, async: false}).responseText;
+}
+
+function response_from_remote_resource(resource) {
+   options = {
+            url: resource,
+            async: false,
+            beforeSend: function(){
+                open_dialog_with_progressbar();
+            },
+            complete: function(request){
+                set_button_behaviour();
+                close_dialog_with_progressbar();
+            },
+   }
+   return $.ajax(options).responseText;
+}

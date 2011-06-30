@@ -1,47 +1,19 @@
 $(document).ready(function() {
     $(".associated_authors a").live("click", function() {
-        publication_id = this.id;
-        options = {
-            url: this.href,
-            async: false,
-            }
-        var html = $.ajax(options).responseText;
-        $("#associated_authors_"+publication_id).after(html);
+        $("#associated_authors_"+this.id).after(response_from_simple_remote_resource(this.href));
         return false;
     });
 
     $("td.add_or_delete_author a").live("click", function() {
         dom_id = this.getAttribute('data-parent-id');
-        options = {
-            url: this.href,
-            async: false,
-            beforeSend: function(){
-                open_dialog_with_progressbar();
-            },
-            complete: function(request){
-                set_button_behaviour();
-                close_dialog_with_progressbar();
-            },
-        }
-        var html = $.ajax(options).responseText;
+        var html = response_from_remote_resource(this.href);
         $("#"+dom_id).replaceWith(html);
-
         return false;
     });
 
     $("ul.add_or_delete_author a").live("click", function() {
         dom_id = this.getAttribute('data-parent-id');
-        options = {
-            url: this.href,
-            beforeSend: function(){
-                open_dialog_with_progressbar();
-            },
-            complete: function(request){
-                set_button_behaviour();
-                close_dialog_with_progressbar();
-            },
-        }
-        var html = $.ajax(options).responseText;
+        var html = response_from_remote_resource(this.href);
         $("#"+dom_id).replaceWith(html);
 
         return false;
@@ -143,10 +115,7 @@ $(document).ready(function() {
 
 function dialog_for_new_record(controller) {
     $('#dialog').dialog({title:'Nuevo registro', width: 400, height: 320}).dialog('open');
-    var responseData = $.ajax({
-        url: '/' + controller + '/new.js',
-        async: false
-    }).responseText;
+    var responseData = response_from_simple_remote_resource('/' + controller + '/new.js');
     $("div#dialog").html(responseData);
     return false;
 }
@@ -170,19 +139,13 @@ function filter_by_journal_name() {
 
 function dialog_for_new_checkbox(controller) {
     $('#dialog').dialog({title:'Nuevo registro', width: 400, height: 320}).dialog('open');
-    var responseData = $.ajax({
-        url: '/' + controller + '/new.js',
-        async: false
-    }).responseText;
+    var responseData = response_from_simple_remote_resource('/' + controller + '/new.js');
     $("div#dialog").html(responseData);
     $('#new_record_form').attr('id', "new_checkbox_form");
 }
 
 function dialog_for_new_period(url) {
     $('#dialog').dialog({title:'Nuevo periodo', width: 480, height: 420}).dialog('open');
-    var responseData = $.ajax({
-        url: url,
-        async: false
-    }).responseText;
+    var responseData = response_from_simple_remote_resource(url);
     $("div#dialog").html(responseData);
 }
