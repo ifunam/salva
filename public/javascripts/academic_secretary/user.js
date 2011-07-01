@@ -13,7 +13,6 @@ $(function() {
     var content = $('#' + assoc + '_fields_template').html();
     var regexp  = new RegExp('new_' + assoc, 'g');
     var new_id  = new Date().getTime();
-        
     $(this).before(content.replace(regexp, new_id));    
 
     // FIX IT: Move these lines to another method
@@ -129,19 +128,19 @@ $(document).ready(function() {
     date_picker_for('#user_user_schoolarship_attributes_end_date', start_year, current_year);
     date_picker_for('#user_user_schoolarships_attributes_0_start_date',start_year, current_year);
     date_picker_for('#user_user_schoolarships_attributes_0_end_date',start_year, current_year);
-    $("#save_user").validate({
-        rules: {
-            "user[password]": {required:true, minlength:3},
-            "user[password_confirmation]": { equalTo: "#user_password"},
-            "user[userstatus_id]": {required:true}, 
-            "user[person_attributes][maritalstatus_id]": {required:true}, 
-            "user[person_attributes][country_id]": {required:true},
-            "user[person_attributes][gender]": {required:true},
-            "user[person_attributes][city_id]": {required:true}, 
-            "user[jobposition_attributes][schoolarship_id]": {required:true}, 
-            "user[jobposition_attributes][user_adscription_attributes][adscription_id]": {required:true}, 
-        }   
-    });
+    //$("#save_user").validate({
+        //rules: {
+            //"user[password]": {required:true, minlength:3},
+            //"user[password_confirmation]": { equalTo: "#user_password"},
+            //"user[userstatus_id]": {required:true}, 
+            //"user[person_attributes][maritalstatus_id]": {required:true}, 
+            //"user[person_attributes][country_id]": {required:true},
+            //"user[person_attributes][gender]": {required:true},
+            //"user[person_attributes][city_id]": {required:true}, 
+            //"user[jobposition_attributes][schoolarship_id]": {required:true}, 
+            //"user[jobposition_attributes][user_adscription_attributes][adscription_id]": {required:true}, 
+        //}
+    //});
 
     $('#save_user').live('submit', function() {
         $('#user_schoolarships_fields_template').remove();

@@ -88,23 +88,28 @@ function close_dialog_with_progressbar() {
     $('#dialog').html('');
 }
 
-function remote_collection_list(href, params) {
-    options = {
+function collection_from_remote_resource(resource, params) {
+  options = {
         url: href,
         async: false,
-        beforeSend: function(){
+        beforeSend: function() {
             open_dialog_with_progressbar();
         },
-        complete: function(request){ 
+        complete: function(request) {
             set_button_behaviour();
             close_dialog_with_progressbar();
         },
-        type:'get'
+        type: 'get'
     }
-    if (params != undefined) {
-        options['data'] = params;
-    }
-    var html = $.ajax(options).responseText;
+  if (params != undefined) {
+    options['data'] = params;
+  }
+
+  return $.ajax(options).responseText;
+}
+
+function remote_collection_list(resource, params) {
+    var html = collection_from_remote_resource(resource, params);
     $('#collection').remove();
     $('#paginator').remove();
     $('#filter_header').after(html);
