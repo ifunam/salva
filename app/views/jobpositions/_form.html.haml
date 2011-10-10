@@ -17,7 +17,7 @@
     %div{:class=> 'span-6'}
       = render :partial => 'jobpositiontypes/filter_select'
     %div{:class=> 'span-6', :id => 'jobpositioncategories_select'}
-      - if f.object.new_record? 
+      - if f.object.nil? 
         = f.select :jobpositioncategory_id, {}
       - else
         = f.object.category_name
