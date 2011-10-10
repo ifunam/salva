@@ -3,10 +3,10 @@ source :gemcutter
 
 gem "rails", "3.0.10"
 gem "compass", "0.11.0"
-gem "haml", "3.1.1"
+gem "haml", "3.1.3"
 gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"
-gem "sass", "~> 3.1.7"
+gem "sass", "~> 3.1.10"
 
 # Authorization
 gem "cancan", "1.5.1"
