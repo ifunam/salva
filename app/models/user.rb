@@ -1,9 +1,13 @@
 class User < ActiveRecord::Base
-  devise :ldap_authenticatable
-         # Uncomment the following lines
-         # to enable database authentication
-         # :database_authenticatable, :encryptable,
-         # :registerable, :recoverable, :rememberable, :trackable, :validatable
+  def self.ldap_enabled?
+    File.exist? "#{Rails.root.to_s}/config/ldap.yml"
+  end
+  
+  if User::ldap_enabled?
+    devise :ldap_authenticatable
+  else
+    devise :database_authenticatable, :encryptable
+  end
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
@@ -64,7 +68,7 @@ class User < ActiveRecord::Base
 
   def self.login_like(login)
     @users = where(:login.matches => "%#{login.downcase}%")
-    if File.exist? "#{Rails.root.to_s}/config/ldap.yml"
+    if self.ldap_enabled?
       LDAP::User.all_by_login_like(login.downcase).each do |ldap_user|
         @users.push(new(:login => ldap_user.login, :email => ldap_user.email)) if find_by_login(ldap_user.login).nil?
       end

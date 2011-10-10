@@ -2,13 +2,15 @@
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
   # ==> LDAP Configuration
-  config.ldap_logger = true
-  config.ldap_create_user = true 
-  config.ldap_update_password = false
-  config.ldap_config = "#{Rails.root}/config/ldap.yml"
-  config.ldap_check_group_membership = false
-  config.ldap_check_attributes = false
-  config.ldap_use_admin_to_bind = false
+  if File.exist? "#{Rails.root.to_s}/config/ldap.yml"
+    config.ldap_logger = true
+    config.ldap_create_user = true 
+    config.ldap_update_password = false
+    config.ldap_config = "#{Rails.root}/config/ldap.yml"
+    config.ldap_check_group_membership = false
+    config.ldap_check_attributes = false
+    config.ldap_use_admin_to_bind = false
+  end
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
