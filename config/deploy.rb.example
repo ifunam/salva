@@ -6,13 +6,13 @@ case ENV['environment']
 when 'production'
   deploy.application = "salva"
   deploy.user = "deployer"
-  deploy.hosts = ["salva.fisica.unam.mx"]
+  deploy.hosts = ["salva_prod.domain.com"]
   deploy.path = "/home/#{deploy.user}/apps"
   deploy.server = :passenger
 when 'development'
   deploy.application = "salva"
   deploy.user = "deployer"
-  deploy.hosts = ["beta.fisica.unam.mx"]
+  deploy.hosts = ["salva_dev.domain.com"]
   deploy.path = "/home/#{deploy.user}/apps"
   deploy.server = :passenger
 end
