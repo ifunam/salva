@@ -6,6 +6,7 @@ config/database.yml
 config/ldap.yml
 config/resque.yml
 config/aleph.yml
+config/deploy.rb
 db/*
 !db/migrate
 !db/catalogs
