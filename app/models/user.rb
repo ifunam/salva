@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   extend LDAP::Helpers::UserModel
+  extend Aleph::Helpers::UserModel
   
   if ldap_enabled?
     devise :ldap_authenticatable

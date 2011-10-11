@@ -1,6 +1,6 @@
 module LDAP
   module Helpers  
-    module UserObserver      
+    module UserObserver
       def create_ldap_user(user)
           @user = User.find(user.id)
           @ldap_user = LDAP::User.new(:login => @user.login, :group => @user.adscription_abbrev, :fullname => @user.fullname_or_email, 
