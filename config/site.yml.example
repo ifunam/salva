@@ -10,17 +10,17 @@ technical_support:
   engineer: Alejandro Juárez Robles
   address: Edificio principal, segundo piso, cubículo 254
   phone: 56 22 50 01 ext 269 
-  email: soporte@fisica.unam.mx
-  other_info:
+  email: support@fisica.unam.mx
+  other_info: 
 
 system:
-  email: salva@fisica.unam.mx
+  email: noreply-someemail@fisica.unam.mx
 
 academic_secretary:
-  email: alex@fisica.unam.mx
+  email: someemail@fisica.unam.mx
 
 teaching_coordination:
-  email: alex@fisica.unam.mx
+  email: someemail@fisica.unam.mx
 
 accounts_notification:
-  email: alex@fisica.unam.mx
+  email: someemail@fisica.unam.mx
