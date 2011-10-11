@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-  def self.ldap_enabled?
-    File.exist? File.join(Rails.root.to_s, 'config', 'ldap.yml')
-  end
+  extend LDAP::Helpers::UserModel
   
-  if self.ldap_enabled?
+  if ldap_enabled?
     devise :ldap_authenticatable
   else
     devise :database_authenticatable, :encryptable
@@ -68,7 +66,7 @@ class User < ActiveRecord::Base
 
   def self.login_like(login)
     @users = where(:login.matches => "%#{login.downcase}%")
-    @users += ldap_users_like(login) if self.ldap_enabled?
+    @users += ldap_users_like(login) if ldap_enabled?
     @users
   end
 
@@ -130,12 +128,5 @@ class User < ActiveRecord::Base
     else
       "/images/avatar_missing_#{version}.png"
     end
-  end
-  
-  private
-  def self.ldap_users_like(login)
-    LDAP::User.all_by_login_like(login.downcase).collect { |ldap_user|
-      new(:login => ldap_user.login, :email => ldap_user.email) unless self.exists?(:login => ldap_user.login)
-    }.compact
   end
 end
