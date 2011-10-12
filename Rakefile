@@ -6,6 +6,9 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'resque/tasks'
+
+if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
+  require 'resque/tasks'
+end
 
 Salva::Application.load_tasks

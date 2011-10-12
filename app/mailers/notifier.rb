@@ -1,7 +1,7 @@
 require "#{Rails.root.to_s}/lib/document/user_annual_report"
 class Notifier < ActionMailer::Base
   include Salva::SiteConfig
-  #include Resque::Mailer
+  include Resque::Mailer if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
 
   default :from => Salva::SiteConfig.system('email')
 
