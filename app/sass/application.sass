@@ -1,3 +1,64 @@
+@import "start-jquery-ui"
+
+//  Navigation
+#top-navigation
+  @extend .ui-tabs
+  @extend .ui-widget
+  @extend .ui-widget-content
+  @extend .ui-corner-all
+  ul
+    @extend .ui-tabs-nav
+    @extend .ui-helper-reset
+    @extend .ui-helper-clearfix
+    @extend .ui-widget-header
+    @extend .ui-corner-all
+    li
+      @extend .ui-state-default
+      @extend .ui-corner-top
+      list-style-type: none
+    li.selected
+      @extend .ui-tabs-selected
+      @extend .ui-state-active
+    li:hover
+      @extend .ui-state-hover
+//#top_navigation
+//  @extend #top-navigation
+#left-navigation
+  @extend .ui-widget
+  @extend .ui-widget-content
+  ul
+    @extend .ui-tabs-nav
+    @extend .ui-helper-reset
+    @extend .ui-helper-clearfix
+    li
+      @extend .ui-state-default
+      padding: 5px 10px
+      list-style-type: none
+    li.selected
+      @extend .ui-tabs-selected
+      @extend .ui-state-active
+    li:hover
+      @extend .ui-state-hover
+#session
+  text-align: center
+  .inputs
+    margin: auto
+    width: 400px
+    label
+      width: 100px
+      display: block
+      float: left
+      text-align: right
+      padding-top: 10px
+    input
+      width: 150px
+
+#session_info
+  text-align: right
+  .current_user
+    color: green
+    display: inline
+
 html
   font-size: 14px
 
