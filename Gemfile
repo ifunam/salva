@@ -2,17 +2,14 @@
 source :gemcutter
 
 gem "rails", "3.0.10"
-gem "compass", "0.11.0"
+gem "compass", "0.11.5"
 gem "haml", "3.1.3"
 gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"
 gem "sass", "~> 3.1.10"
 
 # Authorization
-gem "cancan", "1.5.1"
-# gem "roles_generic"
-# gem "roles_active_record"
-# gem "cream"
+gem "cancan", "1.6.7"
 
 # Authentication
 gem "devise", "1.1.5"
@@ -22,9 +19,6 @@ gem "net-ldap", "0.1.1"
 # Searching and tagging
 gem "tsearch", :require => "texticle"
 gem "scope_by_fuzzy"
-
-# Security
-gem "ssl_requirement", "0.1.0"
 
 # Control version
 gem "vestal_versions", "1.0.2"
@@ -50,13 +44,13 @@ gem "resque", "1.15.0"
 gem "resque-status", "0.2.3", :require => "resque/status"
 gem "resque_mailer", "1.0.1"
 
-gem "prawn", "0.11.1"
-gem "spreadsheet", "0.6.5.4"
-gem "barby", "0.4.2"
-gem "rest-client", "~> 1.6.3"
+gem "prawn", "0.12.0"
+gem "spreadsheet", "0.6.5.9"
+gem "barby", "0.5.0"
+gem "rest-client", "~> 1.6.7"
 
 group :production do
-  gem "rack-ssl-enforcer", "0.2.2", :require => "rack/ssl-enforcer"
+  gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
   gem "inploy", "1.9.3"
 end
 
@@ -65,7 +59,7 @@ group :development do
   gem "hpricot", "0.8.4"
   gem "ruby_parser", "2.0.6"
   gem "unicorn", "3.6.0"
-  gem "jquery-rails", "0.2.7"
+  gem "jquery-rails", "1.0.16"
   gem "inploy", "1.9.3"
 end
 
