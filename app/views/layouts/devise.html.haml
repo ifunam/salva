@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= 'Plataforma de Información Curricular - SALVA'
+    = render :partial => 'layouts/blueprint_css'
+    = stylesheet_link_tag :defaults
+  %body
+    .container
+      = render :partial => 'layouts/header'
+      #session.span-24.last
+        = yield
+      = render :partial => 'layouts/footer'
