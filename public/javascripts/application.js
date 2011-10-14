@@ -147,3 +147,4 @@ function response_from_remote_resource(resource) {
    }
    return $.ajax(options).responseText;
 }
+

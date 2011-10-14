@@ -1,63 +1,11 @@
+@import "blueprint"
 @import "start-jquery-ui"
 
-//  Navigation
-#top-navigation
-  @extend .ui-tabs
-  @extend .ui-widget
-  @extend .ui-widget-content
-  @extend .ui-corner-all
-  ul
-    @extend .ui-tabs-nav
-    @extend .ui-helper-reset
-    @extend .ui-helper-clearfix
-    @extend .ui-widget-header
-    @extend .ui-corner-all
-    li
-      @extend .ui-state-default
-      @extend .ui-corner-top
-      list-style-type: none
-    li.selected
-      @extend .ui-tabs-selected
-      @extend .ui-state-active
-    li:hover
-      @extend .ui-state-hover
-//#top_navigation
-//  @extend #top-navigation
-#left-navigation
-  @extend .ui-widget
-  @extend .ui-widget-content
-  ul
-    @extend .ui-tabs-nav
-    @extend .ui-helper-reset
-    @extend .ui-helper-clearfix
-    li
-      @extend .ui-state-default
-      padding: 5px 10px
-      list-style-type: none
-    li.selected
-      @extend .ui-tabs-selected
-      @extend .ui-state-active
-    li:hover
-      @extend .ui-state-hover
-#session
-  text-align: center
-  .inputs
-    margin: auto
-    width: 400px
-    label
-      width: 100px
-      display: block
-      float: left
-      text-align: right
-      padding-top: 10px
-    input
-      width: 150px
-
-#session_info
-  text-align: right
-  .current_user
-    color: green
-    display: inline
+@include blueprint-typography
+@include blueprint-utilities
+@include blueprint-grid
+@include blueprint-debug
+@include blueprint-interaction
 
 html
   font-size: 14px
@@ -81,6 +29,7 @@ body
   width: 100%
   #title
     display: inline-block
+    position: absolute
     color: white
     font-family: "georgia", "bitstream vera serif", serif
     font-size: 1.8em
@@ -90,20 +39,12 @@ body
     margin-bottom: 10px
     padding-left: 30px
     line-height: 1
-    float: left
-    width: 70%
+    float: left0
     a, a:link, a:visited
       text-decoration: none
       color: white
     a:hover
       color: yellow
-  #toplinks
-    float: left
-    margin-top: 5px
-    font-size: 11px
-    color: white
-    a, a:link, a:visited, a:hover
-      color: white
 
 #main
   margin-left: auto
@@ -123,6 +64,7 @@ body
 
 #footer
   position:absolute
+  float: none
   display: block-inline
   color: black
   background: url("/images/footer_gradient.png") repeat-x scroll left top #eeeeee
@@ -160,12 +102,11 @@ body
   text-align: left
   padding: 20px
 
-.buttons_left
-  text-align: left
-  padding: 10px
-
 .notice
   color: green
 
 .alert
   color: red
+
+.example
+  background-color: #fcfcba

@@ -35,6 +35,12 @@ public/stylesheets/print.css
 public/stylesheets/screen.css
 public/stylesheets/navigation.css
 public/uploads
+public/stylesheets/base.css
+public/stylesheets/collection_list.css
+public/stylesheets/devise.css
+public/stylesheets/form.css
+public/formstylesheets/session.css
+public/stylesheets/user_menu.css
 uploads
 solr/
 vendor/plugins/acts_as_solr_reloaded/
