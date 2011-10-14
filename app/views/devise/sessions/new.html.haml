@@ -2,15 +2,11 @@
   #login_form
     %h3 Inicio de sesión
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .span-3
-        = f.label :login
-      .span-5.last
-        = f.text_field :login, :size => 18
-      .span-3
-        = f.label :password
-      .span-5.last
-        = f.password_field :password, :size => 18
-      .span-3.last
+      = f.label :login
+      = f.text_field :login, :size => 18
+      = f.label :password
+      = f.password_field :password, :size => 18
+      .span-8.last
         = f.submit "Entrar"
   #login_info
     %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
