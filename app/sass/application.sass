@@ -1,7 +1,11 @@
-@import "start-jquery-ui"
+@import "base"
+@import "form"
+@import "collection_list"
 
 //  Navigation
 #top-navigation
+  @extend .span-24
+  @extend .last
   @extend .ui-tabs
   @extend .ui-widget
   @extend .ui-widget-content
@@ -21,9 +25,13 @@
       @extend .ui-state-active
     li:hover
       @extend .ui-state-hover
-//#top_navigation
-//  @extend #top-navigation
+
+#content
+  @extend .span-24
+  @extend .last
+
 #left-navigation
+  @extend .span-4
   @extend .ui-widget
   @extend .ui-widget-content
   ul
@@ -39,133 +47,16 @@
       @extend .ui-state-active
     li:hover
       @extend .ui-state-hover
-#session
-  text-align: center
-  .inputs
-    margin: auto
-    width: 400px
-    label
-      width: 100px
-      display: block
-      float: left
-      text-align: right
-      padding-top: 10px
-    input
-      width: 150px
+
+#right-content
+  @extend .span-19
+  @extend .last
 
 #session_info
+  @extend .ui-button-set
+  @extend .span-24
+  @extend .last
   text-align: right
   .current_user
     color: green
     display: inline
-
-html
-  font-size: 14px
-
-body
-  color: black
-  font-family: "lucida grande", "lucida sans unicade", sans-serif
-  font-size: 14px
-  margin-left: auto
-  margin-right: auto
-  text-align: center
-  margin-top: 0px
-  margin-bottom: 0px
-
-#header
-  display: block-inline
-  background: url("/images/header_bg.png") repeat-x scroll left top
-  text-align: left
-  padding-top: 10px
-  height: 50px
-  width: 100%
-  #title
-    display: inline-block
-    color: white
-    font-family: "georgia", "bitstream vera serif", serif
-    font-size: 1.8em
-    font-weight: normal
-    letter-spacing: -1px
-    line-height: 1
-    margin-bottom: 10px
-    padding-left: 30px
-    line-height: 1
-    float: left
-    width: 70%
-    a, a:link, a:visited
-      text-decoration: none
-      color: white
-    a:hover
-      color: yellow
-  #toplinks
-    float: left
-    margin-top: 5px
-    font-size: 11px
-    color: white
-    a, a:link, a:visited, a:hover
-      color: white
-
-#main
-  margin-left: auto
-  margin-right: auto
-  margin-top: 5px
-  margin-bottom: 5px
-  padding: 10px
-  height: auto
-
-#content_left
-  font-size: 14px
-  padding: 5px
-  float: left
-  margin-right: 10px
-  text-align: justify
-  letter-spacing: 0.5px
-
-#footer
-  position:absolute
-  display: block-inline
-  color: black
-  background: url("/images/footer_gradient.png") repeat-x scroll left top #eeeeee
-  border-bottom: 1px solid silver
-  padding-top: 15px
-  width: 100%
-  height: 70px
-  font-size: 11px
-  text-align: center
-  margin-left: auto
-  margin-right: auto
-  a, a:visited
-    text-decoration: none
-    color: blue
-
-.section_left
-  background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
-  text-align: left
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  padding: 20px
-  margin-left: 5px
-
-.section
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  padding: 20px
-
-.round_section
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  text-align: left
-  padding: 20px
-
-.buttons_left
-  text-align: left
-  padding: 10px
-
-.notice
-  color: green
-
-.alert
-  color: red

@@ -2,22 +2,19 @@
 %html
   %head
     %title= 'Plataforma de Información Curricular - SALVA'
-
-    = stylesheet_link_tag :defaults
-    /[if lt IE 8]
-      = stylesheet_link_tag 'ie', :media => 'screen, projection'
-
-    = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.14.custom'
-
+    = render :partial => 'layouts/blueprint_css'
+    = stylesheet_link_tag 'application'
     = javascript_include_tag :defaults
 
   %body
+    = render :partial => 'layouts/header'
     .container
-      #header.span-24.last
-        #top-navigation= render_navigation(:level => 1)
-      #content.span-24.last
-        .span-4
-          = yield :layout
-        .span-20.last
-      #footer.span-24.last
-        = render :partial => 'layouts/footer'
+      = render :partial => 'layouts/toplinks'
+      #top-navigation= render_navigation(:level => 1)
+      #content
+        #left-navigation= render_navigation(:level => 2..3)
+        #right-content
+          = yield
+    #dialog
+    = render :partial => 'layouts/footer'
+
