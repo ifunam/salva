@@ -1,14 +1,14 @@
-%div{ :class => 'subsection-round-corner' }
+.subsection-round-corner
   %h3 Domicilio profesional
   - show_for record do |a|
-    %div{:class => 'row'}
-      = a.association :addresstype, :using => :name, :wrapper_html => {:class => 'span-4'}
+    .row
+      = a.association :addresstype, :using => :name
       = a.attribute :location, :wrapper_html => {:class => 'span-8'}
-      = a.attribute :pobox, :wrapper_html => {:class => 'span-5 last'}
-    %div{:class => 'row'}
-      = a.association :country, :using => :name, :wrapper_html => {:class => 'span-4'}
-      = a.association :state, :using => :name, :wrapper_html => {:class => 'span-4'}
-      = a.association :city, :using => :name, :wrapper_html => {:class => 'span-4'}
-      = a.attribute :zipcode, :wrapper_html => {:class => 'span-5 last'}
-    %div{:class => 'row'}
-      = a.attribute :phone, :wrapper_html => {:class => 'span-17 last'}
+      = a.attribute :pobox, :wrapper_html => {:class => 'span-5'}
+    .row
+      = a.association :country, :using => :name
+      = a.association :state, :using => :name
+      = a.association :city, :using => :name
+      = a.attribute :zipcode, :wrapper_html => {:class => 'span-5'}
+    .row
+      = a.attribute :phone, :wrapper_html => {:class => 'span-17'}

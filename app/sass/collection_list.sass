@@ -1,3 +1,4 @@
+@import "blueprint"
 
 #collection_table
   margin-top: 30px
@@ -32,11 +33,12 @@ td.action
   text-align: center
   text-align: -moz-center
 
-
 .row
-  margin-top: 15px
-  padding-bottom: 5px
-  display: inline-block
+  @extend .span-17
+  @extend .last
+  margin-bottom: 10px
+  div
+    @extend .span-4
 
 .ui-autocomplete-loading
   background: white url("/images/loading_indicator.gif") right center no-repeat
