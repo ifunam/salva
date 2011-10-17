@@ -27,6 +27,7 @@ body
   padding-top: 10px
   height: 50px
   width: 100%
+  margin-bottom: 30px
   #title
     display: inline-block
     position: absolute
@@ -80,27 +81,16 @@ body
     text-decoration: none
     color: blue
 
-.section_left
+.section-round-corner
+  border: 1px solid silver
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  border-radius: 5px
+  padding: 5px
+
+.section-round-corner-with-bg
   background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
-  text-align: left
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  padding: 20px
-  margin-left: 5px
-
-.section
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  padding: 20px
-
-.round_section
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-  text-align: left
-  padding: 20px
+  @extend .section-round-corner
 
 .notice
   color: green

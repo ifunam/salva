@@ -36,13 +36,14 @@
   font-size: 11px
   border: 5px solid #6EAC2C
   margin-top: -5px
-  maring-left: -3px
+  margin-left: -3px
   -moz-border-radius-topright: 5px
   -webkit-border-top-right-radius: 5px
   -moz-border-radius-bottomright: 5px
   -webkit-border-bottom-right-radius: 5px
   -moz-border-radius-bottomleft: 5px
   -webkit-border-bottom-left-radius: 5px
+  margin-bottom: 20px
 
 #left-navigation
   @extend .span-5
@@ -72,17 +73,10 @@
     li:hover
       @extend .ui-state-hover
 
-.section-round-corner
-  background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  border-radius: 5px
-
-
 #right-content
   @extend .span-18
   @extend .last
-  @extend .section-round-corner
+  @extend .section-round-corner-with-bg
   text-align: left
   padding-top: 10px
   padding-left: 10px
@@ -92,7 +86,7 @@
 
 .subsection-round-corner
   @extend .span-17
-  @extend .section-round-corner
+  @extend .section-round-corner-with-bg
   @extend .last
   padding-top: 10px
   padding-left: 10px

@@ -25,7 +25,7 @@ ShowFor.setup do |config|
   # config.default_collection_proc = lambda { |value| "<li>#{value}</li>" }
 
   # The default format to be used in I18n when localizing a Date/Time.
-  # config.i18n_format = :default
+  config.i18n_format = :default
 
   # Whenever a association is given, the first method in association_methods
   # in which the association responds to is used to retrieve the association labels.
@@ -34,5 +34,4 @@ ShowFor.setup do |config|
   # If you want to wrap the text inside a label (e.g. to append a semicolon),
   # specify label_proc - it will be automatically called, passing in the label text.
   # config.label_proc = lambda { |l| c + ":" }
-  
 end
