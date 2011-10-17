@@ -1,37 +1,39 @@
-%div{ :class => 'span-22 section_left push-2 last' }
+.subsection-round-corner
+
   %h3= t('.title')
 
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
     = f.hidden_field :user_id
-  %div{:class=> 'span-4'}
-    = f.label :addresstype_id
-    = 'Domicilio Profesional'
-    = f.hidden_field :addresstype_id, :value => 1
-  %div{:class=> 'span-12'}
-    = f.input :location, :as => :text, :input_html =>{ :size => '50x3', :value => 'Edificio Principal, Cubículo o laboratorio: 132 Circuito de la Investigación Cientifíca s/n Ciudad Universitaria Delegación Coyoacán'}
-  %div{:class=> 'span-6 last'}
-    = f.label :pobox
-    = 'P.O. Box 20-364'
-    = f.hidden_field :pobox, :size => 20, :value => 'P.O. Box 20-364'
+  .row
+    .span-4
+      = f.label :addresstype_id
+      = 'Domicilio Profesional'
+      = f.hidden_field :addresstype_id, :value => 1
+    .span-8
+      = f.input :location, :as => :text, :input_html =>{ :size => '25x5', :value => 'Edificio Principal, Cubículo o laboratorio: 132 Circuito de la Investigación Cientifíca s/n Ciudad Universitaria Delegación Coyoacán'}
+    .span-4.last
+      = f.label :pobox
+      = 'P.O. Box 20-364'
+      = f.hidden_field :pobox, :size => 20, :value => 'P.O. Box 20-364'
+  .row
+    .span-4
+      = f.label :country_id
+      = 'México'
+      = f.hidden_field :country_id, :value => 484
+    .span-4
+      = f.label :state_id
+      = 'Distrito Federal'
+      = f.hidden_field :state_id, :value => 9
+    .span-4
+      = f.label :city_id
+      = 'Ciudad de México'
+      = f.hidden_field :state_id, :value => 64
+    .span-5.last
+      = f.label :zipcode
+      = '04510'
+      = f.hidden_field :zipcode, :value => '04510'
 
-  %div{:class=> 'span-4'}
-    = f.label :country_id
-    = 'México'
-    = f.hidden_field :country_id, :value => 484
-  %div{:class=> 'span-6'}
-    = f.label :state_id
-    = 'Distrito Federal'
-    = f.hidden_field :state_id, :value => 9
-  %div{:class=> 'span-6'}
-    = f.label :city_id
-    = 'Ciudad de México'
-    = f.hidden_field :state_id, :value => 64
-  %div{:class=> 'span-6 last'}
-    = f.label :zipcode
-    = '04510'
-    = f.hidden_field :zipcode, :value => '04510'
-
-  %div{ :class => 'span-22 last' }
+  .row
     = f.input :phone, :as => :string, :input_html =>{ :size => 15 }
     = f.hidden_field :is_postaddress, :value => true

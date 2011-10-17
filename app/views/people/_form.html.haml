@@ -1,35 +1,37 @@
-%div{ :class => 'span-22 section_left push-2 last' }
+.subsection-round-corner
   %h3= t('.title')
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
     = f.hidden_field :user_id
+  .row
+    = f.input :firstname, :as => :string, :input_html => { :size => 15}
+    = f.input :lastname1, :as => :string, :input_html => { :size => 15}
+    = f.input :lastname2, :as => :string, :input_html => { :size => 15}
+    = f.input :title, :as => :string, :input_html => { :size => 4}
 
-  = f.input :firstname, :as => :string, :input_html => { :size => 15}
-  = f.input :lastname1, :as => :string, :input_html => { :size => 15}
-  = f.input :lastname2, :as => :string, :input_html => { :size => 15}
-  = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-4 last'
+  .row
+    .span-4
+      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
 
-  %div{ :class => 'span-18 last' }
-    %div{:class=> 'span-6'}
+    .span-8
       = f.label :gender, :required => true
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Masculino
-    %div{:class=> 'span-6'}
+    .span-5.last
       = f.label :maritalstatus_id
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true
-    %div{:class=> 'span-6 last'}
-      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
-  %div{ :class => 'span-22 last' }
+
+  .row
     %b='Lugar de nacimiento'
-  %div{ :class => 'span-22 last' }
-    %div{:class=> 'span-6'}
+    %br
+    .span-4
       = f.label :country_id, :required => true
       = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}
-    %div{:class=> 'span-6'}
+    .span-4
       = f.label :state_id
       = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9}, :id => 'state_list'
-    %div{:class=> 'span-6 last'}
+    .span-4.last
       = f.label :city_id, :required => true
       = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list'
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'

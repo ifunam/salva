@@ -1,17 +1,16 @@
-%div{ :class => 'span-24 round_section push-2 last' }
-
+.subsection-round-corner
   %h2 Domicilio
 
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
     = f.hidden_field :user_id
 
-  %div{ :class => 'span-24 last' }
-    %div{:class=> 'span-6'}
+  .row
+    .span-4
       = f.label :addresstype_id
-    %div{:class=> 'span-12'}
+    .span-8
       = f.label :location
-    %div{:class=> 'span-6 last'}
+    .span-5
       = f.label :pobox
     %div{:class=> 'span-6'}
       = f.collection_select :addresstype_id, Addresstype.all, :id, :name, {:prompt => true}
