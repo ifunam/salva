@@ -123,6 +123,10 @@ class User < ActiveRecord::Base
     jobposition.category_name unless jobposition.nil?
   end
 
+  def has_image?
+    !person.nil? and !person.image.nil?
+  end
+
   def avatar(version=:icon)
     if !person.nil? and !person.image.nil?
       person.image.file.url(version.to_sym)
