@@ -1,14 +1,14 @@
-%div{ :class => 'span-22 section_left push-2 last' }
+%div{ :class => 'subsection-round-corner' }
   %h3 Domicilio profesional
   - show_for record do |a|
     %div{:class => 'row'}
-      = a.association :addresstype, :using => :name, :wrapper_html => {:class => 'span-6'}
-      = a.attribute :location, :wrapper_html => {:class => 'span-12'}
-      = a.attribute :pobox, :wrapper_html => {:class => 'span-6 last'}
+      = a.association :addresstype, :using => :name, :wrapper_html => {:class => 'span-4'}
+      = a.attribute :location, :wrapper_html => {:class => 'span-8'}
+      = a.attribute :pobox, :wrapper_html => {:class => 'span-5 last'}
     %div{:class => 'row'}
-      = a.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
-      = a.association :state, :using => :name, :wrapper_html => {:class => 'span-6 '}
-      = a.association :city, :using => :name, :wrapper_html => {:class => 'span-6'}
-      = a.attribute :zipcode, :wrapper_html => {:class => 'span-6 last'}
+      = a.association :country, :using => :name, :wrapper_html => {:class => 'span-4'}
+      = a.association :state, :using => :name, :wrapper_html => {:class => 'span-4'}
+      = a.association :city, :using => :name, :wrapper_html => {:class => 'span-4'}
+      = a.attribute :zipcode, :wrapper_html => {:class => 'span-5 last'}
     %div{:class => 'row'}
-      = a.attribute :phone, :wrapper_html => {:class => 'span-24 last'}
+      = a.attribute :phone, :wrapper_html => {:class => 'span-17 last'}

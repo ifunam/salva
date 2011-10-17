@@ -7,33 +7,51 @@
   @extend .span-24
   @extend .last
   @extend .ui-tabs
-  @extend .ui-widget
-  @extend .ui-widget-content
-  @extend .ui-corner-all
+  font-size: 11px
+  text-align: left
   ul
     @extend .ui-tabs-nav
     @extend .ui-helper-reset
     @extend .ui-helper-clearfix
-    @extend .ui-widget-header
-    @extend .ui-corner-all
+
     li
       @extend .ui-state-default
       @extend .ui-corner-top
       list-style-type: none
+      padding-left: 0px
+      padding-right: 0px
+      height: 30px
     li.selected
       @extend .ui-tabs-selected
       @extend .ui-state-active
+      border-right: 0px
     li:hover
       @extend .ui-state-hover
 
 #content
   @extend .span-24
   @extend .last
+  width: 930px
+  background: #6EAC2C
+  font-size: 11px
+  border: 5px solid #6EAC2C
+  margin-top: -5px
+  maring-left: -3px
+  -moz-border-radius-topright: 5px
+  -webkit-border-top-right-radius: 5px
+  -moz-border-radius-bottomright: 5px
+  -webkit-border-bottom-right-radius: 5px
+  -moz-border-radius-bottomleft: 5px
+  -webkit-border-bottom-left-radius: 5px
 
 #left-navigation
-  @extend .span-4
+  @extend .span-5
   @extend .ui-widget
   @extend .ui-widget-content
+  font-size: 11px
+  text-align: left
+  background: #6EAC2C
+  border: 0px
   ul
     @extend .ui-tabs-nav
     @extend .ui-helper-reset
@@ -42,15 +60,43 @@
       @extend .ui-state-default
       padding: 5px 10px
       list-style-type: none
+      border-bottom-left-radius: 5px
+      border-color: #F4FCF2
+      border-style: solid
+      border-top-left-radius: 5px
+      margin-bottom: 3px
+      height: 25px
     li.selected
       @extend .ui-tabs-selected
       @extend .ui-state-active
     li:hover
       @extend .ui-state-hover
 
+.section-round-corner
+  background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
+  border: 1px solid silver
+  -moz-border-radius: 5px
+  border-radius: 5px
+
+
 #right-content
-  @extend .span-19
+  @extend .span-18
   @extend .last
+  @extend .section-round-corner
+  text-align: left
+  padding-top: 10px
+  padding-left: 10px
+  padding-bottom: 10px
+  h3
+    color: #6EAC2C
+
+.subsection-round-corner
+  @extend .span-17
+  @extend .section-round-corner
+  @extend .last
+  padding-top: 10px
+  padding-left: 10px
+  margin-bottom: 10px
 
 #session_info
   @extend .ui-button-set

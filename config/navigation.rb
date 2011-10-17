@@ -66,12 +66,6 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
     end
 
-    primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|
-      s.item :seminaries, 'Seminarios y conferencias', seminaries_path, :highlights_on => /\/seminaries/
-      s.item :conference_organizers, 'Comités de congresos', conference_organizers_path, :highlights_on => /\/conference_organizers/
-      s.item :conference_talks, 'Trabajos presentados en congresos', conference_talks_path, :highlights_on => /\/conference_talks/
-    end
-
     primary.item :publications, 'Publicaciones', articles_path do |s|
       s.item :articles, 'Artículos publicados', articles_path, :highlights_on => /\/articles/
       s.item :unpublished_articles, 'Artículos enviados o aceptados', unpublished_articles_path, :highlights_on => /\/unpublished_articles/
@@ -79,6 +73,12 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :book_chapters, 'Capítulos en libros', book_chapters_path, :highlights_on => /\/book_chapters/
       s.item :technical_reports, 'Reportes técnicos', technical_reports_path, :highlights_on => /\/technical_reports/
       s.item :reviews, 'Reseñas', reviews_path, :highlights_on => /\/reviews/
+    end
+
+    primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|
+      s.item :seminaries, 'Seminarios y conferencias', seminaries_path, :highlights_on => /\/seminaries/
+      s.item :conference_organizers, 'Comités de congresos', conference_organizers_path, :highlights_on => /\/conference_organizers/
+      s.item :conference_talks, 'Trabajos presentados en congresos', conference_talks_path, :highlights_on => /\/conference_talks/
     end
 
     primary.item :refereed_colaborations, 'Colaboración en publicaciones', user_journals_path do |s|
@@ -119,9 +119,6 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
 
-    primary.item :reports, 'Informes', user_annual_reports_path do |s|
-      s.item :user_annual_reports_path, 'Informe anual de actividades', user_annual_reports_path, :highlights_on => /\/user_annual_reports/
-    end
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
     # Conditions are part of the options. They are evaluated in the context of the views,
     # thus you can use all the methods and vars you have available in the views.

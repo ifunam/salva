@@ -1,13 +1,13 @@
-%div{ :class => 'span-22 section_left push-2 last' }
+%div{ :class => 'subsection-round-corner' }
   %h3 Datos personales
   - show_for record do |p|
-    = p.attribute :firstname, :wrapper_html => {:class => 'span-6'}
-    = p.attribute :lastname1, :wrapper_html => {:class => 'span-6'}
-    = p.attribute :lastname2, :wrapper_html => {:class => 'span-6'}
-    = p.attribute :title, :wrapper_html => {:class => 'span-4 last'}
-    = p.attribute :gender, :wrapper_html => {:class => 'span-6'}
-    = p.association :maritalstatus, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = p.attribute :dateofbirth, :wrapper_html => {:class => 'span-10 last'}
-    = p.association :country, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = p.association :state, :using => :name, :wrapper_html => {:class => 'span-6 '}
-    = p.association :city, :using => :name, :wrapper_html => {:class => 'span-10 last'}
+    = p.attribute :firstname, :wrapper_html => {:class => 'span-4'}
+    = p.attribute :lastname1, :wrapper_html => {:class => 'span-4'}
+    = p.attribute :lastname2, :wrapper_html => {:class => 'span-4'}
+    = p.attribute :title, :wrapper_html => {:class => 'span-5 last'}
+    = p.attribute :gender, :wrapper_html => {:class => 'span-4'}
+    = p.association :maritalstatus, :using => :name, :wrapper_html => {:class => 'span-4'}
+    = p.attribute :dateofbirth, :wrapper_html => {:class => 'span-9 last'}
+    = p.association :country, :using => :name, :wrapper_html => {:class => 'span-4'}
+    = p.association :state, :using => :name, :wrapper_html => {:class => 'span-4 '}
+    = p.association :city, :using => :name, :wrapper_html => {:class => 'span-9 last'}
