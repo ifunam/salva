@@ -1,5 +1,3 @@
-require 'lib/document/postdoctoral_card_request'
-require 'lib/document/postdoctoral_reporter'
 class AcademicSecretary::UsersController < ApplicationController
   layout 'academic_secretary'
   respond_to :html, :except => [:search_by_fullname, :search_by_username, :autocomplete_form]

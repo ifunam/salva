@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Genericwork < ActiveRecord::Base
   validates_presence_of :authors, :title, :genericworktype_id, :genericworkstatus_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true

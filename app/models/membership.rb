@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Membership < ActiveRecord::Base
   validates_presence_of :institution_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true

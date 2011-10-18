@@ -2,9 +2,12 @@ require 'yaml'
 require 'rest_client'
 module Aleph
   class User < ActiveResource::Base
-    config = YAML.load_file([Rails.root.to_s, "config/aleph.yml"].join('/'))
-    self.site = [config['host'], config['port']].join(':')
-    self.headers['X-Aleph-Token'] = config['auth_token']
+    aleph_config_path = File.join(Rails.root.to_s, 'config', 'aleph.yml')
+    if File.exist? aleph_config_path
+      config = YAML.load_file(aleph_config_path)
+      self.site = [config['host'], config['port']].join(':')
+      self.headers['X-Aleph-Token'] = config['auth_token']
+    end
 
     def self.find(*arguments)
       obj = super *arguments

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UserRefereedJournal < ActiveRecord::Base
   validates_presence_of :year
   belongs_to :user

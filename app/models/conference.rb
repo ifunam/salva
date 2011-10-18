@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Conference < ActiveRecord::Base
   validates_presence_of :name, :year, :conferencetype_id, :country_id
 

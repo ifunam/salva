@@ -1,6 +1,6 @@
 module Salva
   module SiteConfig
-    protected
+    #protected
     def method_missing(method, *args, &block)
       if configuration(method).is_a? Hash and configuration(method).has_key? args.first.to_s
         configuration(method)[args.first.to_s]
@@ -9,7 +9,6 @@ module Salva
       end
     end
 
-    private
     def load_config(file_name)
       file_path = "#{Rails.root}/config/#{file_name}"
       YAML.load_file(file_path)

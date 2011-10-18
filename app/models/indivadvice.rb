@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Indivadvice < ActiveRecord::Base
   validates_presence_of :indivadvicetarget_id, :indivname, :startyear, :hours
   validates_numericality_of :indivadvicetarget_id
