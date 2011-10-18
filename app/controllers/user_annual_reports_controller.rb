@@ -1,4 +1,3 @@
-#require 'lib/document/user_annual_report'
 class UserAnnualReportsController < ApplicationController
   layout 'user_resources'
   respond_to :html

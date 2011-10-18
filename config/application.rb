@@ -14,11 +14,6 @@ module Salva
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
-    %W(salva document).each do |dir_name|
-	config.autoload_paths << "#{config.root}/lib/#{dir_name}"
-    end
-    #Dir["#{config.root}/lib", "#{config.root}/lib/**/"]
-    # %W(#{config.root}/lib #{config.root}/lib/salva)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
