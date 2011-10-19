@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 module ApplicationHelper
+  include Salva::SiteConfig
+
   def remove_child_link(name, f)
     f.hidden_field(:id) + link_to((content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-trash')), "javascript:void(0)", :class => "remove_child ui-button ui-button-icon ui-widget ui-state-default ui-corner-all")
   end
@@ -94,5 +96,27 @@ module ApplicationHelper
     else
       record.send(user_role_class).build
     end
+  end
+
+  def link_to_institution_site
+    link_to Salva::SiteConfig.institution('name'), Salva::SiteConfig.institution('url'),
+            :target => '_new'
+  end
+
+  def phone_to_technical_support
+    link_to_phone Salva::SiteConfig.technical_support('phone')
+  end
+
+  def link_to_phone(phone_number)
+    link_to phone_number, "tel://#{phone_number}"
+  end
+
+  def mail_to_technical_support
+    mail_to Salva::SiteConfig.technical_support('email')
+  end
+
+  def link_to_helpdesk
+    helpdesk_url = Salva::SiteConfig.technical_support('helpdesk')
+    link_to helpdesk_url, helpdesk_url, :target => '_new' unless helpdesk_url.nil?
   end
 end

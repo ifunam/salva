@@ -1,10 +1,13 @@
 #footer
-  ="&copy; Instituto de Física - UNAM 2010 | ".html_safe
-  = "Circuito de la Investigación Científica, Ciudad Universitaria"
+  ="&copy; Instituto de Física - UNAM 2011 | ".html_safe
+  = "Circuito de la Investigación Científica, Ciudad Universitaria, CP 04510 México, D.F."
+
   %br
-  = "CP 04510 México, D.F. Teléfono: +52 (55) 56-22-50-01 ext 289, "
-  = "Contacto: ".html_safe + mail_to('soporte@fisica.unam.mx')
+  = "Reporte de problemas: #{link_to_helpdesk}".html_safe
+
   %br
-  = "Reporte de problemas: ".html_safe + link_to('http://soporte.fisica.unam.mx', 'http://soporte.fisica.unam.mx', :target => '_new')
+  = "Teléfono: #{phone_to_technical_support}, ".html_safe
+  = "Contacto:  #{mail_to_technical_support}".html_safe
+
   %br
   = "Hecho en México con software libre | Última actualización: Diciembre de 2010"
