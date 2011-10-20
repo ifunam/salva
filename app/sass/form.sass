@@ -1,10 +1,11 @@
 @import "start-jquery-ui"
 
 input
-  font: 14px Arial,sans-serif
+  font-size: 14px
+  font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace
   padding: 9px 7px 10px
   margin-bottom: 8px
-  color: #000
+  color: #666666
   border-color: #CCCCCC #DDDDDD #EAEAEA
   border-left: 1px solid #DDDDDD
   border-radius: 3px 3px 3px 3px
@@ -14,12 +15,16 @@ input
 input[type="text"],
 textarea,
 input[type="password"]
+  @extend input
   width: auto
   height: auto
   padding-left: 0px
 
 select
-  width: 165px
+  font: 14px Arial,sans-serif
+  font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace
+  width: 150px
+  color: #666666
 
 .button, .button:visited
   display: block
@@ -59,6 +64,8 @@ input[type="submit"]
 
 label
   display: block
+  font-weight: bold
+  font: 14px Arial,sans-serif
 
 .fieldWithErrors
   padding: 0px

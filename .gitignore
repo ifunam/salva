@@ -41,6 +41,7 @@ public/stylesheets/devise.css
 public/stylesheets/form.css
 public/formstylesheets/session.css
 public/stylesheets/user_menu.css
+public/stylesheets/start-jquery-ui.css
 uploads
 solr/
 vendor/plugins/acts_as_solr_reloaded/

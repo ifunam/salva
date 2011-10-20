@@ -49,7 +49,7 @@
   @extend .span-5
   @extend .ui-widget
   @extend .ui-widget-content
-  font-size: 11px
+  font-size: 12px
   text-align: left
   background: #6EAC2C
   border: 0px
@@ -59,17 +59,22 @@
     @extend .ui-helper-clearfix
     li
       @extend .ui-state-default
-      padding: 5px 10px
+      padding: 12px 8px
       list-style-type: none
       border-bottom-left-radius: 5px
       border-color: #F4FCF2
       border-style: solid
       border-top-left-radius: 5px
-      margin-bottom: 3px
-      height: 25px
+      border-right: none
+      border-left:none
+      border-bottom: 1px
+      margin-bottom: 6px
+      margin-left: 8px
+      height: 22px
     li.selected
       @extend .ui-tabs-selected
       @extend .ui-state-active
+      border-right: none
     li:hover
       @extend .ui-state-hover
 
@@ -81,8 +86,15 @@
   padding-top: 10px
   padding-left: 10px
   padding-bottom: 10px
+  font-size: 14px
+
   h3
     color: #6EAC2C
+    text-shadow: rgb(143,191,92) 1px 1px 3px
+    font-size: 160%
+    font-weight: bold
+    color: #6EAC2C
+    letter-spacing: -1px
 
 .subsection-round-corner
   @extend .span-17
@@ -91,6 +103,7 @@
   padding-top: 10px
   padding-left: 10px
   margin-bottom: 10px
+  border-color: #acdd4A
 
 #session_info
   @extend .ui-button-set
