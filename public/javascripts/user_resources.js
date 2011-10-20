@@ -1,5 +1,5 @@
 $(document).ready(function() {
-      $("tr#filter_header input").live('focusout', function() {
+    $("tr#filter_header input").live('focusout', function() {
         resource = $('#filter_form').attr('action') + '.js';
         remote_collection_list(resource, $.param($("form").serializeArray()));
         return false;
@@ -58,6 +58,8 @@ $(document).ready(function() {
     });
 
    $(".autocompleted_text" ).autocompleted_text();
+
+   $(".chosen-select").chosen();
    set_button_behaviour();
 });
 

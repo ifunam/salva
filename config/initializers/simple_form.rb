@@ -17,7 +17,7 @@ SimpleForm.setup do |config|
   config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags
-  config.wrapper_class = 'span-4'
+  config.wrapper_class = 'span-5'
 
   # CSS class to add to the wrapper if the field has errors
   # config.wrapper_error_class = :fieldWithErrors

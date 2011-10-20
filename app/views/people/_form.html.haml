@@ -7,32 +7,30 @@
     = f.input :firstname, :as => :string, :input_html => { :size => 15}
     = f.input :lastname1, :as => :string, :input_html => { :size => 15}
     = f.input :lastname2, :as => :string, :input_html => { :size => 15}
-    = f.input :title, :as => :string, :input_html => { :size => 4}
+    = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-2 last'
 
   .row
-    .span-4
-      = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
-
-    .span-8
+    = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
+    .span-5
       = f.label :gender, :required => true
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Masculino
     .span-5.last
       = f.label :maritalstatus_id
-      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true
+      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true, :class => "chosen-select"
 
   .row
     %b='Lugar de nacimiento'
     %br
-    .span-4
+    .span-5
       = f.label :country_id, :required => true
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}
-    .span-4
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}, :class => "chosen-select"
+    .span-5
       = f.label :state_id
-      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9}, :id => 'state_list'
-    .span-4.last
+      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9}, :id => 'state_list', :class => "chosen-select"
+    .span-6.last
       = f.label :city_id, :required => true
-      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list'
+      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list', :class => "chosen-select"
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
       %div{:id=>'city_field'}
