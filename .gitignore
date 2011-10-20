@@ -51,3 +51,4 @@ index/
 vendor/bundle
 .rspec
 Gemfile.lock
+public/stylesheets/web_site.css

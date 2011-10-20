@@ -1,0 +1,13 @@
+.span-24.last
+  %h3= "Articulos"
+
+= render :partial => 'search_form'
+
+#collection_header
+  .span-1="Id"
+  .span-19="Artículo"
+  .span-4.last="Autores del Instituto"
+#collection_records
+  = render :partial => @articles
+
+=will_paginate @articles

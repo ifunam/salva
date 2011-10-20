@@ -79,6 +79,10 @@ Salva::Application.routes.draw do
     end
   end
 
+  namespace :web_site do
+      match 'articles' => 'articles#index', :via => :get
+  end
+
   root :to => "user_profiles#show"
 
   mount Resque::Server.new, :at => '/admin/resque' if Rails.env.to_s == 'production'

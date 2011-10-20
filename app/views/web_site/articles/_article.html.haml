@@ -1,0 +1,12 @@
+
+%div{:class =>  cycle('record-odd', 'record-even'), :id => dom_id(article) }
+  .span-1=article_counter
+  .span-19=article.as_text
+  .span-4.last
+    %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 32px; height:18px; padding: 2px;', :id => 'associated_authors_' + dom_id(article) }
+      %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(article) }
+        = article.users.size
+      %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'}
+        = link_to_user_list article, user_list_article_path(:id => article.id, :format => 'js')
+
+

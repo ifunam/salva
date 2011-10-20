@@ -1,4 +1,5 @@
 @import "blueprint"
+@import "start-jquery-ui"
 
 #collection_table
   margin-top: 30px
@@ -63,10 +64,8 @@ td.action
   height: 30px
 
 .pagination
-  position: absolute
-  width: 960px
-  text-align: center
-  z-index: 666
+  @extend .span-24
+  @extend .last
 
 .ui-progressbar-value
   background-image: url(/images/pbar-ani.gif)
@@ -131,3 +130,41 @@ td.action
   -moz-border-radius: 5px 0 5px 5px
   -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
   background: #FBFBEF
+
+#table_search_form
+  @extend .ui-widget-header
+  @extend .ui-corner-tl
+  @extend .ui-corner-tr
+  @extend .ui-helper-clearfix
+  @extend .span-24
+  @extend .last
+
+
+#collection_header
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-24
+  @extend .last
+
+#collection_records
+  @extend .span-24
+  @extend .last
+  border-left: 1px solid #30a3d7
+  border-right: 1px solid #30a3d7
+  border-bottom: 1px solid #30a3d7
+  text-align: justify
+  margin-bottom: 10px
+
+  .record-odd
+    @extend .span-24
+    @extend .last
+    background-color: #fff
+    color: #585858
+    border-bottom: 1px solid silver
+
+  .record-even
+    @extend .span-24
+    @extend .last
+    background: #EFF5FB
+    color: #585858
+    border-bottom: 1px solid silver
