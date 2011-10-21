@@ -100,7 +100,7 @@ module ApplicationHelper
 
   def link_to_institution_site
     link_to Salva::SiteConfig.institution('name'), Salva::SiteConfig.institution('url'),
-            :target => '_new'
+            :target => '_blank'
   end
 
   def phone_to_technical_support
@@ -108,7 +108,9 @@ module ApplicationHelper
   end
 
   def link_to_phone(phone_number)
-    link_to phone_number, "tel://#{phone_number}"
+    number, extension = phone_number.split('ext')
+    number.gsub!(/\s|\./,"")
+    link_to phone_number, "tel://#{number}"
   end
 
   def mail_to_technical_support
@@ -117,6 +119,6 @@ module ApplicationHelper
 
   def link_to_helpdesk
     helpdesk_url = Salva::SiteConfig.technical_support('helpdesk')
-    link_to helpdesk_url, helpdesk_url, :target => '_new' unless helpdesk_url.nil?
+    link_to helpdesk_url, helpdesk_url, :target => '_blank' unless helpdesk_url.nil?
   end
 end
