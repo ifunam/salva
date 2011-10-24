@@ -1,0 +1,9 @@
+.row
+  .span-5
+    = f.collection_select :idtype_id, Idtype.all, :id, :name, {:include_blank => "Seleccione uno:"}, :class => 'chosen-select'
+    - if !f.object.nil? and !f.object.new_record?
+      = f.hidden_field :id
+  .span-5
+    = f.text_field :descr, :size => 10, :maxlength => 30
+  .span-6.last
+    = remove_child_link(f)

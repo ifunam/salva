@@ -1,8 +1,14 @@
+- f.object.user_identifications << UserIdentification.new if f.object.user_identifications.size == 0
 .subsection-round-corner
-  %h3= t('.identification')
-  - if !f.object.nil? and !f.object.new_record?
-    = f.hidden_field :id
-    // = f.hidden_field :user_id
+  %h3= t('.identifications')
+
+  #nested_table.span-17.last
+    .row
+      .span-5= 'Tipo de identificación'
+      .span-5= 'Número de identificación'
+      .span-7.last= '-'
+    = f.simple_fields_for :user_identifications do |identification_form|
+      = render :partial => 'user_identifications/form', :locals => { :f => identification_form }
+    = new_child_fields_template(f, :user_identifications, :partial => 'user_identifications/form')
   .row
-    = f.input :descr, :as => :string, :input_html => { :size => 28, :autocomplete => "off" }
-    = f.hidden_field :identification_id, :value => 2
+    = add_child_link :new_user_identifications, :user_identifications

@@ -7,5 +7,4 @@
 = f.simple_fields_for :address_attributes, @user.address do |address_form|
   = render :partial => 'addresses/academic_form', :locals => { :f => address_form }
 
-= f.simple_fields_for :user_identification_attributes, @user.user_identification do |identification_form|
-  = render :partial => 'user_identifications/academic_form', :locals => { :f => identification_form }
+= render :partial => 'user_identifications/academic_form', :locals => { :f => f }

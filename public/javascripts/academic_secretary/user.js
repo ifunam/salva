@@ -322,41 +322,6 @@ function search_by_fullname_autocomplete_form() {
     });
 }
 
-function state_list_by_country(id) {
-    $.ajax({
-        url: '/states/list_by_country',
-        data: { country_id: id },
-        success: function(data){ $("#state_list").replaceWith(data); }
-    });
-}
-
-function city_list_by_state(id) {
-    $.ajax({
-        url: '/cities/list_by_state',
-        data: { state_id: id },
-        success: function(data){ $("#city_list").replaceWith(data); }
-    });
-}
-
-function dialog_for_new_city() {
-    $('#dialog').dialog({title:'Nueva ciudad', width: 320, height: 230}).dialog('open');
-    $.ajax({
-        url: "/cities/new.js",
-        data: {state_id: $("#state_list").val()},
-        success: function(request) {
-            $("div#dialog").html(request);
-        }
-    });
-}
-
-function textfield_for_city() {
-   $.ajax({
-        url: "/cities/remote_form.js",
-        success: function(request) {
-            $("#city_field").html(request);
-        }
-    });
-}
 
 function set_button_behaviour() {
   $(".ui-state-default").hover(
