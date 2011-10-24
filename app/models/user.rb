@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
-                  :userstatus_id, :user_incharge_id, :user_identification_attributes,
+                  :userstatus_id, :user_incharge_id, :user_identifications_attributes,
                   :person_attributes, :address_attributes, :jobposition_attributes,
                   :jobposition_log_attributes, :user_group_attributes,
                   :user_schoolarships_attributes, :documents_attributes
@@ -58,8 +58,9 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
+  has_many :user_identifications
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identification, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identifications, :user_schoolarships, :documents, :user_schoolarship
 
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)

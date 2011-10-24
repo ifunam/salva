@@ -4,5 +4,6 @@ class Idtype < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :identifications
+  has_many :user_identifications
+  default_scope :order =>'name ASC'
 end

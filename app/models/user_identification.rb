@@ -1,11 +1,10 @@
 class UserIdentification < ActiveRecord::Base
-  validates_presence_of :identification_id, :descr
-
+  validates_presence_of :idtype_id, :descr
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
-  validates_numericality_of :identification_id, :greater_than =>0, :only_integer => true
+  validates_numericality_of :idtype_id, :greater_than =>0, :only_integer => true
 
-  validates_uniqueness_of :user_id, :scope => [:identification_id]
+  validates_uniqueness_of :user_id, :scope => [:idtype_id]
 
-  belongs_to :identification
   belongs_to :user
+  belongs_to :idtype
 end
