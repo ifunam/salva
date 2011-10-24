@@ -1,19 +1,18 @@
 # encoding: utf-8
-
 module ApplicationHelper
   include Salva::SiteConfig
 
-  def remove_child_link(name, f)
-    f.hidden_field(:id) + link_to((content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-trash')), "javascript:void(0)", :class => "remove_child ui-button ui-button-icon ui-widget ui-state-default ui-corner-all")
-  end
-
-  def remove_remote_child(name, f)
-    dom_id = 'remove_' + ActiveSupport::Inflector.underscore(f.object.class.name)
-    link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-trash'), "javascript:void(0)", :class => "#{name} ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => f.object.id
-  end
-
   def add_child_link(name, association)
-    link_to((content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus')), "javascript:void(0)",  :"data-association" => association, :class => "add_child ui-button ui-button-icon ui-widget ui-state-default ui-corner-all")
+    link_to content_tag(:span, '', :class => 'add_child_icon'), "#",
+             :"data-association" => association, :class => "child_link"
+  end
+
+  def remove_child_link(f)
+    html_class = f.object.new_record? ? "remove_new_child" : "remove_existent_child"
+    f.hidden_field(:_destroy, :class => :destroy) +
+    link_to(content_tag(:span, '', :class => 'del_child_icon'), "#",
+                        :class => "#{html_class} child_link",
+                        :confirm => "¿ Desea borrar este elemento ?")
   end
 
   def new_child_fields_template(form_builder, association, options = {})
