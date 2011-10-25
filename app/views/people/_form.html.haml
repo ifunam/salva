@@ -25,7 +25,7 @@
     %br
     .span-5
       = f.label :country_id, :required => true
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}, :class => "chosen-select"
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}, :class => "chosen-select country-select"
     .span-5
       = f.label :state_id
       = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9}, :id => 'state_list', :class => "chosen-select"
@@ -33,4 +33,4 @@
       = f.label :city_id, :required => true
       = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list', :class => "chosen-select"
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
-      %div{:id=>'city_field'}
+      #city_text_field

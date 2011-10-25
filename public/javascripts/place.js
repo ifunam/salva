@@ -1,12 +1,13 @@
 $(document).ready(function() {
-    $("#user_person_attributes_country_id").live('change', function() {
-        country_id = $("#user_person_attributes_country_id").val();
+    $(".country-select").live('change', function() {
+        country_id = $(this).val();
         if ( country_id == "484"  || country_id == 840) {
             state_list_by_country(country_id);
-            $("#city_field").replaceWith('<div id="city_field"> </div>');
+            $("#city_text_field").html("");
         } else {
             $("#state_list").html('');
             $("#state_list_chzn").remove();
+            $("#city_list_chzn").remove();
             $("#city_list").replaceWith('');
             $("#city_new").hide();
             textfield_for_city();
@@ -30,6 +31,7 @@ $(document).ready(function() {
 
     $('#new_city').live('submit', function() {
         $("#new_city").ajaxComplete(function(event, request, settings){
+            $("#city_list_chzn").remove();
             $("#city_list").replaceWith(request.responseText);
             $('#dialog').dialog('close');
         });
@@ -56,9 +58,11 @@ function dialog_for_new_city() {
     $('#dialog').dialog({title:'Nueva ciudad', width: 320, height: 230}).dialog('open');
     $.ajax({
         url: "/cities/new.js",
+        type: 'GET',
+        dataType: 'html',
         data: {state_id: $("#state_list").val()},
         success: function(request) {
-            $("div#dialog").html(request);
+            $("#dialog").html(request);
         }
     });
 }
@@ -66,8 +70,10 @@ function dialog_for_new_city() {
 function textfield_for_city() {
    $.ajax({
         url: "/cities/remote_form.js",
-        success: function(request) {
-            $("#city_field").html(request);
+        type: 'GET',
+        dataType: 'html',
+        success: function(html) {
+            $("#city_text_field").html(html);
         }
     });
 }
