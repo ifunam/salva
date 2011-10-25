@@ -7,4 +7,6 @@ class UserIdentification < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :idtype
+  # TODO: remove this for next release
+  belongs_to :identification
 end

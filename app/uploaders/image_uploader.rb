@@ -9,7 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # FIXME: Check for bugs in url method CarrierWave
   # Don't try it at home!!!
   def url(version)
-    @versions[version].file.file.sub(/#{Rails.root.to_s}/,'')
+    @versions[version].file.file.sub(/#{Rails.root.to_s}\/public/,'')
   end 
   # Override the directory where uploaded files will be stored
   # This is a sensible default for uploaders that are meant to be mounted:
