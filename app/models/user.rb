@@ -60,7 +60,8 @@ class User < ActiveRecord::Base
   has_many :documents
   has_many :user_identifications
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_identifications, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :user_identifications, :allow_destroy => true
 
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
