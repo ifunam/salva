@@ -51,7 +51,7 @@ gem "rest-client", "~> 1.6.7"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
-  gem "inploy", "1.9.3"
+  gem "inploy", "1.9.4"
 end
 
 group :development do
@@ -60,7 +60,7 @@ group :development do
   gem "ruby_parser", "2.0.6"
   gem "unicorn", "3.6.0"
   gem "jquery-rails", "1.0.16"
-  gem "inploy", "1.9.3"
+  gem "inploy", "1.9.4"
 end
 
 group :test do
