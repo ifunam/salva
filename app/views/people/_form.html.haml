@@ -4,6 +4,9 @@
     = f.hidden_field :id
     = f.hidden_field :user_id
   .row
+    #person_photo
+      = image_tag(f.object.image.file.url(:card)) if !f.object.new_record? and !f.object.image.nil?
+  .row
     = f.input :firstname, :as => :string, :input_html => { :size => 15}
     = f.input :lastname1, :as => :string, :input_html => { :size => 15}
     = f.input :lastname2, :as => :string, :input_html => { :size => 15}
@@ -34,3 +37,7 @@
       = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list', :class => "chosen-select"
       = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
       #city_text_field
+  .row
+    .span-17.last
+      = f.simple_fields_for :image_attributes do |image_form|
+        = render :partial => 'images/form', :locals => { :f => image_form}

@@ -2,10 +2,14 @@
   %h3 Datos personales
   - show_for record do |p|
     .row
+      #person_photo
+        = image_tag(record.image.file.url(:card)) unless record.image.nil?
+
+    .row
       = p.attribute :firstname
       = p.attribute :lastname1
       = p.attribute :lastname2
-      = p.attribute :title, :wrapper_html => {:class => 'span-5'}
+      = p.attribute :title, :wrapper_html => {:class => 'span-1 last'}
     .row
       = p.attribute :gender
       = p.association :maritalstatus, :using => :name
