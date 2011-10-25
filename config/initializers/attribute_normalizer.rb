@@ -1,3 +1,5 @@
+require 'attribute_normalizer'
+ActiveRecord::Base.send :include, AttributeNormalizer
 Salva::Application.configure do
   config.after_initialize do
     AttributeNormalizer.configure do |attr_config|
@@ -32,3 +34,4 @@ Salva::Application.configure do
     end
   end
 end
+
