@@ -56,41 +56,42 @@ $(document).ready(function() {
         $(this).chosen();
     });
 
+    $("#submit_buttons").live('click', function() {
+        $('.fields_template').remove();
+    });
+
+    $('form a.add_child_link').click(function() {
+        var assoc   = $(this).attr('data-association');
+        var content = $('#' + assoc + '_fields_template').html();
+        var regexp  = new RegExp('new_' + assoc, 'g');
+        var new_id  = new Date().getTime();
+        $(this).before(content.replace(regexp, new_id));
+        $('.chzn-container').remove();
+        $('.chosen-select').removeClass('chzn-done').chosen();
+        return false;
+    });
+
+    $('form a.remove_new_child').live('click', function() {
+        $(this).parent().parent().remove();
+        return false;
+    });
+
+    $('form a.remove_existent_child').live('click', function() {
+        $(this).parent().find(".destroy")[0].value = true;
+        $(this).parent().parent().hide();
+        return false;
+    });
+
     // user_profiles code
     current_year = new Date().getFullYear();
     date_picker_for('.birthdate', (current_year - 100), (current_year - 15));
     date_picker_for('.date', (current_year -20), current_year);
 
     $('#filter_jobpositiontype_id').change(function(){
-      var responseData = response_from_simple_remote_resource("/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val());
-      $('#jobpositioncategories_select').html(responseData);
+        var responseData = response_from_simple_remote_resource("/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val());
+        $('#jobpositioncategories_select').html(responseData);
     });
 
-     $(".submit_button").live('click', function() {
-         $('.fields_template').remove();
-     });
-
-     $('form a.add_child').click(function() {
-         var assoc   = $(this).attr('data-association');
-         var content = $('#' + assoc + '_fields_template').html();
-         var regexp  = new RegExp('new_' + assoc, 'g');
-         var new_id  = new Date().getTime();
-         $("#nested_table").append(content.replace(regexp, new_id));
-         $('.chzn-container').remove();
-         $('.chzn-select').removeClass('chzn-done').chosen();
-         return false;
-     });
-
-     $('form a.remove_new_child').live('click', function() {
-         $(this).parent().parent().remove();
-         return false;
-     });
-
-     $('form a.remove_existent_child').live('click', function() {
-         $(this).parent().find(".destroy")[0].value = true;
-         $(this).parent().parent().hide();
-         return false;
-     });
 });
 
 function dialog_for_new_record(controller) {
