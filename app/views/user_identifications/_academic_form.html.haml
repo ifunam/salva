@@ -2,7 +2,7 @@
 .subsection-round-corner
   %h3= t('.identifications')
 
-  #nested_table.span-17.last
+  .nested_attributes
     .row
       .span-5= 'Tipo de identificación'
       .span-5= 'Número de identificación'
@@ -10,5 +10,5 @@
     = f.simple_fields_for :user_identifications do |identification_form|
       = render :partial => 'user_identifications/form', :locals => { :f => identification_form }
     = new_child_fields_template(f, :user_identifications, :partial => 'user_identifications/form')
-  .row
-    = add_child_link :new_user_identifications, :user_identifications
+    .row
+      = add_child_link :new_user_identifications, :user_identifications

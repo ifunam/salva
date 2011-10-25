@@ -1,10 +1,11 @@
 # encoding: utf-8
 module ApplicationHelper
   include Salva::SiteConfig
-
   def add_child_link(name, association)
-    link_to content_tag(:span, '', :class => 'add_child_icon'), "#",
-             :"data-association" => association, :class => "child_link"
+    link_to(content_tag(:span, '', :class => 'add_child_icon'), "#",
+             :"data-association" => association, :class => "add_child_link",
+             :title => 'Agregar' )
+
   end
 
   def remove_child_link(f)
@@ -12,7 +13,8 @@ module ApplicationHelper
     f.hidden_field(:_destroy, :class => :destroy) +
     link_to(content_tag(:span, '', :class => 'del_child_icon'), "#",
                         :class => "#{html_class} child_link",
-                        :confirm => "¿ Desea borrar este elemento ?")
+                        :title => 'Borrrar',
+                        :confirm => '¿ Desea borrar este elemento ?')
   end
 
   def new_child_fields_template(form_builder, association, options = {})

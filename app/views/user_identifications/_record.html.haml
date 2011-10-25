@@ -1,4 +1,4 @@
-.subsection-round-corner
-  %h3 RFC
-  - show_for record do |id|
-    = id.attribute :descr, :wrapper_html => {:class => 'span-17 last'}
+.row
+  - show_for record do |user_identification|
+    = user_identification.association :idtype, :using => :name
+    = user_identification.attribute :descr
