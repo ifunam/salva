@@ -130,6 +130,10 @@ td.action
   -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
   background: #FBFBEF
 
+.collection_header_colors
+  background: #0088BB
+  color: white
+  font-weight: normal
 #table_search_form
   @extend .ui-widget-header
   @extend .ui-corner-tl
@@ -137,21 +141,17 @@ td.action
   @extend .ui-helper-clearfix
   @extend .span-18
   @extend .last
-  background: #00688F
-  color: white
+  @extend .collection_header_colors
 
 #collection_header
   @extend .ui-widget-header
   @extend .ui-helper-clearfix
   @extend .span-18
   @extend .last
-  background: #00688F
-  color: white
-  font-weight: normal
+  @extend .collection_header_colors
   .action
     @extend .span-2
     text-align: center
-
 
 #collection_records
   @extend .span-18
@@ -182,7 +182,6 @@ td.action
   @extend .ui-helper-clearfix
   @extend .span-18
   @extend .last
-  background: #00688F
-  color: white
+  @extend .collection_header_colors
   margin-bottom: 10px
   text-align: right
