@@ -135,35 +135,54 @@ td.action
   @extend .ui-corner-tl
   @extend .ui-corner-tr
   @extend .ui-helper-clearfix
-  @extend .span-24
+  @extend .span-18
   @extend .last
-
+  background: #00688F
+  color: white
 
 #collection_header
   @extend .ui-widget-header
   @extend .ui-helper-clearfix
-  @extend .span-24
+  @extend .span-18
   @extend .last
+  background: #00688F
+  color: white
+  font-weight: normal
+  .action
+    @extend .span-2
+    text-align: center
+
 
 #collection_records
-  @extend .span-24
+  @extend .span-18
   @extend .last
   border-left: 1px solid #30a3d7
   border-right: 1px solid #30a3d7
   border-bottom: 1px solid #30a3d7
   text-align: justify
-  margin-bottom: 10px
 
   .record-odd
-    @extend .span-24
+    @extend .span-18
     @extend .last
     background-color: #fff
     color: #585858
     border-bottom: 1px solid silver
 
   .record-even
-    @extend .span-24
+    @extend .span-18
     @extend .last
     background: #EFF5FB
     color: #585858
     border-bottom: 1px solid silver
+
+#collection_footer
+  @extend .ui-widget-header
+  @extend .ui-corner-bl
+  @extend .ui-corner-br
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  background: #00688F
+  color: white
+  margin-bottom: 10px
+  text-align: right

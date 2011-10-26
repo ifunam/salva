@@ -14,7 +14,7 @@ module ApplicationHelper
     link_to(content_tag(:span, '', :class => 'del_child_icon'), "#",
                         :class => "#{html_class} child_link",
                         :title => 'Borrrar',
-                        :confirm => '¿ Desea borrar este elemento ?')
+                        :confirm => t(:delete_confirm_question))
   end
 
   def new_child_fields_template(form_builder, association, options = {})
@@ -39,10 +39,10 @@ module ApplicationHelper
     record.class.associations_to_move.collect { |association|  droppable_link(record, association.name.to_s)  }.compact.join(' ').html_safe
   end
 
-  def link_to_action(icon_name, title, url='#', options={})
-    html_options = {:title => title, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all #{options[:class]}"}
+  def link_to_action(icon_class_name, title, url='#', options={})
+    html_options = {:title => title, :class => "action_link #{options[:class]}"}
     options.delete :class if options.has_key? :class
-    link_to content_tag(:span, '', :class => "ui-button-icon-primary ui-icon #{icon_name}"), url, html_options.merge(options)
+    link_to content_tag(:span, '', :class => icon_class_name), url, html_options.merge(options)
   end
 
   def link_to_draggable_action(icon_name, title, record, url='#')
@@ -67,9 +67,17 @@ module ApplicationHelper
     }.join(' ').html_safe
   end
 
-  def link_to_delete(record, url)
+  def link_to_show(resource_path)
+    link_to_action 'icon_action_show', t(:show), resource_path
+  end
+
+  def link_to_edit(resource_path)
+    link_to_action 'icon_action_edit', t(:edit), resource_path
+  end
+
+  def link_to_delete(record, resource_path)
     if can_current_user_delete?(record)
-      link_to_action 'ui-icon-trash', t(:del), url, :method => :delete, :confirm => t(:delete_confirm_question), :remote => true, 'data-parent-id' => dom_id(record)
+      link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete, :confirm => t(:delete_confirm_question), :remote => true
     end
   end
 

@@ -1,14 +1,22 @@
-%h3= t('.title')
-%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
-  %thead{:id => "filter_header"}
-    = render :partial => 'filter_header'
-    %tbody{:id =>'collection'}
-      = render :partial => 'record', :collection => @jobpositions
-      = render :partial => 'collection_footer'
-    %tfoot{:id => 'paginator'}
-      %tr
-        %th
-          = will_paginate @jobpositions
+.span-17.last
+  %h3= t('.title')
 
-%div{ :class => 'span-24 buttons_left last' }
-  = link_as_button t(:new), new_jobposition_path
+= render :partial => 'search_form'
+
+#collection_header
+  .span-1="Id"
+  .span-11=t('.jobpositions')
+  .action=t(:show)
+  .action=t(:edit)
+  .action.last=t(:del)
+
+#collection_records
+  = render :partial => 'record', :collection => @jobpositions
+
+#collection_footer
+  = link_as_button t(:delete_all_selected), '#', :class_button => 'dangerous_button', :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
+
+= will_paginate(@jobpositions)
+
+#submit_buttons
+  = link_to t(:add), new_jobposition_path
