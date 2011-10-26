@@ -122,4 +122,12 @@ module ApplicationHelper
     helpdesk_url = Salva::SiteConfig.technical_support('helpdesk')
     link_to helpdesk_url, helpdesk_url, :target => '_blank' unless helpdesk_url.nil?
   end
+
+  def image_for_person(record)
+    unless record.image.nil?
+      image_tag record.image.file.url(:card)
+    else
+      image_tag 'avatar_missing_icon.png'
+    end
+  end
 end
