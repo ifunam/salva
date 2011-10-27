@@ -23,6 +23,7 @@
       padding-left: 0px
       padding-right: 0px
       height: 30px
+      background: #0088BB
     li.selected
       @extend .ui-tabs-selected
       @extend .ui-state-active
@@ -34,9 +35,9 @@
   @extend .span-24
   @extend .last
   width: 930px
-  background: #6EAC2C
+  background: #fff
   font-size: 11px
-  border: 5px solid #6EAC2C
+  border: 5px solid #93c355
   margin-left: -3px
   -moz-border-radius-topright: 5px
   -webkit-border-top-right-radius: 5px
@@ -46,22 +47,26 @@
   -webkit-border-bottom-left-radius: 5px
   margin-bottom: 20px
 
+
 #left-navigation
   @extend .span-5
   @extend .ui-widget
   @extend .ui-widget-content
   font-size: 11px
   text-align: left
-  background: #6EAC2C
+  background: #fff
   border: 0px
+  border-right: 5px solid #93c355
   ul
     @extend .ui-tabs-nav
     @extend .ui-helper-reset
     @extend .ui-helper-clearfix
+    margin-top: 10px
     li
       @extend .ui-state-default
       padding: 12px 8px
       list-style-type: none
+      background: #0088BB
       border-bottom-left-radius: 5px
       border-color: #F4FCF2
       border-style: solid
@@ -82,12 +87,12 @@
 #right-content
   @extend .span-18
   @extend .last
-  @extend .section-round-corner-with-bg
   text-align: left
   padding-top: 10px
   padding-left: 10px
   padding-bottom: 10px
   font-size: 14px
+  margin-top: 10px
 
   h3
     color: #6EAC2C
@@ -104,7 +109,7 @@
   padding-top: 10px
   padding-left: 10px
   margin-bottom: 10px
-  border-color: #acdd4A
+  border-color: silver
 
 #session_info
   @extend .ui-button-set
