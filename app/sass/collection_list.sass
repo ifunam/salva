@@ -35,7 +35,7 @@ td.action
   text-align: -moz-center
 
 .row
-  @extend .span-17
+  @extend .span-18
   @extend .last
   margin-bottom: 10px
   .wrapper
@@ -160,17 +160,17 @@ td.action
   border-right: 1px solid #30a3d7
   border-bottom: 1px solid #30a3d7
   text-align: justify
-
-  .record-odd
+  .record
+    margin-bottom: 10px
     @extend .span-18
     @extend .last
+  .record-odd
+    @extend .record
     background-color: #fff
     color: #585858
     border-bottom: 1px solid silver
-
   .record-even
-    @extend .span-18
-    @extend .last
+    @extend .record
     background: #EFF5FB
     color: #585858
     border-bottom: 1px solid silver
