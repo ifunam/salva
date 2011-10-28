@@ -110,13 +110,17 @@ td.action
   z-index: 100
 
 .record_details
-  line-height: 16px
   top: 20px
   padding: 10px
   border: 1px solid silver
-  -moz-border-radius: 5px 0 5px 5px
+  -moz-border-radius: 5px 5px 5px 5px
   -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
+  -webkit-border-radius: 5px 5px 5px 5px
+  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
   background: #FBFBEF
+  @extend .span-17
+  @extend .last
+  margin-left: 5px
 
 .collection_header_colors
   background: #0088BB

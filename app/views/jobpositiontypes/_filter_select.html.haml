@@ -1,1 +1,2 @@
-= collection_select :filter, :jobpositiontype_id, Jobpositiontype.all, :id, :name, { :prompt => true}
+= label_tag :filter, :jobposition_type
+= collection_select :filter, :jobpositiontype_id, Jobpositiontype.all, :id, :name, { :prompt => true}, :class => 'chosen-select'

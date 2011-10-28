@@ -1,16 +1,19 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('jobpositions.show.title')
+%h3= t('jobpositions.show.title')
+.section-with-border-and-bg
   - show_for @jobposition do |u|
-    %div{:class=>'span-12'}
-      %label category
-      = @jobposition.category_name
-    = u.association :contracttype, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-6 last'}
-    = u.attribute :start_date, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :end_date, :wrapper_html => {:class => 'span-6 last'}
-  = render :partial => 'shared/record', :object => @jobposition
+    .row
+      .span-10
+        %label Category
+        = @jobposition.category_name
+      = u.association :contracttype, :using => :name, :wrapper_html => {:class => 'span-8 last'}
+    .row
+      = u.association :institution, :using => :name
+      = u.attribute :start_date
+      = u.attribute :end_date
+    .row
+      = render :partial => 'shared/record', :object => @jobposition
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_jobposition_path(:id => @jobposition.id)
-  = link_as_button t(:back), jobpositions_path
+#submit_buttons
+  = link_to t(:edit), edit_jobposition_path(:id => @jobposition.id)
+  = link_to t(:back), jobpositions_path
 

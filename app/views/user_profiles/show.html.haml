@@ -3,7 +3,7 @@
 = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
 = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 
-.subsection-round-corner
+.section-with-border-and-bg
   %h3 identifications
   = render :partial => 'user_identifications/record', :collection => @user.user_identifications
 

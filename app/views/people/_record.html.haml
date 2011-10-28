@@ -1,4 +1,5 @@
-.subsection-round-corner
+.section-with-border-and-bg
+
   %h3 Datos personales
   - show_for record do |p|
     .row
@@ -11,8 +12,8 @@
     .row
       = p.attribute :gender
       = p.association :maritalstatus, :using => :name
-      = p.attribute :dateofbirth, :wrapper_html => {:class => 'span-9'}
+      = p.attribute :dateofbirth
     .row
       = p.association :country, :using => :name
       = p.association :state, :using => :name
-      = p.association :city, :using => :name, :wrapper_html => {:class => 'span-9'}
+      = p.association :city, :using => :name

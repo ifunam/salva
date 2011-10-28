@@ -86,16 +86,19 @@ body
   padding: 10px
   margin-bottom: 10px
 
-.section-border
+.section-with-border
   border: 1px solid silver
   padding: 5px
   //-moz-border-radius: 5px
   //-webkit-border-radius: 5px
   //border-radius: 5px
 
-.section-round-corner-with-bg
+.section-with-border-and-bg
+  @extend .span-18
+  @extend .last
+  @extend .section-with-border
   background: url("/images/section_bg.jpg") repeat scroll left top #eeeeee
-  @extend .section-border
+  margin-bottom: 10px
 
 .notice
   color: green

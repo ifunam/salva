@@ -1,40 +1,34 @@
-%div{ :class => 'span-24 section_left last' }
-  %h2 Categoría
-
-  - if !f.object.nil? and !f.object.new_record?
-    = f.hidden_field :id
-    = f.hidden_field :user_id
-
-  %div{ :class => 'span-24 last' }
-    %div{:class=> 'span-6'}
-      = f.label :jobpositiontype
-    %div{:class=> 'span-6'}
-      = f.label :jobpositioncategory
-    %div{:class=> 'span-6'}
-      = f.label :contracttype
-    %div{:class=> 'span-6 last'}
-      = f.label :institution
-    %div{:class=> 'span-6'}
+.section-with-border-and-bg
+  = render :partial => "/shared/errors", :object => f.object.errors
+  .row
+    - if !f.object.nil? and !f.object.new_record?
+      = f.hidden_field :id
+      = f.hidden_field :user_id
+  .row
+    .span-5
       = render :partial => 'jobpositiontypes/filter_select'
-    %div{:class=> 'span-6', :id => 'jobpositioncategories_select'}
-      - if f.object.nil? 
+    #jobpositioncategories_select{:class =>'span-5'}
+      = f.label :category
+      - if f.object.nil?
         = f.select :jobpositioncategory_id, {}
       - else
         = f.object.category_name
-    %div{:class=> 'span-6'}
-      = f.collection_select :contracttype_id, Contracttype.all, :id, :name, { :prompt => true, :selected => 1 }
-    %div{:class=> 'span-6 last'}
-      = f.collection_select :institution_id, Institution.for_categories, :id, :name, { :selected => 30 }
+    .span-8.last
+      = f.label :contract_type
+      = f.collection_select :contracttype_id, Contracttype.all, :id, :name, { :prompt => true, :selected => 1 }, :class => 'chosen-select'
 
-  = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
-    = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
-
-  %div{ :class => 'span-12 last' }
-    %div{:class=> 'span-6'}
+  .row
+    .span-5
+      = f.label :institution
+      = f.collection_select :institution_id, Institution.for_categories, :id, :name, { :selected => 30 }, :class => 'chosen-select'
+    .span-5
       = f.label :start_date
-    %div{:class=> 'span-6 last'}
-      = f.label :end_date
-    %div{:class=> 'span-6'}
       = f.text_field :start_date, :size => 10, :class => 'date'
-    %div{:class=> 'span-6 last'}
+    .span-8.last
+      = f.label :end_date
       = f.text_field :end_date, :size => 10, :class => 'date'
+
+  .row
+    = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
+      = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+
