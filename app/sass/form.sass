@@ -1,6 +1,8 @@
 @import "start-jquery-ui"
 
-input
+input[type="text"],
+textarea,
+input[type="password"]
   font: 12px Arial,sans-serif
   padding: 9px 7px 10px
   margin-bottom: 8px
@@ -10,11 +12,6 @@ input
   border-radius: 3px 3px 3px 3px
   border-right: 1px solid #DDDDDD
   border-style: solid
-
-input[type="text"],
-textarea,
-input[type="password"]
-  @extend input
   width: auto
   height: auto
   padding-left: 0px
@@ -25,18 +22,19 @@ select
   width: 155px
 
 .button, .button:visited
-  display: block
+  display: inline-block
   float: left
   font-family:Arial,Verdana,Optima,sans-serif
-  font-size: 16px
+  font-size: 13px
+  vertical-align: middle
   height: 32px
-  padding: 0 23px
+  padding-bottom: 2px
   text-decoration: none
   border-color: #BBBBBB #BBBBBB #999999
   border-radius: 4px 4px 4px 4px
   border-style: solid
   border-width: 1px
-  color: #51a2eb
+  color: white
 
 input[type="submit"]
   @extend .button
@@ -116,14 +114,17 @@ label, .error
   border: none
 
 #submit_buttons
-  text-align: left
   a
-    padding-top: 5px
     @extend .ui-state-default
     @extend .ui-corner-all
     @extend .button
-    color: white
-    margin-right: 10px
+    height: 23px
+    display: inline-block
+    vertical-align: middle
+    padding-top: 6px
+    padding-bottom: 2px
+    padding-left: 8px
+    padding-right: 8px
 
   a:visited
     @extend .ui-state-default
@@ -138,16 +139,20 @@ label, .error
     @extend .ui-state-default
     @extend .ui-corner-all
     @extend .button
-    color: white
-    font-size: 16px
-    padding-top: 8px
-    padding-bottom: 12px
-    height: 38px
     margin-right: 10px
 
   input[type="submit"]:hover
     @extend .ui-state-hover
     @extend .ui-state-active
+
+.search_button
+  @extend #submit_buttons
+  @extend .span-2
+
+#footer_buttons
+  @extend .span-7
+  @extend .prepend-12
+  @extend #submit_buttons
 
 .child_icon
   @extend .ui-button-icon-primary
