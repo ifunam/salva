@@ -1,9 +1,8 @@
-%div{:class => 'span-23 last record_details' }
+.record_details
   %b= 'Información adicional'
   %br
+  = registered_by_info(record)
   %br
-    = 'Registrado por: ' + ( record.registered_by.nil? ? 'admin' : record.registered_by.friendly_email)
+  = modified_by_info(record)
   %br
-    = 'Modificado por: ' + ( record.modified_by.nil? ? '' : record.modified_by.friendly_email)
-  %br
-    = 'Fecha de actualización: ' + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
+  = updating_date(record)

@@ -138,4 +138,16 @@ module ApplicationHelper
       image_tag 'avatar_missing_icon.png'
     end
   end
+
+  def registered_by_info(record)
+    'Registrado por: ' + ( record.registered_by.nil? ? 'admin' : record.registered_by.friendly_email)
+  end
+  
+  def modified_by_info(record)
+    'Modificado por: ' + record.modified_by.friendly_email unless record.modified_by.nil?
+  end
+
+  def updating_date(record)
+    'Fecha de actualización: ' + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
+  end
 end
