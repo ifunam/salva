@@ -1,15 +1,9 @@
 class Jobposition < ActiveRecord::Base
   set_table_name "jobpositions"
-
   validates_presence_of :institution_id
-
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
-
   validates_numericality_of :jobpositioncategory_id, :contracttype_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
-
-  validates_numericality_of :startmonth, :endmonth, :startyear, :endyear, :allow_nil => true, :only_integer => true
-
 
   belongs_to :jobpositioncategory
   belongs_to :contracttype
@@ -30,7 +24,10 @@ class Jobposition < ActiveRecord::Base
 
   scope :posdoc, :conditions => { :jobpositioncategory_id => 38 }
   scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
+  scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
+  scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
 
+  search_methods :by_start_year, :by_end_year
   def category_name
     jobpositioncategory.nil? ? 'Sin definir' : jobpositioncategory.name
   end
