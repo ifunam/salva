@@ -77,16 +77,21 @@ module ApplicationHelper
 
   def link_to_delete(record, resource_path)
     if can_current_user_delete?(record)
-      link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete, :confirm => t(:delete_confirm_question), :remote => true
+      link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete,
+                     :confirm => t(:delete_confirm_question)
     end
   end
 
   def checkbox_to_delete(record)
-    check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
+    if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
+      check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record)
+    end
   end
 
   def checkbox_to_del(record)
-     check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record) if can_current_user_delete?(record)
+    if can_current_user_delete? record
+      check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record)
+    end
   end
 
   def can_current_user_delete?(record)
