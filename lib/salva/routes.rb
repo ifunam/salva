@@ -11,7 +11,16 @@ module ActionDispatch::Routing
           end
         end
       end
-      
+
+      def user_resources_for(*controllers)
+        controllers.map!(&:to_sym)
+        controllers.each do |resources_name|
+          resources resources_name do
+            post :destroy_all, :on => :collection
+          end
+        end
+      end
+
       def publication_resources_for(*controllers)
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
