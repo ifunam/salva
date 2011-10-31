@@ -2,21 +2,14 @@ class UserResourcesController < InheritedResources::Base
   layout 'user_resources'
 
   respond_to :html
-  respond_to :js, :only => [:index]
-  class_inheritable_accessor :resource_class_scope
+  respond_to :js, :only => [:index, :destroy_all]
 
-  def self.defaults(options)
-    if options.has_key? :resource_class_scope
-      self.resource_class_scope =  options[:resource_class_scope]
-      options.delete :resource_class_scope
-    end
-    super
-  end
+  class_inheritable_accessor :resource_class_scope
 
   def index
     params[:search] ||= {}
     params[:search].merge!(:user_id_eq => current_user.id)
-    respond_with set_collection_ivar(scoped_resource_class.search(params[:search]).paginate(:page => params[:page] || 1, :per_page => params[:per_page] || 10))
+    respond_with scoped_and_paginated_collection
   end
 
   def create
@@ -36,6 +29,23 @@ class UserResourcesController < InheritedResources::Base
     end
   end
 
+  def destroy_all
+    if params[:ids] and params[:ids].is_a? Array
+      collection = resource_class.find(params[:ids])
+      collection.collect(&:destroy)
+      respond_with(collection, :status => :deleted_records)
+    end
+  end
+
+  private
+  def self.defaults(options)
+    if options.has_key? :resource_class_scope
+      self.resource_class_scope =  options[:resource_class_scope]
+      options.delete :resource_class_scope
+    end
+    super
+  end
+
   protected
   def has_resource_class_scope?
     !self.resource_class_scope.nil?
@@ -43,5 +53,10 @@ class UserResourcesController < InheritedResources::Base
 
   def scoped_resource_class
     has_resource_class_scope? ? self.resource_class.send(self.resource_class_scope) : self.resource_class
+  end
+
+  def scoped_and_paginated_collection
+    set_collection_ivar scoped_resource_class.search(params[:search])
+                        .paginate(:page => params[:page] || 1,:per_page => params[:per_page] || 10)
   end
 end
