@@ -34,7 +34,7 @@ gem "pg", "0.11.0"
 gem "meta_search", "1.0.4"
 gem "meta_where", "1.0.4"
 gem "move_associations", "0.0.0"
-gem "by_star", "1.0.0"
+gem "by_star", "1.0.1"
 gem "tzinfo", "0.3.24"
 
 gem "SystemTimer", "1.2.3", :platforms => :ruby_18
