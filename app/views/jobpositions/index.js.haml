@@ -1,7 +1,8 @@
-%tbody{:id =>'collection'}
+#collection_records
   = render :partial => 'record', :collection => @jobpositions
-  = render :partial => 'collection_footer'
-%tfoot{:id => 'paginator'}
-  %tr
-    %th
-      = will_paginate @jobpositions, :id => 'ajaxed_paginator'
+
+#collection_footer
+  #footer_buttons
+    = link_to t(:delete_all_selected), '#',  :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
+
+= will_paginate @jobpositions , :id => 'ajaxed_paginator'

@@ -1442,6 +1442,7 @@ es:
   back: 'Regresar'
   show: 'Mostrar'
   del: 'Borrar'
+  search: 'Buscar'
   new: 'Agregar nuevo registro'
   associated_records: 'Registros asociados'
   move_all: 'Mover todos'

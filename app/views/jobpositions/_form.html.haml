@@ -7,12 +7,13 @@
   .row
     .span-5
       = render :partial => 'jobpositiontypes/filter_select'
-    #jobpositioncategories_select{:class =>'span-5'}
+    .span-5
       = f.label :category
-      - if f.object.nil?
-        = f.select :jobpositioncategory_id, {}
-      - else
-        = f.object.category_name
+      #jobpositioncategories_select
+        - if f.object.nil?
+          = f.select :jobpositioncategory_id, {}
+        - else
+          = f.object.category_name
     .span-8.last
       = f.label :contract_type
       = f.collection_select :contracttype_id, Contracttype.all, :id, :name, { :prompt => true, :selected => 1 }, :class => 'chosen-select'

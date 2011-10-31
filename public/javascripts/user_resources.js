@@ -1,21 +1,27 @@
 $(document).ready(function() {
-    $("tr#filter_header input").live('focusout', function() {
+    $("#search_button").live('click', function() {
         resource = $('#filter_form').attr('action') + '.js';
-        remote_collection_list(resource, $.param($("form").serializeArray()));
+        remote_collection_list(resource,$.param($("#filter_form").serializeArray()));
         return false;
     });
 
-    $("tr#filter_header select").live('change', function() {
-        resource = $('#filter_form').attr('action') + '.js';
-        remote_collection_list(resource, $.param($("form").serializeArray()));
-        return false;
-    });
-
-    $("#filter_reset_all").live("click", function() {
+    $("#reset_search_button").live("click", function() {
         document.forms['filter_form'].reset();
         resource = $('#filter_form').attr('action') + '.js';
         remote_collection_list(resource);
         return false;
+    });
+
+    $("#destroy_selected_records").live("click", function() {
+        ids = new Array();
+        dom_ids = new Array();
+        $("input[name=record_id]").each(function(index, item){
+            if ($(item).is(':checked')) {
+                ids.push(item.value);
+                dom_ids.push(this.getAttribute('data-parent-id'));
+            }
+        });
+        destroy_selected_records(ids, dom_ids);
     });
 
     $("#ajaxed_paginator a").live("click", function() {
@@ -85,7 +91,7 @@ $(document).ready(function() {
     // user_profiles code
     current_year = new Date().getFullYear();
     date_picker_for('.birthdate', (current_year - 100), (current_year - 15));
-    date_picker_for('.date', (current_year -20), current_year);
+    date_picker_for('.date', (current_year -20), current_year + 1);
 
     $('#filter_jobpositiontype_id').change(function(){
         var responseData = response_from_simple_remote_resource("/jobpositioncategories/filtered_select?id=" + $('#filter_jobpositiontype_id').val());
@@ -107,3 +113,21 @@ function change_record(class_name) {
     $('#change_'+class_name).hide();
 }
 
+function destroy_selected_records(ids, dom_ids) {
+    $.ajax({
+        url: $('#filter_form').attr('action') + '/destroy_all',
+        data: { 'ids': ids },
+        type: 'POST',
+        beforeSend: function(){
+            open_dialog_with_progressbar();
+        },
+        complete: function(data){
+            close_dialog_with_progressbar();
+        },
+        success: function(data){
+            $.each(dom_ids, function(index, dom_id){
+                $('#'+dom_id).remove();
+            });
+        }
+    });
+}

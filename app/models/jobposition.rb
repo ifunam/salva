@@ -13,10 +13,9 @@ class Jobposition < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  has_many :user_adscriptions
-
-  has_one :user_adscription
-  accepts_nested_attributes_for :user_adscription
+  has_many :user_adscriptions, :dependent => :destroy
+  has_one :user_adscription, :dependent => :destroy
+  accepts_nested_attributes_for :user_adscription, :allow_destroy => true
 
   validates_associated :jobpositioncategory
   validates_associated :contracttype

@@ -88,7 +88,7 @@ function close_dialog_with_progressbar() {
 
 function collection_from_remote_resource(resource, params) {
   options = {
-        url: href,
+        url: resource,
         async: false,
         beforeSend: function() {
             open_dialog_with_progressbar();
@@ -108,9 +108,9 @@ function collection_from_remote_resource(resource, params) {
 
 function remote_collection_list(resource, params) {
     var html = collection_from_remote_resource(resource, params);
-    $('#collection').remove();
-    $('#paginator').remove();
-    $('#filter_header').after(html);
+    $('#collection_records').remove();
+    $('#collection_footer').remove();
+    $('#collection_header').after(html);
     return false;
 }
 
