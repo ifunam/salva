@@ -11,6 +11,14 @@
       = u.attribute :start_date
       = u.attribute :end_date
     .row
+      .span-6
+        %label Adscription
+        = @jobposition.user_adscription.adscription.name
+      .span-12.last
+        %label Description
+        = @jobposition.user_adscription.descr
+
+    .row
       = render :partial => 'shared/record', :object => @jobposition
 
 #submit_buttons

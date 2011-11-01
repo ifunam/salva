@@ -15,8 +15,7 @@
         - else
           = f.object.category_name
     .span-8.last
-      = f.label :contract_type
-      = f.collection_select :contracttype_id, Contracttype.all, :id, :name, { :prompt => true, :selected => 1 }, :class => 'chosen-select'
+      = f.input :contracttype_id, :as =>:radio, :collection =>Contracttype.all
 
   .row
     .span-5
@@ -30,6 +29,7 @@
       = f.text_field :end_date, :size => 10, :class => 'date'
 
   .row
-    = f.simple_fields_for :user_adscription_attributes do |user_adscription_form|
-      = render :partial => 'user_adscriptions/mini_form', :locals => { :f => user_adscription_form}
+    - f.object.user_adscription = UserAdscription.new if f.object.user_adscription.nil?
+    = f.simple_fields_for :user_adscription_attributes do |uaf|
+      = render :partial => 'user_adscriptions/mini_form', :locals => { :f => uaf}
 
