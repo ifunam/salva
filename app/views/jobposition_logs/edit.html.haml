@@ -1,6 +1,8 @@
-%div{ :class => 'span-22 last' }
-  %h3= t('jobposition_logs.edit.title')
+%h3= t('jobposition_logs.edit.title')
+.section-with-border-and-bg
+
   - simple_form_for @jobposition_log, :as => :jobposition_log, :url => jobposition_log_path do |f|
     = render :partial => 'form', :locals => { :f => f }
-    = f.submit  t(:update), :class => "ui-state-default ui-corner-all button", :id => 'save_user'
-    = link_to t(:cancel), jobposition_log_path, :class => "ui-state-default ui-corner-all button"
+    #submit_buttons
+      = f.submit  t(:update)
+      = link_to t(:cancel), jobposition_log_path

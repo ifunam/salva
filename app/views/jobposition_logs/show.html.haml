@@ -1,13 +1,17 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('jobposition_logs.show.title')
+%h3= t('jobposition_logs.show.title')
+
+.section-with-border-and-bg
+
   - show_for @jobposition_log do |j|
-    = j.attribute :worker_key, :wrapper_html => { :class => 'span-24 last'}
-    = j.attribute :worker_number, :wrapper_html => { :class => 'span-24 last'}
-    = j.attribute :academic_years, :wrapper_html => { :class => 'span-24 last'}
-    = j.attribute :administrative_years, :wrapper_html => { :class => 'span-24 last'}
+    .row
+      = j.attribute :worker_key, :wrapper_html => { :class => 'span-6'}
+      = j.attribute :worker_number, :wrapper_html => { :class => 'span-12 last'}
+    .row
+      = j.attribute :academic_years, :wrapper_html => { :class => 'span-6'}
+      = j.attribute :administrative_years, :wrapper_html => { :class => 'span-12 last'}
   = render :partial => 'shared/record', :object => @jobposition_log
 
-  %div{ :class => 'span-22 buttons_left last' }
-    = link_to t(:edit), edit_jobposition_log_path(:id => @jobposition_log.user_id), :class => "ui-state-default ui-corner-all button"
+#submit_buttons
+  = link_to t(:edit), edit_jobposition_log_path(:id => @jobposition_log.user_id)
 
 
