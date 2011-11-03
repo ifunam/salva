@@ -82,6 +82,10 @@ module ApplicationHelper
     end
   end
 
+  def link_to_new_record(title, resource_path)
+    link_to_action 'icon_action_new_record', title, resource_path, :id => 'new_record'
+  end
+
   def checkbox_to_delete(record)
     if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
       check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record)

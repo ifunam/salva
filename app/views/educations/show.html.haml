@@ -1,37 +1,45 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('educations.show.title')
+%h3= t('educations.show.title')
+
+.section-with-border-and-bg
   - show_for @education do |u|
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-12 '}
+    .row
+      .span-9
         %label Grado
         = @education.career.degree.name
-      = u.association :career, :using => :name, :wrapper_html => {:class => 'span-9 last'}
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-12'}
+      .span-9.last
+        = u.association :career, :using => :name
+    .row
+      .span-9
         %label Facultad o Escuela
         = @education.career.institution.name
-      %div{:class=> 'span-9 last'}
+      .span-9.last
         %label Institución 
         = @education.career.institution.institution.name
-      %div{:class=> 'span-12'}
+    .row
+      .span-6
         %label Tipo
         = @education.career.institution.institutiontitle.name
-      %div{:class=> 'span-5'}
+      .span-6.last
         %label Clasificación 
         = @education.career.institution.institutiontype.name
-      %div{:class=> 'span-4 last'}
+      .span-6.last
         %label País 
         = @education.career.institution.country.name
 
-    %div{:class=> 'span-21 section_left push-1 last'}
-      = u.attribute :startyear, :wrapper_html => {:class => 'span-5'}
-      = u.attribute :endyear, :wrapper_html => {:class => 'span-5'}
-      = u.attribute :is_studying_this, :wrapper_html => {:class => 'span-5'}
-      = u.attribute :is_titleholder, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-4
+        = u.attribute :startyear
+      .span-4
+        = u.attribute :endyear
+      .span-4
+        = u.attribute :is_studying_this
+      .span-6.last
+        = u.attribute :is_titleholder
 
-  = render :partial => 'shared/record', :object => @education
+    .row
+      = render :partial => 'shared/record', :object => @education
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_education_path(:id => @education.id)
-  = link_as_button t(:back), educations_path
+#submit_buttons
+  = link_to t(:edit), edit_education_path(:id => @education.id)
+  = link_to t(:back), educations_path
 

@@ -1,12 +1,14 @@
-= render :partial => "/shared/errors", :object => f.object.errors
-%div{ :class => 'span-22 section_left append-bottom last' }
-  - f.object.career = Career.new if  f.object.career.nil?
-  = f.simple_fields_for :career, f.object.career do |career_form|
-    = render :partial => 'careers/form', :locals => { :f => career_form }
-  %div{ :class => 'span-21 section_left push-2 last' }
-    %div{:class=>'span-21 last'}
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+  .row
+    - f.object.career = Career.new if  f.object.career.nil?
+    = f.simple_fields_for :career, f.object.career do |career_form|
+      = render :partial => 'careers/form', :locals => { :f => career_form }
+  .row
+    .span-18.last
       %b='Periodo y status'
-    = f.input :startyear, :as => :string, :required => true, :input_html => { :size => 4 }, :wrapper_class => 'span-4'
-    = f.input :endyear, :as => :string, :required => true, :input_html => { :size => 4 }, :wrapper_class => 'span-4'
-    = f.input :is_studying_this, :as => :radio, :wrapper_class => 'span-6 radio_set'
-    = f.input :is_titleholder, :as => :radio, :wrapper_class => 'span-6 radio_set last'
+    .span-4= f.input :startyear, :as => :string, :required => true, :input_html => {:size => 4}
+    .span-4= f.input :endyear, :as => :string, :required => true, :input_html => {:size => 4}
+    .span-5= f.input :is_studying_this, :as => :radio, :wrapper_class => 'radio_set'
+    .span-5.last= f.input :is_titleholder, :as => :radio, :wrapper_class => 'radio_set'
