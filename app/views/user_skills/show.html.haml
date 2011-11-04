@@ -1,12 +1,16 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_skills.show.title')
+%h3= t('user_skills.show.title')
+.section-with-border-and-bg
   - show_for @user_skill do |u|
-    = u.association :skilltype, :using => :name, :wrapper_html => {:class => 'span-24 last'}
-    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :descr_en, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-  = render :partial => 'shared/record', :object => @user_skill
+    .row
+      = u.association :skilltype, :using => :name
+    .row
+      = u.attribute :descr, :using => :name
+    .row
+      = u.attribute :descr_en, :using => :name
+    .row
+      = render :partial => 'shared/record', :object => @user_skill
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_user_skill_path(:id => @user_skill.id)
-  = link_as_button t(:back), user_skills_path
+#submit_buttons
+  = link_to t(:edit), edit_user_skill_path(:id => @user_skill.id)
+  = link_to t(:back), user_skills_path
 

@@ -1,0 +1,9 @@
+#table_search_form
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    .span-13=t(:skilltype)
+    .span-2
+    .span-3.last
+
+    .span-13= f.collection_select :skilltype_id_eq,  Skilltype.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+    .search_button= link_to t(:search), "#", :id => "search_button"
+    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

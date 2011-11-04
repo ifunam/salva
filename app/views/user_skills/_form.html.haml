@@ -1,13 +1,15 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
- 
+  .row
+    #skilltype.span-8.last{'data-controller-name' => 'skilltypes'}
+      = f.label :skilltype, :required => true
+      = f.collection_select :skilltype_id, Skilltype.all, :id, :name, {:prompt => true}, :class => 'chosen-select select_and_label'
+      = link_to_new_record 'Agregar una skill', '#'
 
-  %div{:class => 'span-6 ui-widget', :id => 'skilltype', 'data-controller-name'=>'skilltypes' }
-    = f.label :skilltype, :required => true
-    = f.collection_select :skilltype_id, Skilltype.all, :id, :name, {:prompt => true}
-    = link_to_action 'ui-icon-plus', 'Agregar elemento a la lista', '#', :id => 'new_record'
+  .row
+    .span-8.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }
 
-  %div{ :class => 'span-24  last' }
-    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-    = f.input :descr_en, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  .row
+    .span-8.last= f.input :descr_en, :as => :text, :input_html => { :size => '60x1' }
