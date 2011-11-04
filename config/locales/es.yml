@@ -1441,6 +1441,7 @@ es:
   edit: 'Modificar'
   back: 'Regresar'
   show: 'Mostrar'
+  show_page: 'Mostrar página'
   del: 'Borrar'
   search: 'Buscar'
   new: 'Agregar nuevo registro'

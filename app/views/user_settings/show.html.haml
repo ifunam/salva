@@ -1,13 +1,29 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_settings.show.title')
-  - show_for @user do |u|
-    = u.attribute :author_name, :wrapper_html => { :class => 'span-12 last'}
-    = u.attribute :homepage, :wrapper_html => { :class => 'span-12 last'}
-    = u.attribute :blog, :wrapper_html => { :class => 'span-12 last'}
-    = u.attribute :calendar, :wrapper_html => { :class => 'span-12 last'}
-  = render :partial => 'shared/record', :object => @user
+%h3= t('user_settings.show.title')
 
-  %div{ :class => 'span-22 buttons_left last' }
-    = link_to t(:edit), edit_user_settings_path(:id => @user.id), :class => "ui-state-default ui-corner-all button"
+.section-with-border-and-bg
+
+  - show_for @user do |u|
+    .row
+      .span-8= u.attribute :author_name
+      .span-10.last
+        - unless @user.homepage.nil?
+          %label= t(:homepage)
+          = link_to t(:show_page), @user.homepage, :target => '_blank'
+
+    .row
+      .span-8
+        - unless @user.blog.nil?
+          %label=t(:blog)
+          = link_to t(:show_page), @user.blog, :target => '_blank'
+      .span-10.last
+        - unless @user.calendar.nil?
+          %label=t(:calendar)
+          = link_to t(:show_page), @user.calendar, :target => '_blank'
+
+    .row
+      = render :partial => 'shared/record', :object => @user
+
+#submit_buttons
+  = link_to t(:edit), edit_user_settings_path(:id => @user.id)
 
 
