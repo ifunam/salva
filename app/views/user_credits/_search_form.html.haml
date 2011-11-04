@@ -1,0 +1,9 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-5=t(:credittype)
+  .span-10=t(:year)
+  .span-3.last
+
+  .span-5= f.collection_select :credittype_id_eq,  Credittype.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-8= f.text_field :year_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

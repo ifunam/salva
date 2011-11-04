@@ -1,19 +1,16 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
- 
+  .row
+    #credittype.span-6{'data-controller-name' => 'credittypes'}
+      = f.association :credittype, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
+      = link_to_new_record 'Agregar tipo de agradecimiento', '#'
+    .span-12.last= f.input :descr, :as => :text, :input_html => { :size => '70x2' }
 
-
-  %div{:class => 'span-12 ui-widget last', :id => 'credittype', 'data-controller-name'=>'credittypes' }
-    = f.label :credittype, :required => true
-    = f.collection_select :credittype_id, Credittype.all, :id, :name, {:prompt => true}
-    = link_to_action 'ui-icon-plus', 'Agregar tipo de agradecimiento', '#', :id => 'new_record'
-
-  %div{ :class => 'span-24  last' }
-    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-    = f.input :other, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
-
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'user_credit')
+  .row
+    .span-4
+      = f.label :month, :required => true
+      = select_month(Date.today, {:field_name => 'month', :prefix => 'user_credit'}, :class => 'chosen-select')
+    .span-2= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-10.last= f.input :other, :as => :text, :input_html => { :size => '70x2' }

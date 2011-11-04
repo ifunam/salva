@@ -6,4 +6,6 @@ class Credittype < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
 
   has_many :user_credits
+
+  default_scope :order => 'name ASC'
 end

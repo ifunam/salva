@@ -1,14 +1,17 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_credits.show.title')
+%h3= t('user_credits.show.title')
+.section-with-border-and-bg
+
   - show_for @user_credit do |u|
-    = u.association :credittype, :using => :name, :wrapper_html => {:class => 'span-24 last'}
-    = u.attribute :descr, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :other, :wrapper_html => {:class => 'span-12 last'}
-    = u.attribute :year, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :wrapper_html => {:class => 'span-6 last'}
-  = render :partial => 'shared/record', :object => @user_credit
+    .row
+      .span-6= u.association :credittype, :using => :name
+      .span-12.last= u.attribute :descr
+    .row
+      .span-4= u.attribute :month
+      .span-2= u.attribute :year
+      .span-12.last= u.attribute :other
+    .row
+      = render :partial => 'shared/record', :object => @user_credit
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_user_credit_path(:id => @user_credit.id)
-  = link_as_button t(:back), user_credits_path
-
+#submit_buttons
+  = link_to t(:edit), edit_user_credit_path(:id => @user_credit.id)
+  = link_to t(:back), user_credits_path
