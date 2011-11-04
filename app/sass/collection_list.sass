@@ -1,39 +1,5 @@
 @import "blueprint"
 @import "start-jquery-ui"
-
-#collection_table
-  margin-top: 30px
-  width: 965px
-
-#collection, tr, td
-  font-size: 12px
-
-#collection, .record-even
-  background: #EFF5FB
-  color: #585858
-
-#collection, .record-odd
-  background-color: #fff
-  color: #585858
-
-#collection, .record-catalog
-  height: 30px
-  padding-top: 10px
-  border-bottom: 1px solid silver
-  text-align: left
-  a
-    font-size: 18px
-
-#filter_row
-  th
-    text-valign: top
-    text-align: center
-    text-align: -moz-center
-
-td.action
-  text-align: center
-  text-align: -moz-center
-
 .row
   @extend .span-18
   @extend .last
@@ -47,16 +13,6 @@ td.action
 
 .ui-autocomplete-loading
   background: white url("/images/loading_indicator.gif") right center no-repeat
-
-
-#filter_header
-  .button
-    margin-left: 30px
-    background: #93b206
-    color: #fff
-    font-size: 11px
-  a:hover
-    color: #FFFF00
 
 #paginator
   display: block
@@ -137,6 +93,20 @@ td.action
   @extend .last
   @extend .collection_header_colors
 
+#filter_form
+  @extend .ui-widget-header
+  @extend .ui-corner-tl
+  @extend .ui-corner-tr
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .collection_header_colors
+  padding-bottom: 5px
+  ul
+    color: #585858
+  .chzn-single
+    color: #585858
+
 #collection_header
   @extend .ui-widget-header
   @extend .ui-helper-clearfix
@@ -185,3 +155,5 @@ td.action
   margin-bottom: 10px
   padding-left: 3px
 
+.chosen-select
+  color: #585858

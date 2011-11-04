@@ -1,11 +1,10 @@
-#table_search_form
-  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
-    .span-3="Año de inicio"
-    .span-12="Año de término"
-    .span-2
-    .span-3.last
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-3="Año de inicio"
+  .span-12="Año de término"
+  .span-2
+  .span-3.last
 
-    .span-3= f.text_field :by_start_year, :size => 4
-    .span-10= f.text_field :by_end_year, :size => 4
-    .search_button= link_to t(:search), "#", :id => "search_button"
-    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
+  .span-3= f.text_field :by_start_year, :size => 4
+  .span-10= f.text_field :by_end_year, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

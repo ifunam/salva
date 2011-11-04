@@ -1,13 +1,12 @@
-#table_search_form
-  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
-    .span-5=t(:stimulus)
-    .span-3=t(:startyear)
-    .span-5=t(:endyear)
-    .span-2
-    .span-3.last
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-5=t(:stimulus)
+  .span-3=t(:startyear)
+  .span-5=t(:endyear)
+  .span-2
+  .span-3.last
 
-    .span-5= f.collection_select :stimuluslevel_id_eq,  Stimuluslevel.all, :id, :name_and_type, {:prompt => true}, :class => 'chosen-select'
-    .span-3= f.text_field :startyear_eq, :size => 4
-    .span-5= f.text_field :endyear_eq, :size => 4
-    .search_button= link_to t(:search), "#", :id => "search_button"
-    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
+  .span-5= f.collection_select :stimuluslevel_id_eq,  Stimuluslevel.all, :id, :name_and_type, {:prompt => true}, :class => 'chosen-select'
+  .span-3= f.text_field :startyear_eq, :size => 4
+  .span-5= f.text_field :endyear_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
