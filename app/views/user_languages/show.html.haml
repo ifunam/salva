@@ -1,13 +1,20 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_languages.show.title')
-  - show_for @user_language do |u|
-    = u.association :language, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :spoken_languagelevel, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :written_languagelevel, :using => :name, :wrapper_html => {:class => 'span-6 last'}
-  = render :partial => 'shared/record', :object => @user_language
+%h3= t('user_languages.show.title')
+.section-with-border-and-bg
+  - show_for  @user_language do |u|
+    .row
+      .span-8
+        = u.association :language, :using => :name
+      .span-10.last
+        = u.association :institution, :using => :name
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_user_language_path(:id => @user_language.id)
-  = link_as_button t(:back), user_languages_path
+    .row
+      .span-8
+        = u.association :spoken_languagelevel, :using => :name
+      .span-10.last
+        = u.association :written_languagelevel, :using => :name
+    .row
+      = render :partial => 'shared/record', :object =>  @user_language
 
+#submit_buttons
+  = link_to t(:edit), edit_user_language_path(:id =>  @user_language.id)
+  = link_to t(:back), user_languages_path

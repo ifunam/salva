@@ -1,23 +1,21 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
- 
+  .row
+    #language.span-8{'data-controller-name' => 'languages'}
+      = f.association :language, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
+      = link_to_new_record 'Agregar idioma', '#'
 
-  %div{:class => 'span-6 ui-widget', :id => 'language', 'data-controller-name'=>'languages' }
-    = f.label :language, :required => true
-    = f.collection_select :language_id, Language.all, :id, :name, {:prompt => true}
-    = link_to_action 'ui-icon-plus', 'Agregar idioma', '#', :id => 'new_record'
+    #institution.span-10.last{'data-controller-name' => 'institutions'}
+      = f.label :institution, :required => true
+      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+      = link_to_new_record 'Agregar institución', '#'
 
-  %div{:class => 'span-24 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+  .row
+    .span-8
+      = f.association :spoken_languagelevel, :using => :name, :as => :radio, :wrapper_class  => 'radio_set'
+    .span-10.last
+      = f.association :written_languagelevel, :using => :name, :as => :radio, :wrapper_class  => 'radio_set'
 
-  %div{:class => 'span-6'}
-    = f.label :spoken_languagelevel, :required => true
-    = f.collection_select :spoken_languagelevel_id, Languagelevel.all, :id, :name, {:prompt => true}
-
-  %div{:class => 'span-6 last'}
-    = f.label :written_languagelevel, :required => true
-    = f.collection_select :written_languagelevel_id, Languagelevel.all, :id, :name, {:prompt => true}
 
