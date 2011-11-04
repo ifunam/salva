@@ -1,10 +1,9 @@
-#table_search_form
-  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
-    .span-13=t(:language)
-    .span-2
-    .span-3.last
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-13=t(:language)
+  .span-2
+  .span-3.last
 
-    .span-13= f.collection_select :language_id_eq,  Language.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
-    .search_button= link_to t(:search), "#", :id => "search_button"
-    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
+  .span-13= f.collection_select :language_id_eq,  Language.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
 
