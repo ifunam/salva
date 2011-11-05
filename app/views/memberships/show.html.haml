@@ -1,14 +1,19 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('memberships.show.title')
+%h3= t('memberships.show.title')
+
+.section-with-border-and-bg
   - show_for @membership do |u|
-    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-22 last'}
-    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-22 last'}
-    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-18.last= = u.association :institution, :using => :name
+    .row
+      .span-4= u.attribute :startyear
+      .span-4.last= u.attribute :startmonth
+    .row
+      .span-4= u.attribute :endyear
+      .span-4.last= u.attribute :endmonth
+    .row
+      = render :partial => 'shared/record', :object => @membership
 
-  = render :partial => 'shared/record', :object => @membership
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_membership_path(:id => @membership.id)
-  = link_as_button t(:back), memberships_path
+#submit_buttons
+  = link_to t(:edit), edit_membership_path(:id => @membership.id)
+  = link_to t(:back), memberships_path
 

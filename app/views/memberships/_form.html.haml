@@ -1,11 +1,21 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
+  .row
+    #institution.span-10.last{'data-controller-name' => 'institutions'}
+      = f.label :institution, :required => true
+      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+      = link_to_new_record 'Agregar institución', '#'
 
-  %div{:class => 'span-18 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
-  = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-22 last'
-  = f.input :startyear, :as => :string, :required => true, :input_html => { :size => 4, :class => 'year'}, :wrapper_class => 'span-6'
-  = f.input :endyear, :as => :string, :required => true, :input_html => { :size => 4, :class => 'year' }, :wrapper_class => 'span-6 last'
+  .row
+    .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span.last
+      = f.label :startmonth, :required => true
+      = select_month(Date.today, {:field_name => 'startmonth', :prefix => 'membership'}, :class => 'chosen-select')
+  .row
+    .span-4= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-4.last
+      = f.label :endmonth
+      = select_month(Date.today, {:field_name => 'endmonth', :prefix => 'membership'}, :class => 'chosen-select')
+
