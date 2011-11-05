@@ -1,16 +1,19 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_schoolarships.show.title')
+%h3= t('user_schoolarships.show.title')
+.section-with-border-and-bg
   - show_for @user_schoolarship do |u|
-    = u.association :schoolarship, :using => :name_and_institution_abbrev, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    .row
+      .span-8= u.association :schoolarship, :using => :name_and_institution_abbrev
+      .span-10.last= u.attribute :descr, :using => :name
 
-    = u.attribute :start_date, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :end_date, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :amount, :wrapper_html => {:class => 'span-12 last'}
+    .row
+      .span-6= u.attribute :start_date
+      .span-6= u.attribute :end_date
+      .span-4.last= u.attribute :amount
 
-  = render :partial => 'shared/record', :object => @user_schoolarship
+    .row
+      = render :partial => 'shared/record', :object => @user_schoolarship
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_user_schoolarship_path(:id => @user_schoolarship.id)
-  = link_as_button t(:back), user_schoolarships_path
+#submit_buttons
+  = link_to t(:edit), edit_user_schoolarship_path(:id => @user_schoolarship.id)
+  = link_to t(:back),  user_schoolarships_path
 

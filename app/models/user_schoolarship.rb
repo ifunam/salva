@@ -8,6 +8,9 @@ class UserSchoolarship < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
 
   default_scope :order => 'end_date DESC, start_date DESC'
+  scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
+  scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
+  search_methods :by_start_year, :by_end_year
 
   def as_text
     [schoolarship.name_and_institution_abbrev, start_date, end_date].compact.join(', ')
