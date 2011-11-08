@@ -1,16 +1,23 @@
+# encoding: utf-8
 require 'digest/sha1'
 module LDAP
   class User
+    include ActiveModel::Dirty
+    include ActiveModel::AttributeMethods
     include ActiveModel::Validations
     include ActiveModel::Serialization
     include ActiveModel::MassAssignmentSecurity
-    include ActiveModel::Dirty
+
     extend  ActiveModel::Translation
 
     attr_accessor :login, :fullname, :email, :password, :group, :new_record
-    attr_accessible :login, :fullname, :email, :password, :group
+    define_attribute_methods  [:login, :fullname, :email, :password, :group]
+
     validates_presence_of :login, :fullname, :email, :password, :group
     validates_confirmation_of :password
+
+    class_attribute :_attributes
+    self._attributes = []
 
     def self.all_by_login_like(login)
       filter = Net::LDAP::Filter.eq("uid", "*#{login.downcase}*")
@@ -41,6 +48,12 @@ module LDAP
       new(:login => entry.uid.first, :email => entry.mail.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false)
     end
 
+    def self.attributes(*names)
+      attr_accessor *names
+
+      define_attribute_methods names
+    end
+
     def initialize(attributes={})
       if attributes.has_key? :new_record
         self.new_record = attributes[:new_record] 
@@ -52,9 +65,19 @@ module LDAP
       self
     end
 
+
     def attributes=(hash)
       sanitize_for_mass_assignment(hash).each do |attribute, value|
         send("#{attribute}=", value)
+        send("#{attribute}_will_change!")
+        self._attributes << attribute
+      end
+    end
+
+    def attributes
+      self._attributes.inject({}) do |hash, attr|
+        hash[attr.to_s] = send(attr)
+        hash
       end
     end
 
@@ -77,14 +100,25 @@ module LDAP
 
     def update
       if LDAP::User.uid_exist?(login)
-        LDAP::User.ldap.modify(:dn => ldap_dn, :attributes => ldap_attributes)
+        LDAP::User.ldap.modify(:dn => ldap_dn, :operations => ldap_operations)
         return true
       end
       return false
     end
 
+    def update_attributes(hash)
+      sanitize_for_mass_assignment(hash).each do |attribute, value|
+          send("#{attribute}=", value)
+      end
+      update
+    end
+
     def destroy
       LDAP::User.ldap.delete(:dn => ldap_dn) unless new_record?
+    end
+
+    def fullname
+      force_encoding @fullname
     end
 
     private
@@ -104,6 +138,23 @@ module LDAP
       }
     end
 
+    def ldap_attribute_mapper
+      { :fullname => :cn, :email => :mail, :group => :ou, :login => :uid }
+    end
+
+    def ldap_operations
+      a = []
+      ldap_attribute_mapper.each_pair do |attribute, ldap_attribute|
+        if send("#{attribute}_was") != send(attribute)
+          a += [[:delete, ldap_attribute, nil], [:add, ldap_attribute, [send(attribute)]]]
+        end
+      end
+      if password_was != password
+        a += [[:delete, :userPassword, nil], [:add, :userPassword,  [Net::LDAP::Password.generate(:sha, password)]]]
+      end
+      a
+    end
+
     def ldap_dn
       "uid=#{login},#{LDAP::User.ldap_config['base']}"
     end
@@ -111,5 +162,10 @@ module LDAP
     def ldap_object_class
       LDAP::User.ldap_config['require_attribute']['objectClass'].split(',').collect {|object_class_name| object_class_name.strip }
     end
+
+    def force_encoding(string)
+      string.to_s.force_encoding('utf-8').tr("áéíóúñÁÉÍÓÚÑ","aeiounAEIOUN").force_encoding('ascii').to_s
+    end
+
   end
 end

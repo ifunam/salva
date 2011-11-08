@@ -11,7 +11,11 @@ class UserObserver < ActiveRecord::Observer
     if user.userstatus_id_changed?
       Notifier.updated_userstatus_to_admin(user.id).deliver
     end
-    
+
+    if !user.password.nil? and User.ldap_enabled?
+      update_ldap_user(user)
+    end
+
     if user.has_image? and user.person.image.changed? and User.aleph_enabled?
       create_or_update_aleph_account(user)
     end

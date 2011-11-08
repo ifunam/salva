@@ -11,7 +11,15 @@ module LDAP
             Notifier.ldap_errors_to_admin(user.id).deliver
           end
       end
-      
+
+      def update_ldap_user(user)
+        @ldap_user = LDAP::User.find_by_login(user.login)
+        if @ldap_user.update_attributes(:login => user.login, :group => user.adscription_abbrev, :fullname => user.fullname_or_email,
+                                        :email => user.email, :password => user.password, :password_confirmation => user.password)
+           # Notifier.updated_user_to_admin(user.id).deliver
+        end
+      end
+
       def destroy_ldap_user(user)
         @ldap_user = LDAP::User.find_by_login(user.login)
         if !@ldap_user.nil? and @ldap_user.destroy
