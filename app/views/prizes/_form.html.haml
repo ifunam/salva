@@ -1,7 +1,10 @@
-= f.association :prizetype, :collection => Prizetype.all, :wrapper_class => 'span-6', :required => true
-= f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+.row
+  .span-5
+    = f.association :prizetype, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
+  .span-11.last
+    = f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
 
-%div{:class => 'span-12 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
+#institution.span-5{'data-controller-name' => 'institutions'}
   = f.label :institution, :required => true
-  = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-  = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+  = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
+  = link_to_new_record 'Agregar institución', '#'
