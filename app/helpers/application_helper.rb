@@ -163,4 +163,8 @@ module ApplicationHelper
   def updating_date(record)
     'Fecha de actualización: ' + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
   end
+
+  def select_month_for(field_name, prefix = nil)
+    select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
+  end
 end
