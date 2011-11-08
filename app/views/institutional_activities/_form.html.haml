@@ -1,18 +1,24 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
-  %div{:class => 'span-24 last'}
-    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 '
-    %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
+  .row
+    .span-9
+      = f.input :descr, :as => :text, :input_html => { :size => '40x2' }
+    .span-9.last
+      #institution.span-18.last{'data-controller-name' => 'institutions'}
       = f.label :institution, :required => true
-      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-      = link_to_action 'ui-icon-plus', 'Agregar editorial', '#', :id => 'new_record'
+      = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar institución', '#'
+  .row
+    .span-2
+      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-7
+      = f.label :startmonth, :required => true
+      = select_month_for 'startmonth', 'institutional_activity'
 
-  = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6'}
-    = f.label :startmonth, :required => true
-    = select_month(Date.today, :field_name => 'startmonth', :prefix => 'institutional_activity')
-  = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :endmonth, :required => true
-    = select_month(Date.today, :field_name => 'endmonth', :prefix => 'institutional_activity')
+    .span-2
+      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-7.last
+      = f.label :endmonth, :required => true
+      = select_month_for 'endmonth', 'institutional_activity'
