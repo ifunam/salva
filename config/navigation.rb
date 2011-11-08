@@ -64,6 +64,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
       s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
       s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
+      s.item :password, 'Cambiar password', edit_password_path, :highlights_on => /\/password/
     end
 
     primary.item :publications, 'Publicaciones', articles_path do |s|

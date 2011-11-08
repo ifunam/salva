@@ -1,0 +1,19 @@
+%h3=t('.title')
+= form_for(@user, :as => @user, :url => password_path, :html => { :method => :put }) do |f|
+  .section-with-border-and-bg
+    .row
+      = render :partial => "/shared/errors", :object => f.object.errors
+    .row
+      .span-8.last
+        = f.label :current_password
+        = f.password_field :current_password, :autocomplete => "off"
+    .row
+      .span-8.last
+        = f.label :password, "New password"
+        = f.password_field :password, :autocomplete => "off"
+    .row
+      .span-8.last
+        = f.label :password_confirmation, "Confirm new password"
+        = f.password_field :password_confirmation, :autocomplete => "off"
+  #submit_buttons
+    = f.submit t(:update)

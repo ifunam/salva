@@ -136,4 +136,21 @@ class User < ActiveRecord::Base
       "/images/avatar_missing_#{version}.png"
     end
   end
+
+  def update_password(attr)
+    if User.ldap_enabled?
+      update_ldap_password(attr)
+    else
+      update_with_password(attr)
+    end
+  end
+
+  def update_ldap_password(attr)
+    if valid_ldap_authentication?(attr[:current_password])
+      update_attributes(attr)
+    else
+      errors.add(:current_password, "El password actual es incorrecto!")
+      false
+    end
+  end
 end

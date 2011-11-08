@@ -20,6 +20,10 @@
       #content
         #left-navigation= render_navigation(:level => 2..3)
         #right-content
+          - unless flash[:notice].nil?
+            .notice= flash[:notice]
+          - unless flash[:alert].nil?
+            .alert= flash[:alert]
           = yield
     #dialog
     = render :partial => 'layouts/footer'
