@@ -1,7 +1,7 @@
 %h3= t('user_settings.edit.title')
 .section-with-border-and-bg
 
-  - simple_form_for @user, :as => :user, :url => user_settings_path do |f|
+  = simple_form_for @user, :as => :user, :url => user_settings_path do |f|
     = render :partial => 'form', :locals => { :f => f }
     #submit_buttons
       = f.submit  t(:update)
