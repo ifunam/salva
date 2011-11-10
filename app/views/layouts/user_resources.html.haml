@@ -4,13 +4,8 @@
     %title= 'Plataforma de Información Curricular - SALVA'
     = csrf_meta_tag
     = render :partial => 'layouts/blueprint_css'
-    = stylesheet_link_tag :defaults
-    = stylesheet_link_tag 'chosen'
-
-    = javascript_include_tag :defaults
-    = javascript_include_tag 'chosen.jquery.min'
+    = stylesheet_link_tag 'user_resources'
     = javascript_include_tag 'user_resources'
-    = javascript_include_tag 'place'
 
   %body
     = render :partial => 'layouts/header'
