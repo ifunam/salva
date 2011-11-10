@@ -1,7 +1,7 @@
 %h3= t('memberships.show.title')
 
 .section-with-border-and-bg
-  - show_for @membership do |u|
+  = show_for @membership do |u|
     .row
       .span-18.last= = u.association :institution, :using => :name
     .row

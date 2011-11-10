@@ -1,6 +1,6 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('popular_science_activities.show.title')
-  - show_for @activity do |u|
+  = show_for @activity do |u|
     = u.attribute :name, :using => :name, :wrapper_html => {:class => 'span-12'}
     = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12 last'}
     = u.association :activitytype, :using => :name, :wrapper_html => {:class => 'span-12'}

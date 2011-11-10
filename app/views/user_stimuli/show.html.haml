@@ -1,7 +1,7 @@
 %h3= t('user_stimuli.show.title')
 
 .section-with-border-and-bg
-  - show_for @user_stimulus do |u|
+  = show_for @user_stimulus do |u|
     .row
       .span-18.last= u.association :stimuluslevel, :using => :name_and_type
     .row

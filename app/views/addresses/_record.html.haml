@@ -1,6 +1,6 @@
 .section-with-border-and-bg
   %h3 Domicilio profesional
-  - show_for record do |a|
+  = show_for record do |a|
     .row
       = a.association :addresstype, :using => :name
       = a.attribute :location, :wrapper_html => {:class => 'span-8'}

@@ -1,6 +1,6 @@
 %h3= t('user_skills.show.title')
 .section-with-border-and-bg
-  - show_for @user_skill do |u|
+  = show_for @user_skill do |u|
     .row
       = u.association :skilltype, :using => :name
     .row

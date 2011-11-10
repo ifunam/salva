@@ -1,4 +1,4 @@
 .row
-  - show_for record do |user_identification|
+  = show_for record do |user_identification|
     = user_identification.association :idtype, :using => :name
     = user_identification.attribute :descr

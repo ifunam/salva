@@ -1,10 +1,10 @@
 %div{ :class => 'span-23 section_left last' }
   %h3= t('book_collaborations.show.title')
-  - show_for @book_collaboration do |be|
+  = show_for @book_collaboration do |be|
     = be.association :book, :using => :collaborations, :label => 'Authors', :wrapper_html => { :class => 'span-10 push-1' }
     = be.association :book, :using => :title, :label => 'Title', :wrapper_html => { :class => 'span-12 last' }
 
-    - show_for @book_collaboration.book do |book|
+    = show_for @book_collaboration.book do |book|
       %div{ :class => 'span-23 last' }
         = be.association :book, :using => :volume, :label => 'Volume', :wrapper_html => { :class => 'span-10 push-1' }
         = book.association :country, :using => :name, :label => 'Country', :wrapper_html => { :class => 'span-6' }

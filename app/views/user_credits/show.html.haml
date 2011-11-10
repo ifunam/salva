@@ -1,7 +1,7 @@
 %h3= t('user_credits.show.title')
 .section-with-border-and-bg
 
-  - show_for @user_credit do |u|
+  = show_for @user_credit do |u|
     .row
       .span-6= u.association :credittype, :using => :name
       .span-12.last= u.attribute :descr

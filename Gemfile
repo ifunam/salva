@@ -3,7 +3,7 @@ source :rubygems
 
 gem "rails", "3.1.1"
 gem "haml", "3.1.3"
-gem "show_for", "0.2.4", :git => 'https://github.com/plataformatec/show_for.git'
+gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"
 gem "compass", "~> 0.11.5"
 gem "barista", "~> 1.2.1"

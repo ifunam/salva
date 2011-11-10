@@ -1,6 +1,6 @@
 %div{ :class => 'span-24 section_left last' }
   %h2= "Cuenta del usuario"
-  - show_for record do |u|
+  = show_for record do |u|
     = u.attribute :login, :wrapper_html => {:class => 'span-6'}
     = u.attribute :email, :wrapper_html => {:class => 'span-6'}
     = u.association :userstatus, :using => :name, :wrapper_html => {:class => 'span-6'}

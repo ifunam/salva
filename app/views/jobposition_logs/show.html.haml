@@ -2,7 +2,7 @@
 
 .section-with-border-and-bg
 
-  - show_for @jobposition_log do |j|
+  = show_for @jobposition_log do |j|
     .row
       = j.attribute :worker_key, :wrapper_html => { :class => 'span-6'}
       = j.attribute :worker_number, :wrapper_html => { :class => 'span-12 last'}

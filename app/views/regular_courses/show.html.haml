@@ -1,6 +1,6 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('regular_courses.show.title')
-  - show_for @regular_course do |u|
+  = show_for @regular_course do |u|
     %div{:class=> 'span-21 section_left push-1 last'}
       = u.attribute :title, :wrapper_html => {:class => 'span-10'}
       = u.association :modality, :using => :name, :wrapper_html => {:class => 'span-11 last'}

@@ -1,6 +1,6 @@
 %h3= t('institutional_activities.show.title')
 .section-with-border-and-bg
-  - show_for  @institutional_activity do |u|
+  = show_for  @institutional_activity do |u|
     .row
       .span-9
         = u.attribute :descr, :using => :name

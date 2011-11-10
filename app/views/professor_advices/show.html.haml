@@ -1,6 +1,6 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('professor_advices.show.title')
-  - show_for @advice do |u|
+  = show_for @advice do |u|
     = u.attribute :indivname, :wrapper_html => { :class => 'span-12'}
     = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12 last'}
 

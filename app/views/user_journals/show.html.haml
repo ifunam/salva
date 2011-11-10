@@ -1,6 +1,6 @@
 %div{ :class => 'span-24 section_left last' }
   %h3= t('user_journals.show.title')
-  - show_for @user_journal do |u|
+  = show_for @user_journal do |u|
     = u.association :journal, :using => :name, :wrapper_html => {:class => 'span-12'}
     = u.association :roleinjournal, :using => :name, :wrapper_html => {:class => 'span-12 last'}
 
