@@ -1,4 +1,4 @@
-- simple_form_for @user, :as => :user, :url => user_profile_path, :html => { :multipart => true, :id => 'save_user' } do |f|
+= simple_form_for @user, :as => :user, :url => user_profile_path, :html => { :multipart => true, :id => 'save_user' } do |f|
   = render :partial => 'form', :locals => { :f => f }
 
   #submit_buttons

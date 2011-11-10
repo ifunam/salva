@@ -1,5 +1,5 @@
 es:
-  activemodel:
+  activerecord:
     models:
       user: Usuario
       person: Información personal
@@ -21,10 +21,33 @@ es:
         title: Título
         gender: Género
         maritalstatus: Estado civil
-        birthdate: Fecha de nacimiento
+        maritalstatus_id: Estado civil
+        dateofbirth: Fecha de nacimiento
         country: País
         state: Estado
         city: Ciudad
+        country_id: País
+        state_id: Estado
+        city_id: Ciudad
+      address:
+        addresstype: Tipo de domicilio
+        location: Dirección
+        pobox: Apartado postal
+        country: País
+        state: Estado
+        city: Ciudad
+        zipcode: Código postal
+        phone: Teléfono(s)
+        mobile: Celular
+        fax: Fax
+        country_id: País
+        state_id: Estado
+        city_id: Ciudad
+      user_identification:
+        idtype: Tipo de identificación
+        idtype_id: Tipo de identificación
+        descr: Número de identificación
+
   academic_secretary:
     users:
       form:
@@ -40,6 +63,9 @@ es:
   addresses:
     academic_form:
       title: 'Domicilio profesional'
+  user_identifications:
+    academic_form:
+      title: Identificaciones
   jobpositions:
     academic_form:
       jobposition_and_adscription: 'Categoría y adscripción'
@@ -73,9 +99,7 @@ es:
           back: 'Código de barras de credencial'
           list_all: 'Mostrar todos'
 
-  user_identifications:
-    academic_form:
-      identification: 'RFC'
+
   cities:
     show:
       title: 'Ciudad'
@@ -1266,6 +1290,10 @@ es:
       title: 'Modificar trabajo presentado en congreso'
     show:
       title: 'Trabajo presentado en congreso'
+
+  user_profiles:
+    show:
+      identifications: 'Identificaciones'
 
   admin:
     people: 'Información personal'

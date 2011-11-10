@@ -4,7 +4,7 @@
 = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 
 .section-with-border-and-bg
-  %h3 identifications
+  %h3= t(".identifications")
   = render :partial => 'user_identifications/record', :collection => @user.user_identifications
 
 #submit_buttons
