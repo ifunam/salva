@@ -44,7 +44,7 @@ gem "move_associations", "0.0.4"
 gem "by_star", "1.0.1"
 gem "tzinfo", "0.3.29"
 
-#gem "SystemTimer", "1.2.3", :platforms => :ruby_18
+gem "SystemTimer", "1.2.3", :platforms => :ruby_18
 gem "redis", "2.2.0"
 gem "redis-namespace", "1.0.2"
 gem "resque", "1.19.0"
