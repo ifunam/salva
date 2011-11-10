@@ -1,2 +1,2 @@
 //= require application
-//= require session
+//= require supported_browsers

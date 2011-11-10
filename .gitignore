@@ -71,6 +71,7 @@ app/assets/javascripts/collection.js
 app/assets/javascripts/document.js
 app/assets/javascripts/nested_form.js
 app/assets/javascripts/place.js
+app/assets/javascripts/supported_browsers.js
 app/assets/javascripts/session.js
 app/sass/.sass-cache/
 .sass-cache/
