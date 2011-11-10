@@ -4,7 +4,7 @@ class UserResourcesController < InheritedResources::Base
   respond_to :html
   respond_to :js, :only => [:index, :destroy_all]
 
-  class_inheritable_accessor :resource_class_scope
+  class_attribute :resource_class_scope
 
   def index
     params[:search] ||= {}
