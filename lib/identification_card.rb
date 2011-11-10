@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'barby'
 require 'barby/outputter/rmagick_outputter'
 require 'document/user_profile'

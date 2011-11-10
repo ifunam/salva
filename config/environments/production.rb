@@ -1,3 +1,5 @@
+require 'uglifier'
+require 'css_image_embedder'
 Salva::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -60,7 +62,11 @@ Salva::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'salva.fisica.unam.mx' }
 
+  config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css user_resources.js )
+
   # Compress both stylesheets and JavaScripts
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
+  config.assets.css_compressor = CssImageEmbedder::Compressor.new(File.join(Rails.root, 'public'))
+  config.sass.line_comments = false
+  config.sass.syntax = :nested
 end

@@ -75,3 +75,4 @@ app/assets/javascripts/supported_browsers.js
 app/assets/javascripts/session.js
 app/sass/.sass-cache/
 .sass-cache/
+public/assets/

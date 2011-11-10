@@ -39,6 +39,9 @@ gem "sass", "~> 3.1.10"
 gem "json", "~> 1.6.1"
 gem "coffee-script", "~> 2.2.0"
 gem "uglifier", "~> 1.0.4"
+gem "css_image_embedder", "~> 0.2.0"
+gem "sass-rails", "~> 3.1.4"
+gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
 gem "move_associations", "0.0.4"
 gem "by_star", "1.0.1"
@@ -61,6 +64,15 @@ group :production do
   gem "inploy", "1.9.4"
   gem "execjs", "~> 1.2.9"
   gem "therubyracer", "~> 0.9.9"
+end
+
+group :assets do
+  gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
+  gem "coffee-rails", "~> 3.1.1"
+  gem "uglifier", "~> 1.0.4"
+  gem "css_image_embedder", "~> 0.2.0"
+  gem "therubyracer", "~> 0.9.9"
+  gem "sass-rails", "~> 3.1.4"
 end
 
 group :development do
