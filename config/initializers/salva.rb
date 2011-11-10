@@ -13,6 +13,5 @@ Salva::Application.configure do
       file_path = Rails.root.to_s + '/lib/salva/' + file
       require file_path if File.exist? "#{file_path}.rb"
     end
-    MetaWhere.operator_overload!
   end
 end
