@@ -1,5 +1,6 @@
 require 'uglifier'
 require 'css_image_embedder'
+include Salva::SiteConfig
 Salva::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -33,7 +34,7 @@ Salva::Application.configure do
   config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -46,6 +47,7 @@ Salva::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css user_resources.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -62,11 +64,19 @@ Salva::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'salva.fisica.unam.mx' }
 
-  config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css user_resources.js )
-
   # Compress both stylesheets and JavaScripts
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = CssImageEmbedder::Compressor.new(File.join(Rails.root, 'public'))
   config.sass.line_comments = false
   config.sass.syntax = :nested
+
+  # Exception notification
+  conf_path = File.join(Rails.root.to_s, 'config', 'mail.yml')
+  if File.exists? conf_path
+    config.action_mailer.delivery_method = :sendmail
+    config.middleware.use ExceptionNotifier,
+      :email_prefix => "[SALVA - Exception notification] ",
+      :sender_address =>  Salva::SiteConfig.system('email'),
+      :exception_recipients => Salva::SiteConfig.admin('email')
+  end
 end

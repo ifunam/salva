@@ -64,6 +64,7 @@ group :production do
   gem "inploy", "1.9.4"
   gem "execjs", "~> 1.2.9"
   gem "therubyracer", "~> 0.9.9"
+  gem "exception_notification", "~> 2.5.2"
 end
 
 group :assets do

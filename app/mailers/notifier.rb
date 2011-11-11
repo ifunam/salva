@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
 
   def new_user_to_admin(user_id)
     @user =  User.find(user_id)
-    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification],
+    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification].compact!,
          :subject => 'SALVA - Nuevo usuario') do |format|
       format.text
     end
@@ -31,7 +31,7 @@ class Notifier < ActionMailer::Base
 
   def deleted_user_to_admin(login)
     @login = login
-    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification],
+    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification].compact!,
          :subject => 'SALVA - Usuario borrado') do |format|
       format.text
     end
@@ -39,7 +39,7 @@ class Notifier < ActionMailer::Base
 
   def updated_userstatus_to_admin(user_id)
     @user =  User.find(user_id)
-    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification],
+    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification].compact!,
          :subject => 'SALVA - Estado de usuario actualizado') do |format|
       format.text
     end
@@ -119,7 +119,7 @@ class Notifier < ActionMailer::Base
 
   def rejected_document(document_id)
     @document = Document.find(document_id)
-    mail(:to => @document.user.email, :cc => [email_academic_secretary, @document.approved_by.email],
+    mail(:to => @document.user.email, :cc => [email_academic_secretary, @document.approved_by.email].compact!,
          :subject => @document.documenttype.name)
   end
 
