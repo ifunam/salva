@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
 
   def new_user_to_admin(user_id)
     @user =  User.find(user_id)
-    mail(:to => 'alex@fisica.unam.mx', :cc => [email_ldap_admin, email_accounts_notification].compact!,
+    mail(:to => email_academic_secretary, :cc => [email_ldap_admin, email_accounts_notification].compact!,
          :subject => 'SALVA - Nuevo usuario') do |format|
       format.text
     end
