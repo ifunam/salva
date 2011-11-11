@@ -3,24 +3,22 @@
   = show_for @user_prize do |u|
     .row
       .span-4
-        %label= t('.prizetype')
+        %label= u.label :prizetype
         = @user_prize.prize.prizetype.name
       .span-14.last
         = u.association :prize, :using => :name
     .row
       .span-4
-        %label= t('.country')
+        %label= u.label :country
         = @user_prize.prize.institution.country.name
       .span-14.last
-        %label= t('.institution')
+        %label= u.label :institution
         = @user_prize.prize.institution.name
     .row
       .span-4
-        %label= t('.year')
-        = @user_prize.year
+        = u.attribute :year, :using => :name
       .span-14.last
-        %label= t('.month')
-        = @user_prize.month
+        = u.attribute :month, :using => :name
 
     .row
       = render :partial => 'shared/record', :object =>  @user_prize

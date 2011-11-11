@@ -11,14 +11,14 @@
       = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
       = link_to_new_record 'Agregar institución', '#'
   .row
-    .span-2
+    .span-3
       = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
-    .span-7
+    .span-6
       = f.label :startmonth, :required => true
       = select_month_for 'startmonth', 'institutional_activity'
 
-    .span-2
+    .span-3
       = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
-    .span-7.last
+    .span-6.last
       = f.label :endmonth, :required => true
       = select_month_for 'endmonth', 'institutional_activity'
