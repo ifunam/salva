@@ -17,6 +17,9 @@ technical_support:
 system:
   email: noreply-someemail@fisica.unam.mx
 
+admin:
+  email: noreply-someemail@fisica.unam.mx
+
 academic_secretary:
   email: someemail@fisica.unam.mx
 
