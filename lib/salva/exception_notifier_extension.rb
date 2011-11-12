@@ -20,15 +20,19 @@ class ExceptionNotifier::Notifier
     subject = "#{prefix} (#{@exception.class}) #{@exception.message.inspect}"
     subject = subject.length > 120 ? subject[0...120] + "..." : subject
 
+    body_for_issue = 'Not defined'
     mail(:to => @options[:exception_recipients], :from => @options[:sender_address], :subject => subject) do |format|
-      format.text { render "#{mailer_name}/exception_notification" }
+      format.text {
+        body_for_issue = render_to_body("#{mailer_name}/exception_notification").to_s
+        render "#{mailer_name}/exception_notification"
+      }
     end
 
     github_path = File.join(Rails.root.to_s, 'config', 'github.yml')
     if File.exist? github_path
       authenticated :config => github_path do
         repo = Repository.find(:name => "salva", :user => "ifunam")
-        Octopi::Issue.open(:repo => repo, :user => 'alex', :params => {:title => @exception, :body => @backtrace })
+        Octopi::Issue.open(:repo => repo, :user => 'alex', :params => {:title => subject, :body => body_for_issue })
       end
     end
   end
