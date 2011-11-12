@@ -65,6 +65,7 @@ group :production do
   gem "execjs", "~> 1.2.9"
   gem "therubyracer", "~> 0.9.9"
   gem "exception_notification", "~> 2.5.2"
+  gem "octopi", "~> 0.4.5"
 end
 
 group :assets do
