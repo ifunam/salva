@@ -23,7 +23,7 @@ class ExceptionNotifier::Notifier
     body_for_issue = 'Not defined'
     mail(:to => @options[:exception_recipients], :from => @options[:sender_address], :subject => subject) do |format|
       format.text {
-        body_for_issue = render_to_body("#{mailer_name}/exception_notification").to_s
+        #body_for_issue = render_to_body("#{mailer_name}/exception_notification").to_s
         render "#{mailer_name}/exception_notification"
       }
     end
