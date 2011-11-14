@@ -1,5 +1,5 @@
 %h3= t('.title')
-= simple_form_for @user_skill, :user_skill, :url => user_skill_path do |f|
+= simple_form_for @user_skill, :name_key => :user_skill, :url => user_skill_path do |f|
   = render :partial => 'form', :locals => { :f => f }
   #submit_buttons
     = f.submit  t(:update)
