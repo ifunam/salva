@@ -139,9 +139,18 @@ class User < ActiveRecord::Base
 
   def update_password(attr)
     if User.ldap_enabled?
-      update_ldap_password(attr)
+      new_password_valid?(attr) and update_ldap_password(attr)
     else
-      update_with_password(attr)
+      new_password_valid?(attr) and update_with_password(attr)
+    end
+  end
+
+  def new_password_valid?(attr)
+    if !attr[:password].blank? and !attr[:password_confirmation].blank? and attr[:password] == attr[:password_confirmation]
+      true
+    else
+      errors.add(:password, :confirmation)
+      false
     end
   end
 
@@ -149,7 +158,7 @@ class User < ActiveRecord::Base
     if valid_ldap_authentication?(attr[:current_password])
       update_attributes(attr)
     else
-      errors.add(:current_password, "El password actual es incorrecto!")
+      errors.add(:current_password, :invalid)
       false
     end
   end
