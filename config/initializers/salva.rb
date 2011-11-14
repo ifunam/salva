@@ -9,9 +9,13 @@ Salva::Application.configure do
   end 
 
   config.after_initialize do
-    %w(site_config meta_search_extension meta_date_extension exception_notifier_extension).each do |file|
+    %w(site_config meta_search_extension meta_date_extension).each do |file|
       file_path = Rails.root.to_s + '/lib/salva/' + file
       require file_path if File.exist? "#{file_path}.rb"
+    end
+
+    if Rails.env.to_s == 'production'
+      require Rails.root.to_s + '/lib/salva/exception_notifier_extension'
     end
   end
 end
