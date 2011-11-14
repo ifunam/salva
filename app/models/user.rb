@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
                   :userstatus_id, :user_incharge_id, :user_identifications_attributes,
                   :person_attributes, :address_attributes, :jobposition_attributes,
                   :jobposition_log_attributes, :user_group_attributes,
-                  :user_schoolarships_attributes, :documents_attributes
+                  :user_schoolarships_attributes, :documents_attributes,
+                  :author_name, :blog, :homepage, :calendar
 
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')
@@ -74,7 +75,9 @@ class User < ActiveRecord::Base
   end
 
   def author_name
-    if !user_cite.nil? and !user_cite.author_name.to_s.strip.empty?
+    if !super.nil?
+      super
+    elsif !user_cite.nil? and !user_cite.author_name.to_s.strip.empty?
       user_cite.author_name
     elsif !person.nil?
       person.shortname
