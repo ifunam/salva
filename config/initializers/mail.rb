@@ -3,7 +3,7 @@ Salva::Application.configure do
 
     conf_path = File.join(Rails.root.to_s, 'config', 'mail.yml')
 
-    if File.exists? conf_path and Rails.env.to_s != 'test'
+    if File.exists? conf_path and !Rails.env.test?
       settings = YAML.load_file(conf_path)
       settings.merge!(:arguments => "-i -t -f noreply@#{settings[:domain]}")
 

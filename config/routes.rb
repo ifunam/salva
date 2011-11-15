@@ -87,5 +87,5 @@ Salva::Application.routes.draw do
 
   root :to => "user_profiles#show"
 
-  mount Resque::Server.new, :at => '/admin/resque' if Rails.env.to_s == 'production'
+  mount Resque::Server.new, :at => '/admin/resque' if Rails.env.production?
 end

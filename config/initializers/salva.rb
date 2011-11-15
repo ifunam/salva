@@ -14,7 +14,7 @@ Salva::Application.configure do
       require file_path if File.exist? "#{file_path}.rb"
     end
 
-    if Rails.env.to_s == 'production'
+    if Rails.env.production?
       require Rails.root.to_s + '/lib/salva/exception_notifier_extension'
     end
   end

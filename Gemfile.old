@@ -98,4 +98,3 @@ group :test do
   gem "steak", ">= 1.0.0.beta.1"
   gem "capybara", ">= 1.0.0.beta1"
 end
-
