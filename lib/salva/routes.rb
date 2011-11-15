@@ -16,7 +16,7 @@ module ActionDispatch::Routing
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
           resources resources_name do
-            post :destroy_all, :on => :collection
+            get :destroy_all, :on => :collection
           end
         end
       end

@@ -44,6 +44,7 @@ jQuery.extend
     html = $.collection_from_remote_resource(resource, params)
     $("#collection_records").remove()
     $("#collection_footer").remove()
+    $(".pagination").remove()
     $("#collection_header").after html
     false
   
@@ -86,11 +87,12 @@ jQuery.extend
     responseData = $.response_from_simple_remote_resource("/" + controller + "/new.js")
     $("div#dialog").html responseData
 
-  destroy_selected_records: (ids, dom_ids) ->
+  destroy_selected_records: (record_ids, dom_ids) ->
     $.ajax
-      url: $("#filter_form").attr("action") + "/destroy_all"
-      data: ids: ids
-      type: "POST"
+      url: $("#filter_form").attr("action") + "/destroy_all.js"
+      data: ids: record_ids
+      type: "GET"
+      async: false
       beforeSend: ->
         $.open_dialog_with_progressbar()
       complete: (data) ->

@@ -33,7 +33,9 @@ class UserResourcesController < InheritedResources::Base
     if params[:ids] and params[:ids].is_a? Array
       collection = resource_class.find(params[:ids])
       collection.collect(&:destroy)
-      respond_with(collection, :status => :deleted_records)
+      respond_with(collection, :status => :deleted_records) do |format|
+        format.js { render :text => 'deleted_records'}
+      end
     end
   end
 
