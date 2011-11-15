@@ -34,7 +34,7 @@ class UserResourcesController < InheritedResources::Base
       collection = resource_class.find(params[:ids])
       collection.collect(&:destroy)
       respond_with(collection, :status => :deleted_records) do |format|
-        format.js { render :text => 'deleted_records'}
+        format.js { render :nothing => true }
       end
     end
   end
