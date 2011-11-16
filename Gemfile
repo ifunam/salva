@@ -88,14 +88,12 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails", ">= 2.0.5"
+  gem "rspec-rails", "~> 2.7.0"
   gem "machinist", ">= 2.0.0.beta2"
-  gem "forgery", "0.3.7"
+  gem "forgery", "~> 0.5.0"
   gem "remarkable", ">= 4.0.0.alpha4"
   gem "remarkable_activemodel", ">= 4.0.0.alpha4"
   gem "remarkable_activerecord", ">= 4.0.0.alpha4"
-  gem "remarkable_rails"
-  gem "steak", ">= 1.0.0.beta.1"
-  gem "capybara", ">= 1.0.0.beta1"
+  gem "steak", "~> 2.0.0"
 end
 
