@@ -83,6 +83,8 @@ jQuery.extend
       title: "Nuevo registro"
       width: 400
       height: 320
+      modal: true
+      overlay:  background: "#fff", opacity: 0.10
     ).dialog "open"
     responseData = $.response_from_simple_remote_resource("/" + controller + "/new.js")
     $("div#dialog").html responseData
