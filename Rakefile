@@ -5,7 +5,7 @@ require File.expand_path('../config/application', __FILE__)
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
   require 'resque/tasks'
