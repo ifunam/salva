@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-
+  set_primary_key :id
   validates_presence_of :firstname, :lastname1, :dateofbirth, :country_id
   validates_numericality_of :country_id, :greater_than => 0, :only_integer => true
   validates_numericality_of :maritalstatus_id, :city_id, :state_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
