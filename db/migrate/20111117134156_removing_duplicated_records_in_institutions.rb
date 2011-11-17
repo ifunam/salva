@@ -11,7 +11,7 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
 
     associations = Institution.associations_to_move.collect { |association| association.name }
 
-    execute "ALTER TABLE institutioncareers DROP CONSTRAINT IF EXISTS institutioncareers_institution_id_key"
+    execute "ALTER TABLE institutioncareers DROP CONSTRAINT institutioncareers_institution_id_key"
 
     sql = "SELECT name FROM institutions as i GROUP BY name HAVING ( COUNT(name) > 1)"
     Institution.find_by_sql(sql).each do |record|
