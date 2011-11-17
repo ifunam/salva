@@ -1,6 +1,5 @@
-%div{ :class => 'span-7 section_left last' } 
-  %div{:class => 'span-7 last'}
-    = f.input :name, :as => :string, :html_input => { :size => '60' }
-  %div{:class=> 'span-14 last'}
-    = f.label :stimulustype_id, :required => true
-    = f.collection_select :stimulustype_id,  Stimulustype.all, :id, :name, {:prompt => true, :selected => 2, :required => true}
+.dialog-section-with-border-and-bg
+  .row
+    = f.input :name, :as => :string, :input_html => { :size => 38, :required => true }
+  .row
+    = f.association :stimulustype, :using => :name, :input_html => {:prompt => true, :selected => 2, :required => true, :class => 'chosen-select'}
