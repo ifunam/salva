@@ -2,18 +2,18 @@
   %b='Facultad o escuela'
 
 .row
-  .span-10
-    = f.input :name, :as => :string, :input_html => { :size => '40', :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'institutions' }
+  .span-6
+    = f.input :name, :as => :string, :input_html => { :size => '35', :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'institutions' }
 
-  #institution.span-8.last{'data-controller-name' => 'institutions'}
-    = f.association :institution,  :as => :select, :collection => [Institution.find(1)], :input_html => {:class => 'chosen-select' }, :selected => 1, :required => true, :wrapper_class => 'select_and_label'
-    = link_to_new_record 'Agregar una institución', '#'
+  #institution.span-12.last
+    = f.association :institution,  :as => :select, :collection => [Institution.find(1)], :input_html => {:class => 'chosen-select' }, :selected => 1, :required => true
+    = link_to_new_record 'Agregar una institución', new_institution_path
 
 .row
-  .span-8
-    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :wrapper_class => 'span-8 radio-set last'
-  .span-5
+  .span-6
+    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :input_html => { :class => 'radio-set' }
+  .span-6
     = f.label :institutiontitle_id, :required => true
     = f.collection_select :institutiontitle_id, Institutiontitle.all, :id, :name, {:prompt => true, :selected => 2, :required => true}, :class => 'chosen-select'
-  .span-5.last
+  .span-6.last
     = f.association :country, :collection => Country.all,  :selected => 484, :input_html => {:class => 'chosen-select' }
