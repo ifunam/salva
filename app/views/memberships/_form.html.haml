@@ -3,19 +3,11 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    #institution.span-10.last{'data-controller-name' => 'institutions'}
+    #institution.span-6.last{'data-controller-name' => 'institutions'}
       = f.label :institution, :required => true
-      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
+      = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
       = link_to_new_record 'Agregar institución', '#'
-
-  .row
     .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
-    .span.last
-      = f.label :startmonth, :required => true
-      = select_month(Date.today, {:field_name => 'startmonth', :prefix => 'membership'}, :class => 'chosen-select')
-  .row
-    .span-4= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
-    .span-4.last
-      = f.label :endmonth
-      = select_month(Date.today, {:field_name => 'endmonth', :prefix => 'membership'}, :class => 'chosen-select')
+    .span-4.last= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+
 
