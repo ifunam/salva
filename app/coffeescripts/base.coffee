@@ -80,11 +80,11 @@ jQuery.extend
 
   dialog_for_new_record: (controller) ->
     $("#dialog").dialog(
-      title: "Nuevo registro"
+      title: ""
       width: 400
-      height: 320
+      height: 330
       modal: true
-      overlay:  background: "#fff", opacity: 0.10
+      overlay:  background: "#fff", opacity: 0.25
     ).dialog "open"
     responseData = $.response_from_simple_remote_resource("/" + controller + "/new.js")
     $("div#dialog").html responseData

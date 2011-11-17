@@ -118,3 +118,34 @@
   .current_user
     color: green
     display: inline
+
+.subsection-round-corner
+  @extend .span-18
+  @extend .section-round-corner-with-bg
+  @extend .last
+  padding-top: 10px
+  margin-bottom: 10px
+  border-color: silver
+
+#dialog
+  h3
+    color: #6EAC2C
+    text-shadow: rgb(143,191,92) 1px 1px 3px
+    font-size: 130%
+    font-weight: bold
+    color: #6EAC2C
+    letter-spacing: -1px
+    text-align: left
+
+.ui-dialog-titlebar
+  text-align: right
+  @extend .span-9
+  @extend .last
+  border: none
+  background: none
+  a
+    @extend .ui-button
+    @extend .ui-button-icon
+    @extend .ui-widget
+    @extend .ui-state-default
+    @extend .ui-corner-all
