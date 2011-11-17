@@ -1,14 +1,15 @@
-.row
-  = render :partial => "/shared/errors", :object => f.object.errors
-
-.row
-
+.section-with-border-and-bg
   .row
-    #schoolarship.span-8{'data-controller-name' => 'schoolarships'}
-      = f.label :skilltype, :required => true
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  #schoolarship.row
+    .span-6
+      = f.label :schoolarship, :required => true
       = f.collection_select :schoolarship_id, Schoolarship.all, :id, :name, {:prompt => true}, :class => 'chosen-select select_and_label'
       = link_to_new_record 'Agregar una beca', '#'
+
     .span-10.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }
+
   .row
     .span-4= f.input :start_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date'}
     .span-4= f.input :end_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date' }
