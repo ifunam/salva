@@ -9,8 +9,10 @@ class Techproduct < ActiveRecord::Base
   belongs_to :institution
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
+
   has_many :user_techproducts
   has_many :users, :through => :user_techproducts
+
   accepts_nested_attributes_for :user_techproducts
   user_association_methods_for :user_techproducts
 
