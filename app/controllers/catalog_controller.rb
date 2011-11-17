@@ -12,9 +12,19 @@ class CatalogController < InheritedResources::Base
   end
 
   def create
-    build_resource.registered_by_id = current_user.id
-    create! do |format|
-      format.js { render :json => resource.to_json(:only => [:id, :name]) }
+    respond_to do |format|
+      format.js { render :json => find_or_create_resource.to_json(:only => [:id, :name]) }
     end
+  end
+
+  private
+  def find_or_create_resource
+    object = resource_class.where(params[resource_request_name] || params[resource_instance_name] || {}).first
+    if object.nil?
+      object = build_resource
+      object.registered_by_id = current_user.id
+      object.save
+    end
+    object
   end
 end

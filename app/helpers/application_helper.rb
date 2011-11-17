@@ -83,7 +83,8 @@ module ApplicationHelper
   end
 
   def link_to_new_record(title, resource_path)
-    link_to_action 'icon_action_new_record', title, resource_path, :id => 'new_record'
+    link_to_action 'icon_action_new_record', title, '#', :class => 'new_record',
+                   'data-remote-resource' => resource_path
   end
 
   def checkbox_to_delete(record)

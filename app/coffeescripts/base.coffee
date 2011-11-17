@@ -86,7 +86,7 @@ jQuery.extend
       modal: true
       overlay:  background: "#fff", opacity: 0.25
     ).dialog "open"
-    responseData = $.response_from_simple_remote_resource("/" + controller + "/new.js")
+    responseData = $.response_from_simple_remote_resource(controller + ".js")
     $("div#dialog").html responseData
 
   destroy_selected_records: (record_ids, dom_ids) ->

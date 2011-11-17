@@ -1,16 +1,16 @@
 $(document).ready ->
-  $("#new_record").live "click", ->
-    $.dialog_for_new_record @parentNode.getAttribute("data-controller-name")
-  
+  $(".new_record").live "click", ->
+    $.dialog_for_new_record $(this).attr("data-remote-resource")
+
   $("#new_record_form").live "submit", ->
     class_name = @getAttribute("data-class-name")
     $("#new_record_form").ajaxComplete (event, request, settings) ->
       object = jQuery.parseJSON(request.responseText)
-      label = eval("object." + class_name + ".name")
-      value = eval("object." + class_name + ".id")
-      html_options = "<option selected value=\"" + value + "\" >" + label + "</option>"
-      $("#" + class_name).find("select").children().remove().end().append html_options
-      $("#" + class_name).find("input").val label
+      html_options = "<option selected value=\"" + object.id + "\" >" + object.name + "</option>"
+      $($("#" + class_name).find("select")[0]).append html_options
+      $($("#" + class_name).find("select")[0]).removeClass "chosen-select chzn-done"
+      $(".chzn-container").remove()
+      $($("#" + class_name).find("select")[0]).chosen()
       $("#dialog").dialog "close"
 
   $(".chosen-select").chosen()

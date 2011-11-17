@@ -2,11 +2,9 @@
   .row
     = render :partial => "/shared/errors", :object => f.object.errors
 
-  .row
-    #skilltype.span-8.last{'data-controller-name' => 'skilltypes'}
-      = f.label :skilltype, :required => true
-      = f.collection_select :skilltype_id, Skilltype.all, :id, :name, {:prompt => true}, :class => 'chosen-select select_and_label'
-      = link_to_new_record 'Agregar una skill', '#'
+  #skilltype.row
+    = f.association :skilltype, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
+    = link_to_new_record 'Agregar una skill', new_skilltype_path
 
   .row
     .span-8.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }

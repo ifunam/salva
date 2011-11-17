@@ -37,7 +37,7 @@ module ActionDispatch::Routing
       def catalog_resources_for(*controllers)
         controllers.map!(&:to_sym)
         controllers.each do |resources_name|
-          resources resources_name do
+          resources resources_name, :only => [:new, :create] do
             get :autocompleted_search, :on => :collection
           end
         end
