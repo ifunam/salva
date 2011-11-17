@@ -17,6 +17,7 @@ class Journal < ActiveRecord::Base
 
   has_many :user_journals
   has_many :articles
+  has_many :user_refereed_journals
 
   default_scope :order => 'name ASC'
 end

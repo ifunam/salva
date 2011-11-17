@@ -11,6 +11,10 @@ class Career < ActiveRecord::Base
 
   has_many :indivadvices
   has_many :educations
+  has_many :tutorial_committees
+  has_many :theses
+  has_many :academicprograms
+  has_many :institutioncareers
 
   def as_text
     ["Carrera: #{name}, Grado: #{degree.name}", institution.name_and_parent_name].join(', ')

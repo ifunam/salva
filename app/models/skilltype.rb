@@ -6,6 +6,6 @@ class Skilltype < ActiveRecord::Base
   default_scope :order => 'name ASC'
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
-  has_many :user_skill
+  has_many :user_skills
 end
 
