@@ -1,4 +1,5 @@
+%h3=t(".title")
 = simple_form_for(@stimuluslevel, :remote => true, :html => {:id => 'new_record_form', 'data-class-name' => 'stimuluslevel'}) do |f|
   = render :partial => 'form', :locals => { :f => f}
-  %div{ :class => 'span-6 buttons_left last' }
-    = f.submit t(:save), :class => "ui-state-default ui-corner-all button"
+  #submit_buttons
+    = f.submit t(:save), :confirm => t(:new_record_confirmation)

@@ -1,10 +1,9 @@
 .row
-  .span-18.last
-    %b='Grado y carrera'
-  .span-10
-    = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'radio_set'
-  .span-6.last
-    = f.input :name, :as => :string, :input_html => { :size => 40, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}
+  %b='Nombre de carrera y Grado'
+.row
+  = f.input :name, :as => :string, :input_html => { :size => 80, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}
+.row
+  = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'radio-set'
 
 - f.object.institution = Institution.new if f.object.institution.nil?
 = f.simple_fields_for :institution, f.object.institution do |iform|

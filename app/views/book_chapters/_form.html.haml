@@ -7,7 +7,7 @@
     = f.input :title, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-12'
     = render :partial => 'book_chapter_collaborators/form', :locals => {:book_chapter => @book_chapter, :f => f}
 
-    = f.association :bookchaptertype, :as => :radio, :wrapper_class => 'span-14 radio_set'
+    = f.association :bookchaptertype, :as => :radio, :wrapper_class => 'span-14 radio-set'
     = f.input :pages, :as => :string, :input_html => {:size => 15}, :wrapper_class => 'span-5 last'
 
   %div{:class=> 'span-23 section_left push-1 last'}

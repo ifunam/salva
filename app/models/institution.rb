@@ -13,20 +13,30 @@ class Institution < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  has_many :prizes
-  has_many :grants
   has_many :acadvisits
-  has_many :courses
-  has_many :schoolarships
-  has_many :memberships
-  has_many :projectfinancingsources
-  has_many :jobpositions
-  has_many :projectinstitutions
-  has_many :instadvices
-  has_many :institutional_activities
+  has_many :adscriptions
+  has_many :careers
   has_many :conference_institutions
+  has_many :courses
   has_many :genericworks
+  has_many :grants
+  has_many :indivadvices
+  has_many :indivadviceprograms
+  has_many :instadvices
+  has_many :institutions
+  has_many :institutional_activities
   has_many :institutioncareers
+  has_many :jobpositions
+  has_many :memberships
+  has_many :prizes
+  has_many :projectfinancingsources
+  has_many :projectinstitutions
+  has_many :schoolarships
+  has_many :seminaries
+  has_many :sponsor_acadvisits
+  has_many :stimulustypes
+  has_many :techproducts
+  has_many :user_languages
 
   default_scope :order => 'name ASC'
   # UNAM, DGAPA, CONACYT, and your institution

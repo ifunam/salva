@@ -12,8 +12,8 @@
     -  @user_theses = user_role(@thesis, :user_theses, current_user.id)
     = f.simple_fields_for :user_theses, @user_theses do |ut|
       = render :partial => 'user_theses/form', :locals => { :f => ut }
-    = f.association :thesismodality, :as => :radio, :wrapper_class => 'span-7 radio_set'
-    = f.association :thesisstatus, :as => :radio, :wrapper_class => 'span-7 radio_set last'
+    = f.association :thesismodality, :as => :radio, :wrapper_class => 'span-7 radio-set'
+    = f.association :thesisstatus, :as => :radio, :wrapper_class => 'span-7 radio-set last'
   
     %div{ :class => 'span-21 last' }
       = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-5', :required => true

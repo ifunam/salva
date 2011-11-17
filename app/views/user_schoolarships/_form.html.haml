@@ -1,4 +1,5 @@
 .section-with-border-and-bg
+<<<<<<< HEAD
   .row
     = render :partial => "/shared/errors", :object => f.object.errors
 
@@ -8,6 +9,15 @@
       = f.collection_select :schoolarship_id, Schoolarship.all, :id, :name, {:prompt => true}, :class => 'chosen-select select_and_label'
       = link_to_new_record 'Agregar una beca', '#'
 
+=======
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    #schoolarship.span-8
+      = f.association :schoolarship, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select'}
+      = link_to_new_record 'Agregar una beca', new_schoolarship_path
+>>>>>>> d848a5bd1c0cb723e27ddcbb05f933712aa9b0ae
     .span-10.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }
 
   .row

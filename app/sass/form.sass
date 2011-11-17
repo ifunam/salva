@@ -19,7 +19,9 @@ input[type="password"]
 select
   font: 12px Arial,sans-serif
   color: #000
-  width: 155px
+  display: inline-block
+  width: 200px
+  float: left
 
 .button, .button:visited
   display: inline-block
@@ -39,7 +41,7 @@ select
 input[type="submit"]
   @extend .button
 
-.radio_set
+.radio-set
   text-align: left
 
   .collection_radio
@@ -51,9 +53,6 @@ input[type="submit"]
     position: relative
     display: inline
     border: 10px solid blue
-
-.select_and_label
-  display: inline-block
 
 .simple_select
   width: 350px
@@ -200,6 +199,7 @@ label, .error
 .icon_action
   @extend .ui-button-icon-primary
   @extend .ui-icon
+  @extend .ui-button-icon
 
 .icon_action_show
   @extend .icon_action

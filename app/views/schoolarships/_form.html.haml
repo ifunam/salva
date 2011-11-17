@@ -1,7 +1,7 @@
-%div{ :class => 'span-7 section_left last' } 
-  %div{:class => 'span-7 last'}
-    = f.input :name, :as => :string, :html_input => { :size => '60' }
+.dialog-section-with-border-and-bg
+  .row
+    = f.input :name, :as => :string, :input_html => { :size => 38, :required => true }
 
-  %div{:class => 'span-7 last'}
-    = f.label :institution
-    = f.collection_select :institution_id, Institution.for_schoolarships, :id, :name_and_parent_abbrev, {:class => 'autocompleted_select'}
+  .row
+    = f.label :institution, :required => true
+    = f.collection_select :institution_id, Institution.for_schoolarships, :id, :name_and_parent_abbrev, {:prompt =>true}, {:class => 'chosen-select'}

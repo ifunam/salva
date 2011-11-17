@@ -9,7 +9,7 @@
     = render :partial => 'careers/form', :locals => { :f => c}
 
   %div{:class=> 'span-21 section_left push-1 last'}
-    = f.association :thesismodality, :as => :radio, :wrapper_class => 'span-10 radio_set'
+    = f.association :thesismodality, :as => :radio, :wrapper_class => 'span-10 radio-set'
     = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-5', :required => true
     %div{:class => 'span-5 last'}
       = f.label :endmonth, :required => true

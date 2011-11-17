@@ -3,6 +3,7 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
+<<<<<<< HEAD
     #institution.span-6.last{'data-controller-name' => 'institutions'}
       = f.label :institution, :required => true
       = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
@@ -10,4 +11,20 @@
     .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
     .span-4.last= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
 
+=======
+    #institution.span-10.last
+      = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar institución', new_institution_path
+
+  .row
+    .span-2= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-6.last
+      = f.label :startmonth, :required => true
+      = select_month(Date.today, {:field_name => 'startmonth', :prefix => 'membership'}, :class => 'chosen-select')
+  .row
+    .span-2= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-8.last
+      = f.label :endmonth
+      = select_month(Date.today, {:field_name => 'endmonth', :prefix => 'membership'}, :class => 'chosen-select')
+>>>>>>> d848a5bd1c0cb723e27ddcbb05f933712aa9b0ae
 

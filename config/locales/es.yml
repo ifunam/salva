@@ -1398,7 +1398,7 @@ es:
   passwords:
     edit:
       title: Cambiar contraseña
-
+                       cp
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
