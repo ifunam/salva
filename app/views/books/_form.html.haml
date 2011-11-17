@@ -6,6 +6,6 @@
 = f.association :language, :collection => Language.all, :wrapper_class => 'span-5 last', :required => true
 
 %div{:class => 'span-22 last'}
-  = f.association :booktype, :as => :radio, :wrapper_class => 'span-12 radio_set'
+  = f.association :booktype, :as => :radio, :wrapper_class => 'span-12 radio-set'
   = f.input :booklink, :as => :string, :input_html => { :size => 75 }, :wrapper_class => 'span-10 last'
 

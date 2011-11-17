@@ -2,7 +2,7 @@
   .span-18.last
     %b='Grado y carrera'
   .span-10
-    = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'radio_set'
+    = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'radio-set'
   .span-6.last
     = f.input :name, :as => :string, :input_html => { :size => 40, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}
 

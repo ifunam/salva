@@ -2,7 +2,7 @@
   = render :partial => "/shared/errors", :object => f.object.errors
   %div{:class=> 'span-21 section_left push-1 last'}
     = f.input :title, :as => :string, :input_html => {:size => 50}, :wrapper_class => 'span-10'
-    = f.association :modality, :as => :radio, :wrapper_class => 'span-11 radio_set last'
+    = f.association :modality, :as => :radio, :wrapper_class => 'span-11 radio-set last'
 
   - f.object.academicprogram = Academicprogram.new if f.object.academicprogram.nil?
   = f.simple_fields_for :academicprogram, f.object.academicprogram do |a_form|

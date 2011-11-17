@@ -8,7 +8,7 @@
     = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record' 
 
   %div{:class => 'span-12 last'}
-    = f.association :refereed_criterium, :as => :radio, :collection => RefereedCriterium.all, :wrapper_class => 'span-22 radio_set last'
+    = f.association :refereed_criterium, :as => :radio, :collection => RefereedCriterium.all, :wrapper_class => 'span-22 radio-set last'
 
   %div{:class => 'span-22 last'}
     = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-4', :required => true

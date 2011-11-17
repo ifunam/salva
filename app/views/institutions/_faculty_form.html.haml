@@ -11,7 +11,7 @@
 
 .row
   .span-8
-    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :wrapper_class => 'span-8 radio_set last'
+    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :wrapper_class => 'span-8 radio-set last'
   .span-5
     = f.label :institutiontitle_id, :required => true
     = f.collection_select :institutiontitle_id, Institutiontitle.all, :id, :name, {:prompt => true, :selected => 2, :required => true}, :class => 'chosen-select'
