@@ -4,12 +4,11 @@
 
   .row
     .span-9
-      = f.input :descr, :as => :text, :input_html => { :size => '40x2' }
+      = f.input :descr, :as => :text, :input_html => { :size => '60x2' }
     .span-9.last
-      #institution.span-18.last{'data-controller-name' => 'institutions'}
-      = f.label :institution, :required => true
-      = f.select :institution_id, [], {:prompt => true}, {:class => 'chosen-select'}
-      = link_to_new_record 'Agregar institución', '#'
+      #institution
+      = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar institución', new_institution_path
   .row
     .span-3
       = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
