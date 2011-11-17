@@ -1,15 +1,24 @@
 @import "blueprint"
 @import "start-jquery-ui"
+
 .row
   @extend .span-18
   @extend .last
   margin-bottom: 10px
+
   .wrapper
     @extend .span-5
+
   strong
     font: 13px Arial,sans-serif
     font-weight: bold
     text-align: justify
+
+  .new_record
+    vertical-align: middle
+    margin-top: 20px
+    margin-left: 3px
+    @extend .ui-state-default
 
 .ui-autocomplete-loading
   background: white url("loading_indicator.gif") right center no-repeat

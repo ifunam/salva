@@ -1,10 +1,10 @@
 .section-with-border-and-bg
   .row
     = render :partial => "/shared/errors", :object => f.object.errors
-
-  #skilltype.row
-    = f.association :skilltype, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
-    = link_to_new_record 'Agregar una skill', new_skilltype_path
+  .row
+    #skilltype
+      = f.association :skilltype, :using => :name, :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar una skill', new_skilltype_path
 
   .row
     .span-8.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }

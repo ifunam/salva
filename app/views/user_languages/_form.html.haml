@@ -3,14 +3,13 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    #language.span-8{'data-controller-name' => 'languages'}
-      = f.association :language, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
-      = link_to_new_record 'Agregar idioma', '#'
+    #language.span-8
+      = f.association :language, :using => :name, :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar idioma', new_language_path
 
-    #institution.span-10.last{'data-controller-name' => 'institutions'}
-      = f.label :institution, :required => true
-      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-      = link_to_new_record 'Agregar institución', '#'
+    #institution.span-10.last
+      = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar institución', new_institution_path
 
   .row
     .span-8
