@@ -79,12 +79,22 @@ module ApplicationHelper
     if can_current_user_delete?(record)
       link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete,
                      :confirm => t(:delete_confirm_question)
+    else
+      image_tag "locked.png", :title => 'Registro blockeado'
     end
   end
 
   def link_to_new_record(title, resource_path)
     link_to_action 'icon_action_new_record', title, '#', :class => 'new_record',
                    'data-remote-resource' => resource_path
+  end
+
+  def link_to_add_author(title, resource_path)
+    link_to_action 'icon_action_add_author', title, resource_path
+  end
+
+  def link_to_del_author(title, resource_path)
+      link_to_action 'icon_action_del_author', title, resource_path
   end
 
   def checkbox_to_delete(record)
