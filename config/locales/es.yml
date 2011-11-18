@@ -17,6 +17,8 @@ es:
         author_name: Autor
         homepage: Pagina Web
         calendar: Calendario
+        current_password: Contraseña actual
+        password_confirmation: Confirmación de la nueva contraseña
       user_group:
         group: Grupo
       person:
@@ -78,6 +80,60 @@ es:
       user_skill:
         skilltype: Tipo
         descr: Descripción
+        descr_en: Descripción en inglés
+      jobposition:
+        category: Categoría
+        contracttype_id: Tipo de Contrato
+        contracttype: Tipo de Contrato
+        institution: Institución
+        start_date: Año de inicio
+        end_date: Año de término
+        adscription: Adscripción
+      jobposition_log:
+        worker_key: Id. de trabajador
+        worker_number: Numero de trabajador
+        academic_years: Años de antiguedad académica
+        administrative_years: Años de antiguedad administrativa
+      education:
+        career: Nombre de la carrera
+        institution: Facultad o escuela
+        institution: Facultad o escuela
+        name: nomnbre
+        startyear: Año de inicio
+        endyear: Año de conclusión
+        is_studying_this:  ¿Está cursando este grado?
+        is_titleholder: ¿Titulado?
+      career:
+        degree: Grado
+        name: Nombre de la carrera
+      institution:
+        institutiontype:  Tipo de institución
+        institutiontitle_id: Titulo de la institución
+        country: País
+      user_stimulus:
+        stimuluslevel: Tipo de estímulo y nivel
+        startyear: Año de inicio
+        endyear: Año de conclusión
+        startmonth: Mes de inicio
+        endmonth: Mes de conclusión
+      user_schoolarship:
+        schoolarship: Institución
+        descr: Beca
+        start_date: Fecha de inicio
+        end_date: Fecha de conclusión
+        amount: Monto
+      membership:
+        institution: Institución
+        startyear: Año de inicio
+        endyear: Año de conclusión
+      user_credit:
+        credittype: Tipo
+        descr: Descripción
+        month: Mes
+        year: Año
+        other: Información adicional
+
+
 
 
   academic_secretary:
@@ -553,6 +609,7 @@ es:
   user_languages:
     index:
       title: 'Idiomas'
+      languages: Idioma
     new:
       title: 'Nuevo idioma'
     edit:
@@ -563,6 +620,7 @@ es:
   user_skills:
     index:
       title: 'Habilidades y técnicas experimentales'
+      skills: Habilidad/técnica expermiental
     new:
       title: 'Nueva habilidad o técnica'
     edit:
@@ -573,6 +631,7 @@ es:
   user_schoolarships:
     index:
       title: 'Becas'
+      user_schoolarships: Becas
     new:
       title: 'Nueva beca'
     edit:
@@ -603,6 +662,7 @@ es:
   institutional_activities:
     index:
       title: 'Participación institucional'
+      institutional_activities: Actividad
     new:
       title: 'Nueva participación institucional'
     edit:
@@ -633,6 +693,7 @@ es:
   user_credits:
     index:
       title: 'Agradecimientos y otros créditos'
+      credits: Agradecimientos/Créditos
     new:
       title: 'Nueva agradecimiento'
     edit:
@@ -1146,6 +1207,7 @@ es:
       title: 'Membresía en asociación académica'
     index:
       title: 'Membresias en asociaciones académicas'
+      memberships: Membresias
     new:
       title: 'Nueva membresía en asociación académica'
     edit:
@@ -1156,6 +1218,7 @@ es:
       title: 'Premio recibido'
     index:
       title: 'Premios recibidos'
+      user_prizes: Premios
     new:
       title: 'Nuevo premio recibido'
     edit:
@@ -1172,6 +1235,7 @@ es:
       title: 'Categoría'
     index:
       title: 'Categorías'
+      jobpositions: 'Categorías'
     new:
       title: 'Nuevo categoría'
     edit:
@@ -1331,6 +1395,10 @@ es:
     new:
       title: 'Nuevo tipo de habilidad o técnica'
 
+  passwords:
+    edit:
+      title: Cambiar contraseña
+                       cp
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'

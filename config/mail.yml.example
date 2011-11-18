@@ -1,5 +1,0 @@
-:enable_starttls_auto: false
-:address: smptserver.domain.com
-:port: 25
-:domain: domain.com
-:location: /usr/sbin/sendmail

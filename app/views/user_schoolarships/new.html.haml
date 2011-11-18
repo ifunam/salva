@@ -1,5 +1,5 @@
 %h3= t('.title')
-= simple_form_for @user_schoolarship, :url => user_schoolarships_path do |f|
+= simple_form_for @user_schoolarship,  :name_key =>:user_schoolarship, :url => user_schoolarships_path do |f|
   = render :partial => 'form', :locals => { :f => f }
   #submit_buttons
     = f.submit  t(:save)

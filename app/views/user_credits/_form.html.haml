@@ -3,14 +3,25 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
+<<<<<<< HEAD
+    #credittype.span-6{'data-controller-name' => 'credittypes'}
+      = f.association :credittype, :using => :name, :input_html  => {:class => 'chosen-select select_and_label'}
+      = link_to_new_record 'Agregar tipo de agradecimiento', '#'
+    .span-12.last= f.input :descr, :as => :text, :input_html => { :size => '60x2' }
+=======
     #credittype.span-8
       = f.association :credittype, :using => :name, :input_html  => {:class => 'chosen-select ', :prompt => true, :required => true}
       = link_to_new_record 'Agregar tipo de agradecimiento', new_credittype_path
     .span-10.last= f.input :descr, :as => :text, :input_html => { :size => '70x2' }
+>>>>>>> d848a5bd1c0cb723e27ddcbb05f933712aa9b0ae
 
   .row
     .span-2= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+<<<<<<< HEAD
+    .span-10.last= f.input :other, :as => :text, :input_html => { :size => '60x2' }
+=======
     .span-6
       = f.label :month, :required => true
       = select_month_for 'month', 'user_credit'
     .span-10.last= f.input :other, :as => :text, :input_html => { :size => '70x2' }
+>>>>>>> d848a5bd1c0cb723e27ddcbb05f933712aa9b0ae
