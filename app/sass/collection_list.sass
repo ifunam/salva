@@ -4,8 +4,6 @@
 .row
   @extend .span-18
   @extend .last
-  margin-bottom: 10px
-
   .wrapper
     @extend .span-5
 
@@ -19,6 +17,29 @@
     margin-top: 20px
     margin-left: 3px
     @extend .ui-state-default
+
+.record
+  padding-top: 8px
+  padding-bottom: 8px
+  min-height: 60px
+  border-bottom: 1px solid silver
+  vertical-align: middle
+
+.record-odd
+  @extend .record
+  background-color: #fff
+  color: #585858
+
+.record-odd:hover
+  background-color: #CEF6CE
+
+.record-even
+  @extend .record
+  background: #EFF5FB
+  color: #585858
+
+.record-even:hover
+  background-color: #CEF6CE
 
 .ui-autocomplete-loading
   background: white url("loading_indicator.gif") right center no-repeat
@@ -35,32 +56,6 @@
 
 .ui-progressbar-value
   background-image: url(pbar-ani.gif)
-
-#collection
-  a
-    color: #6E6E6E
-    font-size: 10px
-  a:hover
-    color: green
-
-  .button
-    padding: 0.15em 0.6em
-    margin: .7em 0 0 0
-    margin-left: 5px
-    background: #fff
-
-  .green_button
-    background: #93b206
-    color: #fff
-    font-size: 11px
-    padding: 0.45em 0.25em 0.45em 0.25em
-    text-decoration: none
-
-#zero_associated_records
-  float: right
-
-#associated_records
-  float: right
 
 .author_list
   -moz-border-radius: 5px 0 5px 5px
@@ -136,22 +131,7 @@
   border-bottom: 1px solid #30a3d7
   text-align: justify
   padding-left: 3px
-  .record
-    @extend .span-18
-    @extend .last
-    margin-top: 10px
-    margin-bottom: 5px
-
-  .record-odd
-    @extend .record
-    background-color: #fff
-    color: #585858
-    border-bottom: 1px solid silver
-  .record-even
-    @extend .record
-    background: #EFF5FB
-    color: #585858
-    border-bottom: 1px solid silver
+  min-height: 60px
 
 #collection_footer
   @extend .ui-widget-header
