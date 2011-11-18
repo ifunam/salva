@@ -1,3 +1,4 @@
+.row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
 - if record.has_user_id?(current_user.id)
   = render :partial => 'associated', :locals => { :record => record }
 - else
