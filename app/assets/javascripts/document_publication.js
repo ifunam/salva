@@ -11,14 +11,15 @@ $(document).ready(function() {
 
     $(".chosen-select").chosen();
 
-    $("td.add_or_delete_author a").live("click", function() {
-        dom_id = this.getAttribute('data-parent-id');
-        var html = response_from_remote_resource(this.href);
-        $("#"+dom_id).replaceWith(html);
+    $(".author_action a").live("click", function() {
+        var href = $(this).attr("data-remote-resource");
+        var html = $.response_from_remote_resource(href);
+        $(this).parent().parent().replaceWith(html);
         return false;
     });
 
     $("ul.add_or_delete_author a").live("click", function() {
+        var href = $(this).attr("data-remote-resource");
         dom_id = this.getAttribute('data-parent-id');
         var html = response_from_remote_resource(this.href);
         $("#"+dom_id).replaceWith(html);

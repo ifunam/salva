@@ -90,11 +90,11 @@ module ApplicationHelper
   end
 
   def link_to_add_author(title, resource_path)
-    link_to_action 'icon_action_add_author', title, resource_path
+    link_to_action 'icon_action_add_author', title, "#", 'data-remote-resource' => resource_path
   end
 
   def link_to_del_author(title, resource_path)
-      link_to_action 'icon_action_del_author', title, resource_path
+      link_to_action 'icon_action_del_author', title, "#", 'data-remote-resource' => resource_path
   end
 
   def checkbox_to_delete(record)
