@@ -7,14 +7,7 @@
 
 = render :partial => 'search_form'
 
-#collection_header
-  .span-1="Id"
-  .span-6=t('.title')
-  .action='*'
-  .action='*'
-  .action=t(:show)
-  .action=t(:edit)
-  .action.last=t(:del)
+= render :partial => 'collection_header'
 
 #collection_records
   = render :partial => 'record', :collection => @conferences
