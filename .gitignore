@@ -67,7 +67,7 @@ app/assets/stylesheets/start-jquery-ui.css
 app/assets/stylesheets/user_menu.css
 app/assets/stylesheets/user_resources.css
 app/assets/stylesheets/web_site.css
-app/assets/stylesheets/publication.css
+app/assets/stylesheets/publications.css
 app/assets/javascripts/base.js
 app/assets/javascripts/collection.js
 app/assets/javascripts/document.js
