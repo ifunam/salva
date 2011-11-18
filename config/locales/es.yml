@@ -1,4 +1,5 @@
 es:
+
   descr: Descripción
   activerecord:
     models:
@@ -9,8 +10,8 @@ es:
     attributes:
       user:
         login: Usuario
-        password: Contraseña
-        password_confirmation: Confirmación de la contraseña
+        password: Nueva contraseña
+        password_confirmation: Confirmación de la nueva contraseña
         userstatus: Estado
         email: Correo electrónico
         user_incharge: Responsable académico
@@ -18,9 +19,9 @@ es:
         homepage: Pagina Web
         calendar: Calendario
         current_password: Contraseña actual
-        password_confirmation: Confirmación de la nueva contraseña
       user_group:
         group: Grupo
+
       person:
         firstname: Nombre(s)
         lastname1: Apellido paterno
@@ -87,8 +88,9 @@ es:
         contracttype: Tipo de Contrato
         institution: Institución
         start_date: Año de inicio
-        end_date: Año de término
+        end_date: Año de conclusión
         adscription: Adscripción
+        descr: Descripción
       jobposition_log:
         worker_key: Id. de trabajador
         worker_number: Numero de trabajador
@@ -110,6 +112,8 @@ es:
         institutiontype:  Tipo de institución
         institutiontitle_id: Titulo de la institución
         country: País
+        name: Nombre
+        institution: Institución
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
         startyear: Año de inicio
@@ -117,8 +121,8 @@ es:
         startmonth: Mes de inicio
         endmonth: Mes de conclusión
       user_schoolarship:
-        schoolarship: Institución
-        descr: Beca
+        schoolarship: Beca
+        descr: Descripción
         start_date: Fecha de inicio
         end_date: Fecha de conclusión
         amount: Monto
@@ -126,6 +130,8 @@ es:
         institution: Institución
         startyear: Año de inicio
         endyear: Año de conclusión
+        startmonth: Mes de inicio
+        endmonth: Mes de conclusión
       user_credit:
         credittype: Tipo
         descr: Descripción
@@ -786,6 +792,7 @@ es:
   user_stimuli:
     index:
       title: 'Estímulos académicos'
+      stimulus: Estímulo
     new:
       title: 'Nuevo estímulo'
     edit:
@@ -1207,7 +1214,7 @@ es:
       title: 'Membresía en asociación académica'
     index:
       title: 'Membresias en asociaciones académicas'
-      memberships: Membresias
+      memberships: Membresía
     new:
       title: 'Nueva membresía en asociación académica'
     edit:
@@ -1246,6 +1253,7 @@ es:
       title: 'Escolaridad'
     index:
       title: 'Escolaridad'
+      education: Escolaridad
     new:
       title: 'Nuevo grado'
     edit:
@@ -1398,7 +1406,7 @@ es:
   passwords:
     edit:
       title: Cambiar contraseña
-                       cp
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -1638,6 +1646,9 @@ es:
   conferencescope: 'Ámbito'
   organized_by: 'Organizado por'
   refereed_criterium: 'Criterio'
+  prizetype: Tipo
+  homepage: Página personal
+  calendar: Calendario
 
   reporter:
     profile: 'Perfil'

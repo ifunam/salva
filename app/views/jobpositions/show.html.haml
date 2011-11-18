@@ -3,7 +3,7 @@
   = show_for @jobposition do |u|
     .row
       .span-10
-        %label Category
+        %label= u.label :category
         = @jobposition.category_name
       = u.association :contracttype, :using => :name, :wrapper_html => {:class => 'span-8 last'}
     .row
@@ -12,10 +12,10 @@
       = u.attribute :end_date
     .row
       .span-6
-        %label Adscription
+        %label= u.label :adscription
         = @jobposition.user_adscription.adscription.name
       .span-12.last
-        %label Description
+        %label=u.label :descr
         = @jobposition.user_adscription.descr
 
     .row
