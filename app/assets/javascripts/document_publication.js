@@ -1,8 +1,14 @@
 $(document).ready(function() {
-    $(".associated_authors a").live("click", function() {
-        $("#associated_authors_"+this.id).after(response_from_simple_remote_resource(this.href));
+    $(".associated_authors a.icon_action_user_list").live("click", function() {
+        var href = $(this).attr("data-remote-resource");
+        $(this).after($.response_from_simple_remote_resource(href));
         return false;
     });
+
+    $(".icon_action_close_author_list").live("click", function() {
+       $(this).parent().parent().parent().remove();
+    });
+
     $(".chosen-select").chosen();
 
     $("td.add_or_delete_author a").live("click", function() {
@@ -61,12 +67,6 @@ $(document).ready(function() {
         });
     });
 
-    $(".autocompleted_select").autocomplete_select();
-
-    $('#autocomplete_filter_journal_name').live('focus', function(){
-        filter_by_journal_name();
-    });
-
     $("#new_checkbox").live('click', function() {
         dialog_for_new_checkbox(this.parentNode.getAttribute('data-controller-name'));
     });
@@ -92,9 +92,8 @@ $(document).ready(function() {
     });
 
     current_year = new Date().getFullYear();
-    date_picker_for('.date', (current_year -20), current_year);
+    $.date_picker_for('.date', (current_year -20), current_year);
 
-    $(".autocompleted_text" ).autocompleted_text();
 
     $("#new_period").live('click', function() {
        dialog_for_new_period(this.href);
@@ -111,7 +110,7 @@ $(document).ready(function() {
     $('.delete_regularcourse_period').live('click', function() {
       $('#'+this.id).remove();
     });
-    set_button_behaviour();
+    $.set_button_behaviour();
 });
 
 function dialog_for_new_record(controller) {

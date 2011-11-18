@@ -11,4 +11,7 @@ class Userconference < ActiveRecord::Base
   belongs_to :roleinconference
   belongs_to :user
 
+  def author_with_role
+    [user.author_name, "(#{roleinconference.name})"].join(" ")
+  end
 end

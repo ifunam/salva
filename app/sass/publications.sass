@@ -54,6 +54,11 @@
     @extend .ui-icon
     @extend .ui-icon-triangle-1-s
 
+  .icon_action_close_author_list
+    @extend .icon_action
+    @extend .ui-icon-close
+    float: right
+
 .associated_record_indicator
   border: 0
   float: right
@@ -70,3 +75,34 @@
   @extend .span-1
   text-align: center
   vertical-align: middle
+
+.author_list
+  @extend .ui-widget
+  @extend .ui-widget-content
+  @extend .ui-corner-all
+  -moz-border-radius: 5px 0 5px 5px
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3)
+  background: none repeat scroll 0 0 #FFFFFF
+  border: 5px solid #CCCCCC
+  line-height: 16px
+  margin: 0
+  padding: 8px
+  position: absolute
+  text-align: left
+  //width: 180px
+  margin-right: 180px
+  z-index: 100
+
+  b
+    color: #0088BB
+    width: 200px
+    border-bottom: 1px solid silver
+    padding-bottom: 3px
+    display: inline-block
+
+  ul
+    margin-top: 15px
+    width: 240px
+
+    li
+      color: green

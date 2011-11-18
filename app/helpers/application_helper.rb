@@ -121,6 +121,10 @@ module ApplicationHelper
     link_to '', '#', :title =>t(:author_list), 'data-remote-resource' => resource_path, :class => 'icon_action_user_list'
   end
 
+  def link_to_close_author_list
+    link_to_action 'icon_action_close_author_list', 'Cerrar', '#'
+  end
+
   def user_role(record, user_role_class, user_id, foreign_key=nil)
     foreign_key ||= record.class.to_s.foreign_key
     role_class = user_role_class.to_s.classify.constantize
