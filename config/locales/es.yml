@@ -16,7 +16,7 @@ es:
         email: Correo electrónico
         user_incharge: Responsable académico
         author_name: Autor
-        homepage: Pagina Web
+        homepage: Página Web
         calendar: Calendario
         current_password: Contraseña actual
       user_group:
