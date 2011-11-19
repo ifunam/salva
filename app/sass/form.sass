@@ -216,3 +216,14 @@ label, .error
 .icon_action_new_record
   @extend .icon_action
   @extend .ui-icon-plus
+
+#dialog_submit_buttons
+  input[type="submit"]
+    @extend .ui-state-default
+    @extend .ui-corner-all
+    @extend .button
+    margin-right: 10px
+
+  input[type="submit"]:hover
+    @extend .ui-state-hover
+    @extend .ui-state-active

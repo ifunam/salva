@@ -1,5 +1,5 @@
 %h3=t('.title')
 = simple_form_for(@institution, :remote => true, :html => {:id => 'new_record_form', 'data-class-name' => 'institution'}) do |f|
   = render :partial => 'form', :locals => { :f => f}
-  #submit_buttons
+  #dialog_submit_buttons
     = f.submit t(:save), :confirm => t(:new_record_confirmation)
