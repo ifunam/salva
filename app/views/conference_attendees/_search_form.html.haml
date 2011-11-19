@@ -2,15 +2,13 @@
   .span-2=t(:name)
   .span-6=t(:conferencetype)
   .span-6=t(:conferencescope)
-  .span-2=t(:startyear)
-  .span-2.last=t(:startyear)
-
+  .span-2=t(:year)
+  .span-2.last
 
   .span-2= f.text_field :name_like_ignore_case, :size => 7
   .span-6= f.collection_select :conferencetype_id_eq, Conferencetype.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
   .span-6= f.collection_select :conferencescope_id_eq, Conferencescope.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
-  .span-2= f.text_field :startyear_eq, :size => 4
-  .span-2.last= f.text_field :endyear_eq, :size => 4
+  .span-2= f.text_field :year_eq, :size => 4
 
   .span-5.prepend-13.last
     .search_button= link_to t(:search), "#", :id => "search_button"

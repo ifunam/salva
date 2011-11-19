@@ -89,6 +89,22 @@ jQuery.extend
     responseData = $.response_from_simple_remote_resource(controller + ".js")
     $("div#dialog").html responseData
 
+  dialog_for_new_checkbox: (controller) ->
+    remote_resource = '/' + controller + '/new'
+    $.dialog_for_new_record(remote_resource)
+    $('#new_record_form').attr('id', "new_checkbox_form")
+
+
+  change_record: (class_name) ->
+    $('#autocomplete_'+class_name+'_name').removeAttr("disabled")
+    $('#autocomplete_'+class_name+'_name').val('')
+    $('#change_'+class_name).hide()
+
+  dialog_for_new_period: (url) ->
+    $('#dialog').dialog({title:'Nuevo periodo', width: 480, height: 420}).dialog('open')
+    responseData = response_from_simple_remote_resource(url)
+    $("div#dialog").html(responseData);
+
   destroy_selected_records: (record_ids, dom_ids) ->
     $.ajax
       url: $("#filter_form").attr("action") + "/destroy_all.js"

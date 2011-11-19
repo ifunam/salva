@@ -90,11 +90,11 @@ module ApplicationHelper
   end
 
   def link_to_add_author(title, resource_path)
-    link_to_action 'icon_action_add_author', title, resource_path
+    link_to_action 'icon_action_add_author', title, "#", 'data-remote-resource' => resource_path
   end
 
   def link_to_del_author(title, resource_path)
-      link_to_action 'icon_action_del_author', title, resource_path
+      link_to_action 'icon_action_del_author', title, "#", 'data-remote-resource' => resource_path
   end
 
   def checkbox_to_delete(record)
@@ -117,8 +117,12 @@ module ApplicationHelper
      record.registered_by_id == current_user.id 
   end
 
-  def link_to_user_list(record, url)
-    link_to content_tag(:span, '', {:class =>'ui-icon ui-icon-triangle-1-s' }), url, :remote => true, :id => dom_id(record), :title =>  t(:author_list)
+  def link_to_user_list(resource_path)
+    link_to '', '#', :title =>t(:author_list), 'data-remote-resource' => resource_path, :class => 'icon_action_user_list'
+  end
+
+  def link_to_close_author_list
+    link_to_action 'icon_action_close_author_list', 'Cerrar', '#'
   end
 
   def user_role(record, user_role_class, user_id, foreign_key=nil)

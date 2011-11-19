@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source :rubygems
 
-gem "rails", "3.1.1"
+gem "rails", "3.1.2"
 gem "haml", "3.1.3"
 gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"

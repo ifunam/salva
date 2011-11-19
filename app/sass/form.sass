@@ -217,10 +217,13 @@ label, .error
   @extend .icon_action
   @extend .ui-icon-plus
 
-.icon_action_add_author
-  @extend .icon_action
-  @extend .ui-icon-plus
+#dialog_submit_buttons
+  input[type="submit"]
+    @extend .ui-state-default
+    @extend .ui-corner-all
+    @extend .button
+    margin-right: 10px
 
-.icon_action_del_author
-  @extend .icon_action
-  @extend .ui-icon-minus
+  input[type="submit"]:hover
+    @extend .ui-state-hover
+    @extend .ui-state-active
