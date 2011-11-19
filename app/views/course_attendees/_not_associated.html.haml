@@ -6,7 +6,7 @@
   .authors_size= record.users.size
   = link_to_user_list user_list_course_attendee_path(:id => record.id, :format => 'js')
 .author_action
-  = link_to_del_author t(:del_attendee), add_user_course_attendee_path(:id => record.id, :roleincourse_id => 2, :format => :js)
+  = link_to_add_author t(:add_attendee), add_user_course_attendee_path(:id => record.id, :roleincourse_id => 2, :format => :js)
 .action
   = link_to_show course_attendee_path(:id => record.id)
 .action
