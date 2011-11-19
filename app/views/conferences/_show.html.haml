@@ -1,21 +1,21 @@
 = show_for conference do |u|
-  .row
-    .span-18.last= u.attribute :name
-  .row
-    .span-6= u.association :conferencetype, :using => :name
-    .span-8.last= u.association :conferencescope, :using => :name
+  .span-18.last= u.attribute :name
+
+  .span-6= u.association :conferencetype, :using => :name
+  .span-12.last= u.association :conferencescope, :using => :name
+
   .row
     .span-6= u.association :country, :using => :name
     .span-2= u.attribute :year
     .span-6.last= u.attribute :month
-  .row
-    .span-6.last= u.attribute :location,  :wrapper_html => {:class => 'span-18 last'}
 
-  .row
+  .span-18.last= u.attribute :location,  :wrapper_html => {:class => 'span-18 last'}
+
+  .span-18.last
     = u.association :userconferences, :collection_tag => :ol do |record|
       %li= record.author_with_role
 
-  .row
+  .span-18.last
     = u.association :conference_institutions, :collection_tag => :ol do |record|
       %li= record.institution.name_and_parent_abbrev
 

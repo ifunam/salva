@@ -1,6 +1,9 @@
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
   = render :partial => '/courses/form', :locals => { :f => f }
+
   -  @user_courses = user_role(@course, :user_courses, current_user.id)
   = f.simple_fields_for :user_courses, @user_courses do |uc|
     - unless f.object.new_record?

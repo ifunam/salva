@@ -1,9 +1,11 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('course_attendees.show.title')
+
+%h3= t('course_attendees.show.title')
+.section-with-border-and-bg
+
   = render :partial => 'courses/show', :locals => { :course => @course}
   = render :partial => 'shared/record', :object => @course
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_course_attendee_path(:id => @course.id)
-  = link_as_button t(:back), course_attendees_path
+#submit_buttons
+  = link_to t(:edit), edit_course_attendee_path(:id => @course.id)
+  = link_to t(:back), course_attendees_path
 

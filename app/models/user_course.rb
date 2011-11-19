@@ -7,4 +7,8 @@ class UserCourse < ActiveRecord::Base
   belongs_to :course
   belongs_to :coursegroup
   belongs_to :roleincourse
+
+  def author_with_role
+    [user.author_name, "(#{roleincourse.name})"].join(' ')
+  end
 end
