@@ -10,7 +10,7 @@ es:
     attributes:
       user:
         login: Usuario
-        password: Nueva contraseña
+        password: Contraseña
         password_confirmation: Confirmación de la nueva contraseña
         userstatus: Estado
         email: Correo electrónico
