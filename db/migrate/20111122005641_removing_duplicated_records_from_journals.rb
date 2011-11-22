@@ -10,10 +10,10 @@ class RemovingDuplicatedRecordsFromJournals < ActiveRecord::Migration
 
     associations = Journal.associations_to_move.collect { |association| association.name }
 
-    sql = "SELECT name FROM Journals as i GROUP BY name HAVING ( COUNT(name) > 1)"
+    sql = "SELECT UPPER(name) as name FROM Journals as j GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Journal.find_by_sql(sql).each do |record|
       puts "== Removing duplicated #{record.name} in Journals =="
-      duplicated_records = Journal.where(:name  => record.name).order("created_on ASC").all
+      duplicated_records = Journal.find_by_sql("SELECT * FROM journals WHERE UPPER(name) = UPPER('#{record.name}') ORDER BY created_on ASC")
       first_record = duplicated_records.shift
       duplicated_records.each do |dup_record|
         associations.each do |association_name|

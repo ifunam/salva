@@ -13,10 +13,10 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
 
     execute "ALTER TABLE institutioncareers DROP CONSTRAINT institutioncareers_institution_id_key"
 
-    sql = "SELECT name FROM institutions as i GROUP BY name HAVING ( COUNT(name) > 1)"
+    sql = "SELECT UPPER(name) as name FROM institutions as i GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Institution.find_by_sql(sql).each do |record|
       puts "== Removing duplicated #{record.name} in Institutions =="
-      duplicated_records = Institution.where(:name  => record.name).order("created_on ASC").all
+      duplicated_records = Institution.find_by_sql("SELECT * FROM institutions WHERE UPPER(name) = UPPER('#{record.name}') ORDER BY created_on ASC")
       first_record = duplicated_records.shift
       duplicated_records.each do |dup_record|
         associations.each do |association_name|
