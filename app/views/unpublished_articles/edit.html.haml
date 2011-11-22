@@ -1,6 +1,6 @@
 %h3= t('.title')
-= simple_form_for @article, :article, :url => unpublished_article_path, :html => { :multipart => true, :id => 'record'} do |f|
+= simple_form_for @article, :as => :article, :url => unpublished_article_path do |f|
   = render :partial => 'form', :locals => { :f => f }
-  %div{ :class => 'span-24 buttons_left last' }
-    = f.submit  t(:update), :class => "ui-state-default ui-corner-all button"
-    = link_as_button t(:cancel), unpublished_articles_path
+  #submit_buttons
+    = f.submit  t(:update)
+    = link_to t(:cancel), unpublished_articles_path

@@ -6,8 +6,7 @@ $(document).ready ->
   
   $(".icon_action_close_author_list").live "click", ->
     $(this).parent().parent().parent().remove()
-  
-  $(".chosen-select").chosen()
+
   $(".author_action a").live "click", ->
     href = $(this).attr("data-remote-resource")
     html = $.response_from_remote_resource(href)

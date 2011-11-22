@@ -1,3 +1,4 @@
+%h3=t('.title')
 = simple_form_for(@journal, :remote => true, :html => {:id => 'new_record_form', 'data-class-name' => 'journal'}) do |f|
   = render :partial => 'form', :locals => { :f => f}
   #dialog_submit_buttons

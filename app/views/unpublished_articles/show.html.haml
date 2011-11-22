@@ -1,24 +1,40 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('unpublished_articles.show.title')
+%h3= t('unpublished_articles.show.title')
+.section-with-border-and-bg
+
   = show_for @article do |u|
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.association :journal, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-9= u.association :journal, :using => :name
+      .span-2= u.attribute :year
+      .span-4.last= u.attribute :month
 
-    = u.attribute :num, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :vol, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :pages, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :doi, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-5= u.attribute :num
+      .span-4= u.attribute :vol
+      .span-4= u.attribute :pages
+      .span-3.last= u.attribute :doi
 
-    = u.attribute :url, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :other, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :articlestatus, :using => :name, :wrapper_html => {:class => 'span-6 last'}
-  = render :partial => 'shared/record', :object => @article
+    .row
+      .span-9
+        - if @article.url.strip.empty?
+          %strong{:class=>'label'}= t(:url)
+          = link_to t(:url), @article.url, :target => '_blank'
+        - else
+          = u.attribute :url
+      .span-9.last= u.attribute :other
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_unpublished_article_path(:id => @article.id)
-  = link_as_button t(:back), unpublished_articles_path
+    .span-18.last
+      %b= t(:authors)
+      %ul
+        - @article.users.each do |record|
+          %li= record.author_name
 
+    .row
+      = render :partial => 'shared/record', :object => @article
+
+
+#submit_buttons
+  = link_to t(:edit), edit_unpublished_article_path(:id => @article.id)
+  = link_to t(:back), unpublished_articles_path

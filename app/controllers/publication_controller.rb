@@ -5,7 +5,7 @@ class PublicationController < InheritedResources::Base
   respond_to :js, :only => [:index, :not_mine, :user_list, :add_user, :del_user, :role_list]
 
   # Overwritting defaults method 
-  class_inheritable_accessor :user_role_class, :resource_class_scope, :role_class, :user_role_columns
+  class_attribute :user_role_class, :resource_class_scope, :role_class, :user_role_columns
 
   def self.defaults(options)
     [:user_role_class, :resource_class_scope, :role_class, :user_role_columns].each do |k|
