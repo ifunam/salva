@@ -1,25 +1,31 @@
-= render :partial => "/shared/errors", :object => f.object.errors
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-  %div{:class => 'span-12 ui-widget', :id => 'journal', 'data-controller-name'=>'journals' }
-    = f.label :journal, :required => true
-    = f.select :journal_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record'
+  .row
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x3' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x3' }
 
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'article')
+  .row
+    #journal.span-6.last
+      = f.association :journal, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar journal', new_journal_path
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'article'
 
-  = f.input :num, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6', :required => true
-  = f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6'
-  = f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6', :required => true
-  = f.input :doi, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }, :wrapper_class => 'span-6 last'
+  .row
+    .span-4= f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off", :required => true }
+    .span-4= f.input :num, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }
+    .span-4= f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off", :required => true  }
+    .span-6.last= f.input :doi, :as => :string, :input_html => { :size => '20', :autocomplete => "off" }
 
-  = f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }, :wrapper_class => 'span-12'
-  = f.input :other, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  .row
+    .span-9= f.input :url, :as => :string, :input_html => { :size => '50', :autocomplete => "off" }
+    .span-9.last= f.input :other, :as => :text, :input_html => { :size => '60x1' }
+
   = f.hidden_field :articlestatus_id, :value => 3
   - unless UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first.nil? 
     - @user_articles = UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first

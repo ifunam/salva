@@ -13,17 +13,7 @@ $(document).ready ->
     html = $.response_from_remote_resource(href)
     $(this).parent().parent().replaceWith html
     false
-  
-  $("#filter_reset_all").live "click", ->
-    document.forms["filter_form"].reset()
-    resource = $("#filter_form").attr("action") + ".js"
-    remote_collection_list resource
-    false
-  
-  $("#ajaxed_paginator a").live "click", ->
-    remote_collection_list @href
-    false
-  
+
   $("#new_checkbox").live "click", ->
     href = $(this).parent().attr("data-remote-resource")
     $.dialog_for_new_checkbox href
@@ -39,7 +29,7 @@ $(document).ready ->
       html = $(content).html().replace("-1", object.id).replace("template_string", object.name)
       $($("#" + class_name).find("ul")[0]).append html.replace(regexp, new_id)
       $("#dialog").dialog "close"
-  
+
   $("#new_period").live "click", ->
     $.dialog_for_new_period @href
   
@@ -51,11 +41,3 @@ $(document).ready ->
   
   $(".delete_regularcourse_period").live "click", ->
     $("#" + @id).remove()
-  
-  $(".chosen-select").live "focus change", ->
-    $(this).chosen()
-  
-  $(".chosen-select").chosen()
-  current_year = new Date().getFullYear()
-  $.date_picker_for ".date", (current_year - 20), current_year
-  $.set_button_behaviour()

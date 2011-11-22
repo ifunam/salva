@@ -4,4 +4,5 @@
 //= require collection
 //= require nested_form
 //= require place
+//= require document
 //= require document_publication

@@ -1,7 +1,6 @@
-%tbody{:id =>'collection'}
-  = render :partial => 'article', :collection => @articles
-  = render :partial => 'collection_footer'
-%tfoot{:id => 'paginator'}
-  %tr
-    %th
-      = will_paginate @articles, :id => 'ajaxed_paginator'
+#collection_records
+  = render :partial => @articles
+
+= render :partial => 'collection_footer'
+
+= will_paginate(@articles, :id => 'ajaxed_paginator')
