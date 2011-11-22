@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source :rubygems
 
-gem "rails", "3.1.2"
+gem "rails", "3.1.3"
 gem "haml", "3.1.3"
 gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"
@@ -40,7 +40,7 @@ gem "json", "~> 1.6.1"
 gem "coffee-script", "~> 2.2.0"
 gem "uglifier", "~> 1.0.4"
 gem "css_image_embedder", "~> 0.2.0"
-gem "sass-rails", "~> 3.1.4"
+gem "sass-rails", "~> 3.1.5"
 gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
 gem "move_associations", "0.0.4"
@@ -75,7 +75,7 @@ group :assets do
   gem "uglifier", "~> 1.0.4"
   gem "css_image_embedder", "~> 0.2.0"
   gem "therubyracer", "~> 0.9.9"
-  gem "sass-rails", "~> 3.1.4"
+  gem "sass-rails", "~> 3.1.5"
 end
 
 group :development do
