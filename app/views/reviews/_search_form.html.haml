@@ -1,0 +1,10 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-5=t(:reviewed_work_title)
+  .span-5=t(:published_on)
+  .span-8.last=t(:year)
+
+  .span-5= f.text_field :reviewed_work_title_like_ignore_case, :size => 15
+  .span-5= f.text_field :published_on_like_ignore_case, :size => 15
+  .span-3= f.text_field :year_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

@@ -757,7 +757,7 @@ es:
     edit:
       title: 'Modificar reseña'
     show:
-      title: 'Información reseña'
+      title: 'Información de reseña'
 
   student_advices:
     index:

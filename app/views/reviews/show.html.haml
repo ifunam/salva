@@ -1,21 +1,23 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('reviews.show.title')
+%h3= t('reviews.show.title')
+.section-with-border-and-bg
+
   = show_for @review do |u|
 
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.attribute :reviewed_work_title, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :reviewed_work_publication, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :reviewed_work_title
+    .span-9.last= u.attribute :reviewed_work_publication
 
-    = u.attribute :published_on, :wrapper_html => {:class => 'span-12 last'}
-    = u.attribute :year, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :wrapper_html => {:class => 'span-6 last'}
+    .span-9= u.attribute :published_on
+    .span-3= u.attribute :year
+    .span-6.last= u.attribute :month
 
-    = u.attribute :other, :wrapper_html => {:class => 'span-24 last'}
-  = render :partial => 'shared/record', :object => @review
+    .span-18.last= u.attribute :other
+  .row
+    = render :partial => 'shared/record', :object => @review
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_review_path(:id => @review.id)
-  = link_as_button t(:back), reviews_path
+#submit_buttons
+  = link_to t(:edit), edit_review_path(:id => @review.id)
+  = link_to t(:back), reviews_path
 

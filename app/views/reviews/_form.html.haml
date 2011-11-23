@@ -1,19 +1,25 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
-  - if f.object.new_record?
-    = f.input :authors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }, :wrapper_class => 'span-12', :required => true
-  - else
-    = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12', :required => true
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last', :required => true
+  .row
+    .span-9
+      - if f.object.new_record?
+        = f.input :authors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }, :required => true
+      - else
+        = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :required => true
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }, :required => true
 
-  = f.input :reviewed_work_title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12',  :required => true
-  = f.input :reviewed_work_publication, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  .row
+    .span-9= f.input :reviewed_work_title, :as => :text, :input_html => { :size => '60x1' }, :required => true
+    .span-9.last= f.input :reviewed_work_publication, :as => :text, :input_html => { :size => '60x1' }
 
-  = f.input :published_on, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12', :required => true
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'review')
+  .row
+    .span-9= f.input :published_on, :as => :text, :input_html => { :size => '60x1' }, :required => true
+    .span-3= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'review'
 
-  = f.input :other, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-24 last'
+  .row
+    = f.input :other, :as => :text, :input_html => { :size => '60x1' }
