@@ -1,11 +1,23 @@
-%div{ :class => 'span-23 section_left last' }
+.section-with-border-and-bg
   %h3= t('book_chapters.show.title')
   = show_for @book_chapter do |bc|
-    = bc.attribute :title
+    .span-9= bc.attribute :title
+    .span-9.last= bc.association :bookchaptertype, :using => :name, :label => 'Bookchaptertype'
+    .span-9= bc.attribute :pages
 
-  = render :partial => 'shared/record', :object => @book_chapter
+  .span-9.last
+    %b= t(:associated_academics)
+    - @book_chapter.chapterinbook_roleinchapters.each do |a|
+      %li= a.as_text
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_book_chapter_path(:id => @book_chapter.id)
-  = link_as_button t(:back), book_chapters_path
+  %h3= t('book_authors.show.title')
+  = render :partial => 'book_editions/show', :object => @book_chapter.bookedition
+
+
+  .row
+    = render :partial => 'shared/record', :object => @book_chapter
+
+#submit_buttons
+  = link_to t(:edit), edit_book_chapter_path(:id => @book_chapter.id)
+  = link_to t(:back), book_chapters_path
 

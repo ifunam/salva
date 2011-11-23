@@ -1,0 +1,7 @@
+= show_for show do |book|
+  .span-6= book.association :country, :using => :name, :label => 'Country'
+  .span-6= book.association :language, :using => :name, :label => 'Language'
+  .span-6.last=book.association :booktype, :using => :name, :label => 'Type'
+
+  .span-9= book.attribute :volume
+  .span-9.last= book.attribute :booklink

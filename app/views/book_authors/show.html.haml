@@ -1,31 +1,10 @@
 %h3= t('book_authors.show.title')
 .section-with-border-and-bg
 
-  = show_for @book_author do |be|
-    .span-9= be.association :book, :using => :authors, :label => 'Authors'
-    .span-9.last= be.association :book, :using => :title, :label => 'Title'
-
-    = show_for @book_author.book do |book|
-      .span-6= book.association :country, :using => :name, :label => 'Country'
-      .span-6= book.association :language, :using => :name, :label => 'Language'
-      .span-6.last=book.association :booktype, :using => :name, :label => 'Type'
-
-      .span-9= book.attribute :volume
-      .span-9.last= book.attribute :booklink
-
-    .span-6= be.attribute :edition
-    .span-6= be.attribute :isbn
-    .span-6.last= be.attribute :pages
-
-    .span-6= be.attribute :month
-    .span-2= be.attribute :year
-    .span-10.last= be.association :mediatype, :using => :name, :label => 'Media type'
-
-    .row
-      = be.association :editionstatus, :using => :name, :label => 'Status'
+  = render :partial => 'book_editions/show', :object => @book_author
 
   .span-17.prepend-1.last
-    %b= 'Académicos asociados'
+    %b= t(:associated_academics)
     - @book_author.authors.each do |a|
       %li= a.as_text
   .row

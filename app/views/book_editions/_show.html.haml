@@ -1,0 +1,16 @@
+= show_for show do |be|
+  .span-9= be.association :book, :using => :authors, :label => 'Authors'
+  .span-9.last= be.association :book, :using => :title, :label => 'Title'
+
+  = render :partial => 'books/show', :object => show.book
+
+  .span-6= be.attribute :edition
+  .span-6= be.attribute :isbn
+  .span-6.last= be.attribute :pages
+
+  .span-6= be.attribute :month
+  .span-2= be.attribute :year
+
+  .row
+    = be.association :mediatype, :using => :name, :label => 'Media type'
+    = be.association :editionstatus, :using => :name, :label => 'Status'

@@ -1616,10 +1616,12 @@ es:
   not_organizer: 'Usted no esta asociado como organizador'
   add_role: 'Asociar un rol'
   del_role: 'Quitar asociación'
-  role_selection: 'Seleccione un rol'
+  role_selection: 'Haga clíck en su rol'
   author_list: Listar autores
   title: 'Título'
   authors: 'Autor(es)'
+  academics: 'Académico(s)'
+  associated_academics: 'Académicos asociados'
   journal: 'Journal'
   year: 'Año'
   adscription: 'Adscripción'
