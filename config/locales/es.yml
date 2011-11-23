@@ -1614,6 +1614,9 @@ es:
   not_instructor: 'Usted no esta asociado como instructor o autor'
   organizer: 'Usted ya esta asociado como organizador'
   not_organizer: 'Usted no esta asociado como organizador'
+  add_role: 'Asociar un rol'
+  del_role: 'Quitar asociación'
+  role_selection: 'Seleccione un rol'
   author_list: Listar autores
   title: 'Título'
   authors: 'Autor(es)'

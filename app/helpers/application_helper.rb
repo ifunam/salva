@@ -97,6 +97,10 @@ module ApplicationHelper
       link_to_action 'icon_action_del_author', title, "#", 'data-remote-resource' => resource_path
   end
 
+  def link_to_add_role(title, resource_path)
+    link_to_action 'icon_action_add_role', title, "#", 'data-remote-resource' => resource_path
+  end
+
   def checkbox_to_delete(record)
     if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
       check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record)

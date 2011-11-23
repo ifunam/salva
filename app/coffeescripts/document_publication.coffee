@@ -13,6 +13,17 @@ $(document).ready ->
     $(this).parent().parent().replaceWith html
     false
 
+  $(".role_list ul li a").live "click", ->
+    href = $(this).attr("data-remote-resource")
+    html = $.response_from_remote_resource(href)
+    $(this).parent().parent().parent().parent().parent().parent().replaceWith html
+    false
+
+  $(".role_action a.action_link").live "click", ->
+    href = $(this).attr("data-remote-resource")
+    $(this).after $.response_from_simple_remote_resource(href)
+    false
+
   $("#new_checkbox").live "click", ->
     href = $(this).parent().attr("data-remote-resource")
     $.dialog_for_new_checkbox href

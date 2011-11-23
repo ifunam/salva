@@ -6,7 +6,7 @@
   .authors_size= article.users.size
   = link_to_user_list user_list_article_path(:id => article.id, :format => 'js')
 .author_action
-  = link_to_del_author t(:del_attendee),  del_user_article_path(:id => article.id,:format => :js)
+  = link_to_del_author t(:del_author),  del_user_article_path(:id => article.id,:format => :js)
 .action
   = link_to_show article_path(:id => article.id)
 .action

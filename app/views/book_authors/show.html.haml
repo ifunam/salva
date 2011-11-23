@@ -1,37 +1,37 @@
-%div{ :class => 'span-23 section_left last' }
-  %h3= t('book_authors.show.title')
+%h3= t('book_authors.show.title')
+.section-with-border-and-bg
+
   = show_for @book_author do |be|
-    = be.association :book, :using => :authors, :label => 'Authors', :wrapper_html => { :class => 'span-10 push-1' }
-    = be.association :book, :using => :title, :label => 'Title', :wrapper_html => { :class => 'span-12 last' }
+    .span-9= be.association :book, :using => :authors, :label => 'Authors'
+    .span-9.last= be.association :book, :using => :title, :label => 'Title'
 
     = show_for @book_author.book do |book|
-      %div{ :class => 'span-23 last' }
-        = be.association :book, :using => :volume, :label => 'Volume', :wrapper_html => { :class => 'span-10 push-1' }
-        = book.association :country, :using => :name, :label => 'Country', :wrapper_html => { :class => 'span-6' }
-        = book.association :language, :using => :name, :label => 'Country', :wrapper_html => { :class => 'span-6 last' }
+      .span-6= book.association :country, :using => :name, :label => 'Country'
+      .span-6= book.association :language, :using => :name, :label => 'Language'
+      .span-6.last=book.association :booktype, :using => :name, :label => 'Type'
 
-      %div{ :class => 'span-23 last' }
-        = book.association :booktype, :using => :name, :label => 'Type', :wrapper_html => { :class => 'span-10 push-1' }
-        = be.association :book, :using => :booklink, :label => 'Link', :wrapper_html => { :class => 'span-12 last' }
+      .span-9= book.attribute :volume
+      .span-9.last= book.attribute :booklink
 
-    = be.attribute :edition, :wrapper_html => { :class => 'span-5 push-1' }
-    = be.attribute :isbn, :wrapper_html => { :class => 'span-5' }
-    = be.attribute :pages, :wrapper_html => { :class => 'span-6 ' }
-    = be.association :mediatype, :using => :name, :label => 'Media type', :wrapper_html => { :class => 'span-6 last' }
+    .span-6= be.attribute :edition
+    .span-6= be.attribute :isbn
+    .span-6.last= be.attribute :pages
 
-    %div{ :class => 'span-23 last' }
-      = be.association :editionstatus, :using => :name, :label => 'Status', :wrapper_html => { :class => 'span-5 push-1'}
-      = be.attribute :month, :wrapper_html => { :class => 'span-5' }
-      = be.attribute :year, :wrapper_html => { :class => 'span-12 last' }
+    .span-6= be.attribute :month
+    .span-2= be.attribute :year
+    .span-10.last= be.association :mediatype, :using => :name, :label => 'Media type'
 
-  %div{:class => 'span-23 push-1 last'}
-    %label= 'Académicos asociados'
+    .row
+      = be.association :editionstatus, :using => :name, :label => 'Status'
+
+  .span-17.prepend-1.last
+    %b= 'Académicos asociados'
     - @book_author.authors.each do |a|
       %li= a.as_text
+  .row
+    = render :partial => 'shared/record', :object => @book_author
 
-  = render :partial => 'shared/record', :object => @book_author
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_book_author_path(:id => @book_author.id)
-  = link_as_button t(:back), book_authors_path
+#submit_buttons
+  = link_to t(:edit), edit_book_author_path(:id => @book_author.id)
+  = link_to t(:back), book_authors_path
 
