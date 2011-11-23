@@ -1652,6 +1652,9 @@ es:
   prizetype: Tipo
   homepage: Página personal
   calendar: Calendario
+  registered_by: 'Registrado por'
+  updated_by: 'Actualizado por'
+  updating_date: 'Fecha de actualización'
 
   reporter:
     profile: 'Perfil'

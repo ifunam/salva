@@ -139,28 +139,19 @@ module ApplicationHelper
   end
 
   def registered_by_info(record)
-    'Registrado por: ' + ( record.registered_by.nil? ? 'admin' : record.registered_by.friendly_email)
+    "#{t(:registered_by)}: " + ( record.registered_by.nil? ? 'admin' : record.registered_by.friendly_email)
   end
   
   def modified_by_info(record)
-    'Modificado por: ' + record.modified_by.friendly_email unless record.modified_by.nil?
+    "#{t(:updated_by)}: " + record.modified_by.friendly_email unless record.modified_by.nil?
   end
 
   def updating_date(record)
-    'Fecha de actualización: ' + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
+    "#{t(:updating_date)}: " + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
   end
 
   def select_month_for(field_name, prefix = nil)
     select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
   end
 
-  # TODO: Remove this method after views refactoring
-  def link_as_button(title, url, options={})
-    class_button = 'button'
-    if options.has_key? :class_button
-      class_button = options[:class_button]
-      options.delete :class_button
-    end
-    link_to title, url, {:class => "ui-state-default ui-corner-all #{class_button}"}.merge(options)
-  end
 end
