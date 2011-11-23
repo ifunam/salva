@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   extend Aleph::Helpers::UserModel
   
   if ldap_enabled?
-    devise :ldap_authenticatable
+    devise :ldap_authenticatable, :timeoutable, :lockable
   else
-    devise :database_authenticatable, :encryptable
+    devise :database_authenticatable, :encryptable, :timeoutable, :lockable
   end
 
   # Setup accessible (or protected) attributes for your model
