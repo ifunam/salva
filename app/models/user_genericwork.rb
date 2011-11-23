@@ -7,4 +7,7 @@ class UserGenericwork  < ActiveRecord::Base
   belongs_to :userrole
   belongs_to :user
 
+  def author_with_role
+    [user.author_name, "(#{userrole.name})"].join(' ')
+  end
 end
