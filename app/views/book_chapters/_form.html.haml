@@ -1,19 +1,21 @@
 %div{ :class => 'span-22 section_left append-bottom last' }
   = render :partial => "/shared/errors", :object => f.object.errors
 
-  %div{:class=> 'span-23 section_left push-1 last'}
-    %h3='Información del capítulo'
+%h3='Información del capítulo'
+.section-with-border-and-bg
+  .row
+    .span-9= f.input :title, :as => :string, :input_html => {:size => 75}
+    .span-9.last= f.association :bookchaptertype, :as => :radio, :wrapper_class => 'radio-set'
 
-    = f.input :title, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-12'
-    = render :partial => 'book_chapter_collaborators/form', :locals => {:book_chapter => @book_chapter, :f => f}
+  .row
 
-    = f.association :bookchaptertype, :as => :radio, :wrapper_class => 'span-14 radio-set'
-    = f.input :pages, :as => :string, :input_html => {:size => 15}, :wrapper_class => 'span-5 last'
+    .span-9= render :partial => 'book_chapter_collaborators/form', :locals => {:book_chapter => @book_chapter, :f => f}
+    .span-9.last= f.input :pages, :as => :string, :input_html => {:size => 25}
 
-  %div{:class=> 'span-23 section_left push-1 last'}
-    %h3='Información del libro'
 
-    - f.object.bookedition = Bookedition.new if f.object.bookedition.nil?
-    = f.simple_fields_for :bookedition, f.object.bookedition do |be|
-      = render :partial => 'book_editions/form', :locals => { :f => be }
+%h3='Información del libro'
+.section-with-border-and-bg
+  - f.object.bookedition = Bookedition.new if f.object.bookedition.nil?
+  = f.simple_fields_for :bookedition, f.object.bookedition do |be|
+    = render :partial => 'book_editions/form', :locals => { :f => be }
 
