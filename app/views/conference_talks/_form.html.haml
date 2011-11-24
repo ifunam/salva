@@ -1,22 +1,21 @@
-%div{ :class => 'span-23 section_left append-bottom last' }
+.row
   = render :partial => "/shared/errors", :object => f.object.errors
 
-  %div{:class=> 'span-22 section_left push-1 last'}
-    %h3='Información del trabajo presentado'
+%h3='Información del trabajo presentado'
+.section-with-border-and-bg
+  .span-9= f.input :authors, :as => :string, :input_html => {:size => 50, :required => true}
+  .span-9.last= f.input :title, :as => :string, :input_html => {:size => 50, :required => true}
 
-    = f.input :authors, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-11'
-    = f.input :title, :as => :string, :input_html => {:size => 75}, :wrapper_class => 'span-11 last'
-    = f.association :talktype, :as => :radio, :wrapper_class => 'span-22 radio-set last'
+  .span-18.last= f.association :talktype, :as => :radio, :wrapper_class => 'radio-set'
 
-    = f.association :talkacceptance, :as => :radio, :wrapper_class => 'span-11 radio-set'
-    = f.association :modality, :as => :radio, :wrapper_class => 'span-11 radio-set last'
+  .span-9= f.association :talkacceptance, :as => :radio, :wrapper_class => 'radio-set'
+  .span-9.last= f.association :modality, :as => :radio, :wrapper_class => 'radio-set'
 
+  .row
     = render :partial => 'conference_talk_users/form', :locals => {:conference_talk => @conference_talk, :f => f}
 
-  %div{:class=> 'span-23 section_left push-1 last'}
-    %h3='Información del evento'
-
-    - f.object.conference = Conference.new if f.object.conference.nil?
-    = f.simple_fields_for :conference, f.object.conference do |c|
-      = render :partial => 'conferences/form', :locals => { :f => c }
-
+%h3='Información del evento'
+.section-with-border-and-bg
+  - f.object.conference = Conference.new if f.object.conference.nil?
+  = f.simple_fields_for :conference, f.object.conference do |c|
+    = render :partial => 'conferences/form', :locals => { :f => c }
