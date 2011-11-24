@@ -5,15 +5,15 @@
       = render :partial => "/shared/errors", :object => f.object.errors
     .row
       .span-8.last
-        = f.label :current_password
+        = f.label t('.attributes.current_password')
         = f.password_field :current_password, :autocomplete => "off"
     .row
       .span-8.last
-        = f.label :password
+        = f.label t('.attributes.password')
         = f.password_field :password, :autocomplete => "off"
     .row
       .span-8.last
-        = f.label :password_confirmation
+        = f.label t('.attributes.password_confirmation')
         = f.password_field :password_confirmation, :autocomplete => "off"
   #submit_buttons
     = f.submit t(:update)
