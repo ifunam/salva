@@ -11,7 +11,7 @@ es:
       user:
         login: Usuario
         password: Contraseña
-        password_confirmation: Confirmación de la nueva contraseña
+        password_confirmation: Confirmación de la contraseña
         userstatus: Estado
         email: Correo electrónico
         user_incharge: Responsable académico
@@ -1406,6 +1406,10 @@ es:
   passwords:
     edit:
       title: Cambiar contraseña
+      attributes:
+        current_password: Contraseña actual
+        password: Nueva contraseña
+        password_confirmation: Confirmación de la nueva contraseña
 
   admin:
     people: 'Información personal'
