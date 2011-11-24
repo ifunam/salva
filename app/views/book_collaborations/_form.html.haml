@@ -1,4 +1,4 @@
-%div{ :class => 'span-22 section_left append-bottom last' }
+.section-with-border-and-bg
   = render :partial => "/shared/errors", :object => f.object.errors
   = render :partial => 'book_editions/form', :locals => { :f => f}
   = render :partial => 'bookedition_collaborators/form', :locals => {:book_collaboration => @book_collaboration, :f => f}
