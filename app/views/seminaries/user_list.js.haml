@@ -7,4 +7,4 @@
   %ul{:style => 'width: 240px;'}
     - @seminary.user_seminaries.each do |record|
       %li{:style => 'margin-left: -30px; color: green;'}
-        = record.user.author_name + " (#{record.roleinseminary.name})"
+        = record.author_with_role

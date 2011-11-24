@@ -1,26 +1,25 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
-  - if f.object.new_record?
-    = f.input :instructors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }, :wrapper_class => 'span-12'
-  - else
-    = f.input :instructors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+  .row
+    .span-9
+      - if f.object.new_record?
+        = f.input :instructors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }
+      - else
+        = f.input :instructors, :as => :text, :input_html => { :size => '60x1' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
 
-  %div{:class => 'span-6'}
-    = f.label :seminarytype, :required => true
-    = f.collection_select :seminarytype_id,  Seminarytype.all, :id, :name, :prompt => true
-  %div{:class => 'span-6'}
-    = f.label :roleinseminary, :required => true
-    = render :partial => 'user_seminaries/form', :locals => {:seminary => @seminary, :f => f}
+  .row
+    .span-9= f.association :seminarytype, :using => :name, :as => :radio, :wrapper_class => 'radio-set'
+    .span-9.last= render :partial => 'user_seminaries/form', :locals => {:seminary => @seminary, :f => f}
 
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'seminary')
-
-  %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
-
+  .row
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-7.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'seminary'
+    #institution.span-9.last
+      = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar institución', new_institution_path
