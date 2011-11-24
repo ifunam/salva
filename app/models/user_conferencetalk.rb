@@ -9,7 +9,7 @@ class UserConferencetalk < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  def as_text
+  def author_with_role
     "#{user.author_name} (#{roleinconferencetalk.name})"
   end
 end

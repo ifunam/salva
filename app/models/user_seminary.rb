@@ -11,4 +11,9 @@ class UserSeminary < ActiveRecord::Base
 
   validates_associated :seminary
   validates_associated :roleinseminary
+
+
+  def author_with_role
+    [user.author_name, "(#{roleinseminary.name})"].join(' ')
+  end
 end
