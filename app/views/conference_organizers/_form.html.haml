@@ -1,11 +1,14 @@
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
   = render :partial => '/conferences/form', :locals => { :f => f }
-  %div{ :class => 'span-10 last' }
+
+  .row
     -  @userconferences = user_role(@conference, :userconferences, current_user.id)
     = f.simple_fields_for :userconferences, @userconferences do |uc|
       - unless f.object.new_record?
         = uc.hidden_field :id
         = uc.hidden_field :conference_id, :value => @conference.id
       = uc.hidden_field :user_id, :value => current_user.id
-      = uc.association :roleinconference, :collection => Roleinconference.organizers.all, :wrapper_class => 'span-6 last'
+      = uc.association :roleinconference, :collection => Roleinconference.organizers.all, :as => :radio
