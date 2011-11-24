@@ -1,17 +1,16 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-22 section_left append-bottom last' }
+  .row
+    #journal.span-6.last
+      = f.association :journal, :using => :name , :input_html  => {:class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar journal', new_journal_path
+    .span-12.last= f.association :refereed_criterium, :as => :radio, :collection => RefereedCriterium.all, :wrapper_class => 'radio-set'
 
-  %div{:class => 'span-10 ui-widget', :id => 'journal', 'data-controller-name'=>'journals' }
-    = f.label :journal, :required => true
-    = f.select :journal_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar journal', '#', :id => 'new_record' 
-
-  %div{:class => 'span-12 last'}
-    = f.association :refereed_criterium, :as => :radio, :collection => RefereedCriterium.all, :wrapper_class => 'span-22 radio-set last'
-
-  %div{:class => 'span-22 last'}
-    = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-4', :required => true
-    %div{:class => 'span-6 '}
+  .row
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-16.last
       = f.label :month, :required => true
-      = select_month(Date.today, :field_name => 'month', :prefix => 'user_refereed_journal')
+      = select_month_for 'month', 'user_refereed_journal'
