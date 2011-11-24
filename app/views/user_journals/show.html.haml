@@ -1,17 +1,24 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('user_journals.show.title')
+%h3= t('user_journals.show.title')
+.section-with-border-and-bg
+
   = show_for @user_journal do |u|
-    = u.association :journal, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.association :roleinjournal, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.association :journal, :using => :name
+    .span-9.last= u.association :roleinjournal, :using => :name
 
-    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :startmonth, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-4
+        = u.attribute :startyear, :using => :name
+      .span-5
+        = u.attribute :startmonth, :using => :name
+      .span-4
+        = u.attribute :endyear, :using => :name
+      .span-5.last
+        = u.attribute :endmonth, :using => :name
 
-  = render :partial => 'shared/record', :object => @user_journal
+  .row
+    = render :partial => 'shared/record', :object => @user_journal
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_user_journal_path(:id => @user_journal.id)
-  = link_as_button t(:back), user_journals_path
+#submit_buttons
+  = link_to t(:edit), edit_user_journal_path(:id => @user_journal.id)
+  = link_to t(:back), user_journals_path
 
