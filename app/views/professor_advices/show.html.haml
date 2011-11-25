@@ -1,19 +1,22 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('professor_advices.show.title')
+%h3= t('professor_advices.show.title')
+.section-with-border-and-bg
+
   = show_for @advice do |u|
-    = u.attribute :indivname, :wrapper_html => { :class => 'span-12'}
-    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12 last'}
+    .span-10= u.attribute :indivname
+    .span-8.last= u.association :institution, :using => :name_and_parent_abbrev
 
-    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :startmonth, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+    .row
+      .span-4= u.attribute :startyear
+      .span-5= u.attribute :startmonth
+      .span-4= u.attribute :endyear
+      .span-5.last= u.attribute :endmonth
 
-    = u.attribute :hours, :wrapper_html => {:class => 'span-6'}
+    .row
+      = u.attribute :hours
+  .row
+    = render :partial => 'shared/record', :object => @advice
 
-  = render :partial => 'shared/record', :object => @advice
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_professor_advice_path(:id => @advice.id)
-  = link_as_button t(:back), professor_advices_path
+#submit_buttons
+  = link_to t(:edit), edit_professor_advice_path(:id => @advice.id)
+  = link_to t(:back), professor_advices_path
 
