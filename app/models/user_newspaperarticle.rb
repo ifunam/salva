@@ -3,4 +3,5 @@ class UserNewspaperarticle < ActiveRecord::Base
   validates_inclusion_of :ismainauthor, :in=> [true, false]
   belongs_to :user
   belongs_to :newspaperarticle
+  attr_accessible :user_id
 end

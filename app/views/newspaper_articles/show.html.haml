@@ -1,18 +1,21 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('newspaper_articles.show.title')
+
+%h3= t('newspaper_articles.show.title')
+
+.section-with-border-and-bg
+
   = show_for @newspaper_article do |u|
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.association :newspaper, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :newsdate, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.association :newspaper, :using => :name
+    .span-9.last= u.attribute :newsdate
 
-    %div{:class => 'span-12 last'}
+    .span-18.last
       = u.association :user_newspaperarticles, :collection_tag => :ol do |record| 
         %li= record.user.author_name 
+  .row
+    = render :partial => 'shared/record', :object => @newspaper_article
 
-  = render :partial => 'shared/record', :object => @newspaper_article
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_newspaper_article_path(:id =>  @newspaper_article.id)
-  = link_as_button t(:back), newspaper_articles_path
+#submit_buttons
+  = link_to t(:edit), edit_newspaper_article_path(:id =>  @newspaper_article.id)
+  = link_to t(:back), newspaper_articles_path

@@ -1,15 +1,18 @@
-= render :partial => "/shared/errors", :object => f.object.errors
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+  .row
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x1' }
+    .span-last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
 
-  %div{:class => 'span-12 ui-widget', :id => 'newspaper', 'data-controller-name' =>'newspapers' }
-    = f.label :newspaper, :required => true
-    = f.select :newspaper_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar periódico', '#', :id => 'new_record'
+  .row
+    #newspaper.span-6
+      = f.association :newspaper, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar periódico', new_newspaper_path
+    .span-12.last
+      = f.input :newsdate, :as => :string, :input_html => { :size => '10', :autocomplete => "off", :class => 'date'}, :required => true
 
-  = f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }, :wrapper_class => 'span-12 last'
-  = f.input :newsdate, :as => :string, :input_html => { :size => '10', :autocomplete => "off"}, :wrapper_class => 'span-6', :required => true
-
-  = render :partial => 'user_newspaperarticles/form', :locals => {:newspaperarticle => @newspaper_article, :f => f}
+  .row
+    .span-9= f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }
+    .span-9.last= render :partial => 'user_newspaperarticles/form', :locals => {:newspaperarticle => @newspaper_article, :f => f}
  

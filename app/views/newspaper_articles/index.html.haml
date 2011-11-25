@@ -1,20 +1,20 @@
-%div{:class => 'span-24 last'}
-  %div{:class => 'span-8'}
-    %h3= t('.title')
-  %div{:class=> 'span-16 nav_links last'}
-    = link_to t('.my_articles'), newspaper_articles_path
-    = link_to t('.not_my_articles'), not_my_newspaper_articles_path
-%br
-%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
-  %thead{:id => "filter_header"}
-    = render :partial => 'filter_header'
-    %tbody{:id =>'collection'}
-      = render :partial => 'record', :collection => @newspaper_articles
-      = render :partial => 'collection_footer'
-    %tfoot{:id => 'paginator'}
-      %tr
-        %th
-          = will_paginate @newspaper_articles
+.span-18.last
+  %h3= t('.title')
 
-%div{ :class => 'span-24 buttons_left last' }
-  = link_as_button t(:new), new_newspaper_article_path
+#nav_links
+  = link_to t('.my_articles'), newspaper_articles_path
+  = link_to t('.not_my_articles'), not_my_newspaper_articles_path
+
+= render :partial => 'search_form'
+
+= render :partial => 'collection_header'
+
+#collection_records
+  = render :partial => 'record', :collection => @newspaper_articles
+
+= render :partial => 'collection_footer'
+
+= will_paginate(@newspaper_articles)
+
+#submit_buttons
+  = link_to t(:new), new_newspaper_article_path
