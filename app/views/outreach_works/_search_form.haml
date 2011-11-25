@@ -1,0 +1,16 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-3=t(:authors)
+  .span-3=t(:title)
+  .span-5=t(:genericworktype)
+  .span-5=t(:genericworkstatus)
+  .span-2.last=t(:year)
+
+  .span-3= f.text_field :authors_like_ignore_case, :size => 12
+  .span-3= f.text_field :title_like_ignore_case, :size => 12
+  .span-5= f.collection_select :genericworktype_id_eq, Genericworktype.outreach_works, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-5= f.collection_select :genericworkstatus_id_eq, Genericworkstatus.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-2.last= f.text_field :year_eq, :size => 4
+
+  .span-5.prepend-13.last
+    .search_button= link_to t(:search), "#", :id => "search_button"
+    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

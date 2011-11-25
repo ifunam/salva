@@ -1,26 +1,29 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
 
-  %div{:class => 'span-6'}
-    = f.label :genericworktype, :required => true
-    = f.collection_select :genericworktype_id, Genericworktype.outreach_works, :id, :name, :prompt => true
-  %div{:class => 'span-6'}
-    = f.label :genericworkstatus, :required => true
-    = f.collection_select :genericworkstatus_id, Genericworkstatus.all, :id, :name, :prompt => true
+  .row
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x1' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
 
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
 
-  %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+  .row
+    #institution.span-6.last
+      = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar institución', new_institution_path
+    .span-3
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'genericwork'
 
-  %div{:class => 'span-6 last'}
-    = f.label :role, :required => true
-    = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}
+  .row
+    = f.association :genericworktype, :collection => Genericworktype.popular_science, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
+
+  .row
+    = f.association :genericworkstatus, :collection => Genericworkstatus.all, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
+
+  .row
+    .span-6.last
+      = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}

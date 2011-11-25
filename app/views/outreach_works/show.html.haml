@@ -1,23 +1,23 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('outreach_works.show.title')
+%h3= t('outreach_works.show.title')
+.section-with-border-and-bg
+
   = show_for @genericwork do |u|
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.association :genericworktype, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :genericworkstatus, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    .span-9= u.association :institution, :using => :name
+    .span-3= u.attribute :year
+    .span-6.last= u.attribute :month
 
-    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.association :genericworktype, :using => :name
+    .span-9.last= u.association :genericworkstatus, :using => :name
 
-    %div{:class => 'span-24 last'}
-      = u.association :user_genericworks, :collection_tag => :ol do |record| 
-        %li= record.user.author_name + " (#{record.userrole.name})"
+    .span-18.last
+      = u.association :user_genericworks, :collection_tag => :ol do |record|
+        %li= record.author_with_role
+  .row
+    = render :partial => 'shared/record', :object => @genericwork
 
-  = render :partial => 'shared/record', :object => @genericwork
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_outreach_work_path(:id => @genericwork.id)
-  = link_as_button t(:back), outreach_works_path
-
+#submit_buttons
+  = link_to t(:edit), edit_outreach_work_path(:id => @genericwork.id)
+  = link_to t(:back), outreach_works_path
