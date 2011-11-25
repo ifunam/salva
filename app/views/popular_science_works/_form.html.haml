@@ -1,38 +1,44 @@
-= render :partial => "/shared/errors", :object => f.object.errors
-
-%div{ :class => 'span-24 section_left append-bottom last' }
-  = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-  = f.input :title, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
 
 
-  %div{:class => 'span-12 ui-widget', :id => 'publisher', 'data-controller-name'=>'publishers' }
-    = f.label :publisher, :required => true
-    = f.select :publisher_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar editorial', '#', :id => 'new_record'
-
-  %div{:class => 'span-6'}
-    = f.label :genericworktype, :required => true
-    = f.collection_select :genericworktype_id, Genericworktype.popular_science, :id, :name, :prompt => true
-  %div{:class => 'span-6 last'}
-    = f.label :genericworkstatus, :required => true
-    = f.collection_select :genericworkstatus_id, Genericworkstatus.all, :id, :name, :prompt => true
-
-  %div{ :class => 'span-24  last' }
-    = f.input :reference, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
-    = f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
-    = f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6'
-    = f.input :isbn_issn, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}, :wrapper_class => 'span-6 last'
+  .row
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x1' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
 
 
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'genericwork')
-  %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+  .row
 
-  %div{:class => 'span-6 last'}
-    = f.label :role, :required => true
-    = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}
+    #publisher.span-6
+      = f.association :publisher, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar editorial', new_publisher_path
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'genericwork'
+
+  .row
+    = f.association :genericworktype, :collection => Genericworktype.popular_science, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
+
+  .row
+    = f.association :genericworkstatus, :collection => Genericworkstatus.all, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
+
+
+  .row
+    .span-18= f.input :reference, :as => :string, :input_html => { :size => '130', :autocomplete => "off"}
+
+  .row
+    .span-6= f.input :vol, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}
+    .span-6-last= f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}
+
+  .row
+    .span-6= f.input :isbn_issn, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}
+    #institution.span-6.last
+      = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+      = link_to_new_record 'Agregar institución', new_institution_path
+
+  .row
+    .span-6.last
+      = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}
