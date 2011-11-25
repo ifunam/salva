@@ -1,15 +1,19 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('institutional_advices.show.title')
+%h3= t('institutional_advices.show.title')
+.section-with-border-and-bg
+
   = show_for @advice do |u|
-    = u.attribute :title, :wrapper_html => { :class => 'span-12'}
-    = u.association :instadvicetarget, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :year, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :wrapper_html => {:class => 'span-6 last'}
+    .span-18.last= u.attribute :title
 
-  = render :partial => 'shared/record', :object => @advice
+    .span-9= u.association :instadvicetarget, :using => :name
+    .span-9.last= u.association :institution, :using => :name_and_parent_abbrev
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_institutional_advice_path(:id => @advice.id)
-  = link_as_button t(:back), institutional_advices_path
+    .span-3= u.attribute :year
+    .span-15.last= u.attribute :month
+
+  .row
+    = render :partial => 'shared/record', :object => @advice
+
+#submit_buttons
+  = link_to t(:edit), edit_institutional_advice_path(:id => @advice.id)
+  = link_to t(:back), institutional_advices_path
 

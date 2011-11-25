@@ -3,25 +3,20 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-9
-      = f.input :title, :as => :text, :input_html => { :size => '60x1' }
-    .span-9.last
-      = f.label :instadvicetarget, :required => true
-      = f.collection_select :instadvicetarget_id, Instadvicetarget.all, :id, :name, {:prompt => true}
+    = f.input :title, :as => :text, :input_html => { :size => '90x1' }
 
   .row
-    .span-9
-      = f.label :institution, :required => true
-      = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-      = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
+    .span-6
+      = f.association :instadvicetarget, :using =>:name, :input_html => {:class => 'chosen-select', :prompt => true}
+    #institution.span-12.last
+      = f.association :institution, :using => :name , :input_html => {:class => 'chosen-select', :prompt => true}
+      = link_to_new_record 'Agregar institución', new_institution_path
 
-
-  %div{:class => 'span-12 ui-widget', :id => 'institution', 'data-controller-name'=>'institutions' }
-
-
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month_for 'month', 'advice'
+  .row
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'advice'
 
 

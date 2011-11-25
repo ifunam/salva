@@ -1,0 +1,9 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-6=t(:instadvicetarget)
+  .span-3=t(:year)
+  .span-10.last
+
+  .span-6= f.collection_select :instadvicetarget_id_eq, Instadvicetarget.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-6= f.text_field :year_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
