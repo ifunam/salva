@@ -30,6 +30,8 @@ class Conferencetalk < ActiveRecord::Base
 
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
 
+  default_scope joins(:conference).order("conferences.year DESC, conferencetalks.authors ASC, conferencetalks.title ASC")
+
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
 
   def as_text
