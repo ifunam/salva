@@ -27,7 +27,10 @@ class Conferencetalk < ActiveRecord::Base
       where(["user_conferencetalks.user_id != ?", user_id]).to_sql}) AND conferencetalks.id  NOT IN (#{UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').
       where(["user_conferencetalks.user_id = ?", user_id]).to_sql})")
   }
-  search_methods :user_id_eq, :user_id_not_eq
+
+  scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
+
+  search_methods :user_id_eq, :user_id_not_eq, :year_eq
 
   def as_text
     [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",
