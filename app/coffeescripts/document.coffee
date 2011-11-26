@@ -9,8 +9,9 @@ $(document).ready ->
       html_options = "<option selected value=\"" + object.id + "\" >" + object.name + "</option>"
       $($("#" + class_name).find("select")[0]).append html_options
       $($("#" + class_name).find("select")[0]).removeClass "chosen-select chzn-done"
-      $(".chzn-container").remove()
+      $("#" + class_name).find(".chzn-container").remove()
       $($("#" + class_name).find("select")[0]).chosen()
+      $("#dialog").empty()
       $("#dialog").dialog "close"
 
   $(".chosen-select").chosen()
