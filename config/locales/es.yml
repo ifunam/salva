@@ -1610,6 +1610,8 @@ es:
   del_author: 'Quitarse como autor'
   add_attendee: 'Asociarse como asistente'
   del_attendee: 'Quitarse como asistente'
+  del_instructor: 'Quitarse como instructor'
+  add_instructor: 'Asociarse como instructor'
   associated: Usted ya esta asociado como autor
   not_associated: Usted no esta asociado como autor
   attendee: 'Usted ya esta asociado como asistente'

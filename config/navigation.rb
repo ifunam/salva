@@ -99,7 +99,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :outreach_works, 'Trabajos de vinculación', outreach_works_path, :highlights_on => /\/outreach_works/
     end
 
-    primary.item :teaching, 'Docencia', other_teaching_activities_path do |s|
+    primary.item :teaching, 'Docencia', regular_courses_path do |s|
       s.item :regular_courses, 'Cursos regulares', regular_courses_path, :highlights_on => /\/regular_courses/
       s.item :course_instructors, 'Cursos especiales', course_instructors_path, :highlights_on => /\/course_instructors/
       s.item :theses, 'Dirección de tesis', theses_path, :highlights_on => /\/theses/
