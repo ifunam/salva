@@ -18,7 +18,8 @@ class Regularcourse < ActiveRecord::Base
   default_scope :order => 'periods.startdate DESC, regularcourses.title', :include => { :user_regularcourses => :period }
   scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses).where(:user_regularcourses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("regularcourses.id IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id !=  ?", user_id]).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id =  ?", user_id]).to_sql})") }
-  search_methods :user_id_eq, :user_id_not_eq
+  scope :period_id_eq, lambda { |period_id| joins(:user_regularcourses).where(:user_regularcourses => { :period_id => period_id }) }
+  search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
 
   def as_text
     sem = semester == 0 ? nil : "Semestre: #{semester}"

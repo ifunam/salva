@@ -4,7 +4,7 @@
   .row
     = f.input :abbrev, :as => :string, :input_html => { :size => 38 }
   .row
-    = f.association :institutiontitle, :using => :name, :input_html  => {:class => 'chosen-select' }
+    = f.association :institutiontitle, :using => :name,
   .row
     = f.association :institutiontype, :using => :name, :as => :radio, :input_html  => {:class => 'radio-set' }
   .row

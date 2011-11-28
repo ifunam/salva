@@ -39,15 +39,21 @@ $(document).ready ->
       html = $(content).html().replace("-1", object.id).replace("template_string", object.name)
       $($("#" + class_name).find("ul")[0]).append html.replace(regexp, new_id)
       $("#dialog").dialog "close"
+      $("#dialog").html('')
 
-  $("#new_period").live "click", ->
+  $("#new_period").live "click", (e) ->
+    (e).preventDefault()
     $.dialog_for_new_period @href
   
-  $("#new_period_form").live "submit", ->
-    class_name = @getAttribute("data-collection-id")
+  $("#new_period_form").live "submit", (e) ->
+    (e).preventDefault()
+    regularcourse_id = $("#new_period_form").attr("data-regularcourse-id")
     $("#new_period_form").ajaxComplete (event, request, settings) ->
-      $("#" + class_name).append request.responseText
+      #$("#" + class_name).append request.responseText
+      $($("#regularcourse_"+regularcourse_id).find('.periods ul')[0]).append request.responseText
       $("#dialog").dialog "close"
-  
-  $(".delete_regularcourse_period").live "click", ->
-    $("#" + @id).remove()
+      $("#dialog").html('')
+
+  $(".delete_period").live "click", (e) ->
+    e.preventDefault()
+    $(this).parent().remove()

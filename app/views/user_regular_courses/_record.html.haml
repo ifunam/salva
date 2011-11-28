@@ -1,3 +1,3 @@
-%li{:id => dom_id(user_and_period), :style => 'list-style-type: none;'}
-  = link_to_action 'ui-icon-minus', t(:del), user_regular_course_path(:id => user_and_period.id), :method => :delete, :remote => true, :confirm => '¿ Desea borrar este periodo ?', :id => dom_id(user_and_period), :class => 'delete_regularcourse_period'
-  = "#{user_and_period.roleinregularcourse.name} en el periodo #{user_and_period.period.title}, Horas por semana: #{user_and_period.hoursxweek}"
+%li
+  = link_to_delete_period user_regular_course_path(:id => record.id)
+  = record.role_and_period_and_hours

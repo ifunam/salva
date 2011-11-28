@@ -1,39 +1,47 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('regular_courses.show.title')
+%h3= t('regular_courses.show.title')
+
+.section-with-border-and-bg
   = show_for @regular_course do |u|
-    %div{:class=> 'span-21 section_left push-1 last'}
-      = u.attribute :title, :wrapper_html => {:class => 'span-10'}
-      = u.association :modality, :using => :name, :wrapper_html => {:class => 'span-11 last'}
+    .span-9= u.attribute :title
+    .span-9.last= u.association :modality, :using => :name
 
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-10'}
-        %label Grado
-        = @regular_course.academicprogram.career.degree.name
-      %div{:class=> 'span-11 last'}
-        %label Carrera 
-        = @regular_course.academicprogram.career.name
-
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-12'}
-        %label Facultad o Escuela
-        = @regular_course.academicprogram.career.institution.name
-      %div{:class=> 'span-9 last'}
-        %label Institución 
-        = @regular_course.academicprogram.career.institution.institution.name
-      %div{:class=> 'span-12'}
-        %label Tipo
-        = @regular_course.academicprogram.career.institution.institutiontitle.name
-      %div{:class=> 'span-5'}
-        %label Clasificación 
-        = @regular_course.academicprogram.career.institution.institutiontype.name
-      %div{:class=> 'span-4 last'}
-        %label País 
-        = @regular_course.academicprogram.career.institution.country.name
+    %h4 Carrera
+    .span-9
+      %label Carrera
+      = @regular_course.academicprogram.career.name
+    .span-9.last
+      %label Grado
+      = @regular_course.academicprogram.career.degree.name
 
 
-  = render :partial => 'shared/record', :object => @regular_course
+    %h4 Facultad
+    .span-9
+      %label Facultad o Escuela
+      = @regular_course.academicprogram.career.institution.name
+    .span-9.last
+      %label Institución
+      = @regular_course.academicprogram.career.institution.institution.name
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_regular_course_path(:id => @regular_course.id)
-  = link_as_button t(:back), regular_courses_path
+
+    .span-9
+      %label Tipo
+      = @regular_course.academicprogram.career.institution.institutiontitle.name
+    .span-9.last
+      %label Clasificación
+      = @regular_course.academicprogram.career.institution.institutiontype.name
+
+    .span-18.last
+      %label País
+      = @regular_course.academicprogram.career.institution.country.name
+  .span-18.last
+    %h4 Periodos
+    %ul
+    - @regular_course.user_regularcourses.each do |record|
+      %li= record.teacher_with_role
+  .row
+    = render :partial => 'shared/record', :object => @regular_course
+
+#submit_buttons
+  = link_to t(:edit), edit_regular_course_path(:id => @regular_course.id)
+  = link_to t(:back), regular_courses_path
 

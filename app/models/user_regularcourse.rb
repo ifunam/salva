@@ -16,7 +16,11 @@ class UserRegularcourse < ActiveRecord::Base
     ["#{roleinregularcourse.name}: #{regularcourse.as_text}", "Horas por semana: #{hoursxweek}", "Periodo escolar: #{period.title}"].join(', ')
   end
 
-  def role_and_period
-    ["Rol: #{roleinregularcourse.name}", "Periodo escolar: #{period.title}"].join(', ')
+  def role_and_period_and_hours
+    ["Rol: #{roleinregularcourse.name}", "Periodo: #{period.title}", "Horas x semana: #{hoursxweek}"].join(', ')
+  end
+
+  def teacher_with_role
+    [user.author_name, "(#{role_and_period_and_hours})"].join(' ')
   end
 end

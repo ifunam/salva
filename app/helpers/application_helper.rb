@@ -96,6 +96,11 @@ module ApplicationHelper
     link_to_action 'icon_action_close_author_list', 'Cerrar', '#'
   end
 
+  def link_to_delete_period(resource_path)
+    link_to_action 'icon_action_delete_period', t(:del), resource_path, :method => :delete, :confirm => t(:delete_confirm_question),
+                   :class => 'delete_period', :remote => true
+  end
+
   def user_role(record, user_role_class, user_id, foreign_key=nil)
     foreign_key ||= record.class.to_s.foreign_key
     role_class = user_role_class.to_s.classify.constantize

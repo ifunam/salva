@@ -101,9 +101,7 @@ jQuery.extend
     $('#change_'+class_name).hide()
 
   dialog_for_new_period: (url) ->
-    $('#dialog').dialog({title:'Nuevo periodo', width: 480, height: 420}).dialog('open')
-    responseData = response_from_simple_remote_resource(url)
-    $("div#dialog").html(responseData);
+    $.dialog_for_new_record(url)
 
   destroy_selected_records: (record_ids, dom_ids) ->
     $.ajax

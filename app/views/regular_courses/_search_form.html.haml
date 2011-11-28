@@ -1,0 +1,14 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-5=t(:title)
+  .span-6=t(:period)
+  .span-6=t(:modality)
+  .span-2.last
+
+  .span-5= f.text_field :title_like_ignore_case, :size => 24
+  .span-6= f.collection_select :period_id_eq, Period.all, :id, :title, {:prompt => true}, :class => 'chosen-select'
+  .span-6= f.collection_select :modality_id_eq, Modality.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-2.last
+
+  .span-5.prepend-13.last
+    .search_button= link_to t(:search), "#", :id => "search_button"
+    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

@@ -173,3 +173,35 @@
 
   a:hover
     color: #6EAC2C
+
+
+.periods
+  @extend .span-9
+  @extend .last
+  -moz-border-radius: 5px 5px 5px 5px
+  -webkit-border-radius: 5px 5px 5px 5px
+  border: 1px solid silver
+  padding: 8px
+  font-size: 11px
+  ul
+    margin: 0 30px 0 0
+    padding: 0
+    li
+      list-style-type: none
+      margin: 0
+      padding: 0
+      .icon_action_delete_period
+        @extend .icon_action
+        @extend .ui-icon-minus
+
+  a
+    text-decoration: none
+    color: #0088BB
+
+  a:visited
+    text-decoration: none
+    color: #0088BB
+
+  a:hover
+    color: #6EAC2C
+
