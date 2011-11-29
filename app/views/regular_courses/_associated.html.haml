@@ -7,7 +7,7 @@
     %ul
       - record.user_regularcourses.where(:user_id => current_user.id).all.each do |user_and_period|
         = render :partial => 'user_regular_courses/record', :object => user_and_period
-    = link_to 'Agregar periodo', new_user_regular_course_path(:id => record.id, :format => :js), :id => 'new_period', :remote => true
+    = link_to 'Agregar periodo', new_user_regular_course_path(:id => record.id, :format => :js), :class => 'new_period', :remote => true
 .action
   = link_to_show regular_course_path(:id => record.id)
 .action

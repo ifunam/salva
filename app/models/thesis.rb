@@ -23,7 +23,9 @@ class Thesis < ActiveRecord::Base
   default_scope :order => 'theses.endyear DESC, theses.startyear DESC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("theses.id IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]).to_sql}) AND theses.id  NOT IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id =  ?", user_id]).to_sql})") }
-  search_methods :user_id_eq, :user_id_not_eq
+  scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
+
+  search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
   def as_text
     [users_and_roles, title, career.as_text, date, "#{authors} (estudiante)"].compact.join(', ')

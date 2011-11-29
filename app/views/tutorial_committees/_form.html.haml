@@ -1,10 +1,14 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row= render :partial => "/shared/errors", :object => f.object.errors
+  .row
+    = f.input :studentname, :as => :string, :input_html => {:size => 80}
 
-%div{:class=> 'span-21 section_left push-1 last'}
-  = f.input :studentname, :as => :string, :input_html => {:size => 40}, :wrapper_class => 'span-9'
-  = f.input :descr, :as => :text, :input_html => {:size => '40x2'}, :wrapper_class => 'span-9'
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-3 last', :required => true
+  .row
+    .span-9.last= f.input :descr, :as => :text, :input_html => {:size => '78x1'}
 
-- f.object.career = Career.new if f.object.career.nil?
-= f.simple_fields_for :career, f.object.career do |c|
-  = render :partial => 'careers/form', :locals => { :f => c}
+  .row
+    .span-2.last= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+
+  - f.object.career = Career.new if f.object.career.nil?
+  = f.simple_fields_for :career, f.object.career do |c|
+    = render :partial => 'careers/form', :locals => { :f => c}

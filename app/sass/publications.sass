@@ -184,7 +184,7 @@
   padding: 8px
   font-size: 11px
   ul
-    margin: 0 30px 0 0
+    margin: 10px 0px 10px 0px
     padding: 0
     li
       list-style-type: none
@@ -194,14 +194,24 @@
         @extend .icon_action
         @extend .ui-icon-minus
 
+      a
+        padding: 0px
+        margin-top: 0px
+
+
   a
+    @extend .ui-state-default
+    @extend .ui-corner-all
     text-decoration: none
-    color: #0088BB
+    color: #fff
+    padding: 4px
+
 
   a:visited
-    text-decoration: none
-    color: #0088BB
+    color: #fff
 
   a:hover
-    color: #6EAC2C
+    @extend .ui-state-hover
+    @extend .ui-state-active
+    color: #fff
 

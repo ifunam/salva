@@ -1,15 +1,14 @@
-= render :partial => "/shared/errors", :object => f.object.errors
+.section-with-border-and-bg
+  .row= render :partial => "/shared/errors", :object => f.object.errors
+  .row
+    .span-9= f.input :name, :as => :text, :input_html => { :size => '50x1' }
+    .span-9.last= f.input :descr, :as => :text, :input_html => { :size => '50x1' }
 
-%div{ :class => 'span-24 section_left append-bottom last' }
-  %div{ :class => 'span-24  last' }
-    = f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12'
-    = f.input :descr, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
-
-  %div{:class => 'span-6'}
-    = f.label :activitytype, :required => true
-    = f.collection_select :activitytype_id, Activitytype.teaching, :id, :name, :prompt => true
-  = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-  %div{:class => 'span-6 last'}
-    = f.label :month, :required => true
-    = select_month(Date.today, :field_name => 'month', :prefix => 'activity')
+  .row
+    .span-6= f.association :activitytype, :collection => Activitytype.teaching, :using => :name, :input_html => { :prompt => true, :class => 'chosen-select' }
+    .span-2
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :month, :required => true
+      = select_month_for 'month', 'activity'
 

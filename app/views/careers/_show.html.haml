@@ -1,0 +1,4 @@
+%h4=t(:career)
+= show_for record do |c|
+  .span-9= c.attribute :name
+  .span-9.last= c.association :degree, :using => :name

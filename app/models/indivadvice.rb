@@ -4,11 +4,17 @@ class Indivadvice < ActiveRecord::Base
   validates_numericality_of :indivadvicetarget_id
   belongs_to :user
   belongs_to :indivuser, :class_name => "User", :foreign_key => "indivuser_id"
-  belongs_to :institution
+
+
   belongs_to :indivadvicetarget
   belongs_to :indivadviceprogram
+  belongs_to :institution
+
+  # Fix It: Remove degree relationship in the next release
   belongs_to :degree
-  belongs_to :career
+  belongs_to :career # Used only for students
+  accepts_nested_attributes_for :career
+
   belongs_to :registered_by, :class_name => "User"
   belongs_to :modified_by, :class_name => "User"
 
@@ -26,7 +32,12 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def degree_name
-    "Grado: #{degree.name}" unless degree_id.nil?
+    if !degree_id.nil?
+      "Grado: #{degree.name}"
+    elsif !career.nil?
+      "Grado: #{career.degree.name}"
+    end
+
   end
 
   def career_name
@@ -34,7 +45,11 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def institution_name
-    institution.name_and_parent_abbrev unless institution_id.nil?
+    if !institution_id.nil?
+      institution.name_and_parent_abbrev
+    elsif !career.nil?
+      career.institution.name_and_parent_abbrev
+    end
   end
 
   def normalized_hours
