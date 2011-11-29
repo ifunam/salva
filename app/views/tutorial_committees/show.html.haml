@@ -1,39 +1,25 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('tutorial_committees.show.title')
+%h3= t('tutorial_committees.show.title')
+.section-with-border-and-bg
   = show_for @tutorial_committee do |u|
-    %div{:class=> 'span-21 section_left push-1 last'}
-      = u.attribute :studentname, :wrapper_html => {:class => 'span-9'}
-      = u.attribute :descr, :wrapper_html => {:class => 'span-9 '}
-      = u.attribute :year, :wrapper_html => {:class => 'span-3 last '}
+    .span-18.last
+      = u.attribute :studentname
 
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-10'}
-        %label Grado
-        = @tutorial_committee.career.degree.name
-      %div{:class=> 'span-11 last'}
-        %label Carrera 
-        = @tutorial_committee.career.name
+    .span-18.last
+      = u.attribute :descr
 
-    %div{:class=> 'span-21 section_left push-1 last'}
-      %div{:class=> 'span-12'}
-        %label Facultad o Escuela
-        = @tutorial_committee.career.institution.name
-      %div{:class=> 'span-9 last'}
-        %label Institución 
-        = @tutorial_committee.career.institution.institution.name
-      %div{:class=> 'span-12'}
-        %label Tipo
-        = @tutorial_committee.career.institution.institutiontitle.name
-      %div{:class=> 'span-5'}
-        %label Clasificación 
-        = @tutorial_committee.career.institution.institutiontype.name
-      %div{:class=> 'span-4 last'}
-        %label País 
-        = @tutorial_committee.career.institution.country.name
+    .span-18.last
+      = u.attribute :year
 
-  = render :partial => 'shared/record', :object => @tutorial_committee
+    .span-18.last
+      = render :partial => 'careers/show', :locals => { :record => @tutorial_committee.career }
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_tutorial_committee_path(:id => @tutorial_committee.id)
-  = link_as_button t(:back), tutorial_committees_path
+    .span-18.last
+      %h4=t(:school_or_faculty)
+      = render :partial => 'institutions/show', :locals => { :record => @tutorial_committee.career.institution }
+  .row
+    = render :partial => 'shared/record', :object => @tutorial_committee
+
+#submit_button
+  = link_to t(:edit), edit_tutorial_committee_path(:id => @tutorial_committee.id)
+  = link_to t(:back), tutorial_committees_path
 
