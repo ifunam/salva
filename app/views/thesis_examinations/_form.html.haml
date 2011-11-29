@@ -12,10 +12,13 @@
       = f.association :thesismodality, :as => :radio, :wrapper_class => 'radio-set'
       = f.hidden_field :thesisstatus_id, :value  => 3
     .span-3
+      = f.hidden_field :startyear, :value  => Date.today.year
       = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
     .span-6.last
+      = f.hidden_field :startmonth, :value  => 1
       = f.label :endmonth, :required => true
       = select_month_for 'endmonth', 'thesis_examination'
+
 
   .row
     %h4=t(:roleinjury)
