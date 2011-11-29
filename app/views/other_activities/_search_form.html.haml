@@ -1,0 +1,8 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-9=t(:year)
+  .span-10.last
+
+  .span-12= f.text_field :year_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
+q

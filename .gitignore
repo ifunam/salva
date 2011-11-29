@@ -8,6 +8,7 @@ config/resque.yml
 config/aleph.yml
 config/github.yml
 config/deploy.rb
+config/newrelic.yml
 db/*
 !db/migrate
 !db/catalogs

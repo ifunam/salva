@@ -13,4 +13,8 @@ class UserTechproduct < ActiveRecord::Base
   def default_year
     self.year = Date.today.year if year.nil?
   end
+
+  def author_with_role
+    [user.author_name, "(#{userrole.name}, #{year})"].join(' ')
+  end
 end

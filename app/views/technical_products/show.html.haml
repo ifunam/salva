@@ -1,22 +1,22 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('technical_products.show.title')
+%h3= t('technical_products.show.title')
+.section-with-border-and-bg
   = show_for @technical_product do |u|
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.association :techproducttype, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :descr, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.association :techproducttype, :using => :name
+    .span-9.last= u.association :techproductstatus, :using => :name
 
-    = u.association :techproductstatus, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :descr
+    .span-9.last= u.association :institution, :using => :name_and_parent_abbrev
 
-    %div{:class => 'span-24 last'}
+    .span-18.last
       = u.association :user_techproducts, :collection_tag => :ol do |record| 
-        %li= record.user.author_name + " (#{record.userrole.name}, #{record.year})"
+        %li= record.author_with_role
+  .row
+    = render :partial => 'shared/record', :object => @technical_product
 
-  = render :partial => 'shared/record', :object => @technical_product
-
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_technical_product_path(:id => @technical_product.id)
-  = link_as_button t(:back), technical_products_path
+#submit_buttons
+  = link_to t(:edit), edit_technical_product_path(:id => @technical_product.id)
+  = link_to t(:back), technical_products_path
 
