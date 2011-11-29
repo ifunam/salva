@@ -1,6 +1,7 @@
 $(document).ready ->
-  $(".new_record").live "click", ->
-    $.dialog_for_new_record $(this).attr("data-remote-resource")
+  $(".new_record").live "click", (e) ->
+    e.preventDefault()
+    $.dialog_for_new_record @href
 
   $("#new_record_form").live "submit", ->
     class_name = @getAttribute("data-class-name")

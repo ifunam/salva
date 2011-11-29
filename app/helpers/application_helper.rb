@@ -52,20 +52,19 @@ module ApplicationHelper
   end
 
   def link_to_new_record(title, resource_path)
-    link_to_action 'icon_action_new_record', title, '#', :class => 'new_record',
-                   'data-remote-resource' => resource_path
+    link_to_action 'icon_action_new_record', title, resource_path, :class => 'new_record', :remote => true
   end
 
   def link_to_add_author(title, resource_path)
-    link_to_action 'icon_action_add_author', title, "#", 'data-remote-resource' => resource_path
+    link_to_action 'icon_action_add_author', title, resource_path, :remote => true
   end
 
   def link_to_del_author(title, resource_path)
-      link_to_action 'icon_action_del_author', title, "#", 'data-remote-resource' => resource_path
+      link_to_action 'icon_action_del_author', title, resource_path, :remote => true
   end
 
   def link_to_add_role(title, resource_path)
-    link_to_action 'icon_action_add_role', title, "#", 'data-remote-resource' => resource_path
+    link_to_action 'icon_action_add_role', title, resource_path, :remote => true
   end
 
   def checkbox_to_delete(record)
@@ -89,7 +88,7 @@ module ApplicationHelper
   end
 
   def link_to_user_list(resource_path)
-    link_to '', '#', :title =>t(:author_list), 'data-remote-resource' => resource_path, :class => 'icon_action_user_list'
+    link_to '', resource_path, :title =>t(:author_list), :remote => true, :class => 'icon_action_user_list'
   end
 
   def link_to_close_author_list
@@ -158,5 +157,4 @@ module ApplicationHelper
   def select_month_for(field_name, prefix = nil)
     select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
   end
-
 end
