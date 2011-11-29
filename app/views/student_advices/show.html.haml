@@ -1,23 +1,29 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('student_advices.show.title')
+%h3= t('student_advices.show.title')
+.section-with-border-and-bg
   = show_for @advice do |u|
-    = u.attribute :indivname, :wrapper_html => { :class => 'span-12'}
-    = u.association :degree, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :indivadvicetarget, :using => :name, :wrapper_html => {:class => 'span-6 last'}
+    .span-6= u.attribute :indivname
+    .span-6= u.association :indivadvicetarget, :using => :name
+    .span-6.last= u.attribute :hours
 
-    = u.association :career, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.association :institution, :using => :name_and_parent_abbrev, :wrapper_html => {:class => 'span-12 last'}
+    .span-18.last
+      .span-4= u.attribute :startyear
+      .span-5= u.attribute :startmonth
+      .span-4= u.attribute :endyear
+      .span-5.last= u.attribute :endmonth
 
-    = u.attribute :startyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :startmonth, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endyear, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :endmonth, :wrapper_html => {:class => 'span-6 last'}
+    - unless @advice.career.nil?
+      .span-18.last
+        = render :partial => 'careers/show', :locals => { :record => @advice.career }
 
-    = u.attribute :hours, :wrapper_html => {:class => 'span-6'}
+      - unless @advice.career.institution.nil?
+        .span-18.last
+          %h4=t(:school_or_faculty)
+          = render :partial => 'institutions/show', :locals => { :record => @advice.career.institution }
 
-  = render :partial => 'shared/record', :object => @advice
+  .row
+    = render :partial => 'shared/record', :object => @advice
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_student_advice_path(:id => @advice.id)
-  = link_as_button t(:back), student_advices_path
+#submit_buttons
+  = link_to t(:edit), edit_student_advice_path(:id => @advice.id)
+  = link_to t(:back), student_advices_path
 

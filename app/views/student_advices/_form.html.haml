@@ -1,32 +1,23 @@
-= render :partial => "/shared/errors", :object => f.object.errors
-%div{ :class => 'span-24 section_left append-bottom last' }
+.section-with-border-and-bg
+  .row= render :partial => "/shared/errors", :object => f.object.errors
 
-  = f.input :indivname, :as => :string, :input_html => { :size => '80' }, :wrapper_class => 'span-12'
-  %div{:class => 'span-6'}
-    = f.label :degree, :required => true
-    = f.collection_select :degree_id, Degree.all, :id, :name, {:prompt => true}
-  %div{:class => 'span-6 last'}
-    = f.label :indivadvicetarget, :required => true
-    = f.collection_select :indivadvicetarget_id, Indivadvicetarget.students, :id, :name, {:prompt => true}
+  .row
+    .span-6= f.input :indivname, :as => :string, :input_html => { :size => '35' }
+    .span-9= f.association :indivadvicetarget, :collection => Indivadvicetarget.students, :using =>:name, :as => :radio, :input_html => {:prompt => true}, :wrapper_class => 'radio-set'
+    .span-3.last= f.input :hours, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :required => true}
 
-  %div{:class => 'span-12 ui-widget', :id => 'career', 'data-controller-name'=>'careers' }
-    = f.label :career, :required => true
-    = f.select :career_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar carrer', '#', :id => 'new_record'
-  %div{:class => 'span-12 ui-widget last', :id => 'institution', 'data-controller-name'=>'institutions' }
-    = f.label :institution, :required => true
-    = f.select :institution_id, [], {:prompt => true}, {:class => 'autocompleted_select'}
-    = link_to_action 'ui-icon-plus', 'Agregar institución', '#', :id => 'new_record'
-
-  %div{ :class => 'span-24 last' }
-    = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-    %div{:class => 'span-6'}
+  .row
+    .span-3
+      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6
       = f.label :startmonth, :required => true
-      = select_month(Date.today, :field_name => 'startmonth', :prefix => 'advice')
-    = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6', :required => true
-    %div{:class => 'span-6 last'}
+      = select_month_for 'startmonth', 'advice'
+    .span-3
+      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
       = f.label :endmonth, :required => true
-      = select_month(Date.today, :field_name => 'endmonth', :prefix => 'advice')
+      = select_month_for 'endmonth', 'advice'
 
-  = f.input :hours, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :wrapper_class => 'span-6 last', :required => true
-
+  - f.object.career = Career.new if f.object.career.nil?
+  = f.simple_fields_for :career, f.object.career do |c|
+    = render :partial => 'careers/form', :locals => { :f => c}
