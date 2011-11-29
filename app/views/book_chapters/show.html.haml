@@ -2,7 +2,7 @@
   %h3= t('book_chapters.show.title')
   = show_for @book_chapter do |bc|
     .span-9= bc.attribute :title
-    .span-9.last= bc.association :bookchaptertype, :using => :name, :label => 'Bookchaptertype'
+    .span-9.last= bc.association :bookchaptertype, :using => :name
     .span-9= bc.attribute :pages
 
   .span-9.last

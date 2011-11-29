@@ -161,6 +161,59 @@ es:
         location: Lugar
         userconferences: Participantes
         conference_institutions: Instituciones
+      article:
+        authors: Autores
+        title:  Título
+        journal: Revista
+        year: Año
+        month: Mes
+        num: Número
+        vol: Volúmen
+        pages: Páginas
+        doi: DOI
+        other: Otros
+      book:
+        authors: Autores
+        title: Título
+        country: País
+        language: Idioma
+        booktype: Tipo
+        volume: Volúmen
+        booklink: Link
+      bookedition:
+        edition: Edición
+        isbn: ISBN
+        pages: Págias
+        year: Año
+        month: Mes
+        mediatype: Medio
+        editionstatus: Estatus
+      chapterinbook:
+        title: Título
+        pages: Páginas
+        bookchaptertype: Tipo
+      genericwork:
+        authors: Autores
+        title: Título
+        reference: Referencia
+        vol: Volúmen
+        pages: Paginas
+        isbn_issn: ISBN/ISSN
+        year: Año
+        month: Mes
+        genericworkstatus: Estatus
+      review:
+        authors: Autores
+        title: Título
+        reviewed_work_title: Titulo de trabajo reseñado
+        reviewed_work_publication: Publicación de trabajo reseñado
+        published_on: Publicado en
+        year: Año
+        month: Mes
+        other: Otros
+
+
+
 
   additional_info: Información addicional
 
@@ -214,6 +267,7 @@ es:
           front: 'Frente de credencial'
           back: 'Código de barras de credencial'
           list_all: 'Mostrar todos'
+
 
 
   cities:
@@ -386,13 +440,13 @@ es:
     edit:
       title: 'Modificar grupo de actividad'
 
+      title: 'Nuevo tipo de dirección'
   addresstypes:
     show:
       title: 'Tipo de dirección'
     index:
       title: 'Tipos de direcciones'
     new:
-      title: 'Nuevo tipo de dirección'
     edit:
       title: 'Modificar tipo de dirección'
 
@@ -461,6 +515,8 @@ es:
       title: 'Modificar artículo'
     show:
       title: 'Artículo publicado'
+    collection_header:
+      title: Artículo
 
   unpublished_articles:
     index:
@@ -477,6 +533,8 @@ es:
       title: 'Modificar artículo'
     show:
       title: 'Artículo enviado o aceptado'
+    collection_header:
+      title: Artículo
 
   conferencescopes:
     show:
@@ -617,6 +675,8 @@ es:
       title: 'Modificar reporte técnico'
     show:
       title: 'Reporte técnico'
+    collection_header:
+      title: Reporte
 
   technical_products:
     index:
@@ -1372,6 +1432,8 @@ es:
       title: 'Modificar libro'
     show:
       title: 'Libro'
+    collection_header:
+      title: Libro
 
   book_collaborations:
     index:
@@ -1404,6 +1466,8 @@ es:
       title: 'Modificar capítulo en libro'
     show:
       title: 'Capítulo en libro'
+    collection_header:
+      title: 'Capítulo'
 
   conference_talks:
     index:
