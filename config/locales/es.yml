@@ -138,9 +138,21 @@ es:
         month: Mes
         year: Año
         other: Información adicional
+      course:
+        name: Curso
+        courseduration: Duración
+        modality: Modalidad
+        hoursxweek: Horas por semana
+        totalhours: Horas totales
+        startyear: Año de inicio
+        endyear: Año de conclusión
+        startmonth: Mes de inicio
+        endmonth: Mes de conclusión
+        country: País
+        location: Lugar
+        user_courses: Participantes
 
-
-
+  additional_info: Información addicional
 
   academic_secretary:
     users:
@@ -1035,6 +1047,8 @@ es:
       title: 'Modificar curso recibido'
     show:
       title: 'Curso recibido'
+    collection_header:
+      title: Curso
 
   course_instructors:
     index:
