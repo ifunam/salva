@@ -67,6 +67,7 @@ group :production do
   gem "exception_notification", "~> 2.5.2"
   gem "octopi", "~> 0.4.5"
   gem "dalli", "~> 1.1.3"
+  gem "newrelic_rpm", "~> 3.3.0"
 end
 
 group :assets do
