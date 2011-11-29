@@ -1,26 +1,16 @@
-%tr{:class => cycle('record-odd', 'record-even'), :id => dom_id(record) }
-  %td{:style => 'width: 30px;'}
-    = checkbox_to_delete(record)
-  %td{:style => 'width: 630px;'}
-    = record.as_text
-    %div{:class => 'ui-state-highlight ui-corner-all', :id => 'associated_records'}
-      %span{:class => 'ui-icon ui-icon-info', :style => 'float: right;', :title => t(:not_associated)}
-  %td{:class => 'action'}
-    %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 32px; height:18px; padding: 2px;', :id => 'associated_authors_' + dom_id(record) }
-      %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(record) }
-        = record.users.size
-      %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'} 
-        = link_to_user_list record, user_list_other_work_path(:id => record.id, :format => 'js')
-  %td{:class => 'action'}
-    %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 80px; height:18px; padding: 2px; font-size:10px;', :id => 'associated_users_' + dom_id(record) }
-      %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_users_size_'+ dom_id(record) }
-        = t('select')
-      %div{:class => "ui-state-default ui-corner-all", :style => 'heigth: 16px;'} 
-        = link_to_user_list record, role_list_other_work_path(:id => record.id, :format => 'js')
-
-  %td{:style => 'width: 60px; text-align: center;'}
-    = link_to_action 'ui-icon-zoomin', t(:show),  other_work_path(:id => record.id)
-  %td{:style => 'width: 60px; text-align: center;'}
-    = link_to_action 'ui-icon-pencil', t(:edit),  edit_other_work_path(:id => record.id)
-  %td{:style => 'width: 60px; text-align: center;'}
-    = link_to_delete record, other_work_path(:id => record.id)
+.span-1= checkbox_to_delete(record)
+.span-8
+  = record.as_text
+  .not_associated{:title => t(:not_associated)}
+.associated_authors
+  .authors_size= record.users.size
+  = link_to_user_list user_list_other_work_path(:id => record.id, :format => 'js')
+.role_action
+  = link_to_add_role t(:add_role), role_list_other_work_path(:id => record.id, :format => 'js')
+.action
+  = link_to_show other_work_path(:id => record.id)
+.action
+  = link_to_edit edit_other_work_path(:id => record.id)
+.action
+  = link_to_delete record, other_work_path(:id => record.id)
+    

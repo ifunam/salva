@@ -1,19 +1,22 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('other_works.show.title')
+%h3= t('other_works.show.title')
+.section-with-border-and-bg
+
   = show_for @genericwork do |u|
-    = u.attribute :authors, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :title, :wrapper_html => {:class => 'span-12 last'}
+    .span-9= u.attribute :authors
+    .span-9.last= u.attribute :title
 
-    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.association :institution, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    %div{:class => 'span-12 last'}
-      = u.association :user_genericworks, :collection_tag => :ol do |record| 
-        %li= record.user.author_name + " (#{record.userrole.name})"
+    .span-3= u.attribute :year
+    .span-15.last= u.attribute :month
 
-  = render :partial => 'shared/record', :object => @genericwork
+    .span-18.last= u.association :institution, :using => :name
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_other_work_path(:id => @genericwork.id)
-  = link_as_button t(:back), other_works_path
+    .span-18.last
+      = u.association :user_genericworks, :collection_tag => :ol do |record|
+        %li= record.author_with_role
+  .row
+    = render :partial => 'shared/record', :object => @genericwork
+
+#submit_buttons
+  = link_to t(:edit), edit_other_work_path(:id => @genericwork.id)
+  = link_to t(:back), other_works_path
 
