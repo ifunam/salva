@@ -4,8 +4,6 @@
     = uf.hidden_field :id
     = uf.hidden_field :techproduct_id, :value => technical_product.id
   = uf.hidden_field :user_id, :value => current_user.id
-  %div{:class => 'span-12'}
-    = f.label :role, :required => true
-    = uf.collection_select :userrole_id, Userrole.all, :id, :name, :prompt => true
-  = uf.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :wrapper_class => 'span-6 last', :required => true
+  .span-9= uf.association :userrole, :collection => Userrole.all, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
+  .span-9.last= uf.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year, :required => true }
 
