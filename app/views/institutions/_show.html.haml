@@ -1,0 +1,7 @@
+= show_for record do |i|
+  .span-9= i.attribute :name
+  .span-9.last= i.association :institution, :using => :name
+
+  .span-6= i.association :institutiontitle, :using => :name
+  .span-6= i.association :institutiontype, :using => :name
+  .span-6.last= i.association :country, :using => :name

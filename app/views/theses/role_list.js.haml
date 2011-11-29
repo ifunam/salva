@@ -1,10 +1,11 @@
-%div{:class => 'ui-widget ui-widget-content ui-corner-all author_list', :id => 'show_user_roles_'+ dom_id(@thesis)}
-  %div
-    %b='Roles'
-    %div{:class => "ui-state-default ui-corner-all", :style => 'width: 16px; margin-left: 11px; float:right;'}
-      = link_to_function content_tag(:span, '', {:class =>'ui-icon ui-icon-close'}), "$('#show_user_roles_#{dom_id(@thesis)}').remove();"
-  %br
-  %ul{:style => 'width: 240px;',:class => 'add_or_delete_author'}
-    - Roleinthesis.no_author.all.each do |record|
-      %li{:style => 'margin-left: -30px; color: green;'}
-        = link_to record.name, add_user_thesis_path(:id => @thesis.id, :roleinthesis_id => record.id, :format => :js), 'data-parent-id' => dom_id(@thesis)
+.role_list
+
+  .span-6.last
+    %b=t(:role_selection)
+    = link_to_close_author_list
+
+  .span-6.last
+    %ul
+      - Roleinthesis.no_author.all.each do |record|
+        %li=link_to record.name, '#', 'data-remote-resource' => add_user_thesis_path(:id => @thesis.id, :roleinthesis_id => record.id, :format => :js)
+
