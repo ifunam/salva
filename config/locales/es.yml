@@ -151,6 +151,16 @@ es:
         country: País
         location: Lugar
         user_courses: Participantes
+      conference:
+        name: Nombre
+        conferencetype: Tipo
+        conferencescope: Ambito
+        country: País
+        year: Año
+        month: Mes
+        location: Lugar
+        userconferences: Participantes
+        conference_institutions: Instituciones
 
   additional_info: Información addicional
 
@@ -1080,6 +1090,8 @@ es:
       title: 'Modificar evento académico'
     show:
       title: 'Evento académico'
+    collection_header:
+      title: Evento
 
   conference_organizers:
     index:
