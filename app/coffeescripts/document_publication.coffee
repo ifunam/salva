@@ -41,7 +41,7 @@ $(document).ready ->
       $("#dialog").dialog "close"
       $("#dialog").html('')
 
-  $("#new_period").live "click", (e) ->
+  $(".new_period").live "click", (e) ->
     (e).preventDefault()
     $.dialog_for_new_period @href
   
@@ -49,7 +49,6 @@ $(document).ready ->
     (e).preventDefault()
     regularcourse_id = $("#new_period_form").attr("data-regularcourse-id")
     $("#new_period_form").ajaxComplete (event, request, settings) ->
-      #$("#" + class_name).append request.responseText
       $($("#regularcourse_"+regularcourse_id).find('.periods ul')[0]).append request.responseText
       $("#dialog").dialog "close"
       $("#dialog").html('')
