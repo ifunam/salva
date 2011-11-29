@@ -1,27 +1,27 @@
 $(document).ready ->
-  $(".associated_authors a.icon_action_user_list").live "click", ->
-    href = $(this).attr("data-remote-resource")
-    $(this).after $.response_from_simple_remote_resource(href)
+  $(".associated_authors a.icon_action_user_list").live "click", (e)->
+    (e).preventDefault()
+    $(this).after $.response_from_simple_remote_resource(@href)
     false
   
   $(".icon_action_close_author_list").live "click", ->
     $(this).parent().parent().parent().remove()
 
-  $(".author_action a").live "click", ->
-    href = $(this).attr("data-remote-resource")
-    html = $.response_from_remote_resource(href)
+  $(".author_action a").live "click", (e)->
+    (e).preventDefault()
+    html = $.response_from_remote_resource(@href)
     $(this).parent().parent().replaceWith html
     false
 
-  $(".role_list ul li a").live "click", ->
+  $(".role_list ul li a").live "click", (e)->
     href = $(this).attr("data-remote-resource")
     html = $.response_from_remote_resource(href)
     $(this).parent().parent().parent().parent().parent().parent().replaceWith html
     false
 
-  $(".role_action a.action_link").live "click", ->
-    href = $(this).attr("data-remote-resource")
-    $(this).after $.response_from_simple_remote_resource(href)
+  $(".role_action a.action_link").live "click", (e)->
+    (e).preventDefault()
+    $(this).after $.response_from_simple_remote_resource(@href)
     false
 
   $("#new_checkbox").live "click", ->
