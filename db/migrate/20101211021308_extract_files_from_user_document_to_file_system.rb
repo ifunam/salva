@@ -24,7 +24,7 @@ class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
         puts "Creating file: #{filename}"
         @user_document = UserDocument.find(record.id)
         File.open(filename, 'w') do |f|
-          f.write @user_document.file
+          f.write @user_document.file.force_encoding('utf-8')
         end
       end
       puts "Inserting document: :user_id => #{record.user_id}, :file => #{filename}"
