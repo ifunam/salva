@@ -211,9 +211,29 @@ es:
         year: Año
         month: Mes
         other: Otros
-
-
-
+      seminary:
+        instructors: Instructores
+        title: Título
+        seminarytype: Tipo
+        user_seminaries: Ponentes
+        year: Año
+        month: Mes
+        institution: Institución
+      activity:
+        name: Nombre
+        descr: Descripción
+        activitytype: Tipo
+        year: Año
+        month: Mes
+      technical_product:
+        authors: Autores
+        tite: Título
+        techproductstatus: Estatus
+        techproducttype: Tipo
+        descr: Descricpción
+        institution: Institución
+        userrole: Rol
+        year: año
 
   additional_info: Información addicional
 
@@ -693,6 +713,8 @@ es:
       title: 'Modificar producto técnico'
     show:
       title: 'Producto técnico'
+    collection_header:
+      title: Producto técnico
 
   user_languages:
     index:
@@ -778,6 +800,7 @@ es:
     show:
       title: 'Información de actividad técnica'
 
+
   user_credits:
     index:
       title: 'Agradecimientos y otros créditos'
@@ -804,6 +827,8 @@ es:
      title: 'Modificar  seminario/conferencia'
     show:
      title: 'Información Seminarios y conferencias'
+    collection_header:
+      title: Seminario/Conferencia
 
   newspaper_articles:
     index:
@@ -1168,6 +1193,8 @@ es:
       title: 'Modificar comité de congreso'
     show:
       title: 'Comité de congreso'
+    collection_header:
+      title: Congreso
 
   roleinseminaries:
     show:
@@ -1360,6 +1387,8 @@ es:
       title: 'Modificar curso regular'
     show:
       title: 'Curso regular'
+    collection_header:
+      title: Curso
 
   user_annual_reports:
     index:
@@ -1484,6 +1513,8 @@ es:
       title: 'Modificar trabajo presentado en congreso'
     show:
       title: 'Trabajo presentado en congreso'
+    collection_header:
+      title: Congreso
 
   user_profiles:
     show:
