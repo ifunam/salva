@@ -55,6 +55,7 @@ gem "resque-status", "0.2.4", :require => "resque/status"
 gem "resque_mailer", "2.0.2"
 
 gem "prawn", "0.12.0"
+gem "prawn_rails", "~> 0.0.7"
 gem "spreadsheet", "0.6.5.9"
 gem "barby", "0.5.0"
 gem "rest-client", "~> 1.6.7"
