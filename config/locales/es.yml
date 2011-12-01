@@ -110,10 +110,11 @@ es:
         name: Nombre de la carrera
       institution:
         institutiontype:  Tipo de institución
-        institutiontitle_id: Titulo de la institución
+        institutiontitle: Titulo de la institución
         country: País
         name: Nombre
         institution: Institución
+
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
         startyear: Año de inicio
@@ -202,6 +203,9 @@ es:
         year: Año
         month: Mes
         genericworkstatus: Estatus
+        institution: Institución
+        publisher: Editor
+        genericworktype: Tipo
       review:
         authors: Autores
         title: Título
@@ -234,8 +238,56 @@ es:
         institution: Institución
         userrole: Rol
         year: año
+      user_journal:
+        journal: Revista
+        roleinjournal: Rol
+        startyear: Año de inicio
+        startmonth: Mes de inicio
+        endyear: Año de conclusión
+        endmonth: Mes de conclusión
+      user_refereed_journal:
+        journal: Revista
+        refereed_criterium: Tipo
+        year: Año
+        month: Mes
+      newspaperarticle:
+        authors: Autores
+        title: Título
+        newspaper: Periódico
+        newsdate: Fecha
+      indivadvice:
+        indivname: Persona asesorada
+        institution: Institución
+        startyear: Año de inicio
+        startmonth: Mes de inicio
+        endyear: Año de conclusión
+        endmonth: Mes de conclusión
+        hours: Horas
+        indivadvicetarget: Objetivo
+      instadvice:
+        title: Título
+        instadvicetarget: Objetivo
+        institution: Institución
+        year: Año
+        month: Mes
+      thesis:
+        title: Título
+        authors: Autores
+        thesismodality: Modalidad
+        thesisstatus: Estatus
+        startyear: Año de inicio
+        startmonth: Mes de inicio
+        endyear: Año de conslusión
+        endmonth: Mes de conclusión
+      tutorial_committee:
+        studentname: Nombre del estudiente
+        descr: Descripción
+        year: año
 
   additional_info: Información addicional
+  career: Carrera
+  school_or_faculty: Escuela o facultad
+  thesis_jurors: Jurados de tesis
 
   academic_secretary:
     users:
@@ -631,6 +683,8 @@ es:
       title: 'Modificar trabajo de divulgación'
     show:
       title: 'Trabajo de divulgación'
+    collection_header:
+      title: Trabajo
 
   outreach_works:
     index:
@@ -647,6 +701,8 @@ es:
       title: 'Modificar trabajo de vinculación'
     show:
       title: 'Trabajo de vinculación'
+    collection_header:
+      title: Trabajo
 
   other_works:
     index:
@@ -845,6 +901,8 @@ es:
       title: 'Modificar artículos periodístico'
     show:
       title: 'Información de artículos periodístico'
+    collection_header:
+      title: Artículo
 
   user_journals:
     index:
@@ -1160,6 +1218,8 @@ es:
       title: 'Modificar curso'
     show:
       title: 'Curso especial'
+    collection_header:
+      title: Curso
 
   conference_attendees:
     index:
@@ -1396,13 +1456,13 @@ es:
 
   user_refereed_journals:
     index:
-      title: 'Arbitraje en journals'
+      title: 'Arbitraje en revistas'
     new:
-      title: 'Nuevo arbitraje en journal'
+      title: 'Nuevo arbitraje en revista'
     edit:
-      title: 'Modificar arbirtraje en journal'
+      title: 'Modificar arbirtraje en revista'
     show:
-      title: 'Información de arbitraje en journal'
+      title: 'Información de arbitraje en revista'
 
   theses:
     index:
@@ -1419,6 +1479,8 @@ es:
       title: 'Modificar dirección o asesoría de tesis'
     show:
       title: 'Dirección o asesoría de tesis'
+    collection_header:
+      title: Tesis
 
   thesis_examinations:
     index:
@@ -1435,6 +1497,8 @@ es:
       title: 'Modificar jurado de tesis'
     show:
       title: 'Jurado de tesis'
+    collection_header:
+      title: Tesis
 
   tutorial_committees:
     index:
@@ -1479,6 +1543,8 @@ es:
       title: 'Modificar colaboración en libro'
     show:
       title: 'Colaboración Libro'
+    collection_header:
+      title: Colaboración
 
   book_chapters:
     index:
