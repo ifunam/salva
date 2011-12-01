@@ -6,24 +6,37 @@
 #top-navigation
   @extend .span-24
   @extend .last
-  @extend .ui-tabs
-  @extend .ui-helper-reset
-  @extend .ui-helper-clearfix
-  font-size: 11px
+  font-size: 11.5px
   text-align: left
-  height: 33px
+  height: 42px
+  margin-top: 10px
   ul
     @extend .ui-tabs-nav
     @extend .ui-helper-reset
     @extend .ui-helper-clearfix
+    @extend .span-24
+    display: inline-block
+    margin-left: -4px
+    vertical-align: middle
     li
       @extend .ui-state-default
       @extend .ui-corner-top
       list-style-type: none
-      padding-left: 0px
-      padding-right: 0px
-      height: 30px
+      padding-top: 7px
+      padding-left: 3px
+      padding-right: 3px
+      margin-left: 2px
       background: #0088BB
+      line-height: 1.01em
+      height: 42px
+      width: 84px
+      float: left
+      text-align: center
+      vertical-align: middle
+      a
+        display: inline-block
+        vertical-align: middle
+
     li.selected
       @extend .ui-tabs-selected
       @extend .ui-state-active
