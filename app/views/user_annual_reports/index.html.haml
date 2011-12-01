@@ -1,11 +1,16 @@
-%h3= t('.title')
-%table{:id => 'collection_table', :class => 'ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix'}
-  %thead{:id => "filter_header"}
-    = render :partial => 'header'
-  %tbody{:id =>'collection'}
-    = render :partial => 'record', :collection => @documents
-%div{ :class => 'span-24 buttons_left last' }
-  - @document_type = Documenttype.annual_reports.active.first
-  - unless @document_type.nil?
-    - if Document.where(:user_id => current_user.id, :documenttype_id => @document_type.id).first.nil?
-      = link_as_button t(:send_annual_report), user_annual_report_path(:id => current_user.id, :year => @document_type.year)
+.span-17.last
+  %h3= t('.title')
+
+#collection_header
+  .span-16=t('.title')
+  .span-2.last=t(:download)
+
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= will_paginate(@documents)
+
+#submit_buttons
+  = link_to_annual_report(current_user.id)
