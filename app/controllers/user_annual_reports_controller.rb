@@ -20,9 +20,9 @@ class UserAnnualReportsController < ApplicationController
 
   def deliver
     @document_type = Documenttype.annual_reports.active.first
-    respond_with(@report = UserAnnualReport.create(:user_id => current_user.id, :year => params[:year],
-                                                   :remote_id => request.remote_ip,
-                                                   :document_type_id => @document_type.id))
+    respond_with(@document = UserAnnualReport.create(:user_id => current_user.id, :year => params[:year],
+                                                     :remote_ip=> request.remote_ip,
+                                                     :document_type_id => @document_type.id))
   end
 
   private
