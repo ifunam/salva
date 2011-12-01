@@ -1,0 +1,4 @@
+#submit_buttons.span-10.push-1.prepend-7.last
+  = link_to t(:preview_pdf), user_annual_report_path(:id => current_user.id, :year => params[:year], :format => 'pdf')
+  = link_to t(:send_annual_report), deliver_user_annual_report_path(:id => current_user.id, :year => params[:year]), :confirm => '¿ Desea enviar su informe anual ?'
+  = link_to t(:cancel), user_annual_reports_path

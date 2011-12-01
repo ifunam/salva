@@ -35,7 +35,7 @@ Salva::Application.routes.draw do
   end
 
   resources :user_annual_reports do
-    get :send_report, :on => :member
+    get :deliver, :on => :member
   end
 
   root :to => "user_profiles#show"

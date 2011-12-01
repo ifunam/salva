@@ -1,5 +1,8 @@
+
 .span-17.last
   %h3= "Informe anual de actividades - #{params[:year]}"
+
+= render :partial => 'show_links'
 
 .section-with-border-and-bg
   %h4=t(:general_information)
@@ -57,11 +60,6 @@
       %label=t(:user_incharge)
     .span-14.last= @profile.responsible_academic
 
--#- @annual_report.build.sections.each do |section|
--#  %h4=section[:title]
--#  .section-with-border-and-bg
--#    - section[:subsections].each do |subsection|
--#      %b= subsection[:title]
--#      %ol
--#        - subsection[:collection].each do |record|
--#          %li= record + '.'
+= render :partial => 'section', :collection => @report_sections
+
+= render :partial => 'show_links'

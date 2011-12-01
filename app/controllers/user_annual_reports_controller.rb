@@ -10,12 +10,17 @@ class UserAnnualReportsController < ApplicationController
   end
 
   def show
-    @year = params[:year]
     @profile = UserProfile.find(current_user.id)
-    @annual_report = Reporter::Base.new(:user_id_eq => current_user.id, :start_date => "#{@year}/01/01", :end_date => "#{@year}/12/31")
+    @report_sections = Reporter::Base.find(build_query).all
     respond_to do |format|
       format.html
       format.pdf
     end
+  end
+
+  private
+  def build_query
+    year = params[:year]
+    { :user_id_eq => current_user.id, :start_date => "#{year}/01/01", :end_date => "#{year}/12/31" }
   end
 end
