@@ -1,64 +1,9 @@
-
 .span-17.last
   %h3= "Informe anual de actividades - #{params[:year]}"
 
 = render :partial => 'show_links'
 
-.section-with-border-and-bg
-  %h4=t(:general_information)
-  .span-4
-    %label=t(:fullname)
-  .span-14.last= @profile.fullname
-
-  .span-4
-    %label=t(:gender)
-  .span-14.last= @profile.gender
-
-  .span-4
-    %label=t(:birthday)
-  .span-14.last= @profile.birthdate
-
-  .span-4
-    %label="Domicilio profesional:"
-  .span-14.last= @profile.address
-
-  .span-4
-    %label=t(:phone)
-  .span-14.last= @profile.phone
-  
-  .span-4
-    %label=t(:fax)
-  .span-14.last= @profile.fax
-  
-  .span-4
-    %label=t(:email)
-  .span-14.last= @profile.email
-
-  .span-4
-    %label=t(:person_id)
-  .span-14.last= @profile.person_id
-
-  .span-4
-    %label=t(:category)
-  .span-14.last= @profile.category_name
-
-  .span-4
-    %label=t(:adscription)
-  .span-14.last= @profile.adscription_name
-
-  .span-4
-    %label=t(:worker_id)
-  .span-14.last= @profile.worker_id
-
-  - if @profile.total_of_cites.to_i > 0
-    .span-4
-      %label=t(:total_of_cites)
-    .span-14.last= @profile.total_of_cites
-
-  - unless @profile.responsible_academic.nil?
-    .span-4
-      %label=t(:user_incharge)
-    .span-14.last= @profile.responsible_academic
+= render :partial => 'profile', :object => @profile
 
 = render :partial => 'section', :collection => @report_sections
 
