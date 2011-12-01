@@ -111,7 +111,7 @@ module ApplicationHelper
   def link_to_annual_report(user_id)
     @document_type = Documenttype.annual_reports.active.first
     if !@document_type.nil? and Document.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
-      link_to t(:annual_report_preview), user_annual_report_path(:id => current_user.id, :year => @document_type.year)
+      link_to t(:annual_report_preview), user_annual_report_path(:year => @document_type.year)
     end
   end
 
