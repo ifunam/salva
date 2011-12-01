@@ -36,26 +36,27 @@ module MetaDateExtension
     protected
 
     def start_end_date_scopes
-       scope :since, lambda { |year, month| where(:startyear >= year, :startmonth >= month) } unless respond_to? :since
-       scope :until, lambda { |year, month| where(:endyear <= year, :endmonth <= month) } unless respond_to? :until
+       scope :since, lambda { |year, month| where{{:startyear.gteq => year} & {:startmonth.gteq => month}} } unless respond_to? :since
+       scope :until, lambda { |year, month| where{{:endyear.lteq => year} & {:endmonth.lteq => month}} } unless respond_to? :until
        date_search_methods
     end
 
     def simple_date_scopes
-      scope :since, lambda { |year, month| where(:year >= year, :month >= month) } unless respond_to? :since
-      scope :until, lambda { |year, month| where(:year <= year, :month <= month) } unless respond_to? :until
+
+      scope :since, lambda { |year, month| where{{:year.gteq => year} & {:month.gteq => month}} } unless respond_to? :since
+      scope :until, lambda { |year, month| where{{:year.lteq => year} & {:month.lteq => month}} } unless respond_to? :until
       date_search_methods
     end
 
     def date_range_scopes
-      scope :since, lambda { |date| where(:start_date >= date) } unless respond_to? :since
-      scope :until, lambda { |date| where(:end_date <= date) } unless respond_to? :until
+      scope :since, lambda { |date| where{{:start_date.gteq => date}} } unless respond_to? :since
+      scope :until, lambda { |date| where{{:end_date.lteq => date}} } unless respond_to? :until
       search_methods :since, :until
     end
 
     def only_year_scopes
-      scope :since, lambda { |year| where(:year >= year ) } unless respond_to? :since
-      scope :until, lambda { |year| where(:year <= year) } unless respond_to? :until
+      scope :since, lambda { |year| where{{:year.gteq => year}} } unless respond_to? :since
+      scope :until, lambda { |year| where{{:year.lteq => year}} } unless respond_to? :until
       scope :between, lambda { |start_year, end_year| since(start_year).until(end_year)}
       search_methods :since, :until
       search_methods :between, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
