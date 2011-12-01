@@ -87,9 +87,10 @@ class Notifier < ActionMailer::Base
 
   def approved_document(document_id)
     @document = Document.find(document_id)
-    build_document(document_id, true)
     filename = File.basename(@document.file) if File.exist? @document.file
-    mail(:to => @document.user.email, :cc => [email_academic_secretary, @document.approved_by.email],
+    cc = [email_academic_secretary]
+    cc.push(@document.approved_by.email) unless @document.approved_by_id.nil?
+    mail(:to => @document.user.email, :cc => cc,
          :subject => @document.documenttype.name) do |format|
       format.text
       attachments[filename] = File.read(@document.file) if File.exist? @document.file
@@ -98,7 +99,6 @@ class Notifier < ActionMailer::Base
 
   def approval_request_from_user(document_id)
     @document = Document.find(document_id)
-    build_document(document_id)
     filename = File.basename(@document.file) if File.exist? @document.file
     mail(:to => @document.approved_by.email, :cc => email_academic_secretary,
          :subject => @document.documenttype.name) do |format|
@@ -124,16 +124,6 @@ class Notifier < ActionMailer::Base
   end
 
   private
-  # FIX IT: Move this method into a new Worker Class
-  def build_document(document_id, received=false)
-    @document = Document.find(document_id)
-    @report = UserAnnualReport::Base.find(@document.user_id, @document.documenttype.year)
-    @report.code = @document.ip_address
-    @report.signature = Digest::MD5.hexdigest(@document.file)
-    @report.received = true if @document.approved?
-    @report.save_pdf(@document.file)
-  end
-
   def email_ldap_admin
     ldap_config = "#{Rails.root.to_s}/config/ldap.yml"
     if File.exist? ldap_config

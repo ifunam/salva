@@ -34,9 +34,9 @@ Salva::Application.routes.draw do
      get :filtered_select, :on => :collection
   end
 
-  resources :user_annual_reports do
-    get :send_report, :on => :member
-  end
+  resources :user_annual_reports, :only => [:index]
+  match '/user_annual_reports/:year' => 'user_annual_reports#show', :via => :get, :constraints => { :year => /\d{4}/ }, :as => :user_annual_report
+  match '/user_annual_reports/:year/deliver' => 'user_annual_reports#deliver', :via => :get, :constraints => { :year => /\d{4}/ }, :as => :deliver_user_annual_report
 
   root :to => "user_profiles#show"
 end

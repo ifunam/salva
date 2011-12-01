@@ -1,85 +1,10 @@
-%div{:class => 'span-24 push-1 last'}
-  %div{:class => 'span-14 '}
-    %h2= "Informe anual de actividades - #{params[:year]}"
-  %div{:class => 'span-10 last'}
-    - @document_type = Documenttype.annual_reports.active.first
-    - unless @document_type.nil?
-      - if Document.where(:user_id => current_user.id, :documenttype_id => @document_type.id).first.nil?
-        = link_as_button t(:preview_pdf), user_annual_report_path(:id => current_user.id, :year => @document_type.year, :format => 'pdf')
-        = link_as_button t(:send_annual_report), send_report_user_annual_report_path(:id => current_user.id), :confirm => '¿ Desea enviar su informe anual ?'
-        = link_as_button t(:cancel), user_annual_reports_path
+.span-17.last
+  %h3= "Informe anual de actividades - #{params[:year]}"
 
-%h3{:style=>"color: #2e90bd; font-weight:bold;"}= 'Información general'
-- @profile = @report.build.profile
-%div{:class => 'span-22 push-1 last'}
-  %div{:class => 'span-5'}
-    %b="Nombre:"
-  %div{:class => 'span-17 last'}
-    = @profile.fullname
-  %div{:class => 'span-5'}
-    %b="Género:"
-  %div{:class => 'span-17 last'}
-    = @profile.gender
-  %div{:class => 'span-5'}
-    %b="Fecha de nacimiento:"
-  %div{:class => 'span-17 last'}
-    = @profile.birthdate
-  %div{:class => 'span-5'}
-    %b="Domicilio profesional:"
-  %div{:class => 'span-17 last'}
-    = @profile.address
-  %div{:class => 'span-5'}
-    %b="Teléfono:"
-  %div{:class => 'span-17 last'}
-    = @profile.phone
-  %div{:class => 'span-5'}
-    %b="Fax:"
-  %div{:class => 'span-17 last'}
-    = @profile.fax
-  %div{:class => 'span-5'}
-    %b= "Correo electrónico:"
-  %div{:class => 'span-17 last'}
-    = @profile.email
-  %div{:class => 'span-5'}
-    %b="RFC o CURP:"
-  %div{:class => 'span-17 last'}
-    = @profile.person_id
-  %div{:class => 'span-5'}
-    %b="Categoría:"
-  %div{:class => 'span-17 last'}
-    = @profile.category_name
-  %div{:class => 'span-5'}
-    %b="Adscripción:"
-  %div{:class => 'span-17 last'}
-    = @profile.adscription_name
-  %div{:class => 'span-5'}
-    %b="Número de trabajador:"
-  %div{:class => 'span-17 last'}
-    = @profile.worker_id
-  %div{:class => 'span-5'}
-    %b="Total de citas:"
-  %div{:class => 'span-17 last'}
-    = @profile.total_of_cites.to_s + '.'
-  - unless @report.build.profile.responsible_academic.nil?
-    %div{:class => 'span-5'}
-      %b= "Responsable académico:"
-    %div{:class => 'span-17 last'}
-      = @profile.responsible_academic
+= render :partial => 'show_links'
 
-%div{:class => 'span-24 last'}
-  - @report.build.sections.each do |section|
-    %h3{:style=>"color: #2e90bd; font-weight:bold;"}= section[:title]
-    - section[:subsections].each do |subsection|
-      %div{:class => 'span-22 prepend-1 last'}
-        %b= subsection[:title]
-        %ol
-          - subsection[:collection].each do |record|
-            %li{:style => 'text-align: justify;'}= record + '.'
+= render :partial => 'profile', :object => @profile
 
-%div{:class => 'span-24 pull-1 last'}
-  - @document_type = Documenttype.annual_reports.active.first
-  - unless @document_type.nil?
-    - if Document.where(:user_id => current_user.id, :documenttype_id => @document_type.id).first.nil?
-      = link_as_button t(:preview_pdf), user_annual_report_path(:id => current_user.id, :year => @document_type.year, :format => 'pdf')
-      = link_as_button t(:send_annual_report), send_report_user_annual_report_path(:id => current_user.id), :confirm => '¿ Desea enviar su informe anual ?'
-      = link_as_button t(:cancel), user_annual_reports_path
+= render :partial => 'section', :collection => @report_sections
+
+= render :partial => 'show_links'

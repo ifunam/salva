@@ -1,6 +1,6 @@
 class DocumentObserver < ActiveRecord::Observer
   def after_create(document)
-    if document.approved_by_id.nil?
+    if document.user.user_incharge_id.nil? and document.approved_by_id.nil?
       document.update_attribute(:approved, true)
       Notifier.approved_document(document.id).deliver
     else
