@@ -110,7 +110,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :teaching_products, 'Productos de docencia', teaching_products_path, :highlights_on => /\/teaching_products/
     end
 
-    primary.item :tech_activities, 'Actividades técnico-académicas', technical_activities_path do |s|
+    primary.item :tech_activities, 'Actividades técnico - académicas', technical_activities_path do |s|
       s.item :technical_activities, 'Actividades técnicas', technical_activities_path, :highlights_on => /\/technical_activities/
       s.item :technical_products, 'Productos técnicos', technical_products_path, :highlights_on => /\/technical_products/
     end
@@ -119,6 +119,10 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :other_activities, 'Otras actividades', other_activities_path, :highlights_on => /\/other_activities/
       s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
+
+    primary.item :reports, 'Informes', user_annual_reports_path do |s|
+      s.item :user_annual_reports, 'Informe anual', user_annual_reports_path, :highlights_on => /\/user_annual_reports/
+   end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
     # Conditions are part of the options. They are evaluated in the context of the views,
