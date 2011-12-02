@@ -1,0 +1,5 @@
+.row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
+ .span-14= record.documenttype.name
+ .span-2= "*"
+ .action.last= link_to_download(record)
+

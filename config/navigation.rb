@@ -122,6 +122,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :reports, 'Informes', user_annual_reports_path do |s|
       s.item :user_annual_reports, 'Informe anual', user_annual_reports_path, :highlights_on => /\/user_annual_reports/
+      s.item :user_annual_plans, 'Plan anual', user_annual_plans_path, :highlights_on => /\/user_annual_plans/
    end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.

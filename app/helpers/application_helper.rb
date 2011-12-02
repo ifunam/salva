@@ -101,7 +101,7 @@ module ApplicationHelper
   end
 
   def link_to_download(record)
-    if File.exist? record.file.to_s
+    if File.exist? record.file_path
       link_to_action 'icon_action_download', t(:download), record.url, :target => '_blank'
     else
       'En proceso...'
@@ -112,6 +112,14 @@ module ApplicationHelper
     @document_type = Documenttype.annual_reports.active.first
     if !@document_type.nil? and Document.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
       link_to t(:annual_report_preview), user_annual_report_path(:year => @document_type.year)
+    end
+  end
+
+
+  def link_to_annual_plan(user_id)
+    @document_type = Documenttype.annual_plans.active.first
+    if !@document_type.nil? and Document.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
+      link_to t(:new_annual_plan), new_user_annual_plan_path
     end
   end
 

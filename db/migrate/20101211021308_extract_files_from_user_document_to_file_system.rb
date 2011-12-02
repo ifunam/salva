@@ -13,7 +13,7 @@ class ExtractFilesFromUserDocumentToFileSystem < ActiveRecord::Migration
       if record.document.documenttype.name == 'Informe anual de actividades'
         path = base_path + '/annual_reports/' + record.document.title.to_s
       elsif record.document.documenttype.name == 'Plan de trabajo'
-        path = base_path + '/annual_plan/' + record.document.title.to_s
+        path = base_path + '/annual_plans/' + record.document.title.to_s
       end
       unless File.exist? path
         puts "Creating directory: #{path}"

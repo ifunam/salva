@@ -7,18 +7,20 @@ class Document < ActiveRecord::Base
 
   default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
-  scope :annual_plan, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
+  scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
 
   before_create :file_path
 
   def url
-    File.expand_path(file).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
+    File.expand_path(file_path).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
   end
 
   def file_path
     path = Rails.root.to_s + '/public/uploads'
-    unless documenttype.name.match(/^Informe anual de actividades/).nil?
+    if !documenttype.name.match(/^Informe anual de actividades/).nil?
       path += '/annual_reports/' + documenttype.year.to_s
+    elsif !documenttype.name.match(/^Plan de trabajo/).nil?
+      path += '/annual_plans/' + documenttype.year.to_s
     end
     system "mkdir -p #{path}" unless File.exist? path      
     self.file = path + "/#{user.login}.pdf"

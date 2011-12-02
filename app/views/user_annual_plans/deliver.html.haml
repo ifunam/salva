@@ -1,0 +1,14 @@
+%h3= @document_type.name
+.section-with-border-and-bg
+  - if current_user.user_incharge_id.nil? and @document.approved_by_id.nil?
+    = "Su <em>#{@document_type.name}</em> ha sido enviado.".html_safe
+    = "En breve recibirá la notificación por correo electrónico con un archivo adjunto, "
+    = 'una vez que reciba la notificación, su informe también estará disponible en la interfaz web del sistema.'
+  - else
+    = "Su <em>#{@document_type.name}</em> ha sido enviado a su jefe inmediato: #{@document.approved_by.email}. ".html_safe
+    = "Cuando el documento sea aprobado, "
+    = "en breve recibirá la notificación por correo electrónico con un archivo adjunto, "
+    = 'y su informe también estará disponible en la interfaz web del sistema.'
+
+#submit_buttons
+  = link_to t(:back), user_annual_reports_path

@@ -1,0 +1,11 @@
+.span-17.last
+  %h3= "Informe anual de actividades - #{params[:year]}"
+
+= render :partial => 'show_links'
+
+= render :partial => 'user_annual_reports/profile', :object => @profile
+
+.section-with-border-and-bg
+  = raw(RedCloth.new(@annual_plan.body).to_html)
+
+= render :partial => 'show_links'

@@ -1,0 +1,17 @@
+.span-17.last
+  %h3= t('.title')
+
+#collection_header
+  .span-14=t('.title')
+  .span-2=t(:edit)
+  .span-2.last=t(:download)
+
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= will_paginate(@documents)
+
+#submit_buttons
+  = link_to_annual_plan(current_user.id)

@@ -1,0 +1,7 @@
+- text = %Q(En el año #{Date.today.year} pretendo cumplir las siguientes actividades: \n\n |
+    # Realizar tareas técnicas de mi especialidad, desarrollos tecnológicos, servicios y mantenimiento.\n |
+    # Participar en actividades de superación académica, cursos de actualización y capacitación.\n |
+    # Participar en la elaboración de publicaciones, ya sea como autor, coautor o como apoyo a las tareas de investigación que se realizan en el Instituto. \n |
+    # Involucrarme en asesorias y tareas de docencia.) |
+
+= f.input :body, :as => :text, :input_html => { :value => text, :size => '120x10' }

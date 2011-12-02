@@ -59,6 +59,7 @@ gem "prawn_rails", "~> 0.0.7"
 gem "spreadsheet", "0.6.5.9"
 gem "barby", "0.5.0"
 gem "rest-client", "~> 1.6.7"
+gem "RedCloth", "~> 4.2.9"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
