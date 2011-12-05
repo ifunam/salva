@@ -77,7 +77,7 @@ prawn_document() do |pdf|
 
   footer = "SALVA - Plat. Inf. Curric. a #{I18n.localize(Time.now, :format => :long).downcase}"
   pdf.font "Times-Roman", :size => 8, :style => :italic
-  pdf.number_pages [footer, "#{@profile.email} desde #{@remote_ip}"].join(', '), :at => [pdf.bounds.left, 0]
+  pdf.number_pages [footer, "#{@profile.email} desde la dirección #{@remote_ip}"].join(', '), :at => [pdf.bounds.left, 0]
   pdf.number_pages ["Página <page> de <total>"].join(', '), :at => [pdf.bounds.right - 55, 0]
 
   if defined? @signature

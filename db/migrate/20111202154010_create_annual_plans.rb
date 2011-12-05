@@ -4,7 +4,7 @@ class CreateAnnualPlans < ActiveRecord::Migration
       t.references :documenttype
       t.text :body
       t.references :user
-
+      t.boolean :delivered
       t.timestamps
     end
   end

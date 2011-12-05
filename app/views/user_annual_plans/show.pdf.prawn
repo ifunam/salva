@@ -6,7 +6,7 @@ prawn_document() do |pdf|
     pdf.image "#{image_path}/received_stamp.jpg", :at => [400, 700], :width => 120
   end
 
-  pdf.draw_text "Informe Anual de Actividades #{@year}", :at => [140, 710], :size => 20,  :style => :bold
+  pdf.draw_text "Plan de trabajo #{@year}", :at => [140, 710], :size => 20,  :style => :bold
   pdf.draw_text Salva::SiteConfig.institution('name'), :at => [220, 690], :size => 18,  :style => :bold
   pdf.move_down(100)
 
@@ -59,25 +59,21 @@ prawn_document() do |pdf|
   end
   pdf.move_down(20)
 
-  @report_sections.each do |section|
-    pdf.text section[:title].to_s, :size => 16, :style => :bold, :final_gap => true
-    pdf.text "\n"
-    section[:subsections].each do |subsection|
-      pdf.text subsection[:title].to_s, :size => 14, :style => :bold, :final_gap => true
-      pdf.text "\n"
-
-      counter = 1
-      subsection[:collection].each do |record|
-        pdf.text [counter, record].join('. '), :size => 12, :align => :justify
-        counter += 1
-      end
-      pdf.text "\n" if counter > 1
+  counter = 0
+  @annual_plan.body.split("\n").each do |line|
+    if (line =~ /^(\s)+\*/)
+      pdf.text "#{line.sub(/^(\s)+\*/, '*')}", :align => :justify
+    elsif (line =~ /^(\s)+\#/)
+      counter +=1
+      pdf.text "#{counter}. #{line.sub(/^(\s)+\#/, '')}", :align => :justify
+    else
+      pdf.text line, :align => :justify
     end
   end
 
   footer = "SALVA - Plat. Inf. Curric. a #{I18n.localize(Time.now, :format => :long).downcase}"
   pdf.font "Times-Roman", :size => 8, :style => :italic
-  pdf.number_pages [footer, "#{@profile.email} desde #{@remote_ip}"].join(', '), :at => [pdf.bounds.left, 0]
+  pdf.number_pages [footer, "#{@profile.email} desde la dirección #{@remote_ip}"].join(', '), :at => [pdf.bounds.left, 0]
   pdf.number_pages ["Página <page> de <total>"].join(', '), :at => [pdf.bounds.right - 55, 0]
 
   if defined? @signature
@@ -87,3 +83,5 @@ prawn_document() do |pdf|
     pdf.draw_text @signature, :style => :normal, :at => [pdf.bounds.left + 50, -12]
   end
 end
+
+

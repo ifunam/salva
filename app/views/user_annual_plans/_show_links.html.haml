@@ -1,4 +1,5 @@
-#submit_buttons.span-10.push-1.prepend-7.last
+#submit_buttons.span-12.push-1.prepend-6.last
+  = link_to t(:modify), edit_user_annual_plan_path(:id => @annual_plan.id)
   = link_to t(:preview_pdf), user_annual_plan_path(:id => @annual_plan.id, :format => 'pdf'), :target => '_blank'
-  = link_to t(:send_annual_report), deliver_user_annual_plan_path(:id => @annual_plan.id), :confirm => '¿ Desea enviar su informe anual ?'
+  = link_to t(:send_annual_plan), deliver_user_annual_plan_path(:id => @annual_plan.id), :confirm => '¿ Desea enviar su informe anual ?'
   = link_to t(:cancel), user_annual_plans_path

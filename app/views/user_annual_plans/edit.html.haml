@@ -1,0 +1,10 @@
+.span-17.last
+  %h3= t('.title')
+= render :partial => 'user_annual_reports/profile', :object => @profile
+
+= simple_form_for @annual_plan, :as => :annual_plan, :url => user_annual_plan_path(@annual_plan),  :html => { :id => 'record'} do |f|
+  .section-with-border-and-bg
+    = f.input :body, :as => :text, :input_html => { :size => '120x10' }
+  #submit_buttons
+    = f.submit t(:update)
+    = link_to t(:cancel), user_annual_plans_path
