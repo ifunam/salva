@@ -1,0 +1,15 @@
+.span-1= checkbox_to_delete(record)
+.span-8
+  = record.as_text
+  .not_associated{:title => t(:not_associated)}
+.associated_authors
+  .authors_size= record.users.size
+  = link_to_user_list user_list_project_path(:id => record.id, :format => 'js')
+.role_action
+  = link_to_add_role t(:add_role), role_list_project_path(:id => record.id, :format => 'js')
+.action
+  = link_to_show project_path(:id => record.id)
+.action
+  = link_to_edit edit_project_path(:id => record.id)
+.action
+  = link_to_delete record, project_path(:id => record.id)

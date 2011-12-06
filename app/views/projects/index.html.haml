@@ -1,0 +1,20 @@
+.span-18.last
+  %h3= t('.title')
+
+#nav_links
+  = link_to t('.my_projects'), projects_path
+  = link_to t('.not_my_projects'), not_my_projects_path
+
+= render :partial => 'search_form'
+
+= render :partial => 'collection_header'
+
+#collection_records
+  = render :partial => 'record', :collection => @projects
+
+= render :partial => 'collection_footer'
+
+= will_paginate(@projects)
+
+#submit_buttons
+  = link_to t(:new), new_project_path

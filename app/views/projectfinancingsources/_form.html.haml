@@ -1,0 +1,13 @@
+%li
+  - if !f.object.nil? and !f.object.new_record?
+    = f.hidden_field :id
+  - if defined? institution
+    - if f.object.new_record?
+      = f.check_box :institution_id, {}, institution.id
+    - else
+      = f.check_box :institution_id, { :checked => true }, institution.id
+    = institution.as_text
+  - else
+    = f.check_box :institution_id, {:checked => true}, -1 
+    = 'template_string'
+

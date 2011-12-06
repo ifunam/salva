@@ -1,0 +1,35 @@
+%h3= t('projects.show.title')
+.section-with-border-and-bg
+  = show_for @project do |p|
+    .span-12= p.attribute :name
+    .span-6.last= p.attribute :abbrev
+
+    .span-12= p.attribute :responsible
+    .span-6.last= p.attribute :descr
+
+    .span-9= p.association :projecttype, :using => :name
+    .span-9.last= p.association :projectstatus, :using => :name
+
+    .span-4= p.attribute :startyear
+    .span-5= p.attribute :startmonth
+    .span-4= p.attribute :endyear
+    .span-5.last= p.attribute :endmonth
+
+  .span-18.last
+    %h4=t(:financing_sources)
+    %ul
+      - @project.institutions.each do |record|
+        %li= record.as_text
+
+  .span-18.last
+    %h4=t(:associated_academics)
+    %ul
+      - @project.user_projects.each do |record|
+        %li= record.author_with_role
+
+  = render :partial => 'shared/record', :object => @project
+
+#submit_buttons
+  = link_to t(:edit), edit_project_path(:id => @project.id)
+  = link_to t(:back), projects_path
+

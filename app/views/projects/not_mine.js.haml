@@ -1,0 +1,6 @@
+#collection_records
+  = render :partial => 'record', :collection => @projects
+
+= render :partial => 'collection_footer'
+
+= will_paginate @projects, :id => 'ajaxed_paginator'

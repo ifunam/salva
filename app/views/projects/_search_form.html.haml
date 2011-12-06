@@ -1,0 +1,16 @@
+= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+  .span-2=t(:name)
+  .span-6=t(:projecttype)
+  .span-6=t(:projectstatus)
+  .span-2=t(:startyear)
+  .span-2.last=t(:endyear)
+
+  .span-2= f.text_field :name_like_ignore_case, :size => 7
+  .span-6= f.collection_select :projecttype_id_eq, Projecttype.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-6= f.collection_select :projectstatus_id_eq, Projectstatus.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-2= f.text_field :startyear_eq, :size => 4
+  .span-2.last= f.text_field :endyear_eq, :size => 4
+
+  .span-5.prepend-13.last
+    .search_button= link_to t(:search), "#", :id => "search_button"
+    .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

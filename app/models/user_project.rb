@@ -7,4 +7,8 @@ class UserProject < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   belongs_to :roleinproject
+
+  def author_with_role
+      [user.author_name, "(#{roleinproject.name})"].join(' ')
+  end
 end
