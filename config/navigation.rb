@@ -76,6 +76,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :refereed_inproceedings, 'Artículos en memorias arbitradas', refereed_inproceedings_path, :highlights_on => /\/refereed_inproceedings/
       s.item :technical_reports, 'Reportes técnicos', technical_reports_path, :highlights_on => /\/technical_reports/
       s.item :reviews, 'Reseñas', reviews_path, :highlights_on => /\/reviews/
+      s.item :unrefereed_inproceedings, 'Artículos en memorias In Extenso', unrefereed_inproceedings_path, :highlights_on => /\/unrefereed_inproceedings/
     end
 
     primary.item :seminary_and_conferences, 'Congresos', seminaries_path do |s|

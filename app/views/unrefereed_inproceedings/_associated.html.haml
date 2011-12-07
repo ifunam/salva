@@ -1,0 +1,15 @@
+.span-1= checkbox_to_delete(record)
+.span-8
+  = record.as_text
+  = image_tag('associated_record.png', :class => 'associated_record_indicator', :title => t(:organizer))
+.associated_authors
+  .authors_size= record.users.size
+  = link_to_user_list user_list_unrefereed_inproceeding_path(:id => record.id, :format => 'js')
+.author_action
+  = link_to_del_author t(:del_role), del_user_unrefereed_inproceeding_path(:id => record.id, :format => :js)
+.action
+  = link_to_show unrefereed_inproceeding_path(:id => record.id)
+.action
+  =link_to_edit edit_unrefereed_inproceeding_path(:id => record.id)
+.action
+  = link_to_delete record, unrefereed_inproceeding_path(:id => record.id)

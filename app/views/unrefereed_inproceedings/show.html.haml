@@ -1,0 +1,16 @@
+%h3= t('unrefereed_inproceedings.show.title')
+.section-with-border-and-bg
+  = show_for @inproceeding do |i|
+    .span-9= i.attribute :authors
+    .span-9.last= i.attribute :title
+    .row= i.attribute :pages
+
+  = render :partial => 'proceedings/show', :locals => { :proceeding => @inproceeding.proceeding}
+
+
+  = render :partial => 'shared/record', :object => @inproceeding
+
+#submit_buttons
+  = link_to t(:edit), edit_unrefereed_inproceeding_path(:id => @inproceeding.id)
+  = link_to t(:back), unrefereed_inproceedings_path
+

@@ -1,0 +1,20 @@
+.span-18.last
+  %h3= t('.title')
+
+#nav_links
+  = link_to t('.my_unrefereed_inproceedings'), unrefereed_inproceedings_path
+  = link_to t('.not_my_unrefereed_inproceedings'), not_my_unrefereed_inproceedings_path
+
+= render :partial => 'search_form'
+
+= render :partial => 'collection_header'
+
+#collection_records
+  = render :partial => 'record', :collection => @inproceedings
+
+= render :partial => 'collection_footer'
+
+= will_paginate(@inproceedings)
+
+#submit_buttons
+  = link_to t(:new), new_unrefereed_inproceeding_path
