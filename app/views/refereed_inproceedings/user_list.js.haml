@@ -1,0 +1,10 @@
+.author_list
+
+  .span-6.last
+    %b=t(:authors)
+    = link_to_close_author_list
+
+  .span-6.last
+    %ul
+      - @inproceeding.user_inproceedings.each do |record|
+        %li= record.user.author_name

@@ -1,0 +1,22 @@
+.section-with-border-and-bg
+  %h4=t(:proceeding)
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    .span-9= f.input :title, :as => :text, :input_html => { :size => '60x1' }
+    .span-3.last= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+
+
+  .row
+    .span-6.last= f.input :volume, :as => :string, :input_html => { :size => '20', :autocomplete => "off", :required => true  }
+    #publisher.span-12.last
+      = f.association :publisher, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar editorial', new_publisher_path
+
+
+.section-with-border-and-bg
+  %h4=t(:conference)
+  - f.object.conference = Conference.new if f.object.conference.nil?
+  = f.simple_fields_for :conference, f.object.conference do |c|
+    = render :partial => '/conferences/form', :locals => { :f => c }

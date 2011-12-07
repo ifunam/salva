@@ -1,0 +1,31 @@
+.section-with-border-and-bg
+  %h4=t(:inproceeding)
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x2' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x2' }
+
+  .row
+    .span-4= f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off", :required => true  }
+
+
+- f.object.proceeding = Proceeding.new if f.object.proceeding.nil?
+= f.simple_fields_for :proceeding, f.object.proceeding do |p|
+  = render :partial => '/proceedings/form', :locals => { :f => p }
+
+
+- unless UserInproceeding.where(:user_id => current_user.id, :inproceeding_id => f.object.id).first.nil?
+  - @user_inproceedings = UserInproceeding.where(:user_id => current_user.id, :inproceeding_id => f.object.id).first
+- else
+  - @user_inproceedings = f.object.user_inproceedings.build
+
+
+= f.simple_fields_for :user_inproceedings, @user_inproceedings do |uf|
+  - if !f.object.new_record?
+    = uf.hidden_field :id
+    = uf.hidden_field :inproceedings_id, :value => f.object.id
+  = uf.hidden_field :user_id, :value => current_user.id
+  = uf.hidden_field :ismainauthor, :value => true
+

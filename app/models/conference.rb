@@ -22,6 +22,8 @@ class Conference < ActiveRecord::Base
   accepts_nested_attributes_for :userconferences
   user_association_methods_for :userconferences
 
+  has_many :proceedings
+
   default_scope :order => 'year DESC, month DESC, name ASC'
 
   scope :attendees, joins(:userconferences).where(:userconferences => { :roleinconference_id => 1 })
