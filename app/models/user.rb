@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
                   :person_attributes, :address_attributes, :jobposition_attributes,
                   :jobposition_log_attributes, :user_group_attributes,
                   :user_schoolarships_attributes, :documents_attributes,
-                  :author_name, :blog, :homepage, :calendar
+                  :author_name, :blog, :homepage, :calendar, :user_cite_attributes
 
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')
@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
+  accepts_nested_attributes_for :user_cite
 
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)

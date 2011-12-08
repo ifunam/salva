@@ -55,6 +55,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :educations, 'Escolaridad', educations_path, :highlights_on => /\/educations/
       s.item :projects, 'Proyectos', projects_path, :highlights_on => /\/projects/
       s.item :user_research_lines, 'Líneas de investigación', user_research_lines_path, :highlights_on => /\/user_research_lines/
+      s.item :user_cites, 'Número de citas', user_cite_path, :highlights_on => /\/user_cite/
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
       s.item :course_attendees, 'Cursos recibidos', course_attendees_path, :highlights_on => /\/course_attendees/
       s.item :conference_attendees, 'Asistencia a eventos académicos', conference_attendees_path, :highlights_on => /\/conference_attendees/

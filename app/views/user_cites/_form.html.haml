@@ -1,0 +1,7 @@
+%h3=t(:user_cites)
+.section-with-border-and-bg
+  = render :partial => "/shared/errors", :object => f.object.errors
+
+  = f.simple_fields_for :user_cite_attributes, @user.user_cite do |form|
+    = form.input :author_name, :as => :string, :input_html => { :size => 30, :required => true }
+    = form.input :total, :as => :string, :input_html => { :size => 4, :required => true }

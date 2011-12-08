@@ -1,7 +1,7 @@
 Salva::Application.routes.draw do
   devise_for :users
 
-  resource :user_profile, :user_settings, :jobposition_log, :user_curriculum, :password
+  resource :user_profile, :user_settings, :jobposition_log, :user_curriculum, :password, :user_cite
 
   user_resources_for :user_languages, :user_skills, :user_schoolarships, :other_activities,
                      :popular_science_activities, :institutional_activities, :other_teaching_activities,

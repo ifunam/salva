@@ -1,0 +1,17 @@
+%h3= t(:user_cite)
+.section-with-border-and-bg
+  .span-18.last
+    %label=t(:author_name)
+    - unless @user.user_cite.nil?
+      = @user.user_cite.author_name
+    - else
+      = t(:undefined)
+  .span-18.last
+    %label=t(:total)
+    - unless @user.user_cite.nil?
+      = @user.user_cite.total
+    - else
+      = t(:undefined)
+#submit_buttons
+  = link_to t(:edit), edit_user_cite_path(:id => @user.id)
+
