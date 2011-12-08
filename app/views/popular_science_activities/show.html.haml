@@ -1,15 +1,17 @@
-%div{ :class => 'span-24 section_left last' }
-  %h3= t('popular_science_activities.show.title')
+%h3= t('popular_science_activities.show.title')
+.section-with-border-and-bg
   = show_for @activity do |u|
-    = u.attribute :name, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :descr, :using => :name, :wrapper_html => {:class => 'span-12 last'}
-    = u.association :activitytype, :using => :name, :wrapper_html => {:class => 'span-12'}
-    = u.attribute :year, :using => :name, :wrapper_html => {:class => 'span-6'}
-    = u.attribute :month, :using => :name, :wrapper_html => {:class => 'span-6'}
+    .span-9= u.attribute :name
+    .span-9.last= u.attribute :descr
 
-  = render :partial => 'shared/record', :object => @activity
+    .span-9= u.association :activitytype, :using => :name
+    .span-3= u.attribute :year, :using => :name
+    .span-6.last= u.attribute :month
 
-%div{ :class => 'span-14 buttons_left last' }
-  = link_as_button t(:edit), edit_popular_science_activity_path(:id => @activity.id)
-  = link_as_button t(:back), popular_science_activities_path
+  .row
+    = render :partial => 'shared/record', :object => @activity
+
+#submit_buttons
+  = link_to t(:edit), edit_popular_science_activity_path(:id => @activity.id)
+  = link_to t(:back), popular_science_activities_path
 
