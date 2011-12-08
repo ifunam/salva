@@ -10,10 +10,18 @@ class Acadvisit < ActiveRecord::Base
   belongs_to :institution
   belongs_to :country
   belongs_to :acadvisittype
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   validates_associated :institution
   validates_associated :country
   validates_associated :acadvisittype
 
   has_many :projectacadvisits
+
+  default_scope order('startyear DESC, startmonth DESC, endyear DESC, endmonth DESC')
+
+  def as_text
+    [institution.name_and_parent_abbrev, country.name, descr, start_date, end_date].compact.join(', ')
+  end
 end

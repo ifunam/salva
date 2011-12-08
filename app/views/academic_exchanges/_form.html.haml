@@ -1,0 +1,36 @@
+.section-with-border-and-bg
+  .row= render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    .span-6= f.association :country, :collection => Country.all, :input_html => { :class =>'chosen-select', :required => true}
+    #institution.span-12.last
+      = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
+      = link_to_new_record 'Agregar institución', new_institution_path
+
+  .row
+    = f.input :descr, :as => :text, :input_html => { :size => '120x1' }, :required => true
+
+  .row
+    = f.association :acadvisittype, :using => :name, :as => :radio, :wrapper_class  => 'radio-set'
+
+  .row
+    .span-3
+      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6
+      = f.label :startmonth, :required => true
+      = select_month_for 'startmonth', 'academic_exchange'
+
+    .span-3
+      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-6.last
+      = f.label :endmonth, :required => true
+      = select_month_for 'endmonth', 'academic_exchange'
+
+  .row
+    = f.input :place, :as => :text, :input_html => { :size => '120x1' }, :required => true
+
+  .row
+    = f.input :goals, :as => :text, :input_html => { :size => '120x1' }, :required => true
+
+  .row
+    = f.input :other, :as => :text, :input_html => { :size => '120x1' }, :required => true

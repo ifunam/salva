@@ -1,0 +1,6 @@
+#collection_records
+  = render :partial => 'record', :collection => @academic_exchanges
+
+= render :partial => 'collection_footer'
+
+= will_paginate @academic_exchanges, :id => 'ajaxed_paginator'

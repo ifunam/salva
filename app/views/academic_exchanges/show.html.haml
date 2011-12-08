@@ -1,0 +1,31 @@
+%h3= t('academic_exchanges.show.title')
+.section-with-border-and-bg
+
+  = show_for @academic_exchange do |u|
+    .span-9= u.association :country, :using => :name
+    .span-9.last= u.association :institution, :using => :name_and_parent_abbrev
+
+    .span-18.last
+      = u.attribute :descr
+
+    .row
+      .span-4= u.attribute :startyear
+      .span-5= u.attribute :startmonth
+      .span-4= u.attribute :endyear
+      .span-5.last= u.attribute :endmonth
+
+    .span-18.last
+      = u.attribute :place
+
+    .span-18.last
+      = u.attribute :goals
+
+    .span-18.last
+      = u.attribute :other
+  .row
+    = render :partial => 'shared/record', :object => @academic_exchange
+
+#submit_buttons
+  = link_to t(:edit), edit_academic_exchange_path(:id => @academic_exchange.id)
+  = link_to t(:back), academic_exchanges_path
+

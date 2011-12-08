@@ -1,0 +1,23 @@
+.span-17.last
+  %h3= t('.title')
+
+= render :partial => 'search_form'
+
+#collection_header
+  .span-1="Id"
+  .span-11=t('.title')
+  .action=t(:show)
+  .action=t(:edit)
+  .span1.last=t(:del)
+
+#collection_records
+  = render :partial => 'record', :collection => @academic_exchanges
+= render :partial => 'collection_footer'
+
+= will_paginate(@academic_exchanges)
+
+#submit_buttons
+  = link_to t(:new), new_academic_exchange_path
+
+
+

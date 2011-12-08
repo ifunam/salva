@@ -1,0 +1,6 @@
+%h3= t('.title')
+= simple_form_for @academic_exchange, :as => :academic_exchange, :url => academic_exchanges_path do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  #submit_buttons
+    = f.submit  t(:save)
+    = link_to t(:cancel), academic_exchanges_path

@@ -123,6 +123,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :others, 'Otros', popular_science_activities_path do |s|
       s.item :popular_science_activities, 'Actividades de difusión y extensión', popular_science_activities_path, :highlights_on => /\/popular_science_activities/
+      s.item :academic_exchanges, 'Estancias en el extranjero', academic_exchanges_path, :highlights_on => /\/academic_exchanges/
       s.item :other_activities, 'Otras actividades', other_activities_path, :highlights_on => /\/other_activities/
       s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
