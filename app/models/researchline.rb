@@ -5,8 +5,14 @@ class Researchline < ActiveRecord::Base
   # validates_uniqueness_of :name, :scope => [:researcharea_id]
 
   belongs_to :researcharea
-  has_many :projectresearchlines
   has_many :user_researchlines
 
-  # validates_associated  :researcharea
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
+
+  default_scope order('name ASC')
+
+  def as_text
+    [name, researcharea.name].join(', ')
+  end
  end

@@ -1,0 +1,9 @@
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    - @researchline = f.object.new_record? ? Researchline.new : f.object.researchline
+    = f.simple_fields_for :researchline, @researchline do |researchline_form|
+      = render :partial => 'research_lines/form', :locals => {:f => researchline_form }
+

@@ -1,0 +1,26 @@
+%h3= t('user_research_lines.show.title')
+.section-with-border-and-bg
+  .span-18.last
+    %label= t(:name)
+    = @researchline.researchline.name
+
+  .span-18.last
+    %label= t(:name_en)
+    = @researchline.researchline.name_en
+
+
+  .span-18.last
+    %label= t(:descr)
+    = @researchline.researchline.descr
+
+  .span-18.last
+    %label=t(:research_area)
+    = @researchline.researchline.researcharea.name
+
+  .row
+    = render :partial => 'shared/record', :object => @researchline
+
+#submit_buttons
+  = link_to t(:edit), edit_user_research_line_path(:id =>  @researchline.id)
+  = link_to t(:back), user_research_lines_path
+

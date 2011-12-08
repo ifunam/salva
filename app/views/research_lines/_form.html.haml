@@ -1,0 +1,14 @@
+.row
+  = f.input :name, :as => :text, :input_html => { :size => '120x1' }
+
+.row
+  = f.input :name_en, :as => :text, :input_html => { :size => '120x1' }
+
+.row
+  = f.input :descr, :as => :text, :input_html => { :size => '120x1' }
+
+.row
+  #research_area.span-18.last
+    = f.association :researcharea, :using => :name , :input_html  => {:class => 'chosen-select'}
+    = link_to_new_record 'Agregar área de investigación', new_research_area_path
+
