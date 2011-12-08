@@ -7,12 +7,24 @@ class Proceeding < ActiveRecord::Base
   accepts_nested_attributes_for :conference
   belongs_to :publisher
   belongs_to :registered_by, :class_name => 'User'
-  belongs_to :updated_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   has_many :inproceedings
-  has_many :user_proceedings
-  default_scope order('title ASC')
 
+  has_many :user_proceedings
+  has_many :users, :through =>  :user_proceedings
+  accepts_nested_attributes_for :user_proceedings
+  user_association_methods_for :user_proceedings
+
+  default_scope order('title ASC, year DESC')
+
+  scope :user_id_eq, lambda { |user_id| joins(:user_proceedings).where(:user_proceedings => {:user_id => user_id}) }
+  scope :user_id_not_eq, lambda { |user_id|
+      where("proceedings.id IN (#{UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').
+      where(["user_proceedings.user_id != ?", user_id]).to_sql}) AND proceedings.id  NOT IN (#{UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').
+      where(["user_proceedings.user_id = ?", user_id]).to_sql})")
+  }
+  search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
     if title == conference.name

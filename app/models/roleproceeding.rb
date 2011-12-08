@@ -4,4 +4,6 @@ class Roleproceeding < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :user_proceedings
+
+  default_scope order('name ASC')
 end

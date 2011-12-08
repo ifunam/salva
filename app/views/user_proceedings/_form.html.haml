@@ -1,0 +1,7 @@
+-  @user_proceedings = user_role(proceeding, :user_proceedings, current_user.id)
+= f.simple_fields_for :user_proceedings, @user_proceedings do |uf|
+  - if !f.object.new_record?
+    = uf.hidden_field :id
+    = uf.hidden_field :proceeding_id, :value => proceeding.id
+  = uf.hidden_field :user_id, :value => current_user.id
+  = uf.input :roleproceeding_id, :collection => Roleproceeding.all, :as => :radio, :required => true,  :wrapper_class => 'radio-set'

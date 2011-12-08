@@ -15,8 +15,7 @@ Salva::Application.routes.draw do
                             :technical_products, :course_attendees, :course_instructors, :conference_attendees,
                             :conference_organizers, :regular_courses, :theses, :thesis_examinations,
                             :book_authors, :book_collaborations, :book_chapters, :conference_talks,
-                            :projects, :refereed_inproceedings, :unrefereed_inproceedings
-
+                            :projects, :refereed_inproceedings, :unrefereed_inproceedings, :proceeding_collaborations
 
   catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes,
                         :schoolarships, :credittypes, :newspapers, :careers, :techproducttypes,

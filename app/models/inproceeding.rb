@@ -16,7 +16,6 @@ class Inproceeding < ActiveRecord::Base
   scope :refereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 't' AND inproceedings.proceeding_id = proceedings.id")
   scope :unrefereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 'f' AND inproceedings.proceeding_id = proceedings.id")
 
-
   scope :user_id_eq, lambda { |user_id| joins(:user_inproceedings).where(:user_inproceedings => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|
       where("inproceedings.id IN (#{UserInproceeding.select('DISTINCT(inproceeding_id) as inproceeding_id').

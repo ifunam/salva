@@ -1,0 +1,5 @@
+- f.object = @proceeding
+= render :partial => '/proceedings/form', :locals => { :f => f }
+
+.section-with-border-and-bg
+  = render :partial => 'user_proceedings/form', :locals => {:proceeding => @proceeding, :f => f}

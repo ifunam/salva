@@ -1,0 +1,15 @@
+%h3= t('proceedings.show.title')
+.section-with-border-and-bg
+  = render :partial => 'proceedings/show', :locals => { :proceeding => @proceeding}
+
+  .span-18.last
+    %b= t(:associated_academics)
+    - @proceeding.user_proceedings.each do |a|
+      %li= a.author_with_role
+
+  = render :partial => 'shared/record', :object => @proceeding
+
+#submit_buttons
+  = link_to t(:edit), edit_proceeding_collaboration_path(:id => @proceeding.id)
+  = link_to t(:back), proceeding_collaborations_path
+

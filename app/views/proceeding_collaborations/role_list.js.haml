@@ -1,0 +1,10 @@
+.role_list
+
+  .span-6.last
+    %b=t(:role_selection)
+    = link_to_close_author_list
+
+  .span-6.last
+    %ul
+      - Roleproceeding.all.each do |record|
+        %li=link_to record.name, '#', 'data-remote-resource' => add_user_proceeding_collaboration_path(:id => @proceeding.id, :roleproceeding_id => record.id, :format => :js)

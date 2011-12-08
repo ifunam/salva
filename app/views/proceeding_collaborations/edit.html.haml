@@ -1,0 +1,6 @@
+%h3= t('.title')
+= simple_form_for @proceeding, :as => :proceeding, :url => proceeding_collaboration_path do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  #submit_buttons
+    = f.submit  t(:update)
+    = link_to t(:cancel), proceeding_collaborations_path

@@ -1,5 +1,5 @@
 %h3= t('.title')
-= simple_form_for @inproceeding, :as => :conference, :url => refereed_inproceeding_path do |f|
+= simple_form_for @inproceeding, :as => :inproceeding, :url => refereed_inproceeding_path do |f|
   = render :partial => 'form', :locals => { :f => f }
   #submit_buttons
     = f.submit  t(:update)

@@ -85,10 +85,11 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :conference_talks, 'Trabajos presentados en congresos', conference_talks_path, :highlights_on => /\/conference_talks/
     end
 
-    primary.item :refereed_colaborations, 'Colaboración en publicaciones', user_journals_path do |s|
-      s.item :user_journals, 'Colaboración en publicaciones', user_journals_path, :highlights_on => /\/user_journals/
+    primary.item :refereed_colaborations, 'Colaboración en publicaciones', user_refereed_journals_path do |s|
       s.item :user_refereed_journals, 'Arbitraje en revistas', user_refereed_journals_path, :highlights_on => /\/user_refereed_journals/
       s.item :book_collaborations, 'Colaboración en libros', book_collaborations_path, :highlights_on => /\/book_collaborations/
+      s.item :proceeding_collaborations, 'Colaboración en memorias', proceeding_collaborations_path, :highlights_on => /\/proceeding_collaborations/
+      s.item :user_journals, 'Colaboración en publicaciones', user_journals_path, :highlights_on => /\/user_journals/
     end
 
     primary.item :popular_science, 'Divulgación', newspaper_articles_path do |s|

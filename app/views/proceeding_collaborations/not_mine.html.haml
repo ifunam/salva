@@ -1,0 +1,20 @@
+.span-18.last
+  %h3= t('.title')
+
+#nav_links
+  = link_to t('.my_proceedings'), proceeding_collaborations_path
+  = link_to t('.not_my_proceedings'), not_my_proceeding_collaborations_path
+
+= render :partial => 'search_form'
+
+= render :partial => 'collection_header'
+
+#collection_records
+  = render :partial => 'record', :collection => @proceedings
+
+= render :partial => 'collection_footer'
+
+= will_paginate(@proceedings)
+
+#submit_buttons
+  = link_to t(:new), new_proceeding_collaboration_path
