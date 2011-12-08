@@ -24,5 +24,13 @@ class Document < ActiveRecord::Base
     end
     system "mkdir -p #{path}" unless File.exist? path      
     self.file = path + "/#{user.login}.pdf"
-  end  
+  end
+
+  def approve
+    update_attribute(:approved, true)
+  end
+
+  def reject
+    update_attribute(:approved, false)
+  end
 end
