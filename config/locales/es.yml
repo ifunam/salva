@@ -1850,6 +1850,10 @@ es:
   registered_by: 'Registrado por'
   updated_by: 'Actualizado por'
   updating_date: 'Fecha de actualización'
+  approved: 'Aprobado'
+  rejected: 'Rechazada'
+  approve: 'Aprobar'
+  reject: 'Rechazar'
 
   reporter:
     profile: 'Perfil'
@@ -1889,3 +1893,12 @@ es:
     course_instructors: 'Cursos especiales'
     conference_attendees: 'Asistencia a eventos académicos'
     conference_organizers: 'Comités de congresos'
+
+  academic:
+    annual_reports:
+      index:
+        title: Informes anuales
+
+    annual_plans:
+      index:
+        title: Planes de trabajo

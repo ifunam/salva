@@ -1,7 +1,8 @@
 class Academic::AnnualPlansController < Academic::ApplicationController
-
+  respond_to :html, :only => :index
+  respond_to :js, :only => [:approve, :reject]
   def index
-    @documents = Document.annual_plans.where(:approved_by_id => current_user.id).all
+    respond_with(@documents = Document.annual_plans.where(:approved_by_id => current_user.id).paginate(:per_page => 10, :page => params[:page] || 1))
   end
 
   def approve

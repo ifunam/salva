@@ -1,9 +1,10 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => academic_session_path(resource_name)) do |f|
-  .inputs.span-10.prepend-7.last
-    = f.input :login, :required => false, :autofocus => true
-    = f.input :password, :required => false
-    = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  .actions.span-24.last
-    = f.button :submit, "Sign in"
+#login_view
+  #login_form
+    %h3 Inicio de sesión
+    = simple_form_for(resource, :as => resource_name, :url => academic_session_path(resource_name)) do |f|
+      = f.input :login, :as => :string, :required => true, :autofocus => true, :input_html => {:size => 18}
+      = f.input :password, :required => true, :as => :password,  :input_html => {:size => 18}
+      = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+      .submit_buttons
+        = f.button :submit, "Sign in"
 = render :partial => "devise/shared/links"

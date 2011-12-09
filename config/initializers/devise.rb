@@ -122,12 +122,12 @@ Devise.setup do |config|
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes.
-  # config.default_scope = :user
+  config.default_scope = :user
 
   # Configure sign_out behavior.
   # By default sign_ou t is scoped (i.e. /users/sign_out affects only :user scope).
   # In case of sign_out_all_scopes set to true any logout action will sign out all active scopes.
-  # config.sign_out_all_scopes = false
+  config.sign_out_all_scopes = false
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like

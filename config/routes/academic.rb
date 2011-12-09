@@ -1,6 +1,7 @@
 Salva::Application.routes.draw do
 
-  devise_for :academics, :path => '/academic', :only => :sessions, :format => false, :controllers => { :sessions => "academic/sessions" }
+  devise_for :academics, :path => '/academic', :only => :sessions,  :format => false,
+             :controllers => { :sessions => "academic/sessions" }
 
   namespace :academic do
     resources :annual_reports, :only => [:index] do

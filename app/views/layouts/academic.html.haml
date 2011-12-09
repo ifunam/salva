@@ -10,14 +10,15 @@
   %body
     = render :partial => 'layouts/header'
     .container
-    - unless current_user.nil?
-      #session_info
-        .current_user= current_user.login
-        = '|'
-        = link_to 'Salir', destroy_acaddemic_session_path
+      - unless current_user.nil?
+        #session_info
+          .current_user= current_user.login
+          = '|'
+          = link_to 'Salir', destroy_academic_session_path
       #top-navigation= render_navigation(:context => :academic)
       #content
-        = render :partial => 'layouts/flash_messages'
-        = yield
+        .span-18.prepend-3.last
+          = render :partial => 'layouts/flash_messages'
+          = yield
     #dialog
     = render :partial => 'layouts/footer'

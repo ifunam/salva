@@ -1,5 +1,7 @@
 .row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
-
-  .span-16= record.documenttype.name
-  .action.last= link_to_download(record)
-
+  .span-5= record.user.fullname_or_email
+  .span-5= record.documenttype.name
+  .span-2= document_status_indicator(record.approved)
+  .span-2= link_to_download(record)
+  .span-2= link_to t(:approve), approve_academic_annual_plan_path(:id => record.id, :format => :js)
+  .span-2.last= link_to t(:reject), reject_academic_annual_plan_path(:id => record.id, :format => :js)

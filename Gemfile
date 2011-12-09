@@ -22,7 +22,7 @@ gem "scope_by_fuzzy"
 
 # Control version
 gem "vestal_versions", "1.0.2"
-gem "simple-navigation", "3.2.0"
+gem "simple-navigation", "3.5.0"
 
 # Misc
 gem "carrierwave", "0.5.3"

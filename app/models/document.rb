@@ -22,8 +22,13 @@ class Document < ActiveRecord::Base
     elsif !documenttype.name.match(/^Plan de trabajo/).nil?
       path += '/annual_plans/' + documenttype.year.to_s
     end
-    system "mkdir -p #{path}" unless File.exist? path      
-    self.file = path + "/#{user.login}.pdf"
+    system "mkdir -p #{path}" unless File.exist? path
+
+    unless user.nil?
+      self.file = path + "/#{user.login}.pdf"
+    else
+      self.file.to_s
+    end
   end
 
   def approve

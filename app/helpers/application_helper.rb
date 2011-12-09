@@ -184,4 +184,12 @@ module ApplicationHelper
   def select_month_for(field_name, prefix = nil)
     select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
   end
+
+  def document_status_indicator(status)
+    if status == true
+      image_tag('associated_record.png', :class => 'associated_record_indicator', :title => t(:approved))
+    else
+      image_tag('error_status.png', :class => 'associated_record_indicator', :title => t(:rejected))
+    end
+  end
 end
