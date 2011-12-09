@@ -1,10 +1,11 @@
-%h3 Información General
+.span-18.last
+  %h3 Información General
 
 = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
 = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 
 .section-with-border-and-bg
-  %h3= t(".identifications")
+  %h4= t(".identifications")
   = render :partial => 'user_identifications/record', :collection => @user.user_identifications
 
 #submit_buttons

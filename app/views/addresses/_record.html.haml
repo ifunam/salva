@@ -1,5 +1,5 @@
 .section-with-border-and-bg
-  %h3 Domicilio profesional
+  %h4 Domicilio profesional
   = show_for record do |a|
     .row
       = a.association :addresstype, :using => :name
@@ -9,6 +9,7 @@
       = a.association :country, :using => :name
       = a.association :state, :using => :name
       = a.association :city, :using => :name
-      = a.attribute :zipcode, :wrapper_html => {:class => 'span-5'}
     .row
-      = a.attribute :phone, :wrapper_html => {:class => 'span-17'}
+      = a.attribute :zipcode
+      = a.attribute :phone
+      = a.attribute :fax

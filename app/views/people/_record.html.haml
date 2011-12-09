@@ -1,13 +1,14 @@
 .section-with-border-and-bg
 
-  %h3 Datos personales
+  %h4 Datos personales
   = show_for record do |p|
     .row
       .span-3
         = image_for_person(record)
-      .span-3= p.attribute :firstname
-      .span-3= p.attribute :lastname1
-      .span-3= p.attribute :lastname2
+    .row
+      = p.attribute :firstname
+      = p.attribute :lastname1
+      = p.attribute :lastname2
       .span-2.last= p.attribute :title
     .row
       = p.attribute :gender
