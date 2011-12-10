@@ -17,8 +17,7 @@
           = link_to 'Salir', destroy_academic_session_path, :method => :delete
       #top-navigation= render_navigation(:context => :academic)
       #content
-        .span-18.prepend-3.last
-          = render :partial => 'layouts/flash_messages'
-          = yield
+        = render :partial => 'layouts/flash_messages'
+        = yield
     #dialog
     = render :partial => 'layouts/footer'

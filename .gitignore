@@ -80,3 +80,4 @@ app/assets/javascripts/document_publication.js
 app/sass/.sass-cache/
 .sass-cache/
 public/assets/
+app/assets/stylesheets/academic.css
