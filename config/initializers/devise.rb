@@ -32,6 +32,8 @@ Devise.setup do |config|
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
   config.authentication_keys = [ :login ]
+  config.case_insensitive_keys = [ :login ]
+  config.strip_whitespace_keys = [ :login, :password, :email ]
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -48,7 +50,7 @@ Devise.setup do |config|
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
-  config.stretches = 10
+  config.stretches = Rails.env.test? ? 1 : 10
 
   # Define which will be the encryption algorithm. Devise also supports encryptors
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
@@ -109,6 +111,7 @@ Devise.setup do |config|
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   config.unlock_in = 2.hour
+  config.reset_password_within = 2.hours
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
@@ -129,6 +132,13 @@ Devise.setup do |config|
   # In case of sign_out_all_scopes set to true any logout action will sign out all active scopes.
   config.sign_out_all_scopes = false
 
+  # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = :delete
+
+  # If true, uses the password salt as remember token. This should be turned
+  # to false if you are not using database authenticatable.
+  config.use_salt_as_remember_token = true
+
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
   # :html, should redirect to the sign in page when the user does not have
@@ -136,6 +146,7 @@ Devise.setup do |config|
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists. Default is [:html]
   # config.navigational_formats = [:html, :iphone]
+  config.navigational_formats = [:"*/*", "*/*", :html]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,

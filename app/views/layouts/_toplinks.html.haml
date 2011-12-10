@@ -2,4 +2,4 @@
   #session_info
     .current_user= current_user.login
     = '|'
-    = link_to 'Salir', destroy_user_session_path
+    = link_to 'Salir', destroy_user_session_path, :method => :delete

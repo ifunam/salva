@@ -1,10 +1,21 @@
 #login_view
   #login_form
     %h3 Inicio de sesión
-    = simple_form_for(resource, :as => resource_name, :url => academic_session_path(resource_name)) do |f|
-      = f.input :login, :as => :string, :required => true, :autofocus => true, :input_html => {:size => 18}
-      = f.input :password, :required => true, :as => :password,  :input_html => {:size => 18}
-      = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-      .submit_buttons
+    = simple_form_for(resource, :as => resource_name, :url => academic_session_path(resource) ) do |f|
+      = f.label :login
+      = f.text_field :login, :size => 16, :maxlength => 16
+      = f.label :password
+      = f.password_field :password, :size => 16, :maxlength => 16
+
+      #submit_buttons
         = f.button :submit, "Sign in"
-= render :partial => "devise/shared/links"
+  #login_info
+    %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
+    %p= 'Por ejemplo, si tu cuenta de correo es <em>sandovalv@fisica.unam.mx</em> los datos para entrar al sistema son:'.html_safe
+    #login_example
+      %b='Usuario: '
+      = 'sandovalv'
+      %br
+      %b='Contraseña: '
+      = '*'*8
+= render :partial => 'devise/sessions/supported_browser_links'
