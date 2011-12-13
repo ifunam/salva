@@ -4,4 +4,4 @@
   .span-2= document_status_indicator(record.approved)
   .span-2= link_to_download(record)
   .span-2= link_to_approve_document record, approve_academic_annual_plan_path(:id => record.id, :format => :js)
-  .span-2.last= link_to_reject_document record, reject_academic_annual_plan_path(:id => record.id, :format => :js)
+  .span-2.last= link_to_reject_document record, edit_academic_annual_plan_path(:id => record.id, :format => :js)

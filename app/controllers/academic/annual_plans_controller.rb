@@ -1,6 +1,6 @@
 class Academic::AnnualPlansController < Academic::ApplicationController
-  respond_to :html, :only => :index
-  respond_to :js, :only => [:approve, :reject]
+  respond_to :js, :html
+
   def index
     respond_with(@documents = Document.annual_plans.where(:approved_by_id => current_user.id).paginate(:per_page => 10, :page => params[:page] || 1))
   end
@@ -10,9 +10,16 @@ class Academic::AnnualPlansController < Academic::ApplicationController
     respond_with(@document.approve)
   end
 
-  def reject
+  def edit
     authorize_action!
-    respond_with(@document.reject)
+    respond_with(@document)
+  end
+
+  def update
+    authorize_action!
+    @document.update_attributes(params[:document])
+    @document.reject
+    respond_with(@document)
   end
 
   def authorize_action!

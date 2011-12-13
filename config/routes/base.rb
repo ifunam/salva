@@ -1,6 +1,6 @@
 Salva::Application.routes.draw do
 
-  devise_for :users, :only => :sessions, :format => false
+  devise_for :users, :only => :sessions
   resource :user_profile, :user_settings, :jobposition_log, :user_curriculum, :password, :user_cite
 
   user_resources_for :user_languages, :user_skills, :user_schoolarships, :other_activities,
