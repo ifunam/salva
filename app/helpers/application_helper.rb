@@ -192,4 +192,16 @@ module ApplicationHelper
       image_tag('error_status.png', :class => 'associated_record_indicator', :title => t(:rejected))
     end
   end
+
+  def link_to_approve_document(record, resource_path)
+    if record.documenttype.status == true
+      link_to t(:approve), resource_path, :remote => true, :class => 'approve_document'
+    end
+  end
+
+  def link_to_reject_document(record, resource_path)
+    if record.documenttype.status == true
+      link_to t(:reject), resource_path, :remote => true, :class => 'reject_document'
+    end
+  end
 end

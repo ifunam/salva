@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   if ldap_enabled?
     devise :ldap_authenticatable, :timeoutable, :lockable
   else
-    devise :database_authenticatable, :encryptable, :timeoutable, :lockable
+    devise :database_authenticatable, :timeoutable, :lockable
   end
 
   # Setup accessible (or protected) attributes for your model

@@ -5,7 +5,7 @@ class Document < ActiveRecord::Base
   belongs_to :documenttype
   belongs_to :approved_by, :class_name => 'User'
 
-  default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype
+  default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
   scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
 
