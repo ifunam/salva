@@ -10,41 +10,58 @@
   text-align: left
   height: 42px
   margin-top: 10px
-  //border: 1px solid red
   ul
-    @extend .ui-tabs-nav
-    @extend .ui-helper-reset
-    @extend .ui-helper-clearfix
     @extend .span-24
     display: inline-block
     margin-left: -4px
     vertical-align: middle
     li
-      @extend .ui-state-default
-      @extend .ui-corner-top
       list-style-type: none
       padding-top: 7px
       padding-left: 3px
       padding-right: 3px
-      margin-left: 2px
-      background: #0088BB
+      margin-left: 0px
       line-height: 1.01em
       height: 42px
       width: 84px
       float: left
       text-align: center
       vertical-align: middle
+      border-bottom: 1px solid silver
+
+    a, a:visited
+      display: inline-block
+      vertical-align: middle
+      text-decoration: none
+      color: #0088BB
+
+    a:hover
+      display: inline-block
+      vertical-align: middle
+      text-decoration: none
+      color: #6EAC2C
+      text-shadow: rgb(143,191,92) 1px 1px 3px
+
+    li.selected
+      border-right: 0px
+      margin-top: 0px
+      background: white
+      border-top: 1px
+      border-bottom: 0px
+      border-left: 1px
+      border-right: 1px
+      border-style: solid
+      border-color: silver
+      -moz-border-radius: 3px 3px 0px 0px
+      -webkit-border-radius: 3px 3px 0px 0px
+
       a
         display: inline-block
         vertical-align: middle
-
-    li.selected
-      @extend .ui-tabs-selected
-      @extend .ui-state-active
-      border-right: 0px
-      margin-top: 0px
-    li:hover
-      @extend .ui-state-hover
+        text-decoration: none
+        color: #6EAC2C
+        text-shadow: rgb(143,191,92) 1px 1px 3px
+        font-weight: bold
 
 #content
   @extend .span-24
@@ -52,7 +69,6 @@
   width: 930px
   background: #fff
   font-size: 11px
-  // border: 5px solid #93c355
   margin-top: 10px
   margin-left: -3px
   margin-bottom: 20px
@@ -71,32 +87,32 @@
     @extend .ui-helper-clearfix
     margin-top: 10px
     li
-      @extend .ui-state-default
       padding: 12px 8px
       list-style-type: none
-      background: #0088BB
-      border-bottom-left-radius: 5px
+      background: white
+      color: #0088BB
+      border-radius: 5px
       border-color: #F4FCF2
       border-style: solid
-      border-top-left-radius: 5px
-      border-right: none
-      border-left:none
       border-bottom: 1px
       margin-bottom: 6px
       margin-left: 8px
       padding-top: -8px
       height: 18px
-      a
+      a, a:visited
         display: inline-block
         width: 165px
         #padding-right: 20px
+        color: #0088BB
+        text-decoration: none
+      a:hover
+        text-decoration: none
+        color: #6EAC2C
+
     li.selected
+      @extend .ui-state-default
       @extend .ui-tabs-selected
       @extend .ui-state-active
-      border-right: none
-
-    li:hover
-      @extend .ui-state-hover
 
 #right-content
   @extend .span-18
@@ -105,9 +121,10 @@
   padding-top: 10px
   padding-bottom: 10px
   font-size: 14px
-  // border-left: 5px solid #93c355
-  margin-left: 10px
-  padding-left: 9px
+  border-left: 1px solid silver
+  margin-left: 0px
+  padding-left: 15px
+  margin-top: 10px
   min-height: 950px
 
   h3
