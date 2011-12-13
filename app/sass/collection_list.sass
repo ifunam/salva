@@ -39,7 +39,7 @@
   color: #585858
 
 .record-odd:hover
-  background-color: #CEF6CE
+  background-color: rgb(252,255,204)
 
 .record-even
   @extend .record
@@ -47,7 +47,7 @@
   color: #585858
 
 .record-even:hover
-  background-color: #CEF6CE
+  background-color: rgb(252,255,204)
 
 .ui-autocomplete-loading
   background: white url("loading_indicator.gif") right center no-repeat
@@ -64,7 +64,6 @@
 
 .ui-progressbar-value
   background-image: url(pbar-ani.gif)
-
 
 .record_details
   top: 20px
@@ -91,7 +90,10 @@
   @extend .ui-helper-clearfix
   @extend .span-18
   @extend .last
+  @extend .ui-corner-tl
+  @extend .ui-corner-tr
   @extend .collection_header_colors
+  padding-top: 5px
   border-color: silver
   padding-bottom: 5px
   ul
@@ -127,6 +129,8 @@
   @extend .ui-helper-clearfix
   @extend .span-18
   @extend .last
+  @extend .ui-corner-bl
+  @extend .ui-corner-br
   @extend .collection_header_colors
   border-top: 0px
   text-align: right
