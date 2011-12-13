@@ -1598,6 +1598,11 @@ es:
         password: Nueva contraseña
         password_confirmation: Confirmación de la nueva contraseña
 
+  academic:
+    annual_reports:
+      edit:
+        title: 'Rechazar informe anual'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -1765,6 +1770,7 @@ es:
       index:
         new: 'Agregar nuevo usuario'
 
+
   show_all: 'Todos'
   save: 'Guardar'
   cancel: 'Cancelar'
@@ -1793,6 +1799,8 @@ es:
   delete_all_selected: 'Borrar registros seleccionados'
   destroy_all_empty_associations: 'Borrar registros sin asociaciones'
   new_record_confirmation: '¿ Desea agregar este elemento a la lista ?'
+  reject_document_confirmation: '¿ Desea rechazar este documento ?'
+  approve_document_approbation: '¿ Desea aprobar este documento ?'
   add_author: 'Asociarse como autor'
   del_author: 'Quitarse como autor'
   add_attendee: 'Asociarse como asistente'

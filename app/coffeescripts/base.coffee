@@ -79,6 +79,7 @@ jQuery.extend
     $.ajax(options).responseText
 
   dialog_for_new_record: (controller) ->
+    controller += ".js" if (controller.match(/format\=js$/g) == null)
     $("#dialog").dialog(
       title: ""
       width: 400
@@ -86,7 +87,7 @@ jQuery.extend
       modal: true
       overlay:  background: "#fff", opacity: 0.25
     ).dialog "open"
-    responseData = $.response_from_simple_remote_resource(controller + ".js")
+    responseData = $.response_from_simple_remote_resource(controller)
     $("div#dialog").html responseData
 
   dialog_for_new_checkbox: (controller) ->
