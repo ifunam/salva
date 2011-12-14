@@ -77,6 +77,7 @@ app/assets/javascripts/place.js
 app/assets/javascripts/supported_browsers.js
 app/assets/javascripts/session.js
 app/assets/javascripts/document_publication.js
+app/assets/javascripts/document_academic.js
 app/sass/.sass-cache/
 .sass-cache/
 public/assets/
