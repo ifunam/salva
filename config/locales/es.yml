@@ -1617,6 +1617,11 @@ es:
         password: Nueva contraseña
         password_confirmation: Confirmación de la nueva contraseña
 
+  academic:
+    annual_reports:
+      edit:
+        title: 'Rechazar informe anual'
+
   admin:
     people: 'Información personal'
     addresses: 'Domicilios'
@@ -1784,6 +1789,7 @@ es:
       index:
         new: 'Agregar nuevo usuario'
 
+
   show_all: 'Todos'
   save: 'Guardar'
   cancel: 'Cancelar'
@@ -1812,6 +1818,8 @@ es:
   delete_all_selected: 'Borrar registros seleccionados'
   destroy_all_empty_associations: 'Borrar registros sin asociaciones'
   new_record_confirmation: '¿ Desea agregar este elemento a la lista ?'
+  reject_document_confirmation: '¿ Desea rechazar este documento ?'
+  approve_document_approbation: '¿ Desea aprobar este documento ?'
   add_author: 'Asociarse como autor'
   del_author: 'Quitarse como autor'
   add_attendee: 'Asociarse como asistente'
@@ -1869,6 +1877,10 @@ es:
   registered_by: 'Registrado por'
   updated_by: 'Actualizado por'
   updating_date: 'Fecha de actualización'
+  approved: 'Aprobado'
+  rejected: 'Rechazada'
+  approve: 'Aprobar'
+  reject: 'Rechazar'
 
   reporter:
     profile: 'Perfil'
@@ -1908,3 +1920,12 @@ es:
     course_instructors: 'Cursos especiales'
     conference_attendees: 'Asistencia a eventos académicos'
     conference_organizers: 'Comités de congresos'
+
+  academic:
+    annual_reports:
+      index:
+        title: Informes anuales
+
+    annual_plans:
+      index:
+        title: Planes de trabajo

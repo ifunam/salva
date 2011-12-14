@@ -1,0 +1,16 @@
+%h3= t('.title')
+
+#collection_header
+  .span-5=t(:fullname)
+  .span-5=t(:document)
+  .span-2=t(:status)
+  .span-2=t(:download)
+  .span-2=t(:approve)
+  .span-2.last=t(:reject)
+
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= will_paginate(@documents)

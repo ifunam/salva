@@ -1,0 +1,9 @@
+.row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
+  .span-4= record.user.fullname_or_email
+  .span-4= record.approved_by.nil? ? "-" : record.approved_by.fullname_or_email
+  .span-4= record.documenttype.name
+  .span-4= record.created_on.to_s(:format => :short)
+  .span-4= record.updated_on.to_s(:format => :short)
+  .span-2= document_status_indicator(record.approved)
+  .span-2.last= link_to_download(record)
+

@@ -10,7 +10,12 @@
   %body
     = render :partial => 'layouts/header'
     .container
-      #top-navigation= render_navigation(:context => :web_site)
+      - unless current_user.nil?
+        #session_info
+          .current_user= current_user.login
+          = '|'
+          = link_to 'Salir', destroy_academic_session_path, :method => :delete
+      #top-navigation= render_navigation(:context => :academic)
       #content
         = render :partial => 'layouts/flash_messages'
         = yield

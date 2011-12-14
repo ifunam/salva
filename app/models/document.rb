@@ -5,9 +5,16 @@ class Document < ActiveRecord::Base
   belongs_to :documenttype
   belongs_to :approved_by, :class_name => 'User'
 
-  default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype
+  default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
+
+  scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
   scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
+
+  scope :fullname_like, lambda { |fullname| where(" documents.user_id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+
+  search_methods :fullname_like, :adscription_id_eq
 
   before_create :file_path
 
@@ -22,7 +29,20 @@ class Document < ActiveRecord::Base
     elsif !documenttype.name.match(/^Plan de trabajo/).nil?
       path += '/annual_plans/' + documenttype.year.to_s
     end
-    system "mkdir -p #{path}" unless File.exist? path      
-    self.file = path + "/#{user.login}.pdf"
-  end  
+    system "mkdir -p #{path}" unless File.exist? path
+
+    unless user.nil?
+      self.file = path + "/#{user.login}.pdf"
+    else
+      self.file.to_s
+    end
+  end
+
+  def approve
+    update_attribute(:approved, true)
+  end
+
+  def reject
+    update_attribute(:approved, false)
+  end
 end

@@ -1,0 +1,3 @@
+class Academic < User
+
+end

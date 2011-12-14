@@ -1,0 +1,8 @@
+.row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
+  .span-5= record.user.fullname_or_email
+  .span-5= record.documenttype.name
+  .span-2= document_status_indicator(record.approved)
+  .span-2= link_to_download(record)
+  .span-2= link_to_approve_document record, approve_academic_annual_report_path(:id => record.id, :format => :js)
+  .span-2.last= link_to_reject_document record, edit_academic_annual_report_path(:id => record.id, :format => :js)
+
