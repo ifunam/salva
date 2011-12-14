@@ -1,5 +1,6 @@
 Salva::Application.routes.draw do
   namespace :web_site do
-      match 'articles' => 'articles#index', :via => :get
+    resources :annual_reports, :only => [:index]
+    resources :annual_plans, :only => [:index]
   end
 end

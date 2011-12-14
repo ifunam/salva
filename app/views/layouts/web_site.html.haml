@@ -2,13 +2,17 @@
 %html
   %head
     %title= 'Plataforma de Información Curricular - SALVA'
+    = csrf_meta_tag
     = render :partial => 'layouts/blueprint_css'
-    = stylesheet_link_tag 'web_site'
-    // = javascript_include_tag :defaults
+    = stylesheet_link_tag 'academic'
+    = javascript_include_tag 'academic'
 
   %body
     = render :partial => 'layouts/header'
     .container
-      = yield
+      #top-navigation= render_navigation(:context => :web_site)
+      #content
+        = render :partial => 'layouts/flash_messages'
+        = yield
     #dialog
     = render :partial => 'layouts/footer'
