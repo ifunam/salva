@@ -114,7 +114,6 @@ es:
         country: País
         name: Nombre
         institution: Institución
-
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
         startyear: Año de inicio
@@ -184,7 +183,7 @@ es:
       bookedition:
         edition: Edición
         isbn: ISBN
-        pages: Págias
+        pages: Páginas
         year: Año
         month: Mes
         mediatype: Medio
@@ -283,6 +282,20 @@ es:
         studentname: Nombre del estudiente
         descr: Descripción
         year: año
+      inproceeding:
+        title: Título
+        authors: Autores
+        pages: Páginas
+      proceeding:
+        title: Título
+        year: Año
+        volume: Volúmen
+      publisher:
+        name: Nombre
+        descr: Descripción
+
+
+
 
   additional_info: Información addicional
   career: Carrera
@@ -1589,6 +1602,12 @@ es:
   skilltypes:
     new:
       title: 'Nuevo tipo de habilidad o técnica'
+
+  refereed_inproceedings:
+    index:
+      title: Artículos en memorias arbitradas
+      my_refereed_inproceedings: Mis artículos en memorias arbitradas
+      not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
 
   passwords:
     edit:
