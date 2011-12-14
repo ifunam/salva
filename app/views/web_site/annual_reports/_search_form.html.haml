@@ -3,7 +3,7 @@
   .span-6= f.text_field :fullname_like, :size => 30
   .span-2=t(:adscription)
   .span-6= f.collection_select :adscription_id_eq, Adscription.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
-  .span-2=t(:documentype)
+  .span-2=t(:year)
   .span-6.last= f.collection_select :documenttype_id_eq, Documenttype.annual_reports.all, :id, :year, {:prompt => true}, :class => 'chosen-select'
 
   .span-5.prepend-19.last
