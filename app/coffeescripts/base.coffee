@@ -45,6 +45,7 @@ jQuery.extend
     $("#collection_records").remove()
     $("#collection_footer").remove()
     $(".pagination").remove()
+    $("#pagination_info").remove()
     $("#collection_header").after html
     false
   
