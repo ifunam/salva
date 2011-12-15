@@ -92,10 +92,10 @@ es:
         adscription: Adscripción
         descr: Descripción
       jobposition_log:
-        worker_key: Id. de trabajador
-        worker_number: Numero de trabajador
-        academic_years: Años de antiguedad académica
-        administrative_years: Años de antiguedad administrativa
+        worker_key: Número de plaza
+        worker_number: Número de identificación del trabajador
+        academic_years: Años de antigüedad académica
+        administrative_years: Años de antigüedad administrativa
       education:
         career: Nombre de la carrera
         institution: Facultad o escuela
@@ -111,6 +111,8 @@ es:
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Titulo de la institución
+        institutiontype_id:  Tipo de institución
+        institutiontitle_id: Clasificación
         country: País
         name: Nombre
         institution: Institución
@@ -340,7 +342,7 @@ es:
         other: Otros
 
 
-  additional_info: Información addicional
+  additional_info: Información adicional
   career: Carrera
   school_or_faculty: Escuela o facultad
   thesis_jurors: Jurados de tesis
