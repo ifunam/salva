@@ -1,3 +1,4 @@
+%h3=t('.title')
 = simple_form_for @user, :as => :user, :url => user_cite_path do |f|
   = render :partial => 'form', :locals => { :f => f }
   #submit_buttons

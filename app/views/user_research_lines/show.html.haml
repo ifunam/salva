@@ -1,20 +1,20 @@
-%h3= t('user_research_lines.show.title')
+%h3= t('.title')
 .section-with-border-and-bg
   .span-18.last
-    %label= t(:name)
+    %label= t('.name')
     = @researchline.researchline.name
 
   .span-18.last
-    %label= t(:name_en)
+    %label= t('.name_en')
     = @researchline.researchline.name_en
 
 
   .span-18.last
-    %label= t(:descr)
+    %label= t('.descr')
     = @researchline.researchline.descr
 
   .span-18.last
-    %label=t(:research_area)
+    %label=t('.research_area')
     = @researchline.researchline.researcharea.name
 
   .row

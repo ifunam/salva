@@ -362,6 +362,9 @@ es:
         descr: Descripción
         researcharea: Área de investigación
         researcharea_id: Área de investigación
+      user_cite:
+        author_name: Nombre usado en citas bibliográficas
+        total: Total de citas
 
   additional_info: Información adicional
   career: Carrera
@@ -1722,12 +1725,25 @@ es:
   user_research_lines:
     show:
       title: 'Línea de investigación'
+      name: 'Nombre de la línea de investigación'
+      name_en: 'Nombre de la línea de investigación en inglés'
+      descr: 'Descripción'
+      research_area: 'Área de investigación'
+
     index:
       title: 'Líneas de investigación'
     new:
       title: 'Nueva línea de investigación'
     edit:
       title: 'Modificar línea de investigación'
+
+  user_cites:
+    show:
+      title: 'Información de citas'
+      author_name: 'Nombre usado en citas bibliográficas'
+      total: 'Total de citas'
+    edit:
+      title: 'Información de citas'
 
   academic:
     annual_reports:

@@ -1,13 +1,13 @@
-%h3= t(:user_cite)
+%h3= t('.title')
 .section-with-border-and-bg
   .span-18.last
-    %label=t(:author_name)
+    %label=t('.author_name')
     - unless @user.user_cite.nil?
       = @user.user_cite.author_name
     - else
       = t(:undefined)
   .span-18.last
-    %label=t(:total)
+    %label=t('.total')
     - unless @user.user_cite.nil?
       = @user.user_cite.total
     - else
