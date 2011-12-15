@@ -1945,6 +1945,12 @@ es:
   rejected: 'Rechazada'
   approve: 'Aprobar'
   reject: 'Rechazar'
+  fullname: 'Nombre(s)'
+  academic_responsible: 'Académico responsable'
+  document_type: 'Tipo'
+  deliver_date:  'Fecha y hora de envío'
+  authorization_date: 'Fecha y hora de autorización'
+  status: 'Estado'
 
   reporter:
     profile: 'Perfil'
@@ -1993,3 +1999,29 @@ es:
     annual_plans:
       index:
         title: Planes de trabajo
+
+  web_site:
+    annual_reports:
+      index:
+        title: Informes anuales
+
+    annual_plans:
+      index:
+        title: Planes de trabajo
+
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "Ningún %{model} fue encontrado"
+        one:   "Mostrando 1 %{model}"
+        other: "Mostrando todos %{count} %{model}"
+      single_page_html:
+        zero:  "Ningún %{model} fue encontrado"
+        one:   "Mostrando <b>1</b> %{model}"
+        other: "Mostrando <b>Todos&nbsp;%{count}</b> %{model}"
+      multi_page: "Mostrando %{model} %{from} - %{to} de un total de %{count} "
+      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{count}</b>"
