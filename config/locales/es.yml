@@ -1951,6 +1951,7 @@ es:
   deliver_date:  'Fecha y hora de envío'
   authorization_date: 'Fecha y hora de autorización'
   status: 'Estado'
+  jobposition_type: 'Tipo de contrato'
 
   reporter:
     profile: 'Perfil'
