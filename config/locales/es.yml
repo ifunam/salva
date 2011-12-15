@@ -164,7 +164,7 @@ es:
         userconferences: Participantes
         conference_institutions: Instituciones
       article:
-        authors: Autores
+        authors: Autor(es)
         title:  Título
         journal: Revista
         year: Año
@@ -175,7 +175,7 @@ es:
         doi: DOI
         other: Otros
       book:
-        authors: Autores
+        authors: Autor(es)
         title: Título
         country: País
         language: Idioma
@@ -189,13 +189,19 @@ es:
         year: Año
         month: Mes
         mediatype: Medio
-        editionstatus: Estatus
+        editionstatus: Status
       chapterinbook:
         title: Título
         pages: Páginas
         bookchaptertype: Tipo
+      bookedition_roleinbook:
+        roleinbook: Rol
+        roleinbook_id: Rol
+      chapterinbook_roleinchapter:
+        roleinchapter: Rol
+        roleinchapter_id: Rol
       genericwork:
-        authors: Autores
+        authors: Autor(es)
         title: Título
         reference: Referencia
         vol: Volúmen
@@ -203,12 +209,12 @@ es:
         isbn_issn: ISBN/ISSN
         year: Año
         month: Mes
-        genericworkstatus: Estatus
+        genericworkstatus: Status
         institution: Institución
         publisher: Editor
         genericworktype: Tipo
       review:
-        authors: Autores
+        authors: Autor(es)
         title: Título
         reviewed_work_title: Titulo de trabajo reseñado
         reviewed_work_publication: Publicación de trabajo reseñado
@@ -231,9 +237,9 @@ es:
         year: Año
         month: Mes
       technical_product:
-        authors: Autores
+        authors: Autor(es)
         tite: Título
-        techproductstatus: Estatus
+        techproductstatus: Status
         techproducttype: Tipo
         descr: Descricpción
         institution: Institución
@@ -252,7 +258,7 @@ es:
         year: Año
         month: Mes
       newspaperarticle:
-        authors: Autores
+        authors: Autor(es)
         title: Título
         newspaper: Periódico
         newsdate: Fecha
@@ -273,9 +279,9 @@ es:
         month: Mes
       thesis:
         title: Título
-        authors: Autores
+        authors: Autor(es)
         thesismodality: Modalidad
-        thesisstatus: Estatus
+        thesisstatus: Status
         startyear: Año de inicio
         startmonth: Mes de inicio
         endyear: Año de conslusión
@@ -286,17 +292,19 @@ es:
         year: año
       inproceeding:
         title: Título
-        authors: Autores
+        authors: Autor(es)
         pages: Páginas
       proceeding:
         title: Título
         year: Año
         volume: Volúmen
+        publisher: Editorial
+        publisher_id: Editorial
       publisher:
         name: Nombre
         descr: Descripción
       conferencetalk:
-        authors: Autores
+        authors: Autor(es)
         title: Título
         talktype: Tipo
         talkacceptance: Tipo de inscripción
@@ -320,9 +328,9 @@ es:
         month: Mes
       #dosen't work
       user_techproduct:
-        authors: Autores
+        authors: Autor(es)
         title: Título
-        techproductstatus: Estatus
+        techproductstatus: Status
         techproducttype: Tipo
         descr: Descripción
         institution: Institución
@@ -365,6 +373,9 @@ es:
       user_cite:
         author_name: Nombre usado en citas bibliográficas
         total: Total de citas
+      user_genericwork:
+        userrole: Rol
+        userrole_id: Rol
 
   additional_info: Información adicional
   career: Carrera
@@ -377,7 +388,7 @@ es:
   studentname: Estudiante
   target: Objetivo
   technical_producttype: Tipo
-  technical_productstatus: Estatus
+  technical_productstatus: Status
 
   academic_secretary:
     users:
@@ -1685,12 +1696,24 @@ es:
       title: Artículos en memorias arbitradas
       my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
       not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
+    collection_header:
+      title: Artículos
+    new:
+      title: Artículo en memoria arbitrada
+    edit:
+      title: Modificar artículo en memoria arbitrada
 
   unrefereed_inproceedings:
     index:
       title: Articulos en memorias In Extenso
       my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
       not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+    collection_header:
+      title: Artículos
+    new:
+      title: Artículo en memoria In Extenso
+    edit:
+      title: Modificar artículo en memoria In Extenso
 
   proceeding_collaborations:
     index:
@@ -2020,6 +2043,9 @@ es:
   projecttype: 'Tipo de proyecto'
   projectstatus: 'Estado del proyecto'
   research_lines: 'Líneas de investigación'
+  inproceeding: 'Información del artículo'
+  proceeding: 'Información de la memoria'
+  conference: 'Información del evento académico'
 
   reporter:
     profile: 'Perfil'
