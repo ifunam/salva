@@ -293,14 +293,32 @@ es:
       publisher:
         name: Nombre
         descr: Descripción
-
-
-
+      conferencetalk:
+        authors: Autores
+        title: Título
+        talktype: Tipo
+        talkacceptance: Tipo de inscripción
+        modality: Modalidad
+      regularcourse:
+        title: Título
+        modality: Modalidad
+        semester: Semestre
+        credits: Creditos
+      user_regularcourse:
+        period: Periodo
+        roleinregularcourse: Rol
+        hoursxweek: Horas por semana
+        credits: Créditos
+      academicprogram:
+        academicprogramtype: Tipo de programa académico
+        year: Año
 
   additional_info: Información addicional
   career: Carrera
   school_or_faculty: Escuela o facultad
   thesis_jurors: Jurados de tesis
+  newspaper: Periódico
+  period: Periódo
 
   academic_secretary:
     users:
@@ -323,6 +341,7 @@ es:
   jobpositions:
     academic_form:
       jobposition_and_adscription: 'Categoría y adscripción'
+
 
   academic_secretary:
     users:
@@ -1606,8 +1625,20 @@ es:
   refereed_inproceedings:
     index:
       title: Artículos en memorias arbitradas
-      my_refereed_inproceedings: Mis artículos en memorias arbitradas
+      my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
       not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
+
+  unrefereed_inproceedings:
+    index:
+      title: Articulos en memorias In Extenso
+      my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
+      not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+
+  proceeding_collaborations:
+    index:
+      my_proceedings: Listar mis colaboraciones en memorias
+      not_my_proceedings: Colaboraciones en memorias de otros usuarios
+
 
   passwords:
     edit:
