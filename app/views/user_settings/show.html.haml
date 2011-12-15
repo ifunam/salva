@@ -4,7 +4,9 @@
 
   = show_for @user do |u|
     .row
-      .span-8= u.attribute :author_name
+      .span-8
+        %label=t('.author_name')
+        = @user.author_name
       .span-10.last
         - unless @user.homepage.nil?
           %label= t(:homepage)

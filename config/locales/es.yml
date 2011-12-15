@@ -156,7 +156,7 @@ es:
       conference:
         name: Nombre
         conferencetype: Tipo
-        conferencescope: Ambito
+        conferencescope: Ámbito
         country: País
         year: Año
         month: Mes
@@ -875,7 +875,7 @@ es:
   user_skills:
     index:
       title: 'Habilidades y técnicas experimentales'
-      skills: Habilidad/técnica expermiental
+      skills: Habilidad/técnica experimental
     new:
       title: 'Nueva habilidad o técnica'
     edit:
@@ -1468,6 +1468,7 @@ es:
   user_settings:
     show:
       title: 'Información de página web'
+      author_name: 'Nombre para la página web'
     edit:
       title: 'Modificar información de página web'
 
@@ -1815,7 +1816,7 @@ es:
     roleinchapters: 'Roles en capitulos en libros'
     chapertinbooks: 'Capítulos en libros'
     roleinchapters: 'Roles en capitulos'
-    conferencescopes: 'Ambitos de conferencias'
+    conferencescopes: 'Ámbito de conferencias'
     conferences: 'Conferencias'
     conferencetypes: 'Tipos de conferencias'
     contracttypes: 'Tipos de contratos'
