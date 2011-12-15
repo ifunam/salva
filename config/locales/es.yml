@@ -340,7 +340,22 @@ es:
         place: Lugar
         goals: Objetivos
         other: Otros
-
+      project:
+        name: Nombre del proyecto
+        abbrev: Siglás
+        responsible: Responsable
+        descr: Descripción
+        projecttype: Tipo de proyecto
+        projecttype_id: Tipo de proyecto
+        startyear: Año de inicio
+        startmonth: Mes de inicio
+        endyear: Año de conclusión
+        endmonth: Mes de conclusión
+        projectstatus: Estado del proyecto
+        projectstatus_id: Estado del proyecto
+      user_project:
+        roleinproject: Rol
+        roleinproject_id: Rol
 
   additional_info: Información adicional
   career: Carrera
@@ -406,8 +421,6 @@ es:
           front: 'Frente de credencial'
           back: 'Código de barras de credencial'
           list_all: 'Mostrar todos'
-
-
 
   cities:
     show:
@@ -1674,7 +1687,6 @@ es:
       my_proceedings: Listar mis colaboraciones en memorias
       not_my_proceedings: Colaboraciones en memorias de otros usuarios
 
-
   passwords:
     edit:
       title: Cambiar contraseña
@@ -1682,6 +1694,24 @@ es:
         current_password: Contraseña actual
         password: Nueva contraseña
         password_confirmation: Confirmación de la nueva contraseña
+
+  projects:
+    index:
+      title: 'Proyectos'
+      my_projects: 'Listar mis proyectos'
+      not_my_projects: 'Listar proyectos registrados por otros usuarios'
+    not_mine:
+      title: 'Proyectos'
+      my_projects: 'Listar mis proyectos'
+      not_my_projects: 'Listar proyectos registrados por otros usuarios'
+    new:
+      title: 'Nuevo proyecto'
+    edit:
+      title: 'Modificar proyecto'
+    show:
+      title: 'Proyecto'
+    collection_header:
+      title: 'Proyecto'
 
   academic:
     annual_reports:
@@ -1954,6 +1984,9 @@ es:
   authorization_date: 'Fecha y hora de autorización'
   status: 'Estado'
   jobposition_type: 'Tipo de contrato'
+  financing_sources: 'Fuentes de financiamiento'
+  projecttype: 'Tipo de proyecto'
+  projectstatus: 'Estado del proyecto'
 
   reporter:
     profile: 'Perfil'
