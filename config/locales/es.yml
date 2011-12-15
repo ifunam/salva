@@ -356,6 +356,12 @@ es:
       user_project:
         roleinproject: Rol
         roleinproject_id: Rol
+      researchline:
+        name: Nombre de la línea de investigación
+        name_en: Nombre de la línea de investigación en inglés
+        descr: Descripción
+        researcharea: Área de investigación
+        researcharea_id: Área de investigación
 
   additional_info: Información adicional
   career: Carrera
@@ -1713,6 +1719,16 @@ es:
     collection_header:
       title: 'Proyecto'
 
+  user_research_lines:
+    show:
+      title: 'Línea de investigación'
+    index:
+      title: 'Líneas de investigación'
+    new:
+      title: 'Nueva línea de investigación'
+    edit:
+      title: 'Modificar línea de investigación'
+
   academic:
     annual_reports:
       edit:
@@ -1885,7 +1901,6 @@ es:
       index:
         new: 'Agregar nuevo usuario'
 
-
   show_all: 'Todos'
   save: 'Guardar'
   cancel: 'Cancelar'
@@ -1987,6 +2002,7 @@ es:
   financing_sources: 'Fuentes de financiamiento'
   projecttype: 'Tipo de proyecto'
   projectstatus: 'Estado del proyecto'
+  research_lines: 'Líneas de investigación'
 
   reporter:
     profile: 'Perfil'
