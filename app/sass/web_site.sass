@@ -1,10 +1,199 @@
 @import "base"
+@import "blueprint"
+@import "start-jquery-ui"
 @import "form"
-@import "collection_list"
+@import "chosen"
 
+#session_info
+  @extend .ui-button-set
+  @extend .span-24
+  @extend .last
+  text-align: right
+  .current_user
+    color: green
+    display: inline
+
+#top-navigation
+  @extend .span-24
+  @extend .last
+  font-size: 14px
+  text-align: left
+  height: 30px
+  margin-top: 10px
+  //border: 1px solid red
+  ul
+    @extend .ui-tabs-nav
+    @extend .ui-helper-reset
+    @extend .ui-helper-clearfix
+    @extend .span-24
+    display: inline-block
+    margin-left: -4px
+    vertical-align: middle
+    li
+      @extend .ui-state-default
+      @extend .ui-corner-all
+      list-style-type: none
+      padding-top: 7px
+      padding-left: 3px
+      padding-right: 3px
+      margin-left: 2px
+      background: #0088BB
+      line-height: 1.01em
+      height: 30px
+      width: 200px
+      float: left
+      text-align: center
+      vertical-align: middle
+      a
+        display: inline-block
+        vertical-align: middle
+
+    li.selected
+      @extend .ui-tabs-selected
+      @extend .ui-state-active
+      border-right: 0px
+      margin-top: 0px
+    li:hover
+      @extend .ui-state-hover
+
+#content
+  @extend .span-24
+  @extend .last
+  background: #fff
+  font-size: 11px
+  margin-top: 10px
+  margin-left: -3px
+  margin-bottom: 20px
+  padding-top: 20px
+  text-align: left
 h3
-  text-shadow: rgb(247, 253, 250) 1px 1px 3px
+  color: #6EAC2C
+  text-shadow: rgb(143,191,92) 1px 1px 3px
   font-size: 160%
+
+.row
+  @extend .span-24
+  @extend .last
+  .wrapper
+    @extend .span-5
+  strong
+    font: 14px Arial,sans-serif
+    font-weight: bold
+    text-align: justify
+    color: rgb(0, 136, 187)
+
+  .new_record
+    vertical-align: middle
+    margin-top: 20px
+    margin-left: 3px
+    @extend .ui-state-default
+
+
+.wrapper
+  strong
+    font: 14px Arial,sans-serif
+    font-weight: bold
+    text-align: justify
+    color: rgb(0, 136, 187)
+
+.record
+  padding-top: 8px
+  padding-bottom: 8px
+  min-height: 60px
+  border-bottom: 1px solid silver
+  vertical-align: middle
+
+.record-odd
+  @extend .record
+  background-color: #fff
+  color: #585858
+
+.record-odd:hover
+  background-color: #CEF6CE
+
+.record-even
+  @extend .record
+  background: #EFF5FB
+  color: #585858
+
+.record-even:hover
+  background-color: #CEF6CE
+
+#paginator
+  display: block
+  height: 30px
+
+.pagination
+  @extend .span-24
+  @extend .last
+  text-align: center
+  margin-botom: 5px
+
+#pagination_info
+  @extend .span-24
+  @extend .last
+  text-align: center
+  margin-botom: 5px
+
+.ui-progressbar-value
+  background-image: url(pbar-ani.gif)
+
+
+.collection_header_colors
+  background: #f5f5f5
+  color: #0088bb
   font-weight: bold
-  color: #00688F
-  letter-spacing: -1px
+  padding-left: 3px
+
+
+#filter_form
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-24
+  @extend .last
+  @extend .collection_header_colors
+  border-color: silver
+  padding-bottom: 5px
+  ul
+    color: #585858
+  .chzn-single
+    color: #585858
+
+#collection_header
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-24
+  @extend .last
+  @extend .collection_header_colors
+  border-style: solid
+  border-color: silver
+  background: #f5f5f5
+  .action
+    @extend .span-2
+    text-align: center
+
+#collection_records
+  @extend .span-24
+  @extend .last
+  border-left: 1px solid silver
+  border-right: 1px solid silver
+  text-align: left
+  padding-left: 3px
+  min-height: 60px
+
+#collection_footer
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-24
+  @extend .last
+  @extend .collection_header_colors
+  border-top: 0px
+  text-align: right
+  padding: 5px 0px 5px 0px
+  margin-bottom: 10px
+  padding-left: 3px
+  border-top: 0px
+  border-left: 1px solid silver
+  border-right: 1px solid silver
+  border-bottom: 1px solid silver
+

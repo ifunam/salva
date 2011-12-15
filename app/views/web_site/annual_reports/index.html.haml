@@ -1,5 +1,7 @@
 %h3= t('.title')
 
+= render :partial => 'search_form'
+
 #collection_header
   .span-4=t(:fullname)
   .span-4=t(:academic_responsible)
@@ -16,3 +18,4 @@
 
 = will_paginate(@documents)
 
+#pagination_info= page_entries_info @documents

@@ -1,0 +1,8 @@
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= will_paginate @documents, :id => 'ajaxed_paginator'
+
+#pagination_info= page_entries_info @documents

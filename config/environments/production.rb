@@ -51,7 +51,7 @@ Salva::Application.configure do
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css
                                   user_resources.js publications.css publications.js academic.css
-                                  academic.js)
+                                  academic.js web_site.css web_site.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
