@@ -312,6 +312,33 @@ es:
       academicprogram:
         academicprogramtype: Tipo de programa académico
         year: Año
+      thesis_juror:
+        roleinjury: Rol
+        year: Año
+        month: Mes
+      #dosen't work
+      user_techproduct:
+        authors: Autores
+        title: Título
+        techproductstatus: Estatus
+        techproducttype: Tipo
+        descr: Descripción
+        institution: Institución
+        userrole: Rol
+        year: Año
+      acadvisit:
+        country: País
+        institution: Institución
+        descr: Descripción
+        acadvisittype: Tipo
+        startyear: Año de inicio
+        endyear: Año de conclusión
+        startmonth: Mes de inicio
+        endmonth: Mes de conclusión
+        place: Lugar
+        goals: Objetivos
+        other: Otros
+
 
   additional_info: Información addicional
   career: Carrera
@@ -319,6 +346,12 @@ es:
   thesis_jurors: Jurados de tesis
   newspaper: Periódico
   period: Periódo
+  roleinthesis: Rol
+  roleinjury: Rol
+  studentname: Estudiante
+  target: Objetivo
+  technical_producttype: Tipo
+  technical_productstatus: Estatus
 
   academic_secretary:
     users:
