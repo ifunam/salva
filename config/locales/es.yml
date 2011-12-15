@@ -236,11 +236,13 @@ es:
         activitytype: Tipo
         year: Año
         month: Mes
-      technical_product:
+      techproduct:
         authors: Autor(es)
-        tite: Título
+        title: Título
         techproductstatus: Status
         techproducttype: Tipo
+        techproductstatus_id: Status
+        techproducttype_id: Tipo
         descr: Descricpción
         institution: Institución
         userrole: Rol
@@ -385,6 +387,18 @@ es:
       user_conferencetalk:
         roleinconferencetalk: Rol
         roleinconferencetalk_id: Rol
+      user_proceeding:
+        roleproceeding: Rol
+        roleinproceeding_id: Rol
+      user_course:
+        roleincourse: Rol
+        roleincourse_id: Rol
+      user_thesis:
+        roleinthesis: Rol
+        roleinthesis_id: Rol
+      annual_plan:
+        body: Descripción
+
 
   additional_info: Información adicional
   career: Carrera
@@ -818,6 +832,8 @@ es:
       title: 'Mis otros trabajos'
       my_works: 'Listar mis trabajos'
       not_my_works: 'Listar trabajos registrados por otros usuarios'
+    collection_header:
+      title: 'Trabajos'
     not_mine:
       title: 'Otros trabajos registrados por otros usuarios'
       my_works: 'Listar mis trabajos'
@@ -1564,6 +1580,14 @@ es:
     index:
       title: 'Informe anual de actividades'
 
+  user_annual_plans:
+    index:
+      title: Planes de trabajo
+    new:
+      title: Nuevo plan de trabajo
+    edit:
+      title: Modificar plan de trabajo
+
   user_refereed_journals:
     index:
       title: 'Arbitraje en revistas'
@@ -1711,6 +1735,8 @@ es:
       title: Artículo en memoria arbitrada
     edit:
       title: Modificar artículo en memoria arbitrada
+    show:
+      title: Artículo en memoria arbitrada
 
   unrefereed_inproceedings:
     index:
@@ -1723,11 +1749,20 @@ es:
       title: Artículo en memoria In Extenso
     edit:
       title: Modificar artículo en memoria In Extenso
+    show:
+      title: Artículo en memoria In Extenso
 
   proceeding_collaborations:
     index:
+      title: Colaboración en memorias
       my_proceedings: Listar mis colaboraciones en memorias
       not_my_proceedings: Colaboraciones en memorias de otros usuarios
+    new:
+      title: Colaboración en memoria
+    edit:
+      title: Modificar colaboración en memoria
+    show:
+      title: Colaboración en memoria
 
   passwords:
     edit:
@@ -1777,6 +1812,17 @@ es:
       total: 'Total de citas'
     edit:
       title: 'Información de citas'
+
+  academic_exchanges:
+    index:
+      title: 'Estancias en el extranjero'
+    new:
+      title: 'Nueva estancia en el extranjero'
+    edit:
+      title: 'Modificar estancia en el extranjero'
+    show:
+      title: 'Información de la estancia en el extranjero'
+
 
   academic:
     annual_reports:
@@ -2056,6 +2102,19 @@ es:
   proceeding: 'Información de la memoria'
   conference: 'Información del evento académico'
   talktype: 'Tipo de trabajo'
+  annual_report_preview: 'Vista previa del informe anual'
+  new_annual_plan: 'Nuevo plan de trabajo'
+  edit_annual_plan: 'Modificar plan de trabajo'
+  gender: Genéro
+  birthday: Fecha de nacimiento
+  email: Correo electrónico
+  phone: Teléfono
+  category: Categoría
+  worker_id: Número de plaza
+  total_of_cites: Total de citas
+  user_incharge: Responsable académico
+  person_id: Identificación
+  general_information: Información general
 
   reporter:
     profile: 'Perfil'
