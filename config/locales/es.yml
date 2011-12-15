@@ -376,6 +376,15 @@ es:
       user_genericwork:
         userrole: Rol
         userrole_id: Rol
+      user_seminary:
+        roleinseminary: Rol
+        roleinseminary_id: Rol
+      userconference:
+        roleinconference: Rol
+        roleinconference_id: Rol
+      user_conferencetalk:
+        roleinconferencetalk: Rol
+        roleinconferencetalk_id: Rol
 
   additional_info: Información adicional
   career: Carrera
@@ -2046,6 +2055,7 @@ es:
   inproceeding: 'Información del artículo'
   proceeding: 'Información de la memoria'
   conference: 'Información del evento académico'
+  talktype: 'Tipo de trabajo'
 
   reporter:
     profile: 'Perfil'
