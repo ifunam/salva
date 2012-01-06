@@ -7,13 +7,15 @@ $(document).ready ->
   $(".icon_action_close_author_list").live "click", ->
     $(this).parent().parent().parent().remove()
 
-  $(".author_action a").live "click", (e)->
-    (e).preventDefault()
-    html = $.response_from_remote_resource(@href)
+  $(".author_action a").live "click", (e, elements)->
+    e.preventDefault()
+    html = $.response_from_simple_remote_resource(@href)
     $(this).parent().parent().replaceWith html
+
     false
 
   $(".role_list ul li a").live "click", (e)->
+    e.preventDefault()
     href = $(this).attr("data-remote-resource")
     html = $.response_from_remote_resource(href)
     $(this).parent().parent().parent().parent().parent().parent().replaceWith html
