@@ -56,15 +56,15 @@ module ApplicationHelper
   end
 
   def link_to_add_author(title, resource_path)
-    link_to_action 'icon_action_add_author', title, resource_path, :remote => true
+    link_to_action 'icon_action_add_author', title, resource_path
   end
 
   def link_to_del_author(title, resource_path)
-      link_to_action 'icon_action_del_author', title, resource_path, :remote => true
+      link_to_action 'icon_action_del_author', title, resource_path
   end
 
   def link_to_add_role(title, resource_path)
-    link_to_action 'icon_action_add_role', title, resource_path, :remote => true
+    link_to_action 'icon_action_add_role', title, resource_path
   end
 
   def checkbox_to_delete(record)
@@ -88,7 +88,7 @@ module ApplicationHelper
   end
 
   def link_to_user_list(resource_path)
-    link_to '', resource_path, :title =>t(:author_list), :remote => true, :class => 'icon_action_user_list'
+    link_to '', resource_path, :title =>t(:author_list), :class => 'icon_action_user_list'
   end
 
   def link_to_close_author_list
