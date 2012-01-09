@@ -7,7 +7,7 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
   belongs_to :chapterinbook
   belongs_to :roleinchapter
   belongs_to :registered_by, :class_name => 'User'
-  belongs_to :updated_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   has_many :bookeditions
 
