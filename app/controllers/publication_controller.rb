@@ -37,7 +37,7 @@ class PublicationController < InheritedResources::Base
 
   def new
     build_resource
-    assign_current_year
+    resource_default_year
     super
   end
 
@@ -100,10 +100,10 @@ class PublicationController < InheritedResources::Base
     set_collection_ivar scoped_resource_class.search(params[:search]).paginate(:page => params[:page] ||1, :per_page => params[:per_page] || 10)
   end
 
-  def assign_current_year
+  def resource_default_year
     %w(year startyear endyear).each do |attr|
       if resource.attribute_names.include? attr
-        resource.send("#{attr}=", Date.today.year)
+        resource.send("#{attr}=", Documenttype.year_for_annual_report)
       end
     end
   end

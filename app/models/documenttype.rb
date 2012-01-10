@@ -8,4 +8,8 @@ class Documenttype < ActiveRecord::Base
   scope :annual_plans, where("name LIKE 'Plan de trabajo%'")
   scope :active, where(:status => true)
   has_many :documents
+
+  def self.year_for_annual_report
+   Documenttype.annual_reports.active.first.nil? ? Date.today.year : Documenttype.annual_reports.active.first.year
+  end
 end
