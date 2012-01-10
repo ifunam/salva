@@ -2116,6 +2116,8 @@ es:
   person_id: Identificación
   general_information: Información general
   attendees: Asistentes
+  associated_project: Usted ya esta asociado al proyecto
+  not_associated_project: Usted no esta asociado al proyecto
 
   reporter:
     profile: 'Perfil'
