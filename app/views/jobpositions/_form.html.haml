@@ -6,14 +6,17 @@
       = f.hidden_field :user_id
   .row
     .span-5
-      = render :partial => 'jobpositiontypes/filter_select'
+      - if f.object.new_record?
+        = render :partial => 'jobpositiontypes/filter_select', :locals => { :selected_id => nil }
+      - else
+        = render :partial => 'jobpositiontypes/filter_select', :locals => { :selected_id => f.object.jobpositioncategory.jobpositiontype.id }
     .span-5
       = f.label :category
       #jobpositioncategories_select
-        - if f.object.nil?
+        - if f.object.new_record?
           = f.select :jobpositioncategory_id, {}
         - else
-          = f.object.category_name
+          = f.collection_select :jobpositioncategory_id, Jobpositioncategory.find_all_by_jobpositiontype_id(f.object.jobpositioncategory.jobpositiontype.id), :id, :name, { :prompt => true, :selected => f.object.jobpositioncategory.id}, :class =>'chosen-select'
     .span-8.last
       = f.input :contracttype_id, :as =>:radio, :collection =>Contracttype.all
 
@@ -29,7 +32,7 @@
       = f.text_field :end_date, :size => 10, :class => 'date'
 
   .row
-    - f.object.user_adscription = UserAdscription.new if f.object.user_adscription.nil?
-    = f.simple_fields_for :user_adscription_attributes do |uaf|
+    - f.object.build_user_adscription if f.object.user_adscription.nil?
+    = f.simple_fields_for :user_adscription do |uaf|
       = render :partial => 'user_adscriptions/mini_form', :locals => { :f => uaf}
 
