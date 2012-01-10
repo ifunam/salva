@@ -1,5 +1,5 @@
-%div{ :class => 'span-6 section_left last' } 
-  %div{:class => 'span-6 last'}
+.dialog-section-with-border-and-bg
+  .row
     = f.input :name, :as => :string, :html_input => { :size => '15' }
-    = f.hidden_field :state_id, :value => params[:state_id]
+    = f.hidden_field :state_id, :value => (params[:state_id].to_i == 0 ? 1 : params[:state_id])
 

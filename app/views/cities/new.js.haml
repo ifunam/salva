@@ -1,4 +1,5 @@
-= simple_form_for(@city, :remote => true) do |f|
+%h3=t('.title')
+= simple_form_for(@city, :remote => true, :html => {:id => 'new_city', 'data-class-name' => 'city'}) do |f|
   = render :partial => 'form', :locals => { :f => f}
-  %div{ :class => 'span-6 buttons_left last' }
-    = f.submit  :save
+  #dialog_submit_buttons
+    = f.submit t(:save), :confirm => t(:new_record_confirmation)

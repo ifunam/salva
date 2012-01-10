@@ -31,12 +31,18 @@
     %br
     .span-5
       = f.label :country_id, :required => true
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => 484, :required => true}, :class => "chosen-select country-select"
-    .span-5
+      - selected_country_id = f.object.country_id || 484
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => selected_country_id, :required => true}, :class => "chosen-select country-select"
+    #state_set.span-5
       = f.label :state_id
-      = f.collection_select :state_id, State.where(:country_id => 484).all, :id, :name, {:prompt => true, :selected => 9}, :id => 'state_list', :class => "chosen-select"
-    .span-6.last
+      - if f.object.country_id == 484 or f.object.country_id == 840
+        - selected_stated_id = f.object.state_id || 9
+        = f.collection_select :state_id, State.where(:country_id => selected_country_id ).all, :id, :name, {:prompt => true, :selected => selected_stated_id}, :id => 'state_list', :class => "chosen-select"
+    #city_set.span-6.last
       = f.label :city_id, :required => true
-      = f.collection_select :city_id, City.where(:state_id => 9).all, :id, :name, {:prompt => true, :selected => 64, :required => true}, :id => 'city_list', :class => "chosen-select"
-      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :remote => true, :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
+      - if f.object.state_id.to_i >= 1 && f.object.state_id.to_i <= 83
+        = f.collection_select :city_id, City.where(:state_id => f.object.state_id).all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :id => 'city_list', :class => "chosen-select"
+      - else
+        = f.collection_select :city_id, City.all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :id => 'city_list', :class => "chosen-select"
+      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
       #city_text_field

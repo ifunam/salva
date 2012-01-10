@@ -6,6 +6,7 @@ $(document).ready ->
   $("#new_record_form").live "submit", ->
     class_name = @getAttribute("data-class-name")
     $("#new_record_form").ajaxComplete (event, request, settings) ->
+      $($("#" + class_name).find("select option:selected")[0]).remove()
       object = jQuery.parseJSON(request.responseText)
       html_options = "<option selected value=\"" + object.id + "\" >" + object.name + "</option>"
       $($("#" + class_name).find("select")[0]).append html_options

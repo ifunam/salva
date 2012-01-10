@@ -1,7 +1,7 @@
-class CitiesController < InheritedResources::Base
-
-  respond_to :html, :only => [:list_by_state]
-  respond_to :js, :only => [:show, :new, :remote_form]
+class CitiesController < CatalogController
+  autocompleted_search_with :name, :name_like_ignore_case
+  #respond_to :html, :only => [:list_by_state]
+  #respond_to :js, :only => [:show, :new, :remote_form]
   
   def list_by_state
     @cities = City.where(:state_id => params[:state_id]).all
@@ -9,10 +9,5 @@ class CitiesController < InheritedResources::Base
       format.html { render :action => :list_by_state, :layout => false} 
     end
   end
-  
-  def create
-    create! do |format|
-      format.js { render :action => 'show.js' }
-    end
-  end
 end
+

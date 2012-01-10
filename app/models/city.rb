@@ -5,6 +5,8 @@ class City < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:state_id]
 
   belongs_to :state
+  belongs_to :registered_by, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
 
   has_many :people
   has_many :addresses
