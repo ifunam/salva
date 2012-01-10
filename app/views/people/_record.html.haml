@@ -11,7 +11,11 @@
       = p.attribute :lastname2
       .span-2.last= p.attribute :title
     .row
-      = p.attribute :gender
+      .wrapper
+        %strong=t('activerecord.attributes.person.gender')
+        %br
+        = (record.gender.is_a? TrueClass) ? 'Másculino' : 'Femenino'
+
       = p.association :maritalstatus, :using => :name
       = p.attribute :dateofbirth
     .row
