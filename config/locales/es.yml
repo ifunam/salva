@@ -2115,6 +2115,7 @@ es:
   user_incharge: Responsable académico
   person_id: Identificación
   general_information: Información general
+  attendees: Asistentes
 
   reporter:
     profile: 'Perfil'
