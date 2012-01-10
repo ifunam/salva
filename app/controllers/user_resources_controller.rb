@@ -12,6 +12,12 @@ class UserResourcesController < InheritedResources::Base
     respond_with scoped_and_paginated_collection
   end
 
+  def new
+    build_resource
+    assign_current_year
+    super
+  end
+
   def create
     build_resource.user_id = current_user.id
     resource.registered_by_id = current_user.id
@@ -60,5 +66,13 @@ class UserResourcesController < InheritedResources::Base
   def scoped_and_paginated_collection
     set_collection_ivar scoped_resource_class.search(params[:search])
                         .paginate(:page => params[:page] || 1,:per_page => params[:per_page] || 10)
+  end
+
+   def assign_current_year
+    %w(year startyear endyear).each do |attr|
+      if resource.attribute_names.include? attr
+        resource.send("#{attr}=", Date.today.year)
+      end
+    end
   end
 end

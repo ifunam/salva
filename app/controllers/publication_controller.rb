@@ -35,6 +35,12 @@ class PublicationController < InheritedResources::Base
     respond_with paginated_collection
   end
 
+  def new
+    build_resource
+    assign_current_year
+    super
+  end
+
   def not_mine
     params[:search] ||= {}
     params[:search].merge!(:user_id_not_eq => current_user.id)
@@ -92,5 +98,13 @@ class PublicationController < InheritedResources::Base
 
   def paginated_collection
     set_collection_ivar scoped_resource_class.search(params[:search]).paginate(:page => params[:page] ||1, :per_page => params[:per_page] || 10)
+  end
+
+  def assign_current_year
+    %w(year startyear endyear).each do |attr|
+      if resource.attribute_names.include? attr
+        resource.send("#{attr}=", Date.today.year)
+      end
+    end
   end
 end

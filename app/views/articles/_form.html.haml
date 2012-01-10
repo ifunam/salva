@@ -11,7 +11,7 @@
       = f.association :journal, :using => :name , :input_html  => {:class => 'chosen-select'}
       = link_to_new_record 'Agregar journal', new_journal_path
     .span-2
-      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
     .span-6.last
       = f.label :month, :required => true
       = select_month_for 'month', 'article'

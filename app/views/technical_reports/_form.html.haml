@@ -14,7 +14,7 @@
   .row
     .span-6= f.input :isbn_issn, :as => :string, :input_html => { :size => '20', :autocomplete => "off"}
     .span-2
-      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
     .span-6.last
       = f.label :month, :required => true
       = select_month_for 'month', 'genericwork'

@@ -8,13 +8,13 @@
       = f.collection_select :stimuluslevel_id, Stimuluslevel.all, :id, :name_and_type, {:prompt => true}, :class => 'chosen-select'
       = link_to_new_record 'Agregar una estímulo', new_stimuluslevel_path
   .row
-    .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
     .span.last
       = f.label :startmonth, :required => true
       = select_month_for 'startmonth', 'user_stimulus'
 
   .row
-    .span-4= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-4= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-4.last
       = f.label :endmonth
       = select_month_for 'endmonth', 'user_stimulus'

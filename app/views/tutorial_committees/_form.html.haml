@@ -7,7 +7,7 @@
     .span-9.last= f.input :descr, :as => :text, :input_html => {:size => '78x1'}
 
   .row
-    .span-2.last= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-2.last= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
 
   - f.object.career = Career.new if f.object.career.nil?
   = f.simple_fields_for :career, f.object.career do |c|

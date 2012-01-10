@@ -10,13 +10,13 @@
 
   .row
     .span-3
-      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6
       = f.label :startmonth, :required => true
       = select_month_for 'startmonth', 'user_journal'
 
     .span-3
-      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6.last
       = f.label :endmonth, :required => true
       = select_month_for 'endmonth', 'user_journal'

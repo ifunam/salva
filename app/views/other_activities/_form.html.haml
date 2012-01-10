@@ -6,7 +6,7 @@
 
   .row
     .span-2
-      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+      = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
       = f.hidden_field :activitytype_id, :value => 15
     .span-6.last
       = f.label :month, :required => true

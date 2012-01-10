@@ -9,7 +9,7 @@
     .span-10.last= f.input :descr, :as => :text, :input_html => { :size => '70x2' }
 
   .row
-    .span-2= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
+    .span-2= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
     .span-6
       = f.label :month, :required => true
       = select_month_for 'month', 'user_credit'

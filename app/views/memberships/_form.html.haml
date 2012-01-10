@@ -8,6 +8,6 @@
       = link_to_new_record 'Agregar institución', new_institution_path
 
   .row
-    .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }, :required => true
-    .span-4.last= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off", :value => Date.today.year }
+    .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
+    .span-4.last= f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
 
