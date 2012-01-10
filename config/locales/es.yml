@@ -1808,7 +1808,7 @@ es:
   user_cites:
     show:
       title: 'Información de citas'
-      author_name: 'Nombre usado en citas bibliográficas'
+      author_name: 'Nombre(s) usado en citas bibliográficas'
       total: 'Total de citas'
     edit:
       title: 'Información de citas'

@@ -6,8 +6,8 @@ $(document).ready ->
       $("#hidden_state_id").remove()
       $("#city_text_field").html ""
     else
-      $("#state_list").remove()
-      $("#state_list_chzn").remove()
+      $("#user_person_attributes_state_id").remove()
+      $("#user_person_attributes_state_id_chzn").remove()
       $("#city_list_chzn").remove()
       $("#city_list").replaceWith ""
       $("#city_new").hide()
@@ -15,8 +15,9 @@ $(document).ready ->
       $("#city_new").before "<div id=\"city_list\"> </div>"
       $("#state_set").append "<input id=\"user_person_attributes_state_id\" name=\"user[person_attributes][state_id]\" value=\"\" type=\"hidden\">"
   
-  $("#state_list").live "change", ->
-    state_id = $("#state_list").val()
+  $("#user_person_attributes_state_id").live "change", ->
+    state_id = $($("#user_person_attributes_state_id").find("option:selected")[0]).val()
+
     if state_id >= 1 or state_id <= 83
       $.city_list_by_state state_id
       $("#city_new").show()

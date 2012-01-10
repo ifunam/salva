@@ -37,7 +37,7 @@
       = f.label :state_id
       - if f.object.country_id == 484 or f.object.country_id == 840
         - selected_stated_id = f.object.state_id || 9
-        = f.collection_select :state_id, State.where(:country_id => selected_country_id ).all, :id, :name, {:prompt => true, :selected => selected_stated_id}, :id => 'state_list', :class => "chosen-select"
+        = f.collection_select :state_id, State.where(:country_id => selected_country_id ).all, :id, :name, {:prompt => true, :selected => selected_stated_id}, :class => "chosen-select"
     #city_set.span-6.last
       = f.label :city_id, :required => true
       - if f.object.state_id.to_i >= 1 && f.object.state_id.to_i <= 83
