@@ -373,7 +373,7 @@ es:
         researcharea: Área de investigación
         researcharea_id: Área de investigación
       user_cite:
-        author_name: Nombre usado en citas bibliográficas
+        author_name: Nombre(s) usado en citas bibliográficas
         total: Total de citas
       user_genericwork:
         userrole: Rol

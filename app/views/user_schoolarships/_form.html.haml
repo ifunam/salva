@@ -11,4 +11,7 @@
   .row
     .span-4= f.input :start_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date'}
     .span-4= f.input :end_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date' }
-    .span-10.last= f.input :amount, :as => :string, :input_html => { :size => '10' }
+    .span-10.last
+      = f.label :amount
+      = '$'
+      = f.text_field :amount, :size => '10'
