@@ -6,7 +6,7 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
       normalized_value = record.name.tr("\n",'').tr("\r",'').sub(/^('|"|`|\s)+/, '').sub(/('|"|`|\s|\.|,|;)+$/, '').sub(/\s{1}+/, ' ')
       normalized_value = 'InstitutionName' if normalized_value.nil? or normalized_value.empty?
       puts "Normalizing Institution name: [ #{[record.id, normalized_value].join(' -> ')} ]"
-      record.update_attribute :name, normalized_value.to_s
+      record.update_attribute :name, normalized_value.to_s.force_encoding('utf-8')
     end
 
     associations = Institution.associations_to_move.collect { |association| association.name }
@@ -15,8 +15,8 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
 
     sql = "SELECT UPPER(name) as name FROM institutions as i GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Institution.find_by_sql(sql).each do |record|
-      puts "== Removing duplicated #{record.name} in Institutions =="
-      duplicated_records = Institution.find_by_sql("SELECT * FROM institutions WHERE UPPER(name) = UPPER('#{record.name}') ORDER BY created_on ASC")
+      puts "== Removing duplicated #{record.name.force_encoding('utf-8')} -> (#{record.id}) in Institutions =="
+      duplicated_records = Institution.find_by_sql("SELECT * FROM institutions WHERE UPPER(name) = UPPER('#{record.name.force_encoding('utf-8').gsub(/\'/,'')}') ORDER BY created_on ASC")
       first_record = duplicated_records.shift
       duplicated_records.each do |dup_record|
         associations.each do |association_name|

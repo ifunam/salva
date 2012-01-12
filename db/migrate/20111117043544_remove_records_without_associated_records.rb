@@ -1,6 +1,7 @@
 class RemoveRecordsWithoutAssociatedRecords < ActiveRecord::Migration
   def up
-    execute "ALTER TABLE techproducts DROP CONSTRAINT techproducts_institution_id_fkey"
+    #execute "ALTER TABLE techproducts DROP CONSTRAINT techproducts_institution_id_fkey"
+    #execute "ALTER TABLE techproducts DROP CONSTRAINT techproducts_techproducttype_id_fkey"
     [Journal, Publisher, Institution,  Skilltype, Schoolarship, Career,
      Techproducttype, Stimulustype, Institutiontitle, Institutiontype].each do |class_name|
       associations = class_name.associations_to_move.collect { |association|  association.name }
