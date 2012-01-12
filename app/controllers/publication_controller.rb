@@ -48,13 +48,31 @@ class PublicationController < InheritedResources::Base
   end
 
   def create
+    set_user_in_role_class!
     build_resource.registered_by_id = current_user.id
     super
   end
 
   def update
+    set_user_in_role_class!
     resource.modified_by_id = current_user.id
     super
+  end
+
+  def destroy
+    authorize_action!
+    destroy_associated_records!
+    super
+  end
+
+  def destroy_all
+    if params[:ids] and params[:ids].is_a? Array
+      collection = resource_class.find(params[:ids])
+      collection.collect(&:destroy)
+      respond_with(collection, :status => :deleted_records) do |format|
+        format.js { render :nothing => true }
+      end
+    end
   end
 
   def user_list
@@ -72,8 +90,17 @@ class PublicationController < InheritedResources::Base
   end
 
   protected
+
   def resource_with_user_role
     resource.send(self.user_role_class) 
+  end
+
+  def has_role_class_name?
+    defined? self.user_role_class
+  end
+
+  def resource_role_class_name
+    ActiveSupport::Inflector.classify(self.user_role_class).constantize if has_role_class_name?
   end
 
   def has_resource_class_scope?
@@ -105,6 +132,25 @@ class PublicationController < InheritedResources::Base
       if resource.attribute_names.include? attr
         resource.send("#{attr}=", Documenttype.year_for_annual_report)
       end
+    end
+  end
+
+  def authorize_action!
+    unless resource.registered_by_id == current_user.id
+      authorize! :delete, resource.class.name, :message => "Unable to delete this record."
+    end
+  end
+
+  def set_user_in_role_class!
+    if has_role_class_name?
+      resource_params.first[self.user_role_class.to_s+'_attributes'].first.last.merge!(:user_id => current_user.id)
+    end
+  end
+
+  def destroy_associated_records!
+    if has_role_class_name?
+      foreign_key = ActiveSupport::Inflector.foreign_key(resource.class.name)
+      resource_role_class_name.destroy_all(:user_id => current_user.id, foreign_key.to_sym => resource.id.to_i)
     end
   end
 end
