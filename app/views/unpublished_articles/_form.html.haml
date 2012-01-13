@@ -30,7 +30,7 @@
   .span-18.last
     = f.association :articlestatus, :as => :radio, :collection => Articlestatus.where("id != 3"), :using => :name, :wrapper_class => 'radio-set', :required => true
 
-  - unless UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first.nil? 
+  - unless UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first.nil?
     - @user_articles = UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first
   - else
     - @user_articles = @article.user_articles.build

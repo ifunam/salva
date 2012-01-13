@@ -68,7 +68,7 @@ class UserResourcesController < InheritedResources::Base
                         .paginate(:page => params[:page] || 1,:per_page => params[:per_page] || 10)
   end
 
-   def resource_default_year
+  def resource_default_year
     %w(year startyear endyear).each do |attr|
       if resource.attribute_names.include? attr
         resource.send("#{attr}=", Documenttype.year_for_annual_report)
