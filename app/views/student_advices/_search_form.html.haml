@@ -1,5 +1,5 @@
-
-= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+= render :partial => 'shared/search_options'
+= form_for :search, :remote => true, :html => {:id => "filter_form", :style => search_form_display_enabled} do |f|
   .span-6=t(:degree)
   .span-6=t(:target)
   .span-2=t(:startyear)

@@ -204,4 +204,22 @@ module ApplicationHelper
       link_to t(:reject), resource_path, :remote => true, :class => 'reject_document'
     end
   end
+
+  def search_enabled?
+    session[:search_enabled].is_a? TrueClass
+  end
+
+  def search_links
+    if search_enabled?
+      link_to(t(:disable_search), "#", :id => 'disable_search') +
+      link_to(t(:enable_search), "#", :id => 'enable_search', :style => 'display: none')
+    else
+      link_to(t(:disable_search), "#", :id => 'disable_search', :style => 'display: none') +
+      link_to(t(:enable_search), "#", :id => 'enable_search')
+    end
+  end
+
+  def search_form_display_enabled
+    "display: #{!search_enabled? ?  'none' : 'run-in' }"
+  end
 end

@@ -22,3 +22,23 @@ $(document).ready ->
   $("#ajaxed_paginator a").live "click", ->
     $.remote_collection_list @href
     false
+
+  $("#enable_search").live "click", ->
+    $.ajax(
+      url: '/session_preferences/enable_search'
+      async: false
+      success: (data) ->
+       $("#filter_form").show()
+       $("#enable_search").hide()
+       $("#disable_search").show()
+    )
+
+  $("#disable_search").live "click", ->
+    $.ajax(
+      url: '/session_preferences/disable_search'
+      async: false
+      success: (data) ->
+       $("#filter_form").hide()
+       $("#enable_search").show()
+       $("#disable_search").hide()
+    )

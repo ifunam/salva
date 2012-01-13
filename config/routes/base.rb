@@ -41,5 +41,8 @@ Salva::Application.routes.draw do
     get :deliver, :on => :member
   end
 
+  match '/session_preferences/enable_search' => 'session_preferences#enable_search', :via => :get
+  match '/session_preferences/disable_search' => 'session_preferences#disable_search', :via => :get
+
   root :to => "user_profiles#show"
 end

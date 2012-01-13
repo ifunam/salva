@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   has_one :user_schoolarship
   has_one :user_cite
   has_one :jobposition_log
+  has_one :session_preference
 
   has_many :user_adscriptions
   has_many :jobpositions

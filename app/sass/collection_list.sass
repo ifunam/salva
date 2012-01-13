@@ -90,8 +90,7 @@
   font-weight: bold
   padding-left: 3px
 
-
-#filter_form
+#search_options
   @extend .ui-widget-header
   @extend .ui-helper-clearfix
   @extend .span-18
@@ -99,9 +98,28 @@
   @extend .ui-corner-tl
   @extend .ui-corner-tr
   @extend .collection_header_colors
+  text-align: right
   padding-top: 5px
   border-color: silver
   padding-bottom: 5px
+  a, a:visited
+    color: #0088bb
+    text-decoration: none
+    margin-right: 10px
+  a:hover
+    color: #6EAC2C
+
+#filter_form
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .collection_header_colors
+  background: #E6E6E6
+  padding-top: 5px
+  border-color: silver
+  padding-bottom: 5px
+  border-top: 0px
   ul
     color: #585858
   .chzn-single

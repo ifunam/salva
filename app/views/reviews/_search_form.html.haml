@@ -1,4 +1,5 @@
-= form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+= render :partial => 'shared/search_options'
+= form_for :search, :remote => true, :html => {:id => "filter_form", :style => search_form_display_enabled} do |f|
   .span-5=t(:reviewed_work_title)
   .span-5=t(:published_on)
   .span-8.last=t(:year)
