@@ -25,21 +25,29 @@ class UserResourcesController < InheritedResources::Base
   end
 
   def update
+    resource.user_id = current_user.id
     resource.modified_by_id = current_user.id
     super
   end
 
+  def show
+    authorize_action!
+    super
+  end
+
+  def edit
+    authorize_action!
+    super
+  end
+
   def destroy
-    if resource.registered_by_id == current_user.id
-      super
-    end
+    authorize_action!
+    super
   end
 
   def destroy_all
     if params[:ids] and params[:ids].is_a? Array
-      collection = resource_class.find(params[:ids])
-      collection.collect(&:destroy)
-      respond_with(collection, :status => :deleted_records) do |format|
+      respond_with(destroy_all_selected_records!, :status => :deleted_records) do |format|
         format.js { render :nothing => true }
       end
     end
@@ -74,5 +82,22 @@ class UserResourcesController < InheritedResources::Base
         resource.send("#{attr}=", Documenttype.year_for_annual_report)
       end
     end
+  end
+
+  def authorize_action!
+    unless resource.user_id == current_user.id
+      authorize! :delete, resource.class.name, :message => "Unable to perform this action."
+    end
+  end
+
+  def destroy_all_selected_records!
+    resource_class.find(params[:ids].to_a).collect { |record|
+      if record.user_id == current_user.id
+        record.destroy
+        nil
+      else
+        record
+      end
+    }.compact
   end
 end
