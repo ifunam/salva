@@ -49,13 +49,13 @@ class PublicationController < InheritedResources::Base
   def create
     set_user_in_role_class!
     build_resource.registered_by_id = current_user.id
-    super
+    create! { collection_url }
   end
 
   def update
     set_user_in_role_class!
     resource.modified_by_id = current_user.id
-    super
+    update! { collection_url }
   end
 
   def destroy

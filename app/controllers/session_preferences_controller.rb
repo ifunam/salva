@@ -9,6 +9,7 @@ class SessionPreferencesController < ApplicationController
     render :nothing => true
   end
 
+  protected
   def enable_search!(val)
     if current_user.session_preference.nil?
       current_user.build_session_preference(:search_enabled => val).save

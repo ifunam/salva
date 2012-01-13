@@ -21,13 +21,13 @@ class UserResourcesController < InheritedResources::Base
   def create
     build_resource.user_id = current_user.id
     resource.registered_by_id = current_user.id
-    super
+    create! { collection_url }
   end
 
   def update
     resource.user_id = current_user.id
     resource.modified_by_id = current_user.id
-    super
+    update! { collection_url }
   end
 
   def show
