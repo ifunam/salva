@@ -117,4 +117,4 @@ jQuery.extend
         $.close_dialog_with_progressbar()
       success: (data) ->
         $.each dom_ids, (index, dom_id) ->
-          $("#" + dom_id).remove()
+          $("#" + dom_id)

@@ -68,7 +68,7 @@ module ApplicationHelper
   end
 
   def checkbox_to_delete(record)
-    if can_current_user_delete?(record) and !record.has_user_id?(current_user.id)
+    if can_current_user_delete?(record) #and !record.has_user_id?(current_user.id)
       check_box_tag 'record_id', record.id, false, 'data-parent-id' => dom_id(record)
     else
       image_tag "locked.png", :title => 'Registro blockeado'

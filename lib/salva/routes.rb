@@ -30,6 +30,7 @@ module ActionDispatch::Routing
              get :add_user,  :on => :member
              get :del_user,  :on => :member
              get :not_mine,  :on => :collection, :as => :not_my
+             get :destroy_all, :on => :collection
           end
         end
       end

@@ -4,7 +4,6 @@ class PublicationController < InheritedResources::Base
   respond_to :html
   respond_to :js, :only => [:index, :not_mine, :user_list, :add_user, :del_user, :role_list]
 
-  # Overwritting defaults method 
   class_attribute :user_role_class, :resource_class_scope, :role_class, :user_role_columns
 
   def self.defaults(options)
@@ -67,9 +66,7 @@ class PublicationController < InheritedResources::Base
 
   def destroy_all
     if params[:ids] and params[:ids].is_a? Array
-      collection = resource_class.find(params[:ids])
-      collection.collect(&:destroy)
-      respond_with(collection, :status => :deleted_records) do |format|
+      respond_with(destroy_all_selected_records!, :status => :deleted_records) do |format|
         format.js { render :nothing => true }
       end
     end
@@ -148,9 +145,25 @@ class PublicationController < InheritedResources::Base
   end
 
   def destroy_associated_records!
+    destroy_role_records!(resource.id) if has_role_class_name?
+  end
+
+  def destroy_role_records!(record_id)
     if has_role_class_name?
-      foreign_key = ActiveSupport::Inflector.foreign_key(resource.class.name)
-      resource_role_class_name.destroy_all(:user_id => current_user.id, foreign_key.to_sym => resource.id.to_i)
+      foreign_key = ActiveSupport::Inflector.foreign_key(resource_class)
+      resource_role_class_name.destroy_all(:user_id => current_user.id, foreign_key.to_sym => record_id.to_i)
     end
+  end
+
+  def destroy_all_selected_records!
+    resource_class.find(params[:ids].to_a).collect { |record|
+      if record.registered_by_id == current_user.id
+        destroy_role_records!(record.id)
+        record.destroy
+        nil
+      else
+        record
+      end
+    }.compact
   end
 end
