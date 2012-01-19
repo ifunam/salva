@@ -1,5 +1,5 @@
 .row{:id => dom_id(article), :class =>  cycle('record-odd', 'record-even')}
-  - if article.has_user_id?(current_user.id)
+  - if has_current_user?(article)
     = render :partial => 'associated_article', :locals => { :article => article }
   - else
     = render :partial => 'not_associated_article', :locals => { :article => article }
