@@ -12,6 +12,8 @@ class Inproceeding < ActiveRecord::Base
   accepts_nested_attributes_for :user_inproceedings
   user_association_methods_for :user_inproceedings
 
+  has_paper_trail
+
   default_scope order("authors ASC, title ASC")
   scope :refereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 't' AND inproceedings.proceeding_id = proceedings.id")
   scope :unrefereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 'f' AND inproceedings.proceeding_id = proceedings.id")

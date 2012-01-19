@@ -13,6 +13,8 @@ class Newspaperarticle < ActiveRecord::Base
   accepts_nested_attributes_for :user_newspaperarticles
   user_association_methods_for :user_newspaperarticles
 
+  has_paper_trail
+
   default_scope :order => 'newsdate DESC, authors ASC, title ASC'
 
   scope :user_id_eq, lambda { |user_id| joins(:user_newspaperarticles).where(:user_newspaperarticles => {:user_id => user_id}) }

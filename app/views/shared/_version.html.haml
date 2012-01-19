@@ -1,0 +1,5 @@
+.row
+  .span-1= version.index
+  .span-6= User.find(version.whodunnit.to_i).fullname_or_email
+  .span-6= l version.created_at, :format => :abbrev
+  .span-4.last= t("version_#{version.event}")

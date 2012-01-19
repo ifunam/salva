@@ -17,6 +17,8 @@ class Conferencetalk < ActiveRecord::Base
   accepts_nested_attributes_for :user_conferencetalks
   user_association_methods_for :user_conferencetalks
 
+  has_paper_trail
+
   scope :user_id_eq, lambda { |user_id|
     joins(:user_conferencetalks).
     where(:user_conferencetalks => { :user_id => user_id })

@@ -17,6 +17,8 @@ class Genericwork < ActiveRecord::Base
   accepts_nested_attributes_for :user_genericworks
   user_association_methods_for :user_genericworks
 
+  has_paper_trail
+
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC'
 
   scope :popular_science, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 1 })

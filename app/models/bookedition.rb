@@ -20,6 +20,8 @@ class Bookedition < ActiveRecord::Base
   accepts_nested_attributes_for :bookedition_roleinbooks
   user_association_methods_for :bookedition_roleinbooks
 
+  has_paper_trail
+
   scope :authors, joins(:bookedition_roleinbooks).
                   where("roleinbook_id = 1 OR roleinbook_id = 2")
 

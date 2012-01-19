@@ -16,6 +16,8 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :user_articles
   user_association_methods_for :user_articles
 
+  has_paper_trail
+
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC, articlestatus_id ASC'
 
   scope :accepted, where(:articlestatus_id => 1)

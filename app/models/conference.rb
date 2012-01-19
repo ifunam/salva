@@ -24,6 +24,8 @@ class Conference < ActiveRecord::Base
 
   has_many :proceedings
 
+  has_paper_trail
+
   default_scope :order => 'year DESC, month DESC, name ASC'
 
   scope :attendees, joins(:userconferences).where(:userconferences => { :roleinconference_id => 1 })

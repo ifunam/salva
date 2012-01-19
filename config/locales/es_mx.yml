@@ -41,6 +41,7 @@ es:
       short: "%d de %b a las %H:%M hrs"
       default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
       long: "%A, %d de %B de %Y a las %I:%M %p"
+      abbrev: "%d/%m/%Y a las %H:%M:%S"
     am: "am"
     pm: "pm"
 

@@ -16,6 +16,8 @@ class Techproduct < ActiveRecord::Base
   accepts_nested_attributes_for :user_techproducts
   user_association_methods_for :user_techproducts
 
+  has_paper_trail
+
   default_scope :order => 'techproducts.authors ASC, techproducts.title ASC'
 
   scope :all_by_year_desc, :order => 'user_techproducts.year DESC', :joins => :user_techproducts
