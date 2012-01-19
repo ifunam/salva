@@ -222,4 +222,9 @@ module ApplicationHelper
   def search_form_display_enabled
     "display: #{!search_enabled? ?  'none' : 'run-in' }"
   end
+
+
+  def has_current_user?(record)
+    record.has_user_id?(current_user.id) and record.users.size > 0
+  end
 end

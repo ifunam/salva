@@ -4,8 +4,10 @@ $(document).ready ->
     $(this).after $.response_from_simple_remote_resource(@href)
     false
   
-  $(".icon_action_close_author_list").live "click", ->
+  $(".icon_action_close_author_list").live "click", (e) ->
+    e.preventDefault()
     $(this).parent().parent().parent().remove()
+    false
 
   $(".author_action a").live "click", (e, elements)->
     e.preventDefault()

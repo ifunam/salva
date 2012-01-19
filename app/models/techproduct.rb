@@ -16,9 +16,11 @@ class Techproduct < ActiveRecord::Base
   accepts_nested_attributes_for :user_techproducts
   user_association_methods_for :user_techproducts
 
-  default_scope :order => 'user_techproducts.year DESC, authors ASC, title ASC', :joins => :user_techproducts
-  scope :user_id_eq, lambda { |user_id| joins(:user_techproducts).where(:user_techproducts => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id|  where("techproducts.id IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id !=  ?", user_id]).to_sql}) AND techproducts.id  NOT IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id =  ?", user_id]).to_sql})") }
+  default_scope :order => 'techproducts.authors ASC, techproducts.title ASC'
+
+  scope :all_by_year_desc, :order => 'user_techproducts.year DESC', :joins => :user_techproducts
+  scope :user_id_eq, lambda { |user_id| all_by_year_desc.joins(:user_techproducts).where(:user_techproducts => {:user_id => user_id}) }
+  scope :user_id_not_eq, lambda { |user_id| all_by_year_desc.where("techproducts.id IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id !=  ?", user_id]).to_sql}) AND techproducts.id  NOT IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id =  ?", user_id]).to_sql})") }
   scope :year_eq, lambda { |year| joins(:user_techproducts).where(:user_techproducts => {:year => year}) }
 
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
