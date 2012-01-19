@@ -16,6 +16,8 @@ class Proceeding < ActiveRecord::Base
   accepts_nested_attributes_for :user_proceedings
   user_association_methods_for :user_proceedings
 
+  has_paper_trail
+
   default_scope order('title ASC, year DESC')
 
   scope :user_id_eq, lambda { |user_id| joins(:user_proceedings).where(:user_proceedings => {:user_id => user_id}) }

@@ -13,6 +13,7 @@ class Chapterinbook < ActiveRecord::Base
   has_many :users, :through => :chapterinbook_roleinchapters
   accepts_nested_attributes_for :chapterinbook_roleinchapters
   user_association_methods_for :chapterinbook_roleinchapters
+  has_paper_trail
 
   scope :user_id_eq, lambda { |user_id|
     joins(:chapterinbook_roleinchapters).

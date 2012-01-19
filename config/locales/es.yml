@@ -2120,7 +2120,14 @@ es:
   attendees: Asistentes
   associated_project: Usted ya esta asociado al proyecto
   not_associated_project: Usted no esta asociado al proyecto
-
+  version_list: Lista de versiones
+  version_number: No.
+  version_user: Usuario
+  version_date: Fecha del cambio
+  version_event: Acción
+  version_create: Creación de registro
+  version_update: Actualización
+  total_of_versions: Total de versiones
   reporter:
     profile: 'Perfil'
     user_schoolarships: 'Becas'

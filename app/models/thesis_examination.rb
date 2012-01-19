@@ -4,6 +4,8 @@ class ThesisExamination < Thesis
   accepts_nested_attributes_for :thesis_jurors
   user_association_methods_for :thesis_jurors
 
+  has_paper_trail
+
   # TODO: Verify if our scopes are working
   # scopes.delete :user_id_eq
   # scopes.delete :user_id_not_eq

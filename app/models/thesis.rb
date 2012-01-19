@@ -20,6 +20,8 @@ class Thesis < ActiveRecord::Base
   accepts_nested_attributes_for :user_theses
   user_association_methods_for :user_theses
 
+  has_paper_trail
+
   default_scope :order => 'theses.endyear DESC, theses.startyear DESC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("theses.id IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]).to_sql}) AND theses.id  NOT IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id =  ?", user_id]).to_sql})") }

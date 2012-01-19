@@ -6,3 +6,17 @@
   = modified_by_info(record)
   %br
   = updating_date(record)
+
+  - if record.respond_to? :versions and record.versions.size > 0
+    %br
+    %b= t(:version_list)
+    %br
+    .row
+      %b{:class => 'span-1'}= t(:version_number)
+      %b{:class => 'span-6'}= t(:version_user)
+      %b{:class => 'span-6'}= t(:version_date)
+      %b{:class => 'span-4 last'}= t(:version_event)
+    %br
+    = render :partial => "shared/version", :collection => record.versions.reverse
+    %br
+    %b= t(:total_of_versions) + ": #{record.versions.size} ".html_safe

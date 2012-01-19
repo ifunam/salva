@@ -15,6 +15,8 @@ class Regularcourse < ActiveRecord::Base
   accepts_nested_attributes_for :user_regularcourses
   user_association_methods_for :user_regularcourses
 
+  has_paper_trail
+
   default_scope :order => 'periods.startdate DESC, regularcourses.title', :include => { :user_regularcourses => :period }
   scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses).where(:user_regularcourses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("regularcourses.id IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id !=  ?", user_id]).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id =  ?", user_id]).to_sql})") }

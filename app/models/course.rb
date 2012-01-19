@@ -18,6 +18,8 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :user_courses
   user_association_methods_for :user_courses
 
+  has_paper_trail
+
   default_scope :order => 'startyear DESC, startmonth DESC, name ASC'
   scope :attendees, joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 })
   scope :instructors, joins(:user_courses).where('user_courses.roleincourse_id != 2')

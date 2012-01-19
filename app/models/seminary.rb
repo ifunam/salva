@@ -13,6 +13,8 @@ class Seminary < ActiveRecord::Base
   accepts_nested_attributes_for :user_seminaries
   user_association_methods_for :user_seminaries
 
+  has_paper_trail
+
   default_scope :order => 'year DESC, month DESC, instructors ASC, title ASC'
 
   scope :as_not_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')

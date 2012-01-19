@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   has_many :projectgenericworks
   has_many :projecttheses
 
+  has_paper_trail
+
   scope :user_id_eq, lambda { |user_id| joins(:user_projects).where(:user_projects => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("projects.id IN (#{UserProject.select('DISTINCT(project_id) as project_id').where(["user_projects.user_id !=  ?", user_id]).to_sql}) AND projects.id  NOT IN (#{UserProject.select('DISTINCT(project_id) as project_id').where(["user_projects.user_id =  ?", user_id]).to_sql})") }
   search_methods :user_id_eq, :user_id_not_eq
