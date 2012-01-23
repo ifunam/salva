@@ -1,0 +1,23 @@
+.span-17.last
+  %h3= t('.title')
+
+= render :partial => 'search_form'
+
+#collection_header
+  .span-1="&nbsp;".html_safe
+  .span-11=t('.jobpositions')
+  .action=t(:show)
+  .action=t(:edit)
+  .span1.last=t(:del)
+
+#collection_records
+  = render :partial => 'record', :collection => @jobpositions
+
+#collection_footer
+  #footer_buttons
+    = link_to t(:delete_all_selected), '#',  :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
+
+= will_paginate(@jobpositions)
+
+#submit_buttons
+  = link_to t(:new), new_external_jobposition_path
