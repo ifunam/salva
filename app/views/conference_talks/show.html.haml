@@ -1,8 +1,22 @@
 %h3= t('conference_talks.show.title')
 .section-with-border-and-bg
-  = show_for @conference_talk do |bc|
-    = bc.attribute :title
+  = show_for @conference_talk do |ct|
+    .span-9= ct.attribute :authors
+    .span-9.last= ct.attribute :title
 
+    .row
+      = ct.association :talktype, :using => :name
+      = ct.association :talkacceptance, :using => :name
+      = ct.association :modality, :using => :name
+
+    %h3=t('conferences.show.title')
+    = render :partial => 'conferences/show', :locals => { :conference => @conference_talk.conference }
+
+    .span-18.last
+      = ct.association :user_conferencetalks, :collection_tag => :ol  do |record|
+        %li= record.author_with_role
+  %br
+  %br
   = render :partial => 'shared/record', :object => @conference_talk
 
 #submit_buttons

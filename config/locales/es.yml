@@ -311,6 +311,7 @@ es:
         talktype: Tipo
         talkacceptance: Tipo de inscripción
         modality: Modalidad
+        user_conferencetalks: Rol
       regularcourse:
         title: Título
         modality: Modalidad
