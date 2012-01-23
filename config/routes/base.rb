@@ -8,7 +8,7 @@ Salva::Application.routes.draw do
                      :technical_activities, :user_credits, :user_journals, :reviews, :student_advices,
                      :professor_advices, :institutional_advices, :user_stimuli, :memberships, :user_prizes,
                      :educations, :user_regular_courses, :user_refereed_journals, :tutorial_committees,
-                     :jobpositions, :user_research_lines, :academic_exchanges
+                     :jobpositions, :user_research_lines, :academic_exchanges, :external_jobpositions
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works,
                             :other_works,:teaching_products, :technical_reports, :seminaries, :newspaper_articles,

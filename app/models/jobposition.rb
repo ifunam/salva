@@ -25,13 +25,15 @@ class Jobposition < ActiveRecord::Base
   scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
   scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
   scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
+  scope :at_external_institutions, joins(:institution).where("(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ")
+  scope :at_unam, joins(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ")
 
   search_methods :by_start_year, :by_end_year
   def category_name
-    jobpositioncategory.nil? ? 'Sin definir' : jobpositioncategory.name
+    jobpositioncategory.nil? ? nil : jobpositioncategory.name
   end
 
   def as_text
-    [category_name, start_date, end_date].compact.join(', ')
+    [category_name, institution.name, start_date, end_date].compact.join(', ')
   end
 end

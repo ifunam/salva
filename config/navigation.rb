@@ -52,6 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
       s.item :jobpositions, 'Categorías', jobpositions_path, :highlights_on => /\/jobpositions/
       s.item :jobposition_log, :'Antigüedad en la UNAM', jobposition_log_path, :highlights_on => /\/jobposition_log/
+      s.item :external_jobpositions, 'Experiencia profesional externa', external_jobpositions_path, :highlights_on => /\/external_jobpositions/
       s.item :educations, 'Escolaridad', educations_path, :highlights_on => /\/educations/
       s.item :projects, 'Proyectos', projects_path, :highlights_on => /\/projects/
       s.item :user_research_lines, 'Líneas de investigación', user_research_lines_path, :highlights_on => /\/user_research_lines/

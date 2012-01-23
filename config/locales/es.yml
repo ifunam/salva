@@ -1547,6 +1547,16 @@ es:
     edit:
       title: 'Modificar categoría'
 
+  external_jobpositions:
+    show:
+      title: 'Experiencia profesional externa'
+    index:
+      title: 'Experiencia profesional externa'
+    new:
+      title: 'Nueva experiencia profesional'
+    edit:
+      title: 'Modificar experiencia profesional'
+
   educations:
     show:
       title: 'Escolaridad'

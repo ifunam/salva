@@ -14,6 +14,7 @@ module Reporter
     private
     def build_sections
       create_section :profile do |s|
+        s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions
         s.collection :user_stimuli
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
