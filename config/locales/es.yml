@@ -316,7 +316,7 @@ es:
         title: Título
         modality: Modalidad
         semester: Semestre
-        credits: Creditos
+        credits: Créditos
       user_regularcourse:
         period: Periodo
         roleinregularcourse: Rol
@@ -988,7 +988,7 @@ es:
       title: 'Agradecimientos y otros créditos'
       credits: Agradecimientos/Créditos
     new:
-      title: 'Nueva agradecimiento'
+      title: 'Nuevo agradecimiento'
     edit:
       title: 'Modificar agradecimiento'
     show:
