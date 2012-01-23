@@ -1724,6 +1724,14 @@ es:
     new:
       title: 'Nuevo tipo de habilidad o técnica'
 
+  proceedings:
+    show:
+      title: Información de la memoria
+
+  conferences:
+    show:
+      title: Información del evento académico
+
   refereed_inproceedings:
     index:
       title: Artículos en memorias arbitradas

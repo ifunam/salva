@@ -1,5 +1,5 @@
 .span-18.last
-  %h3= t('.proceedings.show.title')
+  %h3= t('proceedings.show.title')
   = show_for proceeding do |p|
     .span-9= p.attribute :title
     .span-9.last= p.attribute :year
@@ -7,6 +7,6 @@
     .span-9.last= p.association :publisher, :using => :name
 
 .span-18.last
-  %h3= t('.conferences.show.title')
+  %h3= t('conferences.show.title')
   - unless proceeding.conference.nil?
     = render :partial => 'conferences/show', :locals => { :conference => proceeding.conference}
