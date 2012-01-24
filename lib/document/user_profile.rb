@@ -1,6 +1,13 @@
 class UserProfile
+
   def self.find(user_id)
     new(user_id)
+  end
+
+  def self.find_by_login(login)
+    if User.exists?(:login => login)
+      new(User.find_by_login(login).id)
+    end
   end
 
   def initialize(user_id)
@@ -77,6 +84,10 @@ class UserProfile
     @user.login
   end
 
+  def user_incharge_id
+    @user.user_incharge_id
+  end
+
   def person_id
     @user.user_identification.descr.upcase unless @user.user_identification.nil?
   end
@@ -87,6 +98,10 @@ class UserProfile
 
   def adscription_name
     @user.adscription_name
+  end
+
+  def adscription_id
+    @user.adscription_id
   end
 
   def worker_id
@@ -111,6 +126,11 @@ class UserProfile
 
   def responsible_academic
     @user.user_incharge.fullname_or_email unless @user.user_incharge_id.nil?
+  end
+
+
+  def responsible_academic_email
+    @user.user_incharge.email unless @user.user_incharge_id.nil?
   end
 
   def jobposition_period
@@ -138,5 +158,19 @@ class UserProfile
       image_path = file_path if File.exist? file_path
     end
     image_path
+  end
+
+  def to_xml
+     { :id => @user.id,
+       :fullname => fullname,
+       :adscription => adscription_name,
+       :adscription_id => adscription_id,
+       :phone => phone,
+       :user_incharge_id => user_incharge_id,
+       :user_incharge_fullname => responsible_academic,
+       :user_incharge_email => responsible_academic_email,
+       :email => email,
+       :login => login
+     }.to_xml(:root => :user)
   end
 end

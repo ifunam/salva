@@ -122,6 +122,10 @@ class User < ActiveRecord::Base
     user_adscription.adscription.abbrev if has_adscription?
   end
 
+  def adscription_id
+    user_adscription.adscription.id if has_adscription?
+  end
+
   def has_adscription?
     !user_adscription.nil?
   end
