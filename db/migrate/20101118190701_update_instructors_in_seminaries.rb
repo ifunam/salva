@@ -6,7 +6,7 @@ class UpdateInstructorsInSeminaries < ActiveRecord::Migration
         instructors = seminary.user_seminaries.first.user.author_name 
       end
       unless instructors.strip.empty?
-        seminary.instructors = instructors
+        seminary.instructors = instructors.to_s
         seminary.save
       end
     end

@@ -49,15 +49,6 @@ class FixOldDbConstraintsAndIndexesAdded < ActiveRecord::Migration
       add_index :versions, :created_at, :name => :index_versions_on_created_at
     end
 
-    # CREATE INDEX index_versions_on_number ON versions USING btree (number);
-    unless index_name_exists? :versions, :index_versions_on_number, :default
-      add_index :versions, :number, :name => :index_versions_on_number
-    end
-
-    # CREATE INDEX index_versions_on_versioned_type_and_versioned_id ON versions USING btree (versioned_type, versioned_id);
-    unless index_name_exists? :versions, :index_versions_on_versioned_type_and_versioned_id, :default
-      add_index :versions, [:versioned_type, :versioned_id], :name => :index_versions_on_versioned_type_and_versioned_id
-    end
 
     # CREATE INDEX user_id_and_article_id_idx ON user_articles USING btree (user_id, article_id);
     unless index_name_exists? :user_articles, :user_id_and_article_id_idx, :default

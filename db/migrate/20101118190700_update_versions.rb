@@ -5,7 +5,7 @@ class UpdateVersions < ActiveRecord::Migration
     remove_column :versions, :changes
     remove_column :versions, :number
 
-    add_column :versions, :item_type, :integer
+    add_column :versions, :item_type, :string
     add_column :versions, :item_id, :integer
     add_column :versions, :event, :string
     add_column :versions, :whodunnit, :string
