@@ -7,7 +7,7 @@ class Adscription < ActiveRecord::Base
 
   belongs_to :institution
   has_many :user_adscriptions
-  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true
+  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true, :conditions => 'users.userstatus_id = 2'
 
   default_scope :order => 'name ASC'
 
