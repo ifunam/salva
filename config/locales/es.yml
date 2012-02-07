@@ -2147,6 +2147,8 @@ es:
   version_create: Creación de registro
   version_update: Actualización
   total_of_versions: Total de versiones
+  url: Liga
+  open_url: Abrir liga
   reporter:
     profile: 'Perfil'
     user_schoolarships: 'Becas'

@@ -223,6 +223,19 @@ module ApplicationHelper
     "display: #{!search_enabled? ?  'none' : 'run-in' }"
   end
 
+  def link_and_label_for(url)
+    label_and_link = tr_label_for(:url)
+    unless url.to_s.strip.empty?
+      label_and_link += link_to t(:open_url), @article.url, :target => '_blank'
+    else
+      label_and_link += t(:blank).html_safe
+    end
+    label_and_link
+  end
+
+  def tr_label_for(label)
+    content_tag(:strong, t(label), :class => 'label') + '<br>'.html_safe
+  end
 
   def has_current_user?(record)
     record.has_user_id?(current_user.id) and record.users.size > 0

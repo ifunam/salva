@@ -17,12 +17,7 @@
       .span-3.last= u.attribute :doi
 
     .row
-      .span-9
-        - if @article.url.strip.empty?
-          %strong{:class=>'label'}= t(:url)
-          = link_to t(:url), @article.url, :target => '_blank'
-        - else
-          = u.attribute :url
+      .span-9= link_and_label_for @article.url
       .span-9.last= u.attribute :other
 
     .span-18.last
