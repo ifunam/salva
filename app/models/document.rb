@@ -19,6 +19,10 @@ class Document < ActiveRecord::Base
 
   before_create :file_path
 
+  def self.paginated_search(params)
+    is_not_hidden.fullname_asc.search(params[:search]).paginate(:per_page => params[:per_page] || 30, :page => params[:page] || 1)
+  end
+
   def url
     File.expand_path(file_path).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
   end
