@@ -13,6 +13,7 @@ class Document < ActiveRecord::Base
 
   scope :fullname_like, lambda { |fullname| where(" documents.user_id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
   scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
 
   search_methods :fullname_like, :adscription_id_eq
 
