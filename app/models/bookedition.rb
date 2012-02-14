@@ -22,6 +22,10 @@ class Bookedition < ActiveRecord::Base
 
   has_paper_trail
 
+  scope :recent, :order => 'year DESC, month DESC',  :limit => 20
+  scope :published, :conditions => 'editionstatus_id = 1'
+  scope :inprogress, :conditions => 'editionstatus_id != 1'
+
   scope :authors, joins(:bookedition_roleinbooks).
                   where("roleinbook_id = 1 OR roleinbook_id = 2")
 

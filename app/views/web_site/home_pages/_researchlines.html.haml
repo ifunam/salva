@@ -1,0 +1,5 @@
+- if user.researchlines.size > 0
+  %h3 Research Interests:
+  %ol
+    - user.researchlines.each do |record|
+      = content_tag(:li, record.name_en.to_s) unless record.name_en.to_s.strip.empty?

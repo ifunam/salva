@@ -15,6 +15,10 @@ class Chapterinbook < ActiveRecord::Base
   user_association_methods_for :chapterinbook_roleinchapters
   has_paper_trail
 
+  scope :recent, :order => 'bookeditions.year DESC, bookeditions.month DESC', :include => :bookedition, :limit => 20
+  scope :published, :conditions => 'bookeditions.editionstatus_id = 1', :include => :bookedition
+  scope :inprogress, :conditions => 'bookeditions.editionstatus_id != 1', :include => :bookedition
+
   scope :user_id_eq, lambda { |user_id|
     joins(:chapterinbook_roleinchapters).
     where(:chapterinbook_roleinchapters => { :user_id => user_id })

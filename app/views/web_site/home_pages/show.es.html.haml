@@ -1,0 +1,20 @@
+.resume
+  %table
+    %tr
+      %td
+        %img{:src => url_for(:action => :show_photo, :id => @record.id)}/
+      %td.resume
+        %br/
+        = render :partial => 'profile', :locals => {:user => @record}
+        %br/
+        %br/
+        = render :partial => 'personal_sites', :locals => {:user => @record}
+  %br/
+  - if translate_category(@record.most_recent_jobposition.category_name) == 'Technician'
+    = render :partial => 'user_skills', :locals => {:user => @record}
+  - else
+    = render :partial => 'researchlines', :locals => {:user => @record}
+  %br/
+  = render :partial => 'recent_published_articles', :locals => {:user => @record}
+  %br/
+  %br/
