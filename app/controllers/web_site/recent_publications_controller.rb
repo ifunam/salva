@@ -10,9 +10,7 @@ class WebSite::RecentPublicationsController < WebSite::ApplicationController
                     { :title => :published_books, :collection => Bookedition.published.recent },
                     { :title => :published_chapterinbooks, :collection => Chapterinbook.published.recent }
                     ]
-   respond_to do |format|
-      format.html { render :action => :index }
-    end
+    respond_with @collections
   end
 
 end
