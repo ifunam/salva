@@ -1,18 +1,26 @@
-deploy.template = :rails3
-deploy.repository = "git://github.com/ifunam/salva.git"
-# if you use built-in caches for javascripts and stylesheets, set cache_dirs
-# deploy.cache_dirs = %w(public/javascripts/main.js public/stylesheets/main.css)
-case ENV['environment']
-when 'production'
-  deploy.application = "salva"
-  deploy.user = "deployer"
-  deploy.hosts = ["salva_prod.domain.com"]
-  deploy.path = "/home/#{deploy.user}/apps"
-  deploy.server = :passenger
-when 'development'
-  deploy.application = "salva"
-  deploy.user = "deployer"
-  deploy.hosts = ["salva_dev.domain.com"]
-  deploy.path = "/home/#{deploy.user}/apps"
-  deploy.server = :passenger
-end
+set :application, "salva"
+set :repository,  "git://github.com/ifunam/salva.git"
+
+set :scm, :git
+# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+
+role :web, "yourserver.unam.mx"                          # Your HTTP server, Apache/etc
+role :app, "yourserver.fisica.unam.mx"                          # This may be the same as your `Web` server
+role :db,  "yourdb.fisica.unam.mx", :primary => true # This is where Rails migrations will run
+
+
+# if you're still using the script/reaper helper you will need
+# these http://github.com/rails/irs_process_scripts
+
+# If you are using Passenger mod_rails uncomment this:
+namespace :deploy do
+   task :start do ; end
+   task :stop do ; end
+   task :restart, :roles => :app, :except => { :no_release => true } do
+     run "compass compile"
+     run "rake assets:clean"
+     run "rake barista:brew"
+     run "rake assets:precompile"
+     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+   end
+ end
