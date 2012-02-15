@@ -1,6 +1,0 @@
-- if !f.object.nil? and !f.object.new_record?
-  = f.simple_fields_for :image_attributes, f.object.image do |image_form|
-    = render :partial => 'images/form', :locals => { :f => image_form}
-- else
-  = f.simple_fields_for :image_attributes do |image_form|
-    = render :partial => 'images/form', :locals => { :f => image_form}
