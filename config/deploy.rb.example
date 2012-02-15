@@ -10,14 +10,14 @@ set :application, "salva"
 set :repository,  "git://github.com/ifunam/salva.git"
 
 set :scm, :git
-set :deploy_to, "/home/deployer/rails_apps/#{application}"
+set :deploy_to, "/home/deployer/apps/#{application}"
 set :user, "deployer"
 default_run_options[:pty] = true
 set :use_sudo, false
 
-role :web, "yourhost.yourdomain.com"                          # Your HTTP server, Apache/etc
-role :app, "yourhost.yourdomain.com"                          # This may be the same as your `Web` server
-#role :db, "yourdbhost.yourdomain.com", :primary => true # This is where Rails migrations will run
+role :web, "yourhost.domain.com"                          # Your HTTP server, Apache/etc
+role :app, "yourhost.domain.com"                          # This may be the same as your `Web` server
+#role :db, "yourhost.domain.com", :primary => true # This is where Rails migrations will run
 
 
 namespace :deploy do
@@ -28,11 +28,18 @@ namespace :deploy do
      run "cd #{current_path}; bundle exec rake assets:clean"
      run "cd #{current_path}; bundle exec rake barista:brew"
      run "cd #{current_path}; bundle exec rake assets:precompile"
+     run "cd #{current_path}; rvm rvmrc trust #{current_path}"
      run "touch #{File.join(current_path,'tmp','restart.txt')}"
    end
 
   desc "Symlink shared resources on each release"
   task :symlink_shared, :roles => :app do
+    %w(log pids).each do |dir|
+      shared_dir = File.join(shared_path, dir)
+      unless Dir.exists? shared_dir
+        run "mkdir -p #{shared_dir}"
+      end
+    end
 
     shared_config_dir = "#{shared_path}/config"
     unless Dir.exists? shared_config_dir
@@ -42,7 +49,7 @@ namespace :deploy do
     %w(database.yml ldap.yml mail.yml site.yml newrelic.yml).each do |config_file|
       config_file_path = File.join(shared_config_dir, config_file)
       unless File.exists? config_file_path
-        run "cp #{release_path}/config/#{config_file}.example #{config_file_path}"
+        run "cp -n #{release_path}/config/#{config_file}.example #{config_file_path}"
       end
       run "ln -nfs #{config_file_path} #{release_path}/config/#{config_file}"
     end
