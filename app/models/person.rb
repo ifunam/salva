@@ -45,4 +45,12 @@ class Person < ActiveRecord::Base
     now = Time.now.utc.to_date
     now.year - dateofbirth.year - (dateofbirth.to_date.change(:year => now.year) > now ? 1 : 0)
   end
+
+  def image_path
+    image_path = Rails.root.to_s + "/app/assets/images/avatar_missing_icon.png"
+    if !image.nil? and !image.file.nil? and File.exist? image.file.path
+      image_path = image.file.path
+    end
+    image_path
+  end
 end
