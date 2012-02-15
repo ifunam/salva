@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Address < ActiveRecord::Base
   validates_presence_of :country_id,  :location, :addresstype_id
   validates_numericality_of :id, :state_id, :city_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
