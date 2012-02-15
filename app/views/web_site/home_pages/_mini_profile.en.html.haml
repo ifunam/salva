@@ -1,0 +1,13 @@
+/ <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
+%font.name= user.author_name
+%br/
+- unless user.most_recent_jobposition.nil?
+  = translate_category(user.most_recent_jobposition.category_name)
+- else
+  No tengo categoria
+%br/
+= mail_to user.email, user.email, :encode => "javascript"
+%br/
+- unless user.professional_address.nil?
+  Phone: #{'+52 (55) ' + user.professional_address.phone.to_s unless user.professional_address.phone.to_s.strip.empty?}
+  Fax: #{'+52 (55) ' + user.professional_address.fax.to_s unless user.professional_address.fax.to_s.strip.empty?}

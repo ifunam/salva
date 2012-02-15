@@ -240,4 +240,8 @@ module ApplicationHelper
   def has_current_user?(record)
     record.has_user_id?(current_user.id) and record.users.size > 0
   end
+
+  def link_to_if_url_exists(record)
+    link_to('online', record.url) if record.has_attribute? :url and !record.url.to_s.strip.empty? and record.url =~ /^http/
+  end
 end

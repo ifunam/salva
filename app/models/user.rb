@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
   scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :fullname_desc, joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC')
   scope :distinct, select("DISTINCT (users.*)")
+  scope :researchers, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110)", :include => { :jobpositions => :jobpositioncategory}
+  scope :academic_technicians, :conditions => "jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id != 1 OR jobpositioncategories.roleinjobposition_id != 110 OR jobpositioncategories.roleinjobposition_id != 4 OR jobpositioncategories.roleinjobposition_id != 5)", :include => { :jobpositions => :jobpositioncategory}
+  scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
 
   # :userstatus_id_equals => find_all_by_userstatus_id
   scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
@@ -45,7 +48,12 @@ class User < ActiveRecord::Base
   has_one :person
   has_one :user_group
   has_one :address
+  has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
   has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
+  has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
+          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
+          :order => "jobpositions.start_date DESC"
+
   has_one :user_identification
   has_one :user_schoolarship
   has_one :user_cite
@@ -61,6 +69,23 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
   has_many :user_identifications
+
+  has_many :user_researchlines
+  has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
+  has_many :user_skills
+
+  has_many :user_articles, :include => :articles
+  has_many :articles, :through => :user_articles
+  has_many :published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+  has_many :recent_published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
+
+ has_many :inprogress_articles, :through => :user_articles, :source => :article,
+          :conditions => 'articles.articlestatus_id != 3',
+          :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
 
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true

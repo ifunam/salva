@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Address < ActiveRecord::Base
   validates_presence_of :country_id,  :location, :addresstype_id
   validates_numericality_of :id, :state_id, :city_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -22,4 +23,13 @@ class Address < ActiveRecord::Base
   def normalized_city
     city.name unless city_id.nil?
   end
+
+  def postal_address_as_text
+    if pobox.to_s.strip.empty?
+      'Instituto de Física, UNAM, P.O. Box 20-364, 01000 México, D.F.'
+    else
+      pobox
+    end
+  end
+
 end

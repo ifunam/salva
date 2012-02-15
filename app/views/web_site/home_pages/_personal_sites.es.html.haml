@@ -1,0 +1,4 @@
+- %w(homepage blog calendar).collect { |column|
+- unless user.send(column).to_s.strip.empty?
+  = link_to column, user.send(column), :target => '_new'
+- }.compact.join(' | ')

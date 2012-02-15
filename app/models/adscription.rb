@@ -19,4 +19,17 @@ class Adscription < ActiveRecord::Base
       {:fullname => record.fullname_or_login, :id => record.id, :login => record.login, :email => record.email }
     }.to_xml(:root => :users)
   end
+
+  def self.find_users_by_name_and_category(name, category)
+     record = find_by_name(name)
+     case category
+        when 'researchers' then record.users.researchers.activated
+        when 'postdoctorals' then
+           record.users.posdoctorals.activated.collect { |user|
+              user if user.most_recent_jobposition.jobpositioncategory.roleinjobposition_id == 111
+           }.compact!
+        when 'academic_technicians' then record.users.academic_technicians.activated
+        else record.users.activated
+     end
+  end
 end

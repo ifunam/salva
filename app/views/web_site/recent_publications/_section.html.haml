@@ -1,0 +1,4 @@
+- if section[:collection].count > 0
+  %h2= ActiveSupport::Inflector.humanize(section[:title])
+  %ul
+    = render :partial => 'record', :collection => section[:collection]
