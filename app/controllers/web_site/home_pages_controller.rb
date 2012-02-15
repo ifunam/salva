@@ -4,7 +4,7 @@ class WebSite::HomePagesController < WebSite::ApplicationController
   respond_to :html
 
   def show
-    respond_with(@record = User.find(params[:id]))
+    respond_with @record = User.find(params[:id])
   end
 
   def show_photo
