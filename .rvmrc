@@ -56,3 +56,4 @@ if [ -f ~/.irbrc.gems ]; then
   rvm gemset import ~/.irbrc.gems
 fi
 
+rvm_trust_rvmrcs_flag=1
