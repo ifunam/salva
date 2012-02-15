@@ -1,4 +1,4 @@
-class Public::HomePagesController < WebSite::ApplicationController
+class WebSite::HomePagesController < WebSite::ApplicationController
   layout 'home_page'
 
   respond_to :html

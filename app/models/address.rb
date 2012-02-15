@@ -22,4 +22,13 @@ class Address < ActiveRecord::Base
   def normalized_city
     city.name unless city_id.nil?
   end
+
+  def postal_address_as_text
+    if pobox.to_s.strip.empty?
+      'Instituto de F<C3><AD>sica, UNAM, P.O. Box 20-364, 01000 M<C3><A9>xico, D.F.'
+    else
+      pobox
+    end
+  end
+
 end

@@ -70,6 +70,23 @@ class User < ActiveRecord::Base
   has_many :documents
   has_many :user_identifications
 
+  has_many :user_researchlines
+  has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
+  has_many :user_skills
+
+  has_many :user_articles, :include => :articles
+  has_many :articles, :through => :user_articles
+  has_many :published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+  has_many :recent_published_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id = 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
+
+ has_many :inprogress_articles, :through => :user_articles, :source => :article,
+          :conditions => 'articles.articlestatus_id != 3',
+          :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
