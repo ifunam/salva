@@ -1,7 +1,0 @@
-%div{ :class => 'span-14 section_left last' } 
-  %h3= t('seminarytypes.new.title')
-  = simple_form_for(@seminarytype, :url => admin_seminarytypes_path) do |f|
-    = render :partial => 'form', :locals => { :f => f}
-    %div{ :class => 'span-14 buttons_left last' }
-      = f.submit  t(:save), :class => "ui-state-default ui-corner-all button"
-      = link_as_button t(:cancel), admin_seminarytypes_path
