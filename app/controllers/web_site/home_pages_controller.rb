@@ -12,10 +12,10 @@ class WebSite::HomePagesController < WebSite::ApplicationController
     @person = Person.find_by_user_id(params[:id])
     response.headers['Pragma'] = 'no-cache'
     response.headers['Cache-Control'] = 'no-cache, must-revalidate'
-    if File.Exists?  @person.image.file.url(:card)
-      send_file(@person.image.file.url(:card), :disposition => 'inline')
-    else
-      send_file RAILS_ROOT + "app/assets/images/avatar_missing_icon.png", :type => 'image/png', :disposition => 'inline'
+    image_path = Rails.root.to_s + '/public/' + @person.image.file.to_s
+    unless File.exists? image_path
+      image_path = Rails.root.to_s + "/app/assets/images/avatar_missing_icon.png"
     end
+    send_file(image_path, :disposition => 'inline')
    end
 end
