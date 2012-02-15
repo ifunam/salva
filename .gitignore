@@ -52,7 +52,6 @@ index/
 .bundle
 vendor/bundle
 .rspec
-Gemfile.lock
 public/stylesheets/web_site.css
 public/stylesheets/chosen.css
 app/assets/stylesheets/application.css
