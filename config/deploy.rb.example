@@ -96,7 +96,7 @@ namespace :rvm do
 
 end
 
-before "deploy:restart", "symlinks:configuration_files"
+before "deploy:restart", "rvm:trust_rvmrc"
+
 after  "symlinks:configuration_files", "symlinks:system_directories"
 after  "symlinks:system_directories", "symlinks:uploads_directory"
-after  "symlinks:uploads_directory", "rvm:trust_rvmrc"
