@@ -1,17 +1,18 @@
 %h3= t('jobposition_logs.show.title')
 
-.section-with-border-and-bg
+- unless @jobposition_log.nil?
+  .section-with-border-and-bg
+    = show_for @jobposition_log do |j|
+      .row
+        = j.attribute :worker_key, :wrapper_html => { :class => 'span-6'}
+        = j.attribute :worker_number, :wrapper_html => { :class => 'span-12 last'}
+      .row
+        = j.attribute :academic_years, :wrapper_html => { :class => 'span-6'}
+        = j.attribute :administrative_years, :wrapper_html => { :class => 'span-12 last'}
+    = render :partial => 'shared/record', :object => @jobposition_log
 
-  = show_for @jobposition_log do |j|
-    .row
-      = j.attribute :worker_key, :wrapper_html => { :class => 'span-6'}
-      = j.attribute :worker_number, :wrapper_html => { :class => 'span-12 last'}
-    .row
-      = j.attribute :academic_years, :wrapper_html => { :class => 'span-6'}
-      = j.attribute :administrative_years, :wrapper_html => { :class => 'span-12 last'}
-  = render :partial => 'shared/record', :object => @jobposition_log
-
-#submit_buttons
-  = link_to t(:edit), edit_jobposition_log_path(:id => @jobposition_log.user_id)
-
-
+  #submit_buttons
+    = link_to t(:edit), edit_jobposition_log_path(:id => @jobposition_log.user_id)
+- else
+  #submit_buttons
+    = link_to t(:edit), new_jobposition_log_path

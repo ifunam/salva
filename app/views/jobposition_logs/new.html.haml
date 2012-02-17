@@ -1,0 +1,7 @@
+%h3= t('jobposition_logs.edit.title')
+.section-with-border-and-bg
+  = simple_form_for @jobposition_log, :as => :jobposition_log, :url => jobposition_log_path do |f|
+    = render :partial => 'form', :locals => { :f => f }
+    #submit_buttons
+      = f.submit  t(:save)
+
