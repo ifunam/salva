@@ -1,5 +1,5 @@
 .span-5
-  = f.input :adscription_id, :as =>:radio, :collection => Adscription.where("id <=7").all
+  = f.input :adscription_id, :as =>:radio, :collection => Adscription.enabled
 
 .span-12.last
   = f.input :descr, :as => :text, :input_html => {:size => '60x3'}
