@@ -2,13 +2,13 @@
 module I18nHelper
   def translate_category(string)
      case string
-       when /Investigador, Tit\. C/ 
+       when /Investigador Tit\. C/
             "Professor" 
-       when /Investigador, Tit\. B/
+       when /Investigador Tit\. B/
          "Associate Professor" 
-       when /Investigador, Tit\. A/ 
+       when /Investigador Tit\. A/
          "Assistant Professor" 
-       when /(Investigador\, Asoc\.)|posdoc/ 
+       when /(Investigador Asoc\.)|posdoc/
          "Research Associate" 
        when /Técnico académico/
           "Technician" 
