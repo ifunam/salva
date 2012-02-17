@@ -71,7 +71,7 @@ module MetaDateExtension
   module DateMethods
     protected
     def localize_date(year, month, format=:month_and_year)
-      if !year.nil? and !month.nil?
+      if year.to_i > 0 and (month.to_i > 0 and month.to_i <= 12)
         I18n.localize(Date.new(year, month, 1), :format => format)
       elsif !year.nil?
         year

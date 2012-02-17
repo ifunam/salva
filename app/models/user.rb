@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def author_name
-    if !super.nil?
+    if !super.to_s.strip.empty?
       super
     elsif !user_cite.nil? and !user_cite.author_name.to_s.strip.empty?
       user_cite.author_name
