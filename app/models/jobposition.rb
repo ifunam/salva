@@ -1,6 +1,6 @@
 class Jobposition < ActiveRecord::Base
   set_table_name "jobpositions"
-  validates_presence_of :institution_id
+  validates_presence_of :institution_id, :start_date
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
   validates_numericality_of :jobpositioncategory_id, :contracttype_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
