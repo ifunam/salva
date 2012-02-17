@@ -14,7 +14,7 @@ module Reporter
     private
     def build_sections
       create_section :profile do |s|
-        s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions
+        s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
         s.collection :user_stimuli
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
@@ -26,7 +26,8 @@ module Reporter
       create_section :seminary_and_conferences do |s|
         s.collection :seminaries, :scope => :as_not_attendee
         s.collection :conference_organizers, :class_name => 'Conference', :scope => :organizers
-
+        # FIX IT: Fix jquery bugs
+        # s.collection :conference_talks, :class_name => 'Conferencetalk', :date_style => :only_year
       end
 
       create_section :publications do |s|
