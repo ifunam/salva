@@ -1,22 +1,15 @@
 %h3= t('jobpositions.show.title')
 .section-with-border-and-bg
   = show_for @jobposition do |u|
-    .row
-      .span-10
-        %label= u.label :category
-        = @jobposition.category_name
-      = u.association :contracttype, :using => :name, :wrapper_html => {:class => 'span-8 last'}
-    .row
+    .span-9
       = u.association :institution, :using => :name
+    .span-9.last
+      = u.attribute :descr
+
+    .span-5
       = u.attribute :start_date
+    .span-14.last
       = u.attribute :end_date
-    .row
-      .span-5
-        %label= u.label :adscription
-        = @jobposition.user_adscription.adscription.name
-      .span-13.last
-        %label=u.label :descr
-        = @jobposition.user_adscription.descr
 
     .row
       = render :partial => 'shared/record', :object => @jobposition
