@@ -11,7 +11,9 @@
     = user.professional_address.as_text
     %b C&oacute;digo Postal:
     = user.professional_address.postal_address_as_text
-    %b Tel&eacute;fono:
-    = '+52 (55) ' + user.professional_address.phone.to_s unless user.professional_address.phone.strip.empty?
-    %b Fax:
-    = '+52 (55) ' + user.professional_address.fax.to_s unless user.professional_address.fax.strip.empty?
+    - unless user.professional_address.phone.to_s.strip.empty?
+      %b Tel&eacute;fono:
+      = '+52 (55) ' + user.professional_address.phone.to_s
+    - unless user.professional_address.fax.to_s.strip.empty?
+      %b Fax:
+      = '+52 (55) ' + user.professional_address.fax.to_s
