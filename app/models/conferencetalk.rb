@@ -20,7 +20,7 @@ class Conferencetalk < ActiveRecord::Base
   has_paper_trail
 
   scope :user_id_eq, lambda { |user_id|
-    joins(:user_conferencetalks).
+    includes(:user_conferencetalks => {:conferencetalk => :conference}).
     where(:user_conferencetalks => { :user_id => user_id })
   }
 
@@ -33,8 +33,13 @@ class Conferencetalk < ActiveRecord::Base
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
 
   default_scope includes(:conference).order("conferences.year DESC, conferencetalks.authors ASC, conferencetalks.title ASC")
-
-  search_methods :user_id_eq, :user_id_not_eq, :year_eq
+  scope :local_scope, :conditions => 'conferences.conferencescope_id = 1', :include => [:conference]
+  scope :national_scope, :conditions => 'conferences.conferencescope_id = 2', :include => [:conference]
+  scope :international_scope, :conditions => 'conferences.conferencescope_id = 3', :include => [:conference]
+  scope :since, lambda { |year| includes(:conference).where(["conferences.year >= ?", year])}
+  scope :until, lambda { |year| includes(:conference).where(["conferences.year <= ?", year])}
+  scope :between, lambda { |year| includes(:conference).where(["conferences.year = ?", year])}
+  search_methods :user_id_eq, :user_id_not_eq, :year_eq, :since, :until, :between
 
   def as_text
     [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",
