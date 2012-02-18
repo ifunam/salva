@@ -7,7 +7,9 @@ class Adscription < ActiveRecord::Base
 
   belongs_to :institution
   has_many :user_adscriptions
-  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true, :conditions => 'users.userstatus_id = 2'
+  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true,
+           :conditions => 'users.userstatus_id = 2', :include => :person,
+           :order => 'people.lastname1 ASC, people.firstname ASC, users.author_name ASC'
 
   default_scope :order => 'name ASC'
 
@@ -23,13 +25,15 @@ class Adscription < ActiveRecord::Base
   def self.find_users_by_name_and_category(name, category)
      record = find_by_name(name)
      case category
-        when 'researchers' then record.users.researchers.activated
-        when 'postdoctorals' then
-           record.users.posdoctorals.activated.collect { |user|
-              user if user.most_recent_jobposition.jobpositioncategory.roleinjobposition_id == 111
-           }.compact!
-        when 'academic_technicians' then record.users.academic_technicians.activated
-        else record.users.activated
+      when 'researchers' then
+        record.users.researchers.activated
+      when 'postdoctorals' then
+        record.users.posdoctorals.activated.collect { |user|
+          user if user.most_recent_jobposition.jobpositioncategory.roleinjobposition_id == 111
+        }.compact!
+      when 'academic_technicians' then
+        record.users.academic_technicians.activated
+      else record.users.activated
      end
   end
 end
