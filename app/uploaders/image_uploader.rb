@@ -4,7 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   storage :file
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png bmp tif tiff)
   end
   # FIXME: Check for bugs in url method CarrierWave
   # Don't try it at home!!!
