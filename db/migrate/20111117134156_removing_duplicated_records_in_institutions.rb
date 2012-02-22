@@ -12,6 +12,10 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
     associations = Institution.associations_to_move.collect { |association| association.name }
 
     execute "ALTER TABLE institutioncareers DROP CONSTRAINT institutioncareers_institution_id_key"
+    execute "ALTER TABLE prizes DROP CONSTRAINT prizes_name_key"
+    execute "ALTER TABLE seminaries DROP CONSTRAINT seminaries_title_key"
+    execute "ALTER TABLE user_languages DROP CONSTRAINT user_languages_language_id_key"
+
 
     sql = "SELECT UPPER(name) as name FROM institutions as i GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Institution.find_by_sql(sql).each do |record|
@@ -27,6 +31,12 @@ class RemovingDuplicatedRecordsInInstitutions < ActiveRecord::Migration
         dup_record.destroy
       end
     end
+
+   # execute "ALTER TABLE institutioncareers ADD CONSTRAINT institutioncareers_institution_id_key UNIQUE (career_id, institution_id)"
+   # execute "ALTER TABLE prizes ADD CONSTRAINT prizes_name_key UNIQUE (name, institution_id)"
+   # execute "ALTER TABLE seminaries ADD CONSTRAINT seminaries_title_key UNIQUE (title, year, institution_id)"
+   # execute "ALTER TABLE user_languages ADD CONSTRAINT user_languages_language_id_key UNIQUE (language_id, institution_id, user_id)"  
+
 
   end
 

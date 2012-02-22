@@ -1,5 +1,13 @@
 class UpdateVersions < ActiveRecord::Migration
   def self.up
+    unless table_exists? :versions
+
+       create_table :versions do |t|
+           t.integer :versioned_id
+	   t.string :versioned_type, :changes, :number
+	   t.timestamp :created_at
+       end
+    end
     remove_column :versions, :versioned_id
     remove_column :versions, :versioned_type
     remove_column :versions, :changes
