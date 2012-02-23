@@ -11,10 +11,12 @@
     .row
       .span-9
         %label Facultad o Escuela
-        = @education.career.institution.name
+        - unless @education.career.institution.nil?
+          = @education.career.institution.name
       .span-9.last
-        %label Institución 
-        = @education.career.institution.institution.name
+        %label Institución
+        - if !@education.career.institution.nil? and !@education.career.institution.institution.nil?
+          = @education.career.institution.institution.name
     .row
       .span-6
         %label Tipo
