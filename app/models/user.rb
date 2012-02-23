@@ -1,11 +1,15 @@
 class User < ActiveRecord::Base
   extend LDAP::Helpers::UserModel
   extend Aleph::Helpers::UserModel
-  
+
   if ldap_enabled?
     devise :ldap_authenticatable, :timeoutable, :lockable
   else
-    devise :database_authenticatable, :timeoutable, :lockable
+    # Uncomment this line if you are using a new database
+    # devise :database_authenticatable, :timeoutable, :lockable
+
+    # Comment this line if uncomment the previous line, it is useful for users with previous versions of salva
+    devise :database_authenticatable, :timeoutable, :lockable, :encryptable, :encryptor => :salva_sha512, :stretches => 40
   end
 
   # Setup accessible (or protected) attributes for your model

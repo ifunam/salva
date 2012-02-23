@@ -1,5 +1,6 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
+require File.join(Rails.root, "lib/salva/salva_sha512")
 Devise.setup do |config|
   # ==> LDAP Configuration
   if File.exist? "#{Rails.root.to_s}/config/ldap.yml"
@@ -50,13 +51,13 @@ Devise.setup do |config|
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
-  config.stretches = Rails.env.test? ? 1 : 10
+  config.stretches = Rails.env.test? ? 1 : 40
 
   # Define which will be the encryption algorithm. Devise also supports encryptors
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :bcrypt
+  config.encryptor = :salva_sha512
 
   # Setup a pepper to generate the encrypted password.
   config.pepper = "6d5fd821005a1bd59c44fdbaed84155c2a6c3adc014c39b2d2a3d5e6429c82fd6ae8a41fb7f8e7615456539aa2834fdbfcbdf0601264c26a713f44a77c871b26"
