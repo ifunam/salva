@@ -5,10 +5,10 @@
   .row
     .span-9
       - if f.object.new_record?
-        = f.input :instructors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }
+        = f.input :instructors, :as => :text, :input_html => { :size => '50x1', :value => current_user.author_name }
       - else
-        = f.input :instructors, :as => :text, :input_html => { :size => '60x1' }
-    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
+        = f.input :instructors, :as => :text, :input_html => { :size => '50x1' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '50x1' }
 
   .row
     .span-9= f.association :seminarytype, :using => :name, :as => :radio, :wrapper_class => 'radio-set'

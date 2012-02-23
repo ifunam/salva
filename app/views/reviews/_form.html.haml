@@ -5,21 +5,21 @@
   .row
     .span-9
       - if f.object.new_record?
-        = f.input :authors, :as => :text, :input_html => { :size => '60x1', :value => current_user.author_name }, :required => true
+        = f.input :authors, :as => :text, :input_html => { :size => '50x1', :value => current_user.author_name }, :required => true
       - else
-        = f.input :authors, :as => :text, :input_html => { :size => '60x1' }, :required => true
-    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x1' }, :required => true
+        = f.input :authors, :as => :text, :input_html => { :size => '50x1' }, :required => true
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '50x1' }, :required => true
 
   .row
-    .span-9= f.input :reviewed_work_title, :as => :text, :input_html => { :size => '60x1' }, :required => true
-    .span-9.last= f.input :reviewed_work_publication, :as => :text, :input_html => { :size => '60x1' }
+    .span-9= f.input :reviewed_work_title, :as => :text, :input_html => { :size => '50x1' }, :required => true
+    .span-9.last= f.input :reviewed_work_publication, :as => :text, :input_html => { :size => '50x1' }
 
   .row
-    .span-9= f.input :published_on, :as => :text, :input_html => { :size => '60x1' }, :required => true
+    .span-9= f.input :published_on, :as => :text, :input_html => { :size => '50x1' }, :required => true
     .span-3= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6.last
       = f.label :month, :required => true
       = select_month_for 'month', 'review'
 
   .row
-    = f.input :other, :as => :text, :input_html => { :size => '60x1' }
+    = f.input :other, :as => :text, :input_html => { :size => '50x1' }

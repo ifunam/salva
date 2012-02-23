@@ -2,8 +2,8 @@
   .row
     = render :partial => "/shared/errors", :object => f.object.errors
   .row
-    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x1' }
-    .span-last= f.input :title, :as => :text, :input_html => { :size => '60x1' }
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '50x1' }
+    .span-last= f.input :title, :as => :text, :input_html => { :size => '50x1' }
 
   .row
     #newspaper.span-6
@@ -13,6 +13,6 @@
       = f.input :newsdate, :as => :string, :input_html => { :size => '10', :autocomplete => "off", :class => 'date'}, :required => true
 
   .row
-    .span-9= f.input :url, :as => :string, :input_html => { :size => '60', :autocomplete => "off" }
+    .span-9= f.input :url, :as => :string, :input_html => { :size => '50', :autocomplete => "off" }
     .span-9.last= render :partial => 'user_newspaperarticles/form', :locals => {:newspaperarticle => @newspaper_article, :f => f}
  

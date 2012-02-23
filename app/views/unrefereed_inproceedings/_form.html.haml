@@ -4,8 +4,8 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x2' }
-    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x2' }
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '50x2' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '50x2' }
 
   .row
     .span-4= f.input :pages, :as => :string, :input_html => { :size => '20', :autocomplete => "off", :required => true  }

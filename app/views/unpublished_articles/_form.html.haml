@@ -3,8 +3,8 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-9= f.input :authors, :as => :text, :input_html => { :size => '60x3' }
-    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '60x3' }
+    .span-9= f.input :authors, :as => :text, :input_html => { :size => '50x3' }
+    .span-9.last= f.input :title, :as => :text, :input_html => { :size => '50x3' }
 
   .row
     #journal.span-6.last
@@ -24,7 +24,7 @@
 
   .row
     .span-9= f.input :url, :as => :string, :input_html => { :size => '50', :autocomplete => "off" }
-    .span-9.last= f.input :other, :as => :text, :input_html => { :size => '60x1' }
+    .span-9.last= f.input :other, :as => :text, :input_html => { :size => '50x1' }
 
 
   .span-18.last

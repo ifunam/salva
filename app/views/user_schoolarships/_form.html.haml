@@ -6,7 +6,7 @@
     #schoolarship.span-8
       = f.association :schoolarship, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select'}
       = link_to_new_record 'Agregar una beca', new_schoolarship_path
-    .span-10.last=f.input :descr, :as => :text, :input_html => { :size => '60x1' }
+    .span-10.last=f.input :descr, :as => :text, :input_html => { :size => '50x1' }
 
   .row
     .span-4= f.input :start_date, :as => :string, :required => true, :input_html => { :size => '10', :class => 'date'}

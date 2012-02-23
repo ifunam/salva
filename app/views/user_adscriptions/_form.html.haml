@@ -14,7 +14,7 @@
     %div{:class=> 'span-6'}
       = f.collection_select :adscription_id, Adscription.all, :id, :name, { :prompt => true }
     %div{:class=> 'span-18 last'}
-      = f.text_area :descr, :size => '60x3'
+      = f.text_area :descr, :size => '50x3'
 
   %div{ :class => 'span-24 last' }
     %div{:class=> 'span-6'}

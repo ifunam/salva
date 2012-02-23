@@ -2,7 +2,7 @@
   .span-6
     = f.association :prizetype, :using => :name, :input_html  => {:class => 'chosen-select', :prompt => true, :required => true}
   .span-12.last
-    = f.input :name, :as => :text, :input_html => { :size => '60x1' }, :wrapper_class => 'span-12 last'
+    = f.input :name, :as => :text, :input_html => { :size => '50x1' }, :wrapper_class => 'span-12 last'
 
 #institution.span-6{'data-controller-name' => 'institutions'}
   = f.association :institution, :using => :name, :input_html  => {:class => 'chosen-select', :prompt => true, :required => true}

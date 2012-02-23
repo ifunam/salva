@@ -14,7 +14,7 @@
     = f.label :month, :required => true
     = select_month_for 'month', 'conference'
 .row
-  .span-12.last= f.input :location, :as => :text, :input_html => { :size => '60x1' }
+  .span-12.last= f.input :location, :as => :text, :input_html => { :size => '50x1' }
 
 #institution.has-many-associations{'data-remote-resource' => 'institutions', 'data-has-many-association' => 'conference_institutions'}
   %b=t(:organized_by)

@@ -7,8 +7,8 @@
     .span-6.last= f.input :abbrev, :as => :string, :input_html => { :size => '30' }
 
   .row
-    .span-9= f.input :responsible, :as => :text, :input_html => { :size => '60x1', :required => true}
-    .span-9.last= f.input :descr, :as => :text, :input_html => { :size => '60x1', :required => true}
+    .span-9= f.input :responsible, :as => :text, :input_html => { :size => '50x1', :required => true}
+    .span-9.last= f.input :descr, :as => :text, :input_html => { :size => '50x1', :required => true}
 
   .row
     .span-18= f.association :projecttype, :collection => Projecttype.all, :as => :radio, :wrapper_class =>'radio-set'
