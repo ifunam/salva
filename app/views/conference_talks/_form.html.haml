@@ -3,8 +3,8 @@
 
 %h3='Información del trabajo presentado'
 .section-with-border-and-bg
-  .span-9= f.input :authors, :as => :string, :input_html => {:size => 50, :required => true}
-  .span-9.last= f.input :title, :as => :string, :input_html => {:size => 50, :required => true}
+  .span-9= f.input :authors, :as => :string, :input_html => {:size => '40', :required => true}
+  .span-9.last= f.input :title, :as => :string, :input_html => {:size => '40', :required => true}
 
   .span-18.last= f.association :talktype, :as => :radio, :wrapper_class => 'radio-set'
 

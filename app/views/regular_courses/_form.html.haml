@@ -3,7 +3,7 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-9= f.input :title, :as => :string, :input_html => {:size => 50}
+    .span-9= f.input :title, :as => :string, :input_html => {:size => '40'}
     .span-9.last= f.association :modality, :as => :radio, :wrapper_class => 'radio-set'
 
   .row
