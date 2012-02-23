@@ -13,7 +13,8 @@
       = f.hidden_field :regularcourse_id
     .row
       = f.hidden_field :user_id, :value => current_user.id
-      = f.association :period, :collection => Period.all, :input_html => { :prompt => 'true', :required => true, :class => 'chosen-select'}
+
+      = f.association :period, :collection =>  period_list_for(@regular_course), :input_html => { :prompt => 'true', :required => true, :class => 'chosen-select'}
     .row
       = f.association :roleinregularcourse, :as => :radio, :collection => Roleinregularcourse.all, :wrapper_class => 'radio-set'
     .row

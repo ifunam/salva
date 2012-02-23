@@ -84,7 +84,7 @@ jQuery.extend
     $("#dialog").dialog(
       title: ""
       width: 400
-      height: 330
+      height: 500
       modal: true
       overlay:  background: "#fff", opacity: 0.25
     ).dialog "open"

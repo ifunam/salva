@@ -4,6 +4,7 @@ class UserRegularcourse < ActiveRecord::Base
   validates_numericality_of :period_id, :roleinregularcourse_id, :greater_than => 0, :only_integer => true
   validates_numericality_of :hoursxweek, :allow_nil => true, :greater_than => 0 , :only_integer => true
   validates_inclusion_of    :hoursxweek, :in => 1..40, :allow_nil => true
+  validates_uniqueness_of :regularcourse_id, :scope => [:period_id, :user_id]
 
   belongs_to :regularcourse
   belongs_to :period

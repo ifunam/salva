@@ -244,4 +244,9 @@ module ApplicationHelper
   def link_to_if_url_exists(record)
     link_to('online', record.url) if record.has_attribute? :url and !record.url.to_s.strip.empty? and record.url =~ /^http/
   end
+
+  def period_list_for(course)
+    registered_periods = course.periods.collect {|record| record.id }
+    Period.all.collect {|record| record unless registered_periods.include? record.id }.compact!
+  end
 end
