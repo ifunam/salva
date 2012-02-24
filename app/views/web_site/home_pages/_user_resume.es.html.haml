@@ -1,3 +1,3 @@
 - unless user.homepage_resume.nil?
   %h3 Rese&ntilde;a del Acad&eacute;mico:
-  #userresume= textilize(user.homepage_resume)
+  #userresume= textilize(user.homepage_resume).html_safe

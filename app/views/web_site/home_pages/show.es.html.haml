@@ -10,6 +10,9 @@
         %br/
         = render :partial => 'personal_sites', :locals => {:user => @record}
   %br/
+  = render :partial => 'user_resume', :locals => { :user => @record }
+  %br/
+  
   - if translate_category(@record.most_recent_jobposition.category_name) == 'Technician'
     = render :partial => 'user_skills', :locals => {:user => @record}
   - else

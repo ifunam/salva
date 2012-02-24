@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
                   :person_attributes, :address_attributes, :jobposition_attributes,
                   :jobposition_log_attributes, :user_group_attributes,
                   :user_schoolarships_attributes, :documents_attributes,
-                  :author_name, :blog, :homepage, :calendar, :user_cite_attributes
+                  :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
+                  :homepage_resume, :homepage_resume_en
 
   scope :activated, where(:userstatus_id => 2)
   scope :locked, where('userstatus_id != 2')

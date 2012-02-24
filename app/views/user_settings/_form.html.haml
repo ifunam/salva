@@ -6,4 +6,6 @@
 .row
   .span-8= f.input :blog, :as => :string, :input_html => { :size => '40' }
   .span-10.last= f.input :calendar, :as => :string, :input_html => { :size => '40' }
-
+.row
+  .span-8= f.input :homepage_resume, :as => :text, :input_html => { :size => '40x4' }
+  .span-10.last= f.input :homepage_resume_en, :as => :text, :input_html => { :size => '40x4' }

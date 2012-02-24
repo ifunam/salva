@@ -19,6 +19,8 @@ es:
         homepage: Página Web
         calendar: Calendario
         current_password: Contraseña actual
+        homepage_resume: Semblanza
+        homepage_resume_en: Semblanza en inglés
       user_group:
         group: Grupo
 

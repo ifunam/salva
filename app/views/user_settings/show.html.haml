@@ -21,6 +21,15 @@
         - unless @user.calendar.nil?
           %label=t(:calendar)
           = link_to t(:show_page), @user.calendar, :target => '_blank'
+    .row
+      .span-8
+        - unless @user.homepage_resume.nil?
+          %label=t(:homepage_resume)
+          = @user.homepage_resume
+      .span-10.last
+        - unless @user.homepage_resume_en.nil?
+          %label=t(:homepage_resume_en)
+          = @user.homepage_resume_en
 
     .row
       = render :partial => 'shared/record', :object => @user
