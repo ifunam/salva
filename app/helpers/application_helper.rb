@@ -249,4 +249,11 @@ module ApplicationHelper
     registered_periods = course.periods.collect {|record| record.id }
     Period.all.collect {|record| record unless registered_periods.include? record.id }.compact!
   end
+
+  def link_to_personal_site(user, column)
+    unless user.send(column).to_s.strip.empty?
+      url = user.send(column) =~ /^http/ ?  user.send(column) : "http://" + user.send(column)
+      link_to t(column), url, :target => '_blank'
+    end
+  end
 end
