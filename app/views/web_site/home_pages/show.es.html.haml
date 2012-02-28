@@ -8,7 +8,7 @@
         = render :partial => 'profile', :locals => {:user => @record}
         %br/
         %br/
-        = render :partial => 'personal_sites', :locals => {:user => @record}
+        = links_for_personal_sites(@record)
   %br/
   = render :partial => 'user_resume', :locals => { :user => @record }
   %br/

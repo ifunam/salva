@@ -256,4 +256,8 @@ module ApplicationHelper
       link_to t(column), url, :target => '_blank'
     end
   end
+
+  def links_for_personal_sites(user)
+    %w(homepage blog calendar).collect { |column| link_to_personal_site(user, column) }.compact.join(' | ').html_safe
+  end
 end
