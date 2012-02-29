@@ -57,9 +57,11 @@ module MetaDateExtension
     def only_year_scopes
       scope :since, lambda { |year| where{{:year.gteq => year}} } unless respond_to? :since
       scope :until, lambda { |year| where{{:year.lteq => year}} } unless respond_to? :until
-      scope :between, lambda { |start_year, end_year| since(start_year).until(end_year)}
       search_methods :since, :until
-      search_methods :between, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
+      unless respond_to? :between
+        scope :between, lambda { |start_year, end_year| since(start_year).until(end_year)}
+        search_methods :between, :splat_param => true, :type => [:integer, :integer]
+      end
     end
 
     def date_search_methods
