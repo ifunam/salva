@@ -2189,6 +2189,7 @@ es:
     course_instructors: 'Cursos especiales'
     conference_attendees: 'Asistencia a eventos académicos'
     conference_organizers: 'Comités de congresos'
+    conference_talks: 'Trabajos presentados en congresos'
 
   academic:
     annual_reports:
