@@ -42,7 +42,6 @@ module MetaDateExtension
     end
 
     def simple_date_scopes
-
       scope :since, lambda { |year, month| where{{:year.gteq => year} & {:month.gteq => month}} } unless respond_to? :since
       scope :until, lambda { |year, month| where{{:year.lteq => year} & {:month.lteq => month}} } unless respond_to? :until
       date_search_methods
@@ -52,15 +51,19 @@ module MetaDateExtension
       scope :since, lambda { |date| where{{:start_date.gteq => date}} } unless respond_to? :since
       scope :until, lambda { |date| where{{:end_date.lteq => date}} } unless respond_to? :until
       search_methods :since, :until
+      unless respond_to? :among
+        scope :among, lambda { |start_date, end_date| where{ ({:start_date.gteq => start_date}) | ({:end_date.lteq => end_date}) } }
+        search_methods :among, :splat_param => true, :type => [:date, :date]
+      end
     end
 
     def only_year_scopes
       scope :since, lambda { |year| where{{:year.gteq => year}} } unless respond_to? :since
       scope :until, lambda { |year| where{{:year.lteq => year}} } unless respond_to? :until
       search_methods :since, :until
-      unless respond_to? :between
-        scope :between, lambda { |start_year, end_year| since(start_year).until(end_year)}
-        search_methods :between, :splat_param => true, :type => [:integer, :integer]
+      unless respond_to? :among
+        scope :among, lambda { |start_year, end_year| since(start_year).until(end_year)}
+        search_methods :among, :splat_param => true, :type => [:integer, :integer]
       end
     end
 
