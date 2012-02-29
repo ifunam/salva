@@ -22,15 +22,30 @@ class Regularcourse < ActiveRecord::Base
   scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses).where(:user_regularcourses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("regularcourses.id IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id !=  ?", user_id]).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id =  ?", user_id]).to_sql})") }
   scope :period_id_eq, lambda { |period_id| joins(:user_regularcourses).where(:user_regularcourses => { :period_id => period_id }) }
+  scope :since, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
+  scope :until, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
+  scope :among, lambda{ |start_date, end_date|  since(start_date).until(end_date) }
+
   search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
+  search_methods :among, :type => [:date, :date], :splat_param => true
 
   def as_text
-    sem = semester == 0 ? nil : "Semestre: #{semester}"
-    cred = credits.nil? ? nil : "Créditos: #{credits}"
-    [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career].compact.join(', ')
+    [as_text_simple, period_list].compact.join(', ')
+  end
+
+  def as_text_simple
+      sem = semester == 0 ? nil : "Semestre: #{semester}"
+      cred = credits.nil? ? nil : "Créditos: #{credits}"
+      [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career, period_list].compact.join(', ')
   end
 
   def short_description
     [title, academicprogram.as_text_with_career].join(', ')
+  end
+
+  def period_list
+    if periods.size > 0
+      'Periodos: ' + periods.collect { |record| record.title }.join(', ')
+    end
   end
 end

@@ -28,7 +28,8 @@ class Jobposition < ActiveRecord::Base
   scope :at_external_institutions, joins(:institution).where("(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ")
   scope :at_unam, joins(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ")
 
-  search_methods :by_start_year, :by_end_year, :between
+  search_methods :by_start_year, :by_end_year
+
   def category_name
     jobpositioncategory.nil? ? nil : jobpositioncategory.name
   end

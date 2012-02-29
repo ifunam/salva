@@ -15,6 +15,7 @@ class Chapterinbook < ActiveRecord::Base
   user_association_methods_for :chapterinbook_roleinchapters
   has_paper_trail
 
+  default_scope :order => 'title ASC'
   scope :recent, :order => 'bookeditions.year DESC, bookeditions.month DESC', :include => :bookedition, :limit => 20
   scope :published, :conditions => 'bookeditions.editionstatus_id = 1', :include => :bookedition
   scope :inprogress, :conditions => 'bookeditions.editionstatus_id != 1', :include => :bookedition
@@ -29,9 +30,14 @@ class Chapterinbook < ActiveRecord::Base
       where(["chapterinbook_roleinchapters.user_id != ?", user_id]).to_sql}) AND chapterinbooks.id  NOT IN (#{ChapterinbookRoleinchapter.select('DISTINCT(chapterinbook_id) as chapterinbook_id').
       where(["chapterinbook_roleinchapters.user_id = ?", user_id]).to_sql})")
   }
-  search_methods :user_id_eq, :user_id_not_eq
 
-  default_scope :order => 'title ASC'
+  # FIX IT
+  scope :since, lambda { |year, month| where("chapterinbooks.bookedition_id IN (#{Bookedition.select('id').since(year,month).to_sql})") }
+  scope :until, lambda { |year, month| where("chapterinbooks.bookedition_id IN (#{Bookedition.select('id').until(year,month).to_sql})") }
+
+  search_methods :user_id_eq, :user_id_not_eq
+  search_methods :since, :splat_param => true, :type => [:integer, :integer]
+  search_methods :until, :splat_param => true, :type => [:integer, :integer]
 
   def as_text
     [bookchaptertype.name, title].join(': ') + '. ' + bookedition.as_text

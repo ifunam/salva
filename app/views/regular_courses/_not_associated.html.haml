@@ -1,6 +1,6 @@
 .span-1= checkbox_to_delete(record)
 .span-10
-  = record.as_text
+  = record.as_text_simple
   .not_associated{:title => t(:not_associated)}
   .periods
     %b=t(:period_list)

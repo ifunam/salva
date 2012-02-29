@@ -37,9 +37,9 @@ class Conferencetalk < ActiveRecord::Base
   scope :since, lambda { |year| includes(:conference).where(["conferences.year >= ?", year])}
   scope :until, lambda { |year| includes(:conference).where(["conferences.year <= ?", year])}
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
-  scope :between, lambda { |start_year, end_year| includes(:conference).where(["conferences.year = ?", start_year])}
+  scope :among, lambda { |start_year, end_year| includes(:conference).where(["conferences.year = ?", start_year])}
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
-  search_methods :between, :splat_param => true, :type => [:integer, :integer]
+  search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def as_text
     [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",

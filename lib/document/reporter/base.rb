@@ -51,8 +51,8 @@ module Reporter
     end
 
     def date
-      # Define the scope between in your model, for example: app/models/newspaperarticle
-      { :between => [start_date, end_date] }
+      # Define the scope among in your model, for example: app/models/newspaperarticle
+      { :among => [start_date, end_date] }
     end
 
     def month_and_year
@@ -60,11 +60,11 @@ module Reporter
     end
 
     def only_year
-      { :between => [start_date.year, end_date.year] }
+      { :among => [start_date.year, end_date.year] }
     end
 
     def date_range
-       { :since =>  start_date, :until => end_date }
+      { :among => [start_date, end_date] }
     end
 
     def start_date

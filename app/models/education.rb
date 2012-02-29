@@ -16,6 +16,12 @@ class Education < ActiveRecord::Base
                                 # We need institutioncareers table to support
                                 # migrations from previous versions of salva databases.
   default_scope :order => 'endyear DESC, startyear DESC'
+  scope :since, lambda { |year| where{{:startyear.gteq => year}} }
+  scope :until, lambda { |year| where{{:endyear.lteq => year}} }
+  scope :among, lambda { |start_year, end_year| since(start_year).until(end_year) }
+
+  search_methods :since, :until
+  search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def as_text
     [career.as_text, startyear, endyear].compact.join(', ')

@@ -24,8 +24,10 @@ class Techproduct < ActiveRecord::Base
   scope :user_id_eq, lambda { |user_id| all_by_year_desc.joins(:user_techproducts).where(:user_techproducts => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| all_by_year_desc.where("techproducts.id IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id !=  ?", user_id]).to_sql}) AND techproducts.id  NOT IN (#{UserTechproduct.select('DISTINCT(techproduct_id) as techproduct_id').where(["user_techproducts.user_id =  ?", user_id]).to_sql})") }
   scope :year_eq, lambda { |year| joins(:user_techproducts).where(:user_techproducts => {:year => year}) }
+  scope :among, lambda { |start_year, end_year| year_eq(start_year) }
 
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
+  search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def as_text
     [authors, title, "Tipo de trabajo: #{techproducttype.name}", "Status: #{techproductstatus.name}", year].compact.join(', ')
