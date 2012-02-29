@@ -23,18 +23,17 @@ module Reporter
         s.collection :institutional_activities
       end
 
-      create_section :seminary_and_conferences do |s|
-        s.collection :seminaries, :scope => :as_not_attendee
-        s.collection :conference_organizers, :class_name => 'Conference', :scope => :organizers
-        # FIX IT: Fix jquery bugs
-        # s.collection :conference_talks, :class_name => 'Conferencetalk', :date_style => :only_year
-      end
-
       create_section :publications do |s|
         s.collection :articles, :scope => :published
         s.collection :unpublished_articles, :class_name => 'Article', :scope => :unpublished
         s.collection :technical_reports, :class_name => 'Genericwork', :scope => :technical_reports
         s.collection :reviews
+      end
+
+      create_section :seminary_and_conferences do |s|
+        s.collection :seminaries, :scope => :as_not_attendee
+        s.collection :conference_organizers, :class_name => 'Conference', :scope => :organizers
+        s.collection :conference_talks, :class_name => 'Conferencetalk', :date_style => :only_year
       end
 
       create_section :refereed_colaborations do |s|
