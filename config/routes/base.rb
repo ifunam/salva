@@ -1,7 +1,7 @@
 Salva::Application.routes.draw do
 
   devise_for :users, :only => :sessions
-  resource :user_profile, :user_settings, :jobposition_log, :user_curriculum, :password, :user_cite
+  resource :user_profile, :user_settings, :jobposition_log, :password, :user_cite
 
   user_resources_for :user_languages, :user_skills, :user_schoolarships, :other_activities,
                      :popular_science_activities, :institutional_activities, :other_teaching_activities,
@@ -40,6 +40,8 @@ Salva::Application.routes.draw do
   resources :user_annual_plans do
     get :deliver, :on => :member
   end
+
+  resource :user_resume, :only => [:show]
 
   match '/session_preferences/enable_search' => 'session_preferences#enable_search', :via => :get
   match '/session_preferences/disable_search' => 'session_preferences#disable_search', :via => :get

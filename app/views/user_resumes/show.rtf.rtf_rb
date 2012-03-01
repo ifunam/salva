@@ -1,0 +1,81 @@
+rtf_document() do |rtf|
+  styles = {}
+  styles['PS_CODE'] = RTF::ParagraphStyle.new
+  styles['CS_CODE'] =  RTF::CharacterStyle.new
+  styles['CS_CODE'].bold = true
+
+  rtf.paragraph(styles['PS_CODE']) do |n1|
+    n1.apply(styles['CS_CODE']) do |n2|
+     n2 << "Curriculum Vítae"
+    end
+  end
+  rtf.line_break
+
+  rtf.paragraph(styles['PS_CODE']) do |n1|
+    n1.apply(styles['CS_CODE']) do |n2|
+     n2 << "Información general"
+    end
+  end
+  rtf.line_break
+
+  def label_and_attribute(rtf, label, attribute)
+   styles = {}
+   styles['PS_CODE'] = RTF::ParagraphStyle.new
+   styles['CS_CODE'] =  RTF::CharacterStyle.new
+   styles['CS_CODE'].bold = true
+
+   rtf.paragraph(styles['PS_CODE']) do |n1|
+      n1.apply(styles['CS_CODE']) do |n2|
+        n2 << "#{label}: "
+      end
+    end
+    rtf << @profile.send(attribute).to_s
+    rtf.line_break
+    rtf.line_break
+  end
+
+  label_and_attribute(rtf, "Nombre", :fullname)
+  label_and_attribute(rtf, "Género", :gender)
+  label_and_attribute(rtf, "Fecha de nacimiento", :birthdate)
+  label_and_attribute(rtf, "Domicilio profesional", :address)
+  label_and_attribute(rtf, "Teléfono", :phone)
+  label_and_attribute(rtf, "Fax", :fax)
+  label_and_attribute(rtf, "Correo electrónico", :email)
+  label_and_attribute(rtf, "RFC o CURP", :person_id)
+  label_and_attribute(rtf, "Categoría", :category_name)
+  label_and_attribute(rtf, "Adscripción", :adscription_name)
+  label_and_attribute(rtf, "Número de trabajador", :worker_id)
+  label_and_attribute(rtf, "Total de citas", :total_of_cites)
+
+  unless @profile.responsible_academic.nil?
+    label_and_attribute(rtf, "Responsable académico", :responsible_academic)
+  end
+  rtf.line_break
+
+  @report_sections.each do |section|
+    rtf.paragraph(styles['PS_CODE']) do |n1|
+        n1.apply(styles['CS_CODE']) do |n2|
+            n2 << section[:title].to_s
+            n2.line_break
+        end
+     end
+
+    section[:subsections].each do |subsection|
+      rtf.paragraph(styles['PS_CODE']) do |n1|
+        n1.apply(styles['CS_CODE']) do |n2|
+            n2 << subsection[:title].to_s
+            n2.line_break
+        end
+      end
+
+      counter = 1
+      subsection[:collection].each do |record|
+         rtf <<  [counter, record].join('. ')
+         rtf.line_break
+        counter += 1
+      end
+      rtf.line_break if counter > 1
+    end
+  end
+
+end

@@ -2035,6 +2035,8 @@ es:
   drop_items: 'Arrastre los registros al elemento donde desea asociarlos'
   download: 'Descargar'
   preview_pdf: 'Vista previa en PDF'
+  download_pdf: 'Descargar en PDF'
+  download_rtf: 'Descargar en RTF'
   send_annual_report: 'Enviar informe anual'
   enable_search: 'Buscar'
   disable_search: 'Ocultar búsqueda'

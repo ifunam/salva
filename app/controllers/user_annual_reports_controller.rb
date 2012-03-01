@@ -2,7 +2,7 @@ require File.join(Rails.root, 'lib/document', 'user_profile')
 require File.join(Rails.root, 'lib/document/reporter', 'base')
 class UserAnnualReportsController < ApplicationController
   layout 'user_resources'
-  respond_to :html
+  respond_to :html, :pdf
 
   def index
     respond_with(@documents = Document.annual_reports.search(:user_id_eq => current_user.id).paginate(:page => params[:page]||1, :per_page => 5))

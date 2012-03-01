@@ -6,3 +6,4 @@
 Mime::Type.register_alias "application/pdf", :pdf
 Mime::Type.register "application/vnd.ms-excel", :xls 
 Mime::Type.register_alias "image/jpeg", :jpg
+Mime::Type.register_alias "application/rtf", :rtf

@@ -1,0 +1,4 @@
+%b= subsection[:title]
+%ol{:class => 'section'}
+  - subsection[:collection].each do |record|
+    %li= record + '.'

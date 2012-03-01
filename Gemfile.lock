@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/monsterlabs/rtf_rails.git
+  revision: ddf4e4d4cf53faf93c72b01c714f681b14c636be
+  specs:
+    rtf_rails (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -248,6 +254,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.7.0)
+    rtf (0.3.3)
     ruby-ole (1.2.11.2)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
@@ -369,6 +376,8 @@ DEPENDENCIES
   rest-client (~> 1.6.7)
   rmagick (= 2.13.1)
   rspec-rails (~> 2.7.0)
+  rtf (~> 0.3.3)
+  rtf_rails (= 0.0.1)!
   ruby_parser (= 2.0.6)
   sass (~> 3.1.10)
   sass-rails (~> 3.1.5)
