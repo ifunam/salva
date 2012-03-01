@@ -39,7 +39,7 @@ module Reporter
 
     def all
       scoped_class.all.collect do |record|
-        normalize_text(record.respond_to?(:as_text) ? record.as_text : "Define as_text method in #{record.class}")
+       record.respond_to?(:as_text) ? normalize_text(record.as_text) : "Define as_text method in #{record.class}"
       end
     end
 
