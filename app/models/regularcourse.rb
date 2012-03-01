@@ -36,7 +36,7 @@ class Regularcourse < ActiveRecord::Base
   def as_text_simple
       sem = semester == 0 ? nil : "Semestre: #{semester}"
       cred = credits.nil? ? nil : "Créditos: #{credits}"
-      [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career, period_list].compact.join(', ')
+      [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career].compact.join(', ')
   end
 
   def short_description
