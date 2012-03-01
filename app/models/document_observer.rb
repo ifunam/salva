@@ -12,7 +12,7 @@ class DocumentObserver < ActiveRecord::Observer
   def after_update(document)
     if !document.approved_by_id.nil? and document.approved == true
       Notifier.approved_document(document.id).deliver
-    else
+    elsif !document.approved_by_id.nil? and document.approved == false
       Notifier.rejected_document(document.id).deliver
     end
   end
