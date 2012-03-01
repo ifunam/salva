@@ -36,7 +36,7 @@ module Reporter
       if subsection.date_style == :date_disabled
         subsection.all
       else
-        subsection.search(date_options(subsection).merge @attributes)
+        subsection.search(merge_date_options(subsection))
       end
     end
 
@@ -46,8 +46,9 @@ module Reporter
       attributes
     end
 
-    def date_options(subsection)
-      self.send subsection.date_style
+    def merge_date_options(subsection)
+      options = (!@start_date.nil? and !@end_date.nil?)  ? self.send(subsection.date_style) : {}
+      options.merge @attributes
     end
 
     def date
