@@ -43,11 +43,11 @@ class UserAnnualPlan < AbstractController::Base
         data = render_to_string(:template => 'user_annual_plans/show.pdf.prawn')
         store_file(data)
         if File.exist?(self._file)
-          user_incharge = User.find(@user_id).user_incharge
+          approved_by_id = User.find(@user_id).user_incharge.nil? ? nil : User.find(@user_id).user_incharge.id
           @annual_plan.update_attribute(:delivered, true)
-          Document.create(:user_id => @user_id, :ip_address => @remote_ip,
-                          :documenttype_id => @annual_plan.documenttype_id, :file => self._file,
-                          :approved_by_id => user_incharge.id)
+          @d = Document.create(:user_id => @user_id, :ip_address => @remote_ip,
+                              :documenttype_id => @annual_plan.documenttype_id, :file => self._file,
+                              :approved_by_id =>  approved_by_id)
         end
       else
         return false
