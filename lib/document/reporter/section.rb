@@ -39,8 +39,12 @@ module Reporter
 
     def all
       scoped_class.all.collect do |record|
-        record.respond_to?(:as_text) ? record.as_text : "Define as_text method in #{record.class}"
+        normalize_text(record.respond_to?(:as_text) ? record.as_text : "Define as_text method in #{record.class}")
       end
+    end
+
+    def normalize_text(string)
+      string.sub(/\n{1}+/,"\n").sub(/\r{1}+/,"\r").sub(/^('|"|`|\s)+/, '').sub(/('|"|`|\s|,|;)+$/, '').sub(/\s{1}+/, ' ')
     end
 
     # date_style: This method is useful to know what search options must be used in the reporter

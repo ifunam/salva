@@ -62,7 +62,7 @@ prawn_document() do |pdf|
 
       counter = 1
       subsection[:collection].each do |record|
-        pdf.text [counter, record].join('. '), :size => 12, :align => :justify
+        pdf.text [counter, record].join('. ') + '.', :size => 12, :align => :justify
         counter += 1
       end
       pdf.text "\n" if counter > 1

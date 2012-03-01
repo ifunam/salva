@@ -70,7 +70,7 @@ rtf_document() do |rtf|
 
       counter = 1
       subsection[:collection].each do |record|
-         rtf <<  [counter, record].join('. ')
+         rtf <<  [counter, record].join('. ') + '.'
          rtf.line_break
         counter += 1
       end
