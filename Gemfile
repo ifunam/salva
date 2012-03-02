@@ -1,8 +1,8 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source :rubygems
 
-gem "rails", "3.1.3"
-gem "haml", "3.1.3"
+gem "rails", "3.1.4"
+gem "haml", "3.1.4"
 gem "show_for", "0.2.4"
 gem "simple_form", "1.3.1"
 gem "compass", "~> 0.11.5"
@@ -37,7 +37,7 @@ gem "squeel", "~> 0.9.3"
 
 # Rails 3.1 - Asset Pipeline
 gem "sass", "~> 3.1.10"
-gem "json", "~> 1.6.1"
+gem "json", "~> 1.6.5"
 gem "coffee-script", "~> 2.2.0"
 gem "uglifier", "~> 1.0.4"
 gem "css_image_embedder", "~> 0.2.0"
@@ -62,7 +62,7 @@ gem "barby", "0.5.0"
 gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
-gem "rtf_rails", "0.0.1", :git => 'git://github.com/monsterlabs/rtf_rails.git'
+gem "rtf_rails", "0.0.1"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
