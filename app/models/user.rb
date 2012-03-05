@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
     # Comment this line if uncomment the previous line, it is useful for users with previous versions of salva
     devise :database_authenticatable, :timeoutable, :lockable, :encryptable, :encryptor => :salva_sha512, :stretches => 40
+
+    # Uncomment the following line If you want to enable the email
+    # attribute for modifications in systems without ldap support.
+    # attr_accessible :email
   end
 
   # Setup accessible (or protected) attributes for your model
