@@ -1,4 +1,6 @@
 class UserPrize < ActiveRecord::Base
+  attr_accessible :prize_attributes, :year, :month
+
   validates_presence_of  :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :year, :greater_than => 0, :only_integer => true
