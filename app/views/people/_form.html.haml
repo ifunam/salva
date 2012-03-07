@@ -2,7 +2,6 @@
   %h3= t('.title')
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id, :value => f.object.id
-    = f.hidden_field :user_id
   .row
     .span-3= image_for_person(f.object)
     .span-5.last

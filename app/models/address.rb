@@ -1,5 +1,8 @@
 # encoding: utf-8
 class Address < ActiveRecord::Base
+  attr_accessible :addresstype_id, :location, :pobox, :country_id,
+                  :state_id, :zipcode, :phone, :is_postaddress
+
   validates_presence_of :country_id,  :location, :addresstype_id
   validates_numericality_of :id, :state_id, :city_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :addresstype_id, :country_id, :greater_than => 0, :only_integer => true
