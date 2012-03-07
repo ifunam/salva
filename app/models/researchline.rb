@@ -1,4 +1,6 @@
 class Researchline < ActiveRecord::Base
+  attr_accessible :name, :name_en, :descr, :researcharea_id
+
   validates_presence_of :name
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :researcharea_id, :allow_nil => true, :greater_than => 0, :only_integer => true
