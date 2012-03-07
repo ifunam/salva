@@ -1,5 +1,9 @@
 # encoding: utf-8
 class Conference < ActiveRecord::Base
+
+  attr_accessible :name, :conferencetype_id, :conferencescope_id, :country_id, :year, :month, :location,
+                  :conference_institutions_attributes, :userconferences_attributes
+
   validates_presence_of :name, :year, :conferencetype_id, :country_id
 
   validates_numericality_of :id, :conferencescope_id, :allow_nil => true, :greater_than =>0, :only_integer => true

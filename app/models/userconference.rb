@@ -1,4 +1,5 @@
 class Userconference < ActiveRecord::Base
+  attr_accessible :user_id, :roleinconference_id, :conference_id
 
   validates_presence_of  :roleinconference_id
 
