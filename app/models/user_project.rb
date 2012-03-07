@@ -1,4 +1,5 @@
 class UserProject < ActiveRecord::Base
+  attr_accessible  :project_id, :user_id, :roleinproject_id
   validates_presence_of :roleinproject_id
   validates_numericality_of :id,  :project_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :roleinproject_id,  :greater_than => 0, :only_integer => true

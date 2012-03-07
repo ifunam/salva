@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+  attr_accessible :name, :abbrev, :responsible, :descr, :projecttype_id, :startyear, :startmonth, :endyear, :endmonth,
+                  :projectfinancingsources_attributes, :projectstatus_id, :user_projects_attributes
+
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :projectstatus_id, :projectstatus_id, :startyear,:projecttype_id, :greater_than => 0, :only_integer => true
   validates_presence_of :name, :responsible, :descr, :projecttype_id, :projectstatus_id, :startyear
