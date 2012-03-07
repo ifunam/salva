@@ -1,7 +1,3 @@
-- if !f.object.nil? and !f.object.new_record?
-  = f.hidden_field :id
-  = f.hidden_field :user_id
-
 .row
   .span-6= f.input :worker_key, :as => :string, :input_html =>{:size => 10, :maxlength => 10}
   .span-11.last= f.input :worker_number, :as => :string, :input_html =>{:size => 10, :maxlength => 10}

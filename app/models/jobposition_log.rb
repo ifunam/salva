@@ -1,4 +1,6 @@
 class JobpositionLog < ActiveRecord::Base
+  attr_accessible :worker_key, :worker_number, :academic_years, :administrative_years
+
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_presence_of :worker_key
   validates_presence_of :academic_years, :if => lambda { |record| record.administrative_years.nil? }
