@@ -1,4 +1,5 @@
 class Career < ActiveRecord::Base
+  attr_accessible :name, :degree_id, :institution_attributes
   validates_presence_of :name, :degree_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :degree_id, :greater_than => 0, :only_integer => true

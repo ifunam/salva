@@ -1,4 +1,6 @@
 class Education < ActiveRecord::Base
+  attr_accessible :startyear, :endyear, :is_studying_this, :is_titleholder, :career_attributes
+
   validates_presence_of  :startyear
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true
 
