@@ -1,5 +1,8 @@
 # encoding: utf-8
 class Course < ActiveRecord::Base
+  attr_accessible :name, :courseduration_id, :modality_id, :hoursxweek, :totalhours, :startyear,
+                  :startmonth, :endyear, :endmonth, :country_id, :location, :user_courses_attributes
+
   validates_presence_of :name, :country_id, :courseduration_id, :modality_id, :startyear
   validates_numericality_of :country_id,  :courseduration_id, :modality_id
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
