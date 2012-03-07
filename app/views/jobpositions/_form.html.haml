@@ -1,9 +1,6 @@
 .section-with-border-and-bg
   = render :partial => "/shared/errors", :object => f.object.errors
-  .row
-    - if !f.object.nil? and !f.object.new_record?
-      = f.hidden_field :id
-      = f.hidden_field :user_id
+
   .row
     .span-5
       - if !f.object.jobpositioncategory.nil? and !f.object.jobpositioncategory.jobpositiontype.nil?
