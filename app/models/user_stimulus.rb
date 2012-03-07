@@ -1,4 +1,6 @@
 class UserStimulus < ActiveRecord::Base
+  attr_accessible :stimuluslevel_id, :startyear, :startmonth, :endyear, :endmonth
+
   validates_presence_of :stimuluslevel_id, :startyear
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
