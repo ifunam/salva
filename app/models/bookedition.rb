@@ -1,4 +1,6 @@
 class Bookedition < ActiveRecord::Base
+  attr_accessible :book_attributes, :edition, :isbn, :pages, :year, :mediatype_id, :editionstatus_id,
+                  :bookedition_roleinbooks_attributes
   validates_presence_of :edition, :mediatype_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of  :mediatype_id,  :greater_than => 0, :only_integer => true

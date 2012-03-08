@@ -1,4 +1,5 @@
 class ChapterinbookRoleinchapter < ActiveRecord::Base
+  attr_accessible :user_id, :roleinchapter_id, :chapterinbook_id
   validates_presence_of  :roleinchapter_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :roleinchapter_id, :user_id, :greater_than => 0, :only_integer => true

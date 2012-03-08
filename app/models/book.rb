@@ -1,4 +1,6 @@
 class Book < ActiveRecord::Base
+  attr_accessible :authors, :title, :country_id, :language_id, :booktype_id, :volume, :booklink
+
   validates_presence_of :title, :authors, :country_id, :booktype_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :country_id, :booktype_id, :greater_than => 0, :only_integer => true

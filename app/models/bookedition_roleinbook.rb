@@ -1,4 +1,6 @@
 class BookeditionRoleinbook < ActiveRecord::Base
+  attr_accessible :user_id, :roleinbook_id, :bookedition_id
+
   belongs_to :bookedition
   belongs_to :roleinbook
   belongs_to :user

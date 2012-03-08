@@ -1,4 +1,5 @@
 class Inproceeding < ActiveRecord::Base
+  attr_accessible  :authors, :title, :pages, :proceeding_attributes, :user_inproceedings_attributes
   validates_presence_of :title, :authors
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
 

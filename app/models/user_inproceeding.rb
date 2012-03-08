@@ -1,4 +1,5 @@
 class UserInproceeding < ActiveRecord::Base
+  attr_accessible  :user_id, :ismainauthor, :inproceeding_id
   #validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   #validates_inclusion_of :ismainauthor, :in => [true, false]
   #validates_uniqueness_of :inproceeding_id, :scope => [:user_id]

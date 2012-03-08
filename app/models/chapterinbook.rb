@@ -1,4 +1,5 @@
 class Chapterinbook < ActiveRecord::Base
+  attr_accessible :title, :bookchaptertype_id, :chapterinbook_roleinchapters_attributes, :pages, :bookedition_attributes
   validates_presence_of :bookchaptertype_id, :title
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :bookchaptertype_id, :greater_than => 0, :only_integer => true

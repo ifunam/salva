@@ -1,4 +1,7 @@
 class Article < ActiveRecord::Base
+  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
+                  :articlestatus_id, :user_articles_attributes
+
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
