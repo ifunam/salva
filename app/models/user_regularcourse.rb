@@ -1,4 +1,5 @@
 class UserRegularcourse < ActiveRecord::Base
+  attr_accessible :user_id, :period_id, :roleinregularcourse_id, :hoursxweek
   validates_presence_of     :period_id
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :period_id, :roleinregularcourse_id, :greater_than => 0, :only_integer => true

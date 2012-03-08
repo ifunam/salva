@@ -1,4 +1,6 @@
 class Thesis < ActiveRecord::Base
+  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :startyear,
+                  :startmonth, :endyear, :endmonth, :career_attributes
   validates_presence_of :thesisstatus_id, :thesismodality_id, :startyear, :authors, :title
   validates_numericality_of :id,:institutioncareer_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :thesisstatus_id, :thesismodality_id, :startyear,  :greater_than => 0, :only_integer => true

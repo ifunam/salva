@@ -1,4 +1,5 @@
 class TutorialCommittee < ActiveRecord::Base
+  attr_accessible :studentname, :descr, :year, :career_attributes
   validates_presence_of :studentname,  :year
   validates_numericality_of :id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 

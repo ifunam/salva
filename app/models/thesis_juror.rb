@@ -1,4 +1,5 @@
 class ThesisJuror < ActiveRecord::Base
+  attr_accessible :roleinjury_id, :year, :user_id, :thesis_id
   validates_presence_of :roleinjury_id, :year
   validates_numericality_of :roleinjury_id, :year
   belongs_to :user

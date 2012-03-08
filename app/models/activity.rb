@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-
+  attr_accessible :name, :descr, :activitytype_id, :year, :month
   validates_presence_of :name, :activitytype_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :activitytype_id, :greater_than => 0, :only_integer => true

@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Academicprogram < ActiveRecord::Base
+  attr_accessible :academicprogramtype_id, :year, :career_attributes
   validates_presence_of :academicprogramtype_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :academicprogramtype_id, :year,  :greater_than => 0, :only_integer => true

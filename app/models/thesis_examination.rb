@@ -1,4 +1,6 @@
 class ThesisExamination < Thesis
+  attr_accessible :title, :authors, :thesismodality_id, :thesisstatus_id, :startyear, :endyear, :startmonth, :endmonth,
+                  :thesis_jurors_attributes, :career_attributes
   has_many :thesis_jurors, :foreign_key => 'thesis_id'
   has_many :users, :through => :thesis_jurors
   accepts_nested_attributes_for :thesis_jurors
