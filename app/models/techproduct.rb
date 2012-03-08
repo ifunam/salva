@@ -1,4 +1,5 @@
 class Techproduct < ActiveRecord::Base
+  attr_accessible :authors, :title, :techproductstatus_id, :techproducttype_id, :descr, :institution_id, :user_techproducts_attributes
   validates_presence_of :title, :authors
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :allow_nil => true,  :greater_than => 0, :only_integer => true

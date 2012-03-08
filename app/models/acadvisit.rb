@@ -1,4 +1,7 @@
 class Acadvisit < ActiveRecord::Base
+  attr_accessible :country_id, :institution_id, :descr, :acadvisittype_id, :startyear, :startmonth, :endyear,
+                  :endmonth, :place, :goals, :other
+
   validates_presence_of :institution_id, :country_id, :acadvisittype_id, :descr, :startyear
   validates_numericality_of :user_id, :institution_id, :country_id, :acadvisittype_id, :startyear, :greater_than => 0, :only_integer => true
   validates_numericality_of :endyear, :startmonth, :endmonth, :allow_nil => true, :greater_than => 0, :only_integer => true

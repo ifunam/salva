@@ -1,4 +1,5 @@
 class UserTechproduct < ActiveRecord::Base
+  attr_accessible :user_id, :techproduct_id, :userrole_id, :year
   before_validation :default_year
 
   validates_presence_of :year
