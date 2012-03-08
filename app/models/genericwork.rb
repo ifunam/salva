@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Genericwork < ActiveRecord::Base
   attr_accessible :authors, :title, :reference, :vol, :pages, :isbn_issn, :year, :month,
-                  :user_genericworks_attributes, :genericworkstatus_id, :genericworktype_id
+                  :user_genericworks_attributes, :genericworkstatus_id, :genericworktype_id,
+                  :publisher_id, :institution_id
 
   validates_presence_of :authors, :title, :genericworktype_id, :genericworkstatus_id, :year
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true

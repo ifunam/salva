@@ -1,4 +1,6 @@
 class Newspaperarticle < ActiveRecord::Base
+  attr_accessible :authors, :title, :newspaper_id, :newsdate, :url, :user_newspaperarticles_attributes
+
   validates_presence_of :title, :authors, :newspaper_id, :newsdate
 
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
