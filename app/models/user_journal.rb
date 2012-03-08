@@ -1,4 +1,6 @@
 class UserJournal < ActiveRecord::Base
+  attr_accessible :journal_id, :roleinjournal_id, :startyear, :startmonth, :endyear, :endmonth
+
   validates_presence_of :journal_id, :roleinjournal_id, :startyear
 
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true

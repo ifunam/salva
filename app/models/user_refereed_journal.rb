@@ -1,5 +1,7 @@
 # encoding: utf-8
 class UserRefereedJournal < ActiveRecord::Base
+  attr_accessible :journal_id, :refereed_criterium_id, :year, :month
+
   validates_presence_of :year
   belongs_to :user
   belongs_to :registered_by, :class_name => 'User', :foreign_key => :registered_by_id
