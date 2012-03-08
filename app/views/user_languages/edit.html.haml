@@ -1,5 +1,5 @@
 %h3= t('.title')
-= simple_form_for @user_language, :url => user_languages_path do |f|
+= simple_form_for @user_language, :url => user_language_path(@user_language) do |f|
   = render :partial => 'form', :locals => { :f => f }
   #submit_buttons
     = f.submit  t(:update)

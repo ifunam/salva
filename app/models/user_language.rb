@@ -1,5 +1,7 @@
 # encoding: utf-8
 class UserLanguage < ActiveRecord::Base
+  attr_accessible :language_id, :institution_id, :spoken_languagelevel_id, :written_languagelevel_id
+
   validates_presence_of :language_id, :spoken_languagelevel_id, :written_languagelevel_id, :institution_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id,:language_id, :spoken_languagelevel_id, :written_languagelevel_id, :institution_id, :greater_than => 0, :only_integer => true
