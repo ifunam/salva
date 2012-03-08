@@ -1,4 +1,7 @@
 class Conferencetalk < ActiveRecord::Base
+  attr_accessible :authors, :title, :talktype_id, :talkacceptance_id, :modality_id,
+                  :user_conferencetalks_attributes, :conference_attributes
+
   validates_presence_of :title, :authors, :talktype_id, :talkacceptance_id, :modality_id
 
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true

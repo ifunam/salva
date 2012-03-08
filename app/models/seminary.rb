@@ -1,4 +1,6 @@
 class Seminary < ActiveRecord::Base
+  attr_accessible :title, :seminarytype_id, :user_seminaries_attributes, :year, :month, :institution_id, :instructors
+
   validates_presence_of  :title, :year, :seminarytype_id, :institution_id
   validates_numericality_of :seminarytype_id, :year,  :greater_than =>0, :only_integer => true
   validates_numericality_of :id, :month, :allow_nil => true, :greater_than =>0, :only_integer => true
