@@ -1,5 +1,7 @@
 # encoding: utf-8
 class UserCredit < ActiveRecord::Base
+  attr_accessible :credittype_id, :descr, :year, :month, :other
+
   validates_presence_of :credittype_id, :descr, :year
   validates_numericality_of :credittype_id
 
