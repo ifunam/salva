@@ -1,5 +1,8 @@
 # encoding: utf-8
 class Indivadvice < ActiveRecord::Base
+  attr_accessible :indivname, :institution_id, :startyear, :startmonth, :endyear, :endmonth,
+                  :hours, :indivadvicetarget_id
+
   validates_presence_of :indivadvicetarget_id, :indivname, :startyear, :hours
   validates_numericality_of :indivadvicetarget_id
   belongs_to :user

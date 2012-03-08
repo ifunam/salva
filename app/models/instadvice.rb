@@ -1,4 +1,6 @@
 class Instadvice < ActiveRecord::Base
+  attr_accessible :title, :instadvicetarget_id, :institution_id, :year, :month
+
   validates_presence_of :title, :instadvicetarget_id, :year
   validates_numericality_of :user_id, :institution_id, :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :instadvicetarget_id, :year,  :greater_than => 0, :only_integer => true
