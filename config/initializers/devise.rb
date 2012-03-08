@@ -149,6 +149,9 @@ Devise.setup do |config|
   # config.navigational_formats = [:html, :iphone]
   config.navigational_formats = [:"*/*", "*/*", :html]
 
+  # Automatically apply schema changes in tableless databases
+  config.apply_schema = false
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,
   # you can configure them inside the config.warden block. The example below
