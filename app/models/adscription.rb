@@ -23,6 +23,7 @@ class Adscription < ActiveRecord::Base
   end
 
   def self.find_users_by_name_and_category(name, category)
+    if self.exists?(:name => name)
      record = find_by_name(name)
      case category
       when 'researchers' then
@@ -35,5 +36,6 @@ class Adscription < ActiveRecord::Base
         record.users.academic_technicians.activated
       else record.users.activated
      end
+    end
   end
 end
