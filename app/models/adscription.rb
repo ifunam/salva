@@ -27,15 +27,22 @@ class Adscription < ActiveRecord::Base
      record = find_by_name(name)
      case category
       when 'researchers' then
-        record.users.researchers.activated
+        users_with_this_jobposition(record.users.researchers.activated, [1, 110, 4, 5])
       when 'postdoctorals' then
-        record.users.posdoctorals.activated.collect { |user|
-          user if user.most_recent_jobposition.jobpositioncategory.roleinjobposition_id == 111
-        }.compact!
+        users_with_this_jobposition(record.users.posdoctorals.activated, [111])
       when 'academic_technicians' then
-        record.users.academic_technicians.activated
+        users_with_this_jobposition(record.users.academic_technicians.activated, [3])
       else record.users.activated
      end
     end
+  end
+
+  private
+  def self.users_with_this_jobposition(records, roleinjobpositions)
+    records.collect { |record|
+      if roleinjobpositions.to_a.include? record.jobposition_for_researching.jobpositioncategory.roleinjobposition_id
+        record
+      end
+    }.compact
   end
 end
