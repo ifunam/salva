@@ -1,8 +1,8 @@
 / <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
 %font.name= user.author_name
 %br/
-- unless user.most_recent_jobposition.nil?
-  = translate_category(user.most_recent_jobposition.category_name)
+- unless user.jobposition_for_researching.nil?
+  = translate_category(user.jobposition_for_researching.category_name)
 - else
   No tengo categoria
 %br/

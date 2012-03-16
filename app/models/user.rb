@@ -62,6 +62,9 @@ class User < ActiveRecord::Base
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
           :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
           :order => "jobpositions.start_date DESC"
+  has_one :jobposition_for_researching, :class_name => "Jobposition", :include => [:institution, :jobpositioncategory],
+          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id = 1",
+          :order => "jobpositions.start_date DESC"
 
   has_one :user_identification
   has_one :user_schoolarship

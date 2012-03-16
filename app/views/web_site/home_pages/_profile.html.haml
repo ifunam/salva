@@ -1,7 +1,7 @@
 / <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
 %font.name= user.author_name
 %br/
-= translate_category(user.most_recent_jobposition.category_name)
+= translate_category(user.jobposition_for_researching.category_name)
 %br/
 = mail_to user.email, user.email, :encode => "javascript"
 %br/
