@@ -4,8 +4,8 @@ source :rubygems
 gem "rails", "~> 3.2.2"
 gem "haml", "3.1.4"
 gem "show_for", "0.2.4"
-gem "simple_form", "1.3.1"
-gem "compass", "~> 0.11.5"
+gem "simple_form", "~> 1.5.2"
+gem "compass", "~> 0.12.1"
 gem "barista", "~> 1.2.1"
 
 # Authorization
@@ -21,27 +21,27 @@ gem "tsearch", :require => "texticle"
 gem "scope_by_fuzzy"
 
 # Control version
-gem "simple-navigation", "3.5.0"
-gem "paper_trail", "~> 2.5.2"
+gem "simple-navigation", "3.7.0"
+gem "paper_trail", "~> 2.6.2"
 gem "diff", "~> 0.3.6"
 
 # Misc
-gem "carrierwave", "0.5.3"
+gem "carrierwave", "0.5.8"
 gem "rmagick", "2.13.1"
 gem "will_paginate", "3.0.3"
 gem "attribute_normalizer", "~> 1.0.0"
-gem "inherited_resources", "~> 1.3.0"
-gem "pg", "0.11.0"
-gem "meta_search", "~> 1.1.1"
-gem "squeel", "~> 0.9.3"
+gem "inherited_resources", "~> 1.3.1"
+gem "pg", "0.13.2"
+gem "meta_search", "~> 1.1.3"
+gem "squeel", "~> 0.9.5"
 
 # Rails 3.1 - Asset Pipeline
 gem "sass", "~> 3.1.15"
 gem "json", "~> 1.6.5"
 gem "coffee-script", "~> 2.2.0"
-gem "uglifier", "~> 1.0.4"
+gem "uglifier", "~> 1.2.3"
 gem "css_image_embedder", "~> 0.2.0"
-gem "sass-rails", "~> 3.2.4"
+gem "sass-rails", "~> 3.2.5"
 gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
 gem "move_associations", "0.0.5"
@@ -49,15 +49,15 @@ gem "by_star", "~> 2.0.0.beta1"
 gem "tzinfo", "0.3.29"
 
 gem "SystemTimer", "1.2.3", :platforms => :ruby_18
-gem "redis", "2.2.0"
+gem "redis", "2.2.2"
 gem "redis-namespace", "1.0.2"
-gem "resque", "1.19.0"
-gem "resque-status", "0.2.4", :require => "resque/status"
-gem "resque_mailer", "2.0.2"
+gem "resque", "1.20.0"
+gem "resque-status", "0.3.2", :require => "resque/status"
+gem "resque_mailer", "2.0.3"
 
 gem "prawn", "0.12.0"
 gem "prawn_rails", "~> 0.0.7"
-gem "spreadsheet", "0.6.5.9"
+gem "spreadsheet", "~> 0.6.8"
 gem "barby", "0.5.0"
 gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
@@ -66,22 +66,22 @@ gem "rtf_rails", "0.0.1"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
-  gem "capistrano", "~> 2.9.0"
-  gem "execjs", "~> 1.2.9"
-  gem "therubyracer", "~> 0.9.9"
+  gem "capistrano", "~> 2.11.2"
+  gem "execjs", "~> 1.3.0"
+  gem "therubyracer", "~> 0.9.10"
   gem "exception_notification", "~> 2.5.2"
   gem "octopi", "~> 0.4.5"
-  gem "dalli", "~> 1.1.3"
+  gem "dalli", "~> 1.1.5"
   gem "newrelic_rpm", "~> 3.3.0"
 end
 
 group :assets do
   gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
   gem "coffee-rails", "~> 3.2.2"
-  gem "uglifier", "~> 1.0.4"
+  gem "uglifier", "~> 1.2.3"
   gem "css_image_embedder", "~> 0.2.0"
-  gem "therubyracer", "~> 0.9.9"
-  gem "sass-rails", "~> 3.2.4"
+  gem "therubyracer", "~> 0.9.10"
+  gem "sass-rails", "~> 3.2.5"
 end
 
 group :development do
@@ -90,7 +90,7 @@ group :development do
   gem "ruby_parser", "2.0.6"
   gem "unicorn", "3.6.0"
   gem "jquery-rails", "1.0.16"
-  gem "capistrano", "~> 2.9.0"
+  gem "capistrano", "~> 2.11.2"
 end
 
 group :test do
