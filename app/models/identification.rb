@@ -7,8 +7,5 @@ class Identification < ActiveRecord::Base
   belongs_to :idtype
   belongs_to :citizen_country, :class_name => 'Country', :foreign_key => 'citizen_country_id'
 
-  has_many :people_identifications
-  has_many :identifications, :through => :people_identifications
 
-  validates_associated :people_identifications
 end

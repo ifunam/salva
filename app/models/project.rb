@@ -25,12 +25,12 @@ class Project < ActiveRecord::Base
   has_many :projectresearchlines
   has_many :projectresearchareas
   has_many :projectarticles
-  has_many :projectbooks
-  has_many :projectchapterinbooks
-  has_many :projectconferencetalks
-  has_many :projectacadvisits
-  has_many :projectgenericworks
-  has_many :projecttheses
+  # has_many :projectbooks
+  # has_many :projectchapterinbooks
+  # has_many :projectconferencetalks
+  # has_many :projectacadvisits
+  # has_many :projectgenericworks
+  # has_many :projecttheses
 
   has_paper_trail
 

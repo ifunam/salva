@@ -4,7 +4,7 @@ class Stimuluslevel < ActiveRecord::Base
   validates_presence_of :name, :stimulustype_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   belongs_to :stimulustype
-  has_many :user_stimuluses
+  #has_many :user_stimuli
   default_scope :order => 'stimulustypes.name ASC, stimuluslevels.name ASC', :joins => :stimulustype
 
   def name_and_type
