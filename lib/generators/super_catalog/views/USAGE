@@ -1,8 +1,0 @@
-Description:
-    This generator creates views based on Admin::SuperCatalogController class
-
-Example:
-    rails generate super_catalog:views admin/journals name:text country_id:references
-
-    This will create:
-       app/views/admin/states
