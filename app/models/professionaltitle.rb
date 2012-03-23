@@ -5,9 +5,7 @@ class Professionaltitle < ActiveRecord::Base
 
   validates_uniqueness_of :schooling_id
 
-  belongs_to :schooling
   belongs_to :titlemodality
 
-  validates_associated :schooling
   validates_associated :titlemodality
 end
