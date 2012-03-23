@@ -14,7 +14,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate(@thesis_examinations)
+= paginate(@thesis_examinations)
 
 #submit_buttons
   = link_to t(:new), new_thesis_examination_path

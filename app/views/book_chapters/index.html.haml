@@ -14,7 +14,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate(@book_chapters)
+= paginate(@book_chapters)
 
 #submit_buttons
   = link_to t(:new), new_book_chapter_path

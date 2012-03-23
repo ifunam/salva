@@ -17,7 +17,7 @@
   #footer_buttons
     = link_to t(:delete_all_selected), '#',  :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
 
-= will_paginate(@jobpositions)
+= paginate(@jobpositions)
 
 #submit_buttons
   = link_to t(:new), new_jobposition_path

@@ -4,7 +4,7 @@ class UserAnnualPlansController < ApplicationController
   respond_to :html, :pdf
 
   def index
-    respond_with(@documents = Document.annual_plans.search(:user_id_eq => current_user.id).paginate(:page => params[:page]||1, :per_page => 5))
+    respond_with(@documents = Document.annual_plans.search(:user_id_eq => current_user.id).page(params[:page]||1).per(5))
   end
 
   def new

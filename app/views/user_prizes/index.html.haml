@@ -15,7 +15,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate( @user_prizes)
+= paginate( @user_prizes)
 
 #submit_buttons
   = link_to t(:new), new_user_prize_path

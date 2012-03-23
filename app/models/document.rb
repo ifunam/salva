@@ -20,7 +20,7 @@ class Document < ActiveRecord::Base
   before_create :file_path
 
   def self.paginated_search(params)
-    is_not_hidden.fullname_asc.search(params[:search]).paginate(:per_page => params[:per_page] || 30, :page => params[:page] || 1)
+    is_not_hidden.fullname_asc.search(params[:search]).page(params[:per_page] || 30).per(params[:page] || 1)
   end
 
   def url

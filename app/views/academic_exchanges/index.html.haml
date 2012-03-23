@@ -14,7 +14,7 @@
   = render :partial => 'record', :collection => @academic_exchanges
 = render :partial => 'collection_footer'
 
-= will_paginate(@academic_exchanges)
+= paginate(@academic_exchanges)
 
 #submit_buttons
   = link_to t(:new), new_academic_exchange_path

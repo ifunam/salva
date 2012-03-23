@@ -121,7 +121,7 @@ class PublicationController < InheritedResources::Base
   end
 
   def paginated_collection
-    set_collection_ivar scoped_resource_class.search(params[:search]).paginate(:page => params[:page] ||1, :per_page => params[:per_page] || 10)
+    set_collection_ivar scoped_resource_class.search(params[:search]).page(params[:page] ||1).per(params[:per_page] || 10)
   end
 
   def resource_default_year

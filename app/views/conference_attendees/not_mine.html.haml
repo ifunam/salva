@@ -14,7 +14,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate(@conferences)
+= paginate(@conferences)
 
 #submit_buttons
   = link_to t(:new), new_conference_attendee_path

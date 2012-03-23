@@ -15,7 +15,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate(@advices)
+= paginate(@advices)
 
 #submit_buttons
   = link_to t(:new), new_institutional_advice_path

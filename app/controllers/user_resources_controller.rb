@@ -73,7 +73,7 @@ class UserResourcesController < InheritedResources::Base
 
   def scoped_and_paginated_collection
     set_collection_ivar scoped_resource_class.search(params[:search])
-                        .paginate(:page => params[:page] || 1,:per_page => params[:per_page] || 10)
+                        .page(params[:page] || 1).per(params[:per_page] || 10)
   end
 
   def resource_default_year

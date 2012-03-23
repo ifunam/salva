@@ -28,7 +28,7 @@ gem "diff", "~> 0.3.6"
 # Misc
 gem "carrierwave", "0.5.8"
 gem "rmagick", "2.13.1"
-gem "will_paginate", "3.0.3"
+gem "kaminari", "~> 0.13.0"
 gem "attribute_normalizer", "~> 1.0.0"
 gem "inherited_resources", "~> 1.3.1"
 gem "pg", "0.13.2"

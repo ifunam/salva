@@ -14,7 +14,7 @@
 
 = render :partial => 'collection_footer'
 
-= will_paginate(@genericworks)
+= paginate(@genericworks)
 
 #submit_buttons
   = link_to t(:new), new_popular_science_work_path

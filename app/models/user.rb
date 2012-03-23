@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   extend LDAP::Helpers::UserModel
   extend Aleph::Helpers::UserModel
 
@@ -104,7 +111,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_cite
 
   def self.paginated_search(options={})
-    search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
+    search(options[:search]).page(options[:page] || 1).per(options[:per_page] || 10)
   end
 
   def self.login_like(login)
