@@ -64,6 +64,10 @@ gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
 
+# Rails Admin
+gem "fastercsv", "~> 1.5.4", :platforms => :ruby_18
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
   gem "capistrano", "~> 2.11.2"
