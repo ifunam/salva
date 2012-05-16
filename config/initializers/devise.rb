@@ -136,10 +136,6 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
-  # If true, uses the password salt as remember token. This should be turned
-  # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
-
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
   # :html, should redirect to the sign in page when the user does not have
@@ -148,9 +144,6 @@ Devise.setup do |config|
   # should add them to the navigational formats lists. Default is [:html]
   # config.navigational_formats = [:html, :iphone]
   config.navigational_formats = [:"*/*", "*/*", :html]
-
-  # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,
