@@ -5,7 +5,7 @@
 rvm_gemset_create_on_use_flag=1
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
-environment_id="ruby-1.9.3-p0@salva"
+environment_id="ruby-1.9.3-p125@salva"
 
 #
 # Uncomment following line if you want options to be set only for given project.
