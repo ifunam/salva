@@ -72,6 +72,7 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
   gem "capistrano", "~> 2.12.0"
+  gem "rvm-capistrano", "~> 1.2.1"
   gem "execjs", "~> 1.3.2"
   gem "therubyracer", "~> 0.10.1"
   gem "exception_notification", "~> 2.6.1"
