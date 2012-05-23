@@ -102,9 +102,12 @@ class User < ActiveRecord::Base
            :conditions => 'articles.articlestatus_id = 3',
            :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
 
- has_many :inprogress_articles, :through => :user_articles, :source => :article,
-          :conditions => 'articles.articlestatus_id != 3',
-          :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+  has_many :inprogress_articles, :through => :user_articles, :source => :article,
+           :conditions => 'articles.articlestatus_id != 3',
+           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+
+  has_many :user_theses
+  has_many :theses, :through => :user_theses
 
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
