@@ -1851,6 +1851,47 @@ es:
         title: 'Rechazar informe anual'
 
   admin:
+    actions:
+      dashboard:
+        title: Menú principal de administración
+        menu: Menú principal de administración
+        breadcrumb: Navegación
+      index:
+        breadcrumb: Lista de registros
+        menu: Lista de registros
+      export:
+        menu: Exportar
+      history_index:
+        menu:
+      show:
+        title: Mostar
+        breadcrumb: Mostrar
+        menu: Mostrar
+      history_show:
+        menu: Mostrar histórico de cambios
+      history_index:
+        menu: Histórico de cambios
+        breadcrumb: Historia de cambios
+        title: Historia de cambios
+      show_in_app:
+        menu: Mostrar registro en la aplicación
+      edit:
+        title: Editar
+        breadcrumb: Editar
+        menu: Editar
+        link: Editar este registro
+      delete:
+        menu: Borrar
+      new:
+        link: Agregar un nuevo registro
+        menu: Agregar nuevo registro
+    home:
+      name: Inicio de la aplicación
+    form:
+      basic_info: Información básica
+      required: Requerido
+      optional: Opcional
+
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'

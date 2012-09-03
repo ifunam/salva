@@ -137,9 +137,12 @@ class User < ActiveRecord::Base
      has_person? ? person.fullname : login
   end
 
+
   def fullname_or_email
      has_person? ? person.fullname : email
   end
+  alias :name :fullname_or_email
+
 
   def firstname_and_lastname
      has_person? ? person.firstname_and_lastname : email
