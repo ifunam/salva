@@ -47,7 +47,6 @@ gem "css_image_embedder", "~> 0.2.0"
 gem "sass-rails", "~> 3.2.5"
 gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
-gem "move_associations", "0.0.5"
 gem "by_star", "~> 2.0.0.beta1"
 gem "tzinfo", "0.3.33"
 
@@ -69,7 +68,7 @@ gem "rtf_rails", "0.0.1"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :git => 'git://github.com/juarlex/rails_admin.git', :branch => 'move_associated_records'
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
@@ -99,6 +98,9 @@ group :development do
   gem "unicorn", "4.3.1"
   gem "jquery-rails", "2.1.1"
   gem "capistrano", "~> 2.13.0"
+  gem "debugger", "~> 1.2.0"
+  gem "pry-rails", "~> 0.2.1"
+  gem "debugger-pry", "~> 0.1.1"
 end
 
 group :test do
