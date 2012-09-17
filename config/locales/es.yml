@@ -1853,14 +1853,17 @@ es:
   admin:
     actions:
       dashboard:
-        title: Menú principal de administración
-        menu: Menú principal de administración
+        title: Administración de catálogos
+        menu: Administración de catálogos
         breadcrumb: Navegación
       index:
         breadcrumb: Lista de registros
         menu: Lista de registros
+        title: Lista de registros
       export:
         menu: Exportar
+        link: Exportar
+        breadcrumb: Exportar
       history_index:
         menu:
       show:
@@ -1885,8 +1888,10 @@ es:
       new:
         link: Agregar un nuevo registro
         menu: Agregar nuevo registro
+        breadcrumb: Agregar nuevo registro
+        title: Nuevo registro
     home:
-      name: Inicio de la aplicación
+      name: Inicio
     form:
       basic_info: Información básica
       required: Requerido
@@ -2041,6 +2046,7 @@ es:
     userstatuses: 'Estados de usuario'
     users_logs: 'Bitacoras de usuario'
     usersstatuses_comments: 'Comentarios de estados de usuario'
+    reports: Reportes
 
     user:
       form:
@@ -2194,6 +2200,7 @@ es:
   total_of_versions: Total de versiones
   url: Liga
   open_url: Abrir liga
+
   reporter:
     profile: 'Perfil'
     jobpositions: 'Categorías'

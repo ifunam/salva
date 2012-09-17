@@ -120,7 +120,8 @@ class User < ActiveRecord::Base
   def self.login_like(login)
     @users = where(:login.matches => "%#{login.downcase}%")
     @users += ldap_users_like(login) if ldap_enabled?
-    @users
+    t
+    users
   end
 
   def author_name
@@ -220,5 +221,17 @@ class User < ActiveRecord::Base
       errors.add(:current_password, :invalid)
       false
     end
+  end
+
+  def group_name
+    user_group.group.name if has_group?
+  end
+
+  def has_group?
+    !user_group.nil?
+  end
+
+  def admin?
+    group_name == 'admin'
   end
 end

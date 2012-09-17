@@ -1,33 +1,20 @@
 !!!
 %html
   %head
-    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
-
-    = stylesheet_link_tag 'screen', :media => 'screen, projection'
-    = stylesheet_link_tag 'print', :media => 'print'
-    /[if lt IE 8]
-      = stylesheet_link_tag 'ie', :media => 'screen, projection'
-
-
-    = stylesheet_link_tag 'jquery.ui/themes/base/jquery.ui.all'
-    = stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.1.custom'
-    = stylesheet_link_tag 'jquery.validate.password'
-    = stylesheet_link_tag 'application', :media => 'screen, projection'
-
-    = javascript_include_tag :jquery
-    = javascript_include_tag 'jquery.validate/jquery.validate'
-    = javascript_include_tag 'jquery.validate/localization/messages_es'
-    = javascript_include_tag 'jquery.validate.password'
-    = javascript_include_tag 'jquery.ui/jquery.ui.core'
-    = javascript_include_tag 'jquery.ui/jquery.ui.widget'
-    = javascript_include_tag 'jquery.ui/jquery.ui.button'
-    = javascript_include_tag 'download.jQuery'
-    = javascript_include_tag 'admin/user'
-
+    %title= 'Plataforma de Información Curricular - SALVA'
+    = csrf_meta_tag
+    = render :partial => 'layouts/blueprint_css'
+    = stylesheet_link_tag 'user_resources'
+    = javascript_include_tag 'user_resources'
 
   %body
     = render :partial => 'layouts/header'
-    %div{:class =>'container'}
-      = yield :layout
-    %div{:id => 'dialog'}
+    .container
+      = render :partial => 'layouts/toplinks'
+      #top-navigation= render_navigation(:context => :admin)
+      #content
+        #right-content
+          = render :partial => 'layouts/flash_messages'
+          = yield
+    #dialog
     = render :partial => 'layouts/footer'
