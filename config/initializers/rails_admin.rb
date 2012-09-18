@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
                             Degree, DocumentType, Documenttype, Editionstatus, Genericworkgroup, Genericworkstatus, Genericworktype,
                             Group, Groupmodality, Identification, Idtype, Indivadviceprogram, Indivadvicetarget, Institution,
                             Institutiontitle, Institutiontype, Jobpositioncategory, Jobpositionlevel, Jobpositiontype, Journal,
-                            Language, Language, Maritalstatus, Mediatype, Migratorystatus, Modality, Newspaper, Period,
+                            Language, Languagelevel, Maritalstatus, Mediatype, Migratorystatus, Modality, Newspaper, Period,
                             Prizetype, Projectstatus, Projecttype, Publicationcategory, Publisher, RefereedCriterium,
                             Researcharea, Researchgroup, Researchline, Role, Roleinbook, Roleinchapter, Roleinconference,
                             Roleinconferencetalk, Roleincourse, Roleinjobposition, Roleinjournal, Roleinjury, Roleinproject,

@@ -139,6 +139,9 @@ es:
       language:
         one: Idioma
         other: Idiomas
+      languagelevel:
+        one: Nivel del idioma
+        other: Nivel de idiomas
       maritalstatus:
         one: Estado civil
         other: Estados civiles
