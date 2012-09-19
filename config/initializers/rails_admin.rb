@@ -37,7 +37,7 @@ RailsAdmin.config do |config|
   config.included_models = [Academicprogram, Academicprogramtype, Acadvisittype, Activitygroup, Addresstype, Adscription,
                             Articlestatus, Bookchaptertype, Booktype, Career, Country, Citizenmodality, City, Conferencescope,
                             Conferencetype, Contracttype, Courseduration, Coursegroup, Coursegrouptype, Credential, Credittype,
-                            Degree, DocumentType, Documenttype, Editionstatus, Genericworkgroup, Genericworkstatus, Genericworktype,
+                            Degree, DocumentType, Editionstatus, Genericworkgroup, Genericworkstatus, Genericworktype,
                             Group, Groupmodality, Identification, Idtype, Indivadviceprogram, Indivadvicetarget, Institution,
                             Institutiontitle, Institutiontype, Jobpositioncategory, Jobpositionlevel, Jobpositiontype, Journal,
                             Language, Languagelevel, Maritalstatus, Mediatype, Migratorystatus, Modality, Newspaper, Period,
