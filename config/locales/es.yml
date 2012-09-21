@@ -2119,6 +2119,7 @@ es:
   authorization_date: 'Fecha y hora de autorización'
   status: 'Estado'
   jobposition_type: 'Tipo de contrato'
+  jobpositioncategory: 'Categoría'
   financing_sources: 'Fuentes de financiamiento'
   projecttype: 'Tipo de proyecto'
   projectstatus: 'Estado del proyecto'

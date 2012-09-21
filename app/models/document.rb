@@ -12,10 +12,12 @@ class Document < ActiveRecord::Base
   scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
 
   scope :fullname_like, lambda { |fullname| where(" documents.user_id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :login_like, lambda { |login| joins(:user).where(:login.matches => "%#{login.downcase}%") }
   scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
   scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
 
-  search_methods :fullname_like, :adscription_id_eq
+  search_methods :fullname_like, :login_like, :adscription_id_eq, :jobpositioncategory_id_eq
 
   before_create :file_path
 
