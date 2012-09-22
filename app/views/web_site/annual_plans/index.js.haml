@@ -3,6 +3,6 @@
 
 #collection_footer
 
-= paginate @documents, :id => 'ajaxed_paginator'
+= paginate @documents, :remote => true
 
 #pagination_info= page_entries_info @documents
