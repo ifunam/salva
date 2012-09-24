@@ -19,9 +19,11 @@ $(document).ready ->
         dom_ids.push @getAttribute("data-parent-id")
     $.destroy_selected_records ids, dom_ids
 
-  $("#ajaxed_paginator a").live "click", ->
-    $.remote_collection_list @href
-    false
+  $(".page a").live "click", (e) ->
+    if @getAttribute("data-remote") == 'true'
+      e.preventDefault()
+      $.remote_collection_list @href
+      false
 
   $("#enable_search").live "click", ->
     $.ajax(
