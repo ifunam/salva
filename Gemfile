@@ -68,8 +68,9 @@ gem "rtf_rails", "0.0.1"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
-gem 'rails_admin', :git => 'git://github.com/juarlex/rails_admin.git', :branch => 'move_associated_records'
-gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
+gem "rails_admin", :git => "git://github.com/juarlex/rails_admin.git", :branch => "move_associated_records"
+gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
+gem "activeadmin-cancan"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
