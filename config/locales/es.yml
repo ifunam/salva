@@ -2119,6 +2119,8 @@ es:
         title: 'Rechazar informe anual'
 
   admin:
+    system_admin: 'Administración del sistema'
+    resque: 'Administración de colas asíncronas'
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'

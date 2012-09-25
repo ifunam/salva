@@ -1,4 +1,4 @@
-class Admin::DashboardsController < ApplicationController
+class Administrator::DashboardsController < ApplicationController
 
   respond_to :html
   layout 'admin'
