@@ -5,8 +5,8 @@ gem "rails", "~> 3.2.8"
 gem "haml", "3.1.7"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
-gem "compass", "~> 0.12.2"
 gem "barista", "~> 1.3.0"
+gem "blueprint-rails", "~> 0.1.2"
 
 # Authorization
 gem "cancan", "1.6.7"

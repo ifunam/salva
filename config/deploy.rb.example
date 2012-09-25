@@ -69,10 +69,6 @@ end
 
 namespace :assets do
 
-  task :compile_sass, :roles => :app do
-    run "cd #{current_path}; bundle exec compass compile"
-  end
-
   task :compile_coffescript, :roles => :app do
     run "cd #{current_path}; bundle exec rake barista:brew"
   end
