@@ -22,7 +22,11 @@ class Seminary < ActiveRecord::Base
   scope :as_not_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')
   scope :as_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')
   scope :user_id_eq, lambda { |user_id| joins(:user_seminaries).where(:user_seminaries => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id|  where("seminaries.id IN (#{UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id !=  ?", user_id]).to_sql}) AND seminaries.id  NOT IN (#{UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id =  ?", user_id]).to_sql})") }
+  scope :user_id_not_eq, lambda { |user_id| 
+    seminary_without_user_sql = UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id !=  ?", user_id]).to_sql
+    seminary_with_user_sql = UserSeminary.select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id =  ?", user_id]).to_sql
+    where "seminaries.id IN (#{seminary_without_user_sql}) AND seminaries.id NOT IN (#{seminary_with_user_sql})"
+  }
   search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
