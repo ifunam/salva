@@ -21,9 +21,10 @@ class Newspaperarticle < ActiveRecord::Base
 
   scope :user_id_eq, lambda { |user_id| joins(:user_newspaperarticles).where(:user_newspaperarticles => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| 
-    article_without_user_sql = UserNewspaperarticle.select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where(["user_newspaperarticles.user_id !=  ?", user_id]).to_sql
-    article_with_user_sql = UserNewspaperarticle.select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where(["user_newspaperarticles.user_id =  ?", user_id]).to_sql
-    where "newspaperarticles.id IN (#{article_without_user_sql}) AND newspaperarticles.id NOT IN (#{article_with_user_sql})"
+    article_without_user_sql = UserNewspaperarticle.user_id_not_eq(user_id).to_sql
+    article_with_user_sql = UserNewspaperarticle.user_id_eq(user_id).to_sql
+    sql = "newspaperarticles.id IN (#{article_without_user_sql}) AND newspaperarticles.id NOT IN (#{article_with_user_sql})"
+    where sql
   }
 
   scope :year_eq, lambda {|year| by_year(year, :field => :newsdate) }

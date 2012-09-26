@@ -30,7 +30,8 @@ class Thesis < ActiveRecord::Base
   scope :user_id_not_eq, lambda { |user_id|
     theses_without_user_sql = UserThesis.user_id_not_eq(user_id).to_sql
     theses_with_user_sql = UserThesis.user_id_eq(user_id).to_sql
-    where "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_without_user_sql})"
+    sql = "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_without_user_sql})"
+    where sql
   }
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }

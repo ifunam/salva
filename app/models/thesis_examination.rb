@@ -17,7 +17,8 @@ class ThesisExamination < Thesis
   scope :user_id_not_eq, lambda { |user_id| 
     theses_without_user_sql = ThesisJuror.user_id_not_eq(user_id).to_sql
     theses_with_user_sql = ThesisJuror.user_id_eq(user_id).to_sql
-    where "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_with_user_sql})"
+    sql = "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_with_user_sql})"
+    where sql
   }
 
   scope :roleinjury_id_eq, lambda { |roleinjury_id| joins(:thesis_jurors).where(:thesis_jurors => { :roleinjury_id => roleinjury_id }) }

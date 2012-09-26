@@ -28,7 +28,8 @@ class Techproduct < ActiveRecord::Base
   scope :user_id_not_eq, lambda { |user_id|
     product_without_user_sql = UserTechproduct.user_id_not_eq(user_id).to_sql
     product_with_user_sql = UserTechproduct.user_id_eq(user_id).to_sql
-    all_by_year_desc.where("techproducts.id IN (#{product_without_user_sql}) AND techproducts.id NOT IN (#{product_with_user_sql})")
+    sql = "techproducts.id IN (#{product_without_user_sql}) AND techproducts.id NOT IN (#{product_with_user_sql})"
+    all_by_year_desc.where sql
   }
 
   scope :year_eq, lambda { |year| joins(:user_techproducts).where(:user_techproducts => {:year => year}) }

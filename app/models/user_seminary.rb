@@ -12,6 +12,8 @@ class UserSeminary < ActiveRecord::Base
   validates_associated :seminary
   validates_associated :roleinseminary
 
+  scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id !=  ?", user_id]) }
+  scope :user_id_eq, lambda { |user_id| select('DISTINCT(seminary_id) as seminary_id').where :user_id => user_id }
 
   def author_with_role
     [user.author_name, "(#{roleinseminary.name})"].join(' ')
