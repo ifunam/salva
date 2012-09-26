@@ -44,12 +44,25 @@ class User < ActiveRecord::Base
   scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
 
   # :userstatus_id_equals => find_all_by_userstatus_id
-  scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :fullname_like, lambda { |fullname| 
+    sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
+    where sql
+  }
+
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
-  scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
-  scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
+
+  scope :jobposition_start_date_year_equals, lambda { |year|
+    sql = " users.id IN (#{Jobposition.user_id_by_start_date_year(year).to_sql}) "
+    where sql
+  }
+
+  scope :jobposition_end_date_year_equals, lambda { |year|
+    sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
+    where sql
+  }
+
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
@@ -118,9 +131,9 @@ class User < ActiveRecord::Base
   end
 
   def self.login_like(login)
-    @users = where(:login.matches => "%#{login.downcase}%")
+    login_sql = "%#{login.downcase}%"
+    @users = where("users.login LIKE ?", login_sql)
     @users += ldap_users_like(login) if ldap_enabled?
-    t
     users
   end
 

@@ -24,6 +24,8 @@ class Person < ActiveRecord::Base
 
   default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
   scope_by_difference :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  scope :user_id_by_fullname_like, lambda { |fullname| find_by_fullname(fullname).select('user_id') }
+
   search_methods :find_by_fullname
 
   def fullname
