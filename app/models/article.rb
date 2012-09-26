@@ -29,8 +29,19 @@ class Article < ActiveRecord::Base
   scope :published, where(:articlestatus_id => 3)
   scope :unpublished, where('articles.articlestatus_id != 3')
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql}) AND articles.id  NOT IN (#{UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id =  ?", user_id]).to_sql})") }
-  scope :adscription_id_eq, lambda { |adscription_id|  where("articles.id IN (#{UserArticle.select('DISTINCT(article_id) as article_id').joins(:user => :user_adscription).where(["user_articles.user_id = user_adscriptions.user_id  AND user_adscriptions.adscription_id != ?", adscription_id]).to_sql})") }
+
+  scope :user_id_not_eq, lambda { |user_id|
+    articles_without_user_sql = UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql
+    articles_with_user_sql = UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id =  ?", user_id]).to_sql
+    sql = "articles.id IN (#{articles_without_user_sql}) AND articles.id NOT IN (#{articles_with_user_sql})"
+    where(sql)
+  }
+
+  scope :adscription_id_eq, lambda { |adscription_id| 
+    article_in_adscription_sql = UserArticle.select('DISTINCT(article_id) as article_id').joins(:user => :user_adscription).where(["user_articles.user_id = user_adscriptions.user_id  AND user_adscriptions.adscription_id != ?", adscription_id]).to_sql
+    sql = "articles.id IN (#{article_in_adscription_sql})"
+    where(sql)
+  }
   scope :recent, :limit => 50
 
   search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
