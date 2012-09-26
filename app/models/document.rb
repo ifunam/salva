@@ -11,7 +11,11 @@ class Document < ActiveRecord::Base
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
   scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
 
-  scope :fullname_like, lambda { |fullname| where(" documents.user_id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :fullname_like, lambda { |fullname|
+    person_fullname_like_sql = Person.find_by_fullname(fullname).select('user_id').to_sql
+    sql = "documents.user_id IN (#{person_fullname_like_sql})"
+    where(sql)
+  }
   scope :login_like, lambda { |login| joins(:user).where(:user => { :login.matches => "%#{login.downcase}%" }) }
   scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
