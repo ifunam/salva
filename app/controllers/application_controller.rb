@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_user)
   end
 
+  def authorize_admin_action!
+    unless current_user.admin?
+      authorize! :unauthorized, :administrator, :message => I18n.t(:unauthorized)
+    end
+  end
+
   respond_to :html
 
   protect_from_forgery
