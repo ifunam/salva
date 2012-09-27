@@ -151,7 +151,7 @@ es:
       migratorystatus:
         one: Status migratorio
         other: Status migratorio
-      modalties:
+      modalities:
         one: Modalidad de curso
         other: Modalidades de curso
       newspaper:
@@ -176,8 +176,8 @@ es:
         one: Editorial
         other: Editoriales
       refereed_criterium:
-        one: Criteroo de arbitraje
-        other: Cirterios de arbitraje
+        one: Critero de arbitraje
+        other: Criterios de arbitraje
       researcharea:
         one: Área de investigación
         other: Áreas de investigación
@@ -2425,6 +2425,7 @@ es:
   total_of_versions: Total de versiones
   url: Liga
   open_url: Abrir liga
+  unauthorized: No estas autorizado para realizar esta acción
 
   reporter:
     profile: 'Perfil'
