@@ -4,6 +4,7 @@ class Administrator::DashboardsController < ApplicationController
   layout 'admin'
 
   def show
+    authorize_admin_action!
     render :action => 'show'
   end
 end
