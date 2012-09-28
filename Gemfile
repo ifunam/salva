@@ -20,7 +20,7 @@ gem "net-ldap", "0.2.2"
 
 # Searching and tagging
 gem "tsearch", :require => "texticle"
-gem "scope_by_fuzzy"
+gem "scope_by_fuzzy", :git => "git@github.com:monsterlabs/scope_by_fuzzy.git"
 
 # Control version
 gem "simple-navigation", "3.8.0"
@@ -81,7 +81,6 @@ group :production do
   gem "exception_notification", "~> 2.6.1"
   gem "octopi", "~> 0.4.5"
   gem "dalli", "~> 2.1.0"
-  gem "newrelic_rpm", "~> 3.4.1"
 end
 
 group :assets do
