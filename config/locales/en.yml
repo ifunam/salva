@@ -7,3 +7,7 @@ en:
   date:
     formats:
       month_and_year: "%B %Y"
+
+  homepage: Personal Web Page
+  calendar: Calendar
+  blog: Blog

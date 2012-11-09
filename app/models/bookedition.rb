@@ -40,10 +40,12 @@ class Bookedition < ActiveRecord::Base
   }
 
   scope :user_id_not_eq, lambda { |user_id|
-      where("bookeditions.id IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookeditions.id  NOT IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql})")
+      bookedition_without_user_sql = BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql
+      bookedition_with_user_sql = BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql
+      sql = "bookeditions.id IN (#{bookedition_without_user_sql}) AND bookeditions.id NOT IN (#{bookedition_without_user_sql})"
+      where(sql)
   }
+
   search_methods :user_id_eq, :user_id_not_eq
 
   def as_text

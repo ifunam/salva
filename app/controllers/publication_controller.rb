@@ -134,7 +134,7 @@ class PublicationController < InheritedResources::Base
 
   def authorize_action!
     unless resource.registered_by_id == current_user.id
-      authorize! :delete, resource.class.name, :message => "Unable to delete this record."
+      authorize! :unauthorized, resource.class.name, :message => "Unable to delete this record."
     end
   end
 

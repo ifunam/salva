@@ -12,6 +12,9 @@ class UserThesis < ActiveRecord::Base
 
   scope :finished, joins(:thesis).where(:thesis => { :thesisstatus_id => 3}).order("theses.startyear DESC, startmonth DESC, theses.endyear DESC, endmonth DESC,  theses.authors ASC, theses.title ASC")
   scope :between_years, lambda { |start_year, end_year| joins(:thesis).where("theses.startyear >=? OR theses.endyear <= ?", start_year, end_year)}
+  scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]) }
+  scope :user_id_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where :user_id => user_id }
+
   def as_text
     [user.fullname_or_email, "(#{roleinthesis.name})"].join(' ')
   end

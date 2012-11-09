@@ -21,9 +21,10 @@ class Inproceeding < ActiveRecord::Base
 
   scope :user_id_eq, lambda { |user_id| joins(:user_inproceedings).where(:user_inproceedings => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|
-      where("inproceedings.id IN (#{UserInproceeding.select('DISTINCT(inproceeding_id) as inproceeding_id').
-      where(["user_inproceedings.user_id != ?", user_id]).to_sql}) AND inproceedings.id  NOT IN (#{UserInproceeding.select('DISTINCT(inproceeding_id) as inproceeding_id').
-      where(["user_inproceedings.user_id = ?", user_id]).to_sql})")
+      inproceeding_without_user_sql = UserInproceeding.select('DISTINCT(inproceeding_id) as inproceeding_id').where(["user_inproceedings.user_id != ?", user_id]).to_sql
+      inproceeding_with_user_sql = UserInproceeding.select('DISTINCT(inproceeding_id) as inproceeding_id').where(["user_inproceedings.user_id = ?", user_id]).to_sql
+      sql = "inproceedings.id IN (#{inproceeding_without_user_sql}) AND inproceedings.id NOT IN (#{inproceeding_with_user_sql})"
+      where(sql)
   }
 
   scope :since, lambda { |year| includes(:proceeding).where(["proceedings.year >= ?", year])}

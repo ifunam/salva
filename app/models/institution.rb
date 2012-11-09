@@ -6,7 +6,7 @@ class Institution < ActiveRecord::Base
   validates_numericality_of :state_id, :city_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
   belongs_to :institutiontype
-  belongs_to :institutiontitle
+  belongs_to :institutiontitle, :inverse_of => :institutions
   belongs_to :institution
   belongs_to :country
   belongs_to :city

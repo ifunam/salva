@@ -26,9 +26,17 @@ class Thesis < ActiveRecord::Base
 
   default_scope :order => 'theses.endyear DESC, theses.startmonth DESC, theses.startyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
-  scope :user_id_not_eq, lambda { |user_id|  where("theses.id IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]).to_sql}) AND theses.id  NOT IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id =  ?", user_id]).to_sql})") }
+
+  scope :user_id_not_eq, lambda { |user_id|
+    theses_without_user_sql = UserThesis.user_id_not_eq(user_id).to_sql
+    theses_with_user_sql = UserThesis.user_id_eq(user_id).to_sql
+    sql = "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_without_user_sql})"
+    where sql
+  }
+
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
   scope :finished, where(:thesisstatus_id => 3)
+  scope :unfinished, where("thesisstatus_id != 3")
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
