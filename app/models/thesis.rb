@@ -36,6 +36,7 @@ class Thesis < ActiveRecord::Base
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
   scope :finished, where(:thesisstatus_id => 3)
+  scope :unfinished, where("thesisstatus_id != 3")
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
