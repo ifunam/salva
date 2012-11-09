@@ -1,9 +1,13 @@
+# encoding: utf-8
 class Thesis < ActiveRecord::Base
-  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :startyear,
-                  :startmonth, :endyear, :endmonth, :career_attributes
-  validates_presence_of :thesisstatus_id, :thesismodality_id, :startyear, :authors, :title
+  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id,
+                  :career_attributes, :start_date, :end_date,
+                  # TODO: Remove this attributes for next release
+                  :startyear, :startmonth, :endyear, :endmonth
+
+  validates_presence_of :thesisstatus_id, :thesismodality_id, :authors, :title, :end_date
   validates_numericality_of :id,:institutioncareer_id, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_numericality_of :thesisstatus_id, :thesismodality_id, :startyear,  :greater_than => 0, :only_integer => true
+  validates_numericality_of :thesisstatus_id, :thesismodality_id, :greater_than => 0, :only_integer => true
 
   belongs_to :career
   accepts_nested_attributes_for :career
@@ -24,7 +28,7 @@ class Thesis < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'theses.endyear DESC, theses.startmonth DESC, theses.startyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC'
+  default_scope :order => 'theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
 
   scope :user_id_not_eq, lambda { |user_id|
@@ -41,14 +45,10 @@ class Thesis < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
   def as_text
-    [users_and_roles, title, career.as_text, date, "#{authors} (estudiante)"].compact.join(', ')
-  end
-
-  def users_and_roles
-    user_theses.collect {|record| record.as_text }.join(', ')
+    [users_and_roles, title, career.as_text, date, thesismodality.as_text, "#{authors} (estudiante)"].compact.join(', ')
   end
 
   def date
-    thesisstatus_id == 3 ? end_date : [start_date, end_date].join(', ')
+    thesisstatus_id == 3 ? "Fecha de presentación de examen: #{end_date}" : "Fecha estimada de presentación y obtención de grado: #{end_date}"
   end
 end
