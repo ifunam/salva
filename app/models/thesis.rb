@@ -1,9 +1,8 @@
 # encoding: utf-8
 class Thesis < ActiveRecord::Base
-  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id,
-                  :career_attributes, :start_date, :end_date,
-                  # TODO: Remove this attributes for next release
-                  :startyear, :startmonth, :endyear, :endmonth
+  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date,
+    # TODO: Remove this attributes for next release
+    :startyear, :startmonth, :endyear, :endmonth
 
   validates_presence_of :thesisstatus_id, :thesismodality_id, :authors, :title, :end_date
   validates_numericality_of :id,:institutioncareer_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -15,8 +14,8 @@ class Thesis < ActiveRecord::Base
   belongs_to :thesisstatus
   belongs_to :thesismodality
   belongs_to :institutioncareer # FIX IT: Remove this relationship until next release.
-                                # We need institutioncareers table to support
-                                # migrations from previous versions of salva databases.
+  # We need institutioncareers table to support
+  # migrations from previous versions of salva databases.
 
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
@@ -48,7 +47,12 @@ class Thesis < ActiveRecord::Base
     [users_and_roles, title, career.as_text, date, thesismodality.as_text, "#{authors} (estudiante)"].compact.join(', ')
   end
 
+  def users_and_roles
+    user_theses.collect {|record| record.as_text }.join(', ')
+  end
+
   def date
-    thesisstatus_id == 3 ? "Fecha de presentación de examen: #{end_date}" : "Fecha estimada de presentación y obtención de grado: #{end_date}"
+    d = I18n.localize(Date.parse(end_date_before_type_cast))
+    thesisstatus_id == 3 ? "Fecha de presentación de examen: #{d}" : "Fecha estimada de presentación y obtención de grado: #{d}"
   end
 end

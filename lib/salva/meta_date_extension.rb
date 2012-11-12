@@ -16,7 +16,7 @@ module MetaDateExtension
         subclass.class_eval do
           simple_date_scopes
         end
-      elsif (subclass.column_names & ['startyear', 'startmonth', 'endyear', 'endmonth']).size == 4
+      elsif (subclass.column_names & ['startyear', 'startmonth', 'endyear', 'endmonth']).size == 4 and !subclass.column_names.include?('start_date') and !subclass.column_names.include?('end_date')
         subclass.send :include, MetaDateExtension::StartEndDateMethods
         subclass.class_eval do
           start_end_date_scopes
@@ -87,12 +87,12 @@ module MetaDateExtension
   module StartEndDateMethods
     include MetaDateExtension::DateMethods
 
-    def start_date
-      I18n.t(:start_date) + ': ' + localize_date(startyear, startmonth).to_s  if !startyear.nil? or !startmonth.nil?
+    def start_date(scope=nil)
+      I18n.t(:start_date, :scope => scope) + ': ' + localize_date(startyear, startmonth).to_s  if !startyear.nil? or !startmonth.nil?
     end
 
-    def end_date
-      I18n.t(:end_date) + ': ' + localize_date(endyear, endmonth).to_s if !endyear.nil? or !endmonth.nil?
+    def end_date(scope=nil)
+      I18n.t(:end_date, :scope => scope) + ': ' + localize_date(endyear, endmonth).to_s if !endyear.nil? or !endmonth.nil?
     end
   end
 
@@ -105,13 +105,13 @@ module MetaDateExtension
   end
 
   module DateRangeMethods
-    def start_date
+    def localized_start_date
       if attributes['start_date'].is_a? Date
         I18n.t(:start_date) + ': ' +  I18n.localize(attributes['start_date'], :format => :long_without_day)
       end
     end
 
-    def end_date
+    def localized_end_date
       if attributes['end_date'].is_a? Date
         I18n.t(:end_date) + ': ' +  I18n.localize(attributes['end_date'], :format => :long_without_day)
       end

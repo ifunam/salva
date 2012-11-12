@@ -60,3 +60,13 @@ $(document).ready ->
   $(".delete_period").live "click", (e) ->
     e.preventDefault()
     $(this).parent().remove()
+
+  $(".radio-set-thesisstatus").live "change", (e) ->
+    if this.name == "thesis[thesisstatus_id]" and this.checked
+      if this.value == "3"
+        new_label = "<abbr title=\"required\">*</abbr>Fecha de presentación de examen"
+        $("label[for=thesis_end_date]").html(new_label)
+      else
+        new_label = "<abbr title=\"required\">*</abbr>Fecha estimada de presentación de examen"
+        $("label[for=thesis_end_date]").html(new_label)
+

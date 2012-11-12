@@ -65,8 +65,8 @@ module Reporter
       create_section :teaching do |s|
         s.collection :regular_courses, :class_name => 'Regularcourse', :date_style => :date_range
         s.collection :course_instructors, :class_name => 'Course', :scope => :instructors
-        s.collection :theses
-        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year
+        s.collection :theses, :date_style => :date_range
+        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year, :date_style => :date_range
         s.collection :tutorial_committees, :date_style => :only_year
         s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching

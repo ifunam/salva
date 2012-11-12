@@ -558,6 +558,9 @@ es:
         startmonth: Mes de inicio
         endyear: Año de conslusión
         endmonth: Mes de conclusión
+        start_date: Fecha de inicio
+        end_date: Fecha de presentación de examen
+
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción

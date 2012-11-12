@@ -6,3 +6,4 @@
 //= require place
 //= require document
 //= require document_publication
+//= require thesis

@@ -6,7 +6,9 @@ class Degree < ActiveRecord::Base
   has_many :indivadvices
   has_many :tutorial_committees
   has_many :thesismodalities
-  default_scope :order => 'name ASC'
+  has_many :thesis
 
+  default_scope :order => 'name ASC'
   scope :higher, where('id > 1')
+  scope :universitary, where('id = 3 OR id = 5 OR id = 6')
 end
