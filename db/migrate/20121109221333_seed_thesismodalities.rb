@@ -14,7 +14,7 @@ class SeedThesismodalities < ActiveRecord::Migration
     end
 
     @degree = Degree.find_by_name('Doctorado')
-    ['Tesis', 'Asesoría a estudiante con que obtuvo la candidatura a grado de doctor',].each do |name|
+    ['Obtención de grado', 'Candidatura a grado de doctor', 'Otra modalidad'].each do |name|
       Thesismodality.create(:name => name, :degree_id => @degree.id)
     end
 

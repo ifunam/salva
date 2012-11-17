@@ -42,8 +42,10 @@ module MetaDateExtension
     end
 
     def simple_date_scopes
-      scope :since, lambda { |year, month| where{{:year.gteq => year} & {:month.gteq => month}} } unless respond_to? :since
-      scope :until, lambda { |year, month| where{{:year.lteq => year} & {:month.lteq => month}} } unless respond_to? :until
+      unless defined? @@ignore_meta_date
+        scope :since, lambda { |year, month| where{{:year.gteq => year} & {:month.gteq => month}} } unless respond_to? :since
+        scope :until, lambda { |year, month| where{{:year.lteq => year} & {:month.lteq => month}} } unless respond_to? :until
+      end
       date_search_methods
     end
 
