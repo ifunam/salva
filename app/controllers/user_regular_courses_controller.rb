@@ -10,7 +10,12 @@ class UserRegularCoursesController < ApplicationController
   end
 
   def create
-    respond_with(@user_regular_course = UserRegularcourse.create(params[:user_regular_course].merge(:registered_by_id => current_user.id)))
+    @user_regular_course = UserRegularcourse.create(params[:user_regular_course].merge(:registered_by_id => current_user.id))
+    if @user_regular_course
+      render :action => 'create'
+    else
+      render :nothing => true
+    end
   end
 
   def destroy
