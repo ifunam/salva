@@ -1,0 +1,2 @@
+class AnnualReport < AnnualPlan
+end

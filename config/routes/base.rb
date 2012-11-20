@@ -37,9 +37,9 @@ Salva::Application.routes.draw do
     get :list_by_degree, :on => :collection
   end
 
-  resources :user_annual_reports, :only => [:index]
-  match '/user_annual_reports/:year' => 'user_annual_reports#show', :via => :get, :constraints => { :year => /\d{4}/ }, :as => :user_annual_report
-  match '/user_annual_reports/:year/deliver' => 'user_annual_reports#deliver', :via => :get, :constraints => { :year => /\d{4}/ }, :as => :deliver_user_annual_report
+  resources :user_annual_reports, :only => [:index, :new, :create, :edit, :update, :show] do
+    get :deliver, :on => :member
+  end
 
   resources :user_annual_plans do
     get :deliver, :on => :member

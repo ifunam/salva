@@ -672,7 +672,8 @@ es:
         roleinthesis_id: Rol
       annual_plan:
         body: Descripción
-
+      annual_report:
+        body: Breve descripción de los logros más importantes de su trabajo
 
   additional_info: Información adicional
   career: Carrera
@@ -1863,6 +1864,10 @@ es:
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
+    new:
+      title: Nuevo informe anual
+    edit:
+      title: Modificar plan anual
 
   user_annual_plans:
     index:
@@ -2312,6 +2317,7 @@ es:
   download_pdf: 'Descargar en PDF'
   download_rtf: 'Descargar en RTF'
   send_annual_report: 'Enviar informe anual'
+  send_annual_plan: 'Enviar plan de trabajo'
   enable_search: 'Buscar'
   disable_search: 'Ocultar búsqueda'
   id: 'Id'
@@ -2403,8 +2409,9 @@ es:
   conference: 'Información del evento académico'
   talktype: 'Tipo de trabajo'
   annual_report_preview: 'Vista previa del informe anual'
-  new_annual_plan: 'Nuevo plan de trabajo'
+  new_annual_plan: 'Enviar nuevo plan de trabajo'
   edit_annual_plan: 'Modificar plan de trabajo'
+  new_annual_report: 'Enviar informe anual de actividades'
   gender: Genéro
   birthday: Fecha de nacimiento
   email: Correo electrónico
