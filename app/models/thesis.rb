@@ -52,7 +52,8 @@ class Thesis < ActiveRecord::Base
   end
 
   def date
-    d = I18n.localize(Date.parse(end_date_before_type_cast))
+    date = (end_date.is_a?Date) ? end_date : Date.today
+    d = I18n.localize(date)
     thesisstatus_id == 3 ? "Fecha de presentación de examen: #{d}" : "Fecha estimada de presentación y obtención de grado: #{d}"
   end
 end

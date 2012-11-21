@@ -5,13 +5,9 @@
     .span-9.last= u.attribute :authors
 
     .span-18.last
-      .span-9= u.association :thesismodality, :using => :name
-      .span-9.last= u.association :thesisstatus, :using => :name
-
-    .span-4= u.attribute :startyear
-    .span-5= u.attribute :startmonth
-    .span-4= u.attribute :endyear
-    .span-5.last= u.attribute :endmonth
+      .span-6= u.association :thesismodality, :using => :name
+      .span-6= u.attribute :end_date
+      .span-6.last= u.association :thesisstatus, :using => :name
 
     .span-18.last
       = render :partial => 'careers/show', :locals => { :record => @thesis.career }
