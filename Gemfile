@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source :rubygems
 
-gem "rails", "~> 3.2.8"
+gem "rails", "~> 3.2.9"
 gem "haml", "3.1.7"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -90,6 +90,7 @@ group :assets do
   gem "sass-rails", "~> 3.2.5"
   gem "therubyracer", "~> 0.10.2"
   gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
+  gem "turbo-sprockets-rails3", "~> 0.3.2"
 end
 
 group :development do
