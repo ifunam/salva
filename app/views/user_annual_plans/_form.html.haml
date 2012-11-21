@@ -1,0 +1,6 @@
+- text = %Q(En el año #{Date.today.year + 1} pretendo cumplir las siguientes actividades: \n\n |
+    # Actividad 1.\n |
+    # Actividad 2.\n |
+    # Actividad N.) |
+
+= f.input :body, :as => :text, :input_html => { :value => text, :size => '120x10' }

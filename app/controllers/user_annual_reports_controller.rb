@@ -16,9 +16,16 @@ class UserAnnualReportsController < ApplicationController
 
   def create
     authorize_document!
-    @document_type = Documenttype.annual_reports.active.first
+    find_profile
     params[:annual_report].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id)
-    respond_with(@annual_report = AnnualReport.create(params[:annual_report]), :status => :created, :location => user_annual_report_path(@annual_report))
+    @annual_report = AnnualReport.new(params[:annual_report])
+    if @annual_report.save
+      respond_with(@annual_report, :status => :created, :location => user_annual_report_path(@annual_report))
+    else
+      respond_with(@annual_report, :status => :unprocessable_entity) do |format|
+        format.html { render :action => :new }
+      end
+    end
   end
 
   def edit
@@ -32,7 +39,13 @@ class UserAnnualReportsController < ApplicationController
   def update
     authorize_document!
     find_document_and_profile
-    respond_with(@annual_report.update_attributes(params[:annual_report]), :location => user_annual_report_path(@annual_report))
+    if @annual_report.update_attributes(params[:annual_report])
+      respond_with(@annual_report, :status => :updated, :location => user_annual_report_path(@annual_report))
+    else
+      respond_with(@annual_report, :status => :unprocessable_entity) do |format|
+        format.html { render :action => :edit}
+      end
+    end
   end
 
   def show
@@ -65,8 +78,8 @@ class UserAnnualReportsController < ApplicationController
   end
 
   def find_document
-    @annual_report = AnnualReport.find(params[:id])
-    @year = @annual_report.documenttype.year
+    @annual_report = AnnualReport.where(:id => params[:id], :user_id => current_user.id).first
+    @year = @annual_report.documenttype.year unless @annual_report.nil?
   end
 
   def find_profile

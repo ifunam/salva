@@ -4,7 +4,7 @@
 
 = simple_form_for @annual_plan, :url => user_annual_plans_path,  :html => { :id => 'record'} do |f|
   .section-with-border-and-bg
-    = render :partial => current_user.user_group.group.name, :locals => { :f => f }
+    = render :partial => 'form', :locals => { :f => f }
   #submit_buttons
     = f.submit t(:save)
     = link_to t(:cancel), user_annual_plans_path

@@ -377,14 +377,14 @@ es:
         is_titleholder: ¿Titulado?
       career:
         degree: Grado
-        name: Nombre de la carrera
+        name: Nombre de la carrera o posgrado
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Titulo de la institución
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
-        name: Nombre
+        name: Facultad, Escuela o Instituto
         institution: Institución
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
@@ -673,7 +673,7 @@ es:
       annual_plan:
         body: Descripción
       annual_report:
-        body: Breve descripción de los logros más importantes de su trabajo
+        body: Descripción breve de los logros más importantes de su trabajo durante el año
 
   additional_info: Información adicional
   career: Carrera
