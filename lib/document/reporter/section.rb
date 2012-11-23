@@ -54,7 +54,7 @@ module Reporter
 
     private
     def class_name
-      @class_name.to_s.classify.constantize
+      @class_name.to_s.pluralize.singularize.camelize.constantize
     end
 
     def scope
