@@ -55,7 +55,7 @@ jQuery.extend
       changeMonth: true
       yearRange: start_year + ":" + end_year
       dateFormat: "dd-mm-yy"
-      defaultDate: "01-01-" + end_year
+      defaultDate: "-2m"
       showOn: "both"
       buttonImageOnly: true
       buttonImage: "/assets/calendar.gif"

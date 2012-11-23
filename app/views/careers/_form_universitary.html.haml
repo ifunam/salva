@@ -1,7 +1,7 @@
 .row
   %h4='Nombre de carrera y Grado'
 .row
-  = f.input :name, :as => :string, :input_html => { :size => 80, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}
+  = f.input :name, :as => :string, :input_html => { :size => 80, :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'careers'}, :label_html => { :class => 'span-8' }
 .row
   = f.association :degree, :collection => Degree.universitary, :as => :radio, :wrapper_class => 'radio-set', :input_html => { :class => 'radio-set-degrees'}
 
