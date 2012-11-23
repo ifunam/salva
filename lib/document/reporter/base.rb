@@ -1,4 +1,5 @@
 require 'document/reporter/builder'
+::I18n.locale = I18n.locale.to_sym
 module Reporter
   class Base
     def self.find(attributes={})
