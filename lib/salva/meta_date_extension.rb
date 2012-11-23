@@ -52,9 +52,15 @@ module MetaDateExtension
     def date_range_scopes
       scope :since, lambda { |date| where{{:start_date.gteq => date}} } unless respond_to? :since
       scope :until, lambda { |date| where{{:end_date.lteq => date}} } unless respond_to? :until
+
       search_methods :since, :until
       unless respond_to? :among
-        scope :among, lambda { |start_date, end_date| where{ ({:start_date.gteq => start_date}) | ({:end_date.lteq => end_date}) } }
+        scope :among, lambda { |start_date, end_date|
+          where{
+            ({:start_date.gteq => start_date} & {:end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date} & {:end_date.lteq => start_date})
+          }
+        }
         search_methods :among, :splat_param => true, :type => [:date, :date]
       end
     end
