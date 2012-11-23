@@ -71,8 +71,6 @@ Salva::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'salva.fisica.unam.mx' }
-
   # Compress both stylesheets and JavaScripts
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = CssImageEmbedder::Compressor.new(File.join(Rails.root, 'public'))
