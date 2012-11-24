@@ -18,7 +18,7 @@ class Academic::AnnualPlansController < Academic::ApplicationController
 
   def update
     authorize_action!
-    @document.update_attributes(params[:document])
+    @document.update_attributes(params[:document], :as => :academic)
     @document.reject
     respond_with(@document)
   end

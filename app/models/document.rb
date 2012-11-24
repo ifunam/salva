@@ -6,6 +6,7 @@ class Document < ActiveRecord::Base
   belongs_to :approved_by, :class_name => 'User'
 
   attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id
+  attr_accessible :comments, :as => :academic
 
   default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
 
