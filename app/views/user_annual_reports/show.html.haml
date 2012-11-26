@@ -6,7 +6,7 @@
 = render :partial => 'profile', :object => @profile
 
 .section-with-border-and-bg
-  %b='Breve descripción de los logros más importantes de su trabajo'
+  %b='Breve descripción cualitativa de los logros más importantes del trabajo durante el año'
 
   = raw(RedCloth.new(@annual_report.body).to_html)
 

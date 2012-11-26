@@ -59,7 +59,7 @@ prawn_document() do |pdf|
   end
   pdf.move_down(20)
 
-  pdf.text "Breve descripción de los logros importantes de su trabajo", :style => :bold
+  pdf.text "Breve descripción cualitativa de los logros más importantes del trabajo durante el año.", :style => :bold
   pdf.text "\n"
   counter = 0
   @annual_report.body.split("\n").each do |line|
