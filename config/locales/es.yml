@@ -1866,6 +1866,7 @@ es:
       title: 'Informe anual de actividades'
     new:
       title: Nuevo informe anual
+      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan anual
 
@@ -1874,6 +1875,7 @@ es:
       title: Planes de trabajo
     new:
       title: Nuevo plan de trabajo
+      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan de trabajo
 
@@ -2471,7 +2473,6 @@ es:
     newspaper_articles: 'Artículos periodísticos'
     technical_reports: 'Reportes técnicos'
     user_credits: 'Agradecimientos y otros créditos'
-
     refereed_colaborations: 'Colaboración en publicaciones'
     user_refereed_journals: 'Arbitraje de revistas'
     book_collaborations: 'Colaboración en libros'
