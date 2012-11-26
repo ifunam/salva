@@ -33,7 +33,7 @@ class Proceeding < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     if title == conference.name
       [title, (publisher.nil? ? nil : publisher.name), year].compact.join(', ')
     else

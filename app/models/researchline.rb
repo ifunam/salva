@@ -14,7 +14,7 @@ class Researchline < ActiveRecord::Base
 
   default_scope order('name ASC')
 
-  def as_text
+  def to_s
     [name, researcharea.name].join(', ')
   end
  end

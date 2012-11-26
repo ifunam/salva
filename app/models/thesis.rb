@@ -43,12 +43,12 @@ class Thesis < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
-  def as_text
-    [users_and_roles, title, career.as_text, date, thesismodality.as_text, "#{authors} (estudiante)"].compact.join(', ')
+  def to_s
+    [users_and_roles, title, career.to_s, date, thesismodality.to_s, "#{authors} (estudiante)"].compact.join(', ')
   end
 
   def users_and_roles
-    user_theses.collect {|record| record.as_text }.join(', ')
+    user_theses.collect {|record| record.to_s }.join(', ')
   end
 
   def date

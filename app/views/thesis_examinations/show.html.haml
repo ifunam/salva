@@ -18,7 +18,7 @@
       %h4=t(:thesis_jurors)
       %ul
         - @thesis_examination.thesis_jurors.each do |record|
-          %li= record.as_text
+          %li= record.to_s
 
   .row
     = render :partial => 'shared/record', :object => @thesis_examination

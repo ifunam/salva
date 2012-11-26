@@ -30,18 +30,18 @@ class Regularcourse < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
   search_methods :among, :type => [:date, :date], :splat_param => true
 
-  def as_text
-    [as_text_simple, period_list].compact.join(', ')
+  def to_s
+    [to_s_simple, period_list].compact.join(', ')
   end
 
-  def as_text_simple
+  def to_s_simple
       sem = semester == 0 ? nil : "Semestre: #{semester}"
       cred = credits.nil? ? nil : "Créditos: #{credits}"
-      [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.as_text_with_career].compact.join(', ')
+      [title, "Modalidad: #{modality.name}", sem, cred, academicprogram.to_s_with_career].compact.join(', ')
   end
 
   def short_description
-    [title, academicprogram.as_text_with_career].join(', ')
+    [title, academicprogram.to_s_with_career].join(', ')
   end
 
   def period_list

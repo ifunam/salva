@@ -25,7 +25,7 @@ class Indivadvice < ActiveRecord::Base
   scope :students, where('indivadvicetarget_id <= 3')
   scope :professors, where('indivadvicetarget_id > 3')
 
-  def as_text
+  def to_s
     [normalized_indivname, indivadvicetarget.name, degree_name, career_name, institution_name, start_date, end_date, normalized_hours].compact.join(', ')
   end
 

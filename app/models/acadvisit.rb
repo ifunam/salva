@@ -24,7 +24,7 @@ class Acadvisit < ActiveRecord::Base
 
   default_scope order('startyear DESC, startmonth DESC, endyear DESC, endmonth DESC')
 
-  def as_text
+  def to_s
     [institution.name_and_parent_abbrev, country.name, descr, start_date, end_date].compact.join(', ')
   end
 end

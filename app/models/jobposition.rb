@@ -40,7 +40,7 @@ class Jobposition < ActiveRecord::Base
     jobpositioncategory.nil? ? nil : jobpositioncategory.name
   end
 
-  def as_text
+  def to_s
     [category_name, institution.name, start_date, end_date].compact.join(', ')
   end
 end

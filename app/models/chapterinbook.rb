@@ -49,7 +49,7 @@ class Chapterinbook < ActiveRecord::Base
   search_methods :since, :splat_param => true, :type => [:integer, :integer]
   search_methods :until, :splat_param => true, :type => [:integer, :integer]
 
-  def as_text
-    [bookchaptertype.name, title].join(': ') + '. ' + bookedition.as_text
+  def to_s
+    [bookchaptertype.name, title].join(': ') + '. ' + bookedition.to_s
   end
 end

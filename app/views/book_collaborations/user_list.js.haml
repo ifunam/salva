@@ -7,4 +7,4 @@
   .span-6.last
     %ul
       - @book_collaboration.collaborators.each do |record|
-        %li= record.as_text
+        %li= record.to_s

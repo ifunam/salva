@@ -9,7 +9,7 @@ class Thesismodality < ActiveRecord::Base
   has_many :theses
   default_scope :order => 'level ASC'
 
-  def as_text
+  def to_s
     [degree.name, name].join(': ')
   end
 end

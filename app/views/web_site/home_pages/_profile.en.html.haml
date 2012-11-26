@@ -8,9 +8,9 @@
 - unless user.professional_address.nil?
   %font.address
     %b Address:
-    = user.professional_address.as_text
+    = user.professional_address.to_s
     %b Postal Address:
-    = user.professional_address.postal_address_as_text
+    = user.professional_address.postal_address_to_s
     - unless user.professional_address.phone.to_s.strip.empty?
       %b Phone:
       = '+52 (55) ' + user.professional_address.phone.to_s

@@ -25,7 +25,7 @@ class Education < ActiveRecord::Base
   search_methods :since, :until
   search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
-  def as_text
-    [career.as_text, startyear, endyear].compact.join(', ')
+  def to_s
+    [career.to_s, startyear, endyear].compact.join(', ')
   end
 end

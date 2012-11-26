@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
   }
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}", start_date, end_date].join(', ')
   end
 

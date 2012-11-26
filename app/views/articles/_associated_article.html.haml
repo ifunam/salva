@@ -1,6 +1,6 @@
 .span-1= checkbox_to_delete(article)
 .span-8
-  = article.as_text
+  = article.to_s
   = image_tag('associated_record.png', :class => 'associated_article_indicator', :title => t(:associated)  )
 .associated_authors
   .authors_size= article.users.size

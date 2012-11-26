@@ -8,7 +8,7 @@
   .span-9.last
     %b= t(:associated_academics)
     - @book_chapter.chapterinbook_roleinchapters.each do |a|
-      %li= a.as_text
+      %li= a.to_s
 
   %h3= t('book_authors.show.title')
   = render :partial => 'book_editions/show', :object => @book_chapter.bookedition

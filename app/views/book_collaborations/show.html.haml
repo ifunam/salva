@@ -6,7 +6,7 @@
   .span-18.last
     %b= t(:associated_academics)
     - @book_collaboration.collaborators.each do |a|
-      %li= a.as_text
+      %li= a.to_s
 
   .row
     = render :partial => 'shared/record', :object => @book_collaboration

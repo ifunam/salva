@@ -36,7 +36,7 @@ class Inproceeding < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
-    ["#{authors}\n", "\"#{title}\"; "].join(' ') +  [proceeding.as_text, pages].compact.join(', ')
+  def to_s
+    ["#{authors}\n", "\"#{title}\"; "].join(' ') +  [proceeding.to_s, pages].compact.join(', ')
   end
 end

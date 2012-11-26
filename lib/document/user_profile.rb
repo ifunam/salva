@@ -45,7 +45,7 @@ class UserProfile
   end
 
   def address
-    @user.address.as_text unless @user.address.nil?
+    @user.address.to_s unless @user.address.nil?
   end
 
   def address_location

@@ -1,6 +1,6 @@
 .span-1= checkbox_to_delete(article)
 .span-8
-  = article.as_text
+  = article.to_s
   .not_associated{:title => t(:not_associated)}
 .associated_authors
   .authors_size= article.users.size

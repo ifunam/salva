@@ -21,7 +21,7 @@
       %h4=t(:associated_academics)
       %ul
         - @thesis.user_theses.each do |record|
-          %li= record.as_text
+          %li= record.to_s
 
   .row
     = render :partial => 'shared/record', :object => @thesis

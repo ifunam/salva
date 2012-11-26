@@ -33,7 +33,7 @@ class Newspaperarticle < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
   search_methods :among, :type => [:date, :date], :splat_param => true
 
-  def as_text
+  def to_s
     [authors, title, newspaper.name_and_country, pages, I18n.localize(newsdate, :format => :long_without_day)].compact.join(', ')
   end
 end

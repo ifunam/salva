@@ -15,7 +15,7 @@ class Address < ActiveRecord::Base
   belongs_to :state
   belongs_to :user
 
-  def as_text
+  def to_s
     [location.gsub(/\n/,''), normalized_zipcode, normalized_city, country.name].compact.join(', ')
   end
 
@@ -27,7 +27,7 @@ class Address < ActiveRecord::Base
     city.name unless city_id.nil?
   end
 
-  def postal_address_as_text
+  def postal_address_to_s
     if pobox.to_s.strip.empty?
       'Instituto de Física, UNAM, P.O. Box 20-364, 01000 México, D.F.'
     else

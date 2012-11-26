@@ -30,7 +30,7 @@ class Seminary < ActiveRecord::Base
   }
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     [instructors, title, 'Tipo: ' + seminarytype.name, organizers, date].compact.join(', ')
   end
 

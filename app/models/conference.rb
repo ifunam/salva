@@ -39,7 +39,7 @@ class Conference < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     [name, institution_names, "País: #{country.name}", normalized_type, normalized_scope, date].compact.join(', ')
   end
 

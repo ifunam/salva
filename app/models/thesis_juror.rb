@@ -17,7 +17,7 @@ class ThesisJuror < ActiveRecord::Base
   scope :among, lambda { |start_date, end_date| since(start_date).until(end_date) }
   search_methods :among, :splat_param => true, :type => [:date, :date]
 
-  def as_text
+  def to_s
     [user.fullname_or_email, "(#{roleinjury.name})"].join(' ')
   end
 end

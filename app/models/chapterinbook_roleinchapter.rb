@@ -12,7 +12,7 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
 
   has_many :bookeditions
 
-  def as_text
+  def to_s
     "#{user.author_name} (#{roleinchapter.name})"
   end
   

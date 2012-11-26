@@ -49,8 +49,8 @@ RailsAdmin.config do |config|
                             Techproducttype, Thesismodality, Thesisstatus, Titlemodality, Userstatus, Volume]
 
   # Application wide tried label methods for models' instances
-  config.label_methods << :description # Default is [:name, :title, :as_text]
-  config.label_methods << :as_text
+  config.label_methods << :description # Default is [:name, :title, :to_s]
+  config.label_methods << :to_s
 
   #  ==> Global models configuration
   # config.models do

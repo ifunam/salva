@@ -12,7 +12,7 @@
   has_many :user_prizes
   has_many :users, :through => :user_prizes
 
-  def as_text
+  def to_s
     ["#{prizetype.name}: #{name}", "Otorgado por: #{institution.name}"].join(', ')
   end
 end

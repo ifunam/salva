@@ -13,7 +13,7 @@ class Membership < ActiveRecord::Base
 
   default_scope :order => 'endyear DESC, startyear DESC'
 
-  def as_text
+  def to_s
     start_year = 'Año de inicio ' + startyear.to_s
     end_year = endyear.nil? ? nil : ('Año de término: ' + endyear.to_s)
     [institution.name_and_parent_abbrev, start_year, end_year].compact.join(', ')

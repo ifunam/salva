@@ -11,7 +11,7 @@ class UserStimulus < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  def as_text
+  def to_s
     [stimuluslevel.name_and_type, start_date, end_date].compact.join(', ')
   end
 end

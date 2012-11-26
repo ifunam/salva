@@ -45,7 +45,7 @@ class Institution < ActiveRecord::Base
   scope :for_conferences, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
   scope :for_categories, where("institution_id = 1")
 
-  def as_text
+  def to_s
     [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
   end
 
@@ -60,9 +60,9 @@ class Institution < ActiveRecord::Base
 
   def name_and_parent(attribute=:abbrev)
      unless institution.nil?
-       [as_text, institution.send(attribute)].compact.join(', ')
+       [to_s, institution.send(attribute)].compact.join(', ')
      else
-        as_text
+        to_s
      end
   end
 

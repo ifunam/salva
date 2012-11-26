@@ -14,7 +14,7 @@ class UserPrize < ActiveRecord::Base
 
   default_scope :order => 'year DESC, month DESC'
 
-  def as_text
-    [prize.as_text, date].join(', ')
+  def to_s
+    [prize.to_s, date].join(', ')
   end
 end

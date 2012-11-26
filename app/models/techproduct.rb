@@ -38,7 +38,7 @@ class Techproduct < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
   search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
-  def as_text
+  def to_s
     [authors, title, "Tipo de trabajo: #{techproducttype.name}", "Status: #{techproductstatus.name}", year].compact.join(', ')
   end
 

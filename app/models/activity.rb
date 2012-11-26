@@ -17,7 +17,7 @@ class Activity < ActiveRecord::Base
   scope :teaching, joins(:activitytype).where(:activitytype => {:activitygroup_id => 3})
   scope :technical, joins(:activitytype).where(:activitytype => {:activitygroup_id => 7})
 
-  def as_text
+  def to_s
     [name, "Tipo: #{activitytype.name}", date].compact.join(', ')
   end
 end
