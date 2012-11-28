@@ -21,7 +21,7 @@ module I18nHelper
 
   def localized_month_list
     Range.new(1,12).collect do |m|
-      [I18n.localize(Date.new(2012,m,1), :format => :month_name), m]
+      [I18n.t("date.month_names")[m], m]
     end
   end
 end
