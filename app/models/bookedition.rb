@@ -50,7 +50,7 @@ class Bookedition < ActiveRecord::Base
 
   def to_s
     [ book.to_s, edition, publishers_to_s, book.country.name,
-     isbn_text, year ].compact.join(', ')
+     isbn_text, date ].compact.join(', ')
   end
 
   def publishers_to_s
