@@ -14,7 +14,7 @@
     = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
   .span-6
     = f.label :month, :required => true
-    = select_month_for 'month', 'book_edition'
+    = f.select :month, localized_month_list, { :prompt => true }, :class => 'chosen-select'
   .span-6.last= f.association :mediatype, :as => :radio, :wrapper_class =>'radio-set'
 
 .row
