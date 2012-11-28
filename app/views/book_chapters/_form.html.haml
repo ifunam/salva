@@ -5,12 +5,11 @@
 .section-with-border-and-bg
   .row
     .span-9= f.input :title, :as => :string, :input_html => {:size => '40'}
-    .span-9.last= f.association :bookchaptertype, :as => :radio, :wrapper_class => 'radio-set'
+    .span-9.last= f.input :pages, :as => :string, :input_html => {:size => 25}
 
   .row
-
-    .span-9= render :partial => 'book_chapter_collaborators/form', :locals => {:book_chapter => @book_chapter, :f => f}
-    .span-9.last= f.input :pages, :as => :string, :input_html => {:size => 25}
+    .span-9= f.association :bookchaptertype, :as => :radio, :wrapper_class => 'radio-set'
+    .span-9.last= render :partial => 'book_chapter_collaborators/form', :locals => {:book_chapter => @book_chapter, :f => f}
 
 
 %h3='Información del libro'

@@ -17,7 +17,7 @@ class UserAnnualReportsController < ApplicationController
   def create
     authorize_document!
     find_profile
-    params[:annual_report].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id)
+    params[:annual_report].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id, :delivered => false)
     @annual_report = AnnualReport.new(params[:annual_report])
     if @annual_report.save
       respond_with(@annual_report, :status => :created, :location => user_annual_report_path(@annual_report))
@@ -39,7 +39,7 @@ class UserAnnualReportsController < ApplicationController
   def update
     authorize_document!
     find_document_and_profile
-    if @annual_report.update_attributes(params[:annual_report])
+    if @annual_report.update_attributes(params[:annual_report].merge(:delivered => false))
       respond_with(@annual_report, :status => :updated, :location => user_annual_report_path(@annual_report))
     else
       respond_with(@annual_report, :status => :unprocessable_entity) do |format|

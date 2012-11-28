@@ -1868,7 +1868,8 @@ es:
       title: Nuevo informe anual
       annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
     edit:
-      title: Modificar plan anual
+      title: Modificar informe anual
+      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
 
   user_annual_plans:
     index:
@@ -1878,6 +1879,7 @@ es:
       annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan de trabajo
+      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
 
   user_refereed_journals:
     index:
@@ -2414,6 +2416,7 @@ es:
   new_annual_plan: 'Enviar nuevo plan de trabajo'
   edit_annual_plan: 'Modificar plan de trabajo'
   new_annual_report: 'Preparar nuevo informe anual de actividades'
+  edit_annual_report: 'Modificar informe anual de actividades'
   gender: Genéro
   birthday: Fecha de nacimiento
   email: Correo electrónico
