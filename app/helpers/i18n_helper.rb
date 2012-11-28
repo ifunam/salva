@@ -18,4 +18,10 @@ module I18nHelper
           "Not Defined"
      end
   end
+
+  def localized_month_list
+    Range.new(1,12).collect do |m|
+      [I18n.localize(Date.new(2012,m,1), :format => :month_name), m]
+    end
+  end
 end
