@@ -48,10 +48,10 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def institution_name
-    if !institution_id.nil?
-      institution.name_and_parent_abbrev
-    elsif !career.nil?
-      career.institution.name_and_parent_abbrev
+    unless career_id.nil?
+      career.institution.school_and_university_names
+    else
+      institution.school_and_university_names unless institution_id.nil?
     end
   end
 

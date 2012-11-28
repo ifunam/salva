@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Institution < ActiveRecord::Base
   attr_accessible :name, :abbrev, :institution_id, :institutiontype_id, :institutiontitle_id, :country_id
   validates_presence_of :name, :institutiontitle_id, :institutiontype_id, :country_id
@@ -58,6 +59,10 @@ class Institution < ActiveRecord::Base
     name_and_parent(:name)
   end
 
+  def school_and_university_names
+    names = ["Facultad, escuela o posgrado: #{name}"]
+    names.push("Institución: #{institution.name}") unless institution_id.nil?
+  end
 
   def name_and_parent(attribute=:abbrev)
      unless institution.nil?
