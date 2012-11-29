@@ -35,12 +35,11 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def degree_name
-    if !degree_id.nil?
-      "Grado: #{degree.name}"
-    elsif !career.nil?
+    unless career_id.nil?
       "Grado: #{career.degree.name}"
+    else
+      "Grado: #{degree.name}" unless degree_id.nil?
     end
-
   end
 
   def career_name
