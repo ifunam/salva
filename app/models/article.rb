@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :year, :greater_than => (Date.today.year - 100), :less_than_or_equal_to => (Date.today.year + 1), :only_integer => true
-  validates_uniqueness_of :title, :scope => [:journal_id, :year]
+  # validates_uniqueness_of :title, :scope => [:journal_id, :year]
   normalize_attributes :vol, :num, :pages
 
   belongs_to :journal
