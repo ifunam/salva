@@ -1,0 +1,7 @@
+#supported_browsers
+  %p= 'Esta aplicación funciona con las versiones más recientes de los siguientes navegadores:'
+  .links
+    = link_to image_tag('safari.png'), 'http://www.apple.com/safari/', :title => 'Safari 5.x'
+    = link_to image_tag('firefox.png'), 'http://www.mozilla-europe.org/en/firefox/', :title => 'Firefox 3.x'
+    = link_to image_tag('google-chrome.png'), 'http://www.google.com/chrome', :title => 'Google Chrome 8.x'
+    = link_to image_tag('explorer.png'), 'http://www.microsoft.com/windows/internet-explorer/default.aspx', :title => 'Internet Explorer 7.x'

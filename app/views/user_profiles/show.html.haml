@@ -2,7 +2,8 @@
   %h3 Información General
 
 = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
-= render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
+= render :partial => 'addresses/record', :object => @user.professional_address unless @user.professional_address.nil?
+-#RMO = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 
 .section-with-border-and-bg
   %h4= t(".identifications")

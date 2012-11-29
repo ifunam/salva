@@ -1,61 +1,67 @@
-prawn_document() do |pdf|
+prawn_document(:template =>  Rails.root.to_s + '/lib/templates/documents/user_resume_template.pdf',
+               :left_margin => 37, :right_margin => 37,
+               :bottom_margin => 47 ) do |pdf|
+
   image_path = Rails.root.to_s + '/lib/templates/documents'
 
-  pdf.draw_text "Curriculum Vítae", :at => [170, 700], :size => 20,  :style => :bold
-  pdf.move_down(50)
+  #pdf.draw_text "Curriculum Vítae", :at => [170, 700], :size => 20,  :style => :bold
+  pdf.move_down(88)
 
-  pdf.text "Información general", :size => 16, :style => :bold, :final_gap => true
+  pdf.text @profile.fullname, :size => 14, :style => :bold, :final_gap => true
   pdf.text "\n"
   pdf.font 'Helvetica', :size => 12
 
-  pdf.text "Nombre:", :style => :bold
-  pdf.draw_text @profile.fullname, :style => :normal, :at => [160, pdf.cursor]
+  #pdf.text "Nombre:", :style => :bold
+  #pdf.draw_text @profile.fullname, :at => [160, pdf.cursor]
 
   pdf.text "Género:", :style => :bold
-  pdf.draw_text @profile.gender, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.gender, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Fecha de nacimiento:", :style => :bold
-  pdf.draw_text @profile.birthdate, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.birthdate, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Domicilio profesional:", :style => :bold
-  pdf.text_box @profile.address, :style => :normal, :at => [160, pdf.cursor], :width => 370
+  pdf.text_box @profile.professional_address, :style => :normal, :at => [160, pdf.cursor+6], :width => 370
+  #RMO pdf.text_box @profile.address, :style => :normal, :at => [160, pdf.cursor], :width => 370
   pdf.move_down(50)
 
   pdf.text "Teléfono:", :style => :bold
-  pdf.draw_text @profile.phone, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.phone, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Fax:", :style => :bold
-  pdf.draw_text @profile.fax, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.fax, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Correo electrónico:", :style => :bold
-  pdf.draw_text @profile.email, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.email, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "RFC o CURP:", :style => :bold
-  pdf.draw_text @profile.person_id, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.person_id, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Categoría:", :style => :bold
-  pdf.draw_text @profile.category_name, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.category_name, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Adscripción:", :style => :bold
-  pdf.draw_text @profile.adscription_name, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.adscription_name, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Número de trabajador:", :style => :bold
-  pdf.draw_text @profile.worker_id, :style => :normal, :at => [160, pdf.cursor]
+  pdf.draw_text @profile.worker_id, :style => :normal, :at => [160, pdf.cursor+6]
 
   if @profile.total_of_cites.to_i > 0
     pdf.text "Total de citas:", :style => :bold
-    pdf.draw_text @profile.total_of_cites.to_s, :style => :normal, :at => [160, pdf.cursor]
+    pdf.draw_text @profile.total_of_cites.to_s, :style => :normal, :at => [160, pdf.cursor+6]
   end
 
   unless @profile.responsible_academic.nil?
     pdf.text "Responsable académico:", :style => :bold
-    pdf.draw_text @profile.responsible_academic.to_s, :style => :normal, :at => [160, pdf.cursor]
+    pdf.draw_text @profile.responsible_academic.to_s, :style => :normal, :at => [160, pdf.cursor+6]
   end
   pdf.move_down(20)
 
   @report_sections.each do |section|
     pdf.text section[:title].to_s, :size => 16, :style => :bold, :final_gap => true
     pdf.text "\n"
+    pdf.line(0, pdf.y-28, 535, pdf.y-28)
+    pdf.stroke
     section[:subsections].each do |subsection|
       pdf.text subsection[:title].to_s, :size => 14, :style => :bold, :final_gap => true
       pdf.text "\n"

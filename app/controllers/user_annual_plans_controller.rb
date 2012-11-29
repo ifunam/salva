@@ -15,9 +15,16 @@ class UserAnnualPlansController < ApplicationController
 
   def create
     authorize_document!
-    @document_type = Documenttype.annual_plans.active.first
+    find_profile
     params[:annual_plan].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id)
-    respond_with(@annual_plan = AnnualPlan.create(params[:annual_plan]), :status => :created, :location => user_annual_plan_path(@annual_plan))
+    @annual_plan = AnnualPlan.new(params[:annual_plan])
+    if @annual_plan.save
+      respond_with(@annual_plan, :status => :created, :location => user_annual_plan_path(@annual_plan))
+    else
+      respond_with(@annual_plan, :status => :unprocessable_entity) do |format|
+        format.html { render :action => :new }
+      end
+    end
   end
 
   def edit
@@ -31,7 +38,13 @@ class UserAnnualPlansController < ApplicationController
   def update
     authorize_document!
     find_document_and_profile
-    respond_with(@annual_plan.update_attributes(params[:annual_plan]), :location =>user_annual_plan_path(@annual_plan))
+    if @annual_plan.update_attributes(params[:annual_plan])
+      respond_with(@annual_plan, :status => :updated, :location =>user_annual_plan_path(@annual_plan))
+    else
+      respond_with(@annual_plan, :status => :unprocessable_entity) do |format|
+        format.html { render :action => :edit }
+      end
+    end
   end
 
   def show
@@ -52,9 +65,17 @@ class UserAnnualPlansController < ApplicationController
   end
 
   def find_document_and_profile
+    find_document
+    find_profile
+  end
+
+  def find_document
+    @annual_plan = AnnualPlan.where(:id => params[:id], :user_id => current_user.id).first
+    @year = @annual_plan.documenttype.year unless @annual_plan.nil?
+  end
+
+  def find_profile
     @document_type = Documenttype.annual_plans.active.first
-    @annual_plan = AnnualPlan.find(params[:id])
-    @year = @annual_plan.documenttype.year
     @profile = UserProfile.find(current_user.id)
     @remote_ip = request.remote_ip
   end

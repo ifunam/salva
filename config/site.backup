@@ -1,0 +1,30 @@
+# General configuration for salva 
+institution: 
+  name: Instituto de Neurobiología - UNAM
+  url: http://www.inb.unam.mx
+  administrative_key: 331
+
+# Technical support information
+technical_support:
+  unit: Unidad de Cómputo INB-UNAM
+  engineer: Ramón Martínez
+  address: C11
+  phone: 238 10 52 
+  email: computo@inb.unam.mx
+  helpdesk: http://132.248.142.19:3001/support_requests/new
+  other_info: 
+
+system:
+  email: ramonmtzol@gmail.com
+
+admin:
+  email: ramonmtzol@gmail.com
+
+academic_secretary:
+  email: esquivelbeq@inb.unam.mx
+
+teaching_coordination:
+  email: martinezo@inb.unam.mx
+
+accounts_notification:
+  email: esquibelbeq@inb.unam.mx

@@ -1,0 +1,19 @@
+/ <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
+%font.name= user.author_name
+%br/
+= user.jobposition_for_researching.category_name
+%br/
+= mail_to user.email, user.email, :encode => "javascript"
+%br/
+- unless user.professional_address.nil?
+  %font.address
+    %b Direcci&oacute;n:
+    = user.professional_address.as_text
+    %b C&oacute;digo Postal:
+    = user.professional_address.postal_address_as_text
+    - unless user.professional_address.phone.to_s.strip.empty?
+      %b Tel&eacute;fono:
+      = '+52 (55) ' + user.professional_address.phone.to_s
+    - unless user.professional_address.fax.to_s.strip.empty?
+      %b Fax:
+      = '+52 (55) ' + user.professional_address.fax.to_s

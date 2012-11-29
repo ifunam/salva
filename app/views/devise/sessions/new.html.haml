@@ -1,4 +1,6 @@
 #login_view
+  .span-7
+    &nbsp
   #login_form
     %h3 Inicio de sesión
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
@@ -8,6 +10,7 @@
       = f.password_field :password, :size => 16
       #submit_buttons
         = f.submit "Entrar"
+/
   #login_info
     %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
     %p= 'Por ejemplo, si tu cuenta de correo es <em>sandovalv@fisica.unam.mx</em> los datos para entrar al sistema son:'.html_safe
@@ -18,3 +21,5 @@
       %b='Contraseña: '
       = '*'*8
 = render :partial =>'supported_browser_links'
+%a{:href => "http://132.248.142.19:3004/list", :target => "_blank", :style => "font-size: 10px;text-decoration: none"}
+  Reportes SALVA

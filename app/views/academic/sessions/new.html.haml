@@ -9,13 +9,13 @@
 
       #submit_buttons
         = f.button :submit, "Sign in"
-  #login_info
-    %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
-    %p= 'Por ejemplo, si tu cuenta de correo es <em>sandovalv@fisica.unam.mx</em> los datos para entrar al sistema son:'.html_safe
-    #login_example
-      %b='Usuario: '
-      = 'sandovalv'
-      %br
-      %b='Contraseña: '
-      = '*'*8
+-#  #login_info
+-#    %p= 'Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
+-#    %p= 'Por ejemplo, si tu cuenta de correo es <em>sandovalv@fisica.unam.mx</em> los datos para entrar al sistema son:'.html_safe
+-#    #login_example
+-#      %b='Usuario: '
+-#      = 'sandovalv'
+-#      %br
+-#      %b='Contraseña: '
+-#      = '*'*8
 = render :partial => 'devise/sessions/supported_browser_links'

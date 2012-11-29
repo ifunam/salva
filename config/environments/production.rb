@@ -32,6 +32,7 @@ Salva::Application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  config.ssl_options = { :exclude => proc { |env| env['PATH_INFO'].start_with?('/web_site') } }
 
   # See everything in the log (default is :info)
   config.log_level = :debug
@@ -55,7 +56,7 @@ Salva::Application.configure do
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css
                                   user_resources.js publications.css publications.js academic.css
-                                  academic.js web_site.css web_site.js home_page.css)
+                                  academic.js web_site.css web_site.js home_page.css home_pages.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

@@ -30,7 +30,9 @@ class Jobposition < ActiveRecord::Base
   scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
   scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
   scope :at_external_institutions, joins(:institution).where("(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ")
-  scope :at_unam, joins(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ")
+  scope :at_unam, joins(:institution).order('start_date DESC').where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ")
+  scope :user_id_by_start_date_year, lambda { |year| by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id') }
+  scope :user_id_by_end_date_year, lambda { |year| by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id') }
 
   search_methods :by_start_year, :by_end_year
 

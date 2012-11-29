@@ -3,12 +3,12 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-12= f.input :name, :as => :text, :input_html => { :size => '80x1', :required => true}
+    .span-12= f.input :name, :as => :text, :input_html => { :size => '60x1', :required => true}
     .span-6.last= f.input :abbrev, :as => :string, :input_html => { :size => '30' }
 
   .row
-    .span-9= f.input :responsible, :as => :text, :input_html => { :size => '50x1', :required => true}
-    .span-9.last= f.input :descr, :as => :text, :input_html => { :size => '50x1', :required => true}
+    .span-9= f.input :responsible, :as => :text, :input_html => { :size => '40x1', :required => true}
+    .span-9.last= f.input :descr, :as => :text, :input_html => { :size => '40x1', :required => true}
 
   .row
     .span-18= f.association :projecttype, :collection => Projecttype.all, :as => :radio, :wrapper_class =>'radio-set'
@@ -37,6 +37,16 @@
     = new_child_fields_template(f, :projectfinancingsources, :partial => 'projectfinancingsources/form')
     = link_to 'Agregar otra fuente de financiamiento', '#', :id => 'new_checkbox'
 
+    %br &nbsp
+    .row
+      .span-19.last= f.input :amount
+      =f.label '(capturar sin comas ",")'
+
   .row
     .span-9= f.association :projectstatus, :collection => Projectstatus.all, :as => :radio, :wrapper_class =>'radio-set'
     .span-9.last= render :partial => 'user_projects/form', :locals => {:project => @project, :f => f}
+
+  .row
+    .span-18.last= f.input :other, :input_html => { :size => '90x3'}
+
+

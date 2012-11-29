@@ -2,9 +2,18 @@
 %html
   %head
     %title= 'Plataforma de Información Curricular - SALVA'
+    = render :partial => 'layouts/blueprint_css'
     = csrf_meta_tag
-    = stylesheet_link_tag 'home_page'
+    = stylesheet_link_tag 'home_page.css'
+    = javascript_include_tag 'home_pages'
 
   %body
     .container
-      = yield
+      .span-24.last#header1
+      .span-24.last#header2
+      .span-24.last#content
+        %br/
+        .span-5
+          = render :partial => 'left_options_home_pages'
+        .span-19.last
+          = yield

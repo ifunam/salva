@@ -7,3 +7,12 @@ en:
   date:
     formats:
       month_and_year: "%B %Y"
+
+  web_site:
+    home_pages:
+      review: Review
+      researchlines: Research Interest
+      recent_published_articles: Most Recent Publications
+      recent_advised_theses: Most Recent Advised Theses
+      recent_book_chapters: Most Recent Chapters in Books
+      recent_published_books: Most Recent Published Books

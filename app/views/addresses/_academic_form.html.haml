@@ -5,34 +5,42 @@
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
   .row
-    .span-5
-      = f.label :addresstype_id
-      = 'Domicilio Profesional'
-      = f.hidden_field :addresstype_id, :value => 1
-    .span-8
-      = f.input :location, :as => :text, :input_html =>{ :size => '50x3', :value => 'Edificio Principal, Cubículo o laboratorio: 132 Circuito de la Investigación Cientifíca s/n Ciudad Universitaria Delegación Coyoacán'}
+    -#.span-5
+    -#  = f.label :addresstype_id
+    -#  = 'Domicilio Profesional'
+    -#  = f.hidden_field :addresstype_id, :value => 1
+    .span-10
+      = f.input :location, :as => :text, :input_html =>{ :size => '52x4'}
     .span-4.last
-      = f.label :pobox
-      = 'P.O. Box 20-364'
-      = f.hidden_field :pobox, :size => 20, :value => 'P.O. Box 20-364'
+      = f.input :pobox, :as => :string, :input_html =>{ :size => 10 }
+      -#= 'P.O. Box 20-364'
+      -#= f.hidden_field :pobox, :size => 20, :value => 'P.O. Box 20-364'
   .row
     .span-5
-      = f.label :country_id
-      = 'México'
-      = f.hidden_field :country_id, :value => 484
-    .span-5
+      = f.label :country_id, :required => true
+      - selected_country_id = f.object.country_id || 484
+      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => selected_country_id, :required => true}, :class => "chosen-select country-select"
+    #state_set.span-5
       = f.label :state_id
-      = 'Distrito Federal'
-      = f.hidden_field :state_id, :value => 9
-    .span-5
-      = f.label :city_id
-      = 'Ciudad de México'
-      = f.hidden_field :state_id, :value => 64
-    .span-2.last
-      = f.label :zipcode
-      = '04510'
-      = f.hidden_field :zipcode, :value => '04510'
+      - if f.object.country_id == 484 or f.object.country_id == 840
+        - selected_stated_id = f.object.state_id || 9
+        = f.collection_select :state_id, State.where(:country_id => selected_country_id ).all, :id, :name, {:prompt => true, :selected => selected_stated_id}, :class => "chosen-select"
+    #city_set.span-8.last
+      = f.label :city_id, :required => true
+      - if f.object.state_id.to_i >= 1 && f.object.state_id.to_i <= 83
+        = f.collection_select :city_id, City.where(:state_id => f.object.state_id).all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :class => "chosen-select"
+      - else
+        = f.collection_select :city_id, City.all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :id => 'city_list', :class => "chosen-select"
+
+      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
+      #city_text_field1
 
   .row
-    = f.input :phone, :as => :string, :input_html =>{ :size => 20 }
-    = f.hidden_field :is_postaddress, :value => true
+    .span-5
+      = f.input :zipcode, :as => :string, :input_html =>{ :size => 10 }
+      -#= f.label :zipcode
+      -#= '04510'
+      -#= f.hidden_field :zipcode, :value => '04510'
+    .span-5.last
+      = f.input :phone, :as => :string, :input_html =>{ :size => 40 }
+      = f.hidden_field :is_postaddress, :value => true

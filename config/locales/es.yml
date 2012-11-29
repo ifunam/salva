@@ -1,11 +1,279 @@
 es:
-
-  descr: Descripción
   activerecord:
     models:
-      user: Usuario
-      person: Información personal
-      group: Grupo
+      user: 
+        one: Usuario
+        other: usuarios
+      person: 
+       one: Información personal
+       other: Personas
+      academicprogram:
+        one: Programa académico
+        other: Programas académicos
+      academicprogramtype:
+        one: Tipo de programa académico
+        other: Tipos de programa académico
+      acadvisittype:
+        one: Tipo de estancia
+        other: Tipos de estancia
+      activitygroup:
+        one: Clasificación de actividad
+        other: Clasificación de actividades
+      activitytype:
+        one: Tipo de actividad
+        other: Tipos de actividad
+      adscription:
+        one: Adscripción
+        other: Adscripciones
+      articlestatus: 
+        one: Estado de artículos
+        other: Estados de artículos
+      addresstype:
+        one: Tipo de dirección
+        other: Tipos de domicilio
+      bookchaptertype:
+        one: Tipo de capítulo en libro
+        other: Tipos de capítulo en libro
+      booktype:
+        one: Tipo de libro
+        other: Tipos de libro
+      career:
+        one: Carrera
+        other: Carreras
+      citizenmodality:
+        one: Modalidad de ciudadanía
+        other: Modadlidades de ciudadanía
+      city:
+        one: Ciudad
+        other: Ciudades
+      conferencescope:
+        one: Ámbito para congresos o conferencias
+        other: Ámbitos para congresos y conferencias
+      conferencetype:
+        one: Tipo de evento académico
+        other: Tipos de evento académico
+      contracttype:
+        one: Tipo de contrato
+        other: Tipos de contrato
+      country:
+        one: País
+        other: Paises
+      courseduration:
+        one: Duración del curso
+        other: Duración de cursos
+      coursegroup:
+        one: Clasificación de curso
+        other: Clasificaciones de curso
+      coursegrouptype:
+        one: Tipo de curso
+        other: Tipos de cursos
+      credential:
+        one: Título
+        other: Títulos
+      credittype:
+        one: Tipo de créditos
+        other: Tipos de crédito
+      degree:
+        one: Grado
+        other: Grado
+      document_type:
+        one: Tipo de documento
+        other: Tipos de documento
+      documenttype:
+        one: Tipo de documento
+        other: Tipos de documento
+      editionstatus:
+        one: Status de la edición
+        other: Status de la edición
+      genericworkgroup:
+        one: Clasificación de publicaciones y otros trabajos
+        other: Clasificaciones de publicaciones y otros trabajos
+      genericworkstatus:
+        one: Status de publicaciones y otros trabajos
+        other: Status de publicaciones y otros trabajos
+      genericworktype:
+        one: Tipo de publicaciones y otros trabajos
+        other: Tipos de publicaciones y otros trabajos
+      groupmodality:
+        one: Grupo de modalidad
+        other: Grupos de modalidad
+      group:
+        one: Grupo
+        other: Grupos
+      identification:
+        one: Identificación
+        other: Identificaciones
+      idtype:
+        one: Tipo de identificación
+        other: Tipos de identificación
+      indivadviceprogram:
+        one: Programa de asesorías individuales
+        other: Programas de asesorías individuales
+      indivadvicetarget:
+        one: Tipo de las asesorías individuales
+        other: Tipos de las asesorías individuales
+      institution:
+        one: Institución
+        other: Instituciones
+      institutiontitle:
+        one: Clasificación de instituciones
+        other: Clasificaciones de instituciones
+      institutiontype:
+        one: Tipo de institución
+        other: Tipos de institución
+      jobpositioncategory:
+        one: Categoría
+        other: Categorías
+      jobpositiontype:
+        one: Tipo de plaza
+        other: Tipos de plaza
+      jobpositionlevel:
+        one: Nivel de la plaza
+        other: Niveles de la plaza
+      roleinjobposition:
+        one: Rol en categoría
+        other: Roles en categoría
+      journal:
+        one: Revista científica
+        other: Revistas científicas
+      language:
+        one: Idioma
+        other: Idiomas
+      languagelevel:
+        one: Nivel del idioma
+        other: Nivel de idiomas
+      maritalstatus:
+        one: Estado civil
+        other: Estados civiles
+      mediatype:
+        one: Tipo de medio
+        other: Tipos de medios
+      migratorystatus:
+        one: Status migratorio
+        other: Status migratorio
+      modalities:
+        one: Modalidad de curso
+        other: Modalidades de curso
+      newspaper:
+        one: Periódico
+        other: Periódicos
+      period:
+        one: Periódo
+        other: Periódos
+      prizetype:
+        one: Tipo de premio
+        other: Tipos de premio
+      projectstatus:
+        one: Status de proyectos
+        other: Status de proyectos
+      projecttype:
+        one: Tipo de proyecto
+        other: Tipos de proyecto
+      publicationcategory:
+        one: Categoría de publicaciones
+        other: Categorías de publicaciones
+      publisher:
+        one: Editorial
+        other: Editoriales
+      refereed_criterium:
+        one: Critero de arbitraje
+        other: Criterios de arbitraje
+      researcharea:
+        one: Área de investigación
+        other: Áreas de investigación
+      researchgroup:
+        one: Grupo de investigación
+        other: Grupos de investigación
+      researchline:
+        one: Línea de investigación
+        other: Líneas de investigación
+      role:
+        one: Rol
+        other: Roles
+      roleinbook:
+        one: Rol en libro
+        other: Roles en libro
+      roleinchapter:
+        one: Rol en capítulo de libro
+        other: Roles en capítulo de libro
+      roleinconference:
+        one: Rol en evento académico
+        other: Roles en evento académico
+      roleinconferencetalk:
+        one: Rol en conferencias
+        other: Roles en conferencias
+      roleincourse:
+        one: Rol en cursos
+        other: Roles en cursos
+      roleinjournal:
+        one: Rol en journals
+        other: Roles in journals
+      roleinjury:
+        one: Rol en jurado de tesis
+        other: Roles en jurado de tesis
+      roleinproject:
+        one: Rol en proyectos
+        other: Roles en proyectos
+      roleinregularcourse:
+        one: Rol en cursos regulares
+        other: Roles en cursos regulares
+      roleinseminary:
+        one: Rol en seminarios
+        other: Roles en seminarios
+      roleinthesis:
+        one: Rol en tesis
+        other: Roles en tesis
+      roleproceeding:
+        one: Rol en memorias
+        other: Roles en memorias
+      schoolarship:
+        one: Beca
+        other: Becas
+      seminarytype:
+        one: Tipo de seminario
+        other: Tipos de seminario
+      skilltype:
+        one: Tipo de habilidad
+        other: Tipo de habilidades
+      state:
+        one: Estado
+        other: Estados
+      stimuluslevel:
+        one: Nivel de estímulo
+        other: Niveles de estímulo
+      stimulustype:
+        one: Tipo de estímulo
+        other: Tipos de estímulo
+      studentrole:
+        one: Rol del estudiante
+        other: Roles de estudiante
+      talkacceptance:
+        one: Tipo de aceptación de conferencia
+        other: Tipos de aceptación de conferencia
+      talktype:
+        one: Tipo de conferencia
+        other: Tipos de conferencia
+      techproductstatus:
+        one: Status de producto técnico
+        other: Status de productos técnico
+      techproducttype:
+        one: Tipo de productos técnicos
+        other: Tipos de productos técnicos
+      thesismodality:
+        one: Modalidad de tesis
+        other: Modalidades de tesis
+      thesisstatus:
+        one: Status de tesis
+        other: Status de tesis
+      titlemodality:
+        one: Modalidad de titulación
+        other: Modalidades de titulación
+      userstatus:
+        one: Status del usuario
+        other: Status del usuario
+      volume:
+        one: Volumren
+        other: Volumenes
 
     attributes:
       user:
@@ -366,6 +634,8 @@ es:
         endmonth: Mes de conclusión
         projectstatus: Estado del proyecto
         projectstatus_id: Estado del proyecto
+        other: Información adicional
+        amount: Monto
       user_project:
         roleinproject: Rol
         roleinproject_id: Rol
@@ -401,7 +671,6 @@ es:
         roleinthesis_id: Rol
       annual_plan:
         body: Descripción
-
 
   additional_info: Información adicional
   career: Carrera
@@ -1851,6 +2120,8 @@ es:
         title: 'Rechazar informe anual'
 
   admin:
+    system_admin: 'Administración del sistema'
+    resque: 'Administración de colas asíncronas'
     people: 'Información personal'
     addresses: 'Domicilios'
     institutions: 'Instituciones'
@@ -2000,6 +2271,7 @@ es:
     userstatuses: 'Estados de usuario'
     users_logs: 'Bitacoras de usuario'
     usersstatuses_comments: 'Comentarios de estados de usuario'
+    reports: Reportes
 
     user:
       form:
@@ -2021,6 +2293,7 @@ es:
   save: 'Guardar'
   cancel: 'Cancelar'
   update: 'Guardar cambios'
+  modify: 'Modificar'
   edit: 'Modificar'
   back: 'Regresar'
   show: 'Mostrar'
@@ -2119,6 +2392,7 @@ es:
   authorization_date: 'Fecha y hora de autorización'
   status: 'Estado'
   jobposition_type: 'Tipo de contrato'
+  jobpositioncategory: 'Categoría'
   financing_sources: 'Fuentes de financiamiento'
   projecttype: 'Tipo de proyecto'
   projectstatus: 'Estado del proyecto'
@@ -2153,6 +2427,9 @@ es:
   total_of_versions: Total de versiones
   url: Liga
   open_url: Abrir liga
+  unauthorized: No estas autorizado para realizar esta acción
+  send_annual_plan: Enviar plan anual
+
   reporter:
     profile: 'Perfil'
     jobpositions: 'Categorías'
@@ -2162,10 +2439,23 @@ es:
     user_stimuli: 'Estímulos académicos'
     course_attendees: 'Cursos recibidos'
     conference_attendees: 'Asistencia a eventos académicos'
+    thesis_as_author: 'Autoría de tesis'
+    memberships: 'Membresías en asociaciones académicas'
     user_schoolarships: 'Becas'
     user_prizes: 'Premios y distinciones'
     user_credits: 'Agradecimientos y otros créditos'
+    user_credits_prices_and_stimuli: 'Agradecimientos, créditos, premios y estímulos'
+    credits_on_phd_thesis: 'Agradecimientos en tesis de doctorado'
+    credits_on_master_thesis: 'Agradecimientos en tesis de maestría'
+    credits_on_degree_thesis: 'Agradecimientos en tesis de licenciatura'
+    credits_on_international_article: 'Agradecimientos en artículos internacionales'
+    credits_on_national_article: 'Agradecimientos en artículos nacionales'
+    credits_on_others: 'Otros agradecimientos'
+
+
     institutional_activities: 'Participación institucional'
+    researchlines: Líneas de investigación
+    user_researchline: ''
 
     publications: 'Publicaciones'
     articles: 'Artículos publicados'
@@ -2181,6 +2471,9 @@ es:
     seminaries: 'Seminarios y conferencias'
     conference_organizers: 'Comités de congresos'
     conference_talks: 'Trabajos presentados en congresos'
+    conference_talks_local: 'Locales'
+    conference_talks_national: 'Nacionales'
+    conference_talks_international: 'Internacionales'
 
     refereed_colaborations: 'Colaboración en publicaciones'
     popular_science: 'Trabajos de divulgación'
@@ -2212,6 +2505,12 @@ es:
     student_advices: 'Asesoría a estudiantes'
     other_teaching_activities: 'Actividades de docencia'
     teaching_products: 'Productos de docencia'
+    phd_theses: 'Tesis de doctorado'
+    mastery_theses: 'Tesis de maestría'
+    degree_theses: 'Tesis de licenciatura'
+    technician_theses: 'Tesis de carrera técnica'
+    bachelor_theses: 'Tésis de licenciatura'
+    unfinished_theses:  'Tesis en proceso'
 
     tech_activities: 'Actividades técnico-académicas'
     technical_activities: 'Actividades técnicas'
@@ -2240,6 +2539,23 @@ es:
     annual_plans:
       index:
         title: Planes de trabajo
+
+  web_site:
+    annual_reports:
+      index:
+        title: Informes anuales
+    home_pages:
+      review: Reseña
+      researchlines: Lineas de investigación
+      recent_published_articles: Publicaciones recientes
+      recent_advised_theses: Ultimas tesis dirigidas
+      recent_book_chapters: Capítulos en libros recientes
+      recent_published_books: Ultimos libros publicados
+
+    annual_plans:
+      index:
+        title: Planes de trabajo
+
 
   will_paginate:
     previous_label: "&#8592; Anterior"

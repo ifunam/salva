@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   attr_accessible :name, :abbrev, :responsible, :descr, :projecttype_id, :startyear, :startmonth, :endyear, :endmonth,
-                  :projectfinancingsources_attributes, :projectstatus_id, :user_projects_attributes
+                  :projectfinancingsources_attributes, :projectstatus_id, :user_projects_attributes, :amount, :other
 
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :projectstatus_id, :projectstatus_id, :startyear,:projecttype_id, :greater_than => 0, :only_integer => true
@@ -34,12 +34,18 @@ class Project < ActiveRecord::Base
 
   has_paper_trail
 
+  default_scope :order => 'startyear DESC'
   scope :user_id_eq, lambda { |user_id| joins(:user_projects).where(:user_projects => {:user_id => user_id}) }
-  scope :user_id_not_eq, lambda { |user_id|  where("projects.id IN (#{UserProject.select('DISTINCT(project_id) as project_id').where(["user_projects.user_id !=  ?", user_id]).to_sql}) AND projects.id  NOT IN (#{UserProject.select('DISTINCT(project_id) as project_id').where(["user_projects.user_id =  ?", user_id]).to_sql})") }
+  scope :user_id_not_eq, lambda { |user_id| 
+    project_without_user_sql = UserProject.user_id_not_eq(user_id).to_sql
+    project_with_user_sql = UserProject.user_id_eq(user_id).to_sql
+    sql = "projects.id IN (#{project_without_user_sql}) AND projects.id NOT IN (#{project_with_user_sql})"
+    where sql
+  }
   search_methods :user_id_eq, :user_id_not_eq
 
   def as_text
-    [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}", start_date, end_date].join(', ')
+    [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}", "Monto #{ActionController::Base.helpers.number_to_currency(amount, :locale => :en)}", start_date, end_date].join(', ')
   end
 
 end

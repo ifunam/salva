@@ -2,9 +2,13 @@
   %h4 Domicilio profesional
   = show_for record do |a|
     .row
-      = a.association :addresstype, :using => :name
-      = a.attribute :location, :wrapper_html => {:class => 'span-8'}
-      = a.attribute :pobox, :wrapper_html => {:class => 'span-5'}
+      -#= a.association :addresstype, :using => :name
+      .span-10
+        = a.attribute :location
+      .span-5.last
+        = a.attribute :pobox
+    %br &nbsp
+
     .row
       = a.association :country, :using => :name
       = a.association :state, :using => :name

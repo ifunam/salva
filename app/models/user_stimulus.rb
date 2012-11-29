@@ -11,6 +11,9 @@ class UserStimulus < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
+  #RMO set order
+  default_scope order('startyear DESC, startmonth DESC')
+
   def as_text
     [stimuluslevel.name_and_type, start_date, end_date].compact.join(', ')
   end

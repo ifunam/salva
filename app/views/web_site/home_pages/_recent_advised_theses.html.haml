@@ -1,0 +1,7 @@
+- if user.recent_adviced_theses.size > 0
+  %h3 Ultimas Tesis Dirigidas:
+  - n = 0
+  - user.recent_adviced_theses.each do |thesis|
+    = (n +=1).to_s + '. ' + thesis.as_text
+    %br/
+    %br/

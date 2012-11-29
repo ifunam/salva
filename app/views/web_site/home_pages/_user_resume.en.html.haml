@@ -1,3 +1,4 @@
 - unless user.homepage_resume_en.nil?
-  %h3 Rese&ntilde;a del Acad&eacute;mico:
+  %h3
+    = t('web_site.home_pages.review')
   #userresume= textilize(user.homepage_resume_en).html_safe

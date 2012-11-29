@@ -1,6 +1,6 @@
 class UpgradedThesisUpdateTriggerToTheses < ActiveRecord::Migration
   def up
-    execute "DROP FUNCTION thesis_update()"
+    #execute "DROP FUNCTION thesis_update()"
 
     execute %Q{
       CREATE FUNCTION thesis_update() RETURNS trigger

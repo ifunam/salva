@@ -11,7 +11,8 @@
   .span1.last=t(:del)
 
 #collection_records
-  = render :partial => 'record', :collection => @user_credits
+  -#RMO add .order('year DESC, credittype_id ASC')
+  = render :partial => 'record', :collection => @user_credits.order('year DESC, credittype_id ASC')
 
 = render :partial => 'collection_footer'
 

@@ -1,0 +1,8 @@
+- if user.recent_book_chapters.size > 0
+  %h3
+    =t('web_site.home_pages.recent_book_chapters')
+  - n = 0
+  - user.recent_book_chapters.sort! {|x,y| y.year <=> x.year}.each do |chapter|
+    = (n +=1).to_s + '. ' + chapter.as_text
+    %br/
+    %br/

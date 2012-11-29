@@ -1,21 +1,44 @@
+.span-4.photo
+  %img{:src => url_for(:action => :show_photo, :id => @record.id), :class => "image"}/
+.span-14.last.profile
+  = render :partial => 'profile', :locals => {:user => @record}
+.span-14.last
+  &nbsp
 .resume
-  %table
-    %tr
-      %td
-        %img{:src => url_for(:action => :show_photo, :id => @record.id)}/
-      %td.resume
-        %br/
-        = render :partial => 'profile', :locals => {:user => @record}
-        %br/
-        = links_for_personal_sites(@record)
-  %br/
-  = render :partial => 'user_resume', :locals => { :user => @record }
+  .span-19.last.user_resume
+    = render :partial => 'user_resume', :locals => { :user => @record }
+  .span-19.last.skills-reseachlines
+    - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
+      = render :partial => 'user_skills', :locals => {:user => @record}
+    - else
+      = render :partial => 'researchlines', :locals => {:user => @record}
+  .span-19.last.recent_published_articles
+    = render :partial => 'recent_published_articles', :locals => {:user => @record}
+  .span-19.last.recent_advised_theses
+    = render :partial => 'recent_advised_theses', :locals => {:user => @record}
+  .span-19.last.recent_published_books
+    = render :partial => 'recent_published_books', :locals => {:user => @record}
+  .span-19.last.recent_book_chapters
+    = render :partial => 'recent_book_chapters', :locals => {:user => @record}
 
-  - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
-    = render :partial => 'user_skills', :locals => {:user => @record}
-  - else
-    = render :partial => 'researchlines', :locals => {:user => @record}
-  %br/
-  = render :partial => 'recent_published_articles', :locals => {:user => @record}
-  %br/
-  %br/
+-#.resume
+-#  %table
+-#    %tr
+-#      %td
+-#        %img{:src => url_for(:action => :show_photo, :id => @record.id)}/
+-#      %td.resume
+-#        %br/
+-#        = render :partial => 'profile', :locals => {:user => @record}
+-#        %br/
+-#        = links_for_personal_sites(@record)
+-#  %br/
+-#  = render :partial => 'user_resume', :locals => { :user => @record }
+-#
+-#  - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
+-#    = render :partial => 'user_skills', :locals => {:user => @record}
+-#  - else
+-#    = render :partial => 'researchlines', :locals => {:user => @record}
+-#  %br/
+-#  = render :partial => 'recent_published_articles', :locals => {:user => @record}
+-#  %br/
+-#  %br/

@@ -15,16 +15,38 @@ module Reporter
     def build_sections
       create_section :profile do |s|
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
-        s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
-        s.collection :projects
-        s.collection :user_stimuli
+        s.collection :thesis_as_author, :class_name => 'Theses', :scope => :as_author
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
-        s.collection :user_schoolarships, :date_style => :date_range
-        s.collection :user_prizes
-        s.collection :user_credits
+        s.collection :memberships
+        #s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
+
+        #s.collection :user_schoolarships, :date_style => :date_range
+
         s.collection :institutional_activities
+      end
+
+
+      create_section :user_credits_prices_and_stimuli do |s|
+        s.collection :credits_on_phd_thesis, :class_name => 'UserCredits', :scope => :credits_on_phd_thesis
+        s.collection :credits_on_master_thesis, :class_name => 'UserCredits', :scope => :credits_on_master_thesis
+        s.collection :credits_on_degree_thesis, :class_name => 'UserCredits', :scope => :credits_on_degree_thesis
+        s.collection :credits_on_international_article, :class_name => 'UserCredits', :scope => :credits_on_international_article
+        s.collection :credits_on_national_article, :class_name => 'UserCredits', :scope => :credits_on_national_article
+        s.collection :credits_on_others, :class_name => 'UserCredits', :scope => :credits_on_others
+        #s.collection :user_credits
+        s.collection :user_prizes
+        s.collection :user_stimuli
+      end
+
+
+      create_section :projects do |s|
+        s.collection :projects
+      end
+
+      create_section :researchlines do |s|
+        s.collection :user_researchline
       end
 
       create_section :publications do |s|
@@ -39,10 +61,15 @@ module Reporter
       end
 
       create_section :seminary_and_conferences do |s|
+        s.collection :conference_talks_international, :class_name => 'Conferencetalk', :scope => :international_scope, :date_style => :only_year
+        s.collection :conference_talks_national, :class_name => 'Conferencetalk', :scope => :national_scope, :date_style => :only_year
+        s.collection :conference_talks_local, :class_name => 'Conferencetalk', :scope => :local_scope, :date_style => :only_year
+
         s.collection :seminaries, :scope => :as_not_attendee
         s.collection :conference_organizers, :class_name => 'Conference', :scope => :organizers
-        s.collection :conference_talks, :class_name => 'Conferencetalk', :date_style => :only_year
       end
+
+      #TODO RMO Check next
 
       create_section :refereed_colaborations do |s|
         s.collection :user_refereed_journals, :date_style => :month_and_year
@@ -65,8 +92,16 @@ module Reporter
       create_section :teaching do |s|
         s.collection :regular_courses, :class_name => 'Regularcourse', :date_style => :date_range
         s.collection :course_instructors, :class_name => 'Course', :scope => :instructors
-        s.collection :theses
+        #s.collection :theses
+        s.collection :phd_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :phd_theses
+        s.collection :mastery_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :mastery_theses
+        s.collection :degree_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :degree_theses
+        s.collection :technician_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :technician_theses
+        s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :bachelor_theses
+
+        s.collection :unfinished_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :unfinished_theses
         s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year
+
         s.collection :tutorial_committees, :date_style => :only_year
         s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching

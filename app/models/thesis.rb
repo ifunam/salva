@@ -26,14 +26,32 @@ class Thesis < ActiveRecord::Base
 
   default_scope :order => 'theses.endyear DESC, theses.startmonth DESC, theses.startyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
-  scope :user_id_not_eq, lambda { |user_id|  where("theses.id IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id !=  ?", user_id]).to_sql}) AND theses.id  NOT IN (#{UserThesis.select('DISTINCT(thesis_id) as thesis_id').where(["user_theses.user_id =  ?", user_id]).to_sql})") }
+
+  scope :user_id_not_eq, lambda { |user_id|
+    theses_without_user_sql = UserThesis.user_id_not_eq(user_id).to_sql
+    theses_with_user_sql = UserThesis.user_id_eq(user_id).to_sql
+    sql = "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_without_user_sql})"
+    where sql
+  }
+
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
   scope :finished, where(:thesisstatus_id => 3)
+  scope :unfinished_theses, where(:thesisstatus_id => 2)
+  scope :phd_theses, joins(:career).where('degree_id = 6')
+  scope :mastery_theses, joins(:career).where('degree_id = 5 or degree_id = 4')
+  scope :degree_theses, joins(:career).where('degree_id = 3')
+  scope :technician_theses, joins(:career).where('degree_id = 2')
+  scope :bachelor_theses, joins(:career).where('degree_id = 1')
+
+
+  scope :as_author, where(:user_theses => {:roleinthesis_id => 1})
+
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
   def as_text
-    [users_and_roles, title, career.as_text, date, "#{authors} (estudiante)"].compact.join(', ')
+    author = user_theses[0].roleinthesis_id == 1 ? '' : "#{authors} (estudiante)"
+    [users_and_roles, title, career.as_text, date, author.compact].join(', ')
   end
 
   def users_and_roles

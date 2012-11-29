@@ -52,6 +52,12 @@ class UserProfile
     @user.address.location unless @user.address.nil?
   end
 
+  #RMO
+  def professional_address
+    @user.professional_address.as_text unless @user.address.nil?
+  end
+  #RMO
+
   def address_state_name
     @user.address.state.name unless @user.address.nil? and @user.address.state.nil?
   end
@@ -174,3 +180,4 @@ class UserProfile
      }.to_xml(:root => :user)
   end
 end
+

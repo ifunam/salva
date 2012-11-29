@@ -34,6 +34,8 @@ class Indivadvice < ActiveRecord::Base
     "#{prefix}: #{indivname}"
   end
 
+
+
   def degree_name
     if !degree_id.nil?
       "Grado: #{degree.name}"
