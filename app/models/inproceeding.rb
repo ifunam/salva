@@ -15,7 +15,7 @@ class Inproceeding < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope order("inproceedings.authors ASC, inproceedings.title ASC")
+  default_scope order("proceedings.year DESC, inproceedings.authors ASC, inproceedings.title ASC")
   scope :refereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 't' AND inproceedings.proceeding_id = proceedings.id")
   scope :unrefereed, joins("INNER JOIN proceedings ON proceedings.isrefereed = 'f' AND inproceedings.proceeding_id = proceedings.id")
 
@@ -29,7 +29,7 @@ class Inproceeding < ActiveRecord::Base
 
   scope :since, lambda { |year| includes(:proceeding).where(["proceedings.year >= ?", year])}
   scope :until, lambda { |year| includes(:proceeding).where(["proceedings.year <= ?", year])}
-  scope :year_eq, lambda { |year| joins(:proceeding).where('proceedings.year = ?', year) }
+  scope :year_eq, lambda { |year| includes(:proceeding).where('proceedings.year = ?', year) }
   scope :among, lambda { |start_year, end_year| includes(:proceeding).where(["proceedings.year = ?", start_year])}
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
   search_methods :among, :splat_param => true, :type => [:integer, :integer]
