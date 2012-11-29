@@ -1,10 +1,11 @@
-.span-5
-  = f.input :adscription_id, :as =>:radio, :collection => Adscription.enabled
+.span-6
+  = f.input :adscription_id, :as =>:radio, :collection => Adscription.enabled, :wrapper_html => { :class => 'span-6' }
 
-.span-12.last
+.span-11.last
   = f.input :descr, :as => :text, :input_html => {:size => '50x3'}
 
 
 .span-18.last
-  = f.input :id, :as => :hidden
-  = f.input :jobposition_id, :as =>:hidden
+  = f.hidden_field :id
+  = f.hidden_field :jobposition_id
+
