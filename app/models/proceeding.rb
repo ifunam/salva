@@ -1,7 +1,7 @@
 class Proceeding < ActiveRecord::Base
   attr_accessible :title, :year, :volume, :publisher_id, :conference_attributes, :user_proceedings_attributes
 
-  validates_presence_of :title
+  validates_presence_of :title, :year
   validates_numericality_of :id, :publisher_id,  :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_inclusion_of :isrefereed, :in => [true, false]
 

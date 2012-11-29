@@ -2030,6 +2030,10 @@ es:
       title: Artículos en memorias arbitradas
       my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
       not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
+    not_mine:
+      title: Artículos en memorias arbitradas
+      my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
+      not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
     collection_header:
       title: Artículos
     new:
@@ -2044,6 +2048,11 @@ es:
       title: Articulos en memorias In Extenso
       my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
       not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+    not_mine:
+      title: Articulos en memorias In Extenso
+      my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
+      not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+
     collection_header:
       title: Artículos
     new:
