@@ -18,6 +18,6 @@
       = f.label :endmonth, :required => true
       = select_month_for 'endmonth', 'advice'
 
-  - f.object.career = Career.new if f.object.career.nil?
+  - f.object.career = f.object.career.nil? ? Career.new : f.object.career.clone
   = f.simple_fields_for :career, f.object.career do |c|
     = render :partial => 'careers/form', :locals => { :f => c}

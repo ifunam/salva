@@ -23,6 +23,6 @@
         %label="Modalidad"
         = f.object.thesismodality.name
 
-  - f.object.career = Career.new if f.object.career.nil?
+  - f.object.career = f.object.career.nil? ? Career.new : f.object.career.clone
   = f.simple_fields_for :career, f.object.career do |c|
     = render :partial => 'careers/form_universitary', :locals => { :f => c}
