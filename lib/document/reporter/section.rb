@@ -49,7 +49,7 @@ module Reporter
 
     # date_style: This method is useful to know what search options must be used in the reporter
     def date_style
-      @date_style if [:date, :date_range, :month_and_year, :only_year, :date_disabled].include? @date_style.to_sym
+      @date_style if [:date, :date_range, :month_and_year, :only_year, :date_disabled, :month_and_year_range].include? @date_style.to_sym
     end
 
     private

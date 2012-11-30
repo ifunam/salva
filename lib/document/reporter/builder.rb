@@ -14,17 +14,19 @@ module Reporter
     private
     def build_sections
       create_section :profile do |s|
+        s.collection :researchlines, :class_name => 'UserResearchline', :date_style => :date_disabled
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
+        s.collection :projects, :date_style => :month_and_year_range
         s.collection :thesis_as_author, :class_name => 'Thesis', :scope => :as_author, :date_style => :date_range
+        s.collection :user_stimuli, :date_style => :month_and_year_range
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
-        #s.collection :memberships
-        #s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
-
-        #s.collection :user_schoolarships, :date_style => :date_range
-
-        s.collection :institutional_activities
+        s.collection :user_schoolarships, :date_style => :date_range
+        s.collection :user_prizes
+        s.collection :user_credits
+        s.collection :memberships, :date_style => :only_year
+        s.collection :institutional_activities, :date_style => :month_and_year_range
       end
 
 
@@ -45,9 +47,6 @@ module Reporter
         s.collection :projects
       end
 
-      create_section :researchlines do |s|
-        # s.collection :user_researchline
-      end
 
       create_section :publications do |s|
         s.collection :articles, :scope => :published
@@ -99,7 +98,7 @@ module Reporter
         s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :bachelor_theses
         s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year, :date_style => :date_range
         s.collection :tutorial_committees, :date_style => :only_year
-        s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students
+        s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students, :date_style => :month_and_year_range
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching
         s.collection :teaching_products, :class_name => 'Genericwork', :scope => :teaching_products
       end
