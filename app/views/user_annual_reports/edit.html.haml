@@ -11,6 +11,7 @@
       = f.submit t(:update)
       = link_to t(:cancel), user_annual_reports_path
 
+  = render :partial => 'research_lines'
   = render :partial => 'section', :collection => @report_sections
 - else
   %b{:style => 'color: red;'}="Necesita capturar la información de su producción anual en las diferentes secciones del sistema."

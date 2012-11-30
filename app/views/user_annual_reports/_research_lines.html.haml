@@ -1,0 +1,7 @@
+- if @profile.research_lines.size > 0
+  .section-with-border-and-bg
+    %h4= t(:researchlines, :scope => :reporter)
+    %ul
+      - @profile.research_lines.each do |s|
+        %li=s
+

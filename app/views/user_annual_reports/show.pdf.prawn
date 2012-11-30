@@ -60,7 +60,6 @@ prawn_document() do |pdf|
   pdf.move_down(20)
 
   pdf.text "Breve descripción cualitativa de los logros más importantes del trabajo durante el año.", :style => :bold
-  pdf.text "\n"
   counter = 0
   @annual_report.body.split("\n").each do |line|
     if (line =~ /^(\s)+\*/)
@@ -74,6 +73,18 @@ prawn_document() do |pdf|
   end
   pdf.move_down(20)
 
+  counter = 1
+  if @profile.research_lines.size > 0
+    pdf.text t(:research_lines, :context => :reporter), :size => 16, :style => :bold, :final_gap => true
+    @profile.research_lines.each do |s|
+        pdf.text [counter, s].join('. ') + '.', :size => 12, :align => :justify
+        counter += 1
+    end
+    pdf.move_down(20)
+  end
+
+
+  counter = 0
   @report_sections.each do |section|
     pdf.text section[:title].to_s, :size => 16, :style => :bold, :final_gap => true
     pdf.text "\n"
