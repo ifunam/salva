@@ -26,7 +26,7 @@ module MetaDateExtension
         subclass.class_eval do
           date_range_scopes
         end
-      elsif subclass.column_names.include? 'startyear' and subclass.column_names.include? 'endyear'
+      elsif (subclass.column_names & ['startyear', 'endyear']).size == 2 and !subclass.column_names.include?('startmonth')
         subclass.class_eval do
           year_range_scopes
         end
@@ -46,8 +46,9 @@ module MetaDateExtension
        unless respond_to? :among
          scope :among, lambda { |start_year, start_month, end_year, end_month|
           where{
-            ({:startyear.gteq => start_year, :startmonth.gteq => start_month} & {:endyear.gteq => start_year}) |
-            ({:startyear.gteq => start_year, :startmonth.gteq => start_month} & {:endyear => nil})
+            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.lteq => end_year, :endmonth.lteq => end_month}) |
+            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.gteq => start_year }) |
+            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear => nil})
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
