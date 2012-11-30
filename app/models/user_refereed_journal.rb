@@ -10,6 +10,10 @@ class UserRefereedJournal < ActiveRecord::Base
   belongs_to :refereed_criterium
 
   def to_s
-    ["Árbitro de #{refereed_criterium.name}", journal.name, date].compact.join(', ')
+    s = []
+    s.push "Árbitro de #{refereed_criterium.name}" unless refereed_criterium_id.nil?
+    s.push journal.name unless journal_id.nil?
+    s.push date
+    s.compact.join(', ')
   end
 end
