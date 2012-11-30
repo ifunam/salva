@@ -3,9 +3,9 @@
   .span-9.last= f.input :title, :as => :text, :input_html => { :size => '55x1', :required => true}
 
 .row
+  .span-6= f.association :booktype, :as => :radio
   .span-6= f.association :country, :collection => Country.all, :input_html => { :class => 'chosen-select', :required => true}
-  .span-6= f.association :language, :collection => Language.all, :input_html => { :class => 'chosen-select', :required => true}
-  .span-6.last= f.association :booktype, :as => :radio
+  .span-6.last= f.association :language, :collection => Language.all, :input_html => { :class => 'chosen-select', :required => true}
 .row
   .span-9= f.input :volume, :as => :string, :input_html => { :size => 45 }
   .span-9.last= f.input :booklink, :as => :string, :input_html => { :size => 45 }

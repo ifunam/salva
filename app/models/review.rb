@@ -12,7 +12,7 @@ class Review < ActiveRecord::Base
 
   default_scope :order => 'year DESC, month DESC, authors ASC, title ASC, reviewed_work_title ASC, published_on ASC'
 
-  def as_text
+  def to_s
     reviewed_work_publication = reviewed_work_publication.to_s.strip.empty?
     [ authors, title, "#{I18n.t(:reviewed_work_title)}: #{reviewed_work_title}", normalized_reviewed_work_publication,
       "#{I18n.t(:published_on)}: #{published_on}", date ].compact.join(', ')

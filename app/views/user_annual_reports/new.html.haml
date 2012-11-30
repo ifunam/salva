@@ -1,0 +1,16 @@
+.span-17.last
+  %h3= t('.title')
+= render :partial => 'user_annual_reports/profile', :object => @profile
+- if @report_sections.size > 0
+  = simple_form_for @annual_report, :url => user_annual_reports_path,  :html => { :id => 'record'} do |f|
+    .section-with-border-and-bg
+      =  render :partial => 'form', :locals => { :f => f }
+    .span-17.last.alert.alert-info
+      =t('.annual_report_hint')
+    #submit_buttons
+      = f.submit t(:save)
+      = link_to t(:cancel), user_annual_reports_path
+
+  = render :partial => 'section', :collection => @report_sections
+- else
+  %b{:style => 'color: red;'}="Necesita capturar la información de su producción anual en las diferentes secciones del sistema."

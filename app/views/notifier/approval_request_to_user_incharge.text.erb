@@ -7,7 +7,7 @@ Usted ha recibido una solicitud para aprobar el <%= @document.documenttype.name 
 de <%= @document.user.fullname_or_email %>,  revise la lista de documentos por
 aprobar en la siguiente liga:
 
-<%= new_academic_session_path %>
+<%= new_academic_session_path(:only_path => false) %>
 
 Gracias por usar la Plataforma de Información Curricular - SALVA.
 

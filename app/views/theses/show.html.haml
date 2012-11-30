@@ -5,16 +5,14 @@
     .span-9.last= u.attribute :authors
 
     .span-18.last
-      .span-9= u.association :thesismodality, :using => :name
-      .span-9.last= u.association :thesisstatus, :using => :name
-
-    .span-4= u.attribute :startyear
-    .span-5= u.attribute :startmonth
-    .span-4= u.attribute :endyear
-    .span-5.last= u.attribute :endmonth
+      .span-6= u.attribute :start_date
+      .span-6= u.association :thesisstatus, :using => :name
+      .span-6.last= u.attribute :end_date
 
     .span-18.last
       = render :partial => 'careers/show', :locals => { :record => @thesis.career }
+      .span-6.last= u.association :thesismodality, :using => :name
+
     .span-18.last
       %h4=t(:school_or_faculty)
       = render :partial => 'institutions/show', :locals => { :record => @thesis.career.institution }
@@ -23,7 +21,7 @@
       %h4=t(:associated_academics)
       %ul
         - @thesis.user_theses.each do |record|
-          %li= record.as_text
+          %li= record.to_s
 
   .row
     = render :partial => 'shared/record', :object => @thesis

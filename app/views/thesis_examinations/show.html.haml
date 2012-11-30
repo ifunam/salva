@@ -6,8 +6,7 @@
 
     .span-18.last
       .span-9= u.association :thesismodality, :using => :name
-      .span-4= u.attribute :endyear
-      .span-5.last= u.attribute :endmonth
+      .span-9.last= u.attribute :end_date
 
     .span-18.last
       = render :partial => 'careers/show', :locals => { :record => @thesis_examination.career }
@@ -19,7 +18,7 @@
       %h4=t(:thesis_jurors)
       %ul
         - @thesis_examination.thesis_jurors.each do |record|
-          %li= record.as_text
+          %li= record.to_s
 
   .row
     = render :partial => 'shared/record', :object => @thesis_examination

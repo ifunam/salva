@@ -110,20 +110,21 @@ module ApplicationHelper
 
   def link_to_annual_report(user_id)
     @document_type = Documenttype.annual_reports.active.first
-    if !@document_type.nil? and Document.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
-      link_to t(:annual_report_preview), user_annual_report_path(:year => @document_type.year)
+    if !@document_type.nil? and AnnualReport.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
+      link_to t(:new_annual_report), new_user_annual_report_path
+    elsif !@document_type.nil? and AnnualReport.where(:user_id => user_id, :documenttype_id => @document_type.id, :delivered => true).first.nil?
+      @annual_report = AnnualReport.where(:user_id => user_id, :documenttype_id => @document_type.id).first
+      link_to t(:edit_annual_report), edit_user_annual_report_path(:id => @annual_report.id)
     end
   end
 
-
   def link_to_annual_plan(user_id)
     @document_type = Documenttype.annual_plans.active.first
-    if !@document_type.nil? and Document.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
+    if !@document_type.nil? and AnnualPlan.where(:user_id => user_id, :documenttype_id => @document_type.id).first.nil?
       link_to t(:new_annual_plan), new_user_annual_plan_path
-    elsif !@document_type.nil? and !AnnualPlan.where(:user_id => user_id, :documenttype_id => @document_type.id, :delivered => false).first.nil?
-      @annual_plan = AnnualPlan.where(:user_id => user_id, :documenttype_id => @document_type.id, :delivered => false).first
+    elsif !@document_type.nil? and AnnualPlan.where(:user_id => user_id, :documenttype_id => @document_type.id, :delivered => true).first.nil?
+      @annual_plan = AnnualPlan.where(:user_id => user_id, :documenttype_id => @document_type.id).first
       link_to t(:edit_annual_plan), edit_user_annual_plan_path(:id => @annual_plan.id)
-    else
     end
   end
 

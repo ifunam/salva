@@ -11,8 +11,8 @@ class UserResearchline < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  def as_text
-     researchline.as_text
+  def to_s
+     researchline.to_s
   end
 end
 

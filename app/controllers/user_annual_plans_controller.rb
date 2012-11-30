@@ -16,7 +16,7 @@ class UserAnnualPlansController < ApplicationController
   def create
     authorize_document!
     find_profile
-    params[:annual_plan].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id)
+    params[:annual_plan].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id, :delivered => false)
     @annual_plan = AnnualPlan.new(params[:annual_plan])
     if @annual_plan.save
       respond_with(@annual_plan, :status => :created, :location => user_annual_plan_path(@annual_plan))
@@ -38,7 +38,7 @@ class UserAnnualPlansController < ApplicationController
   def update
     authorize_document!
     find_document_and_profile
-    if @annual_plan.update_attributes(params[:annual_plan])
+    if @annual_plan.update_attributes(params[:annual_plan].merge(:delivered => false))
       respond_with(@annual_plan, :status => :updated, :location =>user_annual_plan_path(@annual_plan))
     else
       respond_with(@annual_plan, :status => :unprocessable_entity) do |format|

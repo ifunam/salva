@@ -18,4 +18,10 @@ module I18nHelper
           "Not Defined"
      end
   end
+
+  def localized_month_list
+    Range.new(1,12).collect do |m|
+      [I18n.t("date.month_names")[m], m]
+    end
+  end
 end

@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
-  #RMO :professional_address intead of :address
+  #RMO :professional_address instead of :address
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
                   :person_attributes, :professional_address_attributes, :jobposition_attributes, :current_password,
                   :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
@@ -71,13 +71,15 @@ class User < ActiveRecord::Base
                  :login_like
 
   belongs_to :userstatus
+
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   has_one :person
   has_one :user_group
-  has_one :address
+  has_many :addresses
+  has_one :address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
   has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
   has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
@@ -118,7 +120,7 @@ class User < ActiveRecord::Base
            :conditions => 'articles.articlestatus_id = 3',
            :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
 
-  has_many :inprogress_articles, :through => :user_articles, :source => :article,
+   has_many :inprogress_articles, :through => :user_articles, :source => :article,
            :conditions => 'articles.articlestatus_id != 3',
            :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
 
@@ -153,6 +155,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :person, :professional_address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
+  
 
   def self.paginated_search(options={})
     search(options[:search]).page(options[:page] || 1).per(options[:per_page] || 10)

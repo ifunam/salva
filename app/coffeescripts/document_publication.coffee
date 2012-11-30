@@ -13,7 +13,6 @@ $(document).ready ->
     e.preventDefault()
     html = $.response_from_simple_remote_resource(@href)
     $(this).parent().parent().replaceWith html
-
     false
 
   $(".role_list ul li a").live "click", (e)->
@@ -48,7 +47,7 @@ $(document).ready ->
   $(".new_period").live "click", (e) ->
     (e).preventDefault()
     $.dialog_for_new_period @href
-  
+
   $("#new_period_form").live "submit", (e) ->
     (e).preventDefault()
     regularcourse_id = $("#new_period_form").attr("data-regularcourse-id")
@@ -60,3 +59,13 @@ $(document).ready ->
   $(".delete_period").live "click", (e) ->
     e.preventDefault()
     $(this).parent().remove()
+
+  $(".radio-set-thesisstatus").live "change", (e) ->
+    if this.name == "thesis[thesisstatus_id]" and this.checked
+      if this.value == "3"
+        new_label = "<abbr title=\"required\">*</abbr>Fecha de presentación de examen"
+        $("label[for=thesis_end_date]").html(new_label)
+      else
+        new_label = "<abbr title=\"required\">*</abbr>Fecha estimada de presentación de examen"
+        $("label[for=thesis_end_date]").html(new_label)
+

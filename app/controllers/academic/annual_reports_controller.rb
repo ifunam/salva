@@ -1,5 +1,6 @@
 class Academic::AnnualReportsController < Academic::ApplicationController
   respond_to :js, :html
+  layout 'academic'
 
   def index
     respond_with(@documents = Document.annual_reports.where(:approved_by_id => current_user.id).page(params[:page] || 1).per(10))
@@ -18,7 +19,7 @@ class Academic::AnnualReportsController < Academic::ApplicationController
 
   def update
     authorize_action!
-    @document.update_attributes(params[:document])
+    @document.update_attributes(params[:document], :as => :academic)
     @document.reject
     respond_with(@document)
   end

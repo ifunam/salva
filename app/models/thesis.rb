@@ -1,9 +1,12 @@
+# encoding: utf-8
 class Thesis < ActiveRecord::Base
-  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :startyear,
-                  :startmonth, :endyear, :endmonth, :career_attributes
-  validates_presence_of :thesisstatus_id, :thesismodality_id, :startyear, :authors, :title
+  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date,
+    # TODO: Remove this attributes for next release
+    :startyear, :startmonth, :endyear, :endmonth
+
+  validates_presence_of :thesisstatus_id, :thesismodality_id, :authors, :title, :end_date
   validates_numericality_of :id,:institutioncareer_id, :allow_nil => true, :greater_than => 0, :only_integer => true
-  validates_numericality_of :thesisstatus_id, :thesismodality_id, :startyear,  :greater_than => 0, :only_integer => true
+  validates_numericality_of :thesisstatus_id, :thesismodality_id, :greater_than => 0, :only_integer => true
 
   belongs_to :career
   accepts_nested_attributes_for :career
@@ -11,8 +14,8 @@ class Thesis < ActiveRecord::Base
   belongs_to :thesisstatus
   belongs_to :thesismodality
   belongs_to :institutioncareer # FIX IT: Remove this relationship until next release.
-                                # We need institutioncareers table to support
-                                # migrations from previous versions of salva databases.
+  # We need institutioncareers table to support
+  # migrations from previous versions of salva databases.
 
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
@@ -24,7 +27,7 @@ class Thesis < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'theses.endyear DESC, theses.startmonth DESC, theses.startyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC'
+  default_scope :order => 'theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC'
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
 
   scope :user_id_not_eq, lambda { |user_id|
@@ -36,29 +39,28 @@ class Thesis < ActiveRecord::Base
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
   scope :finished, where(:thesisstatus_id => 3)
-  scope :unfinished_theses, where(:thesisstatus_id => 2)
+  scope :inprogress, where("thesisstatus_id != 3")
   scope :phd_theses, joins(:career).where('degree_id = 6')
   scope :mastery_theses, joins(:career).where('degree_id = 5 or degree_id = 4')
   scope :degree_theses, joins(:career).where('degree_id = 3')
   scope :technician_theses, joins(:career).where('degree_id = 2')
   scope :bachelor_theses, joins(:career).where('degree_id = 1')
 
-
   scope :as_author, where(:user_theses => {:roleinthesis_id => 1})
-
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
-  def as_text
-    author = user_theses[0].roleinthesis_id == 1 ? '' : "#{authors} (estudiante)"
-    [users_and_roles, title, career.as_text, date, author.compact].join(', ')
+  def to_s
+    [users_and_roles, title, career.to_s, date, thesismodality.to_s, "#{authors} (estudiante)"].compact.join(', ')
   end
 
   def users_and_roles
-    user_theses.collect {|record| record.as_text }.join(', ')
+    user_theses.collect {|record| record.to_s }.join(', ')
   end
 
   def date
-    thesisstatus_id == 3 ? end_date : [start_date, end_date].join(', ')
+    date = (end_date.is_a?Date) ? end_date : Date.today
+    d = I18n.localize(date)
+    thesisstatus_id == 3 ? "Fecha de presentación de examen: #{d}" : "Fecha estimada de presentación y obtención de grado: #{d}"
   end
 end

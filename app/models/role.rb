@@ -6,7 +6,7 @@ class Role < ActiveRecord::Base
 
   has_many :roleingroups
 
-  def as_text
+  def to_s
     values = [name, abbrev]
     values << role.name unless role.name.nil?
     values.compact.join(', ')

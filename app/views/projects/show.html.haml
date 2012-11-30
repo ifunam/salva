@@ -19,7 +19,7 @@
     %h4=t(:financing_sources)
     %ul
       - @project.institutions.each do |record|
-        %li= record.as_text
+        %li= record.to_s
 
   .span-18.last
     %h4=t(:associated_academics)

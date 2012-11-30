@@ -7,4 +7,4 @@
   .span-6.last
     %ul
       - @book_chapter.chapterinbook_roleinchapters.each do |record|
-        %li= record.as_text
+        %li= record.to_s

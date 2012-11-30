@@ -16,10 +16,10 @@ module Reporter
       create_section :profile do |s|
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
-        s.collection :thesis_as_author, :class_name => 'Theses', :scope => :as_author
+        #s.collection :thesis_as_author, :class_name => 'Thesis', :scope => :as_author, :date_style => :date_range
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
-        s.collection :memberships
+        #s.collection :memberships
         #s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
 
         #s.collection :user_schoolarships, :date_style => :date_range
@@ -46,7 +46,7 @@ module Reporter
       end
 
       create_section :researchlines do |s|
-        s.collection :user_researchline
+        # s.collection :user_researchline
       end
 
       create_section :publications do |s|
@@ -92,16 +92,12 @@ module Reporter
       create_section :teaching do |s|
         s.collection :regular_courses, :class_name => 'Regularcourse', :date_style => :date_range
         s.collection :course_instructors, :class_name => 'Course', :scope => :instructors
-        #s.collection :theses
-        s.collection :phd_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :phd_theses
-        s.collection :mastery_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :mastery_theses
-        s.collection :degree_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :degree_theses
-        s.collection :technician_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :technician_theses
-        s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :bachelor_theses
-
-        s.collection :unfinished_theses, :class_name => 'Theses', :date_style => :month_and_year, :scope => :unfinished_theses
-        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year
-
+        # s.collection :phd_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :phd_theses
+        # s.collection :mastery_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :mastery_theses
+        # s.collection :degree_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :degree_theses
+        # s.collection :technician_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :technician_theses
+        # s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :bachelor_theses
+        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year, :date_style => :date_range
         s.collection :tutorial_committees, :date_style => :only_year
         s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching

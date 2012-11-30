@@ -377,14 +377,14 @@ es:
         is_titleholder: ¿Titulado?
       career:
         degree: Grado
-        name: Nombre de la carrera
+        name: Nombre de la carrera o posgrado
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Titulo de la institución
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
-        name: Nombre
+        name: Facultad, Escuela o Instituto
         institution: Institución
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
@@ -558,6 +558,9 @@ es:
         startmonth: Mes de inicio
         endyear: Año de conslusión
         endmonth: Mes de conclusión
+        start_date: Fecha de inicio
+        end_date: Fecha de presentación de examen
+
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -671,6 +674,8 @@ es:
         roleinthesis_id: Rol
       annual_plan:
         body: Descripción
+      annual_report:
+        body:Autoevaluación de desempeño de trabajo en el año 
 
   additional_info: Información adicional
   career: Carrera
@@ -1815,7 +1820,7 @@ es:
       title: 'Categorías'
       jobpositions: 'Categorías'
     new:
-      title: 'Nuevo categoría'
+      title: 'Nueva categoría'
     edit:
       title: 'Modificar categoría'
 
@@ -1861,14 +1866,22 @@ es:
   user_annual_reports:
     index:
       title: 'Informe anual de actividades'
+    new:
+      title: Nuevo informe anual
+      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
+    edit:
+      title: Modificar informe anual
+      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
 
   user_annual_plans:
     index:
       title: Planes de trabajo
     new:
       title: Nuevo plan de trabajo
+      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan de trabajo
+      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
 
   user_refereed_journals:
     index:
@@ -2019,6 +2032,10 @@ es:
       title: Artículos en memorias arbitradas
       my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
       not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
+    not_mine:
+      title: Artículos en memorias arbitradas
+      my_refereed_inproceedings: Listar mis artículos en memorias arbitradas
+      not_my_refereed_inproceedings: Artículos en memorias arbitradas de otros usuarios
     collection_header:
       title: Artículos
     new:
@@ -2033,6 +2050,11 @@ es:
       title: Articulos en memorias In Extenso
       my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
       not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+    not_mine:
+      title: Articulos en memorias In Extenso
+      my_unrefereed_inproceedings: Listar mis artículos en memorias In Extenso
+      not_my_unrefereed_inproceedings: Artículos en memorias In Extenso de otros usuarios
+
     collection_header:
       title: Artículos
     new:
@@ -2311,6 +2333,7 @@ es:
   download_pdf: 'Descargar en PDF'
   download_rtf: 'Descargar en RTF'
   send_annual_report: 'Enviar informe anual'
+  send_annual_plan: 'Enviar plan de trabajo'
   enable_search: 'Buscar'
   disable_search: 'Ocultar búsqueda'
   id: 'Id'
@@ -2402,8 +2425,10 @@ es:
   conference: 'Información del evento académico'
   talktype: 'Tipo de trabajo'
   annual_report_preview: 'Vista previa del informe anual'
-  new_annual_plan: 'Nuevo plan de trabajo'
+  new_annual_plan: 'Enviar nuevo plan de trabajo'
   edit_annual_plan: 'Modificar plan de trabajo'
+  new_annual_report: 'Preparar nuevo informe anual de actividades'
+  edit_annual_report: 'Modificar informe anual de actividades'
   gender: Genéro
   birthday: Fecha de nacimiento
   email: Correo electrónico
@@ -2480,7 +2505,6 @@ es:
     newspaper_articles: 'Artículos periodísticos'
     technical_reports: 'Reportes técnicos'
     user_credits: 'Agradecimientos y otros créditos'
-
     refereed_colaborations: 'Colaboración en publicaciones'
     user_refereed_journals: 'Arbitraje de revistas'
     book_collaborations: 'Colaboración en libros'
@@ -2499,7 +2523,8 @@ es:
     teaching: 'Docencia'
     regular_courses: 'Cursos regulares'
     course_instructors: 'Cursos especiales'
-    theses: 'Dirección de tesis'
+    theses: 'Dirección de tesis terminadas'
+    theses_inprogress: 'Dirección de tesis en proceso'
     thesis_examinations: 'Jurado de tesis'
     tutorial_committees: 'Comités tutorales'
     student_advices: 'Asesoría a estudiantes'

@@ -27,20 +27,29 @@ class Chapterinbook < ActiveRecord::Base
   }
 
   scope :user_id_not_eq, lambda { |user_id|
-      where("chapterinbooks.id IN (#{ChapterinbookRoleinchapter.select('DISTINCT(chapterinbook_id) as chapterinbook_id').
-      where(["chapterinbook_roleinchapters.user_id != ?", user_id]).to_sql}) AND chapterinbooks.id  NOT IN (#{ChapterinbookRoleinchapter.select('DISTINCT(chapterinbook_id) as chapterinbook_id').
-      where(["chapterinbook_roleinchapters.user_id = ?", user_id]).to_sql})")
+      chapter_without_user_sql = ChapterinbookRoleinchapter.select('DISTINCT(chapterinbook_id) as chapterinbook_id').where(["chapterinbook_roleinchapters.user_id != ?", user_id]).to_sql
+      chapter_with_user_sql = ChapterinbookRoleinchapter.select('DISTINCT(chapterinbook_id) as chapterinbook_id').where(["chapterinbook_roleinchapters.user_id = ?", user_id]).to_sql
+      sql = "chapterinbooks.id IN (#{chapter_without_user_sql}) AND chapterinbooks.id NOT IN (#{chapter_without_user_sql})"
+      where(sql)
   }
 
-  # FIX IT
-  scope :since, lambda { |year, month| where("chapterinbooks.bookedition_id IN (#{Bookedition.select('id').since(year,month).to_sql})") }
-  scope :until, lambda { |year, month| where("chapterinbooks.bookedition_id IN (#{Bookedition.select('id').until(year,month).to_sql})") }
+  scope :since, lambda { |year, month|
+    bookedition_since_sql = Bookedition.select('id').since(year,month).to_sql
+    sql = "chapterinbooks.bookedition_id IN (#{bookedition_since_sql})"
+    where(sql)
+  }
+
+  scope :until, lambda { |year, month|
+    bookedition_until_sql = Bookedition.select('id').until(year,month).to_sql
+    sql = "chapterinbooks.bookedition_id IN (#{bookedition_until_sql})"
+    where(sql)
+  }
 
   search_methods :user_id_eq, :user_id_not_eq
   search_methods :since, :splat_param => true, :type => [:integer, :integer]
   search_methods :until, :splat_param => true, :type => [:integer, :integer]
 
-  def as_text
-    [bookchaptertype.name, title].join(': ') + '. ' + bookedition.as_text
+  def to_s
+    [bookchaptertype.name, title].join(': ') + '. ' + bookedition.to_s
   end
 end

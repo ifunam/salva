@@ -1,8 +1,8 @@
 
 = show_for show do |book|
+  .span-6=book.association :booktype, :using => :name
   .span-6= book.association :country, :using => :name
-  .span-6= book.association :language, :using => :name
-  .span-6.last=book.association :booktype, :using => :name
+  .span-6.last= book.association :language, :using => :name
 
-  .span-9= book.attribute :volume
+  .span-6= book.attribute :volume
   .span-9.last= book.attribute :booklink

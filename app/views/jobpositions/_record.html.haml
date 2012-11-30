@@ -1,6 +1,6 @@
 .row{:id => dom_id(record), :class =>  cycle('record-odd', 'record-even')}
   .span-1=  checkbox_to_del(record)
-  .span-11= record.as_text
+  .span-11= record.to_s
   .action= link_to_show jobposition_path(:id => record.id)
   .action= link_to_edit edit_jobposition_path(:id => record.id)
   .action.last= link_to_delete record, jobposition_path(:id => record.id)

@@ -1,7 +1,8 @@
 class ThesisJuror < ActiveRecord::Base
-  attr_accessible :roleinjury_id, :year, :user_id, :thesis_id
-  validates_presence_of :roleinjury_id, :year
-  validates_numericality_of :roleinjury_id, :year
+  @@ignore_meta_date = true
+  attr_accessible :roleinjury_id, :user_id, :thesis_id
+  validates_presence_of :roleinjury_id
+  validates_numericality_of :roleinjury_id
   belongs_to :user
   belongs_to :thesis
   belongs_to :roleinjury
@@ -10,13 +11,16 @@ class ThesisJuror < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   #RMO set order
-  default_scope order('year DESC, month DESC')
+  #default_scope order('year DESC, month DESC')
 
   scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where(["thesis_jurors.user_id !=  ?", user_id]) }
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where :user_id => user_id }
+  scope :since, lambda { |start_date| includes(:thesis).where(:thesis => {:start_date.gteq => start_date }) }
+  scope :until, lambda { |end_date| includes(:thesis).where(:thesis => {:end_date.gteq => end_date}) }
+  scope :among, lambda { |start_date, end_date| since(start_date).until(end_date) }
+  search_methods :among, :splat_param => true, :type => [:date, :date]
 
-  def as_text
-    #[thesis.authors, thesis.title, user.fullname_or_email, "(#{roleinjury.name})"].join(' ')
-    [thesis.authors, thesis.title, year, "(#{roleinjury.name})"].join(' ')
+  def to_s
+    [user.fullname_or_email, "(#{roleinjury.name})"].join(' ')
   end
 end

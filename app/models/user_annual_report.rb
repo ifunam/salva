@@ -2,6 +2,7 @@ require 'abstract_controller'
 require 'action_view'
 require File.join(Rails.root, 'lib/document', 'user_profile')
 require File.join(Rails.root, 'lib/document/reporter', 'base')
+require 'pry'
 class UserAnnualReport < AbstractController::Base
     abstract!
     include AbstractController::Rendering
@@ -14,9 +15,9 @@ class UserAnnualReport < AbstractController::Base
     include ActiveModel::Validations
     include ActiveModel::Serialization
     include ActiveModel::MassAssignmentSecurity
-    attr_accessor :user_id, :year, :remote_ip, :document_type_id
-    define_attribute_methods  [:user_id, :year, :remote_ip, :document_type_id]
-    validates_presence_of :user_id, :year, :remote_ip, :document_type_id
+    attr_accessor :user_id, :year, :remote_ip, :document_type_id, :annual_report_id
+    define_attribute_methods  [:user_id, :year, :remote_ip, :document_type_id, :annual_report_id]
+    validates_presence_of :user_id, :year, :remote_ip, :document_type_id, :annual_report_id
     class_attribute :_attributes, :_storage_path, :_file
 
     self._attributes = []
@@ -44,9 +45,10 @@ class UserAnnualReport < AbstractController::Base
         store_file(data)
         if File.exist?(self._file)
           approved_by_id = User.find(@user_id).user_incharge.nil? ? nil : User.find(@user_id).user_incharge.id
-          Document.create(:user_id => @user_id, :ip_address => @remote_ip,
-                          :documenttype_id => @document_type_id, :file => self._file,
-                          :approved_by_id => approved_by_id)
+          @annual_report.deliver
+          @d = Document.create(:user_id => @user_id, :ip_address => @remote_ip,
+                               :documenttype_id => @document_type_id, :file => self._file,
+                               :approved_by_id => approved_by_id)
         end
       else
         return false
@@ -54,6 +56,7 @@ class UserAnnualReport < AbstractController::Base
     end
 
     def build_report_sections
+      @annual_report = AnnualReport.find(@annual_report_id)
       @profile = UserProfile.find(@user_id)
       @report_sections = Reporter::Base.find(:user_id_eq => @user_id, :start_date => "#{@year}/01/01", :end_date => "#{@year}/12/31").all
       @stamped = true

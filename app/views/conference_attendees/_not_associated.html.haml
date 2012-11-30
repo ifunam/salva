@@ -1,6 +1,6 @@
 .span-1= checkbox_to_delete(record)
 .span-8
-  = record.as_text
+  = record.to_s
   .not_associated{:title => t(:not_attendee)}
 .associated_authors
   .authors_size= record.users.size

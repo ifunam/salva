@@ -4,7 +4,9 @@
 
 = simple_form_for @annual_plan, :as => :annual_plan, :url => user_annual_plan_path(@annual_plan),  :html => { :id => 'record'} do |f|
   .section-with-border-and-bg
-    = f.input :body, :as => :text, :input_html => { :size => '120x10' }
+    = render :partial => 'form', :locals => { :f => f }
+  .span-17.last.alert.alert-info
+    =t('.annual_plan_hint')
   #submit_buttons
     = f.submit t(:update)
     = link_to t(:cancel), user_annual_plans_path

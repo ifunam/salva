@@ -13,7 +13,7 @@ class InstitutionalActivity < ActiveRecord::Base
   #RMO set order
   default_scope order('startyear DESC, startmonth DESC')
 
-  def as_text
+  def to_s
     [descr, institution.name_and_parent_abbrev, start_date, end_date].compact.join(', ')
   end
 end

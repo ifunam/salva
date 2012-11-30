@@ -4,7 +4,7 @@ class Conference < ActiveRecord::Base
   attr_accessible :name, :conferencetype_id, :conferencescope_id, :country_id, :year, :month, :location,
                   :conference_institutions_attributes, :userconferences_attributes
 
-  validates_presence_of :name, :year, :conferencetype_id, :country_id
+  validates_presence_of :name, :year, :conferencetype_id, :country_id, :conferencescope_id
 
   validates_numericality_of :id, :conferencescope_id, :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_numericality_of :conferencetype_id, :country_id,  :greater_than =>0, :only_integer => true
@@ -39,7 +39,7 @@ class Conference < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     [name, institution_names, "País: #{country.name}", normalized_type, normalized_scope, date].compact.join(', ')
   end
 

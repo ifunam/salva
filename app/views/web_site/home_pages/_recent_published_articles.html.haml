@@ -2,7 +2,7 @@
   %h3 Most Recent Publications:
   - n = 0
   - user.recent_published_articles.each do |article|
-    = (n +=1).to_s + '. ' + article.as_text
+    = (n +=1).to_s + '. ' + article.to_s
     = link_to_if_url_exists(article)
     %br/
     %br/

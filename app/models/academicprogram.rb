@@ -14,11 +14,11 @@ class Academicprogram < ActiveRecord::Base
 
   has_many :regularcourses
 
-  def as_text
+  def to_s
     ["Tipo de programa académico: #{academicprogramtype.name}", "Año del programa: #{year}"].join(', ')
   end
 
-  def as_text_with_career
-    [career.as_text, as_text].join(', ')
+  def to_s_with_career
+    [career.to_s, to_s].join(', ')
   end
 end

@@ -2,15 +2,13 @@
 = form_for :search, :remote => true, :html => {:id => "filter_form", :style => search_form_display_enabled} do |f|
   .span-4=t(:authors)
   .span-4=t(:title)
-  .span-6=t(:roleinthesis)
-  .span-2=t(:startyear)
-  .span-2.last=t(:endyear)
+  .span-4=t(:start_date)
+  .span-4.last=t(:end_date)
 
   .span-4= f.text_field :authors_like_ignore_case, :size => 15
   .span-4= f.text_field :title_like_ignore_case, :size => 15
-  .span-6= f.collection_select :roleinthesis_id_eq, Roleinthesis.no_author.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
-  .span-2= f.text_field :startyear_eq, :size => 4
-  .span-2.last= f.text_field :endyear_eq, :size => 4
+  .span-4= f.text_field :start_date_eq, :size => 9, :class => 'date'
+  .span-4.last= f.text_field :end_date_eq, :size => 9, :class => 'date'
 
   .span-5.prepend-13.last
     .search_button= link_to t(:search), "#", :id => "search_button"

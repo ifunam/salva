@@ -1,7 +1,7 @@
 
 %div{:class =>  cycle('record-odd', 'record-even'), :id => dom_id(article) }
   .span-1=article_counter
-  .span-19=article.as_text
+  .span-19=article.to_s
   .span-4.last
     %div{:class => 'ui-widget ui-widget-content ui-corner-all associated_authors', :style => 'width: 32px; height:18px; padding: 2px;', :id => 'associated_authors_' + dom_id(article) }
       %span{:style => 'float: left; text-align: right; color:white; margin-left: 5px;', :id => 'associated_authors_size_'+ dom_id(article) }

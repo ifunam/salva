@@ -8,10 +8,10 @@
 %br/
 - unless user.professional_address.nil?
   %font.address
-    = user.professional_address.as_text
-    %br
-    %b Zip code
-    = user.professional_address.postal_address_as_text
+    %b Address:
+    = user.professional_address.to_s
+    %b Postal Address:
+    = user.professional_address.postal_address_to_s
     - unless user.professional_address.phone.to_s.strip.empty?
       %br
       %b Phone:
@@ -25,21 +25,3 @@
 = links_for_personal_sites(@record)
 
 
--#%font.name= user.author_name
--#%br/
--#= translate_category(user.jobposition_for_researching.category_name)
--#%br/
--#= mail_to user.email, user.email, :encode => "javascript"
--#%br/
--#- unless user.professional_address.nil?
--#  %font.address
--#    %b Address:
--#    = user.professional_address.as_text
--#    %b Postal Address:
--#    = user.professional_address.postal_address_as_text
--#    - unless user.professional_address.phone.to_s.strip.empty?
--#      %b Phone:
--#      = '+52 (55) ' + user.professional_address.phone.to_s
--#    - unless user.professional_address.fax.to_s.strip.empty?
--#      %b Fax:
--#      = '+52 (55) ' + user.professional_address.fax.to_s

@@ -15,7 +15,7 @@ class TutorialCommittee < ActiveRecord::Base
 
   default_scope :order => ('year DESC, studentname ASC')
 
-  def as_text
-    ["#{studentname} (estudiante)", career.as_text, year].compact.join(', ')
+  def to_s
+    ["#{studentname} (estudiante)", career.to_s, year].compact.join(', ')
   end
 end

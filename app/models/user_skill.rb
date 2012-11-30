@@ -11,7 +11,7 @@ class UserSkill < ActiveRecord::Base
   
   validates_associated :skilltype
   
-  def as_text
+  def to_s
     [descr, 'Tipo de actividad: ' + skilltype.name].join(',')
   end
 end

@@ -33,13 +33,13 @@ module Reporter
 
     def search(options={})
       scoped_class.search(options).all.collect do |record|
-        record.respond_to?(:as_text) ? normalize_text(record.as_text) : "Define as_text method in #{record.class}"
+        record.respond_to?(:to_s) ? normalize_text(record.to_s) : "Define to_s method in #{record.class}"
       end
     end
 
     def all
       scoped_class.all.collect do |record|
-       record.respond_to?(:as_text) ? normalize_text(record.as_text) : "Define as_text method in #{record.class}"
+       record.respond_to?(:to_s) ? normalize_text(record.to_s) : "Define to_s method in #{record.class}"
       end
     end
 
@@ -54,7 +54,7 @@ module Reporter
 
     private
     def class_name
-      @class_name.to_s.classify.constantize
+      @class_name.to_s.pluralize.singularize.camelize.constantize
     end
 
     def scope

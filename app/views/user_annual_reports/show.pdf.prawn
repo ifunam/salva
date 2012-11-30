@@ -59,6 +59,21 @@ prawn_document() do |pdf|
   end
   pdf.move_down(20)
 
+  pdf.text "Breve descripción cualitativa de los logros más importantes del trabajo durante el año.", :style => :bold
+  pdf.text "\n"
+  counter = 0
+  @annual_report.body.split("\n").each do |line|
+    if (line =~ /^(\s)+\*/)
+      pdf.text "#{line.sub(/^(\s)+\*/, '*')}", :align => :justify
+    elsif (line =~ /^(\s)+\#/)
+      counter +=1
+      pdf.text "#{counter}. #{line.sub(/^(\s)+\#/, '')}", :align => :justify
+    else
+      pdf.text line, :align => :justify
+    end
+  end
+  pdf.move_down(20)
+
   @report_sections.each do |section|
     pdf.text section[:title].to_s, :size => 16, :style => :bold, :final_gap => true
     pdf.text "\n"

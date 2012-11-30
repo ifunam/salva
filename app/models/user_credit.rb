@@ -17,7 +17,7 @@ class UserCredit < ActiveRecord::Base
   scope :credits_on_national_article, where(:credittype_id => 5)
   scope :credits_on_others, where('credittype_id > 5')
 
-  def as_text
+  def to_s
     [descr, 'Créditos en: ' +credittype.name, date].join(', ')
   end
 end

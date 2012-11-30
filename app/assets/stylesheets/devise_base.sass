@@ -1,0 +1,57 @@
+@import "blueprint/reset"
+@import "blueprint/grid"
+@import "blueprint/typography"
+
+#login_view
+  @extend .span-22
+  @extend .last
+  @extend .prepend-2
+  margin-top: 20px
+  margin-bottom: 20px
+
+#login_form
+  @extend .span-8
+  border-bottom: 1px solid silver
+  padding-bottom: 10px
+  label
+    @extend .span-3
+  text_field
+    @extend .span-5
+    @extend .last
+
+#login_info
+  @extend .span-12
+  @extend .last
+  @extend .section-with-border
+  text-align: justify
+  background: url("section_bg.jpg")
+
+#login_example
+  @extend .span-6
+  @extend .last
+  @extend .section-with-border
+  @extend .example
+
+#supported_browsers
+  @extend .span-24
+  @extend .last
+  display: inline
+  float: none
+  min-height: 40px
+  margin-bottom: 10px
+  .links
+    margin-top: -20px
+    height: 40px
+    vertical-align: bottom
+    a
+      text-decoration: none
+      padding: 10px 4px
+      margin: 0px 3px
+      text-align: middle
+
+h3
+  text-shadow: rgb(247, 253, 250) 1px 1px 3px
+  font-size: 160%
+  font-weight: bold
+  color: #00688F
+  letter-spacing: -1px

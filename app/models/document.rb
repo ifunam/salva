@@ -5,22 +5,31 @@ class Document < ActiveRecord::Base
   belongs_to :documenttype
   belongs_to :approved_by, :class_name => 'User'
 
+  attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id
+  attr_accessible :comments, :as => :academic
+
   default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
 
   scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
   scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
 
-  scope :fullname_like, lambda { |fullname| where(" documents.user_id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
+  scope :fullname_like, lambda { |fullname|
+    person_fullname_like_sql = Person.find_by_fullname(fullname).select('user_id').to_sql
+    sql = "documents.user_id IN (#{person_fullname_like_sql})"
+    where(sql)
+  }
+  scope :login_like, lambda { |login| joins(:user).where(:user => { :login.matches => "%#{login.downcase}%" }) }
   scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
   scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
 
-  search_methods :fullname_like, :adscription_id_eq
+  search_methods :fullname_like, :login_like, :adscription_id_eq, :jobpositioncategory_id_eq
 
   before_create :file_path
 
   def self.paginated_search(params)
-    is_not_hidden.fullname_asc.search(params[:search]).page(params[:per_page] || 30).per(params[:page] || 1)
+    is_not_hidden.fullname_asc.search(params[:search]).page(params[:page] || 1).per(params[:per_page] || 20)
   end
 
   def url

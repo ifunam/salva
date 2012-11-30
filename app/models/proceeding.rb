@@ -1,7 +1,7 @@
 class Proceeding < ActiveRecord::Base
   attr_accessible :title, :year, :volume, :publisher_id, :conference_attributes, :user_proceedings_attributes
 
-  validates_presence_of :title
+  validates_presence_of :title, :year
   validates_numericality_of :id, :publisher_id,  :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_inclusion_of :isrefereed, :in => [true, false]
 
@@ -23,14 +23,17 @@ class Proceeding < ActiveRecord::Base
   default_scope order('title ASC, year DESC')
 
   scope :user_id_eq, lambda { |user_id| joins(:user_proceedings).where(:user_proceedings => {:user_id => user_id}) }
+
   scope :user_id_not_eq, lambda { |user_id|
-      where("proceedings.id IN (#{UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').
-      where(["user_proceedings.user_id != ?", user_id]).to_sql}) AND proceedings.id  NOT IN (#{UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').
-      where(["user_proceedings.user_id = ?", user_id]).to_sql})")
+      proceeding_without_user_sql = UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').where(["user_proceedings.user_id != ?", user_id]).to_sql
+      proceeding_with_user_sql = UserProceeding.select('DISTINCT(proceeding_id) as proceeding_id').where(["user_proceedings.user_id = ?", user_id]).to_sql
+      sql = "proceedings.id IN (#{proceeding_without_user_sql}) AND proceedings.id NOT IN (#{proceeding_with_user_sql})"
+      where sql
   }
+
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     if title == conference.name
       [title, (publisher.nil? ? nil : publisher.name), year].compact.join(', ')
     else

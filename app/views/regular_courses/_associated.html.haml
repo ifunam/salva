@@ -1,6 +1,6 @@
 .span-1= checkbox_to_delete(record)
 .span-10
-  = record.as_text_simple
+  = record.to_s_simple
   = image_tag('associated_record.png', :class => 'associated_record_indicator', :title => t(:instructor))
   .periods
     %b=t(:period_list)

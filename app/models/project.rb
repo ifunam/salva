@@ -44,8 +44,10 @@ class Project < ActiveRecord::Base
   }
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
-    [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}", "Monto #{ActionController::Base.helpers.number_to_currency(amount, :locale => :en)}", start_date, end_date].join(', ')
+  def to_s
+    s = [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}"]
+    s.push "Monto #{ActionController::Base.helpers.number_to_currency(amount, :locale => :en)}" if respond_to? :amount and !amount.nil?
+    (s + [start_date, end_date]).join(', ')
   end
 
 end

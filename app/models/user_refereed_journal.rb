@@ -9,7 +9,7 @@ class UserRefereedJournal < ActiveRecord::Base
   belongs_to :journal
   belongs_to :refereed_criterium
 
-  def as_text
+  def to_s
     ["Árbitro de #{refereed_criterium.name}", journal.name, date].compact.join(', ')
   end
 end

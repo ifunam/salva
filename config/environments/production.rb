@@ -56,7 +56,11 @@ Salva::Application.configure do
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( screen.css print.css ie.css devise.css devise.js user_resources.css
                                   user_resources.js publications.css publications.js academic.css
+<<<<<<< HEAD
                                   academic.js web_site.css web_site.js home_page.css home_pages.js)
+=======
+                                  academic.js web_site.css web_site.js home_page.css admin.css)
+>>>>>>> master
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -70,8 +74,6 @@ Salva::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  config.action_mailer.default_url_options = { :host => 'salva.fisica.unam.mx' }
 
   # Compress both stylesheets and JavaScripts
   config.assets.js_compressor  = :uglifier
@@ -88,4 +90,8 @@ Salva::Application.configure do
       :sender_address =>  Salva::SiteConfig.system('email'),
       :exception_recipients => Salva::SiteConfig.admin('email')
   end
+  # Log the query plan for queries taking more than this (works
+  # with SQLite, MySQL, and PostgreSQL)
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.action_mailer.default_url_options = { :host => "132.248.142.23" }
 end

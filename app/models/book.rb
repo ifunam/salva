@@ -12,7 +12,7 @@ class Book < ActiveRecord::Base
   has_many :bookeditions
   default_scope :order => 'authors ASC, title ASC'
 
-  def as_text
+  def to_s
     [authors, title, volume].compact.join(', ')
   end
 end

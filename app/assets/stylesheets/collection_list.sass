@@ -1,0 +1,179 @@
+@import "blueprint/reset"
+@import "blueprint/grid"
+@import "blueprint/typography"
+@import "start-jquery-ui"
+
+.row
+  @extend .span-18
+  @extend .last
+  .wrapper
+    @extend .span-5
+  strong
+    font: 14px Arial,sans-serif
+    font-weight: bold
+    text-align: justify
+    color: rgb(0, 136, 187)
+
+  .new_record
+    vertical-align: middle
+    margin-top: 20px
+    margin-left: 3px
+    @extend .ui-state-default
+
+
+.wrapper
+  strong
+    font: 14px Arial,sans-serif
+    font-weight: bold
+    text-align: justify
+    color: rgb(0, 136, 187)
+
+.record
+  padding-top: 8px
+  padding-bottom: 8px
+  min-height: 60px
+  border-bottom: 1px solid silver
+  vertical-align: middle
+
+.record-odd
+  @extend .record
+  background-color: #fff
+  color: #585858
+
+.record-odd:hover
+  background-color: rgb(252,255,204)
+
+.record-even
+  @extend .record
+  background: #EFF5FB
+  color: #585858
+
+.record-even:hover
+  background-color: rgb(252,255,204)
+
+.ui-autocomplete-loading
+  background: white url("loading_indicator.gif") right center no-repeat
+
+#paginator
+  display: block
+  height: 30px
+
+.pagination
+  @extend .span-17
+  @extend .last
+  text-align: center
+  margin-botom: 5px
+
+#pagination_info
+  @extend .span-17
+  @extend .last
+  text-align: center
+  margin-botom: 5px
+
+.ui-progressbar-value
+  background-image: url(pbar-ani.gif)
+
+.record_details
+  top: 20px
+  padding: 10px
+  border: 1px solid silver
+  -moz-border-radius: 5px 5px 5px 5px
+  -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
+  -webkit-border-radius: 5px 5px 5px 5px
+  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3)
+  background: #FBFBEF
+  @extend .span-17
+  @extend .last
+  margin-left: 5px
+
+.collection_header_colors
+  background: #f5f5f5
+  color: #0088bb
+  font-weight: bold
+  padding-left: 3px
+
+#search_options
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .ui-corner-tl
+  @extend .ui-corner-tr
+  @extend .collection_header_colors
+  text-align: right
+  padding-top: 5px
+  border-color: silver
+  padding-bottom: 5px
+  a, a:visited
+    color: #0088bb
+    text-decoration: none
+    margin-right: 10px
+  a:hover
+    color: #6EAC2C
+
+#filter_form
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .collection_header_colors
+  background: #E6E6E6
+  padding-top: 5px
+  border-color: silver
+  padding-bottom: 5px
+  border-top: 0px
+  ul
+    color: #585858
+  .chzn-single
+    color: #585858
+
+#collection_header
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .collection_header_colors
+  border-style: solid
+  border-color: silver
+  border-top: 0px
+  background: #f5f5f5
+  .action
+    @extend .span-2
+    text-align: center
+
+#collection_records
+  @extend .span-18
+  @extend .last
+  border-left: 1px solid silver
+  border-right: 1px solid silver
+  text-align: left
+  padding-left: 3px
+  min-height: 60px
+
+#collection_footer
+  @extend .ui-widget-header
+  @extend .ui-helper-clearfix
+  @extend .span-18
+  @extend .last
+  @extend .ui-corner-bl
+  @extend .ui-corner-br
+  @extend .collection_header_colors
+  border-top: 0px
+  text-align: right
+  padding: 5px 0px 5px 0px
+  margin-bottom: 10px
+  padding-left: 3px
+  border-top: 0px
+  border-left: 1px solid silver
+  border-right: 1px solid silver
+  border-bottom: 1px solid silver
+
+.chosen-select
+  color: #585858
+
+ol.section
+  text-align: justify
+  margin-top: 5px
+  margin-bottom: 10px
+  li
+    margin-left: 10px

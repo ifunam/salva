@@ -10,7 +10,7 @@ class BookeditionRoleinbook < ActiveRecord::Base
   scope :authors, where("roleinbook_id = 1 OR roleinbook_id = 2")
   scope :collaborators, where("roleinbook_id != 1 AND roleinbook_id != 2")
 
-  def as_text
+  def to_s
     "#{user.author_name} (#{roleinbook.name})"
   end
 end

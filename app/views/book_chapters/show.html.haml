@@ -2,13 +2,13 @@
   %h3= t('book_chapters.show.title')
   = show_for @book_chapter do |bc|
     .span-9= bc.attribute :title
+    .span-9.last= bc.attribute :pages
     .span-9.last= bc.association :bookchaptertype, :using => :name
-    .span-9= bc.attribute :pages
 
   .span-9.last
     %b= t(:associated_academics)
     - @book_chapter.chapterinbook_roleinchapters.each do |a|
-      %li= a.as_text
+      %li= a.to_s
 
   %h3= t('book_authors.show.title')
   = render :partial => 'book_editions/show', :object => @book_chapter.bookedition

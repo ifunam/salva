@@ -28,9 +28,10 @@ class Conferencetalk < ActiveRecord::Base
   }
 
   scope :user_id_not_eq, lambda { |user_id|
-      where("conferencetalks.id IN (#{UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').
-      where(["user_conferencetalks.user_id != ?", user_id]).to_sql}) AND conferencetalks.id  NOT IN (#{UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').
-      where(["user_conferencetalks.user_id = ?", user_id]).to_sql})")
+    talk_without_user_sql = UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').where(["user_conferencetalks.user_id != ?", user_id]).to_sql
+    talk_with_user_sql = UserConferencetalk.select('DISTINCT(conferencetalk_id) as conferencetalk_id').where(["user_conferencetalks.user_id = ?", user_id]).to_sql
+    sql = "conferencetalks.id IN (#{talk_without_user_sql}) AND conferencetalks.id NOT IN (#{talk_with_user_sql})"
+    where(sql)
   }
 
   default_scope includes(:conference).order("conferences.year DESC, conferencetalks.authors ASC, conferencetalks.title ASC")
@@ -44,9 +45,9 @@ class Conferencetalk < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :year_eq
   search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
-  def as_text
+  def to_s
     [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",
-      conference.as_text
+      conference.to_s
     ].join(', ')
   end
 end

@@ -15,7 +15,7 @@ class UserSchoolarship < ActiveRecord::Base
   scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
   search_methods :by_start_year, :by_end_year
 
-  def as_text
+  def to_s
     [schoolarship.name_and_institution_abbrev, start_date, end_date].compact.join(', ')
   end
 end

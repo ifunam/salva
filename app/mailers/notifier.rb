@@ -97,10 +97,10 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def approval_request_from_user(document_id)
+  def approval_request_to_user(document_id)
     @document = Document.find(document_id)
     filename = File.basename(@document.file) if File.exist? @document.file
-    mail(:to => @document.approved_by.email, :cc => email_academic_secretary,
+    mail(:to => @document.user.email, :cc => email_academic_secretary,
          :subject => @document.documenttype.name) do |format|
       format.text
       attachments[filename] = File.read(@document.file) if File.exist? @document.file
@@ -110,7 +110,7 @@ class Notifier < ActionMailer::Base
   def approval_request_to_user_incharge(document_id)
     @document = Document.find(document_id)
     filename = File.basename(@document.file) if File.exist? @document.file
-    mail(:to => @document.user.email, :cc => email_academic_secretary,
+    mail(:to => @document.user.user_incharge.email, :cc => email_academic_secretary,
          :subject => @document.documenttype.name) do |format|
       format.text
       attachments[filename] = File.read(@document.file) if File.exist? @document.file

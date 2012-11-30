@@ -5,6 +5,17 @@
 
 = render :partial => 'profile', :object => @profile
 
+.section-with-border-and-bg
+  %b=t :user_researchlines
+  %ul
+  - @profile.research_lines.each do |s|
+    %li= s
+
+.section-with-border-and-bg
+  %b='Breve descripción cualitativa de los logros más importantes del trabajo durante el año'
+
+  = raw(RedCloth.new(@annual_report.body).to_html)
+
 = render :partial => 'section', :collection => @report_sections
 
 = render :partial => 'show_links'

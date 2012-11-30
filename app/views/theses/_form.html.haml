@@ -3,29 +3,26 @@
     = render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-9= f.input :title, :as => :string, :input_html => {:size => '40'}
-    .span-9.last= f.input :authors, :as => :string, :input_html => {:size => '40'}
+    .span-9= f.input :title, :as => :text, :input_html => {:size => '60x2'}
+    .span-9.last= f.input :authors, :as => :text, :input_html => {:size => '60x2'}
 
   .row
-    .span-6
+    .span-3
+      = f.input :start_date, :as => :string, :input_html => { :size => '10', :autocomplete => "off", :class => 'date'}, :required => true
       -  @user_theses = user_role(@thesis, :user_theses, current_user.id)
       = f.simple_fields_for :user_theses, @user_theses do |ut|
         = render :partial => 'user_theses/form', :locals => { :f => ut }
-    .span-6= f.association :thesismodality, :as => :radio, :wrapper_class => 'radio-set'
-    .span-6.last= f.association :thesisstatus, :as => :radio, :wrapper_class => 'radio-set'
-
-  .row
     .span-3
-      = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
-    .span-6
-      = f.label :startmonth, :required => true
-      = select_month_for 'startmonth', 'thesis'
-
-    .span-3
-      = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
+      = f.association :thesisstatus, :as => :radio, :wrapper_class => 'radio-set', :input_html => {:class => 'radio-set-thesisstatus'}
     .span-6.last
-      = f.label :endmonth, :required => true
-      = select_month_for 'endmonth', 'thesis'
+      = f.input :end_date, :as => :string, :input_html => { :size => '10', :autocomplete => "off", :class => 'date'}, :required => true, :label_html => { :class => 'span-8' }
+
+  - unless f.object.new_record?
+    #thesismodality.row
+      .span-12.last
+        %label="Modalidad"
+        = f.object.thesismodality.name
+
   - f.object.career = Career.new if f.object.career.nil?
   = f.simple_fields_for :career, f.object.career do |c|
-    = render :partial => 'careers/form', :locals => { :f => c}
+    = render :partial => 'careers/form_universitary', :locals => { :f => c}

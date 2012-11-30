@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
 
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
+  def to_s
     [ name, "Duración: #{courseduration.name}", "Modalidad: #{modality.name}",
       normalized_hoursxweek, normalized_totalhours, location,
     "País: #{country.name}", start_date, end_date].compact.join(', ')

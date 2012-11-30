@@ -6,7 +6,7 @@
       = f.check_box :institution_id, {}, institution.id
     - else
       = f.check_box :institution_id, { :checked => true }, institution.id
-    = institution.as_text
+    = institution.to_s
   - else
     = f.check_box :institution_id, {:checked => true}, -1 
     = 'template_string'

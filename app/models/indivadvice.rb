@@ -25,7 +25,7 @@ class Indivadvice < ActiveRecord::Base
   scope :students, where('indivadvicetarget_id <= 3')
   scope :professors, where('indivadvicetarget_id > 3')
 
-  def as_text
+  def to_s
     [normalized_indivname, indivadvicetarget.name, degree_name, career_name, institution_name, start_date, end_date, normalized_hours].compact.join(', ')
   end
 
@@ -37,12 +37,11 @@ class Indivadvice < ActiveRecord::Base
 
 
   def degree_name
-    if !degree_id.nil?
-      "Grado: #{degree.name}"
-    elsif !career.nil?
+    unless career_id.nil?
       "Grado: #{career.degree.name}"
+    else
+      "Grado: #{degree.name}" unless degree_id.nil?
     end
-
   end
 
   def career_name
@@ -50,10 +49,10 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def institution_name
-    if !institution_id.nil?
-      institution.name_and_parent_abbrev
-    elsif !career.nil?
-      career.institution.name_and_parent_abbrev
+    unless career_id.nil?
+      career.institution.school_and_university_names
+    else
+      institution.school_and_university_names unless institution_id.nil?
     end
   end
 

@@ -45,7 +45,7 @@ class UserProfile
   end
 
   def address
-    @user.address.as_text unless @user.address.nil?
+    @user.address.to_s unless @user.address.nil?
   end
 
   def address_location
@@ -54,7 +54,7 @@ class UserProfile
 
   #RMO
   def professional_address
-    @user.professional_address.as_text unless @user.address.nil?
+    @user.professional_address.to_s unless @user.address.nil?
   end
   #RMO
 
@@ -155,6 +155,10 @@ class UserProfile
     unless @user.jobposition.nil?
       date_format == true ? @user.jobposition.attributes_before_type_cast[attribute_name.to_s] : @user.jobposition.send(attribute_name)
     end
+  end
+
+  def research_lines
+    @user.user_researchlines.collect { |record| record.to_s }
   end
 
   def image_path

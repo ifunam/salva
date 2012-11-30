@@ -7,4 +7,4 @@
   .span-6.last
     %ul
       - @thesis_examination.thesis_jurors.each do |record|
-        %li= record.as_text
+        %li= record.to_s

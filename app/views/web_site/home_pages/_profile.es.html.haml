@@ -11,7 +11,7 @@
     = user.professional_address.as_text
     %br
     %b C&oacute;digo Postal:
-    = user.professional_address.postal_address_as_text
+    = user.professional_address.postal_address_to_s
     - unless user.professional_address.phone.to_s.strip.empty?
       %br
       %b Tel&eacute;fono:

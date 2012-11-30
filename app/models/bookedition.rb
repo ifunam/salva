@@ -1,7 +1,7 @@
 class Bookedition < ActiveRecord::Base
-  attr_accessible :book_attributes, :edition, :isbn, :pages, :year, :mediatype_id, :editionstatus_id,
+  attr_accessible :book_attributes, :edition, :isbn, :pages, :year, :month, :mediatype_id, :editionstatus_id,
                   :bookedition_roleinbooks_attributes
-  validates_presence_of :edition, :mediatype_id, :year
+  validates_presence_of :edition, :mediatype_id, :year, :month
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of  :mediatype_id,  :greater_than => 0, :only_integer => true
   validates_numericality_of :editionstatus_id, :allow_nil => true, :greater_than => 0, :only_integer =>true
@@ -40,18 +40,20 @@ class Bookedition < ActiveRecord::Base
   }
 
   scope :user_id_not_eq, lambda { |user_id|
-      where("bookeditions.id IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql}) AND bookeditions.id  NOT IN (#{BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').
-      where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql})")
+      bookedition_without_user_sql = BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').where(["bookedition_roleinbooks.user_id !=  ?", user_id]).to_sql
+      bookedition_with_user_sql = BookeditionRoleinbook.select('DISTINCT(bookedition_id) as bookedition_id').where(["bookedition_roleinbooks.user_id =  ?", user_id]).to_sql
+      sql = "bookeditions.id IN (#{bookedition_without_user_sql}) AND bookeditions.id NOT IN (#{bookedition_without_user_sql})"
+      where(sql)
   }
+
   search_methods :user_id_eq, :user_id_not_eq
 
-  def as_text
-    [ book.as_text, edition, publishers_as_text, book.country.name,
-     isbn_text, year ].compact.join(', ')
+  def to_s
+    [ book.to_s, edition, publishers_to_s, book.country.name,
+     isbn_text, date ].compact.join(', ')
   end
 
-  def publishers_as_text
+  def publishers_to_s
     publishers.collect { |record| record.name }.compact.join(', ')
   end
 

@@ -1,0 +1,192 @@
+@import "base"
+@import "form"
+@import "collection_list"
+
+//  Navigation
+#top-navigation
+  @extend .span-24
+  @extend .last
+  font-size: 11.5px
+  text-align: left
+  height: 42px
+  margin-top: 10px
+  ul
+    @extend .span-24
+    display: inline-block
+    margin-left: -4px
+    vertical-align: middle
+    li
+      list-style-type: none
+      padding-top: 7px
+      padding-left: 3px
+      padding-right: 3px
+      margin-left: 0px
+      line-height: 1.01em
+      height: 42px
+      width: 84px
+      float: left
+      text-align: center
+      vertical-align: middle
+      border-bottom: 1px solid silver
+
+    a, a:visited
+      display: inline-block
+      vertical-align: middle
+      text-decoration: none
+      color: #0088BB
+
+    a:hover
+      display: inline-block
+      vertical-align: middle
+      text-decoration: none
+      color: #6EAC2C
+      text-shadow: rgb(143,191,92) 1px 1px 3px
+
+    li.selected
+      border-right: 0px
+      margin-top: 0px
+      background: white
+      border-top: 1px
+      border-bottom: 0px
+      border-left: 1px
+      border-right: 1px
+      border-style: solid
+      border-color: silver
+      -moz-border-radius: 3px 3px 0px 0px
+      -webkit-border-radius: 3px 3px 0px 0px
+
+      a
+        display: inline-block
+        vertical-align: middle
+        text-decoration: none
+        color: #6EAC2C
+        text-shadow: rgb(143,191,92) 1px 1px 3px
+        font-weight: bold
+
+#content
+  @extend .span-24
+  @extend .last
+  width: 930px
+  background: #fff
+  font-size: 11px
+  margin-top: 10px
+  margin-left: -3px
+  margin-bottom: 20px
+
+#left-navigation
+  @extend .span-5
+  @extend .ui-widget
+  @extend .ui-widget-content
+  font-size: 12px
+  text-align: left
+  background: #fff
+  border: 0px
+  ul
+    @extend .ui-tabs-nav
+    @extend .ui-helper-reset
+    @extend .ui-helper-clearfix
+    margin-top: 10px
+    li
+      padding: 12px 8px
+      list-style-type: none
+      background: white
+      color: #0088BB
+      border-radius: 5px
+      border-color: #F4FCF2
+      border-style: solid
+      border-bottom: 1px
+      margin-bottom: 6px
+      margin-left: 8px
+      padding-top: -8px
+      height: 18px
+      a, a:visited
+        display: inline-block
+        width: 165px
+        #padding-right: 20px
+        color: #0088BB
+        text-decoration: none
+      a:hover
+        text-decoration: none
+        color: #6EAC2C
+
+    li.selected
+      @extend .ui-state-default
+      @extend .ui-tabs-selected
+      @extend .ui-state-active
+
+#right-content
+  @extend .span-18
+  @extend .last
+  text-align: left
+  padding-top: 10px
+  padding-bottom: 10px
+  font-size: 14px
+  border-left: 1px solid silver
+  margin-left: 0px
+  padding-left: 15px
+  margin-top: 10px
+  min-height: 950px
+
+  h3
+    color: #6EAC2C
+    text-shadow: rgb(143,191,92) 1px 1px 3px
+    font-size: 160%
+    font-weight: bold
+    letter-spacing: -1px
+
+  h4
+    color: #6EAC2C
+    text-shadow: rgb(143,191,92) 1px 1px 3px
+    font-size: 120%
+    font-weight: bold
+    color: #6EAC2C
+    letter-spacing: -1px
+    margin-top: 10px
+
+.subsection-round-corner
+  @extend .span-18
+  @extend .section-round-corner-with-bg
+  @extend .last
+  padding-top: 10px
+  margin-bottom: 10px
+  border-color: silver
+
+#session_info
+  @extend .ui-button-set
+  @extend .span-24
+  @extend .last
+  text-align: right
+  .current_user
+    color: green
+    display: inline
+
+.subsection-round-corner
+  @extend .span-18
+  @extend .section-round-corner-with-bg
+  @extend .last
+  padding-top: 10px
+  margin-bottom: 10px
+  border-color: silver
+
+#dialog
+  h3
+    color: #6EAC2C
+    text-shadow: rgb(143,191,92) 1px 1px 3px
+    font-size: 130%
+    font-weight: bold
+    color: #6EAC2C
+    letter-spacing: -1px
+    text-align: left
+
+.ui-dialog-titlebar
+  text-align: right
+  @extend .span-9
+  @extend .last
+  border: none
+  background: none
+  a
+    @extend .ui-button
+    @extend .ui-button-icon
+    @extend .ui-widget
+    @extend .ui-state-default
+    @extend .ui-corner-all
