@@ -2,7 +2,7 @@
   .span-6= f.association :academicprogramtype, :as => :radio, :collection => Academicprogramtype.all, :wrapper_class => 'radio-set'
   .span-12.last= f.input :year, :as => :string, :input_html => { :size => 4}
 
-- f.object.career = f.object.career.nil? ? Career.new : f.object.career.clone
+- f.object.career = f.object.career.nil? ? Career.new : f.object.career.dup
 = f.simple_fields_for :career, f.object.career do |career_form|
   = render :partial => 'careers/form', :locals => { :f => career_form }
 
