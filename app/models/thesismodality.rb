@@ -10,6 +10,10 @@ class Thesismodality < ActiveRecord::Base
   default_scope :order => 'level ASC'
 
   def to_s
+    "Modalidad: " + name
+  end
+
+  def to_s_with_degree_name
     [degree.name, name].join(': ')
   end
 end
