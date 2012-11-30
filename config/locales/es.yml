@@ -2453,6 +2453,7 @@ es:
 
   reporter:
     profile: 'Perfil'
+    researchlines: 'Líneas de investigación'
     jobpositions: 'Categorías'
     external_jobpositions: 'Experiencia profesional externa'
     educations: 'Escolaridad'
@@ -2463,6 +2464,7 @@ es:
     user_schoolarships: 'Becas'
     user_prizes: 'Premios y distinciones'
     user_credits: 'Agradecimientos y otros créditos'
+    memberships: 'Membresías en asociaciones académicas'
     institutional_activities: 'Participación institucional'
 
     publications: 'Publicaciones'

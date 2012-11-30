@@ -1,5 +1,6 @@
 require 'document/reporter/builder'
 ::I18n.locale = I18n.locale.to_sym
+require 'irb'
 module Reporter
   class Base
     def self.find(attributes={})
@@ -35,7 +36,7 @@ module Reporter
 
     def collection(subsection)
       if subsection.date_style == :date_disabled
-        subsection.all
+        subsection.search(:user_id_eq => @attributes[:user_id_eq])
       else
         subsection.search(merge_date_options(subsection))
       end
@@ -59,6 +60,10 @@ module Reporter
 
     def month_and_year
        { :since => [ start_date.year, start_date.month ], :until => [ end_date.year, end_date.month ] }
+    end
+
+    def month_and_year_range
+      { :among => [ start_date.year, start_date.month, end_date.year, end_date.month] }
     end
 
     def only_year

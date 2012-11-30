@@ -14,6 +14,7 @@ module Reporter
     private
     def build_sections
       create_section :profile do |s|
+        s.collection :researchlines, :class_name => 'UserResearchline', :date_style => :date_disabled
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
         s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
@@ -24,7 +25,8 @@ module Reporter
         s.collection :user_schoolarships, :date_style => :date_range
         s.collection :user_prizes
         s.collection :user_credits
-        s.collection :institutional_activities
+        s.collection :memberships, :date_style => :only_year
+        s.collection :institutional_activities, :date_style => :month_and_year_range
       end
 
       create_section :publications do |s|

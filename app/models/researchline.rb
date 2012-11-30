@@ -15,6 +15,10 @@ class Researchline < ActiveRecord::Base
   default_scope order('name ASC')
 
   def to_s
-    [name, researcharea.name].join(', ')
+    name
+  end
+
+  def to_s_with_researcharea
+    [name, researcharea_id.nil? ? nil : researcharea.name].compact.join(', ')
   end
  end

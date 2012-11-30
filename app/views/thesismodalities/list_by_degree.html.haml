@@ -4,4 +4,4 @@
       %abbr="*"
       = 'Modalidad'
     - model_name = params[:model_name] || 'thesis'
-    = collection_select model_name, :thesismodality_id, @thesismodalities, :id, :name, {:prompt => true}, :class => "chosen-select"
+    = collection_select model_name, :thesismodality_id, @thesismodalities, :id, :name, {:prompt => true, :selected => @thesismodalities.first.id}, :class => "chosen-select"
