@@ -12,12 +12,21 @@ class ThesisJuror < ActiveRecord::Base
 
   scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where(["thesis_jurors.user_id !=  ?", user_id]) }
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where :user_id => user_id }
-  scope :since, lambda { |start_date| includes(:thesis).where(:thesis => {:start_date.gteq => start_date }) }
-  scope :until, lambda { |end_date| includes(:thesis).where(:thesis => {:end_date.gteq => end_date}) }
-  scope :among, lambda { |start_date, end_date| since(start_date).until(end_date) }
+  scope :since, lambda { |start_date| includes(:thesis).where(:thesis => {:start_date.gteq => start_date}) }
+  scope :until, lambda { |end_date| includes(:thesis).where(:thesis => {:end_date.lteq => end_date}) }
+  scope :among, lambda { |start_date, end_date|
+    joins(:thesis).
+    where{
+      { :thesis =>
+        ({:start_date => nil, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
+          ({:start_date.gteq => start_date} & {:end_date.lteq => start_date}) |
+          ({:start_date.lteq => end_date} & {:end_date.gteq => end_date})
+      }
+    }
+  }
   search_methods :among, :splat_param => true, :type => [:date, :date]
 
   def to_s
-    [user.fullname_or_email, "(#{roleinjury.name})"].join(' ')
+    [thesis.authors, thesis.title, user.fullname_or_email, "(#{roleinjury.name})", thesis.date].join(', ')
   end
 end
