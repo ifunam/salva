@@ -48,7 +48,9 @@ module MetaDateExtension
           where{
             ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.lteq => end_year, :endmonth.lteq => end_month}) |
             ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.gteq => start_year }) |
-            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear => nil})
+            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear => nil}) |
+            ({:startyear.lteq => end_year, :startmonth.gteq => start_month, :endyear.gteq => end_year, :endmonth.lteq => end_month})
+
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
@@ -74,7 +76,9 @@ module MetaDateExtension
         scope :among, lambda { |start_date, end_date|
           where{
             ({:start_date.gteq => start_date} & {:end_date.gteq => start_date}) |
-            ({:start_date.gteq => start_date} & {:end_date.lteq => start_date})
+            ({:start_date.gteq => start_date} & {:end_date.lteq => start_date}) |
+            ({:start_date.lteq => end_date} & {:end_date.gteq => end_date}) 
+
           }
         }
         search_methods :among, :splat_param => true, :type => [:date, :date]

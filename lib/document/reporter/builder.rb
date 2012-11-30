@@ -18,8 +18,8 @@ module Reporter
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
         s.collection :external_jobpositions, :class_name => 'Jobposition', :scope => :at_external_institutions, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
-        s.collection :projects
-        s.collection :user_stimuli
+        s.collection :projects, :date_style => :month_and_year_range
+        s.collection :user_stimuli, :date_style => :month_and_year_range
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
         s.collection :user_schoolarships, :date_style => :date_range
