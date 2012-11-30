@@ -96,7 +96,7 @@ module Reporter
         s.collection :degree_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :degree_theses
         s.collection :technician_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :technician_theses
         s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :bachelor_theses
-        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :month_and_year, :date_style => :date_range
+        s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :date_range
         s.collection :tutorial_committees, :date_style => :only_year
         s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students, :date_style => :month_and_year_range
         s.collection :other_teaching_activities, :class_name => 'Activity', :scope => :teaching
