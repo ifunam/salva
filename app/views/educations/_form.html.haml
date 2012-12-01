@@ -2,7 +2,7 @@
   .row
     = render :partial => "/shared/errors", :object => f.object.errors
   .row
-    - f.object.career = Career.new if  f.object.career.nil?
+    - f.object.career = f.object.career.nil? ? Career.new : f.object.career.dup
     = f.simple_fields_for :career, f.object.career do |career_form|
       = render :partial => 'careers/form', :locals => { :f => career_form }
   .row
