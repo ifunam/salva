@@ -1883,20 +1883,20 @@ es:
       title: 'Informe anual de actividades'
     new:
       title: Nuevo informe anual
-      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_report_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu informe anual antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar informe anual
-      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_report_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu informe anual antes de enviarlo a la secretaría académica.
 
   user_annual_plans:
     index:
       title: Planes de trabajo
     new:
       title: Nuevo plan de trabajo
-      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_plan_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu plan de trabajo antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan de trabajo
-      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_plan_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu plan de trabajo antes de enviarlo a la secretaría académica.
 
   user_refereed_journals:
     index:
