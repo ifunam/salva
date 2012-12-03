@@ -1598,6 +1598,10 @@ es:
     edit:
       title: 'Modificar rol en curso regular'
 
+  user_regular_courses:
+    new:
+      title: Nuevo periodo para el curso
+
   course_attendees:
     index:
       title: 'Cursos recibidos'
