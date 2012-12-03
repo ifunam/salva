@@ -7,4 +7,8 @@ class AnnualPlan < ActiveRecord::Base
   def deliver
     update_attribute :delivered, true
   end
+
+  def undelivered_or_rejected?
+    !delivered? or Document.where(:user_id => user_id, :documenttype_id => documenttype_id, :approved => true).nil?
+  end
 end
