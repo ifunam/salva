@@ -17,14 +17,14 @@ module Reporter
         s.collection :researchlines, :class_name => 'UserResearchline', :date_style => :date_disabled
         s.collection :jobpositions, :class_name => 'Jobposition', :scope => :at_unam, :date_style => :date_range
         s.collection :educations, :date_style => :only_year
-        s.collection :projects, :date_style => :month_and_year_range
+        #s.collection :projects, :date_style => :month_and_year_range
         s.collection :thesis_as_author, :class_name => 'Thesis', :scope => :as_author, :date_style => :date_range
-        s.collection :user_stimuli, :date_style => :month_and_year_range
+        #s.collection :user_stimuli, :date_style => :month_and_year_range
         s.collection :course_attendees, :class_name => 'Course', :scope => :attendees
         s.collection :conference_attendees, :class_name => 'Conference', :scope => :attendees
         s.collection :user_schoolarships, :date_style => :date_range
-        s.collection :user_prizes
-        s.collection :user_credits
+        #s.collection :user_prizes
+        #s.collection :user_credits
         s.collection :memberships, :date_style => :only_year
         s.collection :institutional_activities, :date_style => :month_and_year_range
       end
@@ -37,14 +37,13 @@ module Reporter
         s.collection :credits_on_international_article, :class_name => 'UserCredits', :scope => :credits_on_international_article
         s.collection :credits_on_national_article, :class_name => 'UserCredits', :scope => :credits_on_national_article
         s.collection :credits_on_others, :class_name => 'UserCredits', :scope => :credits_on_others
-        #s.collection :user_credits
         s.collection :user_prizes
-        s.collection :user_stimuli
+        s.collection :user_stimuli, :date_style => :month_and_year_range
       end
 
 
       create_section :projects do |s|
-        s.collection :projects
+        s.collection :projects, :date_style => :month_and_year_range        
       end
 
 
