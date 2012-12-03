@@ -15,7 +15,7 @@
     .span-6= f.input :semester, :as => :select, :input_html => {:class => 'chosen-select' },:collection => [0,1,2,3,4,5,6,7,8,9,10], :required => true
     .span-12.last= f.input :credits, :as => :string, :input_html => {:size => 4}
 
-  - f.object.academicprogram = Academicprogram.new if f.object.academicprogram.nil?
+  - f.object.academicprogram = f.object.academicprogram.nil? ? Academicprogram.new : f.object.academicprogram.dup
   = f.simple_fields_for :academicprogram, f.object.academicprogram do |a_form|
     = render :partial => 'academicprograms/form', :locals => { :f => a_form}
 

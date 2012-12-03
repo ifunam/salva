@@ -1,5 +1,6 @@
 .row
-  .span-6= f.association :academicprogramtype, :as => :radio, :collection => Academicprogramtype.all, :wrapper_class => 'radio-set'
+  %h4 Información del programa académico
+  .span-6= f.association :academicprogramtype, :as => :radio, :collection => Academicprogramtype.all, :wrapper_class => 'radio-set', :label_html => {:class => 'span-6' }
   .span-12.last= f.input :year, :as => :string, :input_html => { :size => 4}
 
 - f.object.career = f.object.career.nil? ? Career.new : f.object.career.dup
