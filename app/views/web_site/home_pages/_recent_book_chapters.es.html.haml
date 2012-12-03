@@ -3,6 +3,6 @@
     =t('web_site.home_pages.recent_book_chapters')
   - n = 0
   - user.recent_book_chapters.sort! {|x,y| y.year <=> x.year}.each do |chapter|
-    = (n +=1).to_s + '. ' + chapter.as_text
+    = (n +=1).to_s + '. ' + chapter.to_s
     %br/
     %br/

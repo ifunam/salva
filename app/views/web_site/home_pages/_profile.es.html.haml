@@ -8,7 +8,7 @@
 %br/
 - unless user.professional_address.nil?
   %font.address
-    = user.professional_address.as_text
+    = user.professional_address.to_s
     %br
     %b C&oacute;digo Postal:
     = user.professional_address.postal_address_to_s
