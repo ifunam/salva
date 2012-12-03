@@ -3,4 +3,4 @@
     .span-7.last= f.input :name, :as => :string, :input_html => { :size => 38 }
     .span-7.last= f.hidden_field :mediatype_id, :value => 1
   .row
-    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select' }
+    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select'}, :selected => f.object.country_id || 484

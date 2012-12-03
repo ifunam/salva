@@ -7,7 +7,7 @@
 
 .row
   .span-6
-    = f.association :country, :collection => Country.all, :input_html => { :class =>'chosen-select', :required => true}
+    = f.association :country, :collection => Country.all, :input_html => { :class =>'chosen-select', :required => true}, :selected => f.object.country_id || 484
   .span-2
     = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
   .span-6.last

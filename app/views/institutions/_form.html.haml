@@ -1,11 +1,11 @@
 .dialog-section-with-border-and-bg
   .row
-    = f.input :name, :as => :string, :input_html => { :size => 38 }
+    = f.input :name, :as => :string, :input_html => { :size => 38 }, :label_html => { :class => 'span-8' }, :label => 'Nombre de la institución'
   .row
-    = f.input :abbrev, :as => :string, :input_html => { :size => 38 }
+    = f.input :abbrev, :as => :string, :input_html => { :size => 10 }
   .row
-    = f.association :institutiontitle, :using => :name, :input_html  => {:class => 'chosen-select' }
+    = f.association :institutiontitle, :using => :name, :input_html  => {:class => 'chosen-select' }, :selected => f.object.institutiontitle_id || 1, :label_html => { :class => 'span-6' }
   .row
     = f.association :institutiontype, :using => :name, :as => :radio, :input_html  => {:class => 'radio-set' }
   .row
-    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select' }
+    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select' }, :selected => f.object.country_id || 484

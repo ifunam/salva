@@ -6,4 +6,4 @@
     = f.input :url, :as => :string, :input_html => { :size => 38 }
 
   .row
-    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select' }
+    = f.association :country, :using => :name, :input_html  => {:class => 'chosen-select' }, :selected => f.object.country_id || 484

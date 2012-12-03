@@ -4,7 +4,7 @@
 
 .row
   .span-6= f.association :booktype, :as => :radio
-  .span-6= f.association :country, :collection => Country.all, :input_html => { :class => 'chosen-select', :required => true}
+  .span-6= f.association :country, :collection => Country.all, :input_html => { :class => 'chosen-select', :required => true}, :selected => f.object.country_id || 484
   .span-6.last= f.association :language, :collection => Language.all, :input_html => { :class => 'chosen-select', :required => true}
 .row
   .span-9= f.input :volume, :as => :string, :input_html => { :size => 45 }

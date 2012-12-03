@@ -380,12 +380,13 @@ es:
         name: Nombre de la carrera o posgrado
       institution:
         institutiontype:  Tipo de institución
-        institutiontitle: Titulo de la institución
+        institutiontitle: Clasificación de la institución
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
         name: Facultad, Escuela o Instituto
         institution: Institución
+        abbrev: Siglás
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
         startyear: Año de inicio
@@ -411,7 +412,7 @@ es:
         year: Año
         other: Información adicional
       course:
-        name: Curso
+        name: Nombre del curso
         courseduration: Duración
         modality: Modalidad
         hoursxweek: Horas por semana
@@ -444,6 +445,10 @@ es:
         pages: Páginas
         doi: DOI
         other: Otros
+      journal:
+        name: Nombre
+        country_id: País
+        country: País
       book:
         authors: Autor(es)
         title: Título
@@ -533,7 +538,12 @@ es:
         authors: Autor(es)
         title: Título
         newspaper: Periódico
-        newsdate: Fecha
+        newsdate: Fecha de publicación
+        url: Página web
+      newspaper:
+        name: Nombre del periódico
+        url: Página web del periódico
+        country: País
       indivadvice:
         indivname: Persona asesorada
         institution: Institución
@@ -560,7 +570,6 @@ es:
         endmonth: Mes de conclusión
         start_date: Fecha de inicio
         end_date: Fecha de presentación de examen
-
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -1303,6 +1312,10 @@ es:
       title: 'Información de artículos periodístico'
     collection_header:
       title: Artículo
+
+  newspapers:
+    new:
+      title: Nuevo periódico
 
   user_journals:
     index:
