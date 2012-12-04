@@ -47,9 +47,8 @@ module MetaDateExtension
          scope :among, lambda { |start_year, start_month, end_year, end_month|
           where{
             ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.lteq => end_year, :endmonth.lteq => end_month}) |
-            ({:startyear.lt => start_year, :endyear.gt => start_year }) |
-            ({:startyear.lteq => start_year, :endyear => nil}) |
-            ({:startyear.lt => start_year, :endyear.lteq => end_year, :endyear.gteq => start_year})
+            ({:startyear.lteq => start_year, :endyear.gteq => start_year }) |
+            ({:startyear.lteq => start_year, :endyear => nil})
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
@@ -76,7 +75,8 @@ module MetaDateExtension
           where{
             ({:start_date.gteq => start_date} & {:end_date.lteq => end_date}) |
             ({:start_date.lt => start_date} & {:end_date.gt => end_date}) |
-            ({:start_date.lt => start_date} & {:end_date.lteq => end_date} & {:end_date.gteq => start_date})
+            ({:start_date.lteq => start_date} & {:end_date.lteq => end_date} & {:end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date} & {:end_date.gteq => end_date} & {:start_date.lteq => end_date})
           }
         }
         search_methods :among, :splat_param => true, :type => [:date, :date]
@@ -101,9 +101,8 @@ module MetaDateExtension
         scope :among, lambda { |start_year, end_year| 
           where{
             ({:startyear.gteq => start_year, :endyear.lteq => end_year}) |
-            ({:startyear.lt => start_year, :endyear.gt => end_year}) |
-            ({:startyear.lt => start_year, :endyear.lteq => end_year, :endyear.gteq => start_year}) |
-            ({:startyear.lteq => start_year, :endyear => nil})
+            ({:startyear.lteq => start_year, :endyear.gteq => end_year}) |
+            ({:startyear.lt => start_year, :endyear.lteq => end_year, :endyear.gteq => start_year})
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer]
