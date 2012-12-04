@@ -3,6 +3,6 @@
     =t('web_site.home_pages.recent_published_books')
   - n = 0
   - user.recent_published_books.each do |books|
-    = (n +=1).to_s + '. ' + books.as_text
+    = (n +=1).to_s + '. ' + books.to_s
     %br/
     %br/
