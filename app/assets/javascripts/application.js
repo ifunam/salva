@@ -1,4 +1,4 @@
-//= require jquery.min
-//= require jquery-ui.min
+//= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 

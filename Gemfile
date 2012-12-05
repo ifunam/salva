@@ -65,6 +65,7 @@ gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
+gem "jquery-rails", "2.1.4"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
@@ -98,7 +99,6 @@ group :development do
   gem "hpricot", "0.8.6"
   gem "ruby_parser", "2.3.1"
   gem "unicorn", "4.3.1"
-  gem "jquery-rails", "2.1.1"
   gem "capistrano", "~> 2.13.0"
   gem "debugger", "~> 1.2.0"
   gem "pry-rails", "~> 0.2.1"
