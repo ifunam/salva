@@ -73,10 +73,13 @@ module MetaDateExtension
       unless respond_to? :among
         scope :among, lambda { |start_date, end_date|
           where{
-            ({:start_date.gteq => start_date} & {:end_date.lteq => end_date}) |
-            ({:start_date.lt => start_date} & {:end_date.gt => end_date}) |
-            ({:start_date.lteq => start_date} & {:end_date.lteq => end_date} & {:end_date.gteq => start_date}) |
-            ({:start_date.gteq => start_date} & {:end_date.gteq => end_date} & {:start_date.lteq => end_date})
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date}) |
+            ({:start_date.lt => start_date, :end_date.gt => end_date}) |
+            ({:start_date.lteq => start_date, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.gteq => end_date, :start_date.lteq => end_date})
+            ({:start_date.gteq => start_date, :end_date => nil, :start_date.lteq => end_date}) |
+            ({:end_date.lteq => end_date, :start_date => nil, :end_date.gteq => start_date})
+
           }
         }
         search_methods :among, :splat_param => true, :type => [:date, :date]
