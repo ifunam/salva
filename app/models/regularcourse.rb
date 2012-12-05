@@ -19,7 +19,7 @@ class Regularcourse < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'periods.startdate DESC, regularcourses.title', :include => { :user_regularcourses => :period }
+  default_scope :order => 'periods.enddate DESC, regularcourses.title ASC', :include => { :user_regularcourses => :period }
   scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses).where(:user_regularcourses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id|  where("regularcourses.id IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id !=  ?", user_id]).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id =  ?", user_id]).to_sql})") }
   scope :period_id_eq, lambda { |period_id| joins(:user_regularcourses).where(:user_regularcourses => { :period_id => period_id }) }

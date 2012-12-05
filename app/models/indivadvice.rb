@@ -21,7 +21,7 @@ class Indivadvice < ActiveRecord::Base
   belongs_to :registered_by, :class_name => "User"
   belongs_to :modified_by, :class_name => "User"
 
-  default_scope :order => 'startyear DESC, startmonth DESC, endyear DESC, endmonth DESC, indivname ASC'
+  default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC, indivname ASC'
   scope :students, where('indivadvicetarget_id <= 3')
   scope :professors, where('indivadvicetarget_id > 3')
 

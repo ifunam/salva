@@ -36,7 +36,7 @@ prawn_document() do |pdf|
   pdf.text "Correo electrónico:", :style => :bold
   pdf.draw_text @profile.email, :style => :normal, :at => [160, pdf.cursor]
 
-  pdf.text "RFC o CURP:", :style => :bold
+  pdf.text "Identificación:", :style => :bold
   pdf.draw_text @profile.person_id, :style => :normal, :at => [160, pdf.cursor]
 
   pdf.text "Categoría:", :style => :bold
