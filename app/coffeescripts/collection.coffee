@@ -44,3 +44,7 @@ $(document).ready ->
        $("#enable_search").show()
        $("#disable_search").hide()
     )
+
+  $("#ajaxed_paginator a").live "click", ->
+    $.remote_collection_list this.href
+    false
