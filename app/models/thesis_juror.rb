@@ -18,9 +18,14 @@ class ThesisJuror < ActiveRecord::Base
     joins(:thesis).
     where{
       { :thesis =>
-        ({:start_date => nil, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
-          ({:start_date.gteq => start_date} & {:end_date.lteq => start_date}) |
-          ({:start_date.lteq => end_date} & {:end_date.gteq => end_date})
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date}) |
+            ({:start_date.lt => start_date, :end_date.gt => end_date}) |
+            ({:start_date.lteq => start_date, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.gteq => end_date, :start_date.lteq => end_date}) |
+            ({:start_date.gteq => start_date, :end_date => nil, :start_date.lteq => end_date}) |
+            ({:end_date.lteq => end_date, :start_date => nil, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date, :start_date.lt => end_date}) |
+            ({:end_date.lteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date})
       }
     }
   }
