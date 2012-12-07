@@ -90,11 +90,11 @@ module Reporter
       create_section :teaching do |s|
         s.collection :regular_courses, :class_name => 'Regularcourse', :date_style => :date_range
         s.collection :course_instructors, :class_name => 'Course', :scope => :instructors
-        s.collection :phd_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :phd_theses
-        s.collection :mastery_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :mastery_theses
-        s.collection :degree_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :degree_theses
-        s.collection :technician_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :technician_theses
-        s.collection :bachelor_theses, :class_name => 'Theses', :date_style => :date_range, :scope => :bachelor_theses
+        s.collection :for_phd, :class_name => 'Theses', :date_style => :date_range, :scope => :for_phd
+        s.collection :for_master, :class_name => 'Theses', :date_style => :date_range, :scope => :for_master
+        s.collection :for_bachelor_degree, :class_name => 'Theses', :date_style => :date_range, :scope => :for_bachelor_degree
+        s.collection :for_technician, :class_name => 'Theses', :date_style => :date_range, :scope => :for_technician
+        s.collection :for_high_school, :class_name => 'Theses', :date_style => :date_range, :scope => :for_high_school
         s.collection :thesis_examinations, :class_name => 'ThesisJuror', :date_style => :date_range
         s.collection :tutorial_committees, :date_style => :only_year
         s.collection :student_advices, :class_name =>  'Indivadvice', :scope => :students, :date_style => :month_and_year_range
