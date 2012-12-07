@@ -38,8 +38,6 @@ class Thesis < ActiveRecord::Base
   }
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id| joins(:user_theses).where(:user_theses => { :roleinthesis_id => roleinthesis_id }) }
-  scope :finished, where(:thesisstatus_id => 3)
-  scope :inprogress, where("thesisstatus_id != 3")
   scope :phd_theses, joins(:career).where('degree_id = 6')
   scope :mastery_theses, joins(:career).where('degree_id = 5 or degree_id = 4')
   scope :degree_theses, joins(:career).where('degree_id = 3')
@@ -47,6 +45,11 @@ class Thesis < ActiveRecord::Base
   scope :bachelor_theses, joins(:career).where('degree_id = 1')
 
   scope :as_author, where(:user_theses => {:roleinthesis_id => 1})
+  scope :roleinthesis_id_not_eq, lambda { |roleinthesis_id| joins(:user_theses).where{{:user_theses => { :roleinthesis_id.not_eq => roleinthesis_id }}} }
+  scope :as_author, roleinthesis_id_eq(1)
+  scope :as_non_author, roleinthesis_id_not_eq(1)
+  scope :finished, where(:thesisstatus_id => 3).as_non_author
+  scope :inprogress, where("thesisstatus_id != 3").as_non_author
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
 
