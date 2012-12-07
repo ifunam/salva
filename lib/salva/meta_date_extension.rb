@@ -40,16 +40,15 @@ module MetaDateExtension
     protected
 
     def start_end_date_scopes
-       scope :since, lambda { |year, month| where{{:startyear.gteq => year} & {:startmonth.gteq => month}} } unless respond_to? :since
-       scope :until, lambda { |year, month| where{{:endyear.lteq => year} & {:endmonth.lteq => month}} } unless respond_to? :until
+       scope :since, lambda { |year, month| where{{:startyear.gteq => year, :startmonth.gteq => month}} } unless respond_to? :since
+       scope :until, lambda { |year, month| where{{:endyear.lteq => year, :endmonth.lteq => month}} } unless respond_to? :until
 
        unless respond_to? :among
          scope :among, lambda { |start_year, start_month, end_year, end_month|
           where{
             ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.lteq => end_year, :endmonth.lteq => end_month}) |
-            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear.gteq => start_year }) |
-            ({:startyear.gteq => start_year, :startmonth.gteq => start_month, :endyear => nil}) |
-            ({:startyear.lteq => end_year, :startmonth.gteq => start_month, :endyear.gteq => end_year, :endmonth.lteq => end_month})
+            ({:startyear.lteq => start_year, :endyear.gteq => end_year }) |
+            ({:startyear.lteq => start_year, :endyear => nil})
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
@@ -60,8 +59,8 @@ module MetaDateExtension
 
     def simple_date_scopes
       unless defined? @@ignore_meta_date
-        scope :since, lambda { |year, month| where{{:year.gteq => year} & {:month.gteq => month}} } unless respond_to? :since
-        scope :until, lambda { |year, month| where{{:year.lteq => year} & {:month.lteq => month}} } unless respond_to? :until
+        scope :since, lambda { |year, month| where{{:year.gteq => year, :month.gteq => month}} } unless respond_to? :since
+        scope :until, lambda { |year, month| where{{:year.lteq => year, :month.lteq => month}} } unless respond_to? :until
       end
       date_search_methods
     end
@@ -74,9 +73,15 @@ module MetaDateExtension
       unless respond_to? :among
         scope :among, lambda { |start_date, end_date|
           where{
-            ({:start_date.gteq => start_date} & {:end_date.gteq => start_date}) |
-            ({:start_date.gteq => start_date} & {:end_date.lteq => start_date}) |
-            ({:start_date.lteq => end_date} & {:end_date.gteq => end_date})
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date}) |
+            ({:start_date.lt => start_date, :end_date.gt => end_date}) |
+            ({:start_date.lteq => start_date, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.gteq => end_date, :start_date.lteq => end_date})
+            ({:start_date.gteq => start_date, :end_date => nil, :start_date.lteq => end_date}) |
+            ({:end_date.lteq => end_date, :start_date => nil, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date, :start_date.lt => end_date}) |
+            ({:end_date.lteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date}) 
+
           }
         }
         search_methods :among, :splat_param => true, :type => [:date, :date]
@@ -101,8 +106,9 @@ module MetaDateExtension
         scope :among, lambda { |start_year, end_year| 
           where{
             ({:startyear.gteq => start_year, :endyear.lteq => end_year}) |
-            ({:startyear.gteq => start_year, :endyear.gteq => start_year}) |
-            ({:startyear.gteq => start_year, :endyear => nil})
+            ({:startyear.lteq => start_year, :endyear.gteq => end_year}) |
+            ({:startyear.lt => start_year, :endyear.lteq => end_year, :endyear.gteq => start_year}) |
+            ({:startyear.lteq => start_year, :endyear => nil})
           }
         }
         search_methods :among, :splat_param => true, :type => [:integer, :integer]
