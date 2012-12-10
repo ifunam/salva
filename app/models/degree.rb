@@ -11,5 +11,5 @@ class Degree < ActiveRecord::Base
 
   default_scope :order => 'level DESC' #<- Comment this line to run the migrations successfully
   scope :higher, where('id > 1')
-  scope :universitary, where('id = 3 OR id = 5 OR id = 6')
+  scope :universitary, where('id >= 2 AND id <= 6')
 end
