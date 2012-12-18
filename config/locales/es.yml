@@ -2476,6 +2476,11 @@ es:
     credits_on_degree_thesis: 'Agradecimientos en tesis de licenciatura'
     credits_on_international_article: 'Agradecimientos en artículos internacionales'
     credits_on_national_article: 'Agradecimientos en artículos nacionales'
+    credits_on_unrefereed_inproceedings: 'Agradecimientos en artículo de memorias en extenso'
+    credits_on_chapters_in_books: 'Agradecimientos en capítulos en libros'
+    credits_on_national_congress: 'Agradecimientos en congresos nacionales'
+    credits_on_international_congress: 'Agradecimientos en congresos internacionales'
+
     credits_on_others: 'Otros agradecimientos'
     memberships: 'Membresías en asociaciones académicas'
     institutional_activities: 'Participación institucional'

@@ -36,6 +36,10 @@ module Reporter
         s.collection :credits_on_degree_thesis, :class_name => 'UserCredits', :scope => :credits_on_degree_thesis
         s.collection :credits_on_international_article, :class_name => 'UserCredits', :scope => :credits_on_international_article
         s.collection :credits_on_national_article, :class_name => 'UserCredits', :scope => :credits_on_national_article
+        s.collection :credits_on_unrefereed_inproceedings, :class_name => 'UserCredits', :scope => :credits_on_unrefereed_inproceedings
+        s.collection :credits_on_chapters_in_books, :class_name => 'UserCredits', :scope => :credits_on_chapters_in_books
+        s.collection :credits_on_national_congress, :class_name => 'UserCredits', :scope => :credits_on_national_congress
+        s.collection :credits_on_international_congress, :class_name => 'UserCredits', :scope => :credits_on_international_congress
         s.collection :credits_on_others, :class_name => 'UserCredits', :scope => :credits_on_others
         s.collection :user_prizes
         s.collection :user_stimuli, :date_style => :month_and_year_range
