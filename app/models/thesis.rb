@@ -47,8 +47,8 @@ class Thesis < ActiveRecord::Base
 
   scope :for_phd, joins(:career).where('degree_id = 6').not_as_author
   scope :for_master, joins(:career).where('degree_id = 5 or degree_id = 4').not_as_author
-  scope :for_bachelor_degree, joins(:career_attributeseer).where('degree_id = 3').not_as_author
-  scope :for_technician, joins(technician_theses:career).where('degree_id = 2').not_as_author
+  scope :for_bachelor_degree, joins(:career).where('degree_id = 3').not_as_author
+  scope :for_technician, joins(:career).where('degree_id = 2').not_as_author
   scope :for_high_school, joins(:career).where('degree_id = 1').not_as_author
 
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
