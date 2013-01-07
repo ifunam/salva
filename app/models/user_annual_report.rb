@@ -46,6 +46,8 @@ class UserAnnualReport < AbstractController::Base
         if File.exist?(self._file)
           approved_by_id = User.find(@user_id).user_incharge.nil? ? nil : User.find(@user_id).user_incharge.id
           @annual_report.deliver
+          @d = Document.find_by_user_id_and_documenttype_id(@user_id, @document_type_id)
+          @d.destroy unless @d.nil?
           @d = Document.create(:user_id => @user_id, :ip_address => @remote_ip,
                                :documenttype_id => @document_type_id, :file => self._file,
                                :approved_by_id => approved_by_id)

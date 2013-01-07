@@ -39,6 +39,8 @@ class UserAnnualPlansController < ApplicationController
     authorize_document!
     find_document_and_profile
     if @annual_plan.update_attributes(params[:annual_plan].merge(:delivered => false))
+      @d = Document.find_by_user_id_and_documenttype_id(current_user.id, @annual_plan.documenttype_id)
+      @d.destroy unless @d.nil?
       respond_with(@annual_plan, :status => :updated, :location =>user_annual_plan_path(@annual_plan))
     else
       respond_with(@annual_plan, :status => :unprocessable_entity) do |format|
