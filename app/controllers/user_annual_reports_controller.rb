@@ -68,7 +68,7 @@ class UserAnnualReportsController < ApplicationController
 
   private
   def build_query
-    @year = params[:year]
+    @year ||= params[:year]
     { :user_id_eq => current_user.id, :start_date => "#{@year}/01/01", :end_date => "#{@year}/12/31" }
   end
 
@@ -80,13 +80,13 @@ class UserAnnualReportsController < ApplicationController
   def find_document
     @annual_report = AnnualReport.where(:id => params[:id], :user_id => current_user.id).first
     @year = @annual_report.documenttype.year unless @annual_report.nil?
+    @report_sections = Reporter::Base.find(build_query).all
   end
 
   def find_profile
     @document_type = Documenttype.annual_reports.active.first
     @profile = UserProfile.find(current_user.id)
     @remote_ip = request.remote_ip
-    @report_sections = Reporter::Base.find(build_query).all
   end
 
   def authorize_document!
