@@ -10,7 +10,7 @@ class UserAnnualReportsController < ApplicationController
 
   def new
     authorize_document!
-    find_profile
+    find_document_and_profile
     respond_with(@annual_report = AnnualReport.new)
   end
 
