@@ -70,7 +70,7 @@ class UserAnnualReportsController < ApplicationController
 
   private
   def build_query
-    @year ||= params[:year]
+    @year ||=  Documenttype.annual_reports.active.first.year
     { :user_id_eq => current_user.id, :start_date => "#{@year}/01/01", :end_date => "#{@year}/12/31" }
   end
 
