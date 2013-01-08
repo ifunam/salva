@@ -29,6 +29,6 @@ class ThesisJuror < ActiveRecord::Base
   search_methods :among, :splat_param => true, :type => [:date, :date]
 
   def to_s
-    [user.fullname_or_email, "(#{roleinjury.name})" ].join(' ')
+    [thesis.authors, thesis.title, user.fullname_or_email, "(#{roleinjury.name})", thesis.date].join(', ')
   end
 end
