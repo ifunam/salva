@@ -59,7 +59,7 @@ module Reporter
       end
 
       create_section :outreach_activities do |s|
-        s.collection :professor_advices, :class_name => 'Indivadvice', :scope => :professors
+        s.collection :professor_advices, :class_name => 'Indivadvice', :scope => :professors, :date_style => :month_and_year_range
         s.collection :institutional_advices, :class_name => 'Instadvice'
         s.collection :outreach_works, :class_name => 'Genericwork', :scope => :outreach_works
       end
