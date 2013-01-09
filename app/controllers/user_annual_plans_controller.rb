@@ -9,8 +9,7 @@ class UserAnnualPlansController < ApplicationController
 
   def new
     authorize_document!
-    @profile = UserProfile.find(current_user.id)
-    respond_with(@annual_plan = AnnualPlan.new)
+    find_document_and_profile
   end
 
   def create
@@ -72,8 +71,8 @@ class UserAnnualPlansController < ApplicationController
   end
 
   def find_document
-    @annual_plan = AnnualPlan.where(:id => params[:id], :user_id => current_user.id).first
-    @year = @annual_plan.documenttype.year unless @annual_plan.nil?
+    @annual_plan = AnnualPlan.where(:id => params[:id], :user_id => current_user.id).first || AnnualPlan.new
+    @year = Documenttype.annual_plans.active.first.year
   end
 
   def find_profile

@@ -1,5 +1,5 @@
 .span-17.last
-  %h3= t('.title')
+  %h3= t('.title') + " #{@year}".html_safe
 = render :partial => 'user_annual_reports/profile', :object => @profile
 
 = simple_form_for @annual_plan, :url => user_annual_plans_path,  :html => { :id => 'record'} do |f|
