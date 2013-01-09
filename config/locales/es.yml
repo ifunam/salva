@@ -2142,13 +2142,13 @@ es:
 
   academic_exchanges:
     index:
-      title: 'Estancias en el extranjero'
+      title: 'Intercambio académico'
     new:
-      title: 'Nueva estancia en el extranjero'
+      title: 'Nuevo intercambio académico'
     edit:
-      title: 'Modificar estancia en el extranjero'
+      title: 'Modificar intercambio académico'
     show:
-      title: 'Información de la estancia en el extranjero'
+      title: 'Intercambio académico'
 
 
   academic:
