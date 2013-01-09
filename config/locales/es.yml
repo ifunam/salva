@@ -2439,7 +2439,7 @@ es:
   conference: 'Información del evento académico'
   talktype: 'Tipo de trabajo'
   annual_report_preview: 'Vista previa del informe anual'
-  new_annual_plan: 'Enviar nuevo plan de trabajo'
+  new_annual_plan: 'Preparar nuevo plan de trabajo'
   edit_annual_plan: 'Modificar plan de trabajo'
   new_annual_report: 'Preparar nuevo informe anual de actividades'
   edit_annual_report: 'Modificar informe anual de actividades'
@@ -2536,7 +2536,7 @@ es:
 
     others: 'Otras actividades o productos'
     popular_science_activities: 'Actividades de difusión y extensión'
-    academic_exchanges: 'Estancias en el extranjero'
+    academic_exchanges: 'Intercambio académico'
     other_activities: 'Otras actividades'
     other_works: 'Otros productos'
 
