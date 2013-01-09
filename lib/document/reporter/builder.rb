@@ -83,7 +83,7 @@ module Reporter
 
       create_section :others do |s|
         s.collection :popular_science_activities, :class_name => 'Activity', :scope => :popular_science
-        s.collection :academic_exchanges, :class_name => 'Acadvisit'
+        s.collection :academic_exchanges, :class_name => 'Acadvisit', :date_style => :month_and_year_range
         s.collection :other_activities, :class_name => 'Activity', :scope => :other
         s.collection :other_works, :class_name => 'Genericwork', :scope => :other_works
       end
