@@ -131,7 +131,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :reports, 'Informes', user_annual_reports_path do |s|
       s.item :user_annual_reports, 'Informe anual', user_annual_reports_path, :highlights_on => /\/user_annual_reports/
-      s.item :user_annual_plans, 'Plan anual', user_annual_plans_path, :highlights_on => /\/user_annual_plans/
+      s.item :user_annual_plans, 'Plan de trabajo', user_annual_plans_path, :highlights_on => /\/user_annual_plans/
       s.item :user_resume, 'Curriculum Vítae', user_resume_path, :highlights_on => /\/user_resume/
    end
 
