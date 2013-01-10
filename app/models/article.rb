@@ -47,7 +47,11 @@ class Article < ActiveRecord::Base
   search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
 
   def to_s
-    [authors, title, journal.name, normalized_date, normalized_vol_and_num, normalized_pages].compact.join(', ').sub(/;,/, ';')
+    array = [authors, title, journal.name, normalized_date, normalized_vol_and_num, normalized_pages]
+    if articlestatus_id != 3
+      array.push("Status: #{articlestatus.name}")
+    end
+    array.compact.join(', ').sub(/;,/, ';')
   end
 
   def normalized_date
