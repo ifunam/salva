@@ -123,6 +123,8 @@ module MetaDateExtension
 
   module DateMethods
     protected
+    ::I18n.locale = I18n.locale.to_sym
+
     def localize_date(year, month, format=:month_and_year)
       if year.to_i > 0 and (month.to_i > 0 and month.to_i <= 12)
         I18n.localize(Date.new(year, month, 1), :format => format)
