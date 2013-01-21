@@ -6,4 +6,8 @@ class UserInproceeding < ActiveRecord::Base
 
   belongs_to :inproceeding
   belongs_to :user
+
+  scope :year_eq, lambda { |year| joins(:inproceeding => :proceeding).where('proceedings.year = ?', year) }
+  scope :refereed, joins(:inproceeding => :proceeding).where("proceedings.isrefereed = 't' AND inproceedings.proceeding_id = proceedings.id")
+  scope :unrefereed, joins(:inproceeding => :proceeding).where("proceedings.isrefereed = 'f' AND inproceedings.proceeding_id = proceedings.id")
 end
