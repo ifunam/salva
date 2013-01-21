@@ -26,6 +26,8 @@ class Regularcourse < ActiveRecord::Base
   scope :since, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
   scope :until, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
   scope :among, lambda{ |start_date, end_date|  since(start_date).until(end_date) }
+  scope :bachelor_
+cademicprogram.institutioncareer.career.degree.i
 
   search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
   search_methods :among, :type => [:date, :date], :splat_param => true
