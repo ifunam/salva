@@ -247,4 +247,8 @@ class User < ActiveRecord::Base
   def admin?
     group_name == 'admin'
   end
+
+  def worker_key
+    jobposition_log.nil? ? email : jobposition_log.worker_key
+  end
 end
