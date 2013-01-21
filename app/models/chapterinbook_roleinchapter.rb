@@ -12,6 +12,12 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
 
   has_many :bookeditions
 
+  scope :find_by_year, lambda { |year|
+    bookedition_sql = Bookedition.select('id').since(year,1).until(year,12).to_sql
+    sql = "chapterinbooks.bookedition_id IN (#{bookedition_sql})"
+    joins(:chapterinbook=>:bookedition).where(sql)
+  }
+
   def to_s
     "#{user.author_name} (#{roleinchapter.name})"
   end
