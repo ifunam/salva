@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source :rubygems
 
-gem "rails", "~> 3.2.9"
+gem "rails", "~> 3.2.11"
 gem "haml", "3.1.7"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -48,7 +48,7 @@ gem "sass-rails", "~> 3.2.5"
 gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
 gem "by_star", "~> 2.0.0.beta1"
-gem "tzinfo", "0.3.29"
+gem "tzinfo", "0.3.33"
 
 gem "SystemTimer", "1.2.3", :platforms => :ruby_18
 gem "redis", "3.0.1"
@@ -65,6 +65,7 @@ gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
+gem "jquery-rails", "2.1.4"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
@@ -87,8 +88,8 @@ group :assets do
   gem "coffee-script", "~> 2.2.0"
   gem "uglifier", "~> 1.2.7"
   gem "css_image_embedder", "~> 0.2.0"
-  gem "therubyracer", "~> 0.10.2"
   gem "sass-rails", "~> 3.2.5"
+  gem "therubyracer", "~> 0.10.2"
   gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
   gem "turbo-sprockets-rails3", "~> 0.3.2"
 end
@@ -98,7 +99,6 @@ group :development do
   gem "hpricot", "0.8.6"
   gem "ruby_parser", "2.3.1"
   gem "unicorn", "4.3.1"
-  gem "jquery-rails", "2.1.1"
   gem "capistrano", "~> 2.13.0"
   gem "debugger", "~> 1.2.0"
   gem "pry-rails", "~> 0.2.1"

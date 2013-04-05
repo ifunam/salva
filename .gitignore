@@ -79,6 +79,7 @@ app/assets/javascripts/session.js
 app/assets/javascripts/document_publication.js
 app/assets/javascripts/document_academic.js
 app/assets/javascripts/document_website.js
+app/assets/javascripts/thesis.js
 app/sass/.sass-cache/
 .sass-cache/
 public/assets/
