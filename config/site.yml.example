@@ -1,5 +1,5 @@
 # General configuration for salva 
-institution: 
+institution:
   name: Instituto de Física - UNAM
   url: http://www.fisica.unam.mx
   administrative_key: 314
@@ -28,3 +28,6 @@ teaching_coordination:
 
 accounts_notification:
   email: someemail@fisica.unam.mx
+
+app:
+  secret_token: 52d737e54b7c19af1c06c7101e405f842645b5c9446acd9cfa70bbdebf6aada443bb35460a5af20e3f93d567e59999fd6bd1d78ccc865b961c84318b4ebbf308

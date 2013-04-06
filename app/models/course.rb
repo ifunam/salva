@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'startyear DESC, startmonth DESC, name ASC'
+  default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, endmonth DESC, name ASC'
   scope :attendees, joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 })
   scope :instructors, joins(:user_courses).where('user_courses.roleincourse_id != 2')
 

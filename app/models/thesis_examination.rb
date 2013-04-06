@@ -28,7 +28,9 @@ class ThesisExamination < Thesis
   search_methods :user_id_eq, :user_id_not_eq, :roleinjury_id_eq
 
   def users_and_roles
-    thesis_jurors.collect {|record| record.to_s }.join(', ')
+    thesis_jurors.collect {|record|
+      [record.user.fullname_or_email, "(#{record.roleinjury.name})"].join(', ')
+    }.join(', ')
   end
 
 end

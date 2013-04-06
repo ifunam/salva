@@ -2,7 +2,7 @@
   .row= render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-6= f.association :country, :collection => Country.all, :input_html => { :class =>'chosen-select', :required => true}
+    .span-6= f.association :country, :collection => Country.all, :input_html => { :class =>'chosen-select', :required => true}, :selected => f.object.country_id || 484
     #institution.span-12.last
       = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
       = link_to_new_record 'Agregar institución', new_institution_path

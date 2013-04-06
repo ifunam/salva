@@ -2,7 +2,7 @@
   = f.hidden_field :id
   = f.hidden_field :regularcourse_id, :value => @regular_course.id
 = f.hidden_field :user_id, :value => current_user.id
-.span-6= f.association :period, :collection => Period.all, :using => :name, :input_html  => {:class => 'chosen-select', :required => true }
+.span-6= f.association :period, :collection => Period.all, :using => :name, :input_html => {:class => 'chosen-select', :required => true }, :selected => f.object.period_id || Period.first.id
 .span-6= f.association :roleinregularcourse, :as => :radio, :collection => Roleinregularcourse.all, :wrapper_class => 'radio-set'
 .span-6.last= f.input :hoursxweek, :as => :string, :input_html => { :size => 4}
 

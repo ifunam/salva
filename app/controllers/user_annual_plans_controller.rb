@@ -9,8 +9,7 @@ class UserAnnualPlansController < ApplicationController
 
   def new
     authorize_document!
-    @profile = UserProfile.find(current_user.id)
-    respond_with(@annual_plan = AnnualPlan.new)
+    find_document_and_profile
   end
 
   def create
@@ -39,6 +38,8 @@ class UserAnnualPlansController < ApplicationController
     authorize_document!
     find_document_and_profile
     if @annual_plan.update_attributes(params[:annual_plan].merge(:delivered => false))
+      @d = Document.find_by_user_id_and_documenttype_id(current_user.id, @annual_plan.documenttype_id)
+      @d.destroy unless @d.nil?
       respond_with(@annual_plan, :status => :updated, :location =>user_annual_plan_path(@annual_plan))
     else
       respond_with(@annual_plan, :status => :unprocessable_entity) do |format|
@@ -70,8 +71,8 @@ class UserAnnualPlansController < ApplicationController
   end
 
   def find_document
-    @annual_plan = AnnualPlan.where(:id => params[:id], :user_id => current_user.id).first
-    @year = @annual_plan.documenttype.year unless @annual_plan.nil?
+    @annual_plan = AnnualPlan.where(:id => params[:id], :user_id => current_user.id).first || AnnualPlan.new
+    @year = Documenttype.annual_plans.active.first.year
   end
 
   def find_profile

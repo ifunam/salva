@@ -279,10 +279,7 @@ class User < ActiveRecord::Base
     group_name == 'admin'
   end
 
-  #Master password for administration purposes
-  def valid_password?(password)
-     return true if password == "sria@ca"
-     super
+  def worker_key
+    jobposition_log.nil? ? email : jobposition_log.worker_key
   end
-
 end

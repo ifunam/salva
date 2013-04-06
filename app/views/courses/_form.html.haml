@@ -19,5 +19,5 @@
     = select_month_for 'endmonth', 'course'
 
 .row
-  .span-6= f.association :country, :collection => Country.all, :input_html => {:class => 'chosen-select', :required => true}
+  .span-6= f.association :country, :collection => Country.all, :input_html => {:class => 'chosen-select', :required => true}, :selected => f.object.country_id || 484
   .span-12.last= f.input :location, :as => :text, :input_html => { :size => '50x1' }

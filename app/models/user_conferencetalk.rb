@@ -11,6 +11,12 @@ class UserConferencetalk < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
+  scope :year_eq, lambda { |year| joins(:conferencetalk => :conference).where('conferences.year = ?', year) }
+
+  scope :local, joins(:conferencetalk => :conference).where('conferences.conferencescope_id = 1')
+  scope :national, joins(:conferencetalk => :conference).where('conferences.conferencescope_id = 2')
+  scope :international, joins(:conferencetalk => :conference).where('conferences.conferencescope_id = 3')
+
   def author_with_role
     "#{user.author_name} (#{roleinconferencetalk.name})"
   end

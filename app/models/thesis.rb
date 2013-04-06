@@ -50,8 +50,11 @@ class Thesis < ActiveRecord::Base
   scope :for_bachelor_degree, joins(:career).where('degree_id = 3').not_as_author
   scope :for_technician, joins(:career).where('degree_id = 2').not_as_author
   scope :for_high_school, joins(:career).where('degree_id = 1').not_as_author
+  
+  scope :career_degree_id_eq, lambda { |degree_id| joins(:career).where{{:careers => {:degree_id => degree_id}}}.not_as_author }
 
-  search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq
+
+  search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq, :career_degree_id_eq
 
   def to_s
     ["#{authors} (estudiante)", title, thesismodality.to_s, career.to_s, date, users_and_roles].compact.join(', ')

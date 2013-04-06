@@ -124,14 +124,14 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :others, 'Otros', popular_science_activities_path do |s|
       s.item :popular_science_activities, 'Actividades de difusión y extensión', popular_science_activities_path, :highlights_on => /\/popular_science_activities/
-      s.item :academic_exchanges, 'Estancias en el extranjero', academic_exchanges_path, :highlights_on => /\/academic_exchanges/
+      s.item :academic_exchanges, 'Intercambio académico', academic_exchanges_path, :highlights_on => /\/academic_exchanges/
       s.item :other_activities, 'Otras actividades', other_activities_path, :highlights_on => /\/other_activities/
       s.item :other_works, 'Otros productos', other_works_path, :highlights_on => /\/other_works/
     end
 
     primary.item :reports, 'Informes', user_annual_reports_path do |s|
       s.item :user_annual_reports, 'Informe anual', user_annual_reports_path, :highlights_on => /\/user_annual_reports/
-      s.item :user_annual_plans, 'Plan anual', user_annual_plans_path, :highlights_on => /\/user_annual_plans/
+      s.item :user_annual_plans, 'Plan de trabajo', user_annual_plans_path, :highlights_on => /\/user_annual_plans/
       s.item :user_resume, 'Curriculum Vítae', user_resume_path, :highlights_on => /\/user_resume/
    end
 

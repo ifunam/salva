@@ -10,7 +10,7 @@ class UserAnnualReportsController < ApplicationController
 
   def new
     authorize_document!
-    find_profile
+    find_document_and_profile
     respond_with(@annual_report = AnnualReport.new)
   end
 
@@ -40,6 +40,8 @@ class UserAnnualReportsController < ApplicationController
     authorize_document!
     find_document_and_profile
     if @annual_report.update_attributes(params[:annual_report].merge(:delivered => false))
+      @d = Document.find_by_user_id_and_documenttype_id(current_user.id, @annual_report.documenttype_id)
+      @d.destroy unless @d.nil?
       respond_with(@annual_report, :status => :updated, :location => user_annual_report_path(@annual_report))
     else
       respond_with(@annual_report, :status => :unprocessable_entity) do |format|
@@ -68,7 +70,7 @@ class UserAnnualReportsController < ApplicationController
 
   private
   def build_query
-    @year = params[:year]
+    @year ||=  Documenttype.annual_reports.active.first.year
     { :user_id_eq => current_user.id, :start_date => "#{@year}/01/01", :end_date => "#{@year}/12/31" }
   end
 
@@ -80,13 +82,13 @@ class UserAnnualReportsController < ApplicationController
   def find_document
     @annual_report = AnnualReport.where(:id => params[:id], :user_id => current_user.id).first
     @year = @annual_report.documenttype.year unless @annual_report.nil?
+    @report_sections = Reporter::Base.find(build_query).all
   end
 
   def find_profile
     @document_type = Documenttype.annual_reports.active.first
     @profile = UserProfile.find(current_user.id)
     @remote_ip = request.remote_ip
-    @report_sections = Reporter::Base.find(build_query).all
   end
 
   def authorize_document!

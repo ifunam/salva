@@ -3,6 +3,7 @@
 #
 # Class methods: since and until
 # Instance methods: date or start_date and end_date
+require 'pry'
 module MetaDateExtension
   def self.included(base)
     base.extend ClassMethods
@@ -73,18 +74,15 @@ module MetaDateExtension
       unless respond_to? :among
         scope :among, lambda { |start_date, end_date|
           where{
-            ({:start_date.gteq => start_date, :start_date.lteq => end_date }) |
-            ({:end_date.gteq => start_date, :end_date.lteq => end_date }) |
-            ({:start_date.lt => start_date, :end_date.gt => end_date } | {:end_date => nil})
-            #({:start_date.gteq => start_date, :end_date.lteq => end_date}) |             da
-            #({:start_date.lt => start_date, :end_date.gt => end_date}) |
-            #({:start_date.lteq => start_date, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
-            #({:start_date.gteq => start_date, :end_date.gteq => end_date, :start_date.lteq => end_date})
-            #({:start_date.gteq => start_date, :end_date => nil, :start_date.lteq => end_date}) |
-            #({:end_date.lteq => end_date, :start_date => nil, :end_date.gteq => start_date}) |
-            #({:start_date.gteq => start_date, :end_date.lteq => end_date, :start_date.lt => end_date}) |
-            #({:end_date.lteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date})
-
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date}) |
+            ({:start_date.lt => start_date, :end_date.gt => end_date}) |
+            ({:start_date.lteq => start_date, :end_date.lteq => end_date, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.gteq => end_date, :start_date.lteq => end_date})
+            ({:start_date.gteq => start_date, :end_date => nil, :start_date.lteq => end_date}) |
+            ({:end_date.lteq => end_date, :start_date => nil, :end_date.gteq => start_date}) |
+            ({:start_date.gteq => start_date, :end_date.lteq => end_date, :start_date.lt => end_date}) |
+            ({:end_date.lteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date}) |
+            ({:end_date.gteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date}) 
           }
         }
         search_methods :among, :splat_param => true, :type => [:date, :date]
@@ -106,7 +104,7 @@ module MetaDateExtension
       scope :until, lambda { |year| where{{:endyear.lteq => year}} } unless respond_to? :until
       search_methods :since, :until
       unless respond_to? :among
-        scope :among, lambda { |start_year, end_year| 
+        scope :among, lambda { |start_year, end_year|
           where{
             ({:startyear.gteq => start_year, :endyear.lteq => end_year}) |
             ({:startyear.lteq => start_year, :endyear.gteq => end_year}) |
@@ -126,6 +124,8 @@ module MetaDateExtension
 
   module DateMethods
     protected
+    ::I18n.locale = I18n.locale.to_sym
+
     def localize_date(year, month, format=:month_and_year)
       if year.to_i > 0 and (month.to_i > 0 and month.to_i <= 12)
         I18n.localize(Date.new(year, month, 1), :format => format)

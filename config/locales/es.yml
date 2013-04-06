@@ -380,12 +380,13 @@ es:
         name: Nombre de la carrera o posgrado
       institution:
         institutiontype:  Tipo de institución
-        institutiontitle: Titulo de la institución
+        institutiontitle: Clasificación de la institución
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
         name: Facultad, Escuela o Instituto
         institution: Institución
+        abbrev: Siglás
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
         startyear: Año de inicio
@@ -411,7 +412,7 @@ es:
         year: Año
         other: Información adicional
       course:
-        name: Curso
+        name: Nombre del curso
         courseduration: Duración
         modality: Modalidad
         hoursxweek: Horas por semana
@@ -444,6 +445,10 @@ es:
         pages: Páginas
         doi: DOI
         other: Otros
+      journal:
+        name: Nombre
+        country_id: País
+        country: País
       book:
         authors: Autor(es)
         title: Título
@@ -533,7 +538,12 @@ es:
         authors: Autor(es)
         title: Título
         newspaper: Periódico
-        newsdate: Fecha
+        newsdate: Fecha de publicación
+        url: Página web
+      newspaper:
+        name: Nombre del periódico
+        url: Página web del periódico
+        country: País
       indivadvice:
         indivname: Persona asesorada
         institution: Institución
@@ -560,7 +570,6 @@ es:
         endmonth: Mes de conclusión
         start_date: Fecha de inicio
         end_date: Fecha de presentación de examen
-
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -1306,6 +1315,10 @@ es:
     collection_header:
       title: Artículo
 
+  newspapers:
+    new:
+      title: Nuevo periódico
+
   user_journals:
     index:
       title: 'Colaboración en revistas'
@@ -1586,6 +1599,10 @@ es:
       title: 'Nuevo rol en curso regular'
     edit:
       title: 'Modificar rol en curso regular'
+
+  user_regular_courses:
+    new:
+      title: Nuevo periodo para el curso
 
   course_attendees:
     index:
@@ -1868,20 +1885,20 @@ es:
       title: 'Informe anual de actividades'
     new:
       title: Nuevo informe anual
-      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_report_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu informe anual antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar informe anual
-      annual_report_hint: Después de guardar podrás modicar tu informe anual y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_report_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu informe anual antes de enviarlo a la secretaría académica.
 
   user_annual_plans:
     index:
       title: Planes de trabajo
     new:
       title: Nuevo plan de trabajo
-      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_plan_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu plan de trabajo antes de enviarlo a la secretaría académica.
     edit:
       title: Modificar plan de trabajo
-      annual_plan_hint: Después de guardar podrás modicar tu plan de trabajo y obtener una vista del documento antes de enviarlo a la secretaría académica.
+      annual_plan_hint: Después de guardar puedes obtener una vista previa en PDF o modificar tu plan de trabajo antes de enviarlo a la secretaría académica.
 
   user_refereed_journals:
     index:
@@ -2127,13 +2144,13 @@ es:
 
   academic_exchanges:
     index:
-      title: 'Estancias en el extranjero'
+      title: 'Intercambio académico'
     new:
-      title: 'Nueva estancia en el extranjero'
+      title: 'Nuevo intercambio académico'
     edit:
-      title: 'Modificar estancia en el extranjero'
+      title: 'Modificar intercambio académico'
     show:
-      title: 'Información de la estancia en el extranjero'
+      title: 'Intercambio académico'
 
 
   academic:
@@ -2425,7 +2442,7 @@ es:
   conference: 'Información del evento académico'
   talktype: 'Tipo de trabajo'
   annual_report_preview: 'Vista previa del informe anual'
-  new_annual_plan: 'Enviar nuevo plan de trabajo'
+  new_annual_plan: 'Preparar nuevo plan de trabajo'
   edit_annual_plan: 'Modificar plan de trabajo'
   new_annual_report: 'Preparar nuevo informe anual de actividades'
   edit_annual_report: 'Modificar informe anual de actividades'
@@ -2548,7 +2565,7 @@ es:
 
     others: 'Otras actividades o productos'
     popular_science_activities: 'Actividades de difusión y extensión'
-    academic_exchanges: 'Estancias en el extranjero'
+    academic_exchanges: 'Intercambio académico'
     other_activities: 'Otras actividades'
     other_works: 'Otros productos'
 

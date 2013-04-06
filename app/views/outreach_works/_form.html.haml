@@ -17,7 +17,7 @@
       = select_month_for 'month', 'genericwork'
 
   .row
-    = f.association :genericworktype, :collection => Genericworktype.popular_science, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
+    = f.association :genericworktype, :collection => Genericworktype.outreach_works, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'
 
   .row
     = f.association :genericworkstatus, :collection => Genericworkstatus.all, :using => :name, :as => :radio, :prompt => true, :wrapper_class => 'radio-set'

@@ -22,7 +22,7 @@ class Acadvisit < ActiveRecord::Base
 
   has_many :projectacadvisits
 
-  default_scope order('startyear DESC, startmonth DESC, endyear DESC, endmonth DESC')
+  default_scope order('endyear DESC, endmonth DESC, startyear DESC, startmonth DESC')
 
   def to_s
     [institution.name_and_parent_abbrev, country.name, descr, start_date, end_date].compact.join(', ')

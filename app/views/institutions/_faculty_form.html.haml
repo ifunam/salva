@@ -3,7 +3,7 @@
 
 .row
   .span-6
-    = f.input :name, :as => :string, :input_html => { :size => '35', :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'institutions' }
+    = f.input :name, :as => :string, :input_html => { :size => '35', :autocomplete => "off", :class => 'autocompleted_text', 'data-controller-name' => 'institutions' }, :label_html => { :class => 'span-8' }
 
   #institution.span-12.last
     = f.association :institution, :as => :select, :collection => Institution.for_universities, :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }
@@ -11,9 +11,10 @@
 
 .row
   .span-6
-    = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :input_html => { :class => 'radio-set' }
+    = f.hidden_field :institutiontype_id, :value => 1
+    // = f.association :institutiontype, :as => :radio, :collection => Institutiontype.all, :input_html => { :class => 'radio-set' }
   .span-6
-    = f.label :institutiontitle_id, :required => true
-    = f.collection_select :institutiontitle_id, Institutiontitle.all, :id, :name, {:prompt => true, :selected => 2, :required => true}, :class => 'chosen-select'
+    = f.hidden_field :institutiontitle_id, :value => 1
+    // = f.collection_select :institutiontitle_id, Institutiontitle.all, :id, :name, {:prompt => true, :selected => 2, :required => true}, :class => 'chosen-select'
   .span-6.last
-    = f.association :country, :collection => Country.all,  :selected => 484, :input_html => {:class => 'chosen-select' }
+    = f.association :country, :collection => Country.all, :input_html => {:class => 'chosen-select' }, :selected => f.object.country_id || 484
