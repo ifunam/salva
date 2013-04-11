@@ -44,7 +44,7 @@ prawn_document(:template =>  Rails.root.to_s + '/lib/templates/documents/user_re
   pdf.draw_text @profile.adscription_name, :style => :normal, :at => [160, pdf.cursor+6]
 
   pdf.text "Número de trabajador:", :style => :bold
-  pdf.draw_text @profile.worker_id, :style => :normal, :at => [160, pdf.cursor+6]
+  pdf.draw_text @profile.worker_number, :style => :normal, :at => [160, pdf.cursor+6]
 
   if @profile.total_of_cites.to_i > 0
     pdf.text "Total de citas:", :style => :bold

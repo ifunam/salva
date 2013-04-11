@@ -118,6 +118,10 @@ class UserProfile
     end
   end
 
+  def worker_number
+    @user.worker_number
+  end
+
   def academic_years
     @user.jobposition_log.academic_years unless @user.jobposition_log.nil?
   end

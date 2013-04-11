@@ -282,4 +282,8 @@ class User < ActiveRecord::Base
   def worker_key
     jobposition_log.nil? ? email : jobposition_log.worker_key
   end
+
+  def worker_number
+    jobposition_log.worker_number || ''
+  end
 end

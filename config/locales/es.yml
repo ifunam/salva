@@ -2452,6 +2452,7 @@ es:
   phone: Teléfono
   category: Categoría
   worker_id: Número de plaza
+  worker_number: Número de trabajador
   total_of_cites: Total de citas
   user_incharge: Responsable académico
   person_id: Identificación
