@@ -21,6 +21,7 @@ class Thesis < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   has_many :user_theses
+  has_many :thesis_jurors
   has_many :users, :through => :user_theses
   accepts_nested_attributes_for :user_theses
   user_association_methods_for :user_theses
