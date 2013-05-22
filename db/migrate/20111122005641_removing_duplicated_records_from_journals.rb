@@ -8,7 +8,7 @@ class RemovingDuplicatedRecordsFromJournals < ActiveRecord::Migration
       record.update_attribute :name, normalized_value.to_s
     end
 
-    associations = Journal.associations_to_move.collect { |association| association.name }
+    associations = (Journal.reflect_on_all_associations(:has_many) + Journal.reflect_on_all_associations(:has_one)).collect { |association| association.name }
 
     sql = "SELECT UPPER(name) as name FROM Journals as j GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Journal.find_by_sql(sql).each do |record|

@@ -1,6 +1,6 @@
 class RemoveUniqueConstraintOfCombinedKeysInConferenceInstitutions < ActiveRecord::Migration
   def up
-    execute "ALTER TABLE conference_institutions DROP CONSTRAINT conference_institutions_conference_id_key"
+    execute "ALTER TABLE conference_institutions DROP CONSTRAINT IF EXISTS conference_institutions_conference_id_key"
   end
 
   def down
