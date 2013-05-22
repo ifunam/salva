@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
-source :rubygems
+source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.11"
+gem "rails", "~> 3.2.13"
 gem "haml", "3.1.7"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -29,7 +29,7 @@ gem "diff", "~> 0.3.6"
 
 # Misc
 gem "carrierwave", "0.6.2"
-gem "rmagick", "2.13.1"
+gem "rmagick", "2.13.2"
 gem "kaminari", "~> 0.13.0"
 gem "kaminari-i18n", "~> 0.1.3"
 gem "attribute_normalizer", "~> 1.1.0"
@@ -100,9 +100,7 @@ group :development do
   gem "ruby_parser", "2.3.1"
   gem "unicorn", "4.3.1"
   gem "capistrano", "~> 2.13.0"
-  gem "debugger", "~> 1.2.0"
   gem "pry-rails", "~> 0.2.1"
-  gem "debugger-pry", "~> 0.1.1"
 end
 
 group :test do
