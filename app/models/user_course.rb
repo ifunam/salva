@@ -10,6 +10,8 @@ class UserCourse < ActiveRecord::Base
   belongs_to :coursegroup
   belongs_to :roleincourse
 
+  scope :find_by_year, lambda { |year| joins(:course).where("courses.year = ?", year) }
+
   def author_with_role
     [user.author_name, "(#{roleincourse.name})"].join(' ')
   end
