@@ -23,17 +23,9 @@ es:
     precision:
       format:
         delimiter: ""
-
   date:
-    order: [:day, :month, :year]
-    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
-    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
-    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
-    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     formats:
-      short: "%d de %b"
-      default: "%d/%m/%Y"
-      long: "%A, %d de %B de %Y"
+      default: ! '%d/%m/%Y'
       long_without_day: "%d de %B de %Y"
       month_and_year: "%B de %Y"
   time:
@@ -44,40 +36,6 @@ es:
       abbrev: "%d/%m/%Y a las %H:%M:%S"
     am: "am"
     pm: "pm"
-
-  datetime:
-    distance_in_words:
-      half_a_minute: "medio minuto"
-      less_than_x_seconds:
-        one: "menos de 1 segundo"
-        other: "menos de {{count}} segundos"
-      x_seconds:
-        one: "1 segundo"
-        other: "{{count}} segundos"
-      less_than_x_minutes:
-        one: "menos de 1 minuto"
-        other: "menos de {{count}} minutos"
-      x_minutes:
-        one: "1 minuto"
-        other: "{{count}} minutos"
-      about_x_hours:
-        one: "cerca de 1 hora"
-        other: "cerca de {{count}} horas"
-      x_days:
-        one: "1 día"
-        other: "{{count}} días"
-      about_x_months:
-        one: "cerca de 1 mes"
-        other: "cerca de {{count}} meses"
-      x_months:
-        one: "1 mes"
-        other: "{{count}} meses"
-      about_x_years:
-        other: "cerca de {{count}} años"
-        one: "cerca de 1 año"
-      over_x_years:
-        one: "más de 1 año"
-        other: "más de {{count}} años"
 
 # Used in array.to_sentence.
   support:
