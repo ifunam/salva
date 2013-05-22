@@ -1,9 +1,12 @@
 %h3='Información general'
 = render :partial => "/shared/errors", :object => f.object.errors
 
-= f.simple_fields_for :person_attributes, @user.person do |person_form|
+- @user.build_person if @user.person.nil?
+
+= f.simple_fields_for :person do |person_form|
   = render :partial => 'people/form', :locals => { :f => person_form }
 
+- @user.build_address if @user.address.nil?
 = f.simple_fields_for :address_attributes, @user.address do |address_form|
   = render :partial => 'addresses/academic_form', :locals => { :f => address_form }
 
