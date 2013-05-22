@@ -12,3 +12,5 @@ if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
 end
 
 Salva::Application.load_tasks
+
+ENV['SKIP_RAILS_ADMIN_INITIALIZER'] = 'true'
