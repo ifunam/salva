@@ -1,3 +1,4 @@
+require 'pry'
 class Degree < ActiveRecord::Base
   attr_accessible :name, :level
   validates_presence_of :name, :level
@@ -9,7 +10,7 @@ class Degree < ActiveRecord::Base
   has_many :thesismodalities
   has_many :theses
 
-  default_scope :order => 'level DESC'
+  default_scope :order => 'level DESC' if column_names.include? 'level'
   scope :higher, where('id > 1')
   scope :universitary, where('id = 3 OR id = 5 OR id = 6')
 end
