@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                   :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
                   :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
-                  :homepage_resume, :homepage_resume_en
+                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id
 
   scope :activated, where(:userstatus_id => 2)
   scope :inactive, where('userstatus_id != 2')
@@ -76,12 +76,16 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_one :user_group
+  has_one :group, :through => :user_group
   has_one :address
   has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
   has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
           :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
           :order => "jobpositions.start_date DESC"
+  has_one :first_jobposition, :class_name => "Jobposition", :include => :institution,
+          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
+          :order => "jobpositions.start_date ASC"
   has_one :jobposition_for_researching, :class_name => "Jobposition", :include => [:institution, :jobpositioncategory],
           :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id = 1",
           :order => "jobpositions.start_date DESC"
