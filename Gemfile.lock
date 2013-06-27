@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: fe2a508890a37ebf634859813823bd597edb6c7e
+  revision: 8c7049bfc1c10096de7c963240276b639ef79bd1
   specs:
     activeadmin (0.6.0)
       arbre (>= 1.0.1)
@@ -9,36 +9,37 @@ GIT
       fastercsv
       formtastic (>= 2.0.0)
       inherited_resources (>= 1.3.1)
-      jquery-rails (>= 1.0.0)
+      jquery-rails (>= 1.0.0, < 3.0.0)
       kaminari (>= 0.13.0)
       meta_search (>= 0.9.2)
       rails (>= 3.0.0)
       sass (>= 3.1.0)
 
 GIT
-  remote: git://github.com/juarlex/rails_admin.git
-  revision: af52e4858a8bb7a6126e32e896e6102da31df844
-  branch: move_associated_records
-  specs:
-    rails_admin (0.0.5)
-      bootstrap-sass (~> 2.0)
-      builder (~> 3.0)
-      coffee-rails (~> 3.1)
-      haml (~> 3.1)
-      jquery-rails (~> 2.0)
-      jquery-ui-rails (~> 2.0)
-      kaminari (~> 0.12)
-      nested_form (~> 0.2.3)
-      rack-pjax (~> 0.5)
-      rails (~> 3.1)
-      remotipart (~> 1.0)
-      sass-rails (~> 3.1)
-
-GIT
   remote: git://github.com/monsterlabs/scope_by_fuzzy.git
   revision: a185104a67de5d6ee75019d4d1041c212fdb27cd
   specs:
     scope_by_fuzzy (0.0.3)
+
+GIT
+  remote: https://github.com/sferik/rails_admin.git
+  revision: d0af3380182ed7b991a9a23eae3c114b88fe0a14
+  specs:
+    rails_admin (0.4.9)
+      bootstrap-sass (~> 2.2)
+      builder (~> 3.0)
+      coffee-rails (>= 3.1, < 5)
+      font-awesome-rails (~> 3.0)
+      haml (~> 4.0)
+      jquery-rails (>= 2.1, < 4)
+      jquery-ui-rails (>= 3.0, < 5)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.6)
+      rails (~> 3.1)
+      remotipart (~> 1.0)
+      safe_yaml (~> 0.6)
+      sass-rails (~> 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -90,9 +91,9 @@ GEM
     blueprint-rails (0.1.2)
       railties (~> 3.0)
       thor (~> 0.14)
-    bootstrap-sass (2.3.1.0)
+    bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
-    bourbon (3.1.6)
+    bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
@@ -145,7 +146,7 @@ GEM
       net-ldap (~> 0.2.2)
     diff (0.3.6)
     diff-lcs (1.1.3)
-    domain_name (0.5.11)
+    domain_name (0.5.12)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     exception_notification (2.6.1)
@@ -153,15 +154,18 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fastercsv (1.5.5)
+    font-awesome-rails (3.2.1.1)
+      railties (>= 3.2, < 5.0)
     forgery (0.5.0)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
-    haml (3.1.7)
+    haml (4.0.3)
+      tilt
     has_scope (0.5.1)
     hashery (2.1.0)
     highline (1.6.19)
-    hike (1.2.2)
+    hike (1.2.3)
     hpricot (0.8.6)
     http-cookie (1.0.1)
       domain_name (~> 0.5)
@@ -176,14 +180,13 @@ GEM
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (2.0.2)
+    jquery-ui-rails (4.0.3)
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
-    kaminari (0.13.0)
+    kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     kaminari-i18n (0.1.3)
       rails
     kgio (2.8.0)
@@ -194,7 +197,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mechanize (2.7.0)
+    mechanize (2.7.1)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0.0)
       mime-types (~> 1.17, >= 1.17.2)
@@ -210,9 +213,10 @@ GEM
       polyamorous (~> 0.5.0)
     method_source (0.8.1)
     mime-types (1.23)
-    multi_json (1.7.3)
-    multi_xml (0.5.3)
-    nested_form (0.2.3)
+    mini_portile (0.5.0)
+    multi_json (1.7.7)
+    multi_xml (0.5.4)
+    nested_form (0.3.2)
     net-http-digest_auth (1.3)
     net-http-persistent (2.8)
     net-ldap (0.2.2)
@@ -223,7 +227,8 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.5.9)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     ntlm-http (0.1.1)
     octopi (0.4.5)
       api_cache
@@ -287,7 +292,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
-    rake (10.0.4)
+    rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
     redis (3.0.1)
@@ -341,12 +346,13 @@ GEM
       rails (>= 3.0.0)
       rtf (~> 0.3.3)
       rtf (~> 0.3.3)
-    ruby-ole (1.2.11.6)
+    ruby-ole (1.2.11.7)
     ruby-rc4 (0.1.5)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     rvm-capistrano (1.2.7)
       capistrano (>= 2.0.0)
+    safe_yaml (0.9.3)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -361,10 +367,10 @@ GEM
     simple_form (2.0.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-    sinatra (1.3.6)
+    sinatra (1.4.3)
       rack (~> 1.4)
-      rack-protection (~> 1.3)
-      tilt (~> 1.3, >= 1.3.3)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     slop (3.4.5)
     spreadsheet (0.7.3)
       ruby-ole (>= 1.0)
@@ -385,7 +391,7 @@ GEM
       libv8 (~> 3.3.10)
     thor (0.18.1)
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     tsearch (1.0.5)
@@ -443,12 +449,12 @@ DEPENDENCIES
   execjs (~> 1.4.0)
   fastercsv (~> 1.5.5)
   forgery (~> 0.5.0)
-  haml (= 3.1.7)
+  haml (~> 4.0.3)
   hpricot (= 0.8.6)
   inherited_resources (~> 1.3.1)
   jquery-rails (= 2.1.4)
   json (~> 1.7.5)
-  kaminari (~> 0.13.0)
+  kaminari (~> 0.14.1)
   kaminari-i18n (~> 0.1.3)
   machinist (>= 2.0)
   meta_search (~> 1.1.3)

@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 gem "rails", "~> 3.2.13"
-gem "haml", "3.1.7"
+gem "haml", "~> 4.0.3"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
 gem "barista", "~> 1.3.0"
@@ -30,7 +30,7 @@ gem "diff", "~> 0.3.6"
 # Misc
 gem "carrierwave", "0.6.2"
 gem "rmagick", "2.13.2"
-gem "kaminari", "~> 0.13.0"
+gem "kaminari", "~> 0.14.1"
 gem "kaminari-i18n", "~> 0.1.3"
 gem "attribute_normalizer", "~> 1.1.0"
 gem "inherited_resources", "~> 1.3.1"
@@ -69,7 +69,7 @@ gem "jquery-rails", "2.1.4"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
-gem "rails_admin", :git => "git://github.com/juarlex/rails_admin.git", :branch => "move_associated_records"
+gem "rails_admin", :git => "https://github.com/sferik/rails_admin.git"
 gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
 gem "activeadmin-cancan"
 
