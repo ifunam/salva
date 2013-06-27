@@ -1,7 +1,4 @@
 class Article < ActiveRecord::Base
-  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
-                  :articlestatus_id, :user_articles_attributes
-
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
@@ -9,15 +6,17 @@ class Article < ActiveRecord::Base
   # validates_uniqueness_of :title, :scope => [:journal_id, :year]
   normalize_attributes :vol, :num, :pages
 
-  belongs_to :journal
-  belongs_to :articlestatus
+  belongs_to :journal, :inverse_of => :articles
+  belongs_to :articlestatus, :inverse_of => :articles
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  has_many :user_articles
-  has_many :users, :through => :user_articles
-  accepts_nested_attributes_for :user_articles
-  user_association_methods_for :user_articles
+  has_many :user_articles, :inverse_of => :article
+  has_many :users, :through => :user_articles, :inverse_of => :articles
+  mount_uploader :document, DocumentUploader
+  accepts_nested_attributes_for :user_articles, :allow_destroy => true
+  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
+                  :articlestatus_id, :is_verified, :user_articles_id, :user_articles_attributes, :user_ids, :document, :document_cache, :remove_document
 
   has_paper_trail
 

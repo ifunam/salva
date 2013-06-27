@@ -7,6 +7,7 @@ class UserArticle < ActiveRecord::Base
   # validates_uniqueness_of :article_id, :scope => [:user_id]
   attr_accessible :ismainauthor, :user_id, :article_id
 
-  belongs_to :article
-  belongs_to :user
+  belongs_to :article, :inverse_of => :user_articles
+  belongs_to :user, :inverse_of => :user_articles
+
 end

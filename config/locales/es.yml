@@ -3,7 +3,7 @@ es:
     models:
       user: 
         one: Usuario
-        other: usuarios
+        other: Usuarios
       person: 
        one: Información personal
        other: Personas
@@ -25,6 +25,9 @@ es:
       adscription:
         one: Adscripción
         other: Adscripciones
+      article:
+        one: Artículo
+        other: Artículos
       articlestatus: 
         one: Estado de artículos
         other: Estados de artículos
@@ -445,10 +448,18 @@ es:
         pages: Páginas
         doi: DOI
         other: Otros
+        articlestatus: Estado
+        users: Autores del IFUNAM
+        is_verified: Verificado
       journal:
         name: Nombre
         country_id: País
         country: País
+        abbrev: Siglás o abreviatura
+        other: Información adicional
+        impact_index: Factor de impacto
+        is_verified: Verificado
+        articles: Artículos
       book:
         authors: Autor(es)
         title: Título
@@ -587,6 +598,7 @@ es:
       publisher:
         name: Nombre
         descr: Descripción
+        is_verified: Verificado
       conferencetalk:
         authors: Autor(es)
         title: Título
