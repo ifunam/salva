@@ -464,6 +464,7 @@ es:
         is_verified: Verificado
         articles: Artículos
         users: Arbitros
+        user_refereed_journals: Arbitrajes
         registered_by_id: Registrado por
         mediatype_id: Tipo de medio
       book:
