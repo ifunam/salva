@@ -32,11 +32,12 @@ RailsAdmin.config do |config|
 
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Article, Journal, User, Country, Mediatype, Publisher]
+  config.included_models = [Article, Journal, User, Country, Mediatype, Publisher, UserRefereedJournal]
 
   # Application wide tried label methods for models' instances
   config.label_methods << :description # Default is [:name, :title, :to_s]
   config.label_methods << :to_s
+
   config.model Journal do
     list do
       sort_by :name
@@ -145,6 +146,20 @@ RailsAdmin.config do |config|
       field :user_incharge
       field :userstatus
       field :id
+    end
+  end
+
+  config.model UserRefereedJournal do
+    list do 
+      field :user
+      field :journal
+      field :year
+      field :month
+      field :id
+    end
+    edit do
+      field :user
+      field :journal
     end
   end
 end

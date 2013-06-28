@@ -139,6 +139,9 @@ es:
       journal:
         one: Revista científica
         other: Revistas científicas
+      user_refereed_journal:
+        one: Arbitraje de revista
+        other: Arbitraje de revistas
       language:
         one: Idioma
         other: Idiomas
@@ -544,6 +547,7 @@ es:
         endyear: Año de conclusión
         endmonth: Mes de conclusión
       user_refereed_journal:
+        user_id: Árbitro
         journal: Revista
         refereed_criterium: Tipo
         year: Año

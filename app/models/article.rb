@@ -1,4 +1,6 @@
+require Rails.root.to_s + '/lib/salva/meta_date_extension'
 class Article < ActiveRecord::Base
+  include MetaDateExtension::DateMethods
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
