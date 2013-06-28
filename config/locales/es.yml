@@ -460,6 +460,9 @@ es:
         impact_index: Factor de impacto
         is_verified: Verificado
         articles: Artículos
+        users: Arbitros
+        registered_by_id: Registrado por
+        mediatype_id: Tipo de medio
       book:
         authors: Autor(es)
         title: Título

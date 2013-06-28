@@ -43,10 +43,11 @@ RailsAdmin.config do |config|
 
       field :name
       field :issn
-      field :is_verified
       field :abbrev
       field :country
+      field :is_verified
       field :id
+      field :users
     end
     edit do
       field :name
@@ -118,6 +119,32 @@ RailsAdmin.config do |config|
         field :is_verified
       end
 
+    end
+  end
+
+  config.model Mediatype do
+    list do
+      field :name
+      field :id
+    end
+  end
+
+  config.model Country do
+    list do
+      field :name
+      field :citizen
+      field :code
+      field :id
+    end
+  end
+
+  config.model User do
+    list do
+      field :login
+      field :email
+      field :user_incharge
+      field :userstatus
+      field :id
     end
   end
 end
