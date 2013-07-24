@@ -110,21 +110,25 @@ module ApplicationHelper
 
   def link_to_annual_report(user_id)
     @document_type = Documenttype.annual_reports.active.first
-    @annual_report = AnnualReport.find_by_user_id_and_documenttype_id(user_id, @document_type.id)
-    if !@document_type.nil? and @annual_report.nil?
-      link_to t(:new_annual_report), new_user_annual_report_path
-    elsif !@document_type.nil? and !@annual_report.nil? and @annual_report.undelivered_or_rejected?
-      link_to t(:edit_annual_report), edit_user_annual_report_path(:id => @annual_report.id)
+    unless @document_type.nil?
+      @annual_report = AnnualReport.find_by_user_id_and_documenttype_id(user_id, @document_type.id)
+      if !@document_type.nil? and @annual_report.nil?
+        link_to t(:new_annual_report), new_user_annual_report_path
+      elsif !@document_type.nil? and !@annual_report.nil? and @annual_report.undelivered_or_rejected?
+        link_to t(:edit_annual_report), edit_user_annual_report_path(:id => @annual_report.id)
+      end
     end
   end
 
   def link_to_annual_plan(user_id)
     @document_type = Documenttype.annual_plans.active.first
-    @annual_plan= AnnualPlan.find_by_user_id_and_documenttype_id(user_id, @document_type.id)
-    if !@document_type.nil? and @annual_plan.nil?
-      link_to t(:new_annual_plan), new_user_annual_plan_path
-    elsif !@document_type.nil? and !@annual_plan.nil? and @annual_plan.undelivered_or_rejected?
-      link_to t(:edit_annual_plan), edit_user_annual_plan_path(:id => @annual_plan.id)
+    unless @document_type.nil?
+      @annual_plan= AnnualPlan.find_by_user_id_and_documenttype_id(user_id, @document_type.id)
+      if !@document_type.nil? and @annual_plan.nil?
+        link_to t(:new_annual_plan), new_user_annual_plan_path
+      elsif !@document_type.nil? and !@annual_plan.nil? and @annual_plan.undelivered_or_rejected?
+        link_to t(:edit_annual_plan), edit_user_annual_plan_path(:id => @annual_plan.id)
+      end
     end
   end
 
