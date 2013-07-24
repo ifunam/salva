@@ -60,6 +60,7 @@ RailsAdmin.config do |config|
       field :country
       field :impact_index
       field :is_verified
+      field :has_open_access
       field :other
       field :articles
     end

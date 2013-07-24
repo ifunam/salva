@@ -467,14 +467,7 @@ es:
         user_refereed_journals: Arbitrajes
         registered_by_id: Registrado por
         mediatype_id: Tipo de medio
-      book:
-        authors: Autor(es)
-        title: Título
-        country: País
-        language: Idioma
-        booktype: Tipo
-        volume: Volúmen
-        booklink: Link
+        has_open_access: ¿Tiene Open Access?
       bookedition:
         edition: Edición
         isbn: ISBN

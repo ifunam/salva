@@ -20,7 +20,7 @@ class Journal < ActiveRecord::Base
   has_many :user_refereed_journals, :inverse_of => :journal
   has_many :users, :through => :user_refereed_journals, :inverse_of => :journals
 
-  attr_accessible :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id
+  attr_accessible :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id, :has_open_access
 
   default_scope :order => 'name ASC'
 end
