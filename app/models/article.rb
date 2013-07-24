@@ -1,6 +1,8 @@
 require Rails.root.to_s + '/lib/salva/meta_date_extension'
+require Rails.root.to_s + '/lib/salva/meta_user_association'
 class Article < ActiveRecord::Base
   include MetaDateExtension::DateMethods
+  include MetaUserAssociation
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
@@ -15,6 +17,8 @@ class Article < ActiveRecord::Base
 
   has_many :user_articles, :inverse_of => :article
   has_many :users, :through => :user_articles, :inverse_of => :articles
+  user_association_methods_for :user_articles
+
   mount_uploader :document, DocumentUploader
   accepts_nested_attributes_for :user_articles, :allow_destroy => true
   attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
