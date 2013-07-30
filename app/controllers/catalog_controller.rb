@@ -19,9 +19,12 @@ class CatalogController < InheritedResources::Base
 
   private
   def find_or_create_resource
-    object = resource_class.where(params[resource_request_name] || params[resource_instance_name] || {}).first
+    h = params[resource_request_name] || params[resource_instance_name] || {}
+    h.merge!(:is_verified => true) if resource_class.column_names.include? 'is_verified'
+    object = resource_class.where(h).first
     if object.nil?
-      object = build_resource
+      h[:is_verified] = false if resource_class.column_names.include? 'is_verified'
+      object = resource_class.new(h)
       object.registered_by_id = current_user.id
       object.save
     end

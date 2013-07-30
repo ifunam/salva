@@ -23,4 +23,8 @@ class Journal < ActiveRecord::Base
   attr_accessible :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id, :has_open_access
 
   default_scope :order => 'name ASC'
+
+  def to_s
+    [name, country.name].join(', ')
+  end
 end

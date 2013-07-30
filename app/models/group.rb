@@ -8,5 +8,6 @@ class Group < ActiveRecord::Base
   belongs_to :group, :class_name => 'Group', :foreign_key => 'parent_id'
 
   has_many :user_groups
+  has_many :users, :through => :user_groups
   has_many :roleingroups
 end
