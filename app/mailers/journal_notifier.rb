@@ -11,6 +11,5 @@ class JournalNotifier < ActionMailer::Base
     mail(:to => 'salva@fisica.unam.mx', :cc => cc, :subject => '[SALVA] - Notificación de nuevo journal') do |format|
       format.text
     end
-
   end
 end

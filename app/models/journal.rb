@@ -24,7 +24,13 @@ class Journal < ActiveRecord::Base
 
   default_scope :order => 'name ASC'
 
+  after_commit :notify_to_librarian, :on => :create
+
   def to_s
     [name, country.name].join(', ')
+  end
+
+  def notify_to_librarian
+    JournalNotifier.notify_to_librarian(self.id).deliver unless self.is_verified?
   end
 end
