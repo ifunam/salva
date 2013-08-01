@@ -15,7 +15,7 @@ module I18nHelper
        when /Técnico académico/
           "Technician"
         when /emérito/
-          "Distinguished University Professor" 
+          "Professor Emeritus"
        else 
           "Not Defined"
      end
