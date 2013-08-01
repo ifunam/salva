@@ -1,5 +1,5 @@
 / <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
-%font.name= user.firstname_and_lastname
+%font.name= user.title_and_fullname
 %br/
 = user.jobposition_for_researching.category_name
 %br/
@@ -9,11 +9,17 @@
   %font.address
     %b Direcci&oacute;n:
     = user.professional_address.to_s
+    %br
     %b C&oacute;digo Postal:
     = user.professional_address.postal_address_to_s
     - unless user.professional_address.phone.to_s.strip.empty?
+      %br
       %b Tel&eacute;fono:
       = '+52 (55) ' + user.professional_address.phone.to_s
+      - unless user.professional_address.phone_extension.to_s.strip.empty?
+        %b &nbsp; Extensi&oacute;n:
+        = user.professional_address.phone_extension
     - unless user.professional_address.fax.to_s.strip.empty?
+      %br
       %b Fax:
       = '+52 (55) ' + user.professional_address.fax.to_s

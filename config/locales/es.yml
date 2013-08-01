@@ -302,7 +302,8 @@ es:
         firstname: Nombre(s)
         lastname1: Apellido paterno
         lastname2: Apellido materno
-        title: Título
+        title: Título (Dr., M. en C., Lic., ..)
+        title_en: Título en inglés
         gender: Género
         maritalstatus: Estado civil
         maritalstatus_id: Estado civil
@@ -313,9 +314,10 @@ es:
         country_id: País
         state_id: Estado
         city_id: Ciudad
+        image: Fotografía para el sitio web (80x113)
       address:
         addresstype: Tipo de domicilio
-        location: Dirección
+        location: Edificio y cubículo (o Laboratorio)
         pobox: Apartado postal
         country: País
         state: Estado
@@ -327,6 +329,7 @@ es:
         country_id: País
         state_id: Estado
         city_id: Ciudad
+        phone_extension: Extensión
       user_identification:
         idtype: Tipo de identificación
         idtype_id: Tipo de identificación

@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Address < ActiveRecord::Base
   attr_accessible :addresstype_id, :location, :pobox, :country_id, :city_id,
-                  :state_id, :zipcode, :phone, :is_postaddress
+                  :state_id, :zipcode, :phone, :is_postaddress, :phone_extension, :fax
 
   validates_presence_of :country_id,  :location, :addresstype_id
   validates_numericality_of :id, :state_id, :city_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -16,7 +16,8 @@ class Address < ActiveRecord::Base
   belongs_to :user
 
   def to_s
-    [location.gsub(/\n/,''), normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    #[location.gsub(/\r/,'').strip.gsub(/\n/,', '), my_institution_name, additional_info, normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    [location.gsub(/\r/,'').strip.gsub(/\n/,', '), normalized_zipcode, normalized_city, country.name].compact.join(', ')
   end
 
   def normalized_zipcode
@@ -27,12 +28,17 @@ class Address < ActiveRecord::Base
     city.name unless city_id.nil?
   end
 
+  # TODO: We should get this information from some configuration file
+  def my_institution_name
+    "Instituto de Física - UNAM"
+  end
+
+  def additional_info
+    "Circuito de la Investigación Científica, Ciudad Universitaria, Delegación Coyoacán"
+  end
+
   def postal_address_to_s
-    if pobox.to_s.strip.empty?
-      'Instituto de Física, UNAM, P.O. Box 20-364, 01000 México, D.F.'
-    else
-      pobox
-    end
+    'Instituto de Física, UNAM, P.O. Box 20-364, 01000 México, D.F.'
   end
 
 end

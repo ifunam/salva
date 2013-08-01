@@ -165,6 +165,22 @@ class User < ActiveRecord::Base
   alias :name :fullname_or_email
 
 
+  def title
+    person.title if has_person?
+  end
+
+  def title_en
+    person.title_en if has_person?
+  end
+  
+  def title_and_fullname
+    [title, firstname_and_lastname].compact.join(' ')
+  end
+
+  def title_and_fullname_en
+    [title_en, firstname_and_lastname].compact.join(' ')
+  end
+
   def firstname_and_lastname
      has_person? ? person.firstname_and_lastname : email
   end

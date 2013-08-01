@@ -21,9 +21,11 @@
       = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
       Femenino
       \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Masculino
-    .span-5.last
+    .span-5
       = f.label :maritalstatus_id
       = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true, :class => "chosen-select"
+    .span-2.last
+      = f.input :title_en, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-2 last'
 
   .row
     %b='Lugar de nacimiento'

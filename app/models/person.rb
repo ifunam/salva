@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   self.primary_key = 'id'
 
-  attr_accessible :firstname, :lastname1, :lastname2, :title,
+  attr_accessible :firstname, :lastname1, :lastname2, :title, :title_en,
                   :dateofbirth, :gender, :maritalstatus_id, :country_id,
                   :state_id, :city_id, :image_attributes
 
