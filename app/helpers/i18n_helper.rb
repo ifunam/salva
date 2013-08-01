@@ -8,11 +8,13 @@ module I18nHelper
          "Associate Professor" 
        when /Investigador Tit\. A/
          "Assistant Professor" 
-       when /(Investigador Asoc\.)|posdoc/
+       when /Investigador Asoc\./
          "Research Associate" 
+       when /posdoc/
+         "Visitor"
        when /Técnico académico/
-          "Technician" 
-        when /emérito/ 
+          "Technician"
+        when /emérito/
           "Distinguished University Professor" 
        else 
           "Not Defined"
