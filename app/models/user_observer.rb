@@ -7,7 +7,7 @@ class UserObserver < ActiveRecord::Observer
     Notifier.identification_card_request(user.id).deliver
   end
 
-  def before_update(user)
+  def after_update(user)
     if user.userstatus_id_changed?
       Notifier.updated_userstatus_to_admin(user.id).deliver
     end
