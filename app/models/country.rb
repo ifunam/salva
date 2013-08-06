@@ -3,6 +3,7 @@
   validates_presence_of  :name, :citizen, :code
   #validates_numericality_of :id, :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name, :code
+  attr_accessible :id, :name, :citizen, :code
 
   has_many :states
   has_many :journals
