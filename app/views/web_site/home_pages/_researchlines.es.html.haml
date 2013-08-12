@@ -1,5 +1,6 @@
-- if user.researchlines.size > 0
+- @researchlines = user.researchlines.collect(&:name).compact || []
+- if @researchlines.size > 0
   %h3 L&iacute;neas de investigaci&oacute;n:
   %ol
-    - user.researchlines.each do |record|
-      = content_tag(:li, record.name.to_s) unless record.name_en.to_s.strip.empty?
+    - @researchlines.sort.each do |name|
+      = content_tag(:li, name.to_s) unless name.to_s.strip.empty?

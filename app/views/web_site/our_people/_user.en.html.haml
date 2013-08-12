@@ -3,4 +3,5 @@
   = image_tag(url_for(:controller => :home_pages, :action => :show_photo, :id => user.id), :size => '80x113')
   %br/
   = render :partial => 'web_site/home_pages/mini_profile', :locals => {:user => user}
+  %br/
   = link_to 'more info...',  web_site_home_page_path(user) + "?locale=en"
