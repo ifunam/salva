@@ -17,6 +17,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  process :resize_to_fit => [113, 80]
+
   version :icon do
     process :resize_to_fill => [48, 48]
   end
