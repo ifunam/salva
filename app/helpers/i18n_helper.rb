@@ -13,7 +13,7 @@ module I18nHelper
        when /visitante/
          "Visitor"
        when /posdoc/
-         "Posdoc"
+         "Posdoctoral scholar"
        when /Técnico académico/
           "Technician"
         when /emérito/
