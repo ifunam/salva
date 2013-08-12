@@ -144,6 +144,10 @@ class User < ActiveRecord::Base
     users
   end
 
+  def to_s
+    [title_and_fullname, '<', email,'>'].join
+  end
+
   def author_name
     if !super.to_s.strip.empty?
       super
