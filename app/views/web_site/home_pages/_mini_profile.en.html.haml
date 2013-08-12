@@ -1,5 +1,6 @@
 / <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
-%font.name= user.title_and_fullname_en
+%font.name= link_to user.title_and_fullname_en, web_site_home_page_path(user) + '?locale=en'
+
 %br/
 - unless user.jobposition_for_researching.nil?
   = translate_category(user.jobposition_for_researching.category_name)
