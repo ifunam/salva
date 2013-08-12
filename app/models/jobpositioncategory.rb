@@ -1,4 +1,5 @@
 class Jobpositioncategory < ActiveRecord::Base
+  attr_accessible :jobpositiontype_id, :roleinjobposition_id
   validates_presence_of :jobpositiontype_id, :roleinjobposition_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :jobpositiontype_id, :roleinjobposition_id, :greater_than => 0, :only_integer => true
@@ -16,6 +17,10 @@ class Jobpositioncategory < ActiveRecord::Base
 
  # scope :find_by_jobpositiontype_id,  where("jobpositioncategories.jobpositiontype_id = 1").order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
   def name
-   [roleinjobposition.name, (jobpositionlevel.nil? ? nil : jobpositionlevel.name) ].compact.join(' ')
+    unless self.new_record?
+      [(roleinjobposition.nil? ? nil : roleinjobposition.name), (self.jobpositionlevel_id.nil? ? nil : jobpositionlevel.name) ].compact.join(' ')
+    else
+      ""
+    end
   end
 end
