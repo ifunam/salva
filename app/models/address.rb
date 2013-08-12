@@ -16,8 +16,8 @@ class Address < ActiveRecord::Base
   belongs_to :user
 
   def to_s
-    #[location.gsub(/\r/,'').strip.gsub(/\n/,', '), my_institution_name, additional_info, normalized_zipcode, normalized_city, country.name].compact.join(', ')
-    [location.gsub(/\r/,'').strip.gsub(/\n/,', '), normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    [location.gsub(/\r/,'').strip.gsub(/\n/,', '), my_institution_name, additional_info, normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    #[location.gsub(/\r/,'').strip.gsub(/\n/,', '), normalized_zipcode, normalized_city, country.name].compact.join(', ')
   end
 
   def normalized_zipcode

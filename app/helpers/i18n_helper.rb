@@ -10,8 +10,10 @@ module I18nHelper
          "Assistant Professor" 
        when /Investigador Asoc\./
          "Research Associate" 
-       when /posdoc/
+       when /visitante/
          "Visitor"
+       when /posdoc/
+         "Posdoc"
        when /Técnico académico/
           "Technician"
         when /emérito/
