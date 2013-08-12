@@ -2,4 +2,4 @@
   %h3 T&eacute;cnicas experimentales y habilidades:
   %ol
     - user.user_skills.each do |record|
-      = content_tag(:li, record.descr_en.to_s) unless record.descr_en.to_s.strip.empty?
+      = content_tag(:li, record.descr.to_s) unless record.descr.to_s.strip.empty?

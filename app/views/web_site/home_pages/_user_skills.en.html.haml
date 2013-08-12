@@ -1,5 +1,6 @@
-- if user.user_skills.size > 0
+- @user_skills = user.user_skills.collect(&:descr_en).compact || []
+- if @user_skills.size > 0
   %h3 Experimental techniques and skills
   %ol
-    - user.user_skills.each do |record|
-      = content_tag(:li, record.descr_en.to_s) unless record.descr_en.to_s.strip.empty?
+    - @user_skills.each do |descr_en|
+      = content_tag(:li, descr_en.to_s) unless descr_en.to_s.strip.empty?
