@@ -1,0 +1,6 @@
+%tr
+  %td
+    %img{:src=>student['photo_url'], :width => 70, :height => 70}
+  %td= student['fullname']
+  %td= mail_to student['email'], student['email'], :encode => 'javascript'
+  %td= student['period']

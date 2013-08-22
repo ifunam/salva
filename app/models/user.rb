@@ -1,3 +1,4 @@
+require File.join(Rails.root.to_s, 'lib/clients/student_client')
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -281,5 +282,9 @@ class User < ActiveRecord::Base
 
   def worker_key
     jobposition_log.nil? ? email : jobposition_log.worker_key
+  end
+
+  def students
+    StudentClient.new(self.login).all
   end
 end
