@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.13"
+gem "rails", "~> 3.2.14"
 gem "haml", "~> 4.0.3"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -69,7 +69,7 @@ gem "jquery-rails", "2.1.4"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
-gem "rails_admin", :git => "https://github.com/sferik/rails_admin.git"
+gem "rails_admin", "~> 0.4.9"
 gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
 gem "activeadmin-cancan"
 
