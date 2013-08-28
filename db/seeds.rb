@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'csv'
-data_dir = File.join(Rails.root.to_s, 'db', 'data')
+data_dir = Rails.root.join('db', 'data')
 
 Userstatus.destroy_all
 CSV.foreach("#{data_dir}/userstatuses.csv", :headers => false) do |row|
