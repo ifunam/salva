@@ -35,3 +35,7 @@ Contributors
 License
 =======
 SALVA is released under the [GPL-2 License](http://opensource.org/licenses/GPL-2.0).
+
+HELP
+====
+You can ask for help at the [SALVA-UNAM](https://groups.google.com/forum/#!forum/salva-unam) group.
