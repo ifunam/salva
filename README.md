@@ -20,7 +20,7 @@ Getting Started
 Authors
 =======
 
-- Alejandro Juarez Robles <alex@fisica.unam.mx>
+- Alejandro Juárez Robles <alex@fisica.unam.mx>
 - Alejandro Aguilar Sierra <algsierra@gmail.com>
 - Ramon Martínez Olvera <ramonmtzol@gmail.com>
 - Gunnar Wolf <gwolf@gwolf.org>
