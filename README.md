@@ -1,10 +1,11 @@
-== Welcome to SALVA
+Welcome to SALVA
+================
 
 SALVA is web application to handle scientific curricula for the creation of Science 
 and Technology databases at [National Autonomous University of Mexico](http://www.unam.mx/).
 
-
-== Getting Started
+Getting Started
+===============
 
 1. Install rvm in your linux distribution 
 2. Install ruby 2.0.0-p247
@@ -16,20 +17,21 @@ and Technology databases at [National Autonomous University of Mexico](http://ww
 7. Install passenger with apache or ngnix
 8. Start to web server
 
-
-==  Authors
+Authors
+=======
 
 - Alejandro Juarez Robles <alex at fisica.unam.mx>
 - Alejandro Aguilar Sierra <algsierra at gmail.com>
 - Ramon Martínez Olvera <ramonmtzol at gmail.com>
 - Gunnar Wolf <gwolf at gwolf.org>
 
-== Contributors
+Contributors
+============
+
 - Fernando Magariños Mancha<mancha at gmail.com>
 - Miguel E <mvazquez83 at gmail.com>
 - Alejandro Silva <alexs1010 at gmail.com>
 
-== License
-
+License
+=======
 SALVA is released under the [GPL-2 License](http://opensource.org/licenses/GPL-2.0).
-
