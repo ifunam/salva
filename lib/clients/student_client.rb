@@ -21,13 +21,20 @@ class StudentClient
     end
   end
 
+  def get_resource
+    @resource.get {|response, request, result|
+      response.code.to_i == 200 ? response : {students:[]}.to_s
+    }
+  end
+
   def get_hash
-    @redis_enabled ? hash_from_redis : JSON.parse(@resource.get).to_hash
+    @redis_enabled ? hash_from_redis : JSON.parse(get_resource).to_hash
   end
 
   def hash_from_redis
     if @redis.get(@key).nil?
-      @redis.set(@key, @resource.get)
+      @redis.set(@key, get_resource)
+      @redis.expire(@key, Date.today + 1.day)
     end
     JSON.parse(@redis.get(@key)).to_hash
   end
