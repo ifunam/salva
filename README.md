@@ -20,17 +20,17 @@ Getting Started
 Authors
 =======
 
-- Alejandro Juarez Robles <alex at fisica.unam.mx>
-- Alejandro Aguilar Sierra <algsierra at gmail.com>
-- Ramon Martínez Olvera <ramonmtzol at gmail.com>
-- Gunnar Wolf <gwolf at gwolf.org>
+- Alejandro Juarez Robles <alex@fisica.unam.mx>
+- Alejandro Aguilar Sierra <algsierra@gmail.com>
+- Ramon Martínez Olvera <ramonmtzol@gmail.com>
+- Gunnar Wolf <gwolf@gwolf.org>
 
 Contributors
 ============
 
-- Fernando Magariños Mancha<mancha at gmail.com>
-- Miguel E <mvazquez83 at gmail.com>
-- Alejandro Silva <alexs1010 at gmail.com>
+- Fernando Magariños Mancha<mancha@gmail.com>
+- Miguel E <mvazquez83@gmail.com>
+- Alejandro Silva <alexs1010@gmail.com>
 
 License
 =======
