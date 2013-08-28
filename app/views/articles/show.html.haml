@@ -29,5 +29,6 @@
     .row
       = render :partial => 'shared/record', :object => @article
 #submit_buttons
-  = link_to t(:edit), edit_article_path(:id => @article.id)
+  - unless @article.is_verified?
+    = link_to t(:edit), edit_article_path(:id => @article.id) 
   = link_to t(:back), articles_path

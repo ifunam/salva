@@ -23,7 +23,7 @@ class StudentClient
 
   def get_resource
     @resource.get {|response, request, result|
-      response.code.to_i == 200 ? response : {students:[]}.to_s
+      response.code.to_i == 200 ? response : { students:[] }.to_json
     }
   end
 
