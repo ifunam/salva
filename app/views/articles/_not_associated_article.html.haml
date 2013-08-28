@@ -10,6 +10,6 @@
 .action
   = link_to_show article_path(:id => article.id)
 .action
-  =link_to_edit edit_article_path(:id => article.id)
+  =link_to_edit_not_verified article, edit_article_path(:id => article.id)
 .action
   = link_to_delete article, article_path(:id => article.id)
