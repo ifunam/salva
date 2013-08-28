@@ -28,7 +28,7 @@ Authors
 Contributors
 ============
 
-- Fernando Magariños Mancha<mancha@gmail.com>
+- Fernando Magariños Mancha <mancha@gmail.com>
 - Miguel E <mvazquez83@gmail.com>
 - Alejandro Silva <alexs1010@gmail.com>
 
