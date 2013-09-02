@@ -11,9 +11,15 @@ ActiveAdmin.register User do
     #default_actions                   
   end                                 
 
-  filter :author_name
-  filter :email
+  filter :fullname, :as => :string
+  filter :login
+  filter :adscription, :collection => proc { Adscription.enabled.all }, :as => :select
+  filter :jobpositioncategory, :collection => proc { Jobpositioncategory.for_researching }, :as => :select
+  filter :schoolarship, :collection => proc { Schoolarship.posdoctoral_scholar.collect {|record|[ record.to_s,  record.id]} }, :as => :select
   filter :userstatus
+  filter :jobposition_start_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select
+  filter :jobposition_end_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select
+
 
   form do |f|                         
     f.inputs "User account" do       

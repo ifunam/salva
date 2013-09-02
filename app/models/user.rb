@@ -49,26 +49,33 @@ class User < ActiveRecord::Base
     sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
     where sql
   }
+  scope :fullname_contains, lambda { |fullname| fullname_like(fullname) }
 
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :adscription_eq, lambda { |adscription_id| adscription_id_equals(adscription_id) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
+  scope :schoolarship_eq, lambda { |schoolarship_id| schoolarship_id_equals(schoolarship_id) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
 
   scope :jobposition_start_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_start_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_start_date_year_eq, lambda { |y| jobposition_start_date_year_equals(y) }
 
   scope :jobposition_end_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_end_date_year_eq, lambda { |y| jobposition_end_date_year_equals(y) }
 
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  scope :jobpositioncategory_eq, lambda { |jobpositioncategory_id| jobpositioncategory_id_equals(jobpositioncategory_id) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
                  :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
-                 :login_like
+                 :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
+                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'

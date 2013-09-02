@@ -16,6 +16,8 @@ class Jobpositioncategory < ActiveRecord::Base
 
 
  # scope :find_by_jobpositiontype_id,  where("jobpositioncategories.jobpositiontype_id = 1").order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
+ default_scope joins(:roleinjobposition, :jobpositionlevel).order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
+ scope :for_researching, where("jobpositioncategories.jobpositiontype_id = 1")
   def name
     unless self.new_record?
       [(roleinjobposition.nil? ? nil : roleinjobposition.name), (self.jobpositionlevel_id.nil? ? nil : jobpositionlevel.name) ].compact.join(' ')
