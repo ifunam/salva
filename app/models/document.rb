@@ -3,10 +3,13 @@ class Document < ActiveRecord::Base
   validates_uniqueness_of :documenttype_id, :scope => [:user_id]
   belongs_to :user
   belongs_to :documenttype
+  belongs_to :document_type
   belongs_to :approved_by, :class_name => 'User'
 
   attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id
   attr_accessible :comments, :as => :academic
+
+  mount_uploader :file, DocumentUploader
 
   default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
 

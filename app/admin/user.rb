@@ -11,7 +11,7 @@ ActiveAdmin.register User do
     column :adscription_name, :sortable => false
     column :category_name, :sortable => false
     column :userstatus
-    #default_actions                   
+    default_actions                   
   end                                 
 
   filter :fullname, :as => :string
@@ -31,6 +31,11 @@ ActiveAdmin.register User do
       f.input :userstatus, :as => :radio
       f.input :password, :as => :password
       f.input :password_confirmation, :as => :password
+      f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select
+      f.inputs "Group", :for => [:user_group, f.object.user_group || UserGroup.new] do |ug_form|
+        ug_form.input :group, :as => :radio
+      end
+
       f.inputs "Personal info", :for => [:person, f.object.person || Person.new] do |p_form|
         p_form.input :firstname, :as => :string
         p_form.input :lastname1, :as => :string
@@ -59,16 +64,25 @@ ActiveAdmin.register User do
       end
 
       f.inputs "Jobposition", :for => [:jobposition, f.object.jobposition || Jobposition.new] do |p_form|
-        p_form.input :jobpositioncategory
+        p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select
         p_form.input :contracttype
         p_form.input :institution
         p_form.input :start_date
         p_form.input :end_date
       end
 
-      f.inputs "Group", :for => [:user_group, f.object.user_group || UserGroup.new] do |ug_form|
-        ug_form.input :group, :as => :radio
+      f.has_many :user_schoolarships do |item|
+        item.input :schoolarship, :collection => Schoolarship.posdoctoral_scholar.collect {|record|[ record.to_s,  record.id]}, :as => :select
+        item.input :start_date
+        item.input :end_date
       end
+
+      f.has_many :documents do |item|
+        item.input :document_type, :collection => DocumentType.all, :as => :select
+        item.input :file
+      end
+
+
     end                               
     f.buttons                         
   end                                 
