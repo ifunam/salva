@@ -230,7 +230,7 @@ class User < ActiveRecord::Base
   end
 
   def category_name
-    jobposition.category_name unless jobposition.nil?
+    most_recent_jobposition.category_name unless most_recent_jobposition.nil?
   end
 
   def has_image?
@@ -241,7 +241,7 @@ class User < ActiveRecord::Base
     if !person.nil? and !person.image.nil?
       person.image.file.url(version.to_sym)
     else
-      "/images/avatar_missing_#{version}.png"
+      "avatar_missing_#{version}.png"
     end
   end
 

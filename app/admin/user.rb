@@ -2,12 +2,15 @@ ActiveAdmin.register User do
   #menu :if => proc { can?(:manage, User) }
   #controller.authorize_resource
   index do                            
+    column "Foto" do |user|
+      image_tag(user.avatar, :alt => "Foto")
+    end
     column :login
     column :email                     
-    column :author_name
+    column :fullname_or_email, :sortable => false
+    column :adscription_name, :sortable => false
+    column :category_name, :sortable => false
     column :userstatus
-    column :sign_in_count             
-    column :last_sign_in_at
     #default_actions                   
   end                                 
 
