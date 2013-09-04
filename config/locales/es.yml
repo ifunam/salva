@@ -380,6 +380,7 @@ es:
         end_date: Año de conclusión
         adscription: Adscripción
         descr: Descripción
+        place_of_origin: Institución/Lugar de origen
       jobposition_log:
         worker_key: Número de plaza
         worker_number: Número de identificación del trabajador

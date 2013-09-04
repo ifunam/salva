@@ -23,13 +23,15 @@ ActiveAdmin.register User do
   filter :jobposition_end_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select, :input_html => { :class => "chosen-select" } 
 
 
-  form do |f|
-  f.inputs I18n.t("active_admin.user") do
+  form :html => { :multipart => true } do |f|
+    f.inputs I18n.t("active_admin.user") do
       f.input :login, :as => :string, :input_html => {:style => 'width: 100px;' }
       f.input :email, :as => :string
       f.input :userstatus, :as => :radio
-      f.input :password, :as => :password
-      f.input :password_confirmation, :as => :password
+      if f.object.new_record?
+        f.input :password, :as => :password
+        f.input :password_confirmation, :as => :password
+      end
       f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select, :input_html => {:class => "chosen-select"}
 
       f.inputs I18n.t("active_admin.user_group"), :for => [:user_group, f.object.user_group || UserGroup.new] do |ug_form|
@@ -43,7 +45,7 @@ ActiveAdmin.register User do
         p_form.input :title, :as => :string, :input_html => {:style => 'width: 100px;' }
         p_form.input :title_en, :as => :string, :input_html => {:style => 'width: 100px;' }
         p_form.input :dateofbirth
-        p_form.input :gender
+        p_form.input :gender, :as => :radio, :collection => [['Másculino', true], ['Femenino', false]]
         p_form.input :maritalstatus, :as => :select, :input_html => { :class => "chosen-select" }
         p_form.input :country, :as => :select, :input_html => { :class => "chosen-select" }
         p_form.input :state, :as => :select, :input_html => { :class => "chosen-select" }
@@ -52,11 +54,18 @@ ActiveAdmin.register User do
 
       f.object.user_identifications << UserIdentification.new if f.object.new_record?
       f.has_many :user_identifications do |item|
-          item.input :idtype, :as => :select, :input_html => { :class => "chosen-select" }
-          item.input :descr, :as => :string
+        item.input :idtype, :as => :select, :input_html => { :class => "chosen-select" }
+        item.input :descr, :as => :string
       end
 
       f.inputs I18n.t("active_admin.professional_address"), :for => [:address, f.object.address || Address.new] do |a_form|
+        a_form.input :addresstype_id, :as => :hidden, :value => 1
+        a_form.input :country_id, :as => :hidden, :value => 484
+        a_form.input :state_id, :as => :hidden, :value => 9
+        a_form.input :city_id, :as => :hidden, :value => 64
+        a_form.input :zipcode, :as => :hidden, :value => Salva::SiteConfig.institution('zipcode').to_s 
+        a_form.input :pobox, :as => :hidden, :value => Salva::SiteConfig.institution('pobox').to_s
+        a_form.input :is_postaddress, :as => :hidden, :value => true
         a_form.input :location, :as => :string
         a_form.input :phone, :as => :string
         a_form.input :phone_extension, :as => :string, :input_html => {:style => 'width: 100px;' }
@@ -64,15 +73,15 @@ ActiveAdmin.register User do
       end
 
       f.inputs I18n.t("active_admin.jobposition_and_adscription"), :for => [:jobposition, f.object.jobposition || Jobposition.new] do |p_form|
-          p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
-          p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
-          p_form.input :institution
-          p_form.input :start_date
-          p_form.input :end_date
+        p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
+        p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
+        p_form.input :institution_id, :as => :hidden, :value => Institution.where(:administrative_key => Salva::SiteConfig.institution('administrative_key').to_s).first.id
+        p_form.input :start_date
+        p_form.input :end_date
+        p_form.input :place_of_origin, :as => :string
         p_form.inputs I18n.t("active_admin.adscription"), :for => [:user_adscription, p_form.object.user_adscription || UserAdscription.new] do |a_form|
           a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :input_html => { :class => "chosen-select" } 
         end
-
       end
 
       f.object.user_schoolarships << UserSchoolarship.new if f.object.new_record?
