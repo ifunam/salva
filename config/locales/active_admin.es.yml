@@ -1,0 +1,9 @@
+es:
+  active_admin:
+    user: Información de la cuenta
+    user_group: Grupo en el SALVA
+    personal_info: Información personal
+    professional_address: Domicilio profesional
+    jobposition: Categoría y adscripción
+    identifications: Identificaciones
+    has_many_new: "Agregar %{model}"

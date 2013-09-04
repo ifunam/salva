@@ -17,9 +17,19 @@
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
-//   body.active_admin {
-//      .status_tag { background: #6090DB; }
-//   }
+body.active_admin {
+    .status_tag { background: #6090DB; }
+    form input[type="password"],
+    form input[type="text"] {
+      order: 1px solid #C9D0D6;
+      border-radius: 3px 3px 3px 3px;
+      font-family: Helvetica,Arial,sans-serif;
+      font-size: 0.95em;
+      outline: medium none;
+      padding: 8px 10px 7px;
+      width: 250px;
+    }
+}
 //
 // Notice that Active Admin CSS rules are nested within a
 // 'body.active_admin' selector to prevent conflicts with

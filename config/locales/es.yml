@@ -286,7 +286,7 @@ es:
         login: Usuario
         password: Contraseña
         password_confirmation: Confirmación de la contraseña
-        userstatus: Estado
+        userstatus: Status
         email: Correo electrónico
         user_incharge: Responsable académico
         author_name: Autor
@@ -295,6 +295,15 @@ es:
         current_password: Contraseña actual
         homepage_resume: Semblanza
         homepage_resume_en: Semblanza en inglés
+        fullname: Nombre o apellido
+        fullname_or_email: Nombre completo
+        adscription: Adscripción
+        adscription_name: Adscripción
+        category_name: Categoría
+        jobpositioncategory: Categoría
+        schoolarship: Tipo de beca
+        jobposition_start_date_year: Año de ingreso al Instituto
+        jobposition_end_date_year: Año de término en el Instituto
       user_group:
         group: Grupo
 

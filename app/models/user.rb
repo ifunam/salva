@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    [title_and_fullname, '<', email,'>'].join
+    [title_and_fullname, ' <', email,'>'].join
   end
 
   def author_name
