@@ -3,4 +3,5 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require chosen.jquery.min
+//= require base
 //= require document

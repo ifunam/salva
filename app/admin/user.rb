@@ -44,7 +44,7 @@ ActiveAdmin.register User do
         p_form.input :lastname2, :as => :string
         p_form.input :title, :as => :string, :input_html => {:style => 'width: 100px;' }
         p_form.input :title_en, :as => :string, :input_html => {:style => 'width: 100px;' }
-        p_form.input :dateofbirth
+        p_form.input :dateofbirth, :as => :string, :input_html => { :class => 'birthdate', :style => 'width: 70px;' }
         p_form.input :gender, :as => :radio, :collection => [['Másculino', true], ['Femenino', false]]
         p_form.input :maritalstatus, :as => :select, :input_html => { :class => "chosen-select" }
         p_form.input :country, :as => :select, :input_html => { :class => "chosen-select" }
@@ -76,22 +76,22 @@ ActiveAdmin.register User do
         p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
         p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
         p_form.input :institution_id, :as => :hidden, :value => Institution.where(:administrative_key => Salva::SiteConfig.institution('administrative_key').to_s).first.id
-        p_form.input :start_date
-        p_form.input :end_date
+        p_form.input :start_date, :as => :string, :input_html => { :class => 'start-date', :style => 'width: 70px;' }
+        p_form.input :end_date, :as => :string, :input_html => { :class => 'end-date', :style => 'width: 70px;' }
         p_form.input :place_of_origin, :as => :string
         p_form.inputs I18n.t("active_admin.adscription"), :for => [:user_adscription, p_form.object.user_adscription || UserAdscription.new] do |a_form|
-          a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :input_html => { :class => "chosen-select" } 
+          a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :input_html => { :class => "chosen-select" }, :label => false
         end
       end
 
-      f.object.user_schoolarships << UserSchoolarship.new if f.object.new_record?
+      # f.object.user_schoolarships << UserSchoolarship.new if f.object.new_record?
       f.has_many :user_schoolarships do |item|
         item.input :schoolarship, :collection => Schoolarship.posdoctoral_scholar.collect {|record|[ record.to_s,  record.id]}, :as => :select, :input_html => { :class => "chosen-select" } 
-        item.input :start_date
-        item.input :end_date
+        item.input :start_date, :as => :string, :input_html => { :class => 'start-date', :style => 'width: 70px;' }
+        item.input :end_date, :as => :string, :input_html => { :class => 'end-date', :style => 'width: 70px;' }
       end
 
-      f.object.documents << Document.new if f.object.new_record?
+      # f.object.documents << Document.new if f.object.new_record?
       f.has_many :documents do |item|
         item.input :document_type, :collection => DocumentType.all, :as => :select, :input_html => { :class => "chosen-select" } 
         item.input :file
