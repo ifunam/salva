@@ -8,5 +8,7 @@ es:
     jobposition: Categoría
     adscription: Adscripción
     identifications: Identificaciones
+    scholarships: Becas
+    documents: Documentos
     has_many_new: "Agregar %{model}"
 

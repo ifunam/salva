@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 
   index do
-    column "Foto" do |user|
+    column "Foto", :sortable => false do |user|
       image_tag(user.avatar, :alt => "Foto")
     end
     column :login
@@ -99,4 +99,101 @@ ActiveAdmin.register User do
     end
     f.buttons
   end
+
+  show do |user|
+    h3 I18n.t("active_admin.user")
+    attributes_table do
+      row :photo do 
+        image_tag(user.avatar, :alt => "Foto")
+      end
+
+      row :login
+      row :email
+      row :userstatus
+      unless user.user_incharge.nil?
+        row :user_incharge do
+          user.user_incharge.fullname_or_email
+        end
+      end
+    end
+
+    unless user.person.nil?
+      h3 I18n.t("active_admin.personal_info")
+      attributes_table_for user.person do
+        row :firstname
+        row :lastname1
+        row :lastname2
+        row :title
+        row :title_en
+        row :dateofbirth
+        row :gender do
+          user.person.gender == true ? 'Másculino' : 'Femenino'
+        end
+        row :maritalstatus
+        row :country
+        row :state
+        row :city
+      end
+    end
+
+    if user.user_identifications.count > 0
+      h3 I18n.t("active_admin.identifications")
+      user.user_identifications.each do |ui|
+        attributes_table_for ui do 
+          row :idtype
+          row :descr
+        end
+      end
+    end
+
+    unless user.address.nil?
+      h3 I18n.t("active_admin.professional_address")
+      attributes_table_for user.address do
+        row :location
+        row :phone
+        row :phone_extension
+        row :fax
+      end
+    end
+
+    unless user.most_recent_jobposition.nil?
+      h3 I18n.t("active_admin.jobposition_and_adscription")
+      attributes_table_for user.most_recent_jobposition do
+        row :jobpositioncategory
+        row :contracttype
+        row :start_date
+        row :end_date
+        row :place_of_origin
+        unless user.most_recent_jobposition.user_adscription.nil?
+          row :adscription do
+            user.most_recent_jobposition.user_adscription.adscription.name
+          end
+        end
+      end
+    end
+
+    if user.user_schoolarships.count > 0
+      h3 I18n.t("active_admin.scholarships")
+      user.user_schoolarships.each do |us|
+        attributes_table_for us do 
+          row :schoolarship
+          row :start_date
+          row :end_date
+        end
+      end
+    end
+
+    if user.documents.count > 0
+      h3 I18n.t("active_admin.documents")
+      user.documents.each do |ud|
+        attributes_table_for ud do 
+          row :document_type do
+            link_to ud.document_type.name, ud.file.url
+          end
+        end
+      end
+    end
+
+  end
+
 end
