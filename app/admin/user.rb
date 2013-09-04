@@ -63,12 +63,16 @@ ActiveAdmin.register User do
         a_form.input :fax, :as => :string
       end
 
-      f.inputs I18n.t("active_admin.jobposition"), :for => [:jobposition, f.object.jobposition || Jobposition.new] do |p_form|
-        p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
-        p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
-        p_form.input :institution
-        p_form.input :start_date
-        p_form.input :end_date
+      f.inputs I18n.t("active_admin.jobposition_and_adscription"), :for => [:jobposition, f.object.jobposition || Jobposition.new] do |p_form|
+          p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
+          p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
+          p_form.input :institution
+          p_form.input :start_date
+          p_form.input :end_date
+        p_form.inputs I18n.t("active_admin.adscription"), :for => [:user_adscription, p_form.object.user_adscription || UserAdscription.new] do |a_form|
+          a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :input_html => { :class => "chosen-select" } 
+        end
+
       end
 
       f.object.user_schoolarships << UserSchoolarship.new if f.object.new_record?

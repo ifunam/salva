@@ -4,6 +4,9 @@ es:
     user_group: Grupo en el SALVA
     personal_info: Información personal
     professional_address: Domicilio profesional
-    jobposition: Categoría y adscripción
+    jobposition_and_adscription: Categoría y adscripción
+    jobposition: Categoría
+    adscription: Adscripción
     identifications: Identificaciones
     has_many_new: "Agregar %{model}"
+

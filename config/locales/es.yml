@@ -372,6 +372,7 @@ es:
         descr_en: Descripción en inglés
       jobposition:
         category: Categoría
+        jobpositioncategory: Categoría
         contracttype_id: Tipo de Contrato
         contracttype: Tipo de Contrato
         institution: Institución
@@ -384,6 +385,8 @@ es:
         worker_number: Número de identificación del trabajador
         academic_years: Años de antigüedad académica
         administrative_years: Años de antigüedad administrativa
+      user_adscription:
+        adscription: Adscripción
       education:
         career: Nombre de la carrera
         institution: Facultad o escuela
