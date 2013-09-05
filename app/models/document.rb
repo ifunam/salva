@@ -28,7 +28,7 @@ class Document < ActiveRecord::Base
 
   search_methods :fullname_like, :login_like, :adscription_id_eq, :jobpositioncategory_id_eq
 
-  after_validation :file_path
+  before_create :file_path
 
   def self.paginated_search(params)
     is_not_hidden.fullname_asc.search(params[:search]).page(params[:page] || 1).per(params[:per_page] || 20)
