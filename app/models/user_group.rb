@@ -1,4 +1,5 @@
 class UserGroup < ActiveRecord::Base
+  attr_accessible :group_id
   validates_numericality_of :id, :user_id, :allow_nil => true, :only_integer => true
   validates_numericality_of :group_id, :greater_than =>0 , :only_integer => true
   validates_presence_of :group_id

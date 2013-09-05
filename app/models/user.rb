@@ -1,4 +1,5 @@
 require File.join(Rails.root.to_s, 'lib/clients/student_client')
+require 'pry'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -27,11 +28,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
+  validates :login, :email, :presence => true, :uniqueness => true
+  validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
+  validates_confirmation_of :password
+
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
                   :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
                   :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
-                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id
+                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
+                  :user_group_attributes
 
   scope :activated, where(:userstatus_id => 2)
   scope :inactive, where('userstatus_id != 2')
@@ -169,7 +175,6 @@ class User < ActiveRecord::Base
   def fullname_or_login
      has_person? ? person.fullname : login
   end
-
 
   def fullname_or_email
      has_person? ? person.fullname : email
