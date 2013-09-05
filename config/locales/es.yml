@@ -80,11 +80,11 @@ es:
         one: Grado
         other: Grado
       document_type:
-        one: Tipo de documento
-        other: Tipos de documento
+        one: Tipo de documento para posdocs
+        other: Tipos de documento para posdocs
       documenttype:
         one: Tipo de documento
-        other: Tipos de documento
+        other: Informe anual/Plan de trabajo
       editionstatus:
         one: Status de la edición
         other: Status de la edición
@@ -325,6 +325,19 @@ es:
         jobpositionlevel: Nivel
         roleinjobposition: Rol
         administrative_key: Clave administrativa
+      document_type:
+        name: Tipo de documento
+        created_at: Fecha de registro
+        updated_at: Fecha de actualización
+      documenttype:
+        name: Tipo de documento
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        status: Activado
+        year: Año
+        descr: Descripción
       maritalstatus:
         name: Nombre
         
