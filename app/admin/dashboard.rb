@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Instituciones registradas recientemente" do
           ul do
             Institution.order("created_on DESC").limit(10).all.map do |record|
-              li link_to(record.to_s, admin_schoolarship_path(record))
+              li link_to(record.to_s, admin_institution_path(record))
             end
           end
         end
