@@ -329,6 +329,12 @@ es:
         name: Tipo de documento
         created_at: Fecha de registro
         updated_at: Fecha de actualización
+      schoolarship:
+        name: Nombre
+        name_and_institution_abbrev: Beca e institución que la otorga
+        institution: Institución
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
       documenttype:
         name: Tipo de documento
         created_on: Fecha de registro
@@ -340,7 +346,9 @@ es:
         descr: Descripción
       maritalstatus:
         name: Nombre
-        
+      city:
+        name: Nombre
+        state: Estado
       person:
         firstname: Nombre(s)
         lastname1: Apellido paterno

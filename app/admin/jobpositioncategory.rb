@@ -4,6 +4,7 @@ ActiveAdmin.register Jobpositioncategory do
     column :id
     column :name
     column :administrative_key
+    default_actions
   end
 
   form do |f|
