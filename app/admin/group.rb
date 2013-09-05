@@ -1,4 +1,6 @@
 ActiveAdmin.register Group do
+  menu :parent => I18n.t("active_admin.catalogs")
+
   filter :name
   filter :descr
   filter :created_on

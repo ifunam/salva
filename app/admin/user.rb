@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu :priority => 1
+
   index do
     column :id
     column "Foto", :sortable => false do |user|

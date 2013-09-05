@@ -8,38 +8,32 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Usuarios recientes" do 
+        panel "Usuarios registrados recientemente" do 
           ul do
-            User.order("created_on DESC").limit(5).all.map do |user|
-              li link_to(user.to_s, admin_user_path(user))
+            User.order("created_on DESC").limit(10).all.map do |record|
+              li link_to(record.to_s, admin_user_path(record))
             end
           end
         end
       end
       column do
-        panel "Info" do
-          para "Welcome"
+        panel "Becas registradas recientemente" do
+          ul do
+            Schoolarship.order("created_on DESC").limit(10).all.map do |record|
+              li link_to(record.name_and_institution_abbrev, admin_schoolarship_path(record))
+            end
+          end
+        end
+      end
+      column do
+        panel "Instituciones registradas recientemente" do
+          ul do
+            Institution.order("created_on DESC").limit(10).all.map do |record|
+              li link_to(record.to_s, admin_schoolarship_path(record))
+            end
+          end
         end
       end
     end
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #          end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
   end # content
 end

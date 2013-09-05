@@ -10,5 +10,6 @@ es:
     identifications: Identificaciones
     scholarships: Becas
     documents: Documentos
+    catalogs: Catálogos
     has_many_new: "Agregar %{model}"
 
