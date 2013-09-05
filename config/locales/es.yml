@@ -319,6 +319,14 @@ es:
         updated_on: Fecha de actualización
         is_enabled: Activado
         administrative_key: Clave administrativa
+      jobpositioncategory:
+        name: Nombre
+        jobpositiontype: Tipo
+        jobpositionlevel: Nivel
+        roleinjobposition: Rol
+        administrative_key: Clave administrativa
+      maritalstatus:
+        name: Nombre
         
       person:
         firstname: Nombre(s)

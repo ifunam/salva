@@ -1,9 +1,9 @@
 ActiveAdmin.register User do
   index do
+    column :id
     column "Foto", :sortable => false do |user|
       image_tag(user.avatar, :alt => "Foto")
     end
-    column :id
     column :login
     column :email
     column :fullname_or_email, :sortable => false
@@ -15,12 +15,12 @@ ActiveAdmin.register User do
 
   filter :fullname, :as => :string
   filter :login
-  filter :adscription, :collection => proc { Adscription.enabled.all }, :as => :select, :input_html => { :class => "chosen-select" } 
-  filter :jobpositioncategory, :collection => proc { Jobpositioncategory.for_researching }, :as => :select, :input_html => { :class => "chosen-select" } 
-  filter :schoolarship, :collection => proc { Schoolarship.posdoctoral_scholar.collect {|record|[ record.to_s,  record.id]} }, :as => :select, :input_html => { :class => "chosen-select" } 
-  filter :userstatus, :input_html => { :class => "chosen-select" } 
-  filter :jobposition_start_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select, :input_html => { :class => "chosen-select" } 
-  filter :jobposition_end_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select, :input_html => { :class => "chosen-select" } 
+  filter :adscription, :collection => proc { Adscription.enabled.all }, :as => :select
+  filter :jobpositioncategory, :collection => proc { Jobpositioncategory.for_researching }, :as => :select
+  filter :schoolarship, :collection => proc { Schoolarship.posdoctoral_scholar.collect {|record|[ record.to_s,  record.id]} }, :as => :select
+  filter :userstatus
+  filter :jobposition_start_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select
+  filter :jobposition_end_date_year, :collection => (Date.today.year - 100 .. Date.today.year + 1).to_a.reverse, :as => :select
 
   form :html => { :multipart => true } do |f|
     f.inputs I18n.t("active_admin.user") do
@@ -31,7 +31,7 @@ ActiveAdmin.register User do
         f.input :password, :as => :password
         f.input :password_confirmation, :as => :password
       end
-      f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select, :input_html => {:class => "chosen-select"}
+      f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select
 
       f.inputs I18n.t("active_admin.user_group"), :for => [:user_group, f.object.user_group || UserGroup.new] do |ug_form|
         ug_form.input :group, :as => :radio
@@ -46,9 +46,9 @@ ActiveAdmin.register User do
         p_form.input :dateofbirth, :as => :string, :input_html => { :class => 'birthdate', :style => 'width: 70px;' }
         p_form.input :gender, :as => :radio, :collection => [['Másculino', true], ['Femenino', false]]
         p_form.input :maritalstatus, :as => :select, :input_html => { :class => "chosen-select" }
-        p_form.input :country, :as => :select, :input_html => { :class => "chosen-select" }
-        p_form.input :state, :as => :select, :input_html => { :class => "chosen-select" }
-        p_form.input :city, :as => :select, :input_html => { :class => "chosen-select" }
+        p_form.input :country, :as => :select
+        p_form.input :state, :as => :select
+        p_form.input :city, :as => :select
       end
 
       f.object.user_identifications << UserIdentification.new if f.object.new_record? and f.object.user_identifications.nil?
@@ -72,14 +72,14 @@ ActiveAdmin.register User do
       end
 
       f.inputs I18n.t("active_admin.jobposition_and_adscription"), :for => [:jobposition, f.object.jobposition || Jobposition.new] do |p_form|
-        p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select, :input_html => { :class => "chosen-select" } 
-        p_form.input :contracttype, :input_html => { :class => "chosen-select" } 
+        p_form.input :jobpositioncategory, :collection => Jobpositioncategory.for_researching,  :as => :select
+        p_form.input :contracttype
         p_form.input :institution_id, :as => :hidden, :value => Institution.where(:administrative_key => Salva::SiteConfig.institution('administrative_key').to_s).first.id
         p_form.input :start_date, :as => :string, :input_html => { :class => 'start-date', :style => 'width: 70px;' }
         p_form.input :end_date, :as => :string, :input_html => { :class => 'end-date', :style => 'width: 70px;' }
         p_form.input :place_of_origin, :as => :string
         p_form.inputs I18n.t("active_admin.adscription"), :for => [:user_adscription, p_form.object.user_adscription || UserAdscription.new] do |a_form|
-          a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :input_html => { :class => "chosen-select" }, :label => false
+          a_form.input :adscription, :collection => Adscription.enabled.all,  :as => :select, :label => false
         end
       end
 
