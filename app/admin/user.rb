@@ -3,6 +3,7 @@ ActiveAdmin.register User do
     column "Foto", :sortable => false do |user|
       image_tag(user.avatar, :alt => "Foto")
     end
+    column :id
     column :login
     column :email
     column :fullname_or_email, :sortable => false

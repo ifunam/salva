@@ -306,7 +306,20 @@ es:
         jobposition_end_date_year: Año de término en el Instituto
       user_group:
         group: Grupo
-
+      group:
+        name: Nombre del grupo
+        descr: Descripción
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+      adscription:
+        name: Nombre
+        abbrev: Grupo de LDAP/Unix
+        descr: Descripción
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+        is_enabled: Activado
+        administrative_key: Clave administrativa
+        
       person:
         firstname: Nombre(s)
         lastname1: Apellido paterno
