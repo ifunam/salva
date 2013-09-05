@@ -346,6 +346,8 @@ es:
         descr: Descripción
       maritalstatus:
         name: Nombre
+      institutiontype:
+        name: Nombre
       city:
         name: Nombre
         state: Estado
@@ -448,7 +450,7 @@ es:
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
-        name: Facultad, Escuela o Instituto
+        name: Facultad, Escuela, Instituto o Institución
         institution: Institución
         abbrev: Siglás
       user_stimulus:
