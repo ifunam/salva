@@ -2647,3 +2647,6 @@ es:
         other: "Mostrando <b>Todos&nbsp;%{count}</b> %{model}"
       multi_page: "Mostrando %{model} %{from} - %{to} de un total de %{count} "
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{count}</b>"
+  date:
+    formats:
+      month_and_year: "%B de %Y"
