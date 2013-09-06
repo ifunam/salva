@@ -1,5 +1,4 @@
 require File.join(Rails.root.to_s, 'lib/clients/student_client')
-require 'pry'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -243,8 +242,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar(version=:icon)
-    if !person.nil? and !person.image.nil?
-      person.image.file.url(version.to_sym)
+    if !person.nil? and !person.image.nil? and person.image.is_a? Image and person.image.respond_to? :url
+      person.image.url(version.to_sym) 
     else
       "avatar_missing_#{version}.png"
     end
