@@ -68,9 +68,11 @@ module LDAP
 
     def attributes=(hash)
       sanitize_for_mass_assignment(hash).each do |attribute, value|
-        send("#{attribute}=", value)
-        send("#{attribute}_will_change!")
-        self._attributes << attribute
+        if self.respond_to? "#{attribute}=" and self.respond_to? "#{attribute}_will_change!"
+          send("#{attribute}=", value)
+          send("#{attribute}_will_change!")
+          self._attributes << attribute
+        end
       end
     end
 
