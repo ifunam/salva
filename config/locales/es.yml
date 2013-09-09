@@ -760,7 +760,11 @@ es:
       annual_report:
         body: Breve descripción cualitativa de los logros más importantes del trabajo durante el año
       report:
+        documenttype: Tipo de documento
         document_type: Tipo de documento
+      document:
+        document_type: Tipo de documento
+        documenttype: Tipo de documento
         file: Archivo
 
   additional_info: Información adicional
