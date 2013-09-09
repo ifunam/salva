@@ -50,7 +50,6 @@ module LDAP
 
     def self.attributes(*names)
       attr_accessor *names
-
       define_attribute_methods names
     end
 
@@ -68,11 +67,11 @@ module LDAP
 
     def attributes=(hash)
       sanitize_for_mass_assignment(hash).each do |attribute, value|
-        if self.respond_to? "#{attribute}=" and self.respond_to? "#{attribute}_will_change!"
           send("#{attribute}=", value)
-          send("#{attribute}_will_change!")
+          unless attribute == :password_confirmation
+            send("#{attribute}_will_change!")
+          end
           self._attributes << attribute
-        end
       end
     end
 
