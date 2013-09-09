@@ -28,6 +28,7 @@ ActiveAdmin.register User do
     f.inputs I18n.t("active_admin.user") do
       f.input :login, :as => :string, :input_html => {:style => 'width: 100px;' }
       f.input :email, :as => :string
+      f.object.userstatus_id = 2 if f.object.new_record?
       f.input :userstatus, :as => :radio
       if f.object.new_record?
         f.input :password, :as => :password

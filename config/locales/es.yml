@@ -2650,3 +2650,4 @@ es:
   date:
     formats:
       month_and_year: "%B de %Y"
+      long_without_day: "%d de %B de %Y"

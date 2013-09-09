@@ -12,4 +12,3 @@ es:
     documents: Documentos
     catalogs: Catálogos
     has_many_new: "Agregar %{model}"
-
