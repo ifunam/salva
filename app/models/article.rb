@@ -33,7 +33,9 @@ class Article < ActiveRecord::Base
   scope :inprogress, where(:articlestatus_id => 4)
   scope :published, where(:articlestatus_id => 3)
   scope :unpublished, where('articles.articlestatus_id != 3')
+  scope :verified, where(:is_verified => true)
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
+
 
   scope :user_id_not_eq, lambda { |user_id|
     articles_without_user_sql = UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql
