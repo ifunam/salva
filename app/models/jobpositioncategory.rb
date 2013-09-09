@@ -1,5 +1,5 @@
 class Jobpositioncategory < ActiveRecord::Base
-  attr_accessible :jobpositiontype_id, :roleinjobposition_id
+  attr_accessible :jobpositiontype_id, :roleinjobposition_id, :jobpositionlevel_id, :administrative_key
   validates_presence_of :jobpositiontype_id, :roleinjobposition_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :jobpositiontype_id, :roleinjobposition_id, :greater_than => 0, :only_integer => true
