@@ -116,16 +116,16 @@ ActiveAdmin.setup do |config|
   #
   config.batch_actions = true
 
-  #config.authorization_adapter = ActiveAdmin::CanCanAdapter
-
-
   # == Controller Filters
   #
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_filter :do_something_awesome
-  
+  config.before_filter :check_user_group
+
+  def check_user_group
+     redirect_to root_path unless current_user.user_group.group.name == "admin"
+  end
   
   # == Setting a Favicon
   #
