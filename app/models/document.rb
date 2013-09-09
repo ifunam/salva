@@ -9,8 +9,6 @@ class Document < ActiveRecord::Base
   attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id, :document_type_id
   attr_accessible :comments, :as => :academic
 
-  mount_uploader :file, DocumentUploader
-
   scope :sort_by_documenttype, :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => [:documenttype], :readonly => false
   scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC').sort_by_documenttype
   scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'").sort_by_documenttype

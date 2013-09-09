@@ -93,8 +93,8 @@ ActiveAdmin.register User do
         item.input :end_date, :as => :string, :input_html => { :class => 'end-date', :style => 'width: 70px;' }
       end
 
-      # f.object.documents << Document.new if f.object.new_record?
-      f.has_many :documents do |item|
+      # f.object.reports << Report.new if f.object.new_record?
+      f.has_many :reports do |item|
         item.input :document_type, :collection => DocumentType.all, :as => :select, :input_html => { :class => "chosen-select" } 
         item.input :file
       end
@@ -187,13 +187,24 @@ ActiveAdmin.register User do
         end
       end
 
+      if user.reports.count > 0
+        h3 I18n.t("active_admin.reports")
+        user.reports.each do |ud|
+          attributes_table_for ur do 
+            row :document_type do
+                link_to ud.document_type.name, ud.file.url
+            end
+          end
+        end
+      end
+
       if user.documents.count > 0
         h3 I18n.t("active_admin.documents")
-        user.documents.each do |ud|
+        user.documents.sort_by_documenttype.each do |ud|
           attributes_table_for ud do 
             row :document_type do
               if ud.document_type_id.nil?
-                link_to ud.documenttype.name, ud.file.url
+                link_to ud.documenttype.name, ud.url
               else
                 link_to ud.document_type.name, ud.file.url
               end

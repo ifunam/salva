@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
                   :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
-                  :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
+                  :jobposition_log_attributes, :user_schoolarships_attributes, :reports_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
                   :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
                   :user_group_attributes
@@ -117,6 +117,7 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
+  has_many :reports
   has_many :user_identifications
 
   has_many :user_researchlines
@@ -142,7 +143,7 @@ class User < ActiveRecord::Base
   has_many :user_theses
   has_many :theses, :through => :user_theses
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :reports, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
 

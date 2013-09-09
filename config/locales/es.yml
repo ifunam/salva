@@ -82,6 +82,9 @@ es:
       document_type:
         one: Tipo de documento para posdocs
         other: Tipos de documento para posdocs
+      reports:
+        one: Reporte
+        other: Reportes
       documenttype:
         one: Tipo de documento
         other: Informe anual/Plan de trabajo
@@ -756,6 +759,9 @@ es:
         body: Descripción
       annual_report:
         body: Breve descripción cualitativa de los logros más importantes del trabajo durante el año
+      report:
+        document_type: Tipo de documento
+        file: Archivo
 
   additional_info: Información adicional
   career: Carrera
