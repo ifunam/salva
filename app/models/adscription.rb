@@ -4,7 +4,7 @@ class Adscription < ActiveRecord::Base
   validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name, :scope => [:institution_id]
   normalize_attributes :name, :abbrev
-  attr_accessible :name, :abbrev, :descr, :administrative_key, :is_enabled
+  attr_accessible :name, :abbrev, :descr, :administrative_key, :is_enabled, :institution_id
 
   belongs_to :institution
   has_many :user_adscriptions
