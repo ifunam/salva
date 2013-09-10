@@ -9,4 +9,3 @@ class Institutiontype < ActiveRecord::Base
   default_scope :order => 'name DESC'
 
 end
-

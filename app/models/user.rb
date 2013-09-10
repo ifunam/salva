@@ -27,11 +27,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
+  validates :login, :email, :presence => true, :uniqueness => true
+  validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
+  validates_confirmation_of :password
+
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
                   :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
-                  :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
+                  :jobposition_log_attributes, :user_schoolarships_attributes, :reports_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
-                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id
+                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
+                  :user_group_attributes
 
   scope :activated, where(:userstatus_id => 2)
   scope :inactive, where('userstatus_id != 2')
@@ -49,26 +54,33 @@ class User < ActiveRecord::Base
     sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
     where sql
   }
+  scope :fullname_contains, lambda { |fullname| fullname_like(fullname) }
 
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :adscription_eq, lambda { |adscription_id| adscription_id_equals(adscription_id) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
+  scope :schoolarship_eq, lambda { |schoolarship_id| schoolarship_id_equals(schoolarship_id) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
 
   scope :jobposition_start_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_start_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_start_date_year_eq, lambda { |y| jobposition_start_date_year_equals(y) }
 
   scope :jobposition_end_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_end_date_year_eq, lambda { |y| jobposition_end_date_year_equals(y) }
 
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  scope :jobpositioncategory_eq, lambda { |jobpositioncategory_id| jobpositioncategory_id_equals(jobpositioncategory_id) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
                  :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
-                 :login_like
+                 :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
+                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
@@ -105,6 +117,7 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
+  has_many :reports
   has_many :user_identifications
 
   has_many :user_researchlines
@@ -130,7 +143,7 @@ class User < ActiveRecord::Base
   has_many :user_theses
   has_many :theses, :through => :user_theses
 
-  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :reports, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
 
@@ -146,7 +159,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    [title_and_fullname, '<', email,'>'].join
+    [title_and_fullname, ' <', email,'>'].join
   end
 
   def author_name
@@ -162,7 +175,6 @@ class User < ActiveRecord::Base
   def fullname_or_login
      has_person? ? person.fullname : login
   end
-
 
   def fullname_or_email
      has_person? ? person.fullname : email
@@ -223,7 +235,7 @@ class User < ActiveRecord::Base
   end
 
   def category_name
-    jobposition.category_name unless jobposition.nil?
+    most_recent_jobposition.category_name unless most_recent_jobposition.nil?
   end
 
   def has_image?
@@ -231,10 +243,10 @@ class User < ActiveRecord::Base
   end
 
   def avatar(version=:icon)
-    if !person.nil? and !person.image.nil?
-      person.image.file.url(version.to_sym)
+    if !person.nil? and !person.image.nil? and person.image.is_a? Image and person.image.respond_to? :url
+      person.image.url(version.to_sym) 
     else
-      "/images/avatar_missing_#{version}.png"
+      "avatar_missing_#{version}.png"
     end
   end
 
