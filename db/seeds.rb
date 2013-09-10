@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'csv'
+require 'highline/import'
 data_dir = Rails.root.join('db', 'data')
 
 [Userstatus, Group, Articlestatus, Bookchaptertype, Booktype, Citizenmodality, Conferencescope, Conferencetype,
@@ -49,8 +50,17 @@ CSV.foreach(File.join(data_dir, "institutions.csv"), headers: false) do |row|
 end
 
 unless User.exists? :login => 'admin'
-  puts "Inserting admin user"
-  @user = User.create(:login => 'admin', :email => 'admin@unam.mx', :password => '5up3rP455w0rd!!', :password_confirmation => '5up3rP455w0rd!!', :userstatus_id => Userstatus.where(:name => 'Activo').first.id)
+  puts "Creating the 'admin' user account"
+  while (1) do
+    password = ask("Enter password: ") { |q| q.echo = false }
+    password_confirmation = ask("Enter password confirmation: ") { |q| q.echo = false }
+    if password == password_confirmation and password.to_s.length >= 8
+      break
+    else
+      puts "The password must have 8 or more characters, and this must be equal to its confirmation"
+    end
+  end
+  @user = User.create(:login => 'admin', :email => 'admin@unam.mx', :password => password, :password_confirmation => password_confirmation, :userstatus_id => Userstatus.where(:name => 'Activo').first.id)
   @user.user_group = UserGroup.new(:group_id => Group.where(:name => 'admin').first.id)
   @user.save
 end

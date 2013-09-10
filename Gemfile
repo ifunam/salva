@@ -73,7 +73,9 @@ gem "rest-client", "~> 1.6.7"
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
 gem "rails_admin", "~> 0.4.9"
 gem "activeadmin", "~> 0.6.0"
-#gem "activeadmin-cancan"
+
+# Database seeds
+gem "highline", "~> 1.6.19"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
