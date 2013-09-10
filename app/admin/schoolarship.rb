@@ -1,5 +1,6 @@
 ActiveAdmin.register Schoolarship do
-  menu :parent => I18n.t("active_admin.catalogs")
+  # menu :parent => I18n.t("active_admin.catalogs")
+  menu :parent => 'Catálogos'
 
   index do 
     column :id

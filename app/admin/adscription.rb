@@ -1,5 +1,6 @@
 ActiveAdmin.register Adscription do
-  menu :parent => I18n.t("active_admin.catalogs")
+  # menu :parent => I18n.t("active_admin.catalogs")
+  menu :parent => 'Catálogos'
   filter :name
   filter :abbrev
   filter :administrative_key
