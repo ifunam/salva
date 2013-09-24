@@ -2661,3 +2661,7 @@ es:
     formats:
       month_and_year: "%B de %Y"
       long_without_day: "%d de %B de %Y"
+  time:
+    formats:
+      abbrev: "%d/%m/%Y a las %H:%M:%S"
+
