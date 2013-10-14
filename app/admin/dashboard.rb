@@ -10,7 +10,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Usuarios registrados recientemente" do 
           ul do
-            User.order("created_at DESC").limit(10).all.map do |record|
+            attribute_name =( User.column_names.include? 'created_at') ? 'created_at' : 'created_on'
+            User.order("#{attribute_name} DESC").limit(10).all.map do |record|
               li link_to(record.to_s, admin_user_path(record))
             end
           end
@@ -19,7 +20,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Becas registradas recientemente" do
           ul do
-            Schoolarship.order("created_at DESC").limit(10).all.map do |record|
+            attribute_name =( User.column_names.include? 'created_at') ? 'created_at' : 'created_on'
+            Schoolarship.order("#{attribute_name} DESC").limit(10).all.map do |record|
               li link_to(record.name_and_institution_abbrev, admin_schoolarship_path(record))
             end
           end
@@ -28,7 +30,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Instituciones registradas recientemente" do
           ul do
-            Institution.order("created_at DESC").limit(10).all.map do |record|
+            attribute_name =( User.column_names.include? 'created_at') ? 'created_at' : 'created_on'
+            Institution.order("#{attribute_name} DESC").limit(10).all.map do |record|
               li link_to(record.to_s, admin_institution_path(record))
             end
           end
