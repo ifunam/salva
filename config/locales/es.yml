@@ -80,11 +80,14 @@ es:
         one: Grado
         other: Grado
       document_type:
-        one: Tipo de documento
-        other: Tipos de documento
+        one: Tipo de documento para posdocs
+        other: Tipos de documento para posdocs
+      reports:
+        one: Reporte
+        other: Reportes
       documenttype:
         one: Tipo de documento
-        other: Tipos de documento
+        other: Informe anual/Plan de trabajo
       editionstatus:
         one: Status de la edición
         other: Status de la edición
@@ -271,6 +274,9 @@ es:
       thesisstatus:
         one: Status de tesis
         other: Status de tesis
+      thesis:
+        one: Tesis
+        other: Tesis
       titlemodality:
         one: Modalidad de titulación
         other: Modalidades de titulación
@@ -278,8 +284,14 @@ es:
         one: Status del usuario
         other: Status del usuario
       volume:
-        one: Volumren
+        one: Volumen
         other: Volumenes
+      user_journal:
+        one: Colaboración en revista
+        other: Colaboración en revistas
+      user_thesis:
+        one: Colaboración en tesis
+        other: Colaboraciones en tesis
 
     attributes:
       user:
@@ -585,6 +597,11 @@ es:
         endmonth: Mes de conclusión
         start_date: Fecha de inicio
         end_date: Fecha de presentación de examen
+        other: Información adicional
+        registered_by: Registrado por
+        modified_by: Modificado por
+        user_thesis: Usuarios del instituto
+
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -699,6 +716,43 @@ es:
         body: Descripción
       annual_report:
         body: Breve descripción cualitativa de los logros más importantes del trabajo durante el año
+      report:
+        documenttype: Tipo de documento
+        document_type: Tipo de documento
+      document:
+        document_type: Tipo de documento
+        documenttype: Tipo de documento
+        file: Archivo
+      thesismodality:
+        name: Nombre
+        moduser_id: Registrado por
+        level: Nivel Jerárquico
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      titlemodality:
+        name: Nombre
+      roleinthesis:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      thesisstatus:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      user_thesis:
+        thesis: Tesis
+        user: Usuario
+        other: Otra información
+        roleinthesis: Rol
+        registered_by: Registrado por
+        modified_by: Modificado por
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
 
   additional_info: Información adicional
   career: Carrera
