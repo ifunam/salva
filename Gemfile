@@ -7,6 +7,7 @@ gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
 gem "barista", "~> 1.3.0"
 gem "blueprint-rails", "~> 0.1.2"
+gem "rails-i18n", "~> 0.7.4"
 
 # Authorization
 gem "cancan", "1.6.7"
@@ -67,12 +68,15 @@ gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
 gem "jquery-rails", "2.1.4"
 gem "rest-client", "~> 1.6.7"
+gem "secure_headers", "~> 1.0.0"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
 gem "rails_admin", "~> 0.4.9"
-gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
-gem "activeadmin-cancan"
+gem "activeadmin", "~> 0.6.0"
+
+# Database seeds
+gem "highline", "~> 1.6.19"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"

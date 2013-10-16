@@ -30,15 +30,14 @@ class Address < ActiveRecord::Base
 
   # TODO: We should get this information from some configuration file
   def my_institution_name
-    "Instituto de Física - UNAM"
+    Salva::SiteConfig.institution('name').to_s
   end
 
   def additional_info
-    "Circuito de la Investigación Científica, Ciudad Universitaria, Delegación Coyoacán"
+    Salva::SiteConfig.institution('address').to_s
   end
 
   def postal_address_to_s
-    'Instituto de Física, UNAM, P.O. Box 20-364, 01000 México, D.F.'
+    Salva::SiteConfig.institution('pobox').to_s
   end
-
 end

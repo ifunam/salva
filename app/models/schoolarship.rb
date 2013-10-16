@@ -14,10 +14,13 @@ class Schoolarship < ActiveRecord::Base
   validates_associated :institution
 
   default_scope :order => 'name ASC'
+  scope :posdoctoral_scholar, where("id >= 48 AND id <= 53")
 
   def name_and_institution_abbrev
      institution.nil? ? name : [name, institution.abbrev].join(' - ')
   end
+
+  alias_method :to_s, :name_and_institution_abbrev
   
   has_many :user_schoolarships
 end

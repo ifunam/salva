@@ -28,6 +28,8 @@ class Person < ActiveRecord::Base
 
   search_methods :find_by_fullname
 
+  after_save :update_user_author_name
+
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
   end
@@ -59,5 +61,9 @@ class Person < ActiveRecord::Base
       image_path = image.file.path
     end
     image_path
+  end
+
+  def update_user_author_name
+    user.update_attribute :author_name, fullname
   end
 end

@@ -91,8 +91,8 @@ RailsAdmin.config do |config|
       field :title
       field :authors
       field :journal
+      field :articlestatus
       field :year
-      field :month
       field :is_verified
       field :id
     end

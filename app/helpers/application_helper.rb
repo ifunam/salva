@@ -42,12 +42,20 @@ module ApplicationHelper
     link_to_action 'icon_action_edit', t(:edit), resource_path
   end
 
+  def link_to_edit_not_verified(record, resource_path)
+    unless verified_record?(record)
+      link_to_action 'icon_action_edit', t(:edit), resource_path
+    else
+      image_tag "locked.png", :title => 'Registro verificado'
+    end
+  end
+
   def link_to_delete(record, resource_path)
     if can_current_user_delete?(record)
       link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete,
                      :confirm => t(:delete_confirm_question)
     else
-      image_tag "locked.png", :title => 'Registro blockeado'
+      image_tag "locked.png", :title => 'Registro verificado'
     end
   end
 
@@ -84,7 +92,15 @@ module ApplicationHelper
   end
 
   def can_current_user_delete?(record)
-     record.registered_by_id == current_user.id 
+     record.registered_by_id == current_user.id  and !verified_record?(record)
+  end
+
+  def verified_record?(record)
+    if record.respond_to? :is_verified
+      record.is_verified?
+    else
+      false
+    end
   end
 
   def link_to_user_list(resource_path)

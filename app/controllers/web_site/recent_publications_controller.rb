@@ -5,9 +5,7 @@ class WebSite::RecentPublicationsController < WebSite::ApplicationController
 
   def index
     @collections = [
-                    { :title => :published_articles, :collection => Article.published.recent },
-                    { :title => :published_books, :collection => Bookedition.published.recent },
-                    { :title => :published_chapterinbooks, :collection => Chapterinbook.published.recent }
+                    { :title => :published_articles, :collection => Article.published.verified.recent }
                     ]
     respond_with @collections
   end

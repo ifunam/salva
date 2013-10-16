@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     if user.admin?
       can :manage, :all
+
     elsif user.librarian?
       can :manage, :all
       alias_action :create, :edit, :destroy, :to => :ced
