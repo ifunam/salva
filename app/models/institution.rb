@@ -21,7 +21,6 @@ class Institution < ActiveRecord::Base
   has_many :conference_institutions
   has_many :courses
   has_many :genericworks
-  has_many :grants
   has_many :indivadvices
   has_many :indivadviceprograms
   has_many :instadvices

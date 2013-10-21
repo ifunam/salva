@@ -1,14 +1,11 @@
-require 'pry'
 class Degree < ActiveRecord::Base
-  attr_accessible :name, :level
   validates_presence_of :name, :level
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_uniqueness_of :name
   has_many :careers
-  has_many :indivadvices
-  has_many :tutorial_committees
   has_many :thesismodalities
-  has_many :theses
+
+  attr_accessible :name, :level, :careers_attributes, :thesismodalities, :career_ids, :thesismodality_ids
 
   default_scope :order => 'level DESC' if column_names.include? 'level'
   scope :higher, where('id > 1')
