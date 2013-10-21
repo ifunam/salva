@@ -1,9 +1,5 @@
 # encoding: utf-8
 class Thesis < ActiveRecord::Base
-  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date,
-    # TODO: Remove this attributes for next release
-    :startyear, :startmonth, :endyear, :endmonth
-
   validates_presence_of :thesisstatus_id, :thesismodality_id, :authors, :title, :end_date
   validates_numericality_of :id,:institutioncareer_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :thesisstatus_id, :thesismodality_id, :greater_than => 0, :only_integer => true
@@ -26,6 +22,11 @@ class Thesis < ActiveRecord::Base
   accepts_nested_attributes_for :user_theses
   user_association_methods_for :user_theses
 
+  mount_uploader :document, DocumentUploader
+
+  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date, :url,
+                  :startyear, :startmonth, :endyear, :endmonth, :is_verified, :user_theses_attributes, :user_ids, :document, :document_cache, :remove_document,
+                  :other
   has_paper_trail
 
   default_scope :order => 'theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC'

@@ -34,7 +34,8 @@ RailsAdmin.config do |config|
 
   # Add models here if you want to go 'whitelist mode':
   config.included_models = [Article, Journal, User, Country, Mediatype, Publisher, UserRefereedJournal, UserJournal,
-                            Thesis, UserThesis, Thesismodality, Thesisstatus, Titlemodality, Institutiontype, Roleinthesis
+                            Thesis, UserThesis, Thesismodality, Thesisstatus, Titlemodality, Career, Institution, Degree,
+                            Institutiontype, Roleinthesis, Indivadvice, TutorialCommittee
                             ]
 
   # Application wide tried label methods for models' instances
@@ -231,6 +232,90 @@ RailsAdmin.config do |config|
       field :user
       field :roleinthesis
       field :other, :string
+    end
+  end
+  config.model Degree do
+    list do
+      field :name
+      field :level
+      field :id
+    end
+
+    edit do
+      field :name, :string
+      field :level
+      field :careers
+      field :thesismodalities
+    end
+  end
+
+
+  config.model Career do
+    list do
+      field :name
+      field :abbrev
+      field :degree
+      field :institution
+      field :id
+    end
+
+    show do
+      field :name, :string
+      field :abbrev, :string
+      field :degree
+      field :institution
+      field :indivadvices
+      field :theses
+      field :tutorial_committees
+      field :educations
+    end
+    edit do
+      field :name, :string
+      field :abbrev, :string
+      field :degree
+      field :institution
+      field :indivadvices
+      field :theses
+      field :tutorial_committees
+      field :educations
+    end
+  end
+
+  config.model Thesis do
+    list do
+      field :title
+      field :authors
+      field :start_date
+      field :end_date
+      field :is_verified
+      field :thesisstatus
+      field :career
+      field :id
+    end
+    edit do
+      group :default do 
+        field :title
+        field :authors
+        field :thesisstatus
+        field :thesismodality
+        field :start_date
+        field :end_date
+        field :career
+        field :other
+      end
+      group :users do
+        label "Asesor(es) del Instituto"
+        field :users do
+            searchable :user_theses => {:users => :author_name}
+        end
+      end
+      group :additional_info do
+        label "Información adicional"
+        field :document
+        field :url, :string
+        field :is_verified
+        field :other
+      end
     end
   end
 end
