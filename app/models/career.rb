@@ -1,12 +1,10 @@
 class Career < ActiveRecord::Base
-  attr_accessible :name, :degree_id, :institution_attributes
   validates_presence_of :name, :degree_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :degree_id, :greater_than => 0, :only_integer => true
 
   belongs_to :degree
   belongs_to :institution
-  accepts_nested_attributes_for :institution
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
@@ -16,6 +14,8 @@ class Career < ActiveRecord::Base
   has_many :theses
   has_many :academicprograms
   has_many :institutioncareers
+  accepts_nested_attributes_for :institution
+  attr_accessible :name, :degree_id, :institution_attributes, :abbrev
 
   def to_s
     ["Carrera: #{name}, Grado: #{degree.name}", institution.name_and_parent_name].join(', ')

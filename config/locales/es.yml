@@ -43,6 +43,12 @@ es:
       career:
         one: Carrera
         other: Carreras
+      tutorial_committee:
+        one: Comité tutoral
+        other: Comités tutorales
+      indivadvice:
+        one: Asesoría individual
+        other: Asesorías individuales
       citizenmodality:
         one: Modalidad de ciudadanía
         other: Modadlidades de ciudadanía
@@ -78,7 +84,7 @@ es:
         other: Tipos de crédito
       degree:
         one: Grado
-        other: Grado
+        other: Grados
       document_type:
         one: Tipo de documento para posdocs
         other: Tipos de documento para posdocs
@@ -274,6 +280,9 @@ es:
       thesisstatus:
         one: Status de tesis
         other: Status de tesis
+      thesis:
+        one: Tesis
+        other: Tesis
       titlemodality:
         one: Modalidad de titulación
         other: Modalidades de titulación
@@ -281,8 +290,14 @@ es:
         one: Status del usuario
         other: Status del usuario
       volume:
-        one: Volumren
+        one: Volumen
         other: Volumenes
+      user_journal:
+        one: Colaboración en revista
+        other: Colaboración en revistas
+      user_thesis:
+        one: Colaboración en tesis
+        other: Colaboraciones en tesis
 
     attributes:
       user:
@@ -447,13 +462,25 @@ es:
       career:
         degree: Grado
         name: Nombre de la carrera o posgrado
+        abbrev: Siglás
+        registered_by: Registrada por
+        modified_by: Modificada por
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+        institution: Facultad, Escuela o Institución
+        indivadvices: Asesorías individuales
+        tutorial_committees: Comités tutorales
+        theses: Asesorías de tesis
+        education: Escolaridad
+        academicprograms: Programas académicos
+        
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Clasificación de la institución
         institutiontype_id:  Tipo de institución
         institutiontitle_id: Clasificación
         country: País
-        name: Facultad, Escuela, Instituto o Institución
+        name: Facultad, Escuela o Instituto
         institution: Institución
         abbrev: Siglás
       user_stimulus:
@@ -645,6 +672,20 @@ es:
         endmonth: Mes de conclusión
         start_date: Fecha de inicio
         end_date: Fecha de presentación de examen
+        other: Información adicional
+        registered_by: Registrado por
+        modified_by: Modificado por
+        user_thesis: Académicos del instituto
+        career: Carrera
+        users: Académicos del instituto
+        is_verified: Verificado
+        document: Archivo
+      degree:
+        name: Grado
+        level: Nivel
+        careers: Carreras
+        thesismodalities: Modalidad de tesis
+
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -766,6 +807,36 @@ es:
         document_type: Tipo de documento
         documenttype: Tipo de documento
         file: Archivo
+      thesismodality:
+        name: Nombre
+        moduser_id: Registrado por
+        level: Nivel Jerárquico
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      titlemodality:
+        name: Nombre
+      roleinthesis:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      thesisstatus:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      user_thesis:
+        thesis: Tesis
+        user: Usuario
+        other: Otra información
+        roleinthesis: Rol
+        registered_by: Registrado por
+        modified_by: Modificado por
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
 
   additional_info: Información adicional
   career: Carrera

@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.14"
+gem "rails", "~> 3.2.15"
 gem "haml", "~> 4.0.3"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -68,6 +68,7 @@ gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
 gem "jquery-rails", "2.1.4"
 gem "rest-client", "~> 1.6.7"
+gem "secure_headers", "~> 1.0.0"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18

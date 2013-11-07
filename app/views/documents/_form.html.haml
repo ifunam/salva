@@ -10,7 +10,7 @@
     = f.file_field :file, :size => 20
   %div{:class => 'span-4', :style => 'padding-top: 30px;'}
     - if !f.object.nil? and !f.object.new_record?
-      = link_to ('Consultar archivo'), f.object.file.url
+      = link_to ('Consultar archivo'), URI.parse(f.object.file.url).path
     - else
       = '*'
   %div{:class => 'span-6 last', :style => 'padding-top: 30px;'}
