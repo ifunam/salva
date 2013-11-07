@@ -40,7 +40,7 @@ class Thesis < ActiveRecord::Base
   }
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id|  where(:user_theses => {:roleinthesis_id =>roleinthesis_id }) }
-  scope :roleinthesis_id_not_eq, lambda { |roleinthesis_id| joins(:user_theses).where("user_thesis.roleinthesis_id != ?", roleinthesis_id) }
+  scope :roleinthesis_id_not_eq, lambda { |roleinthesis_id| joins(:user_theses).where("user_theses.roleinthesis_id != ?", roleinthesis_id) }
   scope :as_author, roleinthesis_id_eq(1)
   scope :not_as_author, roleinthesis_id_not_eq(1)
 
