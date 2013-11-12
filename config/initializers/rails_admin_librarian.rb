@@ -1,8 +1,6 @@
 # encoding: utf-8
 # RailsAdmin config file. Generated on March 23, 2012 13:32
 # See github.com/sferik/rails_admin for more informations
-
-require 'pry'
 RailsAdmin.config do |config|
 
   require 'i18n'
