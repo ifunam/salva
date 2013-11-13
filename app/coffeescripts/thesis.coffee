@@ -1,5 +1,5 @@
 $(document).ready ->
-  $(".radio-set-thesisstatus").live "change", (e) ->
+  $(".radio-set-thesisstatus").on "change", (e) ->
     if this.name == "thesis[thesisstatus_id]" and this.checked
       if this.value == "3"
         new_label = "<abbr title=\"required\">*</abbr>Fecha de presentación de examen"
@@ -8,7 +8,7 @@ $(document).ready ->
         new_label = "<abbr title=\"required\">*</abbr>Fecha estimada de presentación de examen"
         $("label[for=thesis_end_date]").html(new_label)
 
-  $(".radio-set-degrees").live "change", (e) ->
+  $(".radio-set-degrees").on "change", (e) ->
     url = "/thesismodalities/list_by_degree?degree_id=" + this.value
     if this.name == "thesis[career_attributes][degree_id]"
       $("#thesismodality").remove()
