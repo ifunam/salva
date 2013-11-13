@@ -296,8 +296,12 @@ RailsAdmin.config do |config|
         field :authors
         field :thesisstatus
         field :thesismodality
-        field :start_date
-        field :end_date
+        field :start_date do
+            date_format :default
+        end
+        field :end_date do
+          date_format :default
+        end
         field :career
         field :other
       end
