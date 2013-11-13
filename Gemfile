@@ -73,7 +73,7 @@ gem "secure_headers", "~> 1.0.0"
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
 gem "rails_admin", "~> 0.4.9"
-gem "activeadmin", "~> 0.6.0"
+gem "activeadmin", "~> 0.6.2"
 
 # Database seeds
 gem "highline", "~> 1.6.19"

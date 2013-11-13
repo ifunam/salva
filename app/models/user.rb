@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
     where sql
   }
   scope :fullname_contains, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_equals, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_starts_with, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_ends_with, lambda { |fullname| fullname_like(fullname) }
 
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :adscription_eq, lambda { |adscription_id| adscription_id_equals(adscription_id) }
@@ -80,7 +83,8 @@ class User < ActiveRecord::Base
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
                  :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
                  :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
-                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq
+                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq, :fullname_equals, 
+                 :fullname_starts_with, :fullname_ends_with
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
