@@ -3,7 +3,6 @@ $(document).on "click", ".new_record", (e) ->
   $.dialog_for_new_record @href
   $(".chosen-select").chosen()
 
-
 $(document).on "submit", "#new_record_form", ->
   class_name = @getAttribute("data-class-name")
   $("#new_record_form").ajaxComplete (event, request, settings) ->
