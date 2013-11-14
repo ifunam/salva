@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.join(Rails.root.to_s, 'lib/clients/student_client')
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Group < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :parent_id, :scope => [:name, :parent_id]

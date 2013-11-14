@@ -1,3 +1,4 @@
+# encoding: utf-8
 ActiveAdmin.register City do
   # menu :parent => I18n.t("active_admin.catalogs")
   menu :parent => 'Catálogos'

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class InsertDataToGroup < ActiveRecord::Migration
   def up
     Group.create(:name => 'admin', :descr => 'Administración del salva')
