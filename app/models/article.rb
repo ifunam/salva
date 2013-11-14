@@ -1,7 +1,8 @@
+require Rails.root.to_s + '/lib/salva/meta_date_extension'
+require Rails.root.to_s + '/lib/salva/meta_user_association'
 class Article < ActiveRecord::Base
-  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
-                  :articlestatus_id, :user_articles_attributes
-
+  include MetaDateExtension::DateMethods
+  include MetaUserAssociation
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
@@ -9,15 +10,19 @@ class Article < ActiveRecord::Base
   # validates_uniqueness_of :title, :scope => [:journal_id, :year]
   normalize_attributes :vol, :num, :pages
 
-  belongs_to :journal
-  belongs_to :articlestatus
+  belongs_to :journal, :inverse_of => :articles
+  belongs_to :articlestatus, :inverse_of => :articles
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  has_many :user_articles
-  has_many :users, :through => :user_articles
-  accepts_nested_attributes_for :user_articles
+  has_many :user_articles, :inverse_of => :article
+  has_many :users, :through => :user_articles, :inverse_of => :articles
   user_association_methods_for :user_articles
+
+  mount_uploader :document, DocumentUploader
+  accepts_nested_attributes_for :user_articles, :allow_destroy => true
+  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
+                  :articlestatus_id, :is_verified, :user_articles_id, :user_articles_attributes, :user_ids, :document, :document_cache, :remove_document
 
   has_paper_trail
 
@@ -28,7 +33,9 @@ class Article < ActiveRecord::Base
   scope :inprogress, where(:articlestatus_id => 4)
   scope :published, where(:articlestatus_id => 3)
   scope :unpublished, where('articles.articlestatus_id != 3')
+  scope :verified, where(:is_verified => true)
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
+
 
   scope :user_id_not_eq, lambda { |user_id|
     articles_without_user_sql = UserArticle.select('DISTINCT(article_id) as article_id').where(["user_articles.user_id !=  ?", user_id]).to_sql

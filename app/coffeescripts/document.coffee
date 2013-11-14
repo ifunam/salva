@@ -1,9 +1,9 @@
 $(document).ready ->
-  $(".new_record").live "click", (e) ->
+  $(".new_record").on "click", (e) ->
     e.preventDefault()
     $.dialog_for_new_record @href
 
-  $("#new_record_form").live "submit", ->
+  $("#new_record_form").on "submit", ->
     class_name = @getAttribute("data-class-name")
     $("#new_record_form").ajaxComplete (event, request, settings) ->
       $($("#" + class_name).find("select option:selected")[0]).remove()
@@ -18,14 +18,23 @@ $(document).ready ->
 
   $(".chosen-select").chosen()
 
-  $(".chosen-select").live "focus change", ->
+  $(".chosen-select").on "focus change", ->
+    $(this).chosen()
+
+  $("select").each ->
     $(this).chosen()
 
   current_year = new Date().getFullYear()
+  $.date_picker_for ".birthdate", current_year - 100, current_year - 15
+  $.date_picker_for ".date", current_year - 60, current_year + 3
+  $.date_picker_for ".start-date", current_year - 60, current_year + 1
+  $.date_picker_for ".end-date", current_year - 60, current_year + 10
 
-  $.date_picker_for ".birthdate", (current_year - 100), (current_year - 15)
+  $(".start-date").on "focus change ", ->
+    $.date_picker_for ".start-date", current_year - 60, current_year + 1
 
-  $.date_picker_for ".date", (current_year - 60), current_year + 3
+  $(".end-date").on "focus change ", ->
+    $.date_picker_for ".end-date", current_year - 60, current_year + 10
 
   $("#filter_jobpositiontype_id").change ->
     responseData = $.response_from_simple_remote_resource("/jobpositioncategories/filtered_select?id=" + $("#filter_jobpositiontype_id").val())

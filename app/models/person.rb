@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   self.primary_key = 'id'
 
-  attr_accessible :firstname, :lastname1, :lastname2, :title,
+  attr_accessible :firstname, :lastname1, :lastname2, :title, :title_en,
                   :dateofbirth, :gender, :maritalstatus_id, :country_id,
                   :state_id, :city_id, :image_attributes
 
@@ -27,6 +27,8 @@ class Person < ActiveRecord::Base
   scope :user_id_by_fullname_like, lambda { |fullname| find_by_fullname(fullname).select('user_id') }
 
   search_methods :find_by_fullname
+
+  after_save :update_user_author_name
 
   def fullname
     [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
@@ -59,5 +61,9 @@ class Person < ActiveRecord::Base
       image_path = image.file.path
     end
     image_path
+  end
+
+  def update_user_author_name
+    user.update_attribute :author_name, fullname
   end
 end

@@ -8,14 +8,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   # FIXME: Check for bugs in url method CarrierWave
   # Don't try it at home!!!
-  def url(version)
-    @versions[version].file.file.sub(/#{Rails.root.to_s}\/public/,'')
+  def url(version=nil)
+    if !version.nil? and !@versions.nil? and !@versions[version].nil?
+      @versions[version].file.file.sub(/#{Rails.root.to_s}\/public/,'')
+    else
+      Rails.root.join("public/avatar_missing_icon.png")
+    end
   end 
   # Override the directory where uploaded files will be stored
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  process :resize_to_fit => [113, 80]
 
   version :icon do
     process :resize_to_fill => [48, 48]

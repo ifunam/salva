@@ -3,16 +3,16 @@ class Document < ActiveRecord::Base
   validates_uniqueness_of :documenttype_id, :scope => [:user_id]
   belongs_to :user
   belongs_to :documenttype
+  belongs_to :document_type
   belongs_to :approved_by, :class_name => 'User'
 
-  attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id
+  attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id, :document_type_id
   attr_accessible :comments, :as => :academic
 
-  default_scope :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => :documenttype, :readonly => false
-
-  scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
-  scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'")
-  scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'")
+  scope :sort_by_documenttype, :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => [:documenttype], :readonly => false
+  scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC').sort_by_documenttype
+  scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'").sort_by_documenttype
+  scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'").sort_by_documenttype
 
   scope :fullname_like, lambda { |fullname|
     person_fullname_like_sql = Person.find_by_fullname(fullname).select('user_id').to_sql
@@ -33,10 +33,11 @@ class Document < ActiveRecord::Base
   end
 
   def url
-    File.expand_path(file_path).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
+   File.expand_path(file_path).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
   end
 
   def file_path
+    if document_type_id.nil?
     path = Rails.root.to_s + '/public/uploads'
     if !documenttype.name.match(/^Informe anual de actividades/).nil?
       path += '/annual_reports/' + documenttype.year.to_s
@@ -49,6 +50,7 @@ class Document < ActiveRecord::Base
       self.file = path + "/#{user.login}.pdf"
     else
       self.file.to_s
+    end
     end
   end
 

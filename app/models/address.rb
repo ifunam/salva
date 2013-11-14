@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Address < ActiveRecord::Base
   attr_accessible :addresstype_id, :location, :pobox, :country_id, :city_id,
-                  :state_id, :zipcode, :phone, :is_postaddress
+                  :state_id, :zipcode, :phone, :is_postaddress, :phone_extension, :fax
 
   validates_presence_of :country_id,  :location, :addresstype_id
   validates_numericality_of :id, :state_id, :city_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -16,7 +16,8 @@ class Address < ActiveRecord::Base
   belongs_to :user
 
   def to_s
-    [location.gsub(/\n/,''), normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    [location.gsub(/\r/,'').strip.gsub(/\n/,', '), my_institution_name, additional_info, normalized_zipcode, normalized_city, country.name].compact.join(', ')
+    #[location.gsub(/\r/,'').strip.gsub(/\n/,', '), normalized_zipcode, normalized_city, country.name].compact.join(', ')
   end
 
   def normalized_zipcode
@@ -27,12 +28,16 @@ class Address < ActiveRecord::Base
     city.name unless city_id.nil?
   end
 
-  def postal_address_to_s
-    if pobox.to_s.strip.empty?
-      'Instituto de Neurobiología, C.P. 76130'
-    else
-      pobox
-    end
+  # TODO: We should get this information from some configuration file
+  def my_institution_name
+    Salva::SiteConfig.institution('name').to_s
   end
 
+  def additional_info
+    Salva::SiteConfig.institution('address').to_s
+  end
+
+  def postal_address_to_s
+    Salva::SiteConfig.institution('pobox').to_s
+  end
 end

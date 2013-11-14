@@ -1,37 +1,37 @@
 $(document).ready ->
-  $(".associated_authors a.icon_action_user_list").live "click", (e)->
+  $(".associated_authors a.icon_action_user_list").on "click", (e)->
     (e).preventDefault()
     $(this).after $.response_from_simple_remote_resource(@href)
     false
   
-  $(".icon_action_close_author_list").live "click", (e) ->
+  $(".icon_action_close_author_list").on "click", (e) ->
     e.preventDefault()
     $(this).parent().parent().parent().remove()
     false
 
-  $(".author_action a").live "click", (e, elements)->
+  $(".author_action a").on "click", (e, elements)->
     e.preventDefault()
     html = $.response_from_simple_remote_resource(@href)
     $(this).parent().parent().replaceWith html
     false
 
-  $(".role_list ul li a").live "click", (e)->
+  $(".role_list ul li a").on "click", (e)->
     e.preventDefault()
     href = $(this).attr("data-remote-resource")
     html = $.response_from_remote_resource(href)
     $(this).parent().parent().parent().parent().parent().parent().replaceWith html
     false
 
-  $(".role_action a.action_link").live "click", (e)->
+  $(".role_action a.action_link").on "click", (e)->
     (e).preventDefault()
     $(this).after $.response_from_simple_remote_resource(@href)
     false
 
-  $("#new_checkbox").live "click", ->
+  $("#new_checkbox").on "click", ->
     href = $(this).parent().attr("data-remote-resource")
     $.dialog_for_new_checkbox href
   
-  $("#new_checkbox_form").live "submit", ->
+  $("#new_checkbox_form").on "submit", ->
     class_name = $(this).attr("data-class-name")
     $("#new_checkbox_form").ajaxComplete (event, request, settings) ->
       object = jQuery.parseJSON(request.responseText)
@@ -44,11 +44,11 @@ $(document).ready ->
       $("#dialog").dialog "close"
       $("#dialog").html('')
 
-  $(".new_period").live "click", (e) ->
+  $(".new_period").on "click", (e) ->
     (e).preventDefault()
     $.dialog_for_new_period @href
 
-  $("#new_period_form").live "submit", (e) ->
+  $("#new_period_form").on "submit", (e) ->
     (e).preventDefault()
     regularcourse_id = $("#new_period_form").attr("data-regularcourse-id")
     $("#new_period_form").ajaxComplete (event, request, settings) ->
@@ -56,11 +56,11 @@ $(document).ready ->
       $("#dialog").dialog "close"
       $("#dialog").html('')
 
-  $(".delete_period").live "click", (e) ->
+  $(".delete_period").on "click", (e) ->
     e.preventDefault()
     $(this).parent().remove()
 
-  $(".radio-set-thesisstatus").live "change", (e) ->
+  $(".radio-set-thesisstatus").on "change", (e) ->
     if this.name == "thesis[thesisstatus_id]" and this.checked
       if this.value == "3"
         new_label = "<abbr title=\"required\">*</abbr>Fecha de presentación de examen"

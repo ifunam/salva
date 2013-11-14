@@ -1,9 +1,6 @@
-- if user.researchlines.size > 0
-  %h3
-    =t('web_site.home_pages.researchlines')
+- @researchlines = user.researchlines.collect(&:name).compact || []
+- if @researchlines.size > 0
+  %h3 L&iacute;neas de investigaci&oacute;n:
   %ol
-    - user.researchlines.each do |record|
-      - if !record.name.to_s.strip.empty?
-        = content_tag(:li, record.name.to_s)
-        = content_tag(:label, record.descr.to_s)
-        %br &nbsp
+    - @researchlines.sort.each do |name|
+      = content_tag(:li, name.to_s) unless name.to_s.strip.empty?

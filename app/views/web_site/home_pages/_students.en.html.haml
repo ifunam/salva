@@ -1,0 +1,10 @@
+- if user.students.count > 0
+  %h3 Students
+  %table
+    %tr
+      %th Photo
+      %th Fullname
+      %th Email
+      %th Period
+    %tbody
+      = render :partial => 'student', :collection => user.students

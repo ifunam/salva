@@ -1,7 +1,5 @@
 / <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
-
-.name= user.author_name
-= mail_to user.email, user.email, :encode => "javascript"
+%font.name= user.title_and_fullname
 %br/
 = user.jobposition_for_researching.category_name
 %br/
@@ -16,6 +14,9 @@
       %br
       %b Tel&eacute;fono:
       = '+52 (55) ' + user.professional_address.phone.to_s
+      - unless user.professional_address.phone_extension.to_s.strip.empty?
+        %b &nbsp; Extensi&oacute;n:
+        = user.professional_address.phone_extension
     - unless user.professional_address.fax.to_s.strip.empty?
       %br
       %b Fax:

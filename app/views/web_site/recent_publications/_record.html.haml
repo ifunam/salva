@@ -1,2 +1,4 @@
 %li
   = record.to_s
+  - if record.respond_to? :url
+    = link_to t(:online), record.url, target: '_new'

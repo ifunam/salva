@@ -1,0 +1,22 @@
+**********************************************************************
+*                Este es un reporte automático                       *
+*                       NO HAGA REPLY                                *
+**********************************************************************
+
+Se ha registrado un nuevo journal en el salva:
+
+<%= @journal.to_s %>
+
+El usuario que guardó el registro es:
+
+<%= @journal.registered_by.email %>
+
+Por favor verifique el registro en la siguiente liga:
+
+<%= librarian_rails_admin_librarian_path(:only_path => false) %>/journal/<%= @journal.id %>
+
+Gracias por usar la Plataforma de Información Curricular - SALVA.
+
+Secretaría Académica, Instituto de Física
+Universidad Nacional Autónoma de México
+======================================================================

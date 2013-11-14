@@ -3,7 +3,7 @@ es:
     models:
       user: 
         one: Usuario
-        other: usuarios
+        other: Usuarios
       person: 
        one: Información personal
        other: Personas
@@ -25,6 +25,9 @@ es:
       adscription:
         one: Adscripción
         other: Adscripciones
+      article:
+        one: Artículo
+        other: Artículos
       articlestatus: 
         one: Estado de artículos
         other: Estados de artículos
@@ -40,6 +43,12 @@ es:
       career:
         one: Carrera
         other: Carreras
+      tutorial_committee:
+        one: Comité tutoral
+        other: Comités tutorales
+      indivadvice:
+        one: Asesoría individual
+        other: Asesorías individuales
       citizenmodality:
         one: Modalidad de ciudadanía
         other: Modadlidades de ciudadanía
@@ -75,13 +84,16 @@ es:
         other: Tipos de crédito
       degree:
         one: Grado
-        other: Grado
+        other: Grados
       document_type:
-        one: Tipo de documento
-        other: Tipos de documento
+        one: Tipo de documento para posdocs
+        other: Tipos de documento para posdocs
+      reports:
+        one: Reporte
+        other: Reportes
       documenttype:
         one: Tipo de documento
-        other: Tipos de documento
+        other: Informe anual/Plan de trabajo
       editionstatus:
         one: Status de la edición
         other: Status de la edición
@@ -136,6 +148,9 @@ es:
       journal:
         one: Revista científica
         other: Revistas científicas
+      user_refereed_journal:
+        one: Arbitraje de revista
+        other: Arbitraje de revistas
       language:
         one: Idioma
         other: Idiomas
@@ -265,6 +280,9 @@ es:
       thesisstatus:
         one: Status de tesis
         other: Status de tesis
+      thesis:
+        one: Tesis
+        other: Tesis
       titlemodality:
         one: Modalidad de titulación
         other: Modalidades de titulación
@@ -272,31 +290,91 @@ es:
         one: Status del usuario
         other: Status del usuario
       volume:
-        one: Volumren
+        one: Volumen
         other: Volumenes
+      user_journal:
+        one: Colaboración en revista
+        other: Colaboración en revistas
+      user_thesis:
+        one: Colaboración en tesis
+        other: Colaboraciones en tesis
 
     attributes:
       user:
         login: Usuario
         password: Contraseña
         password_confirmation: Confirmación de la contraseña
-        userstatus: Estado
+        userstatus: Status
         email: Correo electrónico
         user_incharge: Responsable académico
         author_name: Autor
-        homepage: Página Web
+        homepage: Página web personal
         calendar: Calendario
         current_password: Contraseña actual
         homepage_resume: Semblanza
         homepage_resume_en: Semblanza en inglés
+        fullname: Nombre o apellido
+        fullname_or_email: Nombre completo
+        adscription: Adscripción
+        adscription_name: Adscripción
+        category_name: Categoría
+        jobpositioncategory: Categoría
+        schoolarship: Tipo de beca
+        jobposition_start_date_year: Año de ingreso al Instituto
+        jobposition_end_date_year: Año de término en el Instituto
       user_group:
         group: Grupo
-
+      group:
+        name: Nombre del grupo
+        descr: Descripción
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+      adscription:
+        name: Nombre
+        abbrev: Grupo de LDAP/Unix
+        descr: Descripción
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+        is_enabled: Activado
+        administrative_key: Clave administrativa
+      jobpositioncategory:
+        name: Nombre
+        jobpositiontype: Tipo
+        jobpositionlevel: Nivel
+        roleinjobposition: Rol
+        administrative_key: Clave administrativa
+      document_type:
+        name: Tipo de documento
+        created_at: Fecha de registro
+        updated_at: Fecha de actualización
+      schoolarship:
+        name: Nombre
+        name_and_institution_abbrev: Beca e institución que la otorga
+        institution: Institución
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+      documenttype:
+        name: Tipo de documento
+        created_on: Fecha de registro
+        updated_on: Fecha de actualización
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        status: Activado
+        year: Año
+        descr: Descripción
+      maritalstatus:
+        name: Nombre
+      institutiontype:
+        name: Nombre
+      city:
+        name: Nombre
+        state: Estado
       person:
         firstname: Nombre(s)
         lastname1: Apellido paterno
         lastname2: Apellido materno
-        title: Título
+        title: Título (Dr., M. en C., Lic., ..)
+        title_en: Título en inglés
         gender: Género
         maritalstatus: Estado civil
         maritalstatus_id: Estado civil
@@ -307,9 +385,10 @@ es:
         country_id: País
         state_id: Estado
         city_id: Ciudad
+        image: Fotografía para el sitio web (80x113)
       address:
         addresstype: Tipo de domicilio
-        location: Dirección
+        location: Edificio y cubículo (o Laboratorio)
         pobox: Apartado postal
         country: País
         state: Estado
@@ -321,6 +400,7 @@ es:
         country_id: País
         state_id: Estado
         city_id: Ciudad
+        phone_extension: Extensión
       user_identification:
         idtype: Tipo de identificación
         idtype_id: Tipo de identificación
@@ -354,6 +434,7 @@ es:
         descr_en: Descripción en inglés
       jobposition:
         category: Categoría
+        jobpositioncategory: Categoría
         contracttype_id: Tipo de Contrato
         contracttype: Tipo de Contrato
         institution: Institución
@@ -361,11 +442,14 @@ es:
         end_date: Año de conclusión
         adscription: Adscripción
         descr: Descripción
+        place_of_origin: Institución/Lugar de origen
       jobposition_log:
         worker_key: Número de plaza
         worker_number: Número de identificación del trabajador
         academic_years: Años de antigüedad académica
         administrative_years: Años de antigüedad administrativa
+      user_adscription:
+        adscription: Adscripción
       education:
         career: Nombre de la carrera
         institution: Facultad o escuela
@@ -378,6 +462,18 @@ es:
       career:
         degree: Grado
         name: Nombre de la carrera o posgrado
+        abbrev: Siglás
+        registered_by: Registrada por
+        modified_by: Modificada por
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+        institution: Facultad, Escuela o Institución
+        indivadvices: Asesorías individuales
+        tutorial_committees: Comités tutorales
+        theses: Asesorías de tesis
+        education: Escolaridad
+        academicprograms: Programas académicos
+        
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Clasificación de la institución
@@ -445,18 +541,23 @@ es:
         pages: Páginas
         doi: DOI
         other: Otros
+        articlestatus: Estado
+        users: Autores del IFUNAM
+        is_verified: Verificado
       journal:
         name: Nombre
         country_id: País
         country: País
-      book:
-        authors: Autor(es)
-        title: Título
-        country: País
-        language: Idioma
-        booktype: Tipo
-        volume: Volúmen
-        booklink: Link
+        abbrev: Siglás o abreviatura
+        other: Información adicional
+        impact_index: Factor de impacto
+        is_verified: Verificado
+        articles: Artículos
+        users: Arbitros
+        user_refereed_journals: Arbitrajes
+        registered_by_id: Registrado por
+        mediatype_id: Tipo de medio
+        has_open_access: ¿Tiene Open Access?
       bookedition:
         edition: Edición
         isbn: ISBN
@@ -530,6 +631,7 @@ es:
         endyear: Año de conclusión
         endmonth: Mes de conclusión
       user_refereed_journal:
+        user_id: Árbitro
         journal: Revista
         refereed_criterium: Tipo
         year: Año
@@ -570,6 +672,20 @@ es:
         endmonth: Mes de conclusión
         start_date: Fecha de inicio
         end_date: Fecha de presentación de examen
+        other: Información adicional
+        registered_by: Registrado por
+        modified_by: Modificado por
+        user_thesis: Académicos del instituto
+        career: Carrera
+        users: Académicos del instituto
+        is_verified: Verificado
+        document: Archivo
+      degree:
+        name: Grado
+        level: Nivel
+        careers: Carreras
+        thesismodalities: Modalidad de tesis
+
       tutorial_committee:
         studentname: Nombre del estudiente
         descr: Descripción
@@ -587,6 +703,7 @@ es:
       publisher:
         name: Nombre
         descr: Descripción
+        is_verified: Verificado
       conferencetalk:
         authors: Autor(es)
         title: Título
@@ -684,7 +801,44 @@ es:
       annual_plan:
         body: Descripción
       annual_report:
-        body: Autoevaluación de desempeño de trabajo en el año 
+        body: Breve descripción cualitativa de los logros más importantes del trabajo durante el año
+      report:
+        documenttype: Tipo de documento
+        document_type: Tipo de documento
+      document:
+        document_type: Tipo de documento
+        documenttype: Tipo de documento
+        file: Archivo
+      thesismodality:
+        name: Nombre
+        moduser_id: Registrado por
+        level: Nivel Jerárquico
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      titlemodality:
+        name: Nombre
+      roleinthesis:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      thesisstatus:
+        name: Nombre
+        moduser_id: Registrado por
+        theses: Tesis asociadas
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
+      user_thesis:
+        thesis: Tesis
+        user: Usuario
+        other: Otra información
+        roleinthesis: Rol
+        registered_by: Registrado por
+        modified_by: Modificado por
+        created_on: Fecha de creación
+        updated_on: Fecha de actualización
 
   additional_info: Información adicional
   career: Carrera
@@ -2623,3 +2777,11 @@ es:
         other: "Mostrando <b>Todos&nbsp;%{count}</b> %{model}"
       multi_page: "Mostrando %{model} %{from} - %{to} de un total de %{count} "
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{count}</b>"
+  date:
+    formats:
+      month_and_year: "%B de %Y"
+      long_without_day: "%d de %B de %Y"
+  time:
+    formats:
+      abbrev: "%d/%m/%Y a las %H:%M:%S"
+

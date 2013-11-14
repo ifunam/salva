@@ -1,5 +1,5 @@
 $(document).ready ->
-  $(".country-select").live "change", ->
+  $(".country-select").on "change", ->
     country_id = $(this).val()
     if country_id == "484" or country_id == 840
       $.state_list_by_country country_id
@@ -15,7 +15,7 @@ $(document).ready ->
       $("#city_new").before "<div id=\"city_list\"> </div>"
       $("#state_set").append "<input id=\"user_person_attributes_state_id\" name=\"user[person_attributes][state_id]\" value=\"\" type=\"hidden\">"
   
-  $("#user_person_attributes_state_id").live "change", ->
+  $("#user_person_attributes_state_id").on "change", ->
     state_id = $($("#user_person_attributes_state_id").find("option:selected")[0]).val()
 
     if state_id >= 1 or state_id <= 83
@@ -24,7 +24,7 @@ $(document).ready ->
       $("#city_field").replaceWith "<div id=\"city_field\"> </div>"
       $("#city_list_chzn").remove()
   
-  $("#city_new").live "click", (e)->
+  $("#city_new").on "click", (e)->
     e.preventDefault
     url = "/cities/new.js?state_id=" + $("#user_person_attributes_state_id").val()
     $("#dialog").dialog(
@@ -37,7 +37,7 @@ $(document).ready ->
     responseData = $.response_from_simple_remote_resource(url)
     $("div#dialog").html responseData
 
-  $("#new_city").live "submit", ->
+  $("#new_city").on "submit", ->
     $("#new_city").ajaxComplete (event, request, settings) ->
       object = jQuery.parseJSON(request.responseText)
       $($("#city_set").find("select option:selected")[0]).remove()

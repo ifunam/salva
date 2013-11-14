@@ -10,6 +10,8 @@ config/github.yml
 config/deploy.rb
 config/newrelic.yml
 db/*
+!db/seeds.rb
+!db/data
 !db/migrate
 !db/catalogs
 !db/load_catalogs.sql

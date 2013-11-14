@@ -1,5 +1,6 @@
 class MoveInstitutionCareerIdToCareerIdInThesisRecords < ActiveRecord::Migration
  def self.up
+    if Thesis.count > 0
     Thesis.all.each do |record|
       career_id = record.institutioncareer.career_id
       unless career_id.nil?
@@ -12,6 +13,7 @@ class MoveInstitutionCareerIdToCareerIdInThesisRecords < ActiveRecord::Migration
         end
       end
       record.save
+    end
     end
   end
 

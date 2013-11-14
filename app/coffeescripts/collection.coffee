@@ -1,16 +1,16 @@
 $(document).ready ->
-  $("#search_button").live "click", ->
+  $("#search_button").on "click", ->
     resource = $("#filter_form").attr("action") + ".js"
     $.remote_collection_list resource, $.param($("#filter_form").serializeArray())
     false
 
-  $("#reset_search_button").live "click", ->
+  $("#reset_search_button").on "click", ->
     document.forms["filter_form"].reset()
     resource = $("#filter_form").attr("action") + ".js"
     $.remote_collection_list resource
     false
 
-  $("#destroy_selected_records").live "click", ->
+  $("#destroy_selected_records").on "click", ->
     ids = new Array()
     dom_ids = new Array()
     $("input[name=record_id]").each (index, item) ->
@@ -19,13 +19,13 @@ $(document).ready ->
         dom_ids.push @getAttribute("data-parent-id")
     $.destroy_selected_records ids, dom_ids
 
-  $(".page a").live "click", (e) ->
+  $(".page a").on "click", (e) ->
     if @getAttribute("data-remote") == 'true'
       e.preventDefault()
       $.remote_collection_list @href
       false
 
-  $("#enable_search").live "click", ->
+  $("#enable_search").on "click", ->
     $.ajax(
       url: '/session_preferences/enable_search'
       async: false
@@ -35,7 +35,7 @@ $(document).ready ->
        $("#disable_search").show()
     )
 
-  $("#disable_search").live "click", ->
+  $("#disable_search").on "click", ->
     $.ajax(
       url: '/session_preferences/disable_search'
       async: false
@@ -45,6 +45,6 @@ $(document).ready ->
        $("#disable_search").hide()
     )
 
-  $("#ajaxed_paginator a").live "click", ->
+  $("#ajaxed_paginator a").on "click", ->
     $.remote_collection_list this.href
     false

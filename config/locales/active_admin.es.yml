@@ -1,0 +1,14 @@
+es:
+  active_admin:
+    user: Información de la cuenta
+    user_group: Grupo en el SALVA
+    personal_info: Información personal
+    professional_address: Domicilio profesional
+    jobposition_and_adscription: Categoría y adscripción
+    jobposition: Categoría
+    adscription: Adscripción
+    identifications: Identificaciones
+    scholarships: Becas
+    documents: Documentos
+    catalogs: Catálogos
+    has_many_new: "Agregar %{model}"

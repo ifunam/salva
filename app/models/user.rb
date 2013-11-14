@@ -1,3 +1,4 @@
+require File.join(Rails.root.to_s, 'lib/clients/student_client')
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,12 +27,16 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
-  #RMO :professional_address instead of :address
+  validates :login, :email, :presence => true, :uniqueness => true
+  validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
+  validates_confirmation_of :password
+
   attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
-                  :person_attributes, :professional_address_attributes, :jobposition_attributes, :current_password,
-                  :jobposition_log_attributes, :user_schoolarships_attributes, :documents_attributes,
+                  :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
+                  :jobposition_log_attributes, :user_schoolarships_attributes, :reports_attributes,
                   :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
-                  :homepage_resume, :homepage_resume_en
+                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
+                  :user_group_attributes
 
   scope :activated, where(:userstatus_id => 2)
   scope :inactive, where('userstatus_id != 2')
@@ -49,26 +54,37 @@ class User < ActiveRecord::Base
     sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
     where sql
   }
+  scope :fullname_contains, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_equals, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_starts_with, lambda { |fullname| fullname_like(fullname) }
+  scope :fullname_ends_with, lambda { |fullname| fullname_like(fullname) }
 
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :adscription_eq, lambda { |adscription_id| adscription_id_equals(adscription_id) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
+  scope :schoolarship_eq, lambda { |schoolarship_id| schoolarship_id_equals(schoolarship_id) }
   scope :annual_report_year_equals, lambda { |year| includes(:documents).where(["documents.documenttype_id = 1 AND documents.title = ?", year]) }
 
   scope :jobposition_start_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_start_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_start_date_year_eq, lambda { |y| jobposition_start_date_year_equals(y) }
 
   scope :jobposition_end_date_year_equals, lambda { |year|
     sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
     where sql
   }
+  scope :jobposition_end_date_year_eq, lambda { |y| jobposition_end_date_year_equals(y) }
 
   scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  scope :jobpositioncategory_eq, lambda { |jobpositioncategory_id| jobpositioncategory_id_equals(jobpositioncategory_id) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
                  :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
-                 :login_like
+                 :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
+                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq, :fullname_equals, 
+                 :fullname_starts_with, :fullname_ends_with
 
   belongs_to :userstatus
 
@@ -78,8 +94,8 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_one :user_group
-  has_many :addresses
-  has_one :address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
+  has_one :group, :through => :user_group
+  has_one :address
   has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
   has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
@@ -87,6 +103,9 @@ class User < ActiveRecord::Base
           :order => "jobpositions.start_date DESC"
   #RMO change "jobpositioncategories.jobpositiontype_id  = 1" to "jobpositioncategories.jobpositiontype_id  <= 2" to include personal for teaching activities.
   #RMO Avoid errors in HomePages
+  has_one :first_jobposition, :class_name => "Jobposition", :include => :institution,
+          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
+          :order => "jobpositions.start_date ASC"
   has_one :jobposition_for_researching, :class_name => "Jobposition", :include => [:institution, :jobpositioncategory],
           :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id <= 2",
           :order => "jobpositions.start_date DESC"
@@ -105,14 +124,18 @@ class User < ActiveRecord::Base
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
   has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
   has_many :documents
+  has_many :reports
   has_many :user_identifications
 
   has_many :user_researchlines
   has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
   has_many :user_skills
 
-  has_many :user_articles, :include => :articles
-  has_many :articles, :through => :user_articles
+  has_many :user_articles, :include => :articles, :inverse_of => :user
+  has_many :articles, :through => :user_articles, :inverse_of => :users
+  has_many :user_refereed_journals, :include => :journals, :inverse_of => :user
+  has_many :journals, :through => :user_refereed_journals, :inverse_of => :users
+
   has_many :published_articles, :through => :user_articles, :source => :article,
            :conditions => 'articles.articlestatus_id = 3',
            :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
@@ -168,6 +191,10 @@ class User < ActiveRecord::Base
     users
   end
 
+  def to_s
+    [title_and_fullname, ' <', email,'>'].join
+  end
+
   def author_name
     if !super.to_s.strip.empty?
       super
@@ -182,12 +209,27 @@ class User < ActiveRecord::Base
      has_person? ? person.fullname : login
   end
 
-
   def fullname_or_email
      has_person? ? person.fullname : email
   end
   alias :name :fullname_or_email
 
+
+  def title
+    person.title if has_person?
+  end
+
+  def title_en
+    person.title_en if has_person?
+  end
+  
+  def title_and_fullname
+    [title, firstname_and_lastname].compact.join(' ')
+  end
+
+  def title_and_fullname_en
+    [title_en, firstname_and_lastname].compact.join(' ')
+  end
 
   def firstname_and_lastname
      has_person? ? person.firstname_and_lastname : email
@@ -226,7 +268,7 @@ class User < ActiveRecord::Base
   end
 
   def category_name
-    jobposition.category_name unless jobposition.nil?
+    most_recent_jobposition.category_name unless most_recent_jobposition.nil?
   end
 
   def has_image?
@@ -234,10 +276,10 @@ class User < ActiveRecord::Base
   end
 
   def avatar(version=:icon)
-    if !person.nil? and !person.image.nil?
-      person.image.file.url(version.to_sym)
+    if !person.nil? and !person.image.nil? and person.image.is_a? Image and person.image.respond_to? :url
+      person.image.url(version.to_sym) 
     else
-      "/images/avatar_missing_#{version}.png"
+      "avatar_missing_#{version}.png"
     end
   end
 
@@ -279,16 +321,15 @@ class User < ActiveRecord::Base
     group_name == 'admin'
   end
 
+  def librarian?
+    group_name == 'librarian'
+  end
+
   def worker_key
     jobposition_log.nil? ? email : jobposition_log.worker_key
   end
 
-  def worker_number
-    jobposition_log.worker_number || ''
-  end
-  #Master password for administration purposes
-  def valid_password?(password)
-    return true if password == "sria@ca"
-    super
+  def students
+    StudentClient.new(self.login).all
   end
 end

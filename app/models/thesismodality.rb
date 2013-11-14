@@ -7,8 +7,7 @@ class Thesismodality < ActiveRecord::Base
 
   belongs_to :degree
   has_many :theses
-  
-  default_scope :order => 'level ASC' # <- Comment this line to run the migrations successfully
+  default_scope :order => 'level ASC' if column_names.include? 'level'
 
   def to_s
     "Modalidad: " + name

@@ -1,6 +1,6 @@
 class UpgradedThesisDeleteTriggerInTheses < ActiveRecord::Migration
   def up
-    #execute "DROP FUNCTION thesis_delete()"
+    execute "DROP FUNCTION IF EXISTS thesis_delete()"
 
     execute %Q{
       CREATE FUNCTION thesis_delete() RETURNS trigger
@@ -21,7 +21,7 @@ class UpgradedThesisDeleteTriggerInTheses < ActiveRecord::Migration
   end
 
   def down
-    execute "DROP FUNCTION thesis_delete()"
+    execute "DROP FUNCTION IF EXISTS thesis_delete()"
 
     execute %Q{
       CREATE FUNCTION thesis_delete() RETURNS trigger

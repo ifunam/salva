@@ -4,10 +4,7 @@
 
   = show_for @user do |u|
     .row
-      .span-8
-        %label=t('.author_name')
-        = @user.author_name
-      .span-10.last
+      .span-18.last
         - unless @user.homepage.nil?
           %label= t(:homepage)
           = link_to t(:show_page), @user.homepage, :target => '_blank'

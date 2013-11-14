@@ -1,12 +1,13 @@
 # Edit this Gemfile to bundle your application"s dependencies.
-source :rubygems
+source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.11"
-gem "haml", "3.1.7"
+gem "rails", "~> 3.2.15"
+gem "haml", "~> 4.0.3"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
 gem "barista", "~> 1.3.0"
 gem "blueprint-rails", "~> 0.1.2"
+gem "rails-i18n", "~> 0.7.4"
 
 # Authorization
 gem "cancan", "1.6.7"
@@ -29,8 +30,8 @@ gem "diff", "~> 0.3.6"
 
 # Misc
 gem "carrierwave", "0.6.2"
-gem "rmagick", "2.13.1"
-gem "kaminari", "~> 0.13.0"
+gem "rmagick", "2.13.2"
+gem "kaminari", "~> 0.14.1"
 gem "kaminari-i18n", "~> 0.1.3"
 gem "attribute_normalizer", "~> 1.1.0"
 gem "inherited_resources", "~> 1.3.1"
@@ -65,13 +66,17 @@ gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
-gem "jquery-rails", "2.1.4"
+gem "jquery-rails", "~> 2.3.0"
+gem "rest-client", "~> 1.6.7"
+gem "secure_headers", "~> 1.0.0"
 
 # Rails Admin
 gem "fastercsv", "~> 1.5.5", :platforms => :ruby_18
-gem "rails_admin", :git => "git://github.com/juarlex/rails_admin.git", :branch => "move_associated_records"
-gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
-gem "activeadmin-cancan"
+gem "rails_admin", "~> 0.4.9"
+gem "activeadmin", "~> 0.6.2"
+
+# Database seeds
+gem "highline", "~> 1.6.19"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
@@ -100,9 +105,7 @@ group :development do
   gem "ruby_parser", "2.3.1"
   gem "unicorn", "4.3.1"
   gem "capistrano", "~> 2.13.0"
-  gem "debugger", "~> 1.2.0"
   gem "pry-rails", "~> 0.2.1"
-  gem "debugger-pry", "~> 0.1.1"
 end
 
 group :test do

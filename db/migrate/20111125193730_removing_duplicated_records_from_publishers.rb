@@ -1,6 +1,6 @@
 class RemovingDuplicatedRecordsFromPublishers < ActiveRecord::Migration
   def up
-    execute "ALTER TABLE publishers DROP CONSTRAINT publishers_name_key"
+    execute "ALTER TABLE publishers DROP CONSTRAINT IF EXISTS publishers_name_key"
     puts "Normalizing names for Publishers..."
     Publisher.all.each do |record|
       normalized_value = record.name.tr("\n",'').tr("\r",'').sub(/^('|"|`|\s)+/, '').sub(/('|"|`|\s|\.|,|;)+$/, '').sub(/\s{1}+/, ' ')
@@ -9,7 +9,7 @@ class RemovingDuplicatedRecordsFromPublishers < ActiveRecord::Migration
       record.update_attribute :name, normalized_value.to_s
     end
 
-    associations = Publisher.associations_to_move.collect { |association| association.name }
+    associations = (Publisher.reflect_on_all_associations(:has_many) + Publisher.reflect_on_all_associations(:has_one)).collect { |association| association.name }
 
     sql = "SELECT UPPER(name) as name FROM publishers as j GROUP BY UPPER(name) HAVING ( COUNT(UPPER(name)) > 1)"
     Publisher.find_by_sql(sql).each do |record|

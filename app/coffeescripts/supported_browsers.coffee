@@ -1,5 +1,5 @@
 $(document).ready ->
-  $("#supported_browsers a").live "hover", ->
+  $("#supported_browsers a").on "hover", ->
     $(@children[0]).addClass("hover").stop().animate 
       marginBottom: "2px"
       marginRight: "2px"
@@ -10,7 +10,7 @@ $(document).ready ->
       padding: "0px"
     , 50
   
-  $("#supported_browsers a").live "mouseleave", ->
+  $("#supported_browsers a").on "mouseleave", ->
     $(@children[0]).addClass("hover").stop().animate 
       marginTop: "0"
       marginLeft: "0"
