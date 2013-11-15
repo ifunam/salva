@@ -49,6 +49,12 @@ CSV.foreach(File.join(data_dir, "institutions.csv"), headers: false) do |row|
   @i = Institution.where(name: row[0].to_s.strip, url: row[1].to_s, institutiontype_id: row[2].to_i, country_id: row[3].to_i, administrative_key: row[4], institution_id: row[5].to_i, institutiontitle_id: Institutiontitle.first.id).first_or_create
 end
 
+puts "Inserting data into the table: periods"
+CSV.foreach(File.join(data_dir, "periods.csv"), headers: false) do |row|
+  Period.where(title: row[0].to_s.strip, startdate: row[1], enddate: row[2]).first_or_create
+end
+
+
 unless User.exists? :login => 'admin'
   puts "Creating the 'admin' user account"
   while (1) do
