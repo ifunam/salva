@@ -37,3 +37,5 @@ app:
 
 misc:
   schoolar_system_api: http://somewhere/api/v1
+  schoolar_system_api_enabled: false
+
