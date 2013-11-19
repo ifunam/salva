@@ -7,6 +7,7 @@ class StudentClient
 
   def initialize(login)
     @site =Salva::SiteConfig.misc('schoolar_system_api')
+    @api_enabled = Salva::SiteConfig.misc('schoolar_system_api_enabled')
     @url = "#{@site}/students.json?login=#{login}"
     @resource = RestClient::Resource.new @url
     @redis_enabled = false
@@ -40,6 +41,6 @@ class StudentClient
   end
 
   def all
-    get_hash['students']
+    @api_enabled ? get_hash['students'] : []
   end
 end

@@ -10,7 +10,7 @@ Getting Started
 1. Install rvm in your linux distribution 
 2. Install ruby 2.0.0-p247
 3. Install the gems with the ruby bundler
-4. Install PostgresSQL 9.x, Redis and ImageMagick
+4. Install PostgresSQL 9.x, MemCached, Redis and ImageMagick
 5. Create your database, run the seeds to populate your database
 6. Copy the *yml.example files to *yml files in the config directory and
    adapt them to your configuration (The required are databases.yml, site.yml and mail.yml)
