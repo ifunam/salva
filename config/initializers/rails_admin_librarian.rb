@@ -313,7 +313,7 @@ RailsAdmin.config do |config|
         field :other
       end
       group :users do
-        label "Asesor) del Instituto"
+        label "Asesor(es) del Instituto"
         field :user_theses
       end
       group :additional_info do
