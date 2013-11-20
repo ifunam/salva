@@ -27,6 +27,7 @@
     = render :partial => 'shared/record', :object => @thesis
 
 #submit_buttons
-  = link_to t(:edit), edit_thesis_path(:id => @thesis.id)
+  - unless @thesis.is_verified?
+    = link_to t(:edit), edit_thesis_path(:id => @thesis.id)
   = link_to t(:back), theses_path
 
