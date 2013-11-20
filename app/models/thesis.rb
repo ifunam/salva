@@ -33,9 +33,8 @@ class Thesis < ActiveRecord::Base
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
 
   scope :user_id_not_eq, lambda { |user_id|
-    theses_without_user_sql = UserThesis.user_id_not_eq(user_id).to_sql
     theses_with_user_sql = UserThesis.user_id_eq(user_id).to_sql
-    sql = "theses.id IN (#{theses_without_user_sql}) AND theses.id NOT IN (#{theses_without_user_sql})"
+    sql = "theses.id NOT IN (#{theses_with_user_sql})"
     where sql
   }
 
@@ -52,10 +51,8 @@ class Thesis < ActiveRecord::Base
   scope :for_bachelor_degree, joins(:career).where('degree_id = 3').not_as_author
   scope :for_technician, joins(:career).where('degree_id = 2').not_as_author
   scope :for_high_school, joins(:career).where('degree_id = 1').not_as_author
-  
+
   scope :career_degree_id_eq, lambda { |degree_id| joins(:career).where{{:careers => {:degree_id => degree_id}}}.not_as_author }
-
-
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq, :career_degree_id_eq
 
   def to_s
