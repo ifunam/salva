@@ -15,6 +15,7 @@
       .span-24.last#content
         %br/
         .span-5
-          = render :partial => 'left_options_home_pages'
+          - unless @record.nil?
+            = render :partial => 'left_options_home_pages'
         .span-19.last
           = yield

@@ -5,7 +5,13 @@ class WebSite::HomePagesController < WebSite::ApplicationController
   respond_to :js, :only => :show_all_articles
 
   def show
-    respond_with @record = User.find(params[:id])
+    @record = User.find(params[:id])
+    if @record.userstatus.id == 2 #userstatus 2 (active)
+      respond_with @record
+    else
+      @record = nil
+      render :info_not_available, :status => :not_found
+    end
   end
 
   def show_photo
