@@ -1,6 +1,9 @@
 .span-18.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to t(:new), new_unrefereed_inproceeding_path
+
 #nav_links
   = link_to t('.my_unrefereed_inproceedings'), unrefereed_inproceedings_path
   = link_to t('.not_my_unrefereed_inproceedings'), not_my_unrefereed_inproceedings_path

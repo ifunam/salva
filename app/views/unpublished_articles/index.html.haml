@@ -1,6 +1,9 @@
 .span-18.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to t(:new),  new_unpublished_article_path
+
 #nav_links
   = link_to t('.my_articles'), unpublished_articles_path
   = link_to t('.not_my_articles'), not_my_unpublished_articles_path

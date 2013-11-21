@@ -1,6 +1,9 @@
 .span-18.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to t(:new), new_conference_attendee_path
+
 #nav_links
   = link_to t('.my_conferences'), conference_attendees_path
   = link_to t('.not_my_conferences'), not_my_conference_attendees_path

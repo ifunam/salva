@@ -1,6 +1,9 @@
 .span-17.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to t(:new), new_membership_path
+
 = render :partial => 'search_form'
 
 #collection_header

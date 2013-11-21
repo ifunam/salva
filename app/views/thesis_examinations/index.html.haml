@@ -1,6 +1,9 @@
 .span-18.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to t(:new), new_thesis_examination_path
+
 #nav_links
   = link_to t('.my_thesis_examinations'), thesis_examinations_path
   = link_to t('.not_my_thesis_examinations'), not_my_thesis_examinations_path
