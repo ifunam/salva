@@ -11,7 +11,7 @@ Salva::Application.routes.draw do
       get :show_photo, :on => :member
     end
 
-    match 'show_all_articles' => 'home_pages#show_all_articles', :as => 'show_all_articles'
+    get 'show_all_articles' => 'home_pages#show_all_articles', :as => 'show_all_articles'
 
     resources :recent_publications, :only => [:index]
   end

@@ -20,13 +20,4 @@
     = render :partial => 'recent_published_books', :locals => {:user => @record}
   .span-19.last.recent_book_chapters
     = render :partial => 'recent_book_chapters', :locals => {:user => @record}
-
-  - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
-    = render :partial => 'user_skills', :locals => {:user => @record}
-  - else
-    = render :partial => 'researchlines', :locals => {:user => @record}
-  %br/
-  = render :partial => 'recent_published_articles', :locals => {:user => @record}
-  %br/
   = render :partial => 'students', :locals => { :user => @record }
-  %br/

@@ -1,8 +1,7 @@
 - if user.recent_published_articles.size > 0
-  %h3
-    =t('web_site.home_pages.recent_published_articles')
+  %h3=t('web_site.home_pages.recent_published_articles')
   - n = 0
-  - user.recent_published_articles.each do |article|
+  - user.recent_published_articles.reorder('user_articles.show_in_home_page DESC, articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC').each do |article|
     = (n +=1).to_s + '. ' + article.to_s
     = link_to_if_url_exists(article)
     %br/

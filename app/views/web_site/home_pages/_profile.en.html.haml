@@ -1,29 +1,27 @@
-/ <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
-%font.name= user.title_and_fullname_en
+// <font class=name><haml:loud> user.cite.author_name unless user.cite.nil?  </haml:loud></font>
+%font.name= user.title_and_fullname
 %br/
 = user.jobposition_for_researching.category_name
+%br
+%b= user.email || ''
 %br/
 %br/
 - unless user.professional_address.nil?
   %font.address
-    %b Address:
     = user.professional_address.to_s
     %br
-    %b Postal Address:
-    = user.professional_address.postal_address_to_s
     - unless user.professional_address.phone.to_s.strip.empty?
       %br
-      %b Phone:
-      = '+52 (55) ' + user.professional_address.phone.to_s
+      %b phone:
+      =  user.professional_address.phone.to_s
       - unless user.professional_address.phone_extension.to_s.strip.empty?
-        %b &nbsp; Extension number:
+        %b &nbsp; extensi&oacute;n:
         = user.professional_address.phone_extension
     - unless user.professional_address.fax.to_s.strip.empty?
       %br
-      %b Fax:
+      %b fax:
       = '+52 (55) ' + user.professional_address.fax.to_s
+
 %br/
 %br/
 = links_for_personal_sites(@record)
-
-

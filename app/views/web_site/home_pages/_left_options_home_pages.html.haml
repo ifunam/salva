@@ -1,0 +1,32 @@
+-if I18n.locale == :en
+  = link_to "Versión en español", :locale => 'es'
+-else
+  = link_to "English version", :locale => 'en'
+
+.span-5.last{:style => "margin-bottom: 200px;"}
+  &nbsp
+.span-5.last
+  - unless @record.homepage_resume.to_s.strip.empty?
+    = check_box_tag "user_resume", "user_resume", true
+    =t('web_site.home_pages.review')
+    %br/
+  - researchlines = @record.researchlines
+  - if ((researchlines.collect(&:name_en).compact || []).size > 0 && I18n.locale == :en) || ((researchlines.collect(&:name).compact || []).size > 0 && I18n.locale == :es)
+    = check_box_tag "skills-reseachlines", "skills-reseachlines", true
+    =t('web_site.home_pages.researchlines')
+    %br
+  - unless @record.recent_published_articles.size == 0
+    = check_box_tag "recent_published_articles", "recent_published_articles", true
+    =t('web_site.home_pages.recent_published_articles')
+    %br
+  - unless @record.recent_advised_theses.size == 0
+    = check_box_tag "recent_advised_theses", "recent_advised_theses", true
+    =t('web_site.home_pages.recent_advised_theses')
+    %br
+  - unless @record.recent_published_books.size == 0
+    = check_box_tag "recent_published_books", "recent_published_books", true
+    =t('web_site.home_pages.recent_published_books')
+    %br
+  - unless @record.recent_book_chapters.size == 0
+    = check_box_tag "recent_book_chapters", "recent_book_chapters", true
+    =t('web_site.home_pages.recent_book_chapters')

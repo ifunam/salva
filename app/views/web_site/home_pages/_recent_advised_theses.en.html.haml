@@ -1,6 +1,5 @@
 - if user.recent_advised_theses.size > 0
-  %h3
-    =t('web_site.home_pages.recent_advised_theses')
+  %h3=t('web_site.home_pages.recent_advised_theses')
   - n = 0
   - user.recent_advised_theses.each do |thesis|
     = (n +=1).to_s + '. ' + thesis.to_s

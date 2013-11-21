@@ -2,6 +2,7 @@ class WebSite::HomePagesController < WebSite::ApplicationController
   layout 'home_page'
 
   respond_to :html
+  respond_to :js, :only => :show_all_articles
 
   def show
     respond_with @record = User.find(params[:id])
@@ -20,11 +21,9 @@ class WebSite::HomePagesController < WebSite::ApplicationController
   end
 
   def show_all_articles
-    puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    #respond_to do |format|
-    #  format.js do
-    #    # any stuff you want to do when responding to JS
-    #  end
-    #end
+    respond_to do |format|
+      format.js
+    end
   end
+
 end

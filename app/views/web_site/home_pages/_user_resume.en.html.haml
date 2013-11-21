@@ -1,2 +1,3 @@
 - unless user.homepage_resume_en.to_s.strip.empty?
-  %h3 Resume
+  %h3= t('web_site.home_pages.review')
+  #userresume= textilize(user.homepage_resume_en).to_s.html_safe

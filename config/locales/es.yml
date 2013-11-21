@@ -544,6 +544,8 @@ es:
         articlestatus: Estado
         users: Autores del IFUNAM
         is_verified: Verificado
+      user_article:
+        show_in_home_page: Mostrar en página personal
       journal:
         name: Nombre
         country_id: País

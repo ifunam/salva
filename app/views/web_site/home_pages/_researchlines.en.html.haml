@@ -1,6 +1,6 @@
 - @researchlines = user.researchlines.collect(&:name_en).compact || []
 - if @researchlines.size > 0
-  %h3 Research Interests:
+  %h3=t('web_site.home_pages.researchlines')
   %ol
     - @researchlines.sort.each do |name|
       = content_tag(:li, name.to_s) unless name.to_s.strip.empty?
