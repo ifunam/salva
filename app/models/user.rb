@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
   has_many :chapterinbook, :through => :chapterinbook_roleinchapters
 
   #RMO :professional_address intead of :address
-  accepts_nested_attributes_for :person, :professional_address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
+  accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :documents, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
   accepts_nested_attributes_for :user_cite
 
