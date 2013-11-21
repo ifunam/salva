@@ -3,21 +3,24 @@ $(document).on "click", ".new_record", (e) ->
   $.dialog_for_new_record @href
   $(".chosen-select").chosen()
 
-$(document).on "submit", "#new_record_form", ->
-  class_name = @getAttribute("data-class-name")
-  $("#new_record_form").ajaxComplete (event, request, settings) ->
-    $($("#" + class_name).find("select option:selected")[0]).remove()
-    object = jQuery.parseJSON(request.responseText)
-    html_options = "<option selected value=\"" + object.id + "\" >" + object.name + "</option>"
-    $($("#" + class_name).find("select")[0]).append html_options
-    $($("#" + class_name).find("select")[0]).removeClass "chosen-select chzn-done"
-    $("#" + class_name).find(".chzn-container").remove()
-    $($("#" + class_name).find("select")[0]).chosen()
-    $("#dialog").empty()
-    $("#dialog").dialog "close"
-
-$(document).on "focus change", ".chosen-select", ->
-  $(this).chosen()
+$(document).on "click", "#dialog_submit_buttons input[type=submit]", (e) ->
+  e.preventDefault()
+  class_name = this.parentNode.parentNode.getAttribute("data-class-name")
+  p = $.param($("#new_record_form").serializeArray())
+  url = $("#new_record_form").attr("action") + '.js'
+  options = 
+   url: url
+   type: "POST"
+   data: p
+   async: false
+  object = jQuery.parseJSON($.ajax(options).responseText)
+  option = $('<option>', { value: object.id}).text(object.name)
+  option.attr('selected','selected')
+  $($("#" + class_name).find("select option:selected")[0]).remove()
+  $($('#' + class_name).find("select")[0]).append(option)
+  $($('#' + class_name).find("select")[0]).trigger("chosen:updated")
+  $("#dialog").empty()
+  $("#dialog").dialog "close"
 
 current_year = new Date().getFullYear()
 
@@ -33,8 +36,6 @@ $(document).on "change", "#filter_jobpositiontype_id", ->
 
 $ ->
   $(".chosen-select").chosen()
-  $("select").each ->
-    $(this).chosen()
 
   current_year = new Date().getFullYear()
   $.date_picker_for ".birthdate", current_year - 100, current_year - 15
