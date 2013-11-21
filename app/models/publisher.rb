@@ -11,5 +11,5 @@ class Publisher < ActiveRecord::Base
   has_many :bookedition_publishers
   has_many :proceedings
   default_scope :order => 'name ASC'
-  attr_accessible :name, :descr, :url
+  attr_accessible :name, :descr, :url, :is_verified
 end
