@@ -315,6 +315,7 @@ es:
         homepage_resume_en: Semblanza en inglés
         fullname: Nombre o apellido
         fullname_or_email: Nombre completo
+        user_incharge_fullname: Responsable académico
         adscription: Adscripción
         adscription_name: Adscripción
         category_name: Categoría
@@ -2582,6 +2583,7 @@ es:
   approve: 'Aprobar'
   reject: 'Rechazar'
   fullname: 'Nombre(s)'
+
   academic_responsible: 'Académico responsable'
   document_type: 'Tipo'
   deliver_date:  'Fecha y hora de envío'

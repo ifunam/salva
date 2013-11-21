@@ -12,6 +12,7 @@ ActiveAdmin.register User do
     column :fullname_or_email, :sortable => false
     column :adscription_name, :sortable => false
     column :category_name, :sortable => false
+    column :user_incharge_fullname, :sortable => false
     column :userstatus
     default_actions
   end

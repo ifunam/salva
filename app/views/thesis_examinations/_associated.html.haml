@@ -10,6 +10,6 @@
 .action
   = link_to_show thesis_examination_path(:id => record.id)
 .action
-  =link_to_edit edit_thesis_examination_path(:id => record.id)
+  =link_to_edit_not_verified record, edit_thesis_examination_path(:id => record.id)
 .action
   = link_to_delete record, thesis_examination_path(:id => record.id)
