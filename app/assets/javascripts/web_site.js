@@ -3,3 +3,4 @@
 //= require base
 //= require collection
 //= require document_website
+//= require home_pages

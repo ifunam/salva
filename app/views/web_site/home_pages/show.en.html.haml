@@ -14,6 +14,8 @@
       = render :partial => 'researchlines', :locals => {:user => @record}
   .span-19.last.recent_published_articles
     = render :partial => 'recent_published_articles', :locals => {:user => @record}
+  .span-19.last.all_published_articles{ style: 'display: none;' }
+    = render :partial => 'all_published_articles', :locals => {:user => @record}
   .span-19.last.recent_advised_theses
     = render :partial => 'recent_advised_theses', :locals => {:user => @record}
   .span-19.last.recent_published_books
