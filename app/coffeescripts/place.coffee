@@ -4,27 +4,28 @@ $(document).on "change", ".country-select", ->
     $.state_list_by_country country_id
     $("#hidden_state_id").remove()
     $("#city_text_field").html ""
+    $('select').chosen()
   else
     $("#user_person_attributes_state_id").remove()
-    $("#user_person_attributes_state_id_chzn").remove()
-    $("#city_list_chzn").remove()
+    $("#user_person_attributes_state_id_chosen").remove()
+    $("#city_list_chosen").remove()
     $("#city_list").replaceWith ""
     $("#city_new").hide()
     $.textfield_for_city()
     $("#city_new").before "<div id=\"city_list\"> </div>"
     $("#state_set").append "<input id=\"user_person_attributes_state_id\" name=\"user[person_attributes][state_id]\" value=\"\" type=\"hidden\">"
   
-  $("#user_person_attributes_state_id").on "change", ->
-    state_id = $($("#user_person_attributes_state_id").find("option:selected")[0]).val()
+$(document).on "change", "#user_person_attributes_state_id", ->
+  state_id = $($("#user_person_attributes_state_id").find("option:selected")[0]).val()
+  if state_id >= 1 or state_id <= 83
+    $.city_list_by_state state_id
+    $("#city_new").show()
+    $("#city_field").replaceWith "<div id=\"city_field\"> </div>"
+    $("#city_list_chosen").remove()
+    $('select').chosen()
 
-    if state_id >= 1 or state_id <= 83
-      $.city_list_by_state state_id
-      $("#city_new").show()
-      $("#city_field").replaceWith "<div id=\"city_field\"> </div>"
-      $("#city_list_chzn").remove()
-  
 $(document).on "click", "#city_new", (e)->
-  e.preventDefault
+  e.preventDefault()
   url = "/cities/new.js?state_id=" + $("#user_person_attributes_state_id").val()
   $("#dialog").dialog(
     title: "Nueva ciudad"
@@ -36,17 +37,23 @@ $(document).on "click", "#city_new", (e)->
   responseData = $.response_from_simple_remote_resource(url)
   $("div#dialog").html responseData
 
-$(document).on "submit", "#new_city", ->
-  $("#new_city").ajaxComplete (event, request, settings) ->
-    object = jQuery.parseJSON(request.responseText)
-    $($("#city_set").find("select option:selected")[0]).remove()
-    html_options = "<option selected value=\"" + object.id + "\" >" + object.name + "</option>"
-    $($("#city_set").find("select")[0]).append html_options
-    $($("#city_set").find("select")[0]).removeClass "chosen-select chzn-done"
-    $("#city_set").find(".chzn-container").remove()
-    $($("#city_set").find("select")[0]).chosen()
-    $("#dialog").empty()
-    $("#dialog").dialog "close"
+$(document).on "click", "#new_city input[type=submit]", (e) ->
+  e.preventDefault()
+  url = $("#new_city").attr("action")
+  p = $.param($("#new_city").serializeArray())
+  options = 
+    url: url
+    type: "POST"
+    data: p
+    async: false
+  object = jQuery.parseJSON($.ajax(options).responseText)
+  option = $('<option>', { value: object.id}).text(object.name)
+  option.attr('selected','selected')
+  $($("#city_set").find("select option:selected")[0]).remove()
+  $($("#city_set").find("select")[0]).append(option)
+  $($("#city_set").find("select")[0]).trigger("chosen:updated")
+  $("#dialog").empty()
+  $("#dialog").dialog "close"
 
 jQuery.extend 
   state_list_by_country: (id) ->

@@ -11,6 +11,7 @@ $(document).on "click", ".reject_document", (e) ->
 $(document).on "click", ".simple_form input[type=submit]", (e)->
   e.preventDefault()
   dom_id = $(".simple_form").attr("id")
+  url = $(".simple_form").attr("action")
   p = $.param($(".simple_form").serializeArray())
   options = 
     url: url
