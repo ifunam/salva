@@ -3,7 +3,7 @@ $(document).on "click", ".new_record", (e) ->
   $.dialog_for_new_record @href
   $(".chosen-select").chosen()
 
-$(document).on "click", "#dialog_submit_buttons input[type=submit]", (e) ->
+$(document).on "click", "#new_record_form input[type=submit]", (e) ->
   e.preventDefault()
   class_name = this.parentNode.parentNode.getAttribute("data-class-name")
   p = $.param($("#new_record_form").serializeArray())
