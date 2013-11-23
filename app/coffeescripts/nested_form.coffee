@@ -5,10 +5,10 @@ $(document).on "click", "form a.add_child_link", ->
   assoc = $(this).attr("data-association")
   content = $("#" + assoc + "_fields_template").html()
   regexp = new RegExp("new_" + assoc, "g")
+  regexp2= new RegExp("display: none;", "g")
   new_id = new Date().getTime()
-  $(this).before content.replace(regexp, new_id)
-  (".chzn-container").remove()
-  $(".chosen-select").removeClass("chzn-done").chosen()
+  $(this).before content.replace(regexp, new_id).replace(regexp2, "")
+  $("select").chosen()
   false
 
 $(document).on "click", "form a.remove_new_child", ->
