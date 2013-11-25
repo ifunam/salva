@@ -14,7 +14,7 @@ class UserRegularcourse < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  default_scope :include => [:period, :regularcourse], :order => 'periods.enddate DESC, regularcourses.title ASC'
+  default_scope joins(:period, :regularcourse).order('periods.enddate DESC, regularcourses.title ASC')
   scope :since, lambda { |date| includes(:period, :regularcourse).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
   scope :until, lambda { |date| includes(:period, :regularcourse).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
   scope :find_by_year, lambda { |year| since("#{year}-01-01").until("#{year}-12-31") }
@@ -24,6 +24,8 @@ class UserRegularcourse < ActiveRecord::Base
   scope :specialized, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 4)
   scope :highschool, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 1)
   scope :technical, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 2)
+  scope :regularcourse_id_by_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').joins(:period).where(:user_id => user_id) }
+  scope :regularcourse_id_not_eq_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').where("user_regularcourses.user_id != ?", user_id) }
 
   def to_s
     ["#{roleinregularcourse.name}: #{regularcourse.to_s}", "Horas por semana: #{hoursxweek}", "Periodo escolar: #{period.title}"].join(', ')
