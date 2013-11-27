@@ -5,7 +5,7 @@
 .span-14.last
   &nbsp
 .resume
-  .span-19.last.user_resume
+  .span-19.last.userrails.js_resume
     = render :partial => 'user_resume', :locals => { :user => @record }
   .span-19.last.skills-reseachlines
     - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
