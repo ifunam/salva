@@ -5,7 +5,7 @@ class Stimuluslevel < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   belongs_to :stimulustype
   #has_many :user_stimuli
-  default_scope :order => 'stimulustypes.name ASC, stimuluslevels.name ASC', :joins => :stimulustype
+  default_scope includes(:stimulustype).order('stimulustypes.name ASC, stimuluslevels.name ASC')
 
   def name_and_type
     [stimulustype.name, name, stimulustype.institution_name].compact.join(' ')
