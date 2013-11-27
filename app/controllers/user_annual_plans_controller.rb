@@ -14,7 +14,7 @@ class UserAnnualPlansController < ApplicationController
 
   def create
     authorize_document!
-    find_profile
+    find_document_and_profile
     params[:annual_plan].merge!(:user_id => current_user.id, :documenttype_id => @document_type.id, :delivered => false)
     @annual_plan = AnnualPlan.new(params[:annual_plan])
     if @annual_plan.save
