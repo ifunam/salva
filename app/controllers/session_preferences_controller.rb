@@ -18,4 +18,5 @@ class SessionPreferencesController < ApplicationController
     end
     session[:search_enabled] = val
   end
+
 end

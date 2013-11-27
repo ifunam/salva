@@ -83,7 +83,7 @@ group :production do
   gem "capistrano", "~> 2.13.0"
   gem "rvm-capistrano", "~> 1.2.5"
   gem "execjs", "~> 1.4.0"
-  gem "therubyracer", "~> 0.10.2"
+  gem "therubyracer", "~> 0.12.0"
   gem "exception_notification", "~> 2.6.1"
   gem "octopi", "~> 0.4.5"
   gem "dalli", "~> 2.1.0"
@@ -94,7 +94,7 @@ group :assets do
   gem "uglifier", "~> 1.2.7"
   gem "css_image_embedder", "~> 0.2.0"
   gem "sass-rails", "~> 3.2.5"
-  gem "therubyracer", "~> 0.10.2"
+  gem "therubyracer", "~> 0.12.0"
   gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
   gem "turbo-sprockets-rails3", "~> 0.3.2"
 end

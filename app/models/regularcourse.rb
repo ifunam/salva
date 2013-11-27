@@ -19,12 +19,12 @@ class Regularcourse < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope joins(:user_regularcourses => :period).order('periods.enddate DESC, regularcourses.title ASC')
-  scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses).where(:user_regularcourses => { :user_id => user_id }) }
-  scope :user_id_not_eq, lambda { |user_id|  where("regularcourses.id IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id !=  ?", user_id]).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.select('DISTINCT(regularcourse_id) as regularcourse_id').where(["user_regularcourses.user_id =  ?", user_id]).to_sql})") }
-  scope :period_id_eq, lambda { |period_id| joins(:user_regularcourses, :regularcourses).where(:user_regularcourses => { :period_id => period_id }) }
-  scope :since, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
-  scope :until, lambda { |date| joins(:user_regularcourses).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
+  default_scope includes(:user_regularcourses => :period).order('periods.enddate DESC, regularcourses.title ASC')
+  scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses=>:period).where(:user_regularcourses => { :user_id => user_id }) }
+  scope :user_id_not_eq, lambda { |user_id| where("regularcourses.id IN (#{UserRegularcourse.unscoped.regularcourse_id_not_eq_user_id(user_id).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.unscoped.regularcourse_id_by_user_id(user_id).to_sql})") }
+  scope :period_id_eq, lambda { |period_id| joins({:user_regularcourses => :period}, :regularcourses).where(:user_regularcourses => { :period_id => period_id }) }
+  scope :since, lambda { |date| joins(:user_regularcourses=>:period).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
+  scope :until, lambda { |date| joins(:user_regularcourses=> :period).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
   scope :among, lambda{ |start_date, end_date|  since(start_date).until(end_date) }
 
   search_methods :user_id_eq, :user_id_not_eq, :period_id_eq

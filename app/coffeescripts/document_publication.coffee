@@ -29,31 +29,46 @@ $(document).on "click", ".role_action a.action_link", (e)->
 $(document).on "click", "#new_checkbox", ->
   href = $(this).parent().attr("data-remote-resource")
   $.dialog_for_new_checkbox href
+  $(".chosen-select").chosen()
 
-$(document).on "submit", "#new_checkbox_form", ->
-  class_name = $(this).attr("data-class-name")
-  $("#new_checkbox_form").ajaxComplete (event, request, settings) ->
-    object = jQuery.parseJSON(request.responseText)
-    content = $("#" + class_name).find(".fields_template")[0]
-    assoc_name = $("#" + class_name).attr("data-has-many-association")
-    regexp = new RegExp("new_" + assoc_name, "g")
-    new_id = new Date().getTime()
-    html = $(content).html().replace("-1", object.id).replace("template_string", object.name)
-    $($("#" + class_name).find("ul")[0]).append html.replace(regexp, new_id)
-    $("#dialog").dialog "close"
-    $("#dialog").html('')
+$(document).on "click", "#new_checkbox_form input[type=submit]", (e)->
+  e.preventDefault()
+  class_name = this.parentNode.parentNode.getAttribute("data-class-name")
+  p = $.param($("#new_checkbox_form").serializeArray())
+  url = $("#new_checkbox_form").attr("action") + '.js'
+  options = 
+    url: url
+    type: "POST"
+    data: p
+    async: false
+  object = jQuery.parseJSON($.ajax(options).responseText)
+  content = $("#" + class_name).find(".fields_template")[0]
+  assoc_name = $("#" + class_name).attr("data-has-many-association")
+  regexp = new RegExp("new_" + assoc_name, "g")
+  new_id = new Date().getTime()
+  html = $(content).html().replace("-1", object.id).replace("template_string", object.name)
+  $($("#" + class_name).find("ul")[0]).append html.replace(regexp, new_id)
+  $("#dialog").dialog "close"
+  $("#dialog").html('')
 
 $(document).on "click", ".new_period", (e) ->
   (e).preventDefault()
   $.dialog_for_new_period @href
+  $(".chosen-select").chosen()
 
-$(document).on "submit", "#new_period_form", (e) ->
-  (e).preventDefault()
+$(document).on "click", "#new_period_form input[type=submit]", (e)->
+  e.preventDefault()
   regularcourse_id = $("#new_period_form").attr("data-regularcourse-id")
-  $("#new_period_form").ajaxComplete (event, request, settings) ->
-    $($("#regularcourse_"+regularcourse_id).find('.periods ul')[0]).append request.responseText
-    $("#dialog").dialog "close"
-    $("#dialog").html('')
+  p = $.param($("#new_period_form").serializeArray())
+  url = $("#new_period_form").attr("action")
+  options = 
+    url: url
+    type: "POST"
+    data: p
+    async: false
+  $($("#regularcourse_"+regularcourse_id).find('.periods ul')[0]).append $.ajax(options).responseText
+  $("#dialog").dialog "close"
+  $("#dialog").html('')
 
 $(document).on "click", ".delete_period", (e) ->
   e.preventDefault()

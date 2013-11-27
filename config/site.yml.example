@@ -39,3 +39,6 @@ misc:
   schoolar_system_api: http://somewhere/api/v1
   schoolar_system_api_enabled: false
 
+api:
+  hosts_allow:
+    - 127.0.0.1
