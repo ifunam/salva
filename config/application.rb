@@ -26,7 +26,7 @@ module Salva
 
     # Activate observers that should always be running.
     if Rails.env.production? or Rails.env.development?
-      config.active_record.observers = :user_observer, :document_observer, :user_article_observer
+      config.active_record.observers = :user_observer, :document_observer#, :user_article_observer -> deactivate articles notifications
     end
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
