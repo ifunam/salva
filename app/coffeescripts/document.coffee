@@ -36,6 +36,7 @@ $(document).on "change", "#filter_jobpositiontype_id", ->
 
 $ ->
   $(".chosen-select").chosen()
+  $("select").chosen()
 
   current_year = new Date().getFullYear()
   $.date_picker_for ".birthdate", current_year - 100, current_year - 15
