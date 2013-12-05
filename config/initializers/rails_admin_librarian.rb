@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
   # Add models here if you want to go 'whitelist mode':
   config.included_models = [Article, Journal, User, Country, Mediatype, Publisher, UserRefereedJournal, UserJournal,
                             Thesis, UserThesis, Thesismodality, Thesisstatus, Titlemodality, Career, Institution, Degree,
-                            Institutiontype, Roleinthesis, Indivadvice, TutorialCommittee, UserThesis
+                            Institutiontype, Roleinthesis, Indivadvice, TutorialCommittee, ThesisJuror
                             ]
 
   # Application wide tried label methods for models' instances
@@ -228,6 +228,24 @@ RailsAdmin.config do |config|
     edit do
       field :user
       field :roleinthesis
+    end
+  end
+
+  config.model ThesisJuror do
+    list do
+      field :thesis
+      field :user
+      field :roleinjury
+      field :year
+      field :month
+    end
+
+    edit do
+      field :thesis
+      field :user
+      field :roleinjury
+      field :year
+      field :month
     end
   end
   config.model Degree do

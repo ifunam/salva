@@ -1,6 +1,6 @@
 class ThesisJuror < ActiveRecord::Base
   @@ignore_meta_date = true
-  attr_accessible :roleinjury_id, :user_id, :thesis_id
+  attr_accessible :roleinjury_id, :user_id, :thesis_id, :year, :month
   validates_presence_of :roleinjury_id
   validates_numericality_of :roleinjury_id
   belongs_to :user

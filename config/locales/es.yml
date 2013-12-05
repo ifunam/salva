@@ -298,6 +298,9 @@ es:
       user_thesis:
         one: Colaboración en tesis
         other: Colaboraciones en tesis
+      thesis_juror:
+        one: Jurado de tesis
+        other: Jurados de tesis
 
     attributes:
       user:
@@ -796,7 +799,12 @@ es:
         roleincourse_id: Rol
       user_thesis:
         roleinthesis: Rol
-        roleinthesis_id: Rol
+      thesis_juror:
+        roleinjury: Rol
+        user: Académico
+        thesis: Tesis
+        month: Mes
+        year: Año
       annual_plan:
         body: Descripción
       annual_report:
