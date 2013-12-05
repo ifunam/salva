@@ -16,6 +16,6 @@ class UserJournal < ActiveRecord::Base
   default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC'
 
   def to_s
-    [journal.name, "#{roleinjournal.name}: #{user.author_name}", start_date, end_date].compact.join(', ')
+    [(journal_id.nil? ? "Journal no registrado" : journal.name), "#{roleinjournal.name}: #{user.author_name}", start_date, end_date].compact.join(', ')
   end
 end
