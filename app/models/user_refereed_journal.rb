@@ -14,7 +14,7 @@ class UserRefereedJournal < ActiveRecord::Base
   def to_s
     s = []
     s.push "Árbitro de #{refereed_criterium.name}" unless refereed_criterium_id.nil?
-    s.push journal.name unless journal_id.nil?
+    s.push(journal.nil? ? "Journal no registrado" : journal.name)
     s.push date
     s.compact.join(', ')
   end
