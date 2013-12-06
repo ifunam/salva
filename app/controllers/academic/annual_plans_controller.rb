@@ -3,7 +3,7 @@ class Academic::AnnualPlansController < Academic::ApplicationController
   layout 'academic'
 
   def index
-    respond_with(@documents = Document.annual_plans.where(:approved_by_id => current_user.id).page(params[:page] || 1).per(10))
+    respond_with(@documents = Document.annual_plans.where(:approved_by_id => current_user.id).page(params[:page] || 1).fullname_asc.per(10))
   end
 
   def approve
