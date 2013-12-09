@@ -8,7 +8,7 @@ class Academic::AnnualPlansController < Academic::ApplicationController
 
   def approve
     authorize_action!
-    respond_with(@document.approve)
+    respond_with(@document.approve, :location => academic_annual_plans_url)
   end
 
   def edit
@@ -20,7 +20,7 @@ class Academic::AnnualPlansController < Academic::ApplicationController
     authorize_action!
     @document.update_attributes(params[:document], :as => :academic)
     @document.reject
-    respond_with(@document)
+    respond_with(@document, :location => academic_annual_plans_url)
   end
 
   def authorize_action!
