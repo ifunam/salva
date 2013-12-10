@@ -131,8 +131,8 @@ class User < ActiveRecord::Base
 
   has_many :user_articles, :include => :articles, :inverse_of => :user
   has_many :articles, :through => :user_articles, :inverse_of => :users
-  has_many :user_refereed_journals, :include => :journals, :inverse_of => :user
-  has_many :journals, :through => :user_refereed_journals, :inverse_of => :users
+  has_many :user_refereed_journals, :include => :journal, :inverse_of => :user
+  has_many :journals, :through => :user_refereed_journals
 
   has_many :published_articles, :through => :user_articles, :source => :article,
            :conditions => 'articles.articlestatus_id = 3',
