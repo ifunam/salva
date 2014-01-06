@@ -10,13 +10,14 @@
       = u.association :institution, :using => :name
       = u.attribute :start_date
       = u.attribute :end_date
-    .row
-      .span-5
-        %label= u.label :adscription
-        = @jobposition.user_adscription.adscription.name
-      .span-13.last
-        %label=u.label :descr
-        = @jobposition.user_adscription.descr
+    - unless @jobposition.user_adscription.nil?
+      .row
+        .span-5
+          %label= u.label :adscription
+          = @jobposition.user_adscription.adscription.name
+        .span-13.last
+          %label=u.label :descr
+          = @jobposition.user_adscription.descr
 
     .row
       = render :partial => 'shared/record', :object => @jobposition
