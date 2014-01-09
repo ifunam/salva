@@ -3,7 +3,7 @@
     %h3 Inicio de sesión
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       = f.label :login
-      = f.text_field :login, :size => 16, :maxlength => 16
+      = f.text_field :login, :size => 16, :maxlength => 20
       = f.label :password
       = f.password_field :password, :size => 16
       #submit_buttons
