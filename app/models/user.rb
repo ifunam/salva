@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
   scope :researchers, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110)", :include => { :jobpositions => :jobpositioncategory}
   scope :academic_technicians, :conditions => "jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id != 1 OR jobpositioncategories.roleinjobposition_id != 110 OR jobpositioncategories.roleinjobposition_id != 4 OR jobpositioncategories.roleinjobposition_id != 5)", :include => { :jobpositions => :jobpositioncategory}
   scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
+  scope :researchers_and_posdoctorals, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110 OR jobpositioncategories.roleinjobposition_id = 111)", :include => { :jobpositions => :jobpositioncategory}
+
 
   # :userstatus_id_equals => find_all_by_userstatus_id
   scope :fullname_like, lambda { |fullname| 
@@ -147,6 +149,13 @@ class User < ActiveRecord::Base
 
   has_many :user_theses
   has_many :theses, :through => :user_theses
+
+  has_many :bookedition_roleinbooks
+  has_many :bookeditions, :through => :bookedition_roleinbooks
+
+  has_many :chapterinbook_roleinchapters
+  has_many :chapterinbooks, :through => :chapterinbook_roleinchapters
+
 
   accepts_nested_attributes_for :person, :address, :jobposition, :user_group, :user_schoolarships, :reports, :user_schoolarship
   accepts_nested_attributes_for :user_identifications, :allow_destroy => true
