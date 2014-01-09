@@ -29,10 +29,10 @@ class Bookedition < ActiveRecord::Base
   scope :inprogress, :conditions => 'editionstatus_id != 1'
 
   scope :authors, joins(:bookedition_roleinbooks).
-                  where("roleinbook_id = 1 OR roleinbook_id = 2")
+                  where("bookedition_roleinbooks.roleinbook_id = 1 OR bookedition_roleinbooks.roleinbook_id = 2")
 
   scope :collaborators, joins(:bookedition_roleinbooks).
-                  where("roleinbook_id != 1 AND roleinbook_id != 2")
+                  where("bookedition_roleinbooks.roleinbook_id != 1 AND bookedition_roleinbooks.roleinbook_id != 2")
 
   scope :user_id_eq, lambda { |user_id|
     joins(:bookedition_roleinbooks).
