@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   scope :academic_technicians, :conditions => "jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id != 1 OR jobpositioncategories.roleinjobposition_id != 110 OR jobpositioncategories.roleinjobposition_id != 4 OR jobpositioncategories.roleinjobposition_id != 5)", :include => { :jobpositions => :jobpositioncategory}
   scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
   scope :researchers_and_posdoctorals, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110 OR jobpositioncategories.roleinjobposition_id = 111)", :include => { :jobpositions => :jobpositioncategory}
+  scope :activated_academics, lambda { self.researchers_and_posdoctorals.activated | self.academic_technicians.activated }
 
 
   # :userstatus_id_equals => find_all_by_userstatus_id
