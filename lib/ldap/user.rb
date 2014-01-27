@@ -45,7 +45,7 @@ module LDAP
     end
 
     def self.entry_to_record(entry)
-      new(:login => entry.uid.first, :email => entry.mail.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false,
+      new(:login => entry.uid.first, :email => entry.mailRoutingAddress.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false,
           :title => entry.title.first)
     end
 
@@ -133,12 +133,12 @@ module LDAP
         :objectClass => ldap_object_class,
         :cn => fullname,
         :sn => 'sn',
-        :mail => "#{login}/",
-        :mailRoutingAddress => "#{login}@fisica.unam.mx",
-        :ou => group,
-        :uid => login,
-        :userPassword => Net::LDAP::Password.generate(:sha, password),
-        :title => title
+        :mail => force_encoding("#{login}/"),
+        :mailRoutingAddress => force_encoding("#{login}@fisica.unam.mx"),
+        :ou => force_encoding(group),
+        :uid => force_encoding(login),
+        :userPassword => Net::LDAP::Password.generate(:sha, force_encoding(password)),
+        :title => force_encoding(title)
       }
     end
 
