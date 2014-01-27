@@ -62,7 +62,6 @@ gem "prawn", "0.12.0"
 gem "prawn_rails", "~> 0.0.10"
 gem "spreadsheet", "0.7.3"
 gem "barby", "0.5.0"
-gem "rest-client", "~> 1.6.7"
 gem "RedCloth", "~> 4.2.9"
 gem "rtf", "~> 0.3.3"
 gem "rtf_rails", "0.0.1"
@@ -90,12 +89,6 @@ group :production do
 end
 
 group :assets do
-  gem "coffee-script", "~> 2.2.0"
-  gem "uglifier", "~> 1.2.7"
-  gem "css_image_embedder", "~> 0.2.0"
-  gem "sass-rails", "~> 3.2.5"
-  gem "therubyracer", "~> 0.12.0"
-  gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
   gem "turbo-sprockets-rails3", "~> 0.3.2"
 end
 
@@ -104,7 +97,6 @@ group :development do
   gem "hpricot", "0.8.6"
   gem "ruby_parser", "2.3.1"
   gem "unicorn", "4.3.1"
-  gem "capistrano", "~> 2.13.0"
   gem "pry-rails", "~> 0.2.1"
 end
 
