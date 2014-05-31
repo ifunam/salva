@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.16"
+gem "rails", "~> 3.2.18"
 gem "haml", "~> 4.0.3"
 gem "show_for", "0.2.5"
 gem "simple_form", "2.0.2"
@@ -14,6 +14,7 @@ gem "cancan", "1.6.7"
 
 # Authentication
 gem "devise", "~> 2.1.2"
+gem "bcrypt", "~> 3.1.7"
 gem "devise-encryptable", "~> 0.1.1"
 gem "devise_ldap_authenticatable", "~> 0.6.1"
 gem "devise-i18n", "~> 0.5.4"
