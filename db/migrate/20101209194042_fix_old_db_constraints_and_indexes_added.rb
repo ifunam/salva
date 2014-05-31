@@ -63,6 +63,7 @@ class FixOldDbConstraintsAndIndexesAdded < ActiveRecord::Migration
     # CREATE UNIQUE INDEX people_id_key ON people USING btree (id);
     unless index_name_exists? :people, :people_id_key, :default
       add_index :people, :id, :name => :people_id_key, :unique => true
+      execute "ALTER TABLE people ADD PRIMARY KEY (id);"
     end
   end
 
