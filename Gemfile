@@ -19,6 +19,7 @@ gem "devise-encryptable", "~> 0.1.1"
 gem "devise_ldap_authenticatable", "~> 0.6.1"
 gem "devise-i18n", "~> 0.5.4"
 gem "net-ldap", "0.2.2"
+gem "iconv", "1.0.4"
 
 # Searching and tagging
 gem "tsearch", :require => "texticle"
