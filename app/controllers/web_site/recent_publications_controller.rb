@@ -5,7 +5,7 @@ class WebSite::RecentPublicationsController < WebSite::ApplicationController
 
   def index
     @collections = [
-                    { :title => :published_articles, :collection => Article.where(:year => Date.today.year).published.verified }
+                    { :title => :published_articles, :collection => Article.published.verified.current_year }
                     ]
     respond_with @collections
   end
