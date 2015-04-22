@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :current_password
 
-  validates :login, :email, :presence => true, :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true
+  validates :login, :presence =>true, :length => { :minimum => 5, :maximum => 15 },  :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true
   validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
   validates_confirmation_of :password
 
