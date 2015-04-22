@@ -2,7 +2,8 @@
 class Regularcourse < ActiveRecord::Base
   attr_accessible :title, :modality_id, :user_regularcourses_attributes, :semester, :credits, :academicprogram_attributes
   validates_presence_of :title, :modality_id
-  validates_numericality_of :id, :semester, :credits, :academicprogram_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_numericality_of :id, :academicprogram_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+  validates_numericality_of :semester, :credits, :allow_nil => true, :only_integer => true
   validates_numericality_of :modality_id,  :greater_than => 0, :only_integer => true
 
   belongs_to :academicprogram
