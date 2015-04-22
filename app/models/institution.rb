@@ -61,6 +61,7 @@ class Institution < ActiveRecord::Base
   def school_and_university_names
     names = ["Facultad, escuela o posgrado: #{name}"]
     names.push("Institución: #{institution.name}") unless institution_id.nil?
+    names.join(', ')
   end
 
   def name_and_parent(attribute=:abbrev)
