@@ -36,7 +36,7 @@ ActiveAdmin.register User do
         f.input :password, :as => :password
         f.input :password_confirmation, :as => :password
       end
-      f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select
+      f.input :user_incharge, :collection => User.activated.collect {|record| [record.to_s, record.id] }, :as => :select, :input_html => { :allow_single_deselect => true}
 
       f.inputs I18n.t("active_admin.user_group"), :for => [:user_group, f.object.user_group || UserGroup.new] do |ug_form|
         ug_form.input :group, :as => :radio
