@@ -35,7 +35,7 @@ class StudentClient
   def hash_from_redis
     if @redis.get(@key).nil?
       @redis.set(@key, get_resource)
-      @redis.expire(@key, Date.today + 1.day)
+      @redis.expire(@key, 86400)
     end
     JSON.parse(@redis.get(@key)).to_hash
   end
