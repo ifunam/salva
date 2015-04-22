@@ -34,6 +34,7 @@ accounts_notification:
 
 app:
   secret_token: 52d737e54b7c19af1c06c7101e405f842645b5c9446acd9cfa70bbdebf6aada443bb35460a5af20e3f93d567e59999fd6bd1d78ccc865b961c84318b4ebbf308
+  secret_token_base: 7a3f718c6127f9151acc335e718ad17f9eedb4b650bc10d43ef95a116a1b40ea2e3e28f4021fc3a78279b7f3768afe72302a69a48044ecfeb62973adbafa2ea
 
 misc:
   schoolar_system_api: http://somewhere/api/v1
