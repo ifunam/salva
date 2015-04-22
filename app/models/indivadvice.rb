@@ -52,7 +52,11 @@ class Indivadvice < ActiveRecord::Base
 
   def institution_name
     unless career_id.nil?
-      career.institution.school_and_university_names
+      unless career.institution_id.nil?
+        career.institution.school_and_university_names
+      else
+        ''
+      end
     else
       institution.school_and_university_names unless institution_id.nil?
     end
