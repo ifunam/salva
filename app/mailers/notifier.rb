@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
   include Salva::SiteConfig
-  include Resque::Mailer if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
+  # include Resque::Mailer if File.exist? File.join(Rails.root.to_s, 'config', 'resque.yml')
 
   default :from => Salva::SiteConfig.system('email')
 
