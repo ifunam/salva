@@ -217,4 +217,14 @@ ActiveAdmin.register User do
     end
   end
 
+  csv do
+    column :id
+    column :login
+    column :email
+    column :fullname_or_email
+    column :adscription_name
+    column :category_name
+    column :user_incharge_fullname
+    column(:userstatus) { |user| user.userstatus.name }
+  end
 end
