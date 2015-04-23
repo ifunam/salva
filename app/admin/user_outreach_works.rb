@@ -1,5 +1,5 @@
 # encoding: utf-8
-ActiveAdmin.register UserGenericwork do
+ActiveAdmin.register UserGenericwork, :as => "UserOutreachWork" do
   menu :parent => 'Reportes', :label => 'Trabajos de vinculación'
   controller do
     def scoped_collection
@@ -12,6 +12,7 @@ ActiveAdmin.register UserGenericwork do
     column(:title) { |record| record.genericwork.title }
     column(:authors) { |record| record.genericwork.authors }
     column(:institution) { |record| record.genericwork.institution_name }
+    column(:country) { |record| record.genericwork.institution_country }
     column(:fullname) { |record| record.user.fullname_or_email }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column :userrole
@@ -31,6 +32,7 @@ ActiveAdmin.register UserGenericwork do
     column(:title) { |record| record.genericwork.title }
     column(:authors) { |record| record.genericwork.authors }
     column(:institution) { |record| record.genericwork.institution_name }
+    column(:country) { |record| record.genericwork.institution_country }
     column(:fullname) { |record| record.user.fullname_or_email }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:userrole) { |record| record.userrole.name }

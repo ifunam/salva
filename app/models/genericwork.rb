@@ -41,6 +41,19 @@ class Genericwork < ActiveRecord::Base
   end
 
   def institution_name
+    institution.name unless institution.nil?
+  end
+
+  def institution_and_country
     institution.name_and_country unless institution.nil?
   end
+
+  def institution_country
+    institution.country.name unless institution.nil?
+  end
+
+  def publisher_name
+    publisher.name unless publisher.nil?
+  end
+
 end
