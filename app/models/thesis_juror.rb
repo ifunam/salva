@@ -32,10 +32,11 @@ class ThesisJuror < ActiveRecord::Base
   scope :authors_cont, lambda { |a| joins(:thesis).where("theses.authors ILIKE ?", "%#{a}%").order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
   scope :since_date, lambda { |d| joins(:thesis).where("theses.end_date >= ?", d).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
   scope :until_date, lambda { |d| joins(:thesis).where("theses.end_date <= ?", d).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
-
+  scope :degree_id_eq, lambda { |id| joins(:thesis=> :career).where({:thesis => {:career => { :degree_id=> id}}}).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
 
   search_methods :among, :splat_param => true, :type => [:date, :date]
-  search_methods :thesismodality_id_eq, :authors_cont, :since_date, :until_date
+  search_methods :thesismodality_id_eq, :authors_cont, :since_date, :until_date,
+                 :degree_id_eq
 
   def to_s
     [thesis.authors, thesis.title, user.fullname_or_email, "(#{roleinjury.name})", thesis.date].join(', ')

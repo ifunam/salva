@@ -20,6 +20,7 @@ ActiveAdmin.register ThesisJuror do
 
   filter :user, :label => 'Académico'
   filter :roleinjury, :label => 'Rol'
+  filter :degree_id, :collection => proc { Degree.universitary }, :label => 'Grado', :as => :select
   filter :thesismodality_id, :collection => proc { Thesismodality.all }, :label => 'Modalidad', :as => :select
   filter :thesis, :collection => proc { Thesis.all }, :label => 'Título'
   filter :authors_cont, :as => :string, :label => 'Autor(es)'

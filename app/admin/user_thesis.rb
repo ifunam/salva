@@ -23,6 +23,7 @@ ActiveAdmin.register UserThesis do
 
   filter :user, :label => 'Académico'
   filter :roleinthesis, :label => 'Rol'
+  filter :degree_id, :collection => proc { Degree.universitary }, :label => 'Grado', :as => :select
   filter :thesisstatus_id, :collection => proc { Thesisstatus.all }, :label => 'Status', :as => :select
   filter :thesismodality_id, :collection => proc { Thesismodality.all }, :label => 'Modalidad', :as => :select
   filter :thesis, :collection => proc { Thesis.all }, :label => 'Título'

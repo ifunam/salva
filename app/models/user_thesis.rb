@@ -22,9 +22,10 @@ class UserThesis < ActiveRecord::Base
   scope :thesisstatus_id_eq, lambda { |id| joins(:thesis).where("theses.thesisstatus_id = ?", id).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
   scope :thesismodality_id_eq, lambda { |id| joins(:thesis).where("theses.thesismodality_id = ?", id).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
   scope :is_verified_eq, lambda { |s| joins(:thesis).where("theses.is_verified = ?", s).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
+  scope :degree_id_eq, lambda { |id| joins(:thesis=> :career).where({:thesis => {:career => { :degree_id=> id}}}).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
 
   search_methods :start_date, :end_date, :authors_cont, :thesisstatus_id_eq,
-                 :thesismodality_id_eq, :is_verified_eq
+                 :thesismodality_id_eq, :is_verified_eq, :degree_id_eq
 
   def to_s
     [user.fullname_or_email, "(#{roleinthesis.name})"].join(' ')
