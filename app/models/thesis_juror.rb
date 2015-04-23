@@ -10,6 +10,8 @@ class ThesisJuror < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
+  default_scope joins(:thesis).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC")
+
   scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where(["thesis_jurors.user_id !=  ?", user_id]) }
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(thesis_id) as thesis_id').where :user_id => user_id }
   scope :since, lambda { |start_date| includes(:thesis).where(:thesis => {:start_date.gteq => start_date}) }
@@ -26,7 +28,14 @@ class ThesisJuror < ActiveRecord::Base
       }
     }
   }
+  scope :thesismodality_id_eq, lambda { |id| joins(:thesis).where("theses.thesismodality_id = ?", id).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
+  scope :authors_cont, lambda { |a| joins(:thesis).where("theses.authors ILIKE ?", "%#{a}%").order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
+  scope :since_date, lambda { |d| joins(:thesis).where("theses.end_date >= ?", d).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
+  scope :until_date, lambda { |d| joins(:thesis).where("theses.end_date <= ?", d).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC") }
+
+
   search_methods :among, :splat_param => true, :type => [:date, :date]
+  search_methods :thesismodality_id_eq, :authors_cont, :since_date, :until_date
 
   def to_s
     [thesis.authors, thesis.title, user.fullname_or_email, "(#{roleinjury.name})", thesis.date].join(', ')
