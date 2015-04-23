@@ -39,7 +39,7 @@ class Genericwork < ActiveRecord::Base
   def to_s
     [authors, title, "Tipo de trabajo: #{genericworktype.name}", "Status: #{genericworkstatus.name}", institution_name, pages, date].compact.join(', ')
   end
-  
+
   def institution_name
     institution.name_and_country unless institution.nil?
   end

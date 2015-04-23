@@ -10,12 +10,18 @@ class UserGenericwork  < ActiveRecord::Base
   belongs_to :user
 
   scope :find_by_year, lambda { |year| joins(:genericwork).where("genericworks.year = ?", year) }
+  scope :year_eq, lambda { |year| joins(:genericwork).where("genericworks.year = ?", year) }
 
   scope :technical_reports, joins(:genericwork=> :genericworktype).where(:genericwork => {:genericworktype => { :name => 'Reportes técnicos' }})
   scope :popular_science, joins(:genericwork => :genericworktype).where(:genericwork => {:genericworktype => { :genericworkgroup_id => 1 }})
   scope :outreach_works, joins(:genericwork => :genericworktype).where(:genericwork => {:genericworktype => { :genericworkgroup_id => 6 }})
   scope :other_works, joins(:genericwork => :genericworktype).where(:genericwork => {:genericworktype => { :genericworkgroup_id => 5 }})
   scope :teaching_products, joins(:genericwork => :genericworktype).where(:genericwork => {:genericworktype => { :genericworkgroup_id => 4 }})
+
+  scope :genericworkstatus_id_eq, lambda { |id| joins(:genericwork).where(:genericwork => {:genericworkstatus_id => id }) }
+  scope :genericworktype_id_eq, lambda { |id| joins(:genericwork).where(:genericwork => {:genericworktype_id => id }) }
+
+  search_methods :year_eq, :genericworkstatus_id_eq, :genericworktype_id_eq
 
   def author_with_role
     [user.author_name, "(#{userrole.name})"].join(' ')
