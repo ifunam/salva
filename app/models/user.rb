@@ -312,6 +312,10 @@ class User < ActiveRecord::Base
     jobposition_log.nil? ? email : jobposition_log.worker_key
   end
 
+  def worker_key_or_login
+    worker_key.nil? ? login : worker_key
+  end
+
   def students
     StudentClient.new(self.login).all
   end

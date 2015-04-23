@@ -218,7 +218,6 @@ ActiveAdmin.register User do
   end
 
   csv do
-    column :id
     column :login
     column :email
     column :fullname_or_email
