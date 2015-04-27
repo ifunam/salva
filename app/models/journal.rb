@@ -33,4 +33,12 @@ class Journal < ActiveRecord::Base
   def notify_to_librarian
     JournalNotifier.notify_to_librarian(self.id).deliver unless self.is_verified?
   end
+
+  def country_name
+    country_id.nil? ? '-' : country.name
+  end
+
+  def publisher_name
+    publisher_id.nil? ? '-' : publisher.name
+  end
 end
