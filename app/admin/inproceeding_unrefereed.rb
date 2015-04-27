@@ -1,14 +1,14 @@
 # encoding: utf-8
-ActiveAdmin.register UserInproceeding, :as => 'InproceedingRefereed'  do
-  menu :parent => 'Reportes', :label => 'Artículos en memorias arbitradas'
+ActiveAdmin.register UserInproceeding, :as => 'InproceedingiUnrefereed'  do
+  menu :parent => 'Reportes', :label => 'Artículos en memorias in Extenso'
 
   controller do
     def scoped_collection
-      UserInproceeding.refereed
+      UserInproceeding.unrefereed
     end
   end
 
-  index :title => 'Artículos en memorias arbitradas' do
+  index :title => 'Artículos en memorias in Extenso' do
     column(:id) { |record| record.inproceeding.id }
 
     column(:inproceeding_authors) { |record| record.inproceeding.authors }

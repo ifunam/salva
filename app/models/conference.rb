@@ -54,4 +54,8 @@ class Conference < ActiveRecord::Base
   def institution_names
     institutions.collect {|record| record.name_and_parent_abbrev }.compact.join(', ') if institutions.size > 0
   end
+
+  def conferencescope_name
+    conferencescope_id.nil? ? '-' : conferencescope.name
+  end
 end
