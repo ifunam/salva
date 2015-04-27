@@ -40,4 +40,8 @@ class Proceeding < ActiveRecord::Base
       [title, (publisher.nil? ? nil : publisher.name), conference.name, year].compact.join(', ')
     end
   end
+
+  def publisher_name
+    publisher_id.nil? ? '-' : publisher.name
+  end
 end
