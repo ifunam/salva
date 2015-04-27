@@ -11,6 +11,10 @@ class BookeditionRoleinbook < ActiveRecord::Base
   scope :authors, where("roleinbook_id = 1 OR roleinbook_id = 2")
   scope :collaborators, where("roleinbook_id != 1 AND roleinbook_id != 2")
   scope :find_by_year, lambda { |year| joins(:bookedition).where('bookeditions.year = ?', year) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :find_by_year, :adscription_id
+
   def to_s
     "#{user.author_name} (#{roleinbook.name})"
   end

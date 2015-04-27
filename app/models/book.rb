@@ -15,4 +15,12 @@ class Book < ActiveRecord::Base
   def to_s
     [authors, title, volume].compact.join(', ')
   end
+
+  def language_name
+    language.name unless language_id.nil?
+  end
+
+  def country_name
+    country.name unless country_id.nil?
+  end
 end

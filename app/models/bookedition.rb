@@ -68,4 +68,21 @@ class Bookedition < ActiveRecord::Base
   def collaborators
     bookedition_roleinbooks.collaborators
   end
+
+  def editionstatus_name
+    editionstatus_id.nil? ? '-' : editionstatus.name
+  end
+
+  def mediatype_name
+    mediatype_id.nil? ? '-' : mediatype.name
+  end
+
+  def book_language
+    book.language_name unless book_id.nil?
+  end
+
+  def book_country
+    book.country_name unless book_id.nil?
+  end
+
 end
