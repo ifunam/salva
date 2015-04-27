@@ -2,12 +2,6 @@
 ActiveAdmin.register UserConferencetalk, :as => 'ConferenceTalk'  do
   menu :parent => 'Reportes', :label => 'Trabajos presentados en congresos'
 
-  #controller do
-  #  def scoped_collection
-  #    UserConferencetalk.unrefereed
-  #  end
-  #end
-
   index :title => 'Trabajos presentados en congresos' do
     column(:id) { |record| record.conferencetalk.id }
 
