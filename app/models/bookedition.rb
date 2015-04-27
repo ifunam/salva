@@ -84,5 +84,4 @@ class Bookedition < ActiveRecord::Base
   def book_country
     book.country_name unless book_id.nil?
   end
-
 end

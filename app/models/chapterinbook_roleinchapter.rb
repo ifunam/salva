@@ -17,9 +17,11 @@ class ChapterinbookRoleinchapter < ActiveRecord::Base
     sql = "chapterinbooks.bookedition_id IN (#{bookedition_sql})"
     joins(:chapterinbook=>:bookedition).where(sql)
   }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :find_by_year, :adscription_id
 
   def to_s
     "#{user.author_name} (#{roleinchapter.name})"
   end
-  
 end
