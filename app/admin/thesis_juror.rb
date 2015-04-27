@@ -4,7 +4,7 @@ ActiveAdmin.register ThesisJuror do
   menu :parent => 'Reportes'
 
   index do
-    column :id
+    column(:id) { |record| record.thesis.id }
     column(:title) { |record| record.thesis.title }
     column(:authors) { |record| record.thesis.authors }
     column(:fullname) { |record| record.user.fullname_or_email }

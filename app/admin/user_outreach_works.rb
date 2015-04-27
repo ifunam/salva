@@ -8,7 +8,7 @@ ActiveAdmin.register UserGenericwork, :as => "UserOutreachWork" do
   end
 
   index :title => 'Trabajos de vinculación' do
-    column :id
+    column(:id) { |record| record.genericwork.id }
     column(:title) { |record| record.genericwork.title }
     column(:authors) { |record| record.genericwork.authors }
     column(:institution) { |record| record.genericwork.institution_name }

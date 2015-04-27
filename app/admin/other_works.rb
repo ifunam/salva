@@ -9,7 +9,7 @@ ActiveAdmin.register UserGenericwork, :as => "OtherWork"  do
   end
 
   index :title => 'Otros trabajos' do
-    column :id
+    column(:id) { |record| record.genericwork.id }
     column(:title) { |record| record.genericwork.title }
     column(:authors) { |record| record.genericwork.authors }
     column(:institution)  { |record| record.genericwork.institution_name }
