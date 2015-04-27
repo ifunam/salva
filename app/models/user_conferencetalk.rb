@@ -17,6 +17,11 @@ class UserConferencetalk < ActiveRecord::Base
   scope :national, joins(:conferencetalk => :conference).where('conferences.conferencescope_id = 2')
   scope :international, joins(:conferencetalk => :conference).where('conferences.conferencescope_id = 3')
 
+  scope :conferencescope_id, lambda { |id| joins(:conferencetalk => :conference).where('conferences.conferencescope_id = ?', id) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :year_eq, :conferencescope_id, :adscription_id
+
   def author_with_role
     "#{user.author_name} (#{roleinconferencetalk.name})"
   end

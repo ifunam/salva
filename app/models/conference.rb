@@ -58,4 +58,12 @@ class Conference < ActiveRecord::Base
   def conferencescope_name
     conferencescope_id.nil? ? '-' : conferencescope.name
   end
+
+  def conferencetype_name
+    conferencetype_id.nil? ? '-' : conferencetype.name
+  end
+
+  def country_name
+    country_id.nil? ? '-' : country.name
+  end
 end
