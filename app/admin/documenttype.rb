@@ -1,5 +1,7 @@
 # encoding: utf-8
 ActiveAdmin.register Documenttype do
+  menu :priority => 2
+
   form do |f|
     f.inputs do
       f.input :name, :as => :string
