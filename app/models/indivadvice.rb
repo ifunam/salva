@@ -24,6 +24,10 @@ class Indivadvice < ActiveRecord::Base
   default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC, indivname ASC'
   scope :students, where('indivadvicetarget_id <= 3')
   scope :professors, where('indivadvicetarget_id > 3')
+  scope :degree_id, lambda { |id| joins(:career).where("careers.degree_id = ?", id) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :degree_id, :adscription_id
 
   def to_s
     if indivadvicetarget_id > 3
