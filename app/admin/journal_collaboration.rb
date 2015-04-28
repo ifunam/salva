@@ -47,9 +47,4 @@ ActiveAdmin.register UserJournal, :as => 'JournalCollaboration'  do
     column(:adscription) { |record| record.user.adscription_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
-
-  def index
-    binding.pry
-    super
-  end
 end
