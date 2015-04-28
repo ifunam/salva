@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register BookeditionRoleinbook, :as => 'BookCollaborator'  do
-  menu :parent => 'Reportes', :label => 'Colaboración en libros'
+  menu :parent => 'Colaboración en publicaciones', :label => 'Colaboración libros'
   controller do
     def scoped_collection
       BookeditionRoleinbook.collaborators
