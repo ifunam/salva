@@ -79,4 +79,8 @@ class Institution < ActiveRecord::Base
   def name_and_country
     !country.nil? ? [name, country.name].join(', ') : name
   end
+
+  def country_name
+    country_id.nil? ? '-' : country.name
+  end
 end

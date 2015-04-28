@@ -38,4 +38,16 @@ class Seminary < ActiveRecord::Base
     organizers = user_seminaries.where(:roleinseminary_id => 3)
     'Organizador(es): ' + organizers.collect {|record| record.user.author_name }.join(', ') if organizers.size > 0
   end
+
+  def seminarytype_name
+    seminarytype_id.nil? ? '-' : seminarytype.name
+  end
+
+  def institution_name
+    institution_id.nil? ? '-' : institution.name
+  end
+
+  def institution_country
+    institution_id.nil? ? '-' : institution.country_name
+  end
 end

@@ -14,6 +14,10 @@ class UserSeminary < ActiveRecord::Base
 
   scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(seminary_id) as seminary_id').where(["user_seminaries.user_id !=  ?", user_id]) }
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(seminary_id) as seminary_id').where :user_id => user_id }
+  scope :year_eq, lambda { |year| joins(:seminary).where('seminaries.year = ?', year) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :year_eq, :adscription_id
 
   def author_with_role
     [user.author_name, "(#{roleinseminary.name})"].join(' ')
