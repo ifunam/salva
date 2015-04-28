@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserArticle, :as => "PublishedArticle"  do
-  menu :parent => 'Reportes', :label => 'Artículos publicados'
+  menu :parent => 'Publicaciones', :label => 'Artículos publicados'
 
   controller do
     def scoped_collection

@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register ChapterinbookRoleinchapter, :as => 'BookChapter'  do
-  menu :parent => 'Reportes', :label => 'Capítulos en libros'
+  menu :parent => 'Publicaciones', :label => 'Capítulos en libros'
 
   index :title => 'Capítulos en libros' do
     column(:id) { |record| record.chapterinbook.id }

@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register BookeditionRoleinbook, :as => 'BookAuthor'  do
-  menu :parent => 'Reportes', :label => 'Autoría de libros'
+  menu :parent => 'Publicaciones', :label => 'Autoría de libros'
   controller do
     def scoped_collection
       BookeditionRoleinbook.authors

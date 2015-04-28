@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserGenericwork, :as => "TechnicalReport"  do
-  menu :parent => 'Reportes', :label => 'Reportes técnicos'
+  menu :parent => 'Publicaciones', :label => 'Reportes técnicos'
 
   controller do
     def scoped_collection

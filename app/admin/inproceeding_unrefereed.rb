@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserInproceeding, :as => 'InproceedingiUnrefereed'  do
-  menu :parent => 'Reportes', :label => 'Artículos en memorias in Extenso'
+  menu :parent => 'Publicaciones', :label => 'Artículos en memorias in Extenso'
 
   controller do
     def scoped_collection

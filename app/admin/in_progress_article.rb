@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserArticle, :as => "InProgressArticle"  do
-  menu :parent => 'Reportes', :label => 'Artículos enviados o aceptados'
+  menu :parent => 'Publicaciones', :label => 'Artículos enviados o aceptados'
 
   controller do
     def scoped_collection
