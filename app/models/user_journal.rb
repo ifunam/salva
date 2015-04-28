@@ -12,10 +12,21 @@ class UserJournal < ActiveRecord::Base
   belongs_to :roleinjournal
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
-  
+
   default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC'
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :adscription_id
 
   def to_s
-    [(journal_id.nil? ? "Journal no registrado" : journal.name), "#{roleinjournal.name}: #{user.author_name}", start_date, end_date].compact.join(', ')
+    [journal_name, "#{roleinjournal.name}: #{user.author_name}", start_date, end_date].compact.join(', ')
+  end
+
+  def journal_name
+    (journal_id.nil? or journal.nil?) ? '-' : journal.name
+  end
+
+  def journal_country
+    (journal_id.nil? or journal.nil?) ? '-' : journal.country_name
   end
 end
