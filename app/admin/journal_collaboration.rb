@@ -21,7 +21,7 @@ ActiveAdmin.register UserJournal, :as => 'JournalCollaboration'  do
 
   controller do
     def index
-      if params.has_key? :q and params[:q].has_key? :among
+      if params.has_key? :q and params[:q].has_key? :among and !params[:q][:among].is_a? Array
         params[:q][:among] = params[:q][:among].split(',').collect(&:to_i)
       end
       index!

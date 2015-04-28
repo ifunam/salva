@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :country
   belongs_to :institution
-  belongs_to :coursegroups
+  belongs_to :coursegroup
   belongs_to :courseduration
   belongs_to :modality
   belongs_to :registered_by, :class_name => 'User'
@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, endmonth DESC, name ASC'
+  default_scope :order => 'courses.endyear DESC, courses.endmonth DESC, courses.startyear DESC, courses.endmonth DESC, courses.name ASC'
   scope :attendees, joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 })
   scope :instructors, joins(:user_courses).where('user_courses.roleincourse_id != 2')
 
