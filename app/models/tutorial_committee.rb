@@ -13,7 +13,11 @@ class TutorialCommittee < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  default_scope :order => ('year DESC, studentname ASC')
+  default_scope :order => ('tutorial_committees.year DESC, tutorial_committees.studentname ASC')
+  scope :degree_id, lambda { |id| joins(:career).where("careers.degree_id = ?", id) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :degree_id, :adscription_id
 
   def to_s
     ["#{studentname} (estudiante)", career.to_s, year].compact.join(', ')

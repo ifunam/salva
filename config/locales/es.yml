@@ -691,7 +691,7 @@ es:
         thesismodalities: Modalidad de tesis
 
       tutorial_committee:
-        studentname: Nombre del estudiente
+        studentname: Nombre del estudiante
         descr: Descripción
         year: año
       inproceeding:
