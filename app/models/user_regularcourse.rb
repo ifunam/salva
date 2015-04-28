@@ -24,8 +24,12 @@ class UserRegularcourse < ActiveRecord::Base
   scope :specialized, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 4)
   scope :highschool, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 1)
   scope :technical, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 2)
+  scope :degree_id, lambda { |id| joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", id) }
   scope :regularcourse_id_by_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').joins(:period).where(:user_id => user_id) }
   scope :regularcourse_id_not_eq_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').where("user_regularcourses.user_id != ?", user_id) }
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :find_by_year, :degree_id, :adscription_id
 
   def to_s
     ["#{roleinregularcourse.name}: #{regularcourse.to_s}", "Horas por semana: #{hoursxweek}", "Periodo escolar: #{period.title}"].join(', ')
