@@ -1,7 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register ThesisJuror do
-  #menu :parent => I18n.t("active_admin.catalogs")
-  menu :parent => 'Reportes'
+  menu :parent => 'Docencia'
 
   index do
     column(:id) { |record| record.thesis.id }

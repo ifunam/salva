@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserConferencetalk, :as => 'ConferenceTalk'  do
-  menu :parent => 'Reportes', :label => 'Trabajos presentados en congresos'
+  menu :parent => 'Congresos', :label => 'Trabajos presentados en congresos'
 
   index :title => 'Trabajos presentados en congresos' do
     column(:id) { |record| record.conferencetalk.id }
