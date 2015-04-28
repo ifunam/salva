@@ -16,7 +16,9 @@ class Activity < ActiveRecord::Base
   scope :popular_science, joins(:activitytype).where(:activitytype => {:activitygroup_id => 1})
   scope :teaching, joins(:activitytype).where(:activitytype => {:activitygroup_id => 3})
   scope :technical, joins(:activitytype).where(:activitytype => {:activitygroup_id => 7})
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
+  search_methods :adscription_id
   def to_s
     ["#{name}: #{descr}", "Tipo: #{activitytype.name}", date].compact.join(', ')
   end
