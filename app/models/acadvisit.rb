@@ -1,6 +1,6 @@
 class Acadvisit < ActiveRecord::Base
   attr_accessible :country_id, :institution_id, :descr, :acadvisittype_id, :startyear, :startmonth, :endyear,
-                  :endmonth, :place, :goals, :other
+    :endmonth, :place, :goals, :other
 
   validates_presence_of :institution_id, :country_id, :acadvisittype_id, :descr, :startyear
   validates_numericality_of :user_id, :institution_id, :country_id, :acadvisittype_id, :startyear, :greater_than => 0, :only_integer => true
@@ -8,7 +8,7 @@ class Acadvisit < ActiveRecord::Base
 
   validates_inclusion_of :startmonth, :endmonth,  :in => 1..12, :allow_nil => true
   validates_uniqueness_of :id
-  
+
   belongs_to :user
   belongs_to :institution
   belongs_to :country
@@ -23,6 +23,12 @@ class Acadvisit < ActiveRecord::Base
   has_many :projectacadvisits
 
   default_scope order('endyear DESC, endmonth DESC, startyear DESC, startmonth DESC')
+  scope :adscription_id, lambda { |id|
+    joins(:user => :user_adscription)
+      .where(:user => {:user_adscription => {:adscription_id => id}})
+  }
+
+  search_methods :adscription_id
 
   def to_s
     [institution.name_and_parent_abbrev, country.name, descr, start_date, end_date].compact.join(', ')
