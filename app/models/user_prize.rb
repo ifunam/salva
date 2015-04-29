@@ -13,6 +13,12 @@ class UserPrize < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
   default_scope :order => 'year DESC, month DESC'
+  scope :adscription_id, lambda { |id|
+    joins(:user => :user_adscription)
+      .where(:user => {:user_adscription => {:adscription_id => id}})
+  }
+
+  search_methods :adscription_id
 
   def to_s
     [prize.to_s, date].join(', ')
