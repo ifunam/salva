@@ -17,7 +17,7 @@ class Newspaperarticle < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'newsdate DESC, authors ASC, title ASC'
+  default_scope :order => 'newspaperarticles.newsdate DESC, newspaperarticles.authors ASC, newspaperarticles.title ASC'
 
   scope :user_id_eq, lambda { |user_id| joins(:user_newspaperarticles).where(:user_newspaperarticles => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| 
