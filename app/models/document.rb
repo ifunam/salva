@@ -23,8 +23,12 @@ class Document < ActiveRecord::Base
   scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
   scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
   scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
+  scope :year_eq, lambda { |y|
+    joins(:documenttype).where("documenttypes.year = ?", y)
+  }
 
-  search_methods :fullname_like, :login_like, :adscription_id_eq, :jobpositioncategory_id_eq
+  search_methods :fullname_like, :login_like, :adscription_id_eq,
+    :jobpositioncategory_id_eq, :year_eq
 
   before_create :file_path
 
@@ -59,6 +63,16 @@ class Document < ActiveRecord::Base
   end
 
   def reject
+    update_attribute(:approved, false)
+  end
+
+  def approved_by_fullname
+    approved_by.fullname_or_email unless approved_by_id.nil?
+  end
+
+  def unlock!
+    doc = AnnualPlan.where(:user_id => user_id, :documenttype_id => documenttype_id).first
+    doc.update_attribute(:delivered, false) unless doc.nil?
     update_attribute(:approved, false)
   end
 end
