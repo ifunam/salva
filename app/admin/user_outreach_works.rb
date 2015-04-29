@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserGenericwork, :as => "UserOutreachWork" do
-  menu :parent => 'Reportes', :label => 'Trabajos de vinculación'
+  menu :parent => 'Vinculación', :label => 'Trabajos de vinculación'
   controller do
     def scoped_collection
       UserGenericwork.outreach_works
