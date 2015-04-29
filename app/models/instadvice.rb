@@ -11,6 +11,9 @@ class Instadvice < ActiveRecord::Base
   belongs_to :user
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
+  scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
+
+  search_methods :adscription_id
 
   def to_s
     [target_and_title, institution.name_and_parent_abbrev, date].compact.join(', ')
