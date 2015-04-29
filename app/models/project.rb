@@ -47,4 +47,9 @@ class Project < ActiveRecord::Base
     [name, "Responsable: #{responsible}", "Tipo: #{projecttype.name}", "Status: #{projectstatus.name}", start_date, end_date].join(', ')
   end
 
+  def financing_source_names
+    projectfinancingsources.collect { |pfs|
+      pfs.institution.name_and_parent_abbrev
+    }.compact.join(', ')
+  end
 end
