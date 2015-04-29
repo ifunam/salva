@@ -1,6 +1,6 @@
 # encoding: utf-8
 ActiveAdmin.register UserGenericwork, :as => "OtherWork"  do
-  menu :parent => 'Reportes', :label => 'Otros trabajos'
+  menu :parent => 'Reportes', :label => 'Otros productos'
 
   controller do
     def scoped_collection
@@ -8,7 +8,7 @@ ActiveAdmin.register UserGenericwork, :as => "OtherWork"  do
     end
   end
 
-  index :title => 'Otros trabajos' do
+  index :title => 'Otros productos' do
     column(:id) { |record| record.genericwork.id }
     column(:title) { |record| record.genericwork.title }
     column(:authors) { |record| record.genericwork.authors }
