@@ -7,12 +7,19 @@ class UserTechproduct < ActiveRecord::Base
   validates_numericality_of :userrole_id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
   scope :user_id_not_eq, lambda { |user_id| 
-   select('DISTINCT(techproduct_id) as techproduct_id').where("user_techproducts.user_id != ?", user_id)
+    select('DISTINCT(techproduct_id) as techproduct_id').where("user_techproducts.user_id != ?", user_id)
   }
 
   scope :user_id_eq, lambda { |user_id|
-   select('DISTINCT(techproduct_id) as techproduct_id').where :user_id => user_id
+    select('DISTINCT(techproduct_id) as techproduct_id').where :user_id => user_id
   }
+
+  scope :adscription_id, lambda { |id|
+    joins(:user => :user_adscription)
+      .where(:user => {:user_adscription => {:adscription_id => id}})
+  }
+
+  search_methods :adscription_id
 
   belongs_to :user
   belongs_to :techproduct

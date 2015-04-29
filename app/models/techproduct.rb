@@ -43,7 +43,11 @@ class Techproduct < ActiveRecord::Base
   end
 
   def institution_name
-    institution.name_and_country unless institution.nil?
+    institution.name unless institution.nil?
+  end
+
+  def institution_country
+    institution.country_name unless institution.nil?
   end
 
   def year
