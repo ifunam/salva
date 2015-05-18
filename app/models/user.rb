@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates :email, :presence => true, :uniqueness => true
-  validates :login, :presence =>true, :length => { :minimum => 4, :maximum => 15 },  :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true
+  validates :login, :presence => true, :length => { :minimum => 5, :maximum => 15 },  :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true, :on => :create
+  validates :login, :presence => true, :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true, :on => :update
   validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
   validates_confirmation_of :password
 
