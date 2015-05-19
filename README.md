@@ -8,7 +8,7 @@ Getting Started
 ===============
 
 1. Install rvm in your linux distribution 
-2. Install ruby 2.0.0-p247
+2. Install ruby 2.1.2-p95
 3. Install the gems with the ruby bundler
 4. Install PostgresSQL 9.x, MemCached, Redis and ImageMagick
 5. Create your database, run the seeds to populate your database
