@@ -13,7 +13,7 @@ class UserNewspaperarticle < ActiveRecord::Base
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where :user_id => user_id }
 
   scope :year_eq, lambda { |year|
-    joins(:newspaperarticle).by_year(2014, :field => :newsdate)
+    joins(:newspaperarticle).by_year(year, :field => :newsdate)
   }
 
   scope :adscription_id, lambda { |id|

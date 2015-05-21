@@ -13,7 +13,7 @@ class UserCourse < ActiveRecord::Base
   default_scope :joins => :course, :order => 'courses.endyear DESC, courses.endmonth DESC, courses.startyear DESC, courses.startmonth DESC, courses.name ASC'
   scope :instructors, joins(:roleincourse).where('roleincourses.id != 2')
   scope :among, lambda { |sy,sm,ey,em|
-    joins(:course).where("user_courses.course_id IN (#{Course.unscoped.select('DISTINCT(id)').among(sy,sm,ey,em).to_sql})")
+    joins(:course).where("user_courses.course_id IN (#{Course.unscoped.select('DISTINCT(id)').between(sy,sm,ey,em).to_sql})")
   }
   scope :find_by_year, lambda { |year| joins(:course).where("courses.year = ?", year) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
