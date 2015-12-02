@@ -201,9 +201,13 @@ module ApplicationHelper
   def updating_date(record)
     "#{t(:updating_date)}: " + ( record.updated_on.to_s (:long)) if record.respond_to? :update_on
   end
-
-  def select_month_for(field_name, prefix = nil)
-    select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
+  
+  # RMO add date as parameter, avoid month of current date. Examplo of use in model indivadvice.rb
+  #def select_month_for(field_name, prefix = nil)
+  #  select_month(Date.today, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
+  #end
+  def select_month_for(field_name, prefix = nil, date = Date.today)
+    select_month(date, {:field_name => field_name, :prefix => prefix}, :class => 'chosen-select')
   end
 
   def document_status_indicator(status)

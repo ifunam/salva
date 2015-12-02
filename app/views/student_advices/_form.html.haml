@@ -11,12 +11,16 @@
       = f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6
       = f.label :startmonth, :required => true
-      = select_month_for 'startmonth', 'advice'
+      -# RMO add month from record (check helper select_month_for)
+      -# = select_month_for 'startmonth', 'advice'
+      = select_month_for 'startmonth', 'advice', f.object.startmonth.nil? ? Date.today : Date.new(f.object.startyear, f.object.startmonth, 1)
     .span-3
       = f.input :endyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6.last
       = f.label :endmonth, :required => true
-      = select_month_for 'endmonth', 'advice'
+      -# RMO add month from record (check helper select_month_for)
+      -# = select_month_for 'endmonth', 'advice'
+      = select_month_for 'endmonth', 'advice', f.object.endmonth.nil? ? Date.today : Date.new(f.object.startyear, f.object.endmonth, 1)
 
   - f.object.career = f.object.career.nil? ? Career.new : f.object.career.dup
   = f.simple_fields_for :career, f.object.career do |c|

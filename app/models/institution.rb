@@ -44,7 +44,9 @@ class Institution < ActiveRecord::Base
   scope :for_schoolarships, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
   scope :for_conferences, where("id = 1 OR id = 96 OR id = 5453 OR administrative_key = '314'")
   scope :for_categories, where("institution_id = 1")
-  scope :for_universities, joins(:institutiontitle).where("institutiontitles.name = 'Universidad' AND institutions.name ILIKE 'Universi%'")
+	#RMO add Institutes for 'Asesoria a estudiantes'
+  #scope :for_universities, joins(:institutiontitle).where("institutiontitles.name = 'Universidad' AND institutions.name ILIKE 'Universi%'")
+  scope :for_universities, joins(:institutiontitle).where("(institutiontitles.name = 'Universidad'OR  institutiontitles.name = 'Instituto')  AND (institutions.name ILIKE 'Universi%' OR institutions.name ILIKE 'Institu%')")
 
   def to_s
     [name, abbrev].compact.join(', ').sub(/\s$/,'').sub(/\,$/,'').sub(/\.$/,'')
