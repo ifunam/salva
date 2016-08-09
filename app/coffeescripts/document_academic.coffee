@@ -18,7 +18,7 @@ $(document).on "click", ".simple_form input[type=submit]", (e)->
   if comment.length == 0
     alert "Es necesario escribir un comentario para el informe"
   else
-    options = 
+    options =
       url: url
       type: "POST"
       data: p
@@ -26,4 +26,3 @@ $(document).on "click", ".simple_form input[type=submit]", (e)->
     $("#dialog").empty()
     $("#dialog").dialog "close"
     $("#"+dom_id).replaceWith($.ajax(options).responseText)
-
