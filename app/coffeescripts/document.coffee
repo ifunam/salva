@@ -42,4 +42,7 @@ $ ->
   $.date_picker_for ".birthdate", current_year - 100, current_year - 15
   $.date_picker_for ".date", current_year - 60, current_year + 3
   $.date_picker_for ".start-date", current_year - 60, current_year + 1
+
   $.date_picker_for ".end-date", current_year - 60, current_year + 10
+
+
