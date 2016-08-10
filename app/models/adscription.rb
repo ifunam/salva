@@ -31,6 +31,8 @@ class Adscription < ActiveRecord::Base
         users_with_this_jobposition(record.users.researchers.activated, [1, 110, 4, 5])
       when 'postdoctorals' then
         users_with_this_jobposition(record.users.posdoctorals.activated, [111])
+      when 'conacyt' then
+        users_with_this_jobposition(record.users.conacyt.activated, [114])
       when 'academic_technicians' then
         users_with_this_jobposition(record.users.academic_technicians.activated, [3])
       else record.users.activated

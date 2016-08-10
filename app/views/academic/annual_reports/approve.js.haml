@@ -1,1 +1,8 @@
-= render :partial => 'record', :locals => { :record => @document }
+%h3=t(:approve)
+%h5='Para considerar la aprobación final de este informe, es necesario que incluya comentarios respecto al desempeño del Técnico Académico en el periodo.'
+= simple_form_for(@document, :remote => true, :url => academic_annual_report_path(@document),
+                             :html => {:id => dom_id(@document)}) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  #dialog_submit_buttons
+    = f.hidden_field :approved, value:'t'
+    = f.button :submit, :value => t(:approve), :name => 'approve', :confirm => t(:approve_document_approbation)

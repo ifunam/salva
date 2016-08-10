@@ -7,8 +7,8 @@
 
   .span-5= f.text_field :fullname_like, :size => 30
   .span-3= f.text_field :login_like, :size => 10
-  .span-5= f.collection_select :adscription_id_eq, Adscription.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
-  .span-5= f.collection_select :jobpositioncategory_id_eq, Jobpositioncategory.find_all_by_jobpositiontype_id(1), :id, :name, { :prompt => true }, :class => 'chosen-select'
+  .span-5= f.collection_select :adscription_id_eq, Adscription.enabled.all, :id, :name, {:prompt => true}, :class => 'chosen-select'
+  .span-5= f.collection_select :jobpositioncategory_id_eq, Jobpositioncategory.for_researching, :id, :name, { :prompt => true }, :class => 'chosen-select'
   .span-3.last= f.collection_select :documenttype_id_eq, Documenttype.annual_reports.all, :id, :year, {:prompt => true}, :class => 'chosen-select'
 
   .span-5.prepend-19.last

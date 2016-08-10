@@ -10,7 +10,7 @@
       = f.association :instadvicetarget, :using =>:name, :input_html => {:class => 'chosen-select', :prompt => true}
     #institution.span-12.last
       = f.association :institution, :using => :name , :input_html => {:class => 'chosen-select', :prompt => true}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
 
   .row
     .span-2

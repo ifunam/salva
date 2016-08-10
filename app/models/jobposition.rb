@@ -26,6 +26,7 @@ class Jobposition < ActiveRecord::Base
   validates_associated :institution
 
   scope :posdoc, :conditions => { :jobpositioncategory_id => 38 }
+  scope :conacyt, :conditions => { :jobpositioncategory_id => 185 }
   scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
   scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
   scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }

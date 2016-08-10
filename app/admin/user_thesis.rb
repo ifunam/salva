@@ -18,7 +18,7 @@ ActiveAdmin.register UserThesis do
     column(:thesismodality) { |record| record.thesis.thesismodality.name}
     column(:start_date) { |record| record.thesis.start_date}
     column(:end_date) { |record| record.thesis.end_date}
-    column(:is_verified) { |record| record.thesis.is_verified }
+    column(:is_verified) { |record| record.thesis.is_verified? ? 'Sí' : 'No' }
   end
 
   filter :user, :label => 'Académico'
@@ -47,5 +47,6 @@ ActiveAdmin.register UserThesis do
     column(:thesismodality) { |record| record.thesis.thesismodality.name}
     column(:start_date) { |record| record.thesis.start_date}
     column(:end_date) { |record| record.thesis.end_date}
+    column(:is_verified) { |record| record.thesis.is_verified? ? 'Sí' : 'No' }
   end
 end

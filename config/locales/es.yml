@@ -86,8 +86,8 @@ es:
         one: Grado
         other: Grados
       document_type:
-        one: Tipo de documento para posdocs
-        other: Tipos de documento para posdocs
+        one: Tipo de documento para posdocs y cátedras CONACYT
+        other: Tipos de documento para posdocs y cátedras CONACYT
       reports:
         one: Reporte
         other: Reportes
@@ -355,6 +355,7 @@ es:
         name: Nombre
         name_and_institution_abbrev: Beca e institución que la otorga
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         created_on: Fecha de registro
         updated_on: Fecha de actualización
       documenttype:
@@ -414,15 +415,18 @@ es:
         prize: Premio
         country: País
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         year: Año
         month: Mes
       prize:
         prizetype: Tipo
         name: Nombre
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
       institutional_activity:
         descr: Descripción
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         startyear: Año de inicio
         startmonth: Mes de inicio
         endyear: Año de conclusión
@@ -430,6 +434,7 @@ es:
       user_language:
         language: Idioma
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         spoken_languagelevel: Nivel de idioma hablado
         written_languagelevel: Nivel de idioma escrito
       user_skill:
@@ -442,6 +447,7 @@ es:
         contracttype_id: Tipo de Contrato
         contracttype: Tipo de Contrato
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         start_date: Año de inicio
         end_date: Año de conclusión
         adscription: Adscripción
@@ -457,7 +463,7 @@ es:
       education:
         career: Nombre de la carrera
         institution: Facultad o escuela
-        institution: Facultad o escuela
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         name: nomnbre
         startyear: Año de inicio
         endyear: Año de conclusión
@@ -472,6 +478,7 @@ es:
         created_on: Fecha de creación
         updated_on: Fecha de actualización
         institution: Facultad, Escuela o Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         indivadvices: Asesorías individuales
         tutorial_committees: Comités tutorales
         theses: Asesorías de tesis
@@ -486,6 +493,7 @@ es:
         country: País
         name: Facultad, Escuela o Instituto
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         abbrev: Siglás
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
@@ -501,6 +509,7 @@ es:
         amount: Monto
       membership:
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         startyear: Año de inicio
         endyear: Año de conclusión
         startmonth: Mes de inicio
@@ -591,6 +600,7 @@ es:
         month: Mes
         genericworkstatus: Status
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         publisher: Editor
         genericworktype: Tipo
       review:
@@ -610,6 +620,7 @@ es:
         year: Año
         month: Mes
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
       activity:
         name: Nombre
         descr: Descripción
@@ -625,6 +636,7 @@ es:
         techproducttype_id: Tipo
         descr: Descripción
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         userrole: Rol
         year: año
       user_journal:
@@ -653,6 +665,7 @@ es:
       indivadvice:
         indivname: Persona asesorada
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         startyear: Año de inicio
         startmonth: Mes de inicio
         endyear: Año de conclusión
@@ -663,6 +676,7 @@ es:
         title: Título
         instadvicetarget: Objetivo
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         year: Año
         month: Mes
       thesis:
@@ -740,11 +754,13 @@ es:
         techproducttype: Tipo
         descr: Descripción
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         userrole: Rol
         year: Año
       acadvisit:
         country: País
         institution: Institución
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
         descr: Descripción
         acadvisittype: Tipo
         startyear: Año de inicio

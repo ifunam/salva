@@ -5,7 +5,7 @@
   .row
     #institution.span-10.last
       = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
 
   .row
     .span-4= f.input :startyear, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true

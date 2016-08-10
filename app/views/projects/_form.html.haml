@@ -35,7 +35,7 @@
         = f.simple_fields_for :projectfinancingsources, @projectfinancingsource do |fi|
           = render :partial => 'projectfinancingsources/form', :locals => { :f => fi, :institution => institution }
     = new_child_fields_template(f, :projectfinancingsources, :partial => 'projectfinancingsources/form')
-    = link_to 'Agregar otra fuente de financiamiento', '#', :id => 'new_checkbox'
+    -# = link_to 'Agregar otra fuente de financiamiento', '#', :id => 'new_checkbox'
 
   .row
     .span-9= f.association :projectstatus, :collection => Projectstatus.all, :as => :radio, :wrapper_class =>'radio-set'

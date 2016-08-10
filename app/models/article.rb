@@ -34,7 +34,8 @@ class Article < ActiveRecord::Base
   scope :published, where(:articlestatus_id => 3)
   scope :unpublished, where('articles.articlestatus_id != 3')
   scope :verified, where(:is_verified => true)
-  scope :current_year, where(:year => (Date.today.month.to_i == 1 ? (Date.today.year - 1) : Date.today.year))
+  scope :current_year, where(:year => (Date.today.year))
+  scope :last_year, where(:year => (Date.today.month.to_i <= 4 ? (Date.today.year - 1) : 2199))
   scope :unverified, where("is_verified IS NULL OR is_verified = 'f'")
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
   scope :journal_country_id_eq, lambda { |country_id| joins(:journal).where(:journal => {:country_id => country_id}) }

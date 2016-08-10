@@ -27,12 +27,17 @@ ActiveAdmin.register Document, :as => 'AnnualReport' do
     }
     column(:approved) { |record| record.approved? ? 'Sí' : 'No' }
     column(:approved_by) { |record| record.approved_by_fullname }
+    column(:comments) { |record|
+      s = record.comments
+      truncate(s, :length => 25)
+    }
+    #column(:comments) { |record| record.comments }
     column(:ip_address) { |record| record.ip_address }
     column 'Download', :sortable => false do |record|
       link_to 'Descargar', record.url, :target => '_blank'
     end
     column "Activar" do |record|
-      link_to 'Activar envío', unlock_admin_annual_plan_path(record), :confirm => '¿Estás seguro que deseas activar el envío de este documento?'
+      link_to 'Activar envío', unlock_admin_annual_report_path(record), :confirm => '¿Estás seguro que deseas activar el envío de este documento?'
     end
   end
 
@@ -54,6 +59,7 @@ ActiveAdmin.register Document, :as => 'AnnualReport' do
     }
     column(:approved) { |record| record.approved? ? 'Sí' : 'No' }
     column(:approved_by) { |record| record.approved_by_fullname }
+    column(:comments) { |record| record.comments }
     column(:ip_address) { |record| record.ip_address }
   end
 end

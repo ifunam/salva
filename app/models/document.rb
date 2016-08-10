@@ -8,6 +8,7 @@ class Document < ActiveRecord::Base
 
   attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id, :document_type_id
   attr_accessible :comments, :as => :academic
+  attr_accessible :approved, :as => :academic
 
   scope :sort_by_documenttype, :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => [:documenttype], :readonly => false
   scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC').sort_by_documenttype
@@ -20,8 +21,31 @@ class Document < ActiveRecord::Base
     where(sql)
   }
   scope :login_like, lambda { |login| joins(:user).where(:user => { :login.matches => "%#{login.downcase}%" }) }
-  scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
-  scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
+  #scope :adscription_id_eq, lambda { |adscription_id| joins(:user=> :user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+  scope :adscription_id_eq, lambda { |adscription_id|
+    last_jp=find_by_sql("
+    SELECT users.* FROM users
+                 JOIN (
+                 select user_adscriptions.* FROM user_adscriptions
+              JOIN (select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b
+                           on jobpositions.user_id = b.user_id and jobpositions.start_date = b.maxDate) jobpositions
+                           ON user_adscriptions.jobposition_id = jobpositions.id
+                                ) as ad
+                 ON ad.user_id=users.id
+                 WHERE users.userstatus_id=2 and ad.adscription_id = "+adscription_id.to_s)
+
+    joins(:user=> :user_adscriptions).includes(:documenttype,:user=>:person).where(["user_adscriptions.user_id in (?)", last_jp.map(&:id)]).uniq
+  }
+  #scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
+  scope :jobpositioncategory_id_eq, lambda { |jobpositioncategory_id|
+    last_jp=find_by_sql("SELECT users.* FROM users
+                 JOIN (select jobpositions.* from jobpositions
+                   join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b on jobpositions.user_id = b.user_id
+                                and jobpositions.start_date = b.maxDate) as jp
+                 ON jp.user_id=users.id
+                 WHERE users.userstatus_id=2 and jp.jobpositioncategory_id = "+jobpositioncategory_id.to_s)
+    joins(:user=> :jobpositions).includes(:documenttype,:user=>:person).where(["jobpositions.user_id in (?)", last_jp.map(&:id)]).uniq
+  }
   scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
   scope :year_eq, lambda { |y|
     joins(:documenttype).where("documenttypes.year = ?", y)

@@ -2,10 +2,10 @@
   .row= render :partial => "/shared/errors", :object => f.object.errors
 
   .row
-    .span-12= f.input :indivname, :as => :string, :input_html => { :size => '80' }
-    #institution.span-6.last
+    .span-12= f.input :indivname, :as => :string, :input_html => { :size => '75' }
+    #institution.span-5.last
       = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
 
   .row
     .span-3

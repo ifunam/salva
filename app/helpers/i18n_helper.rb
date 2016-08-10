@@ -14,6 +14,8 @@ module I18nHelper
          "Visitor"
        when /posdoc/
          "Posdoctoral scholar"
+       when /Cátedra CONACYT/
+         "CONACYT  chair"
        when /Técnico académico/
           "Technician"
         when /emérito/

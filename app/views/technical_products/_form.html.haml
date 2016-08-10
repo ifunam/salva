@@ -14,7 +14,7 @@
     .span-9= f.input :descr, :as => :text, :input_html => { :size => '50x1' }
     #institution.span-9.last
       = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
 
   .row
     = render :partial => 'user_techproducts/form', :locals => {:technical_product => @technical_product, :f => f}

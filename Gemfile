@@ -41,6 +41,9 @@ gem "pg", "0.14.0"
 gem "meta_search", "~> 1.1.3"
 gem "squeel", "~> 1.0.9"
 
+#Graphs
+gem "lazy_high_charts", "~> 1.5.5", :git => 'https://github.com/michelson/lazy_high_charts'
+
 # Rails 3.1 - Asset Pipeline
 gem "sass", "~> 3.2.1"
 gem "json", "~> 1.7.5"
@@ -81,8 +84,8 @@ gem "highline", "~> 1.6.19"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.4", :require => "rack/ssl-enforcer"
-  gem "capistrano", "~> 2.13.0"
   gem "rvm-capistrano", "~> 1.2.5"
+  gem "capistrano", "~> 2.13.0"
   gem "execjs", "~> 1.4.0"
   gem "therubyracer", "~> 0.12.0"
   gem "exception_notification", "~> 2.6.1"

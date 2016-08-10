@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file.
 if Rails.env.production?
   require 'action_dispatch/middleware/session/dalli_store'
-   Salva::Application.config.session_store :dalli_store,
+   Salva::Application.config.session_store :dalli_store, { :raise_errors => false },
      :memcache_server => ["127.0.0.1:11211"],
      :namespace => 'sessions', :key => '_salva_session',
      :expire_after => 30.minutes

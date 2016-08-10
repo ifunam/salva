@@ -20,6 +20,8 @@ module Aleph
        def aleph_notification(user)
          if user.category_name == 'Investigador posdoctoral'
            Notifier.notification_card_for_postdoctoral(user.id).deliver
+         elsif user.category_name == 'Cátedra CONACYT'
+           Notifier.notification_card_for_conacyt(user.id).deliver
          else
            Notifier.aleph_notification_for_academic(user.id).deliver
          end

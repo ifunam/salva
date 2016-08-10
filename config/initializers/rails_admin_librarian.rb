@@ -334,6 +334,15 @@ RailsAdmin.config do |config|
         label "Asesor(es) del Instituto"
         field :user_theses
       end
+#      group :users do
+#        label "Asesor(es) del Instituto"
+#        field :users do
+#            searchable :user_articles => {:users => :author_name}
+#            #q = bindings[:controller].request.params[:query].to_s
+#            #User.search(:fullname_like => q)
+#          #end
+#        end
+#      end
       group :additional_info do
         label "Información adicional"
         field :document

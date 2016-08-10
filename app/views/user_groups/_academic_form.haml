@@ -5,3 +5,11 @@
   - if !f.object.nil? and !f.object.new_record?
     = f.hidden_field :id
     = f.hidden_field :user_id
+
+#%div{:class=> 'span-24'}
+#  = f.label :group
+#  = 'Cátedras CONACYT'
+#  = f.hidden_field :group_id, :value => 4 #researchers
+#  - if !f.object.nil? and !f.object.new_record?
+#    = f.hidden_field :id
+#    = f.hidden_field :user_id
