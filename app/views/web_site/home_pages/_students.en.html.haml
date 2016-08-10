@@ -1,5 +1,7 @@
 - if user.students.count > 0
   %h3 Students
+  %iframe{:src => user.students_url, :width => '100%', :height => '600px', :frameborder => '0'}
+-#
   %table
     %tr
       %th Photo

@@ -4,6 +4,6 @@
   .span-12.last
     = f.input :name, :as => :text, :input_html => { :size => '50x1' }, :wrapper_class => 'span-12 last'
 
-#institution.span-6{'data-controller-name' => 'institutions'}
+#institution.span-5{'data-controller-name' => 'institutions'}
   = f.association :institution, :using => :name, :input_html  => {:class => 'chosen-select', :prompt => true, :required => true}
-  = link_to_new_record 'Agregar institución', new_institution_path
+  = f.label :request_institution, :class => 'discrete'

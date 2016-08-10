@@ -12,5 +12,6 @@ Salva::Application.routes.draw do
     end
 
     resources :recent_publications, :only => [:index]
+    resources :users, :only => [:index], :defaults => { :format => :json }
   end
 end

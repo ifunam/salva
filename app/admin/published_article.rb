@@ -62,5 +62,6 @@ ActiveAdmin.register UserArticle, :as => "PublishedArticle"  do
     column(:pacsnum) { |record| record.article.pacsnum }
     column(:other) { |record| record.article.other }
     column(:articlestatus) { |record| record.article.articlestatus.name }
+    column(:is_verified) { |record| record.article.is_verified? ? 'Sí' : 'No' }
   end
 end

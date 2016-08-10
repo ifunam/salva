@@ -7,9 +7,9 @@
     .span-9.last= f.input :title, :as => :text, :input_html => { :size => '50x1' }
 
   .row
-    #institution.span-6.last
+    #institution.span-9.last
       = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
     .span-3
       = f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
     .span-6.last

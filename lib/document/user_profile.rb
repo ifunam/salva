@@ -105,7 +105,7 @@ class UserProfile
   end
 
   def worker_id
-    if @user.category_name == 'Investigador posdoctoral'
+    if @user.category_name == 'Investigador posdoctoral' or @user.category_name == 'Cátedra CONACYT'
       person_id
     else
       @user.jobposition_log.worker_key unless @user.jobposition_log.nil?

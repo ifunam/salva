@@ -25,6 +25,5 @@
       = f.simple_fields_for :conference_institutions, @conference_institution do |fi|
         = render :partial => 'conference_institutions/form', :locals => { :f => fi, :institution => institution }
   = new_child_fields_template(f, :conference_institutions, :partial => 'conference_institutions/form')
-  = link_to 'Agregar otra institución', '#', :id => 'new_checkbox'
 
 

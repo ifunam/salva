@@ -16,6 +16,11 @@
       = f.hidden_field :jobpositioncategory_id, :value => 38
       = f.hidden_field :contracttype_id, :value => 5
     %div{:class=> 'span-6'}
+      = f.label :jobpositioncategory
+      = 'Cátedra CONACYT'
+      = f.hidden_field :jobpositioncategory_id, :value => 185
+      = f.hidden_field :contracttype_id, :value => 5 #otro
+    %div{:class=> 'span-6'}
       = f.label :institution
       = 'Instituto de Física'
       = f.hidden_field :institution_id, :value => 30

@@ -48,7 +48,8 @@ SimpleNavigation::Configuration.run do |navigation|
       # sub_nav.item :key_2_1, 'name', url, options
     # end
 
-    primary.item :profile, 'Perfil', user_profile_path, :highlights_on => /^\/$/ do |s|
+    #primary.item :profile, 'Perfil', user_profile_path, :highlights_on => /^\/$/ do |s|
+    primary.item :profile, 'Perfil', '/', :highlights_on => /^\/$/ do |s|
       s.item :user_profile, 'Información general', user_profile_path, :highlights_on => /\/user_profile/
       s.item :jobpositions, 'Categorías', jobpositions_path, :highlights_on => /\/jobpositions/
       s.item :jobposition_log, :'Antigüedad en la UNAM', jobposition_log_path, :highlights_on => /\/jobposition_log/
@@ -68,7 +69,6 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
       s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
       s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
-      s.item :password, 'Cambiar password', edit_password_path, :highlights_on => /\/password/
     end
 
     primary.item :publications, 'Publicaciones', articles_path do |s|

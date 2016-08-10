@@ -9,7 +9,7 @@
 
     #institution.span-10.last
       = f.association :institution, :using => :name , :input_html  => {:class => 'chosen-select'}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
 
   .row
     .span-8

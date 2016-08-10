@@ -45,16 +45,21 @@ class User < ActiveRecord::Base
   scope :inactive, where('userstatus_id != 2')
   scope :postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
   scope :not_in_postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id")
+
+  scope :conacyt, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 185  AND user_adscriptions.jobposition_id = jobpositions.id")
+  scope :not_in_conacyt, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 185  AND user_adscriptions.jobposition_id = jobpositions.id")
   scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :fullname_desc, joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC')
   scope :distinct, select("DISTINCT (users.*)")
   scope :researchers, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110)", :include => { :jobpositions => :jobpositioncategory}
   scope :academic_technicians, :conditions => "jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id != 1 OR jobpositioncategories.roleinjobposition_id != 110 OR jobpositioncategories.roleinjobposition_id != 4 OR jobpositioncategories.roleinjobposition_id != 5)", :include => { :jobpositions => :jobpositioncategory}
   scope :posdoctorals, :conditions => "jobpositioncategories.roleinjobposition_id = 111", :include => { :jobpositions => :jobpositioncategory}
-  scope :researchers_and_posdoctorals, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110 OR jobpositioncategories.roleinjobposition_id = 111)", :include => { :jobpositions => :jobpositioncategory}
+  scope :conacyt, :conditions => "jobpositioncategories.roleinjobposition_id = 114", :include => { :jobpositions => :jobpositioncategory}
+  #researchers_posdoctorals_and_conacytchair 110,111,114
+  scope :researchers_and_posdoctorals, :conditions => "(jobpositioncategories.roleinjobposition_id = 1 OR jobpositioncategories.roleinjobposition_id = 110 OR jobpositioncategories.roleinjobposition_id = 111 OR jobpositioncategories.roleinjobposition_id = 114)", :include => { :jobpositions => :jobpositioncategory}
   scope :activated_academics, lambda { self.researchers_and_posdoctorals.activated | self.academic_technicians.activated }
-
-
+  # DIRECTORIO
+  scope :all_except, lambda { |user| where("userstatus_id=2 AND id NOT IN (?)",user) }
   # :userstatus_id_equals => find_all_by_userstatus_id
   scope :fullname_like, lambda { |fullname| 
     sql = " users.id IN (#{Person.user_id_by_fullname_like(fullname).to_sql}) "
@@ -66,6 +71,21 @@ class User < ActiveRecord::Base
   scope :fullname_ends_with, lambda { |fullname| fullname_like(fullname) }
 
   scope :adscription_id_equals, lambda { |adscription_id| joins(:user_adscriptions).where(["user_adscriptions.adscription_id = ?", adscription_id] ) }
+=begin
+  scope :adscription_id_equals, lambda { |adscription_id|
+    last_jp=find_by_sql("
+    SELECT users.* FROM users
+                 JOIN (
+                 select user_adscriptions.* FROM user_adscriptions
+              JOIN (select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b
+                           on jobpositions.user_id = b.user_id and jobpositions.start_date = b.maxDate) jobpositions
+                           ON user_adscriptions.jobposition_id = jobpositions.id
+                                ) as ad
+                 ON ad.user_id=users.id
+                 WHERE users.userstatus_id=2 and ad.adscription_id = "+adscription_id.to_s)
+    joins(:user_adscriptions).includes(:person).where(["user_adscriptions.user_id in (?)", last_jp.map(&:id)]).uniq
+  }
+=end
   scope :adscription_eq, lambda { |adscription_id| adscription_id_equals(adscription_id) }
   scope :schoolarship_id_equals, lambda { |schoolarship_id| joins(:user_schoolarships).where(["user_schoolarships.schoolarship_id = ?", schoolarship_id] ) }
   scope :schoolarship_eq, lambda { |schoolarship_id| schoolarship_id_equals(schoolarship_id) }
@@ -78,12 +98,22 @@ class User < ActiveRecord::Base
   scope :jobposition_start_date_year_eq, lambda { |y| jobposition_start_date_year_equals(y) }
 
   scope :jobposition_end_date_year_equals, lambda { |year|
+
     sql = " users.id IN (#{Jobposition.user_id_by_end_date_year(year).to_sql}) "
     where sql
   }
   scope :jobposition_end_date_year_eq, lambda { |y| jobposition_end_date_year_equals(y) }
 
-  scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  #scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id| joins(:jobpositions).where(["jobpositions.jobpositioncategory_id = ?", jobpositioncategory_id]) }
+  scope :jobpositioncategory_id_equals, lambda { |jobpositioncategory_id|
+    last_jp=find_by_sql("SELECT users.* FROM users
+                 JOIN (select jobpositions.* from jobpositions
+                   join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b on jobpositions.user_id = b.user_id
+                                and jobpositions.start_date = b.maxDate) as jp
+                 ON jp.user_id=users.id
+                 WHERE users.userstatus_id=2 and jp.jobpositioncategory_id = "+jobpositioncategory_id.to_s)
+    joins(:jobpositions).where(:id => last_jp.map(&:id)).distinct
+  }
   scope :jobpositioncategory_eq, lambda { |jobpositioncategory_id| jobpositioncategory_id_equals(jobpositioncategory_id) }
 
   search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
@@ -122,6 +152,9 @@ class User < ActiveRecord::Base
   has_many :user_adscriptions
   has_many :jobpositions
   has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
+  has_one  :jobposition_as_conacyt, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 185', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
+  has_one  :user_adscription_as_conacyt, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 185 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
+
   has_one  :jobposition_as_postdoctoral, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 38', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
   has_one  :user_adscription_as_postdoctoral, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
   has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
@@ -320,4 +353,41 @@ class User < ActiveRecord::Base
   def students
     StudentClient.new(self.login).all
   end
+
+  def students_url
+    StudentClient.new(self.login).iframe_url
+  end
+
+  def category
+    cat = category_name.to_s
+    re_posdocs=Regexp.union(/posdoctoral/,/CONAC[yY]T/)
+    re_researchers=Regexp.union(/[iI]nvestigador/,/^(?!.*posdoctoral).*$/)
+    case
+      when cat==''
+        nil
+      when cat.match(re_posdocs)
+        category_name
+      when cat.match(/cnico acad/)
+        'Tecnico academico'
+      when cat.match(re_researchers) #investigadores-posdocs
+        'Investigador'
+      else
+        nil
+    end
+  end
+
+  def as_json(options={})
+    { :id=>id.to_s, :login=>login, :email=>email, :fullname=>title_and_fullname,
+      :last_name=>person.lastname1.to_s+' '+person.lastname2.to_s,
+      :label=>id,
+      :type=>'Persona', :adscription=>adscription_name,
+      :category_name=>category_name,
+      :url=>'home_pages/'+id.to_s,
+      :photo=>'home_pages/'+id.to_s+'/show_photo',
+      :location=>professional_address.location,
+      :phone=>professional_address.phone.to_s+' ext '+professional_address.phone_extension,
+      :category=>category
+    }
+  end
+
 end

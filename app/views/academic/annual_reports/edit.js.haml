@@ -1,6 +1,7 @@
-%h3=t('.title')
+%h3=t(:reject)
 = simple_form_for(@document, :remote => true, :url => academic_annual_report_path(@document),
                              :html => {:id => dom_id(@document)}) do |f|
   = render :partial => 'form', :locals => { :f => f}
   #dialog_submit_buttons
+    = f.hidden_field :approved, value:'f'
     = f.submit t(:reject), :confirm => t(:reject_document_confirmation)

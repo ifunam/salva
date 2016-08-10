@@ -216,7 +216,8 @@ module ApplicationHelper
 
   def link_to_approve_document(record, resource_path)
     if record.documenttype.status == true
-      link_to t(:approve), resource_path, :remote => true, :class => 'approve_document', :confirm => t(:approve_document_approbation)
+      link_to t(:approve), resource_path, :remote => true, :class => 'approve_document'
+      #link_to t(:approve), resource_path, :remote => true, :class => 'approve_document', :confirm => t(:approve_document_approbation)
     end
   end
 

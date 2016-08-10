@@ -43,4 +43,8 @@ class StudentClient
   def all
     @api_enabled ? get_hash['students'] : []
   end
+
+  def iframe_url
+    @url.gsub(".json", "")
+  end
 end

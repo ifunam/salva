@@ -19,7 +19,7 @@ class Thesis < ActiveRecord::Base
   has_many :user_theses, :dependent => :destroy
   has_many :thesis_jurors, :dependent => :destroy
   has_many :users, :through => :user_theses
-  accepts_nested_attributes_for :user_theses
+  accepts_nested_attributes_for :user_theses, :allow_destroy => true
   user_association_methods_for :user_theses
 
   mount_uploader :document, DocumentUploader

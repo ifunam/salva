@@ -10,7 +10,7 @@ class UserThesis < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  default_scope joins(:thesis).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC")
+#  default_scope joins(:thesis).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC")
 
   scope :finished, joins(:thesis).where(:thesis => { :thesisstatus_id => 3}).order("theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC")
   scope :between_years, lambda { |start_year, end_year| joins(:thesis).where("theses.startyear >=? OR theses.endyear <= ?", start_year, end_year)}
