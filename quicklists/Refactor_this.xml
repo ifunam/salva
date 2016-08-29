@@ -1,0 +1,19 @@
+<list display="Refactor this..." description="Ruby Refactorings">
+  <action id="RenameElement" />
+  <action id="Move" />
+  <action id="CopyElement" />
+  <action id="QuickList.$Separator$" />
+  <action id="ExtractMethod" />
+  <action id="ExtractInclude" />
+  <action id="ExtractModule" />
+  <action id="ExtractSuperclass" />
+  <action id="QuickList.$Separator$" />
+  <action id="IntroduceVariable" />
+  <action id="IntroduceConstant" />
+  <action id="IntroduceField" />
+  <action id="IntroduceParameter" />
+  <action id="Inline" />
+  <action id="QuickList.$Separator$" />
+  <action id="MembersPullUp" />
+  <action id="MemberPushDown" />
+</list>
