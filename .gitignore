@@ -86,3 +86,6 @@ app/sass/.sass-cache/
 .sass-cache/
 public/assets/
 app/assets/stylesheets/academic_base.css
+_mac
+*.xml
+._.DS_Store
