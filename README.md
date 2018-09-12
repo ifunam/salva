@@ -22,6 +22,7 @@ Authors
 
 - Alejandro Juárez Robles <alex@fisica.unam.mx>
 - Alejandro Aguilar Sierra <algsierra@gmail.com>
+- Francisco López Ramírez <arxuna@gmail.com>
 - Ramon Martínez Olvera <ramonmtzol@gmail.com>
 - Gunnar Wolf <gwolf@gwolf.org>
 
