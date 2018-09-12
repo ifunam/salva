@@ -25,6 +25,7 @@ Authors
 - Francisco López Ramírez <arxuna@gmail.com>
 - Ramon Martínez Olvera <ramonmtzol@gmail.com>
 - Gunnar Wolf <gwolf@gwolf.org>
+- Eduardo Espinosa Avila <laloeag@gmail.com>
 
 Contributors
 ============
@@ -32,6 +33,7 @@ Contributors
 - Fernando Magariños Mancha <mancha@gmail.com>
 - Miguel E <mvazquez83@gmail.com>
 - Alejandro Silva <alexs1010@gmail.com>
+- Fernando Magariños Mancha <mancha@gmail.com>
 
 License
 =======
