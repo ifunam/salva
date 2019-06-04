@@ -19,6 +19,7 @@ class Journal < ActiveRecord::Base
   has_many :articles, :inverse_of => :journal
   has_many :user_refereed_journals, :inverse_of => :journal
   has_many :users, :through => :user_refereed_journals, :inverse_of => :journals
+  has_many :impact_factors, :inverse_of => :journal
 
   attr_accessible :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id, :has_open_access
 
@@ -40,5 +41,11 @@ class Journal < ActiveRecord::Base
 
   def publisher_name
     publisher_id.nil? ? '-' : publisher.name
+  end
+
+  def impact_factor(year=nil)
+    year = Time.now.year-1 if year.nil?
+    i_f = ImpactFactor.where(:journal_id=>id,:year=>year).first
+    if (i_f.nil? or i_f.value==0.0) then 'n/a' else i_f.value end
   end
 end

@@ -17,9 +17,8 @@ class Api::UsersController < Api::BaseController
   end
 
   def find_by_login
-    @user = UserProfile.find_by_login(params[:login])
-    respond_to do |format|
-      format.xml { render :xml => @user.to_xml}
-    end
+    @user = UserProfile.find_by_login(params[:login][0..-5])
+    render :xml => @user.to_xml
+    # Users with '.' in login error solved 
   end
 end

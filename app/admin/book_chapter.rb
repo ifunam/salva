@@ -14,7 +14,7 @@ ActiveAdmin.register ChapterinbookRoleinchapter, :as => 'BookChapter'  do
     column(:country)  { |record| record.chapterinbook.bookedition.book_country }
     column(:booktype)  { |record| record.chapterinbook.bookedition.book.booktype.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.chapterinbook.bookedition.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:roleinchapter) { |record| record.roleinchapter.name }
     column(:edition) { |record| record.chapterinbook.bookedition.edition }
@@ -50,7 +50,7 @@ ActiveAdmin.register ChapterinbookRoleinchapter, :as => 'BookChapter'  do
     column(:country)  { |record| record.chapterinbook.bookedition.book_country }
     column(:booktype)  { |record| record.chapterinbook.bookedition.book.booktype.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.chapterinbook.bookedition.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:roleinchapter) { |record| record.roleinchapter.name }
     column(:edition) { |record| record.chapterinbook.bookedition.edition }

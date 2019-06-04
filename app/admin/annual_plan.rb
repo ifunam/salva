@@ -16,7 +16,8 @@ ActiveAdmin.register Document, :as => 'AnnualPlan' do
   index :title => 'Planes de trabajo enviados' do
     column(:id) { |record| record.id }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.documenttype.year }
+    column(:category_name) { |record| record.user.category_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
 
     column(:document_type) { |record| record.documenttype.name }
@@ -39,7 +40,8 @@ ActiveAdmin.register Document, :as => 'AnnualPlan' do
 
   csv do
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.documenttype.year }
+    column(:category_name) { |record| record.user.category_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
 
     column(:document_type) { |record| record.documenttype.name }

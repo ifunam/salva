@@ -10,7 +10,7 @@ class UserCourse < ActiveRecord::Base
   belongs_to :coursegroup
   belongs_to :roleincourse
 
-  default_scope :joins => :course, :order => 'courses.endyear DESC, courses.endmonth DESC, courses.startyear DESC, courses.startmonth DESC, courses.name ASC'
+  #default_scope :joins => :course, :order => 'courses.endyear DESC, courses.endmonth DESC, courses.startyear DESC, courses.startmonth DESC, courses.name ASC'
   scope :instructors, joins(:roleincourse).where('roleincourses.id != 2')
   scope :among, lambda { |sy,sm,ey,em|
     joins(:course).where("user_courses.course_id IN (#{Course.unscoped.select('DISTINCT(id)').between(sy,sm,ey,em).to_sql})")

@@ -97,7 +97,8 @@ class UserProfile
   end
 
   def adscription_name
-    @user.adscription_name
+    @user.adscription_name @user.id,Time.now.year
+#    @user.adscription_name
   end
 
   def adscription_id

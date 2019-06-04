@@ -11,13 +11,24 @@
       = u.attribute :year
 
     .span-18.last
+      %h4=t(:career)
+      .span-9= u.association :career, :using => :name
+      .span-9.last= u.association :degree, :using => :name
+
+    .span-18.last
+      %h4=t(:school_or_faculty)
+      .span-9= u.association :institution, :using => :name
+      .span-9.last= u.association :university, :using => :name
+      .span-6.last= u.association :country, :using => :name
+
+  -#  .span-18.last
       = render :partial => 'careers/show', :locals => { :record => @tutorial_committee.career }
 
     .span-18.last
       %h4=t(:school_or_faculty)
       = render :partial => 'institutions/show', :locals => { :record => @tutorial_committee.career.institution }
   .row
-    = render :partial => 'shared/record', :object => @tutorial_committee
+    -#= render :partial => 'shared/record', :object => @tutorial_committee
 
 #submit_buttons
   = link_to t(:edit), edit_tutorial_committee_path(:id => @tutorial_committee.id)

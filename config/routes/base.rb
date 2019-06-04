@@ -8,14 +8,16 @@ Salva::Application.routes.draw do
                      :technical_activities, :user_credits, :user_journals, :reviews, :student_advices,
                      :professor_advices, :institutional_advices, :user_stimuli, :memberships, :user_prizes,
                      :educations, :user_regular_courses, :user_refereed_journals, :tutorial_committees,
-                     :jobpositions, :user_research_lines, :academic_exchanges, :external_jobpositions
+                     :jobpositions, :user_research_lines, :academic_exchanges, :external_jobpositions,
+                     :user_lab_or_groups, :user_knowledge_areas, :videos
 
   publication_resources_for :articles, :unpublished_articles, :popular_science_works, :outreach_works,
                             :other_works,:teaching_products, :technical_reports, :seminaries, :newspaper_articles,
                             :technical_products, :course_attendees, :course_instructors, :conference_attendees,
                             :conference_organizers, :regular_courses, :theses, :thesis_examinations,
                             :book_authors, :book_collaborations, :book_chapters, :conference_talks,
-                            :projects, :refereed_inproceedings, :unrefereed_inproceedings, :proceeding_collaborations
+                            :projects, :refereed_inproceedings, :unrefereed_inproceedings, :proceeding_collaborations,
+                            :selected_articles, :selected_books
 
   catalog_resources_for :journals, :publishers, :institutions, :languages, :skilltypes, :research_areas,
                         :schoolarships, :credittypes, :newspapers, :careers, :techproducttypes, :stimuluslevels
@@ -46,6 +48,7 @@ Salva::Application.routes.draw do
   end
 
   resource :user_resume, :only => [:show]
+  resources :emergency_info, :only => [:index], :defaults => { :format => :html }
 
   match '/session_preferences/enable_search' => 'session_preferences#enable_search', :via => :get
   match '/session_preferences/disable_search' => 'session_preferences#disable_search', :via => :get

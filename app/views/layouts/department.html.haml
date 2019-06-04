@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title= 'Plataforma de Información Curricular - SALVA'
+    = csrf_meta_tag
+    = stylesheet_link_tag 'department'
+    = javascript_include_tag 'department'
+
+  %body
+    = render :partial => 'layouts/header'
+    .container
+      - unless current_user.nil?
+        #session_info
+          .current_user= current_user.login
+          = '|'
+          = link_to 'Salir', destroy_user_session_path, :method => :delete
+      #top-navigation= render_navigation(:context => :department)
+      #content
+        = render :partial => 'layouts/flash_messages'
+        = yield
+    #dialog
+    = render :partial => 'layouts/footer'

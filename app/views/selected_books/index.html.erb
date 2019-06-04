@@ -1,0 +1,14 @@
+<%= form_tag selected_books_path, :method => :get do %>
+  <table>
+    <% for book in @books %>
+      <tr>
+        <td>
+          <%= check_box_tag "bs[]", book.id, book.is_selected %>
+          <%= book %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag("Guardar", :style => "width:150px;color:white;background:#0078ae;") %>
+
+<% end %>

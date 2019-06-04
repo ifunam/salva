@@ -1,0 +1,11 @@
+%h3= t('.title')
+= simple_form_for @user_lab_or_group,  :name_key => :user_lab_or_group, :url => user_lab_or_groups_path do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  #submit_buttons
+    = f.submit  t(:save)
+    = link_to t(:cancel), user_lab_or_groups_path
+.row
+  #lab_or_group.span-8.last
+    = label_tag "Seleccionar los laboratorios o grupos en los que realiza investigación de acuerdo a la siguiente información : "
+    = image_tag("https://salva.fisica.unam.mx/lab_groups1.png", width: '500')
+    = image_tag("https://salva.fisica.unam.mx/lab_groups2.png", width: '500')

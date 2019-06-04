@@ -5,6 +5,14 @@
 .row
   = f.association :degree, :collection => Degree.universitary, :as => :radio, :wrapper_class => 'radio-set', :input_html => { :class => 'radio-set-degrees'}
 
-- f.object.institution = f.object.institution.nil? ? Institution.new : f.object.institution.dup
-= f.simple_fields_for :institution, f.object.institution do |iform|
-  = render :partial => 'institutions/faculty_form', :locals => { :f => iform }
+.row
+  %h4='Facultad o escuela'
+
+.row
+  .span-6
+    = f.association :institution, :as => :select, :collection => Institution.for_faculties, :label=>'Facultad, Escuela o Instituto', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.institution_id || 14
+    = f.label :request_institution, :class => 'discrete'
+  #institution.span-6.last
+    = f.association :university, :as => :select, :collection => Institution.for_universities, :label=>'Institución', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.university_id || 1
+    = f.label :request_institution, :class => 'discrete'
+  = f.association :country, :as => :select, :collection => Country.all, :label=>'País', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.country_id || 484

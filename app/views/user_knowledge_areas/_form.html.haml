@@ -1,0 +1,11 @@
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    #knowledge_area.span-8.last
+      = f.label :knowledge_area, :required => true
+      = f.collection_select :knowledge_area_id, KnowledgeArea.all, :id, :name, {:prompt => true}, :class => 'chosen-select', :style => "width:450px"
+      =# link_to_new_record 'Agregar una estímulo', new_user_knowledge_area_path
+  .row
+  

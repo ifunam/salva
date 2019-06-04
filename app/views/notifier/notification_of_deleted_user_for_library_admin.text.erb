@@ -7,7 +7,7 @@ La información del usuario del SALVA en el sistema ALEPH ha
 sido borrada:
 
 Nombre del académico: <%= @user.fullname_or_login %>
-Departamento: <%= @user.adscription_name %>
+Departamento: <%= @user.adscription_name @user.id,Time.now.year %>
 Categoría: <%= @user.category_name %>
 Correo electrónico: <%= @user.email %>
 Registrado por: <%= @user.fullname_of_registered_by %>

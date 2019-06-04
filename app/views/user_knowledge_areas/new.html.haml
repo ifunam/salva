@@ -1,0 +1,10 @@
+%h3= t('.title')
+= simple_form_for @user_knowledge_area,  :name_key => :user_knowledge_area, :url => user_knowledge_areas_path do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  #submit_buttons
+    = f.submit  t(:save)
+    = link_to t(:cancel), user_knowledge_areas_path
+.row
+  #knowledge_area.span-8.last
+    = label_tag "Seleccionar las áreas y proyectos internacionales/laboratorios en las que realiza investigación de acuerdo al siguiente esquema (todos los que correspondan, máximo 6): "
+    = image_tag("https://salva.fisica.unam.mx/knowledge_fields.png", :width => '800px')

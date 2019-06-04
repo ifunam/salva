@@ -3,6 +3,8 @@
   = show_for record do |a|
     .row
       = a.association :addresstype, :using => :name
+    .row
+      = a.association :building, :using => :name
       = a.attribute :location, :wrapper_html => {:class => 'span-8'}
       = a.attribute :pobox, :wrapper_html => {:class => 'span-5'}
     .row

@@ -1,0 +1,21 @@
+.span-17.last
+  %h3= t('.title')
+
+=# render :partial => 'search_form'
+
+#collection_header
+  .span-1="&nbsp;".html_safe
+  .span-11="Laboratorio/grupo"
+  .action=t(:show)
+  .action=t(:edit)
+  .span1.last=t(:del)
+
+#collection_records
+  = render :partial => 'record', :collection => @user_lab_or_groups
+
+= render :partial => 'collection_footer'
+
+= paginate(@user_lab_or_groups)
+
+#submit_buttons
+  = link_to t(:new), new_user_lab_or_group_path

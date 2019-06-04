@@ -19,6 +19,7 @@
   .row
     #institution.span-6
       = f.association :institution, :using => :name, :input_html => {:prompt => true, :class => 'chosen-select', :required => true}
-      = link_to_new_record 'Agregar institución', new_institution_path
+      = f.label :request_institution, :class => 'discrete'
+      -#= link_to_new_record 'Agregar institución', new_institution_path
     .span-12.last
       = render :partial => 'user_genericworks/form', :locals => {:genericwork => @genericwork, :f => f}

@@ -14,9 +14,6 @@ ActiveAdmin.register UserGenericwork, :as => "TechnicalReport"  do
     column(:authors) { |record| record.genericwork.authors }
     column(:reference) { |record| record.genericwork.reference }
     column(:isbn_issn) { |record| record.genericwork.isbn_issn }
-#    column(:institution)  { |record| record.genericwork.institution_name }
-#    column(:country)  { |record| record.genericwork.institution_country }
-#    column(:publisher) { |record| record.genericwork.publisher_name }
     column(:fullname) { |record| record.user.fullname_or_email }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column :userrole
@@ -24,7 +21,6 @@ ActiveAdmin.register UserGenericwork, :as => "TechnicalReport"  do
     column(:month) { |record| record.genericwork.month }
     column(:vol) { |record| record.genericwork.vol }
     column(:pages) { |record| record.genericwork.pages }
-#    column(:genericworktype) { |record| record.genericwork.genericworktype.name }
     column(:status) { |record| record.genericwork.genericworkstatus.name }
   end
 
@@ -38,9 +34,6 @@ ActiveAdmin.register UserGenericwork, :as => "TechnicalReport"  do
     column(:authors) { |record| record.genericwork.authors }
     column(:reference) { |record| record.genericwork.reference }
     column(:isbn_issn) { |record| record.genericwork.isbn_issn }
-#    column(:institution)  { |record| record.genericwork.institution_name }
-#    column(:country)  { |record| record.genericwork.institution_country }
-#    column(:publisher) { |record| record.genericwork.publisher_name }
     column(:fullname) { |record| record.user.fullname_or_email }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:userrole) { |record| record.userrole.name }

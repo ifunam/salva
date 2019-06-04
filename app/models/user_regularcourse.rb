@@ -42,4 +42,36 @@ class UserRegularcourse < ActiveRecord::Base
   def teacher_with_role
     [user.author_name, "(#{role_and_period_and_hours})"].join(' ')
   end
+
+  def self.grouped_courses(adsc_year)
+    @years = [(adsc_year[:year]).to_s+'-2',(adsc_year[:year]+1).to_s+'-1']
+    query = "SELECT distinct(regularcourses.id,users.id,periods.id) FROM user_regularcourses
+             JOIN users ON user_regularcourses.user_id=users.id
+             JOIN user_adscription_records ON users.id=user_adscription_records.user_id
+             JOIN adscriptions ON user_adscription_records.adscription_id=adscriptions.id
+             JOIN regularcourses ON user_regularcourses.regularcourse_id = regularcourses.id
+             JOIN periods ON user_regularcourses.period_id=periods.id
+             JOIN academicprograms ON regularcourses.academicprogram_id=academicprograms.id
+             JOIN degrees ON academicprograms.degree_id=degrees.id
+             WHERE degrees.name in (?) AND adscriptions.name=? AND 
+             periods.title in (?)",
+              adsc_year[:deg], adsc_year[:adsc],  @years
+    res = find_by_sql(query)
+    if adsc_year[:deg][0] == 'Licenciatura' then
+      query = "SELECT distinct(regularcourses.id,users.id,periods.id) FROM user_regularcourses
+               JOIN users ON user_regularcourses.user_id=users.id
+               JOIN user_adscription_records ON users.id=user_adscription_records.user_id
+               JOIN adscriptions ON user_adscription_records.adscription_id=adscriptions.id
+               JOIN regularcourses ON user_regularcourses.regularcourse_id = regularcourses.id
+               JOIN periods ON user_regularcourses.period_id=periods.id
+               JOIN academicprograms ON regularcourses.academicprogram_id=academicprograms.id
+               WHERE academicprograms.degree_id is NULL
+                     AND adscriptions.name=? AND 
+                     periods.title in (?)", 
+                     adsc_year[:adsc],  @years
+      res += find_by_sql(query)
+    end
+    res
+  end
+
 end

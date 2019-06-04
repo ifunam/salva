@@ -14,10 +14,7 @@ class Jobpositioncategory < ActiveRecord::Base
   validates_associated :roleinjobposition
   validates_associated :jobpositionlevel
 
-
-  # scope :find_by_jobpositiontype_id,  where("jobpositioncategories.jobpositiontype_id = 1").order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
   default_scope includes(:roleinjobposition, :jobpositionlevel).order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
-  #scope :for_researching, where("jobpositioncategories.jobpositiontype_id = 1 OR jobpositioncategories.roleinjobposition_id = 38 OR jobpositioncategories.roleinjobposition_id = 110 OR jobpositioncategories.roleinjobposition_id = 112")
   scope :for_researching, where("(jobpositioncategories.jobpositiontype_id = 1 
                                   AND roleinjobpositions.name NOT LIKE '%yudante%'
                                   AND jobpositionlevels.name NOT LIKE '%M.T.%'
@@ -25,6 +22,7 @@ class Jobpositioncategory < ActiveRecord::Base
                                   OR roleinjobpositions.name LIKE '%vestigador%isitante%'
                                   OR roleinjobpositions.name LIKE '%vestigador%sdoctoral%'
                                   OR roleinjobpositions.name LIKE '%vestigador%rito%'
+                                  OR roleinjobpositions.name LIKE '%tedra%CONAC%T'
                                 ")
 
   def name
@@ -34,4 +32,27 @@ class Jobpositioncategory < ActiveRecord::Base
       ""
     end
   end
+
+  def self.grouped_researchers(type)#,categ
+    @base_types=['Asociado A', 'Asociado B', 'Asociado C', 'Titular A', 'Titular B', 'Titular C']
+    @categories={'technician'=>@base_types,
+                 'researcher'=>['Visitantes','Cátedras CONACyT','posdoc']+@base_types+['Eméritos']}
+    @position={'technician'=>{'Asociado A'=>[25,28,69,72],'Asociado B'=>[26,29,70,73],'Asociado C'=>[27,30,71,74],
+                              'Titular A'=>[31,34,75,78],'Titular B'=>[33,35,76,79],'Titular C'=>[33,36,77,80]},
+               'researcher'=>{'Asociado A'=>[1,4],'Asociado B'=>[2,5],'Asociado C'=>[3,6],
+                              'Titular A'=>[7,10],'Titular B'=>[8,11],'Titular C'=>[9,12],
+                              'Cátedras CONACyT'=>185,'posdoc'=>38,'Eméritos'=>37}}
+    #'Visitantes'=>182
+    @result = Hash.new
+    @cad = Jobposition.most_recent_jp_join
+    @categories[type].each do |categ|
+      query = "SELECT distinct(users.id) FROM user_adscriptions
+              JOIN users ON users.id = user_adscriptions.user_id"+ @cad +"WHERE users.userstatus_id=2 
+                     AND jobpositions.jobpositioncategory_id in (?)", @position[type][categ]
+      tot = find_by_sql(query).length
+      @result[categ]=tot if tot!=0
+    end
+    @result
+  end
+
 end

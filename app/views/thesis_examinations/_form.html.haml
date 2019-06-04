@@ -16,12 +16,28 @@
       = f.hidden_field :thesisstatus_id, :value  => 3
       = f.input :end_date, :as => :string, :input_html => { :size => '10', :autocomplete => "off", :class => 'date'}, :required => true
 
-  - unless f.object.new_record?
+  -# unless f.object.new_record?
     #thesismodality.row
       .span-12.last
         %label="Modalidad"
         = f.object.thesismodality.name
 
-  - f.object.career = f.object.career.nil? ? Career.new : f.object.career.dup
-  = f.simple_fields_for :career, f.object.career do |c|
-    = render :partial => 'careers/form_universitary', :locals => { :f => c}
+  .row
+    %h4='Nombre de carrera y Grado'
+  .row
+    = f.association :career, :as => :select, :collection => Career.all(:order => 'id ASC'), :label=>'Nombre de la carrera o posgrado', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.career_id || 26
+  .row
+    = f.association :degree, :collection => Degree.higher, :as => :radio, :wrapper_class => 'radio-set', :checked => f.object.degree_id || 3
+  .row
+    = f.association :thesismodality, :as => :select, :collection => Thesismodality.all(:order => 'id ASC'), :label=>'Modalidad', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.thesismodality_id || 1
+
+  .row
+    %h4='Facultad o escuela'
+  .span-6
+    = f.association :institution, :as => :select, :collection => Institution.for_faculties, :label=>'Facultad, Escuela o Instituto', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.institution_id || 15
+    = f.label :request_institution, :class => 'discrete'
+  #institution.span-6.last
+    = f.association :university, :as => :select, :collection => Institution.for_universities, :label=>'Institución', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.university_id || 1
+    = f.label :request_institution, :class => 'discrete'
+  = f.association :country, :as => :select, :collection => Country.all, :label=>'País', :input_html => {:class => 'chosen-select chzn-container-big' }, :required => true,  :wrapper_html => { :class => 'span-10' }, :selected => f.object.country_id || 484
+

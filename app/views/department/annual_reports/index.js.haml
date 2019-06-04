@@ -1,0 +1,8 @@
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= paginate @documents, :remote => true
+
+#pagination_info= page_entries_info @documents

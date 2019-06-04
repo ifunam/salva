@@ -1,0 +1,14 @@
+<%= form_tag selected_articles_path, :method => :get do %>
+  <table>
+    <% for article in @articles %>
+      <tr>
+        <td>
+          <%= check_box_tag "as[]", article.id, article.is_selected %>
+          <%= article %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag("Guardar", :style => "width:150px;color:white;background:#0078ae;") %>
+
+<% end %>

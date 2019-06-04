@@ -1,0 +1,15 @@
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    #schoolarship.span-8
+      = f.input :name, :as => :text, :input_html => { :size => '30x1' }
+    .span-10.last=f.input :url, :as => :text, :input_html => { :size => '50x1' }
+
+  .row
+    .span-6
+      = f.input :start_year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }
+    .span-6.last
+      = f.label :start_month
+      = select_month_for 'start_month', 'video'

@@ -19,6 +19,9 @@ class Jobposition < ActiveRecord::Base
 
   has_many :user_adscriptions, :dependent => :destroy
   has_one :user_adscription, :dependent => :destroy
+
+  has_many :user_adscription_records
+
   accepts_nested_attributes_for :user_adscription, :allow_destroy => true
 
   validates_associated :jobpositioncategory
@@ -43,5 +46,18 @@ class Jobposition < ActiveRecord::Base
 
   def to_s
     [category_name, institution.name, start_date, end_date].compact.join(', ')
+  end
+
+  def self.most_recent_jp user_id    
+    query = " select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate 
+      from jobpositions where institution_id=30 group by user_id) b
+      on jobpositions.user_id = b.user_id and jobpositions.start_date = b.maxDate AND jobpositions.user_id = " + user_id.to_s
+    find_by_sql(query).first
+  end
+
+  def self.most_recent_jp_join
+    " JOIN (select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate 
+      from jobpositions where institution_id=30 group by user_id) b
+      on jobpositions.user_id = b.user_id and jobpositions.start_date = b.maxDate) jobpositions ON users.id = jobpositions.user_id "
   end
 end

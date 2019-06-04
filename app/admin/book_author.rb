@@ -16,7 +16,7 @@ ActiveAdmin.register BookeditionRoleinbook, :as => 'BookAuthor'  do
     column(:country)  { |record| record.bookedition.book_country }
     column(:booktype)  { |record| record.bookedition.book.booktype.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.bookedition.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:roleinbook) { |record| record.roleinbook.name }
     column(:edition) { |record| record.bookedition.edition }
@@ -49,7 +49,7 @@ ActiveAdmin.register BookeditionRoleinbook, :as => 'BookAuthor'  do
     column(:country)  { |record| record.bookedition.book_country }
     column(:booktype)  { |record| record.bookedition.book.booktype.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.bookedition.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:roleinbook) { |record| record.roleinbook.name }
     column(:edition) { |record| record.bookedition.edition }

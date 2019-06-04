@@ -2,7 +2,8 @@ class ThesisExamination < Thesis
   attr_accessible :title, :authors, :thesismodality_id, :thesisstatus_id,
                   :start_date, :end_date,
                   :thesis_jurors_attributes, :career_attributes,
-                  :startyear, :endyear, :startmonth, :endmonth
+                  :startyear, :endyear, :startmonth, :endmonth,
+                  :institution_id, :university_id, :country_id, :degree_id, :career_id
 
   has_many :thesis_jurors, :foreign_key => 'thesis_id'
   has_many :users, :through => :thesis_jurors
@@ -10,6 +11,12 @@ class ThesisExamination < Thesis
   user_association_methods_for :thesis_jurors
 
   has_paper_trail
+
+  belongs_to :career, :class_name => 'Career', :foreign_key => 'career_id'
+  belongs_to :degree, :class_name => 'Degree', :foreign_key => 'degree_id'
+  belongs_to :institution, :class_name => 'Institution', :foreign_key => 'institution_id'
+  belongs_to :university, :class_name => 'Institution', :foreign_key => 'university_id'
+  belongs_to :country, :class_name => 'Country', :foreign_key => 'country_id'
 
   # TODO: Verify if our scopes are working
   # scopes.delete :user_id_eq

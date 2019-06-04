@@ -4,9 +4,11 @@ class Career < ActiveRecord::Base
   validates_numericality_of :degree_id, :greater_than => 0, :only_integer => true
 
   belongs_to :degree
-  belongs_to :institution
+  belongs_to :institution, :class_name => 'Institution', :foreign_key => 'institution_id'
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
+  belongs_to :university, :class_name => 'Institution', :foreign_key => 'university_id'
+  belongs_to :country, :class_name => 'Country', :foreign_key => 'country_id'
 
   has_many :indivadvices
   has_many :educations
@@ -14,10 +16,13 @@ class Career < ActiveRecord::Base
   has_many :theses
   has_many :academicprograms
   has_many :institutioncareers
-  accepts_nested_attributes_for :institution
-  attr_accessible :name, :degree_id, :institution_attributes, :abbrev
+  attr_accessible :name, :degree_id, :institution_attributes, :abbrev, :institution_id, :university_id, :country_id
 
   def to_s
-    ["Carrera: #{name}, Grado: #{degree.name}", institution.name_and_parent_name].join(', ')
+    grado = degree.nil? ? nil : degree.name
+    escuela = institution.nil? ? nil : institution.name
+    universidad = university.nil? ? nil : university.name
+    pais = country.nil? ? nil : country.name
+    ["Carrera: #{name}, Grado: #{grado}",escuela,universidad,pais].join(', ')
   end
 end

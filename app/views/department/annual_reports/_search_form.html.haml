@@ -1,0 +1,33 @@
+-if current_user.admin?
+  = form_for :search, :remote => true, :html => {:id => "filter_form"} do |f|
+    .span-5=t(:fullname)
+    .span-3=t(:login)
+    .span-5=t(:adscription)
+    .span-5=t(:jobpositioncategory)
+    .span-3.last=t(:year)
+
+    .span-5= f.text_field :fullname_like, :size => 30
+    .span-3= f.text_field :login_like, :size => 10
+    .span-5= f.collection_select :adscription_id_eq, Adscription.enabled.where('id in (?)', DepartmentHead.one(User.find(current_user.id)).map(&:adscription_id) ), :id, :name, {:prompt => true}, :class => 'chosen-select'
+    .span-5= f.collection_select :jobpositioncategory_id_eq, Jobpositioncategory.for_researching, :id, :name, { :prompt => true }, :class => 'chosen-select'
+    .span-3.last= f.collection_select :documenttype_id_eq, Documenttype.annual_reports.all, :id, :year, {:prompt => true}, :class => 'chosen-select'
+
+    .span-5.prepend-19.last
+      .search_button= link_to t(:search), "#", :id => "search_button"
+      .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'
+-else
+  = form_for :search, :remote => false, :method => :get, :html => {:id => "filter_form"} do |f|
+    .span-5=t(:fullname)
+    .span-5=t(:adscription)
+    .span-5=t(:jobpositioncategory)
+    .span-3.last=t(:year)
+    .span-5='.'
+
+    .span-5= f.text_field :name, :size => 30, :value => params[:search].nil? ? nil : params[:search][:name]
+    .span-5= f.collection_select :adscription, Adscription.enabled.where('id in (?)', DepartmentHead.one(User.find(current_user.id)).map(&:adscription_id) ), :id, :name, {:prompt => false}, :class => 'chosen-select'
+    .span-5= f.collection_select :jobposition, Jobpositioncategory.for_researching, :id, :name, { :prompt => true, :selected => params[:search].nil? ? nil : params[:search][:jobposition] }, :class => 'chosen-select'
+    .span-3.last= f.collection_select :year, Documenttype.annual_reports.all, :year, :year, {:prompt => false, :selected => params[:search].nil? ? Time.now.year : params[:search][:year]}, :class => 'chosen-select'
+
+    .span-5.prepend-19.last
+      .search_button= submit_tag t(:search)
+      .search_button= submit_tag "Listar todos", :id => :reset, :name => :reset

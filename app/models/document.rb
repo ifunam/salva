@@ -27,20 +27,19 @@ class Document < ActiveRecord::Base
     SELECT users.* FROM users
                  JOIN (
                  select user_adscriptions.* FROM user_adscriptions
-              JOIN (select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b
+              JOIN (select jobpositions.* from jobpositions join (select user_id,max(start_date) maxDate from jobpositions where institution_id=30 group by user_id) b
                            on jobpositions.user_id = b.user_id and jobpositions.start_date = b.maxDate) jobpositions
                            ON user_adscriptions.jobposition_id = jobpositions.id
                                 ) as ad
                  ON ad.user_id=users.id
                  WHERE users.userstatus_id=2 and ad.adscription_id = "+adscription_id.to_s)
+    joins(:user=> :user_adscription_records).includes(:documenttype,:user=>:person).where(["user_adscription_records.user_id in (?)", last_jp.map(&:id)]).uniq
 
-    joins(:user=> :user_adscriptions).includes(:documenttype,:user=>:person).where(["user_adscriptions.user_id in (?)", last_jp.map(&:id)]).uniq
   }
-  #scope :jobpositioncategory_id_eq, lambda { |category_id| joins(:user=> :jobpositions).where(["jobpositions.jobpositioncategory_id = ?", category_id] ) }
   scope :jobpositioncategory_id_eq, lambda { |jobpositioncategory_id|
     last_jp=find_by_sql("SELECT users.* FROM users
                  JOIN (select jobpositions.* from jobpositions
-                   join (select user_id,max(start_date) maxDate from jobpositions group by user_id) b on jobpositions.user_id = b.user_id
+                   join (select user_id,max(start_date) maxDate from jobpositions where institution_id=30 group by user_id) b on jobpositions.user_id = b.user_id
                                 and jobpositions.start_date = b.maxDate) as jp
                  ON jp.user_id=users.id
                  WHERE users.userstatus_id=2 and jp.jobpositioncategory_id = "+jobpositioncategory_id.to_s)
@@ -64,15 +63,53 @@ class Document < ActiveRecord::Base
    File.expand_path(file_path).gsub(File.expand_path(Rails.root.to_s+'/public'), '')
   end
 
-  def file_path
+  def self.department_documents(adscription_id,year,name=nil,jobposition=nil)
+    conditions = ''
+    if name.nil? or name == "" or name.strip! == "" then
+      usrs = UserAdscriptionRecord.current_adscription_users(adscription_id).map(&:user_id)
+    else
+      usrs = User.joins(:user_adscription).fullname_like(name).where('userstatus_id=2 AND user_adscriptions.adscription_id=?',adscription_id).map(&:id)
+    end
+    unless usrs==[]
+      conditions += " AND users.id in ("
+      usrs.each{|u| conditions += u.to_s+","}
+      conditions.chop!
+      conditions += ")"
+    else
+      conditions += " AND users.id IS null"
+    end
+    if jobposition.nil? or jobposition.strip == ""
+      joins(:user).includes(:documenttype).where('documenttypes.year=?'+conditions,year).order("users.author_name")
+    else
+      joins(:user).includes(:documenttype).where('documenttypes.year=?'+conditions,year).jobpositioncategory_id_eq(jobposition).order("users.author_name")
+    end
+  end
+
+  def new_file_path
     if document_type_id.nil?
-    path = Rails.root.to_s + '/public/uploads'
+    path = Rails.root.to_s + '/app/files'
     if !documenttype.name.match(/^Informe anual de actividades/).nil?
       path += '/annual_reports/' + documenttype.year.to_s
     elsif !documenttype.name.match(/^Plan de trabajo/).nil?
       path += '/annual_plans/' + documenttype.year.to_s
     end
+    path += file_path[file_path.rindex('/'),file_path.size]
+    end
+  end
+
+  def file_path
+    if document_type_id.nil?
+    path = Rails.root.to_s + '/public/uploads'
+    new_path = Rails.root.to_s + '/app/files'
+    if !documenttype.name.match(/^Informe anual de actividades/).nil?
+      path += '/annual_reports/' + documenttype.year.to_s
+      new_path += '/annual_reports/' + documenttype.year.to_s
+    elsif !documenttype.name.match(/^Plan de trabajo/).nil?
+      path += '/annual_plans/' + documenttype.year.to_s
+      new_path += '/annual_plans/' + documenttype.year.to_s
+    end
     system "mkdir -p #{path}" unless File.exist? path
+    system "mkdir -p #{new_path}" unless File.exist? new_path
 
     unless user.nil?
       self.file = path + "/#{user.login}.pdf"

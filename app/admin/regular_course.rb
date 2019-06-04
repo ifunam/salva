@@ -5,11 +5,11 @@ ActiveAdmin.register UserRegularcourse, :as => 'RegularCourse' do
   index :title => 'Cursos regulares' do
     column(:id) { |record| record.regularcourse.id }
     column(:title) { |record| record.regularcourse.title }
-    column(:degree) { |record| record.regularcourse.academicprogram.career.degree.name }
-    column(:career) { |record| record.regularcourse.academicprogram.career.name }
+    column(:degree) { |record| record.regularcourse.academicprogram.degree.nil? ? nil : record.regularcourse.academicprogram.degree.name }
+    column(:career) { |record| record.regularcourse.academicprogram.career.nil? ? nil : record.regularcourse.academicprogram.career.name }
     column(:academicprogram_type) { |record| record.regularcourse.academicprogram.academicprogramtype.name }
-    column(:faculty) { |record| record.regularcourse.academicprogram.career.institution.name}
-    column(:institution) { |record| record.regularcourse.academicprogram.career.institution.parent_name}
+    column(:faculty) { |record| record.regularcourse.academicprogram.institution.nil? ? nil : record.regularcourse.academicprogram.institution.name }
+    column(:university) { |record| record.regularcourse.academicprogram.university.nil? ? nil : record.regularcourse.academicprogram.university.name }
     column(:modality) { |record| record.regularcourse.modality.name }
     column(:semester) { |record| record.regularcourse.semester }
     column(:credits) { |record| record.regularcourse.credits }
@@ -19,7 +19,7 @@ ActiveAdmin.register UserRegularcourse, :as => 'RegularCourse' do
     column(:roleinregularcourse) { |record| record.roleinregularcourse.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.period.title[0..3].to_i }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -32,11 +32,11 @@ ActiveAdmin.register UserRegularcourse, :as => 'RegularCourse' do
 
   csv do
     column(:title) { |record| record.regularcourse.title }
-    column(:degree) { |record| record.regularcourse.academicprogram.career.degree.name }
-    column(:career) { |record| record.regularcourse.academicprogram.career.name }
+    column(:degree) { |record| record.regularcourse.academicprogram.degree.nil? ? nil : record.regularcourse.academicprogram.degree.name }
+    column(:career) { |record| record.regularcourse.academicprogram.career.nil? ? nil : record.regularcourse.academicprogram.career.name }
     column(:academicprogram_type) { |record| record.regularcourse.academicprogram.academicprogramtype.name }
-    column(:faculty) { |record| record.regularcourse.academicprogram.career.institution.name}
-    column(:institution) { |record| record.regularcourse.academicprogram.career.institution.parent_name}
+    column(:faculty) { |record| record.regularcourse.academicprogram.institution.nil? ? nil : record.regularcourse.academicprogram.institution.name }
+    column(:university) { |record| record.regularcourse.academicprogram.university.nil? ? nil : record.regularcourse.academicprogram.university.name }
     column(:modality) { |record| record.regularcourse.modality.name }
     column(:semester) { |record| record.regularcourse.semester }
     column(:credits) { |record| record.regularcourse.credits }
@@ -46,7 +46,7 @@ ActiveAdmin.register UserRegularcourse, :as => 'RegularCourse' do
     column(:roleinregularcourse) { |record| record.roleinregularcourse.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.period.title[0..3].to_i }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 

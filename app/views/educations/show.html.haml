@@ -8,7 +8,19 @@
         = @education.career.degree.name
       .span-9.last
         = u.association :career, :using => :name
-    .row
+
+    .span-18.last
+      %h4=t(:career)
+      .span-9= u.association :career, :using => :name
+      .span-9.last= u.association :degree, :using => :name
+
+    .span-18.last
+      %h4=t(:school_or_faculty)
+      .span-9= u.association :institution, :using => :name
+      .span-9.last= u.association :university, :using => :name
+      .span-6.last= u.association :country, :using => :name
+
+    -#.row
       .span-9
         %label Facultad o Escuela
         - unless @education.career.institution.nil?
@@ -17,7 +29,7 @@
         %label Institución
         - if !@education.career.institution.nil? and !@education.career.institution.institution.nil?
           = @education.career.institution.institution.name
-    .row
+    -#.row
       .span-6
         %label Tipo
         = @education.career.institution.institutiontitle.name

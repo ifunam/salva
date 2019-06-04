@@ -27,14 +27,13 @@ ActiveAdmin.register Indivadvice, :as => 'StudentAdvice' do
     column :startmonth
     column :endyear
     column :endmonth
-    column(:career) { |record| record.career.name unless record.career_id.nil? }
-    column(:degree) { |record| record.career.degree.name unless record.career_id.nil? }
-    column(:faculty) { |record| record.career.institution.name unless record.career_id.nil? }
-    column(:institution) { |record| record.career.institution.parent_name unless record.career_id.nil? }
-    column(:country) { |record| record.career.institution.country_name unless record.career_id.nil? }
-
+    column(:degree) { |record| record.degree.nil? ? nil : record.degree.name }
+    column(:career) { |record| record.career.nil? ? nil : record.career.name }
+    column(:faculty) { |record| record.institution.nil? ? nil : record.institution.name }
+    column(:university) { |record| record.university.nil? ? nil : record.university.name }
+    column(:country) { |record| record.country.nil? ? nil : record.country.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.startyear }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -52,14 +51,13 @@ ActiveAdmin.register Indivadvice, :as => 'StudentAdvice' do
     column :startmonth
     column :endyear
     column :endmonth
-    column(:career) { |record| record.career.name unless record.career_id.nil? }
-    column(:degree) { |record| record.career.degree.name unless record.career_id.nil? }
-    column(:faculty) { |record| record.career.institution.name unless record.career_id.nil? }
-    column(:institution) { |record| record.career.institution.parent_name unless record.career_id.nil? }
-    column(:country) { |record| record.career.institution.country_name unless record.career_id.nil? }
-
+    column(:degree) { |record| record.degree.nil? ? nil : record.degree.name }
+    column(:career) { |record| record.career.nil? ? nil : record.career.name }
+    column(:faculty) { |record| record.institution.nil? ? nil : record.institution.name }
+    column(:university) { |record| record.university.nil? ? nil : record.university.name }
+    column(:country) { |record| record.country.nil? ? nil : record.country.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.startyear }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

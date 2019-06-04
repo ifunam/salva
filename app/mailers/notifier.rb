@@ -119,7 +119,7 @@ class Notifier < ActionMailer::Base
 
   def rejected_document(document_id)
     @document = Document.find(document_id)
-    mail(:to => @document.user.email, :cc => [email_academic_secretary, @document.approved_by.email].compact!,
+    mail(:to => @document.user.email, :cc => [email_ldap_admin, email_academic_secretary, @document.approved_by.email].compact!,
          :subject => @document.documenttype.name)
   end
 

@@ -1,0 +1,12 @@
+%h3= t('user_knowledge_areas.show.title')
+
+.section-with-border-and-bg
+  = show_for @user_knowledge_area do |u|
+    .row
+      .span-18.last= u.association :knowledge_area, :using => :name
+    .row
+      = render :partial => 'shared/record', :object => @user_knowledge_area
+
+#submit_buttons
+  = link_to t(:edit), edit_user_knowledge_area_path(:id => @user_knowledge_area.id)
+  = link_to t(:back), user_knowledge_areas_path

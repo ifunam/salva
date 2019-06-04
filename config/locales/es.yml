@@ -173,8 +173,8 @@ es:
         one: Periódico
         other: Periódicos
       period:
-        one: Periódo
-        other: Periódos
+        one: Período
+        other: Períodos
       prizetype:
         one: Tipo de premio
         other: Tipos de premio
@@ -301,6 +301,27 @@ es:
       thesis_juror:
         one: Jurado de tesis
         other: Jurados de tesis
+      impact_factor:
+        one: Factor de impacto
+        other: Factores de impacto
+      department_head:
+        one: Jefe de departamento
+        other: Jefes de departamento
+      building:
+        one: 'Nombre de edificio'
+        other: 'Nombres de edificios'
+      lab_or_group:
+        one: Laboratorio o grupo
+        other: Laboratorios o grupos
+      knowledge_area:
+        one: Área de investigación
+        other: Áreas de investigación
+      knowledge_field:
+        one: Campo del conocimiento
+        other: Campos del conocimiento
+      video:
+        one: Video
+        other: Videos
 
     attributes:
       user:
@@ -355,7 +376,7 @@ es:
         name: Nombre
         name_and_institution_abbrev: Beca e institución que la otorga
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         created_on: Fecha de registro
         updated_on: Fecha de actualización
       documenttype:
@@ -391,9 +412,20 @@ es:
         state_id: Estado
         city_id: Ciudad
         image: Fotografía para el sitio web (80x113)
+        contact_name_1: Nombre de persona a contactar en caso de  emergencia
+        contact_phonenumber_1: Número telefónico de emergencia
+        contact_name_2: Nombre de persona a contactar en caso de  emergencia (2)
+        contact_phonenumber_2: Número telefónico de emergencia (2)
+        contact_name_3: Nombre de persona a contactar en caso de  emergencia (3)
+        contact_phonenumber_3: Número telefónico de emergencia (3)
+        medical_condition: Antecedentes o afecciones médicas importantes a considerar en caso de  emergencia
+        medical_instruction: Instrucciones y recomendaciones a seguir en caso de emergencias  relacionadas con los antecedentes del anterior
+        hospital: Hospital de preferencia en caso de requerir atención de emergencia
+        insurance: Datos del seguro medico en caso de requerir atención de emergencia
       address:
         addresstype: Tipo de domicilio
-        location: Edificio y cubículo (o Laboratorio)
+        building: Edificio
+        location: Cubículo o Laboratorio
         pobox: Apartado postal
         country: País
         state: Estado
@@ -415,18 +447,18 @@ es:
         prize: Premio
         country: País
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         year: Año
         month: Mes
       prize:
         prizetype: Tipo
         name: Nombre
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
       institutional_activity:
         descr: Descripción
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         startyear: Año de inicio
         startmonth: Mes de inicio
         endyear: Año de conclusión
@@ -434,7 +466,7 @@ es:
       user_language:
         language: Idioma
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         spoken_languagelevel: Nivel de idioma hablado
         written_languagelevel: Nivel de idioma escrito
       user_skill:
@@ -447,23 +479,26 @@ es:
         contracttype_id: Tipo de Contrato
         contracttype: Tipo de Contrato
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         start_date: Año de inicio
         end_date: Año de conclusión
         adscription: Adscripción
         descr: Descripción
         place_of_origin: Institución/Lugar de origen
       jobposition_log:
-        worker_key: Número de plaza
-        worker_number: Número de identificación del trabajador
+        worker_key: Número de identificación del trabajador
+        worker_number: Número de plaza
         academic_years: Años de antigüedad académica
         administrative_years: Años de antigüedad administrativa
       user_adscription:
         adscription: Adscripción
       education:
-        career: Nombre de la carrera
-        institution: Facultad o escuela
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        career: Nombre de la carrera o posgrado
+        degree: Grado
+        institution: Facultad, Escuela o Instituto
+        university: Institución
+        country: País
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         name: nomnbre
         startyear: Año de inicio
         endyear: Año de conclusión
@@ -478,13 +513,13 @@ es:
         created_on: Fecha de creación
         updated_on: Fecha de actualización
         institution: Facultad, Escuela o Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         indivadvices: Asesorías individuales
         tutorial_committees: Comités tutorales
         theses: Asesorías de tesis
         education: Escolaridad
         academicprograms: Programas académicos
-        
+
       institution:
         institutiontype:  Tipo de institución
         institutiontitle: Clasificación de la institución
@@ -493,7 +528,7 @@ es:
         country: País
         name: Facultad, Escuela o Instituto
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         abbrev: Siglás
       user_stimulus:
         stimuluslevel: Tipo de estímulo y nivel
@@ -509,7 +544,7 @@ es:
         amount: Monto
       membership:
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         startyear: Año de inicio
         endyear: Año de conclusión
         startmonth: Mes de inicio
@@ -557,13 +592,15 @@ es:
         articlestatus: Estado
         users: Autores del IFUNAM
         is_verified: Verificado
+        is_selected: Selecto
       journal:
         name: Nombre
         country_id: País
         country: País
         abbrev: Siglás o abreviatura
         other: Información adicional
-        impact_index: Factor de impacto
+       # impact_index: Factor de impacto
+        impact_factor_id: Factor de impacto
         is_verified: Verificado
         articles: Artículos
         users: Arbitros
@@ -571,6 +608,10 @@ es:
         registered_by_id: Registrado por
         mediatype_id: Tipo de medio
         has_open_access: ¿Tiene Open Access?
+      book:
+        authors: Autores
+        title: Título
+        is_selected: Selecto
       bookedition:
         edition: Edición
         isbn: ISBN
@@ -600,7 +641,7 @@ es:
         month: Mes
         genericworkstatus: Status
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         publisher: Editor
         genericworktype: Tipo
       review:
@@ -620,7 +661,7 @@ es:
         year: Año
         month: Mes
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
       activity:
         name: Nombre
         descr: Descripción
@@ -636,7 +677,7 @@ es:
         techproducttype_id: Tipo
         descr: Descripción
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         userrole: Rol
         year: año
       user_journal:
@@ -664,8 +705,12 @@ es:
         country: País
       indivadvice:
         indivname: Persona asesorada
-        institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        career: Nombre de la carrera o posgrado
+        degree: Grado
+        institution: Facultad, Escuela o Instituto
+        university: Institución
+        country: País
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         startyear: Año de inicio
         startmonth: Mes de inicio
         endyear: Año de conclusión
@@ -676,7 +721,7 @@ es:
         title: Título
         instadvicetarget: Objetivo
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         year: Año
         month: Mes
       thesis:
@@ -694,7 +739,12 @@ es:
         registered_by: Registrado por
         modified_by: Modificado por
         user_thesis: Académicos del instituto
-        career: Carrera
+        career: Nombre de la carrera o posgrado
+        degree: Grado
+        institution: Facultad, Escuela o Instituto
+        university: Institución
+        country: País
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         users: Académicos del instituto
         is_verified: Verificado
         document: Archivo
@@ -708,6 +758,12 @@ es:
         studentname: Nombre del estudiante
         descr: Descripción
         year: año
+        career: Nombre de la carrera o posgrado
+        degree: Grado
+        institution: Facultad, Escuela o Instituto
+        university: Institución
+        country: País
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
       inproceeding:
         title: Título
         authors: Autor(es)
@@ -742,6 +798,7 @@ es:
       academicprogram:
         academicprogramtype: Tipo de programa académico
         year: Año
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
       thesis_juror:
         roleinjury: Rol
         year: Año
@@ -754,13 +811,13 @@ es:
         techproducttype: Tipo
         descr: Descripción
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         userrole: Rol
         year: Año
       acadvisit:
         country: País
         institution: Institución
-        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a itzel@fisica.unam.mx
+        request_institution: Para solicitar una nueva instituci&oacute;n enviar correo a ileyva@fisica.unam.mx
         descr: Descripción
         acadvisittype: Tipo
         startyear: Año de inicio
@@ -862,13 +919,43 @@ es:
         modified_by: Modificado por
         created_on: Fecha de creación
         updated_on: Fecha de actualización
+      impact_factor:
+        journal: Revista científica
+        year: Año (yyyy)
+        value: Valor
+      department_head:
+        user: 'Usuario' 
+        adscription: 'Departamento'
+        user_id: 'Usuario' 
+        adscription_id: 'Departamento'
+      building:
+        name: 'Nombre del edificio'
+      lab_or_group:
+        name: Nombre del Laboratorio o grupo
+        name_en: Nombre del Laboratorio o grupo en inglés
+      user_lab_or_group:
+        lab_or_group: Laboratorio o grupo
+      knowledge_area:
+        name: Área de investigación
+        name_en: Nombre del área de investigación en inglés
+        knowledge_field_id: Campo del conocimiento al que pertenece
+      user_knowledge_area:
+        lab_or_group: Área de investigación
+      knowledge_field:
+        name: Campo del conocimiento
+        name_en: Nombre del campo del conocimiento en inglés
+      video:
+        name: Nombre
+        url: Dirección electrónica
+        start_year: Año
+        start_month: Mes
 
   additional_info: Información adicional
   career: Carrera
   school_or_faculty: Escuela o facultad
   thesis_jurors: Jurados de tesis
   newspaper: Periódico
-  period: Periódo
+  period: Período
   roleinthesis: Rol
   roleinjury: Rol
   studentname: Estudiante
@@ -1030,13 +1117,13 @@ es:
 
   periods:
     show:
-      title: 'Periódo'
+      title: 'Período'
     index:
-      title: 'Periódos'
+      title: 'Períodos'
     new:
-      title: 'Nuevo periódo'
+      title: 'Nuevo Período'
     edit:
-      title: 'Modificar periódo'
+      title: 'Modificar Período'
 
   seminarytypes:
     show:
@@ -2329,6 +2416,55 @@ es:
     show:
       title: 'Intercambio académico'
 
+  impact_factor:
+    index:
+      title: 'Factor de impacto'
+    new:
+      title: 'Nuevo factor de impacto'
+    edit:
+      title: 'Modificar factor de impacto'
+    show:
+      title: 'Factor de impacto'
+
+  lab_or_group:
+    index:
+      title: 'Mis laboratorios o grupos'
+      my_articles: 'Mis laboratorios o grupos'
+    new:
+      title: 'Nuevo laboratorio o grupo'
+    edit:
+      title: 'Modificar laboratorio o grupo'
+    show:
+      title: 'Laboratorio o grupo'
+    collection_header:
+      title: 'Laboratorios o grupos'
+    # index:
+    #   title: 'Laboratorio o grupo'
+
+  knowledge_area:
+    index:
+      title: 'Mis areas de investigación'
+      my_articles: 'Mis areas de investigación'
+    # index:
+    #   title: 'Área de investigación'
+    new:
+      title: 'Nueva área de investigación'
+    edit:
+      title: 'Modificar área de investigación'
+    show:
+      title: 'Área de investigación'
+    collection_header:
+      title: 'Áreas de investigación'
+
+  video:
+    index:
+      title: 'Mis videos'
+    new:
+      title: 'Nuevo video'
+    edit:
+      title: 'Modificar video'
+    show:
+      title: 'Video'
 
   academic:
     annual_reports:
@@ -2372,7 +2508,7 @@ es:
     genericworks: 'Trabajos de divulgación/difusión'
     projectfinancingsources: 'Fuentes de financiamiento'
     user_regularcourses: 'Cursos regulares'
-    periods: 'Periódos'
+    periods: 'Períodos'
     seminaries: 'Seminarios'
     seminarytypes: 'Tipos de seminarios'
     prizetypes: 'Tipos de premios'
@@ -2488,7 +2624,25 @@ es:
     users_logs: 'Bitacoras de usuario'
     usersstatuses_comments: 'Comentarios de estados de usuario'
     reports: Reportes
-
+    department_heads: 'Jefes de departamento'
+    buildings: "Edificios"
+    lab_or_groups: 'Laboratorios o grupos'
+    knowledge_areas: 'Áreas de investigación'
+    knowledge_fields: 'Campos del conocimiento'
+    department_head:
+      form:
+        title: 'Jefe de departamento'
+      filter_header:
+        user_id: 'Usuario' 
+        adscription_id: 'Departamento'
+    building:
+      name: 'Nombre del edificio'
+    lab_or_group:
+      name: 'Nombre del laboratorio o grupo'
+    knowledge_area:
+      name: 'Nombre del área de investigación'
+    knowledge_field:
+      name: 'Nombre área del conocimiento'
     user:
       form:
         title: 'Cuenta de usuario'
@@ -2539,7 +2693,7 @@ es:
   destroy_all_empty_associations: 'Borrar registros sin asociaciones'
   new_record_confirmation: '¿ Desea agregar este elemento a la lista ?'
   reject_document_confirmation: '¿ Desea rechazar este documento ?'
-  approve_document_approbation: '¿ Desea aprobar este documento ?'
+  approve_document_confirmation: '¿ Desea aprobar este documento ?'
   add_author: 'Asociarse como autor'
   del_author: 'Quitarse como autor'
   add_attendee: 'Asociarse como asistente'
@@ -2598,11 +2752,15 @@ es:
   updated_by: 'Actualizado por'
   updating_date: 'Fecha de actualización'
   approved: 'Aprobado'
+  approve_document: 'Aprobar'
   rejected: 'Rechazada'
   approve: 'Aprobar'
   reject: 'Rechazar'
   fullname: 'Nombre(s)'
-
+  lab_or_group: 'Laboratorio o grupo'
+  knowledge_area: 'Área de investigación'
+  knowledge_field: 'Campo del conocimiento'
+  video: 'Video'
   academic_responsible: 'Académico responsable'
   document_type: 'Tipo'
   deliver_date:  'Fecha y hora de envío'
@@ -2651,6 +2809,8 @@ es:
   reporter:
     profile: 'Perfil'
     researchlines: 'Líneas de investigación'
+    user_lab_or_groups: 'Laboratorios o grupos'
+    user_knowledge_areas: 'Áreas de investigación'
     jobpositions: 'Categorías'
     external_jobpositions: 'Experiencia profesional externa'
     educations: 'Escolaridad'

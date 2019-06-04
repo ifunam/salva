@@ -1,0 +1,4 @@
+- if section[:collection].count > 0
+  %table
+  %tbody
+    = render :partial => 'record', :collection => section[:collection]

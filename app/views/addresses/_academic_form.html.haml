@@ -9,12 +9,12 @@
       = f.label :addresstype_id
       = 'Domicilio Profesional'
       = f.hidden_field :addresstype_id, :value => 1
-    .span-8
-      - location =  'Edificio Principal, Cubículo o laboratorio: 132'
-      = f.input :location, :as => :text, :input_html =>{ :size => '50x3', :value => f.object.location || location}
-    .span-4.last
-      = f.label :pobox
-      = 'P.O. Box 20-364'
+    .span-6
+      - building =  'Edificio :'
+      = f.association :building, :using => :name, :input_html  => {:class => 'chosen-select', :prompt => true, :required => true, :width=>'60'}
+    .span-6.last
+      - location =  'Cubículo o laboratorio:'
+      = f.input :location, :as => :string, :input_html =>{ :size => 35 }
       = f.hidden_field :pobox, :size => 20, :value => 'P.O. Box 20-364'
   .row
     .span-5
@@ -23,7 +23,7 @@
       = f.hidden_field :country_id, :value => 484
     .span-5
       = f.label :state_id
-      = 'Distrito Federal'
+      = 'Ciudad de México'
       = f.hidden_field :state_id, :value => 9
     .span-5
       = f.label :city_id

@@ -1,0 +1,31 @@
+.content
+  .breadcrumbs
+    - @years = (2012 .. Time.now.year).to_a
+    #filters
+      = form_for :search, :url => bi_students_path, :method=>:get, :remote => false, :html => {:id => "search_form"} do |f|
+        %div
+          = f.label "Seleccionar periodo"
+          = f.hidden_field :t, value:@res[:t]
+        - if @res[:t]!='adsc'
+          %select{name:'initial'}
+            - @res[:periods].each do |value, id|
+              - if id.to_s==params[:initial]
+                %option{value: id, selected:id}
+                  = value
+              - else
+                %option{value: id}
+                  = value
+        %select{name:'final'}
+          - @res[:periods].each do |value, id|
+            - if id.to_s==params[:final]
+              %option{value:id, selected:id}
+                = value
+            - elsif params[:final]==nil and id.to_s==@res[:periods].values.last.to_s
+              %option{value:id, selected:@res[:periods].values.last}
+                = value
+            - else
+              %option{value:id}
+                = value
+        = f.submit "Buscar", :id => 'search'
+        - @res[:charts].each do |chart|
+          = high_chart(chart.options[:id],chart)

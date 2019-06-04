@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Indivadvice < ActiveRecord::Base
   attr_accessible :indivname, :institution_id, :startyear, :startmonth, :endyear, :endmonth,
-                  :hours, :indivadvicetarget_id, :career_attributes
+                  :hours, :indivadvicetarget_id, :career_attributes,
+                  :institution_id, :university_id, :country_id, :degree_id, :career_id
 
   validates_presence_of :indivadvicetarget_id, :indivname, :startyear, :hours
   validates_numericality_of :indivadvicetarget_id
@@ -14,8 +15,13 @@ class Indivadvice < ActiveRecord::Base
   belongs_to :institution
 
   # Fix It: Remove degree relationship in the next release
-  belongs_to :degree
+  #belongs_to :degree
   belongs_to :career # Used only for students
+  belongs_to :career, :class_name => 'Career', :foreign_key => 'career_id'
+  belongs_to :degree, :class_name => 'Degree', :foreign_key => 'degree_id'
+  belongs_to :institution, :class_name => 'Institution', :foreign_key => 'institution_id'
+  belongs_to :university, :class_name => 'Institution', :foreign_key => 'university_id'
+  belongs_to :country, :class_name => 'Country', :foreign_key => 'country_id'
   accepts_nested_attributes_for :career
 
   belongs_to :registered_by, :class_name => "User"
@@ -24,7 +30,7 @@ class Indivadvice < ActiveRecord::Base
   default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC, indivname ASC'
   scope :students, where('indivadvicetarget_id <= 3')
   scope :professors, where('indivadvicetarget_id > 3')
-  scope :degree_id, lambda { |id| joins(:career).where("careers.degree_id = ?", id) }
+  scope :degree_id, lambda { |id| where("degree_id = ?", id) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
   search_methods :degree_id, :adscription_id
@@ -43,11 +49,7 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def degree_name
-    unless career_id.nil?
-      "Grado: #{career.degree.name}"
-    else
-      "Grado: #{degree.name}" unless degree_id.nil?
-    end
+    "Grado: #{degree.name}" unless degree_id.nil?
   end
 
   def career_name
@@ -55,15 +57,9 @@ class Indivadvice < ActiveRecord::Base
   end
 
   def institution_name
-    unless career_id.nil?
-      unless career.institution_id.nil?
-        career.institution.school_and_university_names
-      else
-        ''
-      end
-    else
-      institution.school_and_university_names unless institution_id.nil?
-    end
+    escuela = institution.nil? ? nil : institution.name
+    universidad = university.nil? ? nil : university.name
+    "Facultad, escuela o posgrado: #{escuela}, Institución: #{universidad}"
   end
 
   def normalized_hours

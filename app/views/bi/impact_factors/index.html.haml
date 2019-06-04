@@ -1,0 +1,23 @@
+#filters
+  - @years = (2016 .. Time.now.year).to_a
+  = form_for :search, :url => bi_impact_factors_path, :method=>:get, :remote => false, :html => {:id => "search_form"} do |f|
+    %div
+      = f.label "Seleccionar año"
+    %select{name:'year'}
+      - @years.each do |year|
+        - if year.to_s==params[:year]
+          %option{value: year, selected:year}
+            =year
+        - elsif params[:year]==nil and year.to_s==(@years.last-1).to_s
+          %option{value: year, selected:(@years.last-1)}
+            = year
+        - else
+          %option{value: year}
+            = year
+    = f.submit "Buscar", :id => 'search'
+
+    = high_chart("id_1", @chart)
+
+    %label
+      = "Existen #{@n_a} artículos de los que no se cuenta con información del Factor de Impacto en la revista publicada en #{@year}"
+

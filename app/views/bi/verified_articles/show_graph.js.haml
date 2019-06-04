@@ -1,0 +1,4 @@
+#collection
+  %h3= 'Gráfica'
+  - @charts.each do |chart|
+    = high_chart(chart.options[:id],chart)

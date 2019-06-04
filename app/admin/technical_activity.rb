@@ -16,7 +16,7 @@ ActiveAdmin.register Activity, :as => 'TechnicalActivity' do
     column(:activitytype) { |record| record.activitytype.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -33,7 +33,7 @@ ActiveAdmin.register Activity, :as => 'TechnicalActivity' do
     column(:activitytype) { |record| record.activitytype.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

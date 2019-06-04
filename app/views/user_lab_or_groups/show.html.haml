@@ -1,0 +1,13 @@
+%h3= t('user_lab_or_groups.show.title')
+
+.section-with-border-and-bg
+  = show_for @user_lab_or_group do |u|
+    .row
+      .span-18.last= u.association :lab_or_group, :using => :name
+    .row
+      = render :partial => 'shared/record', :object => @user_lab_or_group
+
+#submit_buttons
+  = link_to t(:edit), edit_user_lab_or_group_path(:id => @user_lab_or_group.id)
+  = link_to t(:back), user_lab_or_groups_path
+

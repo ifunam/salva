@@ -10,6 +10,17 @@
       .span-6.last= u.attribute :end_date
 
     .span-18.last
+      %h4=t(:career)
+      .span-9= u.association :career, :using => :name
+      .span-9.last= u.association :degree, :using => :name
+
+    .span-18.last
+      %h4=t(:school_or_faculty)
+      .span-9= u.association :institution, :using => :name
+      .span-9.last= u.association :university, :using => :name
+      .span-6.last= u.association :country, :using => :name
+
+  -#  .span-18.last
       = render :partial => 'careers/show', :locals => { :record => @thesis.career }
       .span-6.last= u.association :thesismodality, :using => :name
 
@@ -17,14 +28,14 @@
       %h4=t(:school_or_faculty)
       = render :partial => 'institutions/show', :locals => { :record => @thesis.career.institution }
 
-    .span-18.last
-      %h4=t(:associated_academics)
-      %ul
-        - @thesis.user_theses.each do |record|
-          %li= record.to_s
+  .span-18.last
+    %h4=t(:associated_academics)
+    %ul
+      - @thesis.user_theses.each do |record|
+        %li= record.to_s
 
   .row
-    = render :partial => 'shared/record', :object => @thesis
+    -#= render :partial => 'shared/record', :object => @thesis
 
 #submit_buttons
   - unless @thesis.is_verified?

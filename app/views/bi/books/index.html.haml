@@ -1,0 +1,37 @@
+.content
+  .breadcrumbs
+    -# @current_year = Time.now.year
+    - @years = (2012 .. Time.now.year).to_a
+    #filters
+      = form_for :search, :url => bi_books_path, :method=>:get, :remote => false, :html => {:id => "search_form"} do |f|
+        %div
+          = f.label "Seleccionar periodo"
+        %input{:type=>"hidden", :value=>@type, :name=>:t}
+        %select{name:'initial_year'}
+          - @years.each do |year|
+            - if year.to_s==params[:initial_year]
+              %option{value: year, selected:year}
+                =year
+            - else
+              %option{value: year}
+                = year
+        %select{name:'final_year'}
+          - @years.each do |year|
+            - if year.to_s==params[:final_year]
+              %option{value: year, selected:year}
+                =year
+            - elsif params[:initial_year]==nil and year.to_s==@years.last.to_s
+              %option{value: year, selected:@years.last}
+                = year
+            - else
+              %option{value: year}
+                = year
+        = f.submit "Buscar", :id => 'search'
+        - @charts.each do |chart|
+          = high_chart(chart.options[:id],chart)
+
+  - if current_user.admin?
+    #session_info
+      = link_to 'Ver listado completo', admin_published_articles_path, target: '_blank'
+
+.clear_float

@@ -16,7 +16,8 @@ ActiveAdmin.register Document, :as => 'AnnualReport' do
   index :title => 'Informes anuales enviados' do
     column(:id) { |record| record.id }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.documenttype.year }
+    column(:category_name) { |record| record.user.category_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:document_type) { |record| record.documenttype.name }
     column(:document_type_year) { |record| record.documenttype.year }
@@ -31,7 +32,6 @@ ActiveAdmin.register Document, :as => 'AnnualReport' do
       s = record.comments
       truncate(s, :length => 25)
     }
-    #column(:comments) { |record| record.comments }
     column(:ip_address) { |record| record.ip_address }
     column 'Download', :sortable => false do |record|
       link_to 'Descargar', record.url, :target => '_blank'
@@ -48,7 +48,8 @@ ActiveAdmin.register Document, :as => 'AnnualReport' do
 
   csv do
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.documenttype.year }
+    column(:category_name) { |record| record.user.category_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
 
     column(:document_type) { |record| record.documenttype.name }

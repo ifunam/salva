@@ -1,0 +1,18 @@
+%title= 'Información de emergencia'
+%h3
+  = link_to 'Descargar listado', './emergency_info.csv'
+%table{:width=>'100%'}
+  %tr{:bgcolor=>'lightgray'}
+    %th{:width=>'10%'} Nombre
+    %th{:width=>'10%'} Contacto para emergencia
+    %th{:width=>'10%'} Número
+    %th{:width=>'10%'} Condición médica
+    %th{:width=>'10%'} Instrucción médica
+    %th{:width=>'10%'} Hospital de preferencia
+    %th{:width=>'10%'} Seguro
+    %th{:width=>'10%'} Contacto para emergencia
+    %th{:width=>'10%'} Número
+    %th{:width=>'5%'} Contacto para emergencia
+    %th{:width=>'5%'} Número
+  %tbody
+    = render :partial => 'record', :collection => @collections

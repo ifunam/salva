@@ -1,6 +1,10 @@
 .span-17.last
   %h3= t('.title')
 
+#submit_buttons
+  = link_to_annual_report(current_user.id)
+%br
+
 #collection_header
   .span-16=t('.title')
   .span-2.last=t(:download)

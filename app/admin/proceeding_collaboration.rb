@@ -20,7 +20,7 @@ ActiveAdmin.register UserProceeding, :as => 'ProceedingCollaboration'  do
 
     column(:roleproceeding) { |record| record.roleproceeding.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user,record.proceeding.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -46,7 +46,7 @@ ActiveAdmin.register UserProceeding, :as => 'ProceedingCollaboration'  do
 
     column(:roleproceeding) { |record| record.roleproceeding.name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user,record.proceeding.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

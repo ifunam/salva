@@ -8,6 +8,7 @@ class BookeditionRoleinbook < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
+  scope :published, where("bookeditions.editionstatus_id = 1")
   scope :authors, where("roleinbook_id = 1 OR roleinbook_id = 2")
   scope :collaborators, where("roleinbook_id != 1 AND roleinbook_id != 2")
   scope :find_by_year, lambda { |year| joins(:bookedition).where('bookeditions.year = ?', year) }

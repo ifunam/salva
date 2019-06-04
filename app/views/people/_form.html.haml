@@ -1,49 +1,26 @@
 .section-with-border-and-bg
   %h3= t('.title')
-  - if !f.object.nil? and !f.object.new_record?
-    = f.hidden_field :id, :value => f.object.id
   .row
     .span-3= image_for_person(f.object)
     .span-5.last
       = f.label :image
       = f.simple_fields_for :image_attributes do |image_form|
         = render :partial => 'images/form', :locals => { :f => image_form}
-  .row
-    = f.input :firstname, :as => :string, :input_html => { :size => 15}
-    = f.input :lastname1, :as => :string, :input_html => { :size => 15}
-    = f.input :lastname2, :as => :string, :input_html => { :size => 15}
-    = f.input :title, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-2 last'
 
+  %h4 Información de contacto para casos de emergencia
   .row
-    = f.input :dateofbirth, :as => :string, :input_html => { :size => 10, :class => 'birthdate' }, :required => true
-    .span-5
-      = f.label :gender, :required => true
-      = f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)
-      Femenino
-      \#{f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)} Masculino
-    .span-5
-      = f.label :maritalstatus_id
-      = f.collection_select :maritalstatus_id, Maritalstatus.all, :id, :name, {:prompt => true},  :required => true, :class => "chosen-select"
-    .span-2.last
-      = f.input :title_en, :as => :string, :input_html => { :size => 4}, :wrapper_class => 'span-2 last'
+    = f.input :contact_name_1 , :label =>'Nombre de contacto para emergencia', :as => :string, :input_html => { :size => 30}
+    = f.input :contact_phonenumber_1, :label =>'<br />Teléfono', :as => :string, :input_html => { :size => 15}
+  .row
+    = f.input :contact_name_2, :label =>'Nombre de contacto (2) para emergencia', :as => :string, :input_html => { :size => 30}
+    = f.input :contact_phonenumber_2, :label =>'<br />Teléfono (2)', :as => :string, :input_html => { :size => 15}
+  .row
+    = f.input :contact_name_3,:label =>'Nombre de contacto (3) para emergencia', :as => :string, :input_html => { :size => 30}
+    = f.input :contact_phonenumber_3, :label =>'<br />Teléfono (3)', :as => :string, :input_html => { :size => 15}
+  .row
+    = f.input :medical_condition, :label =>'Antecedentes o afecciones médicas importantes a considerar en caso de  emergencia', :as => :text, :input_html => { :rows => 3, :cols => 28}
+    = f.input :medical_instruction, :label =>'<br />Instrucciones y recomendaciones para un caso de emergencia', :as => :text, :input_html => { :rows => 3, :cols => 28}
+  .row
+    = f.input :hospital, :label =>'Hospital de preferencia y médico tratante  en caso de requerir atención de emergencia', :as => :text, :input_html => { :rows => 3, :cols => 28}
+    = f.input :insurance, :label =>'<br />Datos del seguro medico en caso de requerir atención de emergencia', :as => :text, :input_html => { :rows => 3, :cols => 28}
 
-  .row
-    %b='Lugar de nacimiento'
-    %br
-    .span-5
-      = f.label :country_id, :required => true
-      - selected_country_id = f.object.country_id || 484
-      = f.collection_select :country_id, Country.all, :id, :name, {:prompt => true, :selected => selected_country_id, :required => true}, :class => "chosen-select country-select"
-    #state_set.span-5
-      = f.label :state_id
-      - if f.object.country_id == 484 or f.object.country_id == 840
-        - selected_stated_id = f.object.state_id || 9
-        = f.collection_select :state_id, State.where(:country_id => selected_country_id ).all, :id, :name, {:prompt => true, :selected => selected_stated_id}, :class => "chosen-select"
-    #city_set.span-6.last
-      = f.label :city_id, :required => true
-      - if f.object.state_id.to_i >= 1 && f.object.state_id.to_i <= 83
-        = f.collection_select :city_id, City.where(:state_id => f.object.state_id).all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :id => 'city_list', :class => "chosen-select"
-      - else
-        = f.collection_select :city_id, City.all, :id, :name, {:prompt => true, :selected => f.object.city_id, :required => true}, :id => 'city_list', :class => "chosen-select"
-      = link_to content_tag(:span, '', :class => 'ui-button-icon-primary ui-icon ui-icon-plus') , '#', :title => 'Agregar nueva ciudad', :class => "ui-button ui-button-icon ui-widget ui-state-default ui-corner-all", :id => 'city_new'
-      #city_text_field

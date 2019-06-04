@@ -26,6 +26,11 @@
     .span-9= f.input :url, :as => :string, :input_html => { :size => '40', :autocomplete => "off" }
     .span-9.last= f.input :other, :as => :text, :input_html => { :size => '50x1' }
 
+  .row
+    .span-9
+      = f.label :is_selected
+      = f.check_box :is_selected
+
   = f.hidden_field :articlestatus_id, :value => 3
   - unless UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first.nil? 
     - @user_articles = UserArticle.where(:user_id => current_user.id, :article_id => @article.id).first

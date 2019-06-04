@@ -1,0 +1,3 @@
+class Bi < User
+
+end

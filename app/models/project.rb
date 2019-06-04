@@ -34,6 +34,7 @@ class Project < ActiveRecord::Base
 
   has_paper_trail
 
+  default_scope :order => 'startyear DESC, startmonth DESC'
   scope :user_id_eq, lambda { |user_id| joins(:user_projects).where(:user_projects => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| 
     project_without_user_sql = UserProject.user_id_not_eq(user_id).to_sql

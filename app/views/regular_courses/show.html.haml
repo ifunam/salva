@@ -8,31 +8,31 @@
     %h4 Carrera
     .span-9
       %label Carrera
-      = @regular_course.academicprogram.career.name
+      = @regular_course.academicprogram.career.name unless @regular_course.academicprogram.career.nil?
     .span-9.last
       %label Grado
-      = @regular_course.academicprogram.career.degree.name
+      = @regular_course.academicprogram.degree.name unless @regular_course.academicprogram.degree.nil?
 
 
     %h4 Facultad
     .span-9
       %label Facultad o Escuela
-      = @regular_course.academicprogram.career.institution.name
+      = @regular_course.academicprogram.institution.name unless @regular_course.academicprogram.institution.nil?
     .span-9.last
       %label Institución
-      = @regular_course.academicprogram.career.institution.institution.name
+      = @regular_course.academicprogram.university.name unless @regular_course.academicprogram.university.nil?
 
 
     .span-9
       %label Tipo
-      = @regular_course.academicprogram.career.institution.institutiontitle.name
+      = @regular_course.academicprogram.institution.institutiontitle.name unless @regular_course.academicprogram.institution.nil?
     .span-9.last
       %label Clasificación
-      = @regular_course.academicprogram.career.institution.institutiontype.name
+      = @regular_course.academicprogram.institution.institutiontype.name unless @regular_course.academicprogram.institution.nil?
 
     .span-18.last
       %label País
-      = @regular_course.academicprogram.career.institution.country.name
+      = @regular_course.academicprogram.country.name unless @regular_course.academicprogram.country.nil?
   .span-18.last
     %h4 Periodos
     %ul

@@ -30,7 +30,7 @@ ActiveAdmin.register Indivadvice, :as => 'ProfessorAdvice' do
     column(:country) { |record| record.institution.country_name unless record.career_id.nil? }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.startyear }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -50,7 +50,8 @@ ActiveAdmin.register Indivadvice, :as => 'ProfessorAdvice' do
     column(:country) { |record| record.institution.country_name unless record.career_id.nil? }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.startyear }
+#    column(:adscription) { |record| record.user.adscription_name }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

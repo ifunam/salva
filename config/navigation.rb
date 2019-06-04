@@ -56,6 +56,8 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :external_jobpositions, 'Experiencia profesional externa', external_jobpositions_path, :highlights_on => /\/external_jobpositions/
       s.item :educations, 'Escolaridad', educations_path, :highlights_on => /\/educations/
       s.item :projects, 'Proyectos', projects_path, :highlights_on => /\/projects/
+      s.item :user_lab_or_groups, 'Laboratorios o grupos', user_lab_or_groups_path, :highlights_on => /\/user_lab_or_groups/
+      s.item :user_knowledge_areas, 'Áreas de investigación', user_knowledge_areas_path, :highlights_on => /\/user_knowledge_areas/
       s.item :user_research_lines, 'Líneas de investigación', user_research_lines_path, :highlights_on => /\/user_research_lines/
       s.item :user_cites, 'Número de citas', user_cite_path, :highlights_on => /\/user_cite/
       s.item :user_stimuli, 'Estímulos académicos', user_stimuli_path, :highlights_on => /\/user_stimuli/
@@ -69,12 +71,15 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :user_languages, 'Idiomas', user_languages_path, :highlights_on => /\/user_languages/
       s.item :user_skills, 'Técnicas experimentales y habilidades', user_skills_path, :highlights_on => /\/user_skills/
       s.item :user_settings, 'Página web', user_settings_path, :highlights_on => /\/user_settings/
+      s.item :videos, 'Videos', videos_path, :highlights_on => /\/videos/
     end
 
     primary.item :publications, 'Publicaciones', articles_path do |s|
       s.item :articles, 'Artículos publicados', articles_path, :highlights_on => /\/articles/
+      s.item :selected_articles, 'Artículos selectos', selected_articles_path, :highlights_on => /\/selected_articles/
       s.item :unpublished_articles, 'Artículos enviados o aceptados', unpublished_articles_path, :highlights_on => /\/unpublished_articles/
       s.item :book_authors, 'Autoría de libros', book_authors_path, :highlights_on => /\/book_authors/
+      s.item :selected_books, 'Libros selectos', selected_books_path, :highlights_on => /\/selected_books/
       s.item :book_chapters, 'Capítulos en libros', book_chapters_path, :highlights_on => /\/book_chapters/
       s.item :refereed_inproceedings, 'Artículos en memorias arbitradas', refereed_inproceedings_path, :highlights_on => /\/refereed_inproceedings/
       s.item :technical_reports, 'Reportes técnicos', technical_reports_path, :highlights_on => /\/technical_reports/

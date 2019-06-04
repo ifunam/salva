@@ -4,10 +4,12 @@ class WebSite::RecentPublicationsController < WebSite::ApplicationController
   respond_to :html
 
   def index
-    #@collections = [ { :title => :published_articles, :collection => Article.published.verified.current_year } ]
+    @data = []
+    @data.concat(Article.published.verified.current_year)
+    @data.concat(Article.published.verified.last_year)
+
     @collections = [
-                    { :title => :published_articles, :collection => Article.published.verified.current_year },
-                    { :title => :published_articles, :collection => Article.published.verified.last_year }
+                    { :title => :published_articles, :collection => @data }#,
                     ]
     respond_with @collections
   end

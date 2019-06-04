@@ -1,0 +1,18 @@
+%h3= t('videos.show.title')
+.section-with-border-and-bg
+  = show_for @video do |u|
+    .row
+      .span-8= u.attribute :name
+      .span-10.last= u.attribute :url
+
+    .row
+      .span-6= u.attribute :start_year
+      .span-6= u.attribute :start_month
+
+    .row
+      =# render :partial => 'shared/record', :object => @video
+
+#submit_buttons
+  = link_to t(:edit), edit_video_path(:id => @video.id)
+  = link_to t(:back),  videos_path
+

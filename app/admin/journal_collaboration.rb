@@ -15,7 +15,7 @@ ActiveAdmin.register UserJournal, :as => 'JournalCollaboration'  do
     column :endmonth
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user,record.startyear }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -44,7 +44,7 @@ ActiveAdmin.register UserJournal, :as => 'JournalCollaboration'  do
     column :endmonth
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user,record.startyear }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

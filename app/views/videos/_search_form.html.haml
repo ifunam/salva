@@ -1,0 +1,8 @@
+= render :partial => 'shared/search_options'
+= form_for :search, :remote => true, :html => {:id => "filter_form", :style => search_form_display_enabled} do |f|
+  .span-3=t(:year)
+  .span-3.last
+
+  .span-3= f.text_field :year_eq, :size => 4
+  .search_button= link_to t(:search), "#", :id => "search_button"
+  .reset_search_button.last= link_to "Listar todos", "#" , :id => 'reset_search_button'

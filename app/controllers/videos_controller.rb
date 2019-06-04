@@ -1,0 +1,2 @@
+class VideosController < UserResourcesController
+end

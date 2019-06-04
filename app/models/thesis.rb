@@ -5,7 +5,12 @@ class Thesis < ActiveRecord::Base
   validates_numericality_of :thesisstatus_id, :thesismodality_id, :greater_than => 0, :only_integer => true
 
   belongs_to :career
-  accepts_nested_attributes_for :career
+  belongs_to :career, :class_name => 'Career', :foreign_key => 'career_id'
+  belongs_to :degree, :class_name => 'Degree', :foreign_key => 'degree_id'
+  belongs_to :institution, :class_name => 'Institution', :foreign_key => 'institution_id'
+  belongs_to :university, :class_name => 'Institution', :foreign_key => 'university_id'
+  belongs_to :country, :class_name => 'Country', :foreign_key => 'country_id'
+
 
   belongs_to :thesisstatus
   belongs_to :thesismodality
@@ -26,7 +31,7 @@ class Thesis < ActiveRecord::Base
 
   attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date, :url,
                   :startyear, :startmonth, :endyear, :endmonth, :is_verified, :user_theses_attributes, :user_ids, :document, :document_cache, :remove_document,
-                  :other
+                  :other, :institution_id, :university_id, :country_id, :degree_id, :career_id
   alias_attribute :name, :title
   has_paper_trail
 
@@ -53,11 +58,15 @@ class Thesis < ActiveRecord::Base
   scope :for_technician, joins(:career).where('degree_id = 2').not_as_author
   scope :for_high_school, joins(:career).where('degree_id = 1').not_as_author
 
-  scope :career_degree_id_eq, lambda { |degree_id| joins(:career).where{{:careers => {:degree_id => degree_id}}}.not_as_author }
+  scope :career_degree_id_eq, lambda { |degree_id| where(:degree_id => degree_id).not_as_author }
   search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq, :career_degree_id_eq
 
   def to_s
-    ["#{authors} (estudiante)", title, thesismodality.to_s, career.to_s, date, users_and_roles].compact.join(', ')
+    carrera =  career.nil? ? nil : career.name
+    grado = degree.nil? ? nil : degree.name
+    escuela = institution.nil? ? nil : institution.name
+    universidad = university.nil? ? nil : university.name
+    ["#{authors} (estudiante)", title, thesismodality.to_s, "Carrera: #{carrera}, Grado: #{grado}, #{escuela}, #{universidad}", date, users_and_roles].compact.join(', ')
   end
 
   def users_and_roles

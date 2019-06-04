@@ -16,7 +16,7 @@ ActiveAdmin.register UserArticle, :as => "InProgressArticle"  do
     column(:country)  { |record| record.article.journal.country_name }
     column(:publisher) { |record| record.article.journal.publisher_name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.article.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:pages) { |record| record.article.pages }
     column(:year) { |record| record.article.year}
@@ -53,7 +53,7 @@ ActiveAdmin.register UserArticle, :as => "InProgressArticle"  do
     column(:country)  { |record| record.article.journal.country_name }
     column(:publisher) { |record| record.article.journal.publisher_name }
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.article.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
     column(:pages) { |record| record.article.pages }
     column(:year) { |record| record.article.year}

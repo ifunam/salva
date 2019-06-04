@@ -1,0 +1,7 @@
+.content
+  .breadcrumbs
+    = high_chart("id_1", @chart)
+
+- if current_user.admin?
+  #session_info
+    = link_to 'Ver listado completo', admin_users_path, target: '_blank'

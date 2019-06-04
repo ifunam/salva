@@ -3,9 +3,5 @@
   = f.hidden_field :thesis_id, :value => @thesis_examination.id
 = f.hidden_field :user_id, :value => current_user.id
 .span-9= f.association :roleinjury, :as => :radio, :collection => Roleinjury.all, :wrapper_class => ' radio-set'
-// .span-3= f.input :year, :as => :string, :input_html => { :size => '4', :autocomplete => "off" }, :required => true
-//.span-6.last
-// = f.label :month, :required => true
-//  = select_month_for 'month', 'thesis_juror'
 
 

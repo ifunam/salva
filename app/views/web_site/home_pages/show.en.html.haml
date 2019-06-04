@@ -10,6 +10,7 @@
         = links_for_personal_sites(@record)
   %br/
   = render :partial => 'user_resume', :locals => { :user => @record }
+  %br/
 
   - if translate_category(@record.jobposition_for_researching.category_name) == 'Technician'
     = render :partial => 'user_skills', :locals => {:user => @record}

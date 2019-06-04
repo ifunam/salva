@@ -1,1 +1,7 @@
-= render :partial => 'record', :locals => { :record => @document }
+%h5='¿Desea aprobar el plan de trabajo?'
+= simple_form_for(@document, :remote => true, :url => academic_annual_report_path(@document),
+                             :html => {:id => dom_id(@document)}, :input_html=>{:style=>"height:'200px', width:'300px'"}) do |f|
+  #dialog_submit_buttons
+    = f.hidden_field :approved, value:'t'
+    = f.button :submit, :value => t(:approve), :name => 'approve'
+    = link_to t(:cancel), academic_annual_plans_path

@@ -12,7 +12,7 @@ class Userconference < ActiveRecord::Base
   belongs_to :roleinconference
   belongs_to :user
 
-  default_scope :joins => :conference, :order => 'conferences.year DESC, conferences.month DESC, conferences.name ASC'
+  #default_scope :joins => :conference, :order => 'conferences.year DESC, conferences.month DESC, conferences.name ASC'
   scope :organizer, where('userconferences.roleinconference_id > 1')
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
   scope :conferencescope_id, lambda { |id| joins(:conference).where('conferences.conferencescope_id = ?', id) }

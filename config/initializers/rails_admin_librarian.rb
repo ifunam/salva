@@ -31,7 +31,7 @@ RailsAdmin.config do |config|
 
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Article, Journal, User, Country, Mediatype, Publisher, UserRefereedJournal, UserJournal,
+  config.included_models = [Article, Journal, ImpactFactor, User, Country, Mediatype, Publisher, UserRefereedJournal, UserJournal,
                             Thesis, UserThesis, Thesismodality, Thesisstatus, Titlemodality, Career, Institution, Degree,
                             Institutiontype, Roleinthesis, Indivadvice, TutorialCommittee, ThesisJuror
                             ]
@@ -39,6 +39,19 @@ RailsAdmin.config do |config|
   # Application wide tried label methods for models' instances
   config.label_methods << :description # Default is [:name, :title, :to_s]
   config.label_methods << :to_s
+
+  config.model ImpactFactor do
+    list do 
+      field :journal
+      field :year
+      field :value
+    end
+    edit do
+      field :journal
+      field :year
+      field :value
+    end
+  end
 
   config.model Journal do
     list do
@@ -49,6 +62,7 @@ RailsAdmin.config do |config|
       field :abbrev
       field :country
       field :is_verified
+      field :impact_factor
       field :id
       field :users
     end
@@ -60,7 +74,7 @@ RailsAdmin.config do |config|
       field :mediatype
       field :publisher
       field :country
-      field :impact_index
+      #field :impact_index
       field :is_verified
       field :has_open_access
       field :other
@@ -262,8 +276,38 @@ RailsAdmin.config do |config|
       field :thesismodalities
     end
   end
-
+=begin
   config.model Institution do
+    edit do
+      field :name
+      field :abbrev
+      field :institutiontitle
+      field :institutiontype
+      field :country
+    end
+  end
+=end
+  config.model Institution do
+    list do
+      field :name
+      field :abbrev
+      field :institutiontitle
+      field :institutiontype
+      field :url
+      field :country
+      #field :registered_by
+      #field :modified_by
+    end
+    show do
+      field :name
+      field :abbrev
+      field :institutiontitle
+      field :institutiontype
+      field :url
+      field :country
+      #field :registered_by
+      #field :modified_by
+    end
     edit do
       field :name
       field :abbrev
@@ -280,13 +324,16 @@ RailsAdmin.config do |config|
       field :degree
       field :institution
       field :id
+      field :university
+      field :country
     end
-
     show do
       field :name, :string
       field :abbrev, :string
       field :degree
       field :institution
+      field :university
+      field :country
       field :indivadvices
       field :theses
       field :tutorial_committees
@@ -297,6 +344,8 @@ RailsAdmin.config do |config|
       field :abbrev, :string
       field :degree
       field :institution
+      field :university
+      field :country
       # field :indivadvices
       # field :theses
       # field :tutorial_committees
@@ -312,7 +361,10 @@ RailsAdmin.config do |config|
       field :end_date
       field :is_verified
       field :thesisstatus
+      field :degree
       field :career
+      field :institution
+      field :university
       field :id
     end
     edit do
@@ -327,7 +379,10 @@ RailsAdmin.config do |config|
         field :end_date do
           date_format :default
         end
+        field :degree
         field :career
+        field :institution
+        field :university
         field :other
       end
       group :users do

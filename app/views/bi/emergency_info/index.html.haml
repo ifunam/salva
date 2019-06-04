@@ -1,0 +1,18 @@
+%title= 'Información de emergencia'
+%h3
+  = link_to 'Descargar listado', 'http://salva.fisica.unam.mx/bi/emergency_info.csv'
+%table
+  %tr{:bgcolor=>'lightgray'}
+    %th{:width=>'5%'} Nombre
+    %th{:width=>'5%'} Contacto para emergencia
+    %th{:width=>'10%'} Número
+    %th{:width=>'10%'} Condición médica
+    %th{:width=>'20%'} Instrucción médica
+    %th{:width=>'10%'} Hospital de preferencia
+    %th{:width=>'10%'} Seguro
+    %th{:width=>'5%'} Contacto para emergencia
+    %th{:width=>'10%'} Número
+    %th{:width=>'5%'} Contacto para emergencia
+    %th{:width=>'10%'} Número
+  %tbody
+    = render :partial => 'record', :collection => @collections

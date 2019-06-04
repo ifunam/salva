@@ -11,7 +11,7 @@ ActiveAdmin.register UserNewspaperarticle, :as => 'Newspaperarticle' do
     column(:newspaper) { |record| record.newspaperarticle.newspaper.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.newspaperarticle.newsdate.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -26,7 +26,7 @@ ActiveAdmin.register UserNewspaperarticle, :as => 'Newspaperarticle' do
     column(:newspaper) { |record| record.newspaperarticle.newspaper.name }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.newspaperarticle.newsdate.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

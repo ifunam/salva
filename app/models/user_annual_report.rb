@@ -82,8 +82,14 @@ class UserAnnualReport < AbstractController::Base
       path = File.join(self._storage_path, @year.to_s)
       system("mkdir -p #{path}") unless  File.directory? path
       self._file = File.join(path, "#{@profile.login}.pdf")
+      new_path = Rails.root.to_s + '/app/files/'
+      new_path += path[path.index('annual'),path.size]
+      new_path = File.join(new_path, "/#{@profile.login}.pdf")
       File.open(self._file, 'w') do |f|
         f.write data.force_encoding('utf-8')
       end
+      system("touch #{new_path}")
+      system("cp #{self._file} #{new_path}")
     end
+
 end

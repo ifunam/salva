@@ -117,7 +117,13 @@ module ApplicationHelper
   end
 
   def link_to_download(record)
-    if File.exist? record.file_path
+    if File.exist? record.new_file_path
+      #Rails.logger.info 'link_to_download : new_file_path.exist'
+      login = record.user.login
+      link = record.file_path.match('annual_reports').nil? ? department_annual_plans_document_path : department_annual_reports_document_path
+      link_to_action 'icon_action_download', t(:download), link+'.pdf?id='+record.id.to_s, :target => '_blank'
+    elsif File.exist? record.file_path
+      #Rails.logger.info 'link_to_download : file_path.exist'
       link_to_action 'icon_action_download', t(:download), record.url, :target => '_blank'
     else
       'En proceso...'
@@ -214,10 +220,21 @@ module ApplicationHelper
     end
   end
 
+  def link_to_approve_annual_plan(record, resource_path)
+    if record.documenttype.status == true
+      link_to t(:approve), resource_path[0..-4], :remote => true, :class => 'approve_document'#, :confirm => t(:approve_document)
+      #FIX IT resource_path contains an additional '.js?'; [0..-4] cuts it of
+      #       should be like:
+      #link_to t(:approve), resource_path, :remote => true, :class => 'approve_document', :confirm => t(:approve_document)
+    end
+  end
+
   def link_to_approve_document(record, resource_path)
     if record.documenttype.status == true
-      link_to t(:approve), resource_path, :remote => true, :class => 'approve_document'
-      #link_to t(:approve), resource_path, :remote => true, :class => 'approve_document', :confirm => t(:approve_document_approbation)
+      link_to t(:approve), resource_path[0..-4], :remote => true, :class => 'approve_document'
+      #FIX IT resource_path contains an additional '.js?'; [0..-4] cuts it of
+      #       should be like:
+      #link_to t(:approve), resource_path, :remote => true, :class => 'approve_document'
     end
   end
 

@@ -3,3 +3,8 @@
     .current_user= current_user.login
     = '|'
     = link_to 'Salir', destroy_user_session_path, :method => :delete
+- if current_user.admin? or current_user.librarian?
+  #session_info
+    = link_to 'Ver información de emergencia', '/emergency_info', target: "_blank"
+%p{:style=>'text-align: center'}
+  = link_to 'manual de usuario', 'https://salva.fisica.unam.mx/uploads/manual_salva.pdf', target: "_blank"

@@ -1,0 +1,41 @@
+!!!
+- if current_user.admin? or current_user.librarian?
+  %html
+    %head
+      %title= 'Plataforma de Información Curricular - SALVA'
+      = csrf_meta_tag
+      = stylesheet_link_tag 'bi'
+      = javascript_include_tag 'bi'
+
+    %body
+      = render :partial => 'layouts/header'
+      .container
+        - unless current_user.nil?
+          #session_info
+            .current_user= current_user.login
+            = '|'
+            = link_to 'Salir', destroy_user_session_path, :method => :delete
+        - unless current_user.nil?
+          #session_info
+            = link_to 'Ver información de emergencia', 'http://salva.fisica.unam.mx/bi/emergency_info', target: "_blank"
+        #salva_reporter.reporter_content
+          #top_navigation= render_navigation(:level => 1, :context => :bi)
+          .clear_float
+          .content_wrapper
+            #sub_navigation= render_navigation(:level => 2, :context => :bi)
+
+        #content
+          = render :partial => 'layouts/flash_messages'
+          = yield
+      #dialog
+      = render :partial => 'layouts/footer'
+-else
+  %html
+    %head
+      %title= 'Plataforma de Información Curricular - SALVA'
+      = csrf_meta_tag
+      = stylesheet_link_tag 'bi'
+      = javascript_include_tag 'bi'
+
+    %body
+      %p= 'Not authorized'

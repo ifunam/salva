@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Directorio del Instituto de Física</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="https://www.simile-widgets.org/styles/common.css" type="text/css" />
+
+    <link href="users.json" type="application/json" rel="exhibit-data" />
+
+    <script src="/uploads/simile-widgets/src/exhibit-api.js?bundle=false"></script>
+    <style>
+#top-panels{
+    border-top: 0;
+    border-bottom: 0;
+    background: #EEEEEE;
+    }
+
+div.exhibit-facet-body {
+    border: none;
+    height: 10em;
+    overflow: auto;
+}
+
+div.exhibit-facet {
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+span.exhibit-facet-header-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+a.exhibit-facet-value-link {
+    text-decoration: none;
+    color: #616161;
+}
+
+div.exhibit-facet-value-count {
+    float: left;
+    width: 2em;
+    text-align: right;
+    color: #9B9B9B;
+    font-weight: bold;
+}
+
+.exhibit-facet-body::-webkit-scrollbar-track {
+    background-color: #BABABA;
+}
+
+.exhibit-facet-body::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+.exhibit-facet-body::-webkit-scrollbar-thumb {
+    background-color: #13212E;
+}
+
+
+span.exhibit-collectionSummaryWidget-count {
+    font-size: inherit;
+}
+
+.exhibit-collectionSummaryWidget-results{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+span.exhibit-viewPanel-viewSelection-selectedView {
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+span.exhibit-viewPanel-viewSelection-view {
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    color: #AAAAAA;
+}
+
+.exhibit-thumbnailView-group h1{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+div.physicist-thumbnail {
+    float: left;
+    width: 13em;
+    height: 21em;
+    border: none;
+    color: #535353;
+    background: #EEEEEE;
+    /* padding: 1em; */
+    margin: 0;
+    text-align: center;
+    padding: 0;
+}
+
+div.exhibit-collectionView-group-content {
+    margin-left: 0;
+}
+
+div.exhibit-thumbnailView-itemContainer {
+    float: left;
+    display: inline;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.physicist-thumbnail img{
+    width: 12em;
+    height: 12em;
+
+}
+
+.physicist-thumbnail a:link {
+    color: #535353;
+        text-decoration: none;
+}
+
+.physicist-thumbnail div{
+     padding-left: 3px;
+    padding-right: 3px;
+}
+
+div.exhibit-collectionView-group h1 {
+    font-size: 150%;
+    margin: 1em 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+ol{
+        list-style-type: none;
+}
+
+.exhibit-ui-protection table {
+    font-size: 100%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: auto;
+    width: 51em;
+    background-color: #EEEEEE;
+    margin-bottom: 1.5em;
+    color: #7A7A7A;
+}
+
+.exhibit-ui-protection table a:link {
+    color: #7A7A7A;
+    text-decoration: none;
+}
+
+tr, td {
+    vertical-align: top;
+    display: table-cell;
+    }
+
+
+.physicist img{
+    width: 10em;
+    height: 10em;
+    margin-right: 10px;
+}
+.physicist .name{
+    margin-top: 15px;
+    color: #525252;
+    font-size: 1.4em;
+    font-weight: bold; }
+    </style>
+
+  </head> 
+  <body>
+        <div id="top-panels">
+            <table width="100%"><tr>
+                <td><div ex:role="facet" ex:expression=".category" ex:facetLabel="Nombramiento" ex:selection="Investigador"></div></td>
+                <td><div ex:role="facet" ex:expression=".adscription" ex:facetLabel="Adscripción"></div></td>
+            </tr></table>
+        </div>
+        <div ex:role="viewPanel" style="padding: 1em 0.5in;">
+            <table ex:role="lens" class="physicist" style="display: none;"><tr>
+                <td><img ex:src-content=".photo" /></td>
+                <td>
+                    <div ex:content=".fullname" class="name"></div>
+                    <div ex:content=".category_name" class="discipline"></div>
+                    <div>
+                        <span ex:content=".adscription" class="discipline"></span>, 
+                        Ubicación: <i ex:content=".location"></i>
+                        
+                    </div>
+                    <div>
+                        <span class="email"><a ex:href-subcontent="mailto:{{.email}}" ex:content=".email"></a></span>
+                    </div>
+                    <div ex:if-exists=".phone" class="co-winners">
+                        Phone: <span ex:content=".phone"></span>
+                    </div>
+                    <div><a ex:href-content=".url" target="_blank">página personal ...</a></div>
+                </td>
+            </tr></table>
+        
+            <div ex:role="view"
+                ex:viewClass="Thumbnail"
+                ex:showAll="true"
+                ex:orders=".last_name"
+                ex:possibleOrders=".last_name, .adscription ">
+                <div ex:role="exhibit-lens" class="physicist-thumbnail" style="display: none;">
+                    <img ex:src-content=".photo" />
+                    <div><span ex:content=".fullname"></span></div>
+                    <div>
+                        <span ex:content=".adscription" class="discipline"></span>, 
+                        <span class="email"><a ex:href-subcontent="mailto:{{.email}}" ex:content=".email"></a></span>
+                        <span><a ex:href-content=".url" target="_blank">more...</a></span>
+                    </div>
+                </div>
+            </div>
+            <div ex:role="view"
+                ex:label="Details"
+                ex:viewClass="Tile"
+                ex:showAll="true"
+                ex:orders=".last_name"
+                ex:possibleOrders=".last_name, .adscription ">
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+

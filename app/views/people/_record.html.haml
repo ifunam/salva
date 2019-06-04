@@ -23,3 +23,23 @@
       = p.association :country, :using => :name
       = p.association :state, :using => :name
       = p.association :city, :using => :name
+    %h5 Información relevante en caso de emergencia
+    .row
+      = p.attribute :contact_name_1
+      = p.attribute :contact_phonenumber_1
+    - if current_user.has_contact_2?
+      .row
+        = p.attribute :contact_name_2
+        = p.attribute :contact_phonenumber_2
+    - if current_user.has_contact_3?
+      .row
+        = p.attribute :contact_name_3
+        = p.attribute :contact_phonenumber_3
+    .long_row
+      = p.attribute :medical_condition
+    .long_row
+      = p.attribute :medical_instruction
+    .long_row
+      = p.attribute :hospital
+    .long_row
+      = p.attribute :insurance

@@ -7,8 +7,6 @@ class UserNewspaperarticle < ActiveRecord::Base
   belongs_to :newspaperarticle
   attr_accessible :user_id
 
-  default_scope :joins => :newspaperarticle, :order => 'newspaperarticles.newsdate DESC, newspaperarticles.authors ASC, newspaperarticles.title ASC'
-
   scope :user_id_not_eq, lambda { |user_id| select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where(["user_newspaperarticles.user_id !=  ?", user_id]) }
   scope :user_id_eq, lambda { |user_id| select('DISTINCT(newspaperarticle_id) as newspaperarticle_id').where :user_id => user_id }
 

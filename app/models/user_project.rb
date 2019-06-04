@@ -9,6 +9,8 @@ class UserProject < ActiveRecord::Base
   belongs_to :project
   belongs_to :roleinproject
 
+  #default_scope :joins => :project, :order => 'projects.startyear DESC, projects.startmonth DESC'
+
   scope :user_id_not_eq, lambda { |user_id|
     select('DISTINCT(project_id) as project_id').where(["user_projects.user_id !=  ?", user_id])
   }

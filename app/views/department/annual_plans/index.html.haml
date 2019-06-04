@@ -1,0 +1,21 @@
+%h3= t('.title')
+
+= render :partial => 'search_form'
+
+#collection_header
+  .span-4=t(:fullname)
+  .span-4=t(:academic_responsible)
+  .span-4=t(:document_type)
+  .span-4=t(:deliver_date)
+  .span-4=t(:authorization_date)
+  .span-2=t(:status)
+  .span-2.last=t(:download)
+
+#collection_records
+  = render :partial => 'record', :collection => @documents
+
+#collection_footer
+
+= paginate(@documents)
+
+#pagination_info= page_entries_info @documents

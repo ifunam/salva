@@ -1,0 +1,11 @@
+.section-with-border-and-bg
+  .row
+    = render :partial => "/shared/errors", :object => f.object.errors
+
+  .row
+    #lab_or_group.span-8.last
+      = f.label :lab_or_group, :required => true
+      = f.collection_select :lab_or_group_id, LabOrGroup.all, :id, :name, {:prompt => true}, :class => 'chosen-select', :style => "width:500px"
+      =# link_to_new_record 'Agregar una estímulo', new_user_lab_or_group_path
+  .row
+

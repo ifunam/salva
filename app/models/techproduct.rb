@@ -19,7 +19,8 @@ class Techproduct < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'techproducts.authors ASC, techproducts.title ASC'
+  #default_scope :order => 'techproducts.authors ASC, techproducts.title ASC'
+  default_scope :order => 'techproducts.id DESC'
 
   scope :all_by_year_desc, :order => 'user_techproducts.year DESC', :joins => :user_techproducts
 

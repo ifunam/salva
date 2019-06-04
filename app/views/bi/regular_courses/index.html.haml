@@ -1,0 +1,22 @@
+.content
+  .breadcrumbs
+    #filters
+      - @years = (2000 .. Time.now.year).to_a
+      = form_for :search, :url => bi_regular_courses_path, :method=>:get, :remote => false, :html => {:id => "search_form"} do |f|
+        %div
+          = f.label "Seleccionar año"
+        %select{name:'year'}
+          - @years.each do |year|
+            - if year.to_s==params[:year]
+              %option{value: year, selected:year}
+                =year
+            - elsif params[:year]==nil and year.to_s==(@years.last-1).to_s
+              %option{value: year, selected:(@years.last-1)}
+                = year
+            - else
+              %option{value: year}
+                = year
+        = f.submit "Buscar", :id => 'search'
+        - @res.each do |chart|
+          = high_chart(chart.options[:id],chart)
+

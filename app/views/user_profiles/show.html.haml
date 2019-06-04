@@ -1,7 +1,10 @@
 .span-18.last
   %h3 Información General
 
+#submit_buttons
+  = link_to t(:edit), edit_user_profile_path(:id => @user.id), :class => "ui-state-default ui-corner-all button"
 = render :partial => 'people/record', :object => @user.person unless @user.person.nil?
+
 = render :partial => 'addresses/record', :object => @user.address unless @user.address.nil?
 
 .section-with-border-and-bg

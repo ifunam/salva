@@ -7,10 +7,12 @@ class Adscription < ActiveRecord::Base
   attr_accessible :name, :abbrev, :descr, :administrative_key, :is_enabled, :institution_id
 
   belongs_to :institution
-  has_many :user_adscriptions
-  has_many :users, :through => :user_adscriptions, :source => :user, :uniq => true,
-           :conditions => 'users.userstatus_id = 2', :include => :person,
+  has_many :user_adscription_records
+  has_many :users, :through => :user_adscription_records, :source => :user, :uniq => true,
+           :conditions => "users.userstatus_id = 2 and user_adscription_records.year = #{Time.now.year}",
+           :include => :person,
            :order => 'people.lastname1 ASC, people.firstname ASC, users.author_name ASC'
+  has_many :user_adscriptions
 
   default_scope :order => 'name ASC'
 
@@ -28,24 +30,25 @@ class Adscription < ActiveRecord::Base
      record = find_by_name(name)
      case category
       when 'researchers' then
-        users_with_this_jobposition(record.users.researchers.activated, [1, 110, 4, 5])
+        users_with_this_jobposition(record.users.researchers.activated, name, [1, 110, 4, 5, 114])
       when 'postdoctorals' then
-        users_with_this_jobposition(record.users.posdoctorals.activated, [111])
+        users_with_this_jobposition(record.users.posdoctorals.activated, name, [111])
       when 'conacyt' then
-        users_with_this_jobposition(record.users.conacyt.activated, [114])
+        users_with_this_jobposition(record.users.conacyt.activated, name, [114])
       when 'academic_technicians' then
-        users_with_this_jobposition(record.users.academic_technicians.activated, [3])
+        users_with_this_jobposition(record.users.academic_technicians.activated, name, [3])
       else record.users.activated
      end
     end
   end
 
   private
-  def self.users_with_this_jobposition(records, roleinjobpositions)
+  def self.users_with_this_jobposition(records, name, roleinjobpositions)
     records.collect { |record|
-      if roleinjobpositions.to_a.include? record.jobposition_for_researching.jobpositioncategory.roleinjobposition_id
+      if record.adscription_name(record.id,Time.now.year) == name
         record
       end
     }.compact
   end
+
 end

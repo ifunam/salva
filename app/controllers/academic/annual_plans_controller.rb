@@ -8,7 +8,7 @@ class Academic::AnnualPlansController < Academic::ApplicationController
 
   def approve
     authorize_action!
-    respond_with(@document.approve, :location => academic_annual_plans_url)
+    respond_with(@document)
   end
 
   def edit

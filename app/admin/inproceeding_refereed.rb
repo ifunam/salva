@@ -28,7 +28,7 @@ ActiveAdmin.register UserInproceeding, :as => 'InproceedingRefereed'  do
     column(:conference_institutions) { |record| record.inproceeding.proceeding.conference.institution_names }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.inproceeding.proceeding.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 
@@ -55,7 +55,7 @@ ActiveAdmin.register UserInproceeding, :as => 'InproceedingRefereed'  do
     column(:conference_institutions) { |record| record.inproceeding.proceeding.conference.institution_names }
 
     column(:fullname) { |record| record.user.fullname_or_email }
-    column(:adscription) { |record| record.user.adscription_name }
+    column(:adscription) { |record| record.user.adscription_name record.user.id,record.inproceeding.proceeding.year }
     column(:worker_key) { |record| record.user.worker_key_or_login }
   end
 end

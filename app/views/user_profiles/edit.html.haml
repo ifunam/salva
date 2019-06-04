@@ -1,0 +1,6 @@
+= simple_form_for @user, :as => :user, :url => user_profile_path, :html => { :multipart => true, :id => 'save_user' } do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+  #submit_buttons
+    = f.submit  t(:update), :class => "ui-state-default ui-corner-all button", :id => 'save_user'
+    = link_to t(:cancel), user_profile_path, :class => "ui-state-default ui-corner-all button"
