@@ -46,7 +46,7 @@ gem "lazy_high_charts", "~> 1.5.5", :git => 'https://github.com/michelson/lazy_h
 
 # Rails 3.1 - Asset Pipeline
 gem "sass", "~> 3.2.1"
-gem "json", "~> 1.7.5"
+gem "json", "~> 2.3.1"
 gem "coffee-script", "~> 2.2.0"
 gem "uglifier", "~> 1.2.7"
 gem "css_image_embedder", "~> 0.2.0"
