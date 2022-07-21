@@ -54,7 +54,7 @@ gem "sass-rails", "~> 3.2.5"
 gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
 
 gem "by_star", "~> 2.0.0.beta1"
-gem "tzinfo", "0.3.33"
+gem "tzinfo", "0.3.61"
 
 gem "SystemTimer", "1.2.3", :platforms => :ruby_18
 gem "redis", "3.0.1"
