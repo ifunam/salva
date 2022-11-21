@@ -90,7 +90,7 @@ group :production do
   gem "therubyracer", "~> 0.12.0"
   gem "exception_notification", "~> 2.6.1"
   gem "octopi", "~> 0.4.5"
-  gem "dalli", "~> 2.1.0"
+  gem "dalli", "~> 3.2.3"
 end
 
 group :assets do
