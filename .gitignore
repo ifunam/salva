@@ -91,3 +91,4 @@ app/assets/stylesheets/academic_base.css
 _mac
 *.xml
 ._.DS_Store
+node_modules/
