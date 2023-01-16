@@ -1,5 +1,5 @@
 class KnowledgeField < ActiveRecord::Base
-  attr_accessible :name, :name_en, :short_name
+  # attr_accessor :name, :name_en, :short_name
 
   validates_presence_of :name
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -7,7 +7,7 @@ class KnowledgeField < ActiveRecord::Base
 
   has_many :knowledge_areas
 
-  default_scope order('name ASC')
+  default_scope -> { order(name: :asc) }
 
   def to_s
     name

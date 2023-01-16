@@ -3,14 +3,15 @@ require 'csv'
 require 'highline/import'
 data_dir = Rails.root.join('db', 'data')
 
-[Userstatus, Group, Articlestatus, Bookchaptertype, Booktype, Citizenmodality, Conferencescope, Conferencetype,
+[Group, Articlestatus, Bookchaptertype, Booktype, Citizenmodality, Conferencescope, Conferencetype,
  Contracttype, Courseduration, Coursegrouptype, Credittype, DocumentType, Editionstatus, Genericworkstatus,
  Groupmodality, Idtype, Migratorystatus, Maritalstatus, DocumentType, Jobpositiontype, Jobpositionlevel,
  Roleinjobposition, Institutiontype, Institutiontitle].each do |class_name|
-   table_name = ActiveSupport::Inflector.tableize(class_name)
+   table_name = ActiveSupport::Inflector.tableize(class_name.to_s )
    puts "Inserting data into the table: #{table_name}..."
    CSV.foreach(File.join(data_dir, "#{table_name}.csv"), headers: false) do |row|
-     class_name.where(name: row[0].to_s.strip).first_or_create
+    name = row[0].to_s.strip
+     class_name.create(name: name)
    end
 end
 
@@ -55,18 +56,18 @@ CSV.foreach(File.join(data_dir, "periods.csv"), headers: false) do |row|
 end
 
 
-unless User.exists? :login => 'admin'
-  puts "Creating the 'admin' user account"
-  while (1) do
-    password = ask("Enter password: ") { |q| q.echo = false }
-    password_confirmation = ask("Enter password confirmation: ") { |q| q.echo = false }
-    if password == password_confirmation and password.to_s.length >= 8
-      break
-    else
-      puts "The password must have 8 or more characters, and this must be equal to its confirmation"
-    end
-  end
-  @user = User.create(:login => 'admin', :email => 'admin@unam.mx', :password => password, :password_confirmation => password_confirmation, :userstatus_id => Userstatus.where(:name => 'Activo').first.id)
-  @user.user_group = UserGroup.new(:group_id => Group.where(:name => 'admin').first.id)
-  @user.save
-end
+# unless User.exists? :login => 'admin'
+#   puts "Creating the 'admin' user account"
+#   while (1) do
+#     password = ask("Enter password: ") { |q| q.echo = false }
+#     password_confirmation = ask("Enter password confirmation: ") { |q| q.echo = false }
+#     if password == password_confirmation and password.to_s.length >= 8
+#       break
+#     else
+#       puts "The password must have 8 or more characters, and this must be equal to its confirmation"
+#     end
+#   end
+#   @user = User.create(:login => 'admin', :email => 'admin@unam.mx', :password => password, :password_confirmation => password_confirmation, :userstatus_id => Userstatus.where(:name => 'Activo').first.id)
+#   @user.user_group = UserGroup.new(:group_id => Group.where(:name => 'admin').first.id)
+#   @user.save
+# end

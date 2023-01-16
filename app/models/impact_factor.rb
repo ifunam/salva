@@ -1,7 +1,7 @@
 class ImpactFactor < ActiveRecord::Base
   belongs_to :journal, :inverse_of => :impact_factors
   validates_presence_of :journal_id, :year, :value
-  attr_accessible :journal_id, :year, :value
+  # attr_accessor :journal_id, :year, :value
 
   def journal_name
     journal.name

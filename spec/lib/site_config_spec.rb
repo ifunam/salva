@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../lib_spec_helper'
+require_relative '../lib_spec_helper'
 
 describe Salva::SiteConfig do
   context "Loading configuration file" do
@@ -8,7 +8,7 @@ describe Salva::SiteConfig do
     end
 
     it "Should raise error when you try to use an unexistent file" do
-      lambda { Salva::SiteConfig.send :load_config, 'unexistent.yml' }.should raise_error
+      lambda { Salva::SiteConfig.send :load_config, 'unexistent.yml' }.should raise_error Errno::ENOENT
     end
   end
 
@@ -22,7 +22,7 @@ describe Salva::SiteConfig do
     end
 
     it "Should return nil for undefined methods (sections)" do
-      lambda { Salva::SiteConfig.undefined_section('name') }.should raise_error
+      lambda { Salva::SiteConfig.undefined_section('name') }.should raise_error NoMethodError
     end
   end
 end

@@ -7,5 +7,5 @@ class Modality < ActiveRecord::Base
   has_many :conferencetalks
   has_many :regularcourses
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 class UserCredit < ActiveRecord::Base
-  attr_accessible :credittype_id, :descr, :year, :month, :other
+  # attr_accessor :credittype_id, :descr, :year, :month, :other
 
   validates_presence_of :credittype_id, :descr, :year
   validates_numericality_of :credittype_id
@@ -9,7 +9,7 @@ class UserCredit < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  default_scope :order => 'year DESC, month DESC'
+  default_scope -> { order(year: :desc, month: :desc) }
   def to_s
     [descr, 'Créditos en: ' +credittype.name, date].join(', ')
   end

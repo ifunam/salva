@@ -12,7 +12,7 @@
       = f.label :category
       #jobpositioncategories_select
         - if !f.object.jobpositioncategory.nil? and !f.object.jobpositioncategory.jobpositiontype.nil?
-          = f.collection_select :jobpositioncategory_id, Jobpositioncategory.find_all_by_jobpositiontype_id(f.object.jobpositioncategory.jobpositiontype.id), :id, :name, { :prompt => true, :selected => f.object.jobpositioncategory.id}, :class =>'chosen-select'
+          = f.collection_select :jobpositioncategory_id, Jobpositioncategory.where(jobpositiontype_id: f.object.jobpositioncategory.jobpositiontype.id ), :id, :name, { :prompt => true, :selected => f.object.jobpositioncategory.id}, :class =>'chosen-select'
         - else
           = f.select :jobpositioncategory_id, {}
 

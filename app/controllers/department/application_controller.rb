@@ -1,7 +1,7 @@
 class Department::ApplicationController < ActionController::Base
   protect_from_forgery
-  skip_before_filter :authenticate_user!
-  before_filter :authenticate_department!
+  skip_before_action :authenticate_user!
+  before_action :authenticate_department!
   #alias :current_user :current_department
 
   layout :layout_by_resource

@@ -1,5 +1,5 @@
 class Researchline < ActiveRecord::Base
-  attr_accessible :name, :name_en, :descr, :researcharea_id
+  # attr_accessor :name, :name_en, :descr, :researcharea_id
 
   validates_presence_of :name#, :researcharea_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -12,7 +12,7 @@ class Researchline < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  default_scope order('name ASC')
+  default_scope -> { order(name: :asc) }
 
   def to_s
     name

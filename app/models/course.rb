@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Course < ActiveRecord::Base
-  attr_accessible :name, :courseduration_id, :modality_id, :hoursxweek, :totalhours, :startyear,
+  # attr_accessor :name, :courseduration_id, :modality_id, :hoursxweek, :totalhours, :startyear,
     :startmonth, :endyear, :endmonth, :country_id, :location, :user_courses_attributes
 
   validates_presence_of :name, :country_id, :courseduration_id, :modality_id, :startyear
@@ -23,9 +23,9 @@ class Course < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'courses.endyear DESC, courses.endmonth DESC, courses.startyear DESC, courses.endmonth DESC, courses.name ASC'
-  scope :attendees, joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 })
-  scope :instructors, joins(:user_courses).where('user_courses.roleincourse_id != 2')
+  default_scope -> { order(courses: {endyear: :desc, endmonth: :desc, startyear: :desc, endmonth: :desc, name: :asc }) }
+  scope :attendees, -> { joins(:user_courses).where(:user_courses => { :roleincourse_id => 2 }) }
+  scope :instructors, -> { joins(:user_courses).where('user_courses.roleincourse_id != 2') }
 
   scope :user_id_eq, lambda { |user_id| joins(:user_courses).where(:user_courses => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("courses.id IN (#{UserCourse.select('DISTINCT(course_id) as course_id').where(["user_courses.user_id !=  ?", user_id]).to_sql}) AND courses.id  NOT IN (#{UserCourse.select('DISTINCT(course_id) as course_id').where(["user_courses.user_id =  ?", user_id]).to_sql})") }
@@ -38,8 +38,8 @@ class Course < ActiveRecord::Base
     }
   }
 
-  search_methods :between, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :between, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     [ name, "Duración: #{courseduration.name}", "Modalidad: #{modality.name}",

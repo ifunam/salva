@@ -29,7 +29,7 @@ ActiveAdmin.register Document, :as => 'AnnualPlan' do
       link_to 'Descargar', record.url, :target => '_blank'
     end
     column "Activar" do |record|
-      link_to 'Activar envío', unlock_admin_annual_plan_path(record), :confirm => '¿Estás seguro que deseas activar el envío de este documento?'
+      link_to 'Activar envío', unlock_admin_annual_plan_path(record), :data => { confirm: '¿Estás seguro que deseas activar el envío de este documento?' }
     end
   end
 

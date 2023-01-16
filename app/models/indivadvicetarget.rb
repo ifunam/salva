@@ -5,7 +5,7 @@ class Indivadvicetarget < ActiveRecord::Base
 
   has_many :instadvices
 
-  default_scope :order => 'name ASC'
-  scope :students, where('id <= 3')
-  scope :professors, where('id > 3')
+  default_scope -> { order(name: :asc) }
+  scope :students, -> { where('id <= 3') }
+  scope :professors, -> { where('id > 3') }
 end

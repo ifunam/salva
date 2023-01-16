@@ -1,5 +1,5 @@
 class UserAdscriptionRecord < ActiveRecord::Base
-  attr_accessible :user_id, :adscription_id, :jobposition_id, :year
+  # attr_accessor :user_id, :adscription_id, :jobposition_id, :year
   belongs_to :user
   belongs_to :adscription
   belongs_to :jobposition

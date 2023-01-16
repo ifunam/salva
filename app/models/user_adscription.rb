@@ -1,5 +1,5 @@
 class UserAdscription < ActiveRecord::Base
-  attr_accessible :user_id, :adscription_id, :descr, :jobposition_id
+  # attr_accessor :user_id, :adscription_id, :descr, :jobposition_id
 
   validates_presence_of :adscription_id
   validates_numericality_of :id, :jobposition_id, :startyear, :user_id, :allow_nil => true, :greater_than =>0, :only_integer => true

@@ -4,8 +4,8 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :parent_id, :scope => [:name, :parent_id]
   validates_numericality_of :parent_id, :allow_nil => true, :only_integer => true
 
-  attr_accessible :name, :descr
-  default_scope :order => 'descr ASC'
+  # attr_accessor :name, :descr
+  default_scope -> { order(descr: :asc) }
   belongs_to :group, :class_name => 'Group', :foreign_key => 'parent_id'
 
   has_many :user_groups

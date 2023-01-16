@@ -1,6 +1,6 @@
-@import "blueprint/reset"
-@import "blueprint/grid"
-@import "blueprint/typography"
+// @import "blueprint/reset"
+// @import "blueprint/grid"
+// @import "blueprint/typography"
 
 html
   font-size: 14px
@@ -92,9 +92,9 @@ body
   //border-radius: 5px
 
 .section-with-border-and-bg
-  @extend .span-18
-  @extend .last
-  @extend .section-with-border
+  @extend .span-18 !optional
+  @extend .last !optional
+  @extend .section-with-border !optional
   background: url("section_bg.jpg") repeat scroll left top #eeeeee
   margin-bottom: 10px
   a, a:visited
@@ -104,20 +104,20 @@ body
     color: #6EAC2C
 
 .dialog-section-with-border-and-bg
-  @extend .span-9
-  @extend .last
-  @extend .section-with-border
+  @extend .span-9 !optional
+  @extend .last !optional
+  @extend .section-with-border !optional
   background: url("section_bg.jpg") repeat scroll left top #eeeeee
   margin-bottom: 10px
   min-height: 180px
   text-align: left
 
   .row
-    @extend .span-8
-    @extend .last
+    @extend .span-8 !optional
+    @extend .last !optional
   .long_row
-    @extend .span-8
-    @extend .last
+    @extend .span-8 !optional
+    @extend .last !optional
     width: 700px
 
 .notice

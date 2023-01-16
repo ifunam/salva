@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  attr_accessible :document_type_id, :file
+  # attr_accessor :document_type_id, :file
   belongs_to :document_type
   belongs_to :user
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'

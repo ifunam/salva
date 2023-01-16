@@ -5,5 +5,5 @@ class Techproductstatus < ActiveRecord::Base
 
   has_many :techproducts
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

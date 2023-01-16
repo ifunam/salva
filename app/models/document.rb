@@ -6,14 +6,14 @@ class Document < ActiveRecord::Base
   belongs_to :document_type
   belongs_to :approved_by, :class_name => 'User'
 
-  attr_accessible :user_id, :ip_address, :documenttype_id, :file, :approved_by_id, :document_type_id
-  attr_accessible :comments, :as => :academic
-  attr_accessible :approved, :as => :academic
+  # # attr_accessor :user_id, :ip_address, :documenttype_id, :file, :approved_by_id, :document_type_id
+  # # attr_accessor :comments, :as => :academic
+  # # attr_accessor :approved, :as => :academic
 
-  scope :sort_by_documenttype, :order => 'documenttypes.start_date DESC, documenttypes.end_date DESC', :joins => [:documenttype], :readonly => false
-  scope :fullname_asc, joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC').sort_by_documenttype
-  scope :annual_reports, joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'").sort_by_documenttype
-  scope :annual_plans, joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'").sort_by_documenttype
+  scope :sort_by_documenttype, -> { order(documenttypes: { start_date: :desc, end_date: :desc }).joins([:documenttype], readonly: false) }
+  scope :fullname_asc, -> { joins(:user=>:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC').sort_by_documenttype }
+  scope :annual_reports, -> { joins(:documenttype).where("documenttypes.name LIKE 'Informe anual de actividades%'").sort_by_documenttype }
+  scope :annual_plans, -> { joins(:documenttype).where("documenttypes.name LIKE 'Plan de trabajo%'").sort_by_documenttype }
 
   scope :fullname_like, lambda { |fullname|
     person_fullname_like_sql = Person.find_by_fullname(fullname).select('user_id').to_sql
@@ -45,13 +45,13 @@ class Document < ActiveRecord::Base
                  WHERE users.userstatus_id=2 and jp.jobpositioncategory_id = "+jobpositioncategory_id.to_s)
     joins(:user=> :jobpositions).includes(:documenttype,:user=>:person).where(["jobpositions.user_id in (?)", last_jp.map(&:id)]).uniq
   }
-  scope :is_not_hidden, where("is_hidden != 't' OR is_hidden IS NULL")
+  scope :is_not_hidden, -> { where("is_hidden != 't' OR is_hidden IS NULL") }
   scope :year_eq, lambda { |y|
     joins(:documenttype).where("documenttypes.year = ?", y)
   }
 
-  search_methods :fullname_like, :login_like, :adscription_id_eq,
-    :jobpositioncategory_id_eq, :year_eq
+  # search_methods :fullname_like, :login_like, :adscription_id_eq,
+  #   :jobpositioncategory_id_eq, :year_eq
 
   before_create :file_path
 

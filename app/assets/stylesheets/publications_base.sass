@@ -1,8 +1,8 @@
 @import "application_base"
 
 #nav_links
-  @extend .span-18
-  @extend .last
+  @extend .span-18 !optional
+  @extend .last !optional
   text-align: right
   margin-bottom: 10px
 
@@ -26,13 +26,13 @@
     color: #6EAC2C
 
 .not_associated
-  @extend .ui-corner-all
+  @extend .ui-corner-all !optional
   @extend .ui-state-highlight, .ui-icon
   @extend .ui-icon-info
   float: right
 
 .associated_authors
-  @extend .span-1
+  @extend .span-1 !optional
   @extend .action_link
   height: 16px
   vertical-align: middle
@@ -46,7 +46,7 @@
 
   .icon_action_user_list
     float: left
-    @extend .ui-button-icon-primary
+    @extend .ui-button-icon-primary !optional
     @extend .ui-icon
     @extend .ui-icon-triangle-1-s
 
@@ -73,19 +73,19 @@
   @extend .ui-icon-plus
 
 .author_action
-  @extend .span-1
+  @extend .span-1 !optional
   text-align: center
   vertical-align: middle
 
 .role_action
-  @extend .span-1
+  @extend .span-1 !optional
   text-align: center
   vertical-align: middle
 
 .author_list
   @extend .ui-widget
   @extend .ui-widget-content
-  @extend .ui-corner-all
+  @extend .ui-corner-all !optional
   -moz-border-radius: 5px 0 5px 5px
   -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3)
   background: none repeat scroll 0 0 #FFFFFF
@@ -114,8 +114,8 @@
       color: green
 
 .has-many-associations
-  @extend .span-17
-  @extend .last
+  @extend .span-17 !optional
+  @extend .last !optional
   -moz-border-radius: 5px 5px 5px 5px
   -webkit-border-radius: 5px 5px 5px 5px
   border: 1px solid silver
@@ -131,9 +131,9 @@
 .role_list
   @extend .ui-widget
   @extend .ui-widget-content
-  @extend .ui-corner-all
-  @extend .span-6
-  @extend .last
+  @extend .ui-corner-all !optional
+  @extend .span-6 !optional
+  @extend .last !optional
   -moz-border-radius: 5px 0 5px 5px
   -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3)
   background: none repeat scroll 0 0 #FFFFFF
@@ -172,8 +172,8 @@
 
 
 .periods
-  @extend .span-9
-  @extend .last
+  @extend .span-9 !optional
+  @extend .last !optional
   -moz-border-radius: 5px 5px 5px 5px
   -webkit-border-radius: 5px 5px 5px 5px
   border: 1px solid silver
@@ -196,8 +196,8 @@
 
 
   a
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     text-decoration: none
     color: #fff
     padding: 4px
@@ -207,8 +207,8 @@
     color: #fff
 
   a:hover
-    @extend .ui-state-hover
-    @extend .ui-state-active
+    @extend .ui-state-hover !optional
+    @extend .ui-state-active !optional
     color: #fff
 
 #thesismodality

@@ -3,6 +3,6 @@
 
 #collection_footer
   #footer_buttons
-    = link_to t(:delete_all_selected), '#',  :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
+    = link_to t(:delete_all_selected), '#',  :id => 'destroy_selected_records', :data => { confirm: t(:delete_all_confirm_question) }
 
 #ajaxed_paginator= paginate @jobpositions

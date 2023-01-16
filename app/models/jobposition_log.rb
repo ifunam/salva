@@ -1,5 +1,5 @@
 class JobpositionLog < ActiveRecord::Base
-  attr_accessible :worker_key, :worker_number, :academic_years, :administrative_years
+  # attr_accessor :worker_key, :worker_number, :academic_years, :administrative_years
 
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_presence_of :worker_key

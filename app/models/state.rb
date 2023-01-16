@@ -3,7 +3,7 @@ class State < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true
   validates_numericality_of :country_id,  :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name, :scope => [:country_id]
-  attr_accessible :country_id, :name, :code
+  # attr_accessor :country_id, :name, :code
 
   belongs_to :country
   validates_associated :country
@@ -13,5 +13,5 @@ class State < ActiveRecord::Base
   has_many :addresses
   has_many :institutions
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

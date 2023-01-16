@@ -1,5 +1,5 @@
 class UserSkill < ActiveRecord::Base
-  attr_accessible :skilltype_id, :descr, :descr_en
+  # attr_accessor :skilltype_id, :descr, :descr_en
 
   validates_presence_of :skilltype_id, :skilltype_id
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true

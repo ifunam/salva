@@ -1,5 +1,5 @@
 class UserRegularcourse < ActiveRecord::Base
-  attr_accessible :user_id, :period_id, :roleinregularcourse_id, :hoursxweek, :regularcourse_id, :registered_by_id
+  # attr_accessor :user_id, :period_id, :roleinregularcourse_id, :hoursxweek, :regularcourse_id, :registered_by_id
   validates_presence_of     :period_id
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_numericality_of :period_id, :roleinregularcourse_id, :greater_than => 0, :only_integer => true
@@ -14,22 +14,22 @@ class UserRegularcourse < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  default_scope includes(:period, :regularcourse).order('periods.enddate DESC, regularcourses.title ASC')
+  default_scope -> { includes(:period, :regularcourse).order(periods: { enddate: :desc }, regularcourses: { title: :asc }) }
   scope :since, lambda { |date| includes(:period, :regularcourse).where("user_regularcourses.period_id IN (#{Period.select('id').where({:startdate.gteq => date}).to_sql})") }
   scope :until, lambda { |date| includes(:period, :regularcourse).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
   scope :find_by_year, lambda { |year| since("#{year}-01-01").until("#{year}-12-31") }
-  scope :bachelor_degree, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 3)
-  scope :master_degree, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 5)
-  scope :phd_degree, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 6)
-  scope :specialized, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 4)
-  scope :highschool, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 1)
-  scope :technical, joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 2)
+  scope :bachelor_degree, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 3) }
+  scope :master_degree, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 5) }
+  scope :phd_degree, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 6) }
+  scope :specialized, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 4) }
+  scope :highschool, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 1) }
+  scope :technical, -> { joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", 2) }
   scope :degree_id, lambda { |id| joins(:regularcourse => {:academicprogram => :career}).where("careers.degree_id = ?", id) }
   scope :regularcourse_id_by_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').joins(:period).where(:user_id => user_id) }
   scope :regularcourse_id_not_eq_user_id, lambda { |user_id|  select('DISTINCT(regularcourse_id)').where("user_regularcourses.user_id != ?", user_id) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :find_by_year, :degree_id, :adscription_id
+  # search_methods :find_by_year, :degree_id, :adscription_id
 
   def to_s
     ["#{roleinregularcourse.name}: #{regularcourse.to_s}", "Horas por semana: #{hoursxweek}", "Periodo escolar: #{period.title}"].join(', ')

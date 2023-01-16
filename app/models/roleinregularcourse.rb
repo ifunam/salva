@@ -4,5 +4,5 @@ class Roleinregularcourse < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :user_regularcourses
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

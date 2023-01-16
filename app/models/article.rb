@@ -2,7 +2,7 @@ require Rails.root.to_s + '/lib/salva/meta_date_extension'
 require Rails.root.to_s + '/lib/salva/meta_user_association'
 class Article < ActiveRecord::Base
   include MetaDateExtension::DateMethods
-  include MetaUserAssociation
+  include Salva::MetaUserAssociation
   validates_presence_of :title, :articlestatus_id, :year, :authors, :journal_id
   validates_numericality_of :id, :journal_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_numericality_of :articlestatus_id, :only_integer => true, :greater_than => 0
@@ -20,26 +20,26 @@ class Article < ActiveRecord::Base
 
   mount_uploader :document, DocumentUploader
   accepts_nested_attributes_for :user_articles, :allow_destroy => true
-  attr_accessible :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
+  # attr_accessor :authors, :title, :journal_id, :year, :month, :vol, :num, :pages, :doi, :url, :other,
                   :articlestatus_id, :is_verified, :user_articles_id, :user_articles_attributes, :user_ids, :document, 
                   :document_cache, :remove_document, :is_selected
 
   has_paper_trail
 
-  default_scope :order => 'year DESC, month DESC, articlestatus_id ASC, authors ASC'
+  default_scope -> {order(year: :desc, month: :desc, articlestatus_id: :asc, authors: :asc) }
   #default_scope :order => 'is_selected DESC, articlestatus_id ASC, year DESC, month DESC, authors ASC'
 
   scope :in_year, lambda { |year| where('year = ?', year) }
-  scope :accepted, where(:articlestatus_id => 1)
-  scope :sent, where(:articlestatus_id => 2)
-  scope :inprogress, where(:articlestatus_id => 4)
-  scope :published, where(:articlestatus_id => 3)
-  scope :unpublished, where('articles.articlestatus_id != 3')
-  scope :verified, where(:is_verified => true)
-  scope :selected, where(:is_selected => true)
-  scope :current_year, where(:year => (Date.today.year))
-  scope :last_year, where(:year => (Date.today.month.to_i <= 4 ? (Date.today.year - 1) : 2199))
-  scope :unverified, where("is_verified IS NULL OR is_verified = 'f'")
+  scope :accepted, -> { where(:articlestatus_id => 1) }
+  scope :sent, -> { where(:articlestatus_id => 2) }
+  scope :inprogress, -> { where(:articlestatus_id => 4) }
+  scope :published, -> { where(:articlestatus_id => 3) }
+  scope :unpublished, -> { where('articles.articlestatus_id != 3') }
+  scope :verified, -> { where(:is_verified => true) }
+  scope :selected, -> { where(:is_selected => true) }
+  scope :current_year, -> { where(:year => (Date.today.year)) }
+  scope :last_year, -> { where(:year => (Date.today.month.to_i <= 4 ? (Date.today.year - 1) : 2199)) }
+  scope :unverified, -> { where("is_verified IS NULL OR is_verified = 'f'") }
   scope :user_id_eq, lambda { |user_id| joins(:user_articles).where(:user_articles => {:user_id => user_id}) }
   scope :journal_country_id_eq, lambda { |country_id| joins(:journal).where(:journal => {:country_id => country_id}) }
   scope :journal_country_id_not_eq, lambda { |country_id| joins(:journal).where("journals.country_id != ?", country_id) }
@@ -59,7 +59,7 @@ class Article < ActiveRecord::Base
   }
   scope :recent, :limit => 50
 
-  search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
+  # search_methods :user_id_eq, :user_id_not_eq, :adscription_id_eq
 
   def to_s
     i_f = journal.impact_factor(year)

@@ -1,5 +1,5 @@
 class Userconference < ActiveRecord::Base
-  attr_accessible :user_id, :roleinconference_id, :conference_id
+  # attr_accessor :user_id, :roleinconference_id, :conference_id
 
   validates_presence_of  :roleinconference_id
 
@@ -13,12 +13,12 @@ class Userconference < ActiveRecord::Base
   belongs_to :user
 
   #default_scope :joins => :conference, :order => 'conferences.year DESC, conferences.month DESC, conferences.name ASC'
-  scope :organizer, where('userconferences.roleinconference_id > 1')
+  scope :organizer, -> { where('userconferences.roleinconference_id > 1') }
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
   scope :conferencescope_id, lambda { |id| joins(:conference).where('conferences.conferencescope_id = ?', id) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :year_eq, :conferencescope_id, :adscription_id
+  # search_methods :year_eq, :conferencescope_id, :adscription_id
 
   def author_with_role
     [user.author_name, "(#{roleinconference.name})"].join(" ")

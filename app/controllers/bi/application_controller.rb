@@ -1,7 +1,7 @@
 class Bi::ApplicationController < ActionController::Base
   protect_from_forgery
-  skip_before_filter :authenticate_bi!
-  before_filter :authenticate_bi!
+  skip_before_action :authenticate_bi!
+  before_action :authenticate_bi!
   alias :current_user :current_bi
 
   layout :layout_by_resource

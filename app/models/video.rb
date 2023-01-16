@@ -1,11 +1,11 @@
 class Video < ActiveRecord::Base
-  attr_accessible :user_id, :name, :url, :start_year, :start_month
+  # attr_accessor :user_id, :name, :url, :start_year, :start_month
   belongs_to :user
-  default_scope :order => 'start_year DESC, start_month DESC'
+  default_scope -> { order(start_year: :desc, start_month: :desc) }
   validates :name, :presence => true
   validates :url, :presence => true, :uniqueness => true
   scope :year_eq, lambda { |year| where('year = ?', year) }
-  search_methods :year_eq
+  # search_methods :year_eq
   validates_length_of :name, :maximum => 256
 
   def to_s

@@ -1,5 +1,5 @@
 class DepartmentHead < ActiveRecord::Base
-  attr_accessible :user_id, :adscription_id
+  # attr_accessor :user_id, :adscription_id
   belongs_to :user
   belongs_to :adscription
 

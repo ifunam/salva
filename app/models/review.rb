@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :authors, :title, :reviewed_work_title, :reviewed_work_publication, :published_on, :year, :month, :other
+  # attr_accessor :authors, :title, :reviewed_work_title, :reviewed_work_publication, :published_on, :year, :month, :other
 
   validates_presence_of :authors, :title, :published_on, :reviewed_work_title, :year
   validates_numericality_of :year, :greater_than => (Date.today.year - 100), :less_than_or_equal_to => (Date.today.year + 1), :only_integer => true
@@ -10,7 +10,7 @@ class Review < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  default_scope :order => 'year DESC, month DESC, authors ASC, title ASC, reviewed_work_title ASC, published_on ASC'
+  default_scope -> { order(year: :desc, month: :desc, authors: :asc, title: :asc, reviewed_work_title: :asc, published_on: :asc) }
 
   def to_s
     reviewed_work_publication = reviewed_work_publication.to_s.strip.empty?

@@ -1,5 +1,5 @@
 class UserSeminary < ActiveRecord::Base
-  attr_accessible :roleinseminary_id, :user_id, :seminary_id
+  # attr_accessor :roleinseminary_id, :user_id, :seminary_id
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
   validates_numericality_of :user_id, :roleinseminary_id,  :greater_than =>0,:only_integer => true
   validates_presence_of :roleinseminary_id
@@ -17,7 +17,7 @@ class UserSeminary < ActiveRecord::Base
   scope :year_eq, lambda { |year| joins(:seminary).where('seminaries.year = ?', year) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :year_eq, :adscription_id
+  # search_methods :year_eq, :adscription_id
 
   def author_with_role
     [user.author_name, "(#{roleinseminary.name})"].join(' ')

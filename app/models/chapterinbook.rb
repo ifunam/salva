@@ -1,5 +1,5 @@
 class Chapterinbook < ActiveRecord::Base
-  attr_accessible :title, :bookchaptertype_id, :chapterinbook_roleinchapters_attributes, :pages, :bookedition_attributes
+  # attr_accessor :title, :bookchaptertype_id, :chapterinbook_roleinchapters_attributes, :pages, :bookedition_attributes
   validates_presence_of :bookchaptertype_id, :title
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :bookchaptertype_id, :greater_than => 0, :only_integer => true
@@ -16,7 +16,7 @@ class Chapterinbook < ActiveRecord::Base
   user_association_methods_for :chapterinbook_roleinchapters
   has_paper_trail
 
-  default_scope :order => 'title ASC'
+  default_scope -> { order(title: :asc) }
   scope :recent, :order => 'bookeditions.year DESC, bookeditions.month DESC', :include => :bookedition, :limit => 20
   scope :published, :conditions => 'bookeditions.editionstatus_id = 1', :include => :bookedition
   scope :inprogress, :conditions => 'bookeditions.editionstatus_id != 1', :include => :bookedition
@@ -45,9 +45,9 @@ class Chapterinbook < ActiveRecord::Base
     where(sql)
   }
 
-  search_methods :user_id_eq, :user_id_not_eq
-  search_methods :since, :splat_param => true, :type => [:integer, :integer]
-  search_methods :until, :splat_param => true, :type => [:integer, :integer]
+  # search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :since, :splat_param => true, :type => [:integer, :integer]
+  # search_methods :until, :splat_param => true, :type => [:integer, :integer]
 
   def to_s
     [bookchaptertype.name, title].join(': ') + '. ' + bookedition.to_s

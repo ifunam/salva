@@ -1,12 +1,7 @@
 class Person < ActiveRecord::Base
   self.primary_key = 'id'
 
-  attr_accessible :firstname, :lastname1, :lastname2, :title, :title_en,
-                  :dateofbirth, :gender, :maritalstatus_id, :country_id,
-                  :state_id, :city_id, :image_attributes,
-                  :contact_name_1, :contact_phonenumber_1, :contact_name_2,
-                  :contact_phonenumber_2, :contact_name_3, :contact_phonenumber_3,
-                  :medical_condition, :medical_instruction, :hospital, :insurance
+  # attr_acz         :medical_condition, :medical_instruction, :hospital, :insurance
 
 
   validates_presence_of :firstname, :lastname1, :dateofbirth, :country_id
@@ -26,7 +21,7 @@ class Person < ActiveRecord::Base
   has_one :image, :as => :imageable, :dependent => :destroy
   accepts_nested_attributes_for :image, :city
 
-  default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
+  default_scope -> { order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC') }
   scope :find_by_fullname, lambda { |name| name_like(name.downcase) }
   def self.name_like(name)
     vocal = {/([aáÁàÀäÄ])/ =>'[aáàä]',/([eéÉèÈëË])/ =>'[eéèë]',/([iíÍìÌïÏ])/ =>'[iíìï]',/([oóÓòÒöÖ])/ =>'[oóòö]',/(['uúÚùÙüÜ])/=>'[uúùü]'}
@@ -36,7 +31,7 @@ class Person < ActiveRecord::Base
 
   scope :user_id_by_fullname_like, lambda { |fullname| find_by_fullname(fullname).select('user_id') }
 
-  search_methods :find_by_fullname
+  # search_methods :find_by_fullname
 
   after_save :update_user_author_name
 

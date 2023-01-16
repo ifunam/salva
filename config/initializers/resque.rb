@@ -1,7 +1,7 @@
 require 'resque'
 require 'resque/server'
 require 'resque/job_with_status'
-Salva::Application.configure do
+Rails.application.configure do
    config.after_initialize do
      conf_path =  File.join(Rails.root.to_s, 'config', 'resque.yml')
      if File.exist? conf_path

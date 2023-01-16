@@ -1,6 +1,6 @@
 class TutorialCommittee < ActiveRecord::Base
-  attr_accessible :studentname, :descr, :year, :career_attributes, 
-                  :institution_id, :university_id, :country_id, :degree_id, :career_id
+  # attr_accessor :studentname, :descr, :year, :career_attributes, 
+  #                 :institution_id, :university_id, :country_id, :degree_id, :career_id
   validates_presence_of :studentname,  :year
   validates_numericality_of :id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
 
@@ -20,11 +20,11 @@ class TutorialCommittee < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User', :foreign_key => 'registered_by_id'
   belongs_to :modified_by, :class_name => 'User', :foreign_key => 'modified_by_id'
 
-  default_scope :order => ('tutorial_committees.year DESC, tutorial_committees.studentname ASC')
+  default_scope -> { order(tutorial_committees: { year: :desc, studentname: :asc }) }
   scope :degree_id, lambda { |id| where("degree_id = ?", id) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :degree_id, :adscription_id
+  # search_methods :degree_id, :adscription_id
 
   def to_s
     carrera =  career.nil? ? nil : career.name

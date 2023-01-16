@@ -1,4 +1,4 @@
-module MetaUserAssociation
+module Salva::MetaUserAssociation
 
   def self.included(base)
     base.extend ClassMethods
@@ -21,4 +21,4 @@ module MetaUserAssociation
     end
   end
 end
-ActiveRecord::Base.send :include, MetaUserAssociation
+ActiveRecord::Base.send :include, Salva::MetaUserAssociation

@@ -1,5 +1,5 @@
 class Newspaperarticle < ActiveRecord::Base
-  attr_accessible :authors, :title, :newspaper_id, :newsdate, :url, :user_newspaperarticles_attributes
+  # attr_accessor :authors, :title, :newspaper_id, :newsdate, :url, :user_newspaperarticles_attributes
 
   validates_presence_of :title, :authors, :newspaper_id, :newsdate
 
@@ -17,7 +17,7 @@ class Newspaperarticle < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'newspaperarticles.newsdate DESC, newspaperarticles.authors ASC, newspaperarticles.title ASC'
+  default_scope -> { order(newspaperarticles{ newsdate: :desc, authors: :asc, title: :asc }) }
 
   scope :user_id_eq, lambda { |user_id| joins(:user_newspaperarticles).where(:user_newspaperarticles => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| 
@@ -30,8 +30,8 @@ class Newspaperarticle < ActiveRecord::Base
   scope :year_eq, lambda {|year| by_year(year, :field => :newsdate) }
   scope :among, lambda{ |start_date, end_date| where{{:newsdate.gteq => start_date} & {:newsdate.lteq => end_date}} }
 
-  search_methods :user_id_eq, :user_id_not_eq, :year_eq
-  search_methods :among, :type => [:date, :date], :splat_param => true
+  # search_methods :user_id_eq, :user_id_not_eq, :year_eq
+  # search_methods :among, :type => [:date, :date], :splat_param => true
 
   def to_s
     [authors, title, newspaper.name_and_country, pages, I18n.localize(newsdate, :format => :long_without_day)].compact.join(', ')

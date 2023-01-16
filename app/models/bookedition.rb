@@ -1,5 +1,5 @@
 class Bookedition < ActiveRecord::Base
-  attr_accessible :book_attributes, :edition, :isbn, :pages, :year, :month, :mediatype_id, :editionstatus_id,
+  # attr_accessor :book_attributes, :edition, :isbn, :pages, :year, :month, :mediatype_id, :editionstatus_id,
                   :bookedition_roleinbooks_attributes
   validates_presence_of :edition, :mediatype_id, :year, :month
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -28,11 +28,11 @@ class Bookedition < ActiveRecord::Base
   scope :published, :conditions => 'editionstatus_id = 1'
   scope :inprogress, :conditions => 'editionstatus_id != 1'
 
-  scope :authors, joins(:bookedition_roleinbooks).
-                  where("bookedition_roleinbooks.roleinbook_id = 1 OR bookedition_roleinbooks.roleinbook_id = 2")
+  scope :authors, -> { joins(:bookedition_roleinbooks).
+                  where("bookedition_roleinbooks.roleinbook_id = 1 OR bookedition_roleinbooks.roleinbook_id = 2") }
 
-  scope :collaborators, joins(:bookedition_roleinbooks).
-                  where("bookedition_roleinbooks.roleinbook_id != 1 AND bookedition_roleinbooks.roleinbook_id != 2")
+  scope :collaborators, -> { joins(:bookedition_roleinbooks).
+                  where("bookedition_roleinbooks.roleinbook_id != 1 AND bookedition_roleinbooks.roleinbook_id != 2") }
 
   scope :user_id_eq, lambda { |user_id|
     joins(:bookedition_roleinbooks).
@@ -46,7 +46,7 @@ class Bookedition < ActiveRecord::Base
       where(sql)
   }
 
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     [ book.to_s, edition, publishers_to_s, book.country.name,

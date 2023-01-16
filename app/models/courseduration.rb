@@ -1,5 +1,5 @@
 class Courseduration < ActiveRecord::Base
-  attr_accessible :name
+  # attr_accessor :name
   validates_presence_of :name,  :days
 
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
@@ -7,7 +7,7 @@ class Courseduration < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 
   has_many :courses
 end

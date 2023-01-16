@@ -2,8 +2,8 @@ require 'ipaddr'
 class Api::BaseController < ActionController::Base
   include Salva::SiteConfig
 
-  # skip_before_filter :authenticate_user!
-  before_filter :hosts_allow!
+  # skip_before_action :authenticate_user!
+  before_action :hosts_allow!
 
   respond_to :xml
 

@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Userstatus do
   before(:all) do
-    @userstatus = Userstatus.make!
+    @userstatus = Userstatus.new
   end
-  should_validate_presence_of :name
-  should_validate_uniqueness_of :name
+  it { should validate_presence_of :name }
+  it { should validate_uniqueness_of :name }
 end

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   protect_from_forgery
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   layout :layout_by_resource
   # ensure_security_headers
 

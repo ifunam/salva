@@ -4,6 +4,6 @@ class Roleinconference < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :userconferences
-  default_scope :order => 'name ASC'
-  scope :organizers, where('id > 1')
+  default_scope -> { order(name: :asc) }
+  scope :organizers, -> { where('id > 1') }
 end

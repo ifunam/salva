@@ -1,5 +1,5 @@
  class Prize < ActiveRecord::Base
-  attr_accessible :prizetype_id, :name, :institution_id
+  # attr_accessor :prizetype_id, :name, :institution_id
 
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true
   validates_presence_of :name

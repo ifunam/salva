@@ -1,5 +1,5 @@
 class Jobpositioncategory < ActiveRecord::Base
-  attr_accessible :jobpositiontype_id, :roleinjobposition_id, :jobpositionlevel_id, :administrative_key
+  # attr_accessor :jobpositiontype_id, :roleinjobposition_id, :jobpositionlevel_id, :administrative_key
   validates_presence_of :jobpositiontype_id, :roleinjobposition_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :jobpositiontype_id, :roleinjobposition_id, :greater_than => 0, :only_integer => true
@@ -14,8 +14,8 @@ class Jobpositioncategory < ActiveRecord::Base
   validates_associated :roleinjobposition
   validates_associated :jobpositionlevel
 
-  default_scope includes(:roleinjobposition, :jobpositionlevel).order('roleinjobpositions.name ASC, jobpositionlevels.name ASC')
-  scope :for_researching, where("(jobpositioncategories.jobpositiontype_id = 1 
+  default_scope -> { includes(:roleinjobposition, :jobpositionlevel).order('roleinjobpositions.name ASC, jobpositionlevels.name ASC') }
+  scope :for_researching, -> { where("(jobpositioncategories.jobpositiontype_id = 1 
                                   AND roleinjobpositions.name NOT LIKE '%yudante%'
                                   AND jobpositionlevels.name NOT LIKE '%M.T.%'
                                  )
@@ -23,7 +23,7 @@ class Jobpositioncategory < ActiveRecord::Base
                                   OR roleinjobpositions.name LIKE '%vestigador%sdoctoral%'
                                   OR roleinjobpositions.name LIKE '%vestigador%rito%'
                                   OR roleinjobpositions.name LIKE '%tedra%CONAC%T'
-                                ")
+                                ") }
 
   def name
     unless self.new_record?

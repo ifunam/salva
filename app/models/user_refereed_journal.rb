@@ -1,8 +1,8 @@
 # encoding: utf-8
 require Rails.root.to_s + '/lib/salva/meta_date_extension'
 class UserRefereedJournal < ActiveRecord::Base
-  include MetaDateExtension::DateMethods
-  attr_accessible :journal_id, :refereed_criterium_id, :year, :month
+  include Salva::MetaDateExtension::DateMethods
+  # attr_accessor :journal_id, :refereed_criterium_id, :year, :month
 
   validates_presence_of :year
   belongs_to :user, :inverse_of => :user_refereed_journals
@@ -13,7 +13,7 @@ class UserRefereedJournal < ActiveRecord::Base
 
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :adscription_id
+  # search_methods :adscription_id
 
   def to_s
     s = []

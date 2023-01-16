@@ -1,5 +1,5 @@
 class ConferenceInstitution  < ActiveRecord::Base
-  attr_accessible :institution_id, :conference_id
+  # attr_accessor :institution_id, :conference_id
   validates_presence_of :institution_id
   validates_numericality_of :id, :conference_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :only_integer => true

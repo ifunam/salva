@@ -21,9 +21,9 @@ class Journal < ActiveRecord::Base
   has_many :users, :through => :user_refereed_journals, :inverse_of => :journals
   has_many :impact_factors, :inverse_of => :journal
 
-  attr_accessible :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id, :has_open_access
+  # attr_accessor :name, :mediatype_id, :country_id, :issn, :abbrev, :url, :other, :is_verified, :impact_index, :publisher_id, :has_open_access
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 
   after_commit :notify_to_librarian, :on => :create
 

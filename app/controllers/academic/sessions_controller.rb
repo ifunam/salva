@@ -1,5 +1,5 @@
 class Academic::SessionsController < ::Devise::SessionsController
-  skip_before_filter :authenticate_user!, :only => [:create, :new]
+  skip_before_action :authenticate_user!, :only => [:create, :new]
   layout "devise"
 
   def create

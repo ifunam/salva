@@ -4,7 +4,7 @@
 # Class methods: since and until
 # Instance methods: date or start_date and end_date
 require 'pry'
-module MetaDateExtension
+module Salva::MetaDateExtension
   def self.included(base)
     base.extend ClassMethods
   end
@@ -12,29 +12,36 @@ module MetaDateExtension
   module ClassMethods
     def inherited(subclass)
       super
-      if subclass.column_names.include? 'year' and subclass.column_names.include? 'month'
-        subclass.send :include, MetaDateExtension::SimpleDateMethods
-        subclass.class_eval do
-          simple_date_scopes
+
+      # patch for ActiveRecord::StatementInvalid: PG::UndefinedTable: ERROR:  relation "internal_metadata" does not exist
+      #   LINE 8:  WHERE a.attrelid = '"internal_metadata"'::regclass
+      begin
+        if subclass.column_names.include?('year') && subclass.column_names.include?('month')
+          subclass.send :include, Salva::MetaDateExtension::SimpleDateMethods
+          subclass.class_eval do
+            simple_date_scopes
+          end
+        elsif (subclass.column_names & ['startyear', 'startmonth', 'endyear', 'endmonth']).size == 4 and !subclass.column_names.include?('start_date') and !subclass.column_names.include?('end_date')
+          subclass.send :include, Salva::MetaDateExtension::StartEndDateMethods
+          subclass.class_eval do
+            start_end_date_scopes
+          end
+        elsif subclass.column_names.include? 'start_date' and subclass.column_names.include? 'end_date'
+          subclass.send :include, Salva::MetaDateExtension::DateRangeMethods
+          subclass.class_eval do
+            date_range_scopes
+          end
+        elsif (subclass.column_names & ['startyear', 'endyear']).size == 2 and !subclass.column_names.include?('startmonth')
+          subclass.class_eval do
+            year_range_scopes
+          end
+        elsif subclass.column_names.include? 'year' and !subclass.column_names.include? 'month'
+          subclass.class_eval do
+            only_year_scopes
+          end
         end
-      elsif (subclass.column_names & ['startyear', 'startmonth', 'endyear', 'endmonth']).size == 4 and !subclass.column_names.include?('start_date') and !subclass.column_names.include?('end_date')
-        subclass.send :include, MetaDateExtension::StartEndDateMethods
-        subclass.class_eval do
-          start_end_date_scopes
-        end
-      elsif subclass.column_names.include? 'start_date' and subclass.column_names.include? 'end_date'
-        subclass.send :include, MetaDateExtension::DateRangeMethods
-        subclass.class_eval do
-          date_range_scopes
-        end
-      elsif (subclass.column_names & ['startyear', 'endyear']).size == 2 and !subclass.column_names.include?('startmonth')
-        subclass.class_eval do
-          year_range_scopes
-        end
-      elsif subclass.column_names.include? 'year' and !subclass.column_names.include? 'month'
-        subclass.class_eval do
-          only_year_scopes
-        end
+      rescue ActiveRecord::StatementInvalid
+        return
       end
     end
 
@@ -52,7 +59,7 @@ module MetaDateExtension
             ({:startyear.lteq => start_year, :endyear => nil})
           }
         }
-        search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
+        # search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
       end
 
       date_search_methods
@@ -78,7 +85,7 @@ module MetaDateExtension
       scope :since, lambda { |date| where{{:start_date.gteq => date}} } unless respond_to? :since
       scope :until, lambda { |date| where{{:end_date.lteq => date}} } unless respond_to? :until
 
-      search_methods :since, :until
+      # search_methods :since, :until
       unless respond_to? :among
         scope :among, lambda { |start_date, end_date|
           where{
@@ -93,24 +100,24 @@ module MetaDateExtension
             ({:end_date.gteq => end_date, :end_date.gteq => start_date, :start_date.lt => end_date}) 
           }
         }
-        search_methods :among, :splat_param => true, :type => [:date, :date]
+        # search_methods :among, :splat_param => true, :type => [:date, :date]
       end
     end
 
     def only_year_scopes
       scope :since, lambda { |year| where{{:year.gteq => year}} } unless respond_to? :since
       scope :until, lambda { |year| where{{:year.lteq => year}} } unless respond_to? :until
-      search_methods :since, :until
+      # search_methods :since, :until
       unless respond_to? :among
         scope :among, lambda { |start_year, end_year| since(start_year).until(end_year)}
-        search_methods :among, :splat_param => true, :type => [:integer, :integer]
+        # search_methods :among, :splat_param => true, :type => [:integer, :integer]
       end
     end
 
     def year_range_scopes
       scope :since, lambda { |year| where{{:startyear.gteq => year}} } unless respond_to? :since
       scope :until, lambda { |year| where{{:endyear.lteq => year}} } unless respond_to? :until
-      search_methods :since, :until
+      # search_methods :since, :until
       unless respond_to? :among
         scope :among, lambda { |start_year, end_year|
           where{
@@ -120,13 +127,13 @@ module MetaDateExtension
             ({:startyear.lteq => start_year, :endyear => nil})
           }
         }
-        search_methods :among, :splat_param => true, :type => [:integer, :integer]
+        # search_methods :among, :splat_param => true, :type => [:integer, :integer]
       end
     end
 
     def date_search_methods
-      search_methods :since, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
-      search_methods :until, :splat_param => true, :type => [:integer, :integer] if respond_to? :until
+      # search_methods :since, :splat_param => true, :type => [:integer, :integer] if respond_to? :since
+      # search_methods :until, :splat_param => true, :type => [:integer, :integer] if respond_to? :until
     end
   end
 
@@ -144,7 +151,7 @@ module MetaDateExtension
   end
 
   module StartEndDateMethods
-    include MetaDateExtension::DateMethods
+    include Salva::MetaDateExtension::DateMethods
 
     def start_date(scope=nil)
       I18n.t(:start_date, :scope => scope) + ': ' + localize_date(startyear, startmonth).to_s unless startyear.nil?
@@ -156,7 +163,7 @@ module MetaDateExtension
   end
 
   module SimpleDateMethods
-    include MetaDateExtension::DateMethods
+    include Salva::MetaDateExtension::DateMethods
 
     def date
       localize_date(year, month)
@@ -178,4 +185,4 @@ module MetaDateExtension
   end
 end
 
-ActiveRecord::Base.send :include, MetaDateExtension
+ActiveRecord::Base.send :include, Salva::MetaDateExtension

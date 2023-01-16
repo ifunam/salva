@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Regularcourse < ActiveRecord::Base
-  attr_accessible :title, :modality_id, :user_regularcourses_attributes, :semester, :credits, :academicprogram_attributes
+  # attr_accessor :title, :modality_id, :user_regularcourses_attributes, :semester, :credits, :academicprogram_attributes
   validates_presence_of :title, :modality_id
   validates_numericality_of :id, :academicprogram_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :semester, :credits, :allow_nil => true, :only_integer => true
@@ -20,7 +20,7 @@ class Regularcourse < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope includes(:user_regularcourses => :period).order('periods.enddate DESC, regularcourses.title ASC')
+  default_scope -> { includes(:user_regularcourses => :period).order(periods: { enddate: :desc }, regularcourses: { title: :asc }) }
   scope :user_id_eq, lambda { |user_id| joins(:user_regularcourses=>:period).where(:user_regularcourses => { :user_id => user_id }) }
   scope :user_id_not_eq, lambda { |user_id| where("regularcourses.id IN (#{UserRegularcourse.unscoped.regularcourse_id_not_eq_user_id(user_id).to_sql}) AND regularcourses.id  NOT IN (#{UserRegularcourse.unscoped.regularcourse_id_by_user_id(user_id).to_sql})") }
   scope :period_id_eq, lambda { |period_id| joins({:user_regularcourses => :period}, :regularcourses).where(:user_regularcourses => { :period_id => period_id }) }
@@ -28,8 +28,8 @@ class Regularcourse < ActiveRecord::Base
   scope :until, lambda { |date| joins(:user_regularcourses=> :period).where("user_regularcourses.period_id IN (#{Period.select('id').where({:enddate.lteq => date}).to_sql})") }
   scope :among, lambda{ |start_date, end_date|  since(start_date).until(end_date) }
 
-  search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
-  search_methods :among, :type => [:date, :date], :splat_param => true
+  # search_methods :user_id_eq, :user_id_not_eq, :period_id_eq
+  # search_methods :among, :type => [:date, :date], :splat_param => true
 
   def to_s
     [to_s_simple, period_list].compact.join(', ')

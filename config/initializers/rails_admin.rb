@@ -2,12 +2,13 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
+  config.asset_source = :webpacker
 
   require 'i18n'
   I18n.default_locale = :es
 
   config.current_user_method { current_user } # auto-generated
-  config.authorize_with :cancan, Ability
+  config.authorize_with :cancancan, Ability
 
   # If you want to track changes on your models:
   # config.audit_with :history, User

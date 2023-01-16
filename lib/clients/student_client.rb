@@ -1,7 +1,7 @@
 require 'rest_client'
 require 'redis'
 require 'yaml'
-require Rails.root.join('lib/salva/site_config')
+# require 'lib/salva/site_config'
 class StudentClient
   include Salva::SiteConfig
 

@@ -3,7 +3,7 @@ class Newspaper < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :country_id, :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name
-  attr_accessible :name, :url, :country_id
+  # attr_accessor :name, :url, :country_id
 
   belongs_to :country
   belongs_to :registered_by, :class_name => 'User'

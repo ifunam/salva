@@ -15,7 +15,7 @@ class UserAnnualReport < AbstractController::Base
     include ActiveModel::Validations
     include ActiveModel::Serialization
     include ActiveModel::MassAssignmentSecurity
-    attr_accessor :user_id, :year, :remote_ip, :document_type_id, :annual_report_id
+    # attr_accessor :user_id, :year, :remote_ip, :document_type_id, :annual_report_id
     define_attribute_methods  [:user_id, :year, :remote_ip, :document_type_id, :annual_report_id]
     validates_presence_of :user_id, :year, :remote_ip, :document_type_id, :annual_report_id
     class_attribute :_attributes, :_storage_path, :_file
@@ -24,7 +24,7 @@ class UserAnnualReport < AbstractController::Base
     self._storage_path = File.join(%W(#{Rails.root.to_s} public uploads annual_reports))
 
     def self.attributes(*names)
-      attr_accessor *names
+      # attr_accessor *names
       define_attribute_methods names
     end
 

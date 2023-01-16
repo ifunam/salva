@@ -1,4 +1,4 @@
-class ActiveAdmin::Views::Pages::Base < Arbre::HTML::Document
+class ActiveAdminViewsPagesBase < Arbre::HTML::Document
 
   private
 

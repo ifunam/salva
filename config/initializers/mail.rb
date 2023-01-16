@@ -1,4 +1,4 @@
-Salva::Application.configure do
+Rails.application.configure do
   config.before_initialize do
 
     conf_path = File.join(Rails.root.to_s, 'config', 'mail.yml')

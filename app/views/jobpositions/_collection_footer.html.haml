@@ -1,7 +1,7 @@
 %tr
   %td{:style => 'text-align: center;'}
   %td{:style => 'text-align: center;'}
-    = link_as_button t(:delete_all_selected), '#', :class_button => 'dangerous_button', :id => 'destroy_selected_records', :confirm => t(:delete_all_confirm_question)
+    = link_as_button t(:delete_all_selected), '#', :class_button => 'dangerous_button', :id => 'destroy_selected_records', :data => { confirm: t(:delete_all_confirm_question) }
   - 2.times do
     %td{:style => 'text-align: center;'}
   %td{:style => 'text-align: center; width: 120px;'}

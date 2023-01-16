@@ -1,6 +1,6 @@
 # This module extends the MetaSeach plugin to generate methods based 
 # on _like_ignore_case, by_soundex and by_difference prefixes.
-module MetaSearchExtension
+module Salva::MetaSearchExtension
   def self.included(base)
     base.extend ClassMethods
   end
@@ -12,7 +12,7 @@ module MetaSearchExtension
       opts.keys.each do |key|
         if key != :search_options and !self.respond_to? key and method_name_valid? key
           self.class_eval <<-METHOD, __FILE__, __LINE__ + 1
-          search_methods key
+          # search_methods key
           eval(#{define_method_by_prefix("#{key}")})
           METHOD
         end
@@ -63,4 +63,4 @@ module MetaSearchExtension
   end
 end
 
-ActiveRecord::Base.send :include, MetaSearchExtension
+ActiveRecord::Base.send :include, Salva::MetaSearchExtension

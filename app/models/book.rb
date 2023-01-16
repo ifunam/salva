@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  attr_accessible :authors, :title, :country_id, :language_id, :booktype_id, :volume, :booklink, :is_selected
+  # attr_accessor :authors, :title, :country_id, :language_id, :booktype_id, :volume, :booklink, :is_selected
 
   validates_presence_of :title, :authors, :country_id, :booktype_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -10,8 +10,8 @@ class Book < ActiveRecord::Base
   belongs_to :booktype
   belongs_to :language
   has_many :bookeditions
-  default_scope :order => 'authors ASC, title ASC'
-  scope :selected, where(:is_selected => true)
+  default_scope  -> { order(authors: :asc, title: :asc) }
+  scope :selected, -> { where(:is_selected => true) }
 
   def to_s
     [authors, title, volume].compact.join(', ')

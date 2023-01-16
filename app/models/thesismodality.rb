@@ -1,5 +1,5 @@
 class Thesismodality < ActiveRecord::Base
-  attr_accessible :name, :degree_id, :level
+  # attr_accessor :name, :degree_id, :level
 
   validates_presence_of :name, :degree_id
   validates_numericality_of :id, :allow_nil => true, :greater_than =>0, :only_integer => true
@@ -7,7 +7,7 @@ class Thesismodality < ActiveRecord::Base
 
   belongs_to :degree
   has_many :theses
-  default_scope :order => 'level ASC' if column_names.include? 'level'
+  default_scope -> { order(level: :asc) if column_names.include? 'level' }
 
   def to_s
     "Modalidad: " + name

@@ -1,40 +1,40 @@
-@import "blueprint/reset"
-@import "blueprint/grid"
-@import "blueprint/typography"
+// @import "blueprint/reset"
+// @import "blueprint/grid"
+// @import "blueprint/typography"
 
 #login_view
-  @extend .span-22
-  @extend .last
-  @extend .prepend-2
+  @extend .span-22 !optional
+  @extend .last !optional
+  @extend .prepend-2 !optional
   margin-top: 20px
   margin-bottom: 20px
 
 #login_form
-  @extend .span-8
+  @extend .span-8 !optional
   border-bottom: 1px solid silver
   padding-bottom: 10px
   label
-    @extend .span-3
+    @extend .span-3 !optional
   text_field
-    @extend .span-5
-    @extend .last
+    @extend .span-5 !optional
+    @extend .last !optional
 
 #login_info
-  @extend .span-12
-  @extend .last
-  @extend .section-with-border
+  @extend .span-12 !optional
+  @extend .last !optional
+  @extend .section-with-border !optional
   text-align: justify
   background: url("section_bg.jpg")
 
 #login_example
-  @extend .span-6
-  @extend .last
-  @extend .section-with-border
-  @extend .example
+  @extend .span-6 !optional
+  @extend .last !optional
+  @extend .section-with-border !optional
+  @extend .example !optional
 
 #supported_browsers
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   display: inline
   float: none
   min-height: 40px

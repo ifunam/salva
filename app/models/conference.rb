@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Conference < ActiveRecord::Base
 
-  attr_accessible :name, :conferencetype_id, :conferencescope_id, :country_id, :year, :month, :location,
+  # attr_accessor :name, :conferencetype_id, :conferencescope_id, :country_id, :year, :month, :location,
                   :conference_institutions_attributes, :userconferences_attributes
 
   validates_presence_of :name, :year, :conferencetype_id, :country_id, :conferencescope_id
@@ -30,14 +30,14 @@ class Conference < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'year DESC, month DESC, name ASC'
+  default_scope -> { order(year: :desc, month: :desc, name: :asc) }
 
-  scope :attendees, joins(:userconferences).where(:userconferences => { :roleinconference_id => 1 })
-  scope :organizers, joins(:userconferences).where('userconferences.roleinconference_id  != 1')
+  scope :attendees, -> { joins(:userconferences).where(:userconferences => { :roleinconference_id => 1 }) }
+  scope :organizers, -> { joins(:userconferences).where('userconferences.roleinconference_id  != 1') }
   scope :user_id_eq, lambda { |user_id| joins(:userconferences).where(:userconferences => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("conferences.id IN (#{Userconference.select('DISTINCT(conference_id) as conference_id').where(["userconferences.user_id !=  ?", user_id]).to_sql}) AND conferences.id  NOT IN (#{Userconference.select('DISTINCT(conference_id) as conference_id').where(["userconferences.user_id =  ?", user_id]).to_sql})") }
 
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     [name, institution_names, "País: #{country.name}", normalized_type, normalized_scope, date].compact.join(', ')

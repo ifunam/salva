@@ -1,5 +1,5 @@
 class Education < ActiveRecord::Base
-  attr_accessible :startyear, :endyear, :is_studying_this, :is_titleholder, :career_attributes,
+  # attr_accessor :startyear, :endyear, :is_studying_this, :is_titleholder, :career_attributes,
                   :institution_id, :university_id, :country_id, :degree_id, :career_id
 
   validates_presence_of  :startyear
@@ -23,13 +23,13 @@ class Education < ActiveRecord::Base
   belongs_to :institutioncareer # FIX IT: Remove this relationship until next release.
                                 # We need institutioncareers table to support
                                 # migrations from previous versions of salva databases.
-  default_scope :order => 'endyear DESC, startyear DESC'
+  default_scope -> { order(endyear: :desc, startyear: :desc) }
   scope :since, lambda { |year| where{{:startyear.gteq => year}} }
   scope :until, lambda { |year| where{{:endyear.lteq => year}} }
   scope :among, lambda { |start_year, end_year| since(start_year).until(end_year) }
 
-  search_methods :since, :until
-  search_methods :among, :splat_param => true, :type => [:integer, :integer]
+  # search_methods :since, :until
+  # search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def to_s
     carrera =  career.nil? ? nil : career.name

@@ -1,5 +1,5 @@
 class ThesisExamination < Thesis
-  attr_accessible :title, :authors, :thesismodality_id, :thesisstatus_id,
+  # attr_accessor :title, :authors, :thesismodality_id, :thesisstatus_id,
                   :start_date, :end_date,
                   :thesis_jurors_attributes, :career_attributes,
                   :startyear, :endyear, :startmonth, :endmonth,
@@ -32,7 +32,7 @@ class ThesisExamination < Thesis
   }
 
   scope :roleinjury_id_eq, lambda { |roleinjury_id| joins(:thesis_jurors).where(:thesis_jurors => { :roleinjury_id => roleinjury_id }) }
-  search_methods :user_id_eq, :user_id_not_eq, :roleinjury_id_eq
+  # search_methods :user_id_eq, :user_id_not_eq, :roleinjury_id_eq
 
   def users_and_roles
     thesis_jurors.collect {|record|

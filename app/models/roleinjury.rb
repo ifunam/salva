@@ -5,7 +5,6 @@ class Roleinjury < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :thesis_jurors
-
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end
 

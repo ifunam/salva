@@ -4,5 +4,5 @@ class Mediatype < ActiveRecord::Base
   validates_uniqueness_of :name
   has_many :journals
   has_many :bookeditions
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

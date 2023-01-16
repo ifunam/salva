@@ -4,20 +4,18 @@ class Adscription < ActiveRecord::Base
   validates_numericality_of :institution_id, :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name, :scope => [:institution_id]
   normalize_attributes :name, :abbrev
-  attr_accessible :name, :abbrev, :descr, :administrative_key, :is_enabled, :institution_id
+  # attr_accessor :name, :abbrev, :descr, :administrative_key, :is_enabled, :institution_id
 
   belongs_to :institution
   has_many :user_adscription_records
-  has_many :users, :through => :user_adscription_records, :source => :user, :uniq => true,
-           :conditions => "users.userstatus_id = 2 and user_adscription_records.year = #{Time.now.year}",
-           :include => :person,
-           :order => 'people.lastname1 ASC, people.firstname ASC, users.author_name ASC'
+  has_many :users, -> { distinct.where(userstatus_id: 2, user_adscription_records: { year: Time.now.year }).include(:person).order(people: { lastname1: :asc, firstname: :asc }, users: { author_name: :asc }) },
+          :through => :user_adscription_records, :source => :user
   has_many :user_adscriptions
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 
-  scope :enabled, where(:is_enabled => true)
-  scope :not_enabled, where(:is_enabled => false)
+  scope :enabled, -> { where(:is_enabled => true) }
+  scope :not_enabled, -> { where(:is_enabled => false) }
 
   def users_to_xml
     users.collect {|record|

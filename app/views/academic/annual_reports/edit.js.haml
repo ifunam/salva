@@ -4,4 +4,4 @@
   = render :partial => 'form', :locals => { :f => f}
   #dialog_submit_buttons
     = f.hidden_field :approved, value:'f'
-    = f.submit t(:reject), :confirm => t(:reject_document_confirmation)
+    = f.submit t(:reject), :data => { confirm: t(:reject_document_confirmation) }

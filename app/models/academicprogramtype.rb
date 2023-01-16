@@ -4,9 +4,9 @@ class Academicprogramtype < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-  attr_accessible :name
+  # attr_accessor :name
 
   has_many :academicprograms
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

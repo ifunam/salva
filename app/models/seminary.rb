@@ -1,5 +1,5 @@
 class Seminary < ActiveRecord::Base
-  attr_accessible :title, :seminarytype_id, :user_seminaries_attributes, :year, :month, :institution_id, :instructors
+  # attr_accessor :title, :seminarytype_id, :user_seminaries_attributes, :year, :month, :institution_id, :instructors
 
   validates_presence_of  :title, :year, :seminarytype_id, :institution_id
   validates_numericality_of :seminarytype_id, :year,  :greater_than =>0, :only_integer => true
@@ -17,10 +17,10 @@ class Seminary < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'year DESC, month DESC, instructors ASC, title ASC'
+  default_scope -> { order(year: :desc, month: :desc, instructors: :asc, title: :asc) }
 
-  scope :as_not_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')
-  scope :as_attendee, joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1')
+  scope :as_not_attendee, -> { joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1') }
+  scope :as_attendee, -> { joins(:user_seminaries).where('user_seminaries.roleinseminary_id != 1') }
   scope :user_id_eq, lambda { |user_id| joins(:user_seminaries).where(:user_seminaries => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id| 
     seminary_without_user_sql = UserSeminary.user_id_not_eq(user_id).to_sql
@@ -28,7 +28,7 @@ class Seminary < ActiveRecord::Base
     sql = "seminaries.id IN (#{seminary_without_user_sql}) AND seminaries.id NOT IN (#{seminary_with_user_sql})"
     where sql
   }
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     [instructors, title, 'Tipo: ' + seminarytype.name, organizers, date].compact.join(', ')

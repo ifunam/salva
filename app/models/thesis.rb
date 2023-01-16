@@ -29,13 +29,13 @@ class Thesis < ActiveRecord::Base
 
   mount_uploader :document, DocumentUploader
 
-  attr_accessible :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date, :url,
+  # attr_accessor :title, :authors, :user_theses_attributes, :thesismodality_id, :thesisstatus_id, :end_date, :career_attributes, :start_date, :url,
                   :startyear, :startmonth, :endyear, :endmonth, :is_verified, :user_theses_attributes, :user_ids, :document, :document_cache, :remove_document,
                   :other, :institution_id, :university_id, :country_id, :degree_id, :career_id
   alias_attribute :name, :title
   has_paper_trail
 
-  default_scope :order => 'theses.end_date DESC, theses.start_date DESC, theses.authors ASC, theses.title ASC'
+  default_scope -> { order(theses: { end_date: :desc, start_date: :desc, authors: :asc, title: :asc }) }
   scope :user_id_eq, lambda { |user_id| joins(:user_theses).where(:user_theses => { :user_id => user_id }) }
 
   scope :user_id_not_eq, lambda { |user_id|
@@ -46,20 +46,20 @@ class Thesis < ActiveRecord::Base
 
   scope :roleinthesis_id_eq, lambda { |roleinthesis_id|  where(:user_theses => {:roleinthesis_id =>roleinthesis_id }) }
   scope :roleinthesis_id_not_eq, lambda { |roleinthesis_id| joins(:user_theses).where("user_theses.roleinthesis_id != ?", roleinthesis_id) }
-  scope :as_author, roleinthesis_id_eq(1)
-  scope :not_as_author, roleinthesis_id_not_eq(1)
+  scope :as_author, -> { roleinthesis_id_eq(1) }
+  scope :not_as_author, -> { roleinthesis_id_not_eq(1) }
 
-  scope :finished, where(:thesisstatus_id => 3).not_as_author
-  scope :inprogress, where("thesisstatus_id != 3").not_as_author
+  scope :finished, -> { where(:thesisstatus_id => 3).not_as_author }
+  scope :inprogress, -> { where("thesisstatus_id != 3").not_as_author }
 
-  scope :for_phd, joins(:career).where('degree_id = 6').not_as_author
-  scope :for_master, joins(:career).where('degree_id = 5 or degree_id = 4').not_as_author
-  scope :for_bachelor_degree, joins(:career).where('degree_id = 3').not_as_author
-  scope :for_technician, joins(:career).where('degree_id = 2').not_as_author
-  scope :for_high_school, joins(:career).where('degree_id = 1').not_as_author
+  scope :for_phd, -> { joins(:career).where('degree_id = 6').not_as_author }
+  scope :for_master, -> { joins(:career).where('degree_id = 5 or degree_id = 4').not_as_author }
+  scope :for_bachelor_degree, -> { joins(:career).where('degree_id = 3').not_as_author }
+  scope :for_technician, -> { joins(:career).where('degree_id = 2').not_as_author }
+  scope :for_high_school, -> { joins(:career).where('degree_id = 1').not_as_author }
 
   scope :career_degree_id_eq, lambda { |degree_id| where(:degree_id => degree_id).not_as_author }
-  search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq, :career_degree_id_eq
+  # search_methods :user_id_eq, :user_id_not_eq, :roleinthesis_id_eq, :career_degree_id_eq
 
   def to_s
     carrera =  career.nil? ? nil : career.name

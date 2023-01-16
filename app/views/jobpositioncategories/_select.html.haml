@@ -1,1 +1,1 @@
-= collection_select 'jobposition', :jobpositioncategory_id, Jobpositioncategory.find_all_by_jobpositiontype_id(params[:id] || 1), :id, :name, { :prompt => true }, :class =>'chosen-select'
+= collection_select 'jobposition', :jobpositioncategory_id, Jobpositioncategory.where( jobpositiontype_id: params[:id] || 1 ), :id, :name, { :prompt => true }, :class =>'chosen-select'

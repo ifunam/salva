@@ -11,9 +11,9 @@ class Activitytype < ActiveRecord::Base
   belongs_to :modified_by, :class_name => 'User'
   has_many :activities
 
-  default_scope :order => 'name ASC, activitygroup_id DESC'
+  default_scope -> { order(name: :acs, activitygroup_id: :desc) }
 
-  scope :popular_science, where(:activitygroup_id => 1)
-  scope :teaching, where(:activitygroup_id => 3)
-  scope :technical, where(:activitygroup_id => 7)
+  scope :popular_science, -> { where(:activitygroup_id => 1) }
+  scope :teaching, -> { where(:activitygroup_id => 3) }
+  scope :technical, -> { where(:activitygroup_id => 7) }
 end

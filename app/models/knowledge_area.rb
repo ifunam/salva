@@ -1,5 +1,5 @@
 class KnowledgeArea < ActiveRecord::Base
-  attr_accessible :name, :name_en, :knowledge_field_id, :short_name
+  # attr_accessor :name, :name_en, :knowledge_field_id, :short_name
 
   validates_presence_of :name, :knowledge_field_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -8,7 +8,7 @@ class KnowledgeArea < ActiveRecord::Base
   has_many :user_knowledge_areas
   belongs_to :knowledge_field
 
-  default_scope order(:knowledge_field_id,:id)
+  default_scope -> { order(knowledge_field_id,:id) }
 
   def to_s
     name

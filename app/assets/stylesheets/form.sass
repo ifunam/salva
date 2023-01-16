@@ -1,6 +1,6 @@
-@import "blueprint/reset"
-@import "blueprint/grid"
-@import "blueprint/typography"
+// @import "blueprint/reset"
+// @import "blueprint/grid"
+// @import "blueprint/typography"
 @import "start-jquery-ui"
 
 input[type="text"],
@@ -122,8 +122,8 @@ label, .error
 
 #submit_buttons
   a
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     @extend .button
     height: 23px
     display: inline-block
@@ -135,39 +135,39 @@ label, .error
     margin-right: 10px
 
   a:visited
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     @extend .button
     color: white
   a:hover
-    @extend .ui-state-hover
-    @extend .ui-state-active
+    @extend .ui-state-hover !optional
+    @extend .ui-state-active !optional
 
   input[type="submit"]
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     @extend .button
     margin-right: 10px
 
   input[type="submit"]:hover
-    @extend .ui-state-hover
-    @extend .ui-state-active
+    @extend .ui-state-hover !optional
+    @extend .ui-state-active !optional
 
 .search_button
   @extend #submit_buttons
-  @extend .span-2
+  @extend .span-2 !optional
 
 .reset_search_button
   @extend #submit_buttons
-  @extend .span-3
+  @extend .span-3 !optional
 
 #footer_buttons
-  @extend .span-7
-  @extend .prepend-12
+  @extend .span-7 !optional
+  @extend .prepend-12 !optional
   @extend #submit_buttons
 
 .child_icon
-  @extend .ui-button-icon-primary
+  @extend .ui-button-icon-primary !optional
   @extend .ui-icon
 
 .add_child_icon
@@ -180,34 +180,34 @@ label, .error
 
 .child_link
   @extend .ui-button
-  @extend .ui-button-icon
+  @extend .ui-button-icon !optional
   @extend .ui-widget
-  @extend .ui-state-default
-  @extend .ui-corner-all
+  @extend .ui-state-default !optional
+  @extend .ui-corner-all !optional
 
 .add_child_link
   @extend .child_link
 
 .nested_attributes
-  @extend .span-17
-  @extend .last
+  @extend .span-17 !optional
+  @extend .last !optional
 
 .action
-  @extend .span-2
+  @extend .span-2 !optional
   text-align: center
   vertical-align: middle
 
 .action_link
   @extend .ui-button
-  @extend .ui-button-icon
+  @extend .ui-button-icon !optional
   @extend .ui-widget
-  @extend .ui-state-default
-  @extend .ui-corner-all
+  @extend .ui-state-default !optional
+  @extend .ui-corner-all !optional
 
 .icon_action
-  @extend .ui-button-icon-primary
+  @extend .ui-button-icon-primary !optional
   @extend .ui-icon
-  @extend .ui-button-icon
+  @extend .ui-button-icon !optional
 
 .icon_action_show
   @extend .icon_action
@@ -231,8 +231,8 @@ label, .error
 
 #dialog_submit_buttons
   a
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     @extend .button
     height: 23px
     display: inline-block
@@ -244,11 +244,11 @@ label, .error
     margin-right: 10px
 
   input[type="submit"]
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional
     @extend .button
     margin-right: 10px
 
   input[type="submit"]:hover
-    @extend .ui-state-hover
-    @extend .ui-state-active
+    @extend .ui-state-hover !optional
+    @extend .ui-state-active !optional

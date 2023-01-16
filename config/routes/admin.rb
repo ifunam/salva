@@ -1,4 +1,4 @@
-Salva::Application.routes.draw do
+Rails.application.routes.draw do
   namespace :administrator do
     resource :dashboard, :only => [:show]
     root :to => 'dashboards#show'

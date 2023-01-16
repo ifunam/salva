@@ -1,4 +1,4 @@
-Salva::Application.routes.draw do
+Rails.application.routes.draw do
 
   devise_for :departments, :path => '/department', :only => :sessions, :format => false,
              :controllers => { :sessions => "department/sessions" }

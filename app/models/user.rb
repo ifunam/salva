@@ -1,13 +1,19 @@
 # encoding: utf-8
 require File.join(Rails.root.to_s, 'lib/clients/student_client')
+require_relative '../../lib/aleph/helpers/user_model'
+require_relative '../../lib/ldap/helpers/user_model'
 class User < ActiveRecord::Base
+  after_create :request_id_card
+  after_update :user_updates
+  before_destroy :destroy_connected_users
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessor :email, :password, :password_confirmation, :remember_me
   extend LDAP::Helpers::UserModel
   extend Aleph::Helpers::UserModel
 
@@ -22,45 +28,45 @@ class User < ActiveRecord::Base
 
     # Uncomment the following line If you want to enable the email
     # attribute for modifications in systems without ldap support.
-    # attr_accessible :email
+    # # attr_accessor :email
   end
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessor :current_password
+  # attr_accessor :current_password
 
   validates :email, :presence => true, :uniqueness => true
-  validates :login, :presence => true, :length => { :minimum => 5, :maximum => 15 },  :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true, :on => :create
-  validates :login, :presence => true, :format => { :with => /^([a-z]|.)+$/ }, :uniqueness => true, :on => :update
+  validates :login, :presence => true, :length => { :minimum => 5, :maximum => 15 },  :format => { :with => /\A([a-z]|.)+\z/ }, :uniqueness => true, :on => :create # The provided regular expression is using multiline anchors (^ or $), which may present a security risk. Did you mean to use \A and \z, or forgot to add the :multiline => true option? (ArgumentError)
+  validates :login, :presence => true, :format => { :with => /\A([a-z]|.)+\z/ }, :uniqueness => true, :on => :update # The provided regular expression is using multiline anchors (^ or $), which may present a security risk. Did you mean to use \A and \z, or forgot to add the :multiline => true option? (ArgumentError)
   validates :password, :presence =>true, :length => { :minimum => 8, :maximum => 40 }, :confirmation => true, :on => :create
   validates_confirmation_of :password
   validates_length_of :homepage_resume,:homepage_resume_en, :maximum => 1500
 
-  attr_accessible :password, :password_confirmation, :remember_me, :user_identifications_attributes,
-                  :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
-                  :jobposition_log_attributes, :user_schoolarships_attributes, :reports_attributes,
-                  :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
-                  :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
-                  :user_group_attributes
+  # attr_accessor :password, :password_confirmation, :remember_me, :user_identifications_attributes,
+                  # :person_attributes, :address_attributes, :jobposition_attributes, :current_password,
+                  # :jobposition_log_attributes, :user_schoolarships_attributes, :reports_attributes,
+                  # :author_name, :blog, :homepage, :calendar, :user_cite_attributes,
+                  # :homepage_resume, :homepage_resume_en, :login, :userstatus_id, :user_incharge_id, 
+                  # :user_group_attributes
 
-  scope :activated, where(:userstatus_id => 2)
-  scope :inactive, where('userstatus_id != 2')
-  scope :postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id")
-  scope :not_in_postdoctoral, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id")
+  scope :activated, -> { where(:userstatus_id => 2) }
+  scope :inactive, -> { where('userstatus_id != 2') }
+  scope :postdoctoral, -> { joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 38  AND user_adscriptions.jobposition_id = jobpositions.id") }
+  scope :not_in_postdoctoral, -> { joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 38  AND user_adscriptions.jobposition_id = jobpositions.id") }
 
-  scope :conacyt, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 185  AND user_adscriptions.jobposition_id = jobpositions.id")
-  scope :not_in_conacyt, joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 185  AND user_adscriptions.jobposition_id = jobpositions.id")
-  scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
-  scope :fullname_desc, joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC')
-  scope :distinct, select("DISTINCT (users.*)")
-  scope :sort_by_author, order('author_name ASC')
+  scope :conacyt, -> { joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id = 185  AND user_adscriptions.jobposition_id = jobpositions.id") }
+  scope :not_in_conacyt, -> { joins(:jobposition, :user_adscriptions).where("jobpositions.jobpositioncategory_id != 185  AND user_adscriptions.jobposition_id = jobpositions.id") }
+  scope :fullname_asc, -> { joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC') }
+  scope :fullname_desc, -> { joins(:person).order('people.lastname1 DESC, people.lastname2 DESC, people.firstname DESC') }
+  scope :toberenamed, -> { select("DISTINCT (users.*)") } # distinct is a reserved scope. check how this affects your app
+  scope :sort_by_author, -> { order('author_name ASC') }
 
-  scope :researchers, joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (1,110,114) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year)
-  scope :academic_technicians, joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id NOT IN (1,110,4,5)) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year)
+  scope :researchers, -> { joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (1,110,114) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year) }
+  scope :academic_technicians, -> { joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id = 3 AND (jobpositioncategories.roleinjobposition_id NOT IN (1,110,4,5)) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year) }
   #posdoctorals_and_conacytchair 111,114
-  scope :posdoctorals, joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (111) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year)
-  scope :conacyt, joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (114)  AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year)
+  scope :posdoctorals, -> { joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (111) AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year) }
+  scope :conacyt, -> { joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (114)  AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year) }
   #researchers_posdoctorals_and_conacytchair 1,110,111,114
-  scope :researchers_and_posdoctorals, joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (1,110,111,114)  AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year)
+  scope :researchers_and_posdoctorals, -> { joins(:user_adscription_records, :jobposition=>:jobpositioncategory).where("jobpositioncategories.roleinjobposition_id IN (1,110,111,114)  AND user_adscription_records.jobposition_id = jobpositions.id AND user_adscription_records.year = ?",Time.now.year) }
   scope :activated_academics, lambda { self.researchers_and_posdoctorals.activated | self.academic_technicians.activated }
   scope :all_except, lambda { |user| where("userstatus_id=2 AND users.id NOT IN (?)",user) }
   # :userstatus_id_equals => find_all_by_userstatus_id
@@ -103,11 +109,11 @@ class User < ActiveRecord::Base
   }
   scope :jobpositioncategory_eq, lambda { |jobpositioncategory_id| jobpositioncategory_id_equals(jobpositioncategory_id) }
 
-  search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
-                 :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
-                 :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
-                 :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq, :fullname_equals, 
-                 :fullname_starts_with, :fullname_ends_with
+  # search_methods :fullname_like, :adscription_id_equals, :schoolarship_id_equals, :annual_report_year_equals, 
+  #                :jobposition_start_date_year_equals, :jobposition_end_date_year_equals, :jobpositioncategory_id_equals,
+  #                :login_like, :adscription_eq, :jobpositioncategory_eq, :jobposition_start_date_year_eq,
+  #                :jobposition_end_date_year_eq, :fullname_contains, :schoolarship_eq, :fullname_equals, 
+  #                :fullname_starts_with, :fullname_ends_with
 
   belongs_to :userstatus
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
@@ -118,17 +124,14 @@ class User < ActiveRecord::Base
   has_one :user_group
   has_one :group, :through => :user_group
   has_one :address
-  has_one :professional_address, :class_name => "Address",  :conditions => "addresses.addresstype_id = 1 "
-  has_one :jobposition, :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
-  has_one :most_recent_jobposition, :class_name => "Jobposition", :include => :institution,
-          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
-          :order => "jobpositions.start_date DESC"
-  has_one :first_jobposition, :class_name => "Jobposition", :include => :institution,
-          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ",
-          :order => "jobpositions.start_date ASC"
-  has_one :jobposition_for_researching, :class_name => "Jobposition", :include => [:institution, :jobpositioncategory],
-          :conditions => "(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id = 1",
-          :order => "jobpositions.start_date DESC"
+  has_one :professional_address, -> { where(addresses: { addresstype_id: 1 }) }, :class_name => "Address" 
+  has_one :jobposition, -> { order(jobpositions: { start_date: :desc, end_date: :desc }) }
+  has_one :most_recent_jobposition, -> { include(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ").order(jobpositions: { start_date: :desc }) },
+            :class_name => "Jobposition"
+  has_one :first_jobposition, -> { include(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ").order(jobpositions: { start_date: :desc }) },
+            :class_name => "Jobposition"
+  has_one :jobposition_for_researching, -> { include(:institution, :jobpositioncategory).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id AND jobpositioncategories.jobpositiontype_id = 1").order(jobpositions: { start_date: :desc }) }, 
+            :class_name => "Jobposition"
   has_one :user_identification
   has_one :user_schoolarship
   has_one :user_cite
@@ -138,37 +141,31 @@ class User < ActiveRecord::Base
   has_many :user_adscriptions
   has_many :user_adscription_records
   has_many :jobpositions
-  has_one  :user_adscription, :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
-  has_one  :jobposition_as_conacyt, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 185', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
-  has_one  :user_adscription_as_conacyt, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 185 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
-  has_one  :jobposition_as_postdoctoral, :class_name => 'Jobposition', :conditions => 'jobpositions.jobpositioncategory_id = 38', :order => 'jobpositions.start_date DESC, jobpositions.end_date DESC'
-  has_one  :user_adscription_as_postdoctoral, :class_name => 'UserAdscription', :conditions => 'jobpositions.jobpositioncategory_id = 38 and user_adscriptions.jobposition_id = jobpositions.id', :include => :jobposition, :order => 'user_adscriptions.start_date DESC, user_adscriptions.end_date DESC'
-  has_many :user_schoolarships, :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC'
-  has_many :user_schoolarships_as_posdoctoral, :conditions => "user_schoolarships.schoolarship_id >=48  AND user_schoolarships.schoolarship_id <= 53", :order => 'user_schoolarships.start_date DESC, user_schoolarships.end_date DESC', :class_name => 'UserSchoolarship'
+  has_one  :user_adscription, -> {include(:jobposition).order(user_adscriptions: { start_date: :desc, end_date: :desc }) }
+  has_one  :jobposition_as_conacyt, -> { where(jobpositions: { jobpositioncategory_id: 185 }).order(jobposition: { start_date: :desc, end_date: :desc}) }, :class_name => 'Jobposition'
+  has_one  :user_adscription_as_conacyt, -> { where(jobpositions: {jobpositioncategory_id: 185}, user_adscriptions: { jobposition_id: jobpositions.id }).include(:jobposition).order(user_adscriptions: { start_date: :desc, end_date: :desc }) }, :class_name => 'UserAdscription' # TODO: check correct syntax for user_adscriptions: { jobposition_id: jobpositions.id })
+  has_one  :jobposition_as_postdoctoral, -> { where(jobpositions: { jobpositioncategory_id: 38 }).order(jobpositions: { start_date: :desc, end_date: :desc }) }, :class_name => 'Jobposition'
+  has_one  :user_adscription_as_postdoctoral, -> { where(jobpositions: { jobpositioncategory_id: 38 }, user_adscription: { jobposition_id: jobpositions.id }).include(:jobposition).order(user_adscriptions: { start_date: :desc, end_date: :desc }) }, :class_name => 'UserAdscription' # TODO: check correct syntax for user_adscriptions: { jobposition_id: jobpositions.id })
+  has_many :user_schoolarships, -> { order(user_schoolarship: { start_date: :desc, end_date: :desc }) }
+  has_many :user_schoolarships_as_posdoctoral, -> { where(user_schoolarships: { schoolarship_id: 48..53 }).order(user_schoolarships: { start_date: :desc, end_date: :desc }) }, :class_name => 'UserSchoolarship'
   has_many :documents
   has_many :reports
   has_many :user_identifications
   has_many :videos
   has_many :user_lab_or_groups
-  has_many :lab_or_groups, :through => :user_lab_or_groups, :order => 'lab_or_groups.name ASC', :limit => 10
+  has_many :lab_or_groups, -> { order(lab_or_groups: { name: :asc}).limit(10) }, :through => :user_lab_or_groups
   has_many :user_knowledge_areas
-  has_many :knowledge_areas, :through => :user_knowledge_areas, :order => 'knowledge_areas.name ASC', :limit => 10
+  has_many :knowledge_areas, -> { order(knowledge_areas: { name: :asc }).limit(10) }, :through => :user_knowledge_areas
   has_many :user_researchlines
-  has_many :researchlines, :through => :user_researchlines, :order => 'researchlines.name ASC', :limit => 10
+  has_many :researchlines, -> { order(researchlines: { name: :asc }).limit(10) }, :through => :user_researchlines
   has_many :user_skills
-  has_many :user_articles, :include => :articles, :inverse_of => :user
+  has_many :user_articles, -> { include(:articles) }, :inverse_of => :user
   has_many :articles, :through => :user_articles, :inverse_of => :users
-  has_many :user_refereed_journals, :include => :journal, :inverse_of => :user
+  has_many :user_refereed_journals, -> { include(:journal) }, :inverse_of => :user
   has_many :journals, :through => :user_refereed_journals
-  has_many :published_articles, :through => :user_articles, :source => :article,
-           :conditions => 'articles.articlestatus_id = 3',
-           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
-  has_many :recent_published_articles, :through => :user_articles, :source => :article,
-           :conditions => 'articles.articlestatus_id = 3',
-           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC', :limit => 5
-  has_many :inprogress_articles, :through => :user_articles, :source => :article,
-           :conditions => 'articles.articlestatus_id != 3',
-           :order => 'articles.year DESC, articles.month DESC, articles.authors ASC, articles.title ASC'
+  has_many :published_articles, -> { where(articles: { articlestatus_id: 3 }).order(articles: { year: :desc, month: :desc, authors: :asc, title: :asc }) }, :through => :user_articles, :source => :article
+  has_many :recent_published_articles, -> { where(articles: { articlestatus_id: 3 }).order({ articles: { year: :desc, month: :desc, authors: :asc, title: :asc } }).limit(5) }, :through => :user_articles, :source => :article
+  has_many :inprogress_articles, -> { where.not(articles: { articlestatus_id: 3}).order( { articles: { year: :desc, month: :desc, authors: :asc, title: :asc } }) }, :through => :user_articles, :source => :article
   has_many :user_theses
   has_many :theses, :through => :user_theses
   has_many :bookedition_roleinbooks
@@ -514,6 +511,44 @@ class User < ActiveRecord::Base
       :phone=>professional_address.phone.to_s+' ext '+professional_address.phone_extension,
       :lab_or_groups=>my_lab_or_groups, :knowledge_fields=>my_knowledge_fields, :knowledge_areas=>my_knowledge_areas
     }
+  end
+
+  def request_id_card
+    jp = Jobposition.most_recent_jp(user.id)
+    u_id = user.id
+    a_id = jp.user_adscription.adscription_id if user.has_adscription?
+    j_id = jp.id
+    year = Time.now.year
+    create_ldap_user(user) if User.ldap_enabled?
+    UserAdscriptionRecord.create(:user_id=>u_id,:adscription_id=>a_id,:jobposition_id=>j_id,:year=>year)
+    Notifier.identification_card_request(user.id).deliver
+  end
+
+  def after_updates
+    if user.has_adscription? then
+      year = Time.now.year
+     u_id = user.id
+     uar = UserAdscriptionRecord.where(:user_id=>u_id, :year=>year).first
+     j_id = uar.jobposition_id
+     a_id = uar.adscription_id
+     uar.update_attributes(:adscription_id=>a_id,:jobposition_id=>j_id)
+     ua = UserAdscription.where(:user_id=>u_id).last
+     ua.update_attributes(:adscription_id=>a_id)
+   end
+   if user.userstatus_id_changed?
+     Notifier.updated_userstatus_to_admin(user.id).deliver
+   end
+   if !user.password.nil? and User.ldap_enabled?
+     update_ldap_user(user)
+   end
+   if user.has_image? and user.person.image.changed? and User.aleph_enabled?
+     create_or_update_aleph_account(user)
+   end
+  end
+
+  def destroy_connected_users
+    destroy_ldap_user(user) if User.ldap_enabled?
+    destroy_aleph_user(user) if User.aleph_enabled?
   end
 
 end

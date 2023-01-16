@@ -7,8 +7,8 @@ Address.blueprint do
   zipcode     { Forgery(:address).zip }
   is_postaddress      { true }
   addresstype_id { Addresstype.make!.id}
-  country_id { Country.make!.id}
-  user_id { User.make!.id}
+  country_id { Country.new.id}
+  user_id { User.new.id}
   addresstype
   country
   state

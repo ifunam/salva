@@ -10,6 +10,6 @@ class Publisher < ActiveRecord::Base
   has_many :genericworks
   has_many :bookedition_publishers
   has_many :proceedings
-  default_scope :order => 'name ASC'
-  attr_accessible :name, :descr, :url, :is_verified
+  default_scope -> { order(name: :asc) }
+  # attr_accessor :name, :descr, :url, :is_verified
 end

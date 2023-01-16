@@ -16,7 +16,7 @@ class Career < ActiveRecord::Base
   has_many :theses
   has_many :academicprograms
   has_many :institutioncareers
-  attr_accessible :name, :degree_id, :institution_attributes, :abbrev, :institution_id, :university_id, :country_id
+  # attr_accessor :name, :degree_id, :institution_attributes, :abbrev, :institution_id, :university_id, :country_id
 
   def to_s
     grado = degree.nil? ? nil : degree.name

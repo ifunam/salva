@@ -3,7 +3,7 @@ class Jobpositiontype < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-  attr_accessible :name
+  # attr_accessor :name
 
   has_many :jobpositioncategories
 end

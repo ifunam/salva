@@ -2,33 +2,33 @@
 @import "start-jquery-ui"
 
 #session_info
-  @extend .ui-button-set
-  @extend .span-24
-  @extend .last
+  @extend .ui-button-set !optional
+  @extend .span-24 !optional
+  @extend .last !optional
   text-align: right
   .current_user
     color: green
     display: inline
 
 #top-navigation
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   font-size: 14px
   text-align: left
   height: 30px
   margin-top: 10px
   //border: 1px solid red
   ul
-    @extend .ui-tabs-nav
-    @extend .ui-helper-reset
-    @extend .ui-helper-clearfix
-    @extend .span-24
+    @extend .ui-tabs-nav !optional
+    @extend .ui-helper-reset !optional
+    @extend .ui-helper-clearfix !optional
+    @extend .span-24 !optional
     display: inline-block
     margin-left: -4px
     vertical-align: middle
     li
-      @extend .ui-state-default
-      @extend .ui-corner-all
+      @extend .ui-state-default !optional
+      @extend .ui-corner-all !optional
       list-style-type: none
       padding-top: 7px
       padding-left: 3px
@@ -46,16 +46,16 @@
         vertical-align: middle
 
     li.selected
-      @extend .ui-tabs-selected
-      @extend .ui-state-active
+      @extend .ui-tabs-selected !optional
+      @extend .ui-state-active !optional
       border-right: 0px
       margin-top: 0px
     li:hover
-      @extend .ui-state-hover
+      @extend .ui-state-hover !optional
 
 #content
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   background: #fff
   font-size: 11px
   margin-top: 10px
@@ -69,10 +69,10 @@ h3
   font-size: 160%
 
 .row
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   .wrapper
-    @extend .span-5
+    @extend .span-5 !optional
   strong
     font: 14px Arial,sans-serif
     font-weight: bold
@@ -83,7 +83,7 @@ h3
     vertical-align: middle
     margin-top: 20px
     margin-left: 3px
-    @extend .ui-state-default
+    @extend .ui-state-default !optional
 
 
 .wrapper
@@ -121,8 +121,8 @@ h3
   height: 30px
 
 .pagination
-  @extend .span-20
-  @extend .last
+  @extend .span-20 !optional
+  @extend .last !optional
   text-align: center
   margin-botom: 5px
 
@@ -138,10 +138,10 @@ h3
 
 
 #filter_form
-  @extend .ui-widget-header
-  @extend .ui-helper-clearfix
-  @extend .span-24
-  @extend .last
+  @extend .ui-widget-header !optional
+  @extend .ui-helper-clearfix !optional
+  @extend .span-24 !optional
+  @extend .last !optional
   @extend .collection_header_colors
   border-color: silver
   padding-bottom: 5px
@@ -151,21 +151,21 @@ h3
     color: #585858
 
 #collection_header
-  @extend .ui-widget-header
-  @extend .ui-helper-clearfix
-  @extend .span-24
-  @extend .last
+  @extend .ui-widget-header !optional
+  @extend .ui-helper-clearfix !optional
+  @extend .span-24 !optional
+  @extend .last !optional
   @extend .collection_header_colors
   border-style: solid
   border-color: silver
   background: #f5f5f5
   .action
-    @extend .span-2
+    @extend .span-2 !optional
     text-align: center
 
 #collection_records
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   border-left: 1px solid silver
   border-right: 1px solid silver
   text-align: left
@@ -173,10 +173,10 @@ h3
   min-height: 60px
 
 #collection_footer
-  @extend .ui-widget-header
-  @extend .ui-helper-clearfix
-  @extend .span-24
-  @extend .last
+  @extend .ui-widget-header !optional
+  @extend .ui-helper-clearfix !optional
+  @extend .span-24 !optional
+  @extend .last !optional
   @extend .collection_header_colors
   border-top: 0px
   text-align: right

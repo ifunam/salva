@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   before(:all) do
-     @user = User.make
+     @user = User.create
   end
 
   [:login, :userstatus_id].each do |attribute|

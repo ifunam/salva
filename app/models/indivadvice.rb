@@ -1,8 +1,8 @@
 # encoding: utf-8
 class Indivadvice < ActiveRecord::Base
-  attr_accessible :indivname, :institution_id, :startyear, :startmonth, :endyear, :endmonth,
-                  :hours, :indivadvicetarget_id, :career_attributes,
-                  :institution_id, :university_id, :country_id, :degree_id, :career_id
+  # attr_accessor :indivname, :institution_id, :startyear, :startmonth, :endyear, :endmonth,
+                  #:hours, :indivadvicetarget_id, :career_attributes,
+                  #:institution_id, :university_id, :country_id, :degree_id, :career_id
 
   validates_presence_of :indivadvicetarget_id, :indivname, :startyear, :hours
   validates_numericality_of :indivadvicetarget_id
@@ -27,13 +27,13 @@ class Indivadvice < ActiveRecord::Base
   belongs_to :registered_by, :class_name => "User"
   belongs_to :modified_by, :class_name => "User"
 
-  default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC, indivname ASC'
-  scope :students, where('indivadvicetarget_id <= 3')
-  scope :professors, where('indivadvicetarget_id > 3')
+  default_scope -> { order(endyear: :desc, endmonth: :desc, startyear: :desc, startmonth: :desc, indivname: :asc) }
+  scope :students, -> { where('indivadvicetarget_id <= 3') }
+  scope :professors, -> { where('indivadvicetarget_id > 3') }
   scope :degree_id, lambda { |id| where("degree_id = ?", id) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :degree_id, :adscription_id
+  # search_methods :degree_id, :adscription_id
 
   def to_s
     if indivadvicetarget_id > 3

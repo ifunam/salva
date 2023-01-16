@@ -1,6 +1,6 @@
 UserGroup.blueprint do
-  group_id { Group.make!.id }
-  user_id { User.make!.id }
+  group_id { Group.new.id }
+  user_id { User.new.id }
   user
   group
 end

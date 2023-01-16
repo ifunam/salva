@@ -1,5 +1,5 @@
 class UserKnowledgeArea < ActiveRecord::Base
-  attr_accessible :user_id, :knowledge_area_id
+  # attr_accessor :user_id, :knowledge_area_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :knowledge_area_id, :user_id, :greater_than => 0, :only_integer => true, :allow_nil => false
   validates_uniqueness_of :user_id, :scope => [:knowledge_area_id]
@@ -11,7 +11,7 @@ class UserKnowledgeArea < ActiveRecord::Base
 
   scope :knowledge_area_id_eq, lambda { |knowledge_area_id| select('*').where :knowledge_area_id => knowledge_area_id }
 
-  search_methods :user_id, :lab_or_group_id_eq
+  # search_methods :user_id, :lab_or_group_id_eq
 
   def to_s
     knowledge_area.to_s

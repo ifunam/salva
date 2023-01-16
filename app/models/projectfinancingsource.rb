@@ -1,5 +1,5 @@
 class Projectfinancingsource < ActiveRecord::Base
-  attr_accessible :institution_id
+  # attr_accessor :institution_id
 
   validates_presence_of :institution_id
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true

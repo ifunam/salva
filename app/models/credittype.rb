@@ -1,5 +1,5 @@
 class Credittype < ActiveRecord::Base
-  attr_accessible :name
+  # attr_accessor :name
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -8,5 +8,5 @@ class Credittype < ActiveRecord::Base
 
   has_many :user_credits
 
-  default_scope :order => 'name ASC'
+  default_scope -> { order(name: :asc) }
 end

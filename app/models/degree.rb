@@ -5,9 +5,9 @@ class Degree < ActiveRecord::Base
   has_many :careers
   has_many :thesismodalities
 
-  attr_accessible :name, :level, :careers_attributes, :thesismodalities, :career_ids, :thesismodality_ids
+  # attr_accessor :name, :level, :careers_attributes, :thesismodalities, :career_ids, :thesismodality_ids
 
-  default_scope :order => 'level DESC' if column_names.include? 'level'
-  scope :higher, where('id > 1')
-  scope :universitary, where('id = 3 OR id = 5 OR id = 6')
+  default_scope -> { order(level: :desc) if column_names.include? 'level' }
+  scope :higher, -> { where('id > 1') }
+  scope :universitary, -> { where('id = 3 OR id = 5 OR id = 6') }
 end

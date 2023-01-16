@@ -1,6 +1,6 @@
 require 'attribute_normalizer'
 ActiveRecord::Base.send :include, AttributeNormalizer
-Salva::Application.configure do
+Rails.application.configure do
   config.after_initialize do
     AttributeNormalizer.configure do |attr_config|
       attr_config.normalizers[:currency] = lambda do |value, options|
@@ -29,8 +29,8 @@ Salva::Application.configure do
       attr_config.default_normalizers = :text_line, :strip, :blank
 
       attr_config.default_attributes = :name, :title, :abbrev, :authors, :pages, :vol, :num
-      attr_config.add_default_attribute :description, :with => :paragraph
-      attr_config.add_default_attribute :descr, :with => :paragraph
+      # attr_config.add_default_attribute :description, :with => :paragraph
+      # attr_config.add_default_attribute :descr, :with => :paragraph
     end
   end
 end

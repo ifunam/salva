@@ -1,5 +1,5 @@
 class UserProject < ActiveRecord::Base
-  attr_accessible  :project_id, :user_id, :roleinproject_id
+  # attr_accessor  :project_id, :user_id, :roleinproject_id
   validates_presence_of :roleinproject_id
   validates_numericality_of :id,  :project_id, :allow_nil => true, :greater_than => 0, :only_integer => true
   validates_numericality_of :user_id, :roleinproject_id,  :greater_than => 0, :only_integer => true
@@ -32,8 +32,8 @@ class UserProject < ActiveRecord::Base
       .where(:user => {:user_adscription => {:adscription_id => id}})
   }
 
-  search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
-  search_methods :adscription_id, :projectstatus_id
+  # search_methods :among, :splat_param => true, :type => [:integer, :integer, :integer, :integer]
+  # search_methods :adscription_id, :projectstatus_id
 
   def author_with_role
     [user.author_name, "(#{roleinproject.name})"].join(' ')

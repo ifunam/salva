@@ -1,6 +1,8 @@
 class Conferencetalk < ActiveRecord::Base
-  attr_accessible :authors, :title, :talktype_id, :talkacceptance_id, :modality_id,
-                  :user_conferencetalks_attributes, :conference_attributes
+  # attr_accessor :authors, :title, :talktype_id, :talkacceptance_id, :modality_id,
+  #                :user_conferencetalks_attributes, :conference_attributes
+  include Salva::MetaUserAssociation
+
 
   validates_presence_of :title, :authors, :talktype_id, :talkacceptance_id, :modality_id
 
@@ -34,18 +36,18 @@ class Conferencetalk < ActiveRecord::Base
     where(sql)
   }
 
-  default_scope includes(:conference).order("conferences.year DESC, conferencetalks.authors ASC, conferencetalks.title ASC")
-  scope :local_scope, :conditions => 'conferences.conferencescope_id = 1', :include => [:conference]
-  scope :national_scope, :conditions => 'conferences.conferencescope_id = 2', :include => [:conference]
-  scope :international_scope, :conditions => 'conferences.conferencescope_id = 3', :include => [:conference]
+  default_scope -> { includes(:conference).order(conferences: { year: :desc }, conferencetalks: { authors: :asc, title: :asc }) }
+  scope :local_scope, -> { where(conferences: { conferencescope_id: 1 }).include([:conference]) }
+  scope :national_scope, -> { where(conferences: { conferencescope_id: 2 }).include([:conference]) }
+  scope :international_scope, -> { where(conferences: { conferencescope_id: 3 }).include([:conference]) }
   scope :since, lambda { |year| includes(:conference).where(["conferences.year >= ?", year])}
   scope :until, lambda { |year| includes(:conference).where(["conferences.year <= ?", year])}
   scope :year_eq, lambda { |year| joins(:conference).where('conferences.year = ?', year) }
   scope :among, lambda { |start_year, end_year| includes(:conference).where(["conferences.year = ?", start_year])}
   scope :conferencescope_id, lambda { |id| joins(:conference).where('conferences.conferencescope_id = ?', id) }
 
-  search_methods :user_id_eq, :user_id_not_eq, :year_eq, :conferencescope_id
-  search_methods :among, :splat_param => true, :type => [:integer, :integer]
+  # search_methods :user_id_eq, :user_id_not_eq, :year_eq, :conferencescope_id
+  # search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def to_s
     [ authors, "#{talktype.name}: #{title}", "Modalidad: #{modality.name}",

@@ -8,14 +8,15 @@ Getting Started
 ===============
 
 1. Install rvm in your linux distribution 
-2. Install ruby 2.1.2-p95
+2. Install ruby 2.7.2p137
 3. Install the gems with the ruby bundler
-4. Install PostgresSQL 9.x, MemCached, Redis and ImageMagick
-5. Create your database, run the seeds to populate your database
-6. Copy the *yml.example files to *yml files in the config directory and
+4. Run ``yarn install``
+5. Install PostgresSQL 15.x, MemCached, Redis and ImageMagick
+6. Create your database, run the seeds to populate your database
+7. Copy the *yml.example files to *yml files in the config directory and
    adapt them to your configuration (The required are databases.yml, site.yml and mail.yml)
-7. Install passenger with apache or ngnix
-8. Start to web server
+8. Install passenger with apache or ngnix
+9. Start to web server
 
 Authors
 =======
@@ -34,6 +35,7 @@ Contributors
 - Miguel E <mvazquez83@gmail.com>
 - Alejandro Silva <alexs1010@gmail.com>
 - Fernando Magariños Mancha <mancha@gmail.com>
+- Boyan Georgiev <bbgeorgiev96@gmail.com>
 
 License
 =======

@@ -1,5 +1,5 @@
 class UserTechproduct < ActiveRecord::Base
-  attr_accessible :user_id, :techproduct_id, :userrole_id, :year
+  # attr_accessor :user_id, :techproduct_id, :userrole_id, :year
   before_validation :default_year
 
   validates_presence_of :year
@@ -19,7 +19,7 @@ class UserTechproduct < ActiveRecord::Base
       .where(:user => {:user_adscription => {:adscription_id => id}})
   }
 
-  search_methods :adscription_id
+  # search_methods :adscription_id
 
   belongs_to :user
   belongs_to :techproduct

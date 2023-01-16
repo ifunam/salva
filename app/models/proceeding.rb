@@ -1,5 +1,5 @@
 class Proceeding < ActiveRecord::Base
-  attr_accessible :title, :year, :volume, :publisher_id, :conference_attributes, :user_proceedings_attributes
+  # attr_accessor :title, :year, :volume, :publisher_id, :conference_attributes, :user_proceedings_attributes
 
   validates_presence_of :title, :year
   validates_numericality_of :id, :publisher_id,  :allow_nil => true, :greater_than =>0, :only_integer => true
@@ -20,7 +20,7 @@ class Proceeding < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope order('title ASC, year DESC')
+  default_scope -> { order(title: :asc, year: :desc) }
 
   scope :user_id_eq, lambda { |user_id| joins(:user_proceedings).where(:user_proceedings => {:user_id => user_id}) }
 
@@ -31,7 +31,7 @@ class Proceeding < ActiveRecord::Base
       where sql
   }
 
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     if title == conference.name

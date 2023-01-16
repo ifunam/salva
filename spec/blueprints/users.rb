@@ -4,6 +4,6 @@ User.blueprint do
   password { text_plain_password }
   password_confirmation { text_plain_password }
   email { Forgery::Internet.email_address }
-  userstatus_id { Userstatus.make!.id }
+  userstatus_id { Userstatus.new.id }
   userstatus
 end

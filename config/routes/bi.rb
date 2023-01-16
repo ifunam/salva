@@ -1,4 +1,4 @@
-Salva::Application.routes.draw do
+Rails.application.routes.draw do
 
   devise_for :bi, :path => '/bi', :only => :sessions, :format => false,
              :controllers => { :sessions => "bi/sessions" }

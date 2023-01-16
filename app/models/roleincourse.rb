@@ -5,5 +5,5 @@ class Roleincourse < ActiveRecord::Base
 
   has_many :user_courses
 
-  scope :instructors, where('id != 2')
+  scope :instructors, -> { where('id != 2') }
 end

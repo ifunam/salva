@@ -1,5 +1,5 @@
 class UserJournal < ActiveRecord::Base
-  attr_accessible :journal_id, :roleinjournal_id, :startyear, :startmonth, :endyear, :endmonth
+  # attr_accessor :journal_id, :roleinjournal_id, :startyear, :startmonth, :endyear, :endmonth
 
   validates_presence_of :journal_id, :roleinjournal_id, :startyear
 
@@ -13,10 +13,10 @@ class UserJournal < ActiveRecord::Base
   belongs_to :registered_by, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'
 
-  default_scope :order => 'endyear DESC, endmonth DESC, startyear DESC, startmonth DESC'
+  default_scope -> { order(endyear: :desc, endmonth: :desc, startyear: :desc, startmonth: :desc) }
   scope :adscription_id, lambda { |id| joins(:user => :user_adscription).where(:user => { :user_adscription => { :adscription_id => id} }) }
 
-  search_methods :adscription_id
+  # search_methods :adscription_id
 
   def to_s
     [journal_name, "#{roleinjournal.name}: #{user.author_name}", start_date, end_date].compact.join(', ')

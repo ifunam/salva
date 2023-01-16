@@ -1,3 +1,3 @@
-require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../lib/site_config'
+require_relative './spec_helper'
+require_relative '../lib/salva/site_config'
 include Salva::SiteConfig

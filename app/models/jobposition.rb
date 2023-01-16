@@ -1,8 +1,8 @@
 class Jobposition < ActiveRecord::Base
-  self.table_name = "jobpositions"
+  # self.table_name = "jobpositions"
 
-  attr_accessible :user_id, :jobpositioncategory_id, :contracttype_id, :institution_id, :descr,
-                  :start_date, :end_date, :user_adscription_attributes, :place_of_origin
+  # attr_accessor :user_id, :jobpositioncategory_id, :contracttype_id, :institution_id, :descr,
+  #                 :start_date, :end_date, :user_adscription_attributes, :place_of_origin
 
   validates_presence_of :institution_id, :start_date
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -28,17 +28,17 @@ class Jobposition < ActiveRecord::Base
   validates_associated :contracttype
   validates_associated :institution
 
-  scope :posdoc, :conditions => { :jobpositioncategory_id => 38 }
-  scope :conacyt, :conditions => { :jobpositioncategory_id => 185 }
-  scope :researcher, :conditions => { :jobpositioncategory_id => 1..37 }
+  scope :posdoc, -> { where(jobpositioncategory_id: 38) }
+  scope :conacyt, -> { where(jobpositioncategory_id: 185) }
+  scope :researcher, -> { where(jobpositioncategory_id: 1..37) }
   scope :by_start_year, lambda { |year| by_year(year, :field => :start_date) }
   scope :by_end_year, lambda { |year| by_year(year, :field => :end_date) }
-  scope :at_external_institutions, joins(:institution).where("(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ")
-  scope :at_unam, joins(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ")
+  scope :at_external_institutions, -> { joins(:institution).where("(institutions.institution_id != 1 OR institutions.institution_id IS NULL) AND jobpositions.institution_id = institutions.id ") }
+  scope :at_unam, -> { joins(:institution).where("(institutions.institution_id = 1 OR institutions.id = 1) AND jobpositions.institution_id = institutions.id ") }
   scope :user_id_by_start_date_year, lambda { |year| by_year(year, :field => :start_date).select('DISTINCT(user_id) AS user_id') }
   scope :user_id_by_end_date_year, lambda { |year| by_year(year, :field => :end_date).select('DISTINCT(user_id) AS user_id') }
 
-  search_methods :by_start_year, :by_end_year
+  # search_methods :by_start_year, :by_end_year
 
   def category_name
     jobpositioncategory.nil? ? nil : jobpositioncategory.name

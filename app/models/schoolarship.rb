@@ -1,5 +1,5 @@
 class Schoolarship < ActiveRecord::Base
-  attr_accessible :name, :institution_id
+  # attr_accessor :name, :institution_id
 
   validates_presence_of :name
   validates_numericality_of :id, :institution_id, :allow_nil => true, :greater_than =>0, :only_integer => true
@@ -13,8 +13,8 @@ class Schoolarship < ActiveRecord::Base
 
   validates_associated :institution
 
-  default_scope :order => 'name ASC'
-  scope :posdoctoral_scholar, where("id >= 48 AND id <= 53")
+  default_scope -> { order(name: :asc) }
+  scope :posdoctoral_scholar, -> { where("id >= 48 AND id <= 53") }
 
   def name_and_institution_abbrev
      institution.nil? ? name : [name, institution.abbrev].join(' - ')

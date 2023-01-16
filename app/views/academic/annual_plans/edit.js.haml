@@ -3,4 +3,4 @@
                              :html => {:id => dom_id(@document)}) do |f|
   = render :partial => 'form', :locals => { :f => f}
   #dialog_submit_buttons
-    = f.submit t(:reject), :confirm => t(:reject_document_confirmation)
+    = f.submit t(:reject), :data => { confirm: reject_document_confirmation }

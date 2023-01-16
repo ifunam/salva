@@ -5,5 +5,5 @@ class Roleproceeding < ActiveRecord::Base
 
   has_many :user_proceedings
 
-  default_scope order('name ASC')
+  default_scope -> { order(name: :asc) }
 end

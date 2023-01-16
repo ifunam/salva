@@ -4,15 +4,15 @@
 
 //  Navigation
 #top-navigation
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   font-size: 11.5px
   text-align: left
   height: 42px
   margin-top: 10px
   #ul
   ul:first-child
-    @extend .span-24
+    @extend .span-24 !optional
     display: inline-block
     margin-left: -4px
     vertical-align: middle
@@ -80,8 +80,8 @@
         font-weight: bold
 
 #content
-  @extend .span-24
-  @extend .last
+  @extend .span-24 !optional
+  @extend .last !optional
   width: 930px
   background: #fff
   font-size: 11px
@@ -90,7 +90,7 @@
   margin-bottom: 20px
 
 #left-navigation
-  @extend .span-5
+  @extend .span-5 !optional !optional
   @extend .ui-widget
   @extend .ui-widget-content
   font-size: 12px
@@ -98,9 +98,9 @@
   background: #fff
   border: 0px
   ul
-    @extend .ui-tabs-nav
-    @extend .ui-helper-reset
-    @extend .ui-helper-clearfix
+    @extend .ui-tabs-nav !optional
+    @extend .ui-helper-reset !optional
+    @extend .ui-helper-clearfix !optional
     margin-top: 10px
     li
       padding: 12px 8px
@@ -126,13 +126,13 @@
         color: #6EAC2C
 
     li.selected
-      @extend .ui-state-default
-      @extend .ui-tabs-selected
-      @extend .ui-state-active
+      @extend .ui-state-default !optional
+      @extend .ui-tabs-selected !optional
+      @extend .ui-state-active !optional
 
 #right-content
-  @extend .span-18
-  @extend .last
+  @extend .span-18 !optional
+  @extend .last !optional
   text-align: left
   padding-top: 10px
   padding-bottom: 10px
@@ -168,26 +168,26 @@
     margin-top: 10px
 
 .subsection-round-corner
-  @extend .span-18
-  @extend .section-round-corner-with-bg
-  @extend .last
+  @extend .span-18 !optional
+  @extend .section-round-corner-with-bg !optional
+  @extend .last !optional
   padding-top: 10px
   margin-bottom: 10px
   border-color: silver
 
 #session_info
-  @extend .ui-button-set
-  @extend .span-24
-  @extend .last
+  @extend .ui-button-set !optional
+  @extend .span-24 !optional
+  @extend .last !optional
   text-align: right
   .current_user
     color: green
     display: inline
 
 .subsection-round-corner
-  @extend .span-18
-  @extend .section-round-corner-with-bg
-  @extend .last
+  @extend .span-18 !optional
+  @extend .section-round-corner-with-bg !optional
+  @extend .last !optional
   padding-top: 10px
   margin-bottom: 10px
   border-color: silver
@@ -204,13 +204,13 @@
 
 .ui-dialog-titlebar
   text-align: right
-  @extend .span-9
-  @extend .last
+  @extend .span-9 !optional
+  @extend .last !optional
   border: none
   background: none
   a
     @extend .ui-button
-    @extend .ui-button-icon
+    @extend .ui-button-icon !optional
     @extend .ui-widget
-    @extend .ui-state-default
-    @extend .ui-corner-all
+    @extend .ui-state-default !optional
+    @extend .ui-corner-all !optional

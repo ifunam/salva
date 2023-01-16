@@ -40,9 +40,9 @@ end
 
 Institution.blueprint do
    name { Forgery(:basic).name + " #{sn}" }
-   institutiontitle_id { Institutiontitle.make!.id }
-   institutiontype_id  { Institutiontype.make!.id }  
-   country_id  { Country.make!.id }  
+   institutiontitle_id { Institutiontitle.new.id }
+   institutiontype_id  { Institutiontype.new.id }  
+   country_id  { Country.new.id }  
    institutiontitle
    institutiontype
    country
@@ -53,8 +53,8 @@ Contracttype.blueprint do
 end
 
 Jobpositioncategory.blueprint do
-  jobpositiontype_id { Jobpositiontype.make!.id }
-  roleinjobposition_id { Roleinjobposition.make!.id }
+  jobpositiontype_id { Jobpositiontype.new.id }
+  roleinjobposition_id { Roleinjobposition.new.id }
   jobpositiontype
   jobpositionlevel
   roleinjobposition
@@ -74,7 +74,7 @@ end
 
 Adscription.blueprint do
     name { Forgery(:basic).name + " #{sn}" }
-    institution_id { Institution.make!.id }
+    institution_id { Institution.new.id }
     institution
 end
 

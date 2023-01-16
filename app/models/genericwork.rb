@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Genericwork < ActiveRecord::Base
-  attr_accessible :authors, :title, :reference, :vol, :pages, :isbn_issn, :year, :month,
+  # attr_accessor :authors, :title, :reference, :vol, :pages, :isbn_issn, :year, :month,
                   :user_genericworks_attributes, :genericworkstatus_id, :genericworktype_id,
                   :publisher_id, :institution_id
 
@@ -23,18 +23,18 @@ class Genericwork < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope :order => 'year DESC, month DESC, authors ASC, title ASC'
+  default_scope -> { order(year: :desc, month: :desc, authors: :asc, title: :asc) }
 
-  scope :popular_science, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 1 })
-  scope :outreach_works, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 6 })
-  scope :other_works, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 5 })
-  scope :teaching_products, joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 4 })
-  scope :technical_reports, joins(:genericworktype).where(:genericworktype => { :name => 'Reportes técnicos' })
+  scope :popular_science, -> { joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 1 }) }
+  scope :outreach_works, -> { joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 6 }) }
+  scope :other_works, -> { joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 5 }) }
+  scope :teaching_products, -> { joins(:genericworktype).where(:genericworktype => { :genericworkgroup_id => 4 }) }
+  scope :technical_reports, -> { joins(:genericworktype).where(:genericworktype => { :name => 'Reportes técnicos' }) }
 
   scope :user_id_eq, lambda { |user_id| joins(:user_genericworks).where(:user_genericworks => {:user_id => user_id}) }
   scope :user_id_not_eq, lambda { |user_id|  where("genericworks.id IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id !=  ?", user_id]).to_sql}) AND genericworks.id  NOT IN (#{UserGenericwork.select('DISTINCT(genericwork_id) as genericwork_id').where(["user_genericworks.user_id =  ?", user_id]).to_sql})") }
 
-  search_methods :user_id_eq, :user_id_not_eq
+  # search_methods :user_id_eq, :user_id_not_eq
 
   def to_s
     [authors, title, "Tipo de trabajo: #{genericworktype.name}", "Status: #{genericworkstatus.name}", institution_name, pages, date].compact.join(', ')

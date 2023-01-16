@@ -1,6 +1,7 @@
 # encoding: utf-8
 module ApplicationHelper
   include Salva::SiteConfig
+  include ActionView::RecordIdentifier
   def add_child_link(name, association)
     link_to(content_tag(:span, '', :class => 'add_child_icon'), "#",
              :"data-association" => association, :class => "add_child_link",
@@ -14,7 +15,7 @@ module ApplicationHelper
     link_to(content_tag(:span, '', :class => 'del_child_icon'), "#",
                         :class => "#{html_class} child_link",
                         :title => 'Borrrar',
-                        :confirm => t(:delete_confirm_question))
+                        :data => { confirm: t(:delete_confirm_question) })
   end
 
   def new_child_fields_template(form_builder, association, options = {})
@@ -53,7 +54,7 @@ module ApplicationHelper
   def link_to_delete(record, resource_path)
     if can_current_user_delete?(record)
       link_to_action 'icon_action_delete', t(:del), resource_path, :method => :delete,
-                     :confirm => t(:delete_confirm_question)
+                     :data => { confirm: t(:delete_confirm_question) }
     else
       image_tag "locked.png", :title => 'Registro verificado'
     end
@@ -112,7 +113,7 @@ module ApplicationHelper
   end
 
   def link_to_delete_period(resource_path)
-    link_to_action 'icon_action_delete_period', t(:del), resource_path, :method => :delete, :confirm => t(:delete_confirm_question),
+    link_to_action 'icon_action_delete_period', t(:del), resource_path, :method => :delete, :data => { confirm: t(:delete_confirm_question) },
                    :class => 'delete_period', :remote => true
   end
 

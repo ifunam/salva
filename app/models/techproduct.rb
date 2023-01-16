@@ -1,5 +1,5 @@
 class Techproduct < ActiveRecord::Base
-  attr_accessible :authors, :title, :techproductstatus_id, :techproducttype_id, :descr, :institution_id, :user_techproducts_attributes
+  # attr_accessor :authors, :title, :techproductstatus_id, :techproducttype_id, :descr, :institution_id, :user_techproducts_attributes
   validates_presence_of :title, :authors
   validates_numericality_of :id, :allow_nil => true,  :greater_than => 0, :only_integer => true
   validates_numericality_of :institution_id, :allow_nil => true,  :greater_than => 0, :only_integer => true
@@ -20,7 +20,7 @@ class Techproduct < ActiveRecord::Base
   has_paper_trail
 
   #default_scope :order => 'techproducts.authors ASC, techproducts.title ASC'
-  default_scope :order => 'techproducts.id DESC'
+  default_scope -> { order(techproducts: { id: :asc }) }
 
   scope :all_by_year_desc, :order => 'user_techproducts.year DESC', :joins => :user_techproducts
 
@@ -36,8 +36,8 @@ class Techproduct < ActiveRecord::Base
   scope :year_eq, lambda { |year| joins(:user_techproducts).where(:user_techproducts => {:year => year}) }
   scope :among, lambda { |start_year, end_year| year_eq(start_year) }
 
-  search_methods :user_id_eq, :user_id_not_eq, :year_eq
-  search_methods :among, :splat_param => true, :type => [:integer, :integer]
+  # search_methods :user_id_eq, :user_id_not_eq, :year_eq
+  # search_methods :among, :splat_param => true, :type => [:integer, :integer]
 
   def to_s
     [authors, title, "Tipo de trabajo: #{techproducttype.name}", "Status: #{techproductstatus.name}", year].compact.join(', ')
