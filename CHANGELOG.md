@@ -13,7 +13,7 @@ If available, comments and/or further actions for a specific gem can be found un
 ### gem 'rails' '3.2.21' -> '~> 6.1.0'
 
 ### gem 'sqlite3'
-If you want to freeze the version use 
+If you want to freeze the version use
 
 ``gem 'sqlite3', '~> 1.6.0``
 
@@ -209,3 +209,7 @@ Some class names changed to fix Zeitwerk issues and of course adhere to the Rail
 ## Miscellaneous
 
 I strongly suggest the usage of a Linter, such as [Rubocop](https://rubocop.org) to make sure the application adheres to the community-driven [Ruby Style Guide](https://rubystyle.guide)
+
+Please take a look at the deprecation warning on server startup:
+``DEPRECATION WARNING: Initialization autoloaded the constant Salva::SiteConfig.``
+Actions to fix the deprecation are suggested by the system.
