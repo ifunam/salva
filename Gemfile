@@ -95,6 +95,7 @@ gem 'RedCloth', '~> 4.3', '>= 4.3.2'
 gem 'rtf', '~> 0.3.3'
 gem 'rtf_rails', '~> 0.0.1'
 gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
+gem 'jquery-ui-rails' # added since it is no longer included in jquery-rails
 gem 'rest-client', '~> 2.1'
 # gem 'secure_headers', '~> 6.5' # config is required but is not used. check config/initializers/secure_headers.rb
 

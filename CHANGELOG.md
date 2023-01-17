@@ -31,19 +31,19 @@ If you want to freeze the version use
 
 ### gem 'bootsnap' added '>= 1.4.4', require: false
 
-### gem 'haml' "~> 4.0.3" -> '~> 6.1', '>= 6.1.1'
-### gem 'show_for' '~> 0.4.0' -> '~> 0.8.0'
-### gem 'simple_form' '~> 4.0.0' -> '~> 5.1'
+### gem 'haml' "4.0.3" -> '~> 6.1', '>= 6.1.1'
+### gem 'show_for' '0.4.0' -> '~> 0.8.0'
+### gem 'simple_form' '4.0.0' -> '~> 5.1'
 ### gem "blueprint-rails" removed
 
 Cannot be readded, only for rails 3. Consequently, all css ``@extend``s that extend part of the blueprint-rails gem's CSS have been set to ``!optional ``. Another gem, such as [bootstrap](https://github.com/twbs/bootstrap-rubygem) can be used to replace ``blueprint-rails``.
 
-### gem 'rails-i18n' "~> 0.7.4" -> '~> 7.0', '>= 7.0.6'
+### gem 'rails-i18n' "0.7.4" -> '~> 7.0', '>= 7.0.6'
 
 ### gem 'cancan' '1.6.7' -> '~> 1.6', '>= 1.6.10'
 
 ### gem 'bcrypt', '3.1.7' -> '~> 3.1', '>= 3.1.18'
-### gem 'devise-encryptable' "~> 0.1.1" -> '~> 0.2.0'
+### gem 'devise-encryptable' "0.1.1" -> '~> 0.2.0'
 ### gem 'devise_ldap_authenticatable' "~> 0.6.1" -> '~> 0.8.7'
 ### gem 'devise-i18n' "~> 0.5.4" -> '~> 1.10', '>= 1.10.2'
 ### gem 'net-ldap', "0.2.2" -> '~> 0.17.1'
@@ -55,7 +55,7 @@ Please check if this is the gem you need. Looks like it has been renamed to [sco
 
 ### gem 'simple-navigation' "3.8.0" -> '~> 4.4'
 
-###gem 'paper_trail' '~> 10.3', '>= 10.3.1' -> '~> 14.0'
+### gem 'paper_trail' '10.3', '>= 10.3.1' -> '~> 14.0'
 
 ### gem "diff" removed "~> 0.3.6"
 
@@ -68,7 +68,7 @@ Clashes with RSpec testing
 
 not updated to 1.2 as some app-breaking configuration is disabled in 1.2
 
-### gem 'inherited_resources', '~> 1.9' -> '~> 1.13', '>= 1.13.1'
+### gem 'inherited_resources', '1.9' -> '~> 1.13', '>= 1.13.1'
 ### gem 'pg', '~> 1.4', "0.14.0" -> '>= 1.4.5'
 ### gem "meta_search", "~> 1.1.3"
 Cannot be added, depends on actionpack ~> 3.1 activerecord ~> 3.1 activesupport ~> 3.1
@@ -77,20 +77,19 @@ Refer to the [search_methods](#search_methods) section below.
 ### gem 'squeel', '~> 1.2', '>= 1.2.3'
 cannot be added, depends on polyamorous which has been deprecated after Rails 4
 
-#Graphs
-gem 'lazy_high_charts' '~> 1.5', '>= 1.5.8' -> '~> 1.6', '>= 1.6.1'
+### gem 'lazy_high_charts' '1.5.8' -> '~> 1.6', '>= 1.6.1'
 
 ### gem "sass" removed
 Not needed. If you feel this is not true, feel free to uncomment and run ``bundle`` to install it again.
-### gem 'json' "~> 1.7.5" -> '~> 2.6', '>= 2.6.3'
+### gem 'json' "1.7.5" -> '~> 2.6', '>= 2.6.3'
 ### gem 'coffee-script' "~> 2.2.0" -> '~> 2.4', '>= 2.4.1'
 
 CoffeeScript still works with Rails 6, even though there have been [discussions](https://github.com/rails/rails/pull/37529) about removing it completely. The standard now is working with JavaScript. Please refer to the latest Rails guides, such as [this](https://guides.rubyonrails.org/working_with_javascript_in_rails.html) one.
 
-### gem 'uglifier' "~> 1.2.7" -> '~> 4.2'
-### gem 'css_image_embedder' "~> 0.2.0" -> '~> 0.3.0'
-### gem 'by_star' "~> 2.0.0.beta1" -> '~> 4.0'
-### gem 'tzinfo' '~> 1.1' -> '~> 2.0', '>= 2.0.5'
+### gem 'uglifier' "1.2.7" -> '~> 4.2'
+### gem 'css_image_embedder' " 0.2.0" -> '~> 0.3.0'
+### gem 'by_star' "2.0.0.beta1" -> '~> 4.0'
+### gem 'tzinfo' '1.1' -> '~> 2.0', '>= 2.0.5'
 
 ### gem 'SystemTimer' removed
 SystemTimer is only a patch for ruby 1.8's threading system. Not needed for ruby > 1.9.3
@@ -105,12 +104,15 @@ Needs resque ~>1.19, if not needed resque can be updated to 2.4
 ### gem 'resque_mailer', "2.1.0" -> '~> 2.4', '>= 2.4.3'
 
 ### gem 'prawn', "0.12.0" -> '~> 2.4'
-### gem 'prawn_rails' "~> 0.0.10" -> '~> 0.0.12'
+### gem 'prawn_rails' "0.0.10" -> '~> 0.0.12'
 ### gem 'spreadsheet' "0.7.3" -> '~> 1.3'
 ### gem 'barby', "0.5.0" ->'~> 0.6.8'
-### gem 'RedCloth'  "~> 4.2.9" -> '~> 4.3', '>= 4.3.2'
+### gem 'RedCloth'  "4.2.9" -> '~> 4.3', '>= 4.3.2'
 ### gem 'jquery-rails' '2.3.0' -> '~> 4.5', '>= 4.5.1'
-### gem 'rest-client' (~> 1.6.7) -> '~> 2.1'
+### gem 'jquery-ui-rails'
+Added since it is no longer included in jquery-rails
+
+### gem 'rest-client' (1.6.7) -> '~> 2.1'
 ### gem 'secure_headers', removed
 Config is required but is not used. check config/initializers/secure_headers.rb
 
@@ -125,7 +127,7 @@ Cannot be used with rails 6, depends on activemodel < 5.0, >= 4.0.1
 ### gem 'rails-observers'
 Cannot be readded. Up to activemodel 4.0. Instead use [ActiveRecord callbacks](https://guides.rubyonrails.org/active_record_callbacks.html). I have added the following to the User model ``after_create :request_id_card``,  ``after_update :user_updates``,  ``before_destroy: destroy_connected_users``. The function names are just placeholders, feel free to change them as you like.
 
-### gem "net-http"
+### gem "net-http" added
 Fixes the followin warnings:
 
 .../ruby/2.7.0/net/protocol.rb:66: warning: already initialized constant Net::ProtocRetryError
@@ -205,6 +207,10 @@ Some class names changed to fix Zeitwerk issues and of course adhere to the Rail
 ``require File.dirname(__FILE__) +`` has been changed to ``require_relative`` in some places. If you find any other ``requires`` not using ``require_relative`` feel free to change them.
 
 ``spec_helper.rb`` has been renamed to ``test_helper.rb`` in latest Rails.
+
+Please check ``stylesheet_link_tag``s in the ``.html.haml`` files, such as
+``= stylesheet_link_tag 'jquery.ui/themes/start/jquery-ui-1.8.14.custom'`` in ``app/views/layouts/academic_secretary.html.haml``. I have not made any changes here as I am unsure where the imports come from, but this surely needs changed as the version will not match the latest gem's version.
+
 
 ## Miscellaneous
 
